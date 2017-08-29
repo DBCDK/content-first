@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import worksReducer from './works';
+import beltsReducer from './belts';
 
 const LOCAL_STORAGE_KEY = 'recommenderfeedback';
 
@@ -13,7 +13,7 @@ const setLocalStorage = (state) => {
 };
 
 const combined = combineReducers({
-  worksReducer
+  beltsReducer
 });
 
 const rootReducer = (state = getLocalStorage(), action) => {
