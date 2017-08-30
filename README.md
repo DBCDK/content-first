@@ -1,6 +1,6 @@
 # Content First
 
-See the initial overview [on the whiteboard](doc/content-first.png).
+See the initial whiteboard doodles about [database content](doc/content-first.png), [recommender lanes](doc/content-first-belts), and [endpoints](doc/content-first-backend.png).
 
 ## Development
 
