@@ -1,21 +1,33 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Belt from './Belt.component';
 
 class FrontPage extends React.Component {
 
+  renderBelts() {
+    return (
+      <div className='belts'>
+        {this.props.beltsState.belts.map((belt) => {
+          return <Belt belt={belt}/>;
+        })}
+      </div>
+    );
+  }
+
   render() {
     return (
-      <div className='row frontpage--container'>
-        <div className='col-md-8 col-centered'>
-          <h2 className='title--thin text-center'>En lille overskrift</h2>
+      <div className='frontpage'>
+        <div className='row frontpage-image'>
+          billede
         </div>
+        {this.renderBelts()}
       </div>
     );
   }
 }
 export default connect(
-  // Map redux state to group prop
+  // Map redux state to props
   (state) => {
-    return {state};
+    return {beltsState: state.beltsReducer};
   }
 )(FrontPage);

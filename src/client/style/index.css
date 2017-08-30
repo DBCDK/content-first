@@ -3,3 +3,19 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.topbar {
+  background: pink;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.frontpage-image {
+  background: red;
+  height: 200px;
+}
+
+.belt {
+  height: 200px;
+  background: gray;
+}

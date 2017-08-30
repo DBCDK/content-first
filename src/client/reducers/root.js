@@ -20,6 +20,7 @@ const rootReducer = (state = getLocalStorage(), action) => {
   console.log('Processing action', action);
   const newState = combined(state, action);
   setLocalStorage(newState);
+  console.log(newState)
   return newState;
 };
 
