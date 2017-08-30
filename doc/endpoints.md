@@ -20,7 +20,7 @@ Each book has the following structure:
     , purchased: 165
     , title: 'En dag på bænken'
     , author: 'Steen Stensen Sten'
-    , description: 'Marius har anldrig været god i skolen eller på fodboldholdet.  Faktisk har han aldrig rigtig været god til noget.  Men i dag skal det ændre sig.'
+    , description: 'Marius har aldrig været god i skolen eller på fodboldholdet.  Faktisk har han aldrig rigtig været god til noget.  Men i dag skal det ændre sig.'
     }
 
 ## `GET /v1/image/`*id*
