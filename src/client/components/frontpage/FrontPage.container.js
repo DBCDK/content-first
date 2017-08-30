@@ -7,8 +7,8 @@ class FrontPage extends React.Component {
   renderBelts() {
     return (
       <div className='belts'>
-        {this.props.beltsState.belts.map((belt) => {
-          return <Belt belt={belt}/>;
+        {this.props.beltsState.belts.map((belt, idx) => {
+          return <Belt key={idx} belt={belt}/>;
         })}
       </div>
     );

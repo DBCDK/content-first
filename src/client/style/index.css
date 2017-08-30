@@ -16,6 +16,36 @@ body {
 }
 
 .belt {
-  height: 200px;
+  min-height: 200px;
   background: gray;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.belt .works {
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 20px;
+}
+
+.belt .tags span {
+  margin-right: 10px;
+}
+
+.belt .work {
+  /*max-height: 200px;*/
+  width: 150px;
+  margin-right: 60px;
+  display: inline-block;
+  vertical-align: top;
+}
+.belt .work .metakompas-description {
+  white-space: normal;
+  word-wrap: break-word;
+}
+.belt .work .tag {
+  margin-left: 10px;
+}
+.belt .cover-image {
+  max-height: 200px;
+  max-width: 150px;
 }
