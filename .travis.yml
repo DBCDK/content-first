@@ -1,0 +1,16 @@
+language: node_js
+dist: trusty
+sudo: false
+node_js:
+  - "8"
+addons:
+  postgresql: "9.6"
+services:
+  - postgresql
+before_install:
+  - psql --version
+  - cp env/travis.env current.env
+  - . ./current.env
+script:
+  - npm test --silent
+  - npm run full-test --silent

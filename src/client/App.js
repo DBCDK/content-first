@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+// import logo from './logo.svg';
 import './style/App.css';
 import FrontPage from './components/frontpage/FrontPage.container';
 import TopBar from './components/TopBar.component';

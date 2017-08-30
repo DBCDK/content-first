@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import beltsReducer from './belts';
 
-const LOCAL_STORAGE_KEY = 'recommenderfeedback';
+const LOCAL_STORAGE_KEY = 'contentfirst';
 
 const getLocalStorage = () => {
   const storageString = sessionStorage.getItem(LOCAL_STORAGE_KEY);
@@ -20,7 +20,7 @@ const rootReducer = (state = getLocalStorage(), action) => {
   console.log('Processing action', action);
   const newState = combined(state, action);
   setLocalStorage(newState);
-  console.log(newState)
+  console.log(newState);
   return newState;
 };
 

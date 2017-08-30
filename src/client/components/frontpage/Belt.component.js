@@ -6,4 +6,4 @@ export default function Belt(props) {
       {props.belt.name}
     </div>
   );
-};
+}

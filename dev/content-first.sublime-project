@@ -1,0 +1,39 @@
+{ "build_systems":
+  [ { "name": "constent-first"
+    , "cmd": ["npm","run","test"]
+    , "file_regex": "^([^\n:]+):([0-9]+):([0-9]+): (.*)$"
+    , "working_dir": "${project_path}"
+    , "variants":
+      [ { "name": "test-integration"
+        , "cmd": ["npm","run","test-integration","--silent"]
+        }
+      , { "name": "test-units"
+        , "cmd": ["npm","run","test-units","--silent"]
+        }
+      , { "name": "lint-js"
+        , "cmd": ["npm","run","lint-js","--silent"]
+        , "file_regex": "^([^\n:]+):([0-9]+):([0-9]+): (.*) \\[.*\\]$"
+        }
+      ]
+    }
+  ]
+, "SublimeLinter":
+  { "linters":
+    { "eslint": { "@disable": false }
+    }
+  }
+, "folders":
+  [ { "path": ".."
+    , "folder_exclude_patterns":
+      [ "build"
+      , "coverage"
+      , "node_modules"
+      ]
+    , "file_exclude_patterns":
+      [ "npm-debug.log"
+      , "nvm.sh"
+      , "package-lock.json"
+      ]
+    }
+  ]
+}
