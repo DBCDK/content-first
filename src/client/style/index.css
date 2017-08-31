@@ -5,6 +5,31 @@ body {
   background: #fcfcfc;
 }
 
+@media (min-width: 1450px) {
+  .container {
+      width: 1400px;
+  }
+}
+
+.col-centered {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.create-profile {
+  margin-top: 110px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 8px #89b2bf;
+  border: 1px solid lightgray;
+  padding: 40px;
+  max-width: 700px;
+}
+
+.create-profile button {
+  margin-top: 20px;
+}
+
 .topbar {
   background: #444444;
   padding-top: 10px;

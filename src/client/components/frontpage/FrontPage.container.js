@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Belt from './Belt.component';
+import CreateProfile from '../profile/CreateProfile.component';
 import {ON_BELT_SCROLL} from '../../reducers/belts';
 
 const SCROLL_INTERVAL = 5;
@@ -13,7 +14,7 @@ class FrontPage extends React.Component {
       <div className='belts'>
         {this.props.beltsState.belts.map((belt, idx) => {
           // We might insert a 'create profile'-component to the belt
-          const custom = idx === 2 ? <div>hej</div> : null;
+          const custom = idx === 2 ? <CreateProfile/> : null;
           return <Belt
             key={idx}
             belt={belt}

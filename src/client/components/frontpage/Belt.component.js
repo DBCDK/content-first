@@ -12,6 +12,7 @@ export default function Belt(props) {
           return <span key={idx}>{tag}</span>;
         })}
       </div>
+      {props.custom}
       <div className='belt-wrapper'>
         {props.belt.works && (
           <div className='button-wrapper col-xs-12'>
@@ -35,7 +36,6 @@ export default function Belt(props) {
             })}
           </div>
         </div>
-        {props.custom}
       </div>
     </div>
   );

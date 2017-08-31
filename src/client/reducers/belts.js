@@ -50,19 +50,8 @@ const defaultState = {
       ]
     },
     {
-      name: 'Gør mig klogere',
-      isLoading: true,
-      tags: [
-        'Sejt at have læst',
-        'Andeleredes',
-        'Undervurderet'
-      ],
-      works: []
-    },
-    {
       name: 'Passer med min smag',
-      isLoading: true,
-      works: []
+      isLoading: false
     },
     {
       name: 'Gør mig glad',
