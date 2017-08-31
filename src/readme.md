@@ -50,6 +50,12 @@ inside `node_modules` such that [our custom libraries](lib/) can used likes this
 
 The node setup runs automatically after every `npm install`
 
+## Coverage
+
+Use `npm run coverage --silent` (after starting the database) to produce a code-coverage report, which will end up in `coverage/lcov-report/index.html`.
+
+On the build server, the [config file](../../.travis.yml) uses the `after_script` to instruct Travis to send coverage data to Coveralls, which has been configured (through its UI) to look in the root directory for the code.
+
 ## Caveats
 
 - After adding new packages with `npm install --save newpackage`, you have to `npm run postinstall` to re-establish the symbolic links in `node_modules`.

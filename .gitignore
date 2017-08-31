@@ -1,4 +1,5 @@
 build/
+coverage/
 current.env
 node_modules/
 npm-debug.log
