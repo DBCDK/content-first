@@ -26,9 +26,9 @@ const defaultState = {
       name: 'En god bog',
       isLoading: true,
       tags: [
-        'Aktuelt',
-        'Klassikere',
-        'Let læst'
+        {name: 'Aktuelt', selected: false},
+        {name: 'Klassikere', selected: false},
+        {name: 'Let læst', selected: false}
       ],
       scrollOffset: 0,
       works: [
@@ -57,10 +57,10 @@ const defaultState = {
       name: 'Gør mig glad',
       isLoading: true,
       tags: [
-        'Dansk',
-        'Hygge',
-        'Slap af i hængekøjen',
-        'Kur mod kærestesorger'
+        {name: 'Dansk', selected: false},
+        {name: 'Hygge', selected: false},
+        {name: 'Slap af i hængekøjen', selected: false},
+        {name: 'Kur mod kærestesorger', selected: false}
       ],
       works: []
     }
@@ -70,6 +70,7 @@ const defaultState = {
 export const ON_BELT_REQUEST = 'ON_BELT_LOAD';
 export const ON_BELT_RESPONSE = 'ON_BELT_RESPONSE';
 export const ON_BELT_SCROLL = 'ON_BELT_SCROLL';
+export const ON_TAG_TOGGLE = 'ON_TAG_TOGGLE';
 
 const beltsReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -89,6 +90,18 @@ const beltsReducer = (state = defaultState, action) => {
         action.scrollOffset = belt.works.length - 1;
       }
       belts[action.id] = Object.assign({}, belt, {scrollOffset: action.scrollOffset});
+      return Object.assign({}, {belts});
+    }
+
+    case ON_TAG_TOGGLE: {
+      const belts = [...state.belts];
+      const belt = Object.assign({}, belts[action.beltId]);
+      belts[action.beltId] = belt;
+      belt.tags = [...belt.tags];
+      belt.tags[action.tagId] = {
+        name: belt.tags[action.tagId].name,
+        selected: belt.tags[action.tagId].selected === false
+      };
       return Object.assign({}, {belts});
     }
 

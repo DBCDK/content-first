@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Belt from './Belt.component';
 import CreateProfile from '../profile/CreateProfile.component';
-import {ON_BELT_SCROLL} from '../../reducers/belts';
+import {ON_BELT_SCROLL, ON_TAG_TOGGLE} from '../../reducers/belts';
 
 const SCROLL_INTERVAL = 5;
 
@@ -17,12 +17,16 @@ class FrontPage extends React.Component {
           const custom = idx === 2 ? <CreateProfile/> : null;
           return <Belt
             key={idx}
+            beltId={idx}
             belt={belt}
             onScrollRight={() => {
               this.props.dispatch({type: ON_BELT_SCROLL, id: idx, scrollOffset: belt.scrollOffset + SCROLL_INTERVAL});
             }}
             onScrollLeft={() => {
               this.props.dispatch({type: ON_BELT_SCROLL, id: idx, scrollOffset: belt.scrollOffset - SCROLL_INTERVAL});
+            }}
+            onTagClick={(tagId, beltId) => {
+              this.props.dispatch({type: ON_TAG_TOGGLE, tagId, beltId});
             }}
             custom={custom}
           />;

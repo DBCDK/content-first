@@ -9,7 +9,10 @@ export default function Belt(props) {
       </div>
       <div className='col-xs-12 tags'>
         {props.belt.tags && props.belt.tags.map((tag, idx) => {
-          return <span key={idx}>{tag}</span>;
+          const btnClass = tag.selected ? 'btn-success' : 'btn-default';
+          return <span className={`btn ${btnClass}`} key={idx} onClick={() => {
+            props.onTagClick(idx, props.beltId);
+          }}>{tag.name}</span>;
         })}
       </div>
       {props.custom}
