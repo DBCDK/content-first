@@ -13,4 +13,4 @@ before_install:
   - . ./current.env
 script:
   - npm test --silent
-  - npm run full-test --silent
+  - npm run test-full --silent

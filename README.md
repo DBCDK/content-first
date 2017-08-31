@@ -1,23 +1,8 @@
 # Content First
 
-See the initial overview [on the whiteboard](doc/content-first.png).
+See the initial whiteboard doodles about [database content](doc/content-first.png), [recommender lanes](doc/content-first-belts.png), and [endpoints](doc/content-first-backend.png).
 
-## Development
-
-To run the system locally:
-
-    $ touch current.env     // Use default configuration.
-    $ docker-compose up -d  // Start local PostgreSQL database.
-    $ npm install           // Install dependencies.
-    $ npm start             // Run both backend and frontend services in parallel.
-
-If you want to manually start up a PostgreSQL server, it needs to run on port 5432 and have a database called `contentfirst` owned by `contentfirst`, see the following section about environments.
-
-To run tests on local machine:
-
-    $ npm test
-
-See [developer instructions](src/readme.md) in the `src` directory for more information.
+For development of the system, see [`src`](src/readme.md).
 
 ## Deployment
 
@@ -67,10 +52,7 @@ The backend service has the following admistrative endpoints:
 | `/status` | Returns the service status as JSON. |
 | `/pid`    | Returns the process id of the service.   |
 
-## Caveats
-
-- After adding new packages with `npm install --save newpackage`, you have to `npm run postinstall` to re-establish the symbolic links in `node_modules`.
-- In development mode, the `PORT` of the backend service needs to agree with the `proxy` setting in [`package.json`](package.json).
+See also [service endpoints](doc/endpoints.md).
 
 ----
 
