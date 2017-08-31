@@ -1,7 +1,7 @@
 // This is a placeholder to give an idea of how to test the API.
 'use strict';
 
-const expect = require('chai').expect;
+// const expect = require('chai').expect;
 const request = require('supertest');
 const config = require('server/config');
 const logger = require('__/logging')(config.logger);
@@ -35,26 +35,11 @@ describe('endpoints', () => {
         done(errors);
       });
   });
-  describe('GET /api', () => {
-    it('should give list with one element', done => {
-      webapp.get('/api')
+  describe('GET /v1/image', () => {
+    it('should give a cover image', done => {
+      webapp.get('/v1/image/870970-basis:53188931')
         .expect(200)
-        .expect('Content-Type', /json/)
-        .expect(res => {
-          expect(res.body).to.have.property('data');
-          expect(res.body.data).to.deep.equal([{id: 1, name: 'spændende'}]);
-        })
-        .end(done);
-    });
-  });
-  describe('POST /api', () => {
-    it('should return location', done => {
-      const location = '/api/2';
-      webapp.post('/api')
-        .send({name: 'ost'})
-        .expect(201)
-        .expect('Content-Type', /json/)
-        .expect('location', location)
+        .expect('Content-Type', /image\/jpeg/)
         .end(done);
     });
   });

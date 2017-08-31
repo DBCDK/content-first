@@ -25,6 +25,16 @@ To run full integration test:
 
 See also [service endpoints](../doc/endpoints.md).
 
+## Database
+
+To start up a local database:
+
+    $ docker-compose up -d  // Start local PostgreSQL database.
+
+To connect to the database:
+
+    $ docker exec -it -u postgres contentfirst_database_1 psql
+
 ## Node setup
 
 The [node setup](../setup-node-env.sh) creates symbolic links
