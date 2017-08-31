@@ -77,17 +77,19 @@ body {
 }
 
 .belt .work {
-  width: 150px;
-  margin-right: 60px;
+  width: 200px;
+  margin-right: 25px;
   display: inline-block;
   vertical-align: top;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
   -webkit-font-smoothing:antialiased;
   -webkit-backface-visibility:hidden;
 }
 .belt .work:hover {
   transform: scale(1.2,1.2);
+  box-shadow: 1px 1px 30px #666666;
+
 }
 .belt .work .metakompas-description {
   white-space: normal;
@@ -97,8 +99,8 @@ body {
   margin-left: 10px;
 }
 .belt .cover-image {
-  max-height: 200px;
-  max-width: 150px;
+  max-height: 300px;
+  max-width: 200px;
 }
 ::-webkit-scrollbar {
     display: none;

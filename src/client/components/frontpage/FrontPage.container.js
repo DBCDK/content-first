@@ -8,9 +8,12 @@ const SCROLL_INTERVAL = 5;
 class FrontPage extends React.Component {
 
   renderBelts() {
+
     return (
       <div className='belts'>
         {this.props.beltsState.belts.map((belt, idx) => {
+          // We might insert a 'create profile'-component to the belt
+          const custom = idx === 2 ? <div>hej</div> : null;
           return <Belt
             key={idx}
             belt={belt}
@@ -20,6 +23,7 @@ class FrontPage extends React.Component {
             onScrollLeft={() => {
               this.props.dispatch({type: ON_BELT_SCROLL, id: idx, scrollOffset: belt.scrollOffset - SCROLL_INTERVAL});
             }}
+            custom={custom}
           />;
         })}
       </div>

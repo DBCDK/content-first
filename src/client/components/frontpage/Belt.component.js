@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Belt(props) {
-  const scrollPos = props.belt.scrollOffset ? (-1 * props.belt.scrollOffset * 210) + 'px' : '0px';
+  const scrollPos = props.belt.scrollOffset ? (-1 * props.belt.scrollOffset * 225) + 'px' : '0px';
   return (
     <div className='row belt text-left'>
       <div className='col-xs-12 header'>
@@ -13,10 +13,12 @@ export default function Belt(props) {
         })}
       </div>
       <div className='belt-wrapper'>
-        <div className='button-wrapper col-xs-12'>
-          <div className='left-btn scroll-btn' onClick={props.onScrollLeft}></div>
-          <div className='right-btn scroll-btn' onClick={props.onScrollRight}></div>
-        </div>
+        {props.belt.works && (
+          <div className='button-wrapper col-xs-12'>
+            <div className='left-btn scroll-btn' onClick={props.onScrollLeft}></div>
+            <div className='right-btn scroll-btn' onClick={props.onScrollRight}></div>
+          </div>
+        )}
         <div className='works-wrapper col-xs-12 noselect'>
           <div className='works' style={{transform: `translate3d(${scrollPos}, 0px, 0px)`}}>
             {props.belt.works && props.belt.works.map((work, idx) => {
@@ -33,6 +35,7 @@ export default function Belt(props) {
             })}
           </div>
         </div>
+        {props.custom}
       </div>
     </div>
   );
