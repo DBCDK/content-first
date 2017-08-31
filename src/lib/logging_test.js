@@ -5,7 +5,7 @@ const sinon = require('sinon');
 
 // The first subject under test is a logger that pretty-prints everything.
 const sut1 = require('__/logging')({
-  environment: 'developement',
+  environment: 'development',
   level: 'TRACE',
   pretty: 1,
   hostname: 'localhost'
@@ -14,9 +14,9 @@ const sut1 = require('__/logging')({
 // The second subject under test is a logger that do not pretty-print and only
 // lets errors through.
 const sut2 = require('__/logging')({
-  environment: 'developement',
+  environment: 'development',
   level: 'ERROR',
-  pretty: 1,
+  pretty: 0,
   hostname: 'localhost'
 });
 
@@ -52,7 +52,7 @@ describe('logging', () => {
     sut1.log.log('info', 'test message');
 
     stub.restore();
-    assert.isTrue(stub.args.toString().includes('"test":"hest"'), 'Values set in setInfo method is present in log output');
+    assert.isTrue(stub.args.toString().includes('"test": "hest"'), 'Values set in setInfo method is present in log output');
   });
 
   it('should log a message on the INFO level', () => {
@@ -107,7 +107,19 @@ describe('logging', () => {
     const args = stub.args;
     stub.restore();
     assert.equal(args.length, 1);
-    assert.equal(args[0].indexOf('\n'), -1);
+    assert.equal(args[0].length, 1);
+    assert.equal(args[0][0].indexOf('\n'), -1);
+  });
+
+  it('should be able to prettify', () => {
+    const stub = sinon.stub(console, 'log');
+    sut1.log.error({one: 'two', three: 4});
+
+    const args = stub.args;
+    stub.restore();
+    assert.equal(args.length, 1);
+    assert.equal(args[0].length, 1);
+    assert.equal(args[0][0].split('\n').length, 13);
   });
 
 });
