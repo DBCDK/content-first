@@ -26,6 +26,10 @@ Each book has the following structure:
     , description: 'Marius har aldrig været god i skolen eller på fodboldholdet.  Faktisk har han aldrig rigtig været god til noget.  Men i dag skal det ændre sig.'
     }
 
+## `GET /v1/books?pid=`*pid*`&`...`&pid=`*pid*
+
+Result format is the same as for `GET /v1/recommendation`.
+
 ## `GET /v1/image/`*id*
 
 The path must one that has been returned by a `/v1/recommendation` request.

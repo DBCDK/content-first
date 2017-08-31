@@ -15,7 +15,7 @@
 
 module.exports = config => {
 
-  const PRETTY_PRINT = config.pretty === '1' ? 2 : null;
+  const PRETTY_PRINT = config.pretty === 1 ? 2 : null;
   let info = null;
   /**
    * Set additional info that should be visible in log messages
