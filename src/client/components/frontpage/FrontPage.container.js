@@ -11,7 +11,7 @@ class FrontPage extends React.Component {
   renderBelts() {
 
     return (
-      <div className='belts'>
+      <div className='belts col-xs-11 col-centered'>
         {this.props.beltsState.belts.map((belt, idx) => {
           // We might insert a 'create profile'-component to the belt
           const custom = idx === 2 ? <CreateProfile/> : null;
@@ -38,9 +38,7 @@ class FrontPage extends React.Component {
   render() {
     return (
       <div className='frontpage'>
-        <div className='row frontpage-image'>
-          billede
-        </div>
+        <div className='row frontpage-image'/>
         {this.renderBelts()}
       </div>
     );

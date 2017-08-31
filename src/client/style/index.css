@@ -5,8 +5,15 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #fcfcfc;
+  background: #f1f1f1;
   font-family: 'Lora', serif;
+}
+h2 {
+  font-weight: bold;
+}
+
+.container {
+  background: #fcfcfc;
 }
 
 @media (min-width: 1450px) {
@@ -24,7 +31,7 @@ body {
 .create-profile {
   margin-top: 110px;
   border-radius: 8px;
-  box-shadow: 1px 1px 8px #89b2bf;
+  box-shadow: 2px 2px 3px #89b2bf;
   border: 1px solid lightgray;
   padding: 40px;
   max-width: 700px;
@@ -35,23 +42,32 @@ body {
 }
 
 .topbar {
-  background: #444444;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: white;
+  /*background: inherit;*/
+  padding-top: 15px;
+  padding-bottom: 15px;
+  /*color: black;*/
+}
+.topbar .login {
+  margin-top: 10px;
+}
+.topbar h1 {
+  margin: 0;
 }
 
 .frontpage-image {
   background: #89b2bf;
-  height: 200px;
+  height: 500px;
+  background-image: url("/frontpage.jpg");
+  background-size: 1400px;
+  background-position: 0px -90px;
 }
 
 .belt {
   min-height: 400px;
   margin-bottom: 50px;
   margin-top: 50px;
-  border: 1px solid lightgray;
-  border-radius: 8px;
+  /*border: 1px solid lightgray;*/
+  /*border-radius: 8px;*/
   background: #fcfcfc;
   position: relative;
   /*box-shadow: 1px 1px 3px #999999;*/
@@ -62,8 +78,7 @@ body {
 }
 
 .belt .right-btn {
-  margin-top: 65px;
-  margin-right: -35px;
+  margin-right: 0px;
   right: 0px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -72,20 +87,21 @@ body {
   opacity: .7;
 }
 .belt .scroll-btn {
-  width: 35px;
-  height: 100px;
-  background: #a0a0a0;
-  border: 1px solid #424242;
+  width: 90px;
+  height: 295px;
+  background: white;
   position: absolute;
-  margin-top: 65px;
+  margin-top: 20px;
   cursor: pointer;
-  opacity: .2;
+  opacity: 0;
   transition: all 0.1s ease-in-out;
+  z-index: 100;
+  font-size: 50px;
+  padding-top: 110px;
 }
 .belt .left-btn {
-  margin-left: -50px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  margin-left: 0px;
+
 }
 .belt .left-btn:hover {
   opacity: .7;
@@ -108,29 +124,35 @@ body {
 
 .belt .work {
   width: 200px;
-  margin-right: 25px;
+  margin-right: 75px;
   display: inline-block;
   vertical-align: top;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-  -webkit-font-smoothing:antialiased;
-  -webkit-backface-visibility:hidden;
 }
-.belt .work:hover {
-  transform: scale(1.2,1.2);
-  box-shadow: 1px 1px 30px #666666;
-
+.belt .cover-image-wrapper:hover {
+  transform: scale(1.05,1.05);
 }
 .belt .work .metakompas-description {
   white-space: normal;
   word-wrap: break-word;
+  margin-top: 20px;
+  font-size: 18px;
+  /*color: black*/
 }
 .belt .work .tag {
   margin-left: 10px;
 }
+.belt .cover-image-wrapper {
+  padding: 3px;
+  box-shadow: 1px 1px 20px #666666;
+  border-radius: 1px;
+  transition: all 0.2s ease-in-out;
+  -webkit-font-smoothing:antialiased;
+  -webkit-backface-visibility:hidden;
+  cursor: pointer;
+}
 .belt .cover-image {
-  max-height: 300px;
-  max-width: 200px;
+  width: 100%;
+  border-radius: 1px;
 }
 ::-webkit-scrollbar {
     display: none;
