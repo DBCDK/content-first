@@ -2,29 +2,74 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #fcfcfc;
 }
 
 .topbar {
-  background: pink;
+  background: #444444;
   padding-top: 10px;
   padding-bottom: 10px;
+  color: white;
 }
 
 .frontpage-image {
-  background: red;
+  background: #89b2bf;
   height: 200px;
 }
 
 .belt {
-  min-height: 200px;
-  background: gray;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  min-height: 400px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  background: #fcfcfc;
+  position: relative;
+  /*box-shadow: 1px 1px 3px #999999;*/
+
+}
+.belt .works-wrapper {
+  overflow: hidden;
+}
+
+.belt .right-btn {
+  margin-top: 65px;
+  margin-right: -35px;
+  right: 0px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.belt .right-btn:hover {
+  opacity: .7;
+}
+.belt .scroll-btn {
+  width: 35px;
+  height: 100px;
+  background: #a0a0a0;
+  border: 1px solid #424242;
+  position: absolute;
+  margin-top: 65px;
+  cursor: pointer;
+  opacity: .2;
+  transition: all 0.1s ease-in-out;
+}
+.belt .left-btn {
+  margin-left: -50px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.belt .left-btn:hover {
+  opacity: .7;
 }
 .belt .works {
-  overflow: hidden;
-  white-space: nowrap;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing:antialiased;
   margin-top: 20px;
+  padding-bottom: 15px;
+  transition: all 0.5s ease-in-out;
+  white-space: nowrap;
+  position: relative;
+  text-rendering: geometricPrecision;
 }
 
 .belt .tags span {
@@ -32,11 +77,17 @@ body {
 }
 
 .belt .work {
-  /*max-height: 200px;*/
   width: 150px;
   margin-right: 60px;
   display: inline-block;
   vertical-align: top;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  -webkit-font-smoothing:antialiased;
+  -webkit-backface-visibility:hidden;
+}
+.belt .work:hover {
+  transform: scale(1.2,1.2);
 }
 .belt .work .metakompas-description {
   white-space: normal;
@@ -48,4 +99,17 @@ body {
 .belt .cover-image {
   max-height: 200px;
   max-width: 150px;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                          supported by Chrome and Opera */
 }
