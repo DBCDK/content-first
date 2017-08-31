@@ -11,7 +11,13 @@ const dbUtil = require('./cleanup-db')(knex);
 describe('endpoints', () => {
   const webapp = request(`http://localhost:${config.server.port}`);
   before(done => {
-    done();
+    dbUtil.dropAll()
+      .then(() => {
+        return knex.migrate.latest();
+      })
+      .then(() => {
+        done();
+      });
   });
   beforeEach(done => {
     dbUtil.clear()

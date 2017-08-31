@@ -14,6 +14,9 @@ Each book has the following structure:
 
     { pid: '870970-basis:53188931'
     , pages: 123
+    , published_year: 2013
+    , published_month: 1,
+    , published_day: 31,
     , cover: '/v1/image/12345-1'
     , loan_count: 98
     , inventory: 154

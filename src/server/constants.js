@@ -3,6 +3,9 @@
 const constants = {
   books: {
     table: 'books'
+  },
+  covers: {
+    table: 'covers'
   }
 };
 

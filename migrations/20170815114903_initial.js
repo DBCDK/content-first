@@ -5,10 +5,11 @@
  */
 
 const constants = require('server/constants')();
-const booksTable = constants.books.table;
+const bookTable = constants.books.table;
+const coverTable = constants.covers.table;
 
-function createBooksTable(knex) {
-  return knex.schema.createTable(booksTable, table => {
+function createBookTable(knex) {
+  return knex.schema.createTable(bookTable, table => {
     table.string('pid').primary();
     table.string('unit_id');
     table.string('work_id');
@@ -18,23 +19,37 @@ function createBooksTable(knex) {
     table.string('title_full');
     table.text('description');
     table.integer('pages');
+    table.integer('published_year');
+    table.integer('published_month');
+    table.integer('published_day');
     table.integer('loan_count');
     table.integer('inventory');
     table.integer('purchased');
     table.string('type');
     table.string('work_type');
     table.string('language');
-    table.blob('cover');
-    table.jsonb('attributes').notNullable().defaultTo('{}');
+  });
+}
+
+function createCoverTable(knex) {
+  return knex.schema.createTable(coverTable, table => {
+    table.string('pid').primary();
+    table.binary('image');
   });
 }
 
 function setup(knex) {
-  return createBooksTable(knex);
+  return createCoverTable(knex)
+    .then(() => {
+      return createBookTable(knex);
+    });
 }
 
 function destroy(knex) {
-  return knex.schema.dropTableIfExists(booksTable);
+  return knex.schema.dropTableIfExists(bookTable)
+    .then(() => {
+      return knex.schema.dropTableIfExists(coverTable);
+    });
 }
 
 exports.up = function(knex) {
