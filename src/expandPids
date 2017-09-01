@@ -12,6 +12,8 @@ var parseString = require('xml2js').parseString;
 
 const DEBUG = false;
 
+const SOLRGRP = 'holdingsitem.agencyId';
+
 const option = getOptions();
 const solrFieldList = [
   'rec.unitId',
@@ -46,7 +48,9 @@ async function getData(pid) {
   let ret = {pid: pid};
   if (option.solr) {
     const solrRec = await Promise.resolve(asyncGetSolrData(pid));
+    const holdRec = await Promise.resolve(asyncGetSolrHoldingsData(pid));
     ret = Object.assign(ret, extractFromSolr(solrRec));
+    ret = Object.assign(ret, extractFromSolrHoldings(holdRec));
   }
   if (option.corepo) {
     const corepoRec = await Promise.resolve(asyncGetCorepoData(pid));
@@ -69,13 +73,27 @@ async function asyncGetSolrData(pid) {
   const url = option.solr + '?wt=json&q=rec.id:' + id + ' AND unit.isPrimaryObject:true&fl=' + solrFieldList.join(',');
   if (DEBUG) { console.log(url); }
   return request
-    .get(url)
-    .set('charset', 'utf-8')
-    .set('accept', 'application/json')
-    .catch(function () {
-      console.error('Error calling', url);
-      return {text:{}};
-    });
+      .get(url)
+      .set('charset', 'utf-8')
+      .set('accept', 'application/json')
+      .catch(function () {
+        console.error('Error calling', url);
+        return {text:{}};
+      });
+}
+
+async function asyncGetSolrHoldingsData(pid) {
+  const id = getNthElement(pid, ':', 1);
+  const url = option.solr + '?wt=json&rows=999&group=true&group.field=' + SOLRGRP + '&fl=' + SOLRGRP + '&q=holdingsitem.bibliographicRecordId:' + id;
+  if (DEBUG) { console.log(url); }
+  return request
+      .get(url)
+      .set('charset', 'utf-8')
+      .set('accept', 'application/json')
+      .catch(function () {
+        console.error('Error calling', url);
+        return {text:{}};
+      });
 }
 
 async function asyncGetMoreInfoData(pid) {
@@ -124,6 +142,21 @@ function extractFromSolr(solr) {
           ret[field] = Array.isArray(doc[fld]) ? doc[fld][0] : doc[fld];
         }
       });
+    }
+  }
+  catch (e) {
+    // ignore error
+  }
+  return ret;
+}
+
+function extractFromSolrHoldings(solr) {
+  let ret = {};
+  try {
+    if (solr.text) {
+      const recObj = JSON.parse(solr.text);
+      const grouped = recObj.grouped[SOLRGRP];
+      ret = {items: grouped.matches, libraries: grouped.groups.length}
     }
   }
   catch (e) {
