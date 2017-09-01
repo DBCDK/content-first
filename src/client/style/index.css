@@ -8,9 +8,6 @@ body {
   background: #f1f1f1;
   font-family: 'Lora', serif;
 }
-h2 {
-  font-weight: bold;
-}
 
 .container {
   background: #fcfcfc;
@@ -71,7 +68,23 @@ h2 {
   background: #fcfcfc;
   position: relative;
   /*box-shadow: 1px 1px 3px #999999;*/
+}
+.belt .header {
+  margin-bottom: 10px;
 
+}
+.belt .header .belt-title {
+  font-size: 30px;
+  font-weight: bold;
+  vertical-align: bottom;
+}
+.belt .header .more-link {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(199, 130, 78);
+  margin-left: 10px;
+  vertical-align: bottom;
+  padding-bottom: 4px;
 }
 .belt .works-wrapper {
   overflow: hidden;

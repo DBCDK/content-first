@@ -5,13 +5,15 @@ export default function Belt(props) {
   return (
     <div className='row belt text-left'>
       <div className='col-xs-12 header'>
-        <h2>{props.belt.name}</h2>
+        <span className='belt-title'>{props.belt.name}</span>
+        {props.belt.works && props.belt.works.length > 5 &&
+          <span className='more-link btn' onClick={props.onMoreClick}>Se flere</span>}
       </div>
       <div className='col-xs-12 tags'>
         {props.belt.tags && props.belt.tags.map((tag, idx) => {
           const btnClass = tag.selected ? 'btn-success' : 'btn-default';
           return <span className={`btn ${btnClass}`} key={idx} onClick={() => {
-            props.onTagClick(idx, props.beltId);
+            props.onTagClick(idx);
           }}>{tag.name}</span>;
         })}
       </div>
