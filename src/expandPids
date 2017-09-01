@@ -4,6 +4,11 @@
  *
  * Takes a list of pids and enrich each with information from the bibliographic record
  *
+ * If a solr url is provided using option s, data from solrFieldList below, will be supplied and
+ *   number of holdings items and libraries will be supplied
+ * If a corepo url is provided using option c, number of pages is supplied from corepo
+ * If a moreinfo url is provided using option m, url's to coverpages is supplied
+ *
  */
 var fs = require('fs');
 var stdio = require('stdio');
