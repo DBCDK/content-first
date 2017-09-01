@@ -1,0 +1,205 @@
+#!/usr/bin/env node
+/**
+ * @file
+ *
+ * Takes a list of pids and enrich each with information from the bibliographic record
+ *
+ */
+var fs = require('fs');
+var stdio = require('stdio');
+var request = require('superagent');
+var parseString = require('xml2js').parseString;
+
+const DEBUG = false;
+
+const option = getOptions();
+const solrFieldList = [
+  'rec.unitId',
+  'rec.workId',
+  'rec.bibliographicRecordId',
+  'display.creator',
+  'display.title',
+  'display.titleFull',
+  'display.type',
+  'display.workType',
+  'display.acessType',
+  'display.language'
+];
+
+const pids = JSON.parse(fs.readFileSync(option.input, 'utf8'));
+const outfile = fs.openSync(option.output, 'w');
+console.log('\nRead', pids.length, 'pids from input file\n');
+
+let recno = 0;
+pids.forEach(function(pid) {
+  pid = pid.trim();
+  getData(pid).then((res) => {
+    if (DEBUG) { console.log('write', res); }
+    fs.writeSync(outfile, JSON.stringify(res) + '\n', null, 'utf8');
+    console.log('write #' + ++recno, pid);
+  });
+});
+
+/* ------------------------------------------------------------ */
+
+async function getData(pid) {
+  let ret = {pid: pid};
+  if (option.solr) {
+    const solrRec = await Promise.resolve(asyncGetSolrData(pid));
+    ret = Object.assign(ret, extractFromSolr(solrRec));
+  }
+  if (option.corepo) {
+    const corepoRec = await Promise.resolve(asyncGetCorepoData(pid));
+    ret = Object.assign(ret, extractFromCorepo(corepoRec));
+  }
+  if (option.moreinfo) {
+    const imageRec = await Promise.resolve(asyncGetMoreInfoData(pid));
+    ret = Object.assign(ret, extractFromMoreInfo(imageRec));
+  }
+  return ret;
+}
+
+/**
+ * Return call to services
+ *
+ * @param pid
+ */
+async function asyncGetSolrData(pid) {
+  const id = getNthElement(pid, ':', 1);
+  const url = option.solr + '?wt=json&q=rec.id:' + id + ' AND unit.isPrimaryObject:true&fl=' + solrFieldList.join(',');
+  if (DEBUG) { console.log(url); }
+  return request
+    .get(url)
+    .set('charset', 'utf-8')
+    .set('accept', 'application/json')
+    .catch(function () {
+      console.error('Error calling', url);
+      return {text:{}};
+    });
+}
+
+async function asyncGetMoreInfoData(pid) {
+  const parms = '?action=moreInfo&&authenticationUser=&authenticationGroup=&authenticationPassword=&outputType=json&pid=';
+  const url = option.moreinfo + parms + pid;
+  if (DEBUG) { console.log(url); }
+  return request
+    .get(url)
+    .set('charset', 'utf-8')
+    .catch(function (error) {
+      console.error(error.response.error);
+      return '{}';
+    });
+}
+
+async function asyncGetCorepoData(pid) {
+  const parms = '/datastreams/commonData/content';
+  const url = option.corepo + pid + parms;
+  if (DEBUG) { console.log(url); }
+  return request
+    .get(url)
+    .set('accept', 'application/xml')
+    .set('charset', 'utf-8')
+    .buffer(true)
+    .catch(function (error) {
+      console.error(error.response.error);
+      return '{}';
+    });
+}
+
+/**
+ * Extract data from services
+ *
+ * @param solr
+ * @returns {{}}
+ */
+function extractFromSolr(solr) {
+  let ret = {};
+  try {
+    if (solr.text) {
+      const recObj = JSON.parse(solr.text);
+      const doc = recObj.response.docs[0];
+      solrFieldList.forEach(function(fld) {
+        const field = getNthElement(fld, '.', 1);
+        if (doc[fld]) {
+          ret[field] = Array.isArray(doc[fld]) ? doc[fld][0] : doc[fld];
+        }
+      });
+    }
+  }
+  catch (e) {
+    // ignore error
+  }
+  return ret;
+}
+
+function extractFromMoreInfo(moreInfo) {
+  let ret = {};
+  try {
+    if (moreInfo.text) {
+      const recObj = JSON.parse(moreInfo.text);
+      const recInfo = recObj.moreInfoResponse.identifierInformation[0];
+      if (recInfo.coverImage && recInfo.identifierKnown.$) {
+        recInfo.coverImage.forEach(function (image) {
+          const size = 'image_' + image['@imageSize'].$;
+          ret[size]  = image.$
+        });
+      }
+    }
+  }
+  catch (e) {
+    // ignore error
+  }
+  return ret;
+
+}
+
+function extractFromCorepo(corepo) {
+  let ret = {};
+  try {
+    if (corepo.text) {
+      parseString(corepo.text, function (err, result) {
+        const pages = parseInt(result['ting:container']['dkabm:record'][0]['dcterms:extent']);
+        if (pages) {
+          ret = {pages: pages};
+        }
+      });
+    }
+  }
+  catch (e) {
+    // ignore error
+  }
+  return ret;
+}
+
+/**
+ * split a string end return the <no> element
+ *
+ * @param str
+ * @param separator
+ * @param no
+ * @returns {*}
+ */
+function getNthElement(str, separator, no) {
+  const arr = str.split(separator);
+  return arr[no];
+}
+
+/**
+ * Handles options and produce Usage:
+ *
+ * @returns {*}
+ */
+function getOptions() {
+  const ops = stdio.getopt({
+    input: {key: 'i', args: 1, description: 'Input file'},
+    output: {key: 'o', args: 1, description: 'Output file'},
+    solr: {key: 's', args: 1, description: 'solr-url'},
+    corepo: {key: 'c', args: 1, description: 'corepo-url'},
+    moreinfo: {key: 'm', args: 1, description: 'moreinfo-url'}
+  });
+  if (!ops.input || !ops.output) {
+    ops.printHelp();
+    process.exit(1);
+  }
+  return ops;
+}

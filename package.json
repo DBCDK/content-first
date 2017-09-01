@@ -34,7 +34,9 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "stdio": "^0.2.7"
+    "stdio": "^0.2.7",
+    "superagent": "^3.6.0",
+    "xml2js": "^0.4.19"
   },
   "proxy": "http://localhost:3001",
   "scripts": {
