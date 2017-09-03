@@ -3,8 +3,8 @@
 'use strict';
 
 const expect = require('chai').expect;
-const books = require('__/books');
-const blendstrup = require('__/fixtures/blendstrup-havelaagebogen.json');
+const books = require('./books');
+const blendstrup = require('fixtures/blendstrup-havelaagebogen.json');
 
 describe('books', () => {
   describe('parseMetaDataInjection', () => {

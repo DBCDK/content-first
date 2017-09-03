@@ -10,26 +10,24 @@ const coverTable = constants.covers.table;
 
 router.route('/image/:pid')
 
-  .get((req, res, next) => {
+  .get(async (req, res, next) => {
     const pid = req.params.pid;
-    knex(coverTable).where('pid', pid).select()
-      .then(images => {
-        if (!images || images.length !== 1) {
-          throw {
-            status: 404,
-            title: 'Unknown image',
-            detail: `No cover for pid ${pid}`
-          };
-        }
-        return images[0];
-      })
-      .then(image => {
-        res.contentType('jpeg');
-        res.end(image.image, 'binary');
-      })
-      .catch(error => {
-        next(error);
-      });
+    try {
+      const images = await knex(coverTable).where('pid', pid).select();
+      if (!images || images.length !== 1) {
+        return next({
+          status: 404,
+          title: 'Unknown image',
+          detail: `No cover for pid ${pid}`
+        });
+      }
+      const image = images[0];
+      res.contentType('jpeg');
+      res.end(image.image, 'binary');
+    }
+    catch (error) {
+      next(error);
+    }
   });
 
 module.exports = router;

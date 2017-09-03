@@ -42,9 +42,9 @@
   "scripts": {
     "build": "react-scripts build",
     "coverage": "run-p start-backend-once coverage-integration-delayed",
-    "coverage-backend": ". ./current.env && istanbul cover _mocha -- src/integration/**/*_test.js src/lib/**/*_test.js",
+    "coverage-backend": ". ./current.env && istanbul cover _mocha -- src/**/*_test.js",
     "coverage-integration-delayed": "sleep 1 && nsrun coverage-backend && ./kill-running-server.sh",
-    "lint-js": "eslint src seeds ",
+    "lint-js": "eslint src",
     "postinstall": "./setup-node-env.sh",
     "start": "run-p start-backend start-frontend",
     "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/server",
@@ -55,6 +55,6 @@
     "test-full": "run-p start-backend-once test-integration-delayed",
     "test-integration": ". ./current.env && mocha src/integration/**/*_test.js",
     "test-integration-delayed": "sleep 1 && nsrun test-integration && ./kill-running-server.sh",
-    "test-units": "mocha src/lib/**/*_test.js"
+    "test-units": "mocha src/lib/**/*_test.js src/server/**/*_test.js"
   }
 }

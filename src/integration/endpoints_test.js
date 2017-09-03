@@ -45,6 +45,7 @@ describe('endpoints', () => {
       webapp.get('/v1/image/870970-basis:53188931')
         .expect(200)
         .expect('Content-Type', /image\/jpeg/)
+        .expect('Content-Length', '28130')
         .end(done);
     });
   });
