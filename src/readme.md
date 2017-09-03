@@ -54,7 +54,7 @@ The node setup runs automatically after every `npm install`
 
 Use `npm run coverage --silent` (after starting the database) to produce a code-coverage report, which will end up in `coverage/lcov-report/index.html`.
 
-On the build server, the [config file](../../.travis.yml) uses the `after_script` to instruct Travis to send coverage data to Coveralls, which has been configured (through its UI) to look in the root directory for the code.
+On the build server, the [config file](../.travis.yml) uses the `after_script` to instruct Travis to send coverage data to Coveralls, which has been configured (through its UI) to look in the root directory for the code.
 
 ## Caveats
 

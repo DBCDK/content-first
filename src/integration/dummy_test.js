@@ -26,14 +26,19 @@ describe('endpoints', () => {
       })
       .then(() => {
         logger.log.debug('Database is now seeded.');
-      })
-      .then(() => {
         done();
       })
       .catch(errors => {
         logger.log.error(`Could not update database to latest version, terminating: ${errors}`);
         done(errors);
       });
+  });
+  describe('GET /v1/image', () => {
+    it('should handle non-existing cover image', done => {
+      webapp.get('/v1/image/does:not:exist')
+        .expect(404)
+        .end(done);
+    });
   });
   describe('GET /v1/image', () => {
     it('should give a cover image', done => {

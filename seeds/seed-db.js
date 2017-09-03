@@ -13,15 +13,15 @@ exports.seed = knex => {
   const meta = books.parseMetaDataInjection(blendstrup);
   return knex(bookTable).insert(books.transformMetaDataToBook(meta))
     .then(() => {
-      readFileAsync('src/lib/fixtures/870970-basis-53188931.391x500.jpg')
-        .then(contents => {
-          return knex(coverTable).insert({
-            pid: meta.pid,
-            image: contents
-          });
-        })
-        .catch(error => {
-          throw error;
-        });
+      readFileAsync('src/lib/fixtures/870970-basis-53188931.391x500.jpg');
+    })
+    .then(contents => {
+      return knex(coverTable).insert({
+        pid: meta.pid,
+        image: contents
+      });
+    })
+    .catch(error => {
+      throw error;
     });
 };
