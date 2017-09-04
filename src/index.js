@@ -11,7 +11,7 @@ import registerServiceWorker from './client/registerServiceWorker';
 import {ON_LOCATION_CHANGE} from './client/redux/router.reducer';
 
 const history = createBrowserHistory();
-const store = createStore(reducer, {}, applyMiddleware(loggerMiddleware, historyMiddleware(history)));
+const store = createStore(reducer, applyMiddleware(loggerMiddleware, historyMiddleware(history)));
 
 // Redux-first routing is used as described:
 // https://medium.freecodecamp.org/an-introduction-to-the-redux-first-routing-model-98926ebf53cb

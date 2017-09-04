@@ -3,15 +3,33 @@ import {connect} from 'react-redux';
 import './style/App.css';
 import FrontPage from './components/frontpage/FrontPage.container';
 import TopBar from './components/TopBar.component';
+import {beltNameToPath} from './utils/belt';
 
 class App extends Component {
   render() {
-    const belts = this.props.beltsState.belts.map(belt => '/' + belt.name.toLowerCase().replace(/ /g, '-'));
+    const path = this.props.routerState.path;
+
+    let currentPage = null;
+    if (path === '/') {
+      currentPage = <FrontPage/>;
+    }
+    else {
+      // check if current path matches a belt
+      this.props.beltsState.belts.forEach(belt => {
+        if (beltNameToPath(belt.name) === this.props.routerState.path) {
+          currentPage = <div>{belt.name}</div>;
+        }
+      });
+    }
+
+    if (!currentPage) {
+      currentPage = <div>PAGE NOT FOUND</div>;
+    }
+
     return (
       <div className="App container">
         <TopBar/>
-        {this.props.routerState.path === '/' && <FrontPage/>}
-        {belts.includes(this.props.routerState.path) && <div>JEG ER EN GOD BOG</div>}
+        {currentPage}
       </div>
     );
   }

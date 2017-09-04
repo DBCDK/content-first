@@ -4,6 +4,7 @@ import Belt from './Belt.component';
 import CreateProfile from '../profile/CreateProfile.component';
 import {ON_BELT_SCROLL, ON_TAG_TOGGLE} from '../../redux/belts.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
+import {beltNameToPath} from '../../utils/belt';
 
 const SCROLL_INTERVAL = 5;
 
@@ -29,7 +30,7 @@ class FrontPage extends React.Component {
               this.props.dispatch({type: ON_TAG_TOGGLE, tagId, beltId: idx});
             }}
             onMoreClick={() => {
-              this.props.dispatch({type: HISTORY_PUSH, path: '/' + belt.name.toLowerCase().replace(/ /g, '-')});
+              this.props.dispatch({type: HISTORY_PUSH, path: beltNameToPath(belt.name)});
             }}
             custom={custom}
           />;
