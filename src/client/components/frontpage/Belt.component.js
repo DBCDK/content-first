@@ -31,7 +31,7 @@ export default function Belt(props) {
               return (
                 <div className='work' id={`work-${idx}`} key={idx}>
                   <div className='cover-image-wrapper'>
-                    <img className='cover-image' src={work.cover}/>
+                    <img alt="" className='cover-image' src={work.cover}/>
                   </div>
                   <div className='metakompas-description'>
                     {work.metakompasDescription}

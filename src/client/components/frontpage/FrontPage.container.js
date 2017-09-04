@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Belt from './Belt.component';
 import CreateProfile from '../profile/CreateProfile.component';
-import {ON_BELT_SCROLL, ON_TAG_TOGGLE} from '../../reducers/belts';
-import {ON_PAGE_CHANGE} from '../../reducers/general';
+import {ON_BELT_SCROLL, ON_TAG_TOGGLE} from '../../redux/belts.reducer';
+import {HISTORY_PUSH} from '../../redux/middleware';
 
 const SCROLL_INTERVAL = 5;
 
@@ -29,7 +29,7 @@ class FrontPage extends React.Component {
               this.props.dispatch({type: ON_TAG_TOGGLE, tagId, beltId: idx});
             }}
             onMoreClick={() => {
-              this.props.dispatch({type: ON_PAGE_CHANGE, url: belt.name.toLowerCase().replace(/ /g, '-')});
+              this.props.dispatch({type: HISTORY_PUSH, path: '/' + belt.name.toLowerCase().replace(/ /g, '-')});
             }}
             custom={custom}
           />;
