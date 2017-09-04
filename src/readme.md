@@ -25,12 +25,23 @@ To run full integration test:
 
 See also [service endpoints](../doc/endpoints.md).
 
+## Database
+
+To start up a local database:
+
+    $ docker-compose up -d  // Start local PostgreSQL database.
+
+To connect to the database:
+
+    $ docker exec -it -u postgres contentfirst_database_1 psql
+
 ## Node setup
 
 The [node setup](../setup-node-env.sh) creates symbolic links
 
     __ -> ../src/lib
     server -> ../src/server
+    client -> ../src/client
 
 inside `node_modules` such that [our custom libraries](lib/) can used likes this anywhere in the code:
 
@@ -38,6 +49,12 @@ inside `node_modules` such that [our custom libraries](lib/) can used likes this
     const logger = require('__/logging')(config.logger);
 
 The node setup runs automatically after every `npm install`
+
+## Coverage
+
+Use `npm run coverage --silent` (after starting the database) to produce a code-coverage report, which will end up in `coverage/lcov-report/index.html`.
+
+On the build server, the [config file](../.travis.yml) uses the `after_script` to instruct Travis to send coverage data to Coveralls, which has been configured (through its UI) to look in the root directory for the code.
 
 ## Caveats
 

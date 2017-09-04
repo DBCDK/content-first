@@ -13,8 +13,10 @@
   },
   "devDependencies": {
     "chai": "^4.0.2",
+    "coveralls": "^2.13.1",
     "eslint": "^4.4.1",
     "eslint-plugin-react": "^7.3.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
@@ -41,7 +43,10 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "build": "react-scripts build",
-    "lint-js": "eslint --format unix src",
+    "coverage": "run-p start-backend-once coverage-integration-delayed",
+    "coverage-backend": ". ./current.env && istanbul cover _mocha -- src/**/*_test.js",
+    "coverage-integration-delayed": "sleep 1 && nsrun coverage-backend && ./kill-running-server.sh",
+    "lint-js": "eslint src",
     "postinstall": "./setup-node-env.sh",
     "start": "run-p start-backend start-frontend",
     "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/server",
@@ -51,7 +56,7 @@
     "test-frontend": "react-scripts test --env=jsdom",
     "test-full": "run-p start-backend-once test-integration-delayed",
     "test-integration": ". ./current.env && mocha src/integration/**/*_test.js",
-    "test-integration-delayed": "sleep 3 && nsrun test-integration && ./kill-running-server.sh",
-    "test-units": "mocha src/lib/**/*_test.js"
+    "test-integration-delayed": "sleep 1 && nsrun test-integration && ./kill-running-server.sh",
+    "test-units": "mocha src/lib/**/*_test.js src/server/**/*_test.js"
   }
 }

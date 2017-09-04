@@ -8,7 +8,8 @@
  */
 
 const constants = require('server/constants')();
-const table = constants.table;
+const bookTable = constants.books.table;
+const coverTable = constants.covers.table;
 
 module.exports = knex => {
 
@@ -16,14 +17,17 @@ module.exports = knex => {
    * Truncate all tables in the current database.
    */
   function clear() {
-    return knex.raw(`truncate table ${table} cascade`);
+    return knex.raw(`truncate table ${bookTable}, ${coverTable} cascade`);
   }
 
   /**
    * Completely clean up the database and migrations.
    */
   function dropAll() {
-    return knex.schema.dropTableIfExists(table)
+    return knex.schema.dropTableIfExists(coverTable)
+      .then(() => {
+        return knex.schema.dropTableIfExists(bookTable);
+      })
       .then(() => {
         return knex.schema.dropTableIfExists('knex_migrations');
       })
