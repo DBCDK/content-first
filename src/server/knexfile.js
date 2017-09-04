@@ -9,10 +9,10 @@ module.exports = {
       user: process.env.DB_USER || 'contentfirst'
     },
     migrations: {
-      directory: 'migrations'
+      directory: 'src/migrations'
     },
     seeds: {
-      directory: 'seeds'
+      directory: 'src/seeds'
     }
   },
   ci: {
@@ -23,10 +23,10 @@ module.exports = {
       user: process.env.DB_USER || 'contentfirst'
     },
     migrations: {
-      directory: 'migrations'
+      directory: 'src/migrations'
     },
     seeds: {
-      directory: 'seeds'
+      directory: 'src/seeds'
     }
   },
   production: {
@@ -42,7 +42,7 @@ module.exports = {
       max: process.env.DB_CONNECTIONS_POOL_MAX || 10
     },
     migrations: {
-      directory: 'migrations'
+      directory: 'src/migrations'
     }
   }
 };

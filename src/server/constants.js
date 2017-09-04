@@ -1,7 +1,12 @@
 'use strict';
 
 const constants = {
-  table: 'test'
+  books: {
+    table: 'books'
+  },
+  covers: {
+    table: 'covers'
+  }
 };
 
 module.exports = () => {

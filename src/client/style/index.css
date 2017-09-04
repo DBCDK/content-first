@@ -8,9 +8,6 @@ body {
   background: #f1f1f1;
   font-family: 'Lora', serif;
 }
-h2 {
-  font-weight: bold;
-}
 
 .container {
   background: #fcfcfc;
@@ -71,7 +68,40 @@ h2 {
   background: #fcfcfc;
   position: relative;
   /*box-shadow: 1px 1px 3px #999999;*/
+}
+.belt .header {
+  margin-bottom: 10px;
 
+}
+.belt .header .belt-title {
+  font-size: 30px;
+  font-weight: bold;
+  vertical-align: bottom;
+  cursor: default;
+}
+.belt .header .belt-title-details {
+  padding: 20px;
+  min-width: 500px;
+  min-height: 100px;
+  border: 1px solid lightgray;
+  background: white;
+  position: absolute;
+  z-index: 200;
+  transition: all 0.1s ease-in-out;
+}
+.no-opacity {
+  margin-left: -50px;
+  opacity: 0;
+  z-index: -1 !important;
+}
+
+.belt .header .more-link {
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(199, 130, 78);
+  margin-left: 10px;
+  vertical-align: bottom;
+  padding-bottom: 4px;
 }
 .belt .works-wrapper {
   overflow: hidden;
@@ -111,7 +141,7 @@ h2 {
   -webkit-font-smoothing:antialiased;
   margin-top: 20px;
   padding-bottom: 15px;
-  transition: all 0.5s ease-in-out;
+  transition: transform 0.5s, filter 0.1s ease-in-out;
   white-space: nowrap;
   position: relative;
   text-rendering: geometricPrecision;
