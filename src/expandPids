@@ -248,7 +248,7 @@ function getOptions() {
     solr: {key: 's', args: 1, description: 'solr-url'},
     corepo: {key: 'c', args: 1, description: 'corepo-url'},
     moreinfo: {key: 'm', args: 1, description: 'moreinfo-url'},
-    exitOnError: {key: 'd', args: 1, description: 'Exit on error'}
+    exitOnError: {key: 'd', args: 0, description: 'Exit on error'}
   });
   if (!ops.input || !ops.output) {
     ops.printHelp();
