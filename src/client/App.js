@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './style/App.css';
+import './style/index.css';
+import './style/filterpage.css';
+import './style/work.css';
 import FrontPage from './components/frontpage/FrontPage.container';
+import FilterPage from './components/filter/FilterPage.container';
 import TopBar from './components/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 
@@ -17,7 +21,7 @@ class App extends Component {
       // check if current path matches a belt
       this.props.beltsState.belts.forEach(belt => {
         if (beltNameToPath(belt.name) === this.props.routerState.path) {
-          currentPage = <div>{belt.name}</div>;
+          currentPage = <FilterPage belt={belt}/>;
         }
       });
     }

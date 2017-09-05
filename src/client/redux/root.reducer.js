@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import beltsReducer from './belts.reducer';
+import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
 
 const LOCAL_STORAGE_KEY = 'contentfirst';
@@ -15,6 +16,7 @@ const setLocalStorage = (state) => {
 
 const combined = combineReducers({
   beltsReducer,
+  filterReducer,
   routerReducer
 });
 

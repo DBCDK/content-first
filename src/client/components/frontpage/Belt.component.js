@@ -1,4 +1,5 @@
 import React from 'react';
+import WorkItem from '../work/WorkItem.component';
 
 export default class Belt extends React.Component {
 
@@ -13,7 +14,7 @@ export default class Belt extends React.Component {
     }
     this.showDetailsTimeout = setTimeout(() => {
       this.setState({showDetails: show});
-    }, show ? 250 : 1000);
+    }, show ? 250 : 500);
   }
 
   render() {
@@ -50,18 +51,9 @@ export default class Belt extends React.Component {
             </div>
           )}
           <div className='works-wrapper col-xs-12 noselect'>
-            <div className='works' style={{transform: `translate3d(${scrollPos}, 0px, 0px)`, filter: this.state.showDetails ? 'sepia(100%)' : null}}>
+            <div className='works' style={{transform: `translate3d(${scrollPos}, 0px, 0px)`}}>
               {this.props.belt.works && this.props.belt.works.map((work, idx) => {
-                return (
-                  <div className='work' id={`work-${idx}`} key={idx}>
-                    <div className='cover-image-wrapper'>
-                      <img alt="" className='cover-image' src={work.cover}/>
-                    </div>
-                    <div className='metakompas-description'>
-                      {work.metakompasDescription}
-                    </div>
-                  </div>
-                );
+                return <WorkItem id={`work-${idx}`} key={idx} work={work} disableShadow={this.state.showDetails}/>;
               })}
             </div>
           </div>

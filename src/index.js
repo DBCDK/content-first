@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createBrowserHistory} from 'history';
-import './client/style/index.css';
 import App from './client/App';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';

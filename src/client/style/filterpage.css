@@ -1,0 +1,54 @@
+.filter-page .title {
+  font-size: 30px;
+  font-weight: bold;
+  vertical-align: bottom;
+  cursor: default;
+}
+
+.top {
+  background: grey;
+  padding: 40px;
+  color: white;
+}
+.filters {
+  height: 300px;
+  padding: 20px;
+}
+
+.filters select {
+   background: transparent;
+   border: none;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   padding: 8px;
+   padding-left: 15px;
+   outline: none;
+}
+
+.filters select option {
+  color: black;
+}
+.filters select optgroup {
+  color: grey;
+}
+
+.select-wrapper span {
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.select-wrapper {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+  margin-right: 20px;
+  display: inline-block;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+}
+
+.filter-page .works {
+  margin-top: 50px;
+  padding: 20px;
+}

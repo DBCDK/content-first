@@ -1,0 +1,32 @@
+.work {
+  width: 200px;
+  margin-right: 75px;
+  display: inline-block;
+  vertical-align: top;
+}
+.cover-image-wrapper:hover {
+  transform: scale(1.05,1.05);
+}
+.work .metakompas-description {
+  white-space: normal;
+  word-wrap: break-word;
+  margin-top: 20px;
+  font-size: 18px;
+  /*color: black*/
+}
+.work .tag {
+  margin-left: 10px;
+}
+.cover-image-wrapper {
+  padding: 3px;
+  box-shadow: 1px 1px 20px #666666;
+  border-radius: 1px;
+  transition: all 0.2s ease-in-out;
+  -webkit-font-smoothing:antialiased;
+  -webkit-backface-visibility:hidden;
+  cursor: pointer;
+}
+.cover-image {
+  width: 100%;
+  border-radius: 1px;
+}

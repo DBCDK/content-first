@@ -5,6 +5,7 @@ export const historyMiddleware = history => store => next => action => {
     case HISTORY_PUSH:
       if (store.getState().routerReducer.path !== action.path) {
         history.push(action.path);
+        window.scrollTo(0, 0);
       }
       break;
     default:
