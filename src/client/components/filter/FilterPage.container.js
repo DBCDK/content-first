@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Filters from './Filters.component';
 import WorkItem from '../work/WorkItem.component';
-import {ON_OPTION_SELECT} from '../../redux/filter.reducer';
+import {ON_OPTION_SELECT, ON_DISABLE_FILTER} from '../../redux/filter.reducer';
 
 class FilterPage extends React.Component {
 
@@ -16,9 +16,14 @@ class FilterPage extends React.Component {
           <div className='title text-left'>
             {this.props.belt.name}
           </div>
-          <Filters filters={enabledFilters} onSelect={(filterTitle, value) => {
-            this.props.dispatch({type: ON_OPTION_SELECT, filterTitle, value});
-          }}/>
+          <Filters
+            filters={enabledFilters}
+            onDisableFilter={(filterTitle) => {
+              this.props.dispatch({type: ON_DISABLE_FILTER, filterTitle});
+            }}
+            onSelect={(filterTitle, value) => {
+              this.props.dispatch({type: ON_OPTION_SELECT, filterTitle, value});
+            }}/>
         </div>
         <div className='works'>
           {this.props.filterState.works && this.props.filterState.works.map((work, idx) => {

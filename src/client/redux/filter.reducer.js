@@ -36,6 +36,8 @@ const defaultState = {
 export const ON_FILTER_REQUEST = 'ON_FILTER_REQUEST';
 export const ON_FILTER_RESPONSE = 'ON_FILTER_RESPONSE';
 export const ON_OPTION_SELECT = 'ON_OPTION_SELECT';
+export const ON_ENABLE_FILTER = 'ON_ENABLE_FILTER';
+export const ON_DISABLE_FILTER = 'ON_DISABLE_FILTER';
 
 const filterReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -56,6 +58,12 @@ const filterReducer = (state = defaultState, action) => {
         return filter;
       });
       return Object.assign({}, state, {filters});
+    }
+    case ON_DISABLE_FILTER: {
+      const enabledFilters = state.enabledFilters.filter(id => {
+        return state.filters[id].title !== action.filterTitle;
+      });
+      return Object.assign({}, state, {enabledFilters});
     }
     default:
       return state;

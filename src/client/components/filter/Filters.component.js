@@ -35,7 +35,7 @@ const FilterSelect = (props) => {
         </optgroup>
       </select>
       <span onClick={() => {
-        console.log('Remove that filter');
+        props.onDisableFilter();
       }}>X</span>
     </div>
   );
@@ -44,7 +44,11 @@ const FilterSelect = (props) => {
 const Filters = (props) => {
   return (
     <div className='filters text-left'>
-      {props.filters.map((filter, idx) => <FilterSelect key={idx} onSelect={val => props.onSelect(filter.title, val)} filter={filter}/>)}
+      {props.filters.map((filter, idx) => <FilterSelect
+        key={idx}
+        onSelect={val => props.onSelect(filter.title, val)}
+        onDisableFilter={() => props.onDisableFilter(filter.title)}
+        filter={filter}/>)}
     </div>
   );
 };
