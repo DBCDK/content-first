@@ -16,7 +16,7 @@ const getWidth = (text, className) => {
 
 const FilterSelect = (props) => {
 
-  let selectedText = null
+  let selectedText = null;
   props.filter.options.forEach(o => {
     if (o.selected) {
       selectedText = o.title;
