@@ -14,3 +14,5 @@ before_install:
 script:
   - npm test --silent
   - npm run test-full --silent
+after_script:
+  - npm run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
