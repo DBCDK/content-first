@@ -1,0 +1,1 @@
+./expandPids -i pids-fvs.json -o out.json -s http://cisterne-solr.dbc.dk:8983/solr/cisterne-corepo-searcher/select/ -m http://moreinfo.addi.dk/2.9/  -c http://content-service.corepo.cisterne.mcp1-proxy.dbc.dk/rest/objects/
