@@ -13,6 +13,7 @@ export const historyMiddleware = history => store => next => action => {
   }
 };
 
+/* eslint-disable no-console */
 export const loggerMiddleware = store => next => action => {
   try {
     // console.log('Action dispatched', action);
@@ -24,3 +25,4 @@ export const loggerMiddleware = store => next => action => {
     console.log('Action failed', {action, error});
   }
 };
+/* eslint-enable no-console */
