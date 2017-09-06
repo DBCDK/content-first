@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "required": true
+    },
+    "links": {
+      "required": false,
+      "type": "object",
+      "properties": {
+        "self": {
+          "required": true,
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

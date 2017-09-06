@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "ok": {
+      "required": true,
+      "type": "boolean"
+    },
+    "version": {
+      "required": true,
+      "type": "string",
+      "format": "semver"
+    },
+    "api-version": {
+      "required": true,
+      "type": "string",
+      "format": "semver"
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,12 +1,15 @@
 // This is a placeholder to give an idea of how to test the API.
 'use strict';
 
-// const expect = require('chai').expect;
+const expect = require('chai').expect;
 const request = require('supertest');
 const config = require('server/config');
 const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
+// const expectSuccess = require('output-verifiers').expectSuccess;
+const expectFailure = require('./output-verifiers').expectFailure;
+// const expectValidate = require('output-verifiers').expectValidate;
 
 describe('endpoints', () => {
   const webapp = request(`http://localhost:${config.server.port}`);
@@ -17,7 +20,8 @@ describe('endpoints', () => {
       })
       .then(() => {
         done();
-      });
+      })
+      .catch(done);
   });
   beforeEach(done => {
     dbUtil.clear()
@@ -35,8 +39,20 @@ describe('endpoints', () => {
   });
   describe('GET /v1/image', () => {
     it('should handle non-existing cover image', done => {
-      webapp.get('/v1/image/does:not:exist')
+      const url = '/v1/image/does:not:exist';
+      webapp.get(url)
         .expect(404)
+        .expect(res => {
+          expectFailure(res.body, errors => {
+            expect(errors).to.have.length(1);
+            const error = errors[0];
+            expect(error).to.have.property('title');
+            expect(error.title).to.match(/unknown image/i);
+            expect(error).to.have.property('meta');
+            expect(error.meta).to.have.property('resource');
+            expect(error.meta.resource).to.equal(url);
+          });
+        })
         .end(done);
     });
   });
@@ -48,5 +64,19 @@ describe('endpoints', () => {
         .expect('Content-Length', '28130')
         .end(done);
     });
+  });
+  describe('GET /v1/books', () => {
+    it('should handle no pids', done => {
+      webapp.get('/v1/books')
+        .expect(400)
+        .expect('Content-Type', /json/)
+        .expect(/must supply at least one PID/)
+        .end(done);
+    });
+    it('should handle non-existing pids', done => {
+      webapp.get('/v1/books')
+        .end(done);
+    });
+    it('should give a list of existing books');
   });
 });

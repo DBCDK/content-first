@@ -49,7 +49,7 @@ The backend service has the following admistrative endpoints:
 
 | Endpoint  | Function |
 | --------- | -------- |
-| `/status` | Returns the service status as JSON. |
+| `/howru`  | Returns the service status as JSON. |
 | `/pid`    | Returns the process id of the service.   |
 
 See also [service endpoints](doc/endpoints.md).

@@ -6,7 +6,7 @@ The endopints are based on [initial analysis](content-first-backend.png).
 
 Each metatag can be one of the tags defined in [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
 
-The result is a list of books as structure:
+The result is a list of books as a JSON structure:
 
     [{pid: ...}, {pid: ...}, ...]
 

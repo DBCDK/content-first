@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "errors": {
+      "required": true,
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "required": true,
+            "type": "integer"
+          },
+          "code": {
+            "required": true,
+            "type": "string"
+          },
+          "title": {
+            "required": true,
+            "type": "string"
+          },
+          "details": {
+            "required": false,
+            "type": "object"
+          },
+          "meta": {
+            "required": false,
+            "type": "object"
+          },
+          "stack": {
+            "required": false,
+            "type": "object"
+          }
+        }
+      }
+    },
+    "links": {
+      "required": false,
+      "type": "object",
+      "properties": {
+        "resource": {
+          "required": true,
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

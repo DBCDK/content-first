@@ -4,11 +4,60 @@
  * Configuration
  */
 const config = require('server/config');
+const constants = require('server/constants')();
 
 /*
- * Logging.
+ * Logging & stuff.
  */
 const logger = require('__/logging')(config.logger);
+
+/**
+ * Database error accounting.
+ */
+class Database {
+  constructor () {
+    this.ok = true;
+    this.currentError = null;
+    this.databaseErrors = [];
+  }
+  isOk () {
+    return this.ok;
+  }
+  setOk () {
+    this.ok = true;
+  }
+  getCurrentError () {
+    if (this.isOk()) {
+      return null;
+    }
+    return this.currentError;
+  }
+  getErrorLog () {
+    return this.databaseErrors;
+  }
+  logError (error) {
+    this.currentError = 'Database probably unreachable';
+    this.databaseErrors.push(
+      (new Date()).toISOString() + ': ' + error
+    );
+    this.ok = false;
+  }
+  testingConnection () {
+    // Make a dummy query.
+    return knex.raw('select 1+1 as result')
+      .then(function () {
+        logger.log.trace('There is a valid connection in the pool');
+        database.setOk();
+        return database.isOk();
+      })
+      .catch(error => {
+        logger.log.trace('problem connecting');
+        database.logError(error);
+        return database.isOk();
+      });
+  }
+}
+const database = new Database();
 
 /*
  * Make sure database is at most recent schema.
@@ -17,10 +66,11 @@ const knex = require('knex')(config.db);
 knex.migrate.latest()
   .then(() => {
     logger.log.debug('Database is now at latest version.');
+    database.setOk();
   })
   .catch(error => {
-    logger.log.error(`Could not update database to latest version, terminating: ${error}`);
-    process.exit(1);
+    logger.log.info(`Could not update database to latest version: ${error}`);
+    database.logError(error);
   });
 
 /*
@@ -49,13 +99,26 @@ app.use(parser.json({
 /*
  * Administrative API.
  */
-app.get('/status', (req, res) => {
+app.get('/howru', async(req, res) => {
+  const ok = await database.testingConnection();
+  if (ok) {
+    return res.json({
+      ok: true,
+      version: require('../../package').version,
+      'api-version': constants.apiversion,
+      hostname: req.hostname,
+      address: req.ip,
+      config
+    });
+  }
   res.json({
-    siteversion: require('../../package').version,
-    apiversion: '1',
+    ok: false,
+    errorText: database.getCurrentError(),
+    errorLog: database.getErrorLog(),
+    version: require('../../package').version,
+    'api-version': constants.apiversion,
     hostname: req.hostname,
     address: req.ip,
-    protocol: req.protocol,
     config
   });
 });
@@ -73,7 +136,7 @@ app.get('/crash', (req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 /*
- * API routes.
+ * API routes.  Should agree with constants.apiversion.
  */
 const apiRoutes = require('server/v1');
 app.use('/v1', apiRoutes);
