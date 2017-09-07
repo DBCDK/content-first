@@ -24,6 +24,13 @@ To start the server in staging or production mode:
     $ cp envproduction.env current.env
     $ npm run start-server
 
+## Build server
+
+Use the [exclude list](./archive-excludes.txt) when the build server makes an archive file of the result of the build.  Use like this: 
+
+     tar -X archive-excludes.txt -cz -f $JOB_BASE_NAME-$BUILD_NUMBER.tar.gz .
+
+
 ## Environments
 
 The backend service controlled by environment variables.  Most scripts assume that such variables are set in your local file `current.env`.  If you are just running the system on your own machine during development, you can most likely just use an empty `current.env`, but it has to exist.  The [`env`](env/) directory holds templates for other used configurations.  If you need to tweak settings, the application obeys the following environment variables.
