@@ -142,6 +142,12 @@ const apiRoutes = require('server/v1');
 app.use('/v1', apiRoutes);
 
 /*
+ * Frontend routes.
+ */
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../../build')));
+
+/*
  * Error handlers.
  */
 
