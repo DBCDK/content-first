@@ -18,6 +18,9 @@ body {
       width: 1400px;
   }
 }
+.btn {
+  font-family: 'Raleway', sans-serif;
+}
 
 .col-centered {
   float: none;
@@ -45,10 +48,24 @@ body {
   /*color: black;*/
 }
 .topbar .login {
-  margin-top: 10px;
+  margin-top: 25px;
+}
+.topbar .login span {
+  margin-right: 25px;
+  cursor: pointer;
 }
 .topbar h1 {
   margin: 0;
+}
+.topbar .header {
+  cursor: pointer;
+}
+.topbar .header img {
+  height: 80px;
+}
+.topbar .header div {
+  display: inline-block;
+  margin-left: 25px;
 }
 
 .frontpage-image {
@@ -95,6 +112,10 @@ body {
   opacity: 0;
   box-shadow: 0px 0px 0px;
   z-index: -1 !important;
+}
+.no-height {
+  max-height: 0 !important;
+  overflow: hidden !important;
 }
 
 .belt .header .more-link {
