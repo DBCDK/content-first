@@ -40,8 +40,7 @@ exports.server = {
   environment: defaults.environment,
   logServiceErrors: defaults.logServiceErrors,
   port: defaults.port,
-  hostname: 'content-first.dbc.dk',
-  testTimeoutMs: 20 * 1000
+  hostname: 'content-first.dbc.dk'
 };
 
 exports.logger = {

@@ -31,6 +31,8 @@ describe('Admin API', () => {
             expect(res.body['api-version']).to.equal('1');
             expect(res.body).to.have.property('version');
             expect(res.body.version).to.equal('0.1.0');
+            expect(res.body).to.not.have.nested.property('config.db.connection.user');
+            expect(res.body).to.not.have.nested.property('config.db.connection.password');
           })
           .end(done);
       });

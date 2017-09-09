@@ -10,6 +10,7 @@ const constants = require('server/constants')();
  * Logging & stuff.
  */
 const logger = require('__/logging')(config.logger);
+const _ = require('lodash');
 
 /**
  * Database error accounting.
@@ -101,6 +102,7 @@ app.use(parser.json({
  */
 app.get('/howru', async(req, res) => {
   const ok = await database.testingConnection();
+  const configWithouSecrets = _.omit(config, ['db.connection.user', 'db.connection.password']);
   if (ok) {
     return res.json({
       ok: true,
@@ -108,7 +110,7 @@ app.get('/howru', async(req, res) => {
       'api-version': constants.apiversion,
       hostname: req.hostname,
       address: req.ip,
-      config
+      config: configWithouSecrets
     });
   }
   res.json({
@@ -119,7 +121,7 @@ app.get('/howru', async(req, res) => {
     'api-version': constants.apiversion,
     hostname: req.hostname,
     address: req.ip,
-    config
+    config: configWithouSecrets
   });
 });
 
