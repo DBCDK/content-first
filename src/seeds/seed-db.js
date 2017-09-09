@@ -8,20 +8,10 @@ const {promisify} = require('util');
 const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
 
-exports.seed = knex => {
+exports.seed = async knex => {
   const blendstrup = require('fixtures/blendstrup-havelaagebogen.json');
-  const meta = books.parseMetaDataInjection(blendstrup);
-  return knex(bookTable).insert(books.transformMetaDataToBook(meta))
-    .then(() => {
-      return readFileAsync('src/fixtures/870970-basis-53188931.391x500.jpg');
-    })
-    .then(contents => {
-      return knex(coverTable).insert({
-        pid: meta.pid,
-        image: contents
-      });
-    })
-    .catch(error => {
-      throw error;
-    });
+  const meta = await books.parsingMetaDataInjection(blendstrup);
+  await knex(bookTable).insert(books.transformMetaDataToBook(meta));
+  const contents = await readFileAsync('src/fixtures/870970-basis-53188931.391x500.jpg');
+  await knex(coverTable).insert({pid: meta.pid, image: contents});
 };

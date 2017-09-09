@@ -1,8 +1,8 @@
-'use strict';
-
 /**
  * The initial database setup.
  */
+
+'use strict';
 
 const constants = require('server/constants')();
 const bookTable = constants.books.table;

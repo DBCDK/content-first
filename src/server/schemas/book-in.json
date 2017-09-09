@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "properties": {
+    "pid": {
+      "required": true,
+      "type": "string"
+    },
+    "unitId": {
+      "required": true,
+      "type": "string"
+    },
+    "workId": {
+      "required": true,
+      "type": "string"
+    },
+    "bibliographicRecordId": {
+      "required": true,
+      "type": "string"
+    },
+    "creator": {
+      "required": true,
+      "type": "string"
+    },
+    "title": {
+      "required": true,
+      "type": "string"
+    },
+    "titleFull": {
+      "required": true,
+      "type": "string"
+    },
+    "type": {
+      "required": true,
+      "type": "string"
+    },
+    "workType": {
+      "required": true,
+      "type": "string"
+    },
+    "language": {
+      "required": true,
+      "type": "string"
+    },
+    "items": {
+      "required": true,
+      "type": "integer"
+    },
+    "libraries": {
+      "required": true,
+      "type": "integer"
+    },
+    "pages": {
+      "required": true,
+      "type": "integer"
+    },
+    "loancount": {
+      "required": true,
+      "type": "integer"
+    },
+    "image_detail": {
+      "required": true,
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

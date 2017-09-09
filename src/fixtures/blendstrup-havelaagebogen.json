@@ -3,28 +3,20 @@
   "unitId": "unit:22125672",
   "workId": "work:20137979",
   "bibliographicRecordId": "53188931",
-  "creator": [
-    "Jens Blendstrup"
-  ],
-  "title": [
-    "Havelågebogen"
-  ],
-  "titleFull": [
-    "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
-  ],
-  "type": [
-    "Bog"
-  ],
-  "workType": [
-    "book"
-  ],
-  "language": [
-    "Dansk"
-  ],
+  "creator": "Jens Blendstrup",
+  "title": "Havelågebogen",
+  "titleFull": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger",
+  "type": "Bog",
+  "workType": "book",
+  "language": "Dansk",
+  "items": 196,
+  "libraries": 80,
+  "pages": 645,
   "image_detail_117": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_117&bibliotek=870970&source_id=870970&key=832afe2f0e4561ac0697",
   "image_detail_207": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_207&bibliotek=870970&source_id=870970&key=1200e74d784edc266f7d",
   "image_detail_42": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_42&bibliotek=870970&source_id=870970&key=5685ad65feddb948e26b",
   "image_detail_500": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_500&bibliotek=870970&source_id=870970&key=92ab02d98667aaf7a43f",
   "image_thumbnail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_lille&bibliotek=870970&source_id=870970&key=ad8950af0efad6e91b2d",
-  "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725"
+  "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725",
+  "loancount": 1020
 }

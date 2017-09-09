@@ -6,7 +6,7 @@
 
 const expect = require('chai').expect;
 const validator = require('is-my-json-valid/require');
-const formats = require('./schemas/formats');
+const formats = require('server/schemas/formats');
 
 function expectSuccess(document, next) {
   const validate = validator('schemas/success-out.json');
