@@ -17,7 +17,7 @@ class FilterPage extends React.Component {
     return (
       <div className='filter-page'>
         <div className='filters row'>
-          <div className='top col-xs-12'>
+          <div className='filter-page-top col-xs-12'>
             <div className='filter-page-title text-left col-xs-12'>
               <span>Vis mig</span>
               <DropDown

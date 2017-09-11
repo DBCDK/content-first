@@ -2,6 +2,7 @@ const defaultState = {
   belts: [
     {
       name: 'Bibliotekarens ugentlige anbefalinger',
+      details: 'Detaljer for ugentlige anbefalinger',
       isLoading: false,
       scrollOffset: 0,
       works: [
@@ -20,6 +21,7 @@ const defaultState = {
     },
     {
       name: 'En god bog',
+      details: 'Detaljer for en god bog',
       isLoading: true,
       scrollOffset: 0,
       works: [
@@ -38,10 +40,12 @@ const defaultState = {
     },
     {
       name: 'Passer med min smag',
+      details: 'Detaljer for min smag',
       isLoading: false
     },
     {
       name: 'Gør mig glad',
+      details: 'Detaljer for gør mig glad',
       isLoading: true,
       scrollOffset: 0,
       works: [

@@ -97,17 +97,7 @@ body {
   vertical-align: bottom;
   cursor: default;
 }
-.belt .header .belt-title-details {
-  padding: 20px;
-  min-width: 500px;
-  min-height: 100px;
-  border: 1px solid lightgray;
-  box-shadow: 2px 2px 5px #666666;
-  background: white;
-  position: absolute;
-  z-index: 200;
-  transition: all 0.2s ease-in-out;
-}
+
 .no-opacity {
   /*margin-left: -50px;*/
   opacity: 0;
