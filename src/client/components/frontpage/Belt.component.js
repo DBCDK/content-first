@@ -18,7 +18,7 @@ export default class Belt extends React.Component {
   }
 
   render() {
-    const scrollPos = this.props.belt.scrollOffset ? (-1 * this.props.belt.scrollOffset * 275) + 'px' : '0px';
+    const scrollPos = this.props.belt.scrollOffset ? (-1 * this.props.belt.scrollOffset * 265) + 'px' : '0px';
     const detailsClassName = this.state.showDetails ? 'belt-title-details' : 'belt-title-details no-opacity';
     return (
       <div className='row belt text-left'>

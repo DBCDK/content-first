@@ -65,7 +65,7 @@ class FilterPage extends React.Component {
               this.props.dispatch({type: ON_EDIT_FILTER_TOGGLE});
             }}/>
         </div>
-        <div className='works'>
+        <div className='filter-page-works row text-left'>
           {this.props.filterState.works && this.props.filterState.works.map((work, idx) => {
             return <WorkItem id={`work-${idx}`} key={idx} work={work} disableShadow={false}/>;
           })}
