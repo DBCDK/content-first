@@ -5,6 +5,7 @@ import CreateProfile from '../profile/CreateProfile.component';
 import {ON_BELT_SCROLL, ON_TAG_TOGGLE} from '../../redux/belts.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
+import {getLeaves} from '../../utils/filters';
 
 const SCROLL_INTERVAL = 5;
 
@@ -15,11 +16,15 @@ class FrontPage extends React.Component {
     return (
       <div className='belts col-xs-11 col-centered'>
         {this.props.beltsState.belts.map((belt, idx) => {
+          const allFilters = getLeaves(this.props.filterState.filters);
+          const selectedFilters = this.props.filterState.beltFilters[belt.name].map(id => allFilters[id]);
+
           // We might insert a 'create profile'-component to the belt
           const custom = idx === 2 ? <CreateProfile/> : null;
           return <Belt
             key={idx}
             belt={belt}
+            filters={selectedFilters}
             onScrollRight={() => {
               this.props.dispatch({type: ON_BELT_SCROLL, id: idx, scrollOffset: belt.scrollOffset + SCROLL_INTERVAL});
             }}
@@ -51,6 +56,6 @@ class FrontPage extends React.Component {
 export default connect(
   // Map redux state to props
   (state) => {
-    return {beltsState: state.beltsReducer};
+    return {beltsState: state.beltsReducer, filterState: state.filterReducer};
   }
 )(FrontPage);

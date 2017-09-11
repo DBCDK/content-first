@@ -35,11 +35,12 @@ export default class Belt extends React.Component {
             Jeg er detaljer</div>
         </div>
         <div className='col-xs-12 tags'>
-          {this.props.belt.tags && this.props.belt.tags.map((tag, idx) => {
-            const btnClass = tag.selected ? 'btn-success' : 'btn-default';
-            return <span className={`btn ${btnClass}`} key={idx} onClick={() => {
-              this.props.onTagClick(idx);
-            }}>{tag.name}</span>;
+          {this.props.filters && this.props.filters.map((filter, idx) => {
+            return <span key={idx} className='btn btn-default'>{filter.title}</span>;
+            // const btnClass = filter.selected ? 'btn-success' : 'btn-default';
+            // return <span className={`btn ${btnClass}`} key={idx} onClick={() => {
+            //   this.props.onTagClick(idx);
+            // }}>{filter.title}</span>;
           })}
         </div>
         {this.props.custom}

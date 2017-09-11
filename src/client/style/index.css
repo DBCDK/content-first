@@ -48,7 +48,7 @@ body {
   /*color: black;*/
 }
 .topbar .login {
-  margin-top: 25px;
+  margin-top: 30px;
 }
 .topbar .login span {
   margin-right: 25px;
@@ -66,6 +66,7 @@ body {
 .topbar .header div {
   display: inline-block;
   margin-left: 25px;
+  vertical-align: middle;
 }
 
 .frontpage-image {
@@ -115,7 +116,7 @@ body {
 }
 .no-height {
   max-height: 0 !important;
-  overflow: hidden !important;
+  /*overflow: hidden !important;*/
 }
 
 .belt .header .more-link {
