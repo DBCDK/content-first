@@ -32,7 +32,7 @@ class App extends Component {
 
     return (
       <div className="App container">
-        <TopBar/>
+        <TopBar dispatch={this.props.dispatch}/>
         {currentPage}
       </div>
     );

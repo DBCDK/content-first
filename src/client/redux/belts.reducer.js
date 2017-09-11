@@ -5,22 +5,35 @@ const defaultState = {
       isLoading: false,
       scrollOffset: 0,
       works: [
-        {title: 'A book', cover: 'http://some-cover-url',
-          metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'}
+        {title: 'A book', cover: '/frontpage.jpg',
+          metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'}
       ]
     },
     {
       name: 'En god bog',
-      isLoading: false,
-      tags: [
-        {name: 'Aktuelt', selected: false},
-        {name: 'Klassikere', selected: false},
-        {name: 'Let læst', selected: false}
-      ],
+      isLoading: true,
       scrollOffset: 0,
       works: [
-        {title: 'A book', cover: 'http://some-cover-url',
-          metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'}
+        {title: 'A book', cover: '/frontpage.jpg',
+          metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'}
       ]
     },
     {
@@ -29,17 +42,20 @@ const defaultState = {
     },
     {
       name: 'Gør mig glad',
-      isLoading: false,
-      tags: [
-        {name: 'Dansk', selected: false},
-        {name: 'Hygge', selected: false},
-        {name: 'Slap af i hængekøjen', selected: false},
-        {name: 'Kur mod kærestesorger', selected: false}
-      ],
+      isLoading: true,
       scrollOffset: 0,
       works: [
-        {title: 'A book', cover: 'http://some-cover-url',
-          metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'}
+        {title: 'A book', cover: '/frontpage.jpg',
+          metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'},
+        {title: 'A book', cover: '/frontpage.jpg'}
       ]
     }
   ]
