@@ -23,17 +23,11 @@ module.exports = knex => {
   /**
    * Completely clean up the database and migrations.
    */
-  function dropAll() {
-    return knex.schema.dropTableIfExists(coverTable)
-      .then(() => {
-        return knex.schema.dropTableIfExists(bookTable);
-      })
-      .then(() => {
-        return knex.schema.dropTableIfExists('knex_migrations');
-      })
-      .then(() => {
-        return knex.schema.dropTableIfExists('knex_migrations_lock');
-      });
+  async function dropAll () {
+    await knex.schema.dropTableIfExists(coverTable);
+    await knex.schema.dropTableIfExists(bookTable);
+    await knex.schema.dropTableIfExists('knex_migrations');
+    await knex.schema.dropTableIfExists('knex_migrations_lock');
   }
 
   return {

@@ -6,7 +6,7 @@ const validator = require('is-my-json-valid/require');
 const formats = require('server/schemas/formats');
 const _ = require('lodash');
 
-function validatingInput(document, schema) {
+function validatingInput (document, schema) {
   return new Promise((resolve, reject) => {
     const validate = validator(schema, formats);
     if (validate(document)) {

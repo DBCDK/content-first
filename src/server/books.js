@@ -30,17 +30,28 @@ function parsingMetaDataInjection (obj) {
 exports.parsingMetaDataInjection = parsingMetaDataInjection;
 
 function transformMetaDataToBook (metadata) {
-  return _.pick(metadata, [
-    'pid',
+  const filteredMetaData = _.pick(metadata, [
+    'bibliographic_record_id',
     'creator',
-    'title',
-    'title_full',
-    'language',
-    'type',
     'items',
+    'language',
     'libraries',
     'loan_count',
-    'pages'
+    'pages',
+    'pid',
+    'title',
+    'title_full',
+    'type',
+    'unit_id',
+    'work_id',
+    'work_type'
   ]);
+  // TODO: Fake data until we get the real thing.
+  return Object.assign(filteredMetaData, {
+    description: 'Ingen beskrivelse',
+    published_year: 2017,
+    published_month: 2,
+    published_day: 3
+  });
 }
 exports.transformMetaDataToBook = transformMetaDataToBook;

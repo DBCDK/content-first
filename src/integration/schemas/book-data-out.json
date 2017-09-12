@@ -5,15 +5,15 @@
       "required": true,
       "type": "string"
     },
-    "unitId": {
+    "unit_id": {
       "required": true,
       "type": "string"
     },
-    "workId": {
+    "work_id": {
       "required": true,
       "type": "string"
     },
-    "bibliographicRecordId": {
+    "bibliographic_record_id": {
       "required": true,
       "type": "integer"
     },
@@ -25,15 +25,39 @@
       "required": true,
       "type": "string"
     },
-    "titleFull": {
+    "title_full": {
       "required": true,
       "type": "string"
+    },
+    "description": {
+      "required": true,
+      "type": "string"
+    },
+    "pages": {
+      "required": true,
+      "type": "integer"
+    },
+    "published_year": {
+      "required": true,
+      "type": "integer"
+    },
+    "published_month": {
+      "required": true,
+      "type": "integer"
+    },
+    "published_day": {
+      "required": true,
+      "type": "integer"
+    },
+    "loan_count": {
+      "required": true,
+      "type": "integer"
     },
     "type": {
       "required": true,
       "type": "string"
     },
-    "workType": {
+    "work_type": {
       "required": true,
       "type": "string"
     },
@@ -48,19 +72,7 @@
     "libraries": {
       "required": true,
       "type": "integer"
-    },
-    "pages": {
-      "required": true,
-      "type": "integer"
-    },
-    "loancount": {
-      "required": true,
-      "type": "integer"
-    },
-    "image_detail": {
-      "required": true,
-      "type": "string"
     }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

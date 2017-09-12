@@ -91,10 +91,12 @@ app.use(helmet());
  */
 const parser = require('body-parser');
 app.use(parser.json({
-  // Always assume JSON.
-  type: '*/*',
+  type: 'application/json',
   // Allow lone values.
   strict: false
+}));
+app.use(parser.raw({
+  type: 'image/*'
 }));
 
 /*

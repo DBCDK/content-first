@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "self": {
+      "required": true,
+      "type": "string"
+    },
+    "cover": {
+      "required": true,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

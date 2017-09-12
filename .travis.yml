@@ -7,6 +7,9 @@ addons:
   postgresql: "9.6"
 services:
   - postgresql
+cache:
+  directories:
+    - $HOME/node_modules
 before_install:
   - psql --version
   - cp env/travis.env current.env

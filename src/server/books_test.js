@@ -9,8 +9,6 @@ const expect = chai.expect;
 const books = require('./books');
 const blendstrup = require('fixtures/blendstrup-havelaagebogen.json');
 const wrongBook = require('fixtures/wrong-book.json');
-// const config = require('server/config');
-// const logger = require('__/logging')(config.logger);
 
 describe('books', () => {
   describe('parsingMetaDataInjection', () => {
@@ -35,6 +33,9 @@ describe('books', () => {
           expect(problems).to.deep.include('workType is required');
           expect(problems).to.deep.include('language is required');
           expect(problems).to.deep.include('image_detail is required');
+          expect(problems).to.deep.include('items is required');
+          expect(problems).to.deep.include('libraries is required');
+          expect(problems).to.deep.include('pages is required');
         });
     });
     it('should fill in all values from JSON', () => {
@@ -49,14 +50,13 @@ describe('books', () => {
           unit_id: 'unit:22125672',
           work_id: 'work:20137979',
           work_type: 'book',
-          bibliographic_record_id: '53188931',
+          bibliographic_record_id: 53188931,
           items: 196,
           libraries: 80,
           pages: 645,
           loan_count: 1020,
           cover: 'https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725'
         });
-      //          logger.log.debug(errors.meta.problems);
     });
   });
   describe('transformMetaDataToBook', () => {
@@ -65,16 +65,24 @@ describe('books', () => {
         .to.not.be.rejected
         .then(metaData => {
           expect(books.transformMetaDataToBook(metaData)).to.deep.equal({
-            pid: '870970-basis:53188931',
+            bibliographic_record_id: 53188931,
             creator: 'Jens Blendstrup',
+            items: 196,
+            language: 'Dansk',
+            libraries: 80,
+            loan_count: 1020,
+            pages: 645,
+            pid: '870970-basis:53188931',
             title: 'Havelågebogen',
             title_full: 'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
-            language: 'Dansk',
             type: 'Bog',
-            items: 196,
-            libraries: 80,
-            pages: 645,
-            loan_count: 1020
+            unit_id: 'unit:22125672',
+            work_id: 'work:20137979',
+            description: 'Ingen beskrivelse',
+            published_year: 2017,
+            published_month: 2,
+            published_day: 3,
+            work_type: 'book'
           });
         });
     });
