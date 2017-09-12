@@ -11,8 +11,8 @@
 
 .filter-page-top {
   color: white;
-  background: grey;
-
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('/Filter-bg_v1.jpg');
+  background-size: 1400px;
   padding: 30px;
 }
 .filters {
@@ -71,10 +71,13 @@
    outline: none;
    /*text-decoration: underline;*/
    border-bottom: 1px solid white;
+
 }
 
 .filter-page select option {
   color: black;
+  padding: 5px 0;
+  font-size: 22px;
 }
 .filter-page select optgroup {
   color: grey;
@@ -90,7 +93,7 @@
 .reset-filters {
   font-size: 16px;
   font-weight: bold;
-  color: #c3341d;
+  color: #fc492d;
   margin-left: 20px;
   vertical-align: bottom;
   padding-bottom: 4px;

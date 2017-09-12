@@ -49,7 +49,7 @@ class FilterPage extends React.Component {
                 className='sort-options'
                 selected={this.props.filterState.sortBy.find(o => o.selected).title}
                 options={this.props.filterState.sortBy.map(s => s.title)}
-                margin={2}
+                margin={4}
                 onChange={value => {
                   this.props.dispatch({type: ON_SORT_OPTION_SELECT, value});
                 }}/>
