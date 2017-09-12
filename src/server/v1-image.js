@@ -6,7 +6,6 @@ const jimp = require('jimp');
 const _ = require('lodash');
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const config = require('server/config');
-// const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const coverTable = constants.covers.table;
@@ -49,16 +48,26 @@ router.route('/:pid')
       });
     }
     try {
-      await knex(coverTable).insert({pid, image: req.body});
-      res.status(201).location(location).json({
-        links: {self: location},
-        data: `Created ${location}`
-      });
+      const existing = await knex(coverTable).where({pid}).select('pid');
+      if (existing.length === 0) {
+        await knex(coverTable).insert({pid, image: req.body});
+        res.status(201).location(location).json({
+          links: {self: location},
+          data: `Created ${location}`
+        });
+      }
+      else {
+        await knex(coverTable).where({pid}).update('image', req.body);
+        res.status(200).location(location).json({
+          links: {self: location},
+          data: `Updated ${location}`
+        });
+      }
     }
     catch (error) {
       return next({
-        status: 400,
-        title: 'Unsupported image type',
+        status: 500,
+        title: 'Database operation failed',
         detail: error,
         meta: {resource: location}
       });

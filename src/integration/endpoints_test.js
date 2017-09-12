@@ -93,7 +93,7 @@ describe('endpoints', () => {
       const location = '/v1/image/870970-basis:22629344';
       readFileAsync('src/fixtures/870970-basis-22629344.jpg')
         .then(contents => {
-          webapp.put(location)
+          return webapp.put(location)
             .type('image/jpeg')
             .send(contents)
             .expect(201)
@@ -104,15 +104,42 @@ describe('endpoints', () => {
                 expect(links.self).to.equal(location);
                 expect(data).to.match(/created/i);
               });
-            })
-            .then(() => {
-              webapp.get(location)
-                .expect(200)
-                .expect('Content-Type', /image\/jpeg/)
-                .expect('Content-Length', '29852')
-                .end(done);
             });
-        });
+        })
+        .then(() => {
+          webapp.get(location)
+            .expect(200)
+            .expect('Content-Type', /image\/jpeg/)
+            .expect('Content-Length', '29852')
+            .end(done);
+        })
+        .catch(done);
+    });
+    it('should replace an image in the database', done => {
+      const location = '/v1/image/870970-basis:53188931';
+      readFileAsync('src/fixtures/870970-basis-53188931.jpg')
+        .then(contents => {
+          return webapp.put(location)
+            .type('image/jpeg')
+            .send(contents)
+            .expect(res => {
+              expectSuccess(res.body, (links, data) => {
+                expect(links).to.have.property('self');
+                expect(links.self).to.equal(location);
+                expect(data).to.match(/updated/i);
+              });
+            })
+            .expect(200)
+            .expect('location', location);
+        })
+        .then(() => {
+          webapp.get(location)
+            .expect('Content-Type', /image\/jpeg/)
+            .expect('Content-Length', '28130')
+            .expect(200)
+            .end(done);
+        })
+        .catch(done);
     });
   });
   describe('GET /v1/book', () => {
@@ -291,7 +318,45 @@ describe('endpoints', () => {
             })
             .expect(200)
             .end(done);
-        });
+        })
+        .catch(done);
+    });
+    it('should replace a book in the database', done => {
+      const harryPotter = require('fixtures/rowling-harry-potter-de-vises-sten.json');
+      const pid = '870970-basis:53188931';
+      harryPotter.pid = pid;
+      const location = `/v1/book/${pid}`;
+      webapp.put(location)
+        .type('application/json')
+        .send(harryPotter)
+        .expect(res => {
+          expectSuccess(res.body, (links, data) => {
+            expect(links).to.have.property('self');
+            expect(links.self).to.equal(location);
+            expectValidate(data, 'schemas/book-data-out.json');
+            expect(data.pid).to.equal(pid);
+            expect(data.creator).to.equal('Joanne K. Rowling');
+            expect(data.unit_id).to.equal('unit:843773');
+          });
+        })
+        .expect(200)
+        .expect('location', location)
+        .then(() => {
+          webapp.get(location)
+            .expect(res => {
+              expectSuccess(res.body, (links, data) => {
+                expect(links).to.have.property('self');
+                expect(links.self).to.equal(location);
+                expectValidate(data, 'schemas/book-data-out.json');
+                expect(data.pid).to.equal(pid);
+                expect(data.creator).to.equal('Joanne K. Rowling');
+                expect(data.loan_count).to.equal(20811);
+              });
+            })
+            .expect(200)
+            .end(done);
+        })
+        .catch(done);
     });
   });
   describe('GET /v1/books', () => {

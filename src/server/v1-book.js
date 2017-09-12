@@ -52,15 +52,38 @@ router.route('/:pid')
       }
       const meta = await bookUtil.parsingMetaDataInjection(req.body);
       const spiked = bookUtil.transformMetaDataToBook(meta);
-      await knex(bookTable).insert(spiked);
       const location = `${req.baseUrl}/${pid}`;
-      res.status(201).location(location).json({
-        data: spiked,
-        links: {
-          self: location,
-          cover: `/v1/image/${pid}`
+      try {
+        const existing = await knex(bookTable).where({pid}).select('pid');
+        if (existing.length === 0) {
+          await knex(bookTable).insert(spiked);
+          res.status(201).location(location).json({
+            data: spiked,
+            links: {
+              self: location,
+              cover: `/v1/image/${pid}`
+            }
+          });
         }
-      });
+        else {
+          await knex(bookTable).where({pid}).update(spiked);
+          res.status(200).location(location).json({
+            data: spiked,
+            links: {
+              self: location,
+              cover: `/v1/image/${pid}`
+            }
+          });
+        }
+      }
+      catch (error) {
+        return next({
+          status: 500,
+          title: 'Database operation failed',
+          detail: error,
+          meta: {resource: location}
+        });
+      }
     }
     catch (error) {
       return next({

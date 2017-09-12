@@ -42,6 +42,7 @@ The [node setup](../setup-node-env.sh) creates symbolic links
     __ -> ../src/lib
     server -> ../src/server
     client -> ../src/client
+    fixtures -> ../src/fixtures
 
 inside `node_modules` such that [our custom libraries](lib/) can used likes this anywhere in the code:
 

@@ -1,3 +1,7 @@
+/**
+ * Utillties for backend service manipulation of book data.
+ */
+
 'use strict';
 const _ = require('lodash');
 const validatingInput = require('server/json-verifiers').validatingInput;

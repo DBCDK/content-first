@@ -1,3 +1,7 @@
+/**
+ * Constants used by multiple parts of the backend.
+ */
+
 'use strict';
 
 const constants = {

@@ -72,7 +72,7 @@ The data must be [valid book input](../src/server/schemas/book-in.json), like
     { "pid": "870970-basis:53188931"
     , "unitId": "unit:22125672"
     , "workId": "work:20137979"
-    , "bibliographicRecordId": 53188931
+    , "bibliographicRecordId": "53188931"
     , "creator": "Jens Blendstrup"
     , "title": "Havelågebogen"
     , "titleFull": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
