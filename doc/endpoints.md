@@ -38,32 +38,32 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
 
 Results in a [list of books](../src/integration/schemas/books-data-out.json), each of the format as `GET /v1/book`, like
 
-  { "data":
-    [ { "book":
-        { "pid": "870970-basis:53188931"
-        , "title": "Havelågebogen"
-        , "...": "..."
+    { "data":
+      [ { "book":
+          { "pid": "870970-basis:53188931"
+          , "title": "Havelågebogen"
+          , "...": "..."
+          }
+        , "links":
+          { "self": "/v1/book/870970-basis:53188931"
+          , "cover": "/v1/image/870970-basis:53188931"
+          }
         }
-      , "links":
-        { "self": "/v1/book/870970-basis:53188931"
-        , "cover": "/v1/image/870970-basis:53188931"
+      , { "book":
+          { "pid": "870970-basis:22629344"
+          , "title": "Harry Potter og De Vises Sten"
+          , "...": "..."
+          }
+        , "links":
+          { "self": "/v1/book/870970-basis:22629344"
+          , "cover": "/v1/image/870970-basis:22629344"
+          }
         }
+      ]
+    , "links":
+      { "self": "/v1/books?pids=870970-basis:53188931,870970-basis:22629344"
       }
-    , { "book":
-        { "pid": "870970-basis:22629344"
-        , "title": "Harry Potter og De Vises Sten"
-        , "...": "..."
-        }
-      , "links":
-        { "self": "/v1/book/870970-basis:22629344"
-        , "cover": "/v1/image/870970-basis:22629344"
-        }
-      }
-    ]
-  , "links":
-    { "self": "/v1/books?pids=870970-basis:53188931,870970-basis:22629344"
     }
-  }
 
 ## `PUT /v1/book/`*pid*
 

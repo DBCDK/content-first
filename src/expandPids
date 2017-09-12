@@ -196,7 +196,7 @@ function extractFromCorepo(corepo) {
   try {
     if (corepo.text) {
       parseString(corepo.text, function (err, result) {
-        const pages = parseInt(result['ting:container']['dkabm:record'][0]['dcterms:extent']);
+        const pages = parseInt(result['ting:container']['dkabm:record'][0]['dcterms:extent'], 10);
         if (pages) {
           ret = {pages: pages};
         }
