@@ -17,25 +17,25 @@ describe('books', () => {
         .to.be.rejected
         .then(error => {
           expect(error).to.have.property('title');
-          expect(error.title).to.match(/does not adhere to schema/);
+          expect(error.title).to.match(/does not adhere to schema/i);
           expect(error).to.have.property('meta');
           expect(error.meta).to.have.property('problems');
           const problems = error.meta.problems;
           expect(problems).to.be.an('array');
-          expect(problems).to.deep.include('pid is the wrong type');
-          expect(problems).to.deep.include('bibliographicRecordId is the wrong type');
-          expect(problems).to.deep.include('loancount is the wrong type');
-          expect(problems).to.deep.include('workId is required');
-          expect(problems).to.deep.include('creator is required');
-          expect(problems).to.deep.include('title is required');
-          expect(problems).to.deep.include('titleFull is required');
-          expect(problems).to.deep.include('type is required');
-          expect(problems).to.deep.include('workType is required');
-          expect(problems).to.deep.include('language is required');
-          expect(problems).to.deep.include('image_detail is required');
-          expect(problems).to.deep.include('items is required');
-          expect(problems).to.deep.include('libraries is required');
-          expect(problems).to.deep.include('pages is required');
+          expect(problems).to.deep.include('field pid is the wrong type');
+          expect(problems).to.deep.include('field bibliographicRecordId is the wrong type');
+          expect(problems).to.deep.include('field loancount is the wrong type');
+          expect(problems).to.deep.include('field workId is required');
+          expect(problems).to.deep.include('field creator is required');
+          expect(problems).to.deep.include('field title is required');
+          expect(problems).to.deep.include('field titleFull is required');
+          expect(problems).to.deep.include('field type is required');
+          expect(problems).to.deep.include('field workType is required');
+          expect(problems).to.deep.include('field language is required');
+          expect(problems).to.deep.include('field image_detail is required');
+          expect(problems).to.deep.include('field items is required');
+          expect(problems).to.deep.include('field libraries is required');
+          expect(problems).to.deep.include('field pages is required');
         });
     });
     it('should fill in all values from JSON', () => {

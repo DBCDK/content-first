@@ -10,7 +10,7 @@ function parsingMetaDataInjection (obj) {
         book.pid = document.pid;
         book.unit_id = document.unitId;
         book.work_id = document.workId;
-        book.bibliographic_record_id = document.bibliographicRecordId;
+        book.bibliographic_record_id = parseInt(document.bibliographicRecordId, 10);
         book.title = document.title;
         book.creator = document.creator;
         book.title_full = document.titleFull;

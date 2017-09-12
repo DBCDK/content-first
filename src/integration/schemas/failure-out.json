@@ -20,9 +20,9 @@
             "required": true,
             "type": "string"
           },
-          "details": {
+          "detail": {
             "required": false,
-            "type": "object"
+            "type": "string"
           },
           "meta": {
             "required": false,

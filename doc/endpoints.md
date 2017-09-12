@@ -12,7 +12,7 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
       { "pid": "870970-basis:53188931"
       , "unit_id": "unit:22125672"
       , "work_id": "work:20137979"
-      , "bibliographic_record_id": 53188931
+      , "bibliographic_record_id": "53188931"
       , "creator": "Jens Blendstrup"
       , "title": "Havelågebogen"
       , "title_full": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"

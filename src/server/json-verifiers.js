@@ -4,7 +4,7 @@
 'use strict';
 const validator = require('is-my-json-valid/require');
 const formats = require('server/schemas/formats');
-const _ = require('lodash');
+const nicifyJsonValidationErrors = require('__/json').nicifyJsonValidationErrors;
 
 function validatingInput (document, schema) {
   return new Promise((resolve, reject) => {
@@ -13,7 +13,7 @@ function validatingInput (document, schema) {
       return resolve(document);
     }
     // Massage array of objects of errors into human-readable form.
-    const niceErrors = _.map(_.map(_.map(validate.errors, _.values), _.curry(_.join)(_, ' ')), x => _.replace(x, 'data.', ''));
+    const niceErrors = nicifyJsonValidationErrors(validate);
     reject({
       status: 400,
       title: `Input data does not adhere to ${schema}`,

@@ -11,7 +11,8 @@ const readFileAsync = promisify(fs.readFile);
 exports.seed = async knex => {
   const blendstrup = require('fixtures/blendstrup-havelaagebogen.json');
   const meta = await books.parsingMetaDataInjection(blendstrup);
-  await knex(bookTable).insert(books.transformMetaDataToBook(meta));
+  const spiked = books.transformMetaDataToBook(meta);
+  await knex(bookTable).insert(spiked);
   const contents = await readFileAsync('src/fixtures/870970-basis-53188931.jpg');
   await knex(coverTable).insert({pid: meta.pid, image: contents});
 };

@@ -15,7 +15,7 @@
     },
     "bibliographicRecordId": {
       "required": true,
-      "type": "integer"
+      "type": "string"
     },
     "creator": {
       "required": true,
