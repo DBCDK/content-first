@@ -149,7 +149,7 @@ app.use('/v1', apiRoutes);
  * Frontend routes.
  */
 const reactRoutes = require('server/frontend');
-app.use('*', reactRoutes);
+app.use(/\/((?!v1).)*/, reactRoutes);
 
 /*
  * Error handlers.

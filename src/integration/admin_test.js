@@ -37,7 +37,7 @@ describe('Admin API', () => {
           .end(done);
       });
     });
-    describe.skip('default handler should return error', () => {
+    describe('default handler should return error', () => {
       it('as JSON', done => {
         const endpoint = '/v1/books/doesNotExist';
         webapp.get(endpoint)
