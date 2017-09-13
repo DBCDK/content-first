@@ -1,19 +1,19 @@
 const defaultState = {
   belts: [
     {
-      name: 'Bibliotekarens ugentlige anbefalinger',
-      details: 'Detaljer for ugentlige anbefalinger',
-      isLoading: false,
-      scrollOffset: 0,
-      pids: ['870970-basis:22629344', '870970-basis:53188931'],
-      works: []
-    },
-    {
       name: 'En god bog',
       details: 'Detaljer for en god bog',
       isLoading: false,
       scrollOffset: 0,
       pids: ['870970-basis:22629344'],
+      works: []
+    },
+    {
+      name: 'Bibliotekarens ugentlige anbefalinger',
+      details: 'Detaljer for ugentlige anbefalinger',
+      isLoading: false,
+      scrollOffset: 0,
+      pids: ['870970-basis:22629344', '870970-basis:53188931'],
       works: []
     },
     {
