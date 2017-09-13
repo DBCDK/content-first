@@ -6,13 +6,21 @@ import {ON_BELT_SCROLL, ON_TAG_TOGGLE} from '../../redux/belts.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
+import fetchBeltWorks from '../../utils/requester';
+
 
 const SCROLL_INTERVAL = 5;
 
 class FrontPage extends React.Component {
 
-  renderBelts() {
+  componentDidMount() {
+    // Fetch works for each belt
+    this.props.beltsState.belts.forEach(belt => {
+      fetchBeltWorks(belt, this.props.dispatch);
+    });
+  }
 
+  renderBelts() {
     return (
       <div className='belts col-xs-11 col-centered'>
         {this.props.beltsState.belts.map((belt, idx) => {

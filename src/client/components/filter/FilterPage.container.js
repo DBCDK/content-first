@@ -8,8 +8,14 @@ import {ON_SORT_OPTION_SELECT, ON_EDIT_FILTER_TOGGLE, ON_FILTER_TOGGLE, ON_RESET
 import {getLeaves} from '../../utils/filters';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
+import fetchBeltWorks from '../../utils/requester';
 
 class FilterPage extends React.Component {
+
+  componentDidMount() {
+    // Fetch works for belt
+    fetchBeltWorks(this.props.belt, this.props.dispatch);
+  }
 
   render() {
     const allFilters = getLeaves(this.props.filterState.filters);
@@ -27,9 +33,11 @@ class FilterPage extends React.Component {
                 margin={5}
                 onChange={value => {
                   this.props.dispatch({type: HISTORY_PUSH, path: beltNameToPath(value)});
+                  fetchBeltWorks(this.props.beltState.belts.find(belt => belt.name === value), this.props.dispatch);
                 }}/>
               <span className='reset-filters' onClick={() => {
                 this.props.dispatch({type: ON_RESET_FILTERS, beltName: this.props.belt.name});
+                fetchBeltWorks(this.props.belt, this.props.dispatch);
               }}>Nulstil filtre</span>
             </div>
             <SelectedFilters
@@ -42,6 +50,7 @@ class FilterPage extends React.Component {
               }}
               onFilterToggle={(filter) => {
                 this.props.dispatch({type: ON_FILTER_TOGGLE, filter, beltName: this.props.belt.name});
+                fetchBeltWorks(this.props.belt, this.props.dispatch);
               }}/>
             <div className='sort-options col-xs-12 text-right'>
               <span>Sortér efter</span>
@@ -52,6 +61,7 @@ class FilterPage extends React.Component {
                 margin={4}
                 onChange={value => {
                   this.props.dispatch({type: ON_SORT_OPTION_SELECT, value});
+                  fetchBeltWorks(this.props.belt, this.props.dispatch);
                 }}/>
             </div>
           </div>
@@ -60,14 +70,15 @@ class FilterPage extends React.Component {
             selectedFilters={selectedFilters}
             onFilterToggle={(filter) => {
               this.props.dispatch({type: ON_FILTER_TOGGLE, filter, beltName: this.props.belt.name});
+              fetchBeltWorks(this.props.belt, this.props.dispatch);
             }}
             onEditFilterToggle={() => {
               this.props.dispatch({type: ON_EDIT_FILTER_TOGGLE});
             }}/>
         </div>
         <div className='filter-page-works row text-left'>
-          {this.props.filterState.works && this.props.filterState.works.map((work, idx) => {
-            return <WorkItem id={`work-${idx}`} key={idx} work={work} disableShadow={false}/>;
+          {this.props.belt.works && this.props.belt.works.map((work, idx) => {
+            return <WorkItem id={`work-${idx}`} key={idx} work={work}/>;
           })}
         </div>
       </div>

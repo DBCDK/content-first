@@ -46,21 +46,6 @@ const defaultState = {
       ]
     }
   ],
-  isLoading: false,
-  works: [
-    {title: 'A book', cover: '/870970-basis-53188931.391x500.jpg',
-      metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
-    {title: 'A book', cover: '/frontpage.jpg', metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
-    {title: 'A book', cover: '870970-basis-53188931.391x500.jpg'},
-    {title: 'A book', cover: '870970-basis-53188931.391x500.jpg'},
-    {title: 'A book', cover: '/frontpage.jpg'},
-    {title: 'A book', cover: '870970-basis-53188931.391x500.jpg'},
-    {title: 'A book', cover: '/870970-basis-53188931.391x500.jpg',
-      metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
-    {title: 'A book', cover: '/frontpage.jpg'},
-    {title: 'A book', cover: '/frontpage.jpg'},
-    {title: 'A book', cover: '/frontpage.jpg'}
-  ],
   sortBy: [
     {title: 'Min smag', selected: true},
     {title: 'Linse Kesslers smag', selected: false},
@@ -69,8 +54,6 @@ const defaultState = {
   ]
 };
 
-export const ON_FILTER_REQUEST = 'ON_FILTER_REQUEST';
-export const ON_FILTER_RESPONSE = 'ON_FILTER_RESPONSE';
 export const ON_SORT_OPTION_SELECT = 'ON_SORT_OPTION_SELECT';
 export const ON_EDIT_FILTER_TOGGLE = 'ON_EDIT_FILTER_TOGGLE';
 export const ON_FILTER_TOGGLE = 'ON_FILTER_TOGGLE';
@@ -78,10 +61,6 @@ export const ON_RESET_FILTERS = 'ON_RESET_FILTERS';
 
 const filterReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ON_FILTER_REQUEST:
-      return state;
-    case ON_FILTER_RESPONSE:
-      return state;
     case ON_SORT_OPTION_SELECT: {
       const sortBy = state.sortBy.map(option => {
         return {title: option.title, selected: option.title === action.value};

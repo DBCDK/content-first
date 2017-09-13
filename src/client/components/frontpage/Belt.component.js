@@ -23,7 +23,7 @@ export default class Belt extends React.Component {
         <div className='col-xs-12 header'>
           <span className='belt-title' data-toggle='tooltip' title={this.props.belt.details}>
             {this.props.belt.name}</span>
-          {this.props.belt.works && this.props.belt.works.length > 5 &&
+          {this.props.belt.works && this.props.belt.works.length > 0 &&
           <span className='more-link btn' onClick={this.props.onMoreClick}>Se flere</span>}
         </div>
         <div className='col-xs-12 tags'>
@@ -46,7 +46,7 @@ export default class Belt extends React.Component {
           <div className='works-wrapper col-xs-12 noselect'>
             <div className='works' style={{transform: `translate3d(${scrollPos}, 0px, 0px)`}}>
               {this.props.belt.works && this.props.belt.works.map((work, idx) => {
-                return <WorkItem id={`work-${idx}`} key={idx} work={work} disableShadow={this.state.showDetails}/>;
+                return <WorkItem id={`work-${idx}`} key={idx} work={work}/>;
               })}
             </div>
           </div>
