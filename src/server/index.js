@@ -148,13 +148,12 @@ app.use('/v1', apiRoutes);
 /*
  * Frontend routes.
  */
-const path = require('path');
-app.use(express.static(path.join(__dirname, '../../build')));
+const reactRoutes = require('server/frontend');
+app.use('*', reactRoutes);
 
 /*
  * Error handlers.
  */
-
 app.use((req, res, next) => {
   next({
     status: 404,
