@@ -102,3 +102,13 @@ The content-type must be `image/jpeg` or `image/png`.
 
 Each metatag can be one of the tags defined in [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
 
+# Command-line interaction
+
+To upload a book:
+
+    curl -X PUT -H "Content-Type: application/json" --data "@src/fixtures/min-oste-bog.json" http://localhost:3001/v1/book/12345-ost:98765
+
+To upload a cover image:
+
+    curl -X PUT -H "Content-Type: image/jpeg" --data-binary "@src/fixtures/12345-ost:98765.jpg" http://localhost:3001/v1/image/12345-ost:98765
+
