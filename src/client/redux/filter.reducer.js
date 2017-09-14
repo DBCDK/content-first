@@ -304,17 +304,17 @@ const defaultState = {
     {
       title: 'Vælg længde',
       children: [
-        {title: 'Kort bog'},
-        {title: 'Medium længde'},
-        {title: 'Lang bog'}
+        {id: '1000', title: 'Kort bog'},
+        {id: '1001', title: 'Medium længde'},
+        {id: '1002', title: 'Lang bog'}
       ]
     },
     {
       title: 'Vælg kvalitetsparametre',
       children: [
-        {title: 'Gode anmeldelser'},
-        {title: 'Gode ratings'},
-        {title: 'Lang bog'}
+        {id: '1003', title: 'Gode anmeldelser'},
+        {id: '1004', title: 'Gode ratings'},
+        {id: '1005', title: 'Lang bog'}
       ]
     }
   ],
