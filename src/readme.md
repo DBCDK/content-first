@@ -1,6 +1,6 @@
 # Development
 
-To setup the system locally:
+To setup the system locally, in the root directory:
 
     $ touch current.env     // Use default configuration.
     $ npm install           // Install dependencies.
@@ -10,7 +10,7 @@ To run the system locally:
     $ docker-compose up -d  // Start local PostgreSQL database.
     $ npm start             // Run both backend and frontend services in parallel.
 
-If you want to manually start up a PostgreSQL server, it needs to run on port 5432 and have a database called `contentfirst` owned by `contentfirst`, see the following section about environments.
+If you want to manually start up a PostgreSQL server, it needs to run on port 5432 and have a database called `contentfirst` owned by `contentfirst`; see the following section about environments.
 
 To run fast tests on local machine:
 
@@ -22,6 +22,8 @@ To run full integration test:
 
     $ docker-compose up -d  // Start local PostgreSQL database.
     $ npm run test-full     // Run all test, including database integration.
+
+Read [more about integration testing](integration/readme.md).
 
 See also [service endpoints](../doc/endpoints.md).
 
@@ -35,7 +37,7 @@ To connect to the database:
 
     $ docker exec -it -u postgres contentfirst_database_1 psql
 
-To add a new table in the database, add a new table name to [`config.js`](config.js), add file to [`migrations/`](../migrations) where the new table is created/destroyed, and incorporate the new table table in [`cleanup-db.js`](integration/cleanup-db.js) so that the test will know how to clear the database.
+To add a new table in the database, add a new table name to [`config.js`](server/config.js), add file to [`migrations/`](migrations/) where the new table is created/destroyed, and incorporate the new table table in [`cleanup-db.js`](integration/cleanup-db.js) so that the test will know how to clear the database.
 
 ## Node setup
 
@@ -46,10 +48,11 @@ The [node setup](../setup-node-env.sh) creates symbolic links
     client -> ../src/client
     fixtures -> ../src/fixtures
 
-inside `node_modules` such that [our custom libraries](lib/) can used likes this anywhere in the code:
+inside `node_modules` such that [custom libraries](lib/) and [test fixtures](fixtures/) can used anywhere in the code likes this:
 
     const config = require('server/config');
     const logger = require('__/logging')(config.logger);
+    const input = require('fixtures/book.json')
 
 The node setup runs automatically after every `npm install`
 
