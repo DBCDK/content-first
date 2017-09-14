@@ -3,10 +3,11 @@ import {getLeaves} from '../utils/filters';
 const defaultState = {
   editFilters: false,
   beltFilters: {
-    'En god bog': [0, 5],
+    'En god bog': ['2', '3'],
     'Bibliotekarens ugentlige anbefalinger': [],
     'Passer med min smag': []
   },
+  expandedFilters: [],
   filters: [
     {
       id: '0',
@@ -342,9 +343,9 @@ const filterReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {editFilters: !state.editFilters});
     case ON_FILTER_TOGGLE: {
       let filterId;
-      getLeaves(state.filters).forEach((filter, id) => {
+      getLeaves(state.filters).forEach(filter => {
         if (filter === action.filter) {
-          filterId = id;
+          filterId = filter.id;
         }
       });
       const beltFilters = Object.assign({}, state.beltFilters);

@@ -19,7 +19,8 @@ class FilterPage extends React.Component {
 
   render() {
     const allFilters = getLeaves(this.props.filterState.filters);
-    const selectedFilters = this.props.filterState.beltFilters[this.props.belt.name].map(id => allFilters[id]);
+    const selectedFilters = this.props.filterState.beltFilters[this.props.belt.name].map(id => allFilters.find(filter => filter.id === id));
+    console.log(selectedFilters, allFilters)
     return (
       <div className='filter-page'>
         <div className='filters row'>

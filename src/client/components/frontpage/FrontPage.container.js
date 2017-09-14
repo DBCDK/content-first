@@ -27,7 +27,7 @@ class FrontPage extends React.Component {
       <div className='belts col-xs-11 col-centered'>
         {this.props.beltsState.belts.map((belt, idx) => {
           const allFilters = getLeaves(this.props.filterState.filters);
-          const selectedFilters = this.props.filterState.beltFilters[belt.name].map(id => allFilters[id]);
+          const selectedFilters = this.props.filterState.beltFilters[belt.name].map(id => allFilters.find(filter => filter.id === id));
 
           // We might insert a 'create profile'-component to the belt
           const custom = idx === 2 ? <CreateProfile/> : null;
