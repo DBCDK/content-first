@@ -46,9 +46,6 @@ pids.forEach(function(pid) {
     if (DEBUG) { console.log('write', res); }
     fs.writeSync(outfile, JSON.stringify(res) + '\n', null, 'utf8');
     console.log('write #' + ++recno, pid);
-    if (recno === pids.length) { // knex doesn't close connections, so we have to keep count and stop
-      process.exit(0);
-    }
   });
 });
 
@@ -155,7 +152,11 @@ async function asyncGetAdhlData(pid) {
     .count('*')
     .on('query-error', function(error){
       exitOnError('Error selecting postgress ' + error);
-    });
+    })
+    .catch(function (error) {
+      exitOnError('Error calling ' + error.response.error);
+    })
+    .finally(function() {pg.destroy();});
 }
 
 /**
