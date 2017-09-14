@@ -54,7 +54,7 @@ const EditFilters = (props) => {
         return null;
       })}
       <div className='col-xs-12 text-center'>
-        <span className='btn btn-success approve' onClick={props.onEditFilterToggle}>OK</span>
+        <span className='btn btn-success approve' onClick={props.onEditFilterToggle}>Luk</span>
       </div>
     </div>
   );
