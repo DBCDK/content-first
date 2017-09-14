@@ -29,16 +29,15 @@ body {
 }
 
 .create-profile {
-  margin-top: 110px;
-  border-radius: 8px;
-  box-shadow: 2px 2px 3px #89b2bf;
-  border: 1px solid lightgray;
-  padding: 40px;
-  max-width: 700px;
+  height: 500px;
+  background-image: url('/Opret-profil-baggrund-v1.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .create-profile button {
-  margin-top: 20px;
+  font-size: 24px;
+  margin-top: 270px;
 }
 
 .topbar {
@@ -71,10 +70,10 @@ body {
 
 .frontpage-image {
   background: #89b2bf;
-  height: 500px;
-  background-image: url("/frontpage.jpg");
+  height: 550px;
+  background-image: url("/Billede-til-feature_v2.jpg");
   background-size: 1400px;
-  background-position: 0px -90px;
+  background-position: 0px 0px;
 }
 
 .belt {
