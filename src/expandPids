@@ -8,7 +8,7 @@
  *   number of holdings items and libraries will be supplied
  * If a corepo url is provided using option c, number of pages is supplied from corepo
  * If a moreinfo url is provided using option m, url's to coverpages is supplied
- * If an adhl pg connection string provided using option l, number of adhl loans are added
+ * If an adhl pg connection string is provided using option l, number of adhl loans are added
  *
  */
 var fs = require('fs');
@@ -46,7 +46,7 @@ pids.forEach(function(pid) {
     if (DEBUG) { console.log('write', res); }
     fs.writeSync(outfile, JSON.stringify(res) + '\n', null, 'utf8');
     console.log('write #' + ++recno, pid);
-    if (recno === pids.length) {
+    if (recno === pids.length) { // knex doesn't close connections, so we have to keep count and stop
       process.exit(0);
     }
   });
