@@ -4,7 +4,7 @@ import SelectedFilters from './SelectedFilters.component';
 import EditFilters from './EditFilters.component';
 import WorkItem from '../work/WorkItem.component';
 import DropDown from './Dropdown.component';
-import {ON_SORT_OPTION_SELECT, ON_EDIT_FILTER_TOGGLE, ON_FILTER_TOGGLE, ON_RESET_FILTERS} from '../../redux/filter.reducer';
+import {ON_SORT_OPTION_SELECT, ON_EDIT_FILTER_TOGGLE, ON_FILTER_TOGGLE, ON_RESET_FILTERS, ON_EXPAND_FILTERS_TOGGLE} from '../../redux/filter.reducer';
 import {getLeaves} from '../../utils/filters';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
@@ -20,7 +20,7 @@ class FilterPage extends React.Component {
   render() {
     const allFilters = getLeaves(this.props.filterState.filters);
     const selectedFilters = this.props.filterState.beltFilters[this.props.belt.name].map(id => allFilters.find(filter => filter.id === id));
-    console.log(selectedFilters, allFilters)
+
     return (
       <div className='filter-page'>
         <div className='filters row'>
@@ -69,12 +69,16 @@ class FilterPage extends React.Component {
           <EditFilters edit={this.props.filterState.editFilters}
             filters={this.props.filterState.filters}
             selectedFilters={selectedFilters}
+            expandedFilters={this.props.filterState.expandedFilters}
             onFilterToggle={(filter) => {
               this.props.dispatch({type: ON_FILTER_TOGGLE, filter, beltName: this.props.belt.name});
               fetchBeltWorks(this.props.belt, this.props.dispatch);
             }}
             onEditFilterToggle={() => {
               this.props.dispatch({type: ON_EDIT_FILTER_TOGGLE});
+            }}
+            onExpandFiltersToggle={id => {
+              this.props.dispatch({type: ON_EXPAND_FILTERS_TOGGLE, id});
             }}/>
         </div>
         <div className='filter-page-works row text-left'>

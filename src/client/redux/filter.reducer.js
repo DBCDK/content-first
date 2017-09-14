@@ -329,6 +329,7 @@ const defaultState = {
 export const ON_SORT_OPTION_SELECT = 'ON_SORT_OPTION_SELECT';
 export const ON_EDIT_FILTER_TOGGLE = 'ON_EDIT_FILTER_TOGGLE';
 export const ON_FILTER_TOGGLE = 'ON_FILTER_TOGGLE';
+export const ON_EXPAND_FILTERS_TOGGLE = 'ON_EXPAND_FILTERS_TOGGLE';
 export const ON_RESET_FILTERS = 'ON_RESET_FILTERS';
 
 const filterReducer = (state = defaultState, action) => {
@@ -356,6 +357,17 @@ const filterReducer = (state = defaultState, action) => {
         beltFilters[action.beltName] = [...beltFilters[action.beltName], filterId];
       }
       return Object.assign({}, state, {beltFilters});
+    }
+    case ON_EXPAND_FILTERS_TOGGLE: {
+      let expandedFilters;
+      if (state.expandedFilters.includes(action.id)) {
+        expandedFilters = state.expandedFilters.filter(id => id !== action.id);
+      }
+      else {
+        expandedFilters = [...state.expandedFilters];
+        expandedFilters.push(action.id);
+      }
+      return Object.assign({}, state, {expandedFilters});
     }
     case ON_RESET_FILTERS: {
       const beltFilters = Object.assign({}, state.beltFilters);
