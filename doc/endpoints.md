@@ -134,9 +134,9 @@ Removes all tags for a specific PID.
 
 ### `GET /v1/recommendations?tag=`*metatag*`&`...`&tag=`*metatag*
 
-*Not implemented yet*
+Each metatag must be a number defined by [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
 
-Each metatag can be one of the tags defined in [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
+The result is a list of books such that each book include all the specified tags.
 
 # Command-line interaction
 

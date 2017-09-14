@@ -31,7 +31,6 @@ describe('Endpoint /v1/book', () => {
           expectFailure(res.body, errors => {
             expect(errors).to.have.length(1);
             const error = errors[0];
-            expect(error).to.have.property('title');
             expect(error.title).to.match(/unknown pid/i);
             expect(error).to.have.property('meta');
             expect(error.meta).to.have.property('resource');
@@ -88,7 +87,6 @@ describe('Endpoint /v1/book', () => {
           expectFailure(res.body, errors => {
             expect(errors).to.have.length(1);
             const error = errors[0];
-            expect(error).to.have.property('title');
             expect(error.title).to.match(/provided as application\/json/i);
             expect(error).to.have.property('detail');
             expect(error.detail).to.match(/text\/plain .*not supported/i);
@@ -108,7 +106,6 @@ describe('Endpoint /v1/book', () => {
           expectFailure(res.body, errors => {
             expect(errors).to.have.length(1);
             const error = errors[0];
-            expect(error).to.have.property('title');
             expect(error.title).to.match(/malformed book data/i);
             expect(error).to.have.property('detail');
             expect(error.detail).to.match(/does not adhere to schema/i);
@@ -148,7 +145,6 @@ describe('Endpoint /v1/book', () => {
           expectFailure(res.body, errors => {
             expect(errors).to.have.length(1);
             const error = errors[0];
-            expect(error).to.have.property('title');
             expect(error.title).to.match(/mismatch beetween book pid and location/i);
             expect(error).to.have.property('detail');
             expect(error.detail).to.equal(`Expected PID ${wrongPid} but found ${pid}`);
