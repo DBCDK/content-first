@@ -8,11 +8,13 @@
  *   number of holdings items and libraries will be supplied
  * If a corepo url is provided using option c, number of pages is supplied from corepo
  * If a moreinfo url is provided using option m, url's to coverpages is supplied
+ * If an adhl pg connection string provided using option l, number of adhl loans are added
  *
  */
 var fs = require('fs');
 var stdio = require('stdio');
 var request = require('superagent');
+var knex = require('knex');
 var parseString = require('xml2js').parseString;
 
 const DEBUG = false;
@@ -44,6 +46,9 @@ pids.forEach(function(pid) {
     if (DEBUG) { console.log('write', res); }
     fs.writeSync(outfile, JSON.stringify(res) + '\n', null, 'utf8');
     console.log('write #' + ++recno, pid);
+    if (recno === pids.length) {
+      process.exit(0);
+    }
   });
 });
 
@@ -64,6 +69,10 @@ async function getData(pid) {
   if (option.moreinfo) {
     const imageRec = await Promise.resolve(asyncGetMoreInfoData(pid));
     ret = Object.assign(ret, extractFromMoreInfo(imageRec));
+  }
+  if (option.adhloans) {
+    const adhlData = await Promise.resolve(asyncGetAdhlData(pid));
+    ret = Object.assign(ret, extractLoanCountFromAdhlData(adhlData));
   }
   return ret;
 }
@@ -126,6 +135,26 @@ async function asyncGetCorepoData(pid) {
     .catch(function (error) {
       exitOnError('Error calling ' + error.response.error);
       return '{}';
+    });
+}
+
+async function asyncGetAdhlData(pid) {
+  const help = option.adhloans.split(/[@:/]/);
+  const pg = knex({
+    client: 'pg',
+    connection: {
+      password: help[0],
+      user: help[1],
+      host: help[2],
+      database: help[3]
+    }
+  });
+  const id = getNthElement(pid, ':', 1);
+  return pg('laan')
+    .where('lokalid', id)
+    .count('*')
+    .on('query-error', function(error){
+      exitOnError('Error selecting postgress ' + error);
     });
 }
 
@@ -209,6 +238,10 @@ function extractFromCorepo(corepo) {
   return ret;
 }
 
+function extractLoanCountFromAdhlData(adhl) {
+  return {loans: adhl[0] ? adhl[0].count : 0};
+}
+
 /**
  * Write error on console and die if option d is set
  *
@@ -245,9 +278,10 @@ function getOptions() {
   const ops = stdio.getopt({
     input: {key: 'i', args: 1, description: 'Input file'},
     output: {key: 'o', args: 1, description: 'Output file'},
-    solr: {key: 's', args: 1, description: 'solr-url'},
-    corepo: {key: 'c', args: 1, description: 'corepo-url'},
-    moreinfo: {key: 'm', args: 1, description: 'moreinfo-url'},
+    solr: {key: 's', args: 1, description: 'solr url'},
+    corepo: {key: 'c', args: 1, description: 'corepo url'},
+    moreinfo: {key: 'm', args: 1, description: 'moreinfo url'},
+    adhloans: {key: 'l', args: 1, description: 'adhl pg connect string: \'passwd:user@host/database\''},
     exitOnError: {key: 'd', args: 0, description: 'Exit on error'}
   });
   if (!ops.input || !ops.output) {
