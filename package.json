@@ -57,7 +57,7 @@
     "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/server",
     "start-backend-once": ". ./current.env && node src/server/main.js || true",
     "start-frontend": "react-scripts start",
-    "test": "run-s lint-js test-units",
+    "test": "run-s test-units lint-js",
     "test-db": "run-p start-backend-once test-integration-delayed",
     "test-frontend": "react-scripts test --env=jsdom",
     "test-full": "run-s test-nodb test-db",

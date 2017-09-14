@@ -5,7 +5,7 @@
 // const expect = require('chai').expect;
 // const request = require('supertest');
 
-describe('User authentication', () => {
+describe.skip('User authentication', () => {
   // const webapp = request(`http://localhost:${config.server.port}`);
   before(done => {
     done();

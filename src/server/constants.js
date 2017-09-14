@@ -11,6 +11,9 @@ const constants = {
   },
   covers: {
     table: 'covers'
+  },
+  tags: {
+    table: 'tags'
   }
 };
 

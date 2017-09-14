@@ -19,3 +19,10 @@ If you want the opposite, to skip a single test, do:
     describe.skip('/my/endpoint', () => { ... });
 
 Of course, such changes should be removed before any commits.
+
+To only run a subset of tests that go together, you have to manually start the backend and then use `--grep` option with mocha:
+
+    $ docker-compose up -d
+    $ npm run start-backend
+    $ npm run test-integration --silent -- --grep /v1/books
+

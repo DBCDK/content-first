@@ -24,7 +24,7 @@ function Defaults () {
     environment: process.env.NODE_ENV || 'development',
     port: tcp.normalizePort(process.env.PORT) || 3001,
     prettyLog: process.env.PRETTY_LOG || 1,
-    logLevel: process.env.LOG_LEVEL || 'DEBUG',
+    logLevel: process.env.LOG_LEVEL || 'INFO',
     logServiceErrors: process.env.LOG_SERVICE_ERRORS || 1,
     hostname: hostname().replace('.domain_not_set.invalid', '')
   };
@@ -40,7 +40,8 @@ exports.server = {
   environment: defaults.environment,
   logServiceErrors: defaults.logServiceErrors,
   port: defaults.port,
-  hostname: 'content-first.dbc.dk'
+  hostname: 'content-first-i01.dbc.dk'
+  // hostname: 'content-first.dbc.dk'
 };
 
 exports.logger = {
