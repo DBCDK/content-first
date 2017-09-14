@@ -8,7 +8,7 @@ chai.use(chaiAsPromised);
 const expect = chai.expect;
 const books = require('./books');
 const blendstrup = require('fixtures/blendstrup-havelaagebogen.json');
-const wrongBook = require('fixtures/wrong-book.json');
+const wrongBook = require('fixtures/broken-book.json');
 
 describe('books', () => {
   describe('parsingMetaDataInjection', () => {
