@@ -34,11 +34,11 @@ if __name__ == "__main__":
             no_image+=1
             continue
         url = d[IMAGEURL]
-        print("curl '%s' > %s.jpg" % (url, pid))
-        filename = "%s.jpg" % (pid)
+        jpgfile = "/tmp/%s.jpg" % (pid)
+        print("curl '%s' > '%s'" % (url, jpgfile))
         baseurl = "http://content-first-i01.dbc.dk:8000/"
         url = "%sv1/image/%s" % (baseurl, pid)
-        s = """curl -X PUT -H 'Content-Type: image/jpeg' --data-binary '@%s' '%s' """ % (filename, url)
+        s = """curl -X PUT -H 'Content-Type: image/jpeg' --data-binary '@%s' '%s' """ % (jpgfile, url)
         print(s)
     warn("no image on", no_image)
     
