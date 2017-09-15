@@ -308,9 +308,9 @@ const defaultState = {
     {
       title: 'Vælg længde',
       children: [
-        {id: '1000', title: 'Kort bog'},
+        {id: '1000', title: 'Kort'},
         {id: '1001', title: 'Medium længde'},
-        {id: '1002', title: 'Lang bog'}
+        {id: '1002', title: 'Laaaaaaaaaaaaaaaang'}
       ]
     },
     {
