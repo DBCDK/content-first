@@ -36,8 +36,11 @@ body {
 }
 
 .create-profile button {
-  font-size: 24px;
+  font-size: 32px;
   margin-top: 270px;
+  padding: 10px;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 .topbar {
@@ -91,10 +94,24 @@ body {
 
 }
 .belt .header .belt-title {
+  color: black;
+  cursor: pointer;
   font-size: 30px;
   font-weight: bold;
   vertical-align: bottom;
-  cursor: default;
+  text-decoration: underline;
+  /*border-bottom: 2px solid #333;
+  padding-bottom: 2px;*/
+}
+.belt .belt-links {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+.belt .belt-links .belt-link {
+  margin-left: 20px;
+  cursor: pointer;
+  border-bottom: 2px solid gray;
 }
 
 .no-opacity {
@@ -178,4 +195,24 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                           supported by Chrome and Opera */
+}
+.tooltip span {
+  margin-right: 15px;
+}
+.tooltip.top > .tooltip-inner {
+  font-family: 'Raleway', sans-serif;
+  background: #fc492d;
+  box-shadow: 0px 0px 5px #999999;
+  padding: 15px;
+  padding-right: 0px;
+  max-width: 900px;
+  color: white;
+  font-size: 13px;
+}
+.tooltip.in {
+  opacity: 1;
+}
+.tooltip.top > .tooltip-arrow {
+  border-top-color: #fc492d;
+  left: 25%;
 }

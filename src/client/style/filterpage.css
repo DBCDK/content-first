@@ -119,3 +119,13 @@
   margin-top: 80px;
   padding-left: 60px;
 }
+.second-level h4  {
+  cursor: pointer;
+}
+.second-level h4 span {
+  margin-left: 6px;
+  font-size: 12px;
+}
+.contains-selected {
+  color: #fc492d;
+}
