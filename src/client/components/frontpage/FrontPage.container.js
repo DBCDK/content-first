@@ -2,12 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Belt from './Belt.component';
 import CreateProfile from '../profile/CreateProfile.component';
-import {ON_BELT_SCROLL, ON_TAG_TOGGLE} from '../../redux/belts.reducer';
+import {ON_BELT_SCROLL, ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
-import fetchBeltWorks from '../../utils/requester';
 
 
 const SCROLL_INTERVAL = 5;
@@ -17,8 +16,10 @@ class FrontPage extends React.Component {
   componentDidMount() {
     // Fetch works for each belt
     this.props.beltsState.belts.forEach(belt => {
-      this.props.dispatch({type: ON_RESET_FILTERS, beltName: belt.name});
-      fetchBeltWorks(belt, this.props.dispatch);
+      if (belt.onFrontPage) {
+        this.props.dispatch({type: ON_RESET_FILTERS, beltName: belt.name});
+        this.props.dispatch({type: ON_BELT_REQUEST, beltName: belt.name});
+      }
     });
   }
 
@@ -26,7 +27,6 @@ class FrontPage extends React.Component {
     return (
       <div className='belts col-xs-11 col-centered'>
         {this.props.beltsState.belts.map((belt, idx) => {
-
           if (!belt.onFrontPage) {
             return null;
           }

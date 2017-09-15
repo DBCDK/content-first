@@ -7,7 +7,6 @@ const defaultState = {
       onFrontPage: true,
       links: ['Aktuelle', 'Anderledes', 'Klassikere'],
       scrollOffset: 0,
-      pids: ['870970-basis:22629344'],
       works: []
     },
     {

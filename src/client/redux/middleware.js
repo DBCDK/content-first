@@ -1,3 +1,6 @@
+import {ON_BELT_REQUEST} from './belts.reducer';
+import fetchBeltWorks from '../utils/requester';
+
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 
 export const historyMiddleware = history => store => next => action => {
@@ -8,6 +11,19 @@ export const historyMiddleware = history => store => next => action => {
         window.scrollTo(0, 0);
       }
       break;
+    default:
+      return next(action);
+  }
+};
+
+export const beltRequestMiddleware = store => next => action => {
+  switch (action.type) {
+    case ON_BELT_REQUEST: {
+      const state = store.getState();
+      const b = state.beltsReducer.belts.find(belt => belt.name === action.beltName);
+      fetchBeltWorks(b, state.filterReducer, store.dispatch);
+      return next(action);
+    }
     default:
       return next(action);
   }
