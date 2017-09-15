@@ -4,7 +4,13 @@ const WorkItem = (props) => {
   return (
     <div className='work' id={`work-${props.id}`}>
       <div className='cover-image-wrapper'>
-        {props.work.links && <img alt="" className='cover-image' src={props.work.links.cover}/>}
+        {props.work.links && <img
+          alt=""
+          className='cover-image'
+          src={props.work.links.cover}
+          onError={() => {
+            this.img.src = '/default-book-cover.png';
+          }}/>}
       </div>
       <div className='metakompas-description'>
         {props.work.book.description}
