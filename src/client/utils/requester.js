@@ -52,8 +52,6 @@ const fetchBeltWorks = (belt, filterState, dispatch) => {
               return false;
             }
           }
-
-          console.log(work)
           return true;
         });
         dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, response: works});
