@@ -5,7 +5,11 @@ const defaultState = {
   beltFilters: {
     'En god bog': ['2', '3'],
     'Bibliotekarens ugentlige anbefalinger': [],
-    'Passer med min smag': []
+    'Passer med min smag': [],
+    'Gør mig glad': [3, 6],
+    Aktuelle: [],
+    Anderledes: [],
+    Klassikere: []
   },
   expandedFilters: [],
   filters: [

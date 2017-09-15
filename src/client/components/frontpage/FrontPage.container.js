@@ -26,6 +26,11 @@ class FrontPage extends React.Component {
     return (
       <div className='belts col-xs-11 col-centered'>
         {this.props.beltsState.belts.map((belt, idx) => {
+
+          if (!belt.onFrontPage) {
+            return null;
+          }
+
           const allFilters = getLeaves(this.props.filterState.filters);
           const selectedFilters = this.props.filterState.beltFilters[belt.name].map(id => allFilters.find(filter => filter.id === id));
 
@@ -44,8 +49,8 @@ class FrontPage extends React.Component {
             onTagClick={(tagId) => {
               this.props.dispatch({type: ON_TAG_TOGGLE, tagId, beltId: idx});
             }}
-            onMoreClick={() => {
-              this.props.dispatch({type: HISTORY_PUSH, path: beltNameToPath(belt.name)});
+            onMoreClick={(beltName) => {
+              this.props.dispatch({type: HISTORY_PUSH, path: beltNameToPath(beltName)});
             }}
             custom={custom}
           />;

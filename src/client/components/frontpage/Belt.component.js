@@ -27,11 +27,14 @@ export default class Belt extends React.Component {
     return (
       <div className='row belt text-left'>
         <div className='col-xs-12 header'>
-          <span onClick={this.props.onMoreClick} className='belt-title' data-html='true' data-toggle='tooltip' title={tooltipText.join(' ')}>
+          <span onClick={() => this.props.onMoreClick(this.props.belt.name)} className='belt-title' data-html='true' data-toggle='tooltip' title={tooltipText.join(' ')}>
             {this.props.belt.name}</span>
         </div>
-        <div className='col-xs-12 other-belts'>
-
+        <div className='col-xs-12 belt-links'>
+          {this.props.belt.links.length > 0 && <span>Se også:</span>}
+          {this.props.belt.links.map(link => {
+            return <span className='belt-link' onClick={() => this.props.onMoreClick(link)}>{link}</span>;
+          })}
         </div>
         {this.props.custom}
         <div className='belt-wrapper'>

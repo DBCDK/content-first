@@ -4,6 +4,8 @@ const defaultState = {
       name: 'En god bog',
       details: 'Detaljer for en god bog',
       isLoading: false,
+      onFrontPage: true,
+      links: ['Aktuelle', 'Anderledes', 'Klassikere'],
       scrollOffset: 0,
       pids: ['870970-basis:22629344'],
       works: []
@@ -12,6 +14,8 @@ const defaultState = {
       name: 'Bibliotekarens ugentlige anbefalinger',
       details: 'Detaljer for ugentlige anbefalinger',
       isLoading: false,
+      onFrontPage: true,
+      links: [],
       scrollOffset: 0,
       pids: ['870970-basis:52947804', '870970-basis:52930006', '870970-basis:53309844',
         '870970-basis:52995078', '870970-basis:29677824', '870970-basis:25696905',
@@ -29,7 +33,27 @@ const defaultState = {
     {
       name: 'Passer med min smag',
       details: 'Detaljer for min smag',
-      isLoading: false
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Aktuelle',
+      isLoading: false,
+      onFrontPage: false,
+      links: []
+    },
+    {
+      name: 'Anderledes',
+      isLoading: false,
+      onFrontPage: false,
+      links: []
+    },
+    {
+      name: 'Klassikere',
+      isLoading: false,
+      onFrontPage: false,
+      links: []
     }
   ]
 };
