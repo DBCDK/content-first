@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "pid": {
+      "required": true,
+      "type": "string"
+    },
+    "selected": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

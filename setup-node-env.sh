@@ -1,6 +1,8 @@
 #!/bin/sh -e
 
-log_() { echo "[setup-node-env] $@"; }
+ME=$(basename $0)
+
+log_() { echo "[$ME] $@"; }
 
 log_ "--> Setting up symbolic links"
 cd node_modules

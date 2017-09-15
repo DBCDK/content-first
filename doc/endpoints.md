@@ -4,7 +4,9 @@ The responses from the backend are either raw images or JSON loosely based on th
 
 The endopints are based on [initial analysis](content-first-backend.png).
 
-## `GET /v1/book/`*pid*
+## Books
+
+### `GET /v1/book/`*pid*
 
 Returns a [book structure](../src/integration/schemas/book-data-out.json), like
 
@@ -34,7 +36,7 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
       }
     }
 
-## `GET /v1/books?pids=`*pid*,...,*pid*
+### `GET /v1/books?pids=`*pid*,...,*pid*
 
 Results in a [list of books](../src/integration/schemas/books-data-out.json), each of the format as `GET /v1/book`, like
 
@@ -65,7 +67,7 @@ Results in a [list of books](../src/integration/schemas/books-data-out.json), ea
       }
     }
 
-## `PUT /v1/book/`*pid*
+### `PUT /v1/book/`*pid*
 
 The data must be [valid book input](../src/server/schemas/book-in.json), like
 
@@ -86,19 +88,63 @@ The data must be [valid book input](../src/server/schemas/book-in.json), like
     , "loancount": 1020
     }
 
-## `GET /v1/image/`*pid*
+## Images
+
+### `GET /v1/image/`*pid*
 
 The path must one that has been returned by a `/v1/book` or `/v1/books` request.
 
 The result is an image file.
 
-## `PUT /v1/image/`*pid*
+### `PUT /v1/image/`*pid*
 
 The content-type must be `image/jpeg` or `image/png`.
 
-## `GET /v1/recommendations?tag=`*metatag*`&`...`&tag=`*metatag*
+## Tags
 
-*Not implemented yet*
+### `GET /v1/tags/`*pid*
 
-Each metatag can be one of the tags defined in [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
+Returns a list of tag for a specific PID, like
+
+    { "data":
+      { "pid": '870970-basis:53187404'
+      , "tags": [49, 55, 56, 90, 221, 223, 224, 230, 234, 281, 302, 313]
+      }
+    , "links":
+      { "self": "/v1/tags/870970-basis:53187404"
+      }
+    }
+
+### `POST /v1/tags`
+
+Add tags for a PID.  The input is like
+
+    {
+      "pid": "870970-basis:52947804",
+      "selected": ["44", "46", "49"]
+    }
+
+The result is like that of `GET /v1/tags/`*pid*.
+
+### `DELETE /v1/tags/`*pid*
+
+Removes all tags for a specific PID.
+
+## Recommendations
+
+### `GET /v1/recommendations?tag=`*metatag*`&`...`&tag=`*metatag*
+
+Each metatag must be a number defined by [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
+
+The result is a list of books such that each book include all the specified tags.
+
+# Command-line interaction
+
+To upload a book:
+
+    curl -X PUT -H "Content-Type: application/json" --data "@src/fixtures/min-oste-bog.json" http://localhost:3001/v1/book/12345-ost:98765
+
+To upload a cover image:
+
+    curl -X PUT -H "Content-Type: image/jpeg" --data-binary "@src/fixtures/12345-ost:98765.jpg" http://localhost:3001/v1/image/12345-ost:98765
 

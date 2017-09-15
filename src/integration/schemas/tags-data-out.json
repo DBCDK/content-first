@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "pid": {
+      "required": true,
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    }
+  },
+  "additionalProperties": false
+}

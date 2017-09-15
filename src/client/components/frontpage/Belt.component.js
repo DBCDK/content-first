@@ -18,22 +18,20 @@ export default class Belt extends React.Component {
 
   render() {
     const scrollPos = this.props.belt.scrollOffset ? (-1 * this.props.belt.scrollOffset * 265) + 'px' : '0px';
+
+    // Create the html to go into
+    const tooltipText = this.props.filters.length > 0 ? this.props.filters.map(filter => {
+      return `<span>${filter.title}</span>`;
+    }) : ['<span>Ingen filtre</span>'];
+
     return (
       <div className='row belt text-left'>
         <div className='col-xs-12 header'>
-          <span className='belt-title' data-toggle='tooltip' title={this.props.belt.details}>
+          <span onClick={this.props.onMoreClick} className='belt-title' data-html='true' data-toggle='tooltip' title={tooltipText.join(' ')}>
             {this.props.belt.name}</span>
-          {this.props.belt.works && this.props.belt.works.length > 0 &&
-          <span className='more-link btn' onClick={this.props.onMoreClick}>Se flere</span>}
         </div>
-        <div className='col-xs-12 tags'>
-          {this.props.filters && this.props.filters.map((filter, idx) => {
-            return <span key={idx} className='btn btn-default'>{filter.title}</span>;
-            // const btnClass = filter.selected ? 'btn-success' : 'btn-default';
-            // return <span className={`btn ${btnClass}`} key={idx} onClick={() => {
-            //   this.props.onTagClick(idx);
-            // }}>{filter.title}</span>;
-          })}
+        <div className='col-xs-12 other-belts'>
+
         </div>
         {this.props.custom}
         <div className='belt-wrapper'>

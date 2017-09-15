@@ -1,5 +1,7 @@
 # Content First
 
+The system currently runs on [`content-first-i01.dbc.dk`](http://content-first-i01.dbc.dk).
+
 See the initial whiteboard doodles about [database content](doc/content-first.png), [recommender lanes](doc/content-first-belts.png), and [endpoints](doc/content-first-backend.png).
 
 For development of the system, see [`src`](src/readme.md).
@@ -13,7 +15,7 @@ To run the database tests against the server (requires postgresql):
     $ . /nvm.sh
     $ nvm install
     $ npm install
-    $ cp integration.env current.env
+    $ cp env/integration.env current.env
     $ npm run test-integration --silent
 
 To start the server in staging or production mode:
@@ -21,8 +23,8 @@ To start the server in staging or production mode:
     $ . /nvm.sh
     $ nvm install
     $ npm install --production
-    $ cp envproduction.env current.env
-    $ npm run start-server
+    $ cp env/production.env current.env
+    $ npm run start-backend
 
 ## Build server
 
@@ -43,7 +45,7 @@ The backend service controlled by environment variables.  Most scripts assume th
 | DB_NAME                 | contentfirst | Name of the database             |
 | DB_USER                 | contentfirst | Database user                    |
 | DB_USER_PASSWORD        |              | Database password                |
-| LOG_LEVEL               | DEBUG        | Verbosity of service log (OFF, ERROR, WARN, WARNING, INFO, DEBUG, TRACE) |
+| LOG_LEVEL               | INFO         | Verbosity of service log (OFF, ERROR, WARN, WARNING, INFO, DEBUG, TRACE) |
 | LOG_SERVICE_ERRORS      | 1            | Record all 5xx errors (1), or ignore 5xx errors (0) |
 | NODE_ENV                | development  | Controls other service settings (development, ci, production) |
 | PORT                    | 3001         | TCP port for the service         |

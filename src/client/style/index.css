@@ -29,16 +29,18 @@ body {
 }
 
 .create-profile {
-  margin-top: 110px;
-  border-radius: 8px;
-  box-shadow: 2px 2px 3px #89b2bf;
-  border: 1px solid lightgray;
-  padding: 40px;
-  max-width: 700px;
+  height: 500px;
+  background-image: url('/Opret-profil-baggrund-v1.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 .create-profile button {
-  margin-top: 20px;
+  font-size: 32px;
+  margin-top: 270px;
+  padding: 10px;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 .topbar {
@@ -71,10 +73,10 @@ body {
 
 .frontpage-image {
   background: #89b2bf;
-  height: 500px;
-  background-image: url("/frontpage.jpg");
+  height: 550px;
+  background-image: url("/Billede-til-feature_v2.jpg");
   background-size: 1400px;
-  background-position: 0px -90px;
+  background-position: 0px 0px;
 }
 
 .belt {
@@ -92,10 +94,13 @@ body {
 
 }
 .belt .header .belt-title {
+  cursor: pointer;
   font-size: 30px;
   font-weight: bold;
   vertical-align: bottom;
-  cursor: default;
+  text-decoration: underline;
+  /*border-bottom: 2px solid #333;
+  padding-bottom: 2px;*/
 }
 
 .no-opacity {
@@ -132,7 +137,7 @@ body {
 }
 .belt .scroll-btn {
   width: 90px;
-  height: 295px;
+  height: 285px;
   background: white;
   position: absolute;
   margin-top: 20px;
@@ -144,7 +149,7 @@ body {
   padding-top: 110px;
 }
 .belt .left-btn {
-  margin-left: 0px;
+  margin-left: -15px;
 
 }
 .belt .left-btn:hover {
@@ -179,4 +184,24 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                           supported by Chrome and Opera */
+}
+.tooltip span {
+  margin-right: 15px;
+}
+.tooltip.top > .tooltip-inner {
+  font-family: 'Raleway', sans-serif;
+  background: #fc492d;
+  box-shadow: 0px 0px 5px #999999;
+  padding: 15px;
+  padding-right: 0px;
+  max-width: 900px;
+  color: white;
+  font-size: 13px;
+}
+.tooltip.in {
+  opacity: 1;
+}
+.tooltip.top > .tooltip-arrow {
+  border-top-color: #fc492d;
+  left: 25%;
 }

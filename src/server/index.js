@@ -81,6 +81,13 @@ const express = require('express');
 const app = express();
 
 /*
+ * Static frontend content.
+ */
+const path = require('path');
+const staticPath = path.join(__dirname, '..', '..', 'build');
+app.use(express.static(staticPath));
+
+/*
  * Securing headers.
  */
 const helmet = require('helmet');
@@ -145,16 +152,17 @@ app.get('/crash', (req, res, next) => { // eslint-disable-line no-unused-vars
 const apiRoutes = require('server/v1');
 app.use('/v1', apiRoutes);
 
+
 /*
- * Frontend routes.
+ * Let frontend React handle all other routes.
  */
-const path = require('path');
-app.use(express.static(path.join(__dirname, '../../build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', '..', 'build', 'index.html'));
+});
 
 /*
  * Error handlers.
  */
-
 app.use((req, res, next) => {
   next({
     status: 404,
