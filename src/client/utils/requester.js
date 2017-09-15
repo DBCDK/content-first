@@ -1,5 +1,5 @@
 import request from 'superagent';
-import {ON_BELT_REQUEST, ON_BELT_RESPONSE} from '../redux/belts.reducer';
+import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {getLeaves} from './filters';
 
 const fetchBeltWorks = (belt, filterState, dispatch) => {
