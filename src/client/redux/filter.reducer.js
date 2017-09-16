@@ -351,10 +351,9 @@ const defaultState = {
     }
   ],
   sortBy: [
-    {title: 'Min smag', selected: true},
-    {title: 'Linse Kesslers smag', selected: false},
-    {title: 'Martin Krasniks smag', selected: false},
-    {title: 'Bonderøvens smag', selected: false}
+    {id: 'default', title: 'Min smag', selected: true},
+    {id: 'linse', title: 'Linse Kesslers smag', selected: false},
+    {id: 'bent', title: 'Bents smag', selected: false}
   ]
 };
 
@@ -368,7 +367,7 @@ const filterReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ON_SORT_OPTION_SELECT: {
       const sortBy = state.sortBy.map(option => {
-        return {title: option.title, selected: option.title === action.value};
+        return Object.assign({}, option, {selected: option.title === action.value});
       });
       return Object.assign({}, state, {sortBy});
     }
