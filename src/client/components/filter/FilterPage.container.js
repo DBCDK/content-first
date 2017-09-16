@@ -83,7 +83,7 @@ class FilterPage extends React.Component {
         </div>
         <div className='filter-page-works row text-left'>
           {this.props.belt.works && this.props.belt.works.map((work, idx) => {
-            return <WorkItem id={`work-${idx}`} key={idx} work={work}/>;
+            return <WorkItem id={`work-${idx}`} key={work.book.pid} work={work}/>;
           })}
         </div>
       </div>

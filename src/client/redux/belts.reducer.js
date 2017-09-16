@@ -5,9 +5,16 @@ const defaultState = {
       details: 'Detaljer for en god bog',
       isLoading: false,
       onFrontPage: true,
-      links: ['Aktuelle', 'Anderledes', 'Klassikere'],
+      links: ['Spændende', 'Anderledes'],
       scrollOffset: 0,
       works: []
+    },
+    {
+      name: 'Let læst',
+      isLoading: false,
+      onFrontPage: true,
+      links: ['Klog', 'Udfordrende'],
+      scrollOffset: 0
     },
     {
       name: 'Bibliotekarens ugentlige anbefalinger',
@@ -37,7 +44,7 @@ const defaultState = {
       links: []
     },
     {
-      name: 'Aktuelle',
+      name: 'Spændende',
       isLoading: false,
       onFrontPage: false,
       links: []
@@ -49,7 +56,13 @@ const defaultState = {
       links: []
     },
     {
-      name: 'Klassikere',
+      name: 'Klog',
+      isLoading: false,
+      onFrontPage: false,
+      links: []
+    },
+    {
+      name: 'Udfordrende',
       isLoading: false,
       onFrontPage: false,
       links: []

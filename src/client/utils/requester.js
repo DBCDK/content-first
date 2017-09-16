@@ -15,15 +15,17 @@ const fetchBeltWorks = (belt, filterState, dispatch) => {
   }
   else {
     // get the selected tag ids, which are part of the taxonomy
+    // these are the tags which do not have the custom property set to true
     const allSelected = filterState.beltFilters[belt.name];
-    const selectedTags = getLeaves(filterState.filters[0].children)
-      .filter(f => allSelected.includes(f.id))
+    const selectedTags = getLeaves(filterState.filters)
+      .filter(f => !f.custom && allSelected.includes(f.id))
       .map(f => f.id);
 
-    // get titles of selected tags, to be used when doing some client side filtering
-    // Specifically we will handle stuff that is not part of taxonomy here
+    // get titles of custom selected tags. These tags are not part of the taxonomy
+    // and hence they need to be filtered by other means. We'll do that client side
+    // for now.
     const selectedTitles = getLeaves(filterState.filters)
-      .filter(f => allSelected.includes(f.id))
+      .filter(f => f.custom && allSelected.includes(f.id))
       .map(f => f.title);
 
     request.get('/v1/recommendations')
@@ -49,6 +51,16 @@ const fetchBeltWorks = (belt, filterState, dispatch) => {
           }
           if (selectedTitles.includes('Laaaaaaaaaaaaaaaang')) {
             if (work.book.pages <= 350) {
+              return false;
+            }
+          }
+          if (selectedTitles.includes('Er på mange biblioteker')) {
+            if (work.book.libraries < 50) {
+              return false;
+            }
+          }
+          if (selectedTitles.includes('Udlånes meget')) {
+            if (work.book.loan_count < 100) {
               return false;
             }
           }

@@ -55,7 +55,6 @@
   border: 1px #fc492d solid;
 }
 .edit-filters .approve {
-  margin-top: 50px;
   font-size: 20px;
   width: 180px;
 }
@@ -125,6 +124,9 @@
 .second-level h4 span {
   margin-left: 6px;
   font-size: 12px;
+}
+.first-level {
+  margin-bottom: 50px;
 }
 .contains-selected {
   color: #fc492d;

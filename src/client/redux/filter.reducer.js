@@ -3,13 +3,14 @@ import {getLeaves} from '../utils/filters';
 const defaultState = {
   editFilters: false,
   beltFilters: {
-    'En god bog': ['2', '3'],
+    'En god bog': ['1001', '1003', '49', '1005'],
     'Bibliotekarens ugentlige anbefalinger': [],
     'Passer med min smag': [],
-    'Gør mig glad': [3, 6],
-    Aktuelle: [],
-    Anderledes: [],
-    Klassikere: []
+    Spændende: ['50', '230', '267'],
+    Anderledes: ['143', '151'],
+    'Let læst': ['234', '229'],
+    Klog: ['182', '184'],
+    Udfordrende: ['239', '236']
   },
   expandedFilters: [],
   filters: [
@@ -302,23 +303,50 @@ const defaultState = {
             {id: '215', title: 'Kinky'},
             {id: '216', title: 'Pikant'}
           ]
+        },
+        {
+          id: '2090',
+          title: 'Andet',
+          children: [
+            {id: '234', title: 'Ligefrem'},
+            {id: '236', title: 'Krævende'},
+            {id: '239', title: 'Meget åben for fortolkning'}
+          ]
         }
       ]
     },
     {
       title: 'Vælg længde',
       children: [
-        {id: '1000', title: 'Kort'},
-        {id: '1001', title: 'Medium længde'},
-        {id: '1002', title: 'Laaaaaaaaaaaaaaaang'}
+        {id: '1000', title: 'Kort', custom: true},
+        {id: '1001', title: 'Medium længde', custom: true},
+        {id: '1002', title: 'Laaaaaaaaaaaaaaaang', custom: true}
       ]
     },
     {
       title: 'Vælg kvalitetsparametre',
       children: [
-        {id: '1003', title: 'Gode anmeldelser'},
-        {id: '1004', title: 'Gode ratings'},
-        {id: '1005', title: 'Lang bog'}
+        {id: '1003', title: 'Er på mange biblioteker', custom: true},
+        {id: '1004', title: 'Bibliotekaren anbefaler', custom: true},
+        {id: '1005', title: 'Udlånes meget', custom: true}
+      ]
+    },
+    {
+      title: 'Vælg tempo',
+      children: [
+        {id: '227', title: 'Meget dvælende'},
+        {id: '228', title: 'Dvælende'},
+        {id: '229', title: 'I bevægelse'},
+        {id: '230', title: 'Høj fart'},
+        {id: '231', title: 'Hæsblæsende'}
+      ]
+    },
+    {
+      title: 'Vælg fokus',
+      children: [
+        {id: '267', title: 'Plot'},
+        {id: '266', title: 'Relationer mellem personer'},
+        {id: '265', title: 'Karakterernes udvikling'}
       ]
     }
   ],

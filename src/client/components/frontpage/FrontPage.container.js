@@ -33,12 +33,19 @@ class FrontPage extends React.Component {
 
           const allFilters = getLeaves(this.props.filterState.filters);
           const selectedFilters = this.props.filterState.beltFilters[belt.name].map(id => allFilters.find(filter => filter.id === id));
+          const links = belt.links.map(beltName => {
+            return {
+              title: beltName,
+              filters: this.props.filterState.beltFilters[beltName].map(id => allFilters.find(filter => filter.id === id))
+            };
+          });
 
           // We might insert a 'create profile'-component to the belt
-          const custom = idx === 2 ? <CreateProfile/> : null;
+          const custom = idx === 3 ? <CreateProfile/> : null;
           return <Belt
             key={idx}
             belt={belt}
+            links={links}
             filters={selectedFilters}
             onScrollRight={() => {
               this.props.dispatch({type: ON_BELT_SCROLL, id: idx, scrollOffset: belt.scrollOffset + SCROLL_INTERVAL});
