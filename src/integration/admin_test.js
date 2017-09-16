@@ -6,8 +6,8 @@ const expect = require('chai').expect;
 const request = require('supertest');
 const expectValidate = require('./output-verifiers').expectValidate;
 
-describe('Admin API', () => {
-  describe('Running database', () => {
+describe('Admin API on running database', () => {
+  describe('Public endpoints', () => {
     const webapp = request(`http://localhost:${config.server.port}`);
     describe('/pid', () => {
       it('should return the process id', done => {
@@ -37,30 +37,12 @@ describe('Admin API', () => {
           .end(done);
       });
     });
-    describe.skip('default handler should return error', () => {
-      it('as JSON', done => {
-        const endpoint = '/v1/doesNotExist';
-        webapp.get(endpoint)
-          .set('Accept', 'application/json')
-          .expect(404)
-          .expect(res => {
-            expect(res.body);
-            expect(res.body).to.have.property('errors');
-            const errors = res.body.errors;
-            expect(errors).to.have.length(1);
-            const error = errors[0];
-            expect(error).to.have.property('title');
-            expect(error.title).to.equal('Unknown endpoint');
-            expect(error).to.have.property('meta');
-            expect(error.meta).to.have.property('resource');
-            expect(error.meta.resource).to.equal(endpoint);
-          })
-          .end(done);
-      });
-    });
+  });
+  describe('Internal endpoints', () => {
+    const internal = request(`http://localhost:${config.server.internalPort}`);
     describe('server crashes', () => {
       it('should be catched', done => {
-        webapp.get('/crash')
+        internal.get('/crash')
           .expect(500)
           .end(done);
       });

@@ -60,28 +60,6 @@ router.route('/')
 ;
 
 router.route('/:pid')
-  .get(asyncMiddleware(async (req, res, next) => {
-    const pid = req.params.pid;
-    const location = `${req.baseUrl}/${pid}`;
-    try {
-      const rawTags = await knex(tagTable).where({pid}).select('tag');
-      const tags = _.map(rawTags, obj => {
-        return obj.tag;
-      });
-      res.status(200).json({
-        data: {pid, tags},
-        links: {self: location}
-      });
-    }
-    catch (error) {
-      return next({
-        status: 500,
-        title: 'Database operation failed',
-        detail: error,
-        meta: {resource: location}
-      });
-    }
-  }))
   .delete(asyncMiddleware(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;
