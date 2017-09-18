@@ -50,6 +50,7 @@ describe('books', () => {
           unit_id: 'unit:22125672',
           work_id: 'work:20137979',
           work_type: 'book',
+          description: 'Dette er en beskrivelse',
           bibliographic_record_id: 53188931,
           items: 196,
           libraries: 80,
@@ -78,10 +79,10 @@ describe('books', () => {
             type: 'Bog',
             unit_id: 'unit:22125672',
             work_id: 'work:20137979',
-            description: 'Ingen beskrivelse',
-            published_year: 2017,
-            published_month: 2,
-            published_day: 3,
+            description: 'Dette er en beskrivelse',
+            published_year: 1,
+            published_month: 1,
+            published_day: 1,
             work_type: 'book'
           });
         });

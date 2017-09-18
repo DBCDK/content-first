@@ -26,6 +26,7 @@ function parsingMetaDataInjection (obj) {
         book.pages = document.pages;
         book.items = document.items;
         book.cover = document.image_detail;
+        book.description = document.description;
         resolve(book);
       })
       .catch(reject);
@@ -48,14 +49,14 @@ function transformMetaDataToBook (metadata) {
     'type',
     'unit_id',
     'work_id',
-    'work_type'
+    'work_type',
+    'description'
   ]);
   // TODO: Fake data until we get the real thing.
   return Object.assign(filteredMetaData, {
-    description: 'Ingen beskrivelse',
-    published_year: 2017,
-    published_month: 2,
-    published_day: 3
+    published_year: 1,
+    published_month: 1,
+    published_day: 1
   });
 }
 exports.transformMetaDataToBook = transformMetaDataToBook;
