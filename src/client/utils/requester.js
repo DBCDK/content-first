@@ -54,6 +54,10 @@ const fetchBeltWorks = (belt, filterState, dispatch) => {
     .filter(f => !f.custom && allSelected.includes(f.id))
     .map(f => f.id);
 
+  // push 'all' tag to fetch all works if no taxonomy tags are selected.
+  // for instance if only client side filters are selected.
+  selectedTags.push('-1');
+
   // get titles of custom selected tags. These tags are not part of the taxonomy
   // and hence they need to be filtered by other means. We'll do that client side
   // for now.
@@ -61,37 +65,22 @@ const fetchBeltWorks = (belt, filterState, dispatch) => {
     .filter(f => f.custom && allSelected.includes(f.id))
     .map(f => f.title);
 
-  // Will currently only fetch works by pid list
-  // later fetching by recommendations/filtering will be possible
-  if (belt.pids) {
-    request.get('/v1/books')
-      .query({pids: belt.pids})
-      .end(function(err, res) {
-        // Lets perform some client side filtering of stuff which is not yet
-        // possible in backend
-        const works = filter(JSON.parse(res.text).data, selectedTitles);
-        sort(works, filterState.sortBy.find(o => o.selected));
+  request.get('/v1/recommendations')
+    .query({tags: selectedTags})
+    .end(function(err, res) {
+      if (err) {
+        dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, error: err});
+        return;
+      }
 
-        dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, response: works});
-      });
-  }
-  else {
-    request.get('/v1/recommendations')
-      .query({tags: selectedTags})
-      .end(function(err, res) {
-        if (err) {
-          dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, error: err});
-          return;
-        }
+      // Lets perform some client side filtering of stuff which is not yet
+      // possible in backend
+      const works = filter(JSON.parse(res.text).data, selectedTitles);
+      sort(works, filterState.sortBy.find(o => o.selected));
 
-        // Lets perform some client side filtering of stuff which is not yet
-        // possible in backend
-        const works = filter(JSON.parse(res.text).data, selectedTitles);
-        sort(works, filterState.sortBy.find(o => o.selected));
+      dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, response: works});
+    });
 
-        dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, response: works});
-      });
-  }
 };
 
 export default fetchBeltWorks;

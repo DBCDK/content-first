@@ -4,7 +4,7 @@ const defaultState = {
   editFilters: false,
   beltFilters: {
     'En god bog': ['1001', '1003', '49', '1005'],
-    'Bibliotekarens ugentlige anbefalinger': [],
+    'Bibliotekarens ugentlige anbefalinger': ['-2'],
     'Passer med min smag': [],
     Spændende: ['50', '230', '267'],
     Anderledes: ['143', '151'],
@@ -327,7 +327,7 @@ const defaultState = {
       title: 'Vælg kvalitetsparametre',
       children: [
         {id: '1003', title: 'Er på mange biblioteker', custom: true},
-        {id: '1004', title: 'Bibliotekaren anbefaler', custom: true},
+        {id: '-2', title: 'Bibliotekaren anbefaler'},
         {id: '1005', title: 'Udlånes meget', custom: true}
       ]
     },
