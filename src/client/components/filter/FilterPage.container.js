@@ -21,10 +21,7 @@ class FilterPage extends React.Component {
     const allFilters = getLeaves(this.props.filterState.filters);
     const selectedFilters = this.props.filterState.beltFilters[this.props.belt.name].map(id => allFilters.find(filter => filter.id === id));
     let warningMessage = null;
-    if (selectedFilters.length === 0) {
-      warningMessage = 'Du skal vælge mindst ét filter for at se et resultat';
-    }
-    else if (!this.props.belt.works || this.props.belt.works.length === 0) {
+    if (!this.props.belt.works || this.props.belt.works.length === 0) {
       warningMessage = 'De valgte filtre giver tomt resultat';
     }
     return (
