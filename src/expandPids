@@ -53,23 +53,28 @@ pids.forEach(function(pid) {
 
 async function getData(pid) {
   let ret = {pid: pid};
-  if (option.solr) {
-    const solrRec = await Promise.resolve(asyncGetSolrData(pid));
-    const holdRec = await Promise.resolve(asyncGetSolrHoldingsData(pid));
-    ret = Object.assign(ret, extractFromSolr(solrRec));
-    ret = Object.assign(ret, extractFromSolrHoldings(holdRec));
+  try {
+    if (option.solr) {
+      const solrRec = await Promise.resolve(asyncGetSolrData(pid));
+      const holdRec = await Promise.resolve(asyncGetSolrHoldingsData(pid));
+      ret = Object.assign(ret, extractFromSolr(solrRec));
+      ret = Object.assign(ret, extractFromSolrHoldings(holdRec));
+    }
+    if (option.corepo) {
+      const corepoRec = await Promise.resolve(asyncGetCorepoData(pid));
+      ret = Object.assign(ret, extractFromCorepo(corepoRec));
+    }
+    if (option.moreinfo) {
+      const imageRec = await Promise.resolve(asyncGetMoreInfoData(pid));
+      ret = Object.assign(ret, extractFromMoreInfo(imageRec));
+    }
+    if (option.adhloans) {
+      const adhlData = await Promise.resolve(asyncGetAdhlData(pid));
+      ret = Object.assign(ret, extractLoanCountFromAdhlData(adhlData));
+    }
   }
-  if (option.corepo) {
-    const corepoRec = await Promise.resolve(asyncGetCorepoData(pid));
-    ret = Object.assign(ret, extractFromCorepo(corepoRec));
-  }
-  if (option.moreinfo) {
-    const imageRec = await Promise.resolve(asyncGetMoreInfoData(pid));
-    ret = Object.assign(ret, extractFromMoreInfo(imageRec));
-  }
-  if (option.adhloans) {
-    const adhlData = await Promise.resolve(asyncGetAdhlData(pid));
-    ret = Object.assign(ret, extractLoanCountFromAdhlData(adhlData));
+  catch (e) {
+    // ignore error
   }
   return ret;
 }
@@ -80,8 +85,9 @@ async function getData(pid) {
  * @param pid
  */
 async function asyncGetSolrData(pid) {
+  const collection = getNthElement(pid, ':', 0);
   const id = getNthElement(pid, ':', 1);
-  const url = option.solr + '?wt=json&q=rec.id:' + id + ' AND unit.isPrimaryObject:true&fl=' + solrFieldList.join(',');
+  const url = option.solr + '?wt=json&q=rec.id:' + id + ' AND rec.collectionIdentifier:' + collection + '&fl=' + solrFieldList.join(',');
   if (DEBUG) { console.log(url); }
   return request
       .get(url)
@@ -151,12 +157,15 @@ async function asyncGetAdhlData(pid) {
     .where('lokalid', id)
     .count('*')
     .on('query-error', function(error){
+      console.log('aa');
       exitOnError('Error selecting postgress ' + error);
     })
     .catch(function (error) {
-      exitOnError('Error calling ' + error.response.error);
+      exitOnError('Error calling ' + error);
     })
-    .finally(function() {pg.destroy();});
+    .finally(function() {
+      pg.destroy();
+    });
 }
 
 /**
