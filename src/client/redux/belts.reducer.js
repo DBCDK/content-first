@@ -30,6 +30,7 @@ const defaultState = {
       details: 'Detaljer for min smag',
       isLoading: false,
       onFrontPage: true,
+      requireLogin: true,
       links: []
     },
     {

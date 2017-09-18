@@ -41,7 +41,8 @@ class FrontPage extends React.Component {
           });
 
           // We might insert a 'create profile'-component to the belt
-          const custom = idx === 3 ? <CreateProfile/> : null;
+          const custom = belt.requireLogin ? <CreateProfile/> : null;
+
           return <Belt
             key={idx}
             belt={belt}

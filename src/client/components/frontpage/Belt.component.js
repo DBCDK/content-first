@@ -57,7 +57,7 @@ export default class Belt extends React.Component {
           )}
           <div className='works-wrapper col-xs-12 noselect'>
             <div className='works' style={{transform: `translate3d(${scrollPos}, 0px, 0px)`}}>
-              {this.props.belt.works && this.props.belt.works.map((work, idx) => {
+              {!this.props.belt.requireLogin && this.props.belt.works && this.props.belt.works.map((work, idx) => {
                 return <WorkItem id={`work-${idx}`} key={work.book.pid} work={work}/>;
               })}
             </div>
