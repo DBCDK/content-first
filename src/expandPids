@@ -27,6 +27,7 @@ const solrFieldList = [
   'rec.workId',
   'rec.bibliographicRecordId',
   'display.creator',
+  'scanphrase.creator',
   'display.title',
   'display.titleFull',
   'display.type',
