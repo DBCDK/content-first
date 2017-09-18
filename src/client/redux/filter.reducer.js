@@ -351,9 +351,9 @@ const defaultState = {
     }
   ],
   sortBy: [
-    {id: 'default', title: 'Min smag', selected: true},
+    {id: 'default', title: 'Alfabetisk', selected: true},
     {id: 'linse', title: 'Linse Kesslers smag', selected: false},
-    {id: 'bent', title: 'Bents smag', selected: false}
+    {id: 'anders', title: 'Anders\' smag', selected: false}
   ]
 };
 

@@ -1,7 +1,7 @@
 import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {getLeaves} from './filters';
-import minsmag from '../data/minsmag.json';
+import profiles from '../data/profiles.json';
 
 const filter = (works, selectedTitles) => {
   // Lets perform some client side filtering of stuff which is not yet
@@ -37,13 +37,13 @@ const filter = (works, selectedTitles) => {
 };
 
 const sort = (works, profile) => {
-  const scores = minsmag[profile.id];
+  const scores = profiles[profile.id];
   works.forEach(w => {
     w.score = scores[w.book.pid] || 0;
   });
 
   // will sort in place - no new array returned
-  works.sort((w1, w2) => w2.score-w1.score);
+  works.sort((w1, w2) => w1.score-w2.score);
 };
 
 const fetchBeltWorks = (belt, filterState, dispatch) => {
