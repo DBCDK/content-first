@@ -353,7 +353,10 @@ const defaultState = {
   sortBy: [
     {id: 'default', title: 'Alfabetisk', selected: true},
     {id: 'linse', title: 'Linse Kesslers smag', selected: false},
-    {id: 'anders', title: 'Anders\' smag', selected: false}
+    {id: 'krasnik', title: 'Martin Krasniks smag', selected: false},
+    {id: 'cecilie', title: 'Cecilie Frøkjærs smag', selected: false},
+    {id: 'anders', title: 'Anders Brødsgaards smag', selected: false},
+    {id: 'jacob', title: 'Jacob Jaskovs smag', selected: false}
   ]
 };
 
