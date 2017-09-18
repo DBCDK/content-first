@@ -9,7 +9,7 @@ import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
 
 
-const SCROLL_INTERVAL = 5;
+const SCROLL_INTERVAL = 3;
 
 class FrontPage extends React.Component {
 
