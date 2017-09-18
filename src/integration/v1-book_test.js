@@ -21,7 +21,7 @@ describe('Endpoint /v1/book', () => {
     await knex.seed.run();
     logger.log.debug('Database is now seeded.');
   });
-  describe('Public endpoints', () => {
+  describe('Public endpoint', () => {
     describe('GET /v1/book/:pid', () => {
       it('should handle non-existing PID', done => {
         const pid = '12345:ost:3984';
@@ -59,11 +59,11 @@ describe('Endpoint /v1/book', () => {
                 creator: 'Jens Blendstrup',
                 title: 'Havelågebogen',
                 title_full: 'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
-                description: 'Ingen beskrivelse',
+                description: 'Dette er en beskrivelse',
                 pages: 645,
-                published_year: 2017,
-                published_month: 2,
-                published_day: 3,
+                published_year: 1,
+                published_month: 1,
+                published_day: 1,
                 loan_count: 1020,
                 type: 'Bog',
                 work_type: 'book',
@@ -77,7 +77,7 @@ describe('Endpoint /v1/book', () => {
       });
     });
   });
-  describe('Internal endpoints', () => {
+  describe('Internal endpoint', () => {
     const internal = request(`http://localhost:${config.server.internalPort}`);
     describe('PUT /v1/book/:pid', () => {
       it('should reject wrong content type', done => {

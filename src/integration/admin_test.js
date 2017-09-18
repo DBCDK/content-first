@@ -7,7 +7,7 @@ const request = require('supertest');
 const expectValidate = require('./output-verifiers').expectValidate;
 
 describe('Admin API on running database', () => {
-  describe('Public endpoints', () => {
+  describe('Public endpoint', () => {
     const webapp = request(`http://localhost:${config.server.port}`);
     describe('/pid', () => {
       it('should return the process id', done => {
@@ -38,7 +38,7 @@ describe('Admin API on running database', () => {
       });
     });
   });
-  describe('Internal endpoints', () => {
+  describe('Internal endpoint', () => {
     const internal = request(`http://localhost:${config.server.internalPort}`);
     describe('server crashes', () => {
       it('should be catched', done => {

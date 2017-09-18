@@ -21,7 +21,7 @@ describe('Endpoint /v1/tags', () => {
     await knex.seed.run();
     logger.log.debug('Database is now seeded.');
   });
-  describe('Public endpoints', () => {
+  describe('Public endpoint', () => {
     describe('GET /v1/tags/:pid', () => {
       it('should return existing tags for a specific PID', done => {
         const pid = '870970-basis:52947804';
@@ -43,7 +43,7 @@ describe('Endpoint /v1/tags', () => {
       });
     });
   });
-  describe('Internal endpoints', () => {
+  describe('Internal endpoint', () => {
     const internal = request(`http://localhost:${config.server.internalPort}`);
     describe('POST /v1/tags', () => {
       it('should reject wrong content type', done => {

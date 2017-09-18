@@ -23,7 +23,7 @@ describe('Endpoint /v1/image', () => {
     await knex.seed.run();
     logger.log.debug('Database is now seeded.');
   });
-  describe('Public endpoints', () => {
+  describe('Public endpoint', () => {
     describe('GET /v1/image/:pid', () => {
       it('should handle non-existing cover image', done => {
         const url = '/v1/image/does:not:exist';
@@ -53,7 +53,7 @@ describe('Endpoint /v1/image', () => {
       });
     });
   });
-  describe('Internal endpoints', () => {
+  describe('Internal endpoint', () => {
     const internal = request(`http://localhost:${config.server.internalPort}`);
     describe('PUT /v1/image/:pid', () => {
       it('should reject wrong content type', done => {
