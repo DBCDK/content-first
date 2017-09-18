@@ -131,3 +131,8 @@
 .contains-selected {
   color: #fc492d;
 }
+.warning {
+  font-size: 26px;
+  margin-bottom: 150px;
+  margin-top: 150px;
+}

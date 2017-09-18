@@ -20,7 +20,13 @@ class FilterPage extends React.Component {
   render() {
     const allFilters = getLeaves(this.props.filterState.filters);
     const selectedFilters = this.props.filterState.beltFilters[this.props.belt.name].map(id => allFilters.find(filter => filter.id === id));
-
+    let warningMessage = null;
+    if (selectedFilters.length === 0) {
+      warningMessage = 'Du skal vælge mindst ét filter for at se et resultat';
+    }
+    else if (!this.props.belt.works || this.props.belt.works.length === 0) {
+      warningMessage = 'De valgte filtre giver tomt resultat';
+    }
     return (
       <div className='filter-page'>
         <div className='filters row'>
@@ -81,6 +87,7 @@ class FilterPage extends React.Component {
               this.props.dispatch({type: ON_EXPAND_FILTERS_TOGGLE, id});
             }}/>
         </div>
+        {warningMessage && <div className='warning row text-center'>{warningMessage}</div>}
         <div className='filter-page-works row text-left'>
           {this.props.belt.works && this.props.belt.works.map((work, idx) => {
             return <WorkItem id={`work-${idx}`} key={work.book.pid} work={work}/>;
