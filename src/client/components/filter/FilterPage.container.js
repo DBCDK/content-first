@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import SelectedFilters from './SelectedFilters.component';
 import EditFilters from './EditFilters.component';
 import WorkItem from '../work/WorkItem.component';
-import DropDown from './Dropdown.component';
+import BootstrapDropDown from './BootstrapDropdown.component';
 import {ON_SORT_OPTION_SELECT, ON_EDIT_FILTER_TOGGLE, ON_FILTER_TOGGLE, ON_RESET_FILTERS, ON_EXPAND_FILTERS_TOGGLE} from '../../redux/filter.reducer';
 import {ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {getLeaves} from '../../utils/filters';
@@ -30,11 +30,10 @@ class FilterPage extends React.Component {
           <div className='filter-page-top col-xs-12'>
             <div className='filter-page-title text-left col-xs-12'>
               <span>Vis mig</span>
-              <DropDown
-                className='filter-page-title'
+              <BootstrapDropDown
+                id='belt-select'
                 selected={this.props.belt.name}
                 options={this.props.beltState.belts.map(b => b.name)}
-                margin={5}
                 onChange={value => {
                   this.props.dispatch({type: HISTORY_PUSH, path: beltNameToPath(value)});
                   this.props.dispatch({type: ON_BELT_REQUEST, beltName: value});
@@ -58,11 +57,10 @@ class FilterPage extends React.Component {
               }}/>
             <div className='sort-options col-xs-12 text-right'>
               <span>Sortér efter</span>
-              <DropDown
-                className='sort-options'
+              <BootstrapDropDown
+                id='sort-select'
                 selected={this.props.filterState.sortBy.find(o => o.selected).title}
                 options={this.props.filterState.sortBy.map(s => s.title)}
-                margin={4}
                 onChange={value => {
                   this.props.dispatch({type: ON_SORT_OPTION_SELECT, value});
                   this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
