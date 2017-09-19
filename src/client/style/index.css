@@ -78,12 +78,12 @@ body {
   background-image: url("/Billede-til-feature_v2.jpg");
   background-size: 1400px;
   background-position: 0px 0px;
+  margin-bottom: 60px;
 }
 
 .belt {
   min-height: 400px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin-top: 20px;
   /*border: 1px solid lightgray;*/
   /*border-radius: 8px;*/
   background: #fcfcfc;
@@ -171,7 +171,6 @@ body {
   -webkit-backface-visibility: hidden;
   -webkit-font-smoothing:antialiased;
   margin-top: 20px;
-  padding-bottom: 15px;
   transition: transform 0.5s, filter 0.1s ease-in-out;
   white-space: nowrap;
   position: relative;
