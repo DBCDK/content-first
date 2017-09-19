@@ -394,7 +394,7 @@ const filterReducer = (state = defaultState, action) => {
         }
       });
       const beltFilters = Object.assign({}, state.beltFilters);
-      if (beltFilters[action.beltName].includes(filterId)) {
+      if (beltFilters[action.beltName].indexOf(filterId) >= 0) {
         beltFilters[action.beltName] = beltFilters[action.beltName].filter(id => filterId !== id);
       }
       else {
@@ -404,7 +404,7 @@ const filterReducer = (state = defaultState, action) => {
     }
     case ON_EXPAND_FILTERS_TOGGLE: {
       let expandedFilters;
-      if (state.expandedFilters.includes(action.id)) {
+      if (state.expandedFilters.indexOf(action.id) >= 0) {
         expandedFilters = state.expandedFilters.filter(id => id !== action.id);
       }
       else {
