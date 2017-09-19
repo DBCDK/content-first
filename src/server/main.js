@@ -1,10 +1,11 @@
 'use strict';
 
 const config = require('./config');
-const servers = require('./index');
 const logger = require('__/logging')(config.logger);
+const internal = require('server/internal-server');
+const external = require('server/external-server');
 
-const externalListener = servers.external.listen(config.server.port, () => {
+const externalListener = external.listen(config.server.port, () => {
   logger.log.info('Public service runs', {
     status: 'Public service up',
     pid: process.pid,
@@ -12,7 +13,7 @@ const externalListener = servers.external.listen(config.server.port, () => {
   });
 });
 
-const internalListener = servers.internal.listen(config.server.internalPort, () => {
+const internalListener = internal.listen(config.server.internalPort, () => {
   logger.log.info('Internal service runs', {
     status: 'Internal service up',
     pid: process.pid,
