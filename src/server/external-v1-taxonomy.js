@@ -3,30 +3,30 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-// const config = require('server/config');
-// const knex = require('knex')(config.db);
-// const constants = require('server/constants')();
+const config = require('server/config');
+const knex = require('knex')(config.db);
+const constants = require('server/constants')();
+const topTable = constants.taxonomy.topTable;
+const middleTable = constants.taxonomy.middleTable;
+const bottomTable = constants.taxonomy.bottomTable;
 // const _ = require('lodash');
 
 router.route('/')
-  .put(asyncMiddleware(async (req, res, next) => {
-    const contentType = req.get('content-type');
-    if (contentType !== 'application/json') {
-      return next({
-        status: 400,
-        title: 'Taxonomy has to be provided as application/json',
-        detail: `Content type ${contentType} is not supported`
-      });
-    }
+  .get(asyncMiddleware(async (req, res, next) => {
+    const location = `${req.baseUrl}`;
     try {
-      res.status(200).send('done');
+      const result = await knex(topTable).select();
+      res.status(200).json({
+        data: result,
+        links: {self: location}
+      });
     }
     catch (error) {
       return next({
-        status: 400,
-        title: 'Malformed tags data',
-        detail: 'Tags data does not adhere to schema',
-        meta: error.meta || error
+        status: 500,
+        title: 'Database operation failed',
+        detail: error,
+        meta: {resource: location}
       });
     }
   }))

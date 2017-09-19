@@ -177,7 +177,7 @@ describe('Endpoint /v1/book', () => {
             webapp.get(location)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
-                  expect(links).to.have.property('self');
+                  expectValidate(links, 'schemas/book-links-out.json');
                   expect(links.self).to.equal(location);
                   expectValidate(data, 'schemas/book-data-out.json');
                   expect(data.pid).to.equal(pid);
@@ -210,7 +210,7 @@ describe('Endpoint /v1/book', () => {
           .send(harryPotter)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
-              expect(links).to.have.property('self');
+              expectValidate(links, 'schemas/book-links-out.json');
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/book-data-out.json');
               expect(data.pid).to.equal(pid);
@@ -224,7 +224,7 @@ describe('Endpoint /v1/book', () => {
             webapp.get(location)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
-                  expect(links).to.have.property('self');
+                  expectValidate(links, 'schemas/book-links-out.json');
                   expect(links.self).to.equal(location);
                   expectValidate(data, 'schemas/book-data-out.json');
                   expect(data.pid).to.equal(pid);
