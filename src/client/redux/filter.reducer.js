@@ -50,7 +50,7 @@ const defaultState = {
             {id: '22', title: 'Absurd'},
             {id: '23', title: 'Grotesk'},
             {id: '24', title: 'Skælmsk'},
-            {id: '25', title: 'Skørt'}
+            {id: '25', title: 'Skør'}
           ]
         },
         {
