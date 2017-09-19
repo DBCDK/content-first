@@ -7,17 +7,22 @@ const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const tagTable = constants.tags.table;
-const _ = require('lodash');
 
 router.route('/:pid')
   .get(asyncMiddleware(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;
     try {
-      const rawTags = await knex(tagTable).where({pid}).select('tag');
-      const tags = _.map(rawTags, obj => {
-        return obj.tag;
-      });
+      const result = await knex(tagTable).where({pid}).select(
+        knex.raw('array_agg(tag) as tags')
+      );
+      const tags = result[0].tags;
+      if (!tags) {
+        return res.status(200).json({
+          data: {pid, tags: []},
+          links: {self: location}
+        });
+      }
       res.status(200).json({
         data: {pid, tags},
         links: {self: location}
