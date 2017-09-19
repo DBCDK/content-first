@@ -40,6 +40,9 @@ const pids = JSON.parse(fs.readFileSync(option.input, 'utf8'));
 const outfile = fs.openSync(option.output, 'w');
 console.log('\nRead', pids.length, 'pids from input file\n');
 
+var openKnexConnections = 0;
+var maxOpenKnexConnections = 10;
+
 let recno = 0;
 pids.forEach(function(pid) {
   pid = pid.trim();
@@ -70,6 +73,9 @@ async function getData(pid) {
       ret = Object.assign(ret, extractFromMoreInfo(imageRec));
     }
     if (option.adhloans) {
+      while (openKnexConnections > maxOpenKnexConnections) {
+        await sleep(10);
+      }
       const adhlData = await Promise.resolve(asyncGetAdhlData(pid));
       ret = Object.assign(ret, extractLoanCountFromAdhlData(adhlData));
     }
@@ -143,6 +149,7 @@ async function asyncGetCorepoData(pid) {
 }
 
 async function asyncGetAdhlData(pid) {
+  openKnexConnections++;
   const help = option.adhloans.split(/[@:/]/);
   const pg = knex({
     client: 'pg',
@@ -165,6 +172,7 @@ async function asyncGetAdhlData(pid) {
       exitOnError('Error calling ' + error);
     })
     .finally(function() {
+      openKnexConnections--;
       pg.destroy();
     });
 }
@@ -278,6 +286,16 @@ function exitOnError(error = '') {
 function getNthElement(str, separator, no) {
   const arr = str.split(separator);
   return arr[no];
+}
+
+/**
+ * Sleep for ms milliseconds
+ *
+ * @param ms
+ * @returns {Promise}
+ */
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**
