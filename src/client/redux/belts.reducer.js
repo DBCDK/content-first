@@ -1,82 +1,91 @@
 const defaultState = {
   belts: [
     {
+      name: 'En god bog',
+      details: 'Detaljer for en god bog',
+      isLoading: false,
+      onFrontPage: true,
+      links: ['En spændende bog', 'En anderledes bog'],
+      scrollOffset: 0,
+      works: []
+    },
+    {
+      name: 'En let læst bog',
+      isLoading: false,
+      onFrontPage: true,
+      links: ['En bog der gør dig klogere', 'En udfordrende bog'],
+      scrollOffset: 0
+    },
+    {
       name: 'Bibliotekarens ugentlige anbefalinger',
       details: 'Detaljer for ugentlige anbefalinger',
       isLoading: false,
+      onFrontPage: true,
+      links: [],
       scrollOffset: 0,
-      works: [
-        {title: 'A book', cover: '/870970-basis-53188931.391x500.jpg',
-          metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
-        {title: 'A book', cover: '/frontpage.jpg', metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
-        {title: 'A book', cover: '870970-basis-53188931.391x500.jpg'},
-        {title: 'A book', cover: '870970-basis-53188931.391x500.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'}
-      ]
-    },
-    {
-      name: 'En god bog',
-      details: 'Detaljer for en god bog',
-      isLoading: true,
-      scrollOffset: 0,
-      works: [
-        {title: 'A book', cover: '/870970-basis-53188931.391x500.jpg',
-          metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
-        {title: 'A book', cover: '/frontpage.jpg', metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
-        {title: 'A book', cover: '870970-basis-53188931.391x500.jpg'},
-        {title: 'A book', cover: '870970-basis-53188931.391x500.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'}
-      ]
+      works: []
     },
     {
       name: 'Passer med min smag',
       details: 'Detaljer for min smag',
-      isLoading: false
+      isLoading: false,
+      onFrontPage: true,
+      requireLogin: true,
+      links: []
     },
     {
-      name: 'Gør mig glad',
-      details: 'Detaljer for gør mig glad',
-      isLoading: true,
-      scrollOffset: 0,
-      works: [
-        {title: 'A book', cover: '/870970-basis-53188931.391x500.jpg',
-          metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
-        {title: 'A book', cover: '/frontpage.jpg', metakompasDescription: 'Kort og stærk roman satirisk sorgroman reflekteret poetisk samfundskritik'},
-        {title: 'A book', cover: '870970-basis-53188931.391x500.jpg'},
-        {title: 'A book', cover: '870970-basis-53188931.391x500.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'},
-        {title: 'A book', cover: '/frontpage.jpg'}
-      ]
+      name: 'En spændende bog',
+      isLoading: false,
+      onFrontPage: false,
+      links: []
+    },
+    {
+      name: 'En anderledes bog',
+      isLoading: false,
+      onFrontPage: false,
+      links: []
+    },
+    {
+      name: 'En bog der gør dig klogere',
+      isLoading: false,
+      onFrontPage: false,
+      links: []
+    },
+    {
+      name: 'En udfordrende bog',
+      isLoading: false,
+      onFrontPage: false,
+      links: []
     }
   ]
 };
 
-export const ON_BELT_REQUEST = 'ON_BELT_LOAD';
+export const ON_BELT_REQUEST = 'ON_BELT_REQUEST';
 export const ON_BELT_RESPONSE = 'ON_BELT_RESPONSE';
 export const ON_BELT_SCROLL = 'ON_BELT_SCROLL';
 export const ON_TAG_TOGGLE = 'ON_TAG_TOGGLE';
 
 const beltsReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ON_BELT_REQUEST:
-      return state;
+    case ON_BELT_REQUEST: {
+      const belts = state.belts.map(belt => {
+        if (belt.name === action.beltName) {
+          return Object.assign({}, belt, {isLoading: true});
+        }
+        return belt;
+      });
+      return Object.assign({}, {belts});
+    }
 
-    case ON_BELT_RESPONSE:
-      return state;
+    case ON_BELT_RESPONSE: {
+      const belts = state.belts.map(belt => {
+        if (belt.name === action.beltName) {
+          return Object.assign({}, belt, {isLoading: false}, {works: action.response});
+        }
+        return belt;
+      });
+      return Object.assign({}, {belts});
+    }
 
     case ON_BELT_SCROLL: {
       const belts = [...state.belts];

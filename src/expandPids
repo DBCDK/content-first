@@ -27,6 +27,7 @@ const solrFieldList = [
   'rec.workId',
   'rec.bibliographicRecordId',
   'display.creator',
+  'scanphrase.creator',
   'display.title',
   'display.titleFull',
   'display.type',
@@ -39,6 +40,21 @@ const pids = JSON.parse(fs.readFileSync(option.input, 'utf8'));
 const outfile = fs.openSync(option.output, 'w');
 console.log('\nRead', pids.length, 'pids from input file\n');
 
+const help = option.adhloans.split(/[@:/]/);
+const pg = knex({
+    client: 'pg',
+    connection: {
+        password: help[0],
+        user: help[1],
+        host: help[2],
+        database: help[3]
+    },
+    pool: {
+      min: 0,
+      max: 10
+    }
+});
+
 let recno = 0;
 pids.forEach(function(pid) {
   pid = pid.trim();
@@ -46,6 +62,9 @@ pids.forEach(function(pid) {
     if (DEBUG) { console.log('write', res); }
     fs.writeSync(outfile, JSON.stringify(res) + '\n', null, 'utf8');
     console.log('write #' + ++recno, pid);
+    if (pids.length === recno) {
+      pg.destroy();
+    }
   });
 });
 
@@ -53,23 +72,28 @@ pids.forEach(function(pid) {
 
 async function getData(pid) {
   let ret = {pid: pid};
-  if (option.solr) {
-    const solrRec = await Promise.resolve(asyncGetSolrData(pid));
-    const holdRec = await Promise.resolve(asyncGetSolrHoldingsData(pid));
-    ret = Object.assign(ret, extractFromSolr(solrRec));
-    ret = Object.assign(ret, extractFromSolrHoldings(holdRec));
+  try {
+    if (option.solr) {
+      const solrRec = await Promise.resolve(asyncGetSolrData(pid));
+      const holdRec = await Promise.resolve(asyncGetSolrHoldingsData(pid));
+      ret = Object.assign(ret, extractFromSolr(solrRec));
+      ret = Object.assign(ret, extractFromSolrHoldings(holdRec));
+    }
+    if (option.corepo) {
+      const corepoRec = await Promise.resolve(asyncGetCorepoData(pid));
+      ret = Object.assign(ret, extractFromCorepo(corepoRec));
+    }
+    if (option.moreinfo) {
+      const imageRec = await Promise.resolve(asyncGetMoreInfoData(pid));
+      ret = Object.assign(ret, extractFromMoreInfo(imageRec));
+    }
+    if (option.adhloans) {
+      const adhlData = await Promise.resolve(asyncGetAdhlData(pid));
+      ret = Object.assign(ret, extractLoanCountFromAdhlData(adhlData));
+    }
   }
-  if (option.corepo) {
-    const corepoRec = await Promise.resolve(asyncGetCorepoData(pid));
-    ret = Object.assign(ret, extractFromCorepo(corepoRec));
-  }
-  if (option.moreinfo) {
-    const imageRec = await Promise.resolve(asyncGetMoreInfoData(pid));
-    ret = Object.assign(ret, extractFromMoreInfo(imageRec));
-  }
-  if (option.adhloans) {
-    const adhlData = await Promise.resolve(asyncGetAdhlData(pid));
-    ret = Object.assign(ret, extractLoanCountFromAdhlData(adhlData));
+  catch (e) {
+    // ignore error
   }
   return ret;
 }
@@ -80,8 +104,9 @@ async function getData(pid) {
  * @param pid
  */
 async function asyncGetSolrData(pid) {
+  const collection = getNthElement(pid, ':', 0);
   const id = getNthElement(pid, ':', 1);
-  const url = option.solr + '?wt=json&q=rec.id:' + id + ' AND unit.isPrimaryObject:true&fl=' + solrFieldList.join(',');
+  const url = option.solr + '?wt=json&q=rec.id:' + id + ' AND rec.collectionIdentifier:' + collection + '&fl=' + solrFieldList.join(',');
   if (DEBUG) { console.log(url); }
   return request
       .get(url)
@@ -136,27 +161,20 @@ async function asyncGetCorepoData(pid) {
 }
 
 async function asyncGetAdhlData(pid) {
-  const help = option.adhloans.split(/[@:/]/);
-  const pg = knex({
-    client: 'pg',
-    connection: {
-      password: help[0],
-      user: help[1],
-      host: help[2],
-      database: help[3]
-    }
-  });
   const id = getNthElement(pid, ':', 1);
   return pg('laan')
     .where('lokalid', id)
     .count('*')
     .on('query-error', function(error){
+      console.log('aa');
       exitOnError('Error selecting postgress ' + error);
     })
     .catch(function (error) {
-      exitOnError('Error calling ' + error.response.error);
+      exitOnError('Error calling ' + error);
     })
-    .finally(function() {pg.destroy();});
+    .finally(function() {
+      // do nothing
+    });
 }
 
 /**

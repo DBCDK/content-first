@@ -4,6 +4,8 @@ The responses from the backend are either raw images or JSON loosely based on th
 
 The endopints are based on [initial analysis](content-first-backend.png).
 
+To only expose non-destructive endpoint to the public (ie. those needed by the [frontend](../src/client/)), the [backend](../src/server) sets an internal HTTP server up on an a non-public port in addtion to the port used for public access.
+
 ## Books
 
 ### `GET /v1/book/`*pid*
@@ -142,9 +144,9 @@ The result is a list of books such that each book include all the specified tags
 
 To upload a book:
 
-    curl -X PUT -H "Content-Type: application/json" --data "@src/fixtures/min-oste-bog.json" http://localhost:3001/v1/book/12345-ost:98765
+    curl -X PUT -H "Content-Type: application/json" --data "@src/fixtures/min-oste-bog.json" http://localhost:3002/v1/book/12345-ost:98765
 
 To upload a cover image:
 
-    curl -X PUT -H "Content-Type: image/jpeg" --data-binary "@src/fixtures/12345-ost:98765.jpg" http://localhost:3001/v1/image/12345-ost:98765
+    curl -X PUT -H "Content-Type: image/jpeg" --data-binary "@src/fixtures/12345-ost:98765.jpg" http://localhost:3002/v1/image/12345-ost:98765
 

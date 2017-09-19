@@ -13,103 +13,43 @@ const logger = require('__/logging')(config.logger);
 const _ = require('lodash');
 
 /**
- * Database error accounting.
+ * Database wrapper.
  */
-class Database {
-  constructor () {
-    this.ok = true;
-    this.currentError = null;
-    this.databaseErrors = [];
-  }
-  isOk () {
-    return this.ok;
-  }
-  setOk () {
-    this.ok = true;
-  }
-  getCurrentError () {
-    if (this.isOk()) {
-      return null;
-    }
-    return this.currentError;
-  }
-  getErrorLog () {
-    return this.databaseErrors;
-  }
-  logError (error) {
-    this.currentError = 'Database probably unreachable';
-    this.databaseErrors.push(
-      (new Date()).toISOString() + ': ' + error
-    );
-    this.ok = false;
-  }
-  testingConnection () {
-    // Make a dummy query.
-    return knex.raw('select 1+1 as result')
-      .then(function () {
-        logger.log.trace('There is a valid connection in the pool');
-        database.setOk();
-        return database.isOk();
-      })
-      .catch(error => {
-        logger.log.trace('problem connecting');
-        database.logError(error);
-        return database.isOk();
-      });
-  }
-}
-const database = new Database();
+const database = require('server/database');
 
 /*
- * Make sure database is at most recent schema.
- */
-const knex = require('knex')(config.db);
-knex.migrate.latest()
-  .then(() => {
-    logger.log.debug('Database is now at latest version.');
-    database.setOk();
-  })
-  .catch(error => {
-    logger.log.info(`Could not update database to latest version: ${error}`);
-    database.logError(error);
-  });
-
-/*
- * Web server.
+ * Public web server.
  */
 const express = require('express');
-const app = express();
+const external = express();
 
 /*
  * Static frontend content.
  */
 const path = require('path');
 const staticPath = path.join(__dirname, '..', '..', 'build');
-app.use(express.static(staticPath));
+external.use(express.static(staticPath));
 
 /*
  * Securing headers.
  */
 const helmet = require('helmet');
-app.use(helmet());
+external.use(helmet());
 
 /*
  * All request bodies must be JSON.
  */
 const parser = require('body-parser');
-app.use(parser.json({
+external.use(parser.json({
   type: 'application/json',
   // Allow lone values.
   strict: false
-}));
-app.use(parser.raw({
-  type: 'image/*'
 }));
 
 /*
  * Administrative API.
  */
-app.get('/howru', async(req, res) => {
+external.get('/howru', async(req, res) => {
   const ok = await database.testingConnection();
   const configWithouSecrets = _.omit(config, ['db.connection.user', 'db.connection.password']);
   if (ok) {
@@ -134,36 +74,29 @@ app.get('/howru', async(req, res) => {
   });
 });
 
-app.get('/pid', (req, res) => {
+external.get('/pid', (req, res) => {
   res.type('text/plain');
   res.send(process.pid.toString());
-});
-
-app.get('/crash', (req, res, next) => { // eslint-disable-line no-unused-vars
-  if (config.server.environment !== 'production') {
-    throw new Error('Deliberate water landing');
-  }
-  next();
 });
 
 /*
  * API routes.  Should agree with constants.apiversion.
  */
-const apiRoutes = require('server/v1');
-app.use('/v1', apiRoutes);
+const externalRoutes = require('server/external-v1');
+external.use('/v1', externalRoutes);
 
 
 /*
  * Let frontend React handle all other routes.
  */
-app.get('*', (req, res) => {
+external.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', '..', 'build', 'index.html'));
 });
 
 /*
  * Error handlers.
  */
-app.use((req, res, next) => {
+external.use((req, res, next) => {
   next({
     status: 404,
     title: 'Unknown endpoint',
@@ -171,7 +104,7 @@ app.use((req, res, next) => {
   });
 });
 
-app.use((err, req, res, next) => {
+external.use((err, req, res, next) => {
   if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
     next({
       status: err.status,
@@ -197,7 +130,7 @@ app.use((err, req, res, next) => {
  * Additionally, in non-production mode, any stack trace and other properties
  * from err are included.
  */
-app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+external.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   err.status = err.status || 500;
   let returnedError = {
     status: err.status,
@@ -224,4 +157,4 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   res.json({errors: [returnedError]});
 });
 
-module.exports = app;
+module.exports = external;

@@ -1,4 +1,5 @@
 import React from 'react';
+import intersection from 'lodash.intersection';
 
 const FilterButton = (props) => {
   return (
@@ -22,10 +23,17 @@ const EditFilters = (props) => {
               <h3>{f1.title}</h3>
               {f1.children.map((f2, idx2) => {
                 if (f2.children) {
+
+                  // find selected filters of this category
+                  const selected = intersection(props.selectedFilters.map(f => f.id), f2.children.map(f => f.id));
+                  const selectedClass = selected.length > 0 ? ' contains-selected' : '';
+
                   return (
-                    <div key={idx2} className='second-level col-xs-12'>
-                      <h4>{f2.title}</h4>
-                      {f2.children.map((f3, idx3) => {
+                    <div key={idx2} className={`second-level col-xs-12${selectedClass}`}>
+                      <h4 onClick={() => {
+                        props.onExpandFiltersToggle(f2.id);
+                      }}>{f2.title}<span>{f2.children.length}</span></h4>
+                      {props.expandedFilters.includes(f2.id) && f2.children.map((f3, idx3) => {
                         if (!f3.children) {
                           return <FilterButton key={idx3} filter={f3} selected={props.selectedFilters.includes(f3)} onFilterToggle={props.onFilterToggle}/>;
                         }
@@ -46,7 +54,7 @@ const EditFilters = (props) => {
         return null;
       })}
       <div className='col-xs-12 text-center'>
-        <span className='btn btn-success approve' onClick={props.onEditFilterToggle}>OK</span>
+        <span className='btn btn-success approve' onClick={props.onEditFilterToggle}>Luk</span>
       </div>
     </div>
   );

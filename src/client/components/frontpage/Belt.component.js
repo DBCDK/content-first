@@ -8,31 +8,40 @@ export default class Belt extends React.Component {
     this.state = {showDetails: false};
   }
 
-  componentDidMount() {
-    window.$('[data-toggle="tooltip"]').tooltip();
-  }
-
-  componentDidUpdate() {
-    window.$('[data-toggle="tooltip"]').tooltip();
+  getTooltipText(filters) {
+    return filters.length > 0 ? filters.map(filter => {
+      return `<span>${filter.title}</span>`;
+    }).join(' ') : '<span>Ingen filtre</span>';
   }
 
   render() {
     const scrollPos = this.props.belt.scrollOffset ? (-1 * this.props.belt.scrollOffset * 265) + 'px' : '0px';
+
+    // Create the html to go into
+    const tooltipText = this.getTooltipText(this.props.filters);
+
     return (
       <div className='row belt text-left'>
         <div className='col-xs-12 header'>
-          <span className='belt-title' data-toggle='tooltip' title={this.props.belt.details}>
+          <span
+            onClick={() => this.props.onMoreClick(this.props.belt.name)}
+            className='belt-title'
+            data-html='true'
+            data-toggle='tooltip'
+            data-original-title={tooltipText}>
             {this.props.belt.name}</span>
-          {this.props.belt.works && this.props.belt.works.length > 5 &&
-          <span className='more-link btn' onClick={this.props.onMoreClick}>Se flere</span>}
         </div>
-        <div className='col-xs-12 tags'>
-          {this.props.filters && this.props.filters.map((filter, idx) => {
-            return <span key={idx} className='btn btn-default'>{filter.title}</span>;
-            // const btnClass = filter.selected ? 'btn-success' : 'btn-default';
-            // return <span className={`btn ${btnClass}`} key={idx} onClick={() => {
-            //   this.props.onTagClick(idx);
-            // }}>{filter.title}</span>;
+        <div className='col-xs-12 belt-links'>
+          {this.props.links.length > 0 && <span>Se også:</span>}
+          {this.props.links.map(link => {
+            return <span
+              className='belt-link'
+              data-html='true'
+              data-toggle='tooltip'
+              data-original-title={this.getTooltipText(link.filters)}
+              onClick={() => this.props.onMoreClick(link.title)}>
+              {link.title}
+            </span>;
           })}
         </div>
         {this.props.custom}
@@ -45,8 +54,8 @@ export default class Belt extends React.Component {
           )}
           <div className='works-wrapper col-xs-12 noselect'>
             <div className='works' style={{transform: `translate3d(${scrollPos}, 0px, 0px)`}}>
-              {this.props.belt.works && this.props.belt.works.map((work, idx) => {
-                return <WorkItem id={`work-${idx}`} key={idx} work={work} disableShadow={this.state.showDetails}/>;
+              {!this.props.belt.requireLogin && this.props.belt.works && this.props.belt.works.map((work, idx) => {
+                return <WorkItem id={`work-${idx}`} key={work.book.pid} work={work}/>;
               })}
             </div>
           </div>

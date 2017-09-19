@@ -6,21 +6,26 @@ import './style/filterpage.css';
 import './style/work.css';
 import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
+import WorkPage from './components/work/WorkPage.container';
 import TopBar from './components/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 
 class App extends Component {
   render() {
     const path = this.props.routerState.path;
+    const pathSplit = path.split('/');
 
     let currentPage = null;
-    if (path === '/') {
+    if (pathSplit[1] === '') {
       currentPage = <FrontPage/>;
+    }
+    else if (pathSplit[1] === 'værk') {
+      currentPage = <WorkPage pid={pathSplit[2]}/>;
     }
     else {
       // check if current path matches a belt
       this.props.beltsState.belts.forEach(belt => {
-        if (beltNameToPath(belt.name) === this.props.routerState.path) {
+        if (beltNameToPath(belt.name) === path) {
           currentPage = <FilterPage belt={belt}/>;
         }
       });

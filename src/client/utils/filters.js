@@ -1,3 +1,7 @@
+/**
+ * Recursively collects the leaves of the filters-tree.
+ * @return list of filters
+ */
 export const getLeaves = (filters) => {
   let leaves = [];
   filters.forEach(filter => {
@@ -10,3 +14,15 @@ export const getLeaves = (filters) => {
   });
   return leaves;
 };
+
+/**
+ * Will do some client-side filtering of works
+ */
+// export const filterWorks = (works, filters) => {
+// };
+
+/**
+ * Will do some client-side sorting of works
+ */
+// export const sortWorks = (works, sortBy) => {
+// };
