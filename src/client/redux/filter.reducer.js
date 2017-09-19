@@ -6,11 +6,11 @@ const defaultState = {
     'En god bog': ['1001', '1003', '49', '1005'],
     'Bibliotekarens ugentlige anbefalinger': ['-2'],
     'Passer med min smag': [],
-    Spændende: ['50', '230', '267'],
-    Anderledes: ['143', '151'],
-    'Let læst': ['234', '229'],
-    Klog: ['182', '184'],
-    Udfordrende: ['239', '236']
+    'En spændende bog': ['55', '230', '267'],
+    'En anderledes bog': ['143', '151'],
+    'En let læst bog': ['234', '229'],
+    'En bog der gør dig klogere': ['182', '184'],
+    'En udfordrende bog': ['239', '236']
   },
   expandedFilters: [],
   filters: [

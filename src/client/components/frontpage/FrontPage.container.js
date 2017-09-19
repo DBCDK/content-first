@@ -16,11 +16,16 @@ class FrontPage extends React.Component {
   componentDidMount() {
     // Fetch works for each belt
     this.props.beltsState.belts.forEach(belt => {
+      this.props.dispatch({type: ON_RESET_FILTERS, beltName: belt.name});
       if (belt.onFrontPage) {
-        this.props.dispatch({type: ON_RESET_FILTERS, beltName: belt.name});
         this.props.dispatch({type: ON_BELT_REQUEST, beltName: belt.name});
       }
     });
+    window.$('[data-toggle="tooltip"]').tooltip();
+  }
+
+  componentDidUpdate() {
+    window.$('[data-toggle="tooltip"]').tooltip();
   }
 
   renderBelts() {

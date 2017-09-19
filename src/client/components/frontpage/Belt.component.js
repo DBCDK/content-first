@@ -8,14 +8,6 @@ export default class Belt extends React.Component {
     this.state = {showDetails: false};
   }
 
-  componentDidMount() {
-    window.$('[data-toggle="tooltip"]').tooltip();
-  }
-
-  componentDidUpdate() {
-    window.$('[data-toggle="tooltip"]').tooltip();
-  }
-
   getTooltipText(filters) {
     return filters.length > 0 ? filters.map(filter => {
       return `<span>${filter.title}</span>`;
@@ -31,7 +23,12 @@ export default class Belt extends React.Component {
     return (
       <div className='row belt text-left'>
         <div className='col-xs-12 header'>
-          <span onClick={() => this.props.onMoreClick(this.props.belt.name)} className='belt-title' data-html='true' data-toggle='tooltip' title={tooltipText}>
+          <span
+            onClick={() => this.props.onMoreClick(this.props.belt.name)}
+            className='belt-title'
+            data-html='true'
+            data-toggle='tooltip'
+            data-original-title={tooltipText}>
             {this.props.belt.name}</span>
         </div>
         <div className='col-xs-12 belt-links'>
@@ -41,7 +38,7 @@ export default class Belt extends React.Component {
               className='belt-link'
               data-html='true'
               data-toggle='tooltip'
-              title={this.getTooltipText(link.filters)}
+              data-original-title={this.getTooltipText(link.filters)}
               onClick={() => this.props.onMoreClick(link.title)}>
               {link.title}
             </span>;

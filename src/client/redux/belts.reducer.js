@@ -5,15 +5,15 @@ const defaultState = {
       details: 'Detaljer for en god bog',
       isLoading: false,
       onFrontPage: true,
-      links: ['Spændende', 'Anderledes'],
+      links: ['En spændende bog', 'En anderledes bog'],
       scrollOffset: 0,
       works: []
     },
     {
-      name: 'Let læst',
+      name: 'En let læst bog',
       isLoading: false,
       onFrontPage: true,
-      links: ['Klog', 'Udfordrende'],
+      links: ['En bog der gør dig klogere', 'En udfordrende bog'],
       scrollOffset: 0
     },
     {
@@ -34,25 +34,25 @@ const defaultState = {
       links: []
     },
     {
-      name: 'Spændende',
+      name: 'En spændende bog',
       isLoading: false,
       onFrontPage: false,
       links: []
     },
     {
-      name: 'Anderledes',
+      name: 'En anderledes bog',
       isLoading: false,
       onFrontPage: false,
       links: []
     },
     {
-      name: 'Klog',
+      name: 'En bog der gør dig klogere',
       isLoading: false,
       onFrontPage: false,
       links: []
     },
     {
-      name: 'Udfordrende',
+      name: 'En udfordrende bog',
       isLoading: false,
       onFrontPage: false,
       links: []
