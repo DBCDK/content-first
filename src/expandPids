@@ -40,8 +40,20 @@ const pids = JSON.parse(fs.readFileSync(option.input, 'utf8'));
 const outfile = fs.openSync(option.output, 'w');
 console.log('\nRead', pids.length, 'pids from input file\n');
 
-var openKnexConnections = 0;
-var maxOpenKnexConnections = 10;
+const help = option.adhloans.split(/[@:/]/);
+const pg = knex({
+    client: 'pg',
+    connection: {
+        password: help[0],
+        user: help[1],
+        host: help[2],
+        database: help[3]
+    },
+    pool: {
+      min: 0,
+      max: 10
+    }
+});
 
 let recno = 0;
 pids.forEach(function(pid) {
@@ -50,6 +62,9 @@ pids.forEach(function(pid) {
     if (DEBUG) { console.log('write', res); }
     fs.writeSync(outfile, JSON.stringify(res) + '\n', null, 'utf8');
     console.log('write #' + ++recno, pid);
+    if (pids.length === recno) {
+      pg.destroy();
+    }
   });
 });
 
@@ -73,9 +88,6 @@ async function getData(pid) {
       ret = Object.assign(ret, extractFromMoreInfo(imageRec));
     }
     if (option.adhloans) {
-      while (openKnexConnections > maxOpenKnexConnections) {
-        await sleep(10);
-      }
       const adhlData = await Promise.resolve(asyncGetAdhlData(pid));
       ret = Object.assign(ret, extractLoanCountFromAdhlData(adhlData));
     }
@@ -149,17 +161,6 @@ async function asyncGetCorepoData(pid) {
 }
 
 async function asyncGetAdhlData(pid) {
-  openKnexConnections++;
-  const help = option.adhloans.split(/[@:/]/);
-  const pg = knex({
-    client: 'pg',
-    connection: {
-      password: help[0],
-      user: help[1],
-      host: help[2],
-      database: help[3]
-    }
-  });
   const id = getNthElement(pid, ':', 1);
   return pg('laan')
     .where('lokalid', id)
@@ -172,8 +173,7 @@ async function asyncGetAdhlData(pid) {
       exitOnError('Error calling ' + error);
     })
     .finally(function() {
-      openKnexConnections--;
-      pg.destroy();
+      // do nothing
     });
 }
 
@@ -286,16 +286,6 @@ function exitOnError(error = '') {
 function getNthElement(str, separator, no) {
   const arr = str.split(separator);
   return arr[no];
-}
-
-/**
- * Sleep for ms milliseconds
- *
- * @param ms
- * @returns {Promise}
- */
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 /**
