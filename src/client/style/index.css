@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Lora:100,100italic');
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 body {
@@ -108,6 +108,7 @@ body {
   color: black;
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 15px;
 }
 .belt .belt-links .belt-link {
   margin-left: 20px;

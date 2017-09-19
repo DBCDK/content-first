@@ -22,7 +22,8 @@
   /*color: black*/
 }
 .work .metakompas-description p {
-  margin: 0px;
+  margin-bottom: 7px;
+  line-height: 18px;
 }
 .work .tag {
   margin-left: 10px;
