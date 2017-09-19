@@ -48,7 +48,7 @@ describe('Endpoint /v1/image', () => {
         webapp.get('/v1/image/870970-basis:53188931')
           .expect(200)
           .expect('Content-Type', /image\/jpeg/)
-          .expect('Content-Length', '28130')
+          .expect('Content-Length', '29839')
           .end(done);
       });
     });
@@ -112,7 +112,7 @@ describe('Endpoint /v1/image', () => {
             webapp.get(location)
               .expect(200)
               .expect('Content-Type', /image\/jpeg/)
-              .expect('Content-Length', '29852')
+              .expect('Content-Length', '30822')
               .end(done);
           })
           .catch(done);
@@ -137,7 +137,7 @@ describe('Endpoint /v1/image', () => {
           .then(() => {
             webapp.get(location)
               .expect('Content-Type', /image\/jpeg/)
-              .expect('Content-Length', '28130')
+              .expect('Content-Length', '29839')
               .expect(200)
               .end(done);
           })
