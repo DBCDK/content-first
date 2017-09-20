@@ -6,7 +6,7 @@
     "properties": {
       "id": {
         "required": true,
-        "type": "string"
+        "type": "integer"
       },
       "title": {
         "required": true,
@@ -21,7 +21,7 @@
           "properties": {
             "id": {
               "required": true,
-              "type": "string"
+              "type": "integer"
             },
             "title": {
               "required": true,
@@ -36,7 +36,7 @@
                 "properties": {
                   "id": {
                     "required": true,
-                    "type": "string"
+                    "type": "integer"
                   },
                   "title": {
                     "required": true,

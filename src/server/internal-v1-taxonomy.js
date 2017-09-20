@@ -78,15 +78,21 @@ router.route('/')
     try {
       // Overwrite everything.
       await knex.raw(`truncate table ${bottomTable}, ${middleTable}, ${topTable} cascade`);
+      const topRawInsert = [];
+      const middleRawInsert = [];
+      const bottomRawInsert = [];
       for (let top of taxonomy) {
-        await knex(topTable).insert({id: top.id, title: top.title});
+        topRawInsert.push({id: top.id, title: top.title});
         for (let middle of top.items) {
-          await knex(middleTable).insert({id: middle.id, top: top.id, title: middle.title});
+          middleRawInsert.push({id: middle.id, top: top.id, title: middle.title});
           for (let bottom of middle.items) {
-            await knex(bottomTable).insert({id: bottom.id, middle: middle.id, title: bottom.title});
+            bottomRawInsert.push({id: bottom.id, middle: middle.id, title: bottom.title});
           }
         }
       }
+      await knex(topTable).insert(topRawInsert);
+      await knex(middleTable).insert(middleRawInsert);
+      await knex(bottomTable).insert(bottomRawInsert);
     }
     catch (error) {
       return next({
