@@ -41,6 +41,73 @@ describe('Endpoint /v1/taxonomy', () => {
           .end(done);
       });
     });
+    describe('GET /v1/taxonomy/:id', () => {
+      it('should reject unknown id', done => {
+        const location = '/v1/taxonomy/9999';
+        webapp.get(location)
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/unknown tag/i);
+              expect(error).to.have.property('detail');
+              expect(error.detail).to.match(/9999 is not a tag id/i);
+            });
+          })
+          .expect(400)
+          .end(done);
+      });
+      it('should reject id with no children', done => {
+        const location = '/v1/taxonomy/302';
+        webapp.get(location)
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/tag has no sublevel/i);
+              expect(error).to.have.property('detail');
+              expect(error.detail).to.match(/tag 302 has no children/i);
+            });
+          })
+          .expect(400)
+          .end(done);
+      });
+      it('should give second-level tags', done => {
+        const location = '/v1/taxonomy/1';
+        webapp.get(location)
+          .expect(res => {
+            expectSuccess(res.body, (links, data) => {
+              expectValidate(links, 'schemas/taxonomy-links-out.json');
+              expect(links.self).to.equal(location);
+              expectValidate(data, 'schemas/taxonomy-data-out.json');
+              expect(data).to.deep.equal([
+                {id: 10, title: 'Brian'},
+                {id: 20, title: 'Eric'},
+                {id: 30, title: 'Garfield'}
+              ]);
+            });
+          })
+          .expect(200)
+          .end(done);
+      });
+      it('should give third-level tags', done => {
+        const location = '/v1/taxonomy/10';
+        webapp.get(location)
+          .expect(res => {
+            expectSuccess(res.body, (links, data) => {
+              expectValidate(links, 'schemas/taxonomy-links-out.json');
+              expect(links.self).to.equal(location);
+              expectValidate(data, 'schemas/taxonomy-data-out.json');
+              expect(data).to.deep.equal([
+                {id: 100, title: 'Carla'},
+                {id: 101, title: 'Dennis'}
+              ]);
+            });
+          })
+          .expect(200)
+          .end(done);
+      });
+    });
   });
   describe('Internal endpoint', () => {
     const internal = request(`http://localhost:${config.server.internalPort}`);
