@@ -33,9 +33,9 @@ const EditFilters = (props) => {
                       <h4 onClick={() => {
                         props.onExpandFiltersToggle(f2.id);
                       }}>{f2.title}<span>{f2.children.length}</span></h4>
-                      {props.expandedFilters.includes(f2.id) && f2.children.map((f3, idx3) => {
+                      {props.expandedFilters.indexOf(f2.id) >= 0 && f2.children.map((f3, idx3) => {
                         if (!f3.children) {
-                          return <FilterButton key={idx3} filter={f3} selected={props.selectedFilters.includes(f3)} onFilterToggle={props.onFilterToggle}/>;
+                          return <FilterButton key={idx3} filter={f3} selected={props.selectedFilters.indexOf(f3) >= 0} onFilterToggle={props.onFilterToggle}/>;
                         }
                         return null;
                       })}
@@ -44,7 +44,7 @@ const EditFilters = (props) => {
                 }
                 return (
                   <div key={idx2} className='second-level'>
-                    <FilterButton filter={f2} selected={props.selectedFilters.includes(f2)} onFilterToggle={props.onFilterToggle}/>
+                    <FilterButton filter={f2} selected={props.selectedFilters.indexOf(f2) >= 0} onFilterToggle={props.onFilterToggle}/>
                   </div>
                 );
               })}
