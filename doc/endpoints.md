@@ -140,6 +140,45 @@ Each metatag must be a number defined by [Metakompasset](https://github.com/DBCD
 
 The result is a list of books such that each book include all the specified tags.
 
+## Taxonomy
+
+### `GET /v1/taxonomy`
+
+Returns the complete taxonomy, like
+
+    { "data":
+      [ { "id": 0
+        , "title": "Stemning"
+        , items:
+          [ { "id": 1,
+            , "title": "Optimistisk"
+            , "items": [ { "id": 2, title: "Entusiastisk" } ]
+            }
+          ]
+        }
+      ]
+    , "links":
+      { "self": "/v1/taxonomy"
+      }
+    }
+
+### `PUT /v1/taxonomy`
+
+The data must be [valid taxonomy](../src/server/schemas/taxonomy-in.json), like
+
+    [ { "id": "0"
+      , "title": "Stemning"
+      , items:
+        [ { "id": "1",
+          , "title": "Optimistisk"
+          , "items": [ { "id": "2", title: "Entusiastisk" } ]
+          }
+        ]
+      }
+    ]
+
+Note that the ids are quoted.
+
 # Command-line interaction
 
 To upload a book:
