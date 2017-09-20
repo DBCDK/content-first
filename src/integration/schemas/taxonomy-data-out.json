@@ -11,44 +11,6 @@
       "title": {
         "required": true,
         "type": "string"
-      },
-      "items": {
-        "required": true,
-        "type": "array",
-        "minItems": 1,
-        "items": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "required": true,
-              "type": "integer"
-            },
-            "title": {
-              "required": true,
-              "type": "string"
-            },
-            "items": {
-              "required": true,
-              "type": "array",
-              "minItems": 1,
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "required": true,
-                    "type": "integer"
-                  },
-                  "title": {
-                    "required": true,
-                    "type": "string"
-                  },
-                  "additionalProperties": true
-                }
-              }
-            }
-          }
-        },
-        "additionalProperties": true
       }
     },
     "additionalProperties": true

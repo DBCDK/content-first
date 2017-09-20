@@ -42,7 +42,7 @@ describe('taxonomy', () => {
         });
     });
     it('should transform input to normalised output', () => {
-      const input = require('fixtures/taxonomi.json');
+      const input = require('fixtures/good-taxonomy.json');
       const output = require('fixtures/taxonomy-out.json');
       return expect(taxonomy.parsingTaxonomyInjection(input))
         .to.become(output);

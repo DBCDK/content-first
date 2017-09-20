@@ -21,6 +21,27 @@ describe('Endpoint /v1/taxonomy', () => {
     await knex.seed.run();
     logger.log.debug('Database is now seeded.');
   });
+  describe('External endpoint', () => {
+    describe('GET /v1/taxonomy', () => {
+      it('should give first-level tags', done => {
+        const location = '/v1/taxonomy';
+        webapp.get(location)
+          .expect(res => {
+            expectSuccess(res.body, (links, data) => {
+              expectValidate(links, 'schemas/taxonomy-links-out.json');
+              expect(links.self).to.equal(location);
+              expectValidate(data, 'schemas/taxonomy-data-out.json');
+              expect(data).to.deep.equal([
+                {id: 1, title: 'Anna'},
+                {id: 2, title: 'Kevin'}
+              ]);
+            });
+          })
+          .expect(200)
+          .end(done);
+      });
+    });
+  });
   describe('Internal endpoint', () => {
     const internal = request(`http://localhost:${config.server.internalPort}`);
     describe('PUT /v1/taxonomy', () => {
@@ -94,7 +115,7 @@ describe('Endpoint /v1/taxonomy', () => {
           .end(done);
       });
       it('should update taxonomy', done => {
-        const taxonomy = require('fixtures/taxonomi.json');
+        const taxonomy = require('fixtures/good-taxonomy.json');
         const output = require('fixtures/taxonomy-out.json');
         const location = '/v1/taxonomy';
         internal.put(location)
@@ -104,18 +125,19 @@ describe('Endpoint /v1/taxonomy', () => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/taxonomy-links-out.json');
               expect(links.self).to.equal('/v1/taxonomy');
-              expectValidate(data, 'schemas/taxonomy-data-out.json');
+              expectValidate(data, 'schemas/complete-taxonomy-data-out.json');
               expect(data).to.deep.equal(output);
             });
           })
           .expect(200)
           .then(() => {
-            webapp.get(location)
+            const where = '/v1/complete-taxonomy';
+            webapp.get(where)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
                   expectValidate(links, 'schemas/taxonomy-links-out.json');
-                  expect(links.self).to.equal(location);
-                  expectValidate(data, 'schemas/taxonomy-data-out.json');
+                  expect(links.self).to.equal(where);
+                  expectValidate(data, 'schemas/complete-taxonomy-data-out.json');
                   expect(data).to.deep.equal(output);
                 });
               })
