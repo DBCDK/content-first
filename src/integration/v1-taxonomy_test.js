@@ -95,6 +95,7 @@ describe('Endpoint /v1/taxonomy', () => {
       });
       it('should update taxonomy', done => {
         const taxonomy = require('fixtures/taxonomi.json');
+        const output = require('fixtures/taxonomy-out.json');
         const location = '/v1/taxonomy';
         internal.put(location)
           .type('application/json')
@@ -103,20 +104,19 @@ describe('Endpoint /v1/taxonomy', () => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/taxonomy-links-out.json');
               expect(links.self).to.equal('/v1/taxonomy');
-              expectValidate(data, '../server/schemas/taxonomy-in.json');
-              expect(data).to.deep.equal(taxonomy);
+              expectValidate(data, 'schemas/taxonomy-data-out.json');
+              expect(data).to.deep.equal(output);
             });
           })
           .expect(200)
           .then(() => {
             webapp.get(location)
               .expect(res => {
-                // console.log(`whole: ${JSON.stringify(res.body)}`);
                 expectSuccess(res.body, (links, data) => {
                   expectValidate(links, 'schemas/taxonomy-links-out.json');
                   expect(links.self).to.equal(location);
                   expectValidate(data, 'schemas/taxonomy-data-out.json');
-                  // expect(data).to.equal(taxonomy);
+                  expect(data).to.deep.equal(output);
                 });
               })
               .expect(200)

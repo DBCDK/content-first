@@ -7,32 +7,10 @@ const validatingInput = require('server/json-verifiers').validatingInput;
 const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
+const taxonomyUtil = require('server/taxonomy');
 const topTable = constants.taxonomy.topTable;
 const middleTable = constants.taxonomy.middleTable;
 const bottomTable = constants.taxonomy.bottomTable;
-const _ = require('lodash');
-
-class IdChecker {
-  constructor () {
-    this.problems = [];
-    this.ids = [];
-  }
-  getProblems () {
-    return this.problems;
-  }
-  checkId (x) {
-    const id = parseInt(x, 10);
-    if (_.isNaN(id)) {
-      this.problems.push(`Cannot convert ${x} to an integer`);
-      return;
-    }
-    if (_.includes(this.ids, id)) {
-      this.problems.push(`Id ${id} occurs more than once`);
-      return;
-    }
-    this.ids.push(id);
-  }
-}
 
 router.route('/')
   .put(asyncMiddleware(async (req, res, next) => {
@@ -55,23 +33,16 @@ router.route('/')
         meta: error.meta || error
       });
     }
-    const taxonomy = req.body;
-    const idChecker = new IdChecker();
-    taxonomy.forEach(top => {
-      idChecker.checkId(top.id);
-      top.items.forEach(middle => {
-        idChecker.checkId(middle.id);
-        middle.items.forEach(bottom => {
-          idChecker.checkId(bottom.id);
-        });
-      });
-    });
-    if (idChecker.getProblems().length !== 0) {
+    let taxonomy;
+    try {
+      taxonomy = await taxonomyUtil.parsingTaxonomyInjection(req.body);
+    }
+    catch (problems) {
       return next({
         status: 400,
         title: 'Malformed taxonomy',
         detail: 'Ids must be unique integers',
-        meta: {problems: idChecker.getProblems()}
+        meta: {problems}
       });
     }
     const location = `${req.baseUrl}`;
