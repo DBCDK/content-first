@@ -50,12 +50,16 @@ describe('books', () => {
           unit_id: 'unit:22125672',
           work_id: 'work:20137979',
           work_type: 'book',
-          description: 'Dette er en beskrivelse',
+          description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
           bibliographic_record_id: 53188931,
           items: 196,
           libraries: 80,
           pages: 645,
           loan_count: 1020,
+          subject: 'billedværker, humor, fotografier',
+          genre: 'humor',
+          first_edition_year: 2017,
+          literary_form: 'digte, fiktion',
           cover: 'https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725'
         });
     });
@@ -79,11 +83,12 @@ describe('books', () => {
             type: 'Bog',
             unit_id: 'unit:22125672',
             work_id: 'work:20137979',
-            description: 'Dette er en beskrivelse',
-            published_year: 1,
-            published_month: 1,
-            published_day: 1,
-            work_type: 'book'
+            description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
+            work_type: 'book',
+            subject: 'billedværker, humor, fotografier',
+            genre: 'humor',
+            first_edition_year: 2017,
+            literary_form: 'digte, fiktion'
           });
         });
     });

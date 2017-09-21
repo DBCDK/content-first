@@ -57,6 +57,26 @@
       "required": true,
       "type": "integer"
     },
+    "description": {
+      "required": false,
+      "type": "string"
+    },
+    "subject": {
+      "required": false,
+      "type": "string"
+    },
+    "genre": {
+      "required": false,
+      "type": "string"
+    },
+    "dateFirstEdition": {
+      "required": false,
+      "type": "string"
+    },
+    "literaryForm": {
+      "required": false,
+      "type": "string"
+    },
     "image_detail": {
       "required": true,
       "type": "string"

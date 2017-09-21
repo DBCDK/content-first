@@ -27,6 +27,11 @@ function parsingMetaDataInjection (obj) {
         book.items = document.items;
         book.cover = document.image_detail;
         book.description = document.description;
+        const year = parseInt(document.dateFirstEdition, 10);
+        book.first_edition_year = _.isNaN(year) ? 0 : year;
+        book.subject = document.subject ? document.subject : '';
+        book.genre = document.genre ? document.genre : '';
+        book.literary_form = document.literaryForm ? document.literaryForm : '';
         resolve(book);
       })
       .catch(reject);
@@ -50,13 +55,12 @@ function transformMetaDataToBook (metadata) {
     'unit_id',
     'work_id',
     'work_type',
-    'description'
+    'description',
+    'subject',
+    'genre',
+    'literary_form',
+    'first_edition_year'
   ]);
-  // TODO: Fake data until we get the real thing.
-  return Object.assign(filteredMetaData, {
-    published_year: 1,
-    published_month: 1,
-    published_day: 1
-  });
+  return filteredMetaData;
 }
 exports.transformMetaDataToBook = transformMetaDataToBook;

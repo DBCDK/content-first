@@ -59,17 +59,18 @@ describe('Endpoint /v1/book', () => {
                 creator: 'Jens Blendstrup',
                 title: 'Havelågebogen',
                 title_full: 'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
-                description: 'Dette er en beskrivelse',
+                description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
                 pages: 645,
-                published_year: 1,
-                published_month: 1,
-                published_day: 1,
                 loan_count: 1020,
                 type: 'Bog',
                 work_type: 'book',
                 language: 'Dansk',
                 items: 196,
-                libraries: 80
+                libraries: 80,
+                first_edition_year: 2017,
+                genre: 'humor',
+                subject: 'billedværker, humor, fotografier',
+                literary_form: 'digte, fiktion'
               });
             });
           })
