@@ -30,9 +30,10 @@ router.route('/')
           return obj.tag;
         });
         const missing = _.difference(meta.tags, existing);
-        for (let tag of missing) {
-          await knex(tagTable).insert({pid: meta.pid, tag});
-        }
+        const rawTable = _.map(missing, tag => {
+          return {pid, tag};
+        });
+        await knex(tagTable).insert(rawTable);
         const tags = _.union(meta.tags, existing);
         res.status(201).location(location).json({
           data: {pid, tags},
@@ -60,6 +61,57 @@ router.route('/')
 ;
 
 router.route('/:pid')
+  .put(asyncMiddleware(async (req, res, next) => {
+    const pid = req.params.pid;
+    const location = `${req.baseUrl}/${pid}`;
+    const contentType = req.get('content-type');
+    if (contentType !== 'application/json') {
+      return next({
+        status: 400,
+        title: 'Tags have to be provided as application/json',
+        detail: `Content type ${contentType} is not supported`
+      });
+    }
+    let meta;
+    try {
+      meta = await tagsUtil.parsingTagsInjection(req.body);
+    }
+    catch (error) {
+      return next({
+        status: 400,
+        title: 'Malformed tags data',
+        detail: 'Tags data does not adhere to schema',
+        meta: error.meta || error
+      });
+    }
+    if (meta.pid !== pid) {
+      return next({
+        status: 400,
+        title: 'Mismatch beetween PID and location',
+        detail: `Expected PID ${pid} but found ${meta.pid}`,
+        meta: {resource: location}
+      });
+    }
+    try {
+      await knex(tagTable).where('pid', pid).del();
+      const rawTable = _.map(meta.tags, tag => {
+        return {pid, tag};
+      });
+      await knex(tagTable).insert(rawTable);
+      res.status(200).location(location).json({
+        data: {pid, tags: meta.tags},
+        links: {self: location}
+      });
+    }
+    catch (error) {
+      return next({
+        status: 500,
+        title: 'Database operation failed',
+        detail: error,
+        meta: {resource: location}
+      });
+    }
+  }))
   .delete(asyncMiddleware(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;

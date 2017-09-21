@@ -85,7 +85,11 @@ class FilterPage extends React.Component {
         {warningMessage && <div className='warning row text-center'>{warningMessage}</div>}
         <div className='filter-page-works row text-left'>
           {this.props.belt.works && this.props.belt.works.map((work, idx) => {
-            return <WorkItem id={`work-${idx}`} key={work.book.pid} work={work}/>;
+            return <WorkItem
+              id={`work-${idx}`}
+              key={work.book.pid}
+              onCoverClick={(pid) => this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`})}
+              work={work}/>;
           })}
         </div>
       </div>

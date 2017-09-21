@@ -78,12 +78,12 @@ body {
   background-image: url("/Billede-til-feature_v2.jpg");
   background-size: 1400px;
   background-position: 0px 0px;
+  margin-bottom: 60px;
 }
 
 .belt {
   min-height: 400px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin-top: 20px;
   /*border: 1px solid lightgray;*/
   /*border-radius: 8px;*/
   background: #fcfcfc;
@@ -108,6 +108,7 @@ body {
   color: black;
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 15px;
 }
 .belt .belt-links .belt-link {
   margin-left: 20px;
@@ -134,20 +135,20 @@ body {
   vertical-align: bottom;
   padding-bottom: 4px;
 }
-.belt .works-wrapper {
+.belt-wrapper .works-wrapper {
   overflow: hidden;
 }
 
-.belt .right-btn {
+.belt-wrapper .right-btn {
   margin-right: 0px;
   right: 0px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-.belt .right-btn:hover {
+.belt-wrapper .right-btn:hover {
   opacity: .7;
 }
-.belt .scroll-btn {
+.belt-wrapper .scroll-btn {
   width: 90px;
   height: 285px;
   background: white;
@@ -160,25 +161,24 @@ body {
   font-size: 50px;
   padding-top: 110px;
 }
-.belt .left-btn {
+.belt-wrapper .left-btn {
   margin-left: -15px;
 
 }
-.belt .left-btn:hover {
+.belt-wrapper .left-btn:hover {
   opacity: .7;
 }
-.belt .works {
+.belt-wrapper .works {
   -webkit-backface-visibility: hidden;
   -webkit-font-smoothing:antialiased;
   margin-top: 20px;
-  padding-bottom: 15px;
   transition: transform 0.5s, filter 0.1s ease-in-out;
   white-space: nowrap;
   position: relative;
   text-rendering: geometricPrecision;
 }
 
-.belt .tags span {
+.belt-wrapper .tags span {
   font-family: 'Raleway', sans-serif;
   margin-right: 10px;
 }

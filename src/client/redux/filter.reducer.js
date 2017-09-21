@@ -6,11 +6,11 @@ const defaultState = {
     'En god bog': ['1001', '1003', '49', '1005'],
     'Bibliotekarens ugentlige anbefalinger': ['-2'],
     'Passer med min smag': [],
-    Spændende: ['50', '230', '267'],
-    Anderledes: ['143', '151'],
-    'Let læst': ['234', '229'],
-    Klog: ['182', '184'],
-    Udfordrende: ['239', '236']
+    'En spændende bog': ['55', '230', '267'],
+    'En anderledes bog': ['143', '151'],
+    'En let læst bog': ['234', '229'],
+    'En bog der gør dig klogere': ['182', '184'],
+    'En udfordrende bog': ['239', '236']
   },
   expandedFilters: [],
   filters: [
@@ -28,10 +28,10 @@ const defaultState = {
             {id: '5', title: 'Håbefuld'},
             {id: '6', title: 'Inspirerende'},
             {id: '7', title: 'Opløftende'},
-            {id: '8', title: 'Optismistisk'},
+            {id: '8', title: 'Optimistisk'},
             {id: '9', title: 'Respektfuld'},
             {id: '10', title: 'Selvsikker'},
-            {id: '11', title: 'Triumfrerende'},
+            {id: '11', title: 'Triumferende'},
             {id: '12', title: 'Uskyldig'},
             {id: '13', title: 'Fredfuld'}
           ]
@@ -50,7 +50,7 @@ const defaultState = {
             {id: '22', title: 'Absurd'},
             {id: '23', title: 'Grotesk'},
             {id: '24', title: 'Skælmsk'},
-            {id: '25', title: 'Skørt'}
+            {id: '25', title: 'Skør'}
           ]
         },
         {
@@ -171,7 +171,7 @@ const defaultState = {
             {id: '118', title: 'Realistisk'},
             {id: '119', title: 'Sammenhængende'},
             {id: '120', title: 'Urban'},
-            {id: '121', title: 'Virkelighedsnært'},
+            {id: '121', title: 'Virkelighedsnær'},
             {id: '122', title: 'Ærlig'}
           ]
         },
@@ -303,15 +303,6 @@ const defaultState = {
             {id: '215', title: 'Kinky'},
             {id: '216', title: 'Pikant'}
           ]
-        },
-        {
-          id: '2090',
-          title: 'Andet',
-          children: [
-            {id: '234', title: 'Ligefrem'},
-            {id: '236', title: 'Krævende'},
-            {id: '239', title: 'Meget åben for fortolkning'}
-          ]
         }
       ]
     },
@@ -334,19 +325,38 @@ const defaultState = {
     {
       title: 'Vælg tempo',
       children: [
-        {id: '227', title: 'Meget dvælende'},
+        {id: '227', title: 'Statisk'},
         {id: '228', title: 'Dvælende'},
-        {id: '229', title: 'I bevægelse'},
-        {id: '230', title: 'Høj fart'},
+        {id: '229', title: 'Fremadskridende'},
+        {id: '230', title: 'Hurtig'},
         {id: '231', title: 'Hæsblæsende'}
+      ]
+    },
+    {
+      title: 'Vælg sprogligt niveau',
+      children: [
+        {id: '233', title: 'Let sprog'},
+        {id: '234', title: 'Ligefremt sprog'},
+        {id: '235', title: 'Almindeligt sprog'},
+        {id: '236', title: 'Avanceret sprog'},
+        {id: '237', title: 'Krævende sprog'}
+      ]
+    },
+    {
+      title: 'Vælg fortolkningsrum',
+      children: [
+        {id: '239', title: 'Åbent fortolkningsrum'},
+        {id: '240', title: 'Bredt fortolkningsrum'},
+        {id: '241', title: 'Snævert fortolkningsrum'},
+        {id: '242', title: 'Lukket fortolkningsrum'}
       ]
     },
     {
       title: 'Vælg fokus',
       children: [
         {id: '267', title: 'Plot'},
-        {id: '266', title: 'Relationer mellem personer'},
-        {id: '265', title: 'Karakterernes udvikling'}
+        {id: '266', title: 'Personernes relationer'},
+        {id: '265', title: 'Personernes udvikling'}
       ]
     }
   ],
@@ -384,7 +394,7 @@ const filterReducer = (state = defaultState, action) => {
         }
       });
       const beltFilters = Object.assign({}, state.beltFilters);
-      if (beltFilters[action.beltName].includes(filterId)) {
+      if (beltFilters[action.beltName].indexOf(filterId) >= 0) {
         beltFilters[action.beltName] = beltFilters[action.beltName].filter(id => filterId !== id);
       }
       else {
@@ -394,7 +404,7 @@ const filterReducer = (state = defaultState, action) => {
     }
     case ON_EXPAND_FILTERS_TOGGLE: {
       let expandedFilters;
-      if (state.expandedFilters.includes(action.id)) {
+      if (state.expandedFilters.indexOf(action.id) >= 0) {
         expandedFilters = state.expandedFilters.filter(id => id !== action.id);
       }
       else {

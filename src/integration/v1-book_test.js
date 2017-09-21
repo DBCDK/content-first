@@ -99,7 +99,7 @@ describe('Endpoint /v1/book', () => {
           .end(done);
       });
       it('should reject broken input', done => {
-        const broken = require('fixtures/wrong-book.json');
+        const broken = require('fixtures/broken-book.json');
         const location = '/v1/book/123456-basis:987654321';
         const contentType = 'application/json';
         internal.put(location)
@@ -177,7 +177,7 @@ describe('Endpoint /v1/book', () => {
             webapp.get(location)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
-                  expect(links).to.have.property('self');
+                  expectValidate(links, 'schemas/book-links-out.json');
                   expect(links.self).to.equal(location);
                   expectValidate(data, 'schemas/book-data-out.json');
                   expect(data.pid).to.equal(pid);
@@ -210,7 +210,7 @@ describe('Endpoint /v1/book', () => {
           .send(harryPotter)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
-              expect(links).to.have.property('self');
+              expectValidate(links, 'schemas/book-links-out.json');
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/book-data-out.json');
               expect(data.pid).to.equal(pid);
@@ -224,7 +224,7 @@ describe('Endpoint /v1/book', () => {
             webapp.get(location)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
-                  expect(links).to.have.property('self');
+                  expectValidate(links, 'schemas/book-links-out.json');
                   expect(links.self).to.equal(location);
                   expectValidate(data, 'schemas/book-data-out.json');
                   expect(data.pid).to.equal(pid);
