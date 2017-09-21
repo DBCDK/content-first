@@ -38,32 +38,31 @@ class WorkPage extends React.Component {
 
     return (
       <div className='work-page'>
-        <div className='row'>
-          <div className='work-details col-xs-8 col-centered text-left'>
+        <div className='row work-details'>
+          <div className='col-xs-9 col-centered text-left'>
             <div className='cover col-xs-3'><img alt='' src={work.links.cover}/></div>
             <div className='col-xs-9'>
               <div className='title'>{work.data.title}</div>
               <div className='creator'>{work.data.creator}</div>
               <div className='description'>{work.data.description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}</div>
             </div>
+            <div
+              id='collapsable-tags'
+              style={{transition: this.state.transition ? null : 'none', height: this.state.tagsCollapsed ? '90px' : height+'px', overflowY: 'hidden'}}
+              className='tags col-xs-12 text-left'>
+              {work.tags.map(t => {
+                return <span key={t.id} className='tag'>{t.title}</span>;
+              })}
+            </div>
+            <div className='col-xs-12 text-center'>
+              <button className={this.state.tagsCollapsed ? 'expand-btn btn btn-primary' : 'expand-btn btn btn-success'} onClick={() => {
+                this.setState({tagsCollapsed: !this.state.tagsCollapsed, transition: true});
+              }}>
+                {this.state.tagsCollapsed ? 'Flere' : 'Færre'}
+              </button>
+            </div>
           </div>
         </div>
-        <div className='row'>
-          <div
-            id='collapsable-tags'
-            style={{transition: this.state.transition ? null : 'none', height: this.state.tagsCollapsed ? '90px' : height+'px', overflowY: 'hidden'}}
-            className='tags col-xs-8 col-centered text-left'>
-            {work.tags.map(t => {
-              return <span key={t.id} className='tag'>{t.title}</span>;
-            })}
-          </div>
-          <button className='btn btn-info' onClick={() => {
-            this.setState({tagsCollapsed: !this.state.tagsCollapsed, transition: true});
-          }}>
-            Collapse/expand beautiful button
-          </button>
-        </div>
-
         {work.similar && <div className='row belt text-left'>
           <div className='col-xs-11 col-centered'>
             <div className='col-xs-12 header'>
