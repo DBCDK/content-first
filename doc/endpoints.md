@@ -117,6 +117,17 @@ Returns a list of tag for a specific PID, like
       }
     }
 
+### `PUT /v1/tags/`*pid*
+
+Creates or overwrites tags for a PID.  The input is like
+
+    {
+      "pid": "870970-basis:52947804",
+      "selected": ["44", "46", "49"]
+    }
+
+The result is like that of `GET /v1/tags/`*pid*.
+
 ### `POST /v1/tags`
 
 Add tags for a PID.  The input is like
