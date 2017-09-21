@@ -9,7 +9,9 @@ class WorkItem extends React.Component {
   render() {
     return (
       <div className='work' id={`work-${this.props.id}`}>
-        <div className='cover-image-wrapper'>
+        <div className='cover-image-wrapper' onClick={() => {
+          this.props.onCoverClick(this.props.work.book.pid);
+        }}>
           {this.props.work.links && <img
             alt=""
             className='cover-image'
@@ -19,7 +21,7 @@ class WorkItem extends React.Component {
             }}/>}
         </div>
         <div className='metakompas-description'>
-          {this.props.work.book.description.split('\n').map(line => <p>{line}</p>)}
+          {this.props.work.book.description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}
         </div>
       </div>
     );

@@ -2,14 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Belt from './Belt.component';
 import CreateProfile from '../profile/CreateProfile.component';
-import {ON_BELT_SCROLL, ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
+import {ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
-
-
-const SCROLL_INTERVAL = 3;
 
 class FrontPage extends React.Component {
 
@@ -53,17 +50,14 @@ class FrontPage extends React.Component {
             belt={belt}
             links={links}
             filters={selectedFilters}
-            onScrollRight={() => {
-              this.props.dispatch({type: ON_BELT_SCROLL, id: idx, scrollOffset: belt.scrollOffset + SCROLL_INTERVAL});
-            }}
-            onScrollLeft={() => {
-              this.props.dispatch({type: ON_BELT_SCROLL, id: idx, scrollOffset: belt.scrollOffset - SCROLL_INTERVAL});
-            }}
             onTagClick={(tagId) => {
               this.props.dispatch({type: ON_TAG_TOGGLE, tagId, beltId: idx});
             }}
             onMoreClick={(beltName) => {
               this.props.dispatch({type: HISTORY_PUSH, path: beltNameToPath(beltName)});
+            }}
+            onCoverClick={(pid) => {
+              this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
             }}
             custom={custom}
           />;

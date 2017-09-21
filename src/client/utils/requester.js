@@ -1,7 +1,9 @@
 import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
+import {ON_WORK_RESPONSE} from '../redux/work.reducer';
 import {getLeaves} from './filters';
 import profiles from '../data/profiles.json';
+import similar from '../data/similar.json';
 
 const filter = (works, selectedTitles) => {
   // Lets perform some client side filtering of stuff which is not yet
@@ -46,7 +48,45 @@ const sort = (works, profile) => {
   works.sort((w1, w2) => w1.score-w2.score);
 };
 
-const fetchBeltWorks = (belt, filterState, dispatch) => {
+export const fetchWork = (pid, dispatch) => {
+  request.get(`/v1/book/${pid}`)
+    .end(function(err, res) {
+      if (err) {
+        dispatch({type: ON_WORK_RESPONSE, pid, error: err});
+        return;
+      }
+      const work = JSON.parse(res.text);
+
+      // mapping pid to score
+      const similarList = similar[pid] || [];
+      const scores = {};
+      similarList.forEach(o => {
+        scores[o.pid] = o.val;
+      });
+
+      // fetch similar works
+      request.get('/v1/books/')
+        .query({pids: similarList.map(o => o.pid)})
+        .end(function(errSimilar, resSimilar) {
+
+          if (errSimilar) {
+            // just dispatch response wihtout similar works
+            dispatch({type: ON_WORK_RESPONSE, response: work});
+            return;
+          }
+          const works = JSON.parse(resSimilar.text).data.map(w => {
+            w.score = scores[w.book.pid];
+            return w;
+          });
+
+          work.similar = works;
+
+          dispatch({type: ON_WORK_RESPONSE, response: work});
+        });
+    });
+};
+
+export const fetchBeltWorks = (belt, filterState, dispatch) => {
   // get the selected tag ids, which are part of the taxonomy
   // these are the tags which do not have the custom property set to true
   const allSelected = filterState.beltFilters[belt.name];
@@ -82,5 +122,3 @@ const fetchBeltWorks = (belt, filterState, dispatch) => {
     });
 
 };
-
-export default fetchBeltWorks;

@@ -47,3 +47,7 @@
   border-radius: 1px;
   filter: contrast(1.25);
 }
+
+.work-page .cover img {
+  width: 100%;
+}

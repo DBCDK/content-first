@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkItem from '../work/WorkItem.component';
+import ScrollableBelt from './ScrollableBelt.component';
 
 export default class Belt extends React.Component {
 
@@ -15,7 +15,6 @@ export default class Belt extends React.Component {
   }
 
   render() {
-    const scrollPos = this.props.belt.scrollOffset ? (-1 * this.props.belt.scrollOffset * 265) + 'px' : '0px';
 
     // Create the html to go into
     const tooltipText = this.getTooltipText(this.props.filters);
@@ -45,21 +44,11 @@ export default class Belt extends React.Component {
           })}
         </div>
         {this.props.custom}
-        <div className='belt-wrapper'>
-          {this.props.belt.works && (
-            <div className='button-wrapper col-xs-12 noselect'>
-              <div className='left-btn scroll-btn text-center' onClick={this.props.onScrollLeft}>{'<'}</div>
-              <div className='right-btn scroll-btn text-center' onClick={this.props.onScrollRight}>{'>'}</div>
-            </div>
-          )}
-          <div className='works-wrapper col-xs-12 noselect'>
-            <div className='works' style={{transform: `translate3d(${scrollPos}, 0px, 0px)`}}>
-              {!this.props.belt.requireLogin && this.props.belt.works && this.props.belt.works.map((work, idx) => {
-                return <WorkItem id={`work-${idx}`} key={work.book.pid} work={work}/>;
-              })}
-            </div>
-          </div>
-        </div>
+        {!this.props.belt.requireLogin && <ScrollableBelt
+          works={this.props.belt.works}
+          scrollInterval={3}
+          onCoverClick={this.props.onCoverClick}
+        />}
       </div>
     );
   }

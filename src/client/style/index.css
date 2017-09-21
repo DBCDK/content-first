@@ -135,20 +135,20 @@ body {
   vertical-align: bottom;
   padding-bottom: 4px;
 }
-.belt .works-wrapper {
+.belt-wrapper .works-wrapper {
   overflow: hidden;
 }
 
-.belt .right-btn {
+.belt-wrapper .right-btn {
   margin-right: 0px;
   right: 0px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
-.belt .right-btn:hover {
+.belt-wrapper .right-btn:hover {
   opacity: .7;
 }
-.belt .scroll-btn {
+.belt-wrapper .scroll-btn {
   width: 90px;
   height: 285px;
   background: white;
@@ -161,14 +161,14 @@ body {
   font-size: 50px;
   padding-top: 110px;
 }
-.belt .left-btn {
+.belt-wrapper .left-btn {
   margin-left: -15px;
 
 }
-.belt .left-btn:hover {
+.belt-wrapper .left-btn:hover {
   opacity: .7;
 }
-.belt .works {
+.belt-wrapper .works {
   -webkit-backface-visibility: hidden;
   -webkit-font-smoothing:antialiased;
   margin-top: 20px;
@@ -178,7 +178,7 @@ body {
   text-rendering: geometricPrecision;
 }
 
-.belt .tags span {
+.belt-wrapper .tags span {
   font-family: 'Raleway', sans-serif;
   margin-right: 10px;
 }

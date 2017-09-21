@@ -6,15 +6,13 @@ const defaultState = {
       isLoading: false,
       onFrontPage: true,
       links: ['En spændende bog', 'En anderledes bog'],
-      scrollOffset: 0,
       works: []
     },
     {
       name: 'En let læst bog',
       isLoading: false,
       onFrontPage: true,
-      links: ['En bog der gør dig klogere', 'En udfordrende bog'],
-      scrollOffset: 0
+      links: ['En bog der gør dig klogere', 'En udfordrende bog']
     },
     {
       name: 'Bibliotekarens ugentlige anbefalinger',
@@ -22,7 +20,6 @@ const defaultState = {
       isLoading: false,
       onFrontPage: true,
       links: [],
-      scrollOffset: 0,
       works: []
     },
     {
@@ -62,7 +59,6 @@ const defaultState = {
 
 export const ON_BELT_REQUEST = 'ON_BELT_REQUEST';
 export const ON_BELT_RESPONSE = 'ON_BELT_RESPONSE';
-export const ON_BELT_SCROLL = 'ON_BELT_SCROLL';
 export const ON_TAG_TOGGLE = 'ON_TAG_TOGGLE';
 
 const beltsReducer = (state = defaultState, action) => {
@@ -84,19 +80,6 @@ const beltsReducer = (state = defaultState, action) => {
         }
         return belt;
       });
-      return Object.assign({}, {belts});
-    }
-
-    case ON_BELT_SCROLL: {
-      const belts = [...state.belts];
-      const belt = belts[action.id];
-      if (action.scrollOffset < 0) {
-        action.scrollOffset = 0;
-      }
-      else if (action.scrollOffset > belt.works.length - 1) {
-        action.scrollOffset = belt.works.length - 1;
-      }
-      belts[action.id] = Object.assign({}, belt, {scrollOffset: action.scrollOffset});
       return Object.assign({}, {belts});
     }
 
