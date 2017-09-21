@@ -49,42 +49,46 @@ const sort = (works, profile) => {
 };
 
 export const fetchWork = (pid, dispatch) => {
-  request.get(`/v1/book/${pid}`)
-    .end(function(err, res) {
-      if (err) {
-        dispatch({type: ON_WORK_RESPONSE, pid, error: err});
-        return;
-      }
-      const work = JSON.parse(res.text);
 
-      // mapping pid to score
-      const similarList = similar[pid] || [];
-      const scores = {};
-      similarList.forEach(o => {
-        scores[o.pid] = o.val;
-      });
+  // mapping pid to score
+  const similarList = similar[pid] || [];
+  const scores = {};
+  similarList.forEach(o => {
+    scores[o.pid] = o.val;
+  });
 
-      // fetch similar works
-      request.get('/v1/books/')
-        .query({pids: similarList.map(o => o.pid)})
-        .end(function(errSimilar, resSimilar) {
+  const getWork = request.get(`/v1/book/${pid}`);
+  const getMetaTags = request.get(`/v1/tags/${pid}`);
+  const getSimilarWorks = request.get('/v1/books/')
+    .query({pids: similarList.map(o => o.pid)});
+  const getTaxonomy = request.get('/v1/complete-taxonomy');
 
-          if (errSimilar) {
-            // just dispatch response wihtout similar works
-            dispatch({type: ON_WORK_RESPONSE, response: work});
-            return;
-          }
-          const works = JSON.parse(resSimilar.text).data.map(w => {
-            w.score = scores[w.book.pid];
-            return w;
-          });
-
-          work.similar = works;
-          work.similar.sort((w1, w2) => w2.score-w1.score);
-
-          dispatch({type: ON_WORK_RESPONSE, response: work});
-        });
+  Promise.all([getWork, getMetaTags, getSimilarWorks, getTaxonomy]).then(responses => {
+    const work = JSON.parse(responses[0].text);
+    const tags = JSON.parse(responses[1].text).data.tags;
+    const similarWorks = JSON.parse(responses[2].text).data.map(w => {
+      w.score = scores[w.book.pid];
+      return w;
     });
+    const taxonomy = JSON.parse(responses[3].text).data;
+    const taxonomyMap = {};
+    getLeaves(taxonomy).forEach(l => {
+      taxonomyMap[l.id] = l;
+    });
+    work.tags = [];
+    tags.forEach(t => {
+      if (taxonomyMap[t]) {
+        work.tags.push(taxonomyMap[t]);
+      }
+    });
+
+    work.similar = similarWorks;
+    work.similar.sort((w1, w2) => w2.score-w1.score);
+
+    dispatch({type: ON_WORK_RESPONSE, response: work});
+  }).catch(error => {
+    dispatch({type: ON_WORK_RESPONSE, pid, error});
+  });
 };
 
 export const fetchBeltWorks = (belt, filterState, dispatch) => {
