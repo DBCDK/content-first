@@ -8,6 +8,9 @@ export const getLeaves = (filters) => {
     if (filter.children) {
       leaves = [...leaves, ...getLeaves(filter.children)];
     }
+    else if (filter.items) {
+      leaves = [...leaves, ...getLeaves(filter.items)];
+    }
     else {
       leaves.push(filter);
     }

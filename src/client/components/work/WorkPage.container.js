@@ -40,6 +40,13 @@ class WorkPage extends React.Component {
             </div>
           </div>
         </div>
+        <div className='row'>
+          <div className='tags col-xs-8 col-centered text-left'>
+            {work.tags.map(t => {
+              return <span className='tag'>{t.title}</span>;
+            })}
+          </div>
+        </div>
         {work.similar && <div className='row belt text-left'>
           <div className='col-xs-11 col-centered'>
             <div className='col-xs-12 header'>

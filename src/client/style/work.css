@@ -27,6 +27,7 @@
   line-height: 18px;*/
 }
 .work .tag {
+  color: blue;
   margin-left: 10px;
 }
 .cover-image-wrapper {
@@ -50,4 +51,16 @@
 
 .work-page .cover img {
   width: 100%;
+}
+
+.work-page .tag {
+  display: inline-block;
+  background: #f2dcd6;
+  color: #d4574d;
+  border: 1px #f2dcd6 solid;
+  margin-right: 10px;
+  margin-top: 10px;
+  font-family: 'Raleway', sans-serif;
+  padding: 6px 12px;
+  border-radius: 4px;
 }
