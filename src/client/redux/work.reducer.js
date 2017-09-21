@@ -1,7 +1,6 @@
 const defaultState = {
   pid: '',
-  work: {},
-  similar: []
+  work: {}
 };
 
 export const ON_WORK_REQUEST = 'ON_WORK_REQUEST';

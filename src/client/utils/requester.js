@@ -80,6 +80,7 @@ export const fetchWork = (pid, dispatch) => {
           });
 
           work.similar = works;
+          work.similar.sort((w1, w2) => w2.score-w1.score);
 
           dispatch({type: ON_WORK_RESPONSE, response: work});
         });
