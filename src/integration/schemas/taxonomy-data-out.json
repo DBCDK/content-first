@@ -1,0 +1,18 @@
+{
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "required": true,
+        "type": "integer"
+      },
+      "title": {
+        "required": true,
+        "type": "string"
+      }
+    },
+    "additionalProperties": true
+  }
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "foo",
+    "title": "Ostemad",
+    "items": [
+      {
+        "id": "bar",
+        "title": "Optimistisk",
+        "items": [
+          {"id":"quux", "title": "Hej"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "title": "Top",
+    "items": [
+      {
+        "id": "3",
+        "title": "Middle",
+        "items": [
+          {"id": "4", "title": "Bottom1"},
+          {"id": "4", "title": "Bottom2"}
+        ]
+      }
+    ]
+  }
+]

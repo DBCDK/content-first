@@ -11,6 +11,9 @@ const constants = require('server/constants')();
 const bookTable = constants.books.table;
 const coverTable = constants.covers.table;
 const tagTable = constants.tags.table;
+const taxonomyTopTable = constants.taxonomy.topTable;
+const taxonomyMiddleTable = constants.taxonomy.middleTable;
+const taxonomyBottomTable = constants.taxonomy.bottomTable;
 
 module.exports = knex => {
 
@@ -18,7 +21,7 @@ module.exports = knex => {
    * Truncate all tables in the current database.
    */
   function clear() {
-    return knex.raw(`truncate table ${tagTable}, ${bookTable}, ${coverTable} cascade`);
+    return knex.raw(`truncate table ${tagTable}, ${taxonomyBottomTable}, ${taxonomyMiddleTable}, ${taxonomyTopTable}, ${bookTable}, ${coverTable} cascade`);
   }
 
   /**
@@ -28,6 +31,9 @@ module.exports = knex => {
     await knex.schema.dropTableIfExists(coverTable);
     await knex.schema.dropTableIfExists(bookTable);
     await knex.schema.dropTableIfExists(tagTable);
+    await knex.schema.dropTableIfExists(taxonomyBottomTable);
+    await knex.schema.dropTableIfExists(taxonomyMiddleTable);
+    await knex.schema.dropTableIfExists(taxonomyTopTable);
     await knex.schema.dropTableIfExists('knex_migrations');
     await knex.schema.dropTableIfExists('knex_migrations_lock');
   }

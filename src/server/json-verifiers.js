@@ -8,17 +8,22 @@ const nicifyJsonValidationErrors = require('__/json').nicifyJsonValidationErrors
 
 function validatingInput (document, schema) {
   return new Promise((resolve, reject) => {
-    const validate = validator(schema, formats);
-    if (validate(document)) {
-      return resolve(document);
+    try {
+      const validate = validator(schema, formats);
+      if (validate(document)) {
+        return resolve(document);
+      }
+      // Massage array of objects of errors into human-readable form.
+      const niceErrors = nicifyJsonValidationErrors(validate);
+      reject({
+        status: 400,
+        title: `Input data does not adhere to ${schema}`,
+        meta: {body: document, problems: niceErrors}
+      });
     }
-    // Massage array of objects of errors into human-readable form.
-    const niceErrors = nicifyJsonValidationErrors(validate);
-    reject({
-      status: 400,
-      title: `Input data does not adhere to ${schema}`,
-      meta: {body: document, problems: niceErrors}
-    });
+    catch (error) {
+      reject(error);
+    }
   });
 }
 exports.validatingInput = validatingInput;

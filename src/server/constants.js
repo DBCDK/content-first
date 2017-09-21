@@ -14,6 +14,11 @@ const constants = {
   },
   tags: {
     table: 'tags'
+  },
+  taxonomy: {
+    topTable: 'taxonomy_top',
+    middleTable: 'taxonomy_middle',
+    bottomTable: 'taxonomy_bottom'
   }
 };
 

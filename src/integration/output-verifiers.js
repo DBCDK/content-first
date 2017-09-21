@@ -5,6 +5,7 @@
 'use strict';
 
 const expect = require('chai').expect;
+const assert = require('chai').assert;
 const validator = require('is-my-json-valid/require');
 const formats = require('server/schemas/formats');
 const nicifyJsonValidationErrors = require('__/json').nicifyJsonValidationErrors;
@@ -42,7 +43,7 @@ function expectValidate(document, schema) {
   validate(document);
   const problems = nicifyJsonValidationErrors(validate);
   if (problems.length > 0) {
-    expect(problems).to.deep.equal([], `Got ${JSON.stringify(document)}`);
+    assert(false, `Got JSON ${JSON.stringify(document)} with the following problems: ${problems}`);
   }
   expect(problems).to.deep.equal([]);
 }
