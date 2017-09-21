@@ -52,7 +52,9 @@
 .work-page .cover img {
   width: 100%;
 }
-
+.work-page .tags {
+  transition: all .2s ease-in-out;
+}
 .work-page .tag {
   display: inline-block;
   background: #f2dcd6;

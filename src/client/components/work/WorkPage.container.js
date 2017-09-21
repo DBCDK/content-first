@@ -5,11 +5,16 @@ import ScrollableBelt from '../frontpage/ScrollableBelt.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
 
 class WorkPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {tagsCollapsed: true, transition: true};
+  }
 
   fetchWork() {
     // only fetch work if pid has changed to avoid endless loop
     if (this.props.pid !== this.props.workState.pid) {
       this.props.dispatch({type: ON_WORK_REQUEST, pid: this.props.pid});
+      this.setState({tagsCollapsed: true, transition: false});
     }
   }
 
@@ -28,6 +33,9 @@ class WorkPage extends React.Component {
       return null;
     }
 
+    const tagsDomNode = document.getElementById('collapsable-tags');
+    const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
+
     return (
       <div className='work-page'>
         <div className='row'>
@@ -41,12 +49,21 @@ class WorkPage extends React.Component {
           </div>
         </div>
         <div className='row'>
-          <div className='tags col-xs-8 col-centered text-left'>
+          <div
+            id='collapsable-tags'
+            style={{transition: this.state.transition ? null : 'none', height: this.state.tagsCollapsed ? '90px' : height+'px', overflowY: 'hidden'}}
+            className='tags col-xs-8 col-centered text-left'>
             {work.tags.map(t => {
-              return <span className='tag'>{t.title}</span>;
+              return <span key={t.id} className='tag'>{t.title}</span>;
             })}
           </div>
+          <button className='btn btn-info' onClick={() => {
+            this.setState({tagsCollapsed: !this.state.tagsCollapsed, transition: true});
+          }}>
+            Collapse/expand beautiful button
+          </button>
         </div>
+
         {work.similar && <div className='row belt text-left'>
           <div className='col-xs-11 col-centered'>
             <div className='col-xs-12 header'>
