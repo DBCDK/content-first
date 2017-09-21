@@ -26,6 +26,11 @@ const solrFieldList = [
   'rec.unitId',
   'rec.workId',
   'rec.bibliographicRecordId',
+  'scanphrase.subject',
+  'facet.genre',
+  'term.description',
+  'term.dateFirstEdition',
+  'term.literaryForm',
   'display.creator',
   'scanphrase.creator',
   'display.title',
@@ -192,7 +197,7 @@ function extractFromSolr(solr) {
       solrFieldList.forEach(function(fld) {
         const field = getNthElement(fld, '.', 1);
         if (doc[fld]) {
-          ret[field] = Array.isArray(doc[fld]) ? doc[fld][0] : doc[fld];
+          ret[field] = Array.isArray(doc[fld]) ? doc[fld].join(', ') : doc[fld];
         }
       });
     }
