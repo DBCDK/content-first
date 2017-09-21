@@ -4,6 +4,7 @@ const constants = require('server/constants')();
 const bookTable = constants.books.table;
 const coverTable = constants.covers.table;
 const tagTable = constants.tags.table;
+const userTable = constants.users.table;
 const topTable = constants.taxonomy.topTable;
 const middleTable = constants.taxonomy.middleTable;
 const bottomTable = constants.taxonomy.bottomTable;
@@ -57,4 +58,5 @@ exports.seed = async knex => {
     await knex(middleTable).insert(middleRawInsert);
     await knex(bottomTable).insert(bottomRawInsert);
   }
+  await knex(userTable).insert({uuid: 'cd3cc362-d29c-4d40-8662-458664251e52'});
 };

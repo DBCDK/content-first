@@ -19,6 +19,9 @@ const constants = {
     topTable: 'taxonomy_top',
     middleTable: 'taxonomy_middle',
     bottomTable: 'taxonomy_bottom'
+  },
+  users: {
+    table: 'users'
   }
 };
 

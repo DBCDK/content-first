@@ -263,6 +263,22 @@ The data must be [valid taxonomy](../src/server/schemas/taxonomy-in.json), like
 
 Note that the ids are quoted.
 
+### `GET /v1/users/`*uuid*
+
+The result is like
+
+    { "data":
+      { "uuid": "163c043f-d727-428f-b5f5-e54bb991eb8c"
+      }
+    , "links": 
+      { "self": "/v1/users/163c043f-d727-428f-b5f5-e54bb991eb8c"
+      }
+    }
+
+### `POST /v1/login`
+
+Simulates that a user logs in.  The result is same as for `GET /v1/users`.
+
 # Command-line interaction
 
 To upload a book:
