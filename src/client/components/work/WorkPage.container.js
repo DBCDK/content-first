@@ -33,6 +33,22 @@ class WorkPage extends React.Component {
       return null;
     }
 
+    // we need to massage the data
+    // stemnings tags, we use the taxonomy first level title
+    // for all other teags we use the second level title
+    let tagGroups = {};
+    work.tags.forEach(t => {
+      let groupName = t.parents[0] === 'Stemning' ? t.parents[0] : t.parents[1];
+      if (!tagGroups[groupName]) {
+        tagGroups[groupName] = [];
+      }
+      tagGroups[groupName].push(t);
+    });
+    tagGroups = Object.keys(tagGroups).map(key => {
+      return {title: key, data: tagGroups[key]};
+    });
+    tagGroups.sort((group1, group2) => group1.title < group2.title ? -1 : 1);
+
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
 
@@ -62,13 +78,22 @@ class WorkPage extends React.Component {
             </div>
             <div
               id='collapsable-tags'
-              style={{transition: this.state.transition ? null : 'none', height: this.state.tagsCollapsed ? '90px' : height+'px', overflowY: 'hidden'}}
+              style={{transition: this.state.transition ? null : 'none', height: this.state.tagsCollapsed ? '120px' : height+'px', overflowY: 'hidden'}}
               className='tags col-xs-12 text-left'>
-              {work.tags.map(t => {
-                return <span key={t.id} className='tag'>{t.title}</span>;
+              {tagGroups.map(group => {
+                return (
+                  <div className='tag-group'>
+                    <div className='tag-group-title col-xs-2'>{group.title}</div>
+                    <div className='col-xs-10'>
+                      {group.data.map(t => {
+                        return <span key={t.id} className='tag'>{t.title}</span>;
+                      })}
+                    </div>
+                  </div>
+                );
               })}
             </div>
-            <div className='col-xs-12 text-center'>
+            <div className='col-xs-10 col-xs-offset-2'>
               <button className={this.state.tagsCollapsed ? 'expand-btn btn btn-primary' : 'expand-btn btn btn-success'} onClick={() => {
                 this.setState({tagsCollapsed: !this.state.tagsCollapsed, transition: true});
               }}>

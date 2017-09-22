@@ -2,30 +2,22 @@
  * Recursively collects the leaves of the filters-tree.
  * @return list of filters
  */
-export const getLeaves = (filters) => {
+export const getLeaves = (filters, titleStack=[]) => {
   let leaves = [];
   filters.forEach(filter => {
     if (filter.children) {
-      leaves = [...leaves, ...getLeaves(filter.children)];
+      titleStack.push(filter.title);
+      leaves = [...leaves, ...getLeaves(filter.children, titleStack)];
+      titleStack.pop();
     }
     else if (filter.items) {
-      leaves = [...leaves, ...getLeaves(filter.items)];
+      titleStack.push(filter.title);
+      leaves = [...leaves, ...getLeaves(filter.items, titleStack)];
+      titleStack.pop();
     }
     else {
-      leaves.push(filter);
+      leaves.push(Object.assign({}, filter, {parents: [...titleStack]}));
     }
   });
   return leaves;
 };
-
-/**
- * Will do some client-side filtering of works
- */
-// export const filterWorks = (works, filters) => {
-// };
-
-/**
- * Will do some client-side sorting of works
- */
-// export const sortWorks = (works, sortBy) => {
-// };
