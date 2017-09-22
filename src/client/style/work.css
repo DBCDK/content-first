@@ -66,9 +66,9 @@
 }
 .work-page .tag {
   display: inline-block;
-  background: #f2dcd6;
-  color: #d4574d;
-  border: 1px #f2dcd6 solid;
+  color: white;
+  background: #fc492d;
+  border: 1px #fc492d solid;
   margin-right: 10px;
   margin-top: 10px;
   font-family: 'Raleway', sans-serif;
