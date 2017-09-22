@@ -21,7 +21,7 @@ class WorkItem extends React.Component {
             }}/>}
         </div>
         <div className='metakompas-description'>
-          {this.props.work.book.description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}
+          {this.props.work.book.taxonomy_description && this.props.work.book.taxonomy_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}
         </div>
       </div>
     );
