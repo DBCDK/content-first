@@ -70,8 +70,8 @@ class WorkPage extends React.Component {
                 {work.data.pages && <div className='page-count'>{`${work.data.pages} sider`}</div>}
                 <div className='year'>
                   {work.data.literary_form}
-                  {work.data.literary_form && work.data.first_edition_year && ', '}
-                  {work.data.first_edition_year}
+                  {work.data.literary_form && work.data.first_edition_year ? ', ' : ''}
+                  {work.data.first_edition_year ? work.data.first_edition_year : ''}
                 </div>
                 {work.data.genre && <div className='genre'>{work.data.genre}</div>}
               </div>
@@ -82,7 +82,7 @@ class WorkPage extends React.Component {
               className='tags col-xs-12 text-left'>
               {tagGroups.map(group => {
                 return (
-                  <div className='tag-group'>
+                  <div key={group.title} className='tag-group'>
                     <div className='tag-group-title col-xs-2'>{group.title}</div>
                     <div className='col-xs-10'>
                       {group.data.map(t => {
@@ -105,7 +105,7 @@ class WorkPage extends React.Component {
         {work.similar && <div className='row belt text-left'>
           <div className='col-xs-11 col-centered'>
             <div className='col-xs-12 header'>
-              <span className='belt-title'>Lignende titler</span>
+              <span className='belt-title'>Bøger der giver lignende oplevelser</span>
             </div>
             <ScrollableBelt
               works={work.similar}
