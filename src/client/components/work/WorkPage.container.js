@@ -11,11 +11,8 @@ class WorkPage extends React.Component {
   }
 
   fetchWork() {
-    // only fetch work if pid has changed to avoid endless loop
-    if (this.props.pid !== this.props.workState.pid) {
-      this.props.dispatch({type: ON_WORK_REQUEST, pid: this.props.pid});
-      this.setState({tagsCollapsed: true, transition: false});
-    }
+    this.props.dispatch({type: ON_WORK_REQUEST, pid: this.props.pid});
+    this.setState({tagsCollapsed: true, transition: false});
   }
 
   componentDidMount() {
@@ -23,7 +20,10 @@ class WorkPage extends React.Component {
   }
 
   componentDidUpdate() {
-    this.fetchWork();
+    // only fetch work if pid has changed to avoid endless loop
+    if (this.props.pid !== this.props.workState.pid) {
+      this.fetchWork();
+    }
   }
 
   render() {
@@ -39,12 +39,26 @@ class WorkPage extends React.Component {
     return (
       <div className='work-page'>
         <div className='row work-details'>
-          <div className='col-xs-9 col-centered text-left'>
-            <div className='cover col-xs-3'><img alt='' src={work.links.cover}/></div>
-            <div className='col-xs-9'>
+          <div className='col-xs-11 col-centered text-left'>
+            <div className='cover-image-wrapper'>
+              <img style={{height: '100%'}} alt='' src={work.links.cover}/>
+            </div>
+            <div className='info'>
               <div className='title'>{work.data.title}</div>
               <div className='creator'>{work.data.creator}</div>
-              <div className='description'>{work.data.description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}</div>
+              <div className='meta-description'>{work.data.description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}</div>
+              <div className='line'></div>
+              <div className='description'>{work.data.title_full}</div>
+              <div className='extra'>
+                <div className='subjects'>{work.data.subject}</div>
+                {work.data.pages && <div className='page-count'>{`${work.data.pages} sider`}</div>}
+                <div className='year'>
+                  {work.data.literary_form}
+                  {work.data.literary_form && work.data.first_edition_year && ', '}
+                  {work.data.first_edition_year}
+                </div>
+                {work.data.genre && <div className='genre'>{work.data.genre}</div>}
+              </div>
             </div>
             <div
               id='collapsable-tags'

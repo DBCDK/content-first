@@ -9,7 +9,7 @@ class WorkItem extends React.Component {
   render() {
     return (
       <div className='work' id={`work-${this.props.id}`}>
-        <div className='cover-image-wrapper' onClick={() => {
+        <div className='cover-image-wrapper scale-on-hover' onClick={() => {
           this.props.onCoverClick(this.props.work.book.pid);
         }}>
           {this.props.work.links && <img
