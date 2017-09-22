@@ -22,15 +22,16 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
       , "title_full": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
       , "description": "Ingen beskrivelse"
       , "pages": 645
-      , "published_year": 2017
-      , "published_month": 2
-      , "published_day": 3
       , "loan_count": 1020
       , "type": "Bog"
       , "work_type": "book"
       , "language": "Dansk"
       , "items": 196
       , "libraries": 80
+      , first_edition_year: 2017
+      , genre: 'humor'
+      , subject: 'billedværker, humor, fotografier'
+      , literary_form: 'digte, fiktion'
       }
     , "links":
       { "self": "/v1/book/870970-basis:53188931"
@@ -77,9 +78,14 @@ The data must be [valid book input](../src/server/schemas/book-in.json), like
     , "unitId": "unit:22125672"
     , "workId": "work:20137979"
     , "bibliographicRecordId": "53188931"
+    , "subject": "billedværker, humor, fotografier"
+    , "genre": "humor"
+    , "description": "Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne"
     , "creator": "Jens Blendstrup"
     , "title": "Havelågebogen"
     , "titleFull": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
+    , "dateFirstEdition": "2017"
+    , "literaryForm": "digte, fiktion"
     , "type": "Bog"
     , "workType": "book"
     , "language": "Dansk"
