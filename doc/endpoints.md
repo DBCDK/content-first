@@ -20,7 +20,8 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
       , "creator": "Jens Blendstrup"
       , "title": "Havelågebogen"
       , "title_full": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
-      , "description": "Ingen beskrivelse"
+      , "taxonomy_description": "Ingen beskrivelse"
+      , "bibliographic_description": "Heller ingen beskrivelse"
       , "pages": 645
       , "loan_count": 1020
       , "type": "Bog"
@@ -80,7 +81,8 @@ The data must be [valid book input](../src/server/schemas/book-in.json), like
     , "bibliographicRecordId": "53188931"
     , "subject": "billedværker, humor, fotografier"
     , "genre": "humor"
-    , "description": "Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne"
+    , "taxonomyDescription": "Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne"
+    , "bibliographicDescription": "Noget med låger"
     , "creator": "Jens Blendstrup"
     , "title": "Havelågebogen"
     , "titleFull": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"

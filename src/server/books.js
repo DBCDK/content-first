@@ -26,7 +26,8 @@ function parsingMetaDataInjection (obj) {
         book.pages = document.pages;
         book.items = document.items;
         book.cover = document.image_detail;
-        book.description = document.description;
+        book.taxonomy_description = document.taxonomyDescription;
+        book.bibliographic_description = document.bibliographicDescription;
         const year = parseInt(document.dateFirstEdition, 10);
         book.first_edition_year = _.isNaN(year) ? 0 : year;
         book.subject = document.subject ? document.subject : '';
@@ -55,7 +56,8 @@ function transformMetaDataToBook (metadata) {
     'unit_id',
     'work_id',
     'work_type',
-    'description',
+    'taxonomy_description',
+    'bibliographic_description',
     'subject',
     'genre',
     'literary_form',
