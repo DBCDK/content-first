@@ -36,6 +36,8 @@ describe('books', () => {
           expect(problems).to.deep.include('field items is required');
           expect(problems).to.deep.include('field libraries is required');
           expect(problems).to.deep.include('field pages is required');
+          expect(problems).to.deep.include('field bibliographicDescription is required');
+          expect(problems).to.deep.include('field taxonomyDescription is required');
         });
     });
     it('should fill in all values from JSON', () => {
@@ -50,7 +52,8 @@ describe('books', () => {
           unit_id: 'unit:22125672',
           work_id: 'work:20137979',
           work_type: 'book',
-          description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
+          taxonomy_description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
+          bibliographic_description: 'Noget med låger',
           bibliographic_record_id: 53188931,
           items: 196,
           libraries: 80,
@@ -83,7 +86,8 @@ describe('books', () => {
             type: 'Bog',
             unit_id: 'unit:22125672',
             work_id: 'work:20137979',
-            description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
+            taxonomy_description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
+            bibliographic_description: 'Noget med låger',
             work_type: 'book',
             subject: 'billedværker, humor, fotografier',
             genre: 'humor',

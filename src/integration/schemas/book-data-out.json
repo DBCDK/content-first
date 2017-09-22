@@ -29,7 +29,11 @@
       "required": true,
       "type": "string"
     },
-    "description": {
+    "taxonomy_description": {
+      "required": true,
+      "type": "string"
+    },
+    "bibliographic_description": {
       "required": true,
       "type": "string"
     },

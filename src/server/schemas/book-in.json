@@ -57,8 +57,12 @@
       "required": true,
       "type": "integer"
     },
-    "description": {
-      "required": false,
+    "taxonomyDescription": {
+      "required": true,
+      "type": "string"
+    },
+    "bibliographicDescription": {
+      "required": true,
       "type": "string"
     },
     "subject": {
