@@ -389,7 +389,7 @@ const filterReducer = (state = defaultState, action) => {
     case ON_FILTER_TOGGLE: {
       let filterId;
       getLeaves(state.filters).forEach(filter => {
-        if (filter === action.filter) {
+        if (filter.id === action.filter.id) {
           filterId = filter.id;
         }
       });
