@@ -58,7 +58,7 @@ class WorkPage extends React.Component {
         <div className='row work-details'>
           <div className='col-xs-11 col-centered text-left'>
             <div className='cover-image-wrapper'>
-              <img style={{height: '100%'}} alt='' src={work.links.cover}/>
+              <img alt='' src={work.links.cover}/>
             </div>
             <div className='info'>
               <div className='title'>{work.data.title}</div>
