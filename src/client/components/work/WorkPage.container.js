@@ -51,6 +51,7 @@ class WorkPage extends React.Component {
 
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
+    const tax_description = work.data.taxonomy_description || work.data.description;
 
     return (
       <div className='work-page'>
@@ -62,7 +63,7 @@ class WorkPage extends React.Component {
             <div className='info'>
               <div className='title'>{work.data.title}</div>
               <div className='creator'>{work.data.creator}</div>
-              <div className='meta-description'>{work.data.taxonomy_description && work.data.taxonomy_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}</div>
+              <div className='meta-description'>{tax_description && tax_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}</div>
               <div className='line'></div>
               <div className='description'>{work.data.bibliographic_description}</div>
               <div className='extra'>
