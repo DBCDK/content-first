@@ -7,6 +7,7 @@ class WorkItem extends React.Component {
   }
 
   render() {
+    const tax_description = this.props.work.book.taxonomy_description || this.props.work.book.description;
     return (
       <div className='work' id={`work-${this.props.id}`}>
         <div className='cover-image-wrapper scale-on-hover' onClick={() => {
@@ -21,7 +22,7 @@ class WorkItem extends React.Component {
             }}/>}
         </div>
         <div className='metakompas-description'>
-          {this.props.work.book.taxonomy_description && this.props.work.book.taxonomy_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}
+          {tax_description && tax_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}
         </div>
       </div>
     );
