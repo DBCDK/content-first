@@ -3,6 +3,7 @@ import {ON_WORK_REQUEST} from './work.reducer';
 import {fetchBeltWorks, fetchWork} from '../utils/requester';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
+export const HISTORY_REPLACE = 'HISTORY_REPLACE';
 
 export const historyMiddleware = history => store => next => action => {
   switch (action.type) {
@@ -11,6 +12,10 @@ export const historyMiddleware = history => store => next => action => {
         history.push(action.path);
         window.scrollTo(0, 0);
       }
+      break;
+    case HISTORY_REPLACE:
+      history.replace(action.path);
+      window.scrollTo(0, 0);
       break;
     default:
       return next(action);

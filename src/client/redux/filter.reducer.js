@@ -389,10 +389,13 @@ const filterReducer = (state = defaultState, action) => {
     case ON_FILTER_TOGGLE: {
       let filterId;
       getLeaves(state.filters).forEach(filter => {
-        if (filter.id === action.filter.id) {
+        if (filter.id === action.filterId) {
           filterId = filter.id;
         }
       });
+      if (!filterId) {
+        return state;
+      }
       const beltFilters = Object.assign({}, state.beltFilters);
       if (beltFilters[action.beltName].indexOf(filterId) >= 0) {
         beltFilters[action.beltName] = beltFilters[action.beltName].filter(id => filterId !== id);

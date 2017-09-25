@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import ScrollableBelt from '../frontpage/ScrollableBelt.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
+import {getLeaves} from '../../utils/filters';
+import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -53,6 +55,8 @@ class WorkPage extends React.Component {
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
     const tax_description = work.data.taxonomy_description || work.data.description;
 
+    const allowedFilterIds = getLeaves(this.props.filterState.filters).map(f => f.id);
+
     return (
       <div className='work-page'>
         <div className='row work-details'>
@@ -87,6 +91,12 @@ class WorkPage extends React.Component {
                     <div className='tag-group-title col-xs-2'>{group.title}</div>
                     <div className='col-xs-10'>
                       {group.data.map(t => {
+                        if (allowedFilterIds.indexOf(t.id + '') >= 0) {
+                          return <span key={t.id} className='tag active' onClick={() => {
+                            this.props.dispatch({type: ON_RESET_FILTERS, beltName: 'Passer med min smag'});
+                            this.props.dispatch({type: HISTORY_PUSH, path: `/passer-med-min-smag?filter=${t.id}`});
+                          }}>{t.title}</span>;
+                        }
                         return <span key={t.id} className='tag'>{t.title}</span>;
                       })}
                     </div>
@@ -124,6 +134,6 @@ class WorkPage extends React.Component {
 export default connect(
   // Map redux state to props
   (state) => {
-    return {workState: state.workReducer};
+    return {workState: state.workReducer, filterState: state.filterReducer};
   }
 )(WorkPage);

@@ -66,15 +66,22 @@
 }
 .work-page .tag {
   display: inline-block;
-  color: white;
-  background: #fc492d;
-  border: 1px #fc492d solid;
   margin-right: 10px;
   margin-top: 10px;
   font-family: 'Raleway', sans-serif;
   padding: 6px 12px;
   border-radius: 4px;
+  background: grey;
+  border: 1px grey solid;
+  color: white;
 }
+.work-page .tag.active {
+  cursor: pointer;
+  color: white;
+  background: #fc492d;
+  border: 1px #fc492d solid;
+}
+
 
 .work-details .info {
   vertical-align: top;

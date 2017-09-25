@@ -7,14 +7,53 @@ import BootstrapDropDown from './BootstrapDropdown.component';
 import {ON_SORT_OPTION_SELECT, ON_EDIT_FILTER_TOGGLE, ON_FILTER_TOGGLE, ON_RESET_FILTERS, ON_EXPAND_FILTERS_TOGGLE} from '../../redux/filter.reducer';
 import {ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {getLeaves} from '../../utils/filters';
-import {HISTORY_PUSH} from '../../redux/middleware';
+import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 
 class FilterPage extends React.Component {
 
+  toggleFilter(filterId) {
+
+    const allowedFilterIds = getLeaves(this.props.filterState.filters).map(f => f.id);
+
+    // if this is not part of the allowed filters, we will not continue
+    // otherwise hell is upon us (we'll end up in an endless loop)
+    if (allowedFilterIds.indexOf(filterId) < 0) {
+      return;
+    }
+
+    const selectedFilterIds = this.props.filterState.beltFilters[this.props.belt.name];
+    const isRemoving = selectedFilterIds && selectedFilterIds.indexOf(filterId) >= 0;
+    const queryParams = this.props.routerState.params;
+    const isQueryParam = queryParams && queryParams.filter && queryParams.filter.indexOf(filterId) >= 0;
+
+    // we might need to remove filter from query parameters
+    if (isRemoving && isQueryParam) {
+      this.props.dispatch({type: HISTORY_REPLACE, path: beltNameToPath(this.props.belt.name)});
+    }
+    this.props.dispatch({type: ON_FILTER_TOGGLE, filterId, beltName: this.props.belt.name});
+    this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
+  }
+
+  handleTagsFromQueryParams() {
+    const selectedFilterIds = this.props.filterState.beltFilters[this.props.belt.name];
+    if (this.props.routerState.params.filter) {
+      this.props.routerState.params.filter.forEach(id => {
+        if (selectedFilterIds.indexOf(id) < 0) {
+          this.toggleFilter(id);
+        }
+      });
+    }
+  }
+
   componentDidMount() {
     // Fetch works for belt
     this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
+    this.handleTagsFromQueryParams();
+  }
+
+  componentDidUpdate() {
+    this.handleTagsFromQueryParams();
   }
 
   render() {
@@ -52,8 +91,7 @@ class FilterPage extends React.Component {
                 this.props.dispatch({type: ON_EDIT_FILTER_TOGGLE});
               }}
               onFilterToggle={(filter) => {
-                this.props.dispatch({type: ON_FILTER_TOGGLE, filter, beltName: this.props.belt.name});
-                this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
+                this.toggleFilter(filter.id);
               }}/>
             <div className='sort-options col-xs-12 text-right'>
               <span>Sortér efter</span>
@@ -72,8 +110,7 @@ class FilterPage extends React.Component {
             selectedFilters={selectedFilters}
             expandedFilters={this.props.filterState.expandedFilters}
             onFilterToggle={(filter) => {
-              this.props.dispatch({type: ON_FILTER_TOGGLE, filter, beltName: this.props.belt.name});
-              this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
+              this.toggleFilter(filter.id);
             }}
             onEditFilterToggle={() => {
               this.props.dispatch({type: ON_EDIT_FILTER_TOGGLE});
@@ -99,6 +136,8 @@ class FilterPage extends React.Component {
 export default connect(
   // Map redux state to props
   (state) => {
-    return {filterState: state.filterReducer, beltState: state.beltsReducer};
+    return {filterState: state.filterReducer,
+      beltState: state.beltsReducer,
+      routerState: state.routerReducer};
   }
 )(FilterPage);
