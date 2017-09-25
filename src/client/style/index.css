@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 body {
@@ -58,6 +58,8 @@ body {
   cursor: pointer;
 }
 .topbar h1 {
+  font-weight: 400;
+  font-style: italic;
   margin: 0;
 }
 .topbar .header {

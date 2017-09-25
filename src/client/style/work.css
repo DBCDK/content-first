@@ -89,7 +89,9 @@
   font-family: 'Lora', serif;
   color: black;
   font-size: 32px;
-  font-weight: bold;
+  font-weight: 700;
+  font-style: italic;
+
 }
 .work-details .creator {
   margin-top: 3px;
