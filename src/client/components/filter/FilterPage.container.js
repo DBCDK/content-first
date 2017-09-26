@@ -59,11 +59,12 @@ class FilterPage extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    const prevFilters = prevProps.filterState.beltFilters[this.props.belt.name];
-    const currentFilters = this.props.filterState.beltFilters[this.props.belt.name];
     this.handleTagsFromQueryParams();
 
-    if (prevFilters !== currentFilters) {
+    // Check if we need to fetch works
+    if (prevProps.filterState.beltFilters[this.props.belt.name] !== this.props.filterState.beltFilters[this.props.belt.name]
+      || prevProps.belt.name !== this.props.belt.name
+      || prevProps.filterState.sortBy !== this.props.filterState.sortBy) {
       this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
     }
   }
