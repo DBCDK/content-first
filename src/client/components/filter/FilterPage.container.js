@@ -29,7 +29,10 @@ class FilterPage extends React.Component {
 
     // we might need to remove filter from query parameters
     if (isRemoving && isQueryParam) {
-      this.props.dispatch({type: HISTORY_REPLACE, path: beltNameToPath(this.props.belt.name)});
+      this.props.dispatch({type: HISTORY_REPLACE,
+        path: beltNameToPath(this.props.belt.name),
+        params: Object.assign({}, queryParams, {filter: queryParams.filter.filter(id => id !== filterId)})
+      });
     }
     this.props.dispatch({type: ON_FILTER_TOGGLE, filterId, beltName: this.props.belt.name});
     this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});

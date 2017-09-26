@@ -5,18 +5,38 @@ import {fetchBeltWorks, fetchWork} from '../utils/requester';
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_REPLACE = 'HISTORY_REPLACE';
 
+const paramsToString = (params) => {
+  let res = '';
+  Object.keys(params).forEach(key => {
+    if (Array.isArray(params[key])) {
+      params[key].forEach(value => {
+        const separator = res === '' ? '?' : '&';
+        res += `${separator}${key}=${value}`;
+      });
+    }
+    else {
+      const separator = res === '' ? '?' : '&';
+      res += `${separator}${key}=${params[key]}`;
+    }
+  });
+  return res;
+};
+
 export const historyMiddleware = history => store => next => action => {
   switch (action.type) {
     case HISTORY_PUSH:
       if (store.getState().routerReducer.path !== action.path) {
-        history.push(action.path);
+        const paramsString = action.params ? paramsToString(action.params) : '';
+        history.push(action.path + paramsString);
         window.scrollTo(0, 0);
       }
       break;
-    case HISTORY_REPLACE:
-      history.replace(action.path);
+    case HISTORY_REPLACE: {
+      const paramsString = action.params ? paramsToString(action.params) : '';
+      history.replace(action.path + paramsString);
       window.scrollTo(0, 0);
       break;
+    }
     default:
       return next(action);
   }

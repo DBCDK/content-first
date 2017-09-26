@@ -94,7 +94,7 @@ class WorkPage extends React.Component {
                         if (allowedFilterIds.indexOf(t.id + '') >= 0) {
                           return <span key={t.id} className='tag active' onClick={() => {
                             this.props.dispatch({type: ON_RESET_FILTERS, beltName: 'Passer med min smag'});
-                            this.props.dispatch({type: HISTORY_PUSH, path: `/passer-med-min-smag?filter=${t.id}`});
+                            this.props.dispatch({type: HISTORY_PUSH, path: '/passer-med-min-smag', params: {filter: t.id}});
                           }}>{t.title}</span>;
                         }
                         return <span key={t.id} className='tag'>{t.title}</span>;
