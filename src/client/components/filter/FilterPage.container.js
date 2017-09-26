@@ -13,7 +13,6 @@ import {beltNameToPath} from '../../utils/belt';
 class FilterPage extends React.Component {
 
   toggleFilter(filterId) {
-
     const allowedFilterIds = getLeaves(this.props.filterState.filters).map(f => f.id);
 
     // if this is not part of the allowed filters, we will not continue
@@ -35,28 +34,33 @@ class FilterPage extends React.Component {
       });
     }
     this.props.dispatch({type: ON_FILTER_TOGGLE, filterId, beltName: this.props.belt.name});
-    this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
   }
 
   handleTagsFromQueryParams() {
+    let doUpdate = false;
     const selectedFilterIds = this.props.filterState.beltFilters[this.props.belt.name];
     if (this.props.routerState.params.filter) {
       this.props.routerState.params.filter.forEach(id => {
         if (selectedFilterIds.indexOf(id) < 0) {
           this.toggleFilter(id);
+          doUpdate = true;
         }
       });
     }
+    return doUpdate;
   }
 
   componentDidMount() {
-    // Fetch works for belt
-    this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
+    // always fetch works when component is mounted
     this.handleTagsFromQueryParams();
+    this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
   }
 
   componentDidUpdate() {
-    this.handleTagsFromQueryParams();
+    // only fetch works if a new url query param was added
+    if (this.handleTagsFromQueryParams()) {
+      this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
+    }
   }
 
   render() {
@@ -95,6 +99,7 @@ class FilterPage extends React.Component {
               }}
               onFilterToggle={(filter) => {
                 this.toggleFilter(filter.id);
+                this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
               }}/>
             <div className='sort-options col-xs-12 text-right'>
               <span>Sortér efter</span>
@@ -114,6 +119,7 @@ class FilterPage extends React.Component {
             expandedFilters={this.props.filterState.expandedFilters}
             onFilterToggle={(filter) => {
               this.toggleFilter(filter.id);
+              this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
             }}
             onEditFilterToggle={() => {
               this.props.dispatch({type: ON_EDIT_FILTER_TOGGLE});
