@@ -37,28 +37,33 @@ class FilterPage extends React.Component {
   }
 
   handleTagsFromQueryParams() {
-    let doUpdate = false;
+    let didChange = false;
     const selectedFilterIds = this.props.filterState.beltFilters[this.props.belt.name];
     if (this.props.routerState.params.filter) {
       this.props.routerState.params.filter.forEach(id => {
         if (selectedFilterIds.indexOf(id) < 0) {
           this.toggleFilter(id);
-          doUpdate = true;
+          didChange = true;
         }
       });
     }
-    return doUpdate;
+    return didChange;
   }
 
   componentDidMount() {
-    // always fetch works when component is mounted
-    this.handleTagsFromQueryParams();
-    this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
+    // if query params changes the state, we will not
+    // make belt request, since it will be done at the next componentDidUpdate
+    if (!this.handleTagsFromQueryParams()) {
+      this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
+    }
   }
 
-  componentDidUpdate() {
-    // only fetch works if a new url query param was added
-    if (this.handleTagsFromQueryParams()) {
+  componentDidUpdate(prevProps) {
+    const prevFilters = prevProps.filterState.beltFilters[this.props.belt.name];
+    const currentFilters = this.props.filterState.beltFilters[this.props.belt.name];
+    this.handleTagsFromQueryParams();
+
+    if (prevFilters !== currentFilters) {
       this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
     }
   }
@@ -82,11 +87,9 @@ class FilterPage extends React.Component {
                 options={this.props.beltState.belts.map(b => b.name)}
                 onChange={value => {
                   this.props.dispatch({type: HISTORY_PUSH, path: beltNameToPath(value)});
-                  this.props.dispatch({type: ON_BELT_REQUEST, beltName: value});
                 }}/>
               <span className='reset-filters' onClick={() => {
                 this.props.dispatch({type: ON_RESET_FILTERS, beltName: this.props.belt.name});
-                this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
               }}>Nulstil filtre</span>
             </div>
             <SelectedFilters
@@ -99,7 +102,6 @@ class FilterPage extends React.Component {
               }}
               onFilterToggle={(filter) => {
                 this.toggleFilter(filter.id);
-                this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
               }}/>
             <div className='sort-options col-xs-12 text-right'>
               <span>Sortér efter</span>
@@ -109,7 +111,6 @@ class FilterPage extends React.Component {
                 options={this.props.filterState.sortBy.map(s => s.title)}
                 onChange={value => {
                   this.props.dispatch({type: ON_SORT_OPTION_SELECT, value});
-                  this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
                 }}/>
             </div>
           </div>
@@ -119,7 +120,6 @@ class FilterPage extends React.Component {
             expandedFilters={this.props.filterState.expandedFilters}
             onFilterToggle={(filter) => {
               this.toggleFilter(filter.id);
-              this.props.dispatch({type: ON_BELT_REQUEST, beltName: this.props.belt.name});
             }}
             onEditFilterToggle={() => {
               this.props.dispatch({type: ON_EDIT_FILTER_TOGGLE});
