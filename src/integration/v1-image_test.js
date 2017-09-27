@@ -11,6 +11,7 @@ const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const expectSuccess = require('./output-verifiers').expectSuccess;
 const expectFailure = require('./output-verifiers').expectFailure;
+const resolve = require('resolve');
 
 describe('Endpoint /v1/image', () => {
   const webapp = request(`http://localhost:${config.server.port}`);
@@ -93,7 +94,7 @@ describe('Endpoint /v1/image', () => {
       });
       it('should store an image in the database', done => {
         const location = '/v1/image/870970-basis:22629344';
-        readFileAsync('src/fixtures/870970-basis-22629344.jpg')
+        readFileAsync(resolve.sync('fixtures/870970-basis-22629344.jpg'))
           .then(contents => {
             return internal.put(location)
               .type('image/jpeg')
@@ -119,7 +120,7 @@ describe('Endpoint /v1/image', () => {
       });
       it('should replace an image in the database', done => {
         const location = '/v1/image/870970-basis:53188931';
-        readFileAsync('src/fixtures/870970-basis-53188931.jpg')
+        readFileAsync(resolve.sync('fixtures/870970-basis-53188931.jpg'))
           .then(contents => {
             return internal.put(location)
               .type('image/jpeg')
