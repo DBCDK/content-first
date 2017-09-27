@@ -1,8 +1,6 @@
 # Content First
 
-The system currently runs on [`content-first-i01.dbc.dk`](http://content-first-i01.dbc.dk).
-
-See the initial whiteboard doodles about [database content](doc/content-first.png), [recommender lanes](doc/content-first-belts.png), and [endpoints](doc/content-first-backend.png).
+The system currently runs on [`content-first-i01.dbc.dk`](http://content-first-i01.dbc.dk), and you can get an overview of how it is composed in the [architecture description](doc/content-first-achitecture.pdf).
 
 For development of the system, see [`src`](src/readme.md).
 
