@@ -42,7 +42,7 @@ exports.server = {
   logServiceErrors: defaults.logServiceErrors,
   port: defaults.port,
   internalPort: defaults.internalPort,
-  hostname: 'content-first-i01.dbc.dk'
+  hostname: 'content-first.demo.dbc.dk'
   // hostname: 'content-first.dbc.dk'
 };
 
