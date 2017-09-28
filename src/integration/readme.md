@@ -6,7 +6,7 @@ Each part of the integration test is in a `_test.js` file.  Each such file creat
 
 and run the server and integration test against it by
 
-    $ npm run full-test
+    $ npm run test-full
 
 See [`package.json`](../../package.json) and [`docker-compose.yml`](../../docker-compose.yml).
 

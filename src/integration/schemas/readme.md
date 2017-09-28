@@ -7,7 +7,7 @@ In summary, the service returns either a `data` or an `errors` value:
 Satisfied query:
 ```json
 { "data": "..."
-, "links": { "self": '/v1/book/...' }
+, "links": { "self": "/v1/book/..." }
 , "meta": { "ms": 32, "sql-queries": 3 }
 }
 ```
