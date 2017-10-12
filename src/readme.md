@@ -37,7 +37,7 @@ To connect to the database:
 
     $ docker exec -it -u postgres contentfirst_database_1 psql
 
-To add a new table in the database, add a new table name to [`config.js`](server/config.js), add file to [`migrations/`](migrations/) where the new table is created/destroyed, and incorporate the new table table in [`cleanup-db.js`](integration/cleanup-db.js) so that the test will know how to clear the database.
+To add a new table in the database, add a new table name to [`constants.js`](server/constants.js), add file to [`migrations/`](migrations/) where the new table is created/destroyed, and incorporate the new table table in [`cleanup-db.js`](integration/cleanup-db.js) so that the test will know how to clear the database.
 
 ## Node setup
 

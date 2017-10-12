@@ -85,7 +85,6 @@ external.get('/pid', (req, res) => {
 const externalRoutes = require('server/external-v1');
 external.use('/v1', externalRoutes);
 
-
 /*
  * Let frontend React handle all other routes.
  */
