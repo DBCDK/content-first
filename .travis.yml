@@ -10,6 +10,11 @@ services:
 cache:
   directories:
     - $HOME/node_modules
+branches:
+  except:
+    - prod
+    - stg
+    - stable
 before_install:
   - psql --version
   - cp env/travis.env current.env

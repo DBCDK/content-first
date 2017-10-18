@@ -1,0 +1,12 @@
+title Content-first Authentication Sequence
+
+FrontEnd->+BackEnd: /getAuthToken
+BackEnd->+Smaug: /oauth/token
+Smaug-->-BackEnd: token
+BackEnd-->-FrontEnd: token
+FrontEnd->Hejmdal: /login?token=
+Hejmdal->FrontEnd: ?token=TOKEN&id=ID
+FrontEnd->+BackEnd: /login?token=TOKEN&id=ID
+BackEnd->+Hejmdal: /getTicket/TOKEN/ID
+Hejmdal-->-BackEnd: user info
+BackEnd-->-FrontEnd: user info
