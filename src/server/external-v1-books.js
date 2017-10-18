@@ -11,6 +11,9 @@ const bookTable = constants.books.table;
 const parameters = require('__/parameters');
 
 router.route('/')
+  //
+  // GET /v1/books
+  //
   .get(asyncMiddleware(async (req, res, next) => {
     const pids = parameters.parseList(req.query.pids);
     if (!pids || pids.length === 0) {

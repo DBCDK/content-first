@@ -9,6 +9,9 @@ const constants = require('server/constants')();
 const coverTable = constants.covers.table;
 
 router.route('/:pid')
+  //
+  // GET /v1/image/:pid
+  //
   .get(asyncMiddleware(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;

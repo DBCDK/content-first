@@ -9,6 +9,9 @@ const constants = require('server/constants')();
 const bookTable = constants.books.table;
 
 router.route('/:pid')
+  //
+  // GET /v1/book/:pid
+  //
   .get(asyncMiddleware(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;

@@ -7,10 +7,10 @@ const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
+const mock = require('./mock-server');
 
 describe('Endpoint /v1/taxonomy', () => {
-  const {external, internal} = require('./mock-server');
-  const webapp = request(external);
+  const webapp = request(mock.external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
@@ -105,7 +105,7 @@ describe('Endpoint /v1/taxonomy', () => {
     });
   });
   describe('Internal endpoint', () => {
-    const hidden = request(internal);
+    const hidden = request(mock.internal);
     describe('PUT /v1/taxonomy', () => {
       it('should reject wrong content type', done => {
         const contentType = 'text/plain';

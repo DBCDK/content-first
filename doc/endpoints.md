@@ -276,7 +276,7 @@ Returns [user information](../src/integration/schemas/user-data-out.json), like
     { "data":
       { "name": "Jens Godfredsen"
       , "gender": "m"
-      , "birthYear": "1971"
+      , "birth_year": 1971
       , "authors": [ "Ib Michael", "Helle Helle" ]
       , "atmosphere": [ "Realistisk" ]
       }

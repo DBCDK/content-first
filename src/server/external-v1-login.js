@@ -10,6 +10,9 @@ const table = constants.users.table;
 const uuidv4 = require('uuid/v4');
 
 router.route('/')
+  //
+  // POST /v1/login
+  //
   .post(asyncMiddleware(async (req, res, next) => {
     try {
       const uuid = uuidv4();

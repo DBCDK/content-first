@@ -12,6 +12,9 @@ const bottomTable = constants.taxonomy.bottomTable;
 const _ = require('lodash');
 
 router.route('/')
+  //
+  // GET /v1/taxonomy
+  //
   .get(asyncMiddleware(async (req, res, next) => {
     const location = `${req.baseUrl}`;
     try {
@@ -33,6 +36,9 @@ router.route('/')
 ;
 
 router.route('/:id')
+  //
+  // GET /v1/taxonomy/:id
+  //
   .get(asyncMiddleware(async (req, res, next) => {
     const id = parseInt(req.params.id, 10);
     const location = `${req.baseUrl}/${id}`;

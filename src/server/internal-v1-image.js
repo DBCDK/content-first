@@ -11,6 +11,9 @@ const constants = require('server/constants')();
 const coverTable = constants.covers.table;
 
 router.route('/:pid')
+  //
+  // PUT /v1/image/:pid
+  //
   .put(asyncMiddleware(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;
@@ -31,22 +34,9 @@ router.route('/:pid')
         meta: {resource: location}
       });
     }
+    let existing;
     try {
-      const existing = await knex(coverTable).where({pid}).select('pid');
-      if (existing.length === 0) {
-        await knex(coverTable).insert({pid, image: req.body});
-        res.status(201).location(location).json({
-          links: {self: location},
-          data: `Created ${location}`
-        });
-      }
-      else {
-        await knex(coverTable).where({pid}).update('image', req.body);
-        res.status(200).location(location).json({
-          links: {self: location},
-          data: `Updated ${location}`
-        });
-      }
+      existing = await knex(coverTable).where({pid}).select('pid');
     }
     catch (error) {
       return next({
@@ -54,6 +44,20 @@ router.route('/:pid')
         title: 'Database operation failed',
         detail: error,
         meta: {resource: location}
+      });
+    }
+    if (existing.length === 0) {
+      await knex(coverTable).insert({pid, image: req.body});
+      res.status(201).location(location).json({
+        links: {self: location},
+        data: `Created ${location}`
+      });
+    }
+    else {
+      await knex(coverTable).where({pid}).update('image', req.body);
+      res.status(200).location(location).json({
+        links: {self: location},
+        data: `Updated ${location}`
       });
     }
   }))

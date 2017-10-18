@@ -9,24 +9,17 @@ const constants = require('server/constants')();
 const tagTable = constants.tags.table;
 
 router.route('/:pid')
+  //
+  // GET /v1/tags/:pid
+  //
   .get(asyncMiddleware(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;
+    let result;
     try {
-      const result = await knex(tagTable).where({pid}).select(
+      result = await knex(tagTable).where({pid}).select(
         knex.raw('array_agg(tag) as tags')
       );
-      const tags = result[0].tags;
-      if (!tags) {
-        return res.status(200).json({
-          data: {pid, tags: []},
-          links: {self: location}
-        });
-      }
-      res.status(200).json({
-        data: {pid, tags},
-        links: {self: location}
-      });
     }
     catch (error) {
       return next({
@@ -36,6 +29,17 @@ router.route('/:pid')
         meta: {resource: location}
       });
     }
+    const tags = result[0].tags;
+    if (!tags) {
+      return res.status(200).json({
+        data: {pid, tags: []},
+        links: {self: location}
+      });
+    }
+    res.status(200).json({
+      data: {pid, tags},
+      links: {self: location}
+    });
   }))
 ;
 

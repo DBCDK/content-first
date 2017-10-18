@@ -13,6 +13,9 @@ const middleTable = constants.taxonomy.middleTable;
 const bottomTable = constants.taxonomy.bottomTable;
 
 router.route('/')
+  //
+  // PUT /v1/taxonomy
+  //
   .put(asyncMiddleware(async (req, res, next) => {
     const contentType = req.get('content-type');
     if (contentType !== 'application/json') {
