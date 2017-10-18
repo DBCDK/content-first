@@ -45,7 +45,13 @@ describe('User data', () => {
               expectValidate(links, 'schemas/user-links-out.json');
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/user-data-out.json');
-              expect(data.uuid).to.equal(user);
+              expect(data).to.deep.equal({
+                name: 'Jens Godfredsen',
+                gender: 'm',
+                birth_year: 1971,
+                authors: ['Ib Michael', 'Helle Helle'],
+                atmosphere: ['Realistisk']
+              });
             });
           })
           .expect(200)

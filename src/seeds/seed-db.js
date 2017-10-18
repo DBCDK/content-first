@@ -59,5 +59,12 @@ exports.seed = async knex => {
     await knex(middleTable).insert(middleRawInsert);
     await knex(bottomTable).insert(bottomRawInsert);
   }
-  await knex(userTable).insert({uuid: 'cd3cc362-d29c-4d40-8662-458664251e52'});
+  await knex(userTable).insert({
+    uuid: 'cd3cc362-d29c-4d40-8662-458664251e52',
+    name: 'Jens Godfredsen',
+    gender: 'm',
+    birth_year: 1971,
+    authors: JSON.stringify(['Ib Michael', 'Helle Helle']),
+    atmosphere: JSON.stringify(['Realistisk'])
+  });
 };

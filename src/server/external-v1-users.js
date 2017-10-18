@@ -17,7 +17,7 @@ router.route('/:uuid')
     const location = `${req.baseUrl}/${uuid}`;
     let existing;
     try {
-      existing = await knex(table).where({uuid}).select('uuid');
+      existing = await knex(table).where({uuid}).select('name', 'gender', 'birth_year', 'authors', 'atmosphere');
     }
     catch (error) {
       return next({
@@ -36,7 +36,7 @@ router.route('/:uuid')
       });
     }
     res.status(200).json({
-      data: {uuid},
+      data: existing[0],
       links: {self: location}
     });
   }))

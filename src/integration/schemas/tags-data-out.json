@@ -7,6 +7,7 @@
     },
     "tags": {
       "type": "array",
+      "required": true,
       "items": {
         "type": "integer"
       }
