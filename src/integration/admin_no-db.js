@@ -7,11 +7,8 @@ const {expectValidate} = require('./output-verifiers');
 
 describe('Admin API', () => {
   describe('No database connection', () => {
-    const port = 5640;
-    process.env.PORT = port;
-    process.env.DB_HOST = 'bd.exists.not';
-    const {external} = require('./mock-server');
-    const webapp = request(external);
+    const {server} = require('./no-db-server');
+    const webapp = request(server);
     describe('/howru', () => {
       it('should say that database is unreachable', done => {
         webapp.get('/howru')
