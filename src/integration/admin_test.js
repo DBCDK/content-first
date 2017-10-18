@@ -1,14 +1,14 @@
 /* eslint-env mocha */
 'use strict';
 
-const config = require('server/config');
-const expect = require('chai').expect;
+const {expect} = require('chai');
 const request = require('supertest');
-const expectValidate = require('./output-verifiers').expectValidate;
+const {expectValidate} = require('./output-verifiers');
 
 describe('Admin API on running database', () => {
+  const {external, internal} = require('./mock-server');
   describe('Public endpoint', () => {
-    const webapp = request(`http://localhost:${config.server.port}`);
+    const webapp = request(external);
     describe('/pid', () => {
       it('should return the process id', done => {
         webapp.get('/pid')
@@ -39,10 +39,10 @@ describe('Admin API on running database', () => {
     });
   });
   describe('Internal endpoint', () => {
-    const internal = request(`http://localhost:${config.server.internalPort}`);
+    const hidden = request(internal);
     describe('server crashes', () => {
       it('should be catched', done => {
-        internal.get('/crash')
+        hidden.get('/crash')
           .expect(500)
           .end(done);
       });

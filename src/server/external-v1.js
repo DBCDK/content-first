@@ -1,5 +1,5 @@
 /*
- * Routes for version 1 endpoints.
+ * Public routes for version 1 endpoints.
  */
 
 'use strict';

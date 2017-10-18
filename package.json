@@ -17,6 +17,7 @@
     "eslint": "^4.4.1",
     "eslint-plugin-react": "^7.3.0",
     "mocha": "^3.4.2",
+    "mockery": "^2.1.0",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.2",
     "nsrun": "^1.1.2",
@@ -49,24 +50,18 @@
   "proxy": "http://localhost:3001",
   "scripts": {
     "build": "react-scripts build",
-    "coverage": "run-s coverage-nodb coverage-integration",
-    "coverage-db": ". ./current.env && nyc --reporter=lcov _mocha -- src/**/*_test.js",
-    "coverage-integration": "run-p start-backend-once coverage-integration-delayed",
-    "coverage-integration-delayed": "sleep 1 && nsrun coverage-db && ./kill-running-server.sh",
-    "coverage-nodb": "nyc --reporter=lcov _mocha -- src/**/*_no-db.js",
+    "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/**/*_test.js",
+    "db-migrate": ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
     "lint-js": "eslint src",
     "postinstall": "./setup-node-env.sh",
     "start": "run-p start-backend start-frontend",
     "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/server",
-    "start-backend-once": ". ./current.env && node src/server/main.js || true",
     "start-frontend": "react-scripts start",
     "test": "run-s test-units lint-js",
-    "test-db": "run-p start-backend-once test-integration-delayed",
     "test-frontend": "react-scripts test --env=jsdom",
-    "test-full": "run-s test-nodb test-db",
-    "test-integration": ". ./current.env && mocha src/integration/**/*_test.js",
-    "test-integration-delayed": "sleep 1 && nsrun test-integration && ./kill-running-server.sh",
-    "test-nodb": "mocha src/integration/**/*_no-db.js",
-    "test-units": "mocha src/lib/**/*_test.js src/server/**/*_test.js"
+    "test-full": "run-s test-nodb test-integration",
+    "test-integration": ". ./current.env && mocha --exit src/integration/**/*_test.js",
+    "test-nodb": ". ./current.env && mocha --exit src/integration/**/*_no-db.js",
+    "test-units": "mocha --exit src/lib/**/*_test.js src/server/**/*_test.js"
   }
 }

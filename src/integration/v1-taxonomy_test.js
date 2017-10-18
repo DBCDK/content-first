@@ -1,21 +1,16 @@
 'use strict';
 
-const expect = require('chai').expect;
+const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
 const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
-const expectSuccess = require('./output-verifiers').expectSuccess;
-const expectFailure = require('./output-verifiers').expectFailure;
-const expectValidate = require('./output-verifiers').expectValidate;
+const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 
 describe('Endpoint /v1/taxonomy', () => {
-  const webapp = request(`http://localhost:${config.server.port}`);
-  before(async () => {
-    await dbUtil.dropAll();
-    await knex.migrate.latest();
-  });
+  const {external, internal} = require('./mock-server');
+  const webapp = request(external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
@@ -110,11 +105,11 @@ describe('Endpoint /v1/taxonomy', () => {
     });
   });
   describe('Internal endpoint', () => {
-    const internal = request(`http://localhost:${config.server.internalPort}`);
+    const hidden = request(internal);
     describe('PUT /v1/taxonomy', () => {
       it('should reject wrong content type', done => {
         const contentType = 'text/plain';
-        internal.put('/v1/taxonomy')
+        hidden.put('/v1/taxonomy')
           .type(contentType)
           .send('broken')
           .expect(400)
@@ -132,7 +127,7 @@ describe('Endpoint /v1/taxonomy', () => {
       });
       it('should reject bad input', done => {
         const broken = require('fixtures/broken-taxonomy.json');
-        internal.put('/v1/taxonomy')
+        hidden.put('/v1/taxonomy')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -157,7 +152,7 @@ describe('Endpoint /v1/taxonomy', () => {
       });
       it('should reject non-integer and clashing ids', done => {
         const broken = require('fixtures/broken-taxonomy-non-integer.json');
-        internal.put('/v1/taxonomy')
+        hidden.put('/v1/taxonomy')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -185,7 +180,7 @@ describe('Endpoint /v1/taxonomy', () => {
         const taxonomy = require('fixtures/good-taxonomy.json');
         const output = require('fixtures/taxonomy-out.json');
         const location = '/v1/taxonomy';
-        internal.put(location)
+        hidden.put(location)
           .type('application/json')
           .send(taxonomy)
           .expect(res => {

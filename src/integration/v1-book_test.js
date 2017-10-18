@@ -1,21 +1,16 @@
 'use strict';
 
-const expect = require('chai').expect;
+const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
 const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
-const expectSuccess = require('./output-verifiers').expectSuccess;
-const expectFailure = require('./output-verifiers').expectFailure;
-const expectValidate = require('./output-verifiers').expectValidate;
+const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 
 describe('Endpoint /v1/book', () => {
-  const webapp = request(`http://localhost:${config.server.port}`);
-  before(async () => {
-    await dbUtil.dropAll();
-    await knex.migrate.latest();
-  });
+  const {external, internal} = require('./mock-server');
+  const webapp = request(external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
@@ -80,12 +75,12 @@ describe('Endpoint /v1/book', () => {
     });
   });
   describe('Internal endpoint', () => {
-    const internal = request(`http://localhost:${config.server.internalPort}`);
+    const hidden = request(internal);
     describe('PUT /v1/book/:pid', () => {
       it('should reject wrong content type', done => {
         const location = '/v1/book/123456-basis:987654321';
         const contentType = 'text/plain';
-        internal.put(location)
+        hidden.put(location)
           .type(contentType)
           .send('broken')
           .expect(400)
@@ -104,7 +99,7 @@ describe('Endpoint /v1/book', () => {
         const broken = require('fixtures/broken-book.json');
         const location = '/v1/book/123456-basis:987654321';
         const contentType = 'application/json';
-        internal.put(location)
+        hidden.put(location)
           .type(contentType)
           .send(broken)
           .expect(400)
@@ -143,7 +138,7 @@ describe('Endpoint /v1/book', () => {
         const wrongPid = '12335-basic:9782637';
         const location = `/v1/book/${wrongPid}`;
         const contentType = 'application/json';
-        internal.put(location)
+        hidden.put(location)
           .type(contentType)
           .send(harryPotter)
           .expect(400)
@@ -162,7 +157,7 @@ describe('Endpoint /v1/book', () => {
         const harryPotter = require('fixtures/rowling-harry-potter-de-vises-sten.json');
         const pid = harryPotter.pid;
         const location = `/v1/book/${pid}`;
-        internal.put(location)
+        hidden.put(location)
           .type('application/json')
           .send(harryPotter)
           .expect(res => {
@@ -207,7 +202,7 @@ describe('Endpoint /v1/book', () => {
         const pid = '870970-basis:53188931';
         harryPotter.pid = pid;
         const location = `/v1/book/${pid}`;
-        internal.put(location)
+        hidden.put(location)
           .type('application/json')
           .send(harryPotter)
           .expect(res => {

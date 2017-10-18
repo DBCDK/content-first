@@ -1,6 +1,6 @@
 'use strict';
 
-const expect = require('chai').expect;
+const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
 const logger = require('__/logging')(config.logger);
@@ -9,16 +9,12 @@ const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
-const expectSuccess = require('./output-verifiers').expectSuccess;
-const expectFailure = require('./output-verifiers').expectFailure;
+const {expectSuccess, expectFailure} = require('./output-verifiers');
 const resolve = require('resolve');
 
 describe('Endpoint /v1/image', () => {
-  const webapp = request(`http://localhost:${config.server.port}`);
-  before(async () => {
-    await dbUtil.dropAll();
-    await knex.migrate.latest();
-  });
+  const {external, internal} = require('./mock-server');
+  const webapp = request(external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
@@ -55,12 +51,12 @@ describe('Endpoint /v1/image', () => {
     });
   });
   describe('Internal endpoint', () => {
-    const internal = request(`http://localhost:${config.server.internalPort}`);
+    const hidden = request(internal);
     describe('PUT /v1/image/:pid', () => {
       it('should reject wrong content type', done => {
         const location = '/v1/image/870970-basis:22629344';
         const contentType = 'application/json';
-        internal.put(location)
+        hidden.put(location)
           .type(contentType)
           .expect(400)
           .expect(res => {
@@ -78,7 +74,7 @@ describe('Endpoint /v1/image', () => {
       it('should reject broken image', done => {
         const location = '/v1/image/870970-basis:22629344';
         const contentType = 'image/jpeg';
-        internal.put(location)
+        hidden.put(location)
           .type(contentType)
           .send('broken image data')
           .expect(400)
@@ -96,7 +92,7 @@ describe('Endpoint /v1/image', () => {
         const location = '/v1/image/870970-basis:22629344';
         readFileAsync(resolve.sync('fixtures/870970-basis-22629344.jpg'))
           .then(contents => {
-            return internal.put(location)
+            return hidden.put(location)
               .type('image/jpeg')
               .send(contents)
               .expect(201)
@@ -122,7 +118,7 @@ describe('Endpoint /v1/image', () => {
         const location = '/v1/image/870970-basis:53188931';
         readFileAsync(resolve.sync('fixtures/870970-basis-53188931.jpg'))
           .then(contents => {
-            return internal.put(location)
+            return hidden.put(location)
               .type('image/jpeg')
               .send(contents)
               .expect(res => {

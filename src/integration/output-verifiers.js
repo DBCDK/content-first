@@ -4,11 +4,10 @@
 
 'use strict';
 
-const expect = require('chai').expect;
-const assert = require('chai').assert;
+const {expect, assert} = require('chai');
 const validator = require('is-my-json-valid/require');
 const formats = require('server/schemas/formats');
-const nicifyJsonValidationErrors = require('__/json').nicifyJsonValidationErrors;
+const {nicifyJsonValidationErrors} = require('__/json');
 
 function expectSuccess(document, next) {
   const validate = validator('schemas/success-out.json');
