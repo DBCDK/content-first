@@ -271,19 +271,41 @@ Note that the ids are quoted.
 
 ### `GET /v1/users/`*uuid*
 
-The result is like
+Returns [user information](../src/integration/schemas/user-data-out.json), like
 
     { "data":
-      { "uuid": "163c043f-d727-428f-b5f5-e54bb991eb8c"
+      { "name": "Jens Godfredsen"
+      , "gender": "m"
+      , "birthYear": "1971"
+      , "authors": [ "Ib Michael", "Helle Helle" ]
+      , "atmosphere": [ "Realistisk" ]
       }
     , "links": 
       { "self": "/v1/users/163c043f-d727-428f-b5f5-e54bb991eb8c"
       }
     }
 
-### `POST /v1/login`
+### `PUT /v1/users/`*uuid*
 
-Simulates that a user logs in.  The result is same as for `GET /v1/users`.
+TODO: Updates the user information.
+
+### `GET /v1/login-token`
+
+Returns an access token to OpenPlatform, like
+
+    { "data": "141432e6cd4988cf2933f2868450a0b2ec218f5c"
+    , "links":
+      { "login": "https://login.bib.dk/login?token=141432e6cd4988cf2933f2868450a0b2ec218f5c"
+      }
+    }
+
+The frontend can then use the returned `login` URL to let the user log in.  OpenPlatform will redirect to `http://content-first.dbc.dk/hejmdal` (or whatever it is configured to redirect to, ask Kasper).
+
+### `GET /v1/login?token=`*token*`&id=`*id*
+
+The *token* and *id* are collected from the OpenPlatform redirect described earlier.
+
+The result is same as for `GET /v1/users/`*uuid*.
 
 # Command-line interaction
 
