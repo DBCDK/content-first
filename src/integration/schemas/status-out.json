@@ -14,6 +14,17 @@
       "required": true,
       "type": "string",
       "format": "semver"
+    },
+    "errorText": {
+      "required": false,
+      "type": "string"
+    },
+    "errorLog": {
+      "required": false,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "additionalProperties": true

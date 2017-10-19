@@ -35,4 +35,4 @@ The wrapper mocks out external components that cannot be reached during continuo
 
 It is important that all integration tests use the wrapper, because the wrapper makes sure that the service is mocked properly, independently of load order -- Node caches `require()` loads of modules.  As a consequence, all tests share the *same* mocked service, and therefore the *static* configuration of the service cannot be changed from one test to the other.
 
-The no-database tests (`_no-db.js`) are a special case, because what they need to simulate is something that would make all other integration tests fail.  So the no-database tests cannot be run together with the other tests, again because of Node caching `require()`, which is why there is both a `test-integration` and `test-nodb` script in `package.json`.
+The no-database tests (`_no-db.js`) are a special case, because what they need to simulate is something that would make all other integration tests fail.  So the no-database tests cannot be run together with the other tests, again because of Node caching `require()`, which is why there is both a `test-integration` and `test-no-db` script in `package.json`.

@@ -59,9 +59,9 @@
     "start-frontend": "react-scripts start",
     "test": "run-s test-units lint-js",
     "test-frontend": "react-scripts test --env=jsdom",
-    "test-full": "run-s test-nodb test-integration",
+    "test-full": "run-s test-no-db test-integration",
     "test-integration": ". ./current.env && mocha --exit src/integration/**/*_test.js",
-    "test-nodb": ". ./current.env && mocha --exit src/integration/**/*_no-db.js",
+    "test-no-db": ". ./current.env && mocha --exit src/integration/**/*_no-db.js",
     "test-units": "mocha --exit src/lib/**/*_test.js src/server/**/*_test.js"
   }
 }

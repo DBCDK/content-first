@@ -18,7 +18,7 @@ describe('Admin API', () => {
             expectValidate(res.body, 'schemas/status-out.json');
             expect(res.body.ok).to.be.false; // eslint-disable-line no-unused-expressions
             expect(res.body).to.have.property('errorText');
-            expect(res.body.errorText).to.match(/unreachable/);
+            expect(res.body.errorText).to.match(/database.+unreachable/i);
             expect(res.body).to.have.property('errorLog');
           })
           .end(done);
