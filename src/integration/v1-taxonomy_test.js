@@ -3,7 +3,6 @@
 const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
-const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
@@ -14,7 +13,6 @@ describe('Endpoint /v1/taxonomy', () => {
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
-    logger.log.debug('Database is now seeded.');
   });
   describe('External endpoint', () => {
     describe('GET /v1/taxonomy', () => {

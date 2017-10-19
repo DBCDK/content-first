@@ -35,8 +35,7 @@ knex.migrate.latest()
 /**
  * Remote services.
  */
-const Authenticator = require('server/remote/authentication');
-const authenticator = new Authenticator();
+const authenticator = require('server/remote/authentication');
 
 /*
  * Public web server.
@@ -84,6 +83,7 @@ external.get('/howru', async(req, res) => {
   const serviceOk = await Promise.all(
     _.map(services, service => service.testingConnection())
   );
+  console.log(serviceOk)
   const ok = _.every(serviceOk);
   if (ok) {
     return res.json({

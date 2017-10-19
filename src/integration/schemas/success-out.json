@@ -9,7 +9,7 @@
       "type": "object",
       "properties": {
         "self": {
-          "required": true,
+          "required": false,
           "type": "string"
         }
       }

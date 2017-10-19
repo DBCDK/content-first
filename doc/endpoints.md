@@ -289,7 +289,7 @@ Returns [user information](../src/integration/schemas/user-data-out.json), like
 
 TODO: Updates the user information.
 
-### `GET /v1/openplatform-token`
+### `GET /v1/authentication-token`
 
 Returns an access token to OpenPlatform, like
 

@@ -27,6 +27,11 @@ describe('Admin API on running database', () => {
           .expect(200)
           .expect(res => {
             expectValidate(res.body, 'schemas/status-out.json');
+            // Remote connections status.
+            expect(res.body.ok).to.be.true; // eslint-disable-line no-unused-expressions
+            expect(res.body).to.not.have.property('errorText');
+            expect(res.body).to.not.have.property('errorLog');
+            // Service info.
             expect(res.body).to.have.property('address');
             expect(res.body['api-version']).to.equal('1');
             expect(res.body).to.have.property('version');
@@ -36,8 +41,9 @@ describe('Admin API on running database', () => {
             expect(res.body).to.not.have.nested.property('config.auth.id');
             expect(res.body).to.not.have.nested.property('config.auth.secret');
             // Safety net, just in case.
-            expect(JSON.stringify(res.body)).to.not.match(/password/i);
-            expect(JSON.stringify(res.body)).to.not.match(/secret/i);
+            const everything = JSON.stringify(res.body);
+            expect(everything).to.not.match(/password/i);
+            expect(everything).to.not.match(/secret/i);
           })
           .end(done);
       });

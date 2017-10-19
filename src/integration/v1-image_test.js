@@ -3,7 +3,6 @@
 const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
-const logger = require('__/logging')(config.logger);
 const {promisify} = require('util');
 const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
@@ -18,7 +17,6 @@ describe('Endpoint /v1/image', () => {
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
-    logger.log.debug('Database is now seeded.');
   });
   afterEach(mock.afterEach);
   after(mock.after);

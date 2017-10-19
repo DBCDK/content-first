@@ -3,7 +3,7 @@
 
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectValidate} = require('./output-verifiers');
+const {expectValidate, expectFailure} = require('./output-verifiers');
 
 describe('Admin API', () => {
   describe('No authentication-service connection', () => {
@@ -21,6 +21,22 @@ describe('Admin API', () => {
             expect(res.body.errorText).to.match(/authentication service.+unreachable/i);
             expect(res.body).to.have.property('errorLog');
           })
+          .end(done);
+      });
+      it('should say service unavailable when getting a token', done => {
+        const url = '/v1/authentication-token';
+        webapp.get(url)
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/remote service unavailable/i);
+              expect(error).to.have.property('meta');
+              expect(error.meta).to.have.property('resource');
+              expect(error.meta.resource).to.equal(url);
+            });
+          })
+          .expect(503)
           .end(done);
       });
     });
