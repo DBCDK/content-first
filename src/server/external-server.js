@@ -15,7 +15,28 @@ const _ = require('lodash');
 /**
  * Database wrapper.
  */
-const database = require('server/database');
+const Database = require('server/remote/database');
+const database = new Database();
+
+/*
+ * Make sure database is at most recent schema.
+ */
+const knex = require('knex')(config.db);
+knex.migrate.latest()
+  .then(() => {
+    logger.log.debug('Database is now at latest version.');
+    database.setOk();
+  })
+  .catch(error => {
+    logger.log.info(`Could not update database to latest version: ${error}`);
+    database.logError(error);
+  });
+
+/**
+ * Remote services.
+ */
+const Authenticator = require('server/remote/authentication');
+const authenticator = new Authenticator();
 
 /*
  * Public web server.
@@ -50,8 +71,20 @@ external.use(parser.json({
  * Administrative API.
  */
 external.get('/howru', async(req, res) => {
-  const ok = await database.testingConnection();
-  const configWithouSecrets = _.omit(config, ['db.connection.user', 'db.connection.password']);
+  const configWithoutSecrets = _.omit(config, [
+    'db.connection.user',
+    'db.connection.password',
+    'auth.id',
+    'auth.secret'
+  ]);
+  const services = [
+    database,
+    authenticator
+  ];
+  const serviceOk = await Promise.all(
+    _.map(services, service => service.testingConnection())
+  );
+  const ok = _.every(serviceOk);
   if (ok) {
     return res.json({
       ok: true,
@@ -59,18 +92,20 @@ external.get('/howru', async(req, res) => {
       'api-version': constants.apiversion,
       hostname: req.hostname,
       address: req.ip,
-      config: configWithouSecrets
+      config: configWithoutSecrets
     });
   }
+  // Find all services that erred.
+  const erred = _.filter(services, service => !service.isOk());
   res.json({
     ok: false,
-    errorText: database.getCurrentError(),
-    errorLog: database.getErrorLog(),
+    errorText: _.join(_.map(erred, service => service.getCurrentError())),
+    errorLog: _.flatMap(erred, service => service.getErrorLog()),
     version: require('../../package').version,
     'api-version': constants.apiversion,
     hostname: req.hostname,
     address: req.ip,
-    config: configWithouSecrets
+    config: configWithoutSecrets
   });
 });
 

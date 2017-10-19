@@ -1,6 +1,7 @@
 'use strict';
 const config = require('server/config');
 const logger = require('__/logging')(config.logger);
+const knex = require('knex')(config.db);
 
 /**
  * Database error accounting.
@@ -34,34 +35,20 @@ class Database {
     this.ok = false;
   }
   testingConnection () {
+    const me = this;
     // Make a dummy query.
     return knex.raw('select 1+1 as result')
-      .then(function () {
+      .then(() => {
         logger.log.trace('There is a valid connection in the pool');
-        database.setOk();
-        return database.isOk();
+        me.setOk();
+        return me.isOk();
       })
       .catch(error => {
         logger.log.trace('problem connecting');
-        database.logError(error);
-        return database.isOk();
+        me.logError(error);
+        return me.isOk();
       });
   }
 }
-const database = new Database();
 
-/*
- * Make sure database is at most recent schema.
- */
-const knex = require('knex')(config.db);
-knex.migrate.latest()
-  .then(() => {
-    logger.log.debug('Database is now at latest version.');
-    database.setOk();
-  })
-  .catch(error => {
-    logger.log.info(`Could not update database to latest version: ${error}`);
-    database.logError(error);
-  });
-
-module.exports = database;
+module.exports = Database;

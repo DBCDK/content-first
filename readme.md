@@ -43,12 +43,15 @@ The backend service controlled by environment variables.  Most scripts assume th
 | DB_NAME                 | contentfirst | Name of the database             |
 | DB_USER                 | contentfirst | Database user                    |
 | DB_USER_PASSWORD        |              | Database password                |
+| INTERNAL_PORT           | 3002         | TCP port for the internal service |
 | LOG_LEVEL               | INFO         | Verbosity of service log (OFF, ERROR, WARN, WARNING, INFO, DEBUG, TRACE) |
 | LOG_SERVICE_ERRORS      | 1            | Record all 5xx errors (1), or ignore 5xx errors (0) |
 | NODE_ENV                | development  | Controls other service settings (development, ci, production) |
 | PORT                    | 3001         | TCP port for the public service  |
-| INTERNAL_PORT           | 3002         | TCP port for the internal service |
 | PRETTY_LOG              | 1            | Pretty printed log statements (1), or one-line log statements (0) |
+| AUTH_CLIENT_ID          | content-first | Id known to authentication service |
+| AUTH_CLIENT_SECRET      | secret        | Secret known to authentication service |
+| AUTH_URL                | https://auth.dbc.dk | Where to contact authentication service |
 
 
 ## Endpoints

@@ -33,6 +33,11 @@ describe('Admin API on running database', () => {
             expect(res.body.version).to.equal('0.1.0');
             expect(res.body).to.not.have.nested.property('config.db.connection.user');
             expect(res.body).to.not.have.nested.property('config.db.connection.password');
+            expect(res.body).to.not.have.nested.property('config.auth.id');
+            expect(res.body).to.not.have.nested.property('config.auth.secret');
+            // Safety net, just in case.
+            expect(JSON.stringify(res.body)).to.not.match(/password/i);
+            expect(JSON.stringify(res.body)).to.not.match(/secret/i);
           })
           .end(done);
       });

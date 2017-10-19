@@ -53,4 +53,10 @@ exports.logger = {
   hostname: defaults.hostname
 };
 
+exports.auth = {
+  id: process.env.AUTH_CLIENT_ID || 'content-first',
+  secret: process.env.AUTH_CLIENT_SECRET,
+  url: process.env.AUTH_URL || 'https://auth.dbc.dk'
+};
+
 exports.db = knexfile[defaults.environment];
