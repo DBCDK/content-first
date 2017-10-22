@@ -9,7 +9,7 @@ router.route('/')
   //
   // GET /v1/authentication-token
   //
-  .get(asyncMiddleware(async (req, res, next) => {
+  .get(asyncMiddleware(async (req, res) => {
     const token = await authenticator.gettingToken();
     res.status(200).json({
       data: token,

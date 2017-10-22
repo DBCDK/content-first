@@ -16,7 +16,7 @@ describe('taxonomy', () => {
         .to.be.rejected
         .then(error => {
           expect(error).to.have.property('title');
-          expect(error.title).to.match(/does not adhere to schema/i);
+          expect(error.title).to.match(/does not adhere to taxonomy-in\.json/i);
           expect(error).to.have.property('meta');
           expect(error.meta).to.have.property('problems');
           const problems = error.meta.problems;

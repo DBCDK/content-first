@@ -4,11 +4,14 @@
 
 'use strict';
 const _ = require('lodash');
-const validatingInput = require('server/json-verifiers').validatingInput;
+const {validatingInput} = require('__/json');
+const path = require('path');
+const schema = path.join(__dirname, 'schemas/book-in.json');
 
 function parsingMetaDataInjection (obj) {
+  // const schema = path.normalize('schemas/book-in.json');
   return new Promise((resolve, reject) => {
-    return validatingInput(obj, 'schemas/book-in.json')
+    return validatingInput(obj, schema)
       .then(document => {
         let book = {};
         book.pid = document.pid;

@@ -3,8 +3,8 @@
 const config = require('server/config');
 const logger = require('__/logging')(config.logger);
 const request = require('superagent');
-const uuidv4 = require('uuid/v4');
-const {validatingInput} = require('server/json-verifiers');
+// const uuidv4 = require('uuid/v4');
+const {validatingInput} = require('__/json');
 
 /**
  * Authentication for OpenPlatform via Smaug.

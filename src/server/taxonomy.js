@@ -4,7 +4,9 @@
 
 'use strict';
 const _ = require('lodash');
-const validatingInput = require('server/json-verifiers').validatingInput;
+const {validatingInput} = require('__/json');
+const path = require('path');
+const schema = path.join(__dirname, 'schemas/taxonomy-in.json');
 
 class IdChecker {
   constructor () {
@@ -30,7 +32,7 @@ class IdChecker {
 
 function parsingTaxonomyInjection (obj) {
   return new Promise((resolve, reject) => {
-    return validatingInput(obj, 'schemas/taxonomy-in.json')
+    return validatingInput(obj, schema)
       .then(document => {
         const idChecker = new IdChecker();
         document.forEach(top => {

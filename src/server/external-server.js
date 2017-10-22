@@ -83,7 +83,7 @@ external.get('/howru', async(req, res) => {
   const serviceOk = await Promise.all(
     _.map(services, service => service.testingConnection())
   );
-  console.log(serviceOk)
+  // console.log(serviceOk)
   const ok = _.every(serviceOk);
   if (ok) {
     return res.json({

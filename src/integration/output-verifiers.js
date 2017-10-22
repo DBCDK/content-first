@@ -6,7 +6,7 @@
 
 const {expect, assert} = require('chai');
 const validator = require('is-my-json-valid/require');
-const formats = require('server/schemas/formats');
+const formats = require('__/schemas/formats');
 const {nicifyJsonValidationErrors} = require('__/json');
 
 function expectSuccess(document, next) {

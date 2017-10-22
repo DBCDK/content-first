@@ -1,13 +1,13 @@
 /* eslint-env mocha */
 'use strict';
 
-const {expect} = require('chai');
+// const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
 // const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
-const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
+const {expectSuccess, expectValidate} = require('./output-verifiers');
 const mock = require('./mock-server');
 
 describe('OpenPlatform authentication', () => {

@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const validatingInput = require('server/json-verifiers').validatingInput;
+const validatingInput = require('__/json').validatingInput;
 const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
@@ -11,6 +11,8 @@ const taxonomyUtil = require('server/taxonomy');
 const topTable = constants.taxonomy.topTable;
 const middleTable = constants.taxonomy.middleTable;
 const bottomTable = constants.taxonomy.bottomTable;
+const path = require('path');
+const schema = path.join(__dirname, 'schemas/taxonomy-in.json');
 
 router.route('/')
   //
@@ -26,7 +28,7 @@ router.route('/')
       });
     }
     try {
-      await validatingInput(req.body, 'schemas/taxonomy-in.json');
+      await validatingInput(req.body, schema);
     }
     catch (error) {
       return next({

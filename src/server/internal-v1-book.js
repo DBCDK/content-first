@@ -8,7 +8,9 @@ const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const bookTable = constants.books.table;
 const bookUtil = require('server/books');
-const validatingInput = require('server/json-verifiers').validatingInput;
+const {validatingInput} = require('__/json');
+const path = require('path');
+const schema = path.join(__dirname, 'schemas/book-in.json');
 
 router.route('/:pid')
   //
@@ -24,7 +26,7 @@ router.route('/:pid')
       });
     }
     try {
-      await validatingInput(req.body, 'schemas/book-in.json');
+      await validatingInput(req.body, schema);
     }
     catch (error) {
       return next({
