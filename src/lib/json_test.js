@@ -29,7 +29,7 @@ describe('json', () => {
           expect(error).to.have.property('status');
           expect(error.status).to.equal(400);
           expect(error).to.have.property('title');
-          expect(error.title).to.equal('Input data does not adhere to status-out.json');
+          expect(error.title).to.equal('Input data does not adhere to JSON schema');
           expect(error).to.have.property('meta');
           expect(error.meta).to.have.property('problems');
           expect(error.meta.problems).to.deep.equal([

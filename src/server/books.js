@@ -9,7 +9,6 @@ const path = require('path');
 const schema = path.join(__dirname, 'schemas/book-in.json');
 
 function parsingMetaDataInjection (obj) {
-  // const schema = path.normalize('schemas/book-in.json');
   return new Promise((resolve, reject) => {
     return validatingInput(obj, schema)
       .then(document => {

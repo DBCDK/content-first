@@ -10,8 +10,6 @@ const path = require('path');
  * document itself, or rejects with a webservice-friendly
  *   {status, title, meta: {body, problems}}
  * structure.
- *
- * TODO: should title be split into title & detail?
  */
 function validatingInput (document, schemaPath) {
   return new Promise((resolve, reject) => {
@@ -35,7 +33,8 @@ function validatingInput (document, schemaPath) {
       const niceErrors = nicifyJsonValidationErrors(validate);
       reject({
         status: 400,
-        title: `Input data does not adhere to ${path.basename(schemaPath)}`,
+        title: 'Input data does not adhere to JSON schema',
+        detail: `Input data does not adhere to ${path.basename(schemaPath)}`,
         meta: {body: document, problems: niceErrors}
       });
     }
@@ -45,6 +44,15 @@ function validatingInput (document, schemaPath) {
   });
 }
 exports.validatingInput = validatingInput;
+
+/**
+ * Fixate validation on a specific schema.
+ * @param  {json} schemaPath       JSON schema
+ * @return {Promise(validation)}   Promise of validation.
+ */
+exports.validating = schemaPath => {
+  return document => validatingInput(document, schemaPath);
+};
 
 /**
  * Takes the validation output from a failed validate-my-json and returns the
