@@ -14,7 +14,7 @@ const Authenticator = require('./authentication-smaug');
 const s_OneHour = 60 * 60;
 const s_OneMonth = 30 * 24 * 60 * 60;
 
-describe('Authentication connector', () => {
+describe.only('Authentication connector', () => {
 
   const auth = new Authenticator();
   beforeEach(() => {
@@ -58,6 +58,10 @@ describe('Authentication connector', () => {
         .then(error => {
           expect(error).to.match(/smaug is down/i);
           expect(auth.isOk()).to.be.false;
+          expect(auth.getCurrentError()).to.match(/authentication-service.+failed/i);
+          const log = auth.getErrorLog();
+          expect(log).to.have.length(1);
+          expect(log[0]).to.match(/smaug is down/i);
           expect(server.isDone()).to.be.true;
         });
     });
@@ -80,9 +84,14 @@ describe('Authentication connector', () => {
           return Promise.reject('Expected rejection');
         })
         .catch(error => {
-          expect(server.isDone()).to.be.true;
           expect(error).to.have.property('title');
           expect(error.title).to.match(/does not adhere to JSON schema/i);
+          expect(auth.isOk()).to.be.false;
+          expect(auth.getCurrentError()).to.match(/authentication-service.+failed/i);
+          const log = auth.getErrorLog();
+          expect(log).to.have.length(1);
+          expect(log[0]).to.match(/not adhere to.+schema/i);
+          expect(server.isDone()).to.be.true;
         });
     });
     it('should retrieve a new token when needed', () => {
@@ -98,6 +107,8 @@ describe('Authentication connector', () => {
         // Assert.
         .then(result => {
           expect(result).to.equal(token);
+          expect(auth.isOk()).to.be.true;
+          expect(auth.getCurrentError()).to.be.null;
           expect(server.isDone()).to.be.true;
         });
     });
@@ -115,6 +126,8 @@ describe('Authentication connector', () => {
         // Assert.
         .then(result => {
           expect(result).to.equal(token);
+          expect(auth.isOk()).to.be.true;
+          expect(auth.getCurrentError()).to.be.null;
         });
     });
     it('should return a new access token if existing will soon expire', () => {
@@ -138,6 +151,8 @@ describe('Authentication connector', () => {
         // Assert.
         .then(result => {
           expect(result).to.equal(secondToken);
+          expect(auth.isOk()).to.be.true;
+          expect(auth.getCurrentError()).to.be.null;
         });
     });
   });

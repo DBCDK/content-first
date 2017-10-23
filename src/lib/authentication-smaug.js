@@ -19,7 +19,8 @@ class Authenticator {
     this.clear();
   }
   clear () {
-    this.ok = true;
+    this.setOk();
+    this.errorLog = [];
     this.token = null;
     this.ms_EpochExpire = Date.now();
   }
@@ -27,12 +28,17 @@ class Authenticator {
     return this.ok;
   }
   getCurrentError () {
+    return this.currentError;
   }
   getErrorLog () {
+    return this.errorLog;
   }
   testingConnection () {
+    // TODO
+    this.setOk();
   }
   gettingToken () {
+    this.setOk();
     return new Promise((resolve, reject) => {
       if (!this.tokenWillSoonExpire() && this.token) {
         return resolve(this.token);
@@ -67,6 +73,10 @@ class Authenticator {
   //
   // Private methods.
   //
+  setOk () {
+    this.ok = true;
+    this.currentError = null;
+  }
   setToken (token, ms_ExpiresIn) {
     this.token = token;
     this.ms_EpochExpire = Date.now() + ms_ExpiresIn;
@@ -74,7 +84,14 @@ class Authenticator {
   }
   logError (error) {
     this.ok = false;
-    // TODO: push error
+    this.currentError = 'Authentication-service communication failed';
+    let logEntry = JSON.stringify(error);
+    if (logEntry === '{}') {
+      logEntry = error.toString();
+    }
+    this.errorLog.push(
+      (new Date()).toISOString() + ': ' + logEntry
+    );
   }
   tokenWillSoonExpire () {
     const msEpochTomorrow = Date.now() + (24 * 60 * 60 * 1000);
