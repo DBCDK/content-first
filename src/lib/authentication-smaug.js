@@ -1,11 +1,11 @@
 'use strict';
 
 const config = require('server/config');
-// const logger = require('__/logging')(config.logger);
 const request = require('superagent');
-// const uuidv4 = require('uuid/v4');
+const _ = require('lodash');
 const path = require('path');
-const schema = path.join(__dirname, 'schemas/authenticator-in.json');
+const schemaNewToken = path.join(__dirname, 'schemas/authenticator-token-in.json');
+const schemaHealth = path.join(__dirname, 'schemas/authenticator-health-in.json');
 const {validating} = require('__/json');
 
 /**
@@ -34,8 +34,33 @@ class Authenticator {
     return this.errorLog;
   }
   testingConnection () {
-    // TODO
-    this.setOk();
+    return new Promise(resolve => {
+      const me = this;
+      request.get(`${config.auth.url}/health`)
+        .then(response => {
+          return response.body;
+        })
+        .then(validating(schemaHealth))
+        .then(data => {
+          const ok = _.every(_.values(data), status => status === 'ok');
+          if (ok) {
+            me.setOk();
+          }
+          else {
+            me.logError(`Authentication service is unhealthy: ${JSON.stringify(data)}`);
+          }
+          return resolve(me.isOk());
+        })
+        .catch(error => {
+          if (error.status === 500) {
+            me.logError('Authentication service is unhealthy');
+          }
+          else {
+            me.logError(error);
+          }
+          return resolve(me.isOk());
+        });
+    });
   }
   gettingToken () {
     this.setOk();
@@ -59,7 +84,7 @@ class Authenticator {
           }
           return data;
         })
-        .then(validating(schema))
+        .then(validating(schemaNewToken))
         .then(data => {
           const ms_ExpiresIn = data.expires_in * 1000;
           return resolve(me.setToken(data.access_token, ms_ExpiresIn));

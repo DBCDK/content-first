@@ -13,8 +13,10 @@ const Authenticator = require('./authentication-smaug');
 
 const s_OneHour = 60 * 60;
 const s_OneMonth = 30 * 24 * 60 * 60;
+const apiGetToken = '/oauth/token';
+const apiHealth = '/health';
 
-describe.only('Authentication connector', () => {
+describe('Authentication connector', () => {
 
   const auth = new Authenticator();
   beforeEach(() => {
@@ -27,7 +29,7 @@ describe.only('Authentication connector', () => {
     it('should return an existing access token if not expired', () => {
       // Arrange.
       const token = '141432e6cd4988cf2933f2868450a0b2ec218f5c';
-      nock(config.auth.url).post('/oauth/token').reply(200, {
+      nock(config.auth.url).post(apiGetToken).reply(200, {
         token_type: 'bearer',
         access_token: token,
         expires_in: s_OneMonth
@@ -35,7 +37,7 @@ describe.only('Authentication connector', () => {
       let server;
       return auth.gettingToken()
         .then(() => {
-          server = nock(config.auth.url).post('/oauth/token').replyWithError(
+          server = nock(config.auth.url).post(apiGetToken).replyWithError(
             'Nope, Smaug is down'
           );
           // Act.
@@ -49,7 +51,7 @@ describe.only('Authentication connector', () => {
     });
     it('should say there is no connection if new token is needed', () => {
       // Arrange.
-      const server = nock(config.auth.url).post('/oauth/token').replyWithError(
+      const server = nock(config.auth.url).post(apiGetToken).replyWithError(
         'Nope, Smaug is down'
       );
       // Act.
@@ -57,6 +59,23 @@ describe.only('Authentication connector', () => {
         .to.be.rejectedWith(Error)
         .then(error => {
           expect(error).to.match(/smaug is down/i);
+          expect(auth.isOk()).to.be.false;
+          expect(auth.getCurrentError()).to.match(/authentication-service.+failed/i);
+          const log = auth.getErrorLog();
+          expect(log).to.have.length(1);
+          expect(log[0]).to.match(/smaug is down/i);
+          expect(server.isDone()).to.be.true;
+        });
+    });
+    it('testingConnection() should say there is no connection', () => {
+      // Arrange.
+      const server = nock(config.auth.url).get(apiHealth).replyWithError(
+        {error: 'Smaug is down'}
+      );
+      // Act.
+      return auth.testingConnection()
+        .then(ok => {
+          expect(ok).to.be.false;
           expect(auth.isOk()).to.be.false;
           expect(auth.getCurrentError()).to.match(/authentication-service.+failed/i);
           const log = auth.getErrorLog();
@@ -74,7 +93,7 @@ describe.only('Authentication connector', () => {
     });
     it('should complain about wrong answer from authenticator', () => {
       // Arrange.
-      const server = nock(config.auth.url).post('/oauth/token').reply(200, {
+      const server = nock(config.auth.url).post(apiGetToken).reply(200, {
         answer: 'who are u?'
       });
       // Act.
@@ -97,7 +116,7 @@ describe.only('Authentication connector', () => {
     it('should retrieve a new token when needed', () => {
       // Arrange.
       const token = '141432e6cd4988cf2933f2868450a0b2ec218f5c';
-      const server = nock(config.auth.url).post('/oauth/token').reply(200, {
+      const server = nock(config.auth.url).post(apiGetToken).reply(200, {
         token_type: 'bearer',
         access_token: token,
         expires_in: s_OneMonth
@@ -115,7 +134,7 @@ describe.only('Authentication connector', () => {
     it('should return an existing access token if not expired', () => {
       // Arrange.
       const token = '141432e6cd4988cf2933f2868450a0b2ec218f5c';
-      nock(config.auth.url).post('/oauth/token').reply(200, {
+      nock(config.auth.url).post(apiGetToken).reply(200, {
         token_type: 'bearer',
         access_token: token,
         expires_in: s_OneMonth
@@ -132,7 +151,7 @@ describe.only('Authentication connector', () => {
     });
     it('should return a new access token if existing will soon expire', () => {
       // Arrange.
-      nock(config.auth.url).post('/oauth/token').reply(200, {
+      nock(config.auth.url).post(apiGetToken).reply(200, {
         token_type: 'bearer',
         access_token: '141432e6cd4988cf2933f2868450a0b2ec218f5c',
         expires_in: s_OneHour
@@ -140,7 +159,7 @@ describe.only('Authentication connector', () => {
       const secondToken = 'cf141432e83f22ec218f5c68450a0b6cd4988293';
       return auth.gettingToken()
         .then(() => {
-          nock(config.auth.url).post('/oauth/token').reply(200, {
+          nock(config.auth.url).post(apiGetToken).reply(200, {
             token_type: 'bearer',
             access_token: secondToken,
             expires_in: s_OneMonth
@@ -155,5 +174,38 @@ describe.only('Authentication connector', () => {
           expect(auth.getCurrentError()).to.be.null;
         });
     });
+    it('testingConnection() should say everything is fine', () => {
+      // Arrange.
+      const server = nock(config.auth.url).get(apiHealth).reply(200, {
+        clientStore: 'ok',
+        configStore: 'ok',
+        userStore: 'ok',
+        tokenStore: 'ok'
+      });
+      // Act.
+      return auth.testingConnection()
+        .then(ok => {
+          expect(ok).to.be.true;
+          expect(auth.isOk()).to.be.true;
+          expect(auth.getCurrentError()).to.be.null;
+          expect(server.isDone()).to.be.true;
+        });
+    });
+    it('testingConnection() should detect unhealth auth service', () => {
+      // Arrange.
+      const server = nock(config.auth.url).get(apiHealth).reply(500);
+      // Act.
+      return auth.testingConnection()
+        .then(ok => {
+          expect(ok).to.be.false;
+          expect(auth.isOk()).to.be.false;
+          expect(auth.getCurrentError()).to.match(/authentication-service.+failed/i);
+          const log = auth.getErrorLog();
+          expect(log).to.have.length(1);
+          expect(log[0]).to.match(/authentication service.+unhealthy/i);
+          expect(server.isDone()).to.be.true;
+        });
+    });
+
   });
 });

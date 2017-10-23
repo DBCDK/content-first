@@ -44,6 +44,16 @@ or
 }
 ```
 
+TODO: /health should give something like
+
+```
+{ "clientStore": "ok"
+, "configStore": "ok"
+, "userStore": "ok"
+, "tokenStore": "ok"
+}
+```
+
 ### Staging
 
 - https://auth-stg.dbc.dk
