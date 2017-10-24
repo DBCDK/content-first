@@ -9,8 +9,18 @@ router.route('/')
   //
   // GET /v1/authentication-token
   //
-  .get(asyncMiddleware(async (req, res) => {
-    const token = await authenticator.gettingToken();
+  .get(asyncMiddleware(async (req, res, next) => {
+    let token;
+    try {
+      token = await authenticator.gettingToken();
+    }
+    catch (error) {
+      return next({
+        status: 503,
+        title: 'Authentication-service communication failed',
+        detail: `Subsystem returned ${error.status}`
+      });
+    }
     res.status(200).json({
       data: token,
       links: {
