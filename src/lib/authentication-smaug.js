@@ -18,6 +18,9 @@ class Authenticator {
   constructor () {
     this.clear();
   }
+  getName () {
+    return 'smaug';
+  }
   clear () {
     this.setOk();
     this.errorLog = [];
@@ -36,7 +39,7 @@ class Authenticator {
   testingConnection () {
     return new Promise(resolve => {
       const me = this;
-      request.get(`${config.auth.url}/health`)
+      request.get(`${config.auth.url}${config.auth.apiHealth}`)
         .then(response => {
           return response.body;
         })
@@ -69,7 +72,7 @@ class Authenticator {
         return resolve(this.token);
       }
       const me = this;
-      request.post(`${config.auth.url}/oauth/token`)
+      request.post(`${config.auth.url}${config.auth.apiGetToken}`)
         .type('form')
         .send({
           grant_type: 'password',

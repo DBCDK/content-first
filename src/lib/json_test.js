@@ -42,6 +42,14 @@ describe('json', () => {
     it('should accept document that adheres to schema', () => {
       const document = {
         ok: true,
+        services: [{
+          service: 'db',
+          ok: true
+        }, {
+          service: 'mail',
+          ok: false,
+          problems: 'Not working'
+        }],
         version: '1.2.3',
         'api-version': '1.2.3'
       };

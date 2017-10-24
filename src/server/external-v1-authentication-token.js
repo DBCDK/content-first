@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const authenticator = require('server/remote/authentication');
+const authenticator = require('server/remote/authenticator');
 
 router.route('/')
   //

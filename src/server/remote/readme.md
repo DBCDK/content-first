@@ -8,5 +8,6 @@ The [main server](../external-server.js) holds an instance of each remote servic
     getCurrentError : () -> String
     getErrorLog : () -> Array of String
     testingConnection : () -> Promise of Bool
+    getName : () -> String
 
 The `testingConnection` promise must ensure that `getCurrentError`, `getErrorLog` and `isOk` reflects the of the connection test.

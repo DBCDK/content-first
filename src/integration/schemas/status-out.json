@@ -5,6 +5,27 @@
       "required": true,
       "type": "boolean"
     },
+    "services": {
+      "required": false,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "service": {
+            "required": true,
+            "type": "string"
+          },
+          "ok": {
+            "required": true,
+            "type": "boolean"
+          },
+          "problem": {
+            "required": false,
+            "type": "string"
+          }
+        }
+      }
+    },
     "version": {
       "required": true,
       "type": "string",

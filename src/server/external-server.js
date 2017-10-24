@@ -35,7 +35,7 @@ knex.migrate.latest()
 /**
  * Remote services.
  */
-const authenticator = require('server/remote/authentication');
+const authenticator = require('server/remote/authenticator');
 
 /*
  * Public web server.
@@ -80,14 +80,37 @@ external.get('/howru', async(req, res) => {
     database,
     authenticator
   ];
-  const serviceOk = await Promise.all(
-    _.map(services, service => service.testingConnection())
+  const servicesHealth = await Promise.all(
+    _.map(services, service => {
+      const name = service.getName();
+      return service.testingConnection()
+        .then(status => {
+          if (status) {
+            return {
+              service: name,
+              ok: status
+            };
+          }
+          return {
+            service: name,
+            ok: status,
+            problem: service.getCurrentError()
+          };
+        })
+        .catch(error => {
+          return {
+            service: name,
+            ok: false,
+            problem: error
+          };
+        });
+    })
   );
-  // console.log(serviceOk)
-  const ok = _.every(serviceOk);
+  const ok = _.every(servicesHealth, health => health.ok);
   if (ok) {
     return res.json({
       ok: true,
+      services: servicesHealth,
       version: require('../../package').version,
       'api-version': constants.apiversion,
       hostname: req.hostname,
@@ -99,6 +122,7 @@ external.get('/howru', async(req, res) => {
   const erred = _.filter(services, service => !service.isOk());
   res.json({
     ok: false,
+    services: servicesHealth,
     errorText: _.join(_.map(erred, service => service.getCurrentError())),
     errorLog: _.flatMap(erred, service => service.getErrorLog()),
     version: require('../../package').version,

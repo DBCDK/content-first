@@ -1,12 +1,8 @@
 'use strict';
 
-const mockery = require('mockery');
+// const mockery = require('mockery');
 
 // TODO: Mock Smaug.
-// const mailer = require('nodemailer-mock');
-// mockery.enable({warnOnUnregistered: false});
-// mockery.registerMock('nodemailer', mailer);
-
 // TODO: Mock Hejmdal.
 
 // And after that require the server so that it uses the mocked versions
@@ -19,7 +15,7 @@ module.exports = {
     // mailer.mock.reset();
   },
   after: () => {
-    mockery.deregisterAll();
-    mockery.disable();
+    // mockery.deregisterAll();
+    // mockery.disable();
   }
 };

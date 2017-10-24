@@ -1,18 +1,22 @@
 /* eslint-env mocha */
 'use strict';
 
+const {external, internal} = require('./mock-server');
+const config = require('server/config');
 const {expect} = require('chai');
 const request = require('supertest');
+const nock = require('nock');
 const {expectValidate} = require('./output-verifiers');
 
 describe('Admin API on running database', () => {
-  const {external, internal} = require('./mock-server');
   describe('Public endpoint', () => {
     const webapp = request(external);
     describe('/pid', () => {
       it('should return the process id', done => {
+        // Act.
         webapp.get('/pid')
           .set('Accept', 'text/plain')
+          // Assert.
           .expect(200)
           .expect('Content-Type', /text/)
           .expect(/^[0-9]+$/)
@@ -21,8 +25,17 @@ describe('Admin API on running database', () => {
     });
     describe('/howru', () => {
       it('should answer that everything is fine and give additional information', done => {
+        // Arrange.
+        nock(config.auth.url).get(config.auth.apiHealth).reply(200, {
+          clientStore: 'ok',
+          configStore: 'ok',
+          userStore: 'ok',
+          tokenStore: 'ok'
+        });
+        // Act.
         webapp.get('/howru')
           .set('Accept', 'application/json')
+          // Assert.
           .expect('Content-Type', /json/)
           .expect(200)
           .expect(res => {
@@ -53,7 +66,9 @@ describe('Admin API on running database', () => {
     const hidden = request(internal);
     describe('server crashes', () => {
       it('should be catched', done => {
+        // Act.
         hidden.get('/crash')
+          // Assert.
           .expect(500)
           .end(done);
       });

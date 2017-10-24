@@ -10,7 +10,7 @@ const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectValidate} = require('./output-verifiers');
 const mock = require('./mock-server');
 
-describe('OpenPlatform authentication', () => {
+describe.skip('OpenPlatform authentication', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
     await dbUtil.clear();
