@@ -15,13 +15,13 @@ const _ = require('lodash');
 /**
  * Database wrapper.
  */
-const Database = require('server/remote/database');
-const database = new Database();
+const knex = require('knex')(config.db);
+const Database = require('__/service/database');
+const database = new Database(knex);
 
 /*
  * Make sure database is at most recent schema.
  */
-const knex = require('knex')(config.db);
 knex.migrate.latest()
   .then(() => {
     logger.log.debug('Database is now at latest version.');
@@ -35,7 +35,7 @@ knex.migrate.latest()
 /**
  * Remote services.
  */
-const authenticator = require('server/remote/authenticator');
+const authenticator = require('server/authenticator');
 
 /*
  * Public web server.

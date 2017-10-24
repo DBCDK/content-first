@@ -1,12 +1,11 @@
 'use strict';
-const config = require('server/config');
-const knex = require('knex')(config.db);
 
 /**
  * Database error accounting.
  */
 class Database {
-  constructor () {
+  constructor (knex) {
+    this.knex = knex;
     this.ok = true;
     this.currentError = null;
     this.databaseErrors = [];
@@ -39,7 +38,7 @@ class Database {
   testingConnection () {
     const me = this;
     // Make a dummy query.
-    return knex.raw('select 1+1 as result')
+    return me.knex.raw('select 1+1 as result')
       .then(() => {
         me.setOk();
         return me.isOk();

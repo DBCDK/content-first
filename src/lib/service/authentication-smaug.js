@@ -1,11 +1,11 @@
 'use strict';
 
-const config = require('server/config');
 const request = require('superagent');
 const _ = require('lodash');
 const path = require('path');
-const schemaNewToken = path.join(__dirname, 'schemas/authenticator-token-in.json');
-const schemaHealth = path.join(__dirname, 'schemas/authenticator-health-in.json');
+const schemaNewToken = path.join(__dirname, 'authenticator-token-in.json');
+const schemaHealth = path.join(__dirname, 'authenticator-health-in.json');
+const constants = require('./authentication-constants')();
 const {validating} = require('__/json');
 
 /**
@@ -15,7 +15,8 @@ class Authenticator {
   //
   // Public methods.
   //
-  constructor () {
+  constructor (config) {
+    this.config = config;
     this.clear();
   }
   getName () {
@@ -39,7 +40,7 @@ class Authenticator {
   testingConnection () {
     return new Promise(resolve => {
       const me = this;
-      request.get(`${config.auth.url}${config.auth.apiHealth}`)
+      request.get(`${me.config.url}${constants.apiHealth}`)
         .then(response => {
           return response.body;
         })
@@ -72,14 +73,14 @@ class Authenticator {
         return resolve(this.token);
       }
       const me = this;
-      request.post(`${config.auth.url}${config.auth.apiGetToken}`)
+      request.post(`${me.config.url}${constants.apiGetToken}`)
         .type('form')
         .send({
           grant_type: 'password',
           username: '@',
           password: '@'
         })
-        .auth(config.auth.id, config.auth.secret)
+        .auth(me.config.id, me.config.secret)
         .then(response => {
           const data = response.body;
           if (data.error) {
