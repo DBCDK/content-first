@@ -16,7 +16,7 @@ router.route('/')
   // GET /v1/taxonomy
   //
   .get(asyncMiddleware(async (req, res, next) => {
-    const location = `${req.baseUrl}`;
+    const location = req.baseUrl;
     try {
       const topResult = await knex(topTable).select(['id', 'title']);
       res.status(200).json({

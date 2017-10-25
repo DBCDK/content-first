@@ -15,6 +15,7 @@ const taxonomyTopTable = constants.taxonomy.topTable;
 const taxonomyMiddleTable = constants.taxonomy.middleTable;
 const taxonomyBottomTable = constants.taxonomy.bottomTable;
 const userTable = constants.users.table;
+const cookieTable = constants.cookies.table;
 
 module.exports = knex => {
 
@@ -22,7 +23,17 @@ module.exports = knex => {
    * Truncate all tables in the current database.
    */
   function clear() {
-    return knex.raw(`truncate table ${userTable}, ${tagTable}, ${taxonomyBottomTable}, ${taxonomyMiddleTable}, ${taxonomyTopTable}, ${bookTable}, ${coverTable} cascade`);
+    const tables = [
+      cookieTable,
+      userTable,
+      tagTable,
+      taxonomyBottomTable,
+      taxonomyMiddleTable,
+      taxonomyTopTable,
+      bookTable,
+      coverTable
+    ];
+    return knex.raw(`truncate table ${tables.join()} cascade`);
   }
 
   return {

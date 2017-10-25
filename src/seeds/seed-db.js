@@ -5,6 +5,7 @@ const bookTable = constants.books.table;
 const coverTable = constants.covers.table;
 const tagTable = constants.tags.table;
 const userTable = constants.users.table;
+const cookieTable = constants.cookies.table;
 const topTable = constants.taxonomy.topTable;
 const middleTable = constants.taxonomy.middleTable;
 const bottomTable = constants.taxonomy.bottomTable;
@@ -66,5 +67,15 @@ exports.seed = async knex => {
     birth_year: 1971,
     authors: JSON.stringify(['Ib Michael', 'Helle Helle']),
     atmosphere: JSON.stringify(['Realistisk'])
+  });
+  await knex(cookieTable).insert({
+    uuid: 'c32e314e-8f12-45e3-8b52-17aa87e7699d',
+    user: 'cd3cc362-d29c-4d40-8662-458664251e52',
+    expires_epoch_s: (Math.ceil(Date.now() / 1000) + 10000)
+  });
+  await knex(cookieTable).insert({
+    uuid: 'deadbeef-dead-beef-dead-beefdeadbeef',
+    user: 'cd3cc362-d29c-4d40-8662-458664251e52',
+    expires_epoch_s: Math.ceil(new Date(2009, 1, 25).getTime() / 1000)
   });
 };

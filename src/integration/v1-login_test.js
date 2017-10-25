@@ -23,7 +23,7 @@ describe('User login', () => {
       it('should retrieve existing user data on valid cookie', () => {
         // Act.
         return webapp.get('/v1/login')
-          .set('cookie', 'login-token=C32E314E-8F12-45E3-8B52-17AA87E7699D')
+          .set('cookie', 'login-token=c32e314e-8f12-45e3-8b52-17aa87e7699d')
           // Assert.
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
@@ -63,7 +63,54 @@ describe('User login', () => {
           })
           .expect(303);
       });
-      it('should redirect to remote login page on invalid cookie');
+      it('should redirect to remote login page on non-existing cookie', () => {
+        // Arrange.
+        authenticator.clear();
+        const token = '840e75ac9af8448898fe7f7c99198a7d';
+        nock(config.auth.url).post(constants.apiGetToken).reply(200, {
+          token_type: 'bearer',
+          access_token: token,
+          expires_in: constants.s_OneMonth
+        });
+        // Act.
+        return webapp.get('/v1/login')
+          .set('cookie', 'login-token=AC9C12A9-68CA-4534-930E-37FF635C8408')
+          // Assert.
+          .expect(res => {
+            expectSuccess(res.body, (links, data) => {
+              expectValidate(links, 'schemas/login-links-out.json');
+              const remote = `${config.openplatform.url}/login?token=${token}`;
+              expect(links.login).to.equal(remote);
+              expectValidate(data, 'schemas/login-data-out.json');
+              expect(data).to.equal(remote);
+            });
+          })
+          .expect(303);
+      });
+      it('should redirect to remote login page on expired cookie', () => {
+        // Arrange.
+        authenticator.clear();
+        const token = 'a7d847c9481840e75ac9af98fe7f9198';
+        nock(config.auth.url).post(constants.apiGetToken).reply(200, {
+          token_type: 'bearer',
+          access_token: token,
+          expires_in: constants.s_OneMonth
+        });
+        // Act.
+        return webapp.get('/v1/login')
+          .set('cookie', 'login-token=deadbeef-dead-beef-dead-beefdeadbeef')
+          // Assert.
+          .expect(res => {
+            expectSuccess(res.body, (links, data) => {
+              expectValidate(links, 'schemas/login-links-out.json');
+              const remote = `${config.openplatform.url}/login?token=${token}`;
+              expect(links.login).to.equal(remote);
+              expectValidate(data, 'schemas/login-data-out.json');
+              expect(data).to.equal(remote);
+            });
+          })
+          .expect(303);
+      });
       it('should handle failure to retrieve token and redirect');
     });
     describe('GET /v1/retrieve-user:token&id', () => {

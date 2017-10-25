@@ -41,6 +41,9 @@ describe('Admin API on running database', () => {
           .expect(200)
           .expect(res => {
             expectValidate(res.body, 'schemas/status-out.json');
+
+            // TODO: number of session cookies + ensure cleanup.
+
             // Remote connections status.
             expect(res.body.ok).to.be.true; // eslint-disable-line no-unused-expressions
             expect(res.body).to.not.have.property('errorText');
