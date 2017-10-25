@@ -25,23 +25,7 @@ module.exports = knex => {
     return knex.raw(`truncate table ${userTable}, ${tagTable}, ${taxonomyBottomTable}, ${taxonomyMiddleTable}, ${taxonomyTopTable}, ${bookTable}, ${coverTable} cascade`);
   }
 
-  /**
-   * Completely clean up the database and migrations.
-   */
-  async function dropAll () {
-    await knex.schema.dropTableIfExists(coverTable);
-    await knex.schema.dropTableIfExists(bookTable);
-    await knex.schema.dropTableIfExists(tagTable);
-    await knex.schema.dropTableIfExists(userTable);
-    await knex.schema.dropTableIfExists(taxonomyBottomTable);
-    await knex.schema.dropTableIfExists(taxonomyMiddleTable);
-    await knex.schema.dropTableIfExists(taxonomyTopTable);
-    await knex.schema.dropTableIfExists('knex_migrations');
-    await knex.schema.dropTableIfExists('knex_migrations_lock');
-  }
-
   return {
-    clear,
-    dropAll
+    clear
   };
 };
