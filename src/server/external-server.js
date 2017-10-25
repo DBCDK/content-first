@@ -42,7 +42,7 @@ const helmet = require('helmet');
 external.use(helmet());
 
 /*
- * All request bodies must be JSON.
+ * Auto-parse request bodies in JSON format.
  */
 const parser = require('body-parser');
 external.use(parser.json({
@@ -65,57 +65,16 @@ external.get('/howru', async(req, res) => {
     database,
     authenticator
   ];
-  const servicesHealth = await Promise.all(
-    _.map(services, service => {
-      const name = service.getName();
-      return service.testingConnection()
-        .then(status => {
-          if (status) {
-            return {
-              service: name,
-              ok: status
-            };
-          }
-          return {
-            service: name,
-            ok: status,
-            problem: service.getCurrentError()
-          };
-        })
-        .catch(error => {
-          return {
-            service: name,
-            ok: false,
-            problem: error
-          };
-        });
-    })
-  );
-  const ok = _.every(servicesHealth, health => health.ok);
-  if (ok) {
-    return res.json({
-      ok: true,
-      services: servicesHealth,
-      version: require('../../package').version,
-      'api-version': constants.apiversion,
-      hostname: req.hostname,
-      address: req.ip,
-      config: configWithoutSecrets
-    });
-  }
-  // Find all services that erred.
-  const erred = _.filter(services, service => !service.isOk());
-  res.json({
-    ok: false,
-    services: servicesHealth,
-    errorText: _.join(_.map(erred, service => service.getCurrentError())),
-    errorLog: _.flatMap(erred, service => service.getErrorLog()),
+  const generatingServiceStatus = require('server/service-status');
+  const status = await generatingServiceStatus(services);
+  Object.assign(status, {
     version: require('../../package').version,
     'api-version': constants.apiversion,
     hostname: req.hostname,
     address: req.ip,
     config: configWithoutSecrets
   });
+  res.json(status);
 });
 
 external.get('/pid', (req, res) => {
