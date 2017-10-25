@@ -7,12 +7,11 @@ const request = require('supertest');
 const nock = require('nock');
 const authenticator = require('server/authenticator');
 const config = require('server/config');
+const constants = require('__/service/authentication-constants')();
 const {expect} = require('chai');
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
-
-const s_OneMonth = 30 * 24 * 60 * 60;
 
 describe('OpenPlatform authentication', () => {
   const webapp = request(external);
@@ -26,10 +25,10 @@ describe('OpenPlatform authentication', () => {
         // Arrange.
         authenticator.clear();
         const token = 'e6cd4988cf2933f2868450a0b2ec218f5c141432';
-        const remote = nock(config.auth.url).post(config.auth.apiGetToken).reply(200, {
+        const remote = nock(config.auth.url).post(constants.apiGetToken).reply(200, {
           token_type: 'bearer',
           access_token: token,
-          expires_in: s_OneMonth
+          expires_in: constants.s_OneMonth
         });
         // Act.
         const url = '/v1/authentication-token';
@@ -47,7 +46,7 @@ describe('OpenPlatform authentication', () => {
       it('should return an error if authenticator unreachable', () => {
         // Arrange.
         authenticator.clear();
-        const remote = nock(config.auth.url).post(config.auth.apiGetToken).reply(500);
+        const remote = nock(config.auth.url).post(constants.apiGetToken).reply(500);
         // Act.
         const url = '/v1/authentication-token';
         return webapp.get(url)

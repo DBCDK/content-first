@@ -52,6 +52,12 @@ external.use(parser.json({
 }));
 
 /*
+ * Auto-parse cookies.
+ */
+const cookieParser = require('cookie-parser');
+external.use(cookieParser());
+
+/*
  * Administrative API.
  */
 external.get('/howru', async(req, res) => {

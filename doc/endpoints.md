@@ -289,23 +289,15 @@ Returns [user information](../src/integration/schemas/user-data-out.json), like
 
 TODO: Updates the user information.
 
-### `GET /v1/authentication-token`
+### `GET /v1/login`
 
-Returns an access token to OpenPlatform, like
+If the user is already logged in (ie. a valid cookie is present in the request), the result is same as for `GET /v1/users/`*uuid*.
 
-    { "data": "141432e6cd4988cf2933f2868450a0b2ec218f5c"
-    , "links":
-      { "login": "https://login.bib.dk/login?token=141432e6cd4988cf2933f2868450a0b2ec218f5c"
-      }
-    }
+If there is no cookie or the cookie is invalid, then the web service will redirect to the OpenPlatform login page.  On successful login, the service will redirect to TODO:?, which can then use `GET /v1/login` or `GET /v1/users/`*uuid*.  On login failure the service will redirect to TODO:?.
 
-The frontend can then use the returned `login` URL to let the user log in.  OpenPlatform will redirect to `http://content-first.dbc.dk/hejmdal` (or whatever it is configured to redirect to, ask Kasper).
+### `POST /v1/login`
 
-### `GET /v1/login?token=`*token*`&id=`*id*
-
-The *token* and *id* are collected from the OpenPlatform redirect described earlier.
-
-The result is same as for `GET /v1/users/`*uuid*.
+Makes sure the current login cookie is invalidated.
 
 # Command-line interaction
 

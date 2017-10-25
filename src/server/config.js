@@ -56,9 +56,11 @@ exports.logger = {
 exports.auth = {
   id: process.env.AUTH_CLIENT_ID || 'content-first',
   secret: process.env.AUTH_CLIENT_SECRET,
-  url: process.env.AUTH_URL || 'https://auth.dbc.dk',
-  apiHealth: '/health',
-  apiGetToken: '/oauth/token'
+  url: process.env.AUTH_URL || 'https://auth.dbc.dk'
+};
+
+exports.openplatform = {
+  url: process.env.OPENPLATFORM_URL || 'https://login.bib.dk'
 };
 
 exports.db = knexfile[defaults.environment];

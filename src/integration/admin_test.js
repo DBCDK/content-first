@@ -3,6 +3,7 @@
 
 const {external, internal} = require('./mock-server');
 const config = require('server/config');
+const constants = require('__/service/authentication-constants')();
 const {expect} = require('chai');
 const request = require('supertest');
 const nock = require('nock');
@@ -26,7 +27,7 @@ describe('Admin API on running database', () => {
     describe('/howru', () => {
       it('should answer that everything is fine and give additional information', done => {
         // Arrange.
-        nock(config.auth.url).get(config.auth.apiHealth).reply(200, {
+        nock(config.auth.url).get(constants.apiHealth).reply(200, {
           clientStore: 'ok',
           configStore: 'ok',
           userStore: 'ok',
