@@ -21,6 +21,7 @@ const database = require('server/database');
  * Remote services.
  */
 const authenticator = require('server/authenticator');
+const login = require('server/login');
 
 /*
  * Public web server.
@@ -69,7 +70,8 @@ external.get('/howru', async(req, res) => {
   ]);
   const services = [
     database,
-    authenticator
+    authenticator,
+    login
   ];
   const generatingServiceStatus = require('server/service-status');
   const status = await generatingServiceStatus(services);
