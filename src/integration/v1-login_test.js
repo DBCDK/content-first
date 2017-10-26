@@ -9,7 +9,7 @@ const authenticator = require('server/authenticator');
 const constants = require('__/service/authentication-constants')();
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
-const {expectSuccess, expectValidate} = require('./output-verifiers');
+const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const mock = require('./mock-server');
 
 describe('User login', () => {
@@ -55,7 +55,7 @@ describe('User login', () => {
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/login-links-out.json');
-              const remote = `${config.openplatform.url}/login?token=${token}`;
+              const remote = `${config.login.url}/login?token=${token}`;
               expect(links.login).to.equal(remote);
               expectValidate(data, 'schemas/login-data-out.json');
               expect(data).to.equal(remote);
@@ -79,7 +79,7 @@ describe('User login', () => {
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/login-links-out.json');
-              const remote = `${config.openplatform.url}/login?token=${token}`;
+              const remote = `${config.login.url}/login?token=${token}`;
               expect(links.login).to.equal(remote);
               expectValidate(data, 'schemas/login-data-out.json');
               expect(data).to.equal(remote);
@@ -103,7 +103,7 @@ describe('User login', () => {
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/login-links-out.json');
-              const remote = `${config.openplatform.url}/login?token=${token}`;
+              const remote = `${config.login.url}/login?token=${token}`;
               expect(links.login).to.equal(remote);
               expectValidate(data, 'schemas/login-data-out.json');
               expect(data).to.equal(remote);
@@ -111,9 +111,24 @@ describe('User login', () => {
           })
           .expect(303);
       });
-      it('should handle failure to retrieve token and redirect');
+      it('should handle failure to retrieve token', () => {
+        // Arrange.
+        authenticator.clear();
+        nock(config.auth.url).post(constants.apiGetToken).reply(500);
+        // Act.
+        return webapp.get('/v1/login')
+          // Assert.
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/authentication.service communication failed/i);
+            });
+          })
+          .expect(503);
+      });
     });
-    describe('GET /v1/retrieve-user:token&id', () => {
+    describe('GET /hejmdal:token&id', () => {
       it('should retrieve user info and redirect & set valid cookie');
       it('should handle failure to retrieve info and redirect');
     });

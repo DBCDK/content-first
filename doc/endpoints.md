@@ -293,9 +293,9 @@ TODO: Updates the user information.
 
 If the user is already logged in (ie. a valid cookie is present in the request), the result is same as for `GET /v1/users/`*uuid*.
 
-If there is no cookie or the cookie is invalid, then the web service will redirect to the OpenPlatform login page.  On successful login, the service will redirect to TODO:?, which can then use `GET /v1/login` or `GET /v1/users/`*uuid*.  On login failure the service will redirect to TODO:?.
+If there is no cookie or the cookie is invalid, then the web service will redirect to the Adgangsplatform login page.  On successful login, the service will redirect to TODO:?, which can then use `GET /v1/login` or `GET /v1/users/`*uuid*.  On login failure the service will redirect to TODO:?.
 
-### `POST /v1/login`
+### `POST /v1/logout`
 
 Makes sure the current login cookie is invalidated.
 

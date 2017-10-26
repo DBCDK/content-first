@@ -55,6 +55,7 @@ describe('Authentication connector', () => {
       );
       // Act.
       return expect(auth.gettingToken())
+        // Assert.
         .to.be.rejectedWith(Error)
         .then(error => {
           expect(error).to.match(/smaug is down/i);
@@ -73,6 +74,7 @@ describe('Authentication connector', () => {
       );
       // Act.
       return auth.testingConnection()
+        // Assert.
         .then(ok => {
           expect(ok).to.be.false;
           expect(auth.isOk()).to.be.false;
@@ -86,9 +88,11 @@ describe('Authentication connector', () => {
   });
 
   describe('with responsive service', () => {
-    it('should say that everything is ok', () => {
+    it('should say that everything is ok initially', () => {
       // Assert.
       expect(auth.isOk()).to.be.true;
+      expect(auth.getCurrentError()).to.be.null;
+      expect(auth.getErrorLog()).to.have.length(0);
     });
     it('should complain about wrong answer from authenticator', () => {
       // Arrange.

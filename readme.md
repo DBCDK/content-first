@@ -50,7 +50,7 @@ The backend service controlled by environment variables.  Most scripts assume th
 | LOG_LEVEL               | INFO         | Verbosity of service log (OFF, ERROR, WARN, WARNING, INFO, DEBUG, TRACE) |
 | LOG_SERVICE_ERRORS      | 1            | Record all 5xx errors (1), or ignore 5xx errors (0) |
 | NODE_ENV                | development  | Controls other service settings (development, ci, production) |
-| OPENPLATFORM_URL        | https://login.bib.dk | Where to contact OpenPlatform |
+| LOGIN_URL               | https://login.bib.dk | Where to contact Adgangsplatform |
 | PORT                    | 3001         | TCP port for the public service  |
 | PRETTY_LOG              | 1            | Pretty printed log statements (1), or one-line log statements (0) |
 

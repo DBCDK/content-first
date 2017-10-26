@@ -59,8 +59,8 @@ exports.auth = {
   url: process.env.AUTH_URL || 'https://auth.dbc.dk'
 };
 
-exports.openplatform = {
-  url: process.env.OPENPLATFORM_URL || 'https://login.bib.dk'
+exports.login = {
+  url: process.env.LOGIN_URL || 'https://login.bib.dk'
 };
 
 exports.db = knexfile[defaults.environment];

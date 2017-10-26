@@ -71,10 +71,11 @@ request.get(`${hejmdal_url}/login?token=${smaug_token}`);
 ```
 
 Successful user login redirects to `https://`*redirect_url*`?token=`*token*`&id=`*id*
+The current Hejmdal configuration is set to redirect to http://content-first-s01.dbc.dk:8000/hejmdal
 
 Failure returns a 403.
 
-Then,
+Then, the redirected-to service must do
 
 ```
 request.get(`${hejmdal_url}/getTicket/${token}/${id}`);
@@ -113,14 +114,34 @@ or if wrong:
 {attributes: false}
 ```
 
+TODO: `/heatlh` returns something like
+
+    [ { "name": "db"
+      , "state": "ok"
+      }
+    , { "name": "borchk"
+      , "state": "ok"
+      }
+    , { "name": "culr"
+      , "state": "ok"
+      }
+    , { "name": "smaug"
+      , "state": "ok"
+      }
+    , { "name": "openAgency"
+      , "state": "ok"
+      }
+    ]
+
 ### Staging
 
 - https://stg.login.bib.dk/
 
-Caveat: Access tokens form Smaug staging does *not* work with Hejmdal staging.  THe only token that works is a fixed one, ask someone who knows what it is.
+Caveat: Access tokens form Smaug staging does *not* work with Hejmdal staging.  The only token that works is a fixed one, ask someone who knows what it is.
 
 ### Production
 
 - https://login.bib.dk/
 
 Caveat: All access tokens from Smaug work with Hejmdal production.  Go figure.
+

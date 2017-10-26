@@ -68,7 +68,7 @@ router.route('/')
       });
     }
     // token = uuidv4();
-    const loginUrl = `${config.openplatform.url}/login?token=${token}`;
+    const loginUrl = `${config.login.url}/login?token=${token}`;
     return res.status(303).json({
       data: loginUrl,
       links: {
