@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
 'use strict';
 
 const {external, internal} = require('./mock-server');
@@ -41,11 +42,8 @@ describe('Admin API on running database', () => {
           .expect(200)
           .expect(res => {
             expectValidate(res.body, 'schemas/status-out.json');
-
-            // TODO: number of session cookies + ensure cleanup.
-
             // Remote connections status.
-            expect(res.body.ok).to.be.true; // eslint-disable-line no-unused-expressions
+            expect(res.body.ok).to.be.true;
             expect(res.body).to.not.have.property('errorText');
             expect(res.body).to.not.have.property('errorLog');
             // Service info.
@@ -57,7 +55,7 @@ describe('Admin API on running database', () => {
             expect(res.body).to.not.have.nested.property('config.db.connection.password');
             expect(res.body).to.not.have.nested.property('config.auth.id');
             expect(res.body).to.not.have.nested.property('config.auth.secret');
-            // Safety net, just in case.
+            // Safety net, do not leak something that looks like a secret.
             const everything = JSON.stringify(res.body);
             expect(everything).to.not.match(/password/i);
             expect(everything).to.not.match(/secret/i);

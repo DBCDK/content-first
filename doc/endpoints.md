@@ -299,6 +299,24 @@ If there is no cookie or the cookie is invalid, then the web service will redire
 
 Makes sure the current login cookie is invalidated.
 
+### `GET /v1/stats`
+
+Cleans up the database and returns statistics, like
+
+    { "data":
+      { "users":
+        { "total": 225
+        , "loged-in": 43
+        }
+      , "books":
+        { "total": 345
+        }
+      }
+    , "links":
+      { "self": "/v1/stats"
+      }
+    }
+
 # Command-line interaction
 
 To upload a book:

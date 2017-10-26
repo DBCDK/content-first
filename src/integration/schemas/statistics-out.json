@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "users": {
+      "required": true,
+      "type": "object",
+      "properties": {
+        "total": {
+          "required": true,
+          "type": "integer"
+        },
+        "loged-in": {
+          "required": true,
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    },
+    "books": {
+      "required": true,
+      "type": "object",
+      "properties": {
+        "total": {
+          "required": true,
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
