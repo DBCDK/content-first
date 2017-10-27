@@ -59,10 +59,11 @@ The backend service controlled by environment variables.  Most scripts assume th
 
 The backend service has the following admistrative endpoints:
 
-| Endpoint  | Function |
-| --------- | -------- |
-| `/howru`  | Returns the service status as JSON. |
-| `/pid`    | Returns the process id of the service.   |
+| Endpoint    | Function |
+| ----------- | -------- |
+| `/howru`    | Returns the service status as JSON. |
+| `/pid`      | Returns the process id of the service. |
+| `/v1/stats` | Cleans up database and returns statistics about the service. |
 
 See also [service endpoints](doc/endpoints.md).
 

@@ -34,8 +34,12 @@ describe('Statistics API', () => {
               // Only one of the seeded cookies should survive implicit
               // cleanup done by /stats.
               expect(data.users['loged-in']).to.equal(1);
-              // Books.
+              // Books & Tags.
               expect(data.books.total).to.equal(2);
+              expect(data.tags.total).to.equal(52);
+              expect(data.tags.pids).to.equal(2);
+              expect(data.tags.min).to.equal(22);
+              expect(data.tags.max).to.equal(30);
             });
           })
           .expect(200);

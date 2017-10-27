@@ -27,7 +27,8 @@ router.route('/')
       });
     }
     try {
-      // select pid from tags where tag in (46,49) group by pid having count(*) > 2;
+      // Select all PIDs that have all the specified tags.
+      // (eg. select pid from tags where tag in (46,49) group by pid having count(*) > 2;)
       const pidsList = await knex(tagTable)
         .select('pid')
         .whereIn('tag', tags)

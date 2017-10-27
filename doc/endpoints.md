@@ -311,11 +311,19 @@ Cleans up the database and returns statistics, like
       , "books":
         { "total": 345
         }
+      , "tags":
+        { "total": 52
+        , "pids": 2
+        , "min": 22
+        , "max":30
+        }
       }
     , "links":
       { "self": "/v1/stats"
       }
     }
+
+}
 
 # Command-line interaction
 

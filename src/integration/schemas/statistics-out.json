@@ -26,6 +26,29 @@
         }
       },
       "additionalProperties": false
+    },
+    "tags": {
+      "required": true,
+      "type": "object",
+      "properties": {
+        "total": {
+          "required": true,
+          "type": "integer"
+        },
+        "pids": {
+          "required": true,
+          "type": "integer"
+        },
+        "min": {
+          "required": true,
+          "type": "integer"
+        },
+        "max": {
+          "required": true,
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false
