@@ -3,19 +3,19 @@
 const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
-const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
+const mock = require('./mock-server');
 
 describe('Endpoint /v1/book', () => {
-  const {external, internal} = require('./mock-server');
-  const webapp = request(external);
+  const webapp = request(mock.external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
-    logger.log.debug('Database is now seeded.');
   });
+  afterEach(mock.afterEach);
+  after(mock.after);
   describe('Public endpoint', () => {
     describe('GET /v1/book/:pid', () => {
       it('should handle non-existing PID', done => {
@@ -75,7 +75,7 @@ describe('Endpoint /v1/book', () => {
     });
   });
   describe('Internal endpoint', () => {
-    const hidden = request(internal);
+    const hidden = request(mock.internal);
     describe('PUT /v1/book/:pid', () => {
       it('should reject wrong content type', done => {
         const location = '/v1/book/123456-basis:987654321';

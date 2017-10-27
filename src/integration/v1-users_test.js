@@ -4,18 +4,16 @@
 const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
-const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
+const mock = require('./mock-server');
 
 describe('User data', () => {
-  const {external} = require('./mock-server');
-  const webapp = request(external);
+  const webapp = request(mock.external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
-    logger.log.debug('Database is now seeded.');
   });
   describe('Public endpoint', () => {
     describe('GET /v1/users/:uuid', () => {
@@ -45,7 +43,13 @@ describe('User data', () => {
               expectValidate(links, 'schemas/user-links-out.json');
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/user-data-out.json');
-              expect(data.uuid).to.equal(user);
+              expect(data).to.deep.equal({
+                name: 'Jens Godfredsen',
+                gender: 'm',
+                birth_year: 1971,
+                authors: ['Ib Michael', 'Helle Helle'],
+                atmosphere: ['Realistisk']
+              });
             });
           })
           .expect(200)

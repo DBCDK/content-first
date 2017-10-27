@@ -12,6 +12,9 @@ const tagTable = constants.tags.table;
 const parameters = require('__/parameters');
 
 router.route('/')
+  //
+  // GET /v1/recommendations
+  //
   .get(asyncMiddleware(async (req, res, next) => {
     const tags = parameters.parseList(req.query.tags);
     const link = `${req.baseUrl}?tags=${req.query.tags}`;

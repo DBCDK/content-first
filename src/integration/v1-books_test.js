@@ -3,19 +3,19 @@
 const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
-const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
+const mock = require('./mock-server');
 
 describe('Endpoint /v1/books', () => {
-  const {external} = require('./mock-server');
-  const webapp = request(external);
+  const webapp = request(mock.external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
-    logger.log.debug('Database is now seeded.');
   });
+  afterEach(mock.afterEach);
+  after(mock.after);
   describe('GET /v1/books?pids=...', () => {
     it('should handle no PIDs', done => {
       webapp.get('/v1/books')

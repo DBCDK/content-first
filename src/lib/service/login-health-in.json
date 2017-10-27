@@ -1,0 +1,18 @@
+{
+  "type": "array",
+  "required": true,
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "required": true,
+        "type": "string"
+      },
+      "state": {
+        "required": true,
+        "type": "string"
+      }
+    },
+    "additionalProperties": false
+  }
+}

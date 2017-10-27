@@ -6,7 +6,7 @@
 
 const {expect, assert} = require('chai');
 const validator = require('is-my-json-valid/require');
-const formats = require('server/schemas/formats');
+const formats = require('__/schemas/formats');
 const {nicifyJsonValidationErrors} = require('__/json');
 
 function expectSuccess(document, next) {
@@ -14,7 +14,7 @@ function expectSuccess(document, next) {
   validate(document);
   const problems = nicifyJsonValidationErrors(validate);
   if (problems.length > 0) {
-    expect(problems).to.deep.equal([], `Got ${JSON.stringify(document)}`);
+    assert(false, `Got JSON ${JSON.stringify(document)} with the following problems: ${problems}`);
   }
   const links = document.links;
   expect(document).to.have.property('data');
@@ -28,7 +28,7 @@ function expectFailure(document, next) {
   validate(document);
   const problems = nicifyJsonValidationErrors(validate);
   if (problems.length > 0) {
-    expect(problems).to.deep.equal([], `Got ${JSON.stringify(document)}`);
+    assert(false, `Got JSON ${JSON.stringify(document)} with the following problems: ${problems}`);
   }
   expect(document).to.have.property('errors');
   const errors = document.errors;

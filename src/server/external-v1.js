@@ -16,5 +16,6 @@ router.use('/complete-taxonomy', require('server/external-v1-complete-taxonomy')
 router.use('/taxonomy', require('server/external-v1-taxonomy'));
 router.use('/login', require('server/external-v1-login'));
 router.use('/users', require('server/external-v1-users'));
+router.use('/authentication-token', require('server/external-v1-authentication-token'));
 
 module.exports = router;

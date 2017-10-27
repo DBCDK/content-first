@@ -3,18 +3,16 @@
 const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
-const logger = require('__/logging')(config.logger);
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
+const mock = require('./mock-server');
 
 describe('Endpoint /v1/tags', () => {
-  const {external, internal} = require('./mock-server');
-  const webapp = request(external);
+  const webapp = request(mock.external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
-    logger.log.debug('Database is now seeded.');
   });
   describe('Public endpoint', () => {
     describe('GET /v1/tags/:pid', () => {
@@ -41,7 +39,7 @@ describe('Endpoint /v1/tags', () => {
     });
   });
   describe('Internal endpoint', () => {
-    const hidden = request(internal);
+    const hidden = request(mock.internal);
     describe('PUT /v1/tags/:pid', () => {
       it('should reject wrong content type', done => {
         const contentType = 'text/plain';

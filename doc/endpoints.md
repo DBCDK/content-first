@@ -271,19 +271,51 @@ Note that the ids are quoted.
 
 ### `GET /v1/users/`*uuid*
 
-The result is like
+Returns [user information](../src/integration/schemas/user-data-out.json), like
 
     { "data":
-      { "uuid": "163c043f-d727-428f-b5f5-e54bb991eb8c"
+      { "name": "Jens Godfredsen"
+      , "gender": "m"
+      , "birth_year": 1971
+      , "authors": [ "Ib Michael", "Helle Helle" ]
+      , "atmosphere": [ "Realistisk" ]
       }
     , "links": 
       { "self": "/v1/users/163c043f-d727-428f-b5f5-e54bb991eb8c"
       }
     }
 
-### `POST /v1/login`
+### `PUT /v1/users/`*uuid*
 
-Simulates that a user logs in.  The result is same as for `GET /v1/users`.
+TODO: Updates the user information.
+
+### `GET /v1/login`
+
+If the user is already logged in (ie. a valid cookie is present in the request), the result is same as for `GET /v1/users/`*uuid*.
+
+If there is no cookie or the cookie is invalid, then the web service will redirect to the Adgangsplatform login page.  On successful login, the service will redirect to TODO:?, which can then use `GET /v1/login` or `GET /v1/users/`*uuid*.  On login failure the service will redirect to TODO:?.
+
+### `POST /v1/logout`
+
+Makes sure the current login cookie is invalidated.
+
+### `GET /v1/stats`
+
+Cleans up the database and returns statistics, like
+
+    { "data":
+      { "users":
+        { "total": 225
+        , "loged-in": 43
+        }
+      , "books":
+        { "total": 345
+        }
+      }
+    , "links":
+      { "self": "/v1/stats"
+      }
+    }
 
 # Command-line interaction
 

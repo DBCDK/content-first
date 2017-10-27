@@ -3,11 +3,13 @@
  */
 
 'use strict';
-const validatingInput = require('server/json-verifiers').validatingInput;
+const {validatingInput} = require('__/json');
+const path = require('path');
+const schema = path.join(__dirname, 'schemas/tags-in.json');
 
 function parsingTagsInjection (obj) {
   return new Promise((resolve, reject) => {
-    return validatingInput(obj, 'schemas/tags-in.json')
+    return validatingInput(obj, schema)
       .then(document => {
         let tags = {};
         tags.pid = document.pid;

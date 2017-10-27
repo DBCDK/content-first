@@ -3,7 +3,6 @@
 const {expect} = require('chai');
 const request = require('supertest');
 const config = require('server/config');
-const logger = require('__/logging')(config.logger);
 const {promisify} = require('util');
 const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
@@ -11,15 +10,16 @@ const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure} = require('./output-verifiers');
 const resolve = require('resolve');
+const mock = require('./mock-server');
 
 describe('Endpoint /v1/image', () => {
-  const {external, internal} = require('./mock-server');
-  const webapp = request(external);
+  const webapp = request(mock.external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
-    logger.log.debug('Database is now seeded.');
   });
+  afterEach(mock.afterEach);
+  after(mock.after);
   describe('Public endpoint', () => {
     describe('GET /v1/image/:pid', () => {
       it('should handle non-existing cover image', done => {
@@ -51,7 +51,7 @@ describe('Endpoint /v1/image', () => {
     });
   });
   describe('Internal endpoint', () => {
-    const hidden = request(internal);
+    const hidden = request(mock.internal);
     describe('PUT /v1/image/:pid', () => {
       it('should reject wrong content type', done => {
         const location = '/v1/image/870970-basis:22629344';

@@ -1,12 +1,20 @@
 title Content-first Authentication Sequence
 
-FrontEnd->+BackEnd: /getAuthToken
-BackEnd->+Smaug: /oauth/token
-Smaug-->-BackEnd: token
-BackEnd-->-FrontEnd: token
-FrontEnd->Hejmdal: /login?token=
-Hejmdal->FrontEnd: ?token=TOKEN&id=ID
-FrontEnd->+BackEnd: /login?token=TOKEN&id=ID
-BackEnd->+Hejmdal: /getTicket/TOKEN/ID
-Hejmdal-->-BackEnd: user info
-BackEnd-->-FrontEnd: user info
+Browser->+BackEnd: /login
+opt no cookie
+    opt expired
+        BackEnd->+Smaug: /oauth/token
+        Smaug-->-BackEnd: token
+    end
+    BackEnd-->-Browser: redirect
+    Browser->+Hejmdal: /login?token=
+    Hejmdal->Hejmdal: choose\nauth
+    Hejmdal->-Auth:
+    Auth->Hejmdal:
+    Hejmdal->+BackEnd: /?token=TOKEN&id=ID
+    BackEnd->+Hejmdal: /getTicket/TOKEN/ID
+    Hejmdal-->-BackEnd: user info
+    BackEnd->Browser: redirect + cookie
+    Browser->+BackEnd: /login
+end
+BackEnd-->-Browser: user info

@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "clientStore": {
+      "required": true,
+      "type": "string"
+    },
+    "configStore": {
+      "required": true,
+      "type": "string"
+    },
+    "userStore": {
+      "required": true,
+      "type": "string"
+    },
+    "tokenStore": {
+      "required": true,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

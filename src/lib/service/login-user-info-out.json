@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "cpr": {
+      "required": true,
+      "type": "string"
+    },
+    "gender": {
+      "required": true,
+      "type": "string"
+    },
+    "gender": {
+      "required": true,
+      "type": "string"
+    },
+    "userId": {
+      "required": true,
+      "type": "string"
+    },
+    "wayfId": {
+      "required": true
+    },
+    "agencies": {
+      "required": true,
+      "type": "array"
+    },
+    "birthDate": {
+      "required": true,
+      "type": "string"
+    },
+    "birthYear": {
+      "required": true,
+      "type": "integer"
+    },
+    "uniloginId": {
+      "required": true
+    },
+    "municipality": {
+      "required": true
+    }
+  },
+  "additionalProperties": false
+}

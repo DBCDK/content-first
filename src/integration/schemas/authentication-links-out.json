@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "login": {
+      "required": true,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

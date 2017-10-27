@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-expressions */
 'use strict';
 
-const expect = require('chai').expect;
+const {expect} = require('chai');
 const tcp = require('__/tcp');
 
 describe('tcp', () => {

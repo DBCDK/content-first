@@ -11,6 +11,9 @@ const tagsUtil = require('server/tags');
 const _ = require('lodash');
 
 router.route('/')
+  //
+  // POST /v1/tags
+  //
   .post(asyncMiddleware(async (req, res, next) => {
     const contentType = req.get('content-type');
     if (contentType !== 'application/json') {
@@ -20,34 +23,9 @@ router.route('/')
         detail: `Content type ${contentType} is not supported`
       });
     }
+    let meta;
     try {
-      const meta = await tagsUtil.parsingTagsInjection(req.body);
-      const pid = meta.pid;
-      const location = `${req.baseUrl}/${pid}`;
-      try {
-        const existingRaw = await knex(tagTable).where({pid}).select('tag');
-        const existing = _.map(existingRaw, obj => {
-          return obj.tag;
-        });
-        const missing = _.difference(meta.tags, existing);
-        const rawTable = _.map(missing, tag => {
-          return {pid, tag};
-        });
-        await knex(tagTable).insert(rawTable);
-        const tags = _.union(meta.tags, existing);
-        res.status(201).location(location).json({
-          data: {pid, tags},
-          links: {self: location}
-        });
-      }
-      catch (error) {
-        return next({
-          status: 500,
-          title: 'Database operation failed',
-          detail: error,
-          meta: {resource: location}
-        });
-      }
+      meta = await tagsUtil.parsingTagsInjection(req.body);
     }
     catch (error) {
       return next({
@@ -57,10 +35,40 @@ router.route('/')
         meta: error.meta || error
       });
     }
+    const pid = meta.pid;
+    const location = `${req.baseUrl}/${pid}`;
+    let existingRaw;
+    try {
+      existingRaw = await knex(tagTable).where({pid}).select('tag');
+    }
+    catch (error) {
+      return next({
+        status: 500,
+        title: 'Database operation failed',
+        detail: error,
+        meta: {resource: location}
+      });
+    }
+    const existing = _.map(existingRaw, obj => {
+      return obj.tag;
+    });
+    const missing = _.difference(meta.tags, existing);
+    const rawTable = _.map(missing, tag => {
+      return {pid, tag};
+    });
+    await knex(tagTable).insert(rawTable);
+    const tags = _.union(meta.tags, existing);
+    res.status(201).location(location).json({
+      data: {pid, tags},
+      links: {self: location}
+    });
   }))
 ;
 
 router.route('/:pid')
+  //
+  // POST /v1/tags/:pid
+  //
   .put(asyncMiddleware(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;
@@ -112,6 +120,9 @@ router.route('/:pid')
       });
     }
   }))
+  //
+  // DELETE /v1/tags/:pid
+  //
   .delete(asyncMiddleware(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;

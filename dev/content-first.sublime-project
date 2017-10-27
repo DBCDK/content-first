@@ -25,7 +25,8 @@
 , "folders":
   [ { "path": ".."
     , "folder_exclude_patterns":
-      [ "build"
+      [ ".nyc_output"
+      , "build"
       , "coverage"
       , "node_modules"
       ]

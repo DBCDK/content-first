@@ -1,9 +1,31 @@
 {
   "type": "object",
   "properties": {
-    "uuid": {
+    "name": {
       "required": true,
       "type": "string"
+    },
+    "gender": {
+      "required": true,
+      "type": "string"
+    },
+    "birth_year": {
+      "required": true,
+      "type": "integer"
+    },
+    "authors": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "atmosphere": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "additionalProperties": false

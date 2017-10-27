@@ -17,6 +17,12 @@ const _ = require('lodash');
  */
 const database = require('server/database');
 
+/**
+ * Remote services.
+ */
+const authenticator = require('server/authenticator');
+const login = require('server/login');
+
 /*
  * Public web server.
  */
@@ -37,7 +43,7 @@ const helmet = require('helmet');
 external.use(helmet());
 
 /*
- * All request bodies must be JSON.
+ * Auto-parse request bodies in JSON format.
  */
 const parser = require('body-parser');
 external.use(parser.json({
@@ -47,31 +53,36 @@ external.use(parser.json({
 }));
 
 /*
+ * Auto-parse cookies.
+ */
+const cookieParser = require('cookie-parser');
+external.use(cookieParser());
+
+/*
  * Administrative API.
  */
 external.get('/howru', async(req, res) => {
-  const ok = await database.testingConnection();
-  const configWithouSecrets = _.omit(config, ['db.connection.user', 'db.connection.password']);
-  if (ok) {
-    return res.json({
-      ok: true,
-      version: require('../../package').version,
-      'api-version': constants.apiversion,
-      hostname: req.hostname,
-      address: req.ip,
-      config: configWithouSecrets
-    });
-  }
-  res.json({
-    ok: false,
-    errorText: database.getCurrentError(),
-    errorLog: database.getErrorLog(),
+  const configWithoutSecrets = _.omit(config, [
+    'db.connection.user',
+    'db.connection.password',
+    'auth.id',
+    'auth.secret'
+  ]);
+  const services = [
+    database,
+    authenticator,
+    login
+  ];
+  const generatingServiceStatus = require('server/service-status');
+  const status = await generatingServiceStatus(services);
+  Object.assign(status, {
     version: require('../../package').version,
     'api-version': constants.apiversion,
     hostname: req.hostname,
     address: req.ip,
-    config: configWithouSecrets
+    config: configWithoutSecrets
   });
+  res.json(status);
 });
 
 external.get('/pid', (req, res) => {

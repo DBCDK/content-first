@@ -22,6 +22,9 @@ const constants = {
   },
   users: {
     table: 'users'
+  },
+  cookies: {
+    table: 'cookies'
   }
 };
 
