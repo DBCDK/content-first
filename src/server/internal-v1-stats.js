@@ -17,52 +17,75 @@ router.route('/')
   // GET /v1/stats
   //
   .get(asyncMiddleware(async (req, res, next) => {
-    const location = req.baseUrl;
-    let users, cookies, books, pidList;
+    const statistics = new Statistics();
     try {
-      users = await knex(userTable).count();
-      // Cleanup dead sessions.
-      const now_s = Math.ceil(Date.now() / 1000);
-      await knex(cookieTable).where('expires_epoch_s', '<=', now_s).del();
-      cookies = await knex(cookieTable).count();
-      books = await knex(bookTable).count();
-      // Count tags for each PID.
-      // (ie. select pid, count(tag) from tags group by pid;)
-      pidList = await knex(tagTable)
-        .select('pid', knex.raw('count(tags)')).groupBy('pid');
+      await statistics.calculatingStats();
     }
     catch (error) {
       return next({
         status: 500,
         title: 'Database operation failed',
         detail: error,
-        meta: {resource: location}
+        meta: {resource: req.baseUrl}
       });
     }
-    // Sum up total tags
-    const tagsPids = pidList.length;
-    const tagsTotal = _.reduce(pidList, (sum, pidCount) => sum + parseInt(pidCount.count, 10), 0);
-    const tagsMin = _.reduce(pidList, (min, pidCount) => Math.min(min, parseInt(pidCount.count, 10)), 99999);
-    const tagsMax = _.reduce(pidList, (max, pidCount) => Math.max(max, parseInt(pidCount.count, 10)), 0);
     res.status(200).json({
-      data: {
-        users: {
-          total: parseInt(users[0].count, 10),
-          'loged-in': parseInt(cookies[0].count, 10)
-        },
-        books: {
-          total: parseInt(books[0].count, 10)
-        },
-        tags: {
-          total: tagsTotal,
-          pids: tagsPids,
-          min: tagsMin,
-          max: tagsMax
-        }
-      },
-      links: {self: location}
+      data: statistics.constructStatsStructure(),
+      links: {self: req.baseUrl}
     });
   }))
 ;
+
+class Statistics {
+  async calculatingStats () {
+    await this.calculatingUserStats();
+    await this.calculatingCookieStats();
+    await this.calculatingBookStats();
+    this.calculateTagsStats(await this.countingTagsForEachPid());
+  }
+  constructStatsStructure() {
+    return {
+      users: {
+        total: this.users,
+        'loged-in': this.cookies
+      },
+      books: {
+        total: this.books
+      },
+      tags: {
+        total: this.tagsTotal,
+        pids: this.tagsPids,
+        min: this.tagsMin,
+        max: this.tagsMax
+      }
+    };
+  }
+  async calculatingUserStats () {
+    this.users = this.extractCountFromDbResultArray(await knex(userTable).count());
+  }
+  async calculatingCookieStats () {
+    await this.cleaningUpDeadSessions();
+    this.cookies = this.extractCountFromDbResultArray(await knex(cookieTable).count());
+  }
+  async calculatingBookStats () {
+    this.books = this.extractCountFromDbResultArray(await knex(bookTable).count());
+  }
+  calculateTagsStats (pidList) {
+    this.tagsPids = pidList.length;
+    this.tagsTotal = _.reduce(pidList, (sum, pidCount) => sum + parseInt(pidCount.count, 10), 0);
+    this.tagsMin = _.reduce(pidList, (min, pidCount) => Math.min(min, parseInt(pidCount.count, 10)), Number.MAX_SAFE_INTEGER);
+    this.tagsMax = _.reduce(pidList, (max, pidCount) => Math.max(max, parseInt(pidCount.count, 10)), 0);
+  }
+  cleaningUpDeadSessions () {
+    const now_s = Math.ceil(Date.now() / 1000);
+    return knex(cookieTable).where('expires_epoch_s', '<=', now_s).del();
+  }
+  countingTagsForEachPid () {
+    return knex(tagTable).select('pid', knex.raw('count(tags)')).groupBy('pid');
+  }
+  extractCountFromDbResultArray (table) {
+    return parseInt(table[0].count, 10);
+  }
+}
 
 module.exports = router;
