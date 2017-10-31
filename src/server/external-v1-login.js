@@ -17,26 +17,24 @@ router.route('/')
     if (loginToken) {
       try {
         userId = await gettingUserIdFromLoginToken(loginToken);
+        const userLocation = '/v1/user';
+        return gettingUser(userId)
+          .then(user => {
+            res.status(200).json({
+              data: user,
+              links: {self: userLocation}
+            });
+          })
+          .catch(error => {
+            Object.assign(error, {
+              meta: {resource: userLocation}
+            });
+            next(error);
+          });
       }
       catch (_) {
         // Any error will result in a redirection to remote login service.
       }
-    }
-    const userLocation = '/v1/user';
-    if (userId) {
-      return gettingUser(userId)
-        .then(user => {
-          res.status(200).json({
-            data: user,
-            links: {self: userLocation}
-          });
-        })
-        .catch(error => {
-          Object.assign(error, {
-            meta: {resource: userLocation}
-          });
-          next(error);
-        });
     }
     let token;
     try {

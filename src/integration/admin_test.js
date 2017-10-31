@@ -28,12 +28,7 @@ describe('Admin API on running database', () => {
     describe('/howru', () => {
       it('should answer that everything is fine and give additional information', done => {
         // Arrange.
-        nock(config.auth.url).get(constants.apiHealth).reply(200, {
-          clientStore: 'ok',
-          configStore: 'ok',
-          userStore: 'ok',
-          tokenStore: 'ok'
-        });
+        nock(config.auth.url).get(constants.apiHealth).reply(200, constants.healthyResponse);
         // Act.
         webapp.get('/howru')
           .set('Accept', 'application/json')

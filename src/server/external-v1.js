@@ -7,7 +7,6 @@
 const express = require('express');
 const router = express.Router();
 
-router.use('/authentication-token', require('server/external-v1-authentication-token'));
 router.use('/book', require('server/external-v1-book'));
 router.use('/books', require('server/external-v1-books'));
 router.use('/complete-taxonomy', require('server/external-v1-complete-taxonomy'));

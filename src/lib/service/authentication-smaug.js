@@ -67,7 +67,7 @@ class Authenticator {
   gettingToken () {
     this.setOk();
     return new Promise((resolve, reject) => {
-      if (!this.tokenWillSoonExpire() && this.token) {
+      if (this.token && !this.tokenWillSoonExpire()) {
         return resolve(this.token);
       }
       const me = this;
