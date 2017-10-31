@@ -44,7 +44,7 @@ or
 }
 ```
 
-TODO: /health should give something like
+~~TODO: /health should give something like~~
 
 ```
 { "clientStore": "ok"
@@ -53,6 +53,16 @@ TODO: /health should give something like
 , "tokenStore": "ok"
 }
 ```
+
+Nope, it more like:
+
+    { "ok": 
+      { "agencyStore": { "responseTime": 1 }
+      , "clientStore": { "responseTime": 16 }
+      , "configStore": { "responseTime": 1 }
+      , "tokenStore": { "responseTime": 16 }
+      }
+    }
 
 ### Staging
 

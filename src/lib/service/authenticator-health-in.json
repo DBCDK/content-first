@@ -1,22 +1,29 @@
 {
   "type": "object",
   "properties": {
-    "clientStore": {
-      "required": true,
-      "type": "string"
+    "ok": {
+      "required": false,
+      "type": "object",
+      "properties": {
+        "clientStore": {
+          "required": true,
+          "type": "object"
+        },
+        "configStore": {
+          "required": true,
+          "type": "object"
+        },
+        "agencyStore": {
+          "required": true,
+          "type": "object"
+        },
+        "tokenStore": {
+          "required": true,
+          "type": "object"
+        }
+      }
     },
-    "configStore": {
-      "required": true,
-      "type": "string"
-    },
-    "userStore": {
-      "required": true,
-      "type": "string"
-    },
-    "tokenStore": {
-      "required": true,
-      "type": "string"
-    }
+    "additionalProperties": true
   },
   "additionalProperties": false
 }

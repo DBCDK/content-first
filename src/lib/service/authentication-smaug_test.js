@@ -180,10 +180,12 @@ describe('Authentication connector', () => {
     it('testingConnection() should say everything is fine', () => {
       // Arrange.
       const server = nock(config.url).get(constants.apiHealth).reply(200, {
-        clientStore: 'ok',
-        configStore: 'ok',
-        userStore: 'ok',
-        tokenStore: 'ok'
+        ok: {
+          clientStore: {responseTime: 1},
+          configStore: {responseTime: 2},
+          userStore: {responseTime: 3},
+          tokenStore: {responseTime: 4}
+        }
       });
       // Act.
       return auth.testingConnection()

@@ -1,7 +1,6 @@
 'use strict';
 
 const request = require('superagent');
-const _ = require('lodash');
 const path = require('path');
 const schemaNewToken = path.join(__dirname, 'authenticator-token-in.json');
 const schemaHealth = path.join(__dirname, 'authenticator-health-in.json');
@@ -46,8 +45,7 @@ class Authenticator {
         })
         .then(validating(schemaHealth))
         .then(data => {
-          const ok = _.every(_.values(data), status => status === 'ok');
-          if (ok) {
+          if (data.ok) {
             me.setOk();
           }
           else {
