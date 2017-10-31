@@ -6,6 +6,10 @@
 
 const constants = {
   apiversion: '1',
+  pages: {
+    start: '/',
+    generalError: '/general-error'
+  },
   books: {
     table: 'books'
   },

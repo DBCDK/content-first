@@ -1,25 +1,11 @@
 'use strict';
 
-/*
- * Configuration
- */
 const config = require('server/config');
 const constants = require('server/constants')();
-
-/*
- * Logging & stuff.
- */
 const logger = require('__/logging')(config.logger);
 const _ = require('lodash');
 
-/**
- * Database wrapper.
- */
 const database = require('server/database');
-
-/**
- * Remote services.
- */
 const authenticator = require('server/authenticator');
 const login = require('server/login');
 
@@ -29,22 +15,16 @@ const login = require('server/login');
 const express = require('express');
 const external = express();
 
-/*
- * Static frontend content.
- */
+// Static frontend content.
 const path = require('path');
 const staticPath = path.join(__dirname, '..', '..', 'build');
 external.use(express.static(staticPath));
 
-/*
- * Securing headers.
- */
+// Securing headers.
 const helmet = require('helmet');
 external.use(helmet());
 
-/*
- * Auto-parse request bodies in JSON format.
- */
+// Auto-parse request bodies in JSON format.
 const parser = require('body-parser');
 external.use(parser.json({
   type: 'application/json',
@@ -52,15 +32,11 @@ external.use(parser.json({
   strict: false
 }));
 
-/*
- * Auto-parse cookies.
- */
+// Auto-parse cookies.
 const cookieParser = require('cookie-parser');
 external.use(cookieParser());
 
-/*
- * Administrative API.
- */
+// Administrative API.
 external.get('/howru', async(req, res) => {
   const configWithoutSecrets = _.omit(config, [
     'db.connection.user',
@@ -90,22 +66,16 @@ external.get('/pid', (req, res) => {
   res.send(process.pid.toString());
 });
 
-/*
- * API routes.  Should agree with constants.apiversion.
- */
-const externalRoutes = require('server/external-v1');
-external.use('/v1', externalRoutes);
+// API routes.  Should agree with constants.apiversion.
+external.use('/v1', require('server/external-v1'));
+external.use('/hejmdal', require('server/external-hejmdal'));
 
-/*
- * Let frontend React handle all other routes.
- */
+// Let frontend React handle all other routes.
 external.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', '..', 'build', 'index.html'));
 });
 
-/*
- * Error handlers.
- */
+// Error handlers.
 external.use((req, res, next) => {
   next({
     status: 404,

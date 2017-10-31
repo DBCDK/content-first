@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "required": false,
+      "type": "string"
+    },
+    "gender": {
+      "required": false,
+      "type": "string"
+    },
+    "birth_year": {
+      "required": false,
+      "type": "integer"
+    },
+    "authors": {
+      "required": false,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "atmosphere": {
+      "required": false,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

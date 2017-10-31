@@ -5,8 +5,10 @@ const {expect} = require('chai');
 const request = require('supertest');
 const nock = require('nock');
 const config = require('server/config');
+const constants = require('server/constants')();
 const authenticator = require('server/authenticator');
-const constants = require('__/service/authentication-constants')();
+const authConstants = require('__/service/authentication-constants')();
+const loginConstants = require('__/service/login-constants')();
 const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
@@ -23,7 +25,7 @@ describe('User login', () => {
       it('should retrieve existing user data on valid cookie', () => {
         // Act.
         return webapp.get('/v1/login')
-          .set('cookie', 'login-token=c32e314e-8f12-45e3-8b52-17aa87e7699d')
+          .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
           // Assert.
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
@@ -44,10 +46,10 @@ describe('User login', () => {
         // Arrange.
         authenticator.clear();
         const token = '840e75ac9af8448898fe7f7c99198a7d';
-        nock(config.auth.url).post(constants.apiGetToken).reply(200, {
+        nock(config.auth.url).post(authConstants.apiGetToken).reply(200, {
           token_type: 'bearer',
           access_token: token,
-          expires_in: constants.s_OneMonth
+          expires_in: authConstants.s_OneMonth
         });
         // Act.
         return webapp.get('/v1/login')
@@ -67,10 +69,10 @@ describe('User login', () => {
         // Arrange.
         authenticator.clear();
         const token = '840e75ac9af8448898fe7f7c99198a7d';
-        nock(config.auth.url).post(constants.apiGetToken).reply(200, {
+        nock(config.auth.url).post(authConstants.apiGetToken).reply(200, {
           token_type: 'bearer',
           access_token: token,
-          expires_in: constants.s_OneMonth
+          expires_in: authConstants.s_OneMonth
         });
         // Act.
         return webapp.get('/v1/login')
@@ -91,14 +93,14 @@ describe('User login', () => {
         // Arrange.
         authenticator.clear();
         const token = 'a7d847c9481840e75ac9af98fe7f9198';
-        nock(config.auth.url).post(constants.apiGetToken).reply(200, {
+        nock(config.auth.url).post(authConstants.apiGetToken).reply(200, {
           token_type: 'bearer',
           access_token: token,
-          expires_in: constants.s_OneMonth
+          expires_in: authConstants.s_OneMonth
         });
         // Act.
         return webapp.get('/v1/login')
-          .set('cookie', 'login-token=deadbeef-dead-beef-dead-beefdeadbeef')
+          .set('cookie', 'login-token=expired-login-token-seeded-on-test-start')
           // Assert.
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
@@ -114,7 +116,7 @@ describe('User login', () => {
       it('should handle failure to retrieve token', () => {
         // Arrange.
         authenticator.clear();
-        nock(config.auth.url).post(constants.apiGetToken).reply(500);
+        nock(config.auth.url).post(authConstants.apiGetToken).reply(500);
         // Act.
         return webapp.get('/v1/login')
           // Assert.
@@ -129,12 +131,112 @@ describe('User login', () => {
       });
     });
     describe('GET /hejmdal:token&id', () => {
-      it('should retrieve user info and redirect & set valid cookie');
-      it('should handle failure to retrieve info and redirect');
+      const token = 'b1984686e9c89c04102c33d912164d60';
+      const id = 4321;
+      const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
+      it('should retrieve user info and redirect & set valid cookie', () => {
+        // Arrange.
+        const hejmdal = nock(config.login.url).get(slug).reply(200, {
+          id,
+          token,
+          attributes: {
+            cpr: '0101781234',
+            gender: 'f',
+            userId: '0101781234',
+            wayfId: null,
+            agencies: [],
+            birthDate: '0101',
+            birthYear: '1978',
+            uniloginId: null,
+            municipality: null
+          }
+        });
+        // Act.
+        const location = `/hejmdal?token=${token}&id=${id}`;
+        return webapp.get(location)
+          // Assert.
+          .expect(303)
+          .expect('location', constants.pages.start)
+          .expect('set-cookie', /^login-token=/)
+          .then(res => {
+            const cookies = res.headers['set-cookie'];
+            expect(cookies).to.have.length(1);
+            const cookieFormat = /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly; secure/i;
+            expect(cookies[0]).to.match(cookieFormat);
+            const cookieParts = cookies[0].match(cookieFormat);
+            const s_ExpiresIn = parseInt(cookieParts[2], 10);
+            const s_OneMonth = 30 * 24 * 60 * 60;
+            expect(s_ExpiresIn).to.equal(s_OneMonth);
+            return cookieParts[1];
+          })
+          .then(loginToken => {
+            // Act.
+            return webapp.get('/v1/login')
+              .set('cookie', `login-token=${loginToken}`)
+              .expect(res => {
+                expectSuccess(res.body, (links, data) => {
+                  expectValidate(links, 'schemas/user-links-out.json');
+                  expectValidate(data, 'schemas/user-data-out.json');
+                  expect(data).to.deep.equal({
+                    name: '',
+                    gender: 'f',
+                    birth_year: 1978,
+                    authors: [],
+                    atmosphere: []
+                  });
+                });
+                expect(hejmdal.isDone());
+              })
+              .expect(200);
+          });
+      });
+      it('should handle failure to retrieve info and redirect', () => {
+        // Arrange.
+        const hejmdal = nock(config.login.url).get(slug).replyWithError(
+          'Something bad happened'
+        );
+        // Act.
+        const location = `/hejmdal?token=${token}&id=${id}`;
+        return webapp.get(location)
+          // Assert.
+          .expect(() => {
+            expect(hejmdal.isDone());
+          })
+          .expect('location', constants.pages.generalError)
+          .expect(303);
+      });
     });
     describe('POST /v1/logout', () => {
-      it('should invalidate current cookie');
-      it('should allow no current cookie');
+      it('should invalidate current cookie and redirect to front page', () => {
+        // Act.
+        return webapp.post('/v1/logout')
+          .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
+          // Assert.
+          .expect('location', constants.pages.start)
+          .expect(303)
+          // Act.
+          .then(() => {
+            return webapp.get('/v1/user')
+              .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
+              // Assert.
+              .expect(403);
+          });
+      });
+      it('should allow invalid cookie and redirect to front page', () => {
+        // Act.
+        return webapp.post('/v1/logout')
+          .set('cookie', 'login-token=a-cookie-that-never-existed')
+          // Assert.
+          .expect('location', constants.pages.start)
+          .expect(303);
+      });
+      it('should allow no current cookie and redirect to front page', () => {
+        // Act.
+        return webapp.post('/v1/logout')
+          // Assert.
+          .expect('location', constants.pages.start)
+          .expect(303);
+      });
     });
   });
 });

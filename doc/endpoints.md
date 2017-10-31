@@ -269,9 +269,9 @@ The data must be [valid taxonomy](../src/server/schemas/taxonomy-in.json), like
 
 Note that the ids are quoted.
 
-### `GET /v1/users/`*uuid*
+### `GET /v1/user`
 
-Returns [user information](../src/integration/schemas/user-data-out.json), like
+Returns [user information](../src/integration/schemas/user-data-out.json) for a logged-in user, like
 
     { "data":
       { "name": "Jens Godfredsen"
@@ -281,19 +281,28 @@ Returns [user information](../src/integration/schemas/user-data-out.json), like
       , "atmosphere": [ "Realistisk" ]
       }
     , "links": 
-      { "self": "/v1/users/163c043f-d727-428f-b5f5-e54bb991eb8c"
+      { "self": "/v1/user"
       }
     }
 
-### `PUT /v1/users/`*uuid*
+### `PUT /v1/user`
 
-TODO: Updates the user information.
+Updates the [user information](../src/server/schemas/user-in.json) like
+
+    { "name": "Ole Henriksen"
+    , "gender": "m"
+    , "birth_year": 1951
+    , "authors": [ "Ole Henriksen", "Dolly Parton" ]
+    , "atmosphere": [ "Dramtisk" ]
+    }
+
+The user info is updated selectively, that is, you can leave out some of the fields to not change their value.
 
 ### `GET /v1/login`
 
-If the user is already logged in (ie. a valid cookie is present in the request), the result is same as for `GET /v1/users/`*uuid*.
+If the user is already logged in (ie. a valid cookie is present in the request), the result is same as for `GET /v1/user/`.
 
-If there is no cookie or the cookie is invalid, then the web service will redirect to the Adgangsplatform login page.  On successful login, the service will redirect to TODO:?, which can then use `GET /v1/login` or `GET /v1/users/`*uuid*.  On login failure the service will redirect to TODO:?.
+If there is no cookie or the cookie is invalid, then the web service will redirect to the Adgangsplatform (Hejmdal) login page.  On successful login, the service will redirect to `/`, which can then use `GET /v1/login` or `GET /v1/user`.  On remote subsystem failure, the service will refirect to `/general-error`.
 
 ### `POST /v1/logout`
 
@@ -323,7 +332,9 @@ Cleans up the database and returns statistics, like
       }
     }
 
-}
+### `GET /hejmdal/?token=`*token*`&id=`*id*
+
+Redirection point for Hejmdal to call after successful user login.  The result is a cookie that tells the service that which user is logged in, and a rediction to `/`
 
 # Command-line interaction
 

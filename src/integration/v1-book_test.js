@@ -154,12 +154,15 @@ describe('Endpoint /v1/book', () => {
           .end(done);
       });
       it('should create a new book', done => {
+        // Arrange.
         const harryPotter = require('fixtures/rowling-harry-potter-de-vises-sten.json');
         const pid = harryPotter.pid;
         const location = `/v1/book/${pid}`;
+        // Act.
         hidden.put(location)
           .type('application/json')
           .send(harryPotter)
+          // Assert.
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expect(links).to.have.property('self');

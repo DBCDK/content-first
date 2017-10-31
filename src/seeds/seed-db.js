@@ -61,7 +61,7 @@ exports.seed = async knex => {
     await knex(bottomTable).insert(bottomRawInsert);
   }
   await knex(userTable).insert({
-    uuid: 'cd3cc362-d29c-4d40-8662-458664251e52',
+    uuid: 'an-existing-user-seeded-on-test-start',
     name: 'Jens Godfredsen',
     gender: 'm',
     birth_year: 1971,
@@ -69,13 +69,13 @@ exports.seed = async knex => {
     atmosphere: JSON.stringify(['Realistisk'])
   });
   await knex(cookieTable).insert({
-    uuid: 'c32e314e-8f12-45e3-8b52-17aa87e7699d',
-    user: 'cd3cc362-d29c-4d40-8662-458664251e52',
+    uuid: 'a-valid-login-token-seeded-on-test-start',
+    user: 'an-existing-user-seeded-on-test-start',
     expires_epoch_s: (Math.ceil(Date.now() / 1000) + 10000)
   });
   await knex(cookieTable).insert({
-    uuid: 'deadbeef-dead-beef-dead-beefdeadbeef',
-    user: 'cd3cc362-d29c-4d40-8662-458664251e52',
+    uuid: 'expired-login-token-seeded-on-test-start',
+    user: 'an-existing-user-seeded-on-test-start',
     expires_epoch_s: Math.ceil(new Date(2009, 1, 25).getTime() / 1000)
   });
 };

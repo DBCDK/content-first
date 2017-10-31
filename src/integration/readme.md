@@ -23,7 +23,7 @@ Of course, such changes should be removed before any commits.
 
 To only run a subset of tests that go together, pass the `--grep` option to mocha, like
 
-    $ npm run test-integration --silent -- --grep /v1/users
+    $ npm run test-integration --silent -- --grep /v1/user
 
 ## Mocking parts of the server
 

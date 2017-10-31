@@ -25,15 +25,11 @@ internal.get('/crash', (req, res, next) => { // eslint-disable-line no-unused-va
   next();
 });
 
-/*
- * API routes.  Should agree with constants.apiversion.
- */
+// API routes.  Should agree with constants.apiversion.
 const internalRoutes = require('server/internal-v1');
 internal.use('/v1', internalRoutes);
 
-/*
- * Error handlers.
- */
+// Error handlers.
 internal.use((req, res, next) => {
   next({
     status: 404,
