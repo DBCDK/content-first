@@ -62,6 +62,7 @@ exports.seed = async knex => {
   }
   await knex(userTable).insert({
     uuid: 'an-existing-user-seeded-on-test-start',
+    cpr: '121219719873',
     name: 'Jens Godfredsen',
     gender: 'm',
     birth_year: 1971,

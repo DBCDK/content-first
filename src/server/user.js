@@ -31,6 +31,25 @@ async function gettingUser (uuid) {
   });
 }
 
+async function findUserByCpr (cpr) {
+  return new Promise((resolve, reject) => {
+    return knex(userTable).where({cpr}).select('uuid')
+      .then(existing => {
+        if (existing.length === 0) {
+          return resolve(null);
+        }
+        return resolve(existing[0].uuid);
+      })
+      .catch(error => {
+        reject({
+          status: 500,
+          title: 'Database operation failed',
+          detail: error
+        });
+      });
+  });
+}
+
 async function gettingUserIdFromLoginToken (token) {
   return new Promise((resolve, reject) => {
     return knex(cookieTable).where('uuid', token).select('user', 'expires_epoch_s')
@@ -64,12 +83,30 @@ async function gettingUserIdFromLoginToken (token) {
   });
 }
 
+async function updatingUser (uuid, partialData) {
+  return new Promise((resolve, reject) => {
+    return knex(userTable).where({uuid}).update(partialData)
+      .then(() => {
+        return resolve(uuid);
+      })
+      .catch(error => {
+        reject({
+          status: 500,
+          title: 'Database operation failed',
+          detail: error
+        });
+      });
+  });
+}
+
 async function removingLoginToken (token) {
   return knex(cookieTable).where('uuid', token).del();
 }
 
 module.exports = {
   gettingUser,
+  findUserByCpr,
   gettingUserIdFromLoginToken,
+  updatingUser,
   removingLoginToken
 };

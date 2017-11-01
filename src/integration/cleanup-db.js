@@ -5,6 +5,10 @@
  *
  * Use like this in *_test.js files:
  * const dbUtil = require('cleanup-db')(knex);
+ * beforeEach(async () => {
+ *   await dbUtil.clear();
+ *   await knex.seed.run();
+ * });
  */
 
 const constants = require('server/constants')();

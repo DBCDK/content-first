@@ -15,14 +15,16 @@ const {expectSuccess, expectFailure, expectValidate} = require('./output-verifie
 const mock = require('./mock-server');
 const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 
-describe('User login', () => {
+describe('User login/out', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
     await dbUtil.clear();
     await knex.seed.run();
   });
   describe('Public endpoint', () => {
+
     describe('GET /v1/login', () => {
+
       it('should retrieve existing user data on valid cookie', () => {
         // Act.
         return webapp.get('/v1/login')
@@ -43,6 +45,7 @@ describe('User login', () => {
           })
           .expect(200);
       });
+
       it('should redirect to remote login page on no cookie', () => {
         // Arrange.
         authenticator.clear();
@@ -92,6 +95,7 @@ describe('User login', () => {
           .expect('location', remoteLoginStem)
           .expect(303);
       });
+
       it('should redirect to remote login page on expired cookie', () => {
         // Arrange.
         authenticator.clear();
@@ -117,6 +121,7 @@ describe('User login', () => {
           .expect('location', remoteLoginStem)
           .expect(303);
       });
+
       it('should handle failure to retrieve token', () => {
         // Arrange.
         authenticator.clear();
@@ -134,10 +139,14 @@ describe('User login', () => {
           .expect(503);
       });
     });
+
     describe('GET /hejmdal:token&id', () => {
       const token = 'b1984686e9c89c04102c33d912164d60';
       const id = 4321;
       const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
+      const cookieFormat =
+        /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly; secure/i;
+
       it('should retrieve user info and redirect & set valid cookie', () => {
         // Arrange.
         const hejmdal = nock(config.login.url).get(slug).reply(200, {
@@ -155,6 +164,7 @@ describe('User login', () => {
             municipality: null
           }
         });
+        let loginToken;
         // Act.
         const location = `/hejmdal?token=${token}&id=${id}`;
         return webapp.get(location)
@@ -162,18 +172,17 @@ describe('User login', () => {
           .expect(303)
           .expect('location', constants.pages.start)
           .expect('set-cookie', /^login-token=/)
-          .then(res => {
+          .expect(res => {
             const cookies = res.headers['set-cookie'];
             expect(cookies).to.have.length(1);
-            const cookieFormat = /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly; secure/i;
             expect(cookies[0]).to.match(cookieFormat);
             const cookieParts = cookies[0].match(cookieFormat);
             const s_ExpiresIn = parseInt(cookieParts[2], 10);
             const s_OneMonth = 30 * 24 * 60 * 60;
             expect(s_ExpiresIn).to.equal(s_OneMonth);
-            return cookieParts[1];
+            loginToken = cookieParts[1];
           })
-          .then(loginToken => {
+          .then(() => {
             // Act.
             return webapp.get('/v1/login')
               .set('cookie', `login-token=${loginToken}`)
@@ -194,6 +203,61 @@ describe('User login', () => {
               .expect(200);
           });
       });
+
+      it('should retrieve user info, detect existing user, and redirect', () => {
+        // Arrange.
+        const hejmdal = nock(config.login.url).get(slug).reply(200, {
+          id,
+          token,
+          attributes: {
+            cpr: '121219719873',
+            gender: 'm',
+            userId: '0101781234',
+            wayfId: 'some-wayf-id',
+            agencies: [],
+            birthDate: '1212',
+            birthYear: '1971',
+            uniloginId: 'some-unilogin-id',
+            municipality: null
+          }
+        });
+        let loginToken;
+        // Act.
+        const location = `/hejmdal?token=${token}&id=${id}`;
+        return webapp.get(location)
+          // Assert.
+          .expect(303)
+          .expect('location', constants.pages.start)
+          .expect('set-cookie', /^login-token=/)
+          .then(res => {
+            const cookies = res.headers['set-cookie'];
+            expect(cookies).to.have.length(1);
+            expect(cookies[0]).to.match(cookieFormat);
+            const cookieParts = cookies[0].match(cookieFormat);
+            loginToken = cookieParts[1];
+          })
+          .then(() => {
+            // Act.
+            return webapp.get('/v1/login')
+              .set('cookie', `login-token=${loginToken}`)
+              .expect(res => {
+                expectSuccess(res.body, (links, data) => {
+                  expectValidate(links, 'schemas/user-links-out.json');
+                  expectValidate(data, 'schemas/user-data-out.json');
+                  expect(data).to.deep.equal({
+                    name: 'Jens Godfredsen',
+                    gender: 'm',
+                    birth_year: 1971,
+                    authors: ['Ib Michael', 'Helle Helle'],
+                    atmosphere: ['Realistisk']
+                  });
+                });
+                expect(hejmdal.isDone());
+              })
+              .expect(200);
+          });
+      });
+
       it('should handle failure to retrieve info and redirect', () => {
         // Arrange.
         const hejmdal = nock(config.login.url).get(slug).replyWithError(
@@ -210,6 +274,7 @@ describe('User login', () => {
           .expect(303);
       });
     });
+
     describe('POST /v1/logout', () => {
       it('should invalidate current cookie and redirect to front page', () => {
         // Act.
@@ -226,6 +291,7 @@ describe('User login', () => {
               .expect(403);
           });
       });
+
       it('should allow invalid cookie and redirect to front page', () => {
         // Act.
         return webapp.post('/v1/logout')
@@ -234,6 +300,7 @@ describe('User login', () => {
           .expect('location', constants.pages.start)
           .expect(303);
       });
+
       it('should allow no current cookie and redirect to front page', () => {
         // Act.
         return webapp.post('/v1/logout')

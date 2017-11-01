@@ -10,13 +10,14 @@ const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const config = require('server/config');
 const knex = require('knex')(config.db);
-const logger = require('__/logging')(config.logger);
+// const logger = require('__/logging')(config.logger);
 const constants = require('server/constants')();
 const userTable = constants.users.table;
 const cookieTable = constants.cookies.table;
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const loginService = require('server/login');
 const uuidv4 = require('uuid/v4');
+const {findUserByCpr, updatingUser} = require('server/user');
 
 router.route('/')
   //
@@ -25,25 +26,48 @@ router.route('/')
   .get(asyncMiddleware(async (req, res) => {
     const token = req.query.token;
     const id = req.query.id;
-    const userId = uuidv4();
+    let userUuid;
     const loginToken = uuidv4();
     return loginService.gettingTicket(token, id)
       .then(remoteUser => {
-        logger.log.info('Got remote user data');
-        // TODO: test whether user is already known.
+        // logger.log.info('Got remote user data');
+        return Promise.all([
+          findUserByCpr(remoteUser.cpr),
+          remoteUser
+        ]);
+      })
+      .then(results => {
+        const uuid = results[0];
+        const remoteUser = results[1];
+        if (uuid) {
+          userUuid = uuid;
+          return updatingUser(uuid, {
+            gender: remoteUser.gender,
+            birth_year: remoteUser.birthYear,
+            user_id: remoteUser.userId,
+            wayf_id: remoteUser.wayfId,
+            unilogin_id: remoteUser.uniloginId,
+            municipality: remoteUser.municipality
+          });
+        }
+        userUuid = uuidv4();
         return knex(userTable).insert({
-          uuid: userId,
+          uuid: userUuid,
           name: '',
+          authors: '[]',
+          atmosphere: '[]',
           gender: remoteUser.gender,
           birth_year: remoteUser.birthYear,
-          authors: '[]',
-          atmosphere: '[]'
+          user_id: remoteUser.userId,
+          wayf_id: remoteUser.wayfId,
+          unilogin_id: remoteUser.uniloginId,
+          municipality: remoteUser.municipality
         });
       })
       .then(() => {
         return knex(cookieTable).insert({
           uuid: loginToken,
-          user: userId,
+          user: userUuid,
           expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
         });
       })
@@ -54,7 +78,7 @@ router.route('/')
           .send();
       })
       .catch(error => {
-        logger.log.info(`Could not get remote user data: ${JSON.stringify(error)}`);
+        // logger.log.info(`Could not get remote user data: ${JSON.stringify(error)}`);
         return res.status(303)
           .location(constants.pages.generalError)
           .send(error);
