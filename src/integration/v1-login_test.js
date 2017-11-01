@@ -13,6 +13,7 @@ const knex = require('knex')(config.db);
 const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const mock = require('./mock-server');
+const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 
 describe('User login', () => {
   const webapp = request(mock.external);
@@ -63,6 +64,7 @@ describe('User login', () => {
               expect(data).to.equal(remote);
             });
           })
+          .expect('location', remoteLoginStem)
           .expect(303);
       });
       it('should redirect to remote login page on non-existing cookie', () => {
@@ -87,6 +89,7 @@ describe('User login', () => {
               expect(data).to.equal(remote);
             });
           })
+          .expect('location', remoteLoginStem)
           .expect(303);
       });
       it('should redirect to remote login page on expired cookie', () => {
@@ -111,6 +114,7 @@ describe('User login', () => {
               expect(data).to.equal(remote);
             });
           })
+          .expect('location', remoteLoginStem)
           .expect(303);
       });
       it('should handle failure to retrieve token', () => {

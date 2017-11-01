@@ -57,7 +57,7 @@
     "lint-js": "eslint src",
     "postinstall": "./setup-node-env.sh",
     "start": "run-p start-backend start-frontend",
-    "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/server",
+    "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/",
     "start-frontend": "react-scripts start",
     "test": "run-s test-units lint-js",
     "test-frontend": "react-scripts test --env=jsdom",

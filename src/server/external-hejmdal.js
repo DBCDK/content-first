@@ -10,6 +10,7 @@ const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const config = require('server/config');
 const knex = require('knex')(config.db);
+const logger = require('__/logging')(config.logger);
 const constants = require('server/constants')();
 const userTable = constants.users.table;
 const cookieTable = constants.cookies.table;
@@ -28,6 +29,8 @@ router.route('/')
     const loginToken = uuidv4();
     return loginService.gettingTicket(token, id)
       .then(remoteUser => {
+        logger.log.info('Got remote user data');
+        // TODO: test whether user is already known.
         return knex(userTable).insert({
           uuid: userId,
           name: '',
@@ -51,6 +54,7 @@ router.route('/')
           .send();
       })
       .catch(error => {
+        logger.log.info(`Could not get remote user data: ${JSON.stringify(error)}`);
         return res.status(303)
           .location(constants.pages.generalError)
           .send(error);

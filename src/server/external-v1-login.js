@@ -44,16 +44,13 @@ router.route('/')
       return next({
         status: 503,
         title: 'Authentication-service communication failed',
-        detail: `Subsystem returned ${error.status}`
+        detail: `Subsystem returned ${JSON.stringify(error)}`
       });
     }
-    // token = uuidv4();
     const loginUrl = `${config.login.url}/login?token=${token}`;
-    return res.status(303).json({
+    return res.status(303).location(loginUrl).json({
       data: loginUrl,
-      links: {
-        login: loginUrl
-      }
+      links: {login: loginUrl}
     });
   }))
 ;
