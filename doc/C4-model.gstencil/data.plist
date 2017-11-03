@@ -14,7 +14,15 @@
 	<key>GuidesVisible</key>
 	<string>YES</string>
 	<key>ImageCounter</key>
-	<integer>2</integer>
+	<integer>3</integer>
+	<key>ImageLinkBack</key>
+	<array>
+		<dict/>
+	</array>
+	<key>ImageList</key>
+	<array>
+		<string>image2.tiff</string>
+	</array>
 	<key>LinksVisible</key>
 	<string>NO</string>
 	<key>MagnetsVisible</key>
@@ -22,7 +30,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2017-09-27 11:08:14 +0000</string>
+	<string>2017-11-03 11:46:14 +0000</string>
 	<key>Modifier</key>
 	<string>Jens Peter Secher</string>
 	<key>NotesVisible</key>
@@ -56,7 +64,7 @@
 		<key>NSPaperSize</key>
 		<array>
 			<string>size</string>
-			<string>{612.00002479553223, 792}</string>
+			<string>{611.99997711181641, 792}</string>
 		</array>
 		<key>NSPrintReverseOrientation</key>
 		<array>
@@ -86,7 +94,7 @@
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {576.00002479553223, 734}}</string>
+				<string>{{0, 0}, {575.99997711181641, 734}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -1201,784 +1209,41 @@
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{425.25, 554.625}, {123.74998760223343, 44.632812499999773}}</string>
+					<string>{{89.874994277954102, 236.25}, {398.5000114440918, 225.0533330622909}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
-					<key>FontInfo</key>
-					<dict>
-						<key>Font</key>
-						<string>TrebuchetMS-Bold</string>
-						<key>Size</key>
-						<real>12</real>
-					</dict>
 					<key>ID</key>
-					<integer>3262</integer>
-					<key>Style</key>
-					<dict>
-						<key>fill</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>shadow</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>stroke</key>
-						<dict>
-							<key>Color</key>
-							<dict>
-								<key>b</key>
-								<real>0.5</real>
-								<key>g</key>
-								<real>0.5</real>
-								<key>r</key>
-								<real>0.5</real>
-							</dict>
-							<key>CornerRadius</key>
-							<real>9</real>
-							<key>Width</key>
-							<real>3</real>
-						</dict>
-					</dict>
-					<key>Text</key>
-					<dict>
-						<key>Pad</key>
-						<real>18</real>
-						<key>RTFD</key>
-						<data>
-						BAtzdHJlYW10eXBlZIHoA4QBQISE
-						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
-						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBKxhIb2xkaW5ncyBJ
-						dGVtcwpbU3lzdGVtXQqGhAJpSQEP
-						koSEhAxOU0RpY3Rpb25hcnkAlIQB
-						aQKShJaWEE5TUGFyYWdyYXBoU3R5
-						bGWGkoSEhBdOU011dGFibGVQYXJh
-						Z3JhcGhTdHlsZQCEhBBOU1BhcmFn
-						cmFwaFN0eWxlAJSEBENDQFMCAISE
-						hAdOU0FycmF5AJSZDJKEhIQJTlNU
-						ZXh0VGFiAJSEAkNmAByGkoSgnwA4
-						hpKEoJ8AVIaShKCfAHCGkoSgnwCB
-						jACGkoSgnwCBqACGkoSgnwCBxACG
-						koSgnwCB4ACGkoSgnwCB/ACGkoSg
-						nwCBGAGGkoSgnwCBNAGGkoSgnwCB
-						UAGGhgCGkoSWlgZOU0ZvbnSGkoSE
-						hAZOU0ZvbnQelJkshAVbNDRjXQYA
-						AAAiAAAA//5UAHIAZQBiAHUAYwBo
-						AGUAdABNAFMALQBCAG8AbABkAAAA
-						hAFmDIQBYwCjAaMAowCGhpcCCJKE
-						mJkDkoSWlgdOU0NvbG9yhpKEhIQH
-						TlNDb2xvcgCUowGEBGZmZmaDzczM
-						PoPNzMw+g83MzD4BhpKZkoSbnAIA
-						hJ6ZDJKfkqGSopKjkqSSpZKmkqeS
-						qJKpkqqSq4YAhpKskoSumSyhBgAA
-						ACIAAAD//lQAcgBlAGIAdQBjAGgA
-						ZQB0AE0AUwAtAEIAbwBsAGQAAACi
-						CqMAowGjAKMAhoaXAwGShJiZA5Kw
-						krGSmZKzkqySrYaG
-						</data>
-						<key>Text</key>
-						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
-{\colortbl;\red255\green255\blue255;\red102\green102\blue102;}
-{\*\expandedcolortbl;;\csgenericrgb\c40000\c40000\c40000;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\f0\b\fs24 \cf0 Holdings Items\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\fs20 \cf2 [System]
-\fs24 \
-}</string>
-					</dict>
-					<key>TextPlacement</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>Class</key>
-					<string>Group</string>
-					<key>Graphics</key>
-					<array>
-						<dict>
-							<key>Bounds</key>
-							<string>{{376.53401418315588, 486.22506952243367}, {89, 15}}</string>
-							<key>Class</key>
-							<string>ShapedGraphic</string>
-							<key>FitText</key>
-							<string>Vertical</string>
-							<key>Flow</key>
-							<string>Resize</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Color</key>
-								<dict>
-									<key>b</key>
-									<string>0.4</string>
-									<key>g</key>
-									<string>0.4</string>
-									<key>r</key>
-									<string>0.4</string>
-								</dict>
-								<key>Font</key>
-								<string>TrebuchetMS</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>ID</key>
-							<integer>3260</integer>
-							<key>Line</key>
-							<dict>
-								<key>ID</key>
-								<integer>3261</integer>
-								<key>Position</key>
-								<real>0.44313369136428682</real>
-								<key>RotationType</key>
-								<integer>0</integer>
-							</dict>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-							</dict>
-							<key>Text</key>
-							<dict>
-								<key>Pad</key>
-								<real>0.0</real>
-								<key>Text</key>
-								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\f0\fs24 \cf0 Extract holdings}</string>
-								<key>VerticalPad</key>
-								<real>0.0</real>
-							</dict>
-						</dict>
-						<dict>
-							<key>Class</key>
-							<string>LineGraphic</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Font</key>
-								<string>TrebuchetMS-Bold</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>Head</key>
-							<dict>
-								<key>ID</key>
-								<integer>3262</integer>
-							</dict>
-							<key>ID</key>
-							<integer>3261</integer>
-							<key>Points</key>
-							<array>
-								<string>{383.28313428901538, 446.1979759300358}</string>
-								<string>{468.47385924833463, 553.45024580293591}</string>
-							</array>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>HeadArrow</key>
-									<string>SharpArrow</string>
-									<key>Legacy</key>
-									<true/>
-									<key>LineType</key>
-									<integer>1</integer>
-									<key>TailArrow</key>
-									<string>0</string>
-								</dict>
-							</dict>
-							<key>Tail</key>
-							<dict>
-								<key>ID</key>
-								<integer>3214</integer>
-							</dict>
-						</dict>
-					</array>
-					<key>ID</key>
-					<integer>3259</integer>
-				</dict>
-				<dict>
-					<key>Bounds</key>
-					<string>{{333, 636.75}, {123.74998760223343, 44.632812499999773}}</string>
-					<key>Class</key>
-					<string>ShapedGraphic</string>
-					<key>FontInfo</key>
-					<dict>
-						<key>Font</key>
-						<string>TrebuchetMS-Bold</string>
-						<key>Size</key>
-						<real>12</real>
-					</dict>
-					<key>ID</key>
-					<integer>3258</integer>
-					<key>Style</key>
-					<dict>
-						<key>fill</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>shadow</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>stroke</key>
-						<dict>
-							<key>Color</key>
-							<dict>
-								<key>b</key>
-								<real>0.5</real>
-								<key>g</key>
-								<real>0.5</real>
-								<key>r</key>
-								<real>0.5</real>
-							</dict>
-							<key>CornerRadius</key>
-							<real>9</real>
-							<key>Width</key>
-							<real>3</real>
-						</dict>
-					</dict>
-					<key>Text</key>
-					<dict>
-						<key>Pad</key>
-						<real>18</real>
-						<key>RTFD</key>
-						<data>
-						BAtzdHJlYW10eXBlZIHoA4QBQISE
-						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
-						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBKw5BREhMCltTeXN0
-						ZW1dCoaEAmlJAQWShISEDE5TRGlj
-						dGlvbmFyeQCUhAFpApKElpYQTlNQ
-						YXJhZ3JhcGhTdHlsZYaShISEF05T
-						TXV0YWJsZVBhcmFncmFwaFN0eWxl
-						AISEEE5TUGFyYWdyYXBoU3R5bGUA
-						lIQEQ0NAUwIAhISEB05TQXJyYXkA
-						lJkMkoSEhAlOU1RleHRUYWIAlIQC
-						Q2YAHIaShKCfADiGkoSgnwBUhpKE
-						oJ8AcIaShKCfAIGMAIaShKCfAIGo
-						AIaShKCfAIHEAIaShKCfAIHgAIaS
-						hKCfAIH8AIaShKCfAIEYAYaShKCf
-						AIE0AYaShKCfAIFQAYaGAIaShJaW
-						Bk5TRm9udIaShISEBk5TRm9udB6U
-						mSyEBVs0NGNdBgAAACIAAAD//lQA
-						cgBlAGIAdQBjAGgAZQB0AE0AUwAt
-						AEIAbwBsAGQAAACEAWYMhAFjAKMB
-						owCjAIaGlwIIkoSYmQOShJaWB05T
-						Q29sb3KGkoSEhAdOU0NvbG9yAJSj
-						AYQEZmZmZoPNzMw+g83MzD6DzczM
-						PgGGkpmShJucAgCEnpkMkp+SoZKi
-						kqOSpJKlkqaSp5KokqmSqpKrhgCG
-						kqyShK6ZLKEGAAAAIgAAAP/+VABy
-						AGUAYgB1AGMAaABlAHQATQBTAC0A
-						QgBvAGwAZAAAAKIKowCjAaMAowCG
-						hpcDAZKEmJkDkrCSsZKZkrOSrJKt
-						hoY=
-						</data>
-						<key>Text</key>
-						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
-{\colortbl;\red255\green255\blue255;\red102\green102\blue102;}
-{\*\expandedcolortbl;;\csgenericrgb\c40000\c40000\c40000;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\f0\b\fs24 \cf0 ADHL\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\fs20 \cf2 [System]
-\fs24 \
-}</string>
-					</dict>
-					<key>TextPlacement</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>Class</key>
-					<string>Group</string>
-					<key>Graphics</key>
-					<array>
-						<dict>
-							<key>Bounds</key>
-							<string>{{305.71895297453199, 512.49785762655733}, {89, 15}}</string>
-							<key>Class</key>
-							<string>ShapedGraphic</string>
-							<key>FitText</key>
-							<string>Vertical</string>
-							<key>Flow</key>
-							<string>Resize</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Color</key>
-								<dict>
-									<key>b</key>
-									<string>0.4</string>
-									<key>g</key>
-									<string>0.4</string>
-									<key>r</key>
-									<string>0.4</string>
-								</dict>
-								<key>Font</key>
-								<string>TrebuchetMS</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>ID</key>
-							<integer>3256</integer>
-							<key>Line</key>
-							<dict>
-								<key>ID</key>
-								<integer>3257</integer>
-								<key>Position</key>
-								<real>0.38940109693626407</real>
-								<key>RotationType</key>
-								<integer>0</integer>
-							</dict>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-							</dict>
-							<key>Text</key>
-							<dict>
-								<key>Pad</key>
-								<real>0.0</real>
-								<key>Text</key>
-								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\f0\fs24 \cf0 Extract loans}</string>
-								<key>VerticalPad</key>
-								<real>0.0</real>
-							</dict>
-						</dict>
-						<dict>
-							<key>Class</key>
-							<string>LineGraphic</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Font</key>
-								<string>TrebuchetMS-Bold</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>Head</key>
-							<dict>
-								<key>ID</key>
-								<integer>3258</integer>
-							</dict>
-							<key>ID</key>
-							<integer>3257</integer>
-							<key>Points</key>
-							<array>
-								<string>{326.60203059088673, 446.4515879106811}</string>
-								<string>{387.25137855212665, 635.32180693372788}</string>
-							</array>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>HeadArrow</key>
-									<string>SharpArrow</string>
-									<key>Legacy</key>
-									<true/>
-									<key>LineType</key>
-									<integer>1</integer>
-									<key>TailArrow</key>
-									<string>0</string>
-								</dict>
-							</dict>
-							<key>Tail</key>
-							<dict>
-								<key>ID</key>
-								<integer>3214</integer>
-							</dict>
-						</dict>
-					</array>
-					<key>ID</key>
-					<integer>3255</integer>
-				</dict>
-				<dict>
-					<key>Class</key>
-					<string>Group</string>
-					<key>Graphics</key>
-					<array>
-						<dict>
-							<key>Bounds</key>
-							<string>{{148.35367625178915, 513.2993533324892}, {89, 28}}</string>
-							<key>Class</key>
-							<string>ShapedGraphic</string>
-							<key>FitText</key>
-							<string>Vertical</string>
-							<key>Flow</key>
-							<string>Resize</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Color</key>
-								<dict>
-									<key>b</key>
-									<string>0.4</string>
-									<key>g</key>
-									<string>0.4</string>
-									<key>r</key>
-									<string>0.4</string>
-								</dict>
-								<key>Font</key>
-								<string>TrebuchetMS</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>ID</key>
-							<integer>3253</integer>
-							<key>Line</key>
-							<dict>
-								<key>ID</key>
-								<integer>3254</integer>
-								<key>Position</key>
-								<real>0.42811497682032035</real>
-								<key>RotationType</key>
-								<integer>0</integer>
-							</dict>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-							</dict>
-							<key>Text</key>
-							<dict>
-								<key>Pad</key>
-								<real>0.0</real>
-								<key>Text</key>
-								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\f0\fs24 \cf0 Extract tags &amp; taxonomy}</string>
-								<key>VerticalPad</key>
-								<real>0.0</real>
-							</dict>
-						</dict>
-						<dict>
-							<key>Class</key>
-							<string>LineGraphic</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Font</key>
-								<string>TrebuchetMS-Bold</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>Head</key>
-							<dict>
-								<key>ID</key>
-								<integer>3251</integer>
-							</dict>
-							<key>ID</key>
-							<integer>3254</integer>
-							<key>Points</key>
-							<array>
-								<string>{231.1470414321432, 446.3792631210909}</string>
-								<string>{141.70059243448998, 635.39411433329815}</string>
-							</array>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>HeadArrow</key>
-									<string>SharpArrow</string>
-									<key>Legacy</key>
-									<true/>
-									<key>LineType</key>
-									<integer>1</integer>
-									<key>TailArrow</key>
-									<string>0</string>
-								</dict>
-							</dict>
-							<key>Tail</key>
-							<dict>
-								<key>ID</key>
-								<integer>3214</integer>
-							</dict>
-						</dict>
-					</array>
-					<key>ID</key>
-					<integer>3252</integer>
-				</dict>
-				<dict>
-					<key>Bounds</key>
-					<string>{{68.625, 636.75}, {123.74998760223343, 44.632812499999773}}</string>
-					<key>Class</key>
-					<string>ShapedGraphic</string>
-					<key>FontInfo</key>
-					<dict>
-						<key>Font</key>
-						<string>TrebuchetMS-Bold</string>
-						<key>Size</key>
-						<real>12</real>
-					</dict>
-					<key>ID</key>
-					<integer>3251</integer>
-					<key>Style</key>
-					<dict>
-						<key>fill</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>shadow</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>stroke</key>
-						<dict>
-							<key>Color</key>
-							<dict>
-								<key>b</key>
-								<real>0.5</real>
-								<key>g</key>
-								<real>0.5</real>
-								<key>r</key>
-								<real>0.5</real>
-							</dict>
-							<key>CornerRadius</key>
-							<real>9</real>
-							<key>Width</key>
-							<real>3</real>
-						</dict>
-					</dict>
-					<key>Text</key>
-					<dict>
-						<key>Pad</key>
-						<real>18</real>
-						<key>RTFD</key>
-						<data>
-						BAtzdHJlYW10eXBlZIHoA4QBQISE
-						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
-						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBKxdNZXRha29tcGFz
-						c2V0CltTeXN0ZW1dCoaEAmlJAQ6S
-						hISEDE5TRGljdGlvbmFyeQCUhAFp
-						ApKElpYQTlNQYXJhZ3JhcGhTdHls
-						ZYaShISEF05TTXV0YWJsZVBhcmFn
-						cmFwaFN0eWxlAISEEE5TUGFyYWdy
-						YXBoU3R5bGUAlIQEQ0NAUwIAhISE
-						B05TQXJyYXkAlJkMkoSEhAlOU1Rl
-						eHRUYWIAlIQCQ2YAHIaShKCfADiG
-						koSgnwBUhpKEoJ8AcIaShKCfAIGM
-						AIaShKCfAIGoAIaShKCfAIHEAIaS
-						hKCfAIHgAIaShKCfAIH8AIaShKCf
-						AIEYAYaShKCfAIE0AYaShKCfAIFQ
-						AYaGAIaShJaWBk5TRm9udIaShISE
-						Bk5TRm9udB6UmSyEBVs0NGNdBgAA
-						ACIAAAD//lQAcgBlAGIAdQBjAGgA
-						ZQB0AE0AUwAtAEIAbwBsAGQAAACE
-						AWYMhAFjAKMBowCjAIaGlwIIkoSY
-						mQOShJaWB05TQ29sb3KGkoSEhAdO
-						U0NvbG9yAJSjAYQEZmZmZoPNzMw+
-						g83MzD6DzczMPgGGkpmShJucAgCE
-						npkMkp+SoZKikqOSpJKlkqaSp5Ko
-						kqmSqpKrhgCGkqyShK6ZLKEGAAAA
-						IgAAAP/+VAByAGUAYgB1AGMAaABl
-						AHQATQBTAC0AQgBvAGwAZAAAAKIK
-						owCjAaMAowCGhpcDAZKEmJkDkrCS
-						sZKZkrOSrJKthoY=
-						</data>
-						<key>Text</key>
-						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
-{\colortbl;\red255\green255\blue255;\red102\green102\blue102;}
-{\*\expandedcolortbl;;\csgenericrgb\c40000\c40000\c40000;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\f0\b\fs24 \cf0 Metakompasset\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\fs20 \cf2 [System]
-\fs24 \
-}</string>
-					</dict>
-					<key>TextPlacement</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>Class</key>
-					<string>Group</string>
-					<key>Graphics</key>
-					<array>
-						<dict>
-							<key>Bounds</key>
-							<string>{{92.206269299609616, 486.14604217863189}, {113.62499999999969, 15}}</string>
-							<key>Class</key>
-							<string>ShapedGraphic</string>
-							<key>FitText</key>
-							<string>Vertical</string>
-							<key>Flow</key>
-							<string>Resize</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Color</key>
-								<dict>
-									<key>b</key>
-									<string>0.4</string>
-									<key>g</key>
-									<string>0.4</string>
-									<key>r</key>
-									<string>0.4</string>
-								</dict>
-								<key>Font</key>
-								<string>TrebuchetMS</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>ID</key>
-							<integer>3249</integer>
-							<key>Line</key>
-							<dict>
-								<key>ID</key>
-								<integer>3250</integer>
-								<key>Position</key>
-								<real>0.44241881988371456</real>
-								<key>RotationType</key>
-								<integer>0</integer>
-							</dict>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-							</dict>
-							<key>Text</key>
-							<dict>
-								<key>Pad</key>
-								<real>0.0</real>
-								<key>Text</key>
-								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\f0\fs24 \cf0 Extract meta data}</string>
-								<key>VerticalPad</key>
-								<real>0.0</real>
-							</dict>
-						</dict>
-						<dict>
-							<key>Class</key>
-							<string>LineGraphic</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Font</key>
-								<string>TrebuchetMS-Bold</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>Head</key>
-							<dict>
-								<key>ID</key>
-								<integer>3246</integer>
-							</dict>
-							<key>ID</key>
-							<integer>3250</integer>
-							<key>Points</key>
-							<array>
-								<string>{188.42727977498444, 446.17752196483951}</string>
-								<string>{99.352161473906662, 553.47069297323765}</string>
-							</array>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>HeadArrow</key>
-									<string>SharpArrow</string>
-									<key>Legacy</key>
-									<true/>
-									<key>LineType</key>
-									<integer>1</integer>
-									<key>TailArrow</key>
-									<string>0</string>
-								</dict>
-							</dict>
-							<key>Tail</key>
-							<dict>
-								<key>ID</key>
-								<integer>3214</integer>
-							</dict>
-						</dict>
-					</array>
-					<key>HFlip</key>
+					<integer>3277</integer>
+					<key>ImageID</key>
+					<integer>2</integer>
+					<key>ManualSizeImage</key>
 					<string>YES</string>
-					<key>ID</key>
-					<integer>3248</integer>
+					<key>Scale</key>
+					<real>0.4999999888241291</real>
+					<key>StretchImage</key>
+					<false/>
+					<key>Style</key>
+					<dict>
+						<key>fill</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+					</dict>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{198, 575.26966313268395}, {123.74998760223343, 44.632812499999773}}</string>
+					<string>{{230.10285890449308, 592.12599366535721}, {123.74998760223343, 44.632812499999773}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -1989,7 +1254,7 @@
 						<real>12</real>
 					</dict>
 					<key>ID</key>
-					<integer>3247</integer>
+					<integer>3272</integer>
 					<key>Style</key>
 					<dict>
 						<key>fill</key>
@@ -2028,33 +1293,33 @@
 						BAtzdHJlYW10eXBlZIHoA4QBQISE
 						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
 						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBKxJNb3JlSW5mbwpb
-						U3lzdGVtXQqGhAJpSQEJkoSEhAxO
-						U0RpY3Rpb25hcnkAlIQBaQKShJaW
-						EE5TUGFyYWdyYXBoU3R5bGWGkoSE
-						hBdOU011dGFibGVQYXJhZ3JhcGhT
-						dHlsZQCEhBBOU1BhcmFncmFwaFN0
-						eWxlAJSEBENDQFMCAISEhAdOU0Fy
-						cmF5AJSZDJKEhIQJTlNUZXh0VGFi
-						AJSEAkNmAByGkoSgnwA4hpKEoJ8A
-						VIaShKCfAHCGkoSgnwCBjACGkoSg
-						nwCBqACGkoSgnwCBxACGkoSgnwCB
-						4ACGkoSgnwCB/ACGkoSgnwCBGAGG
-						koSgnwCBNAGGkoSgnwCBUAGGhgCG
-						koSWlgZOU0ZvbnSGkoSEhAZOU0Zv
-						bnQelJkshAVbNDRjXQYAAAAiAAAA
-						//5UAHIAZQBiAHUAYwBoAGUAdABN
-						AFMALQBCAG8AbABkAAAAhAFmDIQB
-						YwCjAaMAowCGhpcCCJKEmJkDkoSW
-						lgdOU0NvbG9yhpKEhIQHTlNDb2xv
-						cgCUowGEBGZmZmaDzczMPoPNzMw+
-						g83MzD4BhpKZkoSbnAIAhJ6ZDJKf
-						kqGSopKjkqSSpZKmkqeSqJKpkqqS
-						q4YAhpKskoSumSyhBgAAACIAAAD/
-						/lQAcgBlAGIAdQBjAGgAZQB0AE0A
-						UwAtAEIAbwBsAGQAAACiCqMAowGj
-						AKMAhoaXAwGShJiZA5KwkrGSmZKz
-						kqySrYaG
+						dHJpbmcBlIQBKw1EQkMKW1N5c3Rl
+						bV0KhoQCaUkBBJKEhIQMTlNEaWN0
+						aW9uYXJ5AJSEAWkCkoSWlhBOU1Bh
+						cmFncmFwaFN0eWxlhpKEhIQXTlNN
+						dXRhYmxlUGFyYWdyYXBoU3R5bGUA
+						hIQQTlNQYXJhZ3JhcGhTdHlsZQCU
+						hARDQ0BTAgCEhIQHTlNBcnJheQCU
+						mQyShISECU5TVGV4dFRhYgCUhAJD
+						ZgAchpKEoJ8AOIaShKCfAFSGkoSg
+						nwBwhpKEoJ8AgYwAhpKEoJ8AgagA
+						hpKEoJ8AgcQAhpKEoJ8AgeAAhpKE
+						oJ8AgfwAhpKEoJ8AgRgBhpKEoJ8A
+						gTQBhpKEoJ8AgVABhoYAhpKElpYG
+						TlNGb250hpKEhIQGTlNGb250HpSZ
+						LIQFWzQ0Y10GAAAAIgAAAP/+VABy
+						AGUAYgB1AGMAaABlAHQATQBTAC0A
+						QgBvAGwAZAAAAIQBZgyEAWMAowGj
+						AKMAhoaXAgiShJiZA5KElpYHTlND
+						b2xvcoaShISEB05TQ29sb3IAlKMB
+						hARmZmZmg83MzD6DzczMPoPNzMw+
+						AYaSmZKEm5wCAISemQySn5KhkqKS
+						o5KkkqWSppKnkqiSqZKqkquGAIaS
+						rJKErpksoQYAAAAiAAAA//5UAHIA
+						ZQBiAHUAYwBoAGUAdABNAFMALQBC
+						AG8AbABkAAAAogqjAKMBowCjAIaG
+						lwMBkoSYmQOSsJKxkpmSs5Kskq2G
+						hg==
 						</data>
 						<key>Text</key>
 						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
@@ -2063,104 +1328,7 @@
 {\*\expandedcolortbl;;\csgenericrgb\c40000\c40000\c40000;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
-\f0\b\fs24 \cf0 MoreInfo\
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\fs20 \cf2 [System]
-\fs24 \
-}</string>
-					</dict>
-					<key>TextPlacement</key>
-					<integer>0</integer>
-				</dict>
-				<dict>
-					<key>Bounds</key>
-					<string>{{18, 554.625}, {123.74998760223343, 44.632812499999773}}</string>
-					<key>Class</key>
-					<string>ShapedGraphic</string>
-					<key>FontInfo</key>
-					<dict>
-						<key>Font</key>
-						<string>TrebuchetMS-Bold</string>
-						<key>Size</key>
-						<real>12</real>
-					</dict>
-					<key>ID</key>
-					<integer>3246</integer>
-					<key>Style</key>
-					<dict>
-						<key>fill</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>shadow</key>
-						<dict>
-							<key>Draws</key>
-							<string>NO</string>
-						</dict>
-						<key>stroke</key>
-						<dict>
-							<key>Color</key>
-							<dict>
-								<key>b</key>
-								<real>0.5</real>
-								<key>g</key>
-								<real>0.5</real>
-								<key>r</key>
-								<real>0.5</real>
-							</dict>
-							<key>CornerRadius</key>
-							<real>9</real>
-							<key>Width</key>
-							<real>3</real>
-						</dict>
-					</dict>
-					<key>Text</key>
-					<dict>
-						<key>Pad</key>
-						<real>18</real>
-						<key>RTFD</key>
-						<data>
-						BAtzdHJlYW10eXBlZIHoA4QBQISE
-						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
-						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBKxJCcsO4bmRlbgpb
-						U3lzdGVtXQqGhAJpSQEIkoSEhAxO
-						U0RpY3Rpb25hcnkAlIQBaQKShJaW
-						EE5TUGFyYWdyYXBoU3R5bGWGkoSE
-						hBdOU011dGFibGVQYXJhZ3JhcGhT
-						dHlsZQCEhBBOU1BhcmFncmFwaFN0
-						eWxlAJSEBENDQFMCAISEhAdOU0Fy
-						cmF5AJSZDJKEhIQJTlNUZXh0VGFi
-						AJSEAkNmAByGkoSgnwA4hpKEoJ8A
-						VIaShKCfAHCGkoSgnwCBjACGkoSg
-						nwCBqACGkoSgnwCBxACGkoSgnwCB
-						4ACGkoSgnwCB/ACGkoSgnwCBGAGG
-						koSgnwCBNAGGkoSgnwCBUAGGhgCG
-						koSWlgZOU0ZvbnSGkoSEhAZOU0Zv
-						bnQelJkshAVbNDRjXQYAAAAiAAAA
-						//5UAHIAZQBiAHUAYwBoAGUAdABN
-						AFMALQBCAG8AbABkAAAAhAFmDIQB
-						YwCjAaMAowCGhpcCCJKEmJkDkoSW
-						lgdOU0NvbG9yhpKEhIQHTlNDb2xv
-						cgCUowGEBGZmZmaDzczMPoPNzMw+
-						g83MzD4BhpKZkoSbnAIAhJ6ZDJKf
-						kqGSopKjkqSSpZKmkqeSqJKpkqqS
-						q4YAhpKskoSumSyhBgAAACIAAAD/
-						/lQAcgBlAGIAdQBjAGgAZQB0AE0A
-						UwAtAEIAbwBsAGQAAACiCqMAowGj
-						AKMAhoaXAwGShJiZA5KwkrGSmZKz
-						kqySrYaG
-						</data>
-						<key>Text</key>
-						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
-{\colortbl;\red255\green255\blue255;\red102\green102\blue102;}
-{\*\expandedcolortbl;;\csgenericrgb\c40000\c40000\c40000;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\f0\b\fs24 \cf0 Br\'f8nden\
+\f0\b\fs24 \cf0 DBC\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \fs20 \cf2 [System]
@@ -2177,7 +1345,128 @@
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{212.43637556385801, 155.78481318721725}, {153.98869323730469, 28}}</string>
+							<string>{{246.77776002141655, 525.8899913767309}, {89, 28}}</string>
+							<key>Class</key>
+							<string>ShapedGraphic</string>
+							<key>FitText</key>
+							<string>Vertical</string>
+							<key>Flow</key>
+							<string>Resize</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Color</key>
+								<dict>
+									<key>b</key>
+									<string>0.4</string>
+									<key>g</key>
+									<string>0.4</string>
+									<key>r</key>
+									<string>0.4</string>
+								</dict>
+								<key>Font</key>
+								<string>TrebuchetMS</string>
+								<key>Size</key>
+								<real>12</real>
+							</dict>
+							<key>ID</key>
+							<integer>3270</integer>
+							<key>Line</key>
+							<dict>
+								<key>ID</key>
+								<integer>3271</integer>
+								<key>Position</key>
+								<real>0.49704614281654358</real>
+								<key>RotationType</key>
+								<integer>0</integer>
+							</dict>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+							</dict>
+							<key>Text</key>
+							<dict>
+								<key>Pad</key>
+								<real>0.0</real>
+								<key>Text</key>
+								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\f0\fs24 \cf0 Book meta data and user info}</string>
+								<key>VerticalPad</key>
+								<real>0.0</real>
+							</dict>
+						</dict>
+						<dict>
+							<key>Class</key>
+							<string>LineGraphic</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Font</key>
+								<string>TrebuchetMS-Bold</string>
+								<key>Size</key>
+								<real>12</real>
+							</dict>
+							<key>Head</key>
+							<dict>
+								<key>ID</key>
+								<integer>3272</integer>
+							</dict>
+							<key>ID</key>
+							<integer>3271</integer>
+							<key>Points</key>
+							<array>
+								<string>{290.7260345606536, 489.74990919750201}</string>
+								<string>{291.83604308944155, 590.62602025482158}</string>
+							</array>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>HeadArrow</key>
+									<string>SharpArrow</string>
+									<key>Legacy</key>
+									<true/>
+									<key>LineType</key>
+									<integer>1</integer>
+									<key>TailArrow</key>
+									<string>0</string>
+								</dict>
+							</dict>
+							<key>Tail</key>
+							<dict>
+								<key>ID</key>
+								<integer>3214</integer>
+							</dict>
+						</dict>
+					</array>
+					<key>ID</key>
+					<integer>3269</integer>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>Group</string>
+					<key>Graphics</key>
+					<array>
+						<dict>
+							<key>Bounds</key>
+							<string>{{212.6850198600352, 142.40928953071963}, {153.98869323730469, 28}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -2207,7 +1496,7 @@
 								<key>ID</key>
 								<integer>3242</integer>
 								<key>Position</key>
-								<real>0.45373726370482015</real>
+								<real>0.45373725891113281</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -2319,8 +1608,8 @@
 							<integer>3242</integer>
 							<key>Points</key>
 							<array>
-								<string>{289.70564945281336, 139.74020400000023}</string>
-								<string>{289.09973210103425, 205.95607998019273}</string>
+								<string>{289.78312876378118, 121.24020400000018}</string>
+								<string>{289.55444513136177, 198.75000653352933}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -2407,7 +1696,7 @@
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{113.62501239776651, 207.45601729211506}, {348.7499999999992, 237.56739799999991}}</string>
+					<string>{{82.125, 200.25}, {414, 288}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -2457,21 +1746,8 @@
 						BAtzdHJlYW10eXBlZIHoA4QBQISE
 						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
 						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBK4EnAUNvbnRlbnQg
-						Rmlyc3QKW1N5c3RlbV0KClRvIGhl
-						bHAgbWUgZmluZCBpbnRlcmVzdGlu
-						ZyBib29rcywgYXMgYSBjb25zdW1l
-						ciBvZiBib29rcywgSSB3YW50IHRv
-						IGdldCBpbnNwaXJlZCBieSBwZW9w
-						bGUgSSByZXNjcGVjdCwgcHJvZmVz
-						c2lvbmFscywgb3IgY2VsZWJyaXRp
-						ZXMuIAoKVG8gZmluZCBvdXQgZXhh
-						Y3RseSBob3cgTMOmc2Vrb21wYXNz
-						ZXQgc2hvdWxkIHdvcmssIGFzIGEg
-						ZGV2ZWxvcGVyLCBJIHdhbnQgdG8g
-						dGVzdCBvdXQgaWRlYXMgYWJvdXQg
-						dGhlIGNvbnRlbnRzLCBmdW5jdGlv
-						bmFsaXR5IGFuZCBVSS6GhAJpSQEO
+						dHJpbmcBlIQBKxhDb250ZW50IEZp
+						cnN0CltTeXN0ZW1dCgqGhAJpSQEO
 						koSEhAxOU0RpY3Rpb25hcnkAlIQB
 						aQKShJaWEE5TUGFyYWdyYXBoU3R5
 						bGWGkoSEhBdOU011dGFibGVQYXJh
@@ -2495,8 +1771,8 @@
 						qJKpkqqSq4YAhpKskoSumSyhBgAA
 						ACIAAAD//lQAcgBlAGIAdQBjAGgA
 						ZQB0AE0AUwAtAEIAbwBsAGQAAACi
-						CqMAowGjAKMAhoaXA4EQAZKEmJkD
-						krCSsZKZkrOSrJKthoY=
+						CqMAowGjAKMAhoaXAwKShJiZA5Kw
+						krGSmZKzkqySrYaG
 						</data>
 						<key>Text</key>
 						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
@@ -2511,9 +1787,7 @@
 \fs20 \cf2 [System]
 \fs24 \
 \
-To help me find interesting books, as a consumer of books, I want to get inspired by people I rescpect, professionals, or celebrities. \
-\
-To find out exactly how L\'e6sekompasset should work, as a developer, I want to test out ideas about the contents, functionality and UI.}</string>
+}</string>
 					</dict>
 					<key>TextPlacement</key>
 					<integer>0</integer>
@@ -2525,128 +1799,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{226.33635413898656, 484.32766215369639}, {89, 15}}</string>
-							<key>Class</key>
-							<string>ShapedGraphic</string>
-							<key>FitText</key>
-							<string>Vertical</string>
-							<key>Flow</key>
-							<string>Resize</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Color</key>
-								<dict>
-									<key>b</key>
-									<string>0.4</string>
-									<key>g</key>
-									<string>0.4</string>
-									<key>r</key>
-									<string>0.4</string>
-								</dict>
-								<key>Font</key>
-								<string>TrebuchetMS</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>ID</key>
-							<integer>3212</integer>
-							<key>Line</key>
-							<dict>
-								<key>ID</key>
-								<integer>3213</integer>
-								<key>Position</key>
-								<real>0.35605412294709499</real>
-								<key>RotationType</key>
-								<integer>0</integer>
-							</dict>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-							</dict>
-							<key>Text</key>
-							<dict>
-								<key>Pad</key>
-								<real>0.0</real>
-								<key>Text</key>
-								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
-{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
-
-\f0\fs24 \cf0 Extract covers}</string>
-								<key>VerticalPad</key>
-								<real>0.0</real>
-							</dict>
-						</dict>
-						<dict>
-							<key>Class</key>
-							<string>LineGraphic</string>
-							<key>FontInfo</key>
-							<dict>
-								<key>Font</key>
-								<string>TrebuchetMS-Bold</string>
-								<key>Size</key>
-								<real>12</real>
-							</dict>
-							<key>Head</key>
-							<dict>
-								<key>ID</key>
-								<integer>3247</integer>
-							</dict>
-							<key>ID</key>
-							<integer>3213</integer>
-							<key>Points</key>
-							<array>
-								<string>{275.53309583582342, 446.51542171545316}</string>
-								<string>{262.34200628283122, 573.77765158645673}</string>
-							</array>
-							<key>Style</key>
-							<dict>
-								<key>shadow</key>
-								<dict>
-									<key>Draws</key>
-									<string>NO</string>
-								</dict>
-								<key>stroke</key>
-								<dict>
-									<key>HeadArrow</key>
-									<string>SharpArrow</string>
-									<key>Legacy</key>
-									<true/>
-									<key>LineType</key>
-									<integer>1</integer>
-									<key>TailArrow</key>
-									<string>0</string>
-								</dict>
-							</dict>
-							<key>Tail</key>
-							<dict>
-								<key>ID</key>
-								<integer>3214</integer>
-							</dict>
-						</dict>
-					</array>
-					<key>ID</key>
-					<integer>3211</integer>
-				</dict>
-				<dict>
-					<key>Class</key>
-					<string>Group</string>
-					<key>Graphics</key>
-					<array>
-						<dict>
-							<key>Bounds</key>
-							<string>{{258.82003239776611, 114.74020400000025}, {62, 25}}</string>
+							<string>{{258.8200085559082, 96.24020400000019}, {62, 25}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -2703,7 +1856,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 							<array>
 								<dict>
 									<key>Bounds</key>
-									<string>{{261.14489239776606, 36.501266000000243}, {55.028033999999998, 73.370666999999997}}</string>
+									<string>{{261.14486855590815, 18.001266000000193}, {55.028033999999998, 73.370666999999997}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>FontInfo</key>
@@ -2753,7 +1906,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								</dict>
 								<dict>
 									<key>Bounds</key>
-									<string>{{261.18237239776613, 36.500000000000234}, {54.997619999999998, 73.371696}}</string>
+									<string>{{261.18234855590822, 18.000000000000185}, {54.997619999999998, 73.371696}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>FontInfo</key>
@@ -2829,7 +1982,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								</dict>
 								<dict>
 									<key>Bounds</key>
-									<string>{{276.31518239776614, 61.836090000000233}, {24.703257000000001, 6.4190674000000003}}</string>
+									<string>{{276.31515855590823, 43.336090000000183}, {24.703257000000001, 6.4190674000000003}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>FontInfo</key>
@@ -2946,9 +2099,9 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 									<integer>3206</integer>
 									<key>Points</key>
 									<array>
-										<string>{306.63778239776605, 107.55029400000022}</string>
-										<string>{306.63778239776605, 107.55029400000022}</string>
-										<string>{304.25384239776605, 75.511654000000235}</string>
+										<string>{306.63775855590814, 89.050294000000179}</string>
+										<string>{306.63775855590814, 89.050294000000179}</string>
+										<string>{304.25381855590814, 57.011654000000192}</string>
 									</array>
 									<key>Rotation</key>
 									<real>265.74468994140625</real>
@@ -3038,9 +2191,9 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 									<integer>3207</integer>
 									<key>Points</key>
 									<array>
-										<string>{268.00143239776611, 100.24723400000023}</string>
-										<string>{268.00143239776611, 100.24723400000023}</string>
-										<string>{273.04354239776615, 69.98033100000022}</string>
+										<string>{268.0014085559082, 81.747234000000191}</string>
+										<string>{268.0014085559082, 81.747234000000191}</string>
+										<string>{273.04351855590824, 51.480331000000177}</string>
 									</array>
 									<key>Rotation</key>
 									<real>279.45770263671875</real>
@@ -3109,7 +2262,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								</dict>
 								<dict>
 									<key>Bounds</key>
-									<string>{{273.04354239776615, 36.501281000000247}, {32.719391000000002, 32.023380000000003}}</string>
+									<string>{{273.04351855590824, 18.001281000000198}, {32.719391000000002, 32.023380000000003}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>FontInfo</key>
@@ -3203,7 +2356,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								</dict>
 								<dict>
 									<key>Bounds</key>
-									<string>{{261.18243239776609, 62.105255000000255}, {54.990760999999999, 47.766269999999999}}</string>
+									<string>{{261.18240855590818, 43.605255000000213}, {54.990760999999999, 47.766269999999999}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>FontInfo</key>
@@ -3297,7 +2450,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								</dict>
 								<dict>
 									<key>Bounds</key>
-									<string>{{255.17999239776611, 36.501266000000243}, {54.990760999999999, 73.370666999999997}}</string>
+									<string>{{255.1799685559082, 18.001266000000193}, {54.990760999999999, 73.370666999999997}}</string>
 									<key>Class</key>
 									<string>ShapedGraphic</string>
 									<key>FontInfo</key>
@@ -3460,7 +2613,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {576.00002479553223, 734}}</string>
+				<string>{{0, 0}, {575.99997711181641, 734}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -4573,6 +3726,696 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 			</array>
 			<key>GraphicsList</key>
 			<array>
+				<dict>
+					<key>Class</key>
+					<string>Group</string>
+					<key>Graphics</key>
+					<array>
+						<dict>
+							<key>Bounds</key>
+							<string>{{353.46230173501704, 68.767998039082471}, {79.952995023497579, 25}}</string>
+							<key>Class</key>
+							<string>ShapedGraphic</string>
+							<key>FitText</key>
+							<string>Vertical</string>
+							<key>Flow</key>
+							<string>Resize</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Color</key>
+								<dict>
+									<key>b</key>
+									<string>0</string>
+									<key>g</key>
+									<string>0</string>
+									<key>r</key>
+									<string>0</string>
+								</dict>
+								<key>Font</key>
+								<string>TrebuchetMS</string>
+								<key>Size</key>
+								<real>12</real>
+							</dict>
+							<key>ID</key>
+							<integer>3371</integer>
+							<key>Line</key>
+							<dict>
+								<key>ID</key>
+								<integer>3372</integer>
+								<key>Position</key>
+								<real>0.63425004482269287</real>
+								<key>RotationType</key>
+								<integer>0</integer>
+							</dict>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+							</dict>
+							<key>Text</key>
+							<dict>
+								<key>Pad</key>
+								<real>0.0</real>
+								<key>Text</key>
+								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\f0\fs24 \cf0 login ticket\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\fs20 \cf0 [HTTPS]}</string>
+								<key>VerticalPad</key>
+								<real>0.0</real>
+							</dict>
+						</dict>
+						<dict>
+							<key>Class</key>
+							<string>LineGraphic</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Font</key>
+								<string>TrebuchetMS-Bold</string>
+								<key>Size</key>
+								<real>10</real>
+							</dict>
+							<key>Head</key>
+							<dict>
+								<key>ID</key>
+								<integer>3321</integer>
+							</dict>
+							<key>ID</key>
+							<integer>3372</integer>
+							<key>Points</key>
+							<array>
+								<string>{317.83603077540579, 53.998816345521774}</string>
+								<string>{379.38324166313851, 68.57076947880725}</string>
+								<string>{422.18621563286337, 120.73891051487878}</string>
+							</array>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>HeadArrow</key>
+									<string>SharpArrow</string>
+									<key>Legacy</key>
+									<true/>
+									<key>LineType</key>
+									<integer>1</integer>
+									<key>TailArrow</key>
+									<string>0</string>
+								</dict>
+							</dict>
+							<key>Tail</key>
+							<dict>
+								<key>ID</key>
+								<integer>3363</integer>
+							</dict>
+						</dict>
+					</array>
+					<key>HFlip</key>
+					<string>YES</string>
+					<key>ID</key>
+					<integer>3370</integer>
+					<key>VFlip</key>
+					<string>YES</string>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>Group</string>
+					<key>Graphics</key>
+					<array>
+						<dict>
+							<key>Bounds</key>
+							<string>{{180.12318260081133, 73.613569956959822}, {79.952995023497579, 25}}</string>
+							<key>Class</key>
+							<string>ShapedGraphic</string>
+							<key>FitText</key>
+							<string>Vertical</string>
+							<key>Flow</key>
+							<string>Resize</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Color</key>
+								<dict>
+									<key>b</key>
+									<string>0</string>
+									<key>g</key>
+									<string>0</string>
+									<key>r</key>
+									<string>0</string>
+								</dict>
+								<key>Font</key>
+								<string>TrebuchetMS</string>
+								<key>Size</key>
+								<real>12</real>
+							</dict>
+							<key>ID</key>
+							<integer>3368</integer>
+							<key>Line</key>
+							<dict>
+								<key>ID</key>
+								<integer>3369</integer>
+								<key>Position</key>
+								<real>0.63425004482269287</real>
+								<key>RotationType</key>
+								<integer>0</integer>
+							</dict>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+							</dict>
+							<key>Text</key>
+							<dict>
+								<key>Pad</key>
+								<real>0.0</real>
+								<key>Text</key>
+								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\f0\fs24 \cf0 User login\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\fs20 \cf0 [HTTPS]}</string>
+								<key>VerticalPad</key>
+								<real>0.0</real>
+							</dict>
+						</dict>
+						<dict>
+							<key>Class</key>
+							<string>LineGraphic</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Font</key>
+								<string>TrebuchetMS-Bold</string>
+								<key>Size</key>
+								<real>10</real>
+							</dict>
+							<key>Head</key>
+							<dict>
+								<key>ID</key>
+								<integer>3363</integer>
+							</dict>
+							<key>ID</key>
+							<integer>3369</integer>
+							<key>Points</key>
+							<array>
+								<string>{181.38892331327364, 120.84946575696301}</string>
+								<string>{205.65701336024358, 103.0867737510126}</string>
+								<string>{240.75172241427117, 59.782915249115938}</string>
+							</array>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>HeadArrow</key>
+									<string>SharpArrow</string>
+									<key>Legacy</key>
+									<true/>
+									<key>LineType</key>
+									<integer>1</integer>
+									<key>TailArrow</key>
+									<string>0</string>
+								</dict>
+							</dict>
+							<key>Tail</key>
+							<dict>
+								<key>ID</key>
+								<integer>3253</integer>
+							</dict>
+						</dict>
+					</array>
+					<key>HFlip</key>
+					<string>YES</string>
+					<key>ID</key>
+					<integer>3367</integer>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>Group</string>
+					<key>Graphics</key>
+					<array>
+						<dict>
+							<key>Bounds</key>
+							<string>{{284.12234280152347, 70.349951862565604}, {79.952995023497579, 25}}</string>
+							<key>Class</key>
+							<string>ShapedGraphic</string>
+							<key>FitText</key>
+							<string>Vertical</string>
+							<key>Flow</key>
+							<string>Resize</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Color</key>
+								<dict>
+									<key>b</key>
+									<string>0</string>
+									<key>g</key>
+									<string>0</string>
+									<key>r</key>
+									<string>0</string>
+								</dict>
+								<key>Font</key>
+								<string>TrebuchetMS</string>
+								<key>Size</key>
+								<real>12</real>
+							</dict>
+							<key>ID</key>
+							<integer>3365</integer>
+							<key>Line</key>
+							<dict>
+								<key>ID</key>
+								<integer>3366</integer>
+								<key>Position</key>
+								<real>0.63425004482269287</real>
+								<key>RotationType</key>
+								<integer>0</integer>
+							</dict>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+							</dict>
+							<key>Text</key>
+							<dict>
+								<key>Pad</key>
+								<real>0.0</real>
+								<key>Text</key>
+								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\f0\fs24 \cf0 User data\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\fs20 \cf0 [HTTPS/JSON]}</string>
+								<key>VerticalPad</key>
+								<real>0.0</real>
+							</dict>
+						</dict>
+						<dict>
+							<key>Class</key>
+							<string>LineGraphic</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Font</key>
+								<string>TrebuchetMS-Bold</string>
+								<key>Size</key>
+								<real>10</real>
+							</dict>
+							<key>Head</key>
+							<dict>
+								<key>ID</key>
+								<integer>3363</integer>
+							</dict>
+							<key>ID</key>
+							<integer>3366</integer>
+							<key>Points</key>
+							<array>
+								<string>{386.93039858059603, 123.46342450798403}</string>
+								<string>{287.86606618105299, 59.42957487898537}</string>
+							</array>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>HeadArrow</key>
+									<string>SharpArrow</string>
+									<key>Legacy</key>
+									<true/>
+									<key>LineType</key>
+									<integer>1</integer>
+									<key>TailArrow</key>
+									<string>0</string>
+								</dict>
+							</dict>
+							<key>Tail</key>
+							<dict>
+								<key>ID</key>
+								<integer>3321</integer>
+							</dict>
+						</dict>
+					</array>
+					<key>HFlip</key>
+					<string>YES</string>
+					<key>ID</key>
+					<integer>3364</integer>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{196.85888432692326, 20.617576857102605}, {120.4708424698607, 37.999987215470625}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>FontInfo</key>
+					<dict>
+						<key>Font</key>
+						<string>TrebuchetMS-Bold</string>
+						<key>Size</key>
+						<real>12</real>
+					</dict>
+					<key>ID</key>
+					<integer>3363</integer>
+					<key>Style</key>
+					<dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Color</key>
+							<dict>
+								<key>b</key>
+								<real>0.5</real>
+								<key>g</key>
+								<real>0.5</real>
+								<key>r</key>
+								<real>0.5</real>
+							</dict>
+							<key>CornerRadius</key>
+							<real>9</real>
+							<key>Pattern</key>
+							<integer>11</integer>
+							<key>Width</key>
+							<real>3</real>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Pad</key>
+						<real>2</real>
+						<key>RTFD</key>
+						<data>
+						BAtzdHJlYW10eXBlZIHoA4QBQISE
+						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
+						hIQITlNPYmplY3QAhZKEhIQITlNT
+						dHJpbmcBlIQBKxlIZWptZGFsCltJ
+						bnRlcm5hbCBTeXN0ZW1dhoQCaUkB
+						CJKEhIQMTlNEaWN0aW9uYXJ5AJSE
+						AWkCkoSWlhBOU1BhcmFncmFwaFN0
+						eWxlhpKEhIQXTlNNdXRhYmxlUGFy
+						YWdyYXBoU3R5bGUAhIQQTlNQYXJh
+						Z3JhcGhTdHlsZQCUhARDQ0BTAgCE
+						hIQHTlNBcnJheQCUmQyShISECU5T
+						VGV4dFRhYgCUhAJDZgAchpKEoJ8A
+						OIaShKCfAFSGkoSgnwBwhpKEoJ8A
+						gYwAhpKEoJ8AgagAhpKEoJ8AgcQA
+						hpKEoJ8AgeAAhpKEoJ8AgfwAhpKE
+						oJ8AgRgBhpKEoJ8AgTQBhpKEoJ8A
+						gVABhoYAhpKElpYGTlNGb250hpKE
+						hIQGTlNGb250HpSZLIQFWzQ0Y10G
+						AAAAIgAAAP/+VAByAGUAYgB1AGMA
+						aABlAHQATQBTAC0AQgBvAGwAZAAA
+						AIQBZgyEAWMAowGjAKMAhoaXAhGS
+						hJiZA5KElpYHTlNDb2xvcoaShISE
+						B05TQ29sb3IAlKMBhARmZmZmg83M
+						zD6DzczMPoPNzMw+AYaSmZKEm5wC
+						AISemQySn5KhkqKSo5KkkqWSppKn
+						kqiSqZKqkquGAIaSrJKErpksoQYA
+						AAAiAAAA//5UAHIAZQBiAHUAYwBo
+						AGUAdABNAFMALQBCAG8AbABkAAAA
+						ogqjAKMBowCjAIaGhg==
+						</data>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
+{\colortbl;\red255\green255\blue255;\red102\green102\blue102;}
+{\*\expandedcolortbl;;\csgenericrgb\c40000\c40000\c40000;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\f0\b\fs24 \cf0 Hejmdal\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\fs20 \cf2 [Internal System]}</string>
+					</dict>
+					<key>TextPlacement</key>
+					<integer>0</integer>
+				</dict>
+				<dict>
+					<key>Class</key>
+					<string>Group</string>
+					<key>Graphics</key>
+					<array>
+						<dict>
+							<key>Bounds</key>
+							<string>{{435.74039986026418, 69.744636277218063}, {79.952995023497579, 25}}</string>
+							<key>Class</key>
+							<string>ShapedGraphic</string>
+							<key>FitText</key>
+							<string>Vertical</string>
+							<key>Flow</key>
+							<string>Resize</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Color</key>
+								<dict>
+									<key>b</key>
+									<string>0</string>
+									<key>g</key>
+									<string>0</string>
+									<key>r</key>
+									<string>0</string>
+								</dict>
+								<key>Font</key>
+								<string>TrebuchetMS</string>
+								<key>Size</key>
+								<real>12</real>
+							</dict>
+							<key>ID</key>
+							<integer>3357</integer>
+							<key>Line</key>
+							<dict>
+								<key>ID</key>
+								<integer>3358</integer>
+								<key>Position</key>
+								<real>0.63425004482269287</real>
+								<key>RotationType</key>
+								<integer>0</integer>
+							</dict>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+							</dict>
+							<key>Text</key>
+							<dict>
+								<key>Pad</key>
+								<real>0.0</real>
+								<key>Text</key>
+								<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\f0\fs24 \cf0 access token\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\fs20 \cf0 [HTTPS/JSON]}</string>
+								<key>VerticalPad</key>
+								<real>0.0</real>
+							</dict>
+						</dict>
+						<dict>
+							<key>Class</key>
+							<string>LineGraphic</string>
+							<key>FontInfo</key>
+							<dict>
+								<key>Font</key>
+								<string>TrebuchetMS-Bold</string>
+								<key>Size</key>
+								<real>10</real>
+							</dict>
+							<key>Head</key>
+							<dict>
+								<key>ID</key>
+								<integer>3355</integer>
+							</dict>
+							<key>ID</key>
+							<integer>3358</integer>
+							<key>Points</key>
+							<array>
+								<string>{472.01215468666072, 120.62776609537306}</string>
+								<string>{477.85329357458323, 60.110420826713778}</string>
+							</array>
+							<key>Style</key>
+							<dict>
+								<key>shadow</key>
+								<dict>
+									<key>Draws</key>
+									<string>NO</string>
+								</dict>
+								<key>stroke</key>
+								<dict>
+									<key>HeadArrow</key>
+									<string>SharpArrow</string>
+									<key>Legacy</key>
+									<true/>
+									<key>LineType</key>
+									<integer>1</integer>
+									<key>TailArrow</key>
+									<string>0</string>
+								</dict>
+							</dict>
+							<key>Tail</key>
+							<dict>
+								<key>ID</key>
+								<integer>3321</integer>
+							</dict>
+						</dict>
+					</array>
+					<key>HFlip</key>
+					<string>YES</string>
+					<key>ID</key>
+					<integer>3356</integer>
+				</dict>
+				<dict>
+					<key>Bounds</key>
+					<string>{{419.625, 20.617576857102605}, {120.4708424698607, 37.999987215470625}}</string>
+					<key>Class</key>
+					<string>ShapedGraphic</string>
+					<key>FontInfo</key>
+					<dict>
+						<key>Font</key>
+						<string>TrebuchetMS-Bold</string>
+						<key>Size</key>
+						<real>12</real>
+					</dict>
+					<key>ID</key>
+					<integer>3355</integer>
+					<key>Style</key>
+					<dict>
+						<key>shadow</key>
+						<dict>
+							<key>Draws</key>
+							<string>NO</string>
+						</dict>
+						<key>stroke</key>
+						<dict>
+							<key>Color</key>
+							<dict>
+								<key>b</key>
+								<real>0.5</real>
+								<key>g</key>
+								<real>0.5</real>
+								<key>r</key>
+								<real>0.5</real>
+							</dict>
+							<key>CornerRadius</key>
+							<real>9</real>
+							<key>Pattern</key>
+							<integer>11</integer>
+							<key>Width</key>
+							<real>3</real>
+						</dict>
+					</dict>
+					<key>Text</key>
+					<dict>
+						<key>Pad</key>
+						<real>2</real>
+						<key>RTFD</key>
+						<data>
+						BAtzdHJlYW10eXBlZIHoA4QBQISE
+						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
+						hIQITlNPYmplY3QAhZKEhIQITlNT
+						dHJpbmcBlIQBKxdTbWF1ZwpbSW50
+						ZXJuYWwgU3lzdGVtXYaEAmlJAQaS
+						hISEDE5TRGljdGlvbmFyeQCUhAFp
+						ApKElpYQTlNQYXJhZ3JhcGhTdHls
+						ZYaShISEF05TTXV0YWJsZVBhcmFn
+						cmFwaFN0eWxlAISEEE5TUGFyYWdy
+						YXBoU3R5bGUAlIQEQ0NAUwIAhISE
+						B05TQXJyYXkAlJkMkoSEhAlOU1Rl
+						eHRUYWIAlIQCQ2YAHIaShKCfADiG
+						koSgnwBUhpKEoJ8AcIaShKCfAIGM
+						AIaShKCfAIGoAIaShKCfAIHEAIaS
+						hKCfAIHgAIaShKCfAIH8AIaShKCf
+						AIEYAYaShKCfAIE0AYaShKCfAIFQ
+						AYaGAIaShJaWBk5TRm9udIaShISE
+						Bk5TRm9udB6UmSyEBVs0NGNdBgAA
+						ACIAAAD//lQAcgBlAGIAdQBjAGgA
+						ZQB0AE0AUwAtAEIAbwBsAGQAAACE
+						AWYMhAFjAKMBowCjAIaGlwIRkoSY
+						mQOShJaWB05TQ29sb3KGkoSEhAdO
+						U0NvbG9yAJSjAYQEZmZmZoPNzMw+
+						g83MzD6DzczMPgGGkpmShJucAgCE
+						npkMkp+SoZKikqOSpJKlkqaSp5Ko
+						kqmSqpKrhgCGkqyShK6ZLKEGAAAA
+						IgAAAP/+VAByAGUAYgB1AGMAaABl
+						AHQATQBTAC0AQgBvAGwAZAAAAKIK
+						owCjAaMAowCGhoY=
+						</data>
+						<key>Text</key>
+						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 TrebuchetMS;}
+{\colortbl;\red255\green255\blue255;\red102\green102\blue102;}
+{\*\expandedcolortbl;;\csgenericrgb\c40000\c40000\c40000;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\f0\b\fs24 \cf0 Smaug\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
+
+\fs20 \cf2 [Internal System]}</string>
+					</dict>
+					<key>TextPlacement</key>
+					<integer>0</integer>
+				</dict>
 				<dict>
 					<key>Class</key>
 					<string>Group</string>
@@ -4749,7 +4592,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
 						hIQITlNPYmplY3QAhZKEhIQITlNT
 						dHJpbmcBlIQBKx9NZXRha29tcGFz
-						c2V0CltFeHRlcm5hbCBTeXN0ZW1d
+						c2V0CltJbnRlcm5hbCBTeXN0ZW1d
 						hoQCaUkBDpKEhIQMTlNEaWN0aW9u
 						YXJ5AJSEAWkCkoSWlhBOU1BhcmFn
 						cmFwaFN0eWxlhpKEhIQXTlNNdXRh
@@ -4785,7 +4628,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 \f0\b\fs24 \cf0 Metakompasset\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
-\fs20 \cf2 [External System]}</string>
+\fs20 \cf2 [Internal System]}</string>
 					</dict>
 					<key>TextPlacement</key>
 					<integer>0</integer>
@@ -5049,7 +4892,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{313.16747618646815, 458.85330863835713}, {59.124253570827875, 25}}</string>
+							<string>{{313.16758940521424, 453.35498353349556}, {59.124253570827875, 25}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -5079,7 +4922,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								<key>ID</key>
 								<integer>3344</integer>
 								<key>Position</key>
-								<real>0.45817696758414916</real>
+								<real>0.45817697048187256</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -5134,8 +4977,8 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 							<integer>3344</integer>
 							<key>Points</key>
 							<array>
-								<string>{384.68888776149095, 474.47485766815083}</string>
-								<string>{293.11011440605051, 467.66188093247092}</string>
+								<string>{384.68765781085256, 466.87600720756507}</string>
+								<string>{293.11181655665803, 464.64755895002963}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -5293,7 +5136,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{303.00052234151008, 575.42506394630243}, {73.22460259540776, 25}}</string>
+							<string>{{306.25040486119656, 569.1037990565452}, {73.22460259540776, 25}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -5323,7 +5166,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								<key>ID</key>
 								<integer>3340</integer>
 								<key>Position</key>
-								<real>0.45891077284371828</real>
+								<real>0.45891076326370239</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -5378,8 +5221,8 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 							<integer>3340</integer>
 							<key>Points</key>
 							<array>
-								<string>{402.71518303251139, 534.87681370546238}</string>
-								<string>{265.21054733303902, 650.47281350631852}</string>
+								<string>{407.36248461395019, 523.15854841142118}</string>
+								<string>{266.81277142057115, 650.51500470393444}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -5510,7 +5353,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{378.73723454198904, 568.02085947409705}, {66.881460280788758, 25}}</string>
+							<string>{{379.36494232851663, 562.6167423319522}, {66.881460280788758, 25}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -5540,7 +5383,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								<key>ID</key>
 								<integer>3336</integer>
 								<key>Position</key>
-								<real>0.53989412754404797</real>
+								<real>0.53989410400390625</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -5595,8 +5438,8 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 							<integer>3336</integer>
 							<key>Points</key>
 							<array>
-								<string>{437.2790652967094, 534.9929284391992}</string>
-								<string>{390.78643132894695, 619.32044321386888}</string>
+								<string>{439.38255674747825, 523.26776460765461}</string>
+								<string>{390.15645008943756, 619.30322462675679}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -5727,7 +5570,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{287.77941849517208, 527.66059812760625}, {92.012481050138319, 25}}</string>
+							<string>{{286.38684933261345, 522.38238286925798}, {92.012481050138319, 25}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -5757,7 +5600,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								<key>ID</key>
 								<integer>3332</integer>
 								<key>Position</key>
-								<real>0.35586448144118071</real>
+								<real>0.35586449503898621</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -5812,8 +5655,8 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 							<integer>3332</integer>
 							<key>Points</key>
 							<array>
-								<string>{384.73088632819673, 517.43355260460453}</string>
-								<string>{241.57181361499616, 581.29788169899166}</string>
+								<string>{384.7384005810145, 509.2668561688206}</string>
+								<string>{237.64502745831214, 581.24797873005389}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -5939,7 +5782,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{385.18750983513462, 426.68006737953743}, {164.14109178780475, 107.875}}</string>
+					<string>{{385.18750983513462, 414.94781290265593}, {164.14109178780475, 107.875}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -5998,43 +5841,42 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 						BAtzdHJlYW10eXBlZIHoA4QBQISE
 						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
 						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBK2BNZXRhIGRhdGEg
+						dHJpbmcBlIQBK1ZNZXRhIGRhdGEg
 						Y29sbGVjdGlvbiBzY3JpcHRzCltK
-						YXZhU2NyaXB0XQoKTm9ybWFsaXNl
-						cyBmdXp6eSBkYXRhIGNvbGxlY3Rl
-						ZCBmcm9tIHZhcmlvdXMgc291cmNl
-						cy6GhAJpSQEdkoSEhAxOU0RpY3Rp
-						b25hcnkAlIQBaQKShJaWEE5TUGFy
-						YWdyYXBoU3R5bGWGkoSEhBdOU011
-						dGFibGVQYXJhZ3JhcGhTdHlsZQCE
-						hBBOU1BhcmFncmFwaFN0eWxlAJSE
-						BENDQFMCAISEhAdOU0FycmF5AJSZ
-						DJKEhIQJTlNUZXh0VGFiAJSEAkNm
-						AByGkoSgnwA4hpKEoJ8AVIaShKCf
-						AHCGkoSgnwCBjACGkoSgnwCBqACG
-						koSgnwCBxACGkoSgnwCB4ACGkoSg
-						nwCB/ACGkoSgnwCBGAGGkoSgnwCB
-						NAGGkoSgnwCBUAGGhgCGkoSWlgZO
-						U0ZvbnSGkoSEhAZOU0ZvbnQelJks
-						hAVbNDRjXQYAAAAiAAAA//5UAHIA
-						ZQBiAHUAYwBoAGUAdABNAFMALQBC
-						AG8AbABkAAAAhAFmDIQBYwCjAaMA
-						owCGhpcCDJKEmJkDkoSWlgdOU0Nv
-						bG9yhpKEhIQHTlNDb2xvcgCUowGE
-						BGZmZmaDzczMPoPNzMw+g83MzD4B
-						hpKZkoSbnAIAhJ6ZDJKfkqGSopKj
-						kqSSpZKmkqeSqJKpkqqSq4YAhpKs
-						koSumSyhBgAAACIAAAD//lQAcgBl
-						AGIAdQBjAGgAZQB0AE0AUwAtAEIA
-						bwBsAGQAAACiCqMAowGjAKMAhoaX
-						AwKShJiZApKZkoSbnAIAhJ6ZDJKf
+						YXZhU2NyaXB0XQoKTWVyZ2VzIGRh
+						dGEgY29sbGVjdGVkIGZyb20gdmFy
+						aW91cyBzb3VyY2VzLoaEAmlJAR2S
+						hISEDE5TRGljdGlvbmFyeQCUhAFp
+						ApKElpYQTlNQYXJhZ3JhcGhTdHls
+						ZYaShISEF05TTXV0YWJsZVBhcmFn
+						cmFwaFN0eWxlAISEEE5TUGFyYWdy
+						YXBoU3R5bGUAlIQEQ0NAUwIAhISE
+						B05TQXJyYXkAlJkMkoSEhAlOU1Rl
+						eHRUYWIAlIQCQ2YAHIaShKCfADiG
+						koSgnwBUhpKEoJ8AcIaShKCfAIGM
+						AIaShKCfAIGoAIaShKCfAIHEAIaS
+						hKCfAIHgAIaShKCfAIH8AIaShKCf
+						AIEYAYaShKCfAIE0AYaShKCfAIFQ
+						AYaGAIaShJaWBk5TRm9udIaShISE
+						Bk5TRm9udB6UmSyEBVs0NGNdBgAA
+						ACIAAAD//lQAcgBlAGIAdQBjAGgA
+						ZQB0AE0AUwAtAEIAbwBsAGQAAACE
+						AWYMhAFjAKMBowCjAIaGlwIMkoSY
+						mQOShJaWB05TQ29sb3KGkoSEhAdO
+						U0NvbG9yAJSjAYQEZmZmZoPNzMw+
+						g83MzD6DzczMPgGGkpmShJucAgCE
+						npkMkp+SoZKikqOSpJKlkqaSp5Ko
+						kqmSqpKrhgCGkqyShK6ZLKEGAAAA
+						IgAAAP/+VAByAGUAYgB1AGMAaABl
+						AHQATQBTAC0AQgBvAGwAZAAAAKIK
+						owCjAaMAowCGhpcDApKEmJkCkpmS
+						hJucAgCEnpkMkp+SoZKikqOSpJKl
+						kqaSp5KokqmSqpKrhgCGkqyStYaX
+						BCuShJiZApKZkoSbnAIAhJ6ZDJKf
 						kqGSopKjkqSSpZKmkqeSqJKpkqqS
-						q4YAhpKskrWGlwQ1koSYmQKSmZKE
-						m5wCAISemQySn5KhkqKSo5KkkqWS
-						ppKnkqiSqZKqkquGAIaSrJKErpkg
-						hAVbMzJjXQYAAAAYAAAA//5UAHIA
-						ZQBiAHUAYwBoAGUAdABNAFMAogyj
-						AKMBowCjAIaGhg==
+						q4YAhpKskoSumSCEBVszMmNdBgAA
+						ABgAAAD//lQAcgBlAGIAdQBjAGgA
+						ZQB0AE0AUwCiDKMAowGjAKMAhoaG
 						</data>
 						<key>Text</key>
 						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
@@ -6050,7 +5892,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
-\b0\fs24 \cf0 Normalises fuzzy data collected from various sources.}</string>
+\b0\fs24 \cf0 Merges data collected from various sources.}</string>
 						<key>VerticalPad</key>
 						<real>10</real>
 					</dict>
@@ -6059,7 +5901,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{217.93342101734623, 229.47231695399748}, {131.62500000000009, 25}}</string>
+					<string>{{217.93343156461282, 229.47716115279309}, {131.62500000000009, 25}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -6089,7 +5931,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 						<key>ID</key>
 						<integer>3327</integer>
 						<key>Position</key>
-						<real>0.48172236252298084</real>
+						<real>0.48172235488891602</real>
 						<key>RotationType</key>
 						<integer>0</integer>
 					</dict>
@@ -6299,7 +6141,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{239.1822796899159, 141.56296311295688}, {96.579405148415049, 67}}</string>
+							<string>{{239.1822799260737, 134.56296311295688}, {96.579405148415049, 81}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -6329,7 +6171,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								<key>ID</key>
 								<integer>3324</integer>
 								<key>Position</key>
-								<real>0.50222748396445138</real>
+								<real>0.50222748517990112</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -6357,7 +6199,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
-\f0\fs24 \cf0 Retrieve meta data &amp; recommendations for PIDs\
+\f0\fs24 \cf0 Retrieve meta data &amp; recommendations for PIDs, login &amp; update user info\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
 \fs20 \cf0 [HTTP]}</string>
@@ -6425,7 +6267,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{450.43513716011864, 597.66633854655493}, {79.952995023497579, 39}}</string>
+							<string>{{450.371799234349, 593.37414175432593}, {79.952995023497579, 39}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -6455,7 +6297,7 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 								<key>ID</key>
 								<integer>3310</integer>
 								<key>Position</key>
-								<real>0.63425002272452491</real>
+								<real>0.63425004482269287</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -6510,8 +6352,8 @@ To find out exactly how L\'e6sekompasset should work, as a developer, I want to 
 							<integer>3310</integer>
 							<key>Points</key>
 							<array>
-								<string>{476.48743232971708, 535.04803087601272}</string>
-								<string>{498.44123871974364, 664.52111546473475}</string>
+								<string>{475.98671449143728, 523.31650535817221}</string>
+								<string>{498.63012227719275, 664.51891922092409}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -6914,7 +6756,7 @@ API\
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{22.044265097316213, 62.624754451971157}, {170.55208747882284, 25}}</string>
+							<string>{{22.044265097316213, 62.624754156706445}, {170.55208747882284, 25}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -6944,7 +6786,7 @@ API\
 								<key>ID</key>
 								<integer>3263</integer>
 								<key>Position</key>
-								<real>0.16513173823912075</real>
+								<real>0.16513173282146454</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -7000,7 +6842,7 @@ API\
 							<key>Points</key>
 							<array>
 								<string>{107.32030883672763, 66.124999999999801}</string>
-								<string>{107.32030883672763, 120.62545321185394}</string>
+								<string>{107.32030883672763, 120.62545321185391}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -7135,7 +6977,7 @@ API\
 						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
 						hIQITlNPYmplY3QAhZKEhIQITlNT
 						dHJpbmcBlIQBKxpCcsO4bmRlbgpb
-						RXh0ZXJuYWwgU3lzdGVtXYaEAmlJ
+						SW50ZXJuYWwgU3lzdGVtXYaEAmlJ
 						AQiShISEDE5TRGljdGlvbmFyeQCU
 						hAFpApKElpYQTlNQYXJhZ3JhcGhT
 						dHlsZYaShISEF05TTXV0YWJsZVBh
@@ -7171,7 +7013,7 @@ API\
 \f0\b\fs24 \cf0 Br\'f8nden\
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc\partightenfactor0
 
-\fs20 \cf2 [External System]}</string>
+\fs20 \cf2 [Internal System]}</string>
 					</dict>
 					<key>TextPlacement</key>
 					<integer>0</integer>
@@ -8044,7 +7886,7 @@ Web application\
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{11.928771647257918, 99}, {550.22084246986071, 462.375}}</string>
+					<string>{{12.889567320977847, 108}, {550.22084246986071, 450}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -8208,7 +8050,7 @@ boundary}</string>
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {576.00002479553223, 734}}</string>
+				<string>{{0, 0}, {575.99997711181641, 734}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -10330,14 +10172,16 @@ Created by: Dennis Laumen</string>
 	<key>WindowInfo</key>
 	<dict>
 		<key>CurrentSheet</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>Expanded_Canvases</key>
 		<array>
 			<string>Context</string>
 		</array>
 		<key>Frame</key>
-		<string>{{152, -1}, {1448, 1177}}</string>
+		<string>{{152, 0}, {1448, 1177}}</string>
 		<key>ShowInfo</key>
+		<true/>
+		<key>ShowRuler</key>
 		<true/>
 		<key>Sidebar</key>
 		<true/>
