@@ -2,4 +2,5 @@
 
 const config = require('server/config');
 const Authenticator = require('__/service/authentication-smaug');
-module.exports = new Authenticator(config.auth);
+const logger = require('server/logger');
+module.exports = new Authenticator(config.auth, logger);

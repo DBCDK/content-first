@@ -10,7 +10,7 @@ const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const config = require('server/config');
 const knex = require('knex')(config.db);
-// const logger = require('__/logging')(config.logger);
+const logger = require('server/logger');
 const constants = require('server/constants')();
 const userTable = constants.users.table;
 const cookieTable = constants.cookies.table;
@@ -78,7 +78,7 @@ router.route('/')
           .send();
       })
       .catch(error => {
-        // logger.log.info(`Could not get remote user data: ${JSON.stringify(error)}`);
+        logger.log.info(`Could not get remote user data: ${JSON.stringify(error)}`);
         return res.status(303)
           .location(constants.pages.generalError)
           .send(error);

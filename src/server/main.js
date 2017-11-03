@@ -1,7 +1,7 @@
 'use strict';
 
 const config = require('./config');
-const logger = require('__/logging')(config.logger);
+const logger = require('server/logger');
 const internal = require('server/internal-server');
 const external = require('server/external-server');
 

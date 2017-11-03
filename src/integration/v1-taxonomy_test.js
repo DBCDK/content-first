@@ -2,19 +2,20 @@
 
 const {expect} = require('chai');
 const request = require('supertest');
-const config = require('server/config');
-const knex = require('knex')(config.db);
-const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const mock = require('./mock-server');
 
 describe('Endpoint /v1/taxonomy', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
-    await dbUtil.clear();
-    await knex.seed.run();
+    await mock.beforeEach();
   });
+  afterEach(() => {
+    mock.afterEach();
+  });
+
   describe('External endpoint', () => {
+
     describe('GET /v1/taxonomy', () => {
       it('should give first-level tags', done => {
         const location = '/v1/taxonomy';
@@ -34,7 +35,9 @@ describe('Endpoint /v1/taxonomy', () => {
           .end(done);
       });
     });
+
     describe('GET /v1/taxonomy/:id', () => {
+
       it('should reject unknown id', done => {
         const location = '/v1/taxonomy/9999';
         webapp.get(location)
@@ -50,6 +53,7 @@ describe('Endpoint /v1/taxonomy', () => {
           .expect(400)
           .end(done);
       });
+
       it('should reject id with no children', done => {
         const location = '/v1/taxonomy/302';
         webapp.get(location)
@@ -65,6 +69,7 @@ describe('Endpoint /v1/taxonomy', () => {
           .expect(400)
           .end(done);
       });
+
       it('should give second-level tags', done => {
         const location = '/v1/taxonomy/1';
         webapp.get(location)
@@ -83,6 +88,7 @@ describe('Endpoint /v1/taxonomy', () => {
           .expect(200)
           .end(done);
       });
+
       it('should give third-level tags', done => {
         const location = '/v1/taxonomy/10';
         webapp.get(location)
@@ -102,9 +108,12 @@ describe('Endpoint /v1/taxonomy', () => {
       });
     });
   });
+
   describe('Internal endpoint', () => {
     const hidden = request(mock.internal);
+
     describe('PUT /v1/taxonomy', () => {
+
       it('should reject wrong content type', done => {
         const contentType = 'text/plain';
         hidden.put('/v1/taxonomy')
@@ -123,6 +132,7 @@ describe('Endpoint /v1/taxonomy', () => {
           })
           .end(done);
       });
+
       it('should reject bad input', done => {
         const broken = require('fixtures/broken-taxonomy.json');
         hidden.put('/v1/taxonomy')
@@ -148,6 +158,7 @@ describe('Endpoint /v1/taxonomy', () => {
           .expect(400)
           .end(done);
       });
+
       it('should reject non-integer and clashing ids', done => {
         const broken = require('fixtures/broken-taxonomy-non-integer.json');
         hidden.put('/v1/taxonomy')
@@ -174,6 +185,7 @@ describe('Endpoint /v1/taxonomy', () => {
           .expect(400)
           .end(done);
       });
+
       it('should update taxonomy', done => {
         const taxonomy = require('fixtures/good-taxonomy.json');
         const output = require('fixtures/taxonomy-out.json');

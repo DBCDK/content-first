@@ -3,20 +3,21 @@
 
 const {expect} = require('chai');
 const request = require('supertest');
-const config = require('server/config');
-const knex = require('knex')(config.db);
-const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const mock = require('./mock-server');
 
 describe('User data', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
-    await dbUtil.clear();
-    await knex.seed.run();
+    await mock.beforeEach();
   });
+  afterEach(() => {
+    mock.afterEach();
+  });
+
   describe('Public endpoint', () => {
     const location = '/v1/user';
+
     describe('GET /v1/user', () => {
       it('should complain about user not logged in when no token', () => {
         // Act.
@@ -35,6 +36,7 @@ describe('User data', () => {
           })
           .expect(403);
       });
+
       it('should complain about user not logged in when unknown token', () => {
         // Arrange.
         const loginToken = 'nofuture-nono-nono-nono-nofuture4you';
@@ -55,6 +57,7 @@ describe('User data', () => {
           })
           .expect(403);
       });
+
       it('should complain about user not logged in when token has expired', () => {
         // Arrange.
         const loginToken = 'expired-login-token-seeded-on-test-start';
@@ -75,6 +78,7 @@ describe('User data', () => {
           })
           .expect(403);
       });
+
       it('should retrieve user data when logged in', done => {
         // Arrange.
         const loginToken = 'a-valid-login-token-seeded-on-test-start';
@@ -100,6 +104,7 @@ describe('User data', () => {
           .end(done);
       });
     });
+
     describe('PUT /v1/user', () => {
       const newUserInfo = {
         name: 'Ole Henriksen',
@@ -108,6 +113,7 @@ describe('User data', () => {
         authors: ['Ole Henriksen', 'Dolly Parton'],
         atmosphere: ['Dramtisk']
       };
+
       it('should complain about user not logged in when no token', () => {
         // Act.
         return webapp.put(location)
@@ -127,6 +133,7 @@ describe('User data', () => {
           })
           .expect(403);
       });
+
       it('should complain about user not logged in when unknown token', () => {
         // Arrange.
         const loginToken = 'nofuture-nono-nono-nono-nofuture4you';
@@ -149,6 +156,7 @@ describe('User data', () => {
           })
           .expect(403);
       });
+
       it('should complain about user not logged in when token has expired', () => {
         // Arrange.
         const loginToken = 'expired-login-token-seeded-on-test-start';
@@ -171,6 +179,7 @@ describe('User data', () => {
           })
           .expect(403);
       });
+
       it('should reject wrong content type', () => {
         // Act.
         return webapp.put(location)
@@ -188,6 +197,7 @@ describe('User data', () => {
             });
           });
       });
+
       it('should reject invalid content', () => {
         // Act.
         return webapp.put(location)
@@ -210,6 +220,7 @@ describe('User data', () => {
             });
           });
       });
+
       it('should update valid content for logged-in user', () => {
         // Arrange.
         const loginToken = 'a-valid-login-token-seeded-on-test-start';

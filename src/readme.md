@@ -54,8 +54,9 @@ The [node setup](../setup-node-env.sh) creates symbolic links
 
 inside `node_modules` such that [custom libraries](lib/) and [test fixtures](fixtures/) can used anywhere in the code likes this:
 
+    const tcp = require('__/tcp-utils');
     const config = require('server/config');
-    const logger = require('__/logging')(config.logger);
+    const database = require('__/database')(config.db);
     const input = require('fixtures/book.json')
 
 The node setup runs automatically after every `npm install`

@@ -5,8 +5,6 @@ const path = require('path');
 const schemaNewToken = path.join(__dirname, 'authenticator-token-in.json');
 const schemaHealth = path.join(__dirname, 'authenticator-health-in.json');
 const constants = require('./authentication-constants')();
-// const srvConfig = require('server/config');
-// const logger = require('__/logging')(srvConfig.logger);
 const {validating} = require('__/json');
 
 /**
@@ -16,8 +14,9 @@ class Authenticator {
   //
   // Public methods.
   //
-  constructor (config) {
+  constructor (config, logger) {
     this.config = config;
+    this.logger = logger;
     this.clear();
   }
   getName () {
@@ -72,7 +71,7 @@ class Authenticator {
       if (this.token && !this.tokenWillSoonExpire()) {
         return resolve(this.token);
       }
-      // logger.log.info('Getting new authentication token');
+      this.logger.log.info('Getting new authentication token');
       const me = this;
       request.post(`${me.config.url}${constants.apiGetToken}`)
         .type('form')
@@ -123,9 +122,9 @@ class Authenticator {
       (new Date()).toISOString() + ': ' + logEntry
     );
     if (typeof error === 'string') {
-      // return logger.log.error(`Getting authentication token failed: ${error}`);
+      return this.logger.log.error(`Getting authentication token failed: ${error}`);
     }
-    // return logger.log.error('Getting authentication token failed', error);
+    return this.logger.log.error('Getting authentication token failed', error);
   }
   tokenWillSoonExpire () {
     const msEpochTomorrow = Date.now() + (24 * 60 * 60 * 1000);

@@ -1,6 +1,8 @@
 /* eslint-env mocha */
 'use strict';
 
+// const MockServer = require('./mock-server');
+const mock = require('./mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
 const nock = require('nock');
@@ -9,305 +11,320 @@ const constants = require('server/constants')();
 const authenticator = require('server/authenticator');
 const authConstants = require('__/service/authentication-constants')();
 const loginConstants = require('__/service/login-constants')();
-const knex = require('knex')(config.db);
-const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
-const mock = require('./mock-server');
 const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 
 describe('User login/out', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
-    await dbUtil.clear();
-    await knex.seed.run();
+    await mock.beforeEach();
   });
-  describe('Public endpoint', () => {
+  afterEach(() => {
+    mock.afterEach();
+  });
 
-    describe('GET /v1/login', () => {
+  describe('GET /v1/login', () => {
 
-      it('should retrieve existing user data on valid cookie', () => {
-        // Act.
-        return webapp.get('/v1/login')
-          .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
-          // Assert.
-          .expect(res => {
-            expectSuccess(res.body, (links, data) => {
-              expectValidate(links, 'schemas/user-links-out.json');
-              expectValidate(data, 'schemas/user-data-out.json');
-              expect(data).to.deep.equal({
-                name: 'Jens Godfredsen',
-                gender: 'm',
-                birth_year: 1971,
-                authors: ['Ib Michael', 'Helle Helle'],
-                atmosphere: ['Realistisk']
-              });
+    it('should retrieve existing user data on valid cookie', () => {
+      // Act.
+      return webapp.get('/v1/login')
+        .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
+        // Assert.
+        .expect(res => {
+          expectSuccess(res.body, (links, data) => {
+            expectValidate(links, 'schemas/user-links-out.json');
+            expectValidate(data, 'schemas/user-data-out.json');
+            expect(data).to.deep.equal({
+              name: 'Jens Godfredsen',
+              gender: 'm',
+              birth_year: 1971,
+              authors: ['Ib Michael', 'Helle Helle'],
+              atmosphere: ['Realistisk']
             });
-          })
-          .expect(200);
-      });
-
-      it('should redirect to remote login page on no cookie', () => {
-        // Arrange.
-        authenticator.clear();
-        const token = '840e75ac9af8448898fe7f7c99198a7d';
-        nock(config.auth.url).post(authConstants.apiGetToken).reply(200, {
-          token_type: 'bearer',
-          access_token: token,
-          expires_in: authConstants.s_OneMonth
-        });
-        // Act.
-        return webapp.get('/v1/login')
-          // Assert.
-          .expect(res => {
-            expectSuccess(res.body, (links, data) => {
-              expectValidate(links, 'schemas/login-links-out.json');
-              const remote = `${config.login.url}/login?token=${token}`;
-              expect(links.login).to.equal(remote);
-              expectValidate(data, 'schemas/login-data-out.json');
-              expect(data).to.equal(remote);
-            });
-          })
-          .expect('location', remoteLoginStem)
-          .expect(303);
-      });
-      it('should redirect to remote login page on non-existing cookie', () => {
-        // Arrange.
-        authenticator.clear();
-        const token = '840e75ac9af8448898fe7f7c99198a7d';
-        nock(config.auth.url).post(authConstants.apiGetToken).reply(200, {
-          token_type: 'bearer',
-          access_token: token,
-          expires_in: authConstants.s_OneMonth
-        });
-        // Act.
-        return webapp.get('/v1/login')
-          .set('cookie', 'login-token=AC9C12A9-68CA-4534-930E-37FF635C8408')
-          // Assert.
-          .expect(res => {
-            expectSuccess(res.body, (links, data) => {
-              expectValidate(links, 'schemas/login-links-out.json');
-              const remote = `${config.login.url}/login?token=${token}`;
-              expect(links.login).to.equal(remote);
-              expectValidate(data, 'schemas/login-data-out.json');
-              expect(data).to.equal(remote);
-            });
-          })
-          .expect('location', remoteLoginStem)
-          .expect(303);
-      });
-
-      it('should redirect to remote login page on expired cookie', () => {
-        // Arrange.
-        authenticator.clear();
-        const token = 'a7d847c9481840e75ac9af98fe7f9198';
-        nock(config.auth.url).post(authConstants.apiGetToken).reply(200, {
-          token_type: 'bearer',
-          access_token: token,
-          expires_in: authConstants.s_OneMonth
-        });
-        // Act.
-        return webapp.get('/v1/login')
-          .set('cookie', 'login-token=expired-login-token-seeded-on-test-start')
-          // Assert.
-          .expect(res => {
-            expectSuccess(res.body, (links, data) => {
-              expectValidate(links, 'schemas/login-links-out.json');
-              const remote = `${config.login.url}/login?token=${token}`;
-              expect(links.login).to.equal(remote);
-              expectValidate(data, 'schemas/login-data-out.json');
-              expect(data).to.equal(remote);
-            });
-          })
-          .expect('location', remoteLoginStem)
-          .expect(303);
-      });
-
-      it('should handle failure to retrieve token', () => {
-        // Arrange.
-        authenticator.clear();
-        nock(config.auth.url).post(authConstants.apiGetToken).reply(500);
-        // Act.
-        return webapp.get('/v1/login')
-          // Assert.
-          .expect(res => {
-            expectFailure(res.body, errors => {
-              expect(errors).to.have.length(1);
-              const error = errors[0];
-              expect(error.title).to.match(/authentication.service communication failed/i);
-            });
-          })
-          .expect(503);
-      });
+          });
+          expect(mock.getErrorLog().args).to.have.length(0);
+        })
+        .expect(200);
     });
 
-    describe('GET /hejmdal:token&id', () => {
-      const token = 'b1984686e9c89c04102c33d912164d60';
-      const id = 4321;
-      const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
-      const cookieFormat =
-        /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly; secure/i;
-
-      it('should retrieve user info and redirect & set valid cookie', () => {
-        // Arrange.
-        const hejmdal = nock(config.login.url).get(slug).reply(200, {
-          id,
-          token,
-          attributes: {
-            cpr: '0101781234',
-            gender: 'f',
-            userId: '0101781234',
-            wayfId: null,
-            agencies: [],
-            birthDate: '0101',
-            birthYear: '1978',
-            uniloginId: null,
-            municipality: null
-          }
-        });
-        let loginToken;
-        // Act.
-        const location = `/hejmdal?token=${token}&id=${id}`;
-        return webapp.get(location)
-          // Assert.
-          .expect(303)
-          .expect('location', constants.pages.start)
-          .expect('set-cookie', /^login-token=/)
-          .expect(res => {
-            const cookies = res.headers['set-cookie'];
-            expect(cookies).to.have.length(1);
-            expect(cookies[0]).to.match(cookieFormat);
-            const cookieParts = cookies[0].match(cookieFormat);
-            const s_ExpiresIn = parseInt(cookieParts[2], 10);
-            const s_OneMonth = 30 * 24 * 60 * 60;
-            expect(s_ExpiresIn).to.equal(s_OneMonth);
-            loginToken = cookieParts[1];
-          })
-          .then(() => {
-            // Act.
-            return webapp.get('/v1/login')
-              .set('cookie', `login-token=${loginToken}`)
-              .expect(res => {
-                expectSuccess(res.body, (links, data) => {
-                  expectValidate(links, 'schemas/user-links-out.json');
-                  expectValidate(data, 'schemas/user-data-out.json');
-                  expect(data).to.deep.equal({
-                    name: '',
-                    gender: 'f',
-                    birth_year: 1978,
-                    authors: [],
-                    atmosphere: []
-                  });
-                });
-                expect(hejmdal.isDone());
-              })
-              .expect(200);
+    it('should redirect to remote login page on no cookie', () => {
+      // Arrange.
+      authenticator.clear();
+      const token = '840e75ac9af8448898fe7f7c99198a7d';
+      nock(config.auth.url).post(authConstants.apiGetToken).reply(200, {
+        token_type: 'bearer',
+        access_token: token,
+        expires_in: authConstants.s_OneMonth
+      });
+      // Act.
+      return webapp.get('/v1/login')
+        // Assert.
+        .expect(res => {
+          expectSuccess(res.body, (links, data) => {
+            expectValidate(links, 'schemas/login-links-out.json');
+            const remote = `${config.login.url}/login?token=${token}`;
+            expect(links.login).to.equal(remote);
+            expectValidate(data, 'schemas/login-data-out.json');
+            expect(data).to.equal(remote);
           });
+          expect(mock.getErrorLog().args).to.have.length(0);
+        })
+        .expect('location', remoteLoginStem)
+        .expect(303);
+    });
+    it('should redirect to remote login page on non-existing cookie', () => {
+      // Arrange.
+      authenticator.clear();
+      const token = '840e75ac9af8448898fe7f7c99198a7d';
+      nock(config.auth.url).post(authConstants.apiGetToken).reply(200, {
+        token_type: 'bearer',
+        access_token: token,
+        expires_in: authConstants.s_OneMonth
       });
-
-      it('should retrieve user info, detect existing user, and redirect', () => {
-        // Arrange.
-        const hejmdal = nock(config.login.url).get(slug).reply(200, {
-          id,
-          token,
-          attributes: {
-            cpr: '121219719873',
-            gender: 'm',
-            userId: '0101781234',
-            wayfId: 'some-wayf-id',
-            agencies: [],
-            birthDate: '1212',
-            birthYear: '1971',
-            uniloginId: 'some-unilogin-id',
-            municipality: null
-          }
-        });
-        let loginToken;
-        // Act.
-        const location = `/hejmdal?token=${token}&id=${id}`;
-        return webapp.get(location)
-          // Assert.
-          .expect(303)
-          .expect('location', constants.pages.start)
-          .expect('set-cookie', /^login-token=/)
-          .then(res => {
-            const cookies = res.headers['set-cookie'];
-            expect(cookies).to.have.length(1);
-            expect(cookies[0]).to.match(cookieFormat);
-            const cookieParts = cookies[0].match(cookieFormat);
-            loginToken = cookieParts[1];
-          })
-          .then(() => {
-            // Act.
-            return webapp.get('/v1/login')
-              .set('cookie', `login-token=${loginToken}`)
-              .expect(res => {
-                expectSuccess(res.body, (links, data) => {
-                  expectValidate(links, 'schemas/user-links-out.json');
-                  expectValidate(data, 'schemas/user-data-out.json');
-                  expect(data).to.deep.equal({
-                    name: 'Jens Godfredsen',
-                    gender: 'm',
-                    birth_year: 1971,
-                    authors: ['Ib Michael', 'Helle Helle'],
-                    atmosphere: ['Realistisk']
-                  });
-                });
-                expect(hejmdal.isDone());
-              })
-              .expect(200);
+      // Act.
+      return webapp.get('/v1/login')
+        .set('cookie', 'login-token=AC9C12A9-68CA-4534-930E-37FF635C8408')
+        // Assert.
+        .expect(res => {
+          expectSuccess(res.body, (links, data) => {
+            expectValidate(links, 'schemas/login-links-out.json');
+            const remote = `${config.login.url}/login?token=${token}`;
+            expect(links.login).to.equal(remote);
+            expectValidate(data, 'schemas/login-data-out.json');
+            expect(data).to.equal(remote);
           });
-      });
-
-      it('should handle failure to retrieve info and redirect', () => {
-        // Arrange.
-        const hejmdal = nock(config.login.url).get(slug).replyWithError(
-          'Something bad happened'
-        );
-        // Act.
-        const location = `/hejmdal?token=${token}&id=${id}`;
-        return webapp.get(location)
-          // Assert.
-          .expect(() => {
-            expect(hejmdal.isDone());
-          })
-          .expect('location', constants.pages.generalError)
-          .expect(303);
-      });
+          expect(mock.getErrorLog().args).to.have.length(0);
+        })
+        .expect('location', remoteLoginStem)
+        .expect(303);
     });
 
-    describe('POST /v1/logout', () => {
-      it('should invalidate current cookie and redirect to front page', () => {
-        // Act.
-        return webapp.post('/v1/logout')
-          .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
-          // Assert.
-          .expect('location', constants.pages.start)
-          .expect(303)
+    it('should redirect to remote login page on expired cookie', () => {
+      // Arrange.
+      authenticator.clear();
+      const token = 'a7d847c9481840e75ac9af98fe7f9198';
+      nock(config.auth.url).post(authConstants.apiGetToken).reply(200, {
+        token_type: 'bearer',
+        access_token: token,
+        expires_in: authConstants.s_OneMonth
+      });
+      // Act.
+      return webapp.get('/v1/login')
+        .set('cookie', 'login-token=expired-login-token-seeded-on-test-start')
+        // Assert.
+        .expect(res => {
+          expectSuccess(res.body, (links, data) => {
+            expectValidate(links, 'schemas/login-links-out.json');
+            const remote = `${config.login.url}/login?token=${token}`;
+            expect(links.login).to.equal(remote);
+            expectValidate(data, 'schemas/login-data-out.json');
+            expect(data).to.equal(remote);
+          });
+          expect(mock.getErrorLog().args).to.have.length(0);
+        })
+        .expect('location', remoteLoginStem)
+        .expect(303);
+    });
+
+    it('should handle failure to retrieve token', () => {
+      // Arrange.
+      authenticator.clear();
+      nock(config.auth.url).post(authConstants.apiGetToken).reply(500);
+      // Act.
+      return webapp.get('/v1/login')
+        // Assert.
+        .expect(res => {
+          expectFailure(res.body, errors => {
+            expect(errors).to.have.length(1);
+            const error = errors[0];
+            expect(error.title).to.match(/authentication.service communication failed/i);
+          });
+          expect(mock.getErrorLog().args).to.match(/getting authentication token failed/i);
+        })
+        .expect(503);
+    });
+  });
+
+  describe('GET /hejmdal:token&id', () => {
+    const token = 'b1984686e9c89c04102c33d912164d60';
+    const id = 4321;
+    const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
+    const cookieFormat =
+      /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly; secure/i;
+
+    it('should retrieve user info and redirect & set valid cookie', () => {
+      // Arrange.
+      const hejmdal = nock(config.login.url).get(slug).reply(200, {
+        id,
+        token,
+        attributes: {
+          cpr: '0101781234',
+          gender: 'f',
+          userId: '0101781234',
+          wayfId: null,
+          agencies: [],
+          birthDate: '0101',
+          birthYear: '1978',
+          uniloginId: null,
+          municipality: null
+        }
+      });
+      let loginToken;
+      // Act.
+      const location = `/hejmdal?token=${token}&id=${id}`;
+      return webapp.get(location)
+        // Assert.
+        .expect(303)
+        .expect('location', constants.pages.start)
+        .expect('set-cookie', /^login-token=/)
+        .expect(res => {
+          const cookies = res.headers['set-cookie'];
+          expect(cookies).to.have.length(1);
+          expect(cookies[0]).to.match(cookieFormat);
+          const cookieParts = cookies[0].match(cookieFormat);
+          const s_ExpiresIn = parseInt(cookieParts[2], 10);
+          const s_OneMonth = 30 * 24 * 60 * 60;
+          expect(s_ExpiresIn).to.equal(s_OneMonth);
+          loginToken = cookieParts[1];
+          expect(mock.getErrorLog().args).to.have.length(0);
+        })
+        .then(() => {
           // Act.
-          .then(() => {
-            return webapp.get('/v1/user')
-              .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
-              // Assert.
-              .expect(403);
-          });
-      });
+          return webapp.get('/v1/login')
+            .set('cookie', `login-token=${loginToken}`)
+            .expect(res => {
+              expectSuccess(res.body, (links, data) => {
+                expectValidate(links, 'schemas/user-links-out.json');
+                expectValidate(data, 'schemas/user-data-out.json');
+                expect(data).to.deep.equal({
+                  name: '',
+                  gender: 'f',
+                  birth_year: 1978,
+                  authors: [],
+                  atmosphere: []
+                });
+              });
+              expect(hejmdal.isDone());
+              expect(mock.getErrorLog().args).to.have.length(0);
+            })
+            .expect(200);
+        });
+    });
 
-      it('should allow invalid cookie and redirect to front page', () => {
-        // Act.
-        return webapp.post('/v1/logout')
-          .set('cookie', 'login-token=a-cookie-that-never-existed')
-          // Assert.
-          .expect('location', constants.pages.start)
-          .expect(303);
+    it('should retrieve user info, detect existing user, and redirect', () => {
+      // Arrange.
+      const hejmdal = nock(config.login.url).get(slug).reply(200, {
+        id,
+        token,
+        attributes: {
+          cpr: '121219719873',
+          gender: 'm',
+          userId: '0101781234',
+          wayfId: 'some-wayf-id',
+          agencies: [],
+          birthDate: '1212',
+          birthYear: '1971',
+          uniloginId: 'some-unilogin-id',
+          municipality: null
+        }
       });
+      let loginToken;
+      // Act.
+      const location = `/hejmdal?token=${token}&id=${id}`;
+      return webapp.get(location)
+        // Assert.
+        .expect(303)
+        .expect('location', constants.pages.start)
+        .expect('set-cookie', /^login-token=/)
+        .then(res => {
+          const cookies = res.headers['set-cookie'];
+          expect(cookies).to.have.length(1);
+          expect(cookies[0]).to.match(cookieFormat);
+          const cookieParts = cookies[0].match(cookieFormat);
+          loginToken = cookieParts[1];
+        })
+        .then(() => {
+          // Act.
+          return webapp.get('/v1/login')
+            .set('cookie', `login-token=${loginToken}`)
+            .expect(res => {
+              expectSuccess(res.body, (links, data) => {
+                expectValidate(links, 'schemas/user-links-out.json');
+                expectValidate(data, 'schemas/user-data-out.json');
+                expect(data).to.deep.equal({
+                  name: 'Jens Godfredsen',
+                  gender: 'm',
+                  birth_year: 1971,
+                  authors: ['Ib Michael', 'Helle Helle'],
+                  atmosphere: ['Realistisk']
+                });
+              });
+              expect(hejmdal.isDone());
+              expect(mock.getErrorLog().args).to.have.length(0);
+            })
+            .expect(200);
+        });
+    });
 
-      it('should allow no current cookie and redirect to front page', () => {
+    it('should handle failure to retrieve info and redirect', () => {
+      // Arrange.
+      const hejmdal = nock(config.login.url).get(slug).replyWithError(
+        'Something bad happened'
+      );
+      // Act.
+      const location = `/hejmdal?token=${token}&id=${id}`;
+      return webapp.get(location)
+        // Assert.
+        .expect(() => {
+          expect(hejmdal.isDone());
+          expect(mock.getErrorLog().args).to.have.length(0);
+        })
+        .expect('location', constants.pages.generalError)
+        .expect(303);
+    });
+  });
+
+  describe('POST /v1/logout', () => {
+    it('should invalidate current cookie and redirect to front page', () => {
+      // Act.
+      return webapp.post('/v1/logout')
+        .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
+        // Assert.
+        .expect('location', constants.pages.start)
+        .expect(303)
         // Act.
-        return webapp.post('/v1/logout')
-          // Assert.
-          .expect('location', constants.pages.start)
-          .expect(303);
-      });
+        .then(() => {
+          return webapp.get('/v1/user')
+            .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
+            // Assert.
+            .expect(403)
+            .expect(() => {
+              expect(mock.getErrorLog().args).to.have.length(0);
+            });
+        });
+    });
+
+    it('should allow invalid cookie and redirect to front page', () => {
+      // Act.
+      return webapp.post('/v1/logout')
+        .set('cookie', 'login-token=a-cookie-that-never-existed')
+        // Assert.
+        .expect('location', constants.pages.start)
+        .expect(303)
+        .expect(() => {
+          expect(mock.getErrorLog().args).to.have.length(0);
+        });
+    });
+
+    it('should allow no current cookie and redirect to front page', () => {
+      // Act.
+      return webapp.post('/v1/logout')
+        // Assert.
+        .expect('location', constants.pages.start)
+        .expect(303)
+        .expect(() => {
+          expect(mock.getErrorLog().args).to.have.length(0);
+        });
     });
   });
 });

@@ -2,7 +2,7 @@
 
 const config = require('server/config');
 const constants = require('server/constants')();
-const logger = require('__/logging')(config.logger);
+const logger = require('server/logger');
 const _ = require('lodash');
 
 const database = require('server/database');

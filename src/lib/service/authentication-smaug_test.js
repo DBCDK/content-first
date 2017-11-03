@@ -8,16 +8,22 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 const nock = require('nock');
+const sinon = require('sinon');
 const Authenticator = require('./authentication-smaug');
 
 describe('Authentication connector', () => {
-
+  const logger = {
+    log: {
+      info: sinon.stub(),
+      error: sinon.stub()
+    }
+  };
   const config = {
     id: 'content-first',
     secret: 'secret',
     url: 'https://auth.dbc.dk'
   };
-  const auth = new Authenticator(config);
+  const auth = new Authenticator(config, logger);
   beforeEach(() => {
     auth.clear();
   });

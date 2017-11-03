@@ -1,20 +1,21 @@
 'use strict';
 
+const mock = require('./mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const config = require('server/config');
-const knex = require('knex')(config.db);
-const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
-const mock = require('./mock-server');
 
 describe('Endpoint /v1/recommendations', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
-    await dbUtil.clear();
-    await knex.seed.run();
+    await mock.beforeEach();
   });
+  afterEach(() => {
+    mock.afterEach();
+  });
+
   describe('GET /v1/recommendations?tags=...', () => {
+
     it('should handle no tags', done => {
       const url = '/v1/recommendations?tags=';
       webapp.get(url)
@@ -33,6 +34,7 @@ describe('Endpoint /v1/recommendations', () => {
         .expect(400)
         .end(done);
     });
+
     it('should return a list of books that include all specified tags', done => {
       const tags = [205, 144, 146];
       const url = `/v1/recommendations?tags=${tags.join()}`;

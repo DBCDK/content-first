@@ -29,9 +29,9 @@ To only run a subset of tests that go together, pass the `--grep` option to moch
 
 The integration tests do not use the web service directly, instead they use a wrapper around the service:
 
-    const {server, smaug, hejmdal, ...} = require('./mock-server');
+    const mock = require('./mock-server');
 
-The wrapper mocks out external components that cannot be reached during continuous integration testing, like the login server.
+The wrapper mocks out the global logger and provides setup and teardown of the database for tests to use.
 
 It is important that all integration tests use the wrapper, because the wrapper makes sure that the service is mocked properly, independently of load order -- Node caches `require()` loads of modules.  As a consequence, all tests share the *same* mocked service, and therefore the *static* configuration of the service cannot be changed from one test to the other.
 

@@ -1,21 +1,18 @@
 'use strict';
 
+const mock = require('./mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const config = require('server/config');
-const knex = require('knex')(config.db);
-const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
-const mock = require('./mock-server');
 
 describe('Endpoint /v1/books', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
-    await dbUtil.clear();
-    await knex.seed.run();
+    await mock.beforeEach();
   });
-  afterEach(mock.afterEach);
-  after(mock.after);
+  afterEach(() => {
+    mock.afterEach();
+  });
   describe('GET /v1/books?pids=...', () => {
     it('should handle no PIDs', done => {
       webapp.get('/v1/books')

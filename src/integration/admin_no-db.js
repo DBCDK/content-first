@@ -3,7 +3,7 @@
 'use strict';
 
 // Must be first require to get the environment right.
-const {server} = require('./no-db-server');
+const mock = require('./no-db-server');
 
 const config = require('server/config');
 const constants = require('__/service/authentication-constants')();
@@ -14,16 +14,19 @@ const {expectValidate} = require('./output-verifiers');
 
 describe('Admin API', () => {
   describe('No database connection', () => {
-    const webapp = request(server);
+    beforeEach(() => {
+      mock.beforeEach();
+    });
+    afterEach(() => {
+      mock.afterEach();
+    });
+    const webapp = request(mock.server);
+
     describe('/howru', () => {
+
       it('should say that database is unreachable', done => {
         // Arrange.
-        nock(config.auth.url).get(constants.apiHealth).reply(200, {
-          clientStore: 'ok',
-          configStore: 'ok',
-          userStore: 'ok',
-          tokenStore: 'ok'
-        });
+        nock(config.auth.url).get(constants.apiHealth).reply(200, constants.healthyResponse);
         // Act.
         webapp.get('/howru')
           .set('Accept', 'application/json')
@@ -35,6 +38,7 @@ describe('Admin API', () => {
             expect(res.body).to.have.property('errorText');
             expect(res.body.errorText).to.match(/database.+unreachable/i);
             expect(res.body).to.have.property('errorLog');
+            expect(mock.getErrorLog().args).to.have.length(0);
           })
           .end(done);
       });

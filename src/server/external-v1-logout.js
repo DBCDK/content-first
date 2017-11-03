@@ -4,8 +4,7 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const constants = require('server/constants')();
-const config = require('server/config');
-const logger = require('__/logging')(config.logger);
+const logger = require('server/logger');
 const {removingLoginToken} = require('server/user');
 
 router.route('/')

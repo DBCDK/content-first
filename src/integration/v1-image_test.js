@@ -1,25 +1,22 @@
 'use strict';
 
+const mock = require('./mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const config = require('server/config');
 const {promisify} = require('util');
 const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
-const knex = require('knex')(config.db);
-const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure} = require('./output-verifiers');
 const resolve = require('resolve');
-const mock = require('./mock-server');
 
 describe('Endpoint /v1/image', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
-    await dbUtil.clear();
-    await knex.seed.run();
+    await mock.beforeEach();
   });
-  afterEach(mock.afterEach);
-  after(mock.after);
+  afterEach(() => {
+    mock.afterEach();
+  });
   describe('Public endpoint', () => {
     describe('GET /v1/image/:pid', () => {
       it('should handle non-existing cover image', done => {

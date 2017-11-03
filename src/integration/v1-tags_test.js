@@ -2,19 +2,20 @@
 
 const {expect} = require('chai');
 const request = require('supertest');
-const config = require('server/config');
-const knex = require('knex')(config.db);
-const dbUtil = require('./cleanup-db')(knex);
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const mock = require('./mock-server');
 
 describe('Endpoint /v1/tags', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
-    await dbUtil.clear();
-    await knex.seed.run();
+    await mock.beforeEach();
   });
+  afterEach(() => {
+    mock.afterEach();
+  });
+
   describe('Public endpoint', () => {
+
     describe('GET /v1/tags/:pid', () => {
       it('should return existing tags for a specific PID', done => {
         const pid = '870970-basis:52947804';
@@ -38,8 +39,10 @@ describe('Endpoint /v1/tags', () => {
       });
     });
   });
+
   describe('Internal endpoint', () => {
     const hidden = request(mock.internal);
+
     describe('PUT /v1/tags/:pid', () => {
       it('should reject wrong content type', done => {
         const contentType = 'text/plain';
@@ -59,6 +62,7 @@ describe('Endpoint /v1/tags', () => {
           })
           .end(done);
       });
+
       it('should reject bad input', done => {
         const broken = require('fixtures/broken-tag-entry.json');
         hidden.put('/v1/tags/1234-example:98765')
@@ -83,6 +87,7 @@ describe('Endpoint /v1/tags', () => {
           .expect(400)
           .end(done);
       });
+
       it('should reject address that does not agree with PID', done => {
         const martin = require('fixtures/martin-den-herreloese-ridder-tags.json');
         const pid = martin.pid;
@@ -104,6 +109,7 @@ describe('Endpoint /v1/tags', () => {
           })
           .end(done);
       });
+
       it('should create tags for new PID', done => {
         const tags = require('fixtures/tag-entry.json');
         const pid = tags.pid;
@@ -126,6 +132,7 @@ describe('Endpoint /v1/tags', () => {
           .expect(200)
           .end(done);
       });
+
       it('should overwrite tags for existing PID', done => {
         const pid = require('fixtures/carter-mordoffer-tags').pid;
         const location = `/v1/tags/${pid}`;
@@ -147,7 +154,9 @@ describe('Endpoint /v1/tags', () => {
           .end(done);
       });
     });
+
     describe('POST /v1/tags', () => {
+
       it('should reject wrong content type', done => {
         const contentType = 'text/plain';
         hidden.post('/v1/tags')
@@ -166,6 +175,7 @@ describe('Endpoint /v1/tags', () => {
           })
           .end(done);
       });
+
       it('should reject bad input', done => {
         const broken = require('fixtures/broken-tag-entry.json');
         hidden.post('/v1/tags')
@@ -190,6 +200,7 @@ describe('Endpoint /v1/tags', () => {
           .expect(400)
           .end(done);
       });
+
       it('should create tags for new PID', done => {
         const tags = require('fixtures/tag-entry.json');
         const pid = tags.pid;
@@ -212,6 +223,7 @@ describe('Endpoint /v1/tags', () => {
           .expect(201)
           .end(done);
       });
+
       it('should update tags for existing PID', done => {
         const tags = require('fixtures/carter-mordoffer-tags');
         const pid = tags.pid;
@@ -237,7 +249,9 @@ describe('Endpoint /v1/tags', () => {
           .end(done);
       });
     });
+
     describe('DELETE /v1/tags/:pid', () => {
+
       it('should clear all tags for a specific PID', done => {
         const pid = '870970-basis:52947804';
         const location = `/v1/tags/${pid}`;

@@ -1,6 +1,6 @@
 'use strict';
 const config = require('server/config');
-const logger = require('__/logging')(config.logger);
+const logger = require('server/logger');
 const express = require('express');
 const internal = express();
 const parser = require('body-parser');
