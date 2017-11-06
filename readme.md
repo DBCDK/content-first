@@ -26,9 +26,9 @@ To start the server in staging or production mode:
 
 ## Build server
 
-Use the [exclude list](./archive-excludes.txt) when the build server makes an archive file of the result of the build.  Use like this: 
+Use the [exclude list](./tools/archive-excludes.txt) when the build server makes an archive file of the result of the build.  Use like this: 
 
-     tar -X archive-excludes.txt -cz -f $JOB_BASE_NAME-$BUILD_NUMBER.tar.gz .
+     tar -X tools/archive-excludes.txt -cz -f $JOB_BASE_NAME-$BUILD_NUMBER.tar.gz .
 
 
 ## Environments

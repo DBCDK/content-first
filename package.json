@@ -55,7 +55,7 @@
     "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/*/*_test.js src/lib/*/*_test.js",
     "db-migrate": ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
     "lint-js": "eslint src",
-    "postinstall": "./setup-node-env.sh",
+    "postinstall": "./tools/setup-node-env.sh",
     "start": "run-p start-backend start-frontend",
     "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/",
     "start-frontend": "react-scripts start",

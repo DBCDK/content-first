@@ -45,7 +45,7 @@ To manually migrate the database:
 
 ## Node setup
 
-The [node setup](../setup-node-env.sh) creates symbolic links
+The [node setup](../tools/setup-node-env.sh) creates symbolic links
 
     __ -> ../src/lib
     server -> ../src/server

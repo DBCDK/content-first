@@ -2,7 +2,7 @@
 .git
 .gitignore
 .travis.yml
-archive-excludes.txt
+tools/archive-excludes.txt
 coverage
 current.env
 dev
