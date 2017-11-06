@@ -14,23 +14,22 @@ describe('Admin API on running database', () => {
   describe('Public endpoint', () => {
     const webapp = request(external);
     describe('/pid', () => {
-      it('should return the process id', done => {
+      it('should return the process id', () => {
         // Act.
-        webapp.get('/pid')
+        return webapp.get('/pid')
           .set('Accept', 'text/plain')
           // Assert.
           .expect(200)
           .expect('Content-Type', /text/)
-          .expect(/^[0-9]+$/)
-          .end(done);
+          .expect(/^[0-9]+$/);
       });
     });
     describe('/howru', () => {
-      it('should answer that everything is fine and give additional information', done => {
+      it('should answer that everything is fine and give additional information', () => {
         // Arrange.
         nock(config.auth.url).get(constants.apiHealth).reply(200, constants.healthyResponse);
         // Act.
-        webapp.get('/howru')
+        return webapp.get('/howru')
           .set('Accept', 'application/json')
           // Assert.
           .expect('Content-Type', /json/)
@@ -54,20 +53,18 @@ describe('Admin API on running database', () => {
             const everything = JSON.stringify(res.body);
             expect(everything).to.not.match(/password/i);
             expect(everything).to.not.match(/secret/i);
-          })
-          .end(done);
+          });
       });
     });
   });
   describe('Internal endpoint', () => {
     const hidden = request(internal);
     describe('server crashes', () => {
-      it('should be catched', done => {
+      it('should be catched', () => {
         // Act.
-        hidden.get('/crash')
+        return hidden.get('/crash')
           // Assert.
-          .expect(500)
-          .end(done);
+          .expect(500);
       });
     });
   });

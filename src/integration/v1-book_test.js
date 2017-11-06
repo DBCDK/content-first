@@ -15,10 +15,10 @@ describe('Endpoint /v1/book', () => {
   });
   describe('Public endpoint', () => {
     describe('GET /v1/book/:pid', () => {
-      it('should handle non-existing PID', done => {
+      it('should handle non-existing PID', () => {
         const pid = '12345:ost:3984';
         const url = `/v1/book/${pid}`;
-        webapp.get(url)
+        return webapp.get(url)
           .expect(404)
           .expect(res => {
             expectFailure(res.body, errors => {
@@ -29,13 +29,12 @@ describe('Endpoint /v1/book', () => {
               expect(error.meta).to.have.property('resource');
               expect(error.meta.resource).to.equal(url);
             });
-          })
-          .end(done);
+          });
       });
-      it('should give a book as result', done => {
+      it('should give a book as result', () => {
         const pid = '870970-basis:53188931';
         const url = `/v1/book/${pid}`;
-        webapp.get(url)
+        return webapp.get(url)
           .expect(200)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
@@ -66,18 +65,17 @@ describe('Endpoint /v1/book', () => {
                 literary_form: 'digte, fiktion'
               });
             });
-          })
-          .end(done);
+          });
       });
     });
   });
   describe('Internal endpoint', () => {
     const hidden = request(mock.internal);
     describe('PUT /v1/book/:pid', () => {
-      it('should reject wrong content type', done => {
+      it('should reject wrong content type', () => {
         const location = '/v1/book/123456-basis:987654321';
         const contentType = 'text/plain';
-        hidden.put(location)
+        return hidden.put(location)
           .type(contentType)
           .send('broken')
           .expect(400)
@@ -89,14 +87,13 @@ describe('Endpoint /v1/book', () => {
               expect(error).to.have.property('detail');
               expect(error.detail).to.match(/text\/plain .*not supported/i);
             });
-          })
-          .end(done);
+          });
       });
-      it('should reject broken input', done => {
+      it('should reject broken input', () => {
         const broken = require('fixtures/broken-book.json');
         const location = '/v1/book/123456-basis:987654321';
         const contentType = 'application/json';
-        hidden.put(location)
+        return hidden.put(location)
           .type(contentType)
           .send(broken)
           .expect(400)
@@ -126,16 +123,15 @@ describe('Endpoint /v1/book', () => {
               expect(problems).to.deep.include('field libraries is required');
               expect(problems).to.deep.include('field pages is required');
             });
-          })
-          .end(done);
+          });
       });
-      it('should reject address that does not agree with PID', done => {
+      it('should reject address that does not agree with PID', () => {
         const harryPotter = require('fixtures/rowling-harry-potter-de-vises-sten.json');
         const pid = harryPotter.pid;
         const wrongPid = '12335-basic:9782637';
         const location = `/v1/book/${wrongPid}`;
         const contentType = 'application/json';
-        hidden.put(location)
+        return hidden.put(location)
           .type(contentType)
           .send(harryPotter)
           .expect(400)
@@ -147,8 +143,7 @@ describe('Endpoint /v1/book', () => {
               expect(error).to.have.property('detail');
               expect(error.detail).to.equal(`Expected PID ${wrongPid} but found ${pid}`);
             });
-          })
-          .end(done);
+          });
       });
       it('should create a new book', done => {
         // Arrange.

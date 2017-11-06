@@ -24,11 +24,11 @@ describe('Admin API', () => {
 
     describe('/howru', () => {
 
-      it('should say that database is unreachable', done => {
+      it('should say that database is unreachable', () => {
         // Arrange.
         nock(config.auth.url).get(constants.apiHealth).reply(200, constants.healthyResponse);
         // Act.
-        webapp.get('/howru')
+        return webapp.get('/howru')
           .set('Accept', 'application/json')
           // Assert.
           .expect(200)
@@ -39,8 +39,7 @@ describe('Admin API', () => {
             expect(res.body.errorText).to.match(/database.+unreachable/i);
             expect(res.body).to.have.property('errorLog');
             expect(mock.getErrorLog().args).to.have.length(0);
-          })
-          .end(done);
+          });
       });
     });
   });

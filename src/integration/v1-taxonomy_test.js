@@ -17,9 +17,9 @@ describe('Endpoint /v1/taxonomy', () => {
   describe('External endpoint', () => {
 
     describe('GET /v1/taxonomy', () => {
-      it('should give first-level tags', done => {
+      it('should give first-level tags', () => {
         const location = '/v1/taxonomy';
-        webapp.get(location)
+        return webapp.get(location)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/taxonomy-links-out.json');
@@ -31,16 +31,15 @@ describe('Endpoint /v1/taxonomy', () => {
               ]);
             });
           })
-          .expect(200)
-          .end(done);
+          .expect(200);
       });
     });
 
     describe('GET /v1/taxonomy/:id', () => {
 
-      it('should reject unknown id', done => {
+      it('should reject unknown id', () => {
         const location = '/v1/taxonomy/9999';
-        webapp.get(location)
+        return webapp.get(location)
           .expect(res => {
             expectFailure(res.body, errors => {
               expect(errors).to.have.length(1);
@@ -50,13 +49,12 @@ describe('Endpoint /v1/taxonomy', () => {
               expect(error.detail).to.match(/9999 is not a tag id/i);
             });
           })
-          .expect(400)
-          .end(done);
+          .expect(400);
       });
 
-      it('should reject id with no children', done => {
+      it('should reject id with no children', () => {
         const location = '/v1/taxonomy/302';
-        webapp.get(location)
+        return webapp.get(location)
           .expect(res => {
             expectFailure(res.body, errors => {
               expect(errors).to.have.length(1);
@@ -66,13 +64,12 @@ describe('Endpoint /v1/taxonomy', () => {
               expect(error.detail).to.match(/tag 302 has no children/i);
             });
           })
-          .expect(400)
-          .end(done);
+          .expect(400);
       });
 
-      it('should give second-level tags', done => {
+      it('should give second-level tags', () => {
         const location = '/v1/taxonomy/1';
-        webapp.get(location)
+        return webapp.get(location)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/taxonomy-links-out.json');
@@ -85,13 +82,12 @@ describe('Endpoint /v1/taxonomy', () => {
               ]);
             });
           })
-          .expect(200)
-          .end(done);
+          .expect(200);
       });
 
-      it('should give third-level tags', done => {
+      it('should give third-level tags', () => {
         const location = '/v1/taxonomy/10';
-        webapp.get(location)
+        return webapp.get(location)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/taxonomy-links-out.json');
@@ -103,8 +99,7 @@ describe('Endpoint /v1/taxonomy', () => {
               ]);
             });
           })
-          .expect(200)
-          .end(done);
+          .expect(200);
       });
     });
   });
@@ -114,9 +109,9 @@ describe('Endpoint /v1/taxonomy', () => {
 
     describe('PUT /v1/taxonomy', () => {
 
-      it('should reject wrong content type', done => {
+      it('should reject wrong content type', () => {
         const contentType = 'text/plain';
-        hidden.put('/v1/taxonomy')
+        return hidden.put('/v1/taxonomy')
           .type(contentType)
           .send('broken')
           .expect(400)
@@ -129,13 +124,12 @@ describe('Endpoint /v1/taxonomy', () => {
               expect(error).to.have.property('detail');
               expect(error.detail).to.match(/text\/plain .*not supported/i);
             });
-          })
-          .end(done);
+          });
       });
 
-      it('should reject bad input', done => {
+      it('should reject bad input', () => {
         const broken = require('fixtures/broken-taxonomy.json');
-        hidden.put('/v1/taxonomy')
+        return hidden.put('/v1/taxonomy')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -155,13 +149,12 @@ describe('Endpoint /v1/taxonomy', () => {
               expect(problems).to.deep.include('field 0.items.0.items.0.title is the wrong type');
             });
           })
-          .expect(400)
-          .end(done);
+          .expect(400);
       });
 
-      it('should reject non-integer and clashing ids', done => {
+      it('should reject non-integer and clashing ids', () => {
         const broken = require('fixtures/broken-taxonomy-non-integer.json');
-        hidden.put('/v1/taxonomy')
+        return hidden.put('/v1/taxonomy')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -182,8 +175,7 @@ describe('Endpoint /v1/taxonomy', () => {
               expect(problems).to.deep.include('Id 4 occurs more than once');
             });
           })
-          .expect(400)
-          .end(done);
+          .expect(400);
       });
 
       it('should update taxonomy', done => {

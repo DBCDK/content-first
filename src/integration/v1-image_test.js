@@ -19,9 +19,9 @@ describe('Endpoint /v1/image', () => {
   });
   describe('Public endpoint', () => {
     describe('GET /v1/image/:pid', () => {
-      it('should handle non-existing cover image', done => {
+      it('should handle non-existing cover image', () => {
         const url = '/v1/image/does:not:exist';
-        webapp.get(url)
+        return webapp.get(url)
           .expect(404)
           .expect(res => {
             expectFailure(res.body, errors => {
@@ -33,27 +33,25 @@ describe('Endpoint /v1/image', () => {
               expect(error.meta).to.have.property('resource');
               expect(error.meta.resource).to.equal(url);
             });
-          })
-          .end(done);
+          });
       });
     });
     describe('GET /v1/image/:pid', () => {
-      it('should give a cover image', done => {
-        webapp.get('/v1/image/870970-basis:53188931')
+      it('should give a cover image', () => {
+        return webapp.get('/v1/image/870970-basis:53188931')
           .expect(200)
           .expect('Content-Type', /image\/jpeg/)
-          .expect('Content-Length', '29839')
-          .end(done);
+          .expect('Content-Length', '29839');
       });
     });
   });
   describe('Internal endpoint', () => {
     const hidden = request(mock.internal);
     describe('PUT /v1/image/:pid', () => {
-      it('should reject wrong content type', done => {
+      it('should reject wrong content type', () => {
         const location = '/v1/image/870970-basis:22629344';
         const contentType = 'application/json';
-        hidden.put(location)
+        return hidden.put(location)
           .type(contentType)
           .expect(400)
           .expect(res => {
@@ -65,13 +63,12 @@ describe('Endpoint /v1/image', () => {
               expect(error).to.have.property('detail');
               expect(error.detail).to.match(/content.type application\/json.*not supported/i);
             });
-          })
-          .end(done);
+          });
       });
-      it('should reject broken image', done => {
+      it('should reject broken image', () => {
         const location = '/v1/image/870970-basis:22629344';
         const contentType = 'image/jpeg';
-        hidden.put(location)
+        return hidden.put(location)
           .type(contentType)
           .send('broken image data')
           .expect(400)
@@ -82,8 +79,7 @@ describe('Endpoint /v1/image', () => {
               expect(error).to.have.property('title');
               expect(error.title).to.match(/corrupted image data/i);
             });
-          })
-          .end(done);
+          });
       });
       it('should store an image in the database', done => {
         const location = '/v1/image/870970-basis:22629344';

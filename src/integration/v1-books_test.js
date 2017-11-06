@@ -14,17 +14,16 @@ describe('Endpoint /v1/books', () => {
     mock.afterEach();
   });
   describe('GET /v1/books?pids=...', () => {
-    it('should handle no PIDs', done => {
-      webapp.get('/v1/books')
+    it('should handle no PIDs', () => {
+      return webapp.get('/v1/books')
         .expect(400)
         .expect('Content-Type', /json/)
-        .expect(/must supply at least one PID/)
-        .end(done);
+        .expect(/must supply at least one PID/);
     });
-    it('should handle non-existing pids', done => {
+    it('should handle non-existing pids', () => {
       const pid = 123456789;
       const url = `/v1/books?pids=${pid}`;
-      webapp.get(url)
+      return webapp.get(url)
         .expect(404)
         .expect(res => {
           expectFailure(res.body, errors => {
@@ -35,13 +34,12 @@ describe('Endpoint /v1/books', () => {
             expect(error.meta).to.have.property('resource');
             expect(error.meta.resource).to.equal(url);
           });
-        })
-        .end(done);
+        });
     });
-    it('should give a list of existing books', done => {
+    it('should give a list of existing books', () => {
       const pid = '870970-basis:53188931';
       const url = `/v1/books?pids=${pid}`;
-      webapp.get(url)
+      return webapp.get(url)
         .expect(200)
         .expect(res => {
           expectSuccess(res.body, (links, data) => {
@@ -76,8 +74,7 @@ describe('Endpoint /v1/books', () => {
               literary_form: 'digte, fiktion'
             });
           });
-        })
-        .end(done);
+        });
     });
   });
 });

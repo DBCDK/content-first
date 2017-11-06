@@ -17,10 +17,10 @@ describe('Endpoint /v1/tags', () => {
   describe('Public endpoint', () => {
 
     describe('GET /v1/tags/:pid', () => {
-      it('should return existing tags for a specific PID', done => {
+      it('should return existing tags for a specific PID', () => {
         const pid = '870970-basis:52947804';
         const location = `/v1/tags/${pid}`;
-        webapp.get(location)
+        return webapp.get(location)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/tags-links-out.json');
@@ -34,8 +34,7 @@ describe('Endpoint /v1/tags', () => {
               ]);
             });
           })
-          .expect(200)
-          .end(done);
+          .expect(200);
       });
     });
   });
@@ -44,9 +43,9 @@ describe('Endpoint /v1/tags', () => {
     const hidden = request(mock.internal);
 
     describe('PUT /v1/tags/:pid', () => {
-      it('should reject wrong content type', done => {
+      it('should reject wrong content type', () => {
         const contentType = 'text/plain';
-        hidden.put('/v1/tags/1234-example:98765')
+        return hidden.put('/v1/tags/1234-example:98765')
           .type(contentType)
           .send('broken')
           .expect(400)
@@ -59,13 +58,12 @@ describe('Endpoint /v1/tags', () => {
               expect(error).to.have.property('detail');
               expect(error.detail).to.match(/text\/plain .*not supported/i);
             });
-          })
-          .end(done);
+          });
       });
 
-      it('should reject bad input', done => {
+      it('should reject bad input', () => {
         const broken = require('fixtures/broken-tag-entry.json');
-        hidden.put('/v1/tags/1234-example:98765')
+        return hidden.put('/v1/tags/1234-example:98765')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -84,17 +82,16 @@ describe('Endpoint /v1/tags', () => {
               expect(problems).to.deep.include('field selected is required');
             });
           })
-          .expect(400)
-          .end(done);
+          .expect(400);
       });
 
-      it('should reject address that does not agree with PID', done => {
+      it('should reject address that does not agree with PID', () => {
         const martin = require('fixtures/martin-den-herreloese-ridder-tags.json');
         const pid = martin.pid;
         const wrongPid = '12335-wrong:9782637';
         const location = `/v1/tags/${wrongPid}`;
         const contentType = 'application/json';
-        hidden.put(location)
+        return hidden.put(location)
           .type(contentType)
           .send(martin)
           .expect(400)
@@ -106,15 +103,14 @@ describe('Endpoint /v1/tags', () => {
               expect(error).to.have.property('detail');
               expect(error.detail).to.equal(`Expected PID ${wrongPid} but found ${pid}`);
             });
-          })
-          .end(done);
+          });
       });
 
-      it('should create tags for new PID', done => {
+      it('should create tags for new PID', () => {
         const tags = require('fixtures/tag-entry.json');
         const pid = tags.pid;
         const location = `/v1/tags/${pid}`;
-        hidden.put(location)
+        return hidden.put(location)
           .type('application/json')
           .send(tags)
           .expect(res => {
@@ -129,14 +125,13 @@ describe('Endpoint /v1/tags', () => {
             });
           })
           .expect('location', location)
-          .expect(200)
-          .end(done);
+          .expect(200);
       });
 
-      it('should overwrite tags for existing PID', done => {
+      it('should overwrite tags for existing PID', () => {
         const pid = require('fixtures/carter-mordoffer-tags').pid;
         const location = `/v1/tags/${pid}`;
-        hidden.put(location)
+        return hidden.put(location)
           .type('application/json')
           .send({pid, selected: ['1', '2']})
           .expect(res => {
@@ -150,16 +145,15 @@ describe('Endpoint /v1/tags', () => {
               });
             });
           })
-          .expect(200)
-          .end(done);
+          .expect(200);
       });
     });
 
     describe('POST /v1/tags', () => {
 
-      it('should reject wrong content type', done => {
+      it('should reject wrong content type', () => {
         const contentType = 'text/plain';
-        hidden.post('/v1/tags')
+        return hidden.post('/v1/tags')
           .type(contentType)
           .send('broken')
           .expect(400)
@@ -172,13 +166,12 @@ describe('Endpoint /v1/tags', () => {
               expect(error).to.have.property('detail');
               expect(error.detail).to.match(/text\/plain .*not supported/i);
             });
-          })
-          .end(done);
+          });
       });
 
-      it('should reject bad input', done => {
+      it('should reject bad input', () => {
         const broken = require('fixtures/broken-tag-entry.json');
-        hidden.post('/v1/tags')
+        return hidden.post('/v1/tags')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -197,15 +190,14 @@ describe('Endpoint /v1/tags', () => {
               expect(problems).to.deep.include('field selected is required');
             });
           })
-          .expect(400)
-          .end(done);
+          .expect(400);
       });
 
-      it('should create tags for new PID', done => {
+      it('should create tags for new PID', () => {
         const tags = require('fixtures/tag-entry.json');
         const pid = tags.pid;
         const location = `/v1/tags/${pid}`;
-        hidden.post('/v1/tags')
+        return hidden.post('/v1/tags')
           .type('application/json')
           .send(tags)
           .expect(res => {
@@ -220,15 +212,14 @@ describe('Endpoint /v1/tags', () => {
             });
           })
           .expect('location', location)
-          .expect(201)
-          .end(done);
+          .expect(201);
       });
 
-      it('should update tags for existing PID', done => {
+      it('should update tags for existing PID', () => {
         const tags = require('fixtures/carter-mordoffer-tags');
         const pid = tags.pid;
         const location = `/v1/tags/${tags.pid}`;
-        hidden.post('/v1/tags')
+        return hidden.post('/v1/tags')
           .type('application/json')
           .send({pid, selected: ['1', '2']})
           .expect(res => {
@@ -245,8 +236,7 @@ describe('Endpoint /v1/tags', () => {
             });
           })
           .expect('location', location)
-          .expect(201)
-          .end(done);
+          .expect(201);
       });
     });
 

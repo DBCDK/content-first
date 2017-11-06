@@ -16,9 +16,9 @@ describe('Endpoint /v1/recommendations', () => {
 
   describe('GET /v1/recommendations?tags=...', () => {
 
-    it('should handle no tags', done => {
+    it('should handle no tags', () => {
       const url = '/v1/recommendations?tags=';
-      webapp.get(url)
+      return webapp.get(url)
         .expect(res => {
           expectFailure(res.body, errors => {
             expect(errors).to.have.length(1);
@@ -31,14 +31,13 @@ describe('Endpoint /v1/recommendations', () => {
             expect(error.meta.resource).to.equal(url);
           });
         })
-        .expect(400)
-        .end(done);
+        .expect(400);
     });
 
-    it('should return a list of books that include all specified tags', done => {
+    it('should return a list of books that include all specified tags', () => {
       const tags = [205, 144, 146];
       const url = `/v1/recommendations?tags=${tags.join()}`;
-      webapp.get(url)
+      return webapp.get(url)
         .expect(res => {
           expectSuccess(res.body, (links, data) => {
             expectValidate(links, 'schemas/books-links-out.json');
@@ -50,8 +49,7 @@ describe('Endpoint /v1/recommendations', () => {
             expectValidate(book, 'schemas/book-data-out.json');
           });
         })
-        .expect(200)
-        .end(done);
+        .expect(200);
     });
   });
 });
