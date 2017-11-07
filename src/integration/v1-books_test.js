@@ -82,7 +82,102 @@ describe('Endpoint /v1/books', () => {
   describe('Internal endpoint', () => {
     const hidden = request(mock.internal);
     describe('PUT /v1/books', () => {
-      it('should discard broken input and maintain current books');
+      it('should reject wrong content type', () => {
+        const contentType = 'text/plain';
+        return hidden.put('/v1/books')
+          .type(contentType)
+          .send('broken')
+          .expect(400)
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/provided as application\/json/i);
+              expect(error).to.have.property('detail');
+              expect(error.detail).to.match(/text\/plain .*not supported/i);
+            });
+          });
+      });
+      it('should discard broken input and maintain current books', () => {
+        return hidden.put('/v1/books')
+          .type('application/json')
+          .send('{"id": "1234"}')
+          .expect(400)
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/malformed book data/i);
+              expect(error).to.have.property('detail');
+              expect(error.detail).to.match(/does not adhere to schema/i);
+            });
+          });
+      });
+      it('should discard partly-broken input and maintain current books', () => {
+        const broken = require('fixtures/partly-broken-books.json');
+        // const contentType = 'application/json';
+        return hidden.put('/v1/books')
+          .type('application/json')
+          .send(broken)
+          .expect(400)
+          .expect(res => {
+            expectFailure(res.body, errors => {
+
+              console.log(res.body)
+
+              expect(errors).to.have.length(2);
+              let error = errors[0];
+              {
+                expect(error.title).to.match(/malformed book data/i);
+                expect(error).to.have.property('detail');
+                expect(error.detail).to.match(/does not adhere to schema/i);
+                expect(error).to.have.property('meta');
+                expect(error.meta).to.have.property('problems');
+                const problems = error.meta.problems;
+                expect(problems).to.be.an('array');
+                expect(problems).to.deep.include('field pid is the wrong type');
+                expect(problems).to.deep.include('field bibliographicRecordId is the wrong type');
+                expect(problems).to.deep.include('field loans is the wrong type');
+                expect(problems).to.deep.include('field workId is required');
+                expect(problems).to.deep.include('field creator is required');
+                expect(problems).to.deep.include('field title is required');
+                expect(problems).to.deep.include('field titleFull is required');
+                expect(problems).to.deep.include('field type is required');
+                expect(problems).to.deep.include('field workType is required');
+                expect(problems).to.deep.include('field language is required');
+                expect(problems).to.deep.include('field image_detail is required');
+                expect(problems).to.deep.include('field items is required');
+                expect(problems).to.deep.include('field libraries is required');
+                expect(problems).to.deep.include('field pages is required');
+              }
+              error = error[1];
+              {
+                expect(error.title).to.match(/malformed book data/i);
+                expect(error).to.have.property('detail');
+                expect(error.detail).to.match(/does not adhere to schema/i);
+                expect(error).to.have.property('meta');
+                expect(error.meta).to.have.property('problems');
+                const problems = error.meta.problems;
+                expect(problems).to.be.an('array');
+                expect(problems).to.deep.include('field pid is the wrong type');
+                expect(problems).to.deep.include('field bibliographicRecordId is the wrong type');
+                expect(problems).to.deep.include('field loans is the wrong type');
+                expect(problems).to.deep.include('field workId is required');
+                expect(problems).to.deep.include('field creator is required');
+                expect(problems).to.deep.include('field title is required');
+                expect(problems).to.deep.include('field titleFull is required');
+                expect(problems).to.deep.include('field type is required');
+                expect(problems).to.deep.include('field workType is required');
+                expect(problems).to.deep.include('field language is required');
+                expect(problems).to.deep.include('field image_detail is required');
+                expect(problems).to.deep.include('field items is required');
+                expect(problems).to.deep.include('field libraries is required');
+                expect(problems).to.deep.include('field pages is required');
+              }
+            });
+          });
+
+      });
       it('should accept valid input and replace all books');
     });
   });

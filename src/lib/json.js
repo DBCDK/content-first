@@ -43,16 +43,15 @@ function validatingInput (document, schemaPath) {
     }
   });
 }
-exports.validatingInput = validatingInput;
 
 /**
  * Fixate validation on a specific schema.
  * @param  {json} schemaPath       JSON schema
  * @return {Promise(validation)}   Promise of validation.
  */
-exports.validating = schemaPath => {
+function validating (schemaPath) {
   return document => validatingInput(document, schemaPath);
-};
+}
 
 /**
  * Takes the validation output from a failed validate-my-json and returns the
@@ -69,5 +68,9 @@ function nicifyJsonValidationErrors (validate) {
     x => _.replace(_.replace(_.replace(x, 'data["', 'field '), '"]', ''), 'data.', 'field ')
   );
 }
-exports.nicifyJsonValidationErrors = nicifyJsonValidationErrors;
 
+module.exports = {
+  validatingInput,
+  validating,
+  nicifyJsonValidationErrors
+};

@@ -40,7 +40,6 @@ function parsingMetaDataInjection (obj) {
       .catch(reject);
   });
 }
-exports.parsingMetaDataInjection = parsingMetaDataInjection;
 
 function transformMetaDataToBook (metadata) {
   const filteredMetaData = _.pick(metadata, [
@@ -67,4 +66,8 @@ function transformMetaDataToBook (metadata) {
   ]);
   return filteredMetaData;
 }
-exports.transformMetaDataToBook = transformMetaDataToBook;
+
+module.exports = {
+  parsingMetaDataInjection,
+  transformMetaDataToBook
+};
