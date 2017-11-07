@@ -24,12 +24,12 @@ function parsingMetaDataInjection (obj) {
         book.work_type = document.workType;
         book.language = document.language;
         book.libraries = document.libraries;
-        book.loan_count = document.loancount;
+        book.loans = document.loans;
         book.pages = document.pages;
         book.items = document.items;
         book.cover = document.image_detail;
-        book.taxonomy_description = document.taxonomyDescription;
-        book.bibliographic_description = document.bibliographicDescription;
+        book.taxonomy_description = document.taxonomy_description;
+        book.description = document.description;
         const year = parseInt(document.dateFirstEdition, 10);
         book.first_edition_year = _.isNaN(year) ? 0 : year;
         book.subject = document.subject ? document.subject : '';
@@ -49,7 +49,7 @@ function transformMetaDataToBook (metadata) {
     'items',
     'language',
     'libraries',
-    'loan_count',
+    'loans',
     'pages',
     'pid',
     'title',
@@ -59,7 +59,7 @@ function transformMetaDataToBook (metadata) {
     'work_id',
     'work_type',
     'taxonomy_description',
-    'bibliographic_description',
+    'description',
     'subject',
     'genre',
     'literary_form',

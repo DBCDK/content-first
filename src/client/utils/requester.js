@@ -30,7 +30,7 @@ const filter = (works, selectedTitles) => {
       }
     }
     if (selectedTitles.indexOf('Udlånes meget') >= 0) {
-      if (work.book.loan_count < 100) {
+      if (work.book.loans < 100) {
         return false;
       }
     }

@@ -6,8 +6,8 @@
   "creator": "Joanne K. Rowling",
   "title": "Harry Potter og De Vises Sten",
   "titleFull": "Harry Potter og De Vises Sten",
-  "taxonomyDescription": "Dette er en beskrivelse",
-  "bibliographicDescription": "Det er det her også",
+  "taxonomy_description": "Dette er en beskrivelse",
+  "description": "Det er det her også",
   "type": "Bog",
   "workType": "book",
   "language": "Dansk",
@@ -20,5 +20,5 @@
   "image_detail_500": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_500&bibliotek=870970&source_id=870970&key=d4095b8649840634b590",
   "image_thumbnail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_lille&bibliotek=870970&source_id=870970&key=0b701f66c33cd9a4cf1b",
   "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=ec94fe625b65f28ca74d",
-  "loancount": 20811
+  "loans": 20811
 }

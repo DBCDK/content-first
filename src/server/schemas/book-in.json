@@ -53,15 +53,15 @@
       "required": true,
       "type": "integer"
     },
-    "loancount": {
+    "loans": {
       "required": true,
       "type": "integer"
     },
-    "taxonomyDescription": {
+    "taxonomy_description": {
       "required": true,
       "type": "string"
     },
-    "bibliographicDescription": {
+    "description": {
       "required": true,
       "type": "string"
     },

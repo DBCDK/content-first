@@ -19,9 +19,9 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
       , "title": "Havelågebogen"
       , "title_full": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
       , "taxonomy_description": "Ingen beskrivelse"
-      , "bibliographic_description": "Heller ingen beskrivelse"
+      , "description": "Heller ingen beskrivelse"
       , "pages": 645
-      , "loan_count": 1020
+      , "loans": 1020
       , "type": "Bog"
       , "work_type": "book"
       , "language": "Dansk"
@@ -79,8 +79,8 @@ The data must be [valid book input](../src/server/schemas/book-in.json), like
     , "bibliographicRecordId": "53188931"
     , "subject": "billedværker, humor, fotografier"
     , "genre": "humor"
-    , "taxonomyDescription": "Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne"
-    , "bibliographicDescription": "Noget med låger"
+    , "taxonomy_description": "Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne"
+    , "description": "Noget med låger"
     , "creator": "Jens Blendstrup"
     , "title": "Havelågebogen"
     , "titleFull": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
@@ -93,7 +93,7 @@ The data must be [valid book input](../src/server/schemas/book-in.json), like
     , "libraries": 80
     , "pages": 645
     , "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725"
-    , "loancount": 1020
+    , "loans": 1020
     }
 
 ## Images

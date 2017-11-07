@@ -6,8 +6,8 @@
   "creator": "George R. R. Martin",
   "title": "Den herreløse ridder",
   "titleFull": "Den herreløse ridder : tre fortællinger fra De Syv Kongedømmer",
-  "taxonomyDescription": "En temmelig lang og omstændig beskrivelse, men nogen gange skal det jo til, for ellers er det svært at overbringe en ordentlig forståelse.",
-  "bibliographicDescription": "Noget med ordentlig forståelse.",
+  "taxonomy_description": "En temmelig lang og omstændig beskrivelse, men nogen gange skal det jo til, for ellers er det svært at overbringe en ordentlig forståelse.",
+  "description": "Noget med ordentlig forståelse.",
   "type": "Bog",
   "workType": "book",
   "language": "Dansk",
@@ -20,5 +20,5 @@
   "image_detail_500": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=51752341&attachment_type=forside_500&bibliotek=870970&source_id=870970&key=a8a8449973fd1d5f030b",
   "image_thumbnail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=51752341&attachment_type=forside_lille&bibliotek=870970&source_id=870970&key=6a2c92bfab0a72b96183",
   "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=51752341&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=92e30ccbb8071418dded",
-  "loancount": 1750
+  "loans": 1750
 }

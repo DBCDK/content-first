@@ -24,7 +24,7 @@ describe('books', () => {
           expect(problems).to.be.an('array');
           expect(problems).to.deep.include('field pid is the wrong type');
           expect(problems).to.deep.include('field bibliographicRecordId is the wrong type');
-          expect(problems).to.deep.include('field loancount is the wrong type');
+          expect(problems).to.deep.include('field loans is the wrong type');
           expect(problems).to.deep.include('field workId is required');
           expect(problems).to.deep.include('field creator is required');
           expect(problems).to.deep.include('field title is required');
@@ -36,8 +36,8 @@ describe('books', () => {
           expect(problems).to.deep.include('field items is required');
           expect(problems).to.deep.include('field libraries is required');
           expect(problems).to.deep.include('field pages is required');
-          expect(problems).to.deep.include('field bibliographicDescription is required');
-          expect(problems).to.deep.include('field taxonomyDescription is required');
+          expect(problems).to.deep.include('field description is required');
+          expect(problems).to.deep.include('field taxonomy_description is required');
         });
     });
     it('should fill in all values from JSON', () => {
@@ -53,12 +53,12 @@ describe('books', () => {
           work_id: 'work:20137979',
           work_type: 'book',
           taxonomy_description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
-          bibliographic_description: 'Noget med låger',
+          description: 'Noget med låger',
           bibliographic_record_id: 53188931,
           items: 196,
           libraries: 80,
           pages: 645,
-          loan_count: 1020,
+          loans: 1020,
           subject: 'billedværker, humor, fotografier',
           genre: 'humor',
           first_edition_year: 2017,
@@ -78,7 +78,7 @@ describe('books', () => {
             items: 196,
             language: 'Dansk',
             libraries: 80,
-            loan_count: 1020,
+            loans: 1020,
             pages: 645,
             pid: '870970-basis:53188931',
             title: 'Havelågebogen',
@@ -87,7 +87,7 @@ describe('books', () => {
             unit_id: 'unit:22125672',
             work_id: 'work:20137979',
             taxonomy_description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
-            bibliographic_description: 'Noget med låger',
+            description: 'Noget med låger',
             work_type: 'book',
             subject: 'billedværker, humor, fotografier',
             genre: 'humor',

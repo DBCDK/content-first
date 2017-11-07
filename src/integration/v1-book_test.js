@@ -51,9 +51,9 @@ describe('Endpoint /v1/book', () => {
                 title: 'Havelågebogen',
                 title_full: 'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
                 taxonomy_description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
-                bibliographic_description: 'Noget med låger',
+                description: 'Noget med låger',
                 pages: 645,
-                loan_count: 1020,
+                loans: 1020,
                 type: 'Bog',
                 work_type: 'book',
                 language: 'Dansk',
@@ -110,7 +110,7 @@ describe('Endpoint /v1/book', () => {
               expect(problems).to.be.an('array');
               expect(problems).to.deep.include('field pid is the wrong type');
               expect(problems).to.deep.include('field bibliographicRecordId is the wrong type');
-              expect(problems).to.deep.include('field loancount is the wrong type');
+              expect(problems).to.deep.include('field loans is the wrong type');
               expect(problems).to.deep.include('field workId is required');
               expect(problems).to.deep.include('field creator is required');
               expect(problems).to.deep.include('field title is required');
@@ -184,7 +184,7 @@ describe('Endpoint /v1/book', () => {
                   expect(data.items).to.equal(2690);
                   expect(data.libraries).to.equal(154);
                   expect(data.pages).to.equal(303);
-                  expect(data.loan_count).to.equal(20811);
+                  expect(data.loans).to.equal(20811);
                 });
               })
               .expect(200)
@@ -221,7 +221,7 @@ describe('Endpoint /v1/book', () => {
                   expectValidate(data, 'schemas/book-data-out.json');
                   expect(data.pid).to.equal(pid);
                   expect(data.creator).to.equal('Joanne K. Rowling');
-                  expect(data.loan_count).to.equal(20811);
+                  expect(data.loans).to.equal(20811);
                 });
               })
               .expect(200)
