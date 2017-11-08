@@ -7,6 +7,7 @@ import './style/work.css';
 import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
 import WorkPage from './components/work/WorkPage.container';
+import ProfilePage from './components/profile/ProfilePage.container';
 import TopBar from './components/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 
@@ -21,6 +22,9 @@ class App extends Component {
     }
     else if (pathSplit[1] === 'værk') {
       currentPage = <WorkPage pid={pathSplit[2]}/>;
+    }
+    else if (pathSplit[1] === 'profile') {
+      currentPage = <ProfilePage />;
     }
     else {
       // check if current path matches a belt
