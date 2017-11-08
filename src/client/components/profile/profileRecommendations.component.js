@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProfileRecommendation = ({recommendation}) => (
   <div className="profile-recommendation">
-    <img src={`https://content-first.demo.dbc.dk/v1/image/${recommendation.pid}`} />
+    <img src={`https://content-first.demo.dbc.dk/v1/image/${recommendation.pid}`} alt={recommendation.pid} />
   </div>
 );
 

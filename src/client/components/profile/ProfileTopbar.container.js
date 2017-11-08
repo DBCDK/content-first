@@ -21,7 +21,7 @@ class ProfileTopbar extends React.Component {
     setTimeout(() => this.setState({hasContent: true}), 1000);
   }
   render() {
-    return (<div className={`profile-topbar ${this.state.hasContent && 'has-content' || ''}`} >
+    return (<div className={`profile-topbar ${this.state.hasContent ? 'has-content' : ''}`} >
       <div className="profile-topbar-content container">
         <Progress percent="75" strokeWidth="16" />
         <ProfileTags tags={this.props.profile.tags} />
