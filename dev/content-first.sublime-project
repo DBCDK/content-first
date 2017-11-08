@@ -31,7 +31,13 @@
       , "node_modules"
       ]
     , "file_exclude_patterns":
-      [ "npm-debug.log"
+      [ ".bithoundrc"
+      , ".eslintignore"
+      , ".eslintrc.js"
+      , ".nvmrc"
+      , "docker-compose.yml"
+      , "license"
+      , "npm-debug.log"
       , "nvm.sh"
       , "package-lock.json"
       ]
