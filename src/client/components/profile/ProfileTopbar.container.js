@@ -21,9 +21,9 @@ class ProfileTopbar extends React.Component {
     setTimeout(() => this.setState({hasContent: true}), 1000);
   }
   render() {
-    return (<div className={`profile-topbar ${this.state.hasContent ? 'has-content' : ''}`} >
+    return (<div className={`profile-topbar ${this.props.profile.tags.length > 0 ? 'has-content' : ''}`} >
       <div className="profile-topbar-content container">
-        <Progress percent="75" strokeWidth="16" />
+        <Progress percent={this.props.profile.tags.length * 10} strokeWidth="16" />
         <ProfileTags tags={this.props.profile.tags} />
         <ProfileRecommendations recommendations={this.props.profile.recommendations} />
       </div>

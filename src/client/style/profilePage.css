@@ -1,0 +1,17 @@
+.profile-dummy-belt .tag {
+  width: 200px;
+  height: 200px;
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  transition: background-color 500ms;
+}
+
+.profile-dummy-belt .tag + * {
+  margin-left: 1rem;
+}
+
+.profile-dummy-belt .tag-label {
+  width: 100%;
+  text-align: center;
+}

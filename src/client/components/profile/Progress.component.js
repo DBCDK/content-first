@@ -21,21 +21,4 @@ const Progress = ({percent = 10, strokeWidth = 12}) => {
   );
 };
 
-class ProgressTicker extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {percent: 0};
-  }
-  componentDidMount() {
-    setInterval(() => {
-      const percent = this.state.percent >= 100 ? 0 : this.state.percent + 10;
-      this.setState({percent});
-    }, 1000);
-  }
-
-  render() {
-    return (<Progress percent={this.state.percent} strokeWidth={this.props.strokeWidth} />);
-  }
-}
-
-export default ProgressTicker;
+export default Progress;
