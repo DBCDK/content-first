@@ -1,0 +1,23 @@
+{
+  "pid": "870970-basis:53188931",
+  "unitId": "unit:22125672",
+  "workId": "work:20137979",
+  "bibliographicRecordId": "Have",
+  "subject": "billedværker, humor, fotografier",
+  "genre": "humor",
+  "taxonomy_description": "Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne",
+  "description": "Noget med låger",
+  "creator": "Jens Blendstrup",
+  "title": "Havelågebogen",
+  "titleFull": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger",
+  "dateFirstEdition": "2017",
+  "literaryForm": "digte, fiktion",
+  "type": "Bog",
+  "workType": "book",
+  "language": "Dansk",
+  "items": 196,
+  "libraries": 80,
+  "pages": 645,
+  "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725",
+  "loans": 1020
+}

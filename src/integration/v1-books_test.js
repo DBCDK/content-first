@@ -115,70 +115,99 @@ describe('Endpoint /v1/books', () => {
       });
       it('should discard partly-broken input and maintain current books', () => {
         const broken = require('fixtures/partly-broken-books.json');
-        // const contentType = 'application/json';
         return hidden.put('/v1/books')
           .type('application/json')
           .send(broken)
-          .expect(400)
           .expect(res => {
             expectFailure(res.body, errors => {
-
-              console.log(res.body)
-
-              expect(errors).to.have.length(2);
-              let error = errors[0];
-              {
-                expect(error.title).to.match(/malformed book data/i);
-                expect(error).to.have.property('detail');
-                expect(error.detail).to.match(/does not adhere to schema/i);
-                expect(error).to.have.property('meta');
-                expect(error.meta).to.have.property('problems');
-                const problems = error.meta.problems;
-                expect(problems).to.be.an('array');
-                expect(problems).to.deep.include('field pid is the wrong type');
-                expect(problems).to.deep.include('field bibliographicRecordId is the wrong type');
-                expect(problems).to.deep.include('field loans is the wrong type');
-                expect(problems).to.deep.include('field workId is required');
-                expect(problems).to.deep.include('field creator is required');
-                expect(problems).to.deep.include('field title is required');
-                expect(problems).to.deep.include('field titleFull is required');
-                expect(problems).to.deep.include('field type is required');
-                expect(problems).to.deep.include('field workType is required');
-                expect(problems).to.deep.include('field language is required');
-                expect(problems).to.deep.include('field image_detail is required');
-                expect(problems).to.deep.include('field items is required');
-                expect(problems).to.deep.include('field libraries is required');
-                expect(problems).to.deep.include('field pages is required');
-              }
-              error = error[1];
-              {
-                expect(error.title).to.match(/malformed book data/i);
-                expect(error).to.have.property('detail');
-                expect(error.detail).to.match(/does not adhere to schema/i);
-                expect(error).to.have.property('meta');
-                expect(error.meta).to.have.property('problems');
-                const problems = error.meta.problems;
-                expect(problems).to.be.an('array');
-                expect(problems).to.deep.include('field pid is the wrong type');
-                expect(problems).to.deep.include('field bibliographicRecordId is the wrong type');
-                expect(problems).to.deep.include('field loans is the wrong type');
-                expect(problems).to.deep.include('field workId is required');
-                expect(problems).to.deep.include('field creator is required');
-                expect(problems).to.deep.include('field title is required');
-                expect(problems).to.deep.include('field titleFull is required');
-                expect(problems).to.deep.include('field type is required');
-                expect(problems).to.deep.include('field workType is required');
-                expect(problems).to.deep.include('field language is required');
-                expect(problems).to.deep.include('field image_detail is required');
-                expect(problems).to.deep.include('field items is required');
-                expect(problems).to.deep.include('field libraries is required');
-                expect(problems).to.deep.include('field pages is required');
-              }
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/malformed book data/i);
+              expect(error).to.have.property('detail');
+              expect(error.detail).to.match(/does not adhere to schema/i);
+              expect(error).to.have.property('meta');
+              expect(error.meta).to.have.property('problems');
+              const problems = error.meta.problems;
+              expect(problems).to.be.an('array');
+              expect(problems).to.deep.include('field pid is required');
+              expect(problems).to.deep.include('field bibliographicRecordId is required');
+              expect(problems).to.deep.include('field loans is required');
+              expect(problems).to.deep.include('field workId is required');
+              expect(problems).to.deep.include('field creator is required');
+              expect(problems).to.deep.include('field title is required');
+              expect(problems).to.deep.include('field titleFull is required');
+              expect(problems).to.deep.include('field type is required');
+              expect(problems).to.deep.include('field workType is required');
+              expect(problems).to.deep.include('field language is required');
+              expect(problems).to.deep.include('field image_detail is required');
+              expect(problems).to.deep.include('field items is required');
+              expect(problems).to.deep.include('field libraries is required');
+              expect(problems).to.deep.include('field pages is required');
             });
+          })
+          .expect(400)
+          .then(() => {
+            const pid = '870970-basis:53188931';
+            const url = `/v1/book/${pid}`;
+            return webapp.get(url).expect(200);
           });
-
       });
-      it('should accept valid input and replace all books');
+      it('should discard input with duplicate PIDs and maintain current books', () => {
+        const broken = require('fixtures/duplicate-pid-books.json');
+        return hidden.put('/v1/books')
+          .type('application/json')
+          .send(broken)
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/duplicate pid/i);
+              expect(error).to.have.property('detail');
+              expect(error.detail).to.match(/pid .+ duplicated/i);
+            });
+          })
+          .expect(400)
+          .then(() => {
+            const pid = '870970-basis:53188931';
+            const url = `/v1/book/${pid}`;
+            return webapp.get(url).expect(200);
+          });
+      });
+      it('should accept valid input and replace all books', () => {
+        const books = require('fixtures/two-books.json');
+        return hidden.put('/v1/books')
+          .type('application/json')
+          .send(books)
+          .expect(200)
+          .expect(res => {
+            expectSuccess(res.body, (links, data) => {
+              expectValidate(links, 'schemas/books-links-out.json');
+              expect(links.self).to.equal('/v1/books');
+              expectValidate(data, 'schemas/put-books-data-out.json');
+              expect(data).to.match(/2 books created/i);
+            });
+          })
+          .then(() => {
+            const pid = 'pid-new-book-1';
+            const url = `/v1/book/${pid}`;
+            return webapp.get(url)
+              .expect(200)
+              .expect(res => {
+                expectSuccess(res.body, (links, data) => {
+                  expectValidate(links, 'schemas/book-links-out.json');
+                  expect(links.self).to.equal(url);
+                  expectValidate(data, 'schemas/book-data-out.json');
+                  expect(data.creator).to.equal('Author One');
+                  expect(data.description).to.equal('One book among many');
+                });
+              });
+          })
+          .then(() => {
+            const pid = '870970-basis:53188931';
+            const url = `/v1/book/${pid}`;
+            return webapp.get(url).expect(404);
+          });
+      });
     });
   });
 });

@@ -40,6 +40,15 @@ describe('books', () => {
           expect(problems).to.deep.include('field taxonomy_description is required');
         });
     });
+    it('should complain about wrong bibliographic-record id', () => {
+      const wrongId = require('fixtures/wrong-bibliographic-record-id-book.json');
+      return expect(books.parsingMetaDataInjection(wrongId))
+        .to.be.rejected
+        .then(error => {
+          expect(error).to.have.property('title');
+          expect(error.title).to.match(/bibliographicrecordid cannot be converted to an integer/i);
+        });
+    });
     it('should fill in all values from JSON', () => {
       return expect(books.parsingMetaDataInjection(blendstrup))
         .to.become({

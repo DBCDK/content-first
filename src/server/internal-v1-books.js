@@ -11,7 +11,7 @@ const bookUtil = require('server/books');
 const {validatingInput} = require('__/json');
 const path = require('path');
 const schemaBooks = path.join(__dirname, 'schemas/books-in.json');
-const schemaBook = path.join(__dirname, 'schemas/books-in.json');
+const schemaOneBook = path.join(__dirname, 'schemas/book-in.json');
 
 router.route('/')
   //
@@ -39,16 +39,12 @@ router.route('/')
     }
     const books = req.body;
     try {
-      books.reduce((prev, book) => {
-        prev
-          .then(() => {
-            return validatingInput(book, schemaBook);
-          })
-          .catch(error => {
-            throw error;
-          });
-      }, Promise.resolve()
-      );
+      // TODO: make a general function in __/json
+      await books.reduce((prev, book) => {
+        return prev.then(() => {
+          return validatingInput(book, schemaOneBook);
+        });
+      }, Promise.resolve());
     }
     catch (error) {
       return next({
@@ -58,51 +54,40 @@ router.route('/')
         meta: error.meta || error
       });
     }
-    /*
-    const pid = req.params.pid;
-    if (req.body.pid !== pid) {
-      return next({
-        status: 400,
-        title: 'Mismatch beetween book pid and location',
-        detail: `Expected PID ${pid} but found ${req.body.pid}`
+    try {
+      await knex.transaction(transaction => {
+        return books.reduce((prev, book) => {
+          return prev.then(() => {
+            return bookUtil.parsingMetaDataInjection(book)
+              .then(meta => {
+                const spiked = bookUtil.transformMetaDataToBook(meta);
+                return transaction.insert(spiked).into(bookTable);
+              });
+          });
+        }, transaction.raw(`truncate table ${bookTable}`));
       });
     }
-    const meta = await bookUtil.parsingMetaDataInjection(req.body);
-    const spiked = bookUtil.transformMetaDataToBook(meta);
-    const location = `${req.baseUrl}/${pid}`;
-    let existing;
-    try {
-      existing = await knex(bookTable).where({pid}).select('pid');
-    }
     catch (error) {
+      const errorRegex = /^key \(pid\)=\(([^)]+)\) already exists/i;
+      if (typeof error.detail === 'string' && error.detail.match(errorRegex)) {
+        const matches = error.detail.match(errorRegex);
+        return next({
+          status: 400,
+          title: 'Duplicate PID',
+          detail: `PID ${matches[1]} duplicated`,
+          meta: error
+        });
+      }
       return next({
         status: 500,
         title: 'Database operation failed',
-        detail: error,
-        meta: {resource: location}
+        meta: error
       });
     }
-    if (existing.length === 0) {
-      await knex(bookTable).insert(spiked);
-      res.status(201).location(location).json({
-        data: spiked,
-        links: {
-          self: location,
-          cover: `/v1/image/${pid}`
-        }
-      });
-    }
-    else {
-      await knex(bookTable).where({pid}).update(spiked);
-      res.status(200).location(location).json({
-        data: spiked,
-        links: {
-          self: location,
-          cover: `/v1/image/${pid}`
-        }
-      });
-    }
-    */
+    return res.status(200).json({
+      data: `${books.length} books created`,
+      links: {self: '/v1/books'}
+    });
   }))
 ;
 

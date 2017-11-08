@@ -17,6 +17,12 @@ function parsingMetaDataInjection (obj) {
         book.unit_id = document.unitId;
         book.work_id = document.workId;
         book.bibliographic_record_id = parseInt(document.bibliographicRecordId, 10);
+        if (!book.bibliographic_record_id) {
+          return reject({
+            status: 400,
+            title: 'bibliographicRecordId cannot be converted to an integer'
+          });
+        }
         book.title = document.title;
         book.creator = document.creator;
         book.title_full = document.titleFull;
