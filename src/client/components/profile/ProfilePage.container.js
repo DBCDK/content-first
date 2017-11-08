@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ProfileTopbar from './ProfileTopbar.container';
 
 class ProfilePage extends React.Component {
 
@@ -12,7 +13,7 @@ class ProfilePage extends React.Component {
   render() {
     return (
       <div className='profilepage'>
-          This is a profile container page
+        <ProfileTopbar />
       </div>
     );
   }
