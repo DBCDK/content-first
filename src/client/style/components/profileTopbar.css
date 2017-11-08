@@ -1,0 +1,53 @@
+.profile-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1rem 3rem 1rem; 
+  background-color: white;
+  transform: translateY(-100%);
+  transition: transform 500ms ease-in-out;
+}
+
+.profile-topbar.has-content {
+  transform: translateY(0);
+}
+
+.profile-topbar-content {
+  display: flex;
+  align-items: center;
+  text-align: left;  
+}
+.profile-topbar-content .tags {
+  width: 100%;
+  margin-left: 2rem;
+}
+
+.selected-tag {
+  background-color: #ef4e27;
+  color: white;
+}
+
+.selected-tag + .selected-tag  {
+  margin-left: 1rem;
+}
+
+.profile-recommendations {
+  position: relative;
+  top: 15px;
+}
+
+.profile-recommendations-list {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.profile-recommendation img {
+  max-width: 60px
+}
+
+.profile-recommendation + .profile-recommendation {
+  margin-left: 1rem;
+}

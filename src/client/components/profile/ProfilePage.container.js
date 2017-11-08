@@ -12,7 +12,7 @@ class ProfilePage extends React.Component {
 
   render() {
     return (
-      <div className='profilepage'>
+      <div className='profile-page'>
         <ProfileTopbar />
       </div>
     );
