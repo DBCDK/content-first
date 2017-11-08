@@ -8,7 +8,7 @@ const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const bookTable = constants.books.table;
 const bookUtil = require('server/books');
-const {validatingInput} = require('__/json');
+const {validatingInput, validatingInputs} = require('__/json');
 const path = require('path');
 const schemaBooks = path.join(__dirname, 'schemas/books-in.json');
 const schemaOneBook = path.join(__dirname, 'schemas/book-in.json');
@@ -37,14 +37,9 @@ router.route('/')
         meta: error.meta || error
       });
     }
-    const books = req.body;
+    let books;
     try {
-      // TODO: make a general function in __/json
-      await books.reduce((prev, book) => {
-        return prev.then(() => {
-          return validatingInput(book, schemaOneBook);
-        });
-      }, Promise.resolve());
+      books = await validatingInputs(req.body, schemaOneBook);
     }
     catch (error) {
       return next({

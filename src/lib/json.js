@@ -5,7 +5,7 @@ const validator = require('is-my-json-valid');
 const formats = require('__/schemas/formats');
 const path = require('path');
 
-/*
+/**
  * A promise to validate document against a JSON schema, which resolves to the
  * document itself, or rejects with a webservice-friendly
  *   {status, title, meta: {body, problems}}
@@ -54,6 +54,21 @@ function validating (schemaPath) {
 }
 
 /**
+ * A promise to validate each item in a list of JSON documents against a
+ * schema, which resolves to the list itself, or rejects like validatingInput.
+ */
+function validatingInputs (items, schemaPath) {
+  return items.reduce((prev, item) => {
+    return prev.then(() => {
+      return validatingInput(item, schemaPath);
+    });
+  }, Promise.resolve())
+    .then(() => {
+      return items;
+    });
+}
+
+/**
  * Takes the validation output from a failed validate-my-json and returns the
  * list of errors in a more readable form, like
  *
@@ -71,6 +86,7 @@ function nicifyJsonValidationErrors (validate) {
 
 module.exports = {
   validatingInput,
+  validatingInputs,
   validating,
   nicifyJsonValidationErrors
 };
