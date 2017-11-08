@@ -9,19 +9,14 @@ put()
   echo "injected $DATA_FILE to $ENDPOINT"
 }
 
-if [ -z ${INTERNAL_PORT+x} ]; then
-  echo "Missing environment variable 'INTERNAL_PORT'";
-  exit 1
-else
-  HOST="http://localhost:$INTERNAL_PORT"
-  SCRIPT_PATH="`dirname \"$0\"`"
-  DATA_PATH="$SCRIPT_PATH/../src/client/data"
+HOST=$1
+SCRIPT_PATH="`dirname \"$0\"`"
+DATA_PATH="$SCRIPT_PATH/../src/client/data"
 
-  echo "Begin injection of data to $HOST"
+echo "Begin injection of data to $HOST"
 
-  put "$DATA_PATH/exportTaxonomy.json" "$HOST/v1/taxonomy"
-  put "$DATA_PATH/pidinfo.json" "$HOST/v1/books"
-  put "$DATA_PATH/exportTags.json" "$HOST/v1/tags"
+put "$DATA_PATH/exportTaxonomy.json" "$HOST/v1/taxonomy"
+put "$DATA_PATH/pidinfo.json" "$HOST/v1/books"
+put "$DATA_PATH/exportTags.json" "$HOST/v1/tags"
 
-  echo "Sucessfully injected all data to $HOST"
-fi
+echo "Sucessfully injected all data to $HOST"
