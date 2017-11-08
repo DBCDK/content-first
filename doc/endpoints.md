@@ -96,6 +96,16 @@ The data must be [valid book input](../src/server/schemas/book-in.json), like
     , "loans": 1020
     }
 
+### `PUT /v1/books`
+
+Replace all books.  The data must be a list of [valid book input](../src/server/schemas/book-in.json).  On success, the result is the total number of books in the list, like
+
+    { "data": "216 books created"
+    , "links": { "self": "/v1/books" }
+    }
+
+If unsuccessful, the previous books in the database are untouched.
+
 ## Images
 
 ### `GET /v1/image/`*pid*
