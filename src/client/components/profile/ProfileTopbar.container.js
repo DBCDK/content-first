@@ -3,19 +3,16 @@ import Progress from './Progress.component';
 import '../../style/components/profileTopbar.css';
 import ProfileRecommendations from './profileRecommendations.component';
 
-const ProfileTags = () => (
+const ProfileTags = ({tags}) => (
   <div className="tags">
-    <span className='btn selected-tag'>Agatha Christie</span>
-    <span className='btn selected-tag'>Agatha Christie</span>
-    <span className='btn selected-tag'>Agatha Christie</span>
-    <span className='btn selected-tag'>Agatha Christie</span>
+    {tags.map(({label}) => <span key={label} className='btn selected-tag'>{label}</span>)}
   </div>
 );
 
 class ProfileTopbar extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       hasContent: false
     };
@@ -27,8 +24,8 @@ class ProfileTopbar extends React.Component {
     return (<div className={`profile-topbar ${this.state.hasContent && 'has-content' || ''}`} >
       <div className="profile-topbar-content container">
         <Progress percent="75" strokeWidth="16" />
-        <ProfileTags />
-        <ProfileRecommendations />
+        <ProfileTags tags={this.props.profile.tags} />
+        <ProfileRecommendations recommendations={this.props.profile.recommendations} />
       </div>
     </div>);
   }

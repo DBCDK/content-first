@@ -1,15 +1,15 @@
 import React from 'react';
 
-const ProfileRecommendation = () => (
+const ProfileRecommendation = ({recommendation}) => (
   <div className="profile-recommendation">
-    <img src="http://via.placeholder.com/150x200" />
+    <img src={`https://content-first.demo.dbc.dk/v1/image/${recommendation.pid}`} />
   </div>
 );
 
-const ProfileRecommendations = () => (
+const ProfileRecommendations = ({recommendations}) => (
   <div className="profile-recommendations">
     <div className="profile-recommendations-list">
-      {[1, 2, 3, 4, 5].map(value => <ProfileRecommendation {...{value}} />)}
+      {recommendations.map(recommendation => <ProfileRecommendation key={recommendation.pid} recommendation={recommendation} />)}
     </div>
     <div className="Profile-recommendations-label text-left raleway">
       Bedste forslag til din profil

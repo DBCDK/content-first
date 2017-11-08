@@ -45,7 +45,9 @@
 }
 
 .profile-recommendation img {
-  max-width: 60px
+  width: 60px;
+  height: 100px;
+  object-fit: cover;
 }
 
 .profile-recommendation + .profile-recommendation {
