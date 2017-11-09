@@ -8,9 +8,78 @@ const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const tagTable = constants.tags.table;
 const tagsUtil = require('server/tags');
+const path = require('path');
+const {validatingInput, validatingInputs} = require('__/json');
+const schemaTags = path.join(__dirname, 'schemas/tags-in.json');
+const schemaTagsArray = path.join(__dirname, 'schemas/tags-array-in.json');
 const _ = require('lodash');
 
 router.route('/')
+  //
+  // POST /v1/tags
+  //
+  .put(asyncMiddleware(async (req, res, next) => {
+    const contentType = req.get('content-type');
+    if (contentType !== 'application/json') {
+      return next({
+        status: 400,
+        title: 'Tags have to be provided as application/json',
+        detail: `Content type ${contentType} is not supported`
+      });
+    }
+    try {
+      await validatingInput(req.body, schemaTagsArray);
+    }
+    catch (error) {
+      return next({
+        status: 400,
+        title: 'Malformed tags data',
+        detail: 'Tags data does not adhere to schema',
+        meta: error.meta || error
+      });
+    }
+    let tagsArray;
+    try {
+      tagsArray = await validatingInputs(req.body, schemaTags);
+    }
+    catch (error) {
+      return next({
+        status: 400,
+        title: 'Malformed tags data',
+        detail: 'Tags data does not adhere to schema',
+        meta: error.meta || error
+      });
+    }
+    let totalTags = 0;
+    try {
+      await knex.transaction(transaction => {
+        return tagsArray.reduce((prev, tags) => {
+          return prev.then(() => {
+            return tagsUtil.parsingTagsInjection(tags)
+              .then(meta => {
+                const pid = meta.pid;
+                const rawTable = _.map(meta.tags, tag => {
+                  return {pid, tag};
+                });
+                totalTags += rawTable.length;
+                return transaction.insert(rawTable).into(tagTable);
+              });
+          });
+        }, transaction.raw(`truncate table ${tagTable}`));
+      });
+    }
+    catch (error) {
+      return next({
+        status: 500,
+        title: 'Database operation failed',
+        meta: error
+      });
+    }
+    return res.status(200).json({
+      data: `${totalTags} tags for ${tagsArray.length} PIDs created`,
+      links: {self: '/v1/tags'}
+    });
+  }))
   //
   // POST /v1/tags
   //

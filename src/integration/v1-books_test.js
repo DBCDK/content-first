@@ -13,14 +13,18 @@ describe('Endpoint /v1/books', () => {
   afterEach(() => {
     mock.afterEach();
   });
+
   describe('Public endpoint', () => {
+
     describe('GET /v1/books?pids=...', () => {
+
       it('should handle no PIDs', () => {
         return webapp.get('/v1/books')
           .expect(400)
           .expect('Content-Type', /json/)
           .expect(/must supply at least one PID/);
       });
+
       it('should handle non-existing pids', () => {
         const pid = 123456789;
         const url = `/v1/books?pids=${pid}`;
@@ -37,6 +41,7 @@ describe('Endpoint /v1/books', () => {
             });
           });
       });
+
       it('should give a list of existing books', () => {
         const pid = '870970-basis:53188931';
         const url = `/v1/books?pids=${pid}`;
@@ -79,9 +84,12 @@ describe('Endpoint /v1/books', () => {
       });
     });
   });
+
   describe('Internal endpoint', () => {
     const hidden = request(mock.internal);
+
     describe('PUT /v1/books', () => {
+
       it('should reject wrong content type', () => {
         const contentType = 'text/plain';
         return hidden.put('/v1/books')
@@ -98,11 +106,11 @@ describe('Endpoint /v1/books', () => {
             });
           });
       });
+
       it('should discard broken input and maintain current books', () => {
         return hidden.put('/v1/books')
           .type('application/json')
           .send('{"id": "1234"}')
-          .expect(400)
           .expect(res => {
             expectFailure(res.body, errors => {
               expect(errors).to.have.length(1);
@@ -111,8 +119,14 @@ describe('Endpoint /v1/books', () => {
               expect(error).to.have.property('detail');
               expect(error.detail).to.match(/does not adhere to schema/i);
             });
+          })
+          .expect(400)
+          .then(() => {
+            return webapp.get('/v1/books/already-seeded-pid-carter-mordoffer')
+              .expect(200);
           });
       });
+
       it('should discard partly-broken input and maintain current books', () => {
         const broken = require('fixtures/partly-broken-books.json');
         return hidden.put('/v1/books')
@@ -152,6 +166,7 @@ describe('Endpoint /v1/books', () => {
             return webapp.get(url).expect(200);
           });
       });
+
       it('should discard input with duplicate PIDs and maintain current books', () => {
         const broken = require('fixtures/duplicate-pid-books.json');
         return hidden.put('/v1/books')
@@ -173,12 +188,12 @@ describe('Endpoint /v1/books', () => {
             return webapp.get(url).expect(200);
           });
       });
+
       it('should accept valid input and replace all books', () => {
         const books = require('fixtures/two-books.json');
         return hidden.put('/v1/books')
           .type('application/json')
           .send(books)
-          .expect(200)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/books-links-out.json');
@@ -187,11 +202,11 @@ describe('Endpoint /v1/books', () => {
               expect(data).to.match(/2 books created/i);
             });
           })
+          .expect(200)
           .then(() => {
             const pid = 'pid-new-book-1';
             const url = `/v1/book/${pid}`;
             return webapp.get(url)
-              .expect(200)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
                   expectValidate(links, 'schemas/book-links-out.json');
@@ -200,7 +215,8 @@ describe('Endpoint /v1/books', () => {
                   expect(data.creator).to.equal('Author One');
                   expect(data.description).to.equal('One book among many');
                 });
-              });
+              })
+              .expect(200);
           })
           .then(() => {
             const pid = '870970-basis:53188931';

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 'use strict';
 
 const {expect} = require('chai');
@@ -18,7 +19,7 @@ describe('Endpoint /v1/tags', () => {
 
     describe('GET /v1/tags/:pid', () => {
       it('should return existing tags for a specific PID', () => {
-        const pid = '870970-basis:52947804';
+        const pid = 'already-seeded-pid-carter-mordoffer';
         const location = `/v1/tags/${pid}`;
         return webapp.get(location)
           .expect(res => {
@@ -42,7 +43,131 @@ describe('Endpoint /v1/tags', () => {
   describe('Internal endpoint', () => {
     const hidden = request(mock.internal);
 
+    describe('PUT /v1/tags', () => {
+
+      it('should reject wrong content type', () => {
+        const contentType = 'text/plain';
+        return hidden.put('/v1/tags')
+          .type(contentType)
+          .send('broken')
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/provided as application\/json/i);
+              expect(error).to.have.property('detail');
+              expect(error.detail).to.match(/text\/plain .*not supported/i);
+            });
+          })
+          .expect(400);
+      });
+
+      it('should discard broken input and maintain current tags', () => {
+        return hidden.put('/v1/tags')
+          .type('application/json')
+          .send('{"id": "1234"}')
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/malformed tags data/i);
+              expect(error).to.have.property('detail');
+              expect(error.detail).to.match(/does not adhere to schema/i);
+            });
+          })
+          .expect(400)
+          .then(() => {
+            return webapp.get('/v1/tags/already-seeded-pid-carter-mordoffer')
+              .expect(res => {
+                expectSuccess(res.body, (links, data) => {
+                  expect(data.tags).to.include(44);
+                });
+              })
+              .expect(200);
+          });
+      });
+
+      it('should discard partly-broken input and maintain current tags', () => {
+        const broken = require('fixtures/partly-broken-tags-array.json');
+        return hidden.put('/v1/tags')
+          .type('application/json')
+          .send(broken)
+          .expect(res => {
+            expectFailure(res.body, errors => {
+              expect(errors).to.have.length(1);
+              const error = errors[0];
+              expect(error.title).to.match(/malformed tags data/i);
+              expect(error).to.have.property('detail');
+              expect(error.detail).to.match(/does not adhere to schema/i);
+              expect(error).to.have.property('meta');
+              expect(error.meta).to.have.property('problems');
+              const problems = error.meta.problems;
+              expect(problems).to.be.an('array');
+              expect(problems).to.deep.include('field pid is required');
+              expect(problems).to.deep.include('field selected is the wrong type');
+            });
+          })
+          .expect(400)
+          .then(() => {
+            return webapp.get('/v1/tags/already-seeded-pid-carter-mordoffer')
+              .expect(res => {
+                expectSuccess(res.body, (links, data) => {
+                  expect(data.tags).to.include(44);
+                });
+              })
+              .expect(200);
+          });
+      });
+
+      it('should accept valid input and replace all tags', () => {
+        const tags = require('fixtures/good-tags-array.json');
+        return hidden.put('/v1/tags')
+          .type('application/json')
+          .send(tags)
+          .expect(res => {
+            expectSuccess(res.body, (links, data) => {
+              expectValidate(links, 'schemas/tags-array-links-out.json');
+              expect(links.self).to.equal('/v1/tags');
+              expectValidate(data, 'schemas/tags-array-data-out.json');
+              expect(data).to.match(/75 tags for 2 pids created/i);
+            });
+          })
+          .expect(200)
+          .then(() => {
+            const pid = 'pid-1-for-tag-inserted-by-put';
+            const url = `/v1/tags/${pid}`;
+            return webapp.get(url)
+              .expect(res => {
+                expectSuccess(res.body, (links, data) => {
+                  expectValidate(links, 'schemas/tags-links-out.json');
+                  expect(links.self).to.equal(url);
+                  expectValidate(data, 'schemas/tags-data-out.json');
+                  expect(data.pid).to.equal(pid);
+                  expect(data.tags).to.be.an('array');
+                });
+              })
+              .expect(200);
+          })
+          .then(() => {
+            const pid = 'already-seeded-pid-carter-mordoffer';
+            const url = `/v1/tags/${pid}`;
+            return webapp.get(url)
+              .expect(res => {
+                expectSuccess(res.body, (links, data) => {
+                  expectValidate(links, 'schemas/tags-links-out.json');
+                  expect(links.self).to.equal(url);
+                  expectValidate(data, 'schemas/tags-data-out.json');
+                  expect(data.pid).to.equal(pid);
+                  expect(data.tags).to.have.length(0);
+                });
+              })
+              .expect(200);
+          });
+      });
+    });
+
     describe('PUT /v1/tags/:pid', () => {
+
       it('should reject wrong content type', () => {
         const contentType = 'text/plain';
         return hidden.put('/v1/tags/1234-example:98765')
@@ -242,13 +367,13 @@ describe('Endpoint /v1/tags', () => {
 
     describe('DELETE /v1/tags/:pid', () => {
 
-      it('should clear all tags for a specific PID', done => {
-        const pid = '870970-basis:52947804';
+      it('should clear all tags for a specific PID', () => {
+        const pid = 'already-seeded-pid-carter-mordoffer';
         const location = `/v1/tags/${pid}`;
-        hidden.del(location)
+        return hidden.del(location)
           .expect(204)
           .then(() => {
-            webapp.get(location)
+            return webapp.get(location)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
                   expectValidate(links, 'schemas/tags-links-out.json');
@@ -260,10 +385,8 @@ describe('Endpoint /v1/tags', () => {
                   });
                 });
               })
-              .expect(200)
-              .end(done);
-          })
-          .catch(done);
+              .expect(200);
+          });
       });
     });
   });

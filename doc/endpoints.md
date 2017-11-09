@@ -158,6 +158,16 @@ The result is like that of `GET /v1/tags/`*pid*.
 
 Removes all tags for a specific PID.
 
+### `PUT /v1/tags`
+
+Replace all tags.  The data must be a list of [valid tag input](../src/server/schemas/tag-in.json).  On success, the result is the total number of books in the list, like
+
+    { "data": "106 tas created"
+    , "links": { "self": "/v1/tas" }
+    }
+
+If unsuccessful, the previous tags in the database are untouched.
+
 ## Recommendations
 
 ### `GET /v1/recommendations?tag=`*metatag*`&`...`&tag=`*metatag*
