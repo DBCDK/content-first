@@ -15,8 +15,8 @@
     "items": 3,
     "libraries": 2,
     "pages": 310,
-    "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=51752341&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=92e30ccbb8071418dded",
-    "loans": 1750
+    "cover": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=51752341&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=92e30ccbb8071418dded",
+    "loans": "1750"
   },
   {
     "ost": 9876543,

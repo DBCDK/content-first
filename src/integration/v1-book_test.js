@@ -118,7 +118,7 @@ describe('Endpoint /v1/book', () => {
               expect(problems).to.deep.include('field type is required');
               expect(problems).to.deep.include('field workType is required');
               expect(problems).to.deep.include('field language is required');
-              expect(problems).to.deep.include('field image_detail is required');
+              expect(problems).to.deep.include('field cover is required');
               expect(problems).to.deep.include('field items is required');
               expect(problems).to.deep.include('field libraries is required');
               expect(problems).to.deep.include('field pages is required');

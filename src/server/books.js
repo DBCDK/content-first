@@ -30,10 +30,16 @@ function parsingMetaDataInjection (obj) {
         book.work_type = document.workType;
         book.language = document.language;
         book.libraries = document.libraries;
-        book.loans = document.loans;
+        book.loans = parseInt(document.loans, 10);
+        if (!book.loans) {
+          return reject({
+            status: 400,
+            title: 'loans cannot be converted to an integer'
+          });
+        }
         book.pages = document.pages;
         book.items = document.items;
-        book.cover = document.image_detail;
+        book.cover = document.cover;
         book.taxonomy_description = document.taxonomy_description;
         book.description = document.description;
         const year = parseInt(document.dateFirstEdition, 10);

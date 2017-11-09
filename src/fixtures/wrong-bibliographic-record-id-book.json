@@ -18,6 +18,6 @@
   "items": 196,
   "libraries": 80,
   "pages": 645,
-  "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725",
-  "loans": 1020
+  "cover": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725",
+  "loans": "1020"
 }

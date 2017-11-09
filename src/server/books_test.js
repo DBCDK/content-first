@@ -32,7 +32,6 @@ describe('books', () => {
           expect(problems).to.deep.include('field type is required');
           expect(problems).to.deep.include('field workType is required');
           expect(problems).to.deep.include('field language is required');
-          expect(problems).to.deep.include('field image_detail is required');
           expect(problems).to.deep.include('field items is required');
           expect(problems).to.deep.include('field libraries is required');
           expect(problems).to.deep.include('field pages is required');
@@ -47,6 +46,15 @@ describe('books', () => {
         .then(error => {
           expect(error).to.have.property('title');
           expect(error.title).to.match(/bibliographicrecordid cannot be converted to an integer/i);
+        });
+    });
+    it('should complain about wrong loans count', () => {
+      const wrongId = require('fixtures/wrong-loans-book.json');
+      return expect(books.parsingMetaDataInjection(wrongId))
+        .to.be.rejected
+        .then(error => {
+          expect(error).to.have.property('title');
+          expect(error.title).to.match(/loans cannot be converted to an integer/i);
         });
     });
     it('should fill in all values from JSON', () => {

@@ -15,8 +15,8 @@
     "items": 1,
     "libraries": 1,
     "pages": 1,
-    "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=51752341&attachment_type=forside_stor&bibliotek=870970&source_id=1&key=1",
-    "loans": 1
+    "cover": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=51752341&attachment_type=forside_stor&bibliotek=870970&source_id=1&key=1",
+    "loans": "1"
   },
   {
     "pid": "pid-new-book-2",
@@ -34,7 +34,7 @@
     "items": 2,
     "libraries": 2,
     "pages": 2,
-    "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=52752342&attachment_type=forside_stor&bibliotek=870970&source_id=2&key=2",
-    "loans": 2
+    "cover": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=52752342&attachment_type=forside_stor&bibliotek=870970&source_id=2&key=2",
+    "loans": "2"
   }
 ]
