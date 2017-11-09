@@ -6,19 +6,14 @@
   "creator": "Joanne K. Rowling",
   "title": "Harry Potter og De Vises Sten",
   "titleFull": "Harry Potter og De Vises Sten",
-  "taxonomyDescription": "Dette er en beskrivelse",
-  "bibliographicDescription": "Det er det her også",
+  "taxonomy_description": "Dette er en beskrivelse",
+  "description": "Det er det her også",
   "type": "Bog",
   "workType": "book",
   "language": "Dansk",
   "items": 2690,
   "libraries": 154,
   "pages": 303,
-  "image_detail_117": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_117&bibliotek=870970&source_id=870970&key=e180eb0faa6ed278d362",
-  "image_detail_207": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_207&bibliotek=870970&source_id=870970&key=1c517d97693944feb144",
-  "image_detail_42": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_42&bibliotek=870970&source_id=870970&key=29753b68c7acdf133c64",
-  "image_detail_500": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_500&bibliotek=870970&source_id=870970&key=d4095b8649840634b590",
-  "image_thumbnail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_lille&bibliotek=870970&source_id=870970&key=0b701f66c33cd9a4cf1b",
-  "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=ec94fe625b65f28ca74d",
-  "loancount": 20811
+  "cover": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=22629344&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=ec94fe625b65f28ca74d",
+  "loans": "20811"
 }

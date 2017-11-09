@@ -33,7 +33,7 @@
       "required": true,
       "type": "string"
     },
-    "bibliographic_description": {
+    "description": {
       "required": true,
       "type": "string"
     },
@@ -41,7 +41,7 @@
       "required": true,
       "type": "integer"
     },
-    "loan_count": {
+    "loans": {
       "required": true,
       "type": "integer"
     },
