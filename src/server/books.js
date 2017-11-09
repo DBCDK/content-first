@@ -31,7 +31,7 @@ function parsingMetaDataInjection (obj) {
         book.language = document.language;
         book.libraries = document.libraries;
         book.loans = parseInt(document.loans, 10);
-        if (!book.loans) {
+        if (book.loans !== 0 && !book.loans) {
           return reject({
             status: 400,
             title: 'loans cannot be converted to an integer'

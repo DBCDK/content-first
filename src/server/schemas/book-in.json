@@ -55,7 +55,7 @@
     },
     "loans": {
       "required": true,
-      "type": "string"
+      "type": "integer"
     },
     "taxonomy_description": {
       "required": true,
