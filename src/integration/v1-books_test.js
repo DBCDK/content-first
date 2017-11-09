@@ -43,7 +43,7 @@ describe('Endpoint /v1/books', () => {
       });
 
       it('should give a list of existing books', () => {
-        const pid = '870970-basis:53188931';
+        const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
         const url = `/v1/books?pids=${pid}`;
         return webapp.get(url)
           .expect(200)
@@ -58,7 +58,7 @@ describe('Endpoint /v1/books', () => {
               expect(data[0].links.cover).to.equal(`/v1/image/${pid}`);
               expectValidate(data[0].book, 'schemas/book-data-out.json');
               expect(data[0].book).to.deep.equal({
-                pid: '870970-basis:53188931',
+                pid: 'already-seeded-pid-blendstrup-havelaagebogen',
                 unit_id: 'unit:22125672',
                 work_id: 'work:20137979',
                 bibliographic_record_id: 53188931,
@@ -122,7 +122,7 @@ describe('Endpoint /v1/books', () => {
           })
           .expect(400)
           .then(() => {
-            return webapp.get('/v1/books/already-seeded-pid-carter-mordoffer')
+            return webapp.get('/v1/book/already-seeded-pid-martin-ridder')
               .expect(200);
           });
       });
@@ -161,7 +161,7 @@ describe('Endpoint /v1/books', () => {
           })
           .expect(400)
           .then(() => {
-            const pid = '870970-basis:53188931';
+            const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
             const url = `/v1/book/${pid}`;
             return webapp.get(url).expect(200);
           });
@@ -183,7 +183,7 @@ describe('Endpoint /v1/books', () => {
           })
           .expect(400)
           .then(() => {
-            const pid = '870970-basis:53188931';
+            const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
             const url = `/v1/book/${pid}`;
             return webapp.get(url).expect(200);
           });
@@ -219,7 +219,7 @@ describe('Endpoint /v1/books', () => {
               .expect(200);
           })
           .then(() => {
-            const pid = '870970-basis:53188931';
+            const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
             const url = `/v1/book/${pid}`;
             return webapp.get(url).expect(404);
           });

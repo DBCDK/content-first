@@ -52,7 +52,7 @@ describe('books', () => {
     it('should fill in all values from JSON', () => {
       return expect(books.parsingMetaDataInjection(blendstrup))
         .to.become({
-          pid: '870970-basis:53188931',
+          pid: 'already-seeded-pid-blendstrup-havelaagebogen',
           creator: 'Jens Blendstrup',
           title: 'Havelågebogen',
           title_full: 'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
@@ -89,7 +89,7 @@ describe('books', () => {
             libraries: 80,
             loans: 1020,
             pages: 645,
-            pid: '870970-basis:53188931',
+            pid: 'already-seeded-pid-blendstrup-havelaagebogen',
             title: 'Havelågebogen',
             title_full: 'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
             type: 'Bog',

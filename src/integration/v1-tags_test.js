@@ -19,7 +19,7 @@ describe('Endpoint /v1/tags', () => {
 
     describe('GET /v1/tags/:pid', () => {
       it('should return existing tags for a specific PID', () => {
-        const pid = 'already-seeded-pid-carter-mordoffer';
+        const pid = 'already-tags-seeded-pid-without-book-entry';
         const location = `/v1/tags/${pid}`;
         return webapp.get(location)
           .expect(res => {
@@ -77,7 +77,7 @@ describe('Endpoint /v1/tags', () => {
           })
           .expect(400)
           .then(() => {
-            return webapp.get('/v1/tags/already-seeded-pid-carter-mordoffer')
+            return webapp.get('/v1/tags/already-tags-seeded-pid-without-book-entry')
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
                   expect(data.tags).to.include(44);
@@ -109,7 +109,7 @@ describe('Endpoint /v1/tags', () => {
           })
           .expect(400)
           .then(() => {
-            return webapp.get('/v1/tags/already-seeded-pid-carter-mordoffer')
+            return webapp.get('/v1/tags/already-tags-seeded-pid-without-book-entry')
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
                   expect(data.tags).to.include(44);
@@ -149,7 +149,7 @@ describe('Endpoint /v1/tags', () => {
               .expect(200);
           })
           .then(() => {
-            const pid = 'already-seeded-pid-carter-mordoffer';
+            const pid = 'already-tags-seeded-pid-without-book-entry';
             const url = `/v1/tags/${pid}`;
             return webapp.get(url)
               .expect(res => {
@@ -368,7 +368,7 @@ describe('Endpoint /v1/tags', () => {
     describe('DELETE /v1/tags/:pid', () => {
 
       it('should clear all tags for a specific PID', () => {
-        const pid = 'already-seeded-pid-carter-mordoffer';
+        const pid = 'already-tags-seeded-pid-without-book-entry';
         const location = `/v1/tags/${pid}`;
         return hidden.del(location)
           .expect(204)

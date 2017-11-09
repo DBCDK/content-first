@@ -32,7 +32,7 @@ describe('Endpoint /v1/book', () => {
           });
       });
       it('should give a book as result', () => {
-        const pid = '870970-basis:53188931';
+        const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
         const url = `/v1/book/${pid}`;
         return webapp.get(url)
           .expect(200)
@@ -43,7 +43,7 @@ describe('Endpoint /v1/book', () => {
               expect(links.cover).to.equal(`/v1/image/${pid}`);
               expectValidate(data, 'schemas/book-data-out.json');
               expect(data).to.deep.equal({
-                pid: '870970-basis:53188931',
+                pid: 'already-seeded-pid-blendstrup-havelaagebogen',
                 unit_id: 'unit:22125672',
                 work_id: 'work:20137979',
                 bibliographic_record_id: 53188931,
@@ -194,7 +194,7 @@ describe('Endpoint /v1/book', () => {
       });
       it('should replace a book in the database', done => {
         const harryPotter = require('fixtures/rowling-harry-potter-de-vises-sten.json');
-        const pid = '870970-basis:53188931';
+        const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
         harryPotter.pid = pid;
         const location = `/v1/book/${pid}`;
         hidden.put(location)
