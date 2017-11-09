@@ -2,8 +2,10 @@ import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
 import {getLeaves} from './filters';
-import profiles from '../data/profiles.json';
-import similar from '../data/similar.json';
+import profiles from '../data/ranked-profiles.json';
+import similar from '../data/similar-pids.json';
+import {taxonomyMap} from './taxonomy';
+
 
 const filter = (works, selectedTitles) => {
   // Lets perform some client side filtering of stuff which is not yet
@@ -61,20 +63,15 @@ export const fetchWork = (pid, dispatch) => {
   const getMetaTags = request.get(`/v1/tags/${pid}`);
   const getSimilarWorks = request.get('/v1/books/')
     .query({pids: similarList.map(o => o.pid)});
-  const getTaxonomy = request.get('/v1/complete-taxonomy');
 
-  Promise.all([getWork, getMetaTags, getSimilarWorks, getTaxonomy]).then(responses => {
+  Promise.all([getWork, getMetaTags, getSimilarWorks]).then(responses => {
     const work = JSON.parse(responses[0].text);
     const tags = JSON.parse(responses[1].text).data.tags;
     const similarWorks = JSON.parse(responses[2].text).data.map(w => {
       w.score = scores[w.book.pid];
       return w;
     });
-    const taxonomy = JSON.parse(responses[3].text).data;
-    const taxonomyMap = {};
-    getLeaves(taxonomy).forEach(l => {
-      taxonomyMap[l.id] = l;
-    });
+
     work.tags = [];
     tags.forEach(t => {
       if (taxonomyMap[t]) {

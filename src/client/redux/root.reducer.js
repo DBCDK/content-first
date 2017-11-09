@@ -3,6 +3,7 @@ import beltsReducer from './belts.reducer';
 import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
 import workReducer from './work.reducer';
+import profileReducer from './profile.reducer';
 
 // const LOCAL_STORAGE_KEY = 'contentfirst';
 
@@ -18,6 +19,7 @@ import workReducer from './work.reducer';
 const combined = combineReducers({
   beltsReducer,
   filterReducer,
+  profileReducer,
   routerReducer,
   workReducer
 });
