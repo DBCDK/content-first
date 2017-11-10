@@ -48,15 +48,6 @@ describe('books', () => {
           expect(error.title).to.match(/bibliographicrecordid cannot be converted to an integer/i);
         });
     });
-    // it('should complain about wrong loans count', () => {
-    //   const wrongId = require('fixtures/wrong-loans-book.json');
-    //   return expect(books.parsingMetaDataInjection(wrongId))
-    //     .to.be.rejected
-    //     .then(error => {
-    //       expect(error).to.have.property('title');
-    //       expect(error.title).to.match(/loans cannot be converted to an integer/i);
-    //     });
-    // });
     it('should fill in all values from JSON', () => {
       return expect(books.parsingMetaDataInjection(blendstrup))
         .to.become({
