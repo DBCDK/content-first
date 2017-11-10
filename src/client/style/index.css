@@ -77,10 +77,18 @@ body {
 .frontpage-image {
   background: #89b2bf;
   height: 550px;
-  background-image: url("/Billede-til-feature_v2.jpg");
+  background-image: url("/Billede-til-feature_v3.jpg");
   background-size: 1400px;
   background-position: 0px 0px;
+}
+.frontpage-image-credits {
+  margin-top: 10px;
+  margin-right: 0px;
   margin-bottom: 60px;
+  font-style: italic;
+}
+.frontpage-image-credits a {
+  color: grey;
 }
 
 .belt {
