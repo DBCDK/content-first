@@ -18,7 +18,7 @@ class ProfilePage extends React.Component {
       <div className={`profile-page ${this.props.profileState.tags.length > 0 ? 'has-topbar' : ''}`}>
         <ProfileTopbar profile={this.props.profileState}/>
         <div className='profile-page-content'>
-          <h2>Dummy Profile Tags</h2>
+          <h2>Hvilke stemninger foretrække du i bøger</h2>
           <ProfileMoodBelt moods={this.props.profileState.belts.moods}/>
         </div>
       </div>
