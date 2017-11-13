@@ -2,10 +2,6 @@ import React from 'react';
 import Image from '../Image.component';
 
 class WorkItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const tax_description = this.props.work.book.taxonomy_description || this.props.work.book.description;
     return (
