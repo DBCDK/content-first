@@ -10,8 +10,14 @@ import WorkPage from './components/work/WorkPage.container';
 import ProfilePage from './components/profile/ProfilePage.container';
 import TopBar from './components/TopBar.component';
 import {beltNameToPath} from './utils/belt';
+import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
 
 class App extends Component {
+
+  componentWillMount() {
+    this.props.dispatch({type: ON_USER_DETAILS_REQUEST});
+  }
+
   render() {
     const path = this.props.routerState.path;
     const pathSplit = path.split('/');

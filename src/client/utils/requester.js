@@ -1,6 +1,7 @@
 import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
+import {ON_USER_DETAILS_RESPONSE} from '../redux/profile.reducer';
 import {getLeaves} from './filters';
 import profiles from '../data/ranked-profiles.json';
 import similar from '../data/similar-pids.json';
@@ -121,6 +122,19 @@ export const fetchBeltWorks = (belt, filterState, dispatch) => {
       sort(works, filterState.sortBy.find(o => o.selected));
 
       dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, response: works});
+    });
+
+};
+
+export const fetchUser = (dispatch) => {
+  request.get('/v1/user')
+    .end(function(error, res) {
+      if (error) {
+        dispatch({type: ON_USER_DETAILS_RESPONSE, error});
+        return;
+      }
+      const user = JSON.parse(res.text).data;
+      dispatch({type: ON_USER_DETAILS_RESPONSE, user});
     });
 
 };

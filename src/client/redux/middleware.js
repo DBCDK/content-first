@@ -1,6 +1,7 @@
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
-import {fetchBeltWorks, fetchWork} from '../utils/requester';
+import {ON_USER_DETAILS_REQUEST} from './profile.reducer';
+import {fetchBeltWorks, fetchWork, fetchUser} from '../utils/requester';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_REPLACE = 'HISTORY_REPLACE';
@@ -54,6 +55,9 @@ export const requestMiddleware = store => next => action => {
       fetchWork(action.pid, store.dispatch);
       return next(action);
     }
+    case ON_USER_DETAILS_REQUEST:
+      fetchUser(store.dispatch);
+      return next(action);
     default:
       return next(action);
   }
