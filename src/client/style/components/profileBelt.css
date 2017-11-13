@@ -1,0 +1,58 @@
+.profile-belt {
+  text-align: start;
+}
+
+.profile-belt .tag {
+  position: relative;
+  width: calc(20% - 1rem);
+  padding-bottom : calc(20% - 1rem);
+  display: inline-flex;
+  transition: background-color 500ms;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.profile-belt .tag-label {
+  position: absolute;
+  bottom: 2rem;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px black;
+}
+.profile-belt .tag-checked {
+  width: 100%;
+  position: absolute;
+  bottom: 4rem;
+  z-index: 4;
+  display: inline-block;
+  margin: auto;
+  text-align: center;
+}
+.profile-belt .tag-checked svg {
+  transition: fill 200ms ease-in;
+  fill:transparent;
+  width: 40px;
+}
+.profile-belt .is-selected .tag-checked svg {
+  fill:  #fc492d;
+  width: 40px;
+}
+
+
+.profile-belt .tag-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.profile-belt .tag-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
