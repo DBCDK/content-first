@@ -5,6 +5,7 @@ import ScrollableBelt from '../frontpage/ScrollableBelt.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {getLeaves} from '../../utils/filters';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
+import Image from '../Image.component';
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -62,7 +63,11 @@ class WorkPage extends React.Component {
         <div className='row work-details'>
           <div className='col-xs-11 col-centered text-left'>
             <div className='cover-image-wrapper'>
-              <img alt='' src={`https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(work.data.pid)}`}/>
+              <Image key={work.data.pid} urls={[
+                `https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(work.data.pid)}`,
+                `/v1/image/${encodeURIComponent(work.data.pid)}`,
+                '/default-book-cover.png'
+              ]}/>
             </div>
             <div className='info'>
               <div className='title'>{work.data.title}</div>
