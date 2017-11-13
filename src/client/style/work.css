@@ -48,6 +48,9 @@
 }
 .cover-image {
   height: 100%;
+}
+.cover-image img {
+  height: 100%;
   border-radius: 1px;
 }
 .work-page .tags {
