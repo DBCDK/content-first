@@ -7,7 +7,7 @@ import Checkmark from '../svg/Checkmark';
 const Tag = ({tag, isSelected, dispatch})=> (
   <div key={tag.label} className={`tag ${isSelected ? 'is-selected' : ''}`} onClick={() => dispatch({type: isSelected ? ON_REMOVE_PROFILE_TAG : ON_ADD_PROFILE_TAG, tag})}>
     <div className="tag-background">
-      <img src={`https://www.lorempixel.com/300/300?cache=${tag.label}`} alt={tag.label} />
+      <img src={tag.image} alt={tag.label} />
     </div>
     <span className="tag-checked"><Checkmark /></span>
     <span className="tag-label raleway">{tag.label}</span>
