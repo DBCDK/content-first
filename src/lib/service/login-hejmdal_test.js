@@ -7,6 +7,7 @@ const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const expect = chai.expect;
+const sinon = require('sinon');
 const nock = require('nock');
 const Login = require('./login-hejmdal');
 const {validating} = require('__/json');
@@ -15,10 +16,16 @@ const schemaUserInfo = path.join(__dirname, 'login-user-info-out.json');
 
 describe('Login connector', () => {
 
+  const logger = {
+    log: {
+      info: sinon.stub(),
+      error: sinon.stub()
+    }
+  };
   const config = {
     url: 'https://login.bib.dk'
   };
-  const login = new Login(config);
+  const login = new Login(config, logger);
 
   beforeEach(() => {
     login.clear();

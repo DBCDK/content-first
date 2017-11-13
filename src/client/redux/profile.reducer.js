@@ -8,14 +8,14 @@ const defaultState = {
   loadingRecommendations: false,
   belts: {
     moods: [
-      {label: 'charmerende'},
-      {label: 'dramatisk'},
-      {label: 'erotisk'},
-      {label: 'fantasifuld'},
-      {label: 'frygtelig'},
-      {label: 'intellektuel'},
-      {label: 'kompleks'},
-      {label: 'konventionel'}
+      {label: 'charmerende', image: '/moods/charmerende.jpg'},
+      {label: 'dramatisk', image: '/moods/dramatisk.jpg'},
+      {label: 'erotisk', image: '/moods/erotisk.jpg'},
+      {label: 'fantasifuld', image: '/moods/fantasifuld.jpg'},
+      {label: 'frygtelig', image: '/moods/frygtelig.jpg'},
+      {label: 'intellektuel', image: '/moods/intellektuel.jpg'},
+      {label: 'kompleks', image: '/moods/kompleks.jpg'},
+      {label: 'konventionel', image: '/moods/konventionel.jpg'}
     ]
   }
 };
