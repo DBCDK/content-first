@@ -30,7 +30,7 @@ router.route('/')
     const loginToken = uuidv4();
     return loginService.gettingTicket(token, id)
       .then(remoteUser => {
-        // logger.log.info('Got remote user data');
+        logger.log.info('Got remote user data');
         return Promise.all([
           findUserByCpr(remoteUser.cpr),
           remoteUser
@@ -78,7 +78,11 @@ router.route('/')
           .send();
       })
       .catch(error => {
-        logger.log.info(`Could not get remote user data: ${JSON.stringify(error)}`);
+        let errorMsg = JSON.stringify(error);
+        if (errorMsg === '{}') {
+          errorMsg = error.toString();
+        }
+        logger.log.error(`Could not get remote user data: ${errorMsg}`);
         return res.status(303)
           .location(constants.pages.generalError)
           .send(error);

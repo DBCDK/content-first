@@ -21,6 +21,9 @@ class MockServer {
   getErrorLog () {
     return this.errorLog;
   }
+  getInfoLog () {
+    return this.infoLog;
+  }
   async beforeEach () {
     this.errorLog = sinon.stub(logger.log, 'error');
     this.infoLog = sinon.stub(logger.log, 'info');
