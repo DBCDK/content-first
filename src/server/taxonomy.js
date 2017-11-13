@@ -76,4 +76,5 @@ function parsingTaxonomyInjection (obj) {
       .catch(reject);
   });
 }
+
 exports.parsingTaxonomyInjection = parsingTaxonomyInjection;

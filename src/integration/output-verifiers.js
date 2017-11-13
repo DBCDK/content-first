@@ -9,7 +9,7 @@ const validator = require('is-my-json-valid/require');
 const formats = require('__/schemas/formats');
 const {nicifyJsonValidationErrors} = require('__/json');
 
-function expectSuccess(document, next) {
+function expectSuccess (document, next) {
   const validate = validator('schemas/success-out.json');
   validate(document);
   const problems = nicifyJsonValidationErrors(validate);
@@ -21,9 +21,8 @@ function expectSuccess(document, next) {
   const data = document.data;
   next(links, data);
 }
-exports.expectSuccess = expectSuccess;
 
-function expectFailure(document, next) {
+function expectFailure (document, next) {
   const validate = validator('schemas/failure-out.json');
   validate(document);
   const problems = nicifyJsonValidationErrors(validate);
@@ -35,9 +34,8 @@ function expectFailure(document, next) {
   expect(errors).to.be.an('array');
   next(errors);
 }
-exports.expectFailure = expectFailure;
 
-function expectValidate(document, schema) {
+function expectValidate (document, schema) {
   const validate = validator(schema, formats);
   validate(document);
   const problems = nicifyJsonValidationErrors(validate);
@@ -46,4 +44,9 @@ function expectValidate(document, schema) {
   }
   expect(problems).to.deep.equal([]);
 }
-exports.expectValidate = expectValidate;
+
+module.exports = {
+  expectSuccess,
+  expectFailure,
+  expectValidate
+};

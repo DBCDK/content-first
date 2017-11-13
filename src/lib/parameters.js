@@ -21,4 +21,7 @@ function parseList (data) {
   }
   return listPlus;
 }
-exports.parseList = parseList;
+
+module.exports = {
+  parseList
+};

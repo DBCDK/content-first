@@ -11,7 +11,7 @@ To only expose non-destructive endpoint to the public (ie. those needed by the [
 Returns a [book structure](../src/integration/schemas/book-data-out.json), like
 
     { "data":
-      { "pid": "870970-basis:53188931"
+      { "pid": "already-seeded-pid-blendstrup-havelaagebogen"
       , "unit_id": "unit:22125672"
       , "work_id": "work:20137979"
       , "bibliographic_record_id": "53188931"
@@ -19,9 +19,9 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
       , "title": "Havelågebogen"
       , "title_full": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
       , "taxonomy_description": "Ingen beskrivelse"
-      , "bibliographic_description": "Heller ingen beskrivelse"
+      , "description": "Heller ingen beskrivelse"
       , "pages": 645
-      , "loan_count": 1020
+      , "loans": 1020
       , "type": "Bog"
       , "work_type": "book"
       , "language": "Dansk"
@@ -33,8 +33,8 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
       , literary_form: 'digte, fiktion'
       }
     , "links":
-      { "self": "/v1/book/870970-basis:53188931"
-      , "cover": "/v1/image/870970-basis:53188931"
+      { "self": "/v1/book/already-seeded-pid-blendstrup-havelaagebogen"
+      , "cover": "/v1/image/already-seeded-pid-blendstrup-havelaagebogen"
       }
     }
 
@@ -44,13 +44,13 @@ Results in a [list of books](../src/integration/schemas/books-data-out.json), ea
 
     { "data":
       [ { "book":
-          { "pid": "870970-basis:53188931"
+          { "pid": "already-seeded-pid-blendstrup-havelaagebogen"
           , "title": "Havelågebogen"
           , "...": "..."
           }
         , "links":
-          { "self": "/v1/book/870970-basis:53188931"
-          , "cover": "/v1/image/870970-basis:53188931"
+          { "self": "/v1/book/already-seeded-pid-blendstrup-havelaagebogen"
+          , "cover": "/v1/image/already-seeded-pid-blendstrup-havelaagebogen"
           }
         }
       , { "book":
@@ -65,7 +65,7 @@ Results in a [list of books](../src/integration/schemas/books-data-out.json), ea
         }
       ]
     , "links":
-      { "self": "/v1/books?pids=870970-basis:53188931,870970-basis:22629344"
+      { "self": "/v1/books?pids=already-seeded-pid-blendstrup-havelaagebogen,870970-basis:22629344"
       }
     }
 
@@ -73,14 +73,14 @@ Results in a [list of books](../src/integration/schemas/books-data-out.json), ea
 
 The data must be [valid book input](../src/server/schemas/book-in.json), like
 
-    { "pid": "870970-basis:53188931"
+    { "pid": "already-seeded-pid-blendstrup-havelaagebogen"
     , "unitId": "unit:22125672"
     , "workId": "work:20137979"
     , "bibliographicRecordId": "53188931"
     , "subject": "billedværker, humor, fotografier"
     , "genre": "humor"
-    , "taxonomyDescription": "Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne"
-    , "bibliographicDescription": "Noget med låger"
+    , "taxonomy_description": "Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne"
+    , "description": "Noget med låger"
     , "creator": "Jens Blendstrup"
     , "title": "Havelågebogen"
     , "titleFull": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
@@ -93,8 +93,18 @@ The data must be [valid book input](../src/server/schemas/book-in.json), like
     , "libraries": 80
     , "pages": 645
     , "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725"
-    , "loancount": 1020
+    , "loans": 1020
     }
+
+### `PUT /v1/books`
+
+Replace all books.  The data must be a list of [valid book input](../src/server/schemas/book-in.json).  On success, the result is the total number of books in the list, like
+
+    { "data": "216 books created"
+    , "links": { "self": "/v1/books" }
+    }
+
+If unsuccessful, the previous books in the database are untouched.
 
 ## Images
 
@@ -147,6 +157,16 @@ The result is like that of `GET /v1/tags/`*pid*.
 ### `DELETE /v1/tags/`*pid*
 
 Removes all tags for a specific PID.
+
+### `PUT /v1/tags`
+
+Replace all tags.  The data must be a list of [valid tag input](../src/server/schemas/tag-in.json).  On success, the result is the total number of books in the list, like
+
+    { "data": "106 tas created"
+    , "links": { "self": "/v1/tas" }
+    }
+
+If unsuccessful, the previous tags in the database are untouched.
 
 ## Recommendations
 

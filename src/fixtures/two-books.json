@@ -1,0 +1,40 @@
+[
+  {
+    "pid": "pid-new-book-1",
+    "unitId": "unit-1",
+    "workId": "work-1",
+    "bibliographicRecordId": "1",
+    "creator": "Author One",
+    "title": "Title One",
+    "titleFull": "Title One",
+    "taxonomy_description": "One of the best things since sliced bread",
+    "description": "One book among many",
+    "type": "Bog",
+    "workType": "book",
+    "language": "Dansk",
+    "items": 1,
+    "libraries": 1,
+    "pages": 1,
+    "cover": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=51752341&attachment_type=forside_stor&bibliotek=870970&source_id=1&key=1",
+    "loans": 1
+  },
+  {
+    "pid": "pid-new-book-2",
+    "unitId": "unit-2",
+    "workId": "work-2",
+    "bibliographicRecordId": "2",
+    "creator": "Author Two",
+    "title": "Title Two",
+    "titleFull": "Title Two",
+    "taxonomy_description": "Two short stories",
+    "description": "Two tales about a lot of things",
+    "type": "Bog",
+    "workType": "book",
+    "language": "Dansk",
+    "items": 2,
+    "libraries": 2,
+    "pages": 2,
+    "cover": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=52752342&attachment_type=forside_stor&bibliotek=870970&source_id=2&key=2",
+    "loans": 2
+  }
+]

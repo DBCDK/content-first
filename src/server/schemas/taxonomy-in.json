@@ -42,15 +42,15 @@
                     "required": true,
                     "type": "string"
                   },
-                  "additionalProperties": true
+                  "additionalProperties": false
                 }
               }
             }
           }
         },
-        "additionalProperties": true
+        "additionalProperties": false
       }
     },
-    "additionalProperties": true
+    "additionalProperties": false
   }
 }

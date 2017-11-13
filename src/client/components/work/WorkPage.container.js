@@ -62,14 +62,14 @@ class WorkPage extends React.Component {
         <div className='row work-details'>
           <div className='col-xs-11 col-centered text-left'>
             <div className='cover-image-wrapper'>
-              <img alt='' src={work.links.cover}/>
+              <img alt='' src={`https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(work.data.pid)}`}/>
             </div>
             <div className='info'>
               <div className='title'>{work.data.title}</div>
               <div className='creator'>{work.data.creator}</div>
               <div className='meta-description'>{tax_description && tax_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}</div>
               <div className='line'></div>
-              <div className='description'>{work.data.bibliographic_description}</div>
+              <div className='description'>{work.data.description}</div>
               <div className='extra'>
                 <div className='subjects'>{work.data.subject}</div>
                 {work.data.pages && <div className='page-count'>{`${work.data.pages} sider`}</div>}

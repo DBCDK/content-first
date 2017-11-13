@@ -17,6 +17,12 @@ function parsingMetaDataInjection (obj) {
         book.unit_id = document.unitId;
         book.work_id = document.workId;
         book.bibliographic_record_id = parseInt(document.bibliographicRecordId, 10);
+        if (!book.bibliographic_record_id) {
+          return reject({
+            status: 400,
+            title: 'bibliographicRecordId cannot be converted to an integer'
+          });
+        }
         book.title = document.title;
         book.creator = document.creator;
         book.title_full = document.titleFull;
@@ -24,12 +30,12 @@ function parsingMetaDataInjection (obj) {
         book.work_type = document.workType;
         book.language = document.language;
         book.libraries = document.libraries;
-        book.loan_count = document.loancount;
+        book.loans = document.loans;
         book.pages = document.pages;
         book.items = document.items;
-        book.cover = document.image_detail;
-        book.taxonomy_description = document.taxonomyDescription;
-        book.bibliographic_description = document.bibliographicDescription;
+        book.cover = document.cover;
+        book.taxonomy_description = document.taxonomy_description;
+        book.description = document.description;
         const year = parseInt(document.dateFirstEdition, 10);
         book.first_edition_year = _.isNaN(year) ? 0 : year;
         book.subject = document.subject ? document.subject : '';
@@ -40,7 +46,6 @@ function parsingMetaDataInjection (obj) {
       .catch(reject);
   });
 }
-exports.parsingMetaDataInjection = parsingMetaDataInjection;
 
 function transformMetaDataToBook (metadata) {
   const filteredMetaData = _.pick(metadata, [
@@ -49,7 +54,7 @@ function transformMetaDataToBook (metadata) {
     'items',
     'language',
     'libraries',
-    'loan_count',
+    'loans',
     'pages',
     'pid',
     'title',
@@ -59,7 +64,7 @@ function transformMetaDataToBook (metadata) {
     'work_id',
     'work_type',
     'taxonomy_description',
-    'bibliographic_description',
+    'description',
     'subject',
     'genre',
     'literary_form',
@@ -67,4 +72,8 @@ function transformMetaDataToBook (metadata) {
   ]);
   return filteredMetaData;
 }
-exports.transformMetaDataToBook = transformMetaDataToBook;
+
+module.exports = {
+  parsingMetaDataInjection,
+  transformMetaDataToBook
+};

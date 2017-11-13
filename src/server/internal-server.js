@@ -9,7 +9,8 @@ const helmet = require('helmet');
 internal.use(parser.json({
   type: 'application/json',
   // Allow lone values.
-  strict: false
+  strict: false,
+  limit: '50mb'
 }));
 
 internal.use(parser.raw({

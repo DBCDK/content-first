@@ -11,6 +11,19 @@
       "items": {
         "type": "string"
       }
+    },
+    "creator": {
+      "required": false
+    },
+    "title": {
+      "required": false
+    },
+    "user": {
+      "required": false
+    },
+    "comments": {
+      "required": false
     }
-  }
+  },
+  "additionalProperties": false
 }

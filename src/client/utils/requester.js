@@ -1,7 +1,7 @@
 import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
-import {ON_PROFILE_RECOMMENDATIONS_RESPONSE} from '../redux/profile.reducer';
+import {ON_PROFILE_RECOMMENDATIONS_RESPONSE, ON_USER_DETAILS_RESPONSE} from '../redux/profile.reducer';
 import {getLeaves} from './filters';
 import profiles from '../data/ranked-profiles.json';
 import similar from '../data/similar-pids.json';
@@ -34,7 +34,7 @@ const filter = (works, selectedTitles) => {
       }
     }
     if (selectedTitles.indexOf('Udlånes meget') >= 0) {
-      if (work.book.loan_count < 100) {
+      if (work.book.loans < 100) {
         return false;
       }
     }
@@ -127,7 +127,18 @@ export const fetchBeltWorks = (belt, filterState, dispatch) => {
 
 };
 
-
 export const fetchProfileRecommendations = (profileState, dispatch) => {
   requestProfileRecommendations().then(recommendations => dispatch({type: ON_PROFILE_RECOMMENDATIONS_RESPONSE, recommendations}));
+};
+
+export const fetchUser = (dispatch) => {
+  request.get('/v1/user')
+    .end(function(error, res) {
+      if (error) {
+        dispatch({type: ON_USER_DETAILS_RESPONSE, error});
+        return;
+      }
+      const user = JSON.parse(res.text).data;
+      dispatch({type: ON_USER_DETAILS_RESPONSE, user});
+    });
 };

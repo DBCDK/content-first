@@ -38,7 +38,7 @@ describe('Endpoint /v1/image', () => {
     });
     describe('GET /v1/image/:pid', () => {
       it('should give a cover image', () => {
-        return webapp.get('/v1/image/870970-basis:53188931')
+        return webapp.get('/v1/image/already-seeded-pid-blendstrup-havelaagebogen')
           .expect(200)
           .expect('Content-Type', /image\/jpeg/)
           .expect('Content-Length', '29839');
@@ -108,7 +108,7 @@ describe('Endpoint /v1/image', () => {
           .catch(done);
       });
       it('should replace an image in the database', done => {
-        const location = '/v1/image/870970-basis:53188931';
+        const location = '/v1/image/already-seeded-pid-blendstrup-havelaagebogen';
         readFileAsync(resolve.sync('fixtures/870970-basis-53188931.jpg'))
           .then(contents => {
             return hidden.put(location)

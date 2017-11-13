@@ -54,7 +54,7 @@
     "build": "react-scripts build",
     "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/*/*_test.js src/lib/*/*_test.js",
     "db-migrate": ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
-    "inject-metakompas": "./tools/put-data.sh http://localhost:3002",
+    "inject-metakompas": "./tools/put-data.js http://localhost:8001",
     "lint-js": "eslint src",
     "postinstall": "./tools/setup-node-env.sh",
     "start": "run-p start-backend start-frontend",

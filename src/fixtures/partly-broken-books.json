@@ -1,0 +1,25 @@
+[
+  {
+    "pid": "already-seeded-pid-martin-ridder",
+    "unitId": "unit:1798708",
+    "workId": "work:1454568",
+    "bibliographicRecordId": "51752341",
+    "creator": "George R. R. Martin",
+    "title": "Den herreløse ridder",
+    "titleFull": "Den herreløse ridder : tre fortællinger fra De Syv Kongedømmer",
+    "taxonomy_description": "En temmelig lang og omstændig beskrivelse, men nogen gange skal det jo til, for ellers er det svært at overbringe en ordentlig forståelse.",
+    "description": "Noget med ordentlig forståelse.",
+    "type": "Bog",
+    "workType": "book",
+    "language": "Dansk",
+    "items": 3,
+    "libraries": 2,
+    "pages": 310,
+    "cover": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=51752341&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=92e30ccbb8071418dded",
+    "loans": 1750
+  },
+  {
+    "ost": 9876543,
+    "unitId": 22125672
+  }
+]

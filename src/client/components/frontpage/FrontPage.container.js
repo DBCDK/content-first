@@ -70,6 +70,9 @@ class FrontPage extends React.Component {
     return (
       <div className='frontpage'>
         <div className='row frontpage-image'/>
+        <div className='row frontpage-image-credits text-right'>
+          <a href='https://www.flickr.com/people/fatseth/'>Foto ©G Morel</a>
+        </div>
         {this.renderBelts()}
       </div>
     );

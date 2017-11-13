@@ -1,5 +1,5 @@
 /**
- * Utillties for backend service manipulation of tags data.
+ * Utillties for backend-service manipulation of tags data.
  */
 
 'use strict';
