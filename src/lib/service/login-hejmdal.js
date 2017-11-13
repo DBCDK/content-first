@@ -15,8 +15,9 @@ class Login {
   //
   // Public methods.
   //
-  constructor (config) {
+  constructor (config, logger) {
     this.config = config;
+    this.logger = logger;
     this.clear();
   }
   getName () {
@@ -66,11 +67,13 @@ class Login {
   }
   gettingTicket (token, id) {
     this.setOk();
+    const me = this;
     return new Promise((resolve, reject) => {
-      const me = this;
       const url = `${me.config.url}${constants.apiGetTicket}/${token}/${id}`;
+      me.logger.log.info(`Getting user info from ${url}`);
       request.get(url)
         .then(response => {
+          me.logger.log.info(`Got ${JSON.stringify(response)}`);
           return response.body;
         })
         .then(validating(schemaUserInfo))
@@ -89,10 +92,11 @@ class Login {
               birthYear: parseInt(attr.birthYear, 10)
             });
           }
-          return reject(new Error('User information could not be retrieved'));
+          return reject(new Error(`User information could not be retrieved from ${JSON.stringify(data)}`));
         })
         .catch(error => {
-          this.logError(error);
+          me.logger.log.info(`Caught ${error}`);
+          me.logError(error);
           return reject(error);
         });
     });

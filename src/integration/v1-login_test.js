@@ -277,7 +277,7 @@ describe('User login/out', () => {
         // Assert.
         .expect(() => {
           expect(hejmdal.isDone());
-          expect(mock.getErrorLog().args).to.have.length(0);
+          expect(mock.getErrorLog().args).to.have.length(1);
         })
         .expect('location', constants.pages.generalError)
         .expect(303);
