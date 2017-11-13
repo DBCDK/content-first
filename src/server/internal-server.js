@@ -14,7 +14,8 @@ internal.use(parser.json({
 }));
 
 internal.use(parser.raw({
-  type: 'image/*'
+  type: 'image/jpeg',
+  limit: '5mb'
 }));
 
 internal.use(helmet());
