@@ -5,7 +5,19 @@ const defaultState = {
   },
   tags: [],
   recommendations: [],
-  loadingRecommendations: false
+  loadingRecommendations: false,
+  belts: {
+    moods: [
+      {label: 'charmerende'},
+      {label: 'dramatisk'},
+      {label: 'erotisk'},
+      {label: 'fantasifuld'},
+      {label: 'frygtelig'},
+      {label: 'intellektuel'},
+      {label: 'kompleks'},
+      {label: 'konventionel'}
+    ]
+  }
 };
 
 export const ON_ADD_PROFILE_TAG = 'ON_ADD_PROFILE_TAG';
