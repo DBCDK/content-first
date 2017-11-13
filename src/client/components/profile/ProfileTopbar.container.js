@@ -5,7 +5,7 @@ import ProfileRecommendations from './profileRecommendations.component';
 
 const ProfileTags = ({tags}) => (
   <div className="tags">
-    {tags.map(({label}) => <span key={label} className='btn selected-tag'>{label}</span>)}
+    {tags.map((label) => <span key={label} className='btn selected-tag'>{label}</span>)}
   </div>
 );
 
