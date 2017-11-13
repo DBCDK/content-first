@@ -6,12 +6,15 @@ const ProfileRecommendation = ({recommendation}) => (
   </div>
 );
 
-const ProfileRecommendations = ({recommendations}) => (
+const ProfileRecommendations = ({recommendations, isLoading= false}) => (
   <div className="profile-recommendations">
     <div className="profile-recommendations-list">
       {recommendations.map(recommendation => <ProfileRecommendation key={recommendation.pid} recommendation={recommendation} />)}
+      <div className="profile-recommendations-loading-wrapper">
+        {isLoading ? <span className="profile-recommendations-loading"><span className="spinner"/></span> : ''}
+      </div>
     </div>
-    <div className="Profile-recommendations-label text-left raleway">
+    <div className="profile-recommendations-label text-left raleway">
       Bedste forslag til din profil
     </div>
   </div>

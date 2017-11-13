@@ -1,10 +1,12 @@
 import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
+import {ON_PROFILE_RECOMMENDATIONS_RESPONSE} from '../redux/profile.reducer';
 import {getLeaves} from './filters';
 import profiles from '../data/ranked-profiles.json';
 import similar from '../data/similar-pids.json';
 import {taxonomyMap} from './taxonomy';
+import requestProfileRecommendations from './requestProfileRecommendations';
 
 
 const filter = (works, selectedTitles) => {
@@ -123,4 +125,9 @@ export const fetchBeltWorks = (belt, filterState, dispatch) => {
       dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, response: works});
     });
 
+};
+
+
+export const fetchProfileRecommendations = (profileState, dispatch) => {
+  requestProfileRecommendations().then(recommendations => dispatch({type: ON_PROFILE_RECOMMENDATIONS_RESPONSE, recommendations}));
 };

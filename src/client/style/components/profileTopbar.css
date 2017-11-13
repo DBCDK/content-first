@@ -26,10 +26,8 @@
 .selected-tag {
   background-color: #ef4e27;
   color: white;
-}
-
-.selected-tag + .selected-tag  {
-  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
 .profile-recommendations {
@@ -38,10 +36,13 @@
 }
 
 .profile-recommendations-list {
+  position: relative;
   display: flex;
   width: 100%;
   justify-content: flex-end;
   margin-bottom: 1rem;
+  min-height: 100px;
+  min-width: 200px;
 }
 
 .profile-recommendation img {
@@ -52,4 +53,21 @@
 
 .profile-recommendation + .profile-recommendation {
   margin-left: 1rem;
+}
+
+.profile-recommendations-loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding-top: 20px;
+}
+
+.profile-recommendations-loading .spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
 }
