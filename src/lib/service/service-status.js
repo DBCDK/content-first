@@ -11,26 +11,26 @@ async function generatingServiceStatus (services) {
     _.map(services, service => {
       const name = service.getName();
       return service.testingConnection()
-        .then(status => {
-          if (status) {
-            return {
-              service: name,
-              ok: status
-            };
-          }
+      .then(status => {
+        if (status) {
           return {
             service: name,
-            ok: status,
-            problem: service.getCurrentError()
+            ok: status
           };
-        })
-        .catch(error => {
-          return {
-            service: name,
-            ok: false,
-            problem: error
-          };
-        });
+        }
+        return {
+          service: name,
+          ok: status,
+          problem: service.getCurrentError()
+        };
+      })
+      .catch(error => {
+        return {
+          service: name,
+          ok: false,
+          problem: error
+        };
+      });
     })
   );
   const ok = _.every(servicesHealth, health => health.ok);

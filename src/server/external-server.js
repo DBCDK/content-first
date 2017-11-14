@@ -5,13 +5,13 @@ const constants = require('server/constants')();
 const logger = require('server/logger');
 const _ = require('lodash');
 
+// Remote services.
 const database = require('server/database');
 const authenticator = require('server/authenticator');
 const login = require('server/login');
+const generatingServiceStatus = require('__/service/service-status');
 
-/*
- * Public web server.
- */
+// Public web server.
 const express = require('express');
 const external = express();
 
@@ -49,7 +49,6 @@ external.get('/howru', async(req, res) => {
     authenticator,
     login
   ];
-  const generatingServiceStatus = require('server/service-status');
   const status = await generatingServiceStatus(services);
   Object.assign(status, {
     version: require('../../package').version,
