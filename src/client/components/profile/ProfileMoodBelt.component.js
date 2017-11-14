@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import {connect} from 'react-redux';
 import {ON_ADD_PROFILE_TAG, ON_REMOVE_PROFILE_TAG} from '../../redux/profile.reducer';
