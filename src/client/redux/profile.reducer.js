@@ -28,7 +28,7 @@ const defaultState = {
       {
         label: 'romantikeren',
         image: '/archetypes/romantikeren.jpg',
-        moods: ['charmerende', 'erotisk'],
+        moods: ['fantasifuld', 'erotisk'],
         likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
         authors: ['Agatha Christie']
       },
@@ -62,8 +62,8 @@ export const ON_USER_DETAILS_RESPONSE = 'ON_USER_DETAILS_RESPONSE';
 const profileReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ON_ADD_PROFILE_TAG: {
-      const selectedMoods = [...state.selectedMoods, action.mood.label];
-      const allSelectedTags = [...state.allSelectedTags, ...selectedMoods];
+      const selectedMoods = unique([...state.selectedMoods, action.mood.label]);
+      const allSelectedTags = unique([...state.allSelectedTags, ...selectedMoods]);
       return Object.assign({}, state, {selectedMoods, allSelectedTags});
     }
     case ON_REMOVE_PROFILE_TAG: {

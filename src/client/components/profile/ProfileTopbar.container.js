@@ -10,11 +10,15 @@ const ProfileTags = ({tags}) => (
 );
 
 class ProfileTopbar extends React.Component {
+  getProgress() {
+    const percent = this.props.profile.allSelectedTags.length * 10;
+    return percent > 100 ? 100 : percent;
+  }
   render() {
     return (
       <div className={`profile-topbar ${this.props.profile.allSelectedTags.length > 0 ? 'has-content' : ''}`} >
         <div className="profile-topbar-content container">
-          <Progress percent={this.props.profile.allSelectedTags.length * 10} strokeWidth="16" />
+          <Progress percent={this.getProgress()} strokeWidth="16" />
           <ProfileTags tags={this.props.profile.allSelectedTags} />
           <ProfileRecommendations recommendations={this.props.profile.recommendations.elements} isLoading={this.props.profile.recommendations.isLoading}/>
         </div>
