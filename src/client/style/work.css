@@ -14,6 +14,9 @@
 .scale-on-hover:hover {
   transform: scale(1.05,1.05);
 }
+.scale-on-hover.scale-1:hover {
+  transform: scale(1.1,1.1);
+}
 .work .metakompas-description {
   position: absolute;
   bottom: 0px;

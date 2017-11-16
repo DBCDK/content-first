@@ -1,6 +1,10 @@
 .profile-page-content {
   text-align: left;
   margin-top: 0px;
+  margin-bottom: 25rem;
+  margin-left: 25px;
+  margin-right: 25px;
+  padding-bottom: 25rem;
   transition: margin 500ms ease-in-out;
 }
 .has-topbar .profile-page-content {

@@ -1,0 +1,38 @@
+.tags {
+  width: calc(100% + 1rem);
+  margin-bottom: -1rem;
+}
+
+.tags .tag {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  font-family: var(--secondary-font);
+  color: white;
+  display: inline-block;
+  padding: 6px 12px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+.tags .tag:last-of-type {
+  margin-right: 0;
+}
+
+.tag.small {
+  font-size: 1rem;
+  padding: 4px 6px;
+}
+
+.tag-blue {
+  background-color: var(--blue);
+}
+.tag-orange {
+  background-color: var(--orange);
+}
