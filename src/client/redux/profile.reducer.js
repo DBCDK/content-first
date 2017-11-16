@@ -1,14 +1,21 @@
+import unique from '../utils/unique';
+
 const defaultState = {
   user: {
     isLoading: false,
     isLoggedIn: false
   },
-  tags: [],
-  recommendations: [],
-  loadingRecommendations: false,
+  allSelectedTags: [],
+  selectedMoods: [],
+  selectedAuthors: [],
+  selectedArchetypes: [],
+  recommendations: {
+    isLoading: false,
+    elements: []
+  },
   belts: {
     moods: [
-      {label: 'charmerende', image: '/moods/charmerende.jpg'},
+      {label: 'Åbent fortolkningsrum', image: '/moods/charmerende.jpg'},
       {label: 'dramatisk', image: '/moods/dramatisk.jpg'},
       {label: 'erotisk', image: '/moods/erotisk.jpg'},
       {label: 'fantasifuld', image: '/moods/fantasifuld.jpg'},
@@ -20,10 +27,24 @@ const defaultState = {
     archetypes: [
       {
         label: 'romantikeren',
-        image: '/moods/charmerende.jpg',
-        tags: ['charmerende', 'erotisk'],
+        image: '/archetypes/romantikeren.jpg',
+        moods: ['fantasifuld', 'erotisk'],
         likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
-        follows: ['Agatha Christie']
+        authors: ['Agatha Christie']
+      },
+      {
+        label: 'hestepigen',
+        image: '/archetypes/hestepigen.jpg',
+        moods: ['fantasifuld', 'dramatisk'],
+        likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
+        authors: ['Cecil Bødker']
+      },
+      {
+        label: 'kynikeren',
+        image: '/archetypes/kynikeren.jpg',
+        moods: ['intellektuel', 'frygtelig', 'kompleks'],
+        likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
+        authors: ['Hans Scherfig', 'Kafka']
       }
     ]
   }
@@ -40,20 +61,29 @@ export const ON_USER_DETAILS_RESPONSE = 'ON_USER_DETAILS_RESPONSE';
 
 const profileReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ON_ADD_PROFILE_TAG:
-      return Object.assign({}, state, {tags: [...state.tags, action.tag]});
-    case ON_REMOVE_PROFILE_TAG:
-      return Object.assign({}, state, {tags: state.tags.filter(tag => tag !== action.tag)});
+    case ON_ADD_PROFILE_TAG: {
+      const selectedMoods = unique([...state.selectedMoods, action.mood.label]);
+      const allSelectedTags = unique([...state.allSelectedTags, ...selectedMoods]);
+      return Object.assign({}, state, {selectedMoods, allSelectedTags});
+    }
+    case ON_REMOVE_PROFILE_TAG: {
+      const selectedMoods = state.selectedMoods.filter(mood => mood !== action.mood.label);
+      const allSelectedTags = state.allSelectedTags.filter(tag => tag !== action.mood.label);
+      return Object.assign({}, state, {selectedMoods, allSelectedTags});
+    }
     case ON_ADD_PROFILE_ARCHETYPE: {
-      const tags = action.archetype.tags.filter(tag => !state.tags.includes(tag));
-      return Object.assign({}, state, {tags: [...state.tags, ...tags]});
+      const selectedArchetypes = [...state.selectedArchetypes, action.archetype.label];
+      const selectedMoods = unique([...state.selectedMoods, ...action.archetype.moods]);
+      const selectedAuthors = unique([...state.selectedAuthors, ...action.archetype.authors]);
+      const allSelectedTags = unique([...state.allSelectedTags, ...selectedMoods, ...selectedAuthors]);
+      return Object.assign({}, state, {selectedMoods, selectedArchetypes, allSelectedTags});
     }
     case ON_REMOVE_PROFILE_ARCHETYPE:
-      return Object.assign({}, state);
+      return Object.assign({}, state, {selectedArchetypes: state.selectedArchetypes.filter(archetype => archetype !== action.archetype.label)});
     case ON_PROFILE_RECOMMENDATIONS_REQUEST:
-      return Object.assign({}, state, {loadingRecommendations: true});
+      return Object.assign({}, state, {recommendations: Object.assign({}, state.recommendations, {isLoading: true})});
     case ON_PROFILE_RECOMMENDATIONS_RESPONSE:
-      return Object.assign({}, state, {recommendations: action.recommendations, loadingRecommendations: false});
+      return Object.assign({}, state, {recommendations: {elements: action.recommendations, isLoading: false}});
     case ON_USER_DETAILS_REQUEST:
       return Object.assign({}, state, {user: Object.assign({}, state.user, {isLoading: true})});
     case ON_USER_DETAILS_RESPONSE:

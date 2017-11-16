@@ -10,13 +10,13 @@ import {ON_PROFILE_RECOMMENDATIONS_REQUEST} from '../../redux/profile.reducer';
 class ProfilePage extends React.Component {
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.profileState.tags !== this.props.profileState.tags) {
+    if (nextProps.profileState.selectedMoods !== this.props.profileState.selectedMoods) {
       this.props.dispatch({type: ON_PROFILE_RECOMMENDATIONS_REQUEST, action: nextProps});
     }
   }
   render() {
     return (
-      <div className={`profile-page ${this.props.profileState.tags.length > 0 ? 'has-topbar' : ''}`}>
+      <div className={`profile-page ${this.props.profileState.selectedMoods.length > 0 ? 'has-topbar' : ''}`}>
         <ProfileTopbar profile={this.props.profileState}/>
         <div className='profile-page-content'>
           <h2>Hvilke stemninger foretrække du i bøger</h2>

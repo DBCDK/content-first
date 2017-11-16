@@ -2,27 +2,64 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {ON_ADD_PROFILE_ARCHETYPE, ON_REMOVE_PROFILE_ARCHETYPE} from '../../redux/profile.reducer';
 import '../../style/components/profileBelt.css';
-import Checkmark from '../svg/Checkmark';
+import ProfileTooltip from './profileTooltip.component';
 
-const Tag = ({tag, isSelected, dispatch})=> (
-  <div className={`tag ${isSelected ? 'is-selected' : ''}`} onClick={() => dispatch({type: isSelected ? ON_REMOVE_PROFILE_ARCHETYPE : ON_ADD_PROFILE_ARCHETYPE, archetype: tag})}>
-    <div className="tag-background">
-      <img src={tag.image} alt={tag.label} />
-    </div>
-    <span className="tag-checked"><Checkmark /></span>
-    <span className="tag-label raleway">{tag.label}</span>
-  </div>
-);
+class Archetype extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      showTooltip: false
+    };
+  }
+  toggleTooltip(e) {
+    e.stopPropagation();
+    this.setState({showTooltip: !this.state.showTooltip});
+  }
+
+  render() {
+    const {archetype, isSelected, dispatch} = this.props;
+    return (
+      <div className={`card card-blue-select scale-on-hover scale-1 ${isSelected ? 'is-selected' : ''}`}
+        onMouseLeave={() => this.setState({showTooltip: false})}
+        onClick={() => dispatch({type: isSelected ? ON_REMOVE_PROFILE_ARCHETYPE : ON_ADD_PROFILE_ARCHETYPE, archetype: archetype})}
+      >
+        <div className="card-container">
+          <div className="card-background">
+            <img src={archetype.image} alt={archetype.label} />
+          </div>
+          <span className="card-info" onClick={(e) => this.toggleTooltip(e)} />
+          <span className="card-label raleway">{archetype.label}</span>
+        </div>
+        <ProfileTooltip isVisible={this.state.showTooltip}>
+          <h4>Følger:</h4>
+          <div className="flex-grid tight authors">
+            {archetype.authors.map(author => <span>{author}</span>)}
+          </div>
+          <h4>læser:</h4>
+          <div className="flex-grid tight">
+            {archetype.moods.map(mood => <span className="tag small tag-orange">{mood}</span>)}
+          </div>
+          <h4>Kan lide:</h4>
+          <div className="flex-grid flex-grid-3">
+            {archetype.likes.map(pid => <img className="card-like" src={`https://content-first.demo.dbc.dk/v1/image/${pid}`} alt={pid} />)}
+          </div>
+        </ProfileTooltip>
+
+      </div>
+    );
+  }
+}
 
 class ProfileArchetypeBelt extends React.Component {
-  isTagSelected(tag) {
-    return this.props.profileState.tags.filter(({label}) => label === tag.label).length === 1;
+  isSelected(tag) {
+    return this.props.profileState.selectedArchetypes.filter(archetype => archetype === tag.label).length === 1;
   }
 
   render() {
     return (
-      <div className="profile-belt">
-        {this.props.archetypes.map(tag => <Tag key={tag.label} tag={tag} dispatch={this.props.dispatch} isSelected={this.isTagSelected(tag)} />)}
+      <div className="profile-belt flex-grid flex-grid-6 square">
+        {this.props.archetypes.map(archetype => <Archetype key={archetype.label} archetype={archetype} dispatch={this.props.dispatch} isSelected={this.isSelected(archetype)} />)}
       </div>
     );
   }

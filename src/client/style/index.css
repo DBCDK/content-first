@@ -1,6 +1,19 @@
+:root {
+  --blue: #7e9ecd;
+  --orange:  #fc492d;
+  --primary-font: 'Lora', serif;
+  --secondary-font: 'Raleway', sans-serif;
+} 
+
+
 @import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+@import './utils/flex.css';
+@import './utils/grid.css';
 @import './utils/spinner.css';
+@import './utils/tags.css';
+
+
 
 body {
   margin: 0;
