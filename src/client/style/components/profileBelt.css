@@ -7,8 +7,22 @@
 
 .card-container {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  left: 0rem;
+  right: 0rem;
+  top: 0rem;
+  bottom: 0rem;
+}
+.card:hover .card-background{
+  position: absolute;
+  left: -0.5rem;
+  right: -0.5rem;
+  top: -0.5rem;
+  bottom: -0.5rem;
+}
+.card .profile-tooltip{
+  left: -0.5rem;
+  right: -0.5rem;
+  top: calc(100% + 0.5rem);
 }
 
 .profile-belt .authors >*:after {
@@ -39,18 +53,12 @@
   top: 0.5rem;
 }
 
-.is-selected .card-info {
-  top: 0.5rem;
-  right: 0.5rem;
-}
-
 .card:hover .card-info {
   opacity: 0.85;
 }
 
-.card:hover,
+.card:hover .card-background,
 .card:hover .profile-tooltip {
-  z-index: 2;
   box-shadow: 0px 2px 5px rgba(0,0,0, 0.3);
 }
 
@@ -72,9 +80,6 @@
   font-weight: 700;
   letter-spacing: 0.5px;
 }
-.is-selected .card-label {
-  bottom: 40px;
-}
 
 .profile-belt .card-checked {
   width: 100%;
@@ -94,7 +99,7 @@
   fill:  #fc492d;
   width: 40px;
 }
-.card-blue-select.is-selected .card-container{
+.card-blue-select.is-selected .card-container img{
   border: 5px solid var(--blue);
 }
 

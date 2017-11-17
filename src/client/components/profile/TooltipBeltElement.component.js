@@ -18,7 +18,7 @@ export default class TooltipBeltElement extends React.Component {
   render() {
     const {element, isSelected, onAddElement, onRemoveElement} = this.props;
     return (
-      <div className={`card card-blue-select scale-on-hover scale-1 ${isSelected ? 'is-selected' : ''}`}
+      <div className={`card card-blue-select scale-1 ${isSelected ? 'is-selected' : ''}`}
         onMouseLeave={() => this.setState({showTooltip: false})}
         onClick={() => isSelected ? onRemoveElement(element) : onAddElement(element)}
       >
