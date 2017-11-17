@@ -36,6 +36,9 @@
 .flex-grid-6.square > * {
   padding-bottom : calc(100%/6 - 5rem/6);
 }
+.flex-grid.wide > * {
+  padding-bottom : calc(70%/6 - 5rem/6);
+}
 .flex-grid-6 > *:nth-child(6) {
   margin-right: 0;
 }

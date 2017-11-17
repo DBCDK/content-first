@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import ProfileTopbar from './ProfileTopbar.container';
 import ProfileMoodBelt from './ProfileMoodBelt.component';
 import ProfileArchetypeBelt from './ProfileArchetype.component';
+import ProfileAuthorBelt from './ProfileAuthor.component';
 import '../../style/profilePage.css';
 import {ON_PROFILE_RECOMMENDATIONS_REQUEST} from '../../redux/profile.reducer';
 
@@ -23,6 +24,8 @@ class ProfilePage extends React.Component {
           <ProfileMoodBelt moods={this.props.profileState.belts.moods}/>
           <h2>Hvilke typer af forslag vil du se?</h2>
           <ProfileArchetypeBelt archetypes={this.props.profileState.belts.archetypes} />
+          <h2>Hvilke forfattere kan du godt lide at læse?</h2>
+          <ProfileAuthorBelt authors={this.props.profileState.belts.authors} />
         </div>
       </div>
     );

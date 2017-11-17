@@ -1,7 +1,7 @@
 import React from 'react';
 import Progress from './Progress.component';
 import '../../style/components/profileTopbar.css';
-import ProfileRecommendations from './profileRecommendations.component';
+import ProfileRecommendations from './ProfileRecommendations.component';
 
 const ProfileTags = ({tags}) => (
   <div className="tags">

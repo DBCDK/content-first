@@ -1,55 +1,29 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {ON_ADD_PROFILE_ARCHETYPE, ON_REMOVE_PROFILE_ARCHETYPE} from '../../redux/profile.reducer';
-import '../../style/components/profileBelt.css';
-import ProfileTooltip from './profileTooltip.component';
+import TooltipBeltElement from './TooltipBeltElement.component';
 
-class Archetype extends React.Component {
-
-  constructor() {
-    super();
-    this.state = {
-      showTooltip: false
-    };
-  }
-  toggleTooltip(e) {
-    e.stopPropagation();
-    this.setState({showTooltip: !this.state.showTooltip});
-  }
-
-  render() {
-    const {archetype, isSelected, dispatch} = this.props;
-    return (
-      <div className={`card card-blue-select scale-on-hover scale-1 ${isSelected ? 'is-selected' : ''}`}
-        onMouseLeave={() => this.setState({showTooltip: false})}
-        onClick={() => dispatch({type: isSelected ? ON_REMOVE_PROFILE_ARCHETYPE : ON_ADD_PROFILE_ARCHETYPE, archetype: archetype})}
-      >
-        <div className="card-container">
-          <div className="card-background">
-            <img src={archetype.image} alt={archetype.label} />
-          </div>
-          <span className="card-info" onClick={(e) => this.toggleTooltip(e)} />
-          <span className="card-label raleway">{archetype.label}</span>
-        </div>
-        <ProfileTooltip isVisible={this.state.showTooltip}>
-          <h4>Følger:</h4>
-          <div className="flex-grid tight authors">
-            {archetype.authors.map(author => <span>{author}</span>)}
-          </div>
-          <h4>læser:</h4>
-          <div className="flex-grid tight">
-            {archetype.moods.map(mood => <span className="tag small tag-orange">{mood}</span>)}
-          </div>
-          <h4>Kan lide:</h4>
-          <div className="flex-grid flex-grid-3">
-            {archetype.likes.map(pid => <img className="card-like" src={`https://content-first.demo.dbc.dk/v1/image/${pid}`} alt={pid} />)}
-          </div>
-        </ProfileTooltip>
-
-      </div>
-    );
-  }
-}
+const Archetype = ({archetype, isSelected, dispatch}) => (
+  <TooltipBeltElement
+    onAddElement={(element) => dispatch({type: ON_ADD_PROFILE_ARCHETYPE, archetype: element})}
+    onRemoveElement={(element) => dispatch({type: ON_REMOVE_PROFILE_ARCHETYPE, archetype: element})}
+    element={archetype}
+    isSelected={isSelected}
+  >
+    <h4>Følger:</h4>
+    <div className="flex-grid tight authors">
+      {archetype.authors.map(author => <span key={author}>{author}</span>)}
+    </div>
+    <h4>læser:</h4>
+    <div className="flex-grid tight">
+      {archetype.moods.map(mood => <span key={mood} className="tag small tag-orange">{mood}</span>)}
+    </div>
+    <h4>Kan lide:</h4>
+    <div className="flex-grid flex-grid-3">
+      {archetype.likes.map(pid => <img key={pid} className="card-like" src={`https://content-first.demo.dbc.dk/v1/image/${pid}`} alt={pid} />)}
+    </div>
+  </TooltipBeltElement>
+);
 
 class ProfileArchetypeBelt extends React.Component {
   isSelected(tag) {

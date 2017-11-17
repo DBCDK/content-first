@@ -30,21 +30,58 @@ const defaultState = {
         image: '/archetypes/romantikeren.jpg',
         moods: ['fantasifuld', 'erotisk'],
         likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
-        authors: ['Agatha Christie']
+        authors: ['Carsten Jensen', 'Hanne Vibeke Holst']
       },
       {
         label: 'hestepigen',
         image: '/archetypes/hestepigen.jpg',
         moods: ['fantasifuld', 'dramatisk'],
         likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
-        authors: ['Cecil Bødker']
+        authors: ['Anne Lise Marstrand Jørgensen']
       },
       {
         label: 'kynikeren',
         image: '/archetypes/kynikeren.jpg',
         moods: ['intellektuel', 'frygtelig', 'kompleks'],
         likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
-        authors: ['Hans Scherfig', 'Kafka']
+        authors: ['Kim Leine', 'Paula Hawkins']
+      }
+    ],
+    authors: [
+      {
+        label: 'Anne Lise Marstrand Jørgensen',
+        image: '/authors/anne-lise-marstrand-joergensen.jpg',
+        genres: ['fantasifuld', 'erotisk'],
+        likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
+        byline: 'about the author'
+      },
+      {
+        label: 'Carsten Jensen',
+        image: '/authors/carsten-jensen.jpg',
+        genres: ['fantasifuld', 'dramatisk'],
+        likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
+        byline: 'about the author'
+      },
+      {
+        label: 'Hanne Vibeke Holst',
+        image: '/authors/hanne-vibeke-holst.jpg',
+        genres: ['intellektuel', 'frygtelig', 'kompleks'],
+        likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
+        byline: 'about the author'
+      },
+      {
+        label: 'Kim Leine',
+        image: '/authors/kim-leine.jpg',
+        genres: ['intellektuel', 'frygtelig', 'kompleks'],
+        likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
+        byline: 'about the author'
+      },
+      {
+        label: 'Paula Hawkins',
+        image: '/authors/paula-hawkins.jpg',
+        genres: ['intellektuel', 'frygtelig', 'kompleks'],
+        likes: ['870970-basis:52038014', '870970-basis:52530423', '870970-basis:52939321'],
+        byline: 'about the author'
       }
     ]
   }
@@ -52,6 +89,8 @@ const defaultState = {
 
 export const ON_ADD_PROFILE_TAG = 'ON_ADD_PROFILE_TAG';
 export const ON_REMOVE_PROFILE_TAG = 'ON_REMOVE_PROFILE_TAG';
+export const ON_ADD_PROFILE_AUTHOR= 'ON_ADD_PROFILE_AUTHOR';
+export const ON_REMOVE_PROFILE_AUTHOR = 'ON_REMOVE_PROFILE_AUTHOR';
 export const ON_ADD_PROFILE_ARCHETYPE = 'ON_ADD_PROFILE_ARCHETYPE';
 export const ON_REMOVE_PROFILE_ARCHETYPE = 'ON_REMOVE_PROFILE_ARCHETYPE';
 export const ON_PROFILE_RECOMMENDATIONS_REQUEST = 'ON_PROFILE_RECOMMENDATIONS_REQUEST';
@@ -71,12 +110,22 @@ const profileReducer = (state = defaultState, action) => {
       const allSelectedTags = state.allSelectedTags.filter(tag => tag !== action.mood.label);
       return Object.assign({}, state, {selectedMoods, allSelectedTags});
     }
+    case ON_ADD_PROFILE_AUTHOR: {
+      const selectedAuthors = unique([...state.selectedAuthors, action.author.label]);
+      const allSelectedTags = unique([...state.allSelectedTags, ...selectedAuthors]);
+      return Object.assign({}, state, {selectedAuthors, allSelectedTags});
+    }
+    case ON_REMOVE_PROFILE_AUTHOR: {
+      const selectedAuthors = state.selectedAuthors.filter(author => author !== action.author.label);
+      const allSelectedTags = state.allSelectedTags.filter(tag => tag !== action.author.label);
+      return Object.assign({}, state, {selectedAuthors, allSelectedTags});
+    }
     case ON_ADD_PROFILE_ARCHETYPE: {
       const selectedArchetypes = [...state.selectedArchetypes, action.archetype.label];
       const selectedMoods = unique([...state.selectedMoods, ...action.archetype.moods]);
       const selectedAuthors = unique([...state.selectedAuthors, ...action.archetype.authors]);
       const allSelectedTags = unique([...state.allSelectedTags, ...selectedMoods, ...selectedAuthors]);
-      return Object.assign({}, state, {selectedMoods, selectedArchetypes, allSelectedTags});
+      return Object.assign({}, state, {selectedMoods, selectedAuthors, selectedArchetypes, allSelectedTags});
     }
     case ON_REMOVE_PROFILE_ARCHETYPE:
       return Object.assign({}, state, {selectedArchetypes: state.selectedArchetypes.filter(archetype => archetype !== action.archetype.label)});
