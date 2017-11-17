@@ -28,14 +28,23 @@ const defaultState = {
       {label: 'konventionel', image: '/moods/konventionel.jpg'}
     ],
     genres: [
-      {label: 'Åbent fortolkningsrum', image: '/moods/charmerende.jpg'},
-      {label: 'dramatisk', image: '/moods/dramatisk.jpg'},
-      {label: 'erotisk', image: '/moods/erotisk.jpg'},
-      {label: 'fantasifuld', image: '/moods/fantasifuld.jpg'},
-      {label: 'frygtelig', image: '/moods/frygtelig.jpg'},
-      {label: 'intellektuel', image: '/moods/intellektuel.jpg'},
-      {label: 'kompleks', image: '/moods/kompleks.jpg'},
-      {label: 'konventionel', image: '/moods/konventionel.jpg'}
+      {label: 'Biografiske romaner', image: '/genres/small/biografiske-romaner.jpg'},
+      {label: 'Biografiske skuespil', image: '/genres/small/biografiske-skuespil.jpg'},
+      {label: 'Brevromaner', image: '/genres/small/brevromaner.jpg'},
+      {label: 'Eventyr, sagn og myter', image: '/genres/small/eventyr-sagn-og-myter.jpg'},
+      {label: 'Eventyrlige fortællinger', image: '/genres/small/eventyrlige-fortaellinger.jpg'},
+      {label: 'Fantasy, fremtid og science fiction', image: '/genres/small/fantasy-fremtid-og-science-fiction.jpg'},
+      {label: 'Humor og satire', image: '/genres/small/humor-og-satire.jpg'},
+      {label: 'I Danmark', image: '/genres/small/i-danmark---i-andre-lande.jpg'},
+      {label: 'Krimi, gys og spænding', image: '/genres/small/krimi-gys-og-spaending.jpg'},
+      {label: 'Let at læse', image: '/genres/small/let-at-laese---for-voksne.jpg'},
+      {label: 'Noveller', image: '/genres/small/noveller.jpg'},
+      {label: 'Poesi', image: '/genres/small/poesi.jpg'},
+      {label: 'Robinsonader', image: '/genres/small/robinsonader.jpg'},
+      {label: 'Samfund, arbejde og dagligliv', image: '/genres/small/samfund-arbejde-og-dagligliv.jpg'},
+      {label: 'Tegneserier', image: '/genres/small/tegneserier.jpg'},
+      {label: 'Tilbage i historien', image: '/genres/small/tilbage-i-historien.jpg'},
+      {label: 'Westerns', image: '/genres/small/westerns.jpg'}
     ],
     archetypes: [
       {
