@@ -1,12 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ProfileTopbar from './ProfileTopbar.container';
-import ProfileMoodBelt from './ProfileMoodBelt.component';
-import ProfileArchetypeBelt from './ProfileArchetype.component';
-import ProfileAuthorBelt from './ProfileAuthor.component';
+import ProfileBelt from './ProfileBelt.component';
+import ArchetypeTooltip from './ArchetypeTooltip.component';
+import AuthorTooltip from './AuthorTooltip.component';
 import '../../style/profilePage.css';
-import {ON_PROFILE_RECOMMENDATIONS_REQUEST} from '../../redux/profile.reducer';
-
+import {ON_PROFILE_RECOMMENDATIONS_REQUEST, ON_ADD_PROFILE_ARCHETYPE, ON_REMOVE_PROFILE_ARCHETYPE} from '../../redux/profile.reducer';
 
 class ProfilePage extends React.Component {
 
@@ -21,11 +20,13 @@ class ProfilePage extends React.Component {
         <ProfileTopbar profile={this.props.profileState}/>
         <div className='profile-page-content'>
           <h2>Hvilke stemninger foretrække du i bøger</h2>
-          <ProfileMoodBelt moods={this.props.profileState.belts.moods}/>
+          <ProfileBelt type="moods" selectionType="checkmark" />
+          <h2>Hvilke genre af bøger foretrækker du</h2>
+          <ProfileBelt type="genres" selectionType="checkmark" />
           <h2>Hvilke typer af forslag vil du se?</h2>
-          <ProfileArchetypeBelt archetypes={this.props.profileState.belts.archetypes} />
+          <ProfileBelt type="archetypes" size="6" tooltip={ArchetypeTooltip} add={ON_ADD_PROFILE_ARCHETYPE} remove={ON_REMOVE_PROFILE_ARCHETYPE} />
           <h2>Hvilke forfattere kan du godt lide at læse?</h2>
-          <ProfileAuthorBelt authors={this.props.profileState.belts.authors} />
+          <ProfileBelt type="authors" format="wide" size="6" tooltip={AuthorTooltip} />
         </div>
       </div>
     );

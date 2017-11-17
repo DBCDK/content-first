@@ -36,7 +36,7 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  z-index: 1;
+  z-index: 10;
   color: white;
   background-color: var(--blue);
   width: 50px;
@@ -81,7 +81,7 @@
   letter-spacing: 0.5px;
 }
 
-.profile-belt .card-checked {
+.card-checkmark {
   width: 100%;
   position: absolute;
   bottom: 4rem;
@@ -90,16 +90,16 @@
   margin: auto;
   text-align: center;
 }
-.profile-belt .card-checked svg {
+.card-checkmark svg {
   transition: fill 200ms ease-in;
   fill:transparent;
   width: 40px;
 }
-.profile-belt .is-selected .card-checked svg {
+.card.checkmark-select.is-selected .card-checkmark svg {
   fill:  #fc492d;
   width: 40px;
 }
-.card-blue-select.is-selected .card-container img{
+.card.border-select.is-selected .card-container img{
   border: 5px solid var(--blue);
 }
 

@@ -5,6 +5,12 @@ const defaultState = {
     isLoading: false,
     isLoggedIn: false
   },
+  profile: {
+    moods: [],
+    authors: [],
+    genres: [],
+    archetypes: []
+  },
   allSelectedTags: [],
   selectedMoods: [],
   selectedAuthors: [],
@@ -15,6 +21,16 @@ const defaultState = {
   },
   belts: {
     moods: [
+      {label: 'Åbent fortolkningsrum', image: '/moods/charmerende.jpg'},
+      {label: 'dramatisk', image: '/moods/dramatisk.jpg'},
+      {label: 'erotisk', image: '/moods/erotisk.jpg'},
+      {label: 'fantasifuld', image: '/moods/fantasifuld.jpg'},
+      {label: 'frygtelig', image: '/moods/frygtelig.jpg'},
+      {label: 'intellektuel', image: '/moods/intellektuel.jpg'},
+      {label: 'kompleks', image: '/moods/kompleks.jpg'},
+      {label: 'konventionel', image: '/moods/konventionel.jpg'}
+    ],
+    genres: [
       {label: 'Åbent fortolkningsrum', image: '/moods/charmerende.jpg'},
       {label: 'dramatisk', image: '/moods/dramatisk.jpg'},
       {label: 'erotisk', image: '/moods/erotisk.jpg'},
@@ -87,10 +103,8 @@ const defaultState = {
   }
 };
 
-export const ON_ADD_PROFILE_TAG = 'ON_ADD_PROFILE_TAG';
-export const ON_REMOVE_PROFILE_TAG = 'ON_REMOVE_PROFILE_TAG';
-export const ON_ADD_PROFILE_AUTHOR= 'ON_ADD_PROFILE_AUTHOR';
-export const ON_REMOVE_PROFILE_AUTHOR = 'ON_REMOVE_PROFILE_AUTHOR';
+export const ON_ADD_PROFILE_ELEMENT = 'ON_ADD_PROFILE_ELEMENT';
+export const ON_REMOVE_PROFILE_ELEMENT = 'ON_REMOVE_PROFILE_ELEMENT';
 export const ON_ADD_PROFILE_ARCHETYPE = 'ON_ADD_PROFILE_ARCHETYPE';
 export const ON_REMOVE_PROFILE_ARCHETYPE = 'ON_REMOVE_PROFILE_ARCHETYPE';
 export const ON_PROFILE_RECOMMENDATIONS_REQUEST = 'ON_PROFILE_RECOMMENDATIONS_REQUEST';
@@ -100,35 +114,29 @@ export const ON_USER_DETAILS_RESPONSE = 'ON_USER_DETAILS_RESPONSE';
 
 const profileReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ON_ADD_PROFILE_TAG: {
-      const selectedMoods = unique([...state.selectedMoods, action.mood.label]);
-      const allSelectedTags = unique([...state.allSelectedTags, ...selectedMoods]);
-      return Object.assign({}, state, {selectedMoods, allSelectedTags});
+    case ON_ADD_PROFILE_ELEMENT: {
+      const elementType = action.elementType;
+      const selected = unique([...state.profile[elementType], action.element.label]);
+      const allSelectedTags = unique([...state.allSelectedTags, action.element.label]);
+      return Object.assign({}, state, {allSelectedTags}, {profile: Object.assign({}, state.profile, {[elementType]: selected})});
     }
-    case ON_REMOVE_PROFILE_TAG: {
-      const selectedMoods = state.selectedMoods.filter(mood => mood !== action.mood.label);
-      const allSelectedTags = state.allSelectedTags.filter(tag => tag !== action.mood.label);
-      return Object.assign({}, state, {selectedMoods, allSelectedTags});
-    }
-    case ON_ADD_PROFILE_AUTHOR: {
-      const selectedAuthors = unique([...state.selectedAuthors, action.author.label]);
-      const allSelectedTags = unique([...state.allSelectedTags, ...selectedAuthors]);
-      return Object.assign({}, state, {selectedAuthors, allSelectedTags});
-    }
-    case ON_REMOVE_PROFILE_AUTHOR: {
-      const selectedAuthors = state.selectedAuthors.filter(author => author !== action.author.label);
-      const allSelectedTags = state.allSelectedTags.filter(tag => tag !== action.author.label);
-      return Object.assign({}, state, {selectedAuthors, allSelectedTags});
+    case ON_REMOVE_PROFILE_ELEMENT: {
+      const elementType = action.elementType;
+      const selected = state.profile[elementType].filter(element => element !== action.element.label);
+      const allSelectedTags = state.allSelectedTags.filter(tag => tag !== action.element.label);
+      return Object.assign({}, state, {allSelectedTags}, {profile: Object.assign({}, state.profile, {[elementType]: selected})});
     }
     case ON_ADD_PROFILE_ARCHETYPE: {
-      const selectedArchetypes = [...state.selectedArchetypes, action.archetype.label];
-      const selectedMoods = unique([...state.selectedMoods, ...action.archetype.moods]);
-      const selectedAuthors = unique([...state.selectedAuthors, ...action.archetype.authors]);
-      const allSelectedTags = unique([...state.allSelectedTags, ...selectedMoods, ...selectedAuthors]);
-      return Object.assign({}, state, {selectedMoods, selectedAuthors, selectedArchetypes, allSelectedTags});
+      const archetypes = [...state.profile.archetypes, action.element.label];
+      const moods = unique([...state.profile.moods, ...action.element.moods]);
+      const authors = unique([...state.profile.authors, ...action.element.authors]);
+      const allSelectedTags = unique([...state.allSelectedTags, ...moods, ...authors]);
+      return Object.assign({}, state, {allSelectedTags}, {profile: Object.assign({}, state.profile, {archetypes, moods, authors})});
     }
-    case ON_REMOVE_PROFILE_ARCHETYPE:
-      return Object.assign({}, state, {selectedArchetypes: state.selectedArchetypes.filter(archetype => archetype !== action.archetype.label)});
+    case ON_REMOVE_PROFILE_ARCHETYPE: {
+      const archetypes = state.profile.archetypes.filter(element => element !== action.element.label);
+      return Object.assign({}, state, {profile: Object.assign({}, state.profile, {archetypes})});
+    }
     case ON_PROFILE_RECOMMENDATIONS_REQUEST:
       return Object.assign({}, state, {recommendations: Object.assign({}, state.recommendations, {isLoading: true})});
     case ON_PROFILE_RECOMMENDATIONS_RESPONSE:

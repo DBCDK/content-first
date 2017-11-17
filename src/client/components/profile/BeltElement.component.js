@@ -1,8 +1,9 @@
 import React from 'react';
 import '../../style/components/profileBelt.css';
 import ProfileTooltip from './ProfileTooltip.component';
+import Checkmark from '../svg/Checkmark';
 
-export default class TooltipBeltElement extends React.Component {
+export default class BeltElement extends React.Component {
 
   constructor() {
     super();
@@ -16,9 +17,9 @@ export default class TooltipBeltElement extends React.Component {
   }
 
   render() {
-    const {element, isSelected, onAddElement, onRemoveElement} = this.props;
+    const {element, isSelected, onAddElement, onRemoveElement, selectionType = 'border'} = this.props;
     return (
-      <div className={`card card-blue-select scale-1 ${isSelected ? 'is-selected' : ''}`}
+      <div className={`card ${selectionType}-select ${isSelected ? 'is-selected' : ''}`}
         onMouseLeave={() => this.setState({showTooltip: false})}
         onClick={() => isSelected ? onRemoveElement(element) : onAddElement(element)}
       >
@@ -26,12 +27,15 @@ export default class TooltipBeltElement extends React.Component {
           <div className="card-background">
             <img src={element.image} alt={element.label} />
           </div>
-          <span className="card-info" onClick={(e) => this.toggleTooltip(e)} />
+          {this.props.children && <span className="card-info" onClick={(e) => this.toggleTooltip(e)} />}
+          <span className="card-checkmark"><Checkmark /></span>
           <span className="card-label raleway">{element.label}</span>
         </div>
+        {this.props.children &&
         <ProfileTooltip isVisible={this.state.showTooltip}>
           {this.props.children}
         </ProfileTooltip>
+        }
 
       </div>
     );
