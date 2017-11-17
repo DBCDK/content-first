@@ -10,13 +10,13 @@ import {ON_PROFILE_RECOMMENDATIONS_REQUEST, ON_ADD_PROFILE_ARCHETYPE, ON_REMOVE_
 class ProfilePage extends React.Component {
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.profileState.selectedMoods !== this.props.profileState.selectedMoods) {
+    if (nextProps.profileState.allSelectedTags.length !== this.props.profileState.allSelectedTags.length) {
       this.props.dispatch({type: ON_PROFILE_RECOMMENDATIONS_REQUEST, action: nextProps});
     }
   }
   render() {
     return (
-      <div className={`profile-page ${this.props.profileState.selectedMoods.length > 0 ? 'has-topbar' : ''}`}>
+      <div className={`profile-page ${this.props.profileState.allSelectedTags.length > 0 ? 'has-topbar' : ''}`}>
         <ProfileTopbar profile={this.props.profileState}/>
         <div className='profile-page-content'>
           <h2>Hvilke stemninger foretrække du i bøger</h2>

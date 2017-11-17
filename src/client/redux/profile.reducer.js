@@ -12,9 +12,6 @@ const defaultState = {
     archetypes: []
   },
   allSelectedTags: [],
-  selectedMoods: [],
-  selectedAuthors: [],
-  selectedArchetypes: [],
   recommendations: {
     isLoading: false,
     elements: []
