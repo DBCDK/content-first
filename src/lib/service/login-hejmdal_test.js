@@ -101,6 +101,7 @@ describe('Login connector', () => {
             uniloginId: null,
             municipality: null
           });
+          // console.log(logger.log.info.getCalls().map(x => x.args))
         });
     });
     it('should detect that token/id is rejected and redirect', () => {

@@ -6,7 +6,7 @@ const path = require('path');
 const schemaUserInfo = path.join(__dirname, 'login-user-info-in.json');
 const schemaHealth = path.join(__dirname, 'login-health-in.json');
 const constants = require('./login-constants')();
-const {validating} = require('__/json');
+const {validatingInput} = require('__/json');
 
 /**
  * Login for Adgangsplatform via Hejmdal.
@@ -40,10 +40,14 @@ class Login {
     return new Promise(resolve => {
       const me = this;
       request.get(`${me.config.url}${constants.apiHealth}`)
+        .set('accept', 'application/json')
         .then(response => {
           return response.body;
         })
-        .then(validating(schemaHealth))
+        .then(body => {
+          me.logger.log.info(`Validating ${JSON.stringify(body)}`);
+          return validatingInput(body, schemaHealth);
+        })
         .then(data => {
           const ok = _.every(_.values(data), service => service.state === 'ok');
           if (ok) {
@@ -72,11 +76,15 @@ class Login {
       const url = `${me.config.url}${constants.apiGetTicket}/${token}/${id}`;
       me.logger.log.info(`Getting user info from ${url}`);
       request.get(url)
+        .set('accept', 'application/json')
         .then(response => {
           me.logger.log.info(`Got ${JSON.stringify(response)}`);
           return response.body;
         })
-        .then(validating(schemaUserInfo))
+        .then(body => {
+          me.logger.log.info(`Validating ${JSON.stringify(body)}`);
+          return validatingInput(body, schemaUserInfo);
+        })
         .then(data => {
           const attr = data.attributes;
           if (attr) {
