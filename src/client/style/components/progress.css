@@ -8,7 +8,7 @@
 }
 
 .progress-circle .active {
-  stroke: #20bf67;
+  stroke: var(--green);
   transition: all 500ms;
 }
 

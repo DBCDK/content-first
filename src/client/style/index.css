@@ -2,6 +2,7 @@
 :root {
   --blue: rgb(109, 193, 236);
   --orange:  #fc492d;
+  --green:  #20bf67;
   --primary-font: 'Lora', serif;
   --secondary-font: 'Raleway', sans-serif;
 } 
@@ -17,10 +18,11 @@
 @import './utils/tags.css';
 
 /* Import component classes */
-@import './components/profileBelt.css';
+@import './components/profileCard.css';
 @import './components/profileTooltip.css';
 @import './components/profileTopbar.css';
 @import './components/progress.css';
+@import './components/profilePage.css';
 
 
 body {

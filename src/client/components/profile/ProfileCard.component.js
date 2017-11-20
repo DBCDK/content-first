@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfileTooltip from './ProfileTooltip.component';
 import Checkmark from '../svg/Checkmark';
+import Info from '../svg/Info.svg';
 
 export default class BeltElement extends React.Component {
 
@@ -26,7 +27,7 @@ export default class BeltElement extends React.Component {
           <div className="card-background">
             <img src={element.image} alt={element.label} />
           </div>
-          {this.props.children && <span className="card-info" onClick={(e) => this.toggleTooltip(e)} />}
+          {this.props.children && <span className="card-info" onClick={(e) => this.toggleTooltip(e)} ><Info /></span>}
           <span className="card-checkmark"><Checkmark /></span>
           <span className="card-label raleway">{element.label}</span>
         </div>

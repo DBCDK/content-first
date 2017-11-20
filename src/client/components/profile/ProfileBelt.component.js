@@ -2,7 +2,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {ON_ADD_PROFILE_ELEMENT, ON_REMOVE_PROFILE_ELEMENT} from '../../redux/profile.reducer';
-import BeltElement from './BeltElement.component';
+import Card from './ProfileCard.component';
 
 class ProfileBelt extends React.Component {
   isTagSelected(tag) {
@@ -12,7 +12,8 @@ class ProfileBelt extends React.Component {
     const {format = 'square', size = '8', selectionType = 'border', profileState, dispatch, type, tooltip = () => {}, add = ON_ADD_PROFILE_ELEMENT, remove = ON_REMOVE_PROFILE_ELEMENT} = this.props;
     return (
       <div className={`profile-belt flex-grid flex-grid-${size} flex-grid-6-m ${format}`}>
-        {profileState.belts[type].map(element => <BeltElement
+        {profileState.belts[type].map(element => <Card
+          key={element.label}
           onAddElement={() => dispatch({type: add, element, elementType: type})}
           onRemoveElement={() => dispatch({type: remove, element, elementType: type})}
           element={element}
@@ -20,7 +21,7 @@ class ProfileBelt extends React.Component {
           selectionType={selectionType}
         >
           {tooltip(element)}
-        </BeltElement>
+        </Card>
         )}
       </div>
     );

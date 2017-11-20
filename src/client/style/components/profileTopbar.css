@@ -27,7 +27,7 @@
 }
 
 .selected-tag {
-  background-color: #ef4e27;
+  background-color: var(--orange);
   color: white;
   margin-right: 1rem;
   margin-bottom: 1rem;

@@ -12,25 +12,6 @@
   top: 0rem;
   bottom: 0rem;
 }
-.card:hover .card-background{
-  position: absolute;
-  left: -0.5rem;
-  right: -0.5rem;
-  top: -0.5rem;
-  bottom: -0.5rem;
-}
-.card .profile-tooltip{
-  left: -0.5rem;
-  right: -0.5rem;
-  top: calc(100% + 0.5rem);
-}
-
-.profile-belt .authors >*:after {
-  content: ",";
-}
-.profile-belt .authors >*:last-child:after {
-  content: "";
-}
 
 .card-info {
   position: absolute;
@@ -45,12 +26,13 @@
   opacity: 0;
   transition: opacity 200ms;
 }
-.card-info:after {
-  content: "i";
+
+.card-info svg {
   position: absolute;
-  font-size: 35px;
-  right: 1.5rem;
-  top: 0.5rem;
+  width: 50%;
+  right: 8px;
+  top: 5px;
+  fill: white;
 }
 
 .card:hover .card-info {
@@ -67,7 +49,7 @@
   object-fit: cover;
 }
 
-.profile-belt .card-label {
+.card-label {
   position: absolute;
   bottom: 45px;
   transform: translateY(100%);
@@ -104,16 +86,24 @@
 }
 
 
-.profile-belt .card-background {
+.card-background {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  transition: all 200ms;
 }
 
-.profile-belt .card-background img {
+.card-background img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.card:hover .card-background{
+  left: -0.5rem;
+  right: -0.5rem;
+  top: -0.5rem;
+  bottom: -0.5rem;
 }

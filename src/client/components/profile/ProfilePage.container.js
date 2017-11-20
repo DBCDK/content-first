@@ -15,7 +15,7 @@ class ProfilePage extends React.Component {
   }
   render() {
     return (
-      <div className={`profile-page ${this.props.profileState.allSelectedTags.length > 0 ? 'has-topbar' : ''}`}>
+      <div className={`profile-page text-left ${this.props.profileState.allSelectedTags.length > 0 ? 'has-topbar' : ''}`}>
         <ProfileTopbar profile={this.props.profileState}/>
         <div className='profile-page-content'>
           <h2>Hvilke stemninger foretrække du i bøger</h2>
