@@ -1,3 +1,4 @@
+/* Global Settings */
 :root {
   --blue: rgb(109, 193, 236);
   --orange:  #fc492d;
@@ -5,14 +6,21 @@
   --secondary-font: 'Raleway', sans-serif;
 } 
 
-
+/* Import fonts */
 @import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+/* Import util classes */
 @import './utils/flex.css';
 @import './utils/grid.css';
 @import './utils/spinner.css';
 @import './utils/tags.css';
 
+/* Import component classes */
+@import './components/profileBelt.css';
+@import './components/profileTooltip.css';
+@import './components/profileTopbar.css';
+@import './components/progress.css';
 
 
 body {

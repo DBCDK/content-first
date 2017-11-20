@@ -1,6 +1,5 @@
 import React from 'react';
 import Progress from './Progress.component';
-import '../../style/components/profileTopbar.css';
 import ProfileRecommendations from './ProfileRecommendations.component';
 
 const ProfileTags = ({tags}) => (

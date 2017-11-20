@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../../style/components/progress.css';
-
 const Progress = ({percent = 10, strokeWidth = 12}) => {
   const radius = (60 - strokeWidth/2);
   const circumference = 2 * 3.14 * radius;

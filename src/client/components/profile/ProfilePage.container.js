@@ -4,7 +4,6 @@ import ProfileTopbar from './ProfileTopbar.container';
 import ProfileBelt from './ProfileBelt.component';
 import ArchetypeTooltip from './ArchetypeTooltip.component';
 import AuthorTooltip from './AuthorTooltip.component';
-import '../../style/profilePage.css';
 import {ON_PROFILE_RECOMMENDATIONS_REQUEST, ON_ADD_PROFILE_ARCHETYPE, ON_REMOVE_PROFILE_ARCHETYPE} from '../../redux/profile.reducer';
 
 class ProfilePage extends React.Component {

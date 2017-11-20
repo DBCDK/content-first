@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../style/components/profileTooltip.css';
 
 class ProfileTooltip extends React.Component {
   render() {

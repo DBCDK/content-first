@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../style/components/profileBelt.css';
 import ProfileTooltip from './ProfileTooltip.component';
 import Checkmark from '../svg/Checkmark';
 
