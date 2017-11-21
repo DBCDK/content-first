@@ -42,12 +42,7 @@ router.route('/')
         if (uuid) {
           userUuid = uuid;
           return updatingUser(uuid, {
-            gender: remoteUser.gender,
-            birth_year: remoteUser.birthYear,
-            user_id: remoteUser.userId,
-            wayf_id: remoteUser.wayfId,
-            unilogin_id: remoteUser.uniloginId,
-            municipality: remoteUser.municipality
+            user_id: remoteUser.userId
           });
         }
         userUuid = uuidv4();
@@ -56,12 +51,7 @@ router.route('/')
           name: '',
           authors: '[]',
           atmosphere: '[]',
-          gender: remoteUser.gender,
-          birth_year: remoteUser.birthYear,
-          user_id: remoteUser.userId,
-          wayf_id: remoteUser.wayfId,
-          unilogin_id: remoteUser.uniloginId,
-          municipality: remoteUser.municipality
+          user_id: remoteUser.userId
         });
       })
       .then(() => {

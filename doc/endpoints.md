@@ -295,8 +295,6 @@ Returns [user information](../src/integration/schemas/user-data-out.json) for a 
 
     { "data":
       { "name": "Jens Godfredsen"
-      , "gender": "m"
-      , "birth_year": 1971
       , "authors": [ "Ib Michael", "Helle Helle" ]
       , "atmosphere": [ "Realistisk" ]
       }
@@ -310,8 +308,6 @@ Returns [user information](../src/integration/schemas/user-data-out.json) for a 
 Updates the [user information](../src/server/schemas/user-in.json) like
 
     { "name": "Ole Henriksen"
-    , "gender": "m"
-    , "birth_year": 1951
     , "authors": [ "Ole Henriksen", "Dolly Parton" ]
     , "atmosphere": [ "Dramtisk" ]
     }

@@ -45,7 +45,7 @@ class Login {
           return response.body;
         })
         .then(body => {
-          me.logger.log.info(`Validating ${JSON.stringify(body)}`);
+          me.logger.log.debug(`Validating ${JSON.stringify(body)}`);
           return validatingInput(body, schemaHealth);
         })
         .then(data => {
@@ -95,14 +95,7 @@ class Login {
           if (attr) {
             return resolve({
               cpr: attr.cpr,
-              gender: attr.gender ? attr.gender : null,
-              userId: attr.userId,
-              wayfId: attr.wayfId,
-              uniloginId: attr.uniloginId ? attr.uniloginId : null,
-              agencies: attr.agencies,
-              municipality: attr.municipality ? attr.municipality : null,
-              birthDate: attr.birthDate ? attr.birthDate : null,
-              birthYear: attr.birthYear ? parseInt(attr.birthYear, 10) : null
+              userId: attr.userId
             });
           }
           return reject(new Error(`User information could not be retrieved from ${JSON.stringify(data)}`));

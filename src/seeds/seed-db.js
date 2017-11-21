@@ -64,8 +64,6 @@ exports.seed = async knex => {
     uuid: 'an-existing-user-seeded-on-test-start',
     cpr: '121219719873',
     name: 'Jens Godfredsen',
-    gender: 'm',
-    birth_year: 1971,
     authors: JSON.stringify(['Ib Michael', 'Helle Helle']),
     atmosphere: JSON.stringify(['Realistisk'])
   });

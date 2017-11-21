@@ -9,7 +9,7 @@ const userTable = constants.users.table;
 async function gettingUser (uuid) {
   return new Promise((resolve, reject) => {
     return knex(userTable).where({uuid}).select(
-      'name', 'gender', 'birth_year', 'authors', 'atmosphere'
+      'name', 'authors', 'atmosphere'
     )
       .then(existing => {
         if (existing.length === 0) {

@@ -35,6 +35,7 @@ describe('Login connector', () => {
   afterEach(nock.cleanAll);
 
   describe('with unreachable service', () => {
+
     it('should say there is no connection', () => {
       // Arrange.
       const token = '98912164d600414686e9c89c02c33db1';
@@ -60,12 +61,14 @@ describe('Login connector', () => {
   });
 
   describe('with responsive service', () => {
+
     it('should say that everything is ok initially', () => {
       // Assert.
       expect(login.isOk()).to.be.true;
       expect(login.getCurrentError()).to.be.null;
       expect(login.getErrorLog()).to.have.length(0);
     });
+
     it('should retrieve user info as JSON and redirect with cookie', () => {
       // Arrange.
       const token = '4686e9c89c02c33db198912164d60041';
@@ -93,17 +96,11 @@ describe('Login connector', () => {
         .then(data => {
           expect(data).to.deep.equal({
             cpr: '2508710000',
-            gender: 'm',
-            userId: '2508710000',
-            wayfId: null,
-            agencies: [],
-            birthDate: '2508',
-            birthYear: 1971,
-            uniloginId: null,
-            municipality: null
+            userId: '2508710000'
           });
         });
     });
+
     it('should retrieve user info as text and redirect with cookie', () => {
       // Arrange.
       const token = '4686e9c89c02c33db198912164d60041';
@@ -128,21 +125,11 @@ describe('Login connector', () => {
         .then(data => {
           expect(data).to.deep.equal({
             cpr: '1701840000',
-            userId: '1701840000',
-            wayfId: null,
-            agencies: [{
-              userId: '1701840000',
-              agencyId: '715100',
-              userIdType: 'CPR'
-            }],
-            birthDate: null,
-            birthYear: null,
-            gender: null,
-            uniloginId: null,
-            municipality: null
+            userId: '1701840000'
           });
         });
     });
+
     it('should detect that token/id is rejected and redirect', () => {
       // Arrange.
       const token = '98912164d600414686e9c89c02c33db1';
@@ -159,6 +146,7 @@ describe('Login connector', () => {
           expect(server.isDone()).to.be.true;
         });
     });
+
     it('testingConnection() should say everything is fine', () => {
       // Arrange.
       const server = nock(config.url).get(constants.apiHealth).reply(200, [
@@ -177,6 +165,7 @@ describe('Login connector', () => {
           expect(server.isDone()).to.be.true;
         });
     });
+
     it('testingConnection() should detect unhealth login service', () => {
       // Arrange.
       const server = nock(config.url).get(constants.apiHealth).reply(500);

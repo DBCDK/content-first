@@ -36,8 +36,6 @@ describe('User login/out', () => {
             expectValidate(data, 'schemas/user-data-out.json');
             expect(data).to.deep.equal({
               name: 'Jens Godfredsen',
-              gender: 'm',
-              birth_year: 1971,
               authors: ['Ib Michael', 'Helle Helle'],
               atmosphere: ['Realistisk']
             });
@@ -72,6 +70,7 @@ describe('User login/out', () => {
         .expect('location', remoteLoginStem)
         .expect(303);
     });
+
     it('should redirect to remote login page on non-existing cookie', () => {
       // Arrange.
       authenticator.clear();
@@ -155,18 +154,15 @@ describe('User login/out', () => {
     it('should retrieve user info and redirect & set valid cookie', () => {
       // Arrange.
       const hejmdal = nock(config.login.url).get(slug).reply(200, {
-        id,
-        token,
         attributes: {
-          cpr: '0101781234',
-          gender: 'f',
-          userId: '0101781234',
+          cpr: '1701840000',
+          userId: '1701840000',
           wayfId: null,
-          agencies: [],
-          birthDate: '0101',
-          birthYear: '1978',
-          uniloginId: null,
-          municipality: null
+          agencies: [{
+            userId: '1701840000',
+            agencyId: '715100',
+            userIdType: 'CPR'
+          }]
         }
       });
       let loginToken;
@@ -174,9 +170,6 @@ describe('User login/out', () => {
       const location = `/hejmdal?token=${token}&id=${id}`;
       return webapp.get(location)
         // Assert.
-        .expect(303)
-        .expect('location', constants.pages.start)
-        .expect('set-cookie', /^login-token=/)
         .expect(res => {
           const cookies = res.headers['set-cookie'];
           expect(cookies).to.have.length(1);
@@ -188,6 +181,9 @@ describe('User login/out', () => {
           loginToken = cookieParts[1];
           expect(mock.getErrorLog().args).to.have.length(0);
         })
+        .expect(303)
+        .expect('location', constants.pages.start)
+        .expect('set-cookie', /^login-token=/)
         .then(() => {
           // Act.
           return webapp.get('/v1/login')
@@ -198,8 +194,6 @@ describe('User login/out', () => {
                 expectValidate(data, 'schemas/user-data-out.json');
                 expect(data).to.deep.equal({
                   name: '',
-                  gender: 'f',
-                  birth_year: 1978,
                   authors: [],
                   atmosphere: []
                 });
@@ -253,8 +247,6 @@ describe('User login/out', () => {
                 expectValidate(data, 'schemas/user-data-out.json');
                 expect(data).to.deep.equal({
                   name: 'Jens Godfredsen',
-                  gender: 'm',
-                  birth_year: 1971,
                   authors: ['Ib Michael', 'Helle Helle'],
                   atmosphere: ['Realistisk']
                 });
