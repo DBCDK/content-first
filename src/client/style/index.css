@@ -5,7 +5,7 @@
   --green:  #20bf67;
   --primary-font: 'Lora', serif;
   --secondary-font: 'Raleway', sans-serif;
-} 
+}
 
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
@@ -55,7 +55,7 @@ body {
 .create-profile {
   margin-top: 20px;
   height: 500px;
-  background-image: url('/Opret-profil-baggrund-v1.jpg');
+  background-image: url('/Opret-profil-baggrund-v2.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
 }
