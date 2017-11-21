@@ -18,6 +18,7 @@ describe('Login connector', () => {
 
   const logger = {
     log: {
+      debug: sinon.stub(),
       info: sinon.stub(),
       error: sinon.stub()
     }
@@ -65,7 +66,7 @@ describe('Login connector', () => {
       expect(login.getCurrentError()).to.be.null;
       expect(login.getErrorLog()).to.have.length(0);
     });
-    it('should retrieve user info and redirect with cookie', () => {
+    it('should retrieve user info as JSON and redirect with cookie', () => {
       // Arrange.
       const token = '4686e9c89c02c33db198912164d60041';
       const id = 1234;
@@ -102,6 +103,42 @@ describe('Login connector', () => {
             municipality: null
           });
           // console.log(logger.log.info.getCalls().map(x => x.args))
+        });
+    });
+    it('should retrieve user info as text and redirect with cookie', () => {
+      // Arrange.
+      const token = '4686e9c89c02c33db198912164d60041';
+      const id = 1234;
+      const slug = `${constants.apiGetTicket}/${token}/${id}`;
+      nock(config.url).get(slug).reply(200, JSON.stringify({
+        attributes: {
+          cpr: '2508710000',
+          gender: 'm',
+          userId: '2508710000',
+          wayfId: null,
+          agencies: [],
+          birthDate: '2508',
+          birthYear: '1971',
+          uniloginId: null,
+          municipality: null
+        }
+      }));
+      // Act.
+      return login.gettingTicket(token, id)
+        // Assert.
+        .then(validating(schemaUserInfo))
+        .then(data => {
+          expect(data).to.deep.equal({
+            cpr: '2508710000',
+            gender: 'm',
+            userId: '2508710000',
+            wayfId: null,
+            agencies: [],
+            birthDate: '2508',
+            birthYear: 1971,
+            uniloginId: null,
+            municipality: null
+          });
         });
     });
     it('should detect that token/id is rejected and redirect', () => {

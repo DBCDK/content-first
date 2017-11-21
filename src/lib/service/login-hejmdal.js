@@ -45,7 +45,7 @@ class Login {
           return response.body;
         })
         .then(body => {
-          me.logger.log.info(`Validating ${JSON.stringify(body)}`);
+          me.logger.log.debug(`Validating ${JSON.stringify(body)}`);
           return validatingInput(body, schemaHealth);
         })
         .then(data => {
@@ -74,16 +74,18 @@ class Login {
     const me = this;
     return new Promise((resolve, reject) => {
       const url = `${me.config.url}${constants.apiGetTicket}/${token}/${id}`;
-      me.logger.log.info(`Getting user info from ${url}`);
+      me.logger.log.debug(`Getting user info from ${url}`);
       request.get(url)
         .set('accept', 'application/json')
         .then(response => {
-          me.logger.log.info(`Got ${JSON.stringify(response)}`);
+          if (_.isEmpty(response.body)) {
+            return JSON.parse(response.text);
+          }
           return response.body;
         })
-        .then(body => {
-          me.logger.log.info(`Validating ${JSON.stringify(body)}`);
-          return validatingInput(body, schemaUserInfo);
+        .then(data => {
+          me.logger.log.debug('Validating', data);
+          return validatingInput(data, schemaUserInfo);
         })
         .then(data => {
           const attr = data.attributes;
