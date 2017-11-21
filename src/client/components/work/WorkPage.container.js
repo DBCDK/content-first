@@ -85,6 +85,9 @@ class WorkPage extends React.Component {
                 </div>
                 {work.data.genre && <div className='genre'>{work.data.genre}</div>}
               </div>
+              <div className="bibliotek-dk-link">
+                <a target='_blank' href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(work.data.pid)}`}>Se mere på bibliotek.dk</a>
+              </div>
             </div>
             <div
               id='collapsable-tags'
