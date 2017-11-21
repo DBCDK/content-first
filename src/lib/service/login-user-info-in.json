@@ -2,7 +2,44 @@
   "type": "object",
   "properties": {
     "attributes": {
-      "required": true
+      "required": true,
+      "type": "object",
+      "properties": {
+        "cpr": {
+          "required": true,
+          "type": "string"
+        },
+        "userId": {
+          "required": true,
+          "type": "string"
+        },
+        "birthYear": {
+          "required": false,
+          "type": "string"
+        },
+        "gender": {
+          "required": false,
+          "type": "string"
+        },
+        "agencies": {
+          "required": true,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "userId": {
+                "type": "string"
+              },
+              "agencyId": {
+                "type": "string"
+              },
+              "userIdType": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "additionalProperties": true

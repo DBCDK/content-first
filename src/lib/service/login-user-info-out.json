@@ -6,37 +6,30 @@
       "type": "string"
     },
     "gender": {
-      "required": true,
-      "type": "string"
-    },
-    "gender": {
-      "required": true,
-      "type": "string"
+      "required": false
     },
     "userId": {
       "required": true,
       "type": "string"
     },
     "wayfId": {
-      "required": true
+      "required": false
     },
     "agencies": {
       "required": true,
       "type": "array"
     },
     "birthDate": {
-      "required": true,
-      "type": "string"
+      "required": false
     },
     "birthYear": {
-      "required": true,
-      "type": "integer"
+      "required": false
     },
     "uniloginId": {
-      "required": true
+      "required": false
     },
     "municipality": {
-      "required": true
+      "required": false
     }
   },
   "additionalProperties": false

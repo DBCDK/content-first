@@ -102,7 +102,6 @@ describe('Login connector', () => {
             uniloginId: null,
             municipality: null
           });
-          // console.log(logger.log.info.getCalls().map(x => x.args))
         });
     });
     it('should retrieve user info as text and redirect with cookie', () => {
@@ -112,15 +111,14 @@ describe('Login connector', () => {
       const slug = `${constants.apiGetTicket}/${token}/${id}`;
       nock(config.url).get(slug).reply(200, JSON.stringify({
         attributes: {
-          cpr: '2508710000',
-          gender: 'm',
-          userId: '2508710000',
+          cpr: '1701840000',
+          userId: '1701840000',
           wayfId: null,
-          agencies: [],
-          birthDate: '2508',
-          birthYear: '1971',
-          uniloginId: null,
-          municipality: null
+          agencies: [{
+            userId: '1701840000',
+            agencyId: '715100',
+            userIdType: 'CPR'
+          }]
         }
       }));
       // Act.
@@ -129,13 +127,17 @@ describe('Login connector', () => {
         .then(validating(schemaUserInfo))
         .then(data => {
           expect(data).to.deep.equal({
-            cpr: '2508710000',
-            gender: 'm',
-            userId: '2508710000',
+            cpr: '1701840000',
+            userId: '1701840000',
             wayfId: null,
-            agencies: [],
-            birthDate: '2508',
-            birthYear: 1971,
+            agencies: [{
+              userId: '1701840000',
+              agencyId: '715100',
+              userIdType: 'CPR'
+            }],
+            birthDate: null,
+            birthYear: null,
+            gender: null,
             uniloginId: null,
             municipality: null
           });
@@ -152,7 +154,7 @@ describe('Login connector', () => {
         // Assert.
         .to.be.rejectedWith(Error)
         .then(error => {
-          expect(error).to.match(/user information could not be retrieved/i);
+          expect(error).to.match(/no user information received/i);
           expect(login.isOk()).to.be.true;
           expect(server.isDone()).to.be.true;
         });
