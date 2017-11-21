@@ -4,6 +4,7 @@ import {fetchBeltWorks, fetchWork, fetchUser, fetchProfileRecommendations} from 
 import {ON_PROFILE_RECOMMENDATIONS_REQUEST, ON_USER_DETAILS_REQUEST} from './profile.reducer';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
+export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
 export const HISTORY_REPLACE = 'HISTORY_REPLACE';
 
 const paramsToString = (params) => {
@@ -30,6 +31,12 @@ export const historyMiddleware = history => store => next => action => {
         const paramsString = action.params ? paramsToString(action.params) : '';
         history.push(action.path + paramsString);
         window.scrollTo(0, 0);
+      }
+      break;
+    case HISTORY_PUSH_FORCE_REFRESH:
+      if (store.getState().routerReducer.path !== action.path) {
+        const paramsString = action.params ? paramsToString(action.params) : '';
+        window.location.href = action.path + paramsString;
       }
       break;
     case HISTORY_REPLACE: {
