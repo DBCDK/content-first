@@ -39,6 +39,7 @@ router.route('/')
       .then(results => {
         const uuid = results[0];
         const remoteUser = results[1];
+        logger.log.info(`User info ${JSON.stringify(remoteUser)}, uuid ${uuid}`);
         if (uuid) {
           userUuid = uuid;
           return updatingUser(uuid, {
@@ -46,6 +47,7 @@ router.route('/')
           });
         }
         userUuid = uuidv4();
+        logger.log.info(`Creating user ${userUuid}`);
         return knex(userTable).insert({
           uuid: userUuid,
           name: '',
@@ -55,6 +57,7 @@ router.route('/')
         });
       })
       .then(() => {
+        logger.log.info(`Creating login token ${loginToken}`);
         return knex(cookieTable).insert({
           uuid: loginToken,
           user: userUuid,
@@ -62,6 +65,7 @@ router.route('/')
         });
       })
       .then(() => {
+        logger.log.info(`Redirecting with token ${loginToken}`);
         return res.status(303)
           .location(constants.pages.start)
           .cookie('login-token', loginToken, {maxAge: ms_OneMonth, httpOnly: true, secure: true})
