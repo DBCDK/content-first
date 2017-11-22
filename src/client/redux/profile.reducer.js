@@ -155,11 +155,11 @@ const profileReducer = (state = defaultState, action) => {
       if (!action.user) {
         return Object.assign({}, state, {user: defaultState.user});
       }
-      return Object.assign({}, state, {user: Object.assign({}, action.user, {isLoading: false})});
+      return Object.assign({}, state, {user: Object.assign({}, action.user, {isLoggedIn: true, isLoading: false})});
     case ON_LOGOUT_REQUEST:
       return Object.assign({}, state, {user: Object.assign({}, state.user, {isLoading: true})});
     case ON_LOGOUT_RESPONSE:
-      return Object.assign({}, state, {user: Object.assign({}, state.user, {isLoggedIn: false}, {isLoading: false})});
+      return Object.assign({}, state, {user: Object.assign({}, state.user, {isLoggedIn: false, isLoading: false})});
     default:
       return state;
   }
