@@ -10,9 +10,7 @@ const config = require('server/config');
 const constants = require('server/constants')();
 const authenticator = require('server/authenticator');
 const authConstants = require('__/service/authentication-constants')();
-const loginConstants = require('__/service/login-constants')();
-const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
-const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
+const {expectFailure} = require('./output-verifiers');
 
 describe('User login/out', () => {
   const webapp = request(mock.external);

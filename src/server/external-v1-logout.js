@@ -14,10 +14,6 @@ router.route('/')
   // POST /v1/logout
   //
   .post(asyncMiddleware(async (req, res, next) => {
-    const loginToken = req.cookies['login-token'];
-    if (!loginToken) {
-      return res.status(303).location(constants.pages.loggedOut).send();
-    }
     let smaugToken;
     try {
       smaugToken = await authenticator.gettingToken();
@@ -28,6 +24,10 @@ router.route('/')
         title: 'Authentication-service communication failed',
         detail: `Subsystem returned ${JSON.stringify(error)}`
       });
+    }
+    const loginToken = req.cookies['login-token'];
+    if (!loginToken) {
+      return res.status(303).location(constants.pages.loggedOut).send();
     }
     const remoteLogoutUrl =
       `${config.url}/logout?token=${smaugToken}&returnurl=${constants.pages.loggedOut}`;
