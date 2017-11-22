@@ -68,7 +68,7 @@ router.route('/')
         logger.log.info(`Redirecting with token ${loginToken}`);
         return res.status(303)
           .location(constants.pages.start)
-          .cookie('login-token', loginToken, {maxAge: ms_OneMonth, httpOnly: true, secure: true})
+          .cookie('login-token', loginToken, {maxAge: ms_OneMonth, httpOnly: true/* TODO: secure: true*/})
           .send();
       })
       .catch(error => {
