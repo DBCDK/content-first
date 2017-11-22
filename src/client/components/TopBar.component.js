@@ -23,6 +23,7 @@ export default function TopBar(props) { // eslint-disable-line no-unused-vars
             }}>Min profil</span>
             <span onClick={() => {
               props.dispatch({type: ON_LOGOUT_REQUEST});
+              props.dispatch({type: HISTORY_PUSH, path: '/'});
             }}>Log ud</span>
           </div>}
       </div>
