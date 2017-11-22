@@ -74,7 +74,7 @@ class Login {
     const me = this;
     return new Promise((resolve, reject) => {
       const url = `${me.config.url}${constants.apiGetTicket}/${token}/${id}`;
-      me.logger.log.info(`Getting user info from ${url}`);
+      me.logger.log.debug(`Getting user info from ${url}`);
       request.get(url)
         .set('accept', 'application/json')
         .then(response => {
@@ -87,7 +87,7 @@ class Login {
           if (!data.attributes) {
             return reject(new Error('No user information received'));
           }
-          me.logger.log.info('Validating', data);
+          me.logger.log.debug('Validating', data);
           return validatingInput(data, schemaUserInfo);
         })
         .then(data => {
@@ -101,7 +101,7 @@ class Login {
           return reject(new Error(`User information could not be retrieved from ${JSON.stringify(data)}`));
         })
         .catch(error => {
-          me.logger.log.info('Caught', error);
+          me.logger.log.debug('Caught', error);
           me.logError(error);
           return reject(new Error(error));
         });

@@ -278,6 +278,7 @@ describe('User login/out', () => {
   });
 
   describe('POST /v1/logout', () => {
+
     it('should invalidate current cookie and redirect to front page', () => {
       // Act.
       return webapp.post('/v1/logout')

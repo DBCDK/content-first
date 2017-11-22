@@ -30,7 +30,7 @@ router.route('/')
     const loginToken = uuidv4();
     return loginService.gettingTicket(token, id)
       .then(remoteUser => {
-        logger.log.info('Got remote user data');
+        logger.log.debug('Got remote user data');
         return Promise.all([
           findUserByCpr(remoteUser.cpr),
           remoteUser
@@ -39,7 +39,7 @@ router.route('/')
       .then(results => {
         const uuid = results[0];
         const remoteUser = results[1];
-        logger.log.info(`User info ${JSON.stringify(remoteUser)}, uuid ${uuid}`);
+        logger.log.debug(`User info ${JSON.stringify(remoteUser)}, uuid ${uuid}`);
         if (uuid) {
           userUuid = uuid;
           return updatingUser(uuid, {
@@ -57,7 +57,7 @@ router.route('/')
         });
       })
       .then(() => {
-        logger.log.info(`Creating login token ${loginToken}`);
+        logger.log.debug(`Creating login token ${loginToken}`);
         return knex(cookieTable).insert({
           uuid: loginToken,
           user: userUuid,
@@ -65,7 +65,7 @@ router.route('/')
         });
       })
       .then(() => {
-        logger.log.info(`Redirecting with token ${loginToken}`);
+        logger.log.debug(`Redirecting with token ${loginToken}`);
         return res.status(303)
           .location(constants.pages.start)
           .cookie('login-token', loginToken, {maxAge: ms_OneMonth, httpOnly: true/* TODO: secure: true*/})
