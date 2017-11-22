@@ -1,0 +1,11 @@
+title Content-first Logout Sequence
+
+title Content-first Logout Sequence
+
+Browser->+BackEnd: /logout
+opt expired
+    BackEnd->+Smaug: /oauth/token
+    Smaug-->-BackEnd: token
+end
+BackEnd->BackEnd: forget login
+BackEnd->Browser: redirect with token

@@ -276,49 +276,4 @@ describe('User login/out', () => {
         .expect(303);
     });
   });
-
-  describe('POST /v1/logout', () => {
-
-    it('should invalidate current cookie and redirect to front page', () => {
-      // Act.
-      return webapp.post('/v1/logout')
-        .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
-        // Assert.
-        .expect('location', constants.pages.start)
-        .expect(303)
-        // Act.
-        .then(() => {
-          return webapp.get('/v1/user')
-            .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
-            // Assert.
-            .expect(403)
-            .expect(() => {
-              expect(mock.getErrorLog().args).to.have.length(0);
-            });
-        });
-    });
-
-    it('should allow invalid cookie and redirect to front page', () => {
-      // Act.
-      return webapp.post('/v1/logout')
-        .set('cookie', 'login-token=a-cookie-that-never-existed')
-        // Assert.
-        .expect('location', constants.pages.start)
-        .expect(303)
-        .expect(() => {
-          expect(mock.getErrorLog().args).to.have.length(0);
-        });
-    });
-
-    it('should allow no current cookie and redirect to front page', () => {
-      // Act.
-      return webapp.post('/v1/logout')
-        // Assert.
-        .expect('location', constants.pages.start)
-        .expect(303)
-        .expect(() => {
-          expect(mock.getErrorLog().args).to.have.length(0);
-        });
-    });
-  });
 });

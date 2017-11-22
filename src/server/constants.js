@@ -8,6 +8,7 @@ const constants = {
   apiversion: '1',
   pages: {
     start: '/',
+    loggedOut: '/',
     generalError: '/general-error'
   },
   books: {

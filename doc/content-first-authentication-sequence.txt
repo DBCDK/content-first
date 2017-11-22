@@ -6,12 +6,12 @@ opt no cookie
         BackEnd->+Smaug: /oauth/token
         Smaug-->-BackEnd: token
     end
-    BackEnd-->-Browser: redirect
+    BackEnd-->-Browser: redirect info
     Browser->+Hejmdal: /login?token=
     Hejmdal->Hejmdal: choose\nauth
     Hejmdal->-Auth:
     Auth->Hejmdal:
-    Hejmdal->+BackEnd: /?token=TOKEN&id=ID
+    Hejmdal->+BackEnd: /hejmdal?token=TOKEN&id=ID
     BackEnd->+Hejmdal: /getTicket/TOKEN/ID
     Hejmdal-->-BackEnd: user info
     BackEnd->Browser: redirect + cookie
