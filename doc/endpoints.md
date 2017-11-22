@@ -11,7 +11,7 @@ To only expose non-destructive endpoint to the public (ie. those needed by the [
 Returns a [book structure](../src/integration/schemas/book-data-out.json), like
 
     { "data":
-      { "pid": "already-seeded-pid-blendstrup-havelaagebogen"
+      { "pid": "870970-basis-53188931"
       , "unit_id": "unit:22125672"
       , "work_id": "work:20137979"
       , "bibliographic_record_id": "53188931"
@@ -33,8 +33,8 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
       , literary_form: 'digte, fiktion'
       }
     , "links":
-      { "self": "/v1/book/already-seeded-pid-blendstrup-havelaagebogen"
-      , "cover": "/v1/image/already-seeded-pid-blendstrup-havelaagebogen"
+      { "self": "/v1/book/870970-basis-53188931"
+      , "cover": "/v1/image/870970-basis-53188931"
       }
     }
 
@@ -44,13 +44,13 @@ Results in a [list of books](../src/integration/schemas/books-data-out.json), ea
 
     { "data":
       [ { "book":
-          { "pid": "already-seeded-pid-blendstrup-havelaagebogen"
+          { "pid": "870970-basis-53188931"
           , "title": "Havelågebogen"
           , "...": "..."
           }
         , "links":
-          { "self": "/v1/book/already-seeded-pid-blendstrup-havelaagebogen"
-          , "cover": "/v1/image/already-seeded-pid-blendstrup-havelaagebogen"
+          { "self": "/v1/book/870970-basis-53188931"
+          , "cover": "/v1/image/870970-basis-53188931"
           }
         }
       , { "book":
@@ -65,7 +65,7 @@ Results in a [list of books](../src/integration/schemas/books-data-out.json), ea
         }
       ]
     , "links":
-      { "self": "/v1/books?pids=already-seeded-pid-blendstrup-havelaagebogen,870970-basis:22629344"
+      { "self": "/v1/books?pids=870970-basis-53188931,870970-basis:22629344"
       }
     }
 
@@ -73,7 +73,7 @@ Results in a [list of books](../src/integration/schemas/books-data-out.json), ea
 
 The data must be [valid book input](../src/server/schemas/book-in.json), like
 
-    { "pid": "already-seeded-pid-blendstrup-havelaagebogen"
+    { "pid": "870970-basis-53188931"
     , "unitId": "unit:22125672"
     , "workId": "work:20137979"
     , "bibliographicRecordId": "53188931"
@@ -295,8 +295,6 @@ Returns [user information](../src/integration/schemas/user-data-out.json) for a 
 
     { "data":
       { "name": "Jens Godfredsen"
-      , "gender": "m"
-      , "birth_year": 1971
       , "authors": [ "Ib Michael", "Helle Helle" ]
       , "atmosphere": [ "Realistisk" ]
       }
@@ -310,8 +308,6 @@ Returns [user information](../src/integration/schemas/user-data-out.json) for a 
 Updates the [user information](../src/server/schemas/user-in.json) like
 
     { "name": "Ole Henriksen"
-    , "gender": "m"
-    , "birth_year": 1951
     , "authors": [ "Ole Henriksen", "Dolly Parton" ]
     , "atmosphere": [ "Dramtisk" ]
     }

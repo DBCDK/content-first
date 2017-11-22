@@ -39,32 +39,25 @@ router.route('/')
       .then(results => {
         const uuid = results[0];
         const remoteUser = results[1];
+        logger.log.info(`User info ${JSON.stringify(remoteUser)}, uuid ${uuid}`);
         if (uuid) {
           userUuid = uuid;
           return updatingUser(uuid, {
-            gender: remoteUser.gender,
-            birth_year: remoteUser.birthYear,
-            user_id: remoteUser.userId,
-            wayf_id: remoteUser.wayfId,
-            unilogin_id: remoteUser.uniloginId,
-            municipality: remoteUser.municipality
+            user_id: remoteUser.userId
           });
         }
         userUuid = uuidv4();
+        logger.log.info(`Creating user ${userUuid}`);
         return knex(userTable).insert({
           uuid: userUuid,
           name: '',
           authors: '[]',
           atmosphere: '[]',
-          gender: remoteUser.gender,
-          birth_year: remoteUser.birthYear,
-          user_id: remoteUser.userId,
-          wayf_id: remoteUser.wayfId,
-          unilogin_id: remoteUser.uniloginId,
-          municipality: remoteUser.municipality
+          user_id: remoteUser.userId
         });
       })
       .then(() => {
+        logger.log.info(`Creating login token ${loginToken}`);
         return knex(cookieTable).insert({
           uuid: loginToken,
           user: userUuid,
@@ -72,6 +65,7 @@ router.route('/')
         });
       })
       .then(() => {
+        logger.log.info(`Redirecting with token ${loginToken}`);
         return res.status(303)
           .location(constants.pages.start)
           .cookie('login-token', loginToken, {maxAge: ms_OneMonth, httpOnly: true, secure: true})

@@ -93,8 +93,6 @@ describe('User data', () => {
               expectValidate(data, 'schemas/user-data-out.json');
               expect(data).to.deep.equal({
                 name: 'Jens Godfredsen',
-                gender: 'm',
-                birth_year: 1971,
                 authors: ['Ib Michael', 'Helle Helle'],
                 atmosphere: ['Realistisk']
               });
@@ -108,8 +106,6 @@ describe('User data', () => {
     describe('PUT /v1/user', () => {
       const newUserInfo = {
         name: 'Ole Henriksen',
-        gender: 'm',
-        birth_year: 1951,
         authors: ['Ole Henriksen', 'Dolly Parton'],
         atmosphere: ['Dramtisk']
       };
