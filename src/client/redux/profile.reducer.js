@@ -117,6 +117,8 @@ export const ON_PROFILE_RECOMMENDATIONS_REQUEST = 'ON_PROFILE_RECOMMENDATIONS_RE
 export const ON_PROFILE_RECOMMENDATIONS_RESPONSE = 'ON_PROFILE_RECOMMENDATIONS_RESPONSE';
 export const ON_USER_DETAILS_REQUEST = 'ON_USER_DETAILS_REQUEST';
 export const ON_USER_DETAILS_RESPONSE = 'ON_USER_DETAILS_RESPONSE';
+export const ON_LOGOUT_REQUEST = 'ON_LOGOUT_REQUEST';
+export const ON_LOGOUT_RESPONSE = 'ON_LOGOUT_RESPONSE';
 
 const profileReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -154,6 +156,10 @@ const profileReducer = (state = defaultState, action) => {
         return Object.assign({}, state, {user: defaultState.user});
       }
       return Object.assign({}, state, {user: Object.assign({}, action.user, {isLoading: false})});
+    case ON_LOGOUT_REQUEST:
+      return Object.assign({}, state, {user: Object.assign({}, state.user, {isLoading: true})});
+    case ON_LOGOUT_RESPONSE:
+      return Object.assign({}, state, {user: Object.assign({}, state.user, {isLoggedIn: false}, {isLoading: false})});
     default:
       return state;
   }

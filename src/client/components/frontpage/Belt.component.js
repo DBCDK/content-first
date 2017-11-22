@@ -34,6 +34,7 @@ export default class Belt extends React.Component {
           {this.props.links.length > 0 && <span>Se også:</span>}
           {this.props.links.map(link => {
             return <span
+              key={link.title}
               className='belt-link'
               data-html='true'
               data-toggle='tooltip'

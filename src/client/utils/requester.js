@@ -1,7 +1,7 @@
 import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
-import {ON_PROFILE_RECOMMENDATIONS_RESPONSE, ON_USER_DETAILS_RESPONSE} from '../redux/profile.reducer';
+import {ON_PROFILE_RECOMMENDATIONS_RESPONSE, ON_USER_DETAILS_RESPONSE, ON_LOGOUT_RESPONSE} from '../redux/profile.reducer';
 import {getLeaves} from './filters';
 import profiles from '../data/ranked-profiles.json';
 import similar from '../data/similar-pids.json';
@@ -141,4 +141,9 @@ export const fetchUser = (dispatch) => {
       const user = JSON.parse(res.text).data;
       dispatch({type: ON_USER_DETAILS_RESPONSE, user});
     });
+};
+
+export const logout = (dispatch) => {
+  request.post('/v1/logout')
+    .end(() => dispatch({type: ON_LOGOUT_RESPONSE}));
 };

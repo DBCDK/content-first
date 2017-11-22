@@ -47,7 +47,7 @@ class App extends Component {
 
     return (
       <div className="App container">
-        <TopBar dispatch={this.props.dispatch}/>
+        <TopBar dispatch={this.props.dispatch} user={this.props.profileState.user}/>
         {currentPage}
       </div>
     );
@@ -56,6 +56,6 @@ class App extends Component {
 export default connect(
   // Map redux state to props
   (state) => {
-    return {routerState: state.routerReducer, beltsState: state.beltsReducer};
+    return {routerState: state.routerReducer, beltsState: state.beltsReducer, profileState: state.profileReducer};
   }
 )(App);
