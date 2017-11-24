@@ -147,7 +147,7 @@ export const logout = (dispatch) => {
   request.post('/v1/logout')
     .redirects(0)
     .end((err, res) => {
-      dispatch({type: ON_LOGOUT_RESPONSE})
+      dispatch({type: ON_LOGOUT_RESPONSE});
       window.location.href = res.headers.location;
     });
 };
