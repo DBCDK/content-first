@@ -322,7 +322,7 @@ If there is no cookie or the cookie is invalid, then the web service will redire
 
 ### `POST /v1/logout`
 
-Makes sure the current login cookie is invalidated.  The result is a redirection to the logout endpoint in Adgangsplatform (Hejmdal).  When the client redirects to Hejmdal, Hejmdal will remove its own tokens, and finally redirect back to the (client) endpoint defined by the [server constant `loggedOut`](../src/srv/constants.js).
+Makes sure the current login cookie is invalidated.  The result is a redirection to the logout endpoint in Adgangsplatform (Hejmdal).  When the client redirects to Hejmdal, Hejmdal will remove its own tokens, and finally redirect back to the (client) endpoint defined by the [server constant `loggedOut`](../src/server/constants.js).
 
 ### `GET /v1/stats`
 
