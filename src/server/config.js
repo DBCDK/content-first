@@ -27,7 +27,8 @@ function Defaults () {
     prettyLog: parseInt(process.env.PRETTY_LOG || 1, 10),
     logLevel: process.env.LOG_LEVEL || 'INFO',
     logServiceErrors: parseInt(process.env.LOG_SERVICE_ERRORS || 1, 10),
-    hostname: hostname().replace('.domain_not_set.invalid', '')
+    hostname: hostname().replace('.domain_not_set.invalid', ''),
+    secret: process.env.AUTH_CLIENT_SECRET || 'something'
   };
 }
 
@@ -55,12 +56,13 @@ exports.logger = {
 
 exports.auth = {
   id: process.env.AUTH_CLIENT_ID || 'content-first',
-  secret: process.env.AUTH_CLIENT_SECRET,
+  secret: defaults.secret,
   url: process.env.AUTH_URL || 'https://auth.dbc.dk'
 };
 
 exports.login = {
-  url: process.env.LOGIN_URL || 'https://login.bib.dk'
+  url: process.env.LOGIN_URL || 'https://login.bib.dk',
+  salt: defaults.secret
 };
 
 exports.db = knexfile[defaults.environment];

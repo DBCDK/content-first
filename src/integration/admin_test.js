@@ -53,6 +53,7 @@ describe('Admin API on running database', () => {
             const everything = JSON.stringify(res.body);
             expect(everything).to.not.match(/password/i);
             expect(everything).to.not.match(/secret/i);
+            expect(everything).to.not.match(/salt/i);
           });
       });
     });

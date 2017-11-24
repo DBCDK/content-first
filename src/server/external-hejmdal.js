@@ -17,7 +17,7 @@ const cookieTable = constants.cookies.table;
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const loginService = require('server/login');
 const uuidv4 = require('uuid/v4');
-const {findUserByCpr, updatingUser} = require('server/user');
+const {findingUserByCprHash, updatingUser} = require('server/user');
 
 router.route('/')
   //
@@ -32,7 +32,7 @@ router.route('/')
       .then(remoteUser => {
         logger.log.debug('Got remote user data');
         return Promise.all([
-          findUserByCpr(remoteUser.cpr),
+          findingUserByCprHash(remoteUser.cprHash),
           remoteUser
         ]);
       })
@@ -43,7 +43,7 @@ router.route('/')
         if (uuid) {
           userUuid = uuid;
           return updatingUser(uuid, {
-            user_id: remoteUser.userId
+            user_id: remoteUser.userIdHash
           });
         }
         userUuid = uuidv4();
@@ -53,7 +53,7 @@ router.route('/')
           name: '',
           authors: '[]',
           atmosphere: '[]',
-          user_id: remoteUser.userId
+          user_id: remoteUser.userIdHash
         });
       })
       .then(() => {

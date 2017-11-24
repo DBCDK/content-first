@@ -2,6 +2,7 @@
 
 const request = require('superagent');
 const _ = require('lodash');
+const {pbkdf2} = require('crypto');
 const path = require('path');
 const schemaUserInfo = path.join(__dirname, 'login-user-info-in.json');
 const schemaHealth = path.join(__dirname, 'login-health-in.json');
@@ -93,12 +94,18 @@ class Login {
         .then(data => {
           const attr = data.attributes;
           if (attr) {
-            return resolve({
-              cpr: attr.cpr,
-              userId: attr.userId
-            });
+            return Promise.all([
+              me.calculatingHash(attr.cpr),
+              me.calculatingHash(attr.userId)
+            ]);
           }
           return reject(new Error(`User information could not be retrieved from ${JSON.stringify(data)}`));
+        })
+        .then(hashedCprAndUserId => {
+          return resolve({
+            cprHash: hashedCprAndUserId[0].toString('hex'),
+            userIdHash: hashedCprAndUserId[1].toString('hex')
+          });
         })
         .catch(error => {
           me.logger.log.debug('Caught', error);
@@ -124,6 +131,19 @@ class Login {
     this.errorLog.push(
       (new Date()).toISOString() + ': ' + logEntry
     );
+  }
+  calculatingHash (data) {
+    const iterations = 10000;
+    const hashLength = 24;
+    const salt = this.config.salt;
+    return new Promise((resolve, reject) => {
+      pbkdf2(data, salt, iterations, hashLength, 'sha512', (error, hash) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(hash);
+      });
+    });
   }
 }
 

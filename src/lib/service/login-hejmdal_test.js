@@ -24,7 +24,8 @@ describe('Login connector', () => {
     }
   };
   const config = {
-    url: 'https://login.bib.dk'
+    url: 'https://login.bib.dk',
+    salt: 'mysecret'
   };
   const login = new Login(config, logger);
 
@@ -95,8 +96,8 @@ describe('Login connector', () => {
         .then(validating(schemaUserInfo))
         .then(data => {
           expect(data).to.deep.equal({
-            cpr: '2508710000',
-            userId: '2508710000'
+            cprHash: '5e5975f69b565f538a12887434bac2105b6d6f010c06b8a3',
+            userIdHash: '5e5975f69b565f538a12887434bac2105b6d6f010c06b8a3'
           });
         });
     });
@@ -124,8 +125,8 @@ describe('Login connector', () => {
         .then(validating(schemaUserInfo))
         .then(data => {
           expect(data).to.deep.equal({
-            cpr: '1701840000',
-            userId: '1701840000'
+            cprHash: '4fa1ef074f739f50eea243fa0e25caeea5494a558abbef48',
+            userIdHash: '4fa1ef074f739f50eea243fa0e25caeea5494a558abbef48'
           });
         });
     });

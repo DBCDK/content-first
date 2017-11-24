@@ -42,7 +42,8 @@ external.get('/howru', async(req, res) => {
     'db.connection.user',
     'db.connection.password',
     'auth.id',
-    'auth.secret'
+    'auth.secret',
+    'login.salt'
   ]);
   const services = [
     database,

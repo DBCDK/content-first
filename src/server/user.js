@@ -31,7 +31,7 @@ async function gettingUser (uuid) {
   });
 }
 
-async function findUserByCpr (cpr) {
+async function findingUserByCprHash (cpr) {
   return new Promise((resolve, reject) => {
     return knex(userTable).where({cpr}).select('uuid')
       .then(existing => {
@@ -105,7 +105,7 @@ async function removingLoginToken (token) {
 
 module.exports = {
   gettingUser,
-  findUserByCpr,
+  findingUserByCprHash,
   gettingUserIdFromLoginToken,
   updatingUser,
   removingLoginToken

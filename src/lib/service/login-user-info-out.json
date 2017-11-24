@@ -1,11 +1,11 @@
 {
   "type": "object",
   "properties": {
-    "cpr": {
+    "cprHash": {
       "required": true,
       "type": "string"
     },
-    "userId": {
+    "userIdHash": {
       "required": true,
       "type": "string"
     }

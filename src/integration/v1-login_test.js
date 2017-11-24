@@ -14,7 +14,7 @@ const loginConstants = require('__/service/login-constants')();
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 
-describe('User login/out', () => {
+describe('User login', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
     await mock.beforeEach();
@@ -145,6 +145,7 @@ describe('User login/out', () => {
   });
 
   describe('GET /hejmdal:token&id', () => {
+
     const token = 'b1984686e9c89c04102c33d912164d60';
     const id = 4321;
     const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
@@ -212,7 +213,7 @@ describe('User login/out', () => {
         id,
         token,
         attributes: {
-          cpr: '121219719873',
+          cpr: '1212719873',
           gender: 'm',
           userId: '0101781234',
           wayfId: 'some-wayf-id',
