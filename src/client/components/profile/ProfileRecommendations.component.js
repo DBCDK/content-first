@@ -14,7 +14,7 @@ const ProfileRecommendations = ({recommendations, isLoading= false}) => (
         {isLoading ? <span className="profile-recommendations-loading"><span className="spinner"/></span> : ''}
       </div>
     </div>
-    <div className="profile-recommendations-label text-left raleway">
+    <div className="profile-topbar-label text-left raleway">
       Bedste forslag til din profil
     </div>
   </div>

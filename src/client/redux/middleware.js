@@ -1,7 +1,18 @@
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
 import {fetchBeltWorks, fetchWork, fetchUser, fetchProfileRecommendations, logout} from '../utils/requester';
-import {ON_PROFILE_RECOMMENDATIONS_REQUEST, ON_USER_DETAILS_REQUEST, ON_LOGOUT_REQUEST} from './profile.reducer';
+import {
+  ON_PROFILE_LOAD_PROFILES_RESPONSE,
+  ON_USER_DETAILS_REQUEST,
+  ON_ADD_PROFILE_ELEMENT,
+  ON_REMOVE_PROFILE_ELEMENT,
+  ON_ADD_PROFILE_ARCHETYPE,
+  ON_PROFILE_REMOVE_CURRENT_PROFILE,
+  ON_PROFILE_CREATE_TASTE,
+  ON_PROFILE_LOAD_PROFILES,
+  ON_LOGOUT_REQUEST
+} from './profile.reducer';
+import {saveProfiles, getProfiles} from '../utils/profile';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -62,11 +73,6 @@ export const requestMiddleware = store => next => action => {
       fetchWork(action.pid, store.dispatch);
       return next(action);
     }
-    case ON_PROFILE_RECOMMENDATIONS_REQUEST: {
-      const {profileReducer} = store.getState();
-      fetchProfileRecommendations(profileReducer, store.dispatch);
-      return next(action);
-    }
     case ON_USER_DETAILS_REQUEST:
       fetchUser(store.dispatch);
       return next(action);
@@ -91,3 +97,27 @@ export const loggerMiddleware = store => next => action => {
   }
 };
 /* eslint-enable no-console */
+
+
+export const profileMiddleware = store => next => action => {
+  switch (action.type) {
+    case ON_ADD_PROFILE_ELEMENT:
+    case ON_REMOVE_PROFILE_ELEMENT:
+    case ON_PROFILE_REMOVE_CURRENT_PROFILE:
+    case ON_PROFILE_CREATE_TASTE:
+    case ON_ADD_PROFILE_ARCHETYPE: {
+      const res = next(action);
+      const {profiles, currentTaste} = store.getState().profileReducer.profileTastes;
+      saveProfiles(profiles, currentTaste);
+      fetchProfileRecommendations(profiles[currentTaste], store.dispatch);
+      return res;
+    }
+    case ON_PROFILE_LOAD_PROFILES:
+      getProfiles((profileTastes) => {
+        store.dispatch({type: ON_PROFILE_LOAD_PROFILES_RESPONSE, profileTastes});
+      });
+      return next(action);
+    default:
+      return next(action);
+  }
+};
