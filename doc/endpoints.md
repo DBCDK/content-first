@@ -316,13 +316,13 @@ The user info is updated selectively, that is, you can leave out some of the fie
 
 ### `GET /v1/login`
 
-If the user is already logged in (ie. a valid cookie is present in the request), the result is same as for `GET /v1/user/`.
+If the user is already logged in (ie. a valid cookie is present in the request), the result is the same as for `GET /v1/user/`.
 
 If there is no cookie or the cookie is invalid, then the web service will redirect to the Adgangsplatform (Hejmdal) login page.  On successful login, the service will redirect to `/`, which can then use `GET /v1/login` or `GET /v1/user`.  On remote subsystem failure, the service will refirect to `/general-error`.
 
 ### `POST /v1/logout`
 
-Makes sure the current login cookie is invalidated.
+Makes sure the current login cookie is invalidated.  The result is a redirection to the logout endpoint in Adgangsplatform (Hejmdal).  When the client redirects to Hejmdal, Hejmdal will remove its own tokens, and finally redirect back to the (client) endpoint defined by the [server constant `loggedOut`](../src/server/constants.js).
 
 ### `GET /v1/stats`
 

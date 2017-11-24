@@ -23,6 +23,7 @@
 @import './components/profileTopbar.css';
 @import './components/progress.css';
 @import './components/profilePage.css';
+@import './components/profileCreateTaste.css';
 
 
 body {

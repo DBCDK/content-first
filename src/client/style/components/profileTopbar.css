@@ -16,7 +16,13 @@
   transform: translateY(0);
 }
 
+.profile-topbar-label {
+  position: absolute;
+  bottom: -2rem;
+}
+
 .profile-topbar-content {
+  position: relative;
   display: flex;
   align-items: center;
   text-align: left;  
@@ -33,18 +39,14 @@
   margin-bottom: 1rem;
 }
 
-.profile-recommendations {
-  position: relative;
-  top: 15px;
-}
-
 .profile-recommendations-list {
   position: relative;
+  top: 15px;
   display: flex;
   width: 100%;
   justify-content: flex-end;
   margin-bottom: 1rem;
-  min-height: 100px;
+  min-height: 120px;
   min-width: 200px;
 }
 

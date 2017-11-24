@@ -1,17 +1,22 @@
-import unique from '../utils/unique';
+import {addElementsToProfiles, removeElementFromProfiles} from '../utils/profile';
+
+const defaultProfile = {
+  moods: [],
+  authors: [],
+  genres: [],
+  archetypes: [],
+  allSelectedTags: []
+};
 
 const defaultState = {
   user: {
     isLoading: false,
     isLoggedIn: false
   },
-  profile: {
-    moods: [],
-    authors: [],
-    genres: [],
-    archetypes: []
+  profileTastes: {
+    currentTaste: null,
+    profiles: {}
   },
-  allSelectedTags: [],
   recommendations: {
     isLoading: false,
     elements: []
@@ -112,38 +117,33 @@ const defaultState = {
 export const ON_ADD_PROFILE_ELEMENT = 'ON_ADD_PROFILE_ELEMENT';
 export const ON_REMOVE_PROFILE_ELEMENT = 'ON_REMOVE_PROFILE_ELEMENT';
 export const ON_ADD_PROFILE_ARCHETYPE = 'ON_ADD_PROFILE_ARCHETYPE';
-export const ON_REMOVE_PROFILE_ARCHETYPE = 'ON_REMOVE_PROFILE_ARCHETYPE';
 export const ON_PROFILE_RECOMMENDATIONS_REQUEST = 'ON_PROFILE_RECOMMENDATIONS_REQUEST';
 export const ON_PROFILE_RECOMMENDATIONS_RESPONSE = 'ON_PROFILE_RECOMMENDATIONS_RESPONSE';
 export const ON_USER_DETAILS_REQUEST = 'ON_USER_DETAILS_REQUEST';
 export const ON_USER_DETAILS_RESPONSE = 'ON_USER_DETAILS_RESPONSE';
 export const ON_LOGOUT_REQUEST = 'ON_LOGOUT_REQUEST';
 export const ON_LOGOUT_RESPONSE = 'ON_LOGOUT_RESPONSE';
+export const ON_PROFILE_CREATE_TASTE = 'ON_PROFILE_CREATE_TASTE';
+export const ON_PROFILE_SELECT_TASTE = 'ON_PROFILE_SELECT_TASTE';
+export const ON_PROFILE_LOAD_PROFILES = 'ON_PROFILE_LOAD_PROFILES';
+export const ON_PROFILE_LOAD_PROFILES_RESPONSE = 'ON_PROFILE_LOAD_PROFILES_RESPONSE';
+export const ON_PROFILE_REMOVE_CURRENT_PROFILE = 'ON_PROFILE_REMOVE_CURRENT_PROFILE';
 
 const profileReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ON_ADD_PROFILE_ELEMENT: {
-      const elementType = action.elementType;
-      const selected = unique([...state.profile[elementType], action.element.label]);
-      const allSelectedTags = unique([...state.allSelectedTags, action.element.label]);
-      return Object.assign({}, state, {allSelectedTags}, {profile: Object.assign({}, state.profile, {[elementType]: selected})});
+      return Object.assign({}, state, addElementsToProfiles(state.profileTastes, {[action.elementType]: [action.element.label]}));
     }
     case ON_REMOVE_PROFILE_ELEMENT: {
-      const elementType = action.elementType;
-      const selected = state.profile[elementType].filter(element => element !== action.element.label);
-      const allSelectedTags = state.allSelectedTags.filter(tag => tag !== action.element.label);
-      return Object.assign({}, state, {allSelectedTags}, {profile: Object.assign({}, state.profile, {[elementType]: selected})});
+      return Object.assign({}, state, removeElementFromProfiles(state.profileTastes, action.elementType, action.element.label));
     }
     case ON_ADD_PROFILE_ARCHETYPE: {
-      const archetypes = [...state.profile.archetypes, action.element.label];
-      const moods = unique([...state.profile.moods, ...action.element.moods]);
-      const authors = unique([...state.profile.authors, ...action.element.authors]);
-      const allSelectedTags = unique([...state.allSelectedTags, ...moods, ...authors]);
-      return Object.assign({}, state, {allSelectedTags}, {profile: Object.assign({}, state.profile, {archetypes, moods, authors})});
-    }
-    case ON_REMOVE_PROFILE_ARCHETYPE: {
-      const archetypes = state.profile.archetypes.filter(element => element !== action.element.label);
-      return Object.assign({}, state, {profile: Object.assign({}, state.profile, {archetypes})});
+      const updateElements = {
+        archetypes: [action.element.label],
+        moods: action.element.moods,
+        authors: action.element.authors
+      };
+      return Object.assign({}, state, addElementsToProfiles(state.profileTastes, updateElements));
     }
     case ON_PROFILE_RECOMMENDATIONS_REQUEST:
       return Object.assign({}, state, {recommendations: Object.assign({}, state.recommendations, {isLoading: true})});
@@ -160,6 +160,24 @@ const profileReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {user: Object.assign({}, state.user, {isLoading: true})});
     case ON_LOGOUT_RESPONSE:
       return Object.assign({}, state, {user: Object.assign({}, state.user, {isLoggedIn: false, isLoading: false})});
+    case ON_PROFILE_CREATE_TASTE: {
+      const currentTaste = action.name;
+      const profiles = Object.assign({}, state.profiletastes.profiles, {[currentTaste]: Object.assign({}, defaultProfile)});
+      return Object.assign({}, state, {profileTastes: {profiles, currentTaste}});
+    }
+    case ON_PROFILE_SELECT_TASTE: {
+      const currentTaste = action.name;
+      return Object.assign({}, state, {profileTastes: Object.assign({}, state.profileTastes, {currentTaste})});
+    }
+    case ON_PROFILE_LOAD_PROFILES_RESPONSE: {
+      return Object.assign({}, state, {profileTastes: Object.assign({}, action.profileTastes, {loading: false})});
+    }
+    case ON_PROFILE_LOAD_PROFILES: {
+      return Object.assign({}, state, {profileTastes: Object.assign({}, state.profileTastes, {loading: true})});
+    }
+    case ON_PROFILE_REMOVE_CURRENT_PROFILE: {
+      return Object.assign({}, state, {profileTastes: Object.assign({}, state.profileTastes, {currentTaste: null})});
+    }
     default:
       return state;
   }
