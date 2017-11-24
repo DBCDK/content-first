@@ -145,5 +145,9 @@ export const fetchUser = (dispatch) => {
 
 export const logout = (dispatch) => {
   request.post('/v1/logout')
-    .end(() => dispatch({type: ON_LOGOUT_RESPONSE}));
+    .redirects(0)
+    .end((err, res) => {
+      dispatch({type: ON_LOGOUT_RESPONSE})
+      window.location.href = res.headers.location;
+    });
 };
