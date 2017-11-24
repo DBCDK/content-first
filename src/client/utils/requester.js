@@ -144,10 +144,7 @@ export const fetchUser = (dispatch) => {
 };
 
 export const logout = (dispatch) => {
-  request.post('/v1/logout')
-    .redirects(0)
-    .end((err, res) => {
-      dispatch({type: ON_LOGOUT_RESPONSE});
-      window.location.href = res.headers.location;
-    });
+  dispatch({type: ON_LOGOUT_RESPONSE});
+  document.body.innerHTML += '<form id="logoutform" action="/v1/logout" method="post"></form>';
+  document.getElementById('logoutform').submit();
 };
