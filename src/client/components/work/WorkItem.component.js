@@ -18,6 +18,9 @@ class WorkItem extends React.Component {
           </div>
         </div>
         <div className='metakompas-description'>
+          <span style={{position: 'absolute', top: '0px', left: '0px', zIndex: 200}} className='btn btn-default' onClick={() => {
+            this.props.onRememberClick(this.props.work);
+          }}>husk</span>
           {tax_description && tax_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}
         </div>
       </div>

@@ -6,6 +6,7 @@ import WorkItem from '../work/WorkItem.component';
 import BootstrapDropDown from './BootstrapDropdown.component';
 import {ON_SORT_OPTION_SELECT, ON_EDIT_FILTER_TOGGLE, ON_FILTER_TOGGLE, ON_RESET_FILTERS, ON_EXPAND_FILTERS_TOGGLE} from '../../redux/filter.reducer';
 import {ON_BELT_REQUEST} from '../../redux/belts.reducer';
+import {ON_SHORTLIST_ADD_ELEMENT} from '../../redux/shortlist.reducer';
 import {getLeaves} from '../../utils/filters';
 import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
@@ -136,6 +137,7 @@ class FilterPage extends React.Component {
               id={`work-${idx}`}
               key={work.book.pid}
               onCoverClick={(pid) => this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`})}
+              onRememberClick={(element) => this.props.dispatch({type: ON_SHORTLIST_ADD_ELEMENT, element})}
               work={work}/>;
           })}
         </div>

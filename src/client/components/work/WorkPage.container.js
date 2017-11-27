@@ -5,6 +5,7 @@ import ScrollableBelt from '../frontpage/ScrollableBelt.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {getLeaves} from '../../utils/filters';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
+import {ON_SHORTLIST_ADD_ELEMENT} from '../../redux/shortlist.reducer';
 import Image from '../Image.component';
 
 class WorkPage extends React.Component {
@@ -131,6 +132,9 @@ class WorkPage extends React.Component {
               scrollInterval={3}
               onCoverClick={(pid) => {
                 this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
+              }}
+              onRememberClick={(element) => {
+                this.props.dispatch({type: ON_SHORTLIST_ADD_ELEMENT, element, origin: `Minder om "${work.data.title}"`});
               }}
             />
           </div>

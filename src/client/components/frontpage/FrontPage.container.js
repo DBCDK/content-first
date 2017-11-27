@@ -4,6 +4,7 @@ import Belt from './Belt.component';
 import CreateProfile from '../profile/CreateProfile.component';
 import {ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
+import {ON_SHORTLIST_ADD_ELEMENT} from '../../redux/shortlist.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
@@ -58,6 +59,9 @@ class FrontPage extends React.Component {
             }}
             onCoverClick={(pid) => {
               this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
+            }}
+            onRememberClick={(element) => {
+              this.props.dispatch({type: ON_SHORTLIST_ADD_ELEMENT, element, origin: belt.name});
             }}
             custom={custom}
           />;

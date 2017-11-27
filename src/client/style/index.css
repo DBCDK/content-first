@@ -24,6 +24,7 @@
 @import './components/progress.css';
 @import './components/profilePage.css';
 @import './components/profileCreateTaste.css';
+@import './components/shortList.css';
 
 
 body {
@@ -251,4 +252,8 @@ body {
 .tooltip.top > .tooltip-arrow {
   border-top-color: #fc492d;
   left: 25%;
+}
+
+.inline-block {
+  display: inline-block;
 }

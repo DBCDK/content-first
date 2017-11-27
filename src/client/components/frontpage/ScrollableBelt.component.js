@@ -1,5 +1,6 @@
 import React from 'react';
 import WorkItem from '../work/WorkItem.component';
+import {ON_SHORTLIST_ADD_ELEMENT} from '../../redux/shortlist.reducer';
 
 class ScrollableBelt extends React.Component {
 
@@ -25,7 +26,12 @@ class ScrollableBelt extends React.Component {
         <div className='works-wrapper col-xs-12 noselect'>
           <div className='works' style={{transform: `translate3d(${scrollPos}, 0px, 0px)`}}>
             {this.props.works && this.props.works.map((work, idx) => {
-              return <WorkItem id={`work-${idx}`} key={work.book.pid} work={work} onCoverClick={this.props.onCoverClick}/>;
+              return <WorkItem
+                id={`work-${idx}`}
+                key={work.book.pid}
+                work={work}
+                onCoverClick={this.props.onCoverClick}
+                onRememberClick={this.props.onRememberClick}/>;
             })}
           </div>
         </div>

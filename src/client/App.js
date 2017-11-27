@@ -8,7 +8,7 @@ import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
 import WorkPage from './components/work/WorkPage.container';
 import ProfilePage from './components/profile/ProfilePage.container';
-import TopBar from './components/TopBar.component';
+import TopBar from './components/top/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
 

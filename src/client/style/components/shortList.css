@@ -1,0 +1,73 @@
+.short-list {
+  position: relative;
+  display: inline-block;
+  margin-right: 25px;
+}
+.short-list--btn {
+  cursor: pointer;
+}
+.short-list--close-btn {
+  position: absolute;
+  margin: 1em
+}
+.short-list--content {
+  position: fixed;
+  width: 350px;
+  right: 10px;
+  top: 90px;
+  z-index: 1100;
+  border: 1px solid rgba(0,0,0,.15);
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.short-list--header {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  margin: 1em
+}
+.short-list--empty-text {
+  margin: 50px;
+}
+.short-list-element {
+  border-bottom: 1px solid lightgray;
+  margin: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+.short-list-element:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+.short-list-element:last-child {
+  border-bottom: 0;
+}
+.short-list-element--header {
+  font-family: 'Lora', serif;
+  color: black;
+  font-weight: 700;
+  font-style: italic;
+}
+.short-list-element--cover-image {
+  display: inline-block;
+  float: left;
+  width: 50px;
+}
+.short-list-element--text {
+  display: inline-block;
+  float: left;
+  width: 200px;
+  margin-left: 1.5em;
+  margin-top: -4px;
+}
+.short-list-element {
+  position: relative;
+  clear: both;
+}
+.short-list-element--cover-image img {
+  max-width: 50px;
+}
+.short-list-element--close-btn {
+  position: absolute;
+  right: -20px;
+}

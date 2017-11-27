@@ -1,7 +1,8 @@
 import React from 'react';
-import {HISTORY_PUSH, HISTORY_PUSH_FORCE_REFRESH} from '../redux/middleware';
-import {ON_LOGOUT_REQUEST} from '../redux/profile.reducer';
-import logo from '../logo.svg';
+import {HISTORY_PUSH, HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
+import {ON_LOGOUT_REQUEST} from '../../redux/profile.reducer';
+import logo from '../../logo.svg';
+import ShortListDropDown from './ShortListDropDown.component';
 
 export default function TopBar(props) { // eslint-disable-line no-unused-vars
   return (
@@ -13,19 +14,16 @@ export default function TopBar(props) { // eslint-disable-line no-unused-vars
         <div><h1>Læsekompasset</h1></div>
       </div>
       <div className='col-xs-6 text-right login'>
+        <ShortListDropDown/>
         {!props.user.isLoggedIn && <span onClick={() => {
           props.dispatch({type: HISTORY_PUSH_FORCE_REFRESH, path: '/v1/login'});
         }}>Log ind</span>}
-        {props.user.isLoggedIn &&
-          <div>
-            <span onClick={() => {
-              props.dispatch({type: HISTORY_PUSH, path: '/profile'});
-            }}>Min profil</span>
-            <span onClick={() => {
-              props.dispatch({type: ON_LOGOUT_REQUEST});
-              props.dispatch({type: HISTORY_PUSH, path: '/'});
-            }}>Log ud</span>
-          </div>}
+        {props.user.isLoggedIn && <span onClick={() => {
+          props.dispatch({type: HISTORY_PUSH, path: '/profile'});
+        }}>Min profil</span>}
+        {props.user.isLoggedIn && <span onClick={() => {
+          props.dispatch({type: ON_LOGOUT_REQUEST});
+        }}>Log ud</span>}
       </div>
     </div>
   );
