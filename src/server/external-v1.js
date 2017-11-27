@@ -13,6 +13,7 @@ router.use('/complete-taxonomy', require('server/external-v1-complete-taxonomy')
 router.use('/image', require('server/external-v1-image'));
 router.use('/login', require('server/external-v1-login'));
 router.use('/logout', require('server/external-v1-logout'));
+router.use('/profiles', require('server/external-v1-profiles'));
 router.use('/recommendations', require('server/external-v1-recommendations'));
 router.use('/tags', require('server/external-v1-tags'));
 router.use('/taxonomy', require('server/external-v1-taxonomy'));

@@ -118,6 +118,14 @@ The result is an image file.
 
 The content-type must be `image/jpeg` or `image/png`.
 
+## Recommendations
+
+### `GET /v1/recommendations?tag=`*metatag*`&`...`&tag=`*metatag*
+
+Each metatag must be a number defined by [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
+
+The result is a list of books such that each book include all the specified tags.
+
 ## Tags
 
 ### `GET /v1/tags/`*pid*
@@ -167,14 +175,6 @@ Replace all tags.  The data must be a list of [valid tag input](../src/server/sc
     }
 
 If unsuccessful, the previous tags in the database are untouched.
-
-## Recommendations
-
-### `GET /v1/recommendations?tag=`*metatag*`&`...`&tag=`*metatag*
-
-Each metatag must be a number defined by [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
-
-The result is a list of books such that each book include all the specified tags.
 
 ## Taxonomy
 
@@ -289,14 +289,24 @@ The data must be [valid taxonomy](../src/server/schemas/taxonomy-in.json), like
 
 Note that the ids are quoted.
 
+## Users
+
 ### `GET /v1/user`
 
 Returns [user information](../src/integration/schemas/user-data-out.json) for a logged-in user, like
 
     { "data":
       { "name": "Jens Godfredsen"
-      , "authors": [ "Ib Michael", "Helle Helle" ]
-      , "atmosphere": [ "Realistisk" ]
+      , "profiles":
+        [ { "name": "Med på den værste"
+          , "profile":
+            { "moods": ["Åbent fortolkningsrum", "frygtelig", "fantasifuld"]
+            , "genres": ["Brevromaner", "Noveller"]
+            , "authors": ["Hanne Vibeke Holst", "Anne Lise Marstrand Jørgensen"]
+            , "archetypes": ["hestepigen"]
+            }
+          }
+        ]
       }
     , "links": 
       { "self": "/v1/user"
@@ -308,8 +318,24 @@ Returns [user information](../src/integration/schemas/user-data-out.json) for a 
 Updates the [user information](../src/server/schemas/user-in.json) like
 
     { "name": "Ole Henriksen"
-    , "authors": [ "Ole Henriksen", "Dolly Parton" ]
-    , "atmosphere": [ "Dramtisk" ]
+    , "profiles":
+      [ { "name": "En tynd en"
+        , "profile":
+          { "moods": [ "frygtelig" ]
+          , "authors": [ "Carsten Jensen" ]
+          , "genres": [ "Skæbnefortællinger" ]
+          , "archetypes": [ "Goth" ]
+          }
+        }
+      , { "name": "Ny profile"
+        , "profile":
+          { "moods": [ "dramatisk" ]
+          , "authors": [ "Helge Sander" ]
+          , "genres": [ "Skæbnefortællinger" ]
+          , "archetypes": [ "Goth" ]
+          }
+        }
+      ]
     }
 
 The user info is updated selectively, that is, you can leave out some of the fields to not change their value.
@@ -323,6 +349,77 @@ If there is no cookie or the cookie is invalid, then the web service will redire
 ### `POST /v1/logout`
 
 Makes sure the current login cookie is invalidated.  The result is a redirection to the logout endpoint in Adgangsplatform (Hejmdal).  When the client redirects to Hejmdal, Hejmdal will remove its own tokens, and finally redirect back to the (client) endpoint defined by the [server constant `loggedOut`](../src/server/constants.js).
+
+### `GET /v1/profiles`
+
+Returns the currently logged-in user's profiles, like
+
+    { "data":
+      [ { "name": "Med på den værste"
+        , "profile":
+          { "moods":
+            [ "Åbent fortolkningsrum"
+            , "frygtelig"
+            , "fantasifuld"
+            ]
+          , "authors":
+            [ "Hanne Vibeke Holst"
+            , "Anne Lise Marstrand Jørgensen"
+            ]
+          , "genres":
+            [ "Brevromaner"
+            , "Noveller"
+            ]
+          , "archetypes":
+            [ "hestepigen"
+            ]
+          }
+        }
+      ]
+    , "links"
+      { "self": "/v1/profiles"
+      }
+    }
+
+If the user is not logged-in, the result is 403.
+
+### `PUT /v1/profiles`
+
+Updates the currently logged-in user's profiles.  The input is like
+
+    [ { "name": "En tynd en"
+      , "profile":
+        { "moods": [ "frygtelig" ]
+        , "authors": [ "Carsten Jensen" ]
+        , "genres": [ "Skæbnefortællinger" ]
+        , "archetypes": [ "Goth" ]
+        }
+      }
+    , { "name": "Ny profile"
+      , "profile":
+        { "moods": [ "dramatisk" ]
+        , "authors": [ "Helge Sander" ]
+        , "genres": [ "Skæbnefortællinger" ]
+        , "archetypes": [ "Goth" ]
+        }
+      }
+    ]
+
+## Misc
+
+### `GET /hejmdal/?token=`*token*`&id=`*id*
+
+Redirection point for Hejmdal to call after successful user login.  The result is a cookie that tells the service that which user is logged in, and a rediction to `/`
+
+# Command-line interaction
+
+To upload a book:
+
+    curl -X PUT -H "Content-Type: application/json" --data "@src/fixtures/min-oste-bog.json" http://localhost:3002/v1/book/12345-ost:98765
+
+To upload a cover image:
+
+    curl -X PUT -H "Content-Type: image/jpeg" --data-binary "@src/fixtures/12345-ost:98765.jpg" http://localhost:3002/v1/image/12345-ost:98765
 
 ### `GET /v1/stats`
 
@@ -347,18 +444,4 @@ Cleans up the database and returns statistics, like
       { "self": "/v1/stats"
       }
     }
-
-### `GET /hejmdal/?token=`*token*`&id=`*id*
-
-Redirection point for Hejmdal to call after successful user login.  The result is a cookie that tells the service that which user is logged in, and a rediction to `/`
-
-# Command-line interaction
-
-To upload a book:
-
-    curl -X PUT -H "Content-Type: application/json" --data "@src/fixtures/min-oste-bog.json" http://localhost:3002/v1/book/12345-ost:98765
-
-To upload a cover image:
-
-    curl -X PUT -H "Content-Type: image/jpeg" --data-binary "@src/fixtures/12345-ost:98765.jpg" http://localhost:3002/v1/image/12345-ost:98765
 

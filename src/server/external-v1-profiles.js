@@ -11,19 +11,19 @@ const {gettingUser, gettingUserIdFromLoginToken} = require('server/user');
 const {gettingUserFromToken} = require('server/v1-users-common');
 const {validatingInput} = require('__/json');
 const path = require('path');
-const schema = path.join(__dirname, 'schemas/user-in.json');
+const schema = path.join(__dirname, 'schemas/profiles-in.json');
 
 router.route('/')
 
   //
-  // GET /v1/user
+  // GET /v1/profiles
   //
   .get(asyncMiddleware(async (req, res, next) => {
     const location = req.baseUrl;
     return gettingUserFromToken(req)
     .then(user => {
       res.status(200).json({
-        data: user,
+        data: user.profiles,
         links: {self: location}
       });
     })
@@ -33,7 +33,7 @@ router.route('/')
   }))
 
   //
-  // PUT /v1/user
+  // PUT /v1/profiles
   //
   .put(asyncMiddleware(async (req, res, next) => {
     const contentType = req.get('content-type');
@@ -44,15 +44,15 @@ router.route('/')
         detail: `Content type ${contentType} is not supported`
       });
     }
-    const userInfo = req.body;
+    const profiles = req.body;
     try {
-      await validatingInput(userInfo, schema);
+      await validatingInput(profiles, schema);
     }
     catch (error) {
       return next({
         status: 400,
-        title: 'Malformed user data',
-        detail: 'User data does not adhere to schema',
+        title: 'Malformed profiles',
+        detail: 'Profiles do not adhere to schema',
         meta: error.meta || error
       });
     }
@@ -88,8 +88,7 @@ router.route('/')
     }
     try {
       await knex(userTable).where('uuid', userId).update({
-        name: userInfo.name,
-        profiles: JSON.stringify(userInfo.profiles)
+        profiles: JSON.stringify(profiles)
       });
     }
     catch (error) {
@@ -102,7 +101,7 @@ router.route('/')
     return gettingUser(userId)
       .then(user => {
         res.status(200).json({
-          data: user,
+          data: user.profiles,
           links: {self: location}
         });
       })

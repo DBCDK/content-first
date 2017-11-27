@@ -44,16 +44,17 @@ router.route('/')
           userUuid = uuid;
           return updatingUser(uuid, {
             user_id: remoteUser.userIdHash
+            // CPR needs no update because that is what made the match in the first place.
           });
         }
         userUuid = uuidv4();
         logger.log.info(`Creating user ${userUuid}`);
         return knex(userTable).insert({
           uuid: userUuid,
+          cpr: remoteUser.cprHash,
+          user_id: remoteUser.userIdHash,
           name: '',
-          authors: '[]',
-          atmosphere: '[]',
-          user_id: remoteUser.userIdHash
+          profiles: '[]'
         });
       })
       .then(() => {

@@ -5,18 +5,51 @@
       "required": true,
       "type": "string"
     },
-    "authors": {
-      "required": true,
+    "profiles": {
       "type": "array",
       "items": {
-        "type": "string"
-      }
-    },
-    "atmosphere": {
-      "required": true,
-      "type": "array",
-      "items": {
-        "type": "string"
+        "type": "object",
+        "properties": {
+          "name": {
+            "required": true,
+            "type": "string"
+          },
+          "profile": {
+            "required": true,
+            "type": "object",
+            "properties": {
+              "authors": {
+                "required": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "moods": {
+                "required": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "genres": {
+                "required": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "archetypes": {
+                "required": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "additionalProperties": false
       }
     }
   },

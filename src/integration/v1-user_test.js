@@ -79,11 +79,11 @@ describe('User data', () => {
           .expect(403);
       });
 
-      it('should retrieve user data when logged in', done => {
+      it('should retrieve user data when logged in', () => {
         // Arrange.
         const loginToken = 'a-valid-login-token-seeded-on-test-start';
         // Act.
-        webapp.get(location)
+        return webapp.get(location)
           .set('cookie', `login-token=${loginToken}`)
           // Assert.
           .expect(res => {
@@ -93,21 +93,43 @@ describe('User data', () => {
               expectValidate(data, 'schemas/user-data-out.json');
               expect(data).to.deep.equal({
                 name: 'Jens Godfredsen',
-                authors: ['Ib Michael', 'Helle Helle'],
-                atmosphere: ['Realistisk']
+                profiles: [{
+                  name: 'Med på den værste',
+                  profile: {
+                    moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
+                    genres: ['Brevromaner', 'Noveller'],
+                    authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
+                    archetypes: ['hestepigen']
+                  }
+                }]
               });
             });
           })
-          .expect(200)
-          .end(done);
+          .expect(200);
       });
     });
 
     describe('PUT /v1/user', () => {
+
       const newUserInfo = {
         name: 'Ole Henriksen',
-        authors: ['Ole Henriksen', 'Dolly Parton'],
-        atmosphere: ['Dramtisk']
+        profiles: [{
+          name: 'En tynd en',
+          profile: {
+            moods: ['frygtelig'],
+            authors: ['Carsten Jensen'],
+            genres: ['Skæbnefortællinger'],
+            archetypes: ['Goth']
+          }
+        }, {
+          name: 'Ny profile',
+          profile: {
+            moods: ['dramatisk'],
+            authors: ['Helge Sander'],
+            genres: ['Skæbnefortællinger'],
+            archetypes: ['Goth']
+          }
+        }]
       };
 
       it('should complain about user not logged in when no token', () => {

@@ -36,8 +36,15 @@ describe('User login', () => {
             expectValidate(data, 'schemas/user-data-out.json');
             expect(data).to.deep.equal({
               name: 'Jens Godfredsen',
-              authors: ['Ib Michael', 'Helle Helle'],
-              atmosphere: ['Realistisk']
+              profiles: [{
+                name: 'Med på den værste',
+                profile: {
+                  moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
+                  genres: ['Brevromaner', 'Noveller'],
+                  authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
+                  archetypes: ['hestepigen']
+                }
+              }]
             });
           });
           expect(mock.getErrorLog().args).to.have.length(0);
@@ -146,14 +153,14 @@ describe('User login', () => {
 
   describe('GET /hejmdal:token&id', () => {
 
-    const token = 'b1984686e9c89c04102c33d912164d60';
+    const token = 'a-valid-login-token-seeded-on-test-start';
     const id = 4321;
     const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
     const cookieFormat =
       /* TODO: /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly; secure/i;*/
       /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly/i;
 
-    it('should retrieve user info and redirect & set valid cookie', () => {
+    it('should retrieve user info & redirect with valid cookie', () => {
       // Arrange.
       const hejmdal = nock(config.login.url).get(slug).reply(200, {
         attributes: {
@@ -196,8 +203,7 @@ describe('User login', () => {
                 expectValidate(data, 'schemas/user-data-out.json');
                 expect(data).to.deep.equal({
                   name: '',
-                  authors: [],
-                  atmosphere: []
+                  profiles: []
                 });
               });
               expect(hejmdal.isDone());
@@ -249,8 +255,15 @@ describe('User login', () => {
                 expectValidate(data, 'schemas/user-data-out.json');
                 expect(data).to.deep.equal({
                   name: 'Jens Godfredsen',
-                  authors: ['Ib Michael', 'Helle Helle'],
-                  atmosphere: ['Realistisk']
+                  profiles: [{
+                    name: 'Med på den værste',
+                    profile: {
+                      moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
+                      genres: ['Brevromaner', 'Noveller'],
+                      authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
+                      archetypes: ['hestepigen']
+                    }
+                  }]
                 });
               });
               expect(hejmdal.isDone());
