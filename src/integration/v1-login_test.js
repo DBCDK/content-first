@@ -1,7 +1,6 @@
 /* eslint-env mocha */
 'use strict';
 
-// const MockServer = require('./mock-server');
 const mock = require('./mock-server');
 const {expect} = require('chai');
 const request = require('supertest');

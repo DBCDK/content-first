@@ -13,6 +13,8 @@ const dbUtil = require('./cleanup-db')(knex);
 
 class MockServer {
   constructor () {
+    // Make sure the cpr hash salt is known.
+    config.login.salt = 'something';
     this.errorLog = null;
     this.infoLog = null;
     this.external = require('server/external-server');
