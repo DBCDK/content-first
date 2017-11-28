@@ -1,5 +1,4 @@
 import React from 'react';
-import ScrollableBelt from './ScrollableBelt.component';
 
 export default class Belt extends React.Component {
 
@@ -44,14 +43,7 @@ export default class Belt extends React.Component {
             </span>;
           })}
         </div>
-        {this.props.custom}
-        {!this.props.belt.requireLogin && <ScrollableBelt
-          works={this.props.belt.works}
-          scrollInterval={3}
-          onCoverClick={this.props.onCoverClick}
-          onRememberClick={this.props.onRememberClick}
-          remembered={this.props.remembered}
-        />}
+        {this.props.children}
       </div>
     );
   }

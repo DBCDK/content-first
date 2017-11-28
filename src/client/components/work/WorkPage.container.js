@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ScrollableBelt from '../general/ScrollableBelt.component';
+import WorkItem from './WorkItem.component';
+import Image from '../Image.component';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
-import ScrollableBelt from '../frontpage/ScrollableBelt.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
-import {getLeaves} from '../../utils/filters';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
-import Image from '../Image.component';
+import {getLeaves} from '../../utils/filters';
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -59,10 +60,10 @@ class WorkPage extends React.Component {
 
     const allowedFilterIds = getLeaves(this.props.filterState.filters).map(f => f.id);
 
-    const remembered = {};
-    this.props.shortListState.elements.forEach(e => {
-      remembered[e.book.pid] = true;
-    });
+    const remembered = this.props.shortListState.elements.reduce((map, e) => {
+      map[e.book.pid] = e;
+      return map;
+    }, {});
 
     return (
       <div className='work-page'>
@@ -132,17 +133,21 @@ class WorkPage extends React.Component {
             <div className='col-xs-12 header'>
               <span className='belt-title'>Bøger der giver lignende oplevelser</span>
             </div>
-            <ScrollableBelt
-              works={work.similar}
-              scrollInterval={3}
-              onCoverClick={(pid) => {
-                this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
-              }}
-              onRememberClick={(element) => {
-                this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Minder om "${work.data.title}"`});
-              }}
-              remembered={remembered}
-            />
+            <ScrollableBelt works={work.similar} scrollInterval={3}>
+              {work.similar && work.similar.map((w, idx) => {
+                return <WorkItem
+                  id={`work-${idx}`}
+                  key={w.book.pid}
+                  work={w}
+                  onCoverClick={(pid) => {
+                    this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
+                  }}
+                  onRememberClick={(element) => {
+                    this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Minder om "${work.data.title}"`});
+                  }}
+                  marked={remembered[w.book.pid]}/>;
+              })}
+            </ScrollableBelt>
           </div>
         </div>}
       </div>
