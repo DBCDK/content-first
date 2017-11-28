@@ -148,3 +148,18 @@ export const logout = (dispatch) => {
   document.body.innerHTML += '<form id="logoutform" action="/v1/logout" method="post"></form>';
   document.getElementById('logoutform').submit();
 };
+
+export const saveShortList = (elements) => {
+  if (window && window.localStorage) {
+    localStorage.setItem('contentFirstShortList', JSON.stringify({elements}));
+  }
+};
+
+export const loadShortList = (cb) => {
+  setTimeout(() => {
+    if (window && window.localStorage) {
+      return cb(JSON.parse(localStorage.getItem('contentFirstShortList') || {elements: []}));
+    }
+    return cb({elements: []});
+  }, 500);
+};
