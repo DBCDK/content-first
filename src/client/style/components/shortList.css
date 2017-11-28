@@ -5,13 +5,13 @@
 }
 .short-list--btn {
   cursor: pointer;
-  width: 26px;
+  width: 24px;
 }
 .short-list--btn-badge {
   position: absolute;
   font-family: var(--secondary-font);
   background: black;
-  right: -11px;
+  left: 12px;
   top: -4px;
   padding-bottom: 4px;
 }
@@ -23,12 +23,13 @@
 }
 .short-list--content {
   position: fixed;
+  background: white;
   width: 350px;
   right: 10px;
-  top: 90px;
+  top: 60px;
   z-index: 1100;
   border: 1px solid rgba(0,0,0,.15);
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 2px 6px rgba(0,0,0,.175);
   font-family: var(--secondary-font);
   transition: all 0.15s ease-in-out;
   opacity: 1;

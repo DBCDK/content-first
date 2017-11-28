@@ -39,7 +39,7 @@ const ShortListContent = (props) => {
     }
   }
   return (
-    <div className={`short-list--content panel text-left${props.expanded ? '' : ' slide-out'}`}>
+    <div className={`short-list--content text-left${props.expanded ? '' : ' slide-out'}`}>
       <img src={Kryds} alt="luk" className="short-list--close-btn" onClick={props.onClose}/>
       <div className="short-list--header">HUSKELISTE</div>
       <div className='short-list--empty-text text-center'>{props.elements.length === 0 && 'Din huskeliste er tom'}</div>

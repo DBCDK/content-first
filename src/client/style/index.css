@@ -26,6 +26,7 @@
 @import './components/profileCreateTaste.css';
 @import './components/shortList.css';
 @import './components/checkmarkButton.css';
+@import './components/topbar.css';
 
 
 body {
@@ -69,36 +70,6 @@ body {
   padding: 10px;
   padding-left: 60px;
   padding-right: 60px;
-}
-
-.topbar {
-  /*background: inherit;*/
-  padding-top: 15px;
-  padding-bottom: 15px;
-  /*color: black;*/
-}
-.topbar .login {
-  margin-top: 30px;
-}
-.topbar .login > span {
-  margin-right: 25px;
-  cursor: pointer;
-}
-.topbar h1 {
-  font-weight: 400;
-  font-style: italic;
-  margin: 0;
-}
-.topbar .header {
-  cursor: pointer;
-}
-.topbar .header img {
-  height: 80px;
-}
-.topbar .header div {
-  display: inline-block;
-  margin-left: 25px;
-  vertical-align: middle;
 }
 
 .frontpage-image {

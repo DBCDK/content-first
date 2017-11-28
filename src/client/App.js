@@ -48,6 +48,7 @@ class App extends Component {
     return (
       <div className="App container">
         <TopBar dispatch={this.props.dispatch} user={this.props.profileState.user}/>
+        <div style={{height: '50px'}}/>
         {currentPage}
       </div>
     );
