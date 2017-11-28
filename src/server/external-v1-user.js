@@ -11,7 +11,10 @@ const {gettingUser, gettingUserIdFromLoginToken} = require('server/user');
 const {gettingUserFromToken} = require('server/v1-users-common');
 const {validatingInput} = require('__/json');
 const path = require('path');
-const schema = path.join(__dirname, 'schemas/user-in.json');
+const userSchema = path.join(__dirname, 'schemas/user-in.json');
+const shortlistSchema = path.join(__dirname, 'schemas/shortlist-in.json');
+const listsSchema = path.join(__dirname, 'schemas/lists-in.json');
+const profilesSchema = path.join(__dirname, 'schemas/profiles-in.json');
 
 router.route('/')
 
@@ -46,7 +49,10 @@ router.route('/')
     }
     const userInfo = req.body;
     try {
-      await validatingInput(userInfo, schema);
+      await validatingInput(userInfo, userSchema);
+      await validatingInput(userInfo.lists, listsSchema);
+      await validatingInput(userInfo.shortlist, shortlistSchema);
+      await validatingInput(userInfo.profiles, profilesSchema);
     }
     catch (error) {
       return next({

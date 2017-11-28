@@ -91,6 +91,9 @@ describe('User data', () => {
               expectValidate(links, 'schemas/user-links-out.json');
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/user-data-out.json');
+              expectValidate(data.shortlist, 'schemas/shortlist-data-out.json');
+              expectValidate(data.lists, 'schemas/lists-data-out.json');
+              expectValidate(data.profiles, 'schemas/profiles-data-out.json');
               expect(data).to.deep.equal({
                 name: 'Jens Godfredsen',
                 lists: [{
@@ -279,6 +282,9 @@ describe('User data', () => {
               expect(links).to.have.property('self');
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/user-data-out.json');
+              expectValidate(data.shortlist, 'schemas/shortlist-data-out.json');
+              expectValidate(data.lists, 'schemas/lists-data-out.json');
+              expectValidate(data.profiles, 'schemas/profiles-data-out.json');
               expect(data).to.deep.equal(newUserInfo);
             });
           })
@@ -293,6 +299,9 @@ describe('User data', () => {
                   expectValidate(links, 'schemas/user-links-out.json');
                   expect(links.self).to.equal(location);
                   expectValidate(data, 'schemas/user-data-out.json');
+                  expectValidate(data.shortlist, 'schemas/shortlist-data-out.json');
+                  expectValidate(data.lists, 'schemas/lists-data-out.json');
+                  expectValidate(data.profiles, 'schemas/profiles-data-out.json');
                   expect(data).to.deep.equal(newUserInfo);
                 });
               })

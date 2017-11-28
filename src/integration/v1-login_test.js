@@ -33,6 +33,9 @@ describe('User login', () => {
           expectSuccess(res.body, (links, data) => {
             expectValidate(links, 'schemas/user-links-out.json');
             expectValidate(data, 'schemas/user-data-out.json');
+            expectValidate(data.shortlist, 'schemas/shortlist-data-out.json');
+            expectValidate(data.lists, 'schemas/lists-data-out.json');
+            expectValidate(data.profiles, 'schemas/profiles-data-out.json');
             expect(data).to.deep.equal({
               name: 'Jens Godfredsen',
               shortlist: [{
@@ -266,6 +269,9 @@ describe('User login', () => {
               expectSuccess(res.body, (links, data) => {
                 expectValidate(links, 'schemas/user-links-out.json');
                 expectValidate(data, 'schemas/user-data-out.json');
+                expectValidate(data.shortlist, 'schemas/shortlist-data-out.json');
+                expectValidate(data.lists, 'schemas/lists-data-out.json');
+                expectValidate(data.profiles, 'schemas/profiles-data-out.json');
                 expect(data).to.deep.equal({
                   name: 'Jens Godfredsen',
                   shortlist: [{

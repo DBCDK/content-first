@@ -7,107 +7,15 @@
     },
     "shortlist": {
       "required": true,
-      "type": "array",
-      "items": {
-        "required": true,
-        "type": "object",
-        "properties": {
-          "pid": {
-            "required": true,
-            "type": "string"
-          },
-          "origin": {
-            "required": true,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      }
+      "type": "array"
     },
     "lists": {
       "required": true,
-      "type": "array",
-      "items": {
-        "required": true,
-        "type": "object",
-        "properties": {
-          "title": {
-            "required": true,
-            "type": "string"
-          },
-          "description": {
-            "required": true,
-            "type": "string"
-          },
-          "list": {
-            "required": true,
-            "type": "array",
-            "items": {
-              "required": true,
-              "type": "object",
-              "properties": {
-                "pid": {
-                  "required": true,
-                  "type": "string"
-                },
-                "description": {
-                  "required": true,
-                  "type": "string"
-                },
-                "additionalProperties": false
-              }
-            }
-          }
-        }
-      }
+      "type": "array"
     },
     "profiles": {
       "required": true,
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "required": true,
-            "type": "string"
-          },
-          "profile": {
-            "required": true,
-            "type": "object",
-            "properties": {
-              "authors": {
-                "required": true,
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "moods": {
-                "required": true,
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "genres": {
-                "required": true,
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "archetypes": {
-                "required": true,
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        },
-        "additionalProperties": false
-      }
+      "type": "array"
     }
   },
   "additionalProperties": false

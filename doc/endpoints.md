@@ -383,7 +383,7 @@ Makes sure the current login cookie is invalidated.  The result is a redirection
 
 ### `GET /v1/profiles`
 
-Returns the currently logged-in user's profiles, like
+Returns the currently logged-in user's [profiles](../src/integration/schemas/profiles-data-out.json), like
 
     { "data":
       [ { "name": "Med på den værste"
@@ -416,7 +416,7 @@ If the user is not logged-in, the result is 403.
 
 ### `PUT /v1/profiles`
 
-Updates the currently logged-in user's profiles.  The input is like
+Updates the currently logged-in user's profiles.  The [input](../src/server/schemas/profiles-in.json) is like
 
     [ { "name": "En tynd en"
       , "profile":
@@ -440,7 +440,7 @@ If the user is not logged-in, the result is 403.
 
 ### `GET /v1/shortlist`
 
-Returns the logged-in user's shortlist, like
+Returns the logged-in user's [shortlist](../src/integration/schemas/shortlist-data-out.json), like
 
     { "data": 
       [ { "pid": "870970-basis-53188931"
@@ -459,7 +459,7 @@ If the user is not logged-in, the result is 403.
 
 ### `PUT /v1/shortlist`
 
-Updates the currently logged-in user's shortlist.  The input is like
+Updates the currently logged-in user's [shortlist](../src/server/schemas/shortlist-in.json).  The input is like
 
     [ { "pid": "870970-basis-53188931"
       , "origin": "en-let-læst-bog"
@@ -473,7 +473,7 @@ If the user is not logged-in, the result is 403.
 
 ### `GET /v1/lists`
 
-Returns the logged-in user's shortlist, like
+Returns the logged-in user's [simple list](../src/integration/schemas/lists-data-out.json), like
 
     { "data":
       [ { "title": "My List"
@@ -493,7 +493,7 @@ If the user is not logged-in, the result is 403.
 
 ### `PUT /v1/lists`
 
-Updates the currently logged-in user's shortlist.  The input is like
+Updates the currently logged-in user's shortlist.  The [input](../src/server/schemas/lists-in.json) is like
 
     [ { "title": "Must read"
       , "description": "Interesting books"
