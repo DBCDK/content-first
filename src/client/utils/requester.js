@@ -158,7 +158,8 @@ export const saveShortList = (elements) => {
 export const loadShortList = (cb) => {
   setTimeout(() => {
     if (window && window.localStorage) {
-      return cb(JSON.parse(localStorage.getItem('contentFirstShortList') || {elements: []}));
+      const jsonString = localStorage.getItem('contentFirstShortList');
+      return cb(jsonString ? JSON.parse(jsonString) : {elements: []});
     }
     return cb({elements: []});
   }, 500);
