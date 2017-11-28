@@ -1,0 +1,37 @@
+{
+  "required": true,
+  "type": "array",
+  "items": {
+    "required": true,
+    "type": "object",
+    "properties": {
+      "title": {
+        "required": true,
+        "type": "string"
+      },
+      "description": {
+        "required": true,
+        "type": "string"
+      },
+      "list": {
+        "required": true,
+        "type": "array",
+        "items": {
+          "required": true,
+          "type": "object",
+          "properties": {
+            "pid": {
+              "required": true,
+              "type": "string"
+            },
+            "description": {
+              "required": true,
+              "type": "string"
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  }
+}

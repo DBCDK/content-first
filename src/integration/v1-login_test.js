@@ -39,6 +39,14 @@ describe('User login', () => {
                 pid: '870970-basis-22629344',
                 origin: 'en-god-bog'
               }],
+              lists: [{
+                title: 'My List',
+                description: 'A brand new list',
+                list: [{
+                  pid: '870970-basis-22629344',
+                  description: 'Magic to the people'
+                }]
+              }],
               profiles: [{
                 name: 'Med på den værste',
                 profile: {
@@ -207,6 +215,7 @@ describe('User login', () => {
                 expect(data).to.deep.equal({
                   name: '',
                   shortlist: [],
+                  lists: [],
                   profiles: []
                 });
               });
@@ -262,6 +271,14 @@ describe('User login', () => {
                   shortlist: [{
                     pid: '870970-basis-22629344',
                     origin: 'en-god-bog'
+                  }],
+                  lists: [{
+                    title: 'My List',
+                    description: 'A brand new list',
+                    list: [{
+                      pid: '870970-basis-22629344',
+                      description: 'Magic to the people'
+                    }]
                   }],
                   profiles: [{
                     name: 'Med på den værste',

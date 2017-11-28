@@ -10,6 +10,7 @@ async function gettingUser (uuid) {
   return new Promise((resolve, reject) => {
     return knex(userTable).where({uuid}).select(
       'name',
+      'lists',
       'shortlist',
       'profiles'
     )

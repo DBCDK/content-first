@@ -5,7 +5,7 @@ const request = require('supertest');
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const mock = require('./mock-server');
 
-describe('Profiles', () => {
+describe('Lists', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
     await mock.beforeEach();
@@ -14,10 +14,10 @@ describe('Profiles', () => {
     mock.afterEach();
   });
 
-  describe('Endpoint /v1/profiles', () => {
-    const location = '/v1/profiles';
+  describe('Endpoint /v1/lists', () => {
+    const location = '/v1/lists';
 
-    describe('GET /v1/profiles', () => {
+    describe('GET /v1/lists', () => {
 
       it('should complain about user not logged in when no token', () => {
         // Act.
@@ -59,7 +59,7 @@ describe('Profiles', () => {
       });
 
 
-      it('should retrieve profiles', () => {
+      it('should retrieve lists', () => {
         // Arrange.
         const loginToken = 'a-valid-login-token-seeded-on-test-start';
         // Act.
@@ -68,17 +68,16 @@ describe('Profiles', () => {
         // Assert.
         .expect(res => {
           expectSuccess(res.body, (links, data) => {
-            expectValidate(links, 'schemas/profiles-links-out.json');
+            expectValidate(links, 'schemas/lists-links-out.json');
             expect(links.self).to.equal(location);
-            expectValidate(data, 'schemas/profiles-data-out.json');
+            expectValidate(data, 'schemas/lists-data-out.json');
             expect(data).to.deep.equal([{
-              name: 'Med på den værste',
-              profile: {
-                moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
-                authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
-                genres: ['Brevromaner', 'Noveller'],
-                archetypes: ['hestepigen']
-              }
+              title: 'My List',
+              description: 'A brand new list',
+              list: [{
+                pid: '870970-basis-22629344',
+                description: 'Magic to the people'
+              }]
             }]);
           });
         })
@@ -86,23 +85,15 @@ describe('Profiles', () => {
       });
     });
 
-    describe('PUT /v1/profiles', () => {
-      const newProfiles = [{
-        name: 'En tynd en',
-        profile: {
-          moods: ['frygtelig'],
-          authors: ['Carsten Jensen'],
-          genres: ['Skæbnefortællinger'],
-          archetypes: ['Goth']
-        }
-      }, {
-        name: 'Ny profile',
-        profile: {
-          moods: ['dramatisk'],
-          authors: ['Helge Sander'],
-          genres: ['Skæbnefortællinger'],
-          archetypes: ['Goth']
-        }
+    describe('PUT /v1/lists', () => {
+
+      const newLists = [{
+        title: 'Must read',
+        description: 'Interesting books',
+        list: [{
+          pid: '870970-basis-51752341',
+          description: 'Exciting!'
+        }]
       }];
 
       it('should reject wrong content type', () => {
@@ -134,7 +125,7 @@ describe('Profiles', () => {
             expectFailure(res.body, errors => {
               expect(errors).to.have.length(1);
               const error = errors[0];
-              expect(error.title).to.match(/malformed profiles/i);
+              expect(error.title).to.match(/malformed lists/i);
               expect(error).to.have.property('detail');
               expect(error.detail).to.match(/do not adhere to schema/i);
               expect(error).to.have.property('meta');
@@ -150,7 +141,7 @@ describe('Profiles', () => {
         // Act.
         return webapp.put(location)
         .type('application/json')
-        .send(newProfiles)
+        .send(newLists)
         // Assert.
         .expect(res => {
           expectFailure(res.body, errors => {
@@ -173,7 +164,7 @@ describe('Profiles', () => {
         return webapp.put(location)
         .set('cookie', `login-token=${loginToken}`)
         .type('application/json')
-        .send(newProfiles)
+        .send(newLists)
         // Assert.
         .expect(res => {
           expectFailure(res.body, errors => {
@@ -196,14 +187,14 @@ describe('Profiles', () => {
         return webapp.put(location)
         .set('cookie', `login-token=${loginToken}`)
         .type('application/json')
-        .send(newProfiles)
+        .send(newLists)
         // Assert.
         .expect(res => {
           expectSuccess(res.body, (links, data) => {
             expect(links).to.have.property('self');
             expect(links.self).to.equal(location);
-            expectValidate(data, 'schemas/profiles-data-out.json');
-            expect(data).to.deep.equal(newProfiles);
+            expectValidate(data, 'schemas/lists-data-out.json');
+            expect(data).to.deep.equal(newLists);
           });
         })
         .expect(200)
@@ -214,10 +205,10 @@ describe('Profiles', () => {
             // Assert.
             .expect(res => {
               expectSuccess(res.body, (links, data) => {
-                expectValidate(links, 'schemas/profiles-links-out.json');
+                expectValidate(links, 'schemas/lists-links-out.json');
                 expect(links.self).to.equal(location);
-                expectValidate(data, 'schemas/profiles-data-out.json');
-                expect(data).to.deep.equal(newProfiles);
+                expectValidate(data, 'schemas/lists-data-out.json');
+                expect(data).to.deep.equal(newLists);
               });
             })
             .expect(200);

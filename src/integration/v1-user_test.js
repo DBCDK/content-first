@@ -93,6 +93,14 @@ describe('User data', () => {
               expectValidate(data, 'schemas/user-data-out.json');
               expect(data).to.deep.equal({
                 name: 'Jens Godfredsen',
+                lists: [{
+                  title: 'My List',
+                  description: 'A brand new list',
+                  list: [{
+                    pid: '870970-basis-22629344',
+                    description: 'Magic to the people'
+                  }]
+                }],
                 shortlist: [{
                   pid: '870970-basis-22629344',
                   origin: 'en-god-bog'
@@ -123,6 +131,14 @@ describe('User data', () => {
         }, {
           pid: 'already-seeded-pid-martin-ridder',
           origin: 'bibliotikarens-ugentlige-anbefaling'
+        }],
+        lists: [{
+          title: 'Must read',
+          description: 'Interesting books',
+          list: [{
+            pid: '870970-basis-51752341',
+            description: 'Exciting!'
+          }]
         }],
         profiles: [{
           name: 'En tynd en',

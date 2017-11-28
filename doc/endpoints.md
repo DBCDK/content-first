@@ -302,6 +302,15 @@ Returns [user information](../src/integration/schemas/user-data-out.json) for a 
           , "origin": "en-let-læst-bog"
           }
         ]
+      , "lists":
+        [ { "title": "My List"
+          , "description": "A brand new list"
+          , "list":
+          [ { "pid": "870970-basis-22629344"
+            , "description": "Magic to the people"
+            }
+          ] 
+        ]
       , "profiles":
         [ { "name": "Med på den værste"
           , "profile":
@@ -330,6 +339,15 @@ Updates the [user information](../src/server/schemas/user-in.json) like
       , { "pid": "870970-basis-51752341"
         , "origin": "bibliotikarens-ugentlige-anbefaling"
         }
+      ]
+    , "lists":
+      [ { "title": "My List"
+        , "description": "A brand new list"
+        , "list":
+        [ { "pid": "870970-basis-22629344"
+          , "description": "Magic to the people"
+          }
+        ] 
       ]
     , "profiles":
       [ { "name": "En tynd en"
@@ -451,6 +469,41 @@ Updates the currently logged-in user's shortlist.  The input is like
       }
     ]
   
+If the user is not logged-in, the result is 403.
+
+### `GET /v1/lists`
+
+Returns the logged-in user's shortlist, like
+
+    { "data":
+      [ { "title": "My List"
+        , "description": "A brand new list"
+        , "list":
+        [ { "pid": "870970-basis-22629344"
+          , "description": "Magic to the people"
+          }
+        ] 
+      ]
+    , "links": 
+      { "self": "/v1/lists"
+      }
+    }
+
+If the user is not logged-in, the result is 403.
+
+### `PUT /v1/lists`
+
+Updates the currently logged-in user's shortlist.  The input is like
+
+    [ { "title": "Must read"
+      , "description": "Interesting books"
+      , "list":
+      [ { "pid": "870970-basis-51752341"
+        , "description": "Exciting!"
+        }
+      ] 
+    ]
+
 If the user is not logged-in, the result is 403.
 
 ## Misc

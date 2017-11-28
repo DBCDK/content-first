@@ -69,6 +69,14 @@ exports.seed = async knex => {
       pid: '870970-basis-22629344',
       origin: 'en-god-bog'
     }]),
+    lists: JSON.stringify([{
+      title: 'My List',
+      description: 'A brand new list',
+      list: [{
+        pid: '870970-basis-22629344',
+        description: 'Magic to the people'
+      }]
+    }]),
     profiles: JSON.stringify([{
       name: 'Med på den værste',
       profile: {

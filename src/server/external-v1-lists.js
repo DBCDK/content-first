@@ -11,19 +11,19 @@ const {gettingUser, gettingUserIdFromLoginToken} = require('server/user');
 const {gettingUserFromToken} = require('server/v1-users-common');
 const {validatingInput} = require('__/json');
 const path = require('path');
-const schema = path.join(__dirname, 'schemas/user-in.json');
+const schema = path.join(__dirname, 'schemas/lists-in.json');
 
 router.route('/')
 
   //
-  // GET /v1/user
+  // GET /v1/lists
   //
   .get(asyncMiddleware(async (req, res, next) => {
     const location = req.baseUrl;
     return gettingUserFromToken(req)
     .then(user => {
       res.status(200).json({
-        data: user,
+        data: user.lists,
         links: {self: location}
       });
     })
@@ -33,7 +33,7 @@ router.route('/')
   }))
 
   //
-  // PUT /v1/user
+  // PUT /v1/lists
   //
   .put(asyncMiddleware(async (req, res, next) => {
     const contentType = req.get('content-type');
@@ -44,15 +44,15 @@ router.route('/')
         detail: `Content type ${contentType} is not supported`
       });
     }
-    const userInfo = req.body;
+    const lists = req.body;
     try {
-      await validatingInput(userInfo, schema);
+      await validatingInput(lists, schema);
     }
     catch (error) {
       return next({
         status: 400,
-        title: 'Malformed user data',
-        detail: 'User data does not adhere to schema',
+        title: 'Malformed lists',
+        detail: 'Lists do not adhere to schema',
         meta: error.meta || error
       });
     }
@@ -88,10 +88,7 @@ router.route('/')
     }
     try {
       await knex(userTable).where('uuid', userId).update({
-        name: userInfo.name,
-        shortlist: JSON.stringify(userInfo.shortlist),
-        lists: JSON.stringify(userInfo.lists),
-        profiles: JSON.stringify(userInfo.profiles)
+        lists: JSON.stringify(lists)
       });
     }
     catch (error) {
@@ -104,7 +101,7 @@ router.route('/')
     return gettingUser(userId)
       .then(user => {
         res.status(200).json({
-          data: user,
+          data: user.lists,
           links: {self: location}
         });
       })
