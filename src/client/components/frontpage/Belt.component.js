@@ -50,6 +50,7 @@ export default class Belt extends React.Component {
           scrollInterval={3}
           onCoverClick={this.props.onCoverClick}
           onRememberClick={this.props.onRememberClick}
+          remembered={this.props.remembered}
         />}
       </div>
     );

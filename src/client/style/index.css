@@ -25,6 +25,7 @@
 @import './components/profilePage.css';
 @import './components/profileCreateTaste.css';
 @import './components/shortList.css';
+@import './components/checkmarkButton.css';
 
 
 body {
@@ -79,7 +80,7 @@ body {
 .topbar .login {
   margin-top: 30px;
 }
-.topbar .login span {
+.topbar .login > span {
   margin-right: 25px;
   cursor: pointer;
 }
@@ -212,6 +213,9 @@ body {
   white-space: nowrap;
   position: relative;
   text-rendering: geometricPrecision;
+}
+.delay-display-none {
+  display: none;
 }
 
 .belt-wrapper .tags span {

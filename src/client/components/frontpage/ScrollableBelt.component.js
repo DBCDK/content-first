@@ -1,6 +1,5 @@
 import React from 'react';
 import WorkItem from '../work/WorkItem.component';
-import {ON_SHORTLIST_ADD_ELEMENT} from '../../redux/shortlist.reducer';
 
 class ScrollableBelt extends React.Component {
 
@@ -31,7 +30,8 @@ class ScrollableBelt extends React.Component {
                 key={work.book.pid}
                 work={work}
                 onCoverClick={this.props.onCoverClick}
-                onRememberClick={this.props.onRememberClick}/>;
+                onRememberClick={this.props.onRememberClick}
+                marked={this.props.remembered[work.book.pid]}/>;
             })}
           </div>
         </div>

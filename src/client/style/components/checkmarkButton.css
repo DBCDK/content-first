@@ -1,0 +1,15 @@
+.checkmark-btn {
+  background: var(--blue);
+  border: 0;
+  color: white;
+}
+.checkmark-btn:hover {
+  background: var(--blue);
+  color: white;
+}
+.checkmark-btn-marked {
+  background: var(--green);
+}
+.checkmark-btn-marked:hover {
+  background: var(--green);
+}

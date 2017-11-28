@@ -1,12 +1,13 @@
 import React from 'react';
 import Image from '../Image.component';
+import CheckmarkButton from '../general/CheckmarkButton.component';
 
 class WorkItem extends React.Component {
   render() {
     const tax_description = this.props.work.book.taxonomy_description || this.props.work.book.description;
     return (
       <div className='work' id={`work-${this.props.id}`}>
-        <div className='cover-image-wrapper scale-on-hover' onClick={() => {
+        <div className='cover-image-wrapper' onClick={() => {
           this.props.onCoverClick(this.props.work.book.pid);
         }}>
           <div className='cover-image'>
@@ -16,11 +17,15 @@ class WorkItem extends React.Component {
               '/default-book-cover.png'
             ]}/>
           </div>
+          <CheckmarkButton
+            label="Husk"
+            marked={this.props.marked}
+            onClick={(e) => {
+              e.stopPropagation();
+              this.props.onRememberClick(this.props.work);
+            }}/>
         </div>
         <div className='metakompas-description'>
-          <span style={{position: 'absolute', top: '0px', left: '0px', zIndex: 200}} className='btn btn-default' onClick={() => {
-            this.props.onRememberClick(this.props.work);
-          }}>husk</span>
           {tax_description && tax_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}
         </div>
       </div>

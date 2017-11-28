@@ -5,7 +5,7 @@ import ScrollableBelt from '../frontpage/ScrollableBelt.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {getLeaves} from '../../utils/filters';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
-import {ON_SHORTLIST_ADD_ELEMENT} from '../../redux/shortlist.reducer';
+import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
 import Image from '../Image.component';
 
 class WorkPage extends React.Component {
@@ -58,6 +58,11 @@ class WorkPage extends React.Component {
     const tax_description = work.data.taxonomy_description || work.data.description;
 
     const allowedFilterIds = getLeaves(this.props.filterState.filters).map(f => f.id);
+
+    const remembered = {};
+    this.props.shortListState.elements.forEach(e => {
+      remembered[e.book.pid] = true;
+    });
 
     return (
       <div className='work-page'>
@@ -134,8 +139,9 @@ class WorkPage extends React.Component {
                 this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
               }}
               onRememberClick={(element) => {
-                this.props.dispatch({type: ON_SHORTLIST_ADD_ELEMENT, element, origin: `Minder om "${work.data.title}"`});
+                this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Minder om "${work.data.title}"`});
               }}
+              remembered={remembered}
             />
           </div>
         </div>}
@@ -146,6 +152,6 @@ class WorkPage extends React.Component {
 export default connect(
   // Map redux state to props
   (state) => {
-    return {workState: state.workReducer, filterState: state.filterReducer};
+    return {workState: state.workReducer, filterState: state.filterReducer, shortListState: state.shortListReducer};
   }
 )(WorkPage);

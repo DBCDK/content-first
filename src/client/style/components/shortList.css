@@ -5,10 +5,21 @@
 }
 .short-list--btn {
   cursor: pointer;
+  width: 26px;
+}
+.short-list--btn-badge {
+  position: absolute;
+  font-family: var(--secondary-font);
+  background: black;
+  right: -11px;
+  top: -4px;
+  padding-bottom: 4px;
 }
 .short-list--close-btn {
   position: absolute;
-  margin: 1em
+  margin: 1em;
+  cursor: pointer;
+  width: 10px;
 }
 .short-list--content {
   position: fixed;
@@ -18,6 +29,16 @@
   z-index: 1100;
   border: 1px solid rgba(0,0,0,.15);
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  font-family: var(--secondary-font);
+  transition: all 0.15s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+}
+.slide-out {
+  visibility: hidden;
+  transition: all 0.15s ease-in-out;
+  opacity: 0;
+  right: -10px
 }
 .short-list--header {
   font-family: 'Raleway', sans-serif;
@@ -43,7 +64,7 @@
   border-bottom: 0;
 }
 .short-list-element--header {
-  font-family: 'Lora', serif;
+  font-family: var(--primary-font);
   color: black;
   font-weight: 700;
   font-style: italic;
@@ -51,7 +72,11 @@
 .short-list-element--cover-image {
   display: inline-block;
   float: left;
-  width: 50px;
+  padding: 2px;
+  box-shadow: 0 3px 4px rgba(0,0,0,.175);
+}
+.short-list-element--cover-image img {
+  max-width: 50px;
 }
 .short-list-element--text {
   display: inline-block;
@@ -64,10 +89,35 @@
   position: relative;
   clear: both;
 }
-.short-list-element--cover-image img {
-  max-width: 50px;
-}
 .short-list-element--close-btn {
   position: absolute;
-  right: -20px;
+  right: 5px;
+  cursor: pointer;
+  width: 10px;
+}
+.short-list-element--taxonomy-description {
+  color: var(--blue);
+  white-space: nowrap;
+  overflow:hidden !important;
+  text-overflow: ellipsis;
+}
+.short-list-element--origin {
+  color: gray;
+}
+.short-list--more-elements {
+  margin: 10px;
+}
+.short-list--more-elements-line {
+  border-bottom: 1px solid lightgray;
+  margin-top: -9px;
+}
+.short-list--more-elements-text {
+  background: #fff;
+  padding: 0 10px;
+  font-weight: 600;
+  font-size: 12px;
+  color: gray;
+}
+.short-list--more-btn {
+  margin: 50px 0 30px 0;
 }

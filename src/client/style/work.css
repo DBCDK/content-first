@@ -43,6 +43,20 @@
   height: 260px;
   cursor: pointer;
 }
+.work .cover-image-wrapper:hover .checkmark-btn {
+  opacity: 1;
+  right: -3px;
+  transition-delay: 0s;
+}
+.work .cover-image-wrapper .checkmark-btn {
+  position: absolute;
+  right: -20px;
+  bottom: -3px;
+  opacity: 0;
+  transition: all 0.15s ease-in-out;
+  transition-delay: 0.5s;  
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
 .cover-image-wrapper {
   padding: 3px;
   box-shadow: 1px 1px 20px #666666;
