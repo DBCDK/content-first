@@ -55,7 +55,6 @@ class FrontPage extends React.Component {
             belt={belt}
             links={links}
             filters={selectedFilters}
-            remembered={remembered}
             onTagClick={(tagId) => {
               this.props.dispatch({type: ON_TAG_TOGGLE, tagId, beltId: idx});
             }}
