@@ -7,6 +7,9 @@
   cursor: pointer;
   width: 24px;
 }
+.short-list--btn img {
+  width: 24px;
+}
 .short-list--btn-badge {
   position: absolute;
   font-family: var(--secondary-font);
