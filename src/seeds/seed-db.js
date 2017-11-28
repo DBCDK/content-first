@@ -65,6 +65,10 @@ exports.seed = async knex => {
     // CPR 1212719873 => e27ecb7c5207c19d388a83631b87065d9667790543e4820f
     cpr: 'e27ecb7c5207c19d388a83631b87065d9667790543e4820f',
     name: 'Jens Godfredsen',
+    shortlist: JSON.stringify([{
+      pid: '870970-basis-22629344',
+      origin: 'en-god-bog'
+    }]),
     profiles: JSON.stringify([{
       name: 'Med på den værste',
       profile: {

@@ -297,6 +297,11 @@ Returns [user information](../src/integration/schemas/user-data-out.json) for a 
 
     { "data":
       { "name": "Jens Godfredsen"
+      , "shortlist":
+        [ { "pid": "870970-basis-22629344"
+          , "origin": "en-let-læst-bog"
+          }
+        ]
       , "profiles":
         [ { "name": "Med på den værste"
           , "profile":
@@ -318,6 +323,14 @@ Returns [user information](../src/integration/schemas/user-data-out.json) for a 
 Updates the [user information](../src/server/schemas/user-in.json) like
 
     { "name": "Ole Henriksen"
+    , "shortlist":
+      [ { "pid": "870970-basis-53188931"
+        , "origin": "en-let-læst-bog"
+        }
+      , { "pid": "870970-basis-51752341"
+        , "origin": "bibliotikarens-ugentlige-anbefaling"
+        }
+      ]
     , "profiles":
       [ { "name": "En tynd en"
         , "profile":
@@ -404,6 +417,41 @@ Updates the currently logged-in user's profiles.  The input is like
         }
       }
     ]
+
+If the user is not logged-in, the result is 403.
+
+### `GET /v1/shortlist`
+
+Returns the logged-in user's shortlist, like
+
+    { "data": 
+      [ { "pid": "870970-basis-53188931"
+        , "origin": "en-let-læst-bog"
+        }
+      , { "pid": "870970-basis-51752341"
+        , "origin": "bibliotikarens-ugentlige-anbefaling"
+        }
+      ]
+    , "links"
+      { "self": "/v1/shortlist"
+      }
+    }
+
+If the user is not logged-in, the result is 403.
+
+### `PUT /v1/shortlist`
+
+Updates the currently logged-in user's shortlist.  The input is like
+
+    [ { "pid": "870970-basis-53188931"
+      , "origin": "en-let-læst-bog"
+      }
+    , { "pid": "870970-basis-51752341"
+      , "origin": "bibliotikarens-ugentlige-anbefaling"
+      }
+    ]
+  
+If the user is not logged-in, the result is 403.
 
 ## Misc
 

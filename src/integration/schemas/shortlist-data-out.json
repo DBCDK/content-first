@@ -1,0 +1,18 @@
+{
+  "type": "array",
+  "items": {
+    "required": true,
+    "type": "object",
+    "properties": {
+      "pid": {
+        "required": true,
+        "type": "string"
+      },
+      "origin": {
+        "required": true,
+        "type": "string"
+      },
+      "additionalProperties": false
+    }
+  }
+}

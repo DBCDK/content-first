@@ -2,10 +2,30 @@
   "type": "object",
   "properties": {
     "name": {
-      "required": false,
+      "required": true,
       "type": "string"
     },
+    "shortlist": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "required": true,
+        "type": "object",
+        "properties": {
+          "pid": {
+            "required": true,
+            "type": "string"
+          },
+          "origin": {
+            "required": true,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
     "profiles": {
+      "required": true,
       "type": "array",
       "items": {
         "type": "object",

@@ -5,7 +5,7 @@ const request = require('supertest');
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const mock = require('./mock-server');
 
-describe('Profiles', () => {
+describe('Shortlist', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
     await mock.beforeEach();
@@ -14,10 +14,10 @@ describe('Profiles', () => {
     mock.afterEach();
   });
 
-  describe('Endpoint /v1/profiles', () => {
-    const location = '/v1/profiles';
+  describe('Endpoint /v1/shortlist', () => {
+    const location = '/v1/shortlist';
 
-    describe('GET /v1/profiles', () => {
+    describe('GET /v1/shortlist', () => {
 
       it('should complain about user not logged in when no token', () => {
         // Act.
@@ -59,7 +59,7 @@ describe('Profiles', () => {
       });
 
 
-      it('should retrieve profile', () => {
+      it('should retrieve shortlist', () => {
         // Arrange.
         const loginToken = 'a-valid-login-token-seeded-on-test-start';
         // Act.
@@ -68,17 +68,12 @@ describe('Profiles', () => {
         // Assert.
         .expect(res => {
           expectSuccess(res.body, (links, data) => {
-            expectValidate(links, 'schemas/profiles-links-out.json');
+            expectValidate(links, 'schemas/shortlist-links-out.json');
             expect(links.self).to.equal(location);
-            expectValidate(data, 'schemas/profiles-data-out.json');
+            expectValidate(data, 'schemas/shortlist-data-out.json');
             expect(data).to.deep.equal([{
-              name: 'Med på den værste',
-              profile: {
-                moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
-                authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
-                genres: ['Brevromaner', 'Noveller'],
-                archetypes: ['hestepigen']
-              }
+              pid: '870970-basis-22629344',
+              origin: 'en-god-bog'
             }]);
           });
         })
@@ -86,24 +81,7 @@ describe('Profiles', () => {
       });
     });
 
-    describe('PUT /v1/profiles', () => {
-      const newProfiles = [{
-        name: 'En tynd en',
-        profile: {
-          moods: ['frygtelig'],
-          authors: ['Carsten Jensen'],
-          genres: ['Skæbnefortællinger'],
-          archetypes: ['Goth']
-        }
-      }, {
-        name: 'Ny profile',
-        profile: {
-          moods: ['dramatisk'],
-          authors: ['Helge Sander'],
-          genres: ['Skæbnefortællinger'],
-          archetypes: ['Goth']
-        }
-      }];
+    describe('PUT /v1/shortlist', () => {
 
       it('should reject wrong content type', () => {
         // Act.
@@ -134,9 +112,9 @@ describe('Profiles', () => {
             expectFailure(res.body, errors => {
               expect(errors).to.have.length(1);
               const error = errors[0];
-              expect(error.title).to.match(/malformed profiles/i);
+              expect(error.title).to.match(/malformed shortlist/i);
               expect(error).to.have.property('detail');
-              expect(error.detail).to.match(/do not adhere to schema/i);
+              expect(error.detail).to.match(/does not adhere to schema/i);
               expect(error).to.have.property('meta');
               expect(error.meta).to.have.property('problems');
               const problems = error.meta.problems;
@@ -146,11 +124,21 @@ describe('Profiles', () => {
           });
       });
 
+      const newShortlist = [
+        {
+          pid: '870970-basis-53188931',
+          origin: 'en-let-læst-bog'
+        }, {
+          pid: '870970-basis-51752341',
+          origin: 'bibliotikarens-ugentlige-anbefaling'
+        }
+      ];
+
       it('should complain about user not logged in when no token', () => {
         // Act.
         return webapp.put(location)
         .type('application/json')
-        .send(newProfiles)
+        .send(newShortlist)
         // Assert.
         .expect(res => {
           expectFailure(res.body, errors => {
@@ -173,7 +161,7 @@ describe('Profiles', () => {
         return webapp.put(location)
         .set('cookie', `login-token=${loginToken}`)
         .type('application/json')
-        .send(newProfiles)
+        .send(newShortlist)
         // Assert.
         .expect(res => {
           expectFailure(res.body, errors => {
@@ -189,21 +177,21 @@ describe('Profiles', () => {
         .expect(403);
       });
 
-      it('should overwrite profiles', () => {
+      it('should overwrite shortlist', () => {
         // Arrange.
         const loginToken = 'a-valid-login-token-seeded-on-test-start';
         // Act.
         return webapp.put(location)
         .set('cookie', `login-token=${loginToken}`)
         .type('application/json')
-        .send(newProfiles)
+        .send(newShortlist)
         // Assert.
         .expect(res => {
           expectSuccess(res.body, (links, data) => {
             expect(links).to.have.property('self');
             expect(links.self).to.equal(location);
-            expectValidate(data, 'schemas/profiles-data-out.json');
-            expect(data).to.deep.equal(newProfiles);
+            expectValidate(data, 'schemas/shortlist-data-out.json');
+            expect(data).to.deep.equal(newShortlist);
           });
         })
         .expect(200)
@@ -214,10 +202,10 @@ describe('Profiles', () => {
             // Assert.
             .expect(res => {
               expectSuccess(res.body, (links, data) => {
-                expectValidate(links, 'schemas/profiles-links-out.json');
+                expectValidate(links, 'schemas/shortlist-links-out.json');
                 expect(links.self).to.equal(location);
-                expectValidate(data, 'schemas/profiles-data-out.json');
-                expect(data).to.deep.equal(newProfiles);
+                expectValidate(data, 'schemas/shortlist-data-out.json');
+                expect(data).to.deep.equal(newShortlist);
               });
             })
             .expect(200);
