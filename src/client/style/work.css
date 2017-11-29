@@ -43,10 +43,10 @@
   height: 260px;
   cursor: pointer;
 }
-.work .cover-image-wrapper:hover .checkmark-btn {
-  opacity: 1;
-  right: -3px;
-  transition-delay: 0s;
+.work .cover-image-wrapper:hover .checkmark-btn, .work .cover-image-wrapper .checkmark-btn-marked {
+  opacity: 1 !important;
+  right: -3px !important;
+  transition-delay: 0s !important;
 }
 .work .cover-image-wrapper .checkmark-btn {
   position: absolute;
@@ -54,7 +54,7 @@
   bottom: -3px;
   opacity: 0;
   transition: all 0.15s ease-in-out;
-  transition-delay: 0.5s;  
+  transition-delay: 0.25s;
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 .cover-image-wrapper {
