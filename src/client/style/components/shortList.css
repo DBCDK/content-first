@@ -1,0 +1,127 @@
+.short-list {
+  position: relative;
+  display: inline-block;
+  margin-right: 25px;
+}
+.short-list--btn {
+  cursor: pointer;
+  width: 24px;
+}
+.short-list--btn img {
+  width: 24px;
+}
+.short-list--btn-badge {
+  position: absolute;
+  font-family: var(--secondary-font);
+  background: black;
+  left: 12px;
+  top: -4px;
+  padding-bottom: 4px;
+}
+.short-list--close-btn {
+  position: absolute;
+  margin: 1em;
+  cursor: pointer;
+  width: 10px;
+}
+.short-list--content {
+  position: fixed;
+  background: white;
+  width: 350px;
+  right: 10px;
+  top: 60px;
+  z-index: 1100;
+  border: 1px solid rgba(0,0,0,.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,.175);
+  font-family: var(--secondary-font);
+  transition: all 0.15s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+}
+.slide-out {
+  visibility: hidden;
+  transition: all 0.15s ease-in-out;
+  opacity: 0;
+  right: -10px
+}
+.short-list--header {
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  text-align: center;
+  margin: 1em
+}
+.short-list--empty-text {
+  margin: 50px;
+}
+.short-list-element {
+  border-bottom: 1px solid lightgray;
+  margin: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+.short-list-element:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+.short-list-element:last-child {
+  border-bottom: 0;
+}
+.short-list-element--header {
+  font-family: var(--primary-font);
+  color: black;
+  font-weight: 700;
+  font-style: italic;
+}
+.short-list-element--cover-image {
+  display: inline-block;
+  float: left;
+  padding: 2px;
+  box-shadow: 0 3px 4px rgba(0,0,0,.175);
+}
+.short-list-element--cover-image img {
+  max-width: 50px;
+}
+.short-list-element--text {
+  display: inline-block;
+  float: left;
+  width: 200px;
+  margin-left: 1.5em;
+  margin-top: -4px;
+}
+.short-list-element {
+  position: relative;
+  clear: both;
+}
+.short-list-element--close-btn {
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
+  width: 10px;
+}
+.short-list-element--taxonomy-description {
+  color: var(--blue);
+  white-space: nowrap;
+  overflow:hidden !important;
+  text-overflow: ellipsis;
+}
+.short-list-element--origin {
+  color: gray;
+}
+.short-list--more-elements {
+  margin: 10px;
+}
+.short-list--more-elements-line {
+  border-bottom: 1px solid lightgray;
+  margin-top: -9px;
+}
+.short-list--more-elements-text {
+  background: #fff;
+  padding: 0 10px;
+  font-weight: 600;
+  font-size: 12px;
+  color: gray;
+}
+.short-list--more-btn {
+  margin: 50px 0 30px 0;
+}

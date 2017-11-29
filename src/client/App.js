@@ -8,14 +8,16 @@ import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
 import WorkPage from './components/work/WorkPage.container';
 import ProfilePage from './components/profile/ProfilePage.container';
-import TopBar from './components/TopBar.component';
+import TopBar from './components/top/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
+import {SHORTLIST_LOAD_REQUEST} from './redux/shortlist.reducer';
 
 class App extends Component {
 
   componentWillMount() {
     this.props.dispatch({type: ON_USER_DETAILS_REQUEST});
+    this.props.dispatch({type: SHORTLIST_LOAD_REQUEST});
   }
 
   render() {
@@ -48,6 +50,7 @@ class App extends Component {
     return (
       <div className="App container">
         <TopBar dispatch={this.props.dispatch} user={this.props.profileState.user}/>
+        <div style={{height: '50px'}}/>
         {currentPage}
       </div>
     );

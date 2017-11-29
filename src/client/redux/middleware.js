@@ -1,6 +1,6 @@
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
-import {fetchBeltWorks, fetchWork, fetchUser, fetchProfileRecommendations, logout} from '../utils/requester';
+import {fetchBeltWorks, fetchWork, fetchUser, fetchProfileRecommendations, logout, saveShortList, loadShortList} from '../utils/requester';
 import {
   ON_PROFILE_LOAD_PROFILES_RESPONSE,
   ON_USER_DETAILS_REQUEST,
@@ -12,6 +12,13 @@ import {
   ON_PROFILE_LOAD_PROFILES,
   ON_LOGOUT_REQUEST
 } from './profile.reducer';
+import {
+  ON_SHORTLIST_ADD_ELEMENT,
+  ON_SHORTLIST_REMOVE_ELEMENT,
+  ON_SHORTLIST_TOGGLE_ELEMENT,
+  SHORTLIST_LOAD_REQUEST,
+  SHORTLIST_LOAD_RESPONSE
+} from './shortlist.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
@@ -98,6 +105,25 @@ export const loggerMiddleware = store => next => action => {
 };
 /* eslint-enable no-console */
 
+export const shortListMiddleware = store => next => action => {
+  switch (action.type) {
+    case ON_SHORTLIST_ADD_ELEMENT:
+    case ON_SHORTLIST_REMOVE_ELEMENT:
+    case ON_SHORTLIST_TOGGLE_ELEMENT: {
+      const res = next(action);
+      const {elements} = store.getState().shortListReducer;
+      saveShortList(elements);
+      return res;
+    }
+    case SHORTLIST_LOAD_REQUEST:
+      loadShortList((res) => {
+        store.dispatch({type: SHORTLIST_LOAD_RESPONSE, elements: res.elements});
+      });
+      return next(action);
+    default:
+      return next(action);
+  }
+};
 
 export const profileMiddleware = store => next => action => {
   switch (action.type) {

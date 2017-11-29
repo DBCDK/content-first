@@ -4,6 +4,7 @@ import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
 import workReducer from './work.reducer';
 import profileReducer from './profile.reducer';
+import shortListReducer from './shortlist.reducer';
 
 // const LOCAL_STORAGE_KEY = 'contentfirst';
 
@@ -21,7 +22,8 @@ const combined = combineReducers({
   filterReducer,
   profileReducer,
   routerReducer,
-  workReducer
+  workReducer,
+  shortListReducer
 });
 
 const rootReducer = (state = {}, action) => {
