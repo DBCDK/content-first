@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ScrollableBelt from '../general/ScrollableBelt.component';
 import WorkItem from './WorkItem.component';
+import CheckmarkButton from '../general/CheckmarkButton.component';
 import Image from '../Image.component';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
@@ -95,6 +96,12 @@ class WorkPage extends React.Component {
               <div className="bibliotek-dk-link">
                 <a target='_blank' href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(work.data.pid)}`}>Se mere på bibliotek.dk</a>
               </div>
+              <CheckmarkButton
+                label="Husk"
+                marked={remembered[work.data.pid]}
+                onClick={() => {
+                  this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element: {book: work.data}, origin: 'Fra egen værkside'});
+                }}/>
             </div>
             <div
               id='collapsable-tags'
