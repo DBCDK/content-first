@@ -27,6 +27,7 @@
 @import './components/shortList.css';
 @import './components/checkmarkButton.css';
 @import './components/topbar.css';
+@import './components/modal.css';
 
 
 body {

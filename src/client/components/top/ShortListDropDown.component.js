@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import Image from '../Image.component';
 import Kryds from '../svg/Kryds.svg';
 import Huskeliste from '../svg/Huskeliste.svg';
-import {ON_SHORTLIST_EXPAND, ON_SHORTLIST_COLLAPSE, ON_SHORTLIST_REMOVE_ELEMENT} from '../../redux/shortlist.reducer';
+import Modal from '../general/Modal.component';
+import {ON_SHORTLIST_EXPAND, ON_SHORTLIST_COLLAPSE, ON_SHORTLIST_REMOVE_ELEMENT, SHORTLIST_APPROVE_MERGE} from '../../redux/shortlist.reducer';
 
 const SHORT_LIST_MAX_LENGTH = 3;
 
@@ -57,7 +58,11 @@ const ShortListContent = (props) => {
 
 class ShortListDropdown extends React.Component {
   render() {
-    const {expanded, elements} = this.props.shortListState;
+    const {expanded, elements, pendingMerge} = this.props.shortListState;
+    let pendingHeader = null;
+    if (pendingMerge) {
+      pendingHeader = `${pendingMerge.diff.length} ${pendingMerge.diff.length > 1 ? 'bøger' : 'bog'} bliver overført til din huskeliste`;
+    }
 
     return (
       <div className="short-list">
@@ -79,6 +84,17 @@ class ShortListDropdown extends React.Component {
               onClose={() => this.props.dispatch({type: ON_SHORTLIST_REMOVE_ELEMENT, pid: element.book.pid})}/>;
           })}
         </ShortListContent>
+        <Modal
+          show={pendingMerge}
+          header={pendingHeader}
+          onClose={() => this.props.dispatch({type: SHORTLIST_APPROVE_MERGE})}>
+          <p>Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:</p>
+          <ul>
+            {pendingMerge && pendingMerge.diff.map(e => {
+              return <li>{e.book.title}</li>;
+            })}
+          </ul>
+        </Modal>
       </div>
     );
   }

@@ -11,13 +11,11 @@ import ProfilePage from './components/profile/ProfilePage.container';
 import TopBar from './components/top/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
-import {SHORTLIST_LOAD_REQUEST} from './redux/shortlist.reducer';
 
 class App extends Component {
 
   componentWillMount() {
     this.props.dispatch({type: ON_USER_DETAILS_REQUEST});
-    this.props.dispatch({type: SHORTLIST_LOAD_REQUEST});
   }
 
   render() {
