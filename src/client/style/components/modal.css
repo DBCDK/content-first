@@ -1,0 +1,43 @@
+.modal-backdrop.modal-hidden {
+  visibility: hidden;
+  background-color: rgba(0,0,0,0.0);
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.3);
+  padding: 100px;
+  transition: all 0.25s;
+}
+.modal-window.modal-hidden {
+  opacity: 0;
+  margin-top: -50px;
+  visibility: hidden;
+}
+.modal-window {
+  opacity: 1;
+  background-color: #fff;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,.15);
+  box-shadow: 0 2px 6px rgba(0,0,0,.175);
+  font-family: var(--secondary-font);
+  transition: all 0.25s;
+}
+.modal-window--header h3 {
+  margin: 0;
+}
+.modal-window--content {
+  margin-top: 20px;
+  min-height: 100px;
+}
+.modal-window--buttons {
+  margin-top: 20px;
+}
+.modal-window--buttons .btn {
+  min-width: 80px;
+}
