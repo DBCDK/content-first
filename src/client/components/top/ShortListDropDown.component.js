@@ -91,7 +91,7 @@ class ShortListDropdown extends React.Component {
           <p>Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:</p>
           <ul>
             {pendingMerge && pendingMerge.diff.map(e => {
-              return <li>{e.book.title}</li>;
+              return <li key={e.book.pid}>{e.book.title}</li>;
             })}
           </ul>
         </Modal>

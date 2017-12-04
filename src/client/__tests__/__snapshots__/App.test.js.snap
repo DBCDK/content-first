@@ -1,0 +1,355 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<div
+  className="App container"
+>
+  <div
+    className="row topbar"
+  >
+    <div
+      className="col-xs-6 text-left header"
+      onClick={[Function]}
+    >
+      <div>
+        <img
+          alt="logo"
+          src="logo.svg"
+        />
+      </div>
+      <div>
+        <h1>
+          Læsekompasset
+        </h1>
+      </div>
+    </div>
+    <div
+      className="col-xs-6 text-right login"
+    >
+      <div
+        className="short-list"
+      >
+        <div
+          className="short-list--btn"
+          onClick={[Function]}
+        >
+          <img
+            alt=""
+            src="Huskeliste.svg"
+            title="Huskeliste"
+          />
+        </div>
+        <div
+          className="short-list--content text-left slide-out"
+        >
+          <img
+            alt="luk"
+            className="short-list--close-btn"
+            onClick={[Function]}
+            src="Kryds.svg"
+          />
+          <div
+            className="short-list--header"
+          >
+            HUSKELISTE
+          </div>
+          <div
+            className="short-list--empty-text text-center"
+          >
+            Din huskeliste er tom
+          </div>
+          <div
+            className="short-list--elements"
+          />
+        </div>
+        <div
+          className="modal-backdrop modal-hidden"
+          onWheel={[Function]}
+        >
+          <div
+            className="modal-window text-left modal-hidden"
+          >
+            <div
+              className="modal-window--header"
+            >
+              <h3 />
+            </div>
+            <div
+              className="modal-window--content"
+            >
+              <p>
+                Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:
+              </p>
+              <ul />
+            </div>
+            <div
+              className="modal-window--buttons text-right"
+            >
+              <span
+                className="btn btn-success"
+                onClick={[Function]}
+              >
+                OK
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span
+        onClick={[Function]}
+      >
+        Log ind
+      </span>
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "height": "50px",
+      }
+    }
+  />
+  <div
+    className="frontpage"
+  >
+    <div
+      className="row frontpage-image"
+    />
+    <div
+      className="row frontpage-image-credits text-right"
+    >
+      <a
+        href="https://www.flickr.com/people/fatseth/"
+      >
+        Foto ©G Morel
+      </a>
+    </div>
+    <div
+      className="belts col-xs-11 col-centered"
+    >
+      <div
+        className="row belt text-left"
+      >
+        <div
+          className="col-xs-12 header"
+        >
+          <span
+            className="belt-title"
+            data-html="true"
+            data-original-title="<span>Medium længde</span> <span>Er på mange biblioteker</span> <span>Medrivende</span> <span>Udlånes meget</span>"
+            data-toggle="tooltip"
+            onClick={[Function]}
+          >
+            En god bog
+          </span>
+        </div>
+        <div
+          className="col-xs-12 belt-links"
+        >
+          <span>
+            Se også:
+          </span>
+          <span
+            className="belt-link"
+            data-html="true"
+            data-original-title="<span>Spændende</span> <span>Hurtig</span> <span>Plot</span>"
+            data-toggle="tooltip"
+            onClick={[Function]}
+          >
+            En spændende bog
+          </span>
+          <span
+            className="belt-link"
+            data-html="true"
+            data-original-title="<span>Alternativ</span> <span>Innovativ</span>"
+            data-toggle="tooltip"
+            onClick={[Function]}
+          >
+            En anderledes bog
+          </span>
+        </div>
+        <div
+          className="belt-wrapper"
+        >
+          <div
+            className="button-wrapper col-xs-12 noselect"
+          >
+            <div
+              className="left-btn scroll-btn text-center"
+              onClick={[Function]}
+            >
+              &lt;
+            </div>
+            <div
+              className="right-btn scroll-btn text-center"
+              onClick={[Function]}
+            >
+              &gt;
+            </div>
+          </div>
+          <div
+            className="works-wrapper col-xs-12 noselect"
+          >
+            <div
+              className="works"
+              style={
+                Object {
+                  "transform": "translate3d(0px, 0px, 0px)",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="row belt text-left"
+      >
+        <div
+          className="col-xs-12 header"
+        >
+          <span
+            className="belt-title"
+            data-html="true"
+            data-original-title="<span>Ligefremt sprog</span> <span>Fremadskridende</span>"
+            data-toggle="tooltip"
+            onClick={[Function]}
+          >
+            En let læst bog
+          </span>
+        </div>
+        <div
+          className="col-xs-12 belt-links"
+        >
+          <span>
+            Se også:
+          </span>
+          <span
+            className="belt-link"
+            data-html="true"
+            data-original-title="<span>Filosofisk</span> <span>Indsigtsfuld</span>"
+            data-toggle="tooltip"
+            onClick={[Function]}
+          >
+            En bog der gør dig klogere
+          </span>
+          <span
+            className="belt-link"
+            data-html="true"
+            data-original-title="<span>Åbent fortolkningsrum</span> <span>Avanceret sprog</span>"
+            data-toggle="tooltip"
+            onClick={[Function]}
+          >
+            En udfordrende bog
+          </span>
+        </div>
+        <div
+          className="belt-wrapper"
+        >
+          <div
+            className="works-wrapper col-xs-12 noselect"
+          >
+            <div
+              className="works"
+              style={
+                Object {
+                  "transform": "translate3d(0px, 0px, 0px)",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="row belt text-left"
+      >
+        <div
+          className="col-xs-12 header"
+        >
+          <span
+            className="belt-title"
+            data-html="true"
+            data-original-title="<span>Bibliotekaren anbefaler</span>"
+            data-toggle="tooltip"
+            onClick={[Function]}
+          >
+            Bibliotekarens ugentlige anbefalinger
+          </span>
+        </div>
+        <div
+          className="col-xs-12 belt-links"
+        />
+        <div
+          className="belt-wrapper"
+        >
+          <div
+            className="button-wrapper col-xs-12 noselect"
+          >
+            <div
+              className="left-btn scroll-btn text-center"
+              onClick={[Function]}
+            >
+              &lt;
+            </div>
+            <div
+              className="right-btn scroll-btn text-center"
+              onClick={[Function]}
+            >
+              &gt;
+            </div>
+          </div>
+          <div
+            className="works-wrapper col-xs-12 noselect"
+          >
+            <div
+              className="works"
+              style={
+                Object {
+                  "transform": "translate3d(0px, 0px, 0px)",
+                }
+              }
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="row belt text-left"
+      >
+        <div
+          className="col-xs-12 header"
+        >
+          <span
+            className="belt-title"
+            data-html="true"
+            data-original-title="<span>Ingen filtre</span>"
+            data-toggle="tooltip"
+            onClick={[Function]}
+          >
+            Passer med min smag
+          </span>
+        </div>
+        <div
+          className="col-xs-12 belt-links"
+        />
+        <div
+          style={
+            Object {
+              "paddingLeft": "15px",
+              "paddingRight": "15px",
+            }
+          }
+        >
+          <div
+            className="create-profile col-xs-12 text-center"
+          >
+            <button
+              className="btn btn-success"
+            >
+              Opret profil
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

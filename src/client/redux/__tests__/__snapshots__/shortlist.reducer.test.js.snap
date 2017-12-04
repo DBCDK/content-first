@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shortListReducer when load response include elements from local storage and database, pendingMerge with diff is created 1`] = `
+Object {
+  "elements": Array [
+    Object {
+      "book": Object {
+        "pid": "pid2",
+      },
+    },
+    Object {
+      "book": Object {
+        "pid": "pid3",
+      },
+    },
+  ],
+  "expanded": false,
+  "isLoading": false,
+  "pendingMerge": Object {
+    "databaseElements": Array [
+      Object {
+        "book": Object {
+          "pid": "pid2",
+        },
+      },
+      Object {
+        "book": Object {
+          "pid": "pid3",
+        },
+      },
+    ],
+    "diff": Array [
+      Object {
+        "book": Object {
+          "pid": "pid1",
+        },
+      },
+    ],
+    "localStorageElements": Array [
+      Object {
+        "book": Object {
+          "pid": "pid1",
+        },
+      },
+      Object {
+        "book": Object {
+          "pid": "pid2",
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`shortListReducer when load response include only local storage elements, pendingMerge is null 1`] = `
+Object {
+  "elements": Array [
+    Object {
+      "book": Object {
+        "pid": "pid1",
+      },
+    },
+    Object {
+      "book": Object {
+        "pid": "pid2",
+      },
+    },
+  ],
+  "expanded": false,
+  "isLoading": false,
+  "pendingMerge": null,
+}
+`;
