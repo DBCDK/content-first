@@ -152,7 +152,7 @@ exports[`renders without crashing 1`] = `
           <span
             className="belt-link"
             data-html="true"
-            data-original-title="<span>Spændende</span> <span>Hurtig</span> <span>Plot</span>"
+            data-original-title="<span>Spændende</span> <span>Høj fart</span> <span>Plot</span>"
             data-toggle="tooltip"
             onClick={[Function]}
           >
@@ -210,7 +210,7 @@ exports[`renders without crashing 1`] = `
           <span
             className="belt-title"
             data-html="true"
-            data-original-title="<span>Ligefremt sprog</span> <span>Fremadskridende</span>"
+            data-original-title="<span>Ligefrem</span> <span>I bevægelse</span>"
             data-toggle="tooltip"
             onClick={[Function]}
           >
@@ -235,7 +235,7 @@ exports[`renders without crashing 1`] = `
           <span
             className="belt-link"
             data-html="true"
-            data-original-title="<span>Åbent fortolkningsrum</span> <span>Avanceret sprog</span>"
+            data-original-title="<span>Meget åben for fortolkning</span> <span>Krævende</span>"
             data-toggle="tooltip"
             onClick={[Function]}
           >
