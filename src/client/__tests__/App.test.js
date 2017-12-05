@@ -4,6 +4,10 @@ import {Provider} from 'react-redux';
 import createStore from '../redux/Store';
 import renderer from 'react-test-renderer';
 
+jest.mock('../data/exportTaxonomy.json', () => {
+  return require('./__mocks__/mockedTaxonomy.json');
+});
+
 it('renders without crashing', () => {
   window.$ = () => ({tooltip: () => {}}); // mock jquery tooltip
   const tree = renderer
