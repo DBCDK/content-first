@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router({mergeParams: true});
-const asyncMiddleware = require('__/async-express').asyncMiddleware;
+const {asyncMiddleware} = require('__/async-express');
 const _ = require('lodash');
 const config = require('server/config');
 const knex = require('knex')(config.db);

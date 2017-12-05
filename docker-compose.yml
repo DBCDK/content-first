@@ -1,10 +1,23 @@
 version: "3"
 services:
 
+  communityservice:
+    image: jpsecher/communityservice
+    links:
+      - database
+    environment:
+      DB_NAME: communityservice
+      DB_USER: communityservice
+      DB_HOST: database
+    ports:
+      - "${COMMUNITY_PORT:-3003}:3000"
+    command: sh -c './tools/wait-for.sh database:5432 -- npm start'
+
   database:
     image: postgres:9.6
+    volumes:
+      - ./tools/postgres-initdb.d:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: contentfirst
-      POSTGRES_USER: contentfirst
+      POSTGRES_MULTIPLE_DATABASES: contentfirst, communityservice

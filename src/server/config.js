@@ -5,12 +5,12 @@ const hostname = require('os').hostname;
 const knexfile = require('./knexfile');
 
 // This is the only place to read process.env settings.  The point is that the
-// servive should use the configuration like
+// service should use the configuration like
 //
 //     const config = require('server/config')
 //
 // and just extract needed configuration parts and pass them on to modules that
-// need them, like
+// need the parts, like
 //
 //     mymodule(config.logger)
 //
@@ -19,50 +19,50 @@ const knexfile = require('./knexfile');
 //     const port = require('server/config').server.port
 //     mymodule(port)
 
-function Defaults () {
+function Common () {
   return {
     environment: process.env.NODE_ENV || 'development',
-    port: tcp.normalizePort(process.env.PORT) || 3001,
-    internalPort: tcp.normalizePort(process.env.INTERNAL_PORT) || 3002,
-    prettyLog: parseInt(process.env.PRETTY_LOG || 1, 10),
-    logLevel: process.env.LOG_LEVEL || 'INFO',
-    logServiceErrors: parseInt(process.env.LOG_SERVICE_ERRORS || 1, 10),
     hostname: hostname().replace('.domain_not_set.invalid', ''),
     secret: process.env.AUTH_CLIENT_SECRET || 'something'
   };
 }
 
-const defaults = new Defaults();
+const common = new Common();
 
 /*
  * Configuration groups for various modules.
  */
 
-exports.server = {
-  environment: defaults.environment,
-  logServiceErrors: defaults.logServiceErrors,
-  port: defaults.port,
-  internalPort: defaults.internalPort,
-  hostname: 'content-first.demo.dbc.dk'
-  // hostname: 'content-first.dbc.dk'
+exports.auth = {
+  id: process.env.AUTH_CLIENT_ID || 'content-first',
+  secret: common.secret,
+  url: process.env.AUTH_URL || 'https://auth.dbc.dk'
+};
+
+exports.db = knexfile[common.environment];
+
+exports.community = {
+  url: process.env.COMMUNITY_URL || 'http://localhost:3003'
 };
 
 exports.logger = {
-  environment: defaults.environment,
-  level: defaults.logLevel,
-  pretty: defaults.prettyLog,
-  hostname: defaults.hostname
-};
-
-exports.auth = {
-  id: process.env.AUTH_CLIENT_ID || 'content-first',
-  secret: defaults.secret,
-  url: process.env.AUTH_URL || 'https://auth.dbc.dk'
+  environment: common.environment,
+  level: process.env.LOG_LEVEL || 'INFO',
+  pretty: parseInt(process.env.PRETTY_LOG || 1, 10),
+  hostname: common.hostname
 };
 
 exports.login = {
   url: process.env.LOGIN_URL || 'https://login.bib.dk',
-  salt: defaults.secret
+  salt: common.secret
 };
 
-exports.db = knexfile[defaults.environment];
+
+exports.server = {
+  environment: common.environment,
+  logServiceErrors: parseInt(process.env.LOG_SERVICE_ERRORS || 1, 10),
+  port: tcp.normalizePort(process.env.PORT) || 3001,
+  internalPort: tcp.normalizePort(process.env.INTERNAL_PORT) || 3002,
+  hostname: 'content-first.demo.dbc.dk'
+  // hostname: 'content-first.dbc.dk'
+};

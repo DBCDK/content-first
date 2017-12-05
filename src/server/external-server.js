@@ -9,6 +9,7 @@ const _ = require('lodash');
 const database = require('server/database');
 const authenticator = require('server/authenticator');
 const login = require('server/login');
+const community = require('server/community');
 const generatingServiceStatus = require('__/service/service-status');
 
 // Public web server.
@@ -46,8 +47,9 @@ external.get('/howru', async(req, res) => {
     'login.salt'
   ]);
   const services = [
-    database,
     authenticator,
+    community,
+    database,
     login
   ];
   const status = await generatingServiceStatus(services);

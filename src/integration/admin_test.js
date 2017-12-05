@@ -4,62 +4,89 @@
 
 const {external, internal} = require('./mock-server');
 const config = require('server/config');
-const constants = require('__/service/authentication-constants')();
 const {expect} = require('chai');
 const request = require('supertest');
-const nock = require('nock');
-const {expectValidate} = require('./output-verifiers');
 
 describe('Admin API on running database', () => {
+
   describe('Public endpoint', () => {
     const webapp = request(external);
+
     describe('/pid', () => {
       it('should return the process id', () => {
         // Act.
-        return webapp.get('/pid')
-          .set('Accept', 'text/plain')
-          // Assert.
-          .expect(200)
-          .expect('Content-Type', /text/)
-          .expect(/^[0-9]+$/);
+        return webapp.get('/pid').set('Accept', 'text/plain')
+        // Assert.
+        .expect(200)
+        .expect('Content-Type', /text/)
+        .expect(/^[0-9]+$/);
       });
     });
+
     describe('/howru', () => {
+
       it('should answer that everything is fine and give additional information', () => {
         // Arrange.
-        nock(config.auth.url).get(constants.apiHealth).reply(200, constants.healthyResponse);
+        arrangeSubserviceResponse('ALC');
         // Act.
-        return webapp.get('/howru')
-          .set('Accept', 'application/json')
-          // Assert.
-          .expect('Content-Type', /json/)
-          .expect(200)
-          .expect(res => {
-            expectValidate(res.body, 'schemas/status-out.json');
-            // Remote connections status.
-            expect(res.body.ok).to.be.true;
-            expect(res.body).to.not.have.property('errorText');
-            expect(res.body).to.not.have.property('errorLog');
-            // Service info.
-            expect(res.body).to.have.property('address');
-            expect(res.body['api-version']).to.equal('1');
-            expect(res.body).to.have.property('version');
-            expect(res.body.version).to.equal('0.2.0');
-            expect(res.body).to.not.have.nested.property('config.db.connection.user');
-            expect(res.body).to.not.have.nested.property('config.db.connection.password');
-            expect(res.body).to.not.have.nested.property('config.auth.id');
-            expect(res.body).to.not.have.nested.property('config.auth.secret');
-            // Safety net, do not leak something that looks like a secret.
-            const everything = JSON.stringify(res.body);
-            expect(everything).to.not.match(/password/i);
-            expect(everything).to.not.match(/secret/i);
-            expect(everything).to.not.match(/salt/i);
-          });
+        return webapp.get('/howru').set('Accept', 'application/json')
+        // Assert.
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .expect(res => {
+          expectStatusOkAndNoErrors(res.body);
+          expectStatusContainsServiceInfo(res.body);
+          expectNoSecretsRevealed(res.body);
+        });
+      });
+
+      it('should detect authenticator problems', () => {
+        // Arrange.
+        arrangeSubserviceResponse('aLC');
+        // Act.
+        return webapp.get('/howru').set('Accept', 'application/json')
+        // Assert.
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .expect(res => {
+          expectStatusError(/authentication.* communication failed/i, res.body);
+          expectNoSecretsRevealed(res.body);
+        });
+      });
+
+      it('should detect login problems', () => {
+        // Arrange.
+        arrangeSubserviceResponse('AlC');
+        // Act.
+        return webapp.get('/howru').set('Accept', 'application/json')
+        // Assert.
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .expect(res => {
+          expectStatusError(/login.* communication failed/i, res.body);
+          expectNoSecretsRevealed(res.body);
+        });
+      });
+
+      it('should detect community problems', () => {
+        // Arrange.
+        arrangeSubserviceResponse('ALc');
+        // Act.
+        return webapp.get('/howru').set('Accept', 'application/json')
+        // Assert.
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .expect(res => {
+          expectStatusError(/community.* communication failed/i, res.body);
+          expectNoSecretsRevealed(res.body);
+        });
       });
     });
   });
+
   describe('Internal endpoint', () => {
     const hidden = request(internal);
+
     describe('server crashes', () => {
       it('should be catched', () => {
         // Act.
@@ -70,3 +97,69 @@ describe('Admin API on running database', () => {
     });
   });
 });
+
+const {expectValidate} = require('./output-verifiers');
+
+function expectStatusOkAndNoErrors (document) {
+  expectValidate(document, 'schemas/status-out.json');
+  expect(document.ok).to.be.true;
+  expect(document).to.not.have.property('errorText');
+  expect(document).to.not.have.property('errorLog');
+}
+
+function expectStatusError (errorMatcher, document) {
+  expectValidate(document, 'schemas/status-out.json');
+  expect(document.ok).to.be.false;
+  expect(document).to.have.property('errorText');
+  expect(document.errorText).to.match(errorMatcher);
+  expect(document).to.have.property('errorLog');
+}
+
+function expectStatusContainsServiceInfo (document) {
+  // Service info.
+  expect(document).to.have.property('address');
+  expect(document['api-version']).to.equal('1');
+  expect(document).to.have.property('version');
+  expect(document.version).to.equal('0.2.0');
+}
+
+function expectNoSecretsRevealed (document) {
+  expect(document).to.not.have.nested.property('config.db.connection.user');
+  expect(document).to.not.have.nested.property('config.db.connection.password');
+  expect(document).to.not.have.nested.property('config.auth.id');
+  expect(document).to.not.have.nested.property('config.auth.secret');
+  // Safety net, do not leak something that looks like a secret.
+  const everything = JSON.stringify(document);
+  expect(everything).to.not.match(/password/i);
+  expect(everything).to.not.match(/secret/i);
+  expect(everything).to.not.match(/salt/i);
+}
+
+const authConst = require('__/service/authentication-constants')();
+const loginConst = require('__/service/login-constants')();
+const communityConst = require('__/service/community-service-constants')();
+const nock = require('nock');
+
+function arrangeSubserviceResponse (authLoginCommunity) {
+  const auth = authLoginCommunity[0];
+  const login = authLoginCommunity[1];
+  const community = authLoginCommunity[2];
+  if (auth === 'A') {
+    nock(config.auth.url).get(authConst.apiHealth).reply(200, authConst.healthyResponse);
+  }
+  else {
+    nock(config.auth.url).get(authConst.apiHealth).reply(500);
+  }
+  if (login === 'L') {
+    nock(config.login.url).get(loginConst.apiHealth).reply(200, loginConst.healthyResponse);
+  }
+  else {
+    nock(config.login.url).get(loginConst.apiHealth).reply(500);
+  }
+  if (community === 'C') {
+    nock(config.community.url).get(communityConst.apiHealth).reply(200, communityConst.healthyResponse);
+  }
+  else {
+    nock(config.community.url).get(communityConst.apiHealth).reply(500);
+  }
+}

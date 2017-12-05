@@ -6,16 +6,19 @@
 
 const constants = {
   apiversion: '1',
+  books: {
+    table: 'books'
+  },
+  cookies: {
+    table: 'cookies'
+  },
+  covers: {
+    table: 'covers'
+  },
   pages: {
     start: '/',
     loggedOut: '/',
     generalError: '/general-error'
-  },
-  books: {
-    table: 'books'
-  },
-  covers: {
-    table: 'covers'
   },
   tags: {
     table: 'tags'
@@ -27,9 +30,6 @@ const constants = {
   },
   users: {
     table: 'users'
-  },
-  cookies: {
-    table: 'cookies'
   }
 };
 
