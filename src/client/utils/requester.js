@@ -131,15 +131,17 @@ export const fetchProfileRecommendations = (profileState, dispatch) => {
   requestProfileRecommendations().then(recommendations => dispatch({type: ON_PROFILE_RECOMMENDATIONS_RESPONSE, recommendations}));
 };
 
-export const fetchUser = (dispatch) => {
+export const fetchUser = (dispatch, cb) => {
   request.get('/v1/user')
     .end(function(error, res) {
       if (error) {
         dispatch({type: ON_USER_DETAILS_RESPONSE, error});
-        return;
       }
-      const user = JSON.parse(res.text).data;
-      dispatch({type: ON_USER_DETAILS_RESPONSE, user});
+      else {
+        const user = JSON.parse(res.text).data;
+        dispatch({type: ON_USER_DETAILS_RESPONSE, user});
+      }
+      cb();
     });
 };
 
@@ -149,18 +151,50 @@ export const logout = (dispatch) => {
   document.getElementById('logoutform').submit();
 };
 
-export const saveShortList = (elements) => {
+export const saveShortList = (elements, isLoggedIn) => {
   if (window && window.localStorage) {
-    localStorage.setItem('contentFirstShortList', JSON.stringify({elements}));
+    localStorage.setItem('contentFirstShortList', JSON.stringify(elements));
+  }
+  if (isLoggedIn) {
+    const payload = elements.map(e => {
+      return {
+        pid: e.book.pid,
+        origin: e.origin
+      };
+    });
+    request.put('/v1/shortlist')
+      .send(payload)
+      .end(function(error) {
+        if (error) {
+          console.log('error persisting shortlist', error) // eslint-disable-line
+        }
+      });
   }
 };
 
-export const loadShortList = (cb) => {
-  setTimeout(() => {
-    if (window && window.localStorage) {
-      const jsonString = localStorage.getItem('contentFirstShortList');
-      return cb(jsonString ? JSON.parse(jsonString) : {elements: []});
-    }
-    return cb({elements: []});
-  }, 500);
+export const loadShortList = async (cb, isLoggedIn) => {
+  let localStorageElements= [];
+  if (window && window.localStorage) {
+    const jsonString = localStorage.getItem('contentFirstShortList');
+    localStorageElements = jsonString ? JSON.parse(jsonString) : localStorageElements;
+  }
+  if (!isLoggedIn) {
+    return cb({localStorageElements});
+  }
+
+  try {
+    const databaseElements = (await request.get('/v1/shortlist')).body.data;
+    const pids = databaseElements.map(e => e.pid);
+    const works = (await request.get('/v1/books/').query({pids})).body.data;
+    const worksMap = works.reduce((map, w) => {
+      map[w.book.pid] = w;
+      return map;
+    }, {});
+    databaseElements.forEach(e => (e.book = worksMap[e.pid].book));
+
+    return cb({localStorageElements, databaseElements});
+  }
+  catch (e) {
+    console.log('Error loading shortlist', e) // eslint-disable-line
+  }
 };

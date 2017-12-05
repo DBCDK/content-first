@@ -10,14 +10,16 @@ import {
   ON_PROFILE_REMOVE_CURRENT_PROFILE,
   ON_PROFILE_CREATE_TASTE,
   ON_PROFILE_LOAD_PROFILES,
-  ON_LOGOUT_REQUEST
+  ON_LOGOUT_REQUEST,
+  ON_LOGOUT_RESPONSE
 } from './profile.reducer';
 import {
   ON_SHORTLIST_ADD_ELEMENT,
   ON_SHORTLIST_REMOVE_ELEMENT,
   ON_SHORTLIST_TOGGLE_ELEMENT,
   SHORTLIST_LOAD_REQUEST,
-  SHORTLIST_LOAD_RESPONSE
+  SHORTLIST_LOAD_RESPONSE,
+  SHORTLIST_APPROVE_MERGE
 } from './shortlist.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 
@@ -81,7 +83,9 @@ export const requestMiddleware = store => next => action => {
       return next(action);
     }
     case ON_USER_DETAILS_REQUEST:
-      fetchUser(store.dispatch);
+      fetchUser(store.dispatch, () => {
+        store.dispatch({type: SHORTLIST_LOAD_REQUEST});
+      });
       return next(action);
     case ON_LOGOUT_REQUEST:
       logout(store.dispatch);
@@ -107,19 +111,25 @@ export const loggerMiddleware = store => next => action => {
 
 export const shortListMiddleware = store => next => action => {
   switch (action.type) {
+    case SHORTLIST_APPROVE_MERGE:
+    case ON_LOGOUT_RESPONSE:
     case ON_SHORTLIST_ADD_ELEMENT:
     case ON_SHORTLIST_REMOVE_ELEMENT:
     case ON_SHORTLIST_TOGGLE_ELEMENT: {
       const res = next(action);
       const {elements} = store.getState().shortListReducer;
-      saveShortList(elements);
+      const {isLoggedIn} = store.getState().profileReducer.user;
+      saveShortList(elements, isLoggedIn);
       return res;
     }
-    case SHORTLIST_LOAD_REQUEST:
-      loadShortList((res) => {
-        store.dispatch({type: SHORTLIST_LOAD_RESPONSE, elements: res.elements});
-      });
-      return next(action);
+    case SHORTLIST_LOAD_REQUEST: {
+      const res = next(action);
+      const {isLoggedIn} = store.getState().profileReducer.user;
+      loadShortList((r) => {
+        store.dispatch({type: SHORTLIST_LOAD_RESPONSE, localStorageElements: r.localStorageElements, databaseElements: r.databaseElements});
+      }, isLoggedIn);
+      return res;
+    }
     default:
       return next(action);
   }
