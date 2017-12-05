@@ -109,7 +109,7 @@ export const loggerMiddleware = store => next => action => {
 };
 /* eslint-enable no-console */
 
-export const shortListMiddleware = store => next => action => {
+export const shortListMiddleware = store => next => async action => {
   switch (action.type) {
     case SHORTLIST_APPROVE_MERGE:
     case ON_LOGOUT_RESPONSE:
@@ -125,9 +125,8 @@ export const shortListMiddleware = store => next => action => {
     case SHORTLIST_LOAD_REQUEST: {
       const res = next(action);
       const {isLoggedIn} = store.getState().profileReducer.user;
-      loadShortList((r) => {
-        store.dispatch({type: SHORTLIST_LOAD_RESPONSE, localStorageElements: r.localStorageElements, databaseElements: r.databaseElements});
-      }, isLoggedIn);
+      const {localStorageElements, databaseElements} = await loadShortList(isLoggedIn);
+      store.dispatch({type: SHORTLIST_LOAD_RESPONSE, localStorageElements, databaseElements});
       return res;
     }
     default:

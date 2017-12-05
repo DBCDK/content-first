@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`localstorage retrieve fallback object, when there is no entry with given key 1`] = `
+Object {
+  "some": "fallback object",
+}
+`;
+
+exports[`localstorage retrieve fallback object, when version does not match stored entry 1`] = `
+Object {
+  "some": "fallback object",
+}
+`;
+
+exports[`localstorage retrieves stored entry, when version matches 1`] = `
+Object {
+  "foo": "bar",
+}
+`;

@@ -7,6 +7,10 @@ import profiles from '../data/ranked-profiles.json';
 import similar from '../data/similar-pids.json';
 import {taxonomyMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
+import {setItem, getItem} from '../utils/localstorage';
+
+const SHORT_LIST_KEY = 'contentFirstShortList';
+const SHORT_LIST_VERSION = 1;
 
 
 const filter = (works, selectedTitles) => {
@@ -152,9 +156,7 @@ export const logout = (dispatch) => {
 };
 
 export const saveShortList = (elements, isLoggedIn) => {
-  if (window && window.localStorage) {
-    localStorage.setItem('contentFirstShortList', JSON.stringify(elements));
-  }
+  setItem(SHORT_LIST_KEY, elements, SHORT_LIST_VERSION);
   if (isLoggedIn) {
     const payload = elements.map(e => {
       return {
@@ -172,18 +174,17 @@ export const saveShortList = (elements, isLoggedIn) => {
   }
 };
 
-export const loadShortList = async (cb, isLoggedIn) => {
-  let localStorageElements= [];
-  if (window && window.localStorage) {
-    const jsonString = localStorage.getItem('contentFirstShortList');
-    localStorageElements = jsonString ? JSON.parse(jsonString) : localStorageElements;
-  }
+export const loadShortList = async (isLoggedIn) => {
+  const localStorageElements= getItem(SHORT_LIST_KEY, SHORT_LIST_VERSION, []);
   if (!isLoggedIn) {
-    return cb({localStorageElements});
+    return {localStorageElements};
   }
 
   try {
     const databaseElements = (await request.get('/v1/shortlist')).body.data;
+    if (databaseElements.length === 0) {
+      return {localStorageElements, databaseElements: []};
+    }
     const pids = databaseElements.map(e => e.pid);
     const works = (await request.get('/v1/books/').query({pids})).body.data;
     const worksMap = works.reduce((map, w) => {
@@ -192,9 +193,10 @@ export const loadShortList = async (cb, isLoggedIn) => {
     }, {});
     databaseElements.forEach(e => (e.book = worksMap[e.pid].book));
 
-    return cb({localStorageElements, databaseElements});
+    return {localStorageElements, databaseElements};
   }
   catch (e) {
     console.log('Error loading shortlist', e) // eslint-disable-line
+    return {localStorageElements, databaseElements: []};
   }
 };
