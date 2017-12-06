@@ -269,7 +269,7 @@ const profileReducer = (state = defaultState, action) => {
       });
     case ON_PROFILE_CREATE_TASTE: {
       const currentTaste = action.name;
-      const profiles = Object.assign({}, state.profiletastes.profiles, {
+      const profiles = Object.assign({}, state.profileTastes.profiles, {
         [currentTaste]: Object.assign({}, defaultProfile)
       });
       return Object.assign({}, state, {
