@@ -32,13 +32,13 @@ class WorkItem extends React.Component {
           </div>
           <CheckmarkMenu
             text="Husk"
-            marked={true}
+            checked={true}
             onClick={() => (console.log('header click'))}>
             {systemLists.map(l => (
               <MenuItem
                 key={l.id}
                 text={l.name}
-                marked={l.elements.indexOf(this.props.work.book.pid) !== -1}
+                checked={l.elements.indexOf(this.props.work.book.pid) !== -1}
                 onClick={() => (console.log(this.props.work.book, l))}/>
             ))}
             <MenuItem
