@@ -31,6 +31,7 @@
 @import './components/checkmarkButton.css';
 @import './components/topbar.css';
 @import './components/modal.css';
+@import './components/checkmarkmenu.css';
 
 body {
   margin: 0;

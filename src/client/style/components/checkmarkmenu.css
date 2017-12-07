@@ -1,0 +1,48 @@
+.checkmark-menu {
+  font-family: 'Raleway', sans-serif;
+  outline:none;
+}
+.checkmark-menu > div:first-child {
+  text-align: right;
+}
+.checkmark-menu--content, .checkmark-menu--expand-btn {
+  box-shadow: 0 6px 12px rgba(0,0,0,.575);
+}
+.checkmark-menu--content {
+  position: absolute;
+  right: 0px;
+  margin-top: 0px;
+  /*width: 150px;*/
+}
+.checkmark-menu--expand-btn {
+  /*padding: 0 15px;*/
+}
+.checkmark-menu--expand-btn > span:first-child {
+  position: relative;
+  border-right: 0;
+  padding: 4px 30px 4px 8px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.checkmark-menu--expand-btn .glyphicon-ok {
+  margin-left: 10px;
+  /*margin-top: -22px;*/
+}
+.checkmark-menu--expand-btn > span:last-child {
+  padding: 4px 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.menu-item {
+  padding: 4px 30px 4px 8px;
+  cursor: pointer;
+}
+.menu-item:hover {
+  background: #dddddd;
+}
+.checkmark-menu .glyphicon-ok {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 10px;
+}

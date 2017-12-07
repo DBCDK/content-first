@@ -7,6 +7,11 @@
   vertical-align: top;
   margin-bottom: 30px;
 }
+.work .checkmark-menu {
+  position: absolute;
+  top: -5px;
+  right: 5px;
+}
 .scale-on-hover {
   transition: all 0.2s ease-in-out;
   transform: scale(1,1);
