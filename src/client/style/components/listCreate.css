@@ -1,0 +1,140 @@
+.list-creator {
+  text-align: left;
+  font-family: var(--secondary-font);
+}
+.list-creator__form {
+  width: 50%;
+  margin-bottom: 5rem;
+}
+
+.list-creator__headline {
+  display: block;
+  width: 100%;
+  border-bottom: solid 2px rgba(0, 0, 0, 1);
+  line-height: 1.5;
+  font-weight: 700;
+  margin-bottom: 4rem;
+}
+.list-creator textarea {
+  resize: none;
+}
+
+.list-creator__publication {
+  font-weight: 500;
+  margin: 3rem 0;
+}
+
+.list-creator__publication input {
+  margin-right: 1rem;
+  display: none;
+}
+.list-creator__publication label {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.list-creator__publication input[type='checkbox'] + span {
+  display: inline-block;
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  position: relative;
+  top: 5px;
+}
+.list-creator__publication span:before {
+  position: absolute;
+  content: ' ';
+  display: inline-block;
+  background: url('/checkmark.svg');
+  background-size: contain;
+  width: 22px;
+  height: 22px;
+  left: 1px;
+  bottom: 0px;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.list-creator__publication input[type='checkbox']:checked + span:before {
+  opacity: 1;
+}
+
+.list-creator__submit button {
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background-color: var(--green);
+  border: none;
+  padding: 0.5rem 3rem;
+}
+
+.list-details {
+  margin-bottom: 4rem;
+}
+.list-details__description {
+  min-height: 100px;
+}
+
+.list-details textarea,
+.list-details input {
+  width: 100%;
+  display: block;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+.list-details .required {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.list-details .required:after {
+  content: '*';
+  color: red;
+  position: absolute;
+  right: 10px;
+  top: 3px;
+  font-size: 3rem;
+}
+
+.list-item {
+  text-align: left;
+  position: relative;
+}
+.list-item {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.list-item__title {
+  font-weight: 700;
+  font-style: italic;
+  font-family: var(--primary-font);
+}
+.list-item__author {
+  font-family: var(--primary-font);
+  font-weight: 700;
+  color: rgb(165, 165, 165);
+  margin-bottom: 1rem;
+}
+.list-item__img {
+  width: 40px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+.list-item__close {
+  background-image: url('/close.svg');
+  opacity: 0.2;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  background-size: contain;
+  transition: opacity 200ms;
+  cursor: pointer;
+}
+
+.list-item__details {
+  width: 100%;
+}

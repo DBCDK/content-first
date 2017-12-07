@@ -11,9 +11,10 @@ import ProfilePage from './components/profile/ProfilePage.container';
 import TopBar from './components/top/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
+import ListCreator from './components/list/ListCreate.component';
+import Lists from './components/list/Lists.component';
 
 class App extends Component {
-
   componentWillMount() {
     this.props.dispatch({type: ON_USER_DETAILS_REQUEST});
   }
@@ -24,19 +25,26 @@ class App extends Component {
 
     let currentPage = null;
     if (pathSplit[1] === '') {
-      currentPage = <FrontPage/>;
-    }
-    else if (pathSplit[1] === 'værk') {
-      currentPage = <WorkPage pid={pathSplit[2]}/>;
-    }
-    else if (pathSplit[1] === 'profile') {
+      currentPage = <FrontPage />;
+    } else if (pathSplit[1] === 'værk') {
+      currentPage = <WorkPage pid={pathSplit[2]} />;
+    } else if (pathSplit[1] === 'profile') {
       currentPage = <ProfilePage />;
-    }
-    else {
+    } else if (pathSplit[1] === 'lister') {
+      if (pathSplit[2]) {
+        if (pathSplit[2] === 'opret') {
+          currentPage = <ListCreator />;
+        } else {
+          currentPage = <ListCreator id={pathSplit[2]} />;
+        }
+      } else {
+        currentPage = <Lists />;
+      }
+    } else {
       // check if current path matches a belt
       this.props.beltsState.belts.forEach(belt => {
         if (beltNameToPath(belt.name) === path) {
-          currentPage = <FilterPage belt={belt}/>;
+          currentPage = <FilterPage belt={belt} />;
         }
       });
     }
@@ -47,8 +55,11 @@ class App extends Component {
 
     return (
       <div className="App container">
-        <TopBar dispatch={this.props.dispatch} user={this.props.profileState.user}/>
-        <div style={{height: '50px'}}/>
+        <TopBar
+          dispatch={this.props.dispatch}
+          user={this.props.profileState.user}
+        />
+        <div style={{height: '50px'}} />
         {currentPage}
       </div>
     );
@@ -56,7 +67,11 @@ class App extends Component {
 }
 export default connect(
   // Map redux state to props
-  (state) => {
-    return {routerState: state.routerReducer, beltsState: state.beltsReducer, profileState: state.profileReducer};
+  state => {
+    return {
+      routerState: state.routerReducer,
+      beltsState: state.beltsReducer,
+      profileState: state.profileReducer
+    };
   }
 )(App);

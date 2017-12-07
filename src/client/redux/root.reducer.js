@@ -4,6 +4,7 @@ import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
 import workReducer from './work.reducer';
 import profileReducer from './profile.reducer';
+import listReducer from './list.reducer';
 import shortListReducer from './shortlist.reducer';
 
 // const LOCAL_STORAGE_KEY = 'contentfirst';
@@ -20,6 +21,7 @@ import shortListReducer from './shortlist.reducer';
 const combined = combineReducers({
   beltsReducer,
   filterReducer,
+  listReducer,
   profileReducer,
   routerReducer,
   workReducer,

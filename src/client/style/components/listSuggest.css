@@ -1,0 +1,92 @@
+.suggestion-row {
+  text-align: left;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+.suggestion-row .image {
+  flex-grow: 0;
+  width: 46px;
+  text-align: center;
+
+  margin-right: 1rem;
+}
+
+.suggestion-row img {
+  width: 26px;
+  height: 39px;
+  object-fit: cover;
+  color: white;
+}
+.suggestion-row__title {
+  font-weight: bold;
+}
+
+.suggestion-list {
+  position: relative;
+  margin-bottom: 2rem;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.suggestion-list::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url('/search.svg');
+  background-size: contain;
+  position: absolute;
+  left: 20px;
+  top: 8px;
+}
+.suggestion-list__search {
+  padding: 1rem 1rem 1rem 6.6rem;
+  border: none;
+  box-shadow: none;
+}
+
+/* Style react-autosuggest as bootstrap form elements */
+.react-autosuggest__input--focused {
+  outline: none;
+}
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  border: 1px solid #aaa;
+  background-color: #fff;
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: #ddd;
+}
