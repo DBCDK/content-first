@@ -30,9 +30,7 @@ router.route('/')
         links: {self: location}
       });
     })
-    .catch(error => {
-      next(error);
-    });
+    .catch(next);
   }))
 
   //

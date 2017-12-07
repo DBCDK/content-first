@@ -42,7 +42,7 @@ describe('Admin API on running database', () => {
 
       it('should detect authenticator problems', () => {
         // Arrange.
-        arrangeSubserviceResponse('aLC');
+        arrangeSubserviceResponse('_LC');
         // Act.
         return webapp.get('/howru').set('Accept', 'application/json')
         // Assert.
@@ -56,7 +56,7 @@ describe('Admin API on running database', () => {
 
       it('should detect login problems', () => {
         // Arrange.
-        arrangeSubserviceResponse('AlC');
+        arrangeSubserviceResponse('A_C');
         // Act.
         return webapp.get('/howru').set('Accept', 'application/json')
         // Assert.
@@ -70,7 +70,7 @@ describe('Admin API on running database', () => {
 
       it('should detect community problems', () => {
         // Arrange.
-        arrangeSubserviceResponse('ALc');
+        arrangeSubserviceResponse('AL_');
         // Act.
         return webapp.get('/howru').set('Accept', 'application/json')
         // Assert.
@@ -135,9 +135,9 @@ function expectNoSecretsRevealed (document) {
   expect(everything).to.not.match(/salt/i);
 }
 
-const authConst = require('__/service/authentication-constants')();
-const loginConst = require('__/service/login-constants')();
-const communityConst = require('__/service/community-service-constants')();
+const authConst = require('__/service/smaug/authentication-constants')();
+const loginConst = require('__/service/hejmdal/login-constants')();
+const communityConst = require('__/service/community/community-constants')();
 const nock = require('nock');
 
 function arrangeSubserviceResponse (authLoginCommunity) {

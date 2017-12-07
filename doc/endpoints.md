@@ -303,7 +303,8 @@ Returns [user information](../src/integration/schemas/user-data-out.json) for a 
           }
         ]
       , "lists":
-        [ { "title": "My List"
+        [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
+          , "title": "My List"
           , "description": "A brand new list"
           , "list":
           [ { "pid": "870970-basis-22629344"
@@ -341,7 +342,8 @@ Updates the [user information](../src/server/schemas/user-in.json) like
         }
       ]
     , "lists":
-      [ { "title": "My List"
+      [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
+        , "title": "My List"
         , "description": "A brand new list"
         , "list":
         [ { "pid": "870970-basis-22629344"

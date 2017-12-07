@@ -8,8 +8,8 @@ const nock = require('nock');
 const config = require('server/config');
 const constants = require('server/constants')();
 const authenticator = require('server/authenticator');
-const authConstants = require('__/service/authentication-constants')();
-const loginConstants = require('__/service/login-constants')();
+const authConstants = require('__/service/smaug/authentication-constants')();
+const loginConstants = require('__/service/hejmdal/login-constants')();
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 
@@ -43,6 +43,7 @@ describe('User login', () => {
                 origin: 'en-god-bog'
               }],
               lists: [{
+                id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
                 title: 'My List',
                 description: 'A brand new list',
                 list: [{
@@ -279,6 +280,7 @@ describe('User login', () => {
                     origin: 'en-god-bog'
                   }],
                   lists: [{
+                    id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
                     title: 'My List',
                     description: 'A brand new list',
                     list: [{

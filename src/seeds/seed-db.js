@@ -70,6 +70,7 @@ exports.seed = async knex => {
       origin: 'en-god-bog'
     }]),
     lists: JSON.stringify([{
+      id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
       title: 'My List',
       description: 'A brand new list',
       list: [{

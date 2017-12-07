@@ -97,6 +97,7 @@ describe('User data', () => {
               expect(data).to.deep.equal({
                 name: 'Jens Godfredsen',
                 lists: [{
+                  id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
                   title: 'My List',
                   description: 'A brand new list',
                   list: [{
@@ -136,6 +137,7 @@ describe('User data', () => {
           origin: 'bibliotikarens-ugentlige-anbefaling'
         }],
         lists: [{
+          id: '98c5ff8c6e8f49978c857c23925dbe41',
           title: 'Must read',
           description: 'Interesting books',
           list: [{

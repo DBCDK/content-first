@@ -8,7 +8,7 @@ const nock = require('nock');
 const config = require('server/config');
 const constants = require('server/constants')();
 const authenticator = require('server/authenticator');
-const authConstants = require('__/service/authentication-constants')();
+const authConstants = require('__/service/smaug/authentication-constants')();
 const {expectFailure} = require('./output-verifiers');
 
 describe('POST /v1/logout', () => {

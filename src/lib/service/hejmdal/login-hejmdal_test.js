@@ -23,10 +23,12 @@ describe('Login connector', () => {
       error: sinon.stub()
     }
   };
+
   const config = {
     url: 'https://login.bib.dk',
     salt: 'mysecret'
   };
+
   const login = new Login(config, logger);
 
   beforeEach(() => {

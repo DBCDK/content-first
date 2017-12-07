@@ -1,7 +1,9 @@
 'use strict';
 
 const constants = {
+  communityName: 'Læsekompasset',
   apiHealth: '/howru',
+  apiCommunity: '/v1/community',
   healthyResponse: {
     ok: true
   }

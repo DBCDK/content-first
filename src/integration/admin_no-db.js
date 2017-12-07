@@ -6,7 +6,7 @@
 const mock = require('./no-db-server');
 
 const config = require('server/config');
-const constants = require('__/service/authentication-constants')();
+const constants = require('__/service/smaug/authentication-constants')();
 const {expect} = require('chai');
 const request = require('supertest');
 const nock = require('nock');
