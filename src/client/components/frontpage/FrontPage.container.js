@@ -65,6 +65,7 @@ class FrontPage extends React.Component {
             {!belt.requireLogin && <ScrollableBelt works={belt.works} scrollInterval={3}>
               {belt.works && belt.works.map((work, workIdx) => {
                 return <WorkItem
+                  idx={workIdx}
                   id={`work-${workIdx}`}
                   key={work.book.pid}
                   work={work}

@@ -16,7 +16,10 @@ export default class CheckmarkMenu extends React.Component {
   }
   render() {
     return (
-      <div className="checkmark-menu" tabIndex="1" onBlur={() => this.setState({expanded: false})}>
+      <div
+        className={`checkmark-menu${this.props.checked ? ' checked' : ''}${this.state.expanded ? ' expanded' : ''}`}
+        tabIndex="1"
+        onBlur={() => this.setState({expanded: false})}>
         <div>
           <span className={`checkmark-menu--expand-btn${this.props.checked ? ' checked' : ''}`}>
             <span className="btn btn-default" onClick={this.props.onClick}>

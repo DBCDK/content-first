@@ -111,6 +111,7 @@ exports[`renders without crashing 1`] = `
   />
   <div
     className="frontpage"
+    tabIndex="1"
   >
     <div
       className="row frontpage-image"

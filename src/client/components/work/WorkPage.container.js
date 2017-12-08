@@ -143,6 +143,7 @@ class WorkPage extends React.Component {
             <ScrollableBelt works={work.similar} scrollInterval={3}>
               {work.similar && work.similar.map((w, idx) => {
                 return <WorkItem
+                  idx={idx}
                   id={`work-${idx}`}
                   key={w.book.pid}
                   work={w}

@@ -9,9 +9,11 @@
 }
 .work .checkmark-menu {
   position: absolute;
-  right: -5px;
+  right: -20px;
   bottom: -5px;
-  z-index: 10;
+  opacity: 0;
+  transition: all 0.15s ease-in-out;
+  transition-delay: 0.25s;
 }
 .scale-on-hover {
   transition: all 0.2s ease-in-out;
@@ -49,14 +51,18 @@
   cursor: pointer;
   z-index: 10;
 }
-.work .cover-image-wrapper:hover .checkmark-btn, .work .cover-image-wrapper .checkmark-btn-marked {
+.work .cover-image.touch-hover + .checkmark-menu, /* first touch on mobile device */
+.work .cover-image-wrapper:hover .checkmark-menu, /* mouse hover */
+.work .checkmark-menu.checked,
+.work .checkmark-menu.expanded {
   opacity: 1 !important;
-  right: -3px !important;
   transition-delay: 0s !important;
+  transform: translate3d(-20px, 0px, 0px);
 }
 .work .cover-image-wrapper .checkmark-btn {
   position: absolute;
-  right: -20px;
+  transform: translate3d(0px, 0px, 0px);
+  right: -3px;
   bottom: -3px;
   opacity: 0;
   transition: all 0.15s ease-in-out;

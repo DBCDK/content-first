@@ -2,6 +2,11 @@
   font-family: 'Raleway', sans-serif;
   outline:none;
 }
+.checkmark-menu .btn:active {
+  background: inherit;
+  /*border: inherit;*/
+  color: inherit;
+}
 .checkmark-menu > div:first-child {
   text-align: right;
 }
