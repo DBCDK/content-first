@@ -24,7 +24,9 @@ export default class TouchHover extends React.Component {
             touches++;
             this.setState({touches: touches});
           }
-          this.props.onClick(touches, e);
+          if (this.props.onClick) {
+            this.props.onClick(touches, e);
+          }
         }}
         onBlur={() => {
           this.setState({touches: 0});

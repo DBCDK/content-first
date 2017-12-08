@@ -21,7 +21,7 @@ class WorkItem extends React.Component {
     const tax_description = this.props.work.book.taxonomy_description || this.props.work.book.description;
     return (
       <div className="work" id={`work-${this.props.id}`}>
-        <div className='cover-image-wrapper'>
+        <TouchHover className='cover-image-wrapper'>
           <TouchHover
             className='cover-image'
             onClick={(touches) => {
@@ -55,7 +55,7 @@ class WorkItem extends React.Component {
 
               }}/>
           </CheckmarkMenu>
-        </div>
+        </TouchHover>
 
 
         <div className='metakompas-description'>

@@ -51,13 +51,16 @@
   cursor: pointer;
   z-index: 10;
 }
-.work .cover-image.touch-hover + .checkmark-menu, /* first touch on mobile device */
+.work .cover-image-wrapper.touch-hover .checkmark-menu, /* first touch on mobile device */
 .work .cover-image-wrapper:hover .checkmark-menu, /* mouse hover */
 .work .checkmark-menu.checked,
 .work .checkmark-menu.expanded {
   opacity: 1 !important;
   transition-delay: 0s !important;
   transform: translate3d(-20px, 0px, 0px);
+}
+.work .cover-image-wrapper.touch-hover {
+  background: var(--greybrown);
 }
 .work .cover-image-wrapper .checkmark-btn {
   position: absolute;
@@ -74,6 +77,7 @@
   box-shadow: 1px 1px 20px #666666;
   border-radius: 1px;
   filter: contrast(1.25);
+  transition: all 0.15s ease-in-out;
 }
 .cover-image {
   height: 100%;
