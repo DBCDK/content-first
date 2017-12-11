@@ -46,7 +46,7 @@ class AddToListModal extends React.Component {
           <div className="col-xs-6">
             <div className="list-overview">
               {lists.map(l => {
-                return <div>
+                return <div key={l.id}>
                   <input
                     type="radio"
                     name="list"

@@ -150,7 +150,7 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
       >
         <span
           className="btn btn-success"
-          onClick={undefined}
+          onClick={[Function]}
         >
           OK
         </span>
@@ -360,7 +360,7 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
       >
         <span
           className="btn btn-success"
-          onClick={undefined}
+          onClick={[Function]}
         >
           OK
         </span>
@@ -473,7 +473,7 @@ exports[`ShortListDropDown short list contains single element 1`] = `
       >
         <span
           className="btn btn-success"
-          onClick={undefined}
+          onClick={[Function]}
         >
           OK
         </span>
@@ -544,7 +544,7 @@ exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
       >
         <span
           className="btn btn-success"
-          onClick={undefined}
+          onClick={[Function]}
         >
           OK
         </span>

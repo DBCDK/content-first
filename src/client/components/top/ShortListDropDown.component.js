@@ -87,7 +87,7 @@ class ShortListDropdown extends React.Component {
         <Modal
           show={pendingMerge}
           header={pendingHeader}
-          onClose={() => this.props.dispatch({type: SHORTLIST_APPROVE_MERGE})}>
+          onDone={() => this.props.dispatch({type: SHORTLIST_APPROVE_MERGE})}>
           <p>Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:</p>
           <ul>
             {pendingMerge && pendingMerge.diff.map(e => {

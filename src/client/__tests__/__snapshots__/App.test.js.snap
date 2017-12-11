@@ -86,7 +86,7 @@ exports[`renders without crashing 1`] = `
             >
               <span
                 className="btn btn-success"
-                onClick={undefined}
+                onClick={[Function]}
               >
                 OK
               </span>
