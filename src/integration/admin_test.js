@@ -135,9 +135,9 @@ function expectNoSecretsRevealed (document) {
   expect(everything).to.not.match(/salt/i);
 }
 
-const authConst = require('__/service/smaug/authentication-constants')();
-const loginConst = require('__/service/hejmdal/login-constants')();
-const communityConst = require('__/service/community/community-constants')();
+const authConst = require('__/services/smaug/authentication-constants')();
+const loginConst = require('__/services/hejmdal/login-constants')();
+const communityConst = require('__/services/elvis/community-constants')();
 const nock = require('nock');
 
 function arrangeSubserviceResponse (authLoginCommunity) {

@@ -1,14 +1,16 @@
 { "build_systems":
   [ { "name": "content-first"
-    , "cmd": ["npm","run","test","--silent"]
+    , "cmd": ["npm","run","test-units","--silent","--","--colors"]
     , "file_regex": "^([^\n:]+):([0-9]+):([0-9]+): (.*)$"
     , "working_dir": "${project_path}/.."
+    , "target": "ansi_color_build"
+    , "syntax": "Packages/ANSIescape/ANSI.tmLanguage"
     , "variants":
       [ { "name": "test-integration"
-        , "cmd": ["npm","run","test-integration","--silent"]
+        , "cmd": ["npm","run","test-integration","--silent","--","--colors"]
         }
-      , { "name": "test-units"
-        , "cmd": ["npm","run","test-units","--silent"]
+      , { "name": "test"
+        , "cmd": ["npm","run","test","--silent","--","--colors"]
         }
       , { "name": "lint-js"
         , "cmd": ["npm","run","lint-js","--silent","--","--format","unix"]

@@ -4,6 +4,8 @@ const request = require('superagent');
 const path = require('path');
 const schemaHealth = path.join(__dirname, 'community-health-in.json');
 const schemaCommunity = path.join(__dirname, 'community-community-in.json');
+const schemaSingletonInt = path.join(__dirname, 'community-singleton-int-in.json');
+const schemaSuccess = path.join(__dirname, 'community-general-success-in.json');
 const constants = require('./community-constants')();
 const {validating, validatingInput} = require('__/json');
 
@@ -90,6 +92,67 @@ class Community {
     });
   }
 
+  gettingProfileIdFromUuid (uuid) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const queryUrl = await me.gettingQueryUrl();
+        const response = await request.post(queryUrl).send({
+          Profile: {'attributes.uuid': uuid},
+          Include: 'id'
+        });
+        await validatingInput(response.body, schemaSingletonInt);
+        return resolve(response.body.data);
+      }
+      catch (error) {
+        if (error.status === 400) {
+          // error.response tells the precise error, but here it is always that
+          // the user was not found.
+          return reject(new Error(`User ${uuid} not found`));
+        }
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  updatingProfileWithShortlistAndTastes (profileId, document) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const profileUrl = await me.gettingProfileUrl(profileId);
+        const update = Object.assign(document, {modified_by: profileId});
+        const response = await request.post(profileUrl).send(update);
+        await validatingInput(response.body, schemaSuccess);
+        return resolve(response.body);
+      }
+      catch (error) {
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  gettingAllListEntitiesOwnedByUserWithId (profileId) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const queryUrl = await me.gettingQueryUrl();
+        const response = await request.post(queryUrl).send({
+          Entities: {type: 'list', owner_id: profileId},
+          Limit: 999,
+          Include: {uuid: 'attributes.uuid', id: 'id'}
+        });
+        await validatingInput(response.body, schemaSuccess);
+        return resolve(response.body.data);
+      }
+      catch (error) {
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
   //
   // Private methods.
   //
@@ -124,6 +187,14 @@ class Community {
     return `${this.config.url}${constants.apiCommunity}/${constants.communityName}`;
   }
 
+  gettingQueryUrl () {
+    return this.gettingCommunityId()
+    .then(communityId => {
+      const endpoint = constants.apiQuery(communityId);
+      return `${this.config.url}${endpoint}`;
+    });
+  }
+
   creatingCommunity () {
     const me = this;
     return new Promise(async (resolve, reject) => {
@@ -145,6 +216,15 @@ class Community {
     this.communityId = parseInt(id, 10);
     return this.communityId;
   }
+
+  gettingProfileUrl (profileId) {
+    return this.gettingCommunityId()
+    .then(communityId => {
+      const endpoint = constants.apiProfile(communityId, profileId);
+      return `${this.config.url}${endpoint}`;
+    });
+  }
+
 }
 
 module.exports = Community;

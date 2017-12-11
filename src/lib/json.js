@@ -1,5 +1,12 @@
 'use strict';
 
+module.exports = {
+  validatingInput,
+  validatingInputs,
+  validating,
+  nicifyJsonValidationErrors
+};
+
 const _ = require('lodash');
 const validator = require('is-my-json-valid');
 const formats = require('__/schemas/formats');
@@ -83,10 +90,3 @@ function nicifyJsonValidationErrors (validate) {
     x => _.replace(_.replace(_.replace(x, 'data["', 'field '), '"]', ''), 'data.', 'field ')
   );
 }
-
-module.exports = {
-  validatingInput,
-  validatingInputs,
-  validating,
-  nicifyJsonValidationErrors
-};

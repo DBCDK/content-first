@@ -10,7 +10,7 @@ const database = require('server/database');
 const authenticator = require('server/authenticator');
 const login = require('server/login');
 const community = require('server/community');
-const generatingServiceStatus = require('__/service/service-status');
+const generatingServiceStatus = require('__/services/service-status');
 
 // Public web server.
 const express = require('express');

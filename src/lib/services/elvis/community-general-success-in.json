@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "required": true
+    }
+  },
+  "additionalProperties": true
+}

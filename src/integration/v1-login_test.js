@@ -8,8 +8,8 @@ const nock = require('nock');
 const config = require('server/config');
 const constants = require('server/constants')();
 const authenticator = require('server/authenticator');
-const authConstants = require('__/service/smaug/authentication-constants')();
-const loginConstants = require('__/service/hejmdal/login-constants')();
+const authConstants = require('__/services/smaug/authentication-constants')();
+const loginConstants = require('__/services/hejmdal/login-constants')();
 const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
 const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 

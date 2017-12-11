@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "integer"
+    }
+  },
+  "additionalProperties": true
+}

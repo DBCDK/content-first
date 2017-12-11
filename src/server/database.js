@@ -2,7 +2,7 @@
 
 const config = require('server/config');
 const knex = require('knex')(config.db);
-const Database = require('__/service/database');
+const Database = require('__/services/database');
 const database = new Database(knex);
 
 /*

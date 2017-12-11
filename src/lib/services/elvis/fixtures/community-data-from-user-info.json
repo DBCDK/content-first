@@ -1,0 +1,81 @@
+{
+  "profile": {
+    "name": "Jens Godfredsen",
+    "attributes": {
+      "shortlist": [
+        {
+          "pid": "870970-basis-53188931",
+          "origin": "en-let-læst-bog"
+        },
+        {
+          "pid": "870970-basis-51752341",
+          "origin": "bibliotikarens-ugentlige-anbefaling"
+        }
+      ],
+      "tastes": [
+        {
+          "name": "En tynd en",
+          "moods": [
+            "frygtelig"
+          ],
+          "authors": [
+            "Carsten Jensen"
+          ],
+          "genres": [
+            "Skæbnefortællinger"
+          ],
+          "archetypes": [
+            "Goth"
+          ]
+        },
+        {
+          "name": "Ny profile",
+          "moods": [
+            "dramatisk"
+          ],
+          "authors": [
+            "Helge Sander"
+          ],
+          "genres": [
+            "Skæbnefortællinger"
+          ],
+          "archetypes": [
+            "Goth"
+          ]
+        }
+      ]
+    }
+  },
+  "lists": [
+    {
+      "type": "list",
+      "title": "My List",
+      "contents": "A brand new list",
+      "attributes": {
+        "uuid": "98c5ff8c6e8f49978c857c23925dbe41",
+        "public": false,
+        "list": [
+          {
+            "pid": "870970-basis-22629344",
+            "description": "Magic to the people"
+          }
+        ]
+      }
+    },
+    {
+      "type": "list",
+      "title": "My Other List",
+      "contents": "Some old list",
+      "attributes": {
+        "uuid": "dcbf8e7fb978459497fe4e08fc0fb9f4",
+        "public": false,
+        "list": [
+          {
+            "pid": "870970-basis-53188931",
+            "description": "Idéer til haven"
+          }
+        ]
+      }
+    }
+  ]
+}
