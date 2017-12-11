@@ -24,7 +24,7 @@ const listReducer = (state = defaultState, action) => {
     case ADD_LIST: {
       const {list} = action;
       if (!list.id) {
-        list.id = list.id || uuid.create();
+        list.id = uuid.create();
         return Object.assign({}, state, {lists: [...state.lists, list]});
       }
       const lists = state.lists.map(l => (l.id === list.id ? list : l));
@@ -46,7 +46,7 @@ const listReducer = (state = defaultState, action) => {
     }
     case REMOVE_ELEMENT_FROM_LIST: {
       const list = state.currentList.list.filter(
-        element => element !== action.element
+        element => element.book.pid !== action.element.book.pid
       );
       return Object.assign({}, state, {
         currentList: Object.assign({}, state.currentList, {list})
