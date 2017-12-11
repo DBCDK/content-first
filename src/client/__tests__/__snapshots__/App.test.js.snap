@@ -64,13 +64,12 @@ exports[`renders without crashing 1`] = `
         </div>
         <div
           className="modal-backdrop modal-hidden"
-          onWheel={[Function]}
         >
           <div
-            className="modal-window text-left modal-hidden"
+            className="modal-window text-left modal-hidden "
           >
             <div
-              className="modal-window--header"
+              className="modal-window--header text-center"
             >
               <h3 />
             </div>
@@ -83,11 +82,11 @@ exports[`renders without crashing 1`] = `
               <ul />
             </div>
             <div
-              className="modal-window--buttons text-right"
+              className="modal-window--buttons text-center"
             >
               <span
                 className="btn btn-success"
-                onClick={[Function]}
+                onClick={undefined}
               >
                 OK
               </span>
@@ -346,6 +345,183 @@ exports[`renders without crashing 1`] = `
             >
               Opret profil
             </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className="modal-backdrop modal-hidden"
+      >
+        <div
+          className="modal-window text-left modal-hidden add-to-list--modal"
+        >
+          <div
+            className="modal-window--header text-center"
+          >
+            <h3>
+              GEM I LISTE
+            </h3>
+          </div>
+          <div
+            className="modal-window--content"
+          >
+            <div
+              className="row"
+            >
+              <strong
+                className="col-xs-12"
+              >
+                Hvilken liste vil du gemme i?
+              </strong>
+            </div>
+            <div
+              className="row"
+            >
+              <div
+                className="col-xs-6"
+              >
+                <div
+                  className="list-overview"
+                >
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    Julefavoritter
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    Idéer til gaver
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                  <div>
+                    <input
+                      checked={false}
+                      name="list"
+                      onChange={[Function]}
+                      type="radio"
+                    />
+                    hest1
+                  </div>
+                </div>
+              </div>
+              <div
+                className="col-xs-6"
+              >
+                <textarea
+                  className="comment"
+                  onChange={[Function]}
+                  placeholder="Skriv evt. en kommentar til bogen"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className="modal-window--buttons text-center"
+          >
+            <span
+              className="btn btn-success"
+              onClick={[Function]}
+            >
+              JA TAK, GEM NU
+            </span>
           </div>
         </div>
       </div>
