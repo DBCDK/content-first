@@ -124,7 +124,7 @@
   color: #545454;
   font-size: 18px;
   padding-left: 40px;
-  padding-bottom: 40px;
+  margin-bottom: 40px;
 }
 .work-details .title {
   font-family: 'Lora', serif;
@@ -165,8 +165,7 @@
   margin-top: 10px;
 }
 .work-page .work-details .cover-image-wrapper {
-  display: inline-block;
-  vertical-align: top;
+  margin-bottom: 40px;
 }
 .work-page .work-details img {
   width: 100%;
