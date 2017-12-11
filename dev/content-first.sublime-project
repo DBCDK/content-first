@@ -6,8 +6,8 @@
     , "target": "ansi_color_build"
     , "syntax": "Packages/ANSIescape/ANSI.tmLanguage"
     , "variants":
-      [ { "name": "test-integration"
-        , "cmd": ["npm","run","test-integration","--silent","--","--colors"]
+      [ { "name": "test-acceptance"
+        , "cmd": ["npm","run","test-acceptance","--silent","--","--colors"]
         }
       , { "name": "test"
         , "cmd": ["npm","run","test","--silent","--","--colors"]

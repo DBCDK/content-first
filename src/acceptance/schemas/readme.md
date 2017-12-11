@@ -1,6 +1,6 @@
 # JSON schemas
 
-The schemas here govern the output of the web service.  These schemas are only used by the integration testing.
+The schemas here govern the output of the web service.  These schemas are only used by the acceptance testing.
 
 In summary, the service returns either a `data` or an `errors` value:
 

@@ -64,9 +64,9 @@
     "test": "run-s test-units lint-js",
     "test-frontend:watch": "react-scripts test --env=jsdom",
     "test-frontend": "CI=true react-scripts test --env=jsdom",
-    "test-full": "run-s test-no-db test-integration test-frontend",
-    "test-integration": ". ./current.env && mocha --exit src/integration/**/*_test.js",
-    "test-no-db": ". ./current.env && mocha --exit src/integration/**/*_no-db.js",
+    "test-full": "run-s test-no-db test-acceptance test-frontend",
+    "test-acceptance": ". ./current.env && mocha --exit src/acceptance/**/*_test.js",
+    "test-no-db": ". ./current.env && mocha --exit src/acceptance/**/*_no-db.js",
     "test-units": "mocha --exit src/server/*_test.js src/lib/*/*/*_test.js"
   }
 }

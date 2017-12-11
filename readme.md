@@ -14,7 +14,7 @@ To run the database tests against the server (requires postgresql):
     $ nvm install
     $ npm install
     $ cp env/integration.env current.env
-    $ npm run test-integration --silent
+    $ npm run test-acceptance --silent
 
 To start the server in staging or production mode:
 

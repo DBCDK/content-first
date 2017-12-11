@@ -24,7 +24,7 @@ describe('json', () => {
     });
   });
   describe('validatingInput', () => {
-    const schema = path.resolve('src/integration/schemas/status-out.json');
+    const schema = path.resolve('src/acceptance/schemas/status-out.json');
     it('should reject document that does not adhere to schema', () => {
       return expect(json.validatingInput({'api-version': [5, 1]}, schema))
         .to.be.rejected

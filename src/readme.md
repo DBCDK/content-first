@@ -18,12 +18,12 @@ To run fast tests on local machine:
     $ npm run test-units    // Run unit tests.
     $ npm test              // Run both lint & unit tests.
 
-To run full integration test:
+To run full acceptance test:
 
     $ docker-compose up -d  // Start local PostgreSQL database.
-    $ npm run test-full     // Run all test, including database integration.
+    $ npm run test-full     // Run all test, including database acceptance.
 
-Read [more about integration testing](integration/readme.md).
+Read [more about acceptance testing](acceptance/readme.md).
 
 See also [service endpoints](../doc/endpoints.md).
 
@@ -37,7 +37,7 @@ To connect to the database:
 
     $ docker exec -it -u postgres contentfirst_database_1 psql
 
-To add a new table in the database, add a new table name to [`constants.js`](server/constants.js), add file to [`migrations/`](migrations/) where the new table is created/destroyed, and incorporate the new table table in [`cleanup-db.js`](integration/cleanup-db.js) so that the test will know how to clear the database.
+To add a new table in the database, add a new table name to [`constants.js`](server/constants.js), add file to [`migrations/`](migrations/) where the new table is created/destroyed, and incorporate the new table table in [`cleanup-db.js`](acceptance/cleanup-db.js) so that the test will know how to clear the database.
 
 To manually migrate the database:
 

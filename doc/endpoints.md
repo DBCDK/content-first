@@ -1,6 +1,6 @@
 # Service endpoints
 
-The responses from the backend are either raw images or JSON loosely based on the [JSON-API](http://jsonapi.org/) specification, see [schemas used when testing](../src/integration/schemas/).
+The responses from the backend are either raw images or JSON loosely based on the [JSON-API](http://jsonapi.org/) specification, see [schemas used when testing](../src/acceptance/schemas/).
 
 To only expose non-destructive endpoint to the public (ie. those needed by the [frontend](../src/client/)), the [backend](../src/server) sets an internal HTTP server up on an a non-public port in addtion to the port used for public access.
 
@@ -8,7 +8,7 @@ To only expose non-destructive endpoint to the public (ie. those needed by the [
 
 ### `GET /v1/book/`*pid*
 
-Returns a [book structure](../src/integration/schemas/book-data-out.json), like
+Returns a [book structure](../src/acceptance/schemas/book-data-out.json), like
 
     { "data":
       { "pid": "870970-basis-53188931"
@@ -40,7 +40,7 @@ Returns a [book structure](../src/integration/schemas/book-data-out.json), like
 
 ### `GET /v1/books?pids=`*pid*,...,*pid*
 
-Results in a [list of books](../src/integration/schemas/books-data-out.json), each of the format as `GET /v1/book`, like
+Results in a [list of books](../src/acceptance/schemas/books-data-out.json), each of the format as `GET /v1/book`, like
 
     { "data":
       [ { "book":
@@ -293,7 +293,7 @@ Note that the ids are quoted.
 
 ### `GET /v1/user`
 
-Returns [user information](../src/integration/schemas/user-data-out.json) for a logged-in user, like
+Returns [user information](../src/acceptance/schemas/user-data-out.json) for a logged-in user, like
 
     { "data":
       { "name": "Jens Godfredsen"
@@ -385,7 +385,7 @@ Makes sure the current login cookie is invalidated.  The result is a redirection
 
 ### `GET /v1/profiles`
 
-Returns the currently logged-in user's [profiles](../src/integration/schemas/profiles-data-out.json), like
+Returns the currently logged-in user's [profiles](../src/acceptance/schemas/profiles-data-out.json), like
 
     { "data":
       [ { "name": "Med på den værste"
@@ -442,7 +442,7 @@ If the user is not logged-in, the result is 403.
 
 ### `GET /v1/shortlist`
 
-Returns the logged-in user's [shortlist](../src/integration/schemas/shortlist-data-out.json), like
+Returns the logged-in user's [shortlist](../src/acceptance/schemas/shortlist-data-out.json), like
 
     { "data": 
       [ { "pid": "870970-basis-53188931"
@@ -475,7 +475,7 @@ If the user is not logged-in, the result is 403.
 
 ### `GET /v1/lists`
 
-Returns the logged-in user's [simple list](../src/integration/schemas/lists-data-out.json), like
+Returns the logged-in user's [simple list](../src/acceptance/schemas/lists-data-out.json), like
 
     { "data":
       [ { "title": "My List"
