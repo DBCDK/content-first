@@ -51,17 +51,12 @@ class WorkItem extends React.Component {
             <MenuItem
               key="addToList"
               text="Tilføj til liste"
-              onClick={() => {
-
-              }}/>
+              onClick={this.props.onAddToList}/>
           </CheckmarkMenu>
         </TouchHover>
-
-
         <div className='metakompas-description'>
           {tax_description && tax_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}
         </div>
-
       </div>
     );
   }

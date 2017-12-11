@@ -10,8 +10,15 @@ import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
+import AddToListModal from '../lists/AddToListModal.component';
 
 class FrontPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      addToList: null
+    };
+  }
 
   componentDidMount() {
     // Fetch works for each belt
@@ -75,11 +82,19 @@ class FrontPage extends React.Component {
                   onRememberClick={(element) => {
                     this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Fra "${belt.name}"`});
                   }}
-                  marked={remembered[work.book.pid]}/>;
+                  marked={remembered[work.book.pid]}
+                  onAddToList={() => this.setState({addToList: work})} />;
               })}
             </ScrollableBelt>}
           </Belt>;
         })}
+        <AddToListModal
+          show={this.state.addToList}
+          work={this.state.addToList}
+          onDone={(work, comment, list) => {
+            console.log(work, comment, list);
+            this.setState({addToList: null});
+          }} />
       </div>
     );
   }

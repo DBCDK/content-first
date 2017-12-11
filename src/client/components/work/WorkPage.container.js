@@ -9,11 +9,12 @@ import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
 import {getLeaves} from '../../utils/filters';
+import AddToListModal from '../lists/AddToListModal.component';
 
 class WorkPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {tagsCollapsed: true, transition: true};
+    this.state = {tagsCollapsed: true, transition: true, addToList: null};
   }
 
   fetchWork() {
@@ -153,11 +154,20 @@ class WorkPage extends React.Component {
                   onRememberClick={(element) => {
                     this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Minder om "${work.data.title}"`});
                   }}
-                  marked={remembered[w.book.pid]}/>;
+                  marked={remembered[w.book.pid]}
+                  onAddToList={() => this.setState({addToList: w})} />;
               })}
             </ScrollableBelt>
           </div>
         </div>}
+        <AddToListModal
+          show={this.state.addToList}
+          work={this.state.addToList}
+          onDone={(work, comment, list) => {
+            console.log(work, comment, list);
+            this.setState({addToList: null});
+          }}
+          onClose={() => this.setState({addToList: null})} />
       </div>
     );
   }

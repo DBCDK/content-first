@@ -35,6 +35,8 @@
 @import './components/topbar.css';
 @import './components/modal.css';
 @import './components/checkmarkmenu.css';
+@import './components/addtolistmodal.css';
+@import './components/workitemsmall.css';
 
 body {
   margin: 0;
@@ -207,7 +209,7 @@ h3 {
 }
 
 ::-webkit-scrollbar {
-  display: none;
+    /*display: none;*/
 }
 
 .noselect {

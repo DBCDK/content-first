@@ -1,0 +1,21 @@
+.work-item-small {
+  font-family: var(--primary-font);
+}
+.work-item-small .title {
+  color: black;
+  font-style: italic;
+}
+.work-item-small .creator {
+  color: grey;
+}
+.work-item-small .cover-image-wrapper {
+  height: 60px;
+  padding: 2px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.275);
+}
+.work-item-small > div, .work-item-small .cover-image-wrapper {
+  display: inline-block;
+}
+.work-item-small .cover-image-wrapper img{
+  height: 100%;
+}
