@@ -4,7 +4,8 @@ import WorkItemSmall from '../work/WorkItemSmall.component';
 
 const defaultState = {
   comment: '',
-  list: ''
+  list: '',
+  listName: ''
 };
 
 class AddToListModal extends React.Component {
@@ -12,28 +13,18 @@ class AddToListModal extends React.Component {
     super(props);
     this.state = Object.assign({}, defaultState);
   }
+
   render() {
-    const lists = [
-      {id: 1, name: 'Julefavoritter'},
-      {id: 2, name: 'Idéer til gaver'},
-      {id: 3, name: 'hest1'},
-      {id: 4, name: 'hest1'},
-      {id: 5, name: 'hest1'},
-      {id: 6, name: 'hest1'},
-      {id: 7, name: 'hest1'},
-      {id: 8, name: 'hest1'},
-      {id: 9, name: 'hest1'},
-      {id: 10, name: 'hest1'},
-      {id: 11, name: 'hest1'},
-      {id: 12, name: 'hest1'},
-      {id: 13, name: 'hest1'}
-    ];
+
     return (
       <Modal
         className="add-to-list--modal"
         show={this.props.show}
         header={'GEM I LISTE'}
-        onClose={this.props.onClose}
+        onClose={() => {
+          this.props.onClose();
+          this.setState(Object.assign({}, defaultState));
+        }}
         onDone={() => {
           this.props.onDone(this.props.work, this.state.comment, this.state.list);
           this.setState(Object.assign({}, defaultState));
@@ -45,15 +36,36 @@ class AddToListModal extends React.Component {
         <div className="row">
           <div className="col-xs-6">
             <div className="list-overview">
-              {lists.map(l => {
+              {this.props.lists.map(l => {
                 return <div key={l.id}>
                   <input
                     type="radio"
                     name="list"
                     checked={this.state.list.id === l.id}
-                    onChange={() => this.setState({list: l})} />{l.name}
+                    onChange={() => this.setState({list: l})} />{l.title}
                 </div>;
               })}
+            </div>
+            <div className="add-list">
+              <input
+                type="text"
+                name="add-list"
+                placeholder="Opret ny liste"
+                value={this.state.listName}
+                onChange={e => this.setState({listName: e.target.value})}
+                onKeyPress={e => {
+                  if (e.key === 'Enter') {
+                    this.props.onAddList(this.state.listName);
+                    this.setState({listName: ''});
+                  }
+                }} />
+              <span
+                className="add-list--btn text-center"
+                onEn
+                onClick={() => {
+                  this.props.onAddList(this.state.listName);
+                  this.setState({listName: ''});
+                }}>+</span>
             </div>
           </div>
           <div className="col-xs-6">

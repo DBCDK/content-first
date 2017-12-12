@@ -7,6 +7,7 @@ import CreateProfile from '../profile/CreateProfile.component';
 import {ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
+import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST, ADD_LIST, SYSTEM_LIST} from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
@@ -76,6 +77,7 @@ class FrontPage extends React.Component {
                   id={`work-${workIdx}`}
                   key={work.book.pid}
                   work={work}
+                  lists={this.props.listState.lists}
                   onCoverClick={(pid) => {
                     this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
                   }}
@@ -83,7 +85,10 @@ class FrontPage extends React.Component {
                     this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Fra "${belt.name}"`});
                   }}
                   marked={remembered[work.book.pid]}
-                  onAddToList={() => this.setState({addToList: work})} />;
+                  onAddToList={list => {
+                    this.props.dispatch({type: LIST_TOGGLE_ELEMENT, id: list.id, element: work});
+                  }}
+                  onAddToListOpenModal={() => this.setState({addToList: work})} />;
               })}
             </ScrollableBelt>}
           </Belt>;
@@ -91,11 +96,14 @@ class FrontPage extends React.Component {
         <AddToListModal
           show={this.state.addToList}
           work={this.state.addToList}
+          lists={this.state.addToList ? this.props.listState.lists.filter(l => l.type !== SYSTEM_LIST) : []}
           onClose={() => this.setState({addToList: null})}
           onDone={(work, comment, list) => {
-            console.log(work, comment, list);
+            // console.log(work, comment, list);
+            this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element: work});
             this.setState({addToList: null});
-          }} />
+          }}
+          onAddList={(listName) => this.props.dispatch({type: ADD_LIST, list: {title: listName, list: []}})}/>
       </div>
     );
   }
@@ -115,6 +123,11 @@ class FrontPage extends React.Component {
 export default connect(
   // Map redux state to props
   (state) => {
-    return {beltsState: state.beltsReducer, filterState: state.filterReducer, shortListState: state.shortListReducer};
+    return {
+      beltsState: state.beltsReducer,
+      filterState: state.filterReducer,
+      shortListState: state.shortListReducer,
+      listState: state.listReducer
+    };
   }
 )(FrontPage);

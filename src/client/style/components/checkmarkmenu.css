@@ -58,7 +58,7 @@
   color: var(--darkgrey);
   border: 0;
 }
-.menu-item.checked {
+.menu-item.checked, .menu-item.checked:hover {
   background: var(--green);
   color: white;
 }

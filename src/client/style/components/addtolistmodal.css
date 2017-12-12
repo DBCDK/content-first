@@ -32,3 +32,24 @@
   border: 1px var(--lightgrey) solid;
   border-radius: 4px;
 }
+.add-to-list--modal .add-list {
+  margin-top: 20px;
+  position: relative;
+}
+.add-to-list--modal .add-list input {
+  border: 0;
+  padding: 5px 10px;
+  width: 100%;
+  border: 1px solid var(--lightgrey);
+  border-radius: 4px;
+}
+.add-to-list--modal .add-list .add-list--btn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 45px;
+  height: 100%;
+  border-left: 1px var(--lightgrey) solid;
+  cursor: pointer;
+  font-size: 24px;
+}

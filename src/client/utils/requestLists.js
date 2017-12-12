@@ -17,6 +17,7 @@ export const loadLists = async isLoggedIn => {
   if (!isLoggedIn) {
     return localStorageElements;
   }
+  return localStorageElements;
   // Load from database
 };
 export const saveCurrentList = currentList => {

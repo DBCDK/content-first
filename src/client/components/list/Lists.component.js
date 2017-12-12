@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
+import {LIST_LOAD_REQUEST, SYSTEM_LIST} from '../../redux/list.reducer';
 
 class Lists extends React.Component {
   componentDidMount() {
@@ -11,7 +11,7 @@ class Lists extends React.Component {
     return (
       <div className="lists-page">
         <h1>Mine Lister</h1>
-        {lists.map(list => (
+        {lists.filter(list => list.type !== SYSTEM_LIST).map(list => (
           <a href={`/lister/${list.id}`} className="list">
             <h2>{list.title}</h2>
             <p>{list.description}</p>

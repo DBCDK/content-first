@@ -2,22 +2,10 @@ import React from 'react';
 import Image from '../Image.component';
 import CheckmarkMenu, {MenuItem} from '../general/CheckmarkMenu.component';
 import TouchHover from '../general/TouchHover.component';
+import {SYSTEM_LIST} from '../../redux/list.reducer';
 
 class WorkItem extends React.Component {
   render() {
-    const systemLists = [
-      {
-        id: 'blah',
-        name: 'Har læst',
-        elements: ['870970-basis:51772679', 'somepid2']
-      },
-      {
-        id: 'blah2',
-        name: 'Vil læse',
-        elements: ['somepid1', 'somepid2']
-      }
-    ];
-
     const tax_description = this.props.work.book.taxonomy_description || this.props.work.book.description;
     return (
       <div className="work" id={`work-${this.props.id}`}>
@@ -39,19 +27,19 @@ class WorkItem extends React.Component {
             text="Husk"
             checked={this.props.marked}
             onClick={() => this.props.onRememberClick(this.props.work)}>
-            {systemLists.map(l => (
+            {this.props.lists.filter(l => l.type === SYSTEM_LIST).map(l => (
               <MenuItem
                 key={l.id}
-                text={l.name}
-                checked={l.elements.indexOf(this.props.work.book.pid) !== -1}
+                text={l.title}
+                checked={l.list.filter(element => element.book.pid === this.props.work.book.pid).length > 0}
                 onClick={() => {
-
+                  this.props.onAddToList(l);
                 }}/>
             ))}
             <MenuItem
               key="addToList"
               text="Tilføj til liste"
-              onClick={this.props.onAddToList}/>
+              onClick={this.props.onAddToListOpenModal}/>
           </CheckmarkMenu>
         </TouchHover>
         <div className='metakompas-description'>
