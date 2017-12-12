@@ -38,12 +38,26 @@
 @import './components/addtolistmodal.css';
 @import './components/workitemsmall.css';
 
+html {
+  /* Avoid content from jumping when modal is opened/closed */
+  overflow-y: scroll;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background: #f1f1f1;
   font-family: 'Lora', serif;
+}
+
+body.modal-open {
+  position: fixed;
+  overflow-y: hidden;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .container {

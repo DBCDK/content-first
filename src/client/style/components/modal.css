@@ -19,6 +19,7 @@
   visibility: hidden;
 }
 .modal-window {
+  position: relative;
   opacity: 1;
   background-color: #fafafa;
   width: 500px;
@@ -28,6 +29,13 @@
   box-shadow: 0 2px 6px rgba(0,0,0,.175);
   font-family: var(--secondary-font);
   transition: all 0.25s;
+}
+.modal-window--close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 10px;
+  cursor: pointer;
 }
 .modal-window--header h3 {
   margin: 0;

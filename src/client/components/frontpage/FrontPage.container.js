@@ -91,6 +91,7 @@ class FrontPage extends React.Component {
         <AddToListModal
           show={this.state.addToList}
           work={this.state.addToList}
+          onClose={() => this.setState({addToList: null})}
           onDone={(work, comment, list) => {
             console.log(work, comment, list);
             this.setState({addToList: null});

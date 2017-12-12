@@ -68,6 +68,12 @@ exports[`renders without crashing 1`] = `
           <div
             className="modal-window text-left modal-hidden "
           >
+            <img
+              alt="luk"
+              className="modal-window--close-btn"
+              onClick={undefined}
+              src="Kryds.svg"
+            />
             <div
               className="modal-window--header text-center"
             >
@@ -354,6 +360,12 @@ exports[`renders without crashing 1`] = `
         <div
           className="modal-window text-left modal-hidden add-to-list--modal"
         >
+          <img
+            alt="luk"
+            className="modal-window--close-btn"
+            onClick={[Function]}
+            src="Kryds.svg"
+          />
           <div
             className="modal-window--header text-center"
           >
