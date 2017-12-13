@@ -8,6 +8,7 @@ import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
+import {ADD_ELEMENT_TO_LIST, SYSTEM_LIST, LIST_TOGGLE_ELEMENT, ADD_LIST} from '../../redux/list.reducer';
 import {getLeaves} from '../../utils/filters';
 import AddToListModal from '../lists/AddToListModal.component';
 
@@ -148,6 +149,7 @@ class WorkPage extends React.Component {
                   id={`work-${idx}`}
                   key={w.book.pid}
                   work={w}
+                  lists={this.props.listState.lists}
                   onCoverClick={(pid) => {
                     this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
                   }}
@@ -155,7 +157,10 @@ class WorkPage extends React.Component {
                     this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Minder om "${work.data.title}"`});
                   }}
                   marked={remembered[w.book.pid]}
-                  onAddToList={() => this.setState({addToList: w})} />;
+                  onAddToList={list => {
+                    this.props.dispatch({type: LIST_TOGGLE_ELEMENT, id: list.id, element: w});
+                  }}
+                  onAddToListOpenModal={() => this.setState({addToList: w})} />;
               })}
             </ScrollableBelt>
           </div>
@@ -163,11 +168,14 @@ class WorkPage extends React.Component {
         <AddToListModal
           show={this.state.addToList}
           work={this.state.addToList}
-          onDone={(work, comment, list) => {
-            console.log(work, comment, list);
+          lists={this.state.addToList ? this.props.listState.lists.filter(l => l.type !== SYSTEM_LIST) : []}
+          onClose={() => this.setState({addToList: null})}
+          onDone={(element, comment, list) => {
+            this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element});
             this.setState({addToList: null});
           }}
-          onClose={() => this.setState({addToList: null})} />
+          onClose={() => this.setState({addToList: null})}
+          onAddList={(listName) => this.props.dispatch({type: ADD_LIST, list: {title: listName, list: []}})}/>
       </div>
     );
   }
@@ -175,6 +183,11 @@ class WorkPage extends React.Component {
 export default connect(
   // Map redux state to props
   (state) => {
-    return {workState: state.workReducer, filterState: state.filterReducer, shortListState: state.shortListReducer};
+    return {
+      workState: state.workReducer,
+      filterState: state.filterReducer,
+      shortListState: state.shortListReducer,
+      listState: state.listReducer
+    };
   }
 )(WorkPage);

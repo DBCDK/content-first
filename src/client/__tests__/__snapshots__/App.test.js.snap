@@ -408,7 +408,6 @@ exports[`renders without crashing 1`] = `
                   <span
                     className="add-list--btn text-center"
                     onClick={[Function]}
-                    onEn={true}
                   >
                     +
                   </span>

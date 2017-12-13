@@ -54,17 +54,18 @@ class AddToListModal extends React.Component {
                 value={this.state.listName}
                 onChange={e => this.setState({listName: e.target.value})}
                 onKeyPress={e => {
-                  if (e.key === 'Enter') {
+                  if (e.key === 'Enter' && this.state.listName) {
                     this.props.onAddList(this.state.listName);
                     this.setState({listName: ''});
                   }
                 }} />
               <span
                 className="add-list--btn text-center"
-                onEn
                 onClick={() => {
-                  this.props.onAddList(this.state.listName);
-                  this.setState({listName: ''});
+                  if (this.state.listName) {
+                    this.props.onAddList(this.state.listName);
+                    this.setState({listName: ''});
+                  }
                 }}>+</span>
             </div>
           </div>
