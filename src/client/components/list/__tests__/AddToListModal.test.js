@@ -2,7 +2,7 @@ import React from 'react';
 import AddToListModal from '../AddToListModal.component';
 import renderer from 'react-test-renderer';
 import createStore from '../../../redux/Store';
-import {SYSTEM_LIST, ADD_LIST} from '../../../redux/list.reducer';
+import {ADD_LIST} from '../../../redux/list.reducer';
 import {createTestList, createTestElement} from '../../../utils/testHelper';
 
 describe('AddToListModal', () => {
