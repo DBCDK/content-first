@@ -48,6 +48,7 @@
   ],
   "lists": [
     {
+      "type": "SYSTEM_LIST",
       "title": "My List",
       "description": "A brand new list",
       "id": "98c5ff8c6e8f49978c857c23925dbe41",
@@ -59,6 +60,7 @@
       ]
     },
     {
+      "type": "CUSTOM_LIST",
       "title": "My Other List",
       "description": "Some old list",
       "id": "dcbf8e7fb978459497fe4e08fc0fb9f4",

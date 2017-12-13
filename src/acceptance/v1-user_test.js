@@ -98,6 +98,7 @@ describe('User data', () => {
                 name: 'Jens Godfredsen',
                 lists: [{
                   id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+                  type: 'SYSTEM_LIST',
                   title: 'My List',
                   description: 'A brand new list',
                   list: [{
@@ -138,6 +139,7 @@ describe('User data', () => {
         }],
         lists: [{
           id: '98c5ff8c6e8f49978c857c23925dbe41',
+          type: 'SYSTEM_LIST',
           title: 'Must read',
           description: 'Interesting books',
           list: [{

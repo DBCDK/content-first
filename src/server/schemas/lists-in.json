@@ -9,6 +9,10 @@
         "required": true,
         "type": "string"
       },
+      "type": {
+        "required": true,
+        "type": "string"
+      },
       "title": {
         "required": true,
         "type": "string"
@@ -31,11 +35,12 @@
             "description": {
               "required": true,
               "type": "string"
-            },
-            "additionalProperties": false
-          }
+            }
+          },
+          "additionalProperties": false
         }
       }
-    }
+    },
+    "additionalProperties": false
   }
 }

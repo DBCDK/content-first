@@ -44,6 +44,7 @@ describe('User login', () => {
               }],
               lists: [{
                 id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+                type: 'SYSTEM_LIST',
                 title: 'My List',
                 description: 'A brand new list',
                 list: [{
@@ -281,6 +282,7 @@ describe('User login', () => {
                   }],
                   lists: [{
                     id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+                    type: 'SYSTEM_LIST',
                     title: 'My List',
                     description: 'A brand new list',
                     list: [{

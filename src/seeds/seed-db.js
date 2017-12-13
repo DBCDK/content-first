@@ -71,6 +71,7 @@ exports.seed = async knex => {
     }]),
     lists: JSON.stringify([{
       id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+      type: 'SYSTEM_LIST',
       title: 'My List',
       description: 'A brand new list',
       list: [{

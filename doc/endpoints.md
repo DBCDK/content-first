@@ -304,6 +304,7 @@ Returns [user information](../src/acceptance/schemas/user-data-out.json) for a l
         ]
       , "lists":
         [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
+          , "type": "SYSTEM_LIST"
           , "title": "My List"
           , "description": "A brand new list"
           , "list":
@@ -343,6 +344,7 @@ Updates the [user information](../src/server/schemas/user-in.json) like
       ]
     , "lists":
       [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
+        , "type": "CUSTOM_LIST"
         , "title": "My List"
         , "description": "A brand new list"
         , "list":
@@ -478,7 +480,9 @@ If the user is not logged-in, the result is 403.
 Returns the logged-in user's [simple list](../src/acceptance/schemas/lists-data-out.json), like
 
     { "data":
-      [ { "title": "My List"
+      [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
+        , "type": "CUSTOM_LIST"
+        , "title": "My List"
         , "description": "A brand new list"
         , "list":
         [ { "pid": "870970-basis-22629344"
@@ -497,7 +501,9 @@ If the user is not logged-in, the result is 403.
 
 Updates the currently logged-in user's shortlist.  The [input](../src/server/schemas/lists-in.json) is like
 
-    [ { "title": "Must read"
+    [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
+      , "type": "CUSTOM_LIST"
+      , "title": "Must read"
       , "description": "Interesting books"
       , "list":
       [ { "pid": "870970-basis-51752341"

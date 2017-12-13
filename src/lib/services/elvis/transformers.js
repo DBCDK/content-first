@@ -68,6 +68,7 @@ function transformListToList (list) {
     attributes: {
       uuid: list.id,
       public: false,
+      type: list.type,
       list: list.list
     }
   };
