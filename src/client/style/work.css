@@ -7,6 +7,9 @@
   vertical-align: top;
   margin-bottom: 30px;
 }
+.work * {
+  outline: none;
+}
 .work .checkmark-menu {
   position: absolute;
   right: -20px;
@@ -51,9 +54,12 @@
   cursor: pointer;
   z-index: 10;
 }
+.work .cover-image-wrapper.touch-hover .checkmark-btn, /* first touch on mobile device */
 .work .cover-image-wrapper.touch-hover .checkmark-menu, /* first touch on mobile device */
 .work .cover-image-wrapper:hover .checkmark-menu, /* mouse hover */
+.work .cover-image-wrapper:hover .checkmark-btn, /* mouse hover */
 .work .checkmark-menu.checked,
+.work .checkmark-btn.checked,
 .work .checkmark-menu.expanded {
   opacity: 1 !important;
   transition-delay: 0s !important;
@@ -64,9 +70,8 @@
 }
 .work .cover-image-wrapper .checkmark-btn {
   position: absolute;
-  transform: translate3d(0px, 0px, 0px);
-  right: -3px;
-  bottom: -3px;
+  right: -20px;
+  bottom: -5px;
   opacity: 0;
   transition: all 0.15s ease-in-out;
   transition-delay: 0.25s;

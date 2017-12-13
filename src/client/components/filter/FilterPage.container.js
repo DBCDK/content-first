@@ -150,6 +150,7 @@ class FilterPage extends React.Component {
               idx={idx}
               id={`work-${idx}`}
               key={work.book.pid}
+              isLoggedIn={this.props.profileState.user.isLoggedIn}
               work={work}
               lists={this.props.listState.lists}
               onCoverClick={(pid) => this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`})}
@@ -184,6 +185,7 @@ export default connect(
       beltState: state.beltsReducer,
       routerState: state.routerReducer,
       shortListState: state.shortListReducer,
-      listState: state.listReducer};
+      listState: state.listReducer,
+      profileState: state.profileReducer};
   }
 )(FilterPage);

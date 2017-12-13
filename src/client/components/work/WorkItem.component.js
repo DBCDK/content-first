@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from '../Image.component';
 import CheckmarkMenu, {MenuItem} from '../general/CheckmarkMenu.component';
+import CheckmarkButton from '../general/CheckmarkButton.component';
 import TouchHover from '../general/TouchHover.component';
 import {SYSTEM_LIST} from '../../redux/list.reducer';
 
@@ -23,7 +24,11 @@ class WorkItem extends React.Component {
               '/default-book-cover.png'
             ]}/>
           </TouchHover>
-          <CheckmarkMenu
+          {!this.props.isLoggedIn && <CheckmarkButton
+            label="Husk"
+            marked={this.props.marked}
+            onClick={() => this.props.onRememberClick(this.props.work)}/>}
+          {this.props.isLoggedIn && <CheckmarkMenu
             text="Husk"
             checked={this.props.marked}
             onClick={() => this.props.onRememberClick(this.props.work)}>
@@ -40,7 +45,7 @@ class WorkItem extends React.Component {
               key="addToList"
               text="Tilføj til liste"
               onClick={this.props.onAddToListOpenModal}/>
-          </CheckmarkMenu>
+          </CheckmarkMenu>}
         </TouchHover>
         <div className='metakompas-description'>
           {tax_description && tax_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}

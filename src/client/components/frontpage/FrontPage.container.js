@@ -76,6 +76,7 @@ class FrontPage extends React.Component {
                   idx={workIdx}
                   id={`work-${workIdx}`}
                   key={work.book.pid}
+                  isLoggedIn={this.props.profileState.user.isLoggedIn}
                   work={work}
                   lists={this.props.listState.lists}
                   onCoverClick={(pid) => {
@@ -127,7 +128,8 @@ export default connect(
       beltsState: state.beltsReducer,
       filterState: state.filterReducer,
       shortListState: state.shortListReducer,
-      listState: state.listReducer
+      listState: state.listReducer,
+      profileState: state.profileReducer
     };
   }
 )(FrontPage);

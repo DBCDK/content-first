@@ -148,6 +148,7 @@ class WorkPage extends React.Component {
                   idx={idx}
                   id={`work-${idx}`}
                   key={w.book.pid}
+                  isLoggedIn={this.props.profileState.user.isLoggedIn}
                   work={w}
                   lists={this.props.listState.lists}
                   onCoverClick={(pid) => {
@@ -187,7 +188,8 @@ export default connect(
       workState: state.workReducer,
       filterState: state.filterReducer,
       shortListState: state.shortListReducer,
-      listState: state.listReducer
+      listState: state.listReducer,
+      profileState: state.profileReducer
     };
   }
 )(WorkPage);
