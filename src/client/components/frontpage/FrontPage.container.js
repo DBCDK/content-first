@@ -7,11 +7,11 @@ import CreateProfile from '../profile/CreateProfile.component';
 import {ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
-import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST, ADD_LIST, SYSTEM_LIST} from '../../redux/list.reducer';
+import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST, ADD_LIST} from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
-import AddToListModal from '../lists/AddToListModal.component';
+import AddToListModal from '../list/AddToListModal.component';
 
 class FrontPage extends React.Component {
   constructor(props) {
@@ -96,7 +96,7 @@ class FrontPage extends React.Component {
         <AddToListModal
           show={this.state.addToList}
           work={this.state.addToList}
-          lists={this.state.addToList ? this.props.listState.lists.filter(l => l.type !== SYSTEM_LIST) : []}
+          lists={this.props.listState.lists}
           onClose={() => this.setState({addToList: null})}
           onDone={(work, comment, list) => {
             // console.log(work, comment, list);

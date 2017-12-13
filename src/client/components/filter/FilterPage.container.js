@@ -4,11 +4,11 @@ import SelectedFilters from './SelectedFilters.component';
 import EditFilters from './EditFilters.component';
 import WorkItem from '../work/WorkItem.component';
 import BootstrapDropDown from './BootstrapDropdown.component';
-import AddToListModal from '../lists/AddToListModal.component';
+import AddToListModal from '../list/AddToListModal.component';
 import {ON_SORT_OPTION_SELECT, ON_EDIT_FILTER_TOGGLE, ON_FILTER_TOGGLE, ON_RESET_FILTERS, ON_EXPAND_FILTERS_TOGGLE} from '../../redux/filter.reducer';
 import {ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
-import {ADD_ELEMENT_TO_LIST, SYSTEM_LIST, LIST_TOGGLE_ELEMENT, ADD_LIST} from '../../redux/list.reducer';
+import {ADD_ELEMENT_TO_LIST, LIST_TOGGLE_ELEMENT, ADD_LIST} from '../../redux/list.reducer';
 import {getLeaves} from '../../utils/filters';
 import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
@@ -166,7 +166,7 @@ class FilterPage extends React.Component {
         <AddToListModal
           show={this.state.addToList}
           work={this.state.addToList}
-          lists={this.state.addToList ? this.props.listState.lists.filter(l => l.type !== SYSTEM_LIST) : []}
+          lists={this.props.listState.lists}
           onClose={() => this.setState({addToList: null})}
           onDone={(work, comment, list) => {
             this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element: work});

@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from '../general/Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
+import {SYSTEM_LIST} from '../../redux/list.reducer';
 
 const defaultState = {
   comment: '',
@@ -15,6 +16,7 @@ class AddToListModal extends React.Component {
   }
 
   render() {
+    const customLists = this.props.lists.filter(l => l.type !== SYSTEM_LIST);
 
     return (
       <Modal
@@ -36,7 +38,7 @@ class AddToListModal extends React.Component {
         <div className="row">
           <div className="col-xs-6">
             <div className="list-overview">
-              {this.props.lists.map(l => {
+              {customLists.map(l => {
                 return <div key={l.id}>
                   <input
                     type="radio"

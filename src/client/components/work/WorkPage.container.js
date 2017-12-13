@@ -8,9 +8,9 @@ import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
-import {ADD_ELEMENT_TO_LIST, SYSTEM_LIST, LIST_TOGGLE_ELEMENT, ADD_LIST} from '../../redux/list.reducer';
+import {ADD_ELEMENT_TO_LIST, LIST_TOGGLE_ELEMENT, ADD_LIST} from '../../redux/list.reducer';
 import {getLeaves} from '../../utils/filters';
-import AddToListModal from '../lists/AddToListModal.component';
+import AddToListModal from '../list/AddToListModal.component';
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -168,7 +168,7 @@ class WorkPage extends React.Component {
         <AddToListModal
           show={this.state.addToList}
           work={this.state.addToList}
-          lists={this.state.addToList ? this.props.listState.lists.filter(l => l.type !== SYSTEM_LIST) : []}
+          lists={this.props.listState.lists}
           onClose={() => this.setState({addToList: null})}
           onDone={(element, comment, list) => {
             this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element});
