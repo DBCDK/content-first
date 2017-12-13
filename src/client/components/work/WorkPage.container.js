@@ -170,7 +170,6 @@ class WorkPage extends React.Component {
           show={this.state.addToList}
           work={this.state.addToList}
           lists={this.props.listState.lists}
-          onClose={() => this.setState({addToList: null})}
           onDone={(element, comment, list) => {
             this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element});
             this.setState({addToList: null});
