@@ -71,7 +71,7 @@ exports[`renders without crashing 1`] = `
             <img
               alt="luk"
               className="modal-window--close-btn"
-              onClick={undefined}
+              onClick={[Function]}
               src="Kryds.svg"
             />
             <div

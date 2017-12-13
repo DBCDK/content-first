@@ -126,7 +126,7 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
       <img
         alt="luk"
         className="modal-window--close-btn"
-        onClick={undefined}
+        onClick={[Function]}
         src="Kryds.svg"
       />
       <div
@@ -351,7 +351,7 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
       <img
         alt="luk"
         className="modal-window--close-btn"
-        onClick={undefined}
+        onClick={[Function]}
         src="Kryds.svg"
       />
       <div
@@ -470,7 +470,7 @@ exports[`ShortListDropDown short list contains single element 1`] = `
       <img
         alt="luk"
         className="modal-window--close-btn"
-        onClick={undefined}
+        onClick={[Function]}
         src="Kryds.svg"
       />
       <div
@@ -547,7 +547,7 @@ exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
       <img
         alt="luk"
         className="modal-window--close-btn"
-        onClick={undefined}
+        onClick={[Function]}
         src="Kryds.svg"
       />
       <div
