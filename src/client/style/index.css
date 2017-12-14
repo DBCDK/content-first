@@ -51,14 +51,14 @@ body {
   font-family: 'Lora', serif;
 }
 
-body.modal-open {
+/*body.modal-open {
   position: fixed;
   overflow-y: hidden;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-}
+}*/
 
 .container {
   background: #fcfcfc;

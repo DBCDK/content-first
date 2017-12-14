@@ -151,6 +151,7 @@ class FilterPage extends React.Component {
               id={`work-${idx}`}
               key={work.book.pid}
               isLoggedIn={this.props.profileState.user.isLoggedIn}
+              changeMap={this.props.listState.changeMap}
               work={work}
               lists={this.props.listState.lists}
               onCoverClick={(pid) => this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`})}

@@ -76,6 +76,7 @@ class FrontPage extends React.Component {
                   idx={workIdx}
                   id={`work-${workIdx}`}
                   key={work.book.pid}
+                  changeMap={this.props.listState.changeMap}
                   isLoggedIn={this.props.profileState.user.isLoggedIn}
                   work={work}
                   lists={this.props.listState.lists}

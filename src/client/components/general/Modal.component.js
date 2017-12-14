@@ -6,14 +6,15 @@ export default class Modal extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.show !== this.props.show) {
       if (nextProps.show) {
-        this.pageYOffset = window.pageYOffset;
         this.bodyScrollTop = document.body.scrollTop;
         this.documentElementScrollTop = document.documentElement.scrollTop;
-        document.body.classList.add('modal-open');
+        // document.body.classList.add('modal-open'); // super slow on ipad safari
+        // document.body.setAttribute('style', 'position:fixed; overflow-y: hidden; top: 0; bottom: 0; left: 0; right: 0;'); // super slow on ipad safari
+        document.body.setAttribute('style', 'position:fixed; top: 0; bottom: 0; left: 0; right: 0;');
+
       }
       else {
-        document.body.classList.remove('modal-open');
-        window.pageYOffset = this.pageYOffset;
+        document.body.setAttribute('style', '');
         document.body.scrollTop = this.bodyScrollTop;
         document.documentElement.scrollTop = this.documentElementScrollTop;
       }

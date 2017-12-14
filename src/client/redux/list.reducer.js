@@ -18,13 +18,17 @@ const didReadList = {
   description: 'En liste over bøger jeg gerne vil læse',
   list: []
 };
+
+// changeMap is a performance optimization used to easily determine
+// if a work has been added/removed to/from list
 const defaultState = {
   lists: [wannaReadList, didReadList],
   currentList: {
     title: '',
     description: '',
     list: []
-  }
+  },
+  changeMap: {}
 };
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
@@ -56,6 +60,7 @@ const listReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {currentList: defaultState.currentList});
     }
     case ADD_ELEMENT_TO_LIST: {
+      const changeMap = Object.assign({}, state.changeMap, {[action.element.book.pid]: {}});
       if (action.id) {
         const lists = state.lists.map(l => {
           if (l.id === action.id) {
@@ -63,7 +68,7 @@ const listReducer = (state = defaultState, action) => {
           }
           return l;
         });
-        return Object.assign({}, state, {lists});
+        return Object.assign({}, state, {lists, changeMap});
       }
 
       const currentList = state.currentList || {
@@ -72,18 +77,21 @@ const listReducer = (state = defaultState, action) => {
       };
 
       currentList.list = [action.element, ...currentList.list];
-      return Object.assign({}, state, {currentList});
+      return Object.assign({}, state, {currentList, changeMap});
     }
     case REMOVE_ELEMENT_FROM_LIST: {
+      const changeMap = Object.assign({}, state.changeMap, {[action.element.book.pid]: {}});
       const list = state.currentList.list.filter(
         element => element.book.pid !== action.element.book.pid
       );
       return Object.assign({}, state, {
-        currentList: Object.assign({}, state.currentList, {list})
+        currentList: Object.assign({}, state.currentList, {list}),
+        changeMap
       });
     }
     case LIST_TOGGLE_ELEMENT: {
       const {id, element} = action;
+      const changeMap = Object.assign({}, state.changeMap, {[element.book.pid]: {}});
       if (id) {
         const lists = state.lists.map(l => {
           if (l.id === id) {
@@ -95,7 +103,7 @@ const listReducer = (state = defaultState, action) => {
           }
           return l;
         });
-        return Object.assign({}, state, {lists});
+        return Object.assign({}, state, {lists, changeMap});
       }
       return state;
     }

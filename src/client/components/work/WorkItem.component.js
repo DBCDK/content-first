@@ -6,6 +6,13 @@ import TouchHover from '../general/TouchHover.component';
 import {SYSTEM_LIST} from '../../redux/list.reducer';
 
 class WorkItem extends React.Component {
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.changeMap[this.props.work.book.pid] !== nextProps.changeMap[this.props.work.book.pid] ||
+      this.props.marked !== nextProps.marked ||
+      this.props.work !== nextProps.work;
+  }
+
   render() {
     const tax_description = this.props.work.book.taxonomy_description || this.props.work.book.description;
     return (
@@ -32,15 +39,17 @@ class WorkItem extends React.Component {
             text="Husk"
             checked={this.props.marked}
             onClick={() => this.props.onRememberClick(this.props.work)}>
-            {this.props.lists.filter(l => l.type === SYSTEM_LIST).map(l => (
-              <MenuItem
-                key={l.id}
-                text={l.title}
-                checked={l.list.filter(element => element.book.pid === this.props.work.book.pid).length > 0}
-                onClick={() => {
-                  this.props.onAddToList(l);
-                }}/>
-            ))}
+            {
+              this.props.lists.filter(l => l.type === SYSTEM_LIST).map(l => (
+                <MenuItem
+                  key={l.id}
+                  text={l.title}
+                  checked={l.list.filter(element => element.book.pid === this.props.work.book.pid).length > 0}
+                  onClick={() => {
+                    this.props.onAddToList(l);
+                  }}/>
+              ))
+            }
             <MenuItem
               key="addToList"
               text="Tilføj til liste"

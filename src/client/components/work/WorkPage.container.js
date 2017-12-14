@@ -148,6 +148,7 @@ class WorkPage extends React.Component {
                   idx={idx}
                   id={`work-${idx}`}
                   key={w.book.pid}
+                  changeMap={this.props.listState.changeMap}
                   isLoggedIn={this.props.profileState.user.isLoggedIn}
                   work={w}
                   lists={this.props.listState.lists}
