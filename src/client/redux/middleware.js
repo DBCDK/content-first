@@ -213,7 +213,12 @@ export const listMiddleware = store => next => async action => {
       const {lists, currentList} = store.getState().listReducer;
       const {isLoggedIn} = store.getState().profileReducer.user;
       saveLists(lists, isLoggedIn);
-      saveCurrentList(currentList);
+      if (action.clearCurrentlist) {
+        saveCurrentList(currentList);
+      } else {
+        saveCurrentList(null);
+      }
+
       return res;
     }
     case LIST_LOAD_REQUEST: {

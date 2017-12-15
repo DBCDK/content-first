@@ -102,7 +102,8 @@ class ListCreator extends React.Component {
     }
     this.props.dispatch({
       type: ADD_LIST,
-      list: this.props.listState.currentList
+      list: this.props.listState.currentList,
+      clearCurrentList: true
     });
 
     this.props.dispatch({type: HISTORY_PUSH, path: '/lister'});
