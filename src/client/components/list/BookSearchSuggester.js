@@ -54,8 +54,11 @@ class ListSuggest extends React.Component {
       return this.props.books
         .filter(
           ({book}) =>
-            book.title.toLowerCase().includes(filter.toLowerCase()) ||
-            book.creator.toLowerCase().includes(filter.toLowerCase())
+            this.props.list.filter(element => element.book.pid === book.pid)
+              .length === 0
+              ? book.title.toLowerCase().includes(filter.toLowerCase()) ||
+                book.creator.toLowerCase().includes(filter.toLowerCase())
+              : false
         )
         .sort((a, b) => {
           return a.book.title > b.book.title ? 1 : -1;
@@ -144,7 +147,11 @@ class BookSearchSuggester extends React.Component {
 
   render() {
     return (
-      <ListSuggest books={this.state.books} onSubmit={this.props.onSubmit} />
+      <ListSuggest
+        books={this.state.books}
+        list={this.props.list}
+        onSubmit={this.props.onSubmit}
+      />
     );
   }
 }
