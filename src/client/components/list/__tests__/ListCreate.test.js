@@ -4,7 +4,8 @@ import ListCreate from '../ListCreate.component';
 import renderer from 'react-test-renderer';
 import {createStore, combineReducers} from 'redux';
 import listReducer, {
-  REMOVE_ELEMENT_FROM_LIST
+  REMOVE_ELEMENT_FROM_LIST,
+  UPDATE_CURRENT_LIST
 } from '../../../redux/list.reducer';
 
 import {ADD_ELEMENT_TO_LIST} from '../../../redux/list.reducer';
@@ -47,6 +48,25 @@ describe('ListCreate', () => {
     const tree = renderer
       .create(
         <Provider store={createStore(reducer)}>
+          <ListCreate />
+        </Provider>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('list details is shown', () => {
+    const store = createStore(reducer);
+    const currentList = {
+      title: 'some title',
+      description: 'some description',
+      public: true,
+      list: []
+    };
+    store.dispatch({type: UPDATE_CURRENT_LIST, currentList});
+    const tree = renderer
+      .create(
+        <Provider store={store}>
           <ListCreate />
         </Provider>
       )

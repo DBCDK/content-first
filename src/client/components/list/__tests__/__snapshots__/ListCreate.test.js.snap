@@ -89,8 +89,10 @@ exports[`ListCreate CreateList component is rendered 1`] = `
         htmlFor="public"
       >
         <input
+          checked={false}
           id="public"
           name="public"
+          onClick={[Function]}
           type="checkbox"
         />
         <span />
@@ -253,8 +255,10 @@ exports[`ListCreate a book is added to the list 1`] = `
         htmlFor="public"
       >
         <input
+          checked={false}
           id="public"
           name="public"
+          onClick={[Function]}
           type="checkbox"
         />
         <span />
@@ -417,8 +421,123 @@ exports[`ListCreate a books is removed from the list 1`] = `
         htmlFor="public"
       >
         <input
+          checked={false}
           id="public"
           name="public"
+          onClick={[Function]}
+          type="checkbox"
+        />
+        <span />
+         Skal listen være offentlig?
+      </label>
+    </div>
+    <div
+      className="list-creator__submit text-right"
+    >
+      <button
+        className="btn btn-primary"
+        type="submit"
+      >
+        Gem liste
+      </button>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`ListCreate list details is shown 1`] = `
+<div
+  className="list-creator"
+>
+  <h1
+    className="list-creator__headline"
+  >
+    Opret liste
+  </h1>
+  <form
+    className="list-creator__form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="list-details"
+    >
+      <div
+        className="form-group"
+      >
+        <span
+          className="required "
+        >
+          <input
+            className="form-control"
+            name="list-title"
+            onChange={[Function]}
+            placeholder="Giv din liste en titel"
+            type="text"
+            value="some title"
+          />
+          
+        </span>
+        <textarea
+          className="form-control list-details__description"
+          name="list-description"
+          onChange={[Function]}
+          placeholder="Skriv lidt om din liste"
+          value="some description"
+        />
+      </div>
+    </div>
+    <h2
+      className="list-creator__headline"
+    >
+      Tilføj bøger til listen
+    </h2>
+    <div
+      className="list-drag"
+    >
+      <div
+        className="suggestion-list"
+      >
+        <div
+          className="react-autosuggest__container"
+        >
+          <input
+            aria-activedescendant={null}
+            aria-autocomplete="list"
+            aria-expanded={false}
+            aria-haspopup={false}
+            aria-owns="react-autowhatever-1"
+            autoComplete="off"
+            className="form-control suggestion-list__search"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Skriv titlen på en bog"
+            role="combobox"
+            type="text"
+            value=""
+          />
+          <div
+            className="react-autosuggest__suggestions-container"
+            id="react-autowhatever-1"
+          />
+        </div>
+      </div>
+      <div
+        className="drag-list "
+      />
+    </div>
+    <div
+      className="list-creator__publication"
+    >
+      <label
+        htmlFor="public"
+      >
+        <input
+          checked={true}
+          id="public"
+          name="public"
+          onClick={[Function]}
           type="checkbox"
         />
         <span />
@@ -685,8 +804,10 @@ exports[`ListCreate multible books are added to the list 1`] = `
         htmlFor="public"
       >
         <input
+          checked={false}
           id="public"
           name="public"
+          onClick={[Function]}
           type="checkbox"
         />
         <span />

@@ -143,7 +143,7 @@ class ListCreator extends React.Component {
                 id="public"
                 name="public"
                 type="checkbox"
-                checked={this.props.listState.currentList.public}
+                checked={this.props.listState.currentList.public || false}
                 onClick={() => this.setStatus()}
               />
               <span /> Skal listen være offentlig?
