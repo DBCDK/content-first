@@ -1,0 +1,14 @@
+.line-behind-text {
+
+}
+.line-behind-text--line {
+  border-bottom: 1px solid lightgray;
+  margin-top: -9px;
+}
+.line-behind-text--label {
+  background: inherit;
+  padding: 0 20px;
+  font-weight: 600;
+  font-size: 12px;
+  color: gray;
+}

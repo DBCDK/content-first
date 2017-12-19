@@ -40,6 +40,7 @@
 @import './components/addtolistmodal.css';
 @import './components/workitemsmall.css';
 @import './components/simplelist.css';
+@import './components/linebehindtext.css';
 
 html {
   /* Avoid content from jumping when modal is opened/closed */
@@ -262,3 +263,5 @@ h3 {
 .inline-block {
   display: inline-block;
 }
+
+div, ul, li { background-color: inherit; }

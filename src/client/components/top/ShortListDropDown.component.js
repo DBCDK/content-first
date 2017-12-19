@@ -4,6 +4,8 @@ import Image from '../Image.component';
 import Kryds from '../svg/Kryds.svg';
 import Huskeliste from '../svg/Huskeliste.svg';
 import Modal from '../general/Modal.component';
+import WorkItemSmall from '../work/WorkItemSmall.component';
+import LineBehindText from '../general/LineBehindText.component';
 import {ON_SHORTLIST_EXPAND, ON_SHORTLIST_COLLAPSE, ON_SHORTLIST_REMOVE_ELEMENT, SHORTLIST_APPROVE_MERGE} from '../../redux/shortlist.reducer';
 
 const SHORT_LIST_MAX_LENGTH = 3;
@@ -47,10 +49,7 @@ const ShortListContent = (props) => {
       <div className="short-list--elements">
         {props.children}
       </div>
-      {moreLabel && <div className="short-list--more-elements text-center">
-        <span className="short-list--more-elements-text">{moreLabel}</span>
-        <div className="short-list--more-elements-line"/>
-      </div>}
+      {moreLabel && <div className="short-list--more-elements"><LineBehindText label={moreLabel} /></div>}
       {moreLabel && <div className="short-list--more-btn text-center"><span className="btn btn-default text-center">SE HELE LISTEN</span></div>}
     </div>
   );
@@ -58,10 +57,11 @@ const ShortListContent = (props) => {
 
 class ShortListDropdown extends React.Component {
   render() {
-    const {expanded, elements, pendingMerge} = this.props.shortListState;
-    let pendingHeader = null;
+    const {expanded, elements=[], pendingMerge} = this.props.shortListState;
+    const numPending = pendingMerge ? pendingMerge.diff.length : 0;
+    let merged = null;
     if (pendingMerge) {
-      pendingHeader = `${pendingMerge.diff.length} ${pendingMerge.diff.length > 1 ? 'bøger' : 'bog'} bliver overført til din huskeliste`;
+      merged = [...pendingMerge.diff, ...elements];
     }
 
     return (
@@ -85,16 +85,26 @@ class ShortListDropdown extends React.Component {
           })}
         </ShortListContent>
         <Modal
+          className="short-list--merge-modal"
           show={pendingMerge}
-          header={pendingHeader}
+          header="HUSKELISTE"
           onClose={() => this.props.dispatch({type: SHORTLIST_APPROVE_MERGE})}
           onDone={() => this.props.dispatch({type: SHORTLIST_APPROVE_MERGE})}>
-          <p>Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:</p>
-          <ul>
-            {pendingMerge && pendingMerge.diff.map(e => {
-              return <li key={e.book.pid}>{e.book.title}</li>;
+          <strong>
+            {`Nu hvor du er logget ind, har vi gemt ${numPending} ${numPending > 1 ? 'bøger' : 'bog'}
+            fra huskelisten på den huskeliste, der hører til din profil:`}
+          </strong>
+          <div className="work-list">
+            {merged && merged.slice(0, SHORT_LIST_MAX_LENGTH).map(e => {
+              return <WorkItemSmall work={e} key={e.book.pid} />;
             })}
-          </ul>
+          </div>
+          {merged && merged.length > SHORT_LIST_MAX_LENGTH &&
+            <div>
+              <LineBehindText label={merged.length-SHORT_LIST_MAX_LENGTH > 1 ? `og ${merged.length-SHORT_LIST_MAX_LENGTH} andre bøger` : '1 anden bog'} />
+              <div className="more-btn text-center"><span className="btn btn-default text-center">SE HELE HUSKELISTEN</span></div>
+            </div>
+          }
         </Modal>
       </div>
     );

@@ -66,7 +66,7 @@ exports[`renders without crashing 1`] = `
           className="modal-backdrop modal-hidden"
         >
           <div
-            className="modal-window text-left modal-hidden "
+            className="modal-window text-left modal-hidden short-list--merge-modal"
           >
             <img
               alt="luk"
@@ -77,15 +77,20 @@ exports[`renders without crashing 1`] = `
             <div
               className="modal-window--header text-center"
             >
-              <h3 />
+              <h3>
+                HUSKELISTE
+              </h3>
             </div>
             <div
               className="modal-window--content"
             >
-              <p>
-                Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:
-              </p>
-              <ul />
+              <strong>
+                Nu hvor du er logget ind, har vi gemt 0 bog
+                            fra huskelisten på den huskeliste, der hører til din profil:
+              </strong>
+              <div
+                className="work-list"
+              />
             </div>
             <div
               className="modal-window--buttons text-center"

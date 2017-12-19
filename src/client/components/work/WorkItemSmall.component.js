@@ -4,7 +4,7 @@ import Image from '../Image.component';
 export default (props) => {
 
   return (
-    <div className="work-item-small">
+    <div className="work-item-small clearfix">
       <div className="col-xs-3">
         <div className="cover-image-wrapper">
           <Image urls={[

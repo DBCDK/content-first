@@ -121,7 +121,7 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
     className="modal-backdrop"
   >
     <div
-      className="modal-window text-left "
+      className="modal-window text-left short-list--merge-modal"
     >
       <img
         alt="luk"
@@ -133,23 +133,130 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
         className="modal-window--header text-center"
       >
         <h3>
-          2 bøger bliver overført til din huskeliste
+          HUSKELISTE
         </h3>
       </div>
       <div
         className="modal-window--content"
       >
-        <p>
-          Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:
-        </p>
-        <ul>
-          <li>
-            some title3
-          </li>
-          <li>
-            some title4
-          </li>
-        </ul>
+        <strong>
+          Nu hvor du er logget ind, har vi gemt 2 bøger
+                      fra huskelisten på den huskeliste, der hører til din profil:
+        </strong>
+        <div
+          className="work-list"
+        >
+          <div
+            className="work-item-small clearfix"
+          >
+            <div
+              className="col-xs-3"
+            >
+              <div
+                className="cover-image-wrapper"
+              >
+                <img
+                  alt=""
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+                />
+              </div>
+            </div>
+            <div
+              className="col-xs-9 info"
+            >
+              <div
+                className="title"
+              >
+                some title3
+              </div>
+              <div
+                className="creator"
+              />
+            </div>
+          </div>
+          <div
+            className="work-item-small clearfix"
+          >
+            <div
+              className="col-xs-3"
+            >
+              <div
+                className="cover-image-wrapper"
+              >
+                <img
+                  alt=""
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid4"
+                />
+              </div>
+            </div>
+            <div
+              className="col-xs-9 info"
+            >
+              <div
+                className="title"
+              >
+                some title4
+              </div>
+              <div
+                className="creator"
+              />
+            </div>
+          </div>
+          <div
+            className="work-item-small clearfix"
+          >
+            <div
+              className="col-xs-3"
+            >
+              <div
+                className="cover-image-wrapper"
+              >
+                <img
+                  alt=""
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                />
+              </div>
+            </div>
+            <div
+              className="col-xs-9 info"
+            >
+              <div
+                className="title"
+              >
+                some title1
+              </div>
+              <div
+                className="creator"
+              />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            className="line-behind-text text-center"
+          >
+            <span
+              className="line-behind-text--label"
+            >
+              1 anden bog
+            </span>
+            <div
+              className="line-behind-text--line"
+            />
+          </div>
+          <div
+            className="more-btn text-center"
+          >
+            <span
+              className="btn btn-default text-center"
+            >
+              SE HELE HUSKELISTEN
+            </span>
+          </div>
+        </div>
       </div>
       <div
         className="modal-window--buttons text-center"
@@ -321,16 +428,20 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
       </div>
     </div>
     <div
-      className="short-list--more-elements text-center"
+      className="short-list--more-elements"
     >
-      <span
-        className="short-list--more-elements-text"
-      >
-        1 bog mere på listen
-      </span>
       <div
-        className="short-list--more-elements-line"
-      />
+        className="line-behind-text text-center"
+      >
+        <span
+          className="line-behind-text--label"
+        >
+          1 bog mere på listen
+        </span>
+        <div
+          className="line-behind-text--line"
+        />
+      </div>
     </div>
     <div
       className="short-list--more-btn text-center"
@@ -346,7 +457,7 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
     className="modal-backdrop modal-hidden"
   >
     <div
-      className="modal-window text-left modal-hidden "
+      className="modal-window text-left modal-hidden short-list--merge-modal"
     >
       <img
         alt="luk"
@@ -357,15 +468,20 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
       <div
         className="modal-window--header text-center"
       >
-        <h3 />
+        <h3>
+          HUSKELISTE
+        </h3>
       </div>
       <div
         className="modal-window--content"
       >
-        <p>
-          Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:
-        </p>
-        <ul />
+        <strong>
+          Nu hvor du er logget ind, har vi gemt 0 bog
+                      fra huskelisten på den huskeliste, der hører til din profil:
+        </strong>
+        <div
+          className="work-list"
+        />
       </div>
       <div
         className="modal-window--buttons text-center"
@@ -465,7 +581,7 @@ exports[`ShortListDropDown short list contains single element 1`] = `
     className="modal-backdrop modal-hidden"
   >
     <div
-      className="modal-window text-left modal-hidden "
+      className="modal-window text-left modal-hidden short-list--merge-modal"
     >
       <img
         alt="luk"
@@ -476,15 +592,20 @@ exports[`ShortListDropDown short list contains single element 1`] = `
       <div
         className="modal-window--header text-center"
       >
-        <h3 />
+        <h3>
+          HUSKELISTE
+        </h3>
       </div>
       <div
         className="modal-window--content"
       >
-        <p>
-          Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:
-        </p>
-        <ul />
+        <strong>
+          Nu hvor du er logget ind, har vi gemt 0 bog
+                      fra huskelisten på den huskeliste, der hører til din profil:
+        </strong>
+        <div
+          className="work-list"
+        />
       </div>
       <div
         className="modal-window--buttons text-center"
@@ -542,7 +663,7 @@ exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
     className="modal-backdrop modal-hidden"
   >
     <div
-      className="modal-window text-left modal-hidden "
+      className="modal-window text-left modal-hidden short-list--merge-modal"
     >
       <img
         alt="luk"
@@ -553,15 +674,20 @@ exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
       <div
         className="modal-window--header text-center"
       >
-        <h3 />
+        <h3>
+          HUSKELISTE
+        </h3>
       </div>
       <div
         className="modal-window--content"
       >
-        <p>
-          Der var noget i huskelisten før du loggede ind. Derfor overføres følgende til din i forvejen gemte huskeliste:
-        </p>
-        <ul />
+        <strong>
+          Nu hvor du er logget ind, har vi gemt 0 bog
+                      fra huskelisten på den huskeliste, der hører til din profil:
+        </strong>
+        <div
+          className="work-list"
+        />
       </div>
       <div
         className="modal-window--buttons text-center"
