@@ -50,7 +50,7 @@ const listReducer = (state = defaultState, action) => {
       list.description = list.description || '';
       if (!list.id) {
         list.id = uuid.create();
-        return Object.assign({}, state, {lists: [...state.lists, list]});
+        return Object.assign({}, state, {lists: [...state.lists, list], currentList: defaultState.currentList});
       }
       const lists = state.lists.map(l => (l.id === list.id ? list : l));
       return Object.assign({}, state, {
@@ -138,7 +138,7 @@ const listReducer = (state = defaultState, action) => {
       }
       return Object.assign({}, state, {
         lists,
-        currentList: action.currentList || state.currentList,
+        currentList: action.currentList || defaultState.currentList,
         changeMap
       });
     }
