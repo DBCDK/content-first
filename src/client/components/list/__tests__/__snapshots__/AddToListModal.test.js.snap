@@ -1,0 +1,258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddToListModal modal is hidden 1`] = `
+<div
+  className="modal-backdrop modal-hidden"
+>
+  <div
+    className="modal-window text-left modal-hidden add-to-list--modal"
+  >
+    <img
+      alt="luk"
+      className="modal-window--close-btn"
+      onClick={[Function]}
+      src="Kryds.svg"
+    />
+    <div
+      className="modal-window--header text-center"
+    >
+      <h3>
+        GEM I LISTE
+      </h3>
+    </div>
+    <div
+      className="modal-window--content"
+    >
+      <div
+        className="row"
+      >
+        <strong
+          className="col-xs-12"
+        >
+          Hvilken liste vil du gemme i?
+        </strong>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-xs-6"
+        >
+          <div
+            className="list-overview"
+          />
+          <div
+            className="add-list"
+          >
+            <form
+              onSubmit={[Function]}
+            >
+              <input
+                name="add-list"
+                onChange={[Function]}
+                placeholder="Opret ny liste"
+                type="text"
+                value=""
+              />
+              <input
+                className="add-list--btn text-center"
+                type="submit"
+                value="+"
+              />
+            </form>
+          </div>
+        </div>
+        <div
+          className="col-xs-6"
+        >
+          <div
+            className="work-item-small"
+          >
+            <div
+              className="col-xs-3"
+            >
+              <div
+                className="cover-image-wrapper"
+              >
+                <img
+                  alt=""
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                />
+              </div>
+            </div>
+            <div
+              className="col-xs-9 info"
+            >
+              <div
+                className="title"
+              >
+                some title1
+              </div>
+              <div
+                className="creator"
+              >
+                some creator1
+              </div>
+            </div>
+          </div>
+          <textarea
+            className="comment"
+            onChange={[Function]}
+            placeholder="Skriv evt. en kommentar til bogen"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="modal-window--buttons text-center"
+    >
+      <span
+        className="btn btn-success"
+        onClick={[Function]}
+      >
+        JA TAK, GEM NU
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AddToListModal modal is visible, renders lists from store 1`] = `
+<div
+  className="modal-backdrop"
+>
+  <div
+    className="modal-window text-left add-to-list--modal"
+  >
+    <img
+      alt="luk"
+      className="modal-window--close-btn"
+      onClick={[Function]}
+      src="Kryds.svg"
+    />
+    <div
+      className="modal-window--header text-center"
+    >
+      <h3>
+        GEM I LISTE
+      </h3>
+    </div>
+    <div
+      className="modal-window--content"
+    >
+      <div
+        className="row"
+      >
+        <strong
+          className="col-xs-12"
+        >
+          Hvilken liste vil du gemme i?
+        </strong>
+      </div>
+      <div
+        className="row"
+      >
+        <div
+          className="col-xs-6"
+        >
+          <div
+            className="list-overview"
+          >
+            <div>
+              <input
+                checked={false}
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              title1
+            </div>
+            <div>
+              <input
+                checked={false}
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              title2
+            </div>
+          </div>
+          <div
+            className="add-list"
+          >
+            <form
+              onSubmit={[Function]}
+            >
+              <input
+                name="add-list"
+                onChange={[Function]}
+                placeholder="Opret ny liste"
+                type="text"
+                value=""
+              />
+              <input
+                className="add-list--btn text-center"
+                type="submit"
+                value="+"
+              />
+            </form>
+          </div>
+        </div>
+        <div
+          className="col-xs-6"
+        >
+          <div
+            className="work-item-small"
+          >
+            <div
+              className="col-xs-3"
+            >
+              <div
+                className="cover-image-wrapper"
+              >
+                <img
+                  alt=""
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                />
+              </div>
+            </div>
+            <div
+              className="col-xs-9 info"
+            >
+              <div
+                className="title"
+              >
+                some title1
+              </div>
+              <div
+                className="creator"
+              >
+                some creator1
+              </div>
+            </div>
+          </div>
+          <textarea
+            className="comment"
+            onChange={[Function]}
+            placeholder="Skriv evt. en kommentar til bogen"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="modal-window--buttons text-center"
+    >
+      <span
+        className="btn btn-success"
+        onClick={[Function]}
+      >
+        JA TAK, GEM NU
+      </span>
+    </div>
+  </div>
+</div>
+`;

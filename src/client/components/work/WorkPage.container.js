@@ -8,12 +8,14 @@ import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
+import {ADD_ELEMENT_TO_LIST, LIST_TOGGLE_ELEMENT, ADD_LIST} from '../../redux/list.reducer';
 import {getLeaves} from '../../utils/filters';
+import AddToListModal from '../list/AddToListModal.component';
 
 class WorkPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {tagsCollapsed: true, transition: true};
+    this.state = {tagsCollapsed: true, transition: true, addToList: null};
   }
 
   fetchWork() {
@@ -70,14 +72,14 @@ class WorkPage extends React.Component {
       <div className='work-page'>
         <div className='row work-details'>
           <div className='col-xs-11 col-centered text-left'>
-            <div className='cover-image-wrapper'>
+            <div className='col-xs-4 col-lg-3 cover-image-wrapper'>
               <Image key={work.data.pid} urls={[
                 `https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(work.data.pid)}`,
                 `/v1/image/${encodeURIComponent(work.data.pid)}`,
                 '/default-book-cover.png'
               ]}/>
             </div>
-            <div className='info'>
+            <div className='col-xs-8 col-lg-9 info'>
               <div className='title'>{work.data.title}</div>
               <div className='creator'>{work.data.creator}</div>
               <div className='meta-description'>{tax_description && tax_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}</div>
@@ -106,12 +108,12 @@ class WorkPage extends React.Component {
             <div
               id='collapsable-tags'
               style={{transition: this.state.transition ? null : 'none', height: this.state.tagsCollapsed ? '120px' : height+'px', overflowY: 'hidden'}}
-              className='tags col-xs-12 text-left'>
+              className='tags text-left'>
               {tagGroups.map(group => {
                 return (
                   <div key={group.title} className='tag-group'>
-                    <div className='tag-group-title col-xs-2'>{group.title}</div>
-                    <div className='col-xs-10'>
+                    <div className='tag-group-title col-xs-3 col-lg-2'>{group.title}</div>
+                    <div className='col-xs-9 col-lg-10'>
                       {group.data.map(t => {
                         if (allowedFilterIds.indexOf(t.id + '') >= 0) {
                           return <span key={t.id} className='tag active' onClick={() => {
@@ -126,7 +128,7 @@ class WorkPage extends React.Component {
                 );
               })}
             </div>
-            <div className='col-xs-10 col-xs-offset-2'>
+            <div className='col-xs-9 col-xs-offset-3 col-lg-10 col-lg-offset-2'>
               <button className={this.state.tagsCollapsed ? 'expand-btn btn btn-primary' : 'expand-btn btn btn-success'} onClick={() => {
                 this.setState({tagsCollapsed: !this.state.tagsCollapsed, transition: true});
               }}>
@@ -143,20 +145,38 @@ class WorkPage extends React.Component {
             <ScrollableBelt works={work.similar} scrollInterval={3}>
               {work.similar && work.similar.map((w, idx) => {
                 return <WorkItem
+                  idx={idx}
                   id={`work-${idx}`}
                   key={w.book.pid}
+                  changeMap={this.props.listState.changeMap}
+                  isLoggedIn={this.props.profileState.user.isLoggedIn}
                   work={w}
+                  lists={this.props.listState.lists}
                   onCoverClick={(pid) => {
                     this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
                   }}
                   onRememberClick={(element) => {
                     this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Minder om "${work.data.title}"`});
                   }}
-                  marked={remembered[w.book.pid]}/>;
+                  marked={remembered[w.book.pid]}
+                  onAddToList={list => {
+                    this.props.dispatch({type: LIST_TOGGLE_ELEMENT, id: list.id, element: w});
+                  }}
+                  onAddToListOpenModal={() => this.setState({addToList: w})} />;
               })}
             </ScrollableBelt>
           </div>
         </div>}
+        <AddToListModal
+          show={this.state.addToList}
+          work={this.state.addToList}
+          lists={this.props.listState.lists}
+          onDone={(element, description, list) => {
+            this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element, description});
+            this.setState({addToList: null});
+          }}
+          onClose={() => this.setState({addToList: null})}
+          onAddList={(listName) => this.props.dispatch({type: ADD_LIST, list: {title: listName, list: []}})}/>
       </div>
     );
   }
@@ -164,6 +184,12 @@ class WorkPage extends React.Component {
 export default connect(
   // Map redux state to props
   (state) => {
-    return {workState: state.workReducer, filterState: state.filterReducer, shortListState: state.shortListReducer};
+    return {
+      workState: state.workReducer,
+      filterState: state.filterReducer,
+      shortListState: state.shortListReducer,
+      listState: state.listReducer,
+      profileState: state.profileReducer
+    };
   }
 )(WorkPage);

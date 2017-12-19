@@ -4,14 +4,23 @@ import SelectedFilters from './SelectedFilters.component';
 import EditFilters from './EditFilters.component';
 import WorkItem from '../work/WorkItem.component';
 import BootstrapDropDown from './BootstrapDropdown.component';
+import AddToListModal from '../list/AddToListModal.component';
 import {ON_SORT_OPTION_SELECT, ON_EDIT_FILTER_TOGGLE, ON_FILTER_TOGGLE, ON_RESET_FILTERS, ON_EXPAND_FILTERS_TOGGLE} from '../../redux/filter.reducer';
 import {ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
+import {ADD_ELEMENT_TO_LIST, LIST_TOGGLE_ELEMENT, ADD_LIST} from '../../redux/list.reducer';
 import {getLeaves} from '../../utils/filters';
 import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 
 class FilterPage extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      addToList: null
+    };
+  }
 
   toggleFilter(filterId) {
     const allowedFilterIds = getLeaves(this.props.filterState.filters).map(f => f.id);
@@ -138,16 +147,34 @@ class FilterPage extends React.Component {
         <div className='filter-page-works row text-left'>
           {this.props.belt.works && this.props.belt.works.map((work, idx) => {
             return <WorkItem
+              idx={idx}
               id={`work-${idx}`}
               key={work.book.pid}
+              isLoggedIn={this.props.profileState.user.isLoggedIn}
+              changeMap={this.props.listState.changeMap}
+              work={work}
+              lists={this.props.listState.lists}
               onCoverClick={(pid) => this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`})}
               onRememberClick={(element) => {
                 this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Fra "${this.props.belt.name}"`});
               }}
-              work={work}
-              marked={remembered[work.book.pid]}/>;
+              marked={remembered[work.book.pid]}
+              onAddToList={list => {
+                this.props.dispatch({type: LIST_TOGGLE_ELEMENT, id: list.id, element: work});
+              }}
+              onAddToListOpenModal={() => this.setState({addToList: work})} />;
           })}
         </div>
+        <AddToListModal
+          show={this.state.addToList}
+          work={this.state.addToList}
+          lists={this.props.listState.lists}
+          onClose={() => this.setState({addToList: null})}
+          onDone={(work, description, list) => {
+            this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element: work, description});
+            this.setState({addToList: null});
+          }}
+          onAddList={(listName) => this.props.dispatch({type: ADD_LIST, list: {title: listName, list: []}})}/>
       </div>
     );
   }
@@ -158,6 +185,8 @@ export default connect(
     return {filterState: state.filterReducer,
       beltState: state.beltsReducer,
       routerState: state.routerReducer,
-      shortListState: state.shortListReducer};
+      shortListState: state.shortListReducer,
+      listState: state.listReducer,
+      profileState: state.profileReducer};
   }
 )(FilterPage);

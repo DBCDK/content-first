@@ -2,14 +2,15 @@
   background: var(--blue);
   border: 0;
   color: white;
+  outline:none !important;
 }
 .checkmark-btn:hover {
   background: var(--blue);
   color: white;
 }
-.checkmark-btn-marked {
+.checkmark-btn.checked {
   background: var(--green);
 }
-.checkmark-btn-marked:hover {
+.checkmark-btn.checked:hover {
   background: var(--green);
 }

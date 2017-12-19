@@ -9,8 +9,9 @@
   left: 0;
   right: 0;
   background-color: rgba(0,0,0,0.3);
-  padding: 100px;
+  padding-top: 100px;
   transition: all 0.25s;
+  z-index: 99999;
 }
 .modal-window.modal-hidden {
   opacity: 0;
@@ -18,9 +19,10 @@
   visibility: hidden;
 }
 .modal-window {
+  position: relative;
   opacity: 1;
-  background-color: #fff;
-  max-width: 500px;
+  background-color: #fafafa;
+  width: 500px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid rgba(0,0,0,.15);
@@ -28,12 +30,29 @@
   font-family: var(--secondary-font);
   transition: all 0.25s;
 }
+.modal-window--close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  width: 10px;
+  cursor: pointer;
+}
 .modal-window--header h3 {
   margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: inherit;
+}
+.modal-window--header {
+  border-bottom: 1px var(--lightgrey) solid;
+  padding-bottom: 16px;
 }
 .modal-window--content {
   margin-top: 20px;
   min-height: 100px;
+  border-bottom: 1px var(--lightgrey) solid;
+  padding-bottom: 40px;
 }
 .modal-window--buttons {
   margin-top: 20px;

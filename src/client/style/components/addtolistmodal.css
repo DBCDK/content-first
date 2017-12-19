@@ -1,0 +1,56 @@
+.add-to-list--modal {
+  width: 600px;
+}
+.add-to-list--modal .work-item-small > div {
+  padding: 0;
+}
+.list-overview {
+  font-size: 18px;
+  color: grey;
+  margin-top: 20px;
+  padding: 10px;
+  height: 200px;
+  background: white;
+  overflow-y: auto;
+  border-right: 1px solid var(--lightgrey);
+}
+.list-overview > div {
+  margin-bottom: 5px;
+}
+.list-overview input {
+  margin-right: 10px;
+}
+.add-to-list--modal .work-item-small {
+  margin-top: 20px;
+}
+.add-to-list--modal .comment {
+  width: 100%;
+  resize: none;
+  margin-top: 20px;
+  padding: 10px;
+  padding-top: 5px;
+  border: 1px var(--lightgrey) solid;
+  border-radius: 4px;
+}
+.add-to-list--modal .add-list {
+  margin-top: 20px;
+  position: relative;
+}
+.add-to-list--modal .add-list input {
+  border: 0;
+  padding: 5px 10px;
+  width: 100%;
+  border: 1px solid var(--lightgrey);
+  border-radius: 4px;
+}
+.add-to-list--modal .add-list .add-list--btn {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 45px;
+  height: 100%;
+  border-left: 1px var(--lightgrey) solid;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 0px;
+}

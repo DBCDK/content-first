@@ -34,17 +34,15 @@ import {
   REMOVE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
-  LIST_LOAD_CURRENT_LIST,
   ADD_ELEMENT_TO_LIST,
+  LIST_TOGGLE_ELEMENT,
   UPDATE_CURRENT_LIST,
   REMOVE_ELEMENT_FROM_LIST
 } from './list.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 import {
   saveLists,
-  loadCurrentlist,
-  loadLists,
-  saveCurrentList
+  loadLists
 } from '../utils/requestLists';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
@@ -110,6 +108,7 @@ export const requestMiddleware = store => next => action => {
     case ON_USER_DETAILS_REQUEST:
       fetchUser(store.dispatch, () => {
         store.dispatch({type: SHORTLIST_LOAD_REQUEST});
+        store.dispatch({type: LIST_LOAD_REQUEST});
       });
       return next(action);
     case ON_LOGOUT_REQUEST:
@@ -199,38 +198,21 @@ export const profileMiddleware = store => next => action => {
 
 export const listMiddleware = store => next => async action => {
   switch (action.type) {
+    case LIST_TOGGLE_ELEMENT:
     case ADD_ELEMENT_TO_LIST:
     case REMOVE_ELEMENT_FROM_LIST:
-    case UPDATE_CURRENT_LIST: {
-      const res = next(action);
-      const {currentList} = store.getState().listReducer;
-      saveCurrentList(currentList);
-      return res;
-    }
+    case UPDATE_CURRENT_LIST:
     case ADD_LIST:
     case REMOVE_LIST: {
       const res = next(action);
-      const {lists, currentList} = store.getState().listReducer;
+      const {lists} = store.getState().listReducer;
       const {isLoggedIn} = store.getState().profileReducer.user;
       saveLists(lists, isLoggedIn);
-      if (action.clearCurrentlist) {
-        saveCurrentList(currentList);
-      } else {
-        saveCurrentList(null);
-      }
-
       return res;
     }
     case LIST_LOAD_REQUEST: {
       const res = next(action);
       const {isLoggedIn} = store.getState().profileReducer.user;
-      if (!action.id) {
-        const currentList = loadCurrentlist();
-        store.dispatch({
-          type: LIST_LOAD_CURRENT_LIST,
-          currentList
-        });
-      }
       const lists = await loadLists(isLoggedIn);
       let currentList;
       if (action.id) {

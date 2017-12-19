@@ -7,11 +7,19 @@ import CreateProfile from '../profile/CreateProfile.component';
 import {ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
+import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST, ADD_LIST} from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
+import AddToListModal from '../list/AddToListModal.component';
 
 class FrontPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      addToList: null
+    };
+  }
 
   componentDidMount() {
     // Fetch works for each belt
@@ -65,20 +73,38 @@ class FrontPage extends React.Component {
             {!belt.requireLogin && <ScrollableBelt works={belt.works} scrollInterval={3}>
               {belt.works && belt.works.map((work, workIdx) => {
                 return <WorkItem
+                  idx={workIdx}
                   id={`work-${workIdx}`}
                   key={work.book.pid}
+                  changeMap={this.props.listState.changeMap}
+                  isLoggedIn={this.props.profileState.user.isLoggedIn}
                   work={work}
+                  lists={this.props.listState.lists}
                   onCoverClick={(pid) => {
                     this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
                   }}
                   onRememberClick={(element) => {
                     this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Fra "${belt.name}"`});
                   }}
-                  marked={remembered[work.book.pid]}/>;
+                  marked={remembered[work.book.pid]}
+                  onAddToList={list => {
+                    this.props.dispatch({type: LIST_TOGGLE_ELEMENT, id: list.id, element: work});
+                  }}
+                  onAddToListOpenModal={() => this.setState({addToList: work})} />;
               })}
             </ScrollableBelt>}
           </Belt>;
         })}
+        <AddToListModal
+          show={this.state.addToList}
+          work={this.state.addToList}
+          lists={this.props.listState.lists}
+          onClose={() => this.setState({addToList: null})}
+          onDone={(work, description, list) => {
+            this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element: work, description});
+            this.setState({addToList: null});
+          }}
+          onAddList={(listName) => this.props.dispatch({type: ADD_LIST, list: {title: listName, list: []}})}/>
       </div>
     );
   }
@@ -98,6 +124,12 @@ class FrontPage extends React.Component {
 export default connect(
   // Map redux state to props
   (state) => {
-    return {beltsState: state.beltsReducer, filterState: state.filterReducer, shortListState: state.shortListReducer};
+    return {
+      beltsState: state.beltsReducer,
+      filterState: state.filterReducer,
+      shortListState: state.shortListReducer,
+      listState: state.listReducer,
+      profileState: state.profileReducer
+    };
   }
 )(FrontPage);

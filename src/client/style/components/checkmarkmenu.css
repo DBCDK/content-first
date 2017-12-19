@@ -1,0 +1,74 @@
+.checkmark-menu {
+  font-family: 'Raleway', sans-serif;
+  outline: none;
+}
+.checkmark-menu .btn:active {
+  background: inherit;
+  /*border: inherit;*/
+  color: inherit;
+}
+.checkmark-menu > div:first-child {
+  text-align: right;
+}
+.checkmark-menu--content, .checkmark-menu--expand-btn {
+  box-shadow: 0 6px 12px rgba(0,0,0,.575);
+}
+.checkmark-menu--content {
+  position: absolute;
+  right: 0px;
+  margin-top: 0px;
+  border: 0;
+  width: 130px;
+  z-index: 100;
+}
+.checkmark-menu--expand-btn {
+  /*padding: 0 15px;*/
+  background: var(--greybrown);
+  color: white;
+}
+.checkmark-menu--expand-btn > span:first-child {
+  position: relative;
+  border: 0;
+  padding: 4px 30px 4px 8px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  background: inherit;
+  color: inherit;
+}
+.checkmark-menu--expand-btn.checked {
+  background: var(--green);
+}
+.checkmark-menu--expand-btn > span:last-child {
+  border: 0;
+  border-left: 1px #cccccc solid;
+  padding: 4px 10px;
+  background: inherit;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: inherit;
+}
+.checkmark-menu--expand-btn .glyphicon-ok {
+  margin-left: 10px;
+  /*margin-top: -22px;*/
+}
+.menu-item {
+  padding: 4px 30px 4px 8px;
+  cursor: pointer;
+  background: white;
+  color: var(--darkgrey);
+  border: 0;
+}
+.menu-item.checked, .menu-item.checked:hover {
+  background: var(--green);
+  color: white;
+}
+.menu-item:hover {
+  background: var(--lightgrey);
+  color: var(--darkgrey);
+}
+.checkmark-menu .glyphicon-ok {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  font-size: 10px;
+}
