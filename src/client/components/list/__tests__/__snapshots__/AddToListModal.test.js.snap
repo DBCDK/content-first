@@ -44,20 +44,22 @@ exports[`AddToListModal modal is hidden 1`] = `
           <div
             className="add-list"
           >
-            <input
-              name="add-list"
-              onChange={[Function]}
-              onKeyPress={[Function]}
-              placeholder="Opret ny liste"
-              type="text"
-              value=""
-            />
-            <span
-              className="add-list--btn text-center"
-              onClick={[Function]}
+            <form
+              onSubmit={[Function]}
             >
-              +
-            </span>
+              <input
+                name="add-list"
+                onChange={[Function]}
+                placeholder="Opret ny liste"
+                type="text"
+                value=""
+              />
+              <input
+                className="add-list--btn text-center"
+                type="submit"
+                value="+"
+              />
+            </form>
           </div>
         </div>
         <div
@@ -180,20 +182,22 @@ exports[`AddToListModal modal is visible, renders lists from store 1`] = `
           <div
             className="add-list"
           >
-            <input
-              name="add-list"
-              onChange={[Function]}
-              onKeyPress={[Function]}
-              placeholder="Opret ny liste"
-              type="text"
-              value=""
-            />
-            <span
-              className="add-list--btn text-center"
-              onClick={[Function]}
+            <form
+              onSubmit={[Function]}
             >
-              +
-            </span>
+              <input
+                name="add-list"
+                onChange={[Function]}
+                placeholder="Opret ny liste"
+                type="text"
+                value=""
+              />
+              <input
+                className="add-list--btn text-center"
+                type="submit"
+                value="+"
+              />
+            </form>
           </div>
         </div>
         <div
