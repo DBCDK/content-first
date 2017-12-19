@@ -65,6 +65,7 @@ const ListItem = ({item, onChange}) => (
 const ListBooks = ({list, dispatch}) => (
   <div className="list-drag">
     <BookSearchSuggester
+      list={list}
       onSubmit={book => dispatch({type: ADD_ELEMENT_TO_LIST, element: book})}
     />
     <DragableList
@@ -102,12 +103,18 @@ class ListCreator extends React.Component {
     }
     this.props.dispatch({
       type: ADD_LIST,
-      list: this.props.listState.currentList
+      list: this.props.listState.currentList,
+      clearCurrentList: true
     });
 
     this.props.dispatch({type: HISTORY_PUSH, path: '/lister'});
   }
   onChange(currentList) {
+    this.props.dispatch({type: UPDATE_CURRENT_LIST, currentList});
+  }
+  setStatus() {
+    const currentList = this.props.listState.currentList;
+    currentList.public = !currentList.public;
     this.props.dispatch({type: UPDATE_CURRENT_LIST, currentList});
   }
   render() {
@@ -132,7 +139,13 @@ class ListCreator extends React.Component {
           />
           <div className="list-creator__publication">
             <label htmlFor="public">
-              <input id="public" name="public" type="checkbox" />
+              <input
+                id="public"
+                name="public"
+                type="checkbox"
+                checked={this.props.listState.currentList.public || false}
+                onClick={() => this.setStatus()}
+              />
               <span /> Skal listen være offentlig?
             </label>
           </div>
