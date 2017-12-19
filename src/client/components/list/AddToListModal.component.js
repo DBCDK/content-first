@@ -49,26 +49,22 @@ class AddToListModal extends React.Component {
               })}
             </div>
             <div className="add-list">
-              <input
-                type="text"
-                name="add-list"
-                placeholder="Opret ny liste"
-                value={this.state.listName}
-                onChange={e => this.setState({listName: e.target.value})}
-                onKeyPress={e => {
-                  if (e.key === 'Enter' && this.state.listName) {
-                    this.props.onAddList(this.state.listName);
-                    this.setState({listName: ''});
-                  }
-                }} />
-              <span
-                className="add-list--btn text-center"
-                onClick={() => {
+              <form
+                onSubmit={e => {
                   if (this.state.listName) {
                     this.props.onAddList(this.state.listName);
                     this.setState({listName: ''});
                   }
-                }}>+</span>
+                  e.preventDefault();
+                }}>
+                <input
+                  type="text"
+                  name="add-list"
+                  placeholder="Opret ny liste"
+                  value={this.state.listName}
+                  onChange={e => this.setState({listName: e.target.value})}/>
+                <input className="add-list--btn text-center" type="submit" value="+" />
+              </form>
             </div>
           </div>
           <div className="col-xs-6">
