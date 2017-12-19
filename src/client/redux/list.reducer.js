@@ -46,6 +46,8 @@ const listReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_LIST: {
       const {list} = action;
+      list.type = CUSTOM_LIST;
+      list.description = list.description || '';
       if (!list.id) {
         list.id = uuid.create();
         return Object.assign({}, state, {lists: [...state.lists, list]});
@@ -64,7 +66,11 @@ const listReducer = (state = defaultState, action) => {
       if (action.id) {
         const lists = state.lists.map(l => {
           if (l.id === action.id) {
-            return Object.assign({}, l, {list: [action.element, ...l.list]});
+            if (l.list.filter(e => e.book.pid === action.element.book.pid).length === 0) {
+              return Object.assign({}, l, {
+                list: [Object.assign({}, action.element, {description: action.description || ''}), ...l.list]
+              });
+            }
           }
           return l;
         });
@@ -120,6 +126,10 @@ const listReducer = (state = defaultState, action) => {
     }
     case LIST_LOAD_RESPONSE: {
       let lists = action.lists;
+      const changeMap = lists.reduce((map, list) => {
+        list.list.forEach(element => (map[element.book.pid] = {}));
+        return map;
+      }, {});
       if (lists.filter((l) => l.id === wannaReadList.id).length === 0) {
         lists = [Object.assign({}, wannaReadList), ...lists];
       }
@@ -128,7 +138,8 @@ const listReducer = (state = defaultState, action) => {
       }
       return Object.assign({}, state, {
         lists,
-        currentList: action.currentList || state.currentList
+        currentList: action.currentList || state.currentList,
+        changeMap
       });
     }
     default:

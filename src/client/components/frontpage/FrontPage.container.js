@@ -100,9 +100,8 @@ class FrontPage extends React.Component {
           work={this.state.addToList}
           lists={this.props.listState.lists}
           onClose={() => this.setState({addToList: null})}
-          onDone={(work, comment, list) => {
-            // console.log(work, comment, list);
-            this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element: work});
+          onDone={(work, description, list) => {
+            this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element: work, description});
             this.setState({addToList: null});
           }}
           onAddList={(listName) => this.props.dispatch({type: ADD_LIST, list: {title: listName, list: []}})}/>
