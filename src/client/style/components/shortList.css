@@ -2,6 +2,7 @@
   position: relative;
   display: inline-block;
   margin-right: 25px;
+  background-color: white;
 }
 .short-list--btn {
   cursor: pointer;
@@ -140,3 +141,4 @@
 .short-list--merge-modal .more-btn {
   margin-top: 30px;
 }
+.short-list div, ul, li { background-color: inherit; }

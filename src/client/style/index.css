@@ -263,5 +263,3 @@ h3 {
 .inline-block {
   display: inline-block;
 }
-
-div, ul, li { background-color: inherit; }
