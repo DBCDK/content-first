@@ -5,7 +5,8 @@ import {
   UPDATE_CURRENT_LIST,
   REMOVE_ELEMENT_FROM_LIST,
   ADD_LIST,
-  LIST_LOAD_REQUEST
+  LIST_LOAD_REQUEST,
+  CLEAR_CURRENT_LIST
 } from '../../redux/list.reducer';
 import DragableList from './ListDrag.component';
 import Textarea from 'react-textarea-autosize';
@@ -92,7 +93,14 @@ class ListCreator extends React.Component {
     };
   }
   componentDidMount() {
-    this.props.dispatch({type: LIST_LOAD_REQUEST, id: this.props.id});
+    if (this.props.id) {
+      // gotta load existing list
+      this.props.dispatch({type: LIST_LOAD_REQUEST, id: this.props.id});
+    }
+    else {
+      // this is a new list, so clear current list
+      this.props.dispatch({type: CLEAR_CURRENT_LIST});
+    }
   }
   onSubmit(e) {
     e.preventDefault();

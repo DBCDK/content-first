@@ -36,11 +36,13 @@ export const LIST_LOAD_RESPONSE = 'LIST_LOAD_RESPONSE';
 export const LIST_LOAD_CURRENT_LIST = 'LIST_LOAD_CURRENT_LIST';
 export const ADD_LIST = 'ADD_LIST';
 export const UPDATE_CURRENT_LIST = 'UPDATE_LIST';
+export const CLEAR_CURRENT_LIST = 'CLEAR_CURRENT_LIST';
 export const SAVE_LIST = 'SAVE_LIST';
 export const REMOVE_LIST = 'REMOVE_LIST';
 export const ADD_ELEMENT_TO_LIST = 'ADD_ELEMENT_TO_LIST';
 export const REMOVE_ELEMENT_FROM_LIST = 'REMOVE_ELEMENT_FROM_LIST';
 export const LIST_TOGGLE_ELEMENT = 'LIST_TOGGLE_ELEMENT';
+
 
 const listReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -124,6 +126,9 @@ const listReducer = (state = defaultState, action) => {
     case LIST_LOAD_CURRENT_LIST: {
       return Object.assign({}, state, {currentList: action.currentList});
     }
+    case CLEAR_CURRENT_LIST: {
+      return Object.assign({}, state, {currentList: defaultState.currentList});
+    }
     case LIST_LOAD_RESPONSE: {
       let lists = action.lists;
       const changeMap = lists.reduce((map, list) => {
@@ -138,7 +143,7 @@ const listReducer = (state = defaultState, action) => {
       }
       return Object.assign({}, state, {
         lists,
-        currentList: action.currentList || defaultState.currentList,
+        currentList: action.currentList || state.currentList,
         changeMap
       });
     }

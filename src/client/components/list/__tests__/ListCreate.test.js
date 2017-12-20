@@ -67,7 +67,7 @@ describe('ListCreate', () => {
     const tree = renderer
       .create(
         <Provider store={store}>
-          <ListCreate />
+          <ListCreate id="current-list-id"/>
         </Provider>
       )
       .toJSON();
@@ -81,7 +81,7 @@ describe('ListCreate', () => {
     const tree = renderer
       .create(
         <Provider store={store}>
-          <ListCreate />
+          <ListCreate id="current-list-id"/>
         </Provider>
       )
       .toJSON();
@@ -97,7 +97,7 @@ describe('ListCreate', () => {
     const tree = renderer
       .create(
         <Provider store={store}>
-          <ListCreate />
+          <ListCreate id="current-list-id"/>
         </Provider>
       )
       .toJSON();
@@ -115,7 +115,7 @@ describe('ListCreate', () => {
     const tree = renderer
       .create(
         <Provider store={store}>
-          <ListCreate />
+          <ListCreate id="current-list-id"/>
         </Provider>
       )
       .toJSON();
