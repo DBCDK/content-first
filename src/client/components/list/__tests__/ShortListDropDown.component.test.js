@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import createStore from '../../../redux/Store';
-import ShortListDropDown from '../ShortListDropDown.component';
+import ShortListDropDown from '../ShortListDropDown.container';
 import renderer from 'react-test-renderer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT, SHORTLIST_LOAD_RESPONSE} from '../../../redux/shortlist.reducer';
 

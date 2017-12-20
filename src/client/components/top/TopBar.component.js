@@ -2,7 +2,7 @@ import React from 'react';
 import {HISTORY_PUSH, HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {ON_LOGOUT_REQUEST} from '../../redux/profile.reducer';
 import logo from '../../logo.svg';
-import ShortListDropDown from '../list/ShortListDropDown.component';
+import ShortListDropDown from '../list/ShortListDropDown.container';
 
 export default function TopBar(props) { // eslint-disable-line no-unused-vars
   return (

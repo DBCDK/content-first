@@ -12,9 +12,9 @@ import ProfilePage from './components/profile/ProfilePage.container';
 import TopBar from './components/top/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
-import ListCreator from './components/list/ListCreate.component';
-import Lists from './components/list/Lists.component';
 import ListPage from './components/list/ListPage.component';
+import ListCreator from './components/list/ListCreate.container';
+import Lists from './components/list/Lists.container';
 
 class App extends Component {
   componentWillMount() {
