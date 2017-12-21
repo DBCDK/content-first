@@ -48,7 +48,7 @@ exports[`ListView List is rendered 1`] = `
     className="list"
   >
     <div
-      className="row"
+      className="row simplelist-item mb4"
     >
       <div
         className="meta col-xs-3 tc"
@@ -110,7 +110,7 @@ exports[`ListView List is rendered 1`] = `
       </div>
     </div>
     <div
-      className="row"
+      className="row simplelist-item mb4"
     >
       <div
         className="meta col-xs-3 tc"
@@ -172,7 +172,7 @@ exports[`ListView List is rendered 1`] = `
       </div>
     </div>
     <div
-      className="row"
+      className="row simplelist-item mb4"
     >
       <div
         className="meta col-xs-3 tc"
