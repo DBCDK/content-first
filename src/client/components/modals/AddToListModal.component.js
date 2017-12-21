@@ -19,7 +19,16 @@ export default class AddToListModal extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, defaultState);
+    const customLists = this.props.lists.filter(l => l.type !== SYSTEM_LIST);
+    this.state = Object.assign({}, defaultState, {list: customLists[0] || ''});
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.lists.length < this.props.lists.length) {
+      // list has just been added, lets scroll down and select it
+      this.listsContainer.scrollTop = this.listsContainer.scrollHeight;
+      this.setState({list: this.props.lists[this.props.lists.length - 1]});
+    }
   }
   onDone = () => {
     this.props.dispatch({
@@ -55,7 +64,7 @@ export default class AddToListModal extends React.Component {
         </div>
         <div className="row">
           <div className="col-xs-6">
-            <div className="list-overview">
+            <div className="list-overview" ref={e => (this.listsContainer = e)}>
               {customLists.map(l => {
                 return (
                   <div key={l.id}>
