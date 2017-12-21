@@ -28,7 +28,8 @@ import {
   ON_SHORTLIST_TOGGLE_ELEMENT,
   SHORTLIST_LOAD_REQUEST,
   SHORTLIST_LOAD_RESPONSE,
-  SHORTLIST_APPROVE_MERGE
+  SHORTLIST_APPROVE_MERGE,
+  SHORTLIST_CLEAR
 } from './shortlist.reducer';
 import {
   ADD_LIST,
@@ -138,6 +139,7 @@ export const loggerMiddleware = store => next => action => {
 
 export const shortListMiddleware = store => next => async action => {
   switch (action.type) {
+    case SHORTLIST_CLEAR:
     case SHORTLIST_APPROVE_MERGE:
     case ON_LOGOUT_RESPONSE:
     case ON_SHORTLIST_ADD_ELEMENT:

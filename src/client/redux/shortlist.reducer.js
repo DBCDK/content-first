@@ -9,6 +9,7 @@ export const SHORTLIST_LOAD_REQUEST = 'SHORTLIST_LOAD_REQUEST';
 export const SHORTLIST_LOAD_RESPONSE = 'SHORTLIST_LOAD_RESPONSE';
 export const SHORTLIST_APPROVE_MERGE = 'SHORTLIST_APPROVE_MERGE';
 export const SHORTLIST_REJECT_MERGE = 'SHORTLIST_REJECT_MERGE';
+export const SHORTLIST_CLEAR = 'SHORTLIST_CLEAR';
 
 const defaultState = {
   expanded: false,
@@ -88,6 +89,8 @@ const shortListReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {
         elements: state.elements.filter(e => e.book.pid !== action.pid)
       });
+    case SHORTLIST_CLEAR:
+      return defaultState;
     case ON_LOGOUT_RESPONSE:
       return defaultState;
     default:

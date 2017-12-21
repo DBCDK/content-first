@@ -3,15 +3,14 @@ import {connect} from 'react-redux';
 import Kryds from '../svg/Kryds.svg';
 import BookCover from '../general/BookCover.component';
 import Textarea from 'react-textarea-autosize';
-import {ON_SHORTLIST_REMOVE_ELEMENT} from '../../redux/shortlist.reducer';
+import {ON_SHORTLIST_REMOVE_ELEMENT, SHORTLIST_CLEAR} from '../../redux/shortlist.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 
 export class ShortListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: props.element.origin,
-      addToList: null
+      description: props.element.origin
     };
   }
 
@@ -86,6 +85,11 @@ class ShortList extends React.Component {
               }}
             />
           ))}
+        </div>
+        <div className="list-actions col-xs-12 col-lg-10 text-right">
+          <span className="btn btn-success" onClick={() => this.props.dispatch({
+            type: SHORTLIST_CLEAR
+          })}>RYD LISTEN</span>
         </div>
       </div>
     );
