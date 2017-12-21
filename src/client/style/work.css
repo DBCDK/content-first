@@ -7,10 +7,23 @@
   vertical-align: top;
   margin-bottom: 30px;
 }
+
+.work.simplelist {
+  width: 150px;
+  height: 225px;
+  margin-right: 0;
+}
+
+.work.simplelist .cover-image-wrapper {
+  height: 225px;
+  z-index: initial;
+}
+
 .work * {
   outline: none;
 }
 .work .checkmark-menu {
+  z-index: 11;
   position: absolute;
   right: -20px;
   bottom: -5px;
@@ -78,13 +91,13 @@
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 .cover-image-wrapper {
-  padding: 3px;
-  box-shadow: 1px 1px 20px #666666;
   border-radius: 1px;
-  filter: contrast(1.25);
   transition: all 0.15s ease-in-out;
 }
 .cover-image {
+  padding: 3px;
+  filter: contrast(1.25);
+  box-shadow: 1px 1px 20px #666666;
   height: 100%;
 }
 .cover-image img {

@@ -4,6 +4,7 @@ import './style/App.css';
 import './style/index.css';
 import './style/filterpage.css';
 import './style/work.css';
+import Modal from './components/modals/Modal.container';
 import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
 import WorkPage from './components/work/WorkPage.container';
@@ -13,6 +14,7 @@ import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
 import ListCreator from './components/list/ListCreate.component';
 import Lists from './components/list/Lists.component';
+import ListPage from './components/list/ListPage.component';
 
 class App extends Component {
   componentWillMount() {
@@ -34,8 +36,10 @@ class App extends Component {
       if (pathSplit[2]) {
         if (pathSplit[2] === 'opret') {
           currentPage = <ListCreator />;
-        } else {
+        } else if (pathSplit[3] && pathSplit[3] === 'rediger') {
           currentPage = <ListCreator id={pathSplit[2]} />;
+        } else {
+          currentPage = <ListPage id={pathSplit[2]} />;
         }
       } else {
         currentPage = <Lists />;
@@ -61,6 +65,7 @@ class App extends Component {
         />
         <div style={{height: '50px'}} />
         {currentPage}
+        <Modal />
       </div>
     );
   }

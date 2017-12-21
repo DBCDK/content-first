@@ -8,13 +8,16 @@ import {createTestList, createTestElement} from '../../../utils/testHelper';
 describe('AddToListModal', () => {
   test('modal is hidden', () => {
     const tree = renderer
-      .create(<AddToListModal
-        show={false}
-        work={createTestElement(1)}
-        lists={[]}
-        onClose={() => {}}
-        onDone={() => {}}
-        onAddList={() => {}}/>)
+      .create(
+        <AddToListModal
+          show={false}
+          work={createTestElement(1)}
+          lists={[]}
+          onClose={() => {}}
+          onDone={() => {}}
+          onAddList={() => {}}
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -24,13 +27,16 @@ describe('AddToListModal', () => {
     store.dispatch({type: ADD_LIST, list: createTestList(2)});
 
     const tree = renderer
-      .create(<AddToListModal
-        show={true}
-        work={createTestElement(1)}
-        lists={store.getState().listReducer.lists}
-        onClose={() => {}}
-        onDone={() => {}}
-        onAddList={() => {}}/>)
+      .create(
+        <AddToListModal
+          show={true}
+          work={createTestElement(1)}
+          lists={store.getState().listReducer.lists}
+          onClose={() => {}}
+          onDone={() => {}}
+          onAddList={() => {}}
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

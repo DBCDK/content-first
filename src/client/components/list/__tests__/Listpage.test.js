@@ -1,0 +1,78 @@
+import React from 'react';
+import {Provider} from 'react-redux';
+import ListPage from '../ListPage.component';
+import renderer from 'react-test-renderer';
+import {createStore, combineReducers} from 'redux';
+import listReducer, {ADD_LIST} from '../../../redux/list.reducer';
+
+const reducer = (state, action) => {
+  if (action.type === 'CLEAR_STATE') {
+    return {
+      listReducer: {
+        lists: [],
+        currentList: {
+          title: '',
+          description: '',
+          list: []
+        }
+      }
+    };
+  }
+  return combineReducers({
+    listReducer
+  })(state, action);
+};
+
+const createTestElement = id => {
+  return {
+    book: {
+      pid: 'pid' + id,
+      title: 'some title ' + id,
+      creator: 'some creator' + id
+    },
+    links: {
+      cover: '/cover' + id
+    },
+    description: 'some description' + id
+  };
+};
+
+const createList = id => {
+  return {
+    id: id,
+    title: 'some list',
+    description: 'some description',
+    list: [createTestElement(1), createTestElement(2), createTestElement(3)]
+  };
+};
+
+jest.mock(
+  '../../work/WorkItemConnected.component.js',
+  () => 'WorkItemConnectedMock'
+);
+
+describe('ListView', () => {
+  test('List is rendered', () => {
+    const store = createStore(reducer);
+    store.dispatch({type: ADD_LIST, list: createList('list1')});
+    const tree = renderer
+      .create(
+        <Provider store={store}>
+          <ListPage id="list1" />
+        </Provider>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+  test('no list is rendered when id is invalid', () => {
+    const store = createStore(reducer);
+    const tree = renderer
+      .create(
+        <Provider store={store}>
+          <ListPage id="list1" />
+        </Provider>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});

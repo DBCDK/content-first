@@ -43,7 +43,6 @@ export const ADD_ELEMENT_TO_LIST = 'ADD_ELEMENT_TO_LIST';
 export const REMOVE_ELEMENT_FROM_LIST = 'REMOVE_ELEMENT_FROM_LIST';
 export const LIST_TOGGLE_ELEMENT = 'LIST_TOGGLE_ELEMENT';
 
-
 const listReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_LIST: {
@@ -52,9 +51,18 @@ const listReducer = (state = defaultState, action) => {
       list.description = list.description || '';
       if (!list.id) {
         list.id = uuid.create();
-        return Object.assign({}, state, {lists: [...state.lists, list], currentList: defaultState.currentList});
+        return Object.assign({}, state, {
+          lists: [...state.lists, list],
+          currentList: defaultState.currentList
+        });
       }
-      const lists = state.lists.map(l => (l.id === list.id ? list : l));
+      let lists;
+      if (state.lists.filter(l => l.id === list.id).length > 0) {
+        lists = state.lists.map(l => (l.id === list.id ? list : l));
+      } else {
+        lists = [...state.lists, list];
+      }
+
       return Object.assign({}, state, {
         lists,
         currentList: defaultState.currentList
@@ -64,13 +72,23 @@ const listReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {currentList: defaultState.currentList});
     }
     case ADD_ELEMENT_TO_LIST: {
-      const changeMap = Object.assign({}, state.changeMap, {[action.element.book.pid]: {}});
+      const changeMap = Object.assign({}, state.changeMap, {
+        [action.element.book.pid]: {}
+      });
       if (action.id) {
         const lists = state.lists.map(l => {
           if (l.id === action.id) {
-            if (l.list.filter(e => e.book.pid === action.element.book.pid).length === 0) {
+            if (
+              l.list.filter(e => e.book.pid === action.element.book.pid)
+                .length === 0
+            ) {
               return Object.assign({}, l, {
-                list: [Object.assign({}, action.element, {description: action.description || ''}), ...l.list]
+                list: [
+                  Object.assign({}, action.element, {
+                    description: action.description || ''
+                  }),
+                  ...l.list
+                ]
               });
             }
           }
@@ -88,7 +106,9 @@ const listReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {currentList, changeMap});
     }
     case REMOVE_ELEMENT_FROM_LIST: {
-      const changeMap = Object.assign({}, state.changeMap, {[action.element.book.pid]: {}});
+      const changeMap = Object.assign({}, state.changeMap, {
+        [action.element.book.pid]: {}
+      });
       const list = state.currentList.list.filter(
         element => element.book.pid !== action.element.book.pid
       );
@@ -99,7 +119,9 @@ const listReducer = (state = defaultState, action) => {
     }
     case LIST_TOGGLE_ELEMENT: {
       const {id, element} = action;
-      const changeMap = Object.assign({}, state.changeMap, {[element.book.pid]: {}});
+      const changeMap = Object.assign({}, state.changeMap, {
+        [element.book.pid]: {}
+      });
       if (id) {
         const lists = state.lists.map(l => {
           if (l.id === id) {
@@ -135,15 +157,16 @@ const listReducer = (state = defaultState, action) => {
         list.list.forEach(element => (map[element.book.pid] = {}));
         return map;
       }, {});
-      if (lists.filter((l) => l.id === wannaReadList.id).length === 0) {
+      if (lists.filter(l => l.id === wannaReadList.id).length === 0) {
         lists = [Object.assign({}, wannaReadList), ...lists];
       }
-      if (lists.filter((l) => l.id === didReadList.id).length === 0) {
+      if (lists.filter(l => l.id === didReadList.id).length === 0) {
         lists = [Object.assign({}, didReadList), ...lists];
       }
       return Object.assign({}, state, {
         lists,
-        currentList: action.currentList || state.currentList,
+        currentList:
+          action.currentList || state.currentList || defaultState.currentList,
         changeMap
       });
     }

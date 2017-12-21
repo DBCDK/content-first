@@ -40,10 +40,7 @@ import {
   REMOVE_ELEMENT_FROM_LIST
 } from './list.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
-import {
-  saveLists,
-  loadLists
-} from '../utils/requestLists';
+import {saveLists, loadLists} from '../utils/requestLists';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
