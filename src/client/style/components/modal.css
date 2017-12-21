@@ -60,3 +60,4 @@
 .modal-window--buttons .btn {
   min-width: 80px;
 }
+.modal-window div, ul, li { background-color: inherit; }

@@ -12,9 +12,10 @@ import ProfilePage from './components/profile/ProfilePage.container';
 import TopBar from './components/top/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
-import ListCreator from './components/list/ListCreate.component';
-import Lists from './components/list/Lists.component';
 import ListPage from './components/list/ListPage.component';
+import ListCreator from './components/list/ListCreate.container';
+import Lists from './components/list/Lists.container';
+import ShortList from './components/list/ShortList.container';
 
 class App extends Component {
   componentWillMount() {
@@ -44,6 +45,8 @@ class App extends Component {
       } else {
         currentPage = <Lists />;
       }
+    } else if (pathSplit[1] === 'huskeliste') {
+      currentPage = <ShortList />;
     } else {
       // check if current path matches a belt
       this.props.beltsState.belts.forEach(belt => {

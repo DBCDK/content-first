@@ -53,4 +53,7 @@
   cursor: pointer;
   font-size: 24px;
   padding: 0px;
+  background: #fff;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }

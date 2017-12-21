@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import ListCreate from '../ListCreate.component';
+import ListCreate from '../ListCreate.container';
 import renderer from 'react-test-renderer';
 import {createStore, combineReducers} from 'redux';
 import listReducer, {
