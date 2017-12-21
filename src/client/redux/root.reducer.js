@@ -6,6 +6,7 @@ import workReducer from './work.reducer';
 import profileReducer from './profile.reducer';
 import listReducer from './list.reducer';
 import shortListReducer from './shortlist.reducer';
+import modalReducer from './modal.reducer';
 
 // const LOCAL_STORAGE_KEY = 'contentfirst';
 
@@ -25,7 +26,8 @@ const combined = combineReducers({
   profileReducer,
   routerReducer,
   workReducer,
-  shortListReducer
+  shortListReducer,
+  modalReducer
 });
 
 const rootReducer = (state = {}, action) => {

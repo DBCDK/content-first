@@ -1,0 +1,104 @@
+/* Text align */
+
+.tl {
+  text-align: left;
+}
+.tr {
+  text-align: right;
+}
+.tc {
+  text-align: center;
+}
+
+/* text transforms */
+.h-underline {
+  display: block;
+  width: 100%;
+  border-bottom: solid 2px rgba(0, 0, 0, 1);
+  line-height: 1;
+  font-weight: 700;
+}
+
+/* typography */
+.t-body {
+  font-family: var(--secondary-font);
+}
+
+.t-title {
+  font-family: var(--primary-font);
+}
+
+
+.h4 {
+  font-size: 16px;
+}
+.h-tight {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* spacing */
+.mb4 {
+  margin-bottom: 4rem;
+}
+
+.mb3 {
+  margin-bottom: 2rem;
+}
+
+.mb2 {
+  margin-bottom: 2rem;
+}
+
+.mb1 {
+  margin-bottom: 1rem;
+}
+
+/* displays */
+.flex {
+  display: flex;
+}
+
+/* images */
+.small {
+  width: 50px;
+  height: 50px;
+}
+.cover  {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.round {
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+/* Work */
+
+.w-title {
+  font-family: var(--primary-font);
+  color: black;
+  font-weight: 700;
+  font-style: italic;
+}
+.w-creator {
+  font-family: var(--primary-font);
+  color: var(--mediumgrey);
+}
+
+/* profile view */
+.profile-list {
+  display: flex;
+  align-items: flex-end;
+}
+.profile-list .profile-name {
+  margin-left: 1rem;
+}
+.profile-list .profile-image {
+  width: 40px;
+  height: 40px;
+}

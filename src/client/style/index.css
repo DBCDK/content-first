@@ -5,6 +5,7 @@
   --green:  #6da262;
   --greybrown: #897571;
   --lightgrey: #d9d9d9;
+  --mediumgrey: #545454;
   --darkgrey: #333333;
   --primary-font: 'Lora', serif;
   --secondary-font: 'Raleway', sans-serif;
@@ -15,6 +16,7 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 /* Import util classes */
+@import './utils/utils.css';
 @import './utils/flex.css';
 @import './utils/grid.css';
 @import './utils/spinner.css';
@@ -37,6 +39,7 @@
 @import './components/checkmarkmenu.css';
 @import './components/addtolistmodal.css';
 @import './components/workitemsmall.css';
+@import './components/simplelist.css';
 
 html {
   /* Avoid content from jumping when modal is opened/closed */

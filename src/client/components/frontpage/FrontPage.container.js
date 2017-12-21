@@ -2,25 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Belt from './Belt.component';
 import ScrollableBelt from '../general/ScrollableBelt.component';
-import WorkItem from '../work/WorkItem.component';
+import WorkItem from '../work/WorkItemConnected.component';
 import CreateProfile from '../profile/CreateProfile.component';
 import {ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
-import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
-import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST, ADD_LIST} from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {getLeaves} from '../../utils/filters';
-import AddToListModal from '../list/AddToListModal.component';
 
 class FrontPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      addToList: null
-    };
-  }
-
   componentDidMount() {
     // Fetch works for each belt
     this.props.beltsState.belts.forEach(belt => {
@@ -38,18 +28,22 @@ class FrontPage extends React.Component {
 
   renderBelts() {
     return (
-      <div className='belts col-xs-11 col-centered'>
+      <div className="belts col-xs-11 col-centered">
         {this.props.beltsState.belts.map((belt, idx) => {
           if (!belt.onFrontPage) {
             return null;
           }
 
           const allFilters = getLeaves(this.props.filterState.filters);
-          const selectedFilters = this.props.filterState.beltFilters[belt.name].map(id => allFilters.find(filter => filter.id === id));
+          const selectedFilters = this.props.filterState.beltFilters[
+            belt.name
+          ].map(id => allFilters.find(filter => filter.id === id));
           const links = belt.links.map(beltName => {
             return {
               title: beltName,
-              filters: this.props.filterState.beltFilters[beltName].map(id => allFilters.find(filter => filter.id === id))
+              filters: this.props.filterState.beltFilters[beltName].map(id =>
+                allFilters.find(filter => filter.id === id)
+              )
             };
           });
 
@@ -58,63 +52,48 @@ class FrontPage extends React.Component {
             remembered[e.book.pid] = true;
           });
 
-          return <Belt
-            key={idx}
-            belt={belt}
-            links={links}
-            filters={selectedFilters}
-            onTagClick={(tagId) => {
-              this.props.dispatch({type: ON_TAG_TOGGLE, tagId, beltId: idx});
-            }}
-            onMoreClick={(beltName) => {
-              this.props.dispatch({type: HISTORY_PUSH, path: beltNameToPath(beltName)});
-            }}>
-            {belt.requireLogin && <CreateProfile/>}
-            {!belt.requireLogin && <ScrollableBelt works={belt.works} scrollInterval={3}>
-              {belt.works && belt.works.map((work, workIdx) => {
-                return <WorkItem
-                  idx={workIdx}
-                  id={`work-${workIdx}`}
-                  key={work.book.pid}
-                  changeMap={this.props.listState.changeMap}
-                  isLoggedIn={this.props.profileState.user.isLoggedIn}
-                  work={work}
-                  lists={this.props.listState.lists}
-                  onCoverClick={(pid) => {
-                    this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
-                  }}
-                  onRememberClick={(element) => {
-                    this.props.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element, origin: `Fra "${belt.name}"`});
-                  }}
-                  marked={remembered[work.book.pid]}
-                  onAddToList={list => {
-                    this.props.dispatch({type: LIST_TOGGLE_ELEMENT, id: list.id, element: work});
-                  }}
-                  onAddToListOpenModal={() => this.setState({addToList: work})} />;
-              })}
-            </ScrollableBelt>}
-          </Belt>;
+          return (
+            <Belt
+              key={idx}
+              belt={belt}
+              links={links}
+              filters={selectedFilters}
+              onTagClick={tagId => {
+                this.props.dispatch({type: ON_TAG_TOGGLE, tagId, beltId: idx});
+              }}
+              onMoreClick={beltName => {
+                this.props.dispatch({
+                  type: HISTORY_PUSH,
+                  path: beltNameToPath(beltName)
+                });
+              }}
+            >
+              {belt.requireLogin && <CreateProfile />}
+              {!belt.requireLogin && (
+                <ScrollableBelt works={belt.works} scrollInterval={3}>
+                  {belt.works &&
+                    belt.works.map(work => (
+                      <WorkItem
+                        work={work}
+                        key={work.book.pid}
+                        origin={`Fra "${belt.name}"`}
+                      />
+                    ))}
+                </ScrollableBelt>
+              )}
+            </Belt>
+          );
         })}
-        <AddToListModal
-          show={this.state.addToList}
-          work={this.state.addToList}
-          lists={this.props.listState.lists}
-          onClose={() => this.setState({addToList: null})}
-          onDone={(work, description, list) => {
-            this.props.dispatch({type: ADD_ELEMENT_TO_LIST, id: list.id, element: work, description});
-            this.setState({addToList: null});
-          }}
-          onAddList={(listName) => this.props.dispatch({type: ADD_LIST, list: {title: listName, list: []}})}/>
       </div>
     );
   }
 
   render() {
     return (
-      <div className='frontpage'>
-        <div className='row frontpage-image'/>
-        <div className='row frontpage-image-credits text-right'>
-          <a href='https://www.flickr.com/people/fatseth/'>Foto ©G Morel</a>
+      <div className="frontpage">
+        <div className="row frontpage-image" />
+        <div className="row frontpage-image-credits text-right">
+          <a href="https://www.flickr.com/people/fatseth/">Foto ©G Morel</a>
         </div>
         {this.renderBelts()}
       </div>
@@ -123,7 +102,7 @@ class FrontPage extends React.Component {
 }
 export default connect(
   // Map redux state to props
-  (state) => {
+  state => {
     return {
       beltsState: state.beltsReducer,
       filterState: state.filterReducer,
