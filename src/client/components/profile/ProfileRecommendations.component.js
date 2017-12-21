@@ -6,12 +6,23 @@ export const ProfileRecommendation = ({pid}) => (
   </div>
 );
 
-const ProfileRecommendations = ({recommendations, isLoading= false}) => (
+const ProfileRecommendations = ({recommendations, isLoading = false}) => (
   <div className="profile-recommendations">
     <div className="profile-recommendations-list">
-      {recommendations.map(recommendation => <ProfileRecommendation key={recommendation.pid} pid={recommendation.pid} />)}
+      {recommendations.map(recommendation => (
+        <ProfileRecommendation
+          key={recommendation.pid}
+          pid={recommendation.pid}
+        />
+      ))}
       <div className="profile-recommendations-loading-wrapper">
-        {isLoading ? <span className="profile-recommendations-loading"><span className="spinner"/></span> : ''}
+        {isLoading ? (
+          <span className="profile-recommendations-loading">
+            <span className="spinner" />
+          </span>
+        ) : (
+          ''
+        )}
       </div>
     </div>
     <div className="profile-topbar-label text-left raleway">

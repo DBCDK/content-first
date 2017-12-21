@@ -14,14 +14,17 @@ const getWidth = (text, className) => {
   return width;
 };
 
-const Dropdown = (props) => {
+const Dropdown = props => {
   return (
     <select
-      style={{width: getWidth(props.selected, props.className) + props.margin + 'px'}}
+      style={{
+        width: getWidth(props.selected, props.className) + props.margin + 'px'
+      }}
       value={props.selected}
       onChange={e => {
         props.onChange(e.target.value);
-      }}>
+      }}
+    >
       {props.options.map((option, idx) => <option key={idx}>{option}</option>)}
     </select>
   );

@@ -1,7 +1,11 @@
 import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
-import {ON_PROFILE_RECOMMENDATIONS_RESPONSE, ON_USER_DETAILS_RESPONSE, ON_LOGOUT_RESPONSE} from '../redux/profile.reducer';
+import {
+  ON_PROFILE_RECOMMENDATIONS_RESPONSE,
+  ON_USER_DETAILS_RESPONSE,
+  ON_LOGOUT_RESPONSE
+} from '../redux/profile.reducer';
 import {getLeaves} from './filters';
 import profiles from '../data/ranked-profiles.json';
 import similar from '../data/similar-pids.json';
@@ -11,7 +15,6 @@ import {setItem, getItem} from '../utils/localstorage';
 
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;
-
 
 const filter = (works, selectedTitles) => {
   // Lets perform some client side filtering of stuff which is not yet
@@ -53,11 +56,10 @@ const sort = (works, profile) => {
   });
 
   // will sort in place - no new array returned
-  works.sort((w1, w2) => w1.score-w2.score);
+  works.sort((w1, w2) => w1.score - w2.score);
 };
 
 export const fetchWork = (pid, dispatch) => {
-
   // mapping pid to score
   const similarList = similar[pid] || [];
   const scores = {};
@@ -67,31 +69,34 @@ export const fetchWork = (pid, dispatch) => {
 
   const getWork = request.get(`/v1/book/${pid}`);
   const getMetaTags = request.get(`/v1/tags/${pid}`);
-  const getSimilarWorks = request.get('/v1/books/')
+  const getSimilarWorks = request
+    .get('/v1/books/')
     .query({pids: similarList.map(o => o.pid)});
 
-  Promise.all([getWork, getMetaTags, getSimilarWorks]).then(responses => {
-    const work = JSON.parse(responses[0].text);
-    const tags = JSON.parse(responses[1].text).data.tags;
-    const similarWorks = JSON.parse(responses[2].text).data.map(w => {
-      w.score = scores[w.book.pid];
-      return w;
+  Promise.all([getWork, getMetaTags, getSimilarWorks])
+    .then(responses => {
+      const work = JSON.parse(responses[0].text);
+      const tags = JSON.parse(responses[1].text).data.tags;
+      const similarWorks = JSON.parse(responses[2].text).data.map(w => {
+        w.score = scores[w.book.pid];
+        return w;
+      });
+
+      work.tags = [];
+      tags.forEach(t => {
+        if (taxonomyMap[t]) {
+          work.tags.push(taxonomyMap[t]);
+        }
+      });
+
+      work.similar = similarWorks;
+      work.similar.sort((w1, w2) => w2.score - w1.score);
+
+      dispatch({type: ON_WORK_RESPONSE, response: work});
+    })
+    .catch(error => {
+      dispatch({type: ON_WORK_RESPONSE, pid, error});
     });
-
-    work.tags = [];
-    tags.forEach(t => {
-      if (taxonomyMap[t]) {
-        work.tags.push(taxonomyMap[t]);
-      }
-    });
-
-    work.similar = similarWorks;
-    work.similar.sort((w1, w2) => w2.score-w1.score);
-
-    dispatch({type: ON_WORK_RESPONSE, response: work});
-  }).catch(error => {
-    dispatch({type: ON_WORK_RESPONSE, pid, error});
-  });
 };
 
 export const fetchBeltWorks = (belt, filterState, dispatch) => {
@@ -113,7 +118,8 @@ export const fetchBeltWorks = (belt, filterState, dispatch) => {
     .filter(f => f.custom && allSelected.indexOf(f.id) >= 0)
     .map(f => f.title);
 
-  request.get('/v1/recommendations')
+  request
+    .get('/v1/recommendations')
     .query({tags: selectedTags})
     .end(function(err, res) {
       if (err) {
@@ -128,30 +134,30 @@ export const fetchBeltWorks = (belt, filterState, dispatch) => {
 
       dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, response: works});
     });
-
 };
 
 export const fetchProfileRecommendations = (profileState, dispatch) => {
-  requestProfileRecommendations().then(recommendations => dispatch({type: ON_PROFILE_RECOMMENDATIONS_RESPONSE, recommendations}));
+  requestProfileRecommendations().then(recommendations =>
+    dispatch({type: ON_PROFILE_RECOMMENDATIONS_RESPONSE, recommendations})
+  );
 };
 
 export const fetchUser = (dispatch, cb) => {
-  request.get('/v1/user')
-    .end(function(error, res) {
-      if (error) {
-        dispatch({type: ON_USER_DETAILS_RESPONSE, error});
-      }
-      else {
-        const user = JSON.parse(res.text).data;
-        dispatch({type: ON_USER_DETAILS_RESPONSE, user});
-      }
-      cb();
-    });
+  request.get('/v1/user').end(function(error, res) {
+    if (error) {
+      dispatch({type: ON_USER_DETAILS_RESPONSE, error});
+    } else {
+      const user = JSON.parse(res.text).data;
+      dispatch({type: ON_USER_DETAILS_RESPONSE, user});
+    }
+    cb();
+  });
 };
 
-export const logout = (dispatch) => {
+export const logout = dispatch => {
   dispatch({type: ON_LOGOUT_RESPONSE});
-  document.body.innerHTML += '<form id="logoutform" action="/v1/logout" method="post"></form>';
+  document.body.innerHTML +=
+    '<form id="logoutform" action="/v1/logout" method="post"></form>';
   document.getElementById('logoutform').submit();
 };
 
@@ -164,18 +170,19 @@ export const saveShortList = (elements, isLoggedIn) => {
         origin: e.origin
       };
     });
-    request.put('/v1/shortlist')
+    request
+      .put('/v1/shortlist')
       .send(payload)
       .end(function(error) {
         if (error) {
-          console.log('error persisting shortlist', error) // eslint-disable-line
+          console.log('error persisting shortlist', error); // eslint-disable-line
         }
       });
   }
 };
 
-export const loadShortList = async (isLoggedIn) => {
-  const localStorageElements= getItem(SHORT_LIST_KEY, SHORT_LIST_VERSION, []);
+export const loadShortList = async isLoggedIn => {
+  const localStorageElements = getItem(SHORT_LIST_KEY, SHORT_LIST_VERSION, []);
   if (!isLoggedIn) {
     return {localStorageElements};
   }
@@ -194,9 +201,8 @@ export const loadShortList = async (isLoggedIn) => {
     databaseElements.forEach(e => (e.book = worksMap[e.pid].book));
 
     return {localStorageElements, databaseElements};
-  }
-  catch (e) {
-    console.log('Error loading shortlist', e) // eslint-disable-line
+  } catch (e) {
+    console.log('Error loading shortlist', e); // eslint-disable-line
     return {localStorageElements, databaseElements: []};
   }
 };

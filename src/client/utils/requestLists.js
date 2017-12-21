@@ -5,7 +5,7 @@ const LIST_KEY = 'contentFirstLists';
 const CURRENT_LIST_KEY = 'contentFirstCurrentList';
 const LIST_VERSION = 1;
 
-const listToPayload = (list) => {
+const listToPayload = list => {
   const listCopy = Object.assign({}, list);
   listCopy.list = listCopy.list.map(element => {
     return {
@@ -15,7 +15,7 @@ const listToPayload = (list) => {
   });
   return listCopy;
 };
-const payloadToList = async (payload) => {
+const payloadToList = async payload => {
   const result = Object.assign({}, payload);
   const pids = result.list.map(obj => obj.pid);
   if (pids.length === 0) {
@@ -36,11 +36,12 @@ export const saveLists = (lists, isLoggedIn = false) => {
   if (isLoggedIn) {
     // Save on database
     const listsPayload = lists.map(l => listToPayload(l));
-    request.put('/v1/lists')
+    request
+      .put('/v1/lists')
       .send(listsPayload)
       .end(function(error) {
         if (error) {
-          console.log('error persisting lists', error) // eslint-disable-line
+          console.log('error persisting lists', error); // eslint-disable-line
         }
       });
   }

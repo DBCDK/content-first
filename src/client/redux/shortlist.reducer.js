@@ -20,7 +20,13 @@ const defaultState = {
 const shortListReducer = (state = defaultState, action) => {
   switch (action.type) {
     case SHORTLIST_APPROVE_MERGE:
-      return Object.assign({}, state, {elements: [...state.pendingMerge.diff, ...state.pendingMerge.databaseElements], pendingMerge: null});
+      return Object.assign({}, state, {
+        elements: [
+          ...state.pendingMerge.diff,
+          ...state.pendingMerge.databaseElements
+        ],
+        pendingMerge: null
+      });
     case SHORTLIST_LOAD_REQUEST:
       return Object.assign({}, state, {elements: [], isLoading: true});
     case SHORTLIST_LOAD_RESPONSE: {
@@ -30,7 +36,11 @@ const shortListReducer = (state = defaultState, action) => {
       if (action.databaseElements) {
         // since databaseElements is set we might have a pending merge
         // lets check if there exist localStorageElements not contained in databaseElements
-        const diff = differenceBy(action.localStorageElements, action.databaseElements, 'book.pid');
+        const diff = differenceBy(
+          action.localStorageElements,
+          action.databaseElements,
+          'book.pid'
+        );
         if (diff.length > 0) {
           pendingMerge = {
             localStorageElements: action.localStorageElements,
@@ -40,30 +50,44 @@ const shortListReducer = (state = defaultState, action) => {
         }
       }
 
-      return Object.assign({}, state, {elements, isLoading: false, pendingMerge});
+      return Object.assign({}, state, {
+        elements,
+        isLoading: false,
+        pendingMerge
+      });
     }
     case ON_SHORTLIST_TOGGLE_ELEMENT: {
-      const removed = state.elements.filter(e => e.book.pid !== action.element.book.pid);
+      const removed = state.elements.filter(
+        e => e.book.pid !== action.element.book.pid
+      );
       if (removed.length < state.elements.length) {
         return Object.assign({}, state, {elements: removed});
       }
       action.element.origin = action.origin;
-      return Object.assign({}, state, {elements: [action.element, ...state.elements]});
+      return Object.assign({}, state, {
+        elements: [action.element, ...state.elements]
+      });
     }
     case ON_SHORTLIST_ADD_ELEMENT: {
-      const removed = state.elements.filter(e => e.book.pid !== action.element.book.pid);
+      const removed = state.elements.filter(
+        e => e.book.pid !== action.element.book.pid
+      );
       if (removed.length < state.elements.length) {
         return state;
       }
       action.element.origin = action.origin;
-      return Object.assign({}, state, {elements: [action.element, ...state.elements]});
+      return Object.assign({}, state, {
+        elements: [action.element, ...state.elements]
+      });
     }
     case ON_SHORTLIST_EXPAND:
       return Object.assign({}, state, {expanded: true});
     case ON_SHORTLIST_COLLAPSE:
       return Object.assign({}, state, {expanded: false});
     case ON_SHORTLIST_REMOVE_ELEMENT:
-      return Object.assign({}, state, {elements: state.elements.filter(e => e.book.pid !== action.pid)});
+      return Object.assign({}, state, {
+        elements: state.elements.filter(e => e.book.pid !== action.pid)
+      });
     case ON_LOGOUT_RESPONSE:
       return defaultState;
     default:

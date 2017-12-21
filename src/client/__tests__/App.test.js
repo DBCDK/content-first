@@ -11,7 +11,11 @@ jest.mock('../data/exportTaxonomy.json', () => {
 it('renders without crashing', () => {
   window.$ = () => ({tooltip: () => {}}); // mock jquery tooltip
   const tree = renderer
-    .create(<Provider store={createStore()}><App /></Provider>)
+    .create(
+      <Provider store={createStore()}>
+        <App />
+      </Provider>
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

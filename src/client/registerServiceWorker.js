@@ -37,8 +37,7 @@ export default function register() {
       if (!isLocalhost) {
         // Is not local host. Just register service worker
         registerValidSW(swUrl);
-      }
-      else {
+      } else {
         // This is running on localhost. Lets check if a service worker still exists or not.
         checkValidServiceWorker(swUrl);
       }
@@ -60,8 +59,7 @@ function registerValidSW(swUrl) {
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
               console.log('New content is available; please refresh.');
-            }
-            else {
+            } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
@@ -91,8 +89,7 @@ function checkValidServiceWorker(swUrl) {
             window.location.reload();
           });
         });
-      }
-      else {
+      } else {
         // Service worker found. Proceed as normal.
         registerValidSW(swUrl);
       }

@@ -13,12 +13,14 @@ export default class TouchHover extends React.Component {
   render() {
     return (
       <div
-        className={`${this.props.className ? this.props.className : ''}${this.state.touches > 0 ? ' touch-hover' : ''}`}
+        className={`${this.props.className ? this.props.className : ''}${
+          this.state.touches > 0 ? ' touch-hover' : ''
+        }`}
         tabIndex="1"
         onTouchEnd={() => {
           this.setState({touching: true});
         }}
-        onClick={(e) => {
+        onClick={e => {
           let touches = this.state.touches;
           if (this.state.touching) {
             touches++;
@@ -30,7 +32,8 @@ export default class TouchHover extends React.Component {
         }}
         onBlur={() => {
           this.setState({touches: 0});
-        }}>
+        }}
+      >
         {this.props.children}
       </div>
     );

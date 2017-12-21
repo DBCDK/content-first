@@ -28,8 +28,7 @@ export const getItem = (key, version, defaultValue) => {
       return defaultValue;
     }
     return parsed.value;
-  }
-  catch (e) {
+  } catch (e) {
     console.log(`Could not parse localstorage item with key=${key}`); // eslint-disable-line
     return defaultValue;
   }

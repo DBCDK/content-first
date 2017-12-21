@@ -35,33 +35,38 @@ export class ShortListItem extends React.Component {
               </div>
             </div>
           </div>
-          <div className="add-to-list col-xs-3">
-            Tilføj til liste
-          </div>
-          <div className="order col-xs-3">
-            Bestil
-          </div>
-          <img src={Kryds} alt="remove" className="remove-btn" onClick={this.props.onRemove}/>
+          <div className="add-to-list col-xs-3">Tilføj til liste</div>
+          <div className="order col-xs-3">Bestil</div>
+          <img
+            src={Kryds}
+            alt="remove"
+            className="remove-btn"
+            onClick={this.props.onRemove}
+          />
         </div>
       </div>
     );
   }
 }
 class ShortList extends React.Component {
-
   render() {
     const {elements} = this.props.shortListState;
     return (
       <div className="short-list-page col-xs-11 col-centered">
         <div className="page-header-1">Huskeliste</div>
         <div className="items">
-          {elements.map(e =>
+          {elements.map(e => (
             <ShortListItem
               key={e.book.pid}
               element={e}
-              onRemove={() => this.props.dispatch({type: ON_SHORTLIST_REMOVE_ELEMENT, pid: e.book.pid})}
+              onRemove={() =>
+                this.props.dispatch({
+                  type: ON_SHORTLIST_REMOVE_ELEMENT,
+                  pid: e.book.pid
+                })
+              }
             />
-          )}
+          ))}
         </div>
       </div>
     );
@@ -69,7 +74,7 @@ class ShortList extends React.Component {
 }
 export default connect(
   // Map redux state to props
-  (state) => {
+  state => {
     return {shortListState: state.shortListReducer};
   }
 )(ShortList);

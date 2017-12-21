@@ -12,8 +12,14 @@ class Image extends React.Component {
         alt=""
         src={this.props.urls[this.state.current]}
         onError={() => {
-          this.setState({current: Math.min(this.state.current+1, this.props.urls.length-1)});
-        }}/>
+          this.setState({
+            current: Math.min(
+              this.state.current + 1,
+              this.props.urls.length - 1
+            )
+          });
+        }}
+      />
     );
   }
 }
