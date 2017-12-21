@@ -4,12 +4,13 @@ import Kryds from '../svg/Kryds.svg';
 import BookCover from '../general/BookCover.component';
 import Textarea from 'react-textarea-autosize';
 import {ON_SHORTLIST_REMOVE_ELEMENT} from '../../redux/shortlist.reducer';
+import {OPEN_MODAL} from '../../redux/modal.reducer';
 
 export class ShortListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: '',
+      description: props.element.origin,
       addToList: null
     };
   }
@@ -31,15 +32,23 @@ export class ShortListItem extends React.Component {
                 <Textarea
                   className="form-control description"
                   name="item-description"
-                  placeholder={this.props.element.origin}
+                  placeholder={'Skriv en beskrivelse'}
                   onChange={e => this.setState({description: e.target.value})}
                   value={this.state.description}
                 />
               </div>
             </div>
           </div>
-          <div className="add-to-list col-xs-3">Tilføj til liste</div>
-          <div className="order col-xs-3">Bestil til dit bibliotek</div>
+          <div className="add-to-list col-xs-3">
+            <span onClick={this.props.onAddToList}>
+              Tilføj til liste<span className="glyphicon glyphicon-copy" />
+            </span>
+          </div>
+          <div className="order-book col-xs-3">
+            <span>
+              Bestil til dit bibliotek<span className="glyphicon glyphicon-road" />
+            </span>
+          </div>
           <img
             src={Kryds}
             alt="remove"
@@ -68,7 +77,13 @@ class ShortList extends React.Component {
                   pid: e.book.pid
                 })
               }
-              onAddToList={() => this.setState({addElement: e})}
+              onAddToList={() => {
+                this.props.dispatch({
+                  type: OPEN_MODAL,
+                  modal: 'addToList',
+                  context: e
+                });
+              }}
             />
           ))}
         </div>

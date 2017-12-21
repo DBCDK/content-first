@@ -32,8 +32,8 @@
   right: 10px;
   top: 60px;
   z-index: 1100;
-  border: 1px solid rgba(0,0,0,.15);
-  box-shadow: 0 2px 6px rgba(0,0,0,.175);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.175);
   font-family: var(--secondary-font);
   transition: all 0.15s ease-in-out;
   opacity: 1;
@@ -43,13 +43,13 @@
   visibility: hidden;
   transition: all 0.15s ease-in-out;
   opacity: 0;
-  right: -10px
+  right: -10px;
 }
 .short-list--header {
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
   text-align: center;
-  margin: 1em
+  margin: 1em;
 }
 .short-list--empty-text {
   margin: 50px;
@@ -61,9 +61,9 @@
   padding-bottom: 10px;
 }
 .short-list-element:after {
-    content: " ";
-    display: block;
-    clear: both;
+  content: ' ';
+  display: block;
+  clear: both;
 }
 .short-list-element:last-child {
   border-bottom: 0;
@@ -78,7 +78,7 @@
   display: inline-block;
   float: left;
   padding: 2px;
-  box-shadow: 0 3px 4px rgba(0,0,0,.175);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.175);
 }
 .short-list-element--cover-image img {
   max-width: 50px;
@@ -103,7 +103,7 @@
 .short-list-element--taxonomy-description {
   color: var(--blue);
   white-space: nowrap;
-  overflow:hidden !important;
+  overflow: hidden !important;
   text-overflow: ellipsis;
 }
 .short-list-element--origin {
@@ -127,7 +127,6 @@
   margin: 50px 0 30px 0;
 }
 .short-list--merge-modal {
-
   width: 300px !important;
 }
 .short-list--merge-modal .work-list {
@@ -179,9 +178,10 @@
   width: 200px;
   margin-top: 10px;
 }
-.short-list-page .add-to-list .glyphicon {
+.short-list-page .glyphicon {
   margin-left: 5px;
 }
-.short-list-page .add-to-list > span {
+.short-list-page .add-to-list > span,
+.short-list-page .order-book > span {
   cursor: pointer;
 }
