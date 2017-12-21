@@ -41,6 +41,7 @@
 @import './components/workitemsmall.css';
 @import './components/simplelist.css';
 @import './components/linebehindtext.css';
+@import './components/bookcover.css';
 
 html {
   /* Avoid content from jumping when modal is opened/closed */
@@ -262,4 +263,13 @@ h3 {
 
 .inline-block {
   display: inline-block;
+}
+
+.page-header-1 {
+  font-size: 30px;
+  font-family: var(--primary-font);
+  font-weight: bold;
+  text-decoration: underline;
+  text-align: left;
+  margin-top: 40px;
 }

@@ -7,6 +7,7 @@ import Modal from '../general/Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
 import LineBehindText from '../general/LineBehindText.component';
 import {ON_SHORTLIST_EXPAND, ON_SHORTLIST_COLLAPSE, ON_SHORTLIST_REMOVE_ELEMENT, SHORTLIST_APPROVE_MERGE} from '../../redux/shortlist.reducer';
+import {HISTORY_PUSH} from '../../redux/middleware';
 
 const SHORT_LIST_MAX_LENGTH = 3;
 
@@ -50,7 +51,11 @@ const ShortListContent = (props) => {
         {props.children}
       </div>
       {moreLabel && <div className="short-list--more-elements"><LineBehindText label={moreLabel} /></div>}
-      {moreLabel && <div className="short-list--more-btn text-center"><span className="btn btn-default text-center">SE HELE LISTEN</span></div>}
+      {moreLabel && <div className="short-list--more-btn text-center">
+        <span className="btn btn-default text-center" onClick={props.onViewShortList}>
+          SE HELE LISTEN
+        </span>
+      </div>}
     </div>
   );
 };
@@ -76,7 +81,12 @@ class ShortListDropdown extends React.Component {
           expanded={expanded}
           elements={elements}
           onClose={() => this.props.dispatch({type: ON_SHORTLIST_COLLAPSE})
-          }>
+          }
+          onViewShortList={() => {
+            this.props.dispatch({type: HISTORY_PUSH, path: '/huskeliste'});
+            this.props.dispatch({type: ON_SHORTLIST_COLLAPSE});
+          }}
+        >
           {elements && elements.slice(0, SHORT_LIST_MAX_LENGTH).map(element => {
             return <ShortListElement
               key={element.book.pid}
@@ -102,7 +112,17 @@ class ShortListDropdown extends React.Component {
           {merged && merged.length > SHORT_LIST_MAX_LENGTH &&
             <div>
               <LineBehindText label={merged.length-SHORT_LIST_MAX_LENGTH > 1 ? `og ${merged.length-SHORT_LIST_MAX_LENGTH} andre bøger` : '1 anden bog'} />
-              <div className="more-btn text-center"><span className="btn btn-default text-center">SE HELE HUSKELISTEN</span></div>
+              <div className="more-btn text-center">
+                <span
+                  className="btn btn-default text-center"
+                  onClick={() => {
+                    this.props.dispatch({type: HISTORY_PUSH, path: '/huskeliste'});
+                    this.props.dispatch({type: ON_SHORTLIST_COLLAPSE});
+                  }}
+                >
+                  SE HELE HUSKELISTEN
+                </span>
+              </div>
             </div>
           }
         </Modal>

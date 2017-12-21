@@ -252,6 +252,7 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
           >
             <span
               className="btn btn-default text-center"
+              onClick={[Function]}
             >
               SE HELE HUSKELISTEN
             </span>
@@ -448,6 +449,7 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
     >
       <span
         className="btn btn-default text-center"
+        onClick={[Function]}
       >
         SE HELE LISTEN
       </span>

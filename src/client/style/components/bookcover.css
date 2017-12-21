@@ -1,0 +1,10 @@
+.book-cover {
+  padding: 2px;
+  box-shadow: 0 1px 6px rgba(0,0,0,.275);
+}
+.book-cover {
+  display: inline-block;
+}
+.book-cover img {
+  height: 100%;
+}

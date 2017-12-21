@@ -142,3 +142,38 @@
   margin-top: 30px;
 }
 .short-list div, ul, li { background-color: inherit; }
+.short-list-page .items {
+  margin-top: 40px;
+}
+.short-list-page .items .item {
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+}
+.short-list-page .items .item:first-child {
+  border-top: 1px solid lightgray;
+}
+.short-list-page .remove-btn {
+  position: absolute;
+  right: 0px;
+  /*top: 10px;*/
+  cursor: pointer;
+  width: 10px;
+}
+.short-list-page .book-cover {
+  height: 60px;
+  float: left;
+}
+.short-list-page .item {
+  font-family: var(--primary-font);
+}
+.short-list-page .title {
+  font-style: italic;
+  font-weight: bold;
+}
+.short-list-page .creator {
+  color: grey;
+}
+.short-list-page textarea {
+  resize: none;
+  width: 200px;
+}
