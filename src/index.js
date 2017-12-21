@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import App from './client/App';
-import registerServiceWorker from './client/registerServiceWorker';
+// import registerServiceWorker from './client/registerServiceWorker';
 import createStore from './client/redux/Store';
 import {loggerMiddleware, requestMiddleware, profileMiddleware, shortListMiddleware, listMiddleware} from './client/redux/middleware';
 
@@ -11,4 +11,4 @@ ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>, document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
