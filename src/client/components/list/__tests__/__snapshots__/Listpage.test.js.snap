@@ -2,7 +2,7 @@
 
 exports[`ListView List is rendered 1`] = `
 <div
-  className="list tl col-xs-9"
+  className="list-wrapper tl"
 >
   <h1
     className="t-title h-underline mb4"
@@ -10,228 +10,252 @@ exports[`ListView List is rendered 1`] = `
     some list
   </h1>
   <div
-    className="row mb4"
+    className="row"
   >
     <div
-      className="col-xs-3 tc"
+      className="list tl col-xs-8"
     >
       <div
-        className="profile-card "
+        className="simplelist"
       >
-        <span
-          className="profile-image small round"
-        >
-          <img
-            alt="Profile Name"
-            className="cover"
-            src="http://p-hold.com/200/200"
-          />
-        </span>
-        <p
-          className="profile-name t-body h4"
-        >
-          Profile Name
-        </p>
-      </div>
-    </div>
-    <div
-      className="col-xs-9"
-    >
-      <p
-        className="t-body"
-      >
-        some description
-      </p>
-    </div>
-  </div>
-  <div
-    className="list"
-  >
-    <div
-      className="row simplelist-item mb4"
-    >
-      <div
-        className="meta col-xs-3 tc"
-      >
-        <WorkItemConnectedMock
-          showTaxonomy={false}
-          work={
-            Object {
-              "book": Object {
-                "creator": "some creator1",
-                "pid": "pid1",
-                "title": "some title 1",
-              },
-            }
-          }
-          workClass="work simplelist"
-        />
-      </div>
-      <div
-        className="meta col-xs-9"
-      >
-        <h4
-          className="w-title h-tight"
-        >
-          some title 1
-        </h4>
-        <h5
-          className="w-creator h-tight mb2"
-        >
-          some creator1
-        </h5>
         <div
-          className="profile-description"
+          className="row mb4"
         >
           <div
-            className="profile-list mb1"
+            className="col-xs-3 tc"
           >
-            <span
-              className="profile-image small round"
+            <div
+              className="profile-card "
             >
-              <img
-                alt="Profile Name"
-                className="cover"
-                src="http://p-hold.com/200/200"
-              />
-            </span>
+              <span
+                className="profile-image small round"
+              >
+                <img
+                  alt="Profile Name"
+                  className="cover"
+                  src="http://p-hold.com/200/200"
+                />
+              </span>
+              <p
+                className="profile-name t-body h4"
+              >
+                Profile Name
+              </p>
+            </div>
+          </div>
+          <div
+            className="col-xs-9"
+          >
             <p
-              className="profile-name t-body h4"
+              className="t-body"
             >
-              Profile Name
+              some description
             </p>
           </div>
-          <p
-            className="t-body"
-          >
-            some description1
-          </p>
         </div>
-      </div>
-    </div>
-    <div
-      className="row simplelist-item mb4"
-    >
-      <div
-        className="meta col-xs-3 tc"
-      >
-        <WorkItemConnectedMock
-          showTaxonomy={false}
-          work={
-            Object {
-              "book": Object {
-                "creator": "some creator2",
-                "pid": "pid2",
-                "title": "some title 2",
-              },
-            }
-          }
-          workClass="work simplelist"
-        />
-      </div>
-      <div
-        className="meta col-xs-9"
-      >
-        <h4
-          className="w-title h-tight"
-        >
-          some title 2
-        </h4>
-        <h5
-          className="w-creator h-tight mb2"
-        >
-          some creator2
-        </h5>
         <div
-          className="profile-description"
+          className="list"
         >
           <div
-            className="profile-list mb1"
+            className="row simplelist-item mb4"
           >
-            <span
-              className="profile-image small round"
+            <div
+              className="meta col-xs-3 tc"
             >
-              <img
-                alt="Profile Name"
-                className="cover"
-                src="http://p-hold.com/200/200"
+              <WorkItemConnectedMock
+                showTaxonomy={false}
+                work={
+                  Object {
+                    "book": Object {
+                      "creator": "some creator1",
+                      "pid": "pid1",
+                      "title": "some title 1",
+                    },
+                  }
+                }
+                workClass="work simplelist"
               />
-            </span>
-            <p
-              className="profile-name t-body h4"
+            </div>
+            <div
+              className="meta col-xs-9"
             >
-              Profile Name
-            </p>
+              <h4
+                className="w-title h-tight"
+              >
+                some title 1
+              </h4>
+              <h5
+                className="w-creator h-tight mb2"
+              >
+                some creator1
+              </h5>
+              <div
+                className="profile-description"
+              >
+                <div
+                  className="profile-list mb1"
+                >
+                  <span
+                    className="profile-image small round"
+                  >
+                    <img
+                      alt="Profile Name"
+                      className="cover"
+                      src="http://p-hold.com/200/200"
+                    />
+                  </span>
+                  <p
+                    className="profile-name t-body h4"
+                  >
+                    Profile Name
+                  </p>
+                </div>
+                <p
+                  className="t-body"
+                >
+                  some description1
+                </p>
+              </div>
+            </div>
           </div>
-          <p
-            className="t-body"
+          <div
+            className="row simplelist-item mb4"
           >
-            some description2
-          </p>
+            <div
+              className="meta col-xs-3 tc"
+            >
+              <WorkItemConnectedMock
+                showTaxonomy={false}
+                work={
+                  Object {
+                    "book": Object {
+                      "creator": "some creator2",
+                      "pid": "pid2",
+                      "title": "some title 2",
+                    },
+                  }
+                }
+                workClass="work simplelist"
+              />
+            </div>
+            <div
+              className="meta col-xs-9"
+            >
+              <h4
+                className="w-title h-tight"
+              >
+                some title 2
+              </h4>
+              <h5
+                className="w-creator h-tight mb2"
+              >
+                some creator2
+              </h5>
+              <div
+                className="profile-description"
+              >
+                <div
+                  className="profile-list mb1"
+                >
+                  <span
+                    className="profile-image small round"
+                  >
+                    <img
+                      alt="Profile Name"
+                      className="cover"
+                      src="http://p-hold.com/200/200"
+                    />
+                  </span>
+                  <p
+                    className="profile-name t-body h4"
+                  >
+                    Profile Name
+                  </p>
+                </div>
+                <p
+                  className="t-body"
+                >
+                  some description2
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            className="row simplelist-item mb4"
+          >
+            <div
+              className="meta col-xs-3 tc"
+            >
+              <WorkItemConnectedMock
+                showTaxonomy={false}
+                work={
+                  Object {
+                    "book": Object {
+                      "creator": "some creator3",
+                      "pid": "pid3",
+                      "title": "some title 3",
+                    },
+                  }
+                }
+                workClass="work simplelist"
+              />
+            </div>
+            <div
+              className="meta col-xs-9"
+            >
+              <h4
+                className="w-title h-tight"
+              >
+                some title 3
+              </h4>
+              <h5
+                className="w-creator h-tight mb2"
+              >
+                some creator3
+              </h5>
+              <div
+                className="profile-description"
+              >
+                <div
+                  className="profile-list mb1"
+                >
+                  <span
+                    className="profile-image small round"
+                  >
+                    <img
+                      alt="Profile Name"
+                      className="cover"
+                      src="http://p-hold.com/200/200"
+                    />
+                  </span>
+                  <p
+                    className="profile-name t-body h4"
+                  >
+                    Profile Name
+                  </p>
+                </div>
+                <p
+                  className="t-body"
+                >
+                  some description3
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      ;
     </div>
     <div
-      className="row simplelist-item mb4"
+      className="col-xs-4"
     >
-      <div
-        className="meta col-xs-3 tc"
+      <a
+        className=""
+        href="/lister/list1/rediger"
+        onClick={[Function]}
       >
-        <WorkItemConnectedMock
-          showTaxonomy={false}
-          work={
-            Object {
-              "book": Object {
-                "creator": "some creator3",
-                "pid": "pid3",
-                "title": "some title 3",
-              },
-            }
-          }
-          workClass="work simplelist"
-        />
-      </div>
-      <div
-        className="meta col-xs-9"
-      >
-        <h4
-          className="w-title h-tight"
-        >
-          some title 3
-        </h4>
-        <h5
-          className="w-creator h-tight mb2"
-        >
-          some creator3
-        </h5>
-        <div
-          className="profile-description"
-        >
-          <div
-            className="profile-list mb1"
-          >
-            <span
-              className="profile-image small round"
-            >
-              <img
-                alt="Profile Name"
-                className="cover"
-                src="http://p-hold.com/200/200"
-              />
-            </span>
-            <p
-              className="profile-name t-body h4"
-            >
-              Profile Name
-            </p>
-          </div>
-          <p
-            className="t-body"
-          >
-            some description3
-          </p>
-        </div>
-      </div>
+        Rediger liste
+      </a>
     </div>
   </div>
 </div>

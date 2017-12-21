@@ -2,10 +2,6 @@
   text-align: left;
   font-family: var(--secondary-font);
 }
-.list-creator__form {
-  width: 50%;
-  margin-bottom: 5rem;
-}
 
 .list-creator__headline {
   display: block;

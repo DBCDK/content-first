@@ -128,40 +128,47 @@ class ListCreator extends React.Component {
     return (
       <div className="list-creator">
         <h1 className="list-creator__headline">Opret liste</h1>
-        <form className="list-creator__form" onSubmit={e => this.onSubmit(e)}>
-          <ListDetails
-            hasError={this.state.hasError}
-            title={this.props.listState.currentList.title}
-            description={this.props.listState.currentList.description}
-            onChange={e => this.onChange(e)}
-          />
-          <h2 className="list-creator__headline">Tilføj bøger til listen</h2>
-          <ListBooks
-            dispatch={this.props.dispatch}
-            list={
-              this.props.listState.currentList
-                ? this.props.listState.currentList.list
-                : []
-            }
-          />
-          <div className="list-creator__publication">
-            <label htmlFor="public">
-              <input
-                id="public"
-                name="public"
-                type="checkbox"
-                checked={this.props.listState.currentList.public || false}
-                onClick={() => this.setStatus()}
+        <div className="row">
+          <div className="col-xs-8">
+            <form className="mb4" onSubmit={e => this.onSubmit(e)}>
+              <ListDetails
+                hasError={this.state.hasError}
+                title={this.props.listState.currentList.title}
+                description={this.props.listState.currentList.description}
+                onChange={e => this.onChange(e)}
               />
-              <span /> Skal listen være offentlig?
-            </label>
+              <h2 className="list-creator__headline">
+                Tilføj bøger til listen
+              </h2>
+              <ListBooks
+                dispatch={this.props.dispatch}
+                list={
+                  this.props.listState.currentList
+                    ? this.props.listState.currentList.list
+                    : []
+                }
+              />
+              <div className="list-creator__publication">
+                <label htmlFor="public">
+                  <input
+                    id="public"
+                    name="public"
+                    type="checkbox"
+                    checked={this.props.listState.currentList.public || false}
+                    onClick={() => this.setStatus()}
+                  />
+                  <span /> Skal listen være offentlig?
+                </label>
+              </div>
+              <div className="list-creator__submit text-right">
+                <button className="btn btn-primary" type="submit">
+                  Gem liste
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="list-creator__submit text-right">
-            <button className="btn btn-primary" type="submit">
-              Gem liste
-            </button>
-          </div>
-        </form>
+          <div className="col-xs-4" />
+        </div>
       </div>
     );
   }
