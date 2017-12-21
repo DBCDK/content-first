@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import ListPage from '../ListPage.component';
+import ListPage from '../ListPage.container';
 import renderer from 'react-test-renderer';
 import {createStore, combineReducers} from 'redux';
 import listReducer, {ADD_LIST} from '../../../redux/list.reducer';

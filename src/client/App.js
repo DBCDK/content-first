@@ -12,7 +12,7 @@ import ProfilePage from './components/profile/ProfilePage.container';
 import TopBar from './components/top/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
-import ListPage from './components/list/ListPage.component';
+import ListPage from './components/list/ListPage.container';
 import ListCreator from './components/list/ListCreate.container';
 import Lists from './components/list/Lists.container';
 import ShortList from './components/list/ShortList.container';
@@ -37,7 +37,7 @@ class App extends Component {
       if (pathSplit[2]) {
         if (pathSplit[2] === 'opret') {
           currentPage = <ListCreator />;
-        } else if (pathSplit[3] && pathSplit[3] === 'rediger') {
+        } else if (pathSplit[3] === 'rediger') {
           currentPage = <ListCreator id={pathSplit[2]} />;
         } else {
           currentPage = <ListPage id={pathSplit[2]} />;
