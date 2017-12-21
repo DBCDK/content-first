@@ -3,9 +3,12 @@ import {Provider} from 'react-redux';
 import createStore from '../../../redux/Store';
 import ShortListDropDown from '../ShortListDropDown.container';
 import renderer from 'react-test-renderer';
-import {ON_SHORTLIST_TOGGLE_ELEMENT, SHORTLIST_LOAD_RESPONSE} from '../../../redux/shortlist.reducer';
+import {
+  ON_SHORTLIST_TOGGLE_ELEMENT,
+  SHORTLIST_LOAD_RESPONSE
+} from '../../../redux/shortlist.reducer';
 
-const createTestElement = (id) => {
+const createTestElement = id => {
   return {
     book: {
       pid: 'pid' + id,
@@ -23,7 +26,11 @@ const addElement = (store, id) => {
 describe('ShortListDropDown', () => {
   test('short list is empty and merge modal is hidden', () => {
     const tree = renderer
-      .create(<Provider store={createStore()}><ShortListDropDown /></Provider>)
+      .create(
+        <Provider store={createStore()}>
+          <ShortListDropDown />
+        </Provider>
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -32,7 +39,11 @@ describe('ShortListDropDown', () => {
     const store = createStore();
     addElement(store, 1);
     const tree = renderer
-      .create(<Provider store={store}><ShortListDropDown /></Provider>)
+      .create(
+        <Provider store={store}>
+          <ShortListDropDown />
+        </Provider>
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -44,7 +55,11 @@ describe('ShortListDropDown', () => {
     addElement(store, 3);
     addElement(store, 4);
     const tree = renderer
-      .create(<Provider store={store}><ShortListDropDown /></Provider>)
+      .create(
+        <Provider store={store}>
+          <ShortListDropDown />
+        </Provider>
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -53,11 +68,19 @@ describe('ShortListDropDown', () => {
     const store = createStore();
     store.dispatch({
       type: SHORTLIST_LOAD_RESPONSE,
-      localStorageElements: [createTestElement(2), createTestElement(3), createTestElement(4)],
+      localStorageElements: [
+        createTestElement(2),
+        createTestElement(3),
+        createTestElement(4)
+      ],
       databaseElements: [createTestElement(1), createTestElement(2)]
     });
     const tree = renderer
-      .create(<Provider store={store}><ShortListDropDown /></Provider>)
+      .create(
+        <Provider store={store}>
+          <ShortListDropDown />
+        </Provider>
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

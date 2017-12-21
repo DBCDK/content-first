@@ -50,11 +50,7 @@ const defaultState = {
     },
     {
       title: 'Vælg fokus',
-      items: [
-        getById('267'),
-        getById('266'),
-        getById('265')
-      ]
+      items: [getById('267'), getById('266'), getById('265')]
     }
   ],
   sortBy: [
@@ -77,7 +73,9 @@ const filterReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ON_SORT_OPTION_SELECT: {
       const sortBy = state.sortBy.map(option => {
-        return Object.assign({}, option, {selected: option.title === action.value});
+        return Object.assign({}, option, {
+          selected: option.title === action.value
+        });
       });
       return Object.assign({}, state, {sortBy});
     }
@@ -95,10 +93,14 @@ const filterReducer = (state = defaultState, action) => {
       }
       const beltFilters = Object.assign({}, state.beltFilters);
       if (beltFilters[action.beltName].indexOf(filterId) >= 0) {
-        beltFilters[action.beltName] = beltFilters[action.beltName].filter(id => filterId !== id);
-      }
-      else {
-        beltFilters[action.beltName] = [...beltFilters[action.beltName], filterId];
+        beltFilters[action.beltName] = beltFilters[action.beltName].filter(
+          id => filterId !== id
+        );
+      } else {
+        beltFilters[action.beltName] = [
+          ...beltFilters[action.beltName],
+          filterId
+        ];
       }
       return Object.assign({}, state, {beltFilters});
     }
@@ -106,8 +108,7 @@ const filterReducer = (state = defaultState, action) => {
       let expandedFilters;
       if (state.expandedFilters.indexOf(action.id) >= 0) {
         expandedFilters = state.expandedFilters.filter(id => id !== action.id);
-      }
-      else {
+      } else {
         expandedFilters = [...state.expandedFilters];
         expandedFilters.push(action.id);
       }

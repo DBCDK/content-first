@@ -19,13 +19,16 @@ const recommendations = [
 function getRandomValues(arr, count) {
   var result = [];
   var _tmp = arr.slice();
-  for (var i = 0; i<count; i++) {
+  for (var i = 0; i < count; i++) {
     var index = Math.ceil(Math.random() * 10) % _tmp.length;
     result.push(_tmp.splice(index, 1)[0]);
   }
   return result;
 }
 
-export default () => new Promise(resolve => setTimeout(() => {
-  resolve(getRandomValues(recommendations, 6));
-}, Math.random()*1000 + 500));
+export default () =>
+  new Promise(resolve =>
+    setTimeout(() => {
+      resolve(getRandomValues(recommendations, 6));
+    }, Math.random() * 1000 + 500)
+  );

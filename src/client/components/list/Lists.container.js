@@ -13,10 +13,14 @@ class Lists extends React.Component {
       <div className="lists-page">
         <h1>Mine Lister</h1>
         {lists.filter(list => list.type !== SYSTEM_LIST).map(list => (
-          <a href={`/lister/${list.id}`}
+          <a
+            href={`/lister/${list.id}`}
             className="list"
             onClick={e => {
-              this.props.dispatch({type: HISTORY_PUSH, path: `/lister/${list.id}`});
+              this.props.dispatch({
+                type: HISTORY_PUSH,
+                path: `/lister/${list.id}`
+              });
               e.preventDefault();
             }}
           >
@@ -25,7 +29,8 @@ class Lists extends React.Component {
           </a>
         ))}
         <div>
-          <a href="/lister/opret"
+          <a
+            href="/lister/opret"
             className="btn btn-primary"
             onClick={e => {
               this.props.dispatch({type: HISTORY_PUSH, path: '/lister/opret'});

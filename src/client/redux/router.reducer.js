@@ -7,7 +7,9 @@ const routerReducer = (state = {}, action) => {
       const params = {};
       let regexResult;
       // eslint-disable-next-line
-      while ((regexResult = PARAMS_REGEX.exec(action.location.search)) !== null) {
+      while (
+        (regexResult = PARAMS_REGEX.exec(action.location.search)) !== null
+      ) {
         const key = regexResult[1];
         const value = regexResult[2];
         if (!params[key]) {

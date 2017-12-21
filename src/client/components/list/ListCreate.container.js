@@ -96,8 +96,7 @@ class ListCreator extends React.Component {
     if (this.props.id) {
       // gotta load existing list
       this.props.dispatch({type: LIST_LOAD_REQUEST, id: this.props.id});
-    }
-    else {
+    } else {
       // this is a new list, so clear current list
       this.props.dispatch({type: CLEAR_CURRENT_LIST});
     }
