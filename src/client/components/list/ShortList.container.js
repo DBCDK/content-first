@@ -9,7 +9,8 @@ export class ShortListItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: ''
+      description: '',
+      addToList: null
     };
   }
 
@@ -38,7 +39,7 @@ export class ShortListItem extends React.Component {
             </div>
           </div>
           <div className="add-to-list col-xs-3">Tilføj til liste</div>
-          <div className="order col-xs-3">Bestil</div>
+          <div className="order col-xs-3">Bestil til dit bibliotek</div>
           <img
             src={Kryds}
             alt="remove"
@@ -67,6 +68,7 @@ class ShortList extends React.Component {
                   pid: e.book.pid
                 })
               }
+              onAddToList={() => this.setState({addElement: e})}
             />
           ))}
         </div>

@@ -141,7 +141,6 @@
 .short-list--merge-modal .more-btn {
   margin-top: 30px;
 }
-.short-list div, ul, li { background-color: inherit; }
 .short-list-page .items {
   margin-top: 40px;
 }
@@ -164,16 +163,25 @@
   float: left;
 }
 .short-list-page .item {
-  font-family: var(--primary-font);
+  font-family: var(--secondary-font);
 }
 .short-list-page .title {
+  font-family: var(--primary-font);
   font-style: italic;
   font-weight: bold;
 }
 .short-list-page .creator {
+  font-family: var(--primary-font);
   color: grey;
 }
 .short-list-page textarea {
   resize: none;
   width: 200px;
+  margin-top: 10px;
+}
+.short-list-page .add-to-list .glyphicon {
+  margin-left: 5px;
+}
+.short-list-page .add-to-list > span {
+  cursor: pointer;
 }

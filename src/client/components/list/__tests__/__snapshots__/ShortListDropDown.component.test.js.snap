@@ -302,6 +302,11 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
       >
         <span
           className="line-behind-text--label"
+          style={
+            Object {
+              "backgroundColor": "white",
+            }
+          }
         >
           1 bog mere på listen
         </span>

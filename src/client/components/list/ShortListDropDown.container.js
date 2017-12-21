@@ -67,7 +67,7 @@ const ShortListContent = props => {
       <div className="short-list--elements">{props.children}</div>
       {moreLabel && (
         <div className="short-list--more-elements">
-          <LineBehindText label={moreLabel} />
+          <LineBehindText label={moreLabel} backgroundColor="white"/>
         </div>
       )}
       {moreLabel && (
