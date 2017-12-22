@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Modal from './Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
 import {
@@ -6,30 +7,38 @@ import {
   ADD_ELEMENT_TO_LIST,
   ADD_LIST
 } from '../../redux/list.reducer';
-
+import {CLOSE_MODAL} from '../../redux/modal.reducer';
 const defaultState = {
   comment: '',
   list: '',
   listName: ''
 };
 
-export default class AddToListModal extends React.Component {
+class AddToListModal extends React.Component {
   static defaultProps = {
     show: true
   };
   constructor(props) {
     super(props);
-    const customLists = this.props.lists.filter(l => l.type !== SYSTEM_LIST);
+    const customLists = this.props.listState.lists.filter(
+      l => l.type !== SYSTEM_LIST
+    );
     this.state = Object.assign({}, defaultState, {list: customLists[0] || ''});
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.lists.length < this.props.lists.length) {
+    if (prevProps.listState.lists.length < this.props.listState.lists.length) {
       // list has just been added, lets scroll down and select it
       this.listsContainer.scrollTop = this.listsContainer.scrollHeight;
-      this.setState({list: this.props.lists[this.props.lists.length - 1]});
+      this.setState({
+        list: this.props.listState.lists[this.props.listState.lists.length - 1]
+      });
     }
   }
+  close = () => {
+    this.setState(Object.assign({}, defaultState));
+    this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
+  };
   onDone = () => {
     this.props.dispatch({
       type: ADD_ELEMENT_TO_LIST,
@@ -37,7 +46,8 @@ export default class AddToListModal extends React.Component {
       element: this.props.work,
       description: this.state.comment
     });
-    this.props.onClose();
+    this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
+    this.close();
   };
   onAddList = listName =>
     this.props.dispatch({
@@ -46,16 +56,15 @@ export default class AddToListModal extends React.Component {
     });
 
   render() {
-    const customLists = this.props.lists.filter(l => l.type !== SYSTEM_LIST);
+    const customLists = this.props.listState.lists.filter(
+      l => l.type !== SYSTEM_LIST
+    );
     return (
       <Modal
         className="add-to-list--modal"
         show={this.props.show}
         header={'GEM I LISTE'}
-        onClose={() => {
-          this.props.onClose();
-          this.setState(Object.assign({}, defaultState));
-        }}
+        onClose={this.close}
         onDone={this.onDone}
         doneText="JA TAK, GEM NU"
       >
@@ -118,3 +127,8 @@ export default class AddToListModal extends React.Component {
     );
   }
 }
+export default connect(state => {
+  return {
+    listState: state.listReducer
+  };
+})(AddToListModal);

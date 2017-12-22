@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import AddToListModal from './AddToListModal.component';
+import AddToListModal from './AddToListModal.container';
 import ShortListMergeModal from './ShortListMergeModal.container';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 
@@ -43,11 +43,7 @@ class Modal extends React.Component {
       return (
         <AddToListModal
           work={context}
-          lists={this.props.listState.lists}
-          onClose={() =>
-            this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'})
-          }
-          dispatch={this.props.dispatch}
+
         />
       );
     }

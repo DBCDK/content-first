@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AddToListModal modal is hidden 1`] = `
+exports[`AddToListModal newly added list is selected 1`] = `
 <div
-  className="modal-backdrop modal-hidden"
+  className="modal-backdrop"
 >
   <div
-    className="modal-window text-left modal-hidden add-to-list--modal"
+    className="modal-window text-left add-to-list--modal"
   >
     <img
       alt="luk"
@@ -40,7 +40,35 @@ exports[`AddToListModal modal is hidden 1`] = `
         >
           <div
             className="list-overview"
-          />
+          >
+            <div>
+              <input
+                checked={false}
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              title1
+            </div>
+            <div>
+              <input
+                checked={false}
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              title2
+            </div>
+            <div>
+              <input
+                checked={true}
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              title3
+            </div>
+          </div>
           <div
             className="add-list"
           >
@@ -119,7 +147,7 @@ exports[`AddToListModal modal is hidden 1`] = `
 </div>
 `;
 
-exports[`AddToListModal modal is visible, renders lists from store 1`] = `
+exports[`AddToListModal renders lists from store, first is selected 1`] = `
 <div
   className="modal-backdrop"
 >
@@ -162,7 +190,7 @@ exports[`AddToListModal modal is visible, renders lists from store 1`] = `
           >
             <div>
               <input
-                checked={false}
+                checked={true}
                 name="list"
                 onChange={[Function]}
                 type="radio"
