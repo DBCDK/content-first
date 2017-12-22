@@ -39,6 +39,7 @@ import {
   UPDATE_CURRENT_LIST,
   REMOVE_ELEMENT_FROM_LIST
 } from './list.reducer';
+import {OPEN_MODAL} from './modal.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 import {saveLists, loadLists} from '../utils/requestLists';
 
@@ -157,6 +158,12 @@ export const shortListMiddleware = store => next => async action => {
         localStorageElements,
         databaseElements
       });
+      if (store.getState().shortListReducer.pendingMerge) {
+        store.dispatch({
+          type: OPEN_MODAL,
+          modal: 'mergeShortList'
+        });
+      }
       return res;
     }
     default:

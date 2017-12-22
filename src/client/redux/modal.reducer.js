@@ -2,6 +2,10 @@ const defaultState = {
   addToList: {
     open: false,
     context: null
+  },
+  mergeShortList: {
+    open: false,
+    context: null
   }
 };
 

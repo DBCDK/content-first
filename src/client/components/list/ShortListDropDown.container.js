@@ -3,14 +3,11 @@ import {connect} from 'react-redux';
 import Image from '../Image.component';
 import Kryds from '../svg/Kryds.svg';
 import Huskeliste from '../svg/Huskeliste.svg';
-import Modal from '../general/Modal.component';
-import WorkItemSmall from '../work/WorkItemSmall.component';
 import LineBehindText from '../general/LineBehindText.component';
 import {
   ON_SHORTLIST_EXPAND,
   ON_SHORTLIST_COLLAPSE,
-  ON_SHORTLIST_REMOVE_ELEMENT,
-  SHORTLIST_APPROVE_MERGE
+  ON_SHORTLIST_REMOVE_ELEMENT
 } from '../../redux/shortlist.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 
@@ -97,12 +94,7 @@ const ShortListContent = props => {
 
 class ShortListDropdown extends React.Component {
   render() {
-    const {expanded, elements = [], pendingMerge} = this.props.shortListState;
-    const numPending = pendingMerge ? pendingMerge.diff.length : 0;
-    let merged = null;
-    if (pendingMerge) {
-      merged = [...pendingMerge.diff, ...elements];
-    }
+    const {expanded, elements = []} = this.props.shortListState;
 
     return (
       <div className="short-list">
@@ -146,53 +138,6 @@ class ShortListDropdown extends React.Component {
               );
             })}
         </ShortListContent>
-        <Modal
-          className="short-list--merge-modal"
-          show={pendingMerge}
-          header="HUSKELISTE"
-          onClose={() => this.props.dispatch({type: SHORTLIST_APPROVE_MERGE})}
-          onDone={() => this.props.dispatch({type: SHORTLIST_APPROVE_MERGE})}
-        >
-          <strong>
-            {`Nu hvor du er logget ind, har vi gemt ${numPending} ${
-              numPending > 1 ? 'bøger' : 'bog'
-            }
-            fra huskelisten på den huskeliste, der hører til din profil:`}
-          </strong>
-          <div className="work-list">
-            {merged &&
-              merged.slice(0, SHORT_LIST_MAX_LENGTH).map(e => {
-                return <WorkItemSmall work={e} key={e.book.pid} />;
-              })}
-          </div>
-          {merged &&
-            merged.length > SHORT_LIST_MAX_LENGTH && (
-              <div>
-                <LineBehindText
-                  label={
-                    merged.length - SHORT_LIST_MAX_LENGTH > 1
-                      ? `og ${merged.length -
-                          SHORT_LIST_MAX_LENGTH} andre bøger`
-                      : '1 anden bog'
-                  }
-                />
-                <div className="more-btn text-center">
-                  <span
-                    className="btn btn-default text-center"
-                    onClick={() => {
-                      this.props.dispatch({
-                        type: HISTORY_PUSH,
-                        path: '/huskeliste'
-                      });
-                      this.props.dispatch({type: ON_SHORTLIST_COLLAPSE});
-                    }}
-                  >
-                    SE HELE HUSKELISTEN
-                  </span>
-                </div>
-              </div>
-            )}
-        </Modal>
       </div>
     );
   }

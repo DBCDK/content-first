@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from '../general/Modal.component';
+import Modal from './Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
 import {
   SYSTEM_LIST,
