@@ -1,9 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Kryds from '../svg/Kryds.svg';
 import BookCover from '../general/BookCover.component';
 import Textarea from 'react-textarea-autosize';
-import {ON_SHORTLIST_REMOVE_ELEMENT, SHORTLIST_CLEAR} from '../../redux/shortlist.reducer';
+import {
+  ON_SHORTLIST_REMOVE_ELEMENT,
+  SHORTLIST_CLEAR
+} from '../../redux/shortlist.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 
 export class ShortListItem extends React.Component {
@@ -66,30 +70,43 @@ class ShortList extends React.Component {
       <div className="short-list-page col-xs-11 col-centered">
         <div className="page-header-1">Huskeliste</div>
         <div className="items">
-          {elements.map(e => (
-            <ShortListItem
-              key={e.book.pid}
-              element={e}
-              onRemove={() =>
-                this.props.dispatch({
-                  type: ON_SHORTLIST_REMOVE_ELEMENT,
-                  pid: e.book.pid
-                })
-              }
-              onAddToList={() => {
-                this.props.dispatch({
-                  type: OPEN_MODAL,
-                  modal: 'addToList',
-                  context: e
-                });
-              }}
-            />
-          ))}
+          <ReactCSSTransitionGroup
+            transitionName="shortlist"
+            transitionEnterTimeout={200}
+            transitionLeaveTimeout={200}
+          >
+            {elements.map(e => (
+              <ShortListItem
+                key={e.book.pid}
+                element={e}
+                onRemove={() =>
+                  this.props.dispatch({
+                    type: ON_SHORTLIST_REMOVE_ELEMENT,
+                    pid: e.book.pid
+                  })
+                }
+                onAddToList={() => {
+                  this.props.dispatch({
+                    type: OPEN_MODAL,
+                    modal: 'addToList',
+                    context: e
+                  });
+                }}
+              />
+            ))}
+          </ReactCSSTransitionGroup>
         </div>
         <div className="list-actions col-xs-12 col-lg-10 text-right">
-          <span className="btn btn-success" onClick={() => this.props.dispatch({
-            type: SHORTLIST_CLEAR
-          })}>RYD LISTEN</span>
+          <span
+            className="btn btn-success"
+            onClick={() =>
+              this.props.dispatch({
+                type: SHORTLIST_CLEAR
+              })
+            }
+          >
+            RYD LISTEN
+          </span>
         </div>
       </div>
     );

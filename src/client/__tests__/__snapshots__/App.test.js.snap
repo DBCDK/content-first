@@ -58,9 +58,6 @@ exports[`renders without crashing 1`] = `
           >
             Din huskeliste er tom
           </div>
-          <div
-            className="short-list--elements"
-          />
         </div>
       </div>
       <span
