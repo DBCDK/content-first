@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import AddToListModal from './AddToListModal.container';
 import ShortListMergeModal from './ShortListMergeModal.container';
-import {CLOSE_MODAL} from '../../redux/modal.reducer';
 
 class Modal extends React.Component {
   static anyOpen(modalState) {
@@ -40,12 +39,7 @@ class Modal extends React.Component {
   render() {
     if (this.props.modalState.addToList.open) {
       const {context} = this.props.modalState.addToList;
-      return (
-        <AddToListModal
-          work={context}
-
-        />
-      );
+      return <AddToListModal work={context} />;
     }
     if (this.props.modalState.mergeShortList.open) {
       return <ShortListMergeModal />;
