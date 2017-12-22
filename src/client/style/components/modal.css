@@ -1,34 +1,52 @@
-.modal-backdrop.modal-hidden {
-  visibility: hidden;
-  background-color: rgba(0,0,0,0.0);
+.modal-enter {
+  opacity: 0;
 }
+.modal-enter .modal-window {
+  margin-top: -50px;
+}
+
+.modal-enter.modal-enter-active {
+  opacity: 1;
+  transition: all 0.2s;
+}
+.modal-enter.modal-enter-active .modal-window {
+  transition: all 0.2s;
+  margin-top: 0px;
+}
+
+.modal-leave {
+  opacity: 1;
+}
+
+.modal-leave.modal-leave-active {
+  opacity: 0;
+  transition: all 0.2s;
+}
+
+.modal-leave.modal-leave-active .modal-window {
+  margin-top: -50px;
+  transition: all 0.2s;
+}
+
 .modal-backdrop {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   padding-top: 100px;
-  transition: all 0.25s;
   z-index: 99999;
-}
-.modal-window.modal-hidden {
-  opacity: 0;
-  margin-top: -50px;
-  visibility: hidden;
 }
 .modal-window {
   position: relative;
-  opacity: 1;
   background-color: #fafafa;
   width: 500px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid rgba(0,0,0,.15);
-  box-shadow: 0 2px 6px rgba(0,0,0,.175);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.175);
   font-family: var(--secondary-font);
-  transition: all 0.25s;
 }
 .modal-window--close-btn {
   position: absolute;
@@ -60,4 +78,3 @@
 .modal-window--buttons .btn {
   min-width: 80px;
 }
-.modal-window div, ul, li { background-color: inherit; }

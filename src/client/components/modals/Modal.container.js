@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import AddToListModal from './AddToListModal.container';
 import ShortListMergeModal from './ShortListMergeModal.container';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Modal extends React.Component {
   static anyOpen(modalState) {
@@ -37,14 +38,23 @@ class Modal extends React.Component {
   }
 
   render() {
+    let modal = null;
     if (this.props.modalState.addToList.open) {
       const {context} = this.props.modalState.addToList;
-      return <AddToListModal work={context} />;
+      modal = <AddToListModal key="addToList" work={context} />;
     }
     if (this.props.modalState.mergeShortList.open) {
-      return <ShortListMergeModal />;
+      modal = <ShortListMergeModal key="mergeShortList" />;
     }
-    return '';
+    return (
+      <ReactCSSTransitionGroup
+        transitionName="modal"
+        transitionEnterTimeout={200}
+        transitionLeaveTimeout={200}
+      >
+        {modal}
+      </ReactCSSTransitionGroup>
+    );
   }
 }
 

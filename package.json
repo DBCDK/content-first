@@ -42,6 +42,7 @@
     "lodash.intersection": "^4.4.0",
     "pg": "^7.1.0",
     "react": "^16.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-autosuggest": "^9.3.2",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",

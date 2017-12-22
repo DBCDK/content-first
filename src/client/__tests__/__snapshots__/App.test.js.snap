@@ -319,6 +319,6 @@ exports[`renders without crashing 1`] = `
       </div>
     </div>
   </div>
-  
+  <span />
 </div>
 `;
