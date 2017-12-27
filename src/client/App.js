@@ -7,6 +7,7 @@ import './style/work.css';
 import Modal from './components/modals/Modal.container';
 import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
+import SearchPage from './components/search/SearchPage.container';
 import WorkPage from './components/work/WorkPage.container';
 import ProfilePage from './components/profile/ProfilePage.container';
 import TopBar from './components/top/TopBar.component';
@@ -47,6 +48,8 @@ class App extends Component {
       }
     } else if (pathSplit[1] === 'huskeliste') {
       currentPage = <ShortList />;
+    } else if (pathSplit[1] === 'søg') {
+      currentPage = <SearchPage />;
     } else {
       // check if current path matches a belt
       this.props.beltsState.belts.forEach(belt => {
