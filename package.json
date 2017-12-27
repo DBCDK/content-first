@@ -24,6 +24,7 @@
     "nodemon": "^1.12.5",
     "npm-run-all": "^4.0.2",
     "nyc": "^11.4.0",
+    "prettier": "^1.9.2",
     "react-test-renderer": "^16.2.0",
     "react-textarea-autosize": "^5.2.1",
     "resolve": "^1.4.0",
@@ -57,6 +58,7 @@
   },
   "proxy": "http://localhost:3001",
   "scripts": {
+    "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js",
     "build": "react-scripts build",
     "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js src/acceptance/*_test.js",
     "db-migrate": ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
