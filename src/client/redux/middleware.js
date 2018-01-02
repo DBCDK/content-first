@@ -5,6 +5,7 @@ import {
   fetchWork,
   fetchUser,
   fetchProfileRecommendations,
+  fetchSearchResults,
   logout,
   saveShortList,
   loadShortList
@@ -40,6 +41,7 @@ import {
   REMOVE_ELEMENT_FROM_LIST
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
+import {SEARCH_QUERY} from './search.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 import {saveLists, loadLists} from '../utils/requestLists';
 
@@ -229,6 +231,16 @@ export const listMiddleware = store => next => async action => {
       });
       return res;
     }
+    default:
+      return next(action);
+  }
+};
+
+export const searchMiddleware = store => next => action => {
+  switch (action.type) {
+    case SEARCH_QUERY:
+      fetchSearchResults({query: action.query, dispatch: store.dispatch});
+      return next(action);
     default:
       return next(action);
   }

@@ -1,6 +1,7 @@
 import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
+import {SEARCH_RESULTS} from '../redux/search.reducer';
 import {
   ON_PROFILE_RECOMMENDATIONS_RESPONSE,
   ON_USER_DETAILS_RESPONSE,
@@ -206,3 +207,12 @@ export const loadShortList = async isLoggedIn => {
     return {localStorageElements, databaseElements: []};
   }
 };
+
+export async function fetchSearchResults({query, dispatch}) {
+  try {
+    const result = await request.get('/v1/search?q=' + encodeURIComponent(query));
+    dispatch({type: SEARCH_RESULTS, query, results: JSON.parse(result.text).data});
+  } catch (e) {
+    dispatch({type: SEARCH_RESULTS, query, results: null});
+  }
+}
