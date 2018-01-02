@@ -1,6 +1,7 @@
 import React from 'react';
 import request from 'superagent';
 import Autosuggest from 'react-autosuggest';
+import BookCover from '../general/BookCover.component';
 
 const addEmphasisToString = (string, pattern) => {
   const index = string.toLowerCase().indexOf(pattern.toLowerCase());
@@ -23,10 +24,7 @@ const renderSuggestion = (suggestion, suggestionString) => {
   return (
     <div className="suggestion-row flex">
       <div className="image">
-        <img
-          src={`https://content-first.demo.dbc.dk${suggestion.links.cover}`}
-          alt={suggestion.book.title}
-        />
+        <BookCover book={suggestion.book} />
       </div>
       <div>
         <div className="suggestion-row__title">
@@ -40,7 +38,7 @@ const renderSuggestion = (suggestion, suggestionString) => {
   );
 };
 
-class ListSuggest extends React.Component {
+class BookSearchSuggester extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,41 +47,25 @@ class ListSuggest extends React.Component {
     };
   }
 
-  findSuggestions(filter) {
-    if (filter.length >= 2) {
-      return this.props.books
-        .filter(
-          ({book}) =>
-            this.props.list.filter(element => element.book.pid === book.pid)
-              .length === 0
-              ? book.title.toLowerCase().includes(filter.toLowerCase()) ||
-                book.creator.toLowerCase().includes(filter.toLowerCase())
-              : false
-        )
-        .sort((a, b) => {
-          return a.book.title > b.book.title ? 1 : -1;
-        });
-    }
-
-    return [];
-  }
-
   onChange(event, {newValue}) {
     this.setState({
       value: newValue
     });
   }
 
-  onSuggestionsFetchRequested({value}) {
-    this.setState({
-      suggestions: this.findSuggestions(value)
-    });
+  async onSuggestionsFetchRequested({value}) {
+    this.currentRequest = value;
+    const results = JSON.parse(
+      (await request.get('/v1/search?q=' + encodeURIComponent(value.trim().split(/\s+/g).join(' & ') + ':*'))).text
+    ).data.map(book => ({links: {}, book}));
+    if (this.currentRequest === value) {
+      this.setState({suggestions: results});
+    }
   }
 
   onSuggestionsClearRequested() {
-    this.setState({
-      suggestions: []
-    });
+    this.setState({suggestions: []});
+    delete this.currentRequest;
   }
 
   onSuggestionSelected(e, props) {
@@ -117,41 +99,6 @@ class ListSuggest extends React.Component {
           inputProps={inputProps}
         />
       </div>
-    );
-  }
-}
-
-class BookSearchSuggester extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      books: []
-    };
-  }
-
-  componentDidMount() {
-    // this should be done at another place. We need a scalable solution for suggestions
-    request
-      .get('/v1/recommendations')
-      .query({tags: [-1]})
-      .end((err, res) => {
-        if (err) {
-          console.error(err); // eslint-disable-line
-          return;
-        }
-
-        const books = res.body.data;
-        this.setState({books});
-      });
-  }
-
-  render() {
-    return (
-      <ListSuggest
-        books={this.state.books}
-        list={this.props.list}
-        onSubmit={this.props.onSubmit}
-      />
     );
   }
 }

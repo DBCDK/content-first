@@ -232,7 +232,8 @@ exports[`ListCreate a book is added to the list 1`] = `
                 <img
                   alt="some title1"
                   className="list-item__img"
-                  src="https://content-first.demo.dbc.dk/cover1"
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                 />
                 <div
                   className="list-item__details"
@@ -409,7 +410,8 @@ exports[`ListCreate a books is removed from the list 1`] = `
                 <img
                   alt="some title1"
                   className="list-item__img"
-                  src="https://content-first.demo.dbc.dk/cover1"
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                 />
                 <div
                   className="list-item__details"
@@ -710,7 +712,8 @@ exports[`ListCreate multible books are added to the list 1`] = `
                 <img
                   alt="some title3"
                   className="list-item__img"
-                  src="https://content-first.demo.dbc.dk/cover3"
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
                 />
                 <div
                   className="list-item__details"
@@ -762,7 +765,8 @@ exports[`ListCreate multible books are added to the list 1`] = `
                 <img
                   alt="some title2"
                   className="list-item__img"
-                  src="https://content-first.demo.dbc.dk/cover2"
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
                 />
                 <div
                   className="list-item__details"
@@ -814,7 +818,8 @@ exports[`ListCreate multible books are added to the list 1`] = `
                 <img
                   alt="some title1"
                   className="list-item__img"
-                  src="https://content-first.demo.dbc.dk/cover1"
+                  onError={[Function]}
+                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                 />
                 <div
                   className="list-item__details"

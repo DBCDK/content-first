@@ -104,6 +104,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
               >
                 <img
                   alt=""
+                  className=""
                   onError={[Function]}
                   src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                 />
@@ -242,6 +243,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
               >
                 <img
                   alt=""
+                  className=""
                   onError={[Function]}
                   src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                 />

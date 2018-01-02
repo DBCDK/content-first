@@ -12,6 +12,7 @@ import DragableList from './ListDrag.component';
 import Textarea from 'react-textarea-autosize';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import BookSearchSuggester from './BookSearchSuggester';
+import BookCover from '../general/BookCover.component';
 
 const ListDetails = ({title, description, hasError, onChange}) => (
   <div className="list-details">
@@ -44,11 +45,7 @@ const ListDetails = ({title, description, hasError, onChange}) => (
 
 const ListItem = ({item, onChange}) => (
   <div key={item.book.pid} className="flex list-item">
-    <img
-      className="list-item__img"
-      src={`https://content-first.demo.dbc.dk${item.links.cover}`}
-      alt={item.book.title}
-    />
+    <BookCover className="list-item__img" book={item.book} />
     <div className="list-item__details">
       <div className="list-item__title">{item.book.title}</div>
       <div className="list-item__author">{item.book.creator}</div>

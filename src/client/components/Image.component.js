@@ -9,7 +9,8 @@ class Image extends React.Component {
   render() {
     return (
       <img
-        alt=""
+        alt={this.props.alt || ''}
+        className={this.props.className || ''}
         src={this.props.urls[this.state.current]}
         onError={() => {
           this.setState({
