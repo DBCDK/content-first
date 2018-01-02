@@ -1,5 +1,5 @@
 import {createBrowserHistory} from 'history';
-import {createStore, applyMiddleware} from 'redux';
+import {createStore, applyMiddleware, compose} from 'redux';
 import reducer from './root.reducer';
 import {historyMiddleware} from './middleware';
 import {ON_LOCATION_CHANGE} from './router.reducer';
@@ -9,7 +9,8 @@ export default middleware => {
   const providedMiddleware = middleware ? middleware : [];
   middleware = [...providedMiddleware, historyMiddleware(history)];
 
-  const store = createStore(reducer, applyMiddleware(...middleware));
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const store = createStore(reducer, composeEnhancers(applyMiddleware(...middleware)));
 
   // Redux-first routing is used as described:
   // https://medium.freecodecamp.org/an-introduction-to-the-redux-first-routing-model-98926ebf53cb
