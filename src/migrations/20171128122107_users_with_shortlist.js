@@ -5,7 +5,10 @@ const userTable = constants.users.table;
 
 exports.up = function(knex) {
   return knex.schema.table(userTable, table => {
-    table.jsonb('shortlist').notNullable().defaultTo('[]');
+    table
+      .jsonb('shortlist')
+      .notNullable()
+      .defaultTo('[]');
   });
 };
 

@@ -14,13 +14,12 @@ router
   // GET /v1/search?q=...
   //
   .get(
-  // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     asyncMiddleware(async (req, res, next) => {
-
       const results = await knex(bookTable)
         .select()
         .whereRaw(
-          'to_tsvector(\'danish\', creator || \' \' || title_full) @@ to_tsquery(\'danish\', ?)',
+          "to_tsvector('danish', creator || ' ' || title_full) @@ to_tsquery('danish', ?)",
           [req.query.q || '']
         );
 

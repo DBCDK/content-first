@@ -4,11 +4,27 @@ import {Provider} from 'react-redux';
 import App from './client/App';
 // import registerServiceWorker from './client/registerServiceWorker';
 import createStore from './client/redux/Store';
-import {loggerMiddleware, requestMiddleware, profileMiddleware, shortListMiddleware, listMiddleware, searchMiddleware} from './client/redux/middleware';
+import {
+  loggerMiddleware,
+  requestMiddleware,
+  profileMiddleware,
+  shortListMiddleware,
+  listMiddleware,
+  searchMiddleware
+} from './client/redux/middleware';
 
-const store = createStore([loggerMiddleware, requestMiddleware, profileMiddleware, shortListMiddleware, listMiddleware, searchMiddleware]);
+const store = createStore([
+  loggerMiddleware,
+  requestMiddleware,
+  profileMiddleware,
+  shortListMiddleware,
+  listMiddleware,
+  searchMiddleware
+]);
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>, document.getElementById('root'));
+  </Provider>,
+  document.getElementById('root')
+);
 // registerServiceWorker();

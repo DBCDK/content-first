@@ -18,17 +18,19 @@ const path = require('path');
  *   {status, title, meta: {body, problems}}
  * structure.
  */
-function validatingInput (document, schemaPath) {
+function validatingInput(document, schemaPath) {
   return new Promise((resolve, reject) => {
     let schema;
     try {
       schema = require(schemaPath);
-    }
-    catch (error) {
+    } catch (error) {
       reject({
         status: 500,
         title: 'Schema not found',
-        meta: {body: document, problems: `Schema ${schemaPath} not found: ${error}`}
+        meta: {
+          body: document,
+          problems: `Schema ${schemaPath} not found: ${error}`
+        }
       });
     }
     try {
@@ -44,8 +46,7 @@ function validatingInput (document, schemaPath) {
         detail: `Input data does not adhere to ${path.basename(schemaPath)}`,
         meta: {body: document, problems: niceErrors}
       });
-    }
-    catch (error) {
+    } catch (error) {
       reject(error);
     }
   });
@@ -56,7 +57,7 @@ function validatingInput (document, schemaPath) {
  * @param  {json} schemaPath       JSON schema
  * @return {Promise(validation)}   Promise of validation.
  */
-function validating (schemaPath) {
+function validating(schemaPath) {
   return document => validatingInput(document, schemaPath);
 }
 
@@ -64,12 +65,13 @@ function validating (schemaPath) {
  * A promise to validate each item in a list of JSON documents against a
  * schema, which resolves to the list itself, or rejects like validatingInput.
  */
-function validatingInputs (items, schemaPath) {
-  return items.reduce((prev, item) => {
-    return prev.then(() => {
-      return validatingInput(item, schemaPath);
-    });
-  }, Promise.resolve())
+function validatingInputs(items, schemaPath) {
+  return items
+    .reduce((prev, item) => {
+      return prev.then(() => {
+        return validatingInput(item, schemaPath);
+      });
+    }, Promise.resolve())
     .then(() => {
       return items;
     });
@@ -81,12 +83,14 @@ function validatingInputs (items, schemaPath) {
  *
  *     ['pid is the wrong type', 'creator is required']
  */
-function nicifyJsonValidationErrors (validate) {
+function nicifyJsonValidationErrors(validate) {
   return _.map(
-    _.map(
-      _.map(validate.errors, _.values),
-      _.curry(_.join)(_, ' ')
-    ),
-    x => _.replace(_.replace(_.replace(x, 'data["', 'field '), '"]', ''), 'data.', 'field ')
+    _.map(_.map(validate.errors, _.values), _.curry(_.join)(_, ' ')),
+    x =>
+      _.replace(
+        _.replace(_.replace(x, 'data["', 'field '), '"]', ''),
+        'data.',
+        'field '
+      )
   );
 }

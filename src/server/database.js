@@ -9,7 +9,8 @@ const database = new Database(knex);
  * Make sure database is at most recent schema.
  */
 const logger = require('server/logger');
-knex.migrate.latest()
+knex.migrate
+  .latest()
   .then(() => {
     logger.log.debug('Database is now at latest version.');
     database.setOk();

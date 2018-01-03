@@ -13,14 +13,12 @@ const nock = require('nock');
 const {expectValidate} = require('fixtures/output-verifiers');
 
 describe('Admin API', () => {
-
   describe('No database connection', () => {
-
     beforeEach(() => {
       mock.beforeEach();
     });
 
-    afterEach(function () {
+    afterEach(function() {
       if (this.currentTest.state !== 'passed') {
         mock.dumpLogs();
       }
@@ -29,23 +27,27 @@ describe('Admin API', () => {
     const webapp = request(mock.server);
 
     describe('/howru', () => {
-
       it('should say that database is unreachable', () => {
         // Arrange.
-        nock(config.auth.url).get(constants.apiHealth).reply(200, constants.healthyResponse);
+        nock(config.auth.url)
+          .get(constants.apiHealth)
+          .reply(200, constants.healthyResponse);
         // Act.
-        return webapp.get('/howru')
-          .set('Accept', 'application/json')
-          // Assert.
-          .expect(200)
-          .expect(res => {
-            expectValidate(res.body, 'schemas/status-out.json');
-            expect(res.body.ok).to.be.false;
-            expect(res.body).to.have.property('errorText');
-            expect(res.body.errorText).to.match(/database.+unreachable/i);
-            expect(res.body).to.have.property('errorLog');
-            expect(mock.getErrorLog().args).to.have.length(0);
-          });
+        return (
+          webapp
+            .get('/howru')
+            .set('Accept', 'application/json')
+            // Assert.
+            .expect(200)
+            .expect(res => {
+              expectValidate(res.body, 'schemas/status-out.json');
+              expect(res.body.ok).to.be.false;
+              expect(res.body).to.have.property('errorText');
+              expect(res.body.errorText).to.match(/database.+unreachable/i);
+              expect(res.body).to.have.property('errorLog');
+              expect(mock.getErrorLog().args).to.have.length(0);
+            })
+        );
       });
     });
   });

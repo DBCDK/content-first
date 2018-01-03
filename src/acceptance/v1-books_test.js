@@ -4,25 +4,28 @@
 const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
+const {
+  expectSuccess,
+  expectFailure,
+  expectValidate
+} = require('fixtures/output-verifiers');
 
 describe('Endpoint /v1/books', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
     await mock.resetting();
   });
-  afterEach(function () {
+  afterEach(function() {
     if (this.currentTest.state !== 'passed') {
       mock.dumpLogs();
     }
   });
 
   describe('Public endpoint', () => {
-
     describe('GET /v1/books?pids=...', () => {
-
       it('should handle no PIDs', () => {
-        return webapp.get('/v1/books')
+        return webapp
+          .get('/v1/books')
           .expect(400)
           .expect('Content-Type', /json/)
           .expect(/must supply at least one PID/);
@@ -31,7 +34,8 @@ describe('Endpoint /v1/books', () => {
       it('should handle non-existing pids', () => {
         const pid = 123456789;
         const url = `/v1/books?pids=${pid}`;
-        return webapp.get(url)
+        return webapp
+          .get(url)
           .expect(404)
           .expect(res => {
             expectFailure(res.body, errors => {
@@ -48,7 +52,8 @@ describe('Endpoint /v1/books', () => {
       it('should give a list of existing books', () => {
         const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
         const url = `/v1/books?pids=${pid}`;
-        return webapp.get(url)
+        return webapp
+          .get(url)
           .expect(200)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
@@ -67,8 +72,10 @@ describe('Endpoint /v1/books', () => {
                 bibliographic_record_id: 53188931,
                 creator: 'Jens Blendstrup',
                 title: 'Havelågebogen',
-                title_full: 'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
-                taxonomy_description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
+                title_full:
+                  'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
+                taxonomy_description:
+                  'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
                 description: 'Noget med låger',
                 pages: 645,
                 loans: 1020,
@@ -92,10 +99,10 @@ describe('Endpoint /v1/books', () => {
     const hidden = request(mock.internal);
 
     describe('PUT /v1/books', () => {
-
       it('should reject wrong content type', () => {
         const contentType = 'text/plain';
-        return hidden.put('/v1/books')
+        return hidden
+          .put('/v1/books')
           .type(contentType)
           .send('broken')
           .expect(400)
@@ -111,7 +118,8 @@ describe('Endpoint /v1/books', () => {
       });
 
       it('should discard broken input and maintain current books', () => {
-        return hidden.put('/v1/books')
+        return hidden
+          .put('/v1/books')
           .type('application/json')
           .send('{"id": "1234"}')
           .expect(res => {
@@ -125,14 +133,16 @@ describe('Endpoint /v1/books', () => {
           })
           .expect(400)
           .then(() => {
-            return webapp.get('/v1/book/already-seeded-pid-martin-ridder')
+            return webapp
+              .get('/v1/book/already-seeded-pid-martin-ridder')
               .expect(200);
           });
       });
 
       it('should discard partly-broken input and maintain current books', () => {
         const broken = require('fixtures/partly-broken-books.json');
-        return hidden.put('/v1/books')
+        return hidden
+          .put('/v1/books')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -147,7 +157,9 @@ describe('Endpoint /v1/books', () => {
               const problems = error.meta.problems;
               expect(problems).to.be.an('array');
               expect(problems).to.deep.include('field pid is required');
-              expect(problems).to.deep.include('field bibliographicRecordId is required');
+              expect(problems).to.deep.include(
+                'field bibliographicRecordId is required'
+              );
               expect(problems).to.deep.include('field loans is required');
               expect(problems).to.deep.include('field workId is required');
               expect(problems).to.deep.include('field creator is required');
@@ -172,7 +184,8 @@ describe('Endpoint /v1/books', () => {
 
       it('should discard input with duplicate PIDs and maintain current books', () => {
         const broken = require('fixtures/duplicate-pid-books.json');
-        return hidden.put('/v1/books')
+        return hidden
+          .put('/v1/books')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -194,7 +207,8 @@ describe('Endpoint /v1/books', () => {
 
       it('should accept valid input and replace all books', () => {
         const books = require('fixtures/two-books.json');
-        return hidden.put('/v1/books')
+        return hidden
+          .put('/v1/books')
           .type('application/json')
           .send(books)
           .expect(res => {
@@ -209,7 +223,8 @@ describe('Endpoint /v1/books', () => {
           .then(() => {
             const pid = 'pid-new-book-1';
             const url = `/v1/book/${pid}`;
-            return webapp.get(url)
+            return webapp
+              .get(url)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
                   expectValidate(links, 'schemas/book-links-out.json');

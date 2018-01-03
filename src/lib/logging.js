@@ -14,7 +14,6 @@
 */
 
 module.exports = config => {
-
   const PRETTY_PRINT = config.pretty === 1 ? 2 : null;
   let info = null;
   /**
@@ -82,7 +81,7 @@ module.exports = config => {
     }
 
     const blob = {
-      '@timestamp': (new Date()).toISOString(),
+      '@timestamp': new Date().toISOString(),
       '@version': 1,
       level: level.toUpperCase(),
       host: config.hostname,

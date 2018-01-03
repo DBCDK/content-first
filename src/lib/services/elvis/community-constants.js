@@ -9,21 +9,24 @@ const constants = {
 };
 
 module.exports = () => {
-  return Object.assign({
-    apiQuery: communityId => {
-      return `${constants.apiCommunity}/${communityId}/query`;
+  return Object.assign(
+    {
+      apiQuery: communityId => {
+        return `${constants.apiCommunity}/${communityId}/query`;
+      },
+      apiProfileId: (communityId, profileId) => {
+        return `${constants.apiCommunity}/${communityId}/profile/${profileId}`;
+      },
+      apiPostProfile: communityId => {
+        return `${constants.apiCommunity}/${communityId}/profile`;
+      },
+      apiEntityId: (communityId, entityId) => {
+        return `${constants.apiCommunity}/${communityId}/entity/${entityId}`;
+      },
+      apiPostEntity: communityId => {
+        return `${constants.apiCommunity}/${communityId}/entity`;
+      }
     },
-    apiProfileId: (communityId, profileId) => {
-      return `${constants.apiCommunity}/${communityId}/profile/${profileId}`;
-    },
-    apiPostProfile: (communityId) => {
-      return `${constants.apiCommunity}/${communityId}/profile`;
-    },
-    apiEntityId: (communityId, entityId) => {
-      return `${constants.apiCommunity}/${communityId}/entity/${entityId}`;
-    },
-    apiPostEntity: (communityId) => {
-      return `${constants.apiCommunity}/${communityId}/entity`;
-    }
-  }, constants);
+    constants
+  );
 };

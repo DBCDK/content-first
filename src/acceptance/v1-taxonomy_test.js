@@ -3,29 +3,32 @@
 
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
+const {
+  expectSuccess,
+  expectFailure,
+  expectValidate
+} = require('fixtures/output-verifiers');
 const mock = require('fixtures/mock-server');
 
 describe('Endpoint /v1/taxonomy', () => {
-
   const webapp = request(mock.external);
 
   beforeEach(async () => {
     await mock.resetting();
   });
 
-  afterEach(function () {
+  afterEach(function() {
     if (this.currentTest.state !== 'passed') {
       mock.dumpLogs();
     }
   });
 
   describe('External endpoint', () => {
-
     describe('GET /v1/taxonomy', () => {
       it('should give first-level tags', () => {
         const location = '/v1/taxonomy';
-        return webapp.get(location)
+        return webapp
+          .get(location)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/taxonomy-links-out.json');
@@ -42,10 +45,10 @@ describe('Endpoint /v1/taxonomy', () => {
     });
 
     describe('GET /v1/taxonomy/:id', () => {
-
       it('should reject unknown id', () => {
         const location = '/v1/taxonomy/9999';
-        return webapp.get(location)
+        return webapp
+          .get(location)
           .expect(res => {
             expectFailure(res.body, errors => {
               expect(errors).to.have.length(1);
@@ -60,7 +63,8 @@ describe('Endpoint /v1/taxonomy', () => {
 
       it('should reject id with no children', () => {
         const location = '/v1/taxonomy/302';
-        return webapp.get(location)
+        return webapp
+          .get(location)
           .expect(res => {
             expectFailure(res.body, errors => {
               expect(errors).to.have.length(1);
@@ -75,7 +79,8 @@ describe('Endpoint /v1/taxonomy', () => {
 
       it('should give second-level tags', () => {
         const location = '/v1/taxonomy/1';
-        return webapp.get(location)
+        return webapp
+          .get(location)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/taxonomy-links-out.json');
@@ -93,7 +98,8 @@ describe('Endpoint /v1/taxonomy', () => {
 
       it('should give third-level tags', () => {
         const location = '/v1/taxonomy/10';
-        return webapp.get(location)
+        return webapp
+          .get(location)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
               expectValidate(links, 'schemas/taxonomy-links-out.json');
@@ -114,10 +120,10 @@ describe('Endpoint /v1/taxonomy', () => {
     const hidden = request(mock.internal);
 
     describe('PUT /v1/taxonomy', () => {
-
       it('should reject wrong content type', () => {
         const contentType = 'text/plain';
-        return hidden.put('/v1/taxonomy')
+        return hidden
+          .put('/v1/taxonomy')
           .type(contentType)
           .send('broken')
           .expect(400)
@@ -135,7 +141,8 @@ describe('Endpoint /v1/taxonomy', () => {
 
       it('should reject bad input', () => {
         const broken = require('fixtures/broken-taxonomy.json');
-        return hidden.put('/v1/taxonomy')
+        return hidden
+          .put('/v1/taxonomy')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -150,9 +157,15 @@ describe('Endpoint /v1/taxonomy', () => {
               const problems = error.meta.problems;
               expect(problems).to.be.an('array');
               expect(problems).to.deep.include('field 0.id is the wrong type');
-              expect(problems).to.deep.include('field 0.title is the wrong type');
-              expect(problems).to.deep.include('field 0.items.0.id is the wrong type');
-              expect(problems).to.deep.include('field 0.items.0.items.0.title is the wrong type');
+              expect(problems).to.deep.include(
+                'field 0.title is the wrong type'
+              );
+              expect(problems).to.deep.include(
+                'field 0.items.0.id is the wrong type'
+              );
+              expect(problems).to.deep.include(
+                'field 0.items.0.items.0.title is the wrong type'
+              );
             });
           })
           .expect(400);
@@ -160,7 +173,8 @@ describe('Endpoint /v1/taxonomy', () => {
 
       it('should reject non-integer and clashing ids', () => {
         const broken = require('fixtures/broken-taxonomy-non-integer.json');
-        return hidden.put('/v1/taxonomy')
+        return hidden
+          .put('/v1/taxonomy')
           .type('application/json')
           .send(broken)
           .expect(res => {
@@ -174,9 +188,15 @@ describe('Endpoint /v1/taxonomy', () => {
               expect(error.meta).to.have.property('problems');
               const problems = error.meta.problems;
               expect(problems).to.be.an('array');
-              expect(problems).to.deep.include('Cannot convert foo to an integer');
-              expect(problems).to.deep.include('Cannot convert bar to an integer');
-              expect(problems).to.deep.include('Cannot convert quux to an integer');
+              expect(problems).to.deep.include(
+                'Cannot convert foo to an integer'
+              );
+              expect(problems).to.deep.include(
+                'Cannot convert bar to an integer'
+              );
+              expect(problems).to.deep.include(
+                'Cannot convert quux to an integer'
+              );
               expect(problems).to.deep.include('Id 3 occurs more than once');
               expect(problems).to.deep.include('Id 4 occurs more than once');
             });
@@ -188,7 +208,8 @@ describe('Endpoint /v1/taxonomy', () => {
         const taxonomy = require('fixtures/good-taxonomy.json');
         const output = require('fixtures/taxonomy-out.json');
         const location = '/v1/taxonomy';
-        hidden.put(location)
+        hidden
+          .put(location)
           .type('application/json')
           .send(taxonomy)
           .expect(res => {
@@ -202,12 +223,16 @@ describe('Endpoint /v1/taxonomy', () => {
           .expect(200)
           .then(() => {
             const where = '/v1/complete-taxonomy';
-            webapp.get(where)
+            webapp
+              .get(where)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
                   expectValidate(links, 'schemas/taxonomy-links-out.json');
                   expect(links.self).to.equal(where);
-                  expectValidate(data, 'schemas/complete-taxonomy-data-out.json');
+                  expectValidate(
+                    data,
+                    'schemas/complete-taxonomy-data-out.json'
+                  );
                   expect(data).to.deep.equal(output);
                 });
               })

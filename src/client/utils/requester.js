@@ -210,8 +210,14 @@ export const loadShortList = async isLoggedIn => {
 
 export async function fetchSearchResults({query, dispatch}) {
   try {
-    const result = await request.get('/v1/search?q=' + encodeURIComponent(query));
-    dispatch({type: SEARCH_RESULTS, query, results: JSON.parse(result.text).data});
+    const result = await request.get(
+      '/v1/search?q=' + encodeURIComponent(query)
+    );
+    dispatch({
+      type: SEARCH_RESULTS,
+      query,
+      results: JSON.parse(result.text).data
+    });
   } catch (e) {
     dispatch({type: SEARCH_RESULTS, query, results: null});
   }

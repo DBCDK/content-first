@@ -19,7 +19,7 @@ const knexfile = require('./knexfile');
 //     const port = require('server/config').server.port
 //     mymodule(port)
 
-function Common () {
+function Common() {
   return {
     environment: process.env.NODE_ENV || 'development',
     hostname: hostname().replace('.domain_not_set.invalid', ''),

@@ -8,7 +8,11 @@ module.exports = {
 
 const _ = require('lodash');
 
-function divideListsIntoCreateUpdateAndDeleteForProfileId (newEntities, existingEntities, profileId) {
+function divideListsIntoCreateUpdateAndDeleteForProfileId(
+  newEntities,
+  existingEntities,
+  profileId
+) {
   const existingUuids = _.map(existingEntities, entity => entity.id);
   const newUuids = _.map(newEntities, entry => entry.attributes.uuid);
 
@@ -17,17 +21,32 @@ function divideListsIntoCreateUpdateAndDeleteForProfileId (newEntities, existing
   const uuidsToUpdate = _.intersection(newUuids, existingUuids);
 
   const entitiesToCreate = _.map(
-    _.filter(newEntities, entity => uuidsToCreate.includes(entity.attributes.uuid)),
+    _.filter(newEntities, entity =>
+      uuidsToCreate.includes(entity.attributes.uuid)
+    ),
     entity => Object.assign({owner_id: profileId}, entity)
   );
 
-  const partition = _.partition(existingEntities, entity => uuidsToDelete.includes(entity.id));
+  const partition = _.partition(existingEntities, entity =>
+    uuidsToDelete.includes(entity.id)
+  );
   const idsToDelete = _.map(partition[0], entry => entry.entity_id);
 
   const entriesToUpdate = partition[1];
   const entitiesToUpdate = _.map(
-    _.filter(newEntities, entity => uuidsToUpdate.includes(entity.attributes.uuid)),
-    entity => Object.assign({id: _.find(entriesToUpdate, entry => entry.id === entity.attributes.uuid).entity_id}, entity)
+    _.filter(newEntities, entity =>
+      uuidsToUpdate.includes(entity.attributes.uuid)
+    ),
+    entity =>
+      Object.assign(
+        {
+          id: _.find(
+            entriesToUpdate,
+            entry => entry.id === entity.attributes.uuid
+          ).entity_id
+        },
+        entity
+      )
   );
 
   return {
@@ -37,7 +56,7 @@ function divideListsIntoCreateUpdateAndDeleteForProfileId (newEntities, existing
   };
 }
 
-function transformFrontendUserToProfileAndEntities (userInfo) {
+function transformFrontendUserToProfileAndEntities(userInfo) {
   let skeleton = {
     profile: {
       name: userInfo.name,
@@ -51,11 +70,11 @@ function transformFrontendUserToProfileAndEntities (userInfo) {
   return skeleton;
 }
 
-function transformListsToLists (lists) {
+function transformListsToLists(lists) {
   return _.map(lists, transformListToList);
 }
 
-function transformProfileToTaste (profile) {
+function transformProfileToTaste(profile) {
   return {
     name: profile.name,
     moods: profile.profile.moods,
@@ -65,7 +84,7 @@ function transformProfileToTaste (profile) {
   };
 }
 
-function transformListToList (list) {
+function transformListToList(list) {
   return {
     type: 'list',
     title: list.title,

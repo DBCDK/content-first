@@ -4,11 +4,12 @@ const constants = require('server/constants')();
 const userTable = constants.users.table;
 
 exports.up = function(knex) {
-  return knex.schema.table(userTable, table => {
-    table.dropColumn('name');
-    table.dropColumn('gender');
-    table.dropColumn('birth_year');
-  })
+  return knex.schema
+    .table(userTable, table => {
+      table.dropColumn('name');
+      table.dropColumn('gender');
+      table.dropColumn('birth_year');
+    })
     .then(() => {
       return knex.schema.table(userTable, table => {
         table.string('name').defaultTo('');

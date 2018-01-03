@@ -52,7 +52,10 @@ describe('logging', () => {
     sut1.log.log('info', 'test message');
 
     stub.restore();
-    assert.isTrue(stub.args.toString().includes('"test": "hest"'), 'Values set in setInfo method is present in log output');
+    assert.isTrue(
+      stub.args.toString().includes('"test": "hest"'),
+      'Values set in setInfo method is present in log output'
+    );
   });
 
   it('should log a message on the INFO level', () => {
@@ -79,7 +82,7 @@ describe('logging', () => {
 
   it('should log a message on each of the levels specified', () => {
     const levels = ['ERROR', 'WARN', 'INFO', 'DEBUG', 'TRACE'];
-    levels.forEach((level) => {
+    levels.forEach(level => {
       const stub = sinon.stub(console, 'log');
       const logMsg = `this is an ${level} message`;
       const method = level.toLowerCase();
@@ -121,5 +124,4 @@ describe('logging', () => {
     assert.equal(args[0].length, 1);
     assert.equal(args[0][0].split('\n').length, 13);
   });
-
 });

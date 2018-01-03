@@ -20,70 +20,73 @@ const community = require('server/community');
 const transform = require('__/services/elvis/transformers');
 const _ = require('lodash');
 
-function gettingUser (userId) {
+function gettingUser(userId) {
   return community.gettingUserByProfileId(userId);
 }
 
-function findingUserByUserIdHash (userIdHash) {
-  return community.gettingProfileIdByUserIdHash(userIdHash)
-  .catch(() => {
+function findingUserByUserIdHash(userIdHash) {
+  return community.gettingProfileIdByUserIdHash(userIdHash).catch(() => {
     // UserId not found.
     return null;
   });
 }
 
-function creatingUser (userIdHash) {
-  return community.creatingUserProfile({
-    name: '',
-    attributes: {
-      user_id: userIdHash,
-      shortlist: [],
-      tastes: []
-    }
-  })
-  .then(profile => {
-    return profile.id;
-  });
+function creatingUser(userIdHash) {
+  return community
+    .creatingUserProfile({
+      name: '',
+      attributes: {
+        user_id: userIdHash,
+        shortlist: [],
+        tastes: []
+      }
+    })
+    .then(profile => {
+      return profile.id;
+    });
 }
 
-function gettingUserIdFromLoginToken (token) {
+function gettingUserIdFromLoginToken(token) {
   return new Promise((resolve, reject) => {
     return knex(cookieTable)
-    .where('cookie', token).select('community_profile_id', 'expires_epoch_s')
-    .then(existing => {
-      if (existing.length === 0) {
-        return reject({
-          status: 404,
-          title: 'Unknown login token',
-          detail: `Token ${token} does not exist`
+      .where('cookie', token)
+      .select('community_profile_id', 'expires_epoch_s')
+      .then(existing => {
+        if (existing.length === 0) {
+          return reject({
+            status: 404,
+            title: 'Unknown login token',
+            detail: `Token ${token} does not exist`
+          });
+        }
+        const expires_s = existing[0].expires_epoch_s;
+        const now_s = Math.ceil(Date.now() / 1000);
+        if (now_s >= expires_s) {
+          return reject({
+            status: 403,
+            title: 'Login token has expired',
+            detail: `Token ${token} has expired`
+          });
+        }
+        return resolve(existing[0].community_profile_id);
+      })
+      .catch(error => {
+        reject({
+          status: 500,
+          title: 'Database operation failed',
+          detail: error
         });
-      }
-      const expires_s = existing[0].expires_epoch_s;
-      const now_s = Math.ceil(Date.now() / 1000);
-      if (now_s >= expires_s) {
-        return reject({
-          status: 403,
-          title: 'Login token has expired',
-          detail: `Token ${token} has expired`
-        });
-      }
-      return resolve(existing[0].community_profile_id);
-    })
-    .catch(error => {
-      reject({
-        status: 500,
-        title: 'Database operation failed',
-        detail: error
       });
-    });
   });
 }
 
-function removingLoginToken (token) {
-  return knex(cookieTable).where('cookie', token).del();
+function removingLoginToken(token) {
+  return knex(cookieTable)
+    .where('cookie', token)
+    .del();
 }
 
-function gettingUserFromToken (req) {
+function gettingUserFromToken(req) {
   return new Promise(async (resolve, reject) => {
     const location = req.baseUrl;
     const loginToken = req.cookies['login-token'];
@@ -98,8 +101,7 @@ function gettingUserFromToken (req) {
     let userId;
     try {
       userId = await gettingUserIdFromLoginToken(loginToken);
-    }
-    catch (error) {
+    } catch (error) {
       if (error.status === 404) {
         return reject({
           status: 403,
@@ -118,8 +120,7 @@ function gettingUserFromToken (req) {
     try {
       const user = await gettingUser(userId);
       return resolve(user);
-    }
-    catch (error) {
+    } catch (error) {
       const returnedError = {meta: {resource: location}};
       Object.assign(returnedError, error);
       return reject(returnedError);
@@ -127,13 +128,15 @@ function gettingUserFromToken (req) {
   });
 }
 
-async function updatingUser (userId, partialData) {
-  const {profile, lists} = transform.transformFrontendUserToProfileAndEntities(partialData);
+async function updatingUser(userId, partialData) {
+  const {profile, lists} = transform.transformFrontendUserToProfileAndEntities(
+    partialData
+  );
   await community.updatingProfileWithShortlistAndTastes(userId, profile);
   await updatingTransformedLists(userId, lists);
 }
 
-function gettingListsFromToken (req) {
+function gettingListsFromToken(req) {
   return new Promise(async (resolve, reject) => {
     const location = req.baseUrl;
     const loginToken = req.cookies['login-token'];
@@ -148,8 +151,7 @@ function gettingListsFromToken (req) {
     let userId;
     try {
       userId = await gettingUserIdFromLoginToken(loginToken);
-    }
-    catch (error) {
+    } catch (error) {
       if (error.status === 404) {
         return reject({
           status: 403,
@@ -166,10 +168,11 @@ function gettingListsFromToken (req) {
       });
     }
     try {
-      const lists = await community.gettingAllListEntitiesOwnedByProfileId(userId);
+      const lists = await community.gettingAllListEntitiesOwnedByProfileId(
+        userId
+      );
       return resolve(lists);
-    }
-    catch (error) {
+    } catch (error) {
       let meta = error;
       if (meta.response) {
         meta = meta.response;
@@ -187,13 +190,22 @@ function gettingListsFromToken (req) {
   });
 }
 
-function updatingLists (userId, lists) {
-  return updatingTransformedLists(userId, transform.transformListsToLists(lists));
+function updatingLists(userId, lists) {
+  return updatingTransformedLists(
+    userId,
+    transform.transformListsToLists(lists)
+  );
 }
 
 async function updatingTransformedLists(userId, lists) {
-  const alreadyExist = await community.gettingIdsOfAllListEntitiesOwnedByUserWithProfileId(userId);
-  const {toCreate, toUpdate, toDelete} = transform.divideListsIntoCreateUpdateAndDeleteForProfileId(
+  const alreadyExist = await community.gettingIdsOfAllListEntitiesOwnedByUserWithProfileId(
+    userId
+  );
+  const {
+    toCreate,
+    toUpdate,
+    toDelete
+  } = transform.divideListsIntoCreateUpdateAndDeleteForProfileId(
     lists,
     alreadyExist,
     userId
