@@ -229,11 +229,15 @@ exports[`ListCreate a book is added to the list 1`] = `
               <div
                 className="flex list-item"
               >
-                <img
-                  alt="some title1"
+                <BookCover
+                  book={
+                    Object {
+                      "creator": "some creator1",
+                      "pid": "pid1",
+                      "title": "some title1",
+                    }
+                  }
                   className="list-item__img"
-                  onError={[Function]}
-                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                 />
                 <div
                   className="list-item__details"
@@ -407,11 +411,15 @@ exports[`ListCreate a books is removed from the list 1`] = `
               <div
                 className="flex list-item"
               >
-                <img
-                  alt="some title1"
+                <BookCover
+                  book={
+                    Object {
+                      "creator": "some creator1",
+                      "pid": "pid1",
+                      "title": "some title1",
+                    }
+                  }
                   className="list-item__img"
-                  onError={[Function]}
-                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                 />
                 <div
                   className="list-item__details"
@@ -709,11 +717,15 @@ exports[`ListCreate multible books are added to the list 1`] = `
               <div
                 className="flex list-item"
               >
-                <img
-                  alt="some title3"
+                <BookCover
+                  book={
+                    Object {
+                      "creator": "some creator3",
+                      "pid": "pid3",
+                      "title": "some title3",
+                    }
+                  }
                   className="list-item__img"
-                  onError={[Function]}
-                  src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
                 />
                 <div
                   className="list-item__details"
@@ -762,11 +774,15 @@ exports[`ListCreate multible books are added to the list 1`] = `
               <div
                 className="flex list-item"
               >
-                <img
-                  alt="some title2"
+                <BookCover
+                  book={
+                    Object {
+                      "creator": "some creator2",
+                      "pid": "pid2",
+                      "title": "some title2",
+                    }
+                  }
                   className="list-item__img"
-                  onError={[Function]}
-                  src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
                 />
                 <div
                   className="list-item__details"
@@ -815,11 +831,15 @@ exports[`ListCreate multible books are added to the list 1`] = `
               <div
                 className="flex list-item"
               >
-                <img
-                  alt="some title1"
+                <BookCover
+                  book={
+                    Object {
+                      "creator": "some creator1",
+                      "pid": "pid1",
+                      "title": "some title1",
+                    }
+                  }
                   className="list-item__img"
-                  onError={[Function]}
-                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                 />
                 <div
                   className="list-item__details"

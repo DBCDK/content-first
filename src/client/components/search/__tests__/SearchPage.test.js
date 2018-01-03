@@ -6,6 +6,7 @@ import {
 } from '../SearchPage.container';
 import renderer from 'react-test-renderer';
 
+jest.mock('../SearchField.component', () => 'SearchField');
 describe('SearchPage', () => {
   describe('render function', () => {
     it('displays search results', () => {

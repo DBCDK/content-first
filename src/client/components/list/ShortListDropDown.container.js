@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Image from '../Image.component';
+import BookCover from '../general/BookCover.component';
 import Kryds from '../svg/Kryds.svg';
 import Huskeliste from '../svg/Huskeliste.svg';
 import LineBehindText from '../general/LineBehindText.component';
@@ -17,15 +17,7 @@ const ShortListElement = props => {
   return (
     <div className="short-list-element">
       <div className="short-list-element--cover-image">
-        <Image
-          urls={[
-            `https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(
-              props.element.book.pid
-            )}`,
-            `/v1/image/${encodeURIComponent(props.element.book.pid)}`,
-            '/default-book-cover.png'
-          ]}
-        />
+        <BookCover book={props.element.book} />
       </div>
       <div className="short-list-element--text">
         <div className="short-list-element--header">

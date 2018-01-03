@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from '../Image.component';
+import BookCover from '../general/BookCover.component';
 import CheckmarkMenu, {MenuItem} from '../general/CheckmarkMenu.component';
 import CheckmarkButton from '../general/CheckmarkButton.component';
 import TouchHover from '../general/TouchHover.component';
@@ -30,15 +30,7 @@ class WorkItem extends React.Component {
               }
             }}
           >
-            <Image
-              urls={[
-                `https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(
-                  this.props.work.book.pid
-                )}`,
-                `/v1/image/${encodeURIComponent(this.props.work.book.pid)}`,
-                '/default-book-cover.png'
-              ]}
-            />
+            <BookCover book={this.props.work.book} />
           </TouchHover>
           {!this.props.isLoggedIn && (
             <CheckmarkButton

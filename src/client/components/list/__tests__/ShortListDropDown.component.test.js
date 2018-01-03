@@ -8,6 +8,8 @@ import {
   SHORTLIST_LOAD_RESPONSE
 } from '../../../redux/shortlist.reducer';
 
+jest.mock('../../general/BookCover.component', () => 'BookCover');
+
 const createTestElement = id => {
   return {
     book: {

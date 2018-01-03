@@ -102,11 +102,15 @@ exports[`AddToListModal newly added list is selected 1`] = `
               <div
                 className="cover-image-wrapper"
               >
-                <img
-                  alt=""
-                  className=""
-                  onError={[Function]}
-                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                <BookCover
+                  book={
+                    Object {
+                      "creator": "some creator1",
+                      "pid": "pid1",
+                      "taxonomy_description": "some taxonomy_description1",
+                      "title": "some title1",
+                    }
+                  }
                 />
               </div>
             </div>
@@ -241,11 +245,15 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
               <div
                 className="cover-image-wrapper"
               >
-                <img
-                  alt=""
-                  className=""
-                  onError={[Function]}
-                  src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                <BookCover
+                  book={
+                    Object {
+                      "creator": "some creator1",
+                      "pid": "pid1",
+                      "taxonomy_description": "some taxonomy_description1",
+                      "title": "some title1",
+                    }
+                  }
                 />
               </div>
             </div>

@@ -6,6 +6,8 @@ import createStore from '../../../redux/Store';
 import {ADD_LIST} from '../../../redux/list.reducer';
 import {createTestList, createTestElement} from '../../../utils/testHelper';
 
+jest.mock('../../general/BookCover.component', () => 'BookCover');
+
 // for ref in AddToListModal not to be null
 function createNodeMock() {
   return {};

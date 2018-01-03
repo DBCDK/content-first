@@ -29,6 +29,7 @@ const reducer = (state, action) => {
 };
 
 jest.mock('react-textarea-autosize', () => 'textarea');
+jest.mock('../../general/BookCover.component', () => 'BookCover');
 const createTestElement = id => {
   return {
     book: {
