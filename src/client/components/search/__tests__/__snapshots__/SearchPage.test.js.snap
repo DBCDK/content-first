@@ -41,9 +41,13 @@ exports[`SearchPage render function displays search results 1`] = `
     </p>
     <ul>
       <li>
-        Titel
-         - 
-        Forfatter
+        <a
+          href="/værk/123:samplepid-456"
+        >
+          Titel
+           - 
+          Forfatter
+        </a>
       </li>
     </ul>
   </div>
@@ -81,21 +85,7 @@ exports[`SearchPage render function gives a message, when no search results are 
     </span>
   </form>
   <div>
-    <p>
-      Søgning efter "
-      søgeforespørgsel
-      " returnerede 
-      1
-       
-      resultater.
-    </p>
-    <ul>
-      <li>
-        Titel
-         - 
-        Forfatter
-      </li>
-    </ul>
+    Intet søgeresultat endnu.
   </div>
 </div>
 `;
