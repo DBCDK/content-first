@@ -16,6 +16,8 @@
     "chai-as-promised": "^7.1.1",
     "coveralls": "^2.13.1",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.0",
     "eslint": "^4.12.1",
     "eslint-plugin-react": "^7.5.1",
     "jest-localstorage-mock": "^2.1.0",
@@ -67,8 +69,7 @@
     "lint-js": "eslint src",
     "postinstall": "./tools/setup-node-env.sh",
     "start": "run-p start-backend start-frontend",
-    "start-backend":
-      ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/",
+    "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/",
     "start-frontend": "react-scripts start",
     "test": "run-s test-units lint-js",
     "test-acceptance": ". ./current.env && mocha --exit src/acceptance/*_test.js",
@@ -81,6 +82,8 @@
     "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
