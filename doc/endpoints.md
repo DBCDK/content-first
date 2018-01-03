@@ -537,7 +537,7 @@ Cleans up the database and returns statistics, like
     { "data":
       { "users":
         { "total": 225
-        , "loged-in": 43
+        , "logged-in": 43
         }
       , "books":
         { "total": 345

@@ -1,7 +1,8 @@
 /* eslint-env mocha */
 'use strict';
 
-const mock = require('./mock-server');
+const mock = require('fixtures/mock-server');
+const seeder = require('./seed-community');
 const {expect} = require('chai');
 const request = require('supertest');
 const nock = require('nock');
@@ -10,62 +11,85 @@ const constants = require('server/constants')();
 const authenticator = require('server/authenticator');
 const authConstants = require('__/services/smaug/authentication-constants')();
 const loginConstants = require('__/services/hejmdal/login-constants')();
-const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
+const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
 const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 
 describe('User login', () => {
+
   const webapp = request(mock.external);
+
+  const knownUserId = '0101781234';
+
   beforeEach(async () => {
-    await mock.beforeEach();
+    await mock.resetting();
+    await seeder.seedingCommunity(knownUserId);
   });
-  afterEach(() => {
-    mock.afterEach();
+
+  afterEach(async function () {
+    if (this.currentTest.state !== 'passed') {
+      mock.dumpLogs();
+    }
   });
+
+  function sleep (ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   describe('GET /v1/login', () => {
 
-    it('should retrieve existing user data on valid cookie', () => {
+    it('should retrieve existing user data on valid cookie', async () => {
+      await sleep(100); // Apperently Elvis needs time get out of bed.
       // Act.
       return webapp.get('/v1/login')
-        .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
-        // Assert.
-        .expect(res => {
-          expectSuccess(res.body, (links, data) => {
-            expectValidate(links, 'schemas/user-links-out.json');
-            expectValidate(data, 'schemas/user-data-out.json');
-            expectValidate(data.shortlist, 'schemas/shortlist-data-out.json');
-            expectValidate(data.lists, 'schemas/lists-data-out.json');
-            expectValidate(data.profiles, 'schemas/profiles-data-out.json');
-            expect(data).to.deep.equal({
-              name: 'Jens Godfredsen',
-              shortlist: [{
-                pid: '870970-basis-22629344',
-                origin: 'en-god-bog'
-              }],
-              lists: [{
-                id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
-                type: 'SYSTEM_LIST',
-                title: 'My List',
-                description: 'A brand new list',
-                list: [{
-                  pid: '870970-basis-22629344',
-                  description: 'Magic to the people'
-                }]
-              }],
-              profiles: [{
-                name: 'Med på den værste',
-                profile: {
-                  moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
-                  genres: ['Brevromaner', 'Noveller'],
-                  authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
-                  archetypes: ['hestepigen']
-                }
-              }]
-            });
+      .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
+      // Assert.
+      .expect(res => {
+        expectSuccess(res.body, (links, data) => {
+          expectValidate(links, 'schemas/user-links-out.json');
+          expectValidate(data, 'schemas/user-data-out.json');
+          expectValidate(data.shortlist, 'schemas/shortlist-data-out.json');
+          expectValidate(data.lists, 'schemas/lists-data-out.json');
+          expectValidate(data.profiles, 'schemas/profiles-data-out.json');
+          expect(data.name).to.deep.equal('Jens Godfredsen');
+          expect(data.shortlist).to.deep.equal([{
+            pid: '870970-basis-22629344',
+            origin: 'en-god-bog'
+          }]);
+          expect(data.profiles).to.deep.equal([{
+            name: 'Med på den værste',
+            profile: {
+              moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
+              genres: ['Brevromaner', 'Noveller'],
+              authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
+              archetypes: ['hestepigen']
+            }
+          }]);
+          expect(data.lists).to.deep.include({
+            id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+            type: 'SYSTEM_LIST',
+            public: false,
+            title: 'My List',
+            description: 'A brand new list',
+            list: [{
+              pid: '870970-basis-22629344',
+              description: 'Magic to the people'
+            }]
           });
-          expect(mock.getErrorLog().args).to.have.length(0);
-        })
-        .expect(200);
+          expect(data.lists).to.deep.include({
+            id: 'fa4f3a3de3a34a188234ed298ecbe810',
+            type: 'CUSTOM_LIST',
+            public: false,
+            title: 'Gamle Perler',
+            description: 'Bøger man simpelthen må læse',
+            list: [{
+              pid: '870970-basis-47573974',
+              description: 'Russisk forvekslingskomedie'
+            }]
+          });
+        });
+        expect(mock.getErrorLog().args).to.have.length(0);
+      })
+      .expect(200);
     });
 
     it('should redirect to remote login page on no cookie', () => {
@@ -169,41 +193,24 @@ describe('User login', () => {
 
   describe('GET /hejmdal:token&id', () => {
 
-    const token = 'a-valid-login-token-seeded-on-test-start';
-    const id = 4321;
-    const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
     const cookieFormat =
       /* TODO: /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly; secure/i;*/
       /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly/i;
 
-    it('should retrieve user info & redirect with valid cookie', () => {
+    it('should retrieve user info, create user & redirect with new cookie', () => {
       // Arrange.
-      const hejmdal = nock(config.login.url).get(slug).reply(200, {
-        attributes: {
-          cpr: '1701840000',
-          userId: '1701840000',
-          wayfId: null,
-          agencies: [{
-            userId: '1701840000',
-            agencyId: '715100',
-            userIdType: 'CPR'
-          }]
-        }
-      });
+      const token = 'f67837cd-f8f8-40fc-b80c-c2f2cff86944';
+      const id = 1234;
+      const hejmdal = arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId('1234567890', token, id);
       let loginToken;
       // Act.
-      const location = `/hejmdal?token=${token}&id=${id}`;
-      return webapp.get(location)
+      return webapp.get(`/hejmdal?token=${token}&id=${id}`)
         // Assert.
         .expect(res => {
           const cookies = res.headers['set-cookie'];
-          expect(cookies).to.have.length(1);
-          expect(cookies[0]).to.match(cookieFormat);
-          const cookieParts = cookies[0].match(cookieFormat);
-          const s_ExpiresIn = parseInt(cookieParts[2], 10);
-          const s_OneMonth = 30 * 24 * 60 * 60;
-          expect(s_ExpiresIn).to.equal(s_OneMonth);
+          const cookieParts = extractLoginCookie(cookies);
           loginToken = cookieParts[1];
+          expectExpireInOneMonth(cookieParts[2]);
           expect(mock.getErrorLog().args).to.have.length(0);
         })
         .expect(303)
@@ -220,8 +227,8 @@ describe('User login', () => {
                 expect(data).to.deep.equal({
                   name: '',
                   shortlist: [],
-                  lists: [],
-                  profiles: []
+                  profiles: [],
+                  lists: []
                 });
               });
               expect(hejmdal.isDone());
@@ -233,21 +240,9 @@ describe('User login', () => {
 
     it('should retrieve user info, detect existing user, and redirect', () => {
       // Arrange.
-      const hejmdal = nock(config.login.url).get(slug).reply(200, {
-        id,
-        token,
-        attributes: {
-          cpr: '1212719873',
-          gender: 'm',
-          userId: '0101781234',
-          wayfId: 'some-wayf-id',
-          agencies: [],
-          birthDate: '1212',
-          birthYear: '1971',
-          uniloginId: 'some-unilogin-id',
-          municipality: null
-        }
-      });
+      const token = '3b709b2a-37bb-4556-8021-e86b56e8f571';
+      const id = 4321;
+      const hejmdal = arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId(knownUserId, token, id);
       let loginToken;
       // Act.
       const location = `/hejmdal?token=${token}&id=${id}`;
@@ -258,9 +253,7 @@ describe('User login', () => {
         .expect('set-cookie', /^login-token=/)
         .then(res => {
           const cookies = res.headers['set-cookie'];
-          expect(cookies).to.have.length(1);
-          expect(cookies[0]).to.match(cookieFormat);
-          const cookieParts = cookies[0].match(cookieFormat);
+          const cookieParts = extractLoginCookie(cookies);
           loginToken = cookieParts[1];
         })
         .then(() => {
@@ -274,30 +267,40 @@ describe('User login', () => {
                 expectValidate(data.shortlist, 'schemas/shortlist-data-out.json');
                 expectValidate(data.lists, 'schemas/lists-data-out.json');
                 expectValidate(data.profiles, 'schemas/profiles-data-out.json');
-                expect(data).to.deep.equal({
-                  name: 'Jens Godfredsen',
-                  shortlist: [{
+                expect(data.name).to.deep.equal('Jens Godfredsen');
+                expect(data.shortlist).to.deep.equal([{
+                  pid: '870970-basis-22629344',
+                  origin: 'en-god-bog'
+                }]);
+                expect(data.profiles).to.deep.equal([{
+                  name: 'Med på den værste',
+                  profile: {
+                    moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
+                    genres: ['Brevromaner', 'Noveller'],
+                    authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
+                    archetypes: ['hestepigen']
+                  }
+                }]);
+                expect(data.lists).to.deep.include({
+                  id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+                  type: 'SYSTEM_LIST',
+                  public: false,
+                  title: 'My List',
+                  description: 'A brand new list',
+                  list: [{
                     pid: '870970-basis-22629344',
-                    origin: 'en-god-bog'
-                  }],
-                  lists: [{
-                    id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
-                    type: 'SYSTEM_LIST',
-                    title: 'My List',
-                    description: 'A brand new list',
-                    list: [{
-                      pid: '870970-basis-22629344',
-                      description: 'Magic to the people'
-                    }]
-                  }],
-                  profiles: [{
-                    name: 'Med på den værste',
-                    profile: {
-                      moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
-                      genres: ['Brevromaner', 'Noveller'],
-                      authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
-                      archetypes: ['hestepigen']
-                    }
+                    description: 'Magic to the people'
+                  }]
+                });
+                expect(data.lists).to.deep.include({
+                  id: 'fa4f3a3de3a34a188234ed298ecbe810',
+                  type: 'CUSTOM_LIST',
+                  public: false,
+                  title: 'Gamle Perler',
+                  description: 'Bøger man simpelthen må læse',
+                  list: [{
+                    pid: '870970-basis-47573974',
+                    description: 'Russisk forvekslingskomedie'
                   }]
                 });
               });
@@ -310,12 +313,11 @@ describe('User login', () => {
 
     it('should handle failure to retrieve info and redirect', () => {
       // Arrange.
-      const hejmdal = nock(config.login.url).get(slug).replyWithError(
-        'Something bad happened'
-      );
+      const token = 'b4c4ba3a-f251-4632-8535-a1c86730855c';
+      const id = 5724;
+      const hejmdal = arrangeLoginServiceToReplyWIthErrorOnTokenAndId(token, id);
       // Act.
-      const location = `/hejmdal?token=${token}&id=${id}`;
-      return webapp.get(location)
+      return webapp.get(`/hejmdal?token=${token}&id=${id}`)
         // Assert.
         .expect(() => {
           expect(hejmdal.isDone());
@@ -324,5 +326,46 @@ describe('User login', () => {
         .expect('location', constants.pages.generalError)
         .expect(303);
     });
+
+    //
+    // Helpers.
+    //
+
+    function arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId (userId, token, id) {
+      const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
+      return nock(config.login.url).get(slug).reply(200, {
+        attributes: {
+          cpr: userId,
+          userId: userId,
+          wayfId: null,
+          uniloginId: null,
+          agencies: [{
+            userId: userId,
+            agencyId: '715100',
+            userIdType: 'CPR'
+          }]
+        }
+      });
+    }
+
+    function extractLoginCookie (cookies) {
+      expect(cookies).to.have.length(1);
+      expect(cookies[0]).to.match(cookieFormat);
+      return cookies[0].match(cookieFormat);
+    }
+
+    function expectExpireInOneMonth (epochString) {
+      const s_ExpiresIn = parseInt(epochString, 10);
+      const s_OneMonth = 30 * 24 * 60 * 60;
+      expect(s_ExpiresIn).to.equal(s_OneMonth);
+    }
+
+    function arrangeLoginServiceToReplyWIthErrorOnTokenAndId (token, id) {
+      const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
+      return nock(config.login.url).get(slug).replyWithError(
+        'Something bad happened'
+      );
+    }
+
   });
 });

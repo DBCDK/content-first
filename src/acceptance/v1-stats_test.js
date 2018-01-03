@@ -2,18 +2,23 @@
 /* eslint-disable no-unused-expressions */
 'use strict';
 
-const mock = require('./mock-server');
+const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectValidate} = require('./output-verifiers');
+const {expectSuccess, expectValidate} = require('fixtures/output-verifiers');
 
 describe('Statistics API', () => {
+
   const webapp = request(mock.internal);
+
   beforeEach(async () => {
-    await mock.beforeEach();
+    await mock.resetting();
   });
-  afterEach(() => {
-    mock.afterEach();
+
+  afterEach(function () {
+    if (this.currentTest.state !== 'passed') {
+      mock.dumpLogs();
+    }
   });
 
   describe('/v1/stats', () => {
@@ -29,11 +34,9 @@ describe('Statistics API', () => {
           expectSuccess(res.body, (links, data) => {
             expect(links.self).to.equal(location);
             expectValidate(data, 'schemas/statistics-out.json');
-            // Users.
-            expect(data.users.total).to.equal(1);
             // Only one of the seeded cookies should survive implicit
             // cleanup done by /stats.
-            expect(data.users['loged-in']).to.equal(1);
+            expect(data.users['logged-in']).to.equal(1);
             // Books & Tags.
             expect(data.books.total).to.equal(2);
             expect(data.tags.total).to.equal(52);

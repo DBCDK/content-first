@@ -43,6 +43,7 @@
       , "npm-debug.log"
       , "nvm.sh"
       , "package-lock.json"
+      , "scratch.js"
       ]
     }
   ]

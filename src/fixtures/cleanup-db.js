@@ -18,7 +18,6 @@ const tagTable = constants.tags.table;
 const taxonomyTopTable = constants.taxonomy.topTable;
 const taxonomyMiddleTable = constants.taxonomy.middleTable;
 const taxonomyBottomTable = constants.taxonomy.bottomTable;
-const userTable = constants.users.table;
 const cookieTable = constants.cookies.table;
 
 module.exports = knex => {
@@ -29,7 +28,6 @@ module.exports = knex => {
   function clear() {
     const tables = [
       cookieTable,
-      userTable,
       tagTable,
       taxonomyBottomTable,
       taxonomyMiddleTable,

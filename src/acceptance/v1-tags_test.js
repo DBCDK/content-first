@@ -4,16 +4,21 @@
 
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
-const mock = require('./mock-server');
+const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
+const mock = require('fixtures/mock-server');
 
 describe('Endpoint /v1/tags', () => {
+
   const webapp = request(mock.external);
+
   beforeEach(async () => {
-    await mock.beforeEach();
+    await mock.resetting();
   });
-  afterEach(() => {
-    mock.afterEach();
+
+  afterEach(function () {
+    if (this.currentTest.state !== 'passed') {
+      mock.dumpLogs();
+    }
   });
 
   describe('Public endpoint', () => {

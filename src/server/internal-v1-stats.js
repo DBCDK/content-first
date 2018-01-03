@@ -7,7 +7,6 @@ const _ = require('lodash');
 const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
-const userTable = constants.users.table;
 const cookieTable = constants.cookies.table;
 const bookTable = constants.books.table;
 const tagTable = constants.tags.table;
@@ -37,17 +36,19 @@ router.route('/')
 ;
 
 class Statistics {
+
   async calculatingStats () {
     await this.calculatingUserStats();
     await this.calculatingCookieStats();
     await this.calculatingBookStats();
     this.calculateTagsStats(await this.countingTagsForEachPid());
   }
+
   constructStatsStructure() {
     return {
       users: {
-        total: this.users,
-        'loged-in': this.cookies
+        // total: this.users,
+        'logged-in': this.cookies
       },
       books: {
         total: this.books
@@ -60,29 +61,37 @@ class Statistics {
       }
     };
   }
+
   async calculatingUserStats () {
-    this.users = this.extractCountFromDbResultArray(await knex(userTable).count());
+    // TODO: move test to integration?
+    // this.users = this.extractCountFromDbResultArray(await knex(userTable).count());
   }
+
   async calculatingCookieStats () {
     await this.cleaningUpDeadSessions();
     this.cookies = this.extractCountFromDbResultArray(await knex(cookieTable).count());
   }
+
   async calculatingBookStats () {
     this.books = this.extractCountFromDbResultArray(await knex(bookTable).count());
   }
+
   calculateTagsStats (pidList) {
     this.tagsPids = pidList.length;
     this.tagsTotal = _.reduce(pidList, (sum, pidCount) => sum + parseInt(pidCount.count, 10), 0);
     this.tagsMin = _.reduce(pidList, (min, pidCount) => Math.min(min, parseInt(pidCount.count, 10)), Number.MAX_SAFE_INTEGER);
     this.tagsMax = _.reduce(pidList, (max, pidCount) => Math.max(max, parseInt(pidCount.count, 10)), 0);
   }
+
   cleaningUpDeadSessions () {
     const now_s = Math.ceil(Date.now() / 1000);
     return knex(cookieTable).where('expires_epoch_s', '<=', now_s).del();
   }
+
   countingTagsForEachPid () {
     return knex(tagTable).select('pid', knex.raw('count(tags)')).groupBy('pid');
   }
+
   extractCountFromDbResultArray (table) {
     return parseInt(table[0].count, 10);
   }

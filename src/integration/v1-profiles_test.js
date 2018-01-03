@@ -1,18 +1,25 @@
 /* eslint-env mocha */
 'use strict';
 
+const mock = require('fixtures/mock-server');
+const seeder = require('./seed-community');
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
-const mock = require('./mock-server');
+const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
 
 describe('Profiles', () => {
+
   const webapp = request(mock.external);
+
   beforeEach(async () => {
-    await mock.beforeEach();
+    await mock.resetting();
+    await seeder.seedingCommunity('0101781234');
   });
-  afterEach(() => {
-    mock.afterEach();
+
+  afterEach(function () {
+    if (this.currentTest.state !== 'passed') {
+      mock.dumpLogs();
+    }
   });
 
   describe('Endpoint /v1/profiles', () => {
@@ -59,6 +66,7 @@ describe('Profiles', () => {
         .expect(403);
       });
 
+      it('should handle no connection to community');
 
       it('should retrieve profiles', () => {
         // Arrange.
@@ -109,42 +117,42 @@ describe('Profiles', () => {
       it('should reject wrong content type', () => {
         // Act.
         return webapp.put(location)
-          .type('text/plain')
-          .send('broken')
-          // Assert.
-          .expect(400)
-          .expect(res => {
-            expectFailure(res.body, errors => {
-              expect(errors).to.have.length(1);
-              const error = errors[0];
-              expect(error.title).to.match(/user data.+provided as application\/json/i);
-              expect(error).to.have.property('detail');
-              expect(error.detail).to.match(/text\/plain .*not supported/i);
-            });
+        .type('text/plain')
+        .send('broken')
+        // Assert.
+        .expect(400)
+        .expect(res => {
+          expectFailure(res.body, errors => {
+            expect(errors).to.have.length(1);
+            const error = errors[0];
+            expect(error.title).to.match(/user data.+provided as application\/json/i);
+            expect(error).to.have.property('detail');
+            expect(error.detail).to.match(/text\/plain .*not supported/i);
           });
+        });
       });
 
       it('should reject invalid content', () => {
         // Act.
         return webapp.put(location)
-          .type('application/json')
-          .send({foo: 'bar'})
-          // Assert.
-          .expect(400)
-          .expect(res => {
-            expectFailure(res.body, errors => {
-              expect(errors).to.have.length(1);
-              const error = errors[0];
-              expect(error.title).to.match(/malformed profiles/i);
-              expect(error).to.have.property('detail');
-              expect(error.detail).to.match(/do not adhere to schema/i);
-              expect(error).to.have.property('meta');
-              expect(error.meta).to.have.property('problems');
-              const problems = error.meta.problems;
-              expect(problems).to.be.an('array');
-              expect(problems).to.deep.include('data is the wrong type');
-            });
+        .type('application/json')
+        .send({foo: 'bar'})
+        // Assert.
+        .expect(400)
+        .expect(res => {
+          expectFailure(res.body, errors => {
+            expect(errors).to.have.length(1);
+            const error = errors[0];
+            expect(error.title).to.match(/malformed profiles/i);
+            expect(error).to.have.property('detail');
+            expect(error.detail).to.match(/do not adhere to schema/i);
+            expect(error).to.have.property('meta');
+            expect(error.meta).to.have.property('problems');
+            const problems = error.meta.problems;
+            expect(problems).to.be.an('array');
+            expect(problems).to.deep.include('data is the wrong type');
           });
+        });
       });
 
       it('should complain about user not logged in when no token', () => {
@@ -189,6 +197,8 @@ describe('Profiles', () => {
         })
         .expect(403);
       });
+
+      it('should handle no connection to community');
 
       it('should overwrite profiles', () => {
         // Arrange.

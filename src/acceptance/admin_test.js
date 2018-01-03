@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-expressions */
 'use strict';
 
-const {external, internal} = require('./mock-server');
+const {external, internal} = require('fixtures/mock-server');
 const config = require('server/config');
 const {expect} = require('chai');
 const request = require('supertest');
@@ -98,7 +98,7 @@ describe('Admin API on running database', () => {
   });
 });
 
-const {expectValidate} = require('./output-verifiers');
+const {expectValidate} = require('fixtures/output-verifiers');
 
 function expectStatusOkAndNoErrors (document) {
   expectValidate(document, 'schemas/status-out.json');

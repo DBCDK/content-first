@@ -1,7 +1,6 @@
 'use strict';
 
 const constants = {
-  communityName: 'Læsekompasset',
   apiHealth: '/howru',
   apiCommunity: '/v1/community',
   healthyResponse: {
@@ -14,8 +13,17 @@ module.exports = () => {
     apiQuery: communityId => {
       return `${constants.apiCommunity}/${communityId}/query`;
     },
-    apiProfile: (communityId, profileId) => {
+    apiProfileId: (communityId, profileId) => {
       return `${constants.apiCommunity}/${communityId}/profile/${profileId}`;
+    },
+    apiPostProfile: (communityId) => {
+      return `${constants.apiCommunity}/${communityId}/profile`;
+    },
+    apiEntityId: (communityId, entityId) => {
+      return `${constants.apiCommunity}/${communityId}/entity/${entityId}`;
+    },
+    apiPostEntity: (communityId) => {
+      return `${constants.apiCommunity}/${communityId}/entity`;
     }
   }, constants);
 };

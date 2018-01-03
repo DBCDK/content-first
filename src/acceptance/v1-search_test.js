@@ -1,19 +1,25 @@
 /* eslint-env mocha */
 'use strict';
 
-const mock = require('./mock-server');
+const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess} = require('./output-verifiers');
+const {expectSuccess} = require('fixtures/output-verifiers');
 
 describe('Endpoint /v1/search', () => {
+
   const webapp = request(mock.external);
+
   beforeEach(async () => {
-    await mock.beforeEach();
+    await mock.resetting();
   });
-  afterEach(() => {
-    mock.afterEach();
+
+  afterEach(function () {
+    if (this.currentTest.state !== 'passed') {
+      mock.dumpLogs();
+    }
   });
+
   describe('Public endpoint', () => {
     describe('GET /v1/search?q=...', () => {
       it('should handle search in title, including stemming', () => {

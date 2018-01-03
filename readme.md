@@ -40,6 +40,7 @@ The backend service controlled by environment variables.  Most scripts assume th
 | AUTH_CLIENT_ID          | content-first | Id known to authentication service |
 | AUTH_CLIENT_SECRET      | something    | Secret known to authentication service & salt for hashing |
 | AUTH_URL                | https://auth.dbc.dk | Where to contact authentication service |
+| COMMUNITY_NAME          | Læsekompasset | Id in community service         |
 | COMMUNITY_URL           | http://localhost:3003 | Where to contact community service    |
 | DB_CONNECTIONS_POOL_MAX | 10           | Maximum connections in DB pool   |
 | DB_CONNECTIONS_POOL_MIN | 2            | Minimum connections in DB pool   |

@@ -42,7 +42,8 @@ exports.auth = {
 exports.db = knexfile[common.environment];
 
 exports.community = {
-  url: process.env.COMMUNITY_URL || 'http://localhost:3003'
+  url: process.env.COMMUNITY_URL || 'http://localhost:3003',
+  name: process.env.COMMUNITY_NAME || 'Læsekompasset'
 };
 
 exports.logger = {
@@ -56,7 +57,6 @@ exports.login = {
   url: process.env.LOGIN_URL || 'https://login.bib.dk',
   salt: common.secret
 };
-
 
 exports.server = {
   environment: common.environment,

@@ -1,22 +1,24 @@
 /* eslint-env mocha */
 'use strict';
 
-const mock = require('./mock-server');
+const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
 const {promisify} = require('util');
 const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
-const {expectSuccess, expectFailure} = require('./output-verifiers');
+const {expectSuccess, expectFailure} = require('fixtures/output-verifiers');
 const resolve = require('resolve');
 
 describe('Endpoint /v1/image', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
-    await mock.beforeEach();
+    await mock.resetting();
   });
-  afterEach(() => {
-    mock.afterEach();
+  afterEach(function () {
+    if (this.currentTest.state !== 'passed') {
+      mock.dumpLogs();
+    }
   });
   describe('Public endpoint', () => {
     describe('GET /v1/image/:pid', () => {

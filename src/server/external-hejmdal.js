@@ -12,12 +12,11 @@ const config = require('server/config');
 const knex = require('knex')(config.db);
 const logger = require('server/logger');
 const constants = require('server/constants')();
-const userTable = constants.users.table;
 const cookieTable = constants.cookies.table;
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const loginService = require('server/login');
 const uuidv4 = require('uuid/v4');
-const {findingUserByCprHash, updatingUser} = require('server/user');
+const {findingUserByUserIdHash, creatingUser} = require('server/user');
 
 router.route('/')
   //
@@ -26,42 +25,30 @@ router.route('/')
   .get(asyncMiddleware(async (req, res) => {
     const token = req.query.token;
     const id = req.query.id;
-    let userUuid;
     const loginToken = uuidv4();
     return loginService.gettingTicket(token, id)
       .then(remoteUser => {
         logger.log.debug('Got remote user data');
         return Promise.all([
-          findingUserByCprHash(remoteUser.cprHash),
+          findingUserByUserIdHash(remoteUser.userIdHash),
           remoteUser
         ]);
       })
       .then(results => {
-        const uuid = results[0];
+        const userId = results[0];
         const remoteUser = results[1];
-        logger.log.debug(`User info ${JSON.stringify(remoteUser)}, uuid ${uuid}`);
-        if (uuid) {
-          userUuid = uuid;
-          return updatingUser(uuid, {
-            user_id: remoteUser.userIdHash
-            // CPR needs no update because that is what made the match in the first place.
-          });
+        logger.log.debug(`User info ${JSON.stringify(remoteUser)}, userId ${userId}`);
+        if (userId) {
+          return userId;
         }
-        userUuid = uuidv4();
-        logger.log.info(`Creating user ${userUuid}`);
-        return knex(userTable).insert({
-          uuid: userUuid,
-          cpr: remoteUser.cprHash,
-          user_id: remoteUser.userIdHash,
-          name: '',
-          profiles: '[]'
-        });
+        logger.log.info(`Creating user ${remoteUser.userIdHash}`);
+        return creatingUser(remoteUser.userIdHash);
       })
-      .then(() => {
+      .then(userId => {
         logger.log.debug(`Creating login token ${loginToken}`);
         return knex(cookieTable).insert({
-          uuid: loginToken,
-          user: userUuid,
+          cookie: loginToken,
+          community_profile_id: userId,
           expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
         });
       })

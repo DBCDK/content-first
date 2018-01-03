@@ -7,19 +7,23 @@
       "properties": {
         "cpr": {
           "required": true,
-          "type": "string"
+          "type": ["string", "null"]
         },
         "userId": {
           "required": true,
           "type": "string"
         },
+        "uniloginId": {
+          "required": true,
+          "type": ["string", "null"]
+        },
         "birthYear": {
           "required": false,
-          "type": "string"
+          "type": ["string", "null"]
         },
         "gender": {
           "required": false,
-          "type": "string"
+          "type": ["string", "null"]
         },
         "agencies": {
           "required": true,

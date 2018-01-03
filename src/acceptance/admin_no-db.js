@@ -10,16 +10,22 @@ const constants = require('__/services/smaug/authentication-constants')();
 const {expect} = require('chai');
 const request = require('supertest');
 const nock = require('nock');
-const {expectValidate} = require('./output-verifiers');
+const {expectValidate} = require('fixtures/output-verifiers');
 
 describe('Admin API', () => {
+
   describe('No database connection', () => {
+
     beforeEach(() => {
       mock.beforeEach();
     });
-    afterEach(() => {
-      mock.afterEach();
+
+    afterEach(function () {
+      if (this.currentTest.state !== 'passed') {
+        mock.dumpLogs();
+      }
     });
+
     const webapp = request(mock.server);
 
     describe('/howru', () => {

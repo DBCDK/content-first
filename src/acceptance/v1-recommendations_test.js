@@ -1,18 +1,23 @@
 /* eslint-env mocha */
 'use strict';
 
-const mock = require('./mock-server');
+const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
+const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
 
 describe('Endpoint /v1/recommendations', () => {
+
   const webapp = request(mock.external);
+
   beforeEach(async () => {
-    await mock.beforeEach();
+    await mock.resetting();
   });
-  afterEach(() => {
-    mock.afterEach();
+
+  afterEach(function () {
+    if (this.currentTest.state !== 'passed') {
+      mock.dumpLogs();
+    }
   });
 
   describe('GET /v1/recommendations?tags=...', () => {

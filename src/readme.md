@@ -71,3 +71,4 @@ On the build server, the [config file](../.travis.yml) uses the `after_script` t
 
 - After adding new packages with `npm install --save newpackage`, you have to `npm run postinstall` to re-establish the symbolic links in `node_modules`.
 - In development mode, the `PORT` of the backend service needs to agree with the `proxy` setting in [`package.json`](package.json).
+- It seems you need to install *babel-eslint* globally: `npm install -g babel-eslint`.  And while you're at it, install *nsrun* globally, and use it like `nsrun test-frontend`.

@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 'use strict';
 
-const mock = require('./mock-server');
+const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
 const nock = require('nock');
@@ -9,16 +9,20 @@ const config = require('server/config');
 const constants = require('server/constants')();
 const authenticator = require('server/authenticator');
 const authConstants = require('__/services/smaug/authentication-constants')();
-const {expectFailure} = require('./output-verifiers');
+const {expectFailure} = require('fixtures/output-verifiers');
 
 describe('POST /v1/logout', () => {
 
   const webapp = request(mock.external);
+
   beforeEach(async () => {
-    await mock.beforeEach();
+    await mock.resetting();
   });
-  afterEach(() => {
-    mock.afterEach();
+
+  afterEach(function () {
+    if (this.currentTest.state !== 'passed') {
+      mock.dumpLogs();
+    }
   });
 
   it('should invalidate current cookie and redirect to external logout page', () => {

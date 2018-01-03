@@ -5,11 +5,7 @@
       "required": true,
       "type": "object",
       "properties": {
-        "total": {
-          "required": true,
-          "type": "integer"
-        },
-        "loged-in": {
+        "logged-in": {
           "required": true,
           "type": "integer"
         }

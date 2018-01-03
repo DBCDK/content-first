@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "required": false,
+      "type": "integer"
+    },
+    "owner_id": {
+      "required": false,
+      "type": "integer"
+    },
+    "type": {
+      "required": true,
+      "type": "string"
+    },
+    "title": {
+      "required": true,
+      "type": "string"
+    },
+    "contents": {
+      "required": true,
+      "type": "string"
+    },
+    "attributes": {
+      "required": true,
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "required": true,
+          "type": "string"
+        },
+        "public": {
+          "required": true,
+          "type": "boolean"
+        },
+        "type": {
+          "required": true,
+          "type": "string"
+        },
+        "list": {
+          "required": true,
+          "type": "array",
+          "items": {
+            "required": true,
+            "type": "object",
+            "properties": {
+              "pid": {
+                "required": true,
+                "type": "string"
+              },
+              "description": {
+                "required": true,
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+
+  },
+  "additionalProperties": false
+}

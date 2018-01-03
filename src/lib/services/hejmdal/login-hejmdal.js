@@ -102,24 +102,35 @@ class Login {
       })
       .then(data => {
         const attr = data.attributes;
-        if (attr) {
-          return Promise.all([
-            me.calculatingHash(attr.cpr),
-            me.calculatingHash(attr.userId)
-          ]);
+        // We should always get a user id from Hejmdal.
+        if (attr && attr.userId) {
+          return me.calculatingHash(attr.userId);
         }
-        return reject(new Error(`User information could not be retrieved from ${JSON.stringify(data)}`));
+        return reject(new Error(`User ID could not be retrieved from ${JSON.stringify(data)}`));
       })
-      .then(hashedCprAndUserId => {
+      .then(hashedUserId => {
         return resolve({
-          cprHash: hashedCprAndUserId[0].toString('hex'),
-          userIdHash: hashedCprAndUserId[1].toString('hex')
+          userIdHash: hashedUserId
         });
       })
       .catch(error => {
         me.logger.log.debug('Caught', error);
         me.logError(error);
         return reject(new Error(error));
+      });
+    });
+  }
+
+  calculatingHash (data) {
+    const iterations = 10000;
+    const hashLength = 24;
+    const salt = this.config.salt;
+    return new Promise((resolve, reject) => {
+      pbkdf2(data, salt, iterations, hashLength, 'sha512', (error, hash) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(hash.toString('hex'));
       });
     });
   }
@@ -143,20 +154,6 @@ class Login {
     this.errorLog.push(
       (new Date()).toISOString() + ': ' + logEntry
     );
-  }
-
-  calculatingHash (data) {
-    const iterations = 10000;
-    const hashLength = 24;
-    const salt = this.config.salt;
-    return new Promise((resolve, reject) => {
-      pbkdf2(data, salt, iterations, hashLength, 'sha512', (error, hash) => {
-        if (error) {
-          return reject(error);
-        }
-        resolve(hash);
-      });
-    });
   }
 }
 

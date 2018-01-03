@@ -3,11 +3,7 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const config = require('server/config');
-const knex = require('knex')(config.db);
-const constants = require('server/constants')();
-const userTable = constants.users.table;
-const {gettingUserFromToken, gettingUser, gettingUserIdFromLoginToken} = require('server/user');
+const {gettingUser, gettingUserIdFromLoginToken, gettingListsFromToken, updatingLists} = require('server/user');
 const {validatingInput} = require('__/json');
 const path = require('path');
 const schema = path.join(__dirname, 'schemas/lists-in.json');
@@ -19,10 +15,10 @@ router.route('/')
   //
   .get(asyncMiddleware(async (req, res, next) => {
     const location = req.baseUrl;
-    return gettingUserFromToken(req)
-    .then(user => {
+    return gettingListsFromToken(req)
+    .then(lists => {
       res.status(200).json({
-        data: user.lists,
+        data: lists,
         links: {self: location}
       });
     })
@@ -86,15 +82,21 @@ router.route('/')
       });
     }
     try {
-      await knex(userTable).where('uuid', userId).update({
-        lists: JSON.stringify(lists)
-      });
+      await updatingLists(userId, lists);
     }
     catch (error) {
+      let meta = error;
+      if (meta.response) {
+        meta = meta.response;
+      }
+      if (meta.error) {
+        meta = meta.error;
+      }
       return next({
-        status: 500,
-        title: 'Database operation failed',
-        detail: error
+        status: 503,
+        title: 'Community-service connection problem',
+        detail: 'Community service is not reponding properly',
+        meta
       });
     }
     return gettingUser(userId)
@@ -105,10 +107,9 @@ router.route('/')
         });
       })
       .catch(error => {
-        Object.assign(error, {
-          meta: {resource: location}
-        });
-        next(error);
+        const returnedError = {meta: {resource: location}};
+        Object.assign(returnedError, error);
+        next(returnedError);
       });
   }))
 ;

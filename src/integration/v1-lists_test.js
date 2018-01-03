@@ -1,19 +1,33 @@
 /* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
 'use strict';
 
+const mock = require('fixtures/mock-server');
+const seeder = require('./seed-community');
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectFailure, expectValidate} = require('./output-verifiers');
-const mock = require('./mock-server');
+const nock = require('nock');
+const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
+const _ = require('lodash');
 
 describe('Lists', () => {
+
   const webapp = request(mock.external);
+
   beforeEach(async () => {
-    await mock.beforeEach();
+    await mock.resetting();
+    await seeder.seedingCommunity('0101781234');
   });
-  afterEach(() => {
-    mock.afterEach();
+
+  afterEach(function () {
+    if (this.currentTest.state !== 'passed') {
+      mock.dumpLogs();
+    }
   });
+
+  function sleep (ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
   describe('Endpoint /v1/lists', () => {
     const location = '/v1/lists';
@@ -59,10 +73,23 @@ describe('Lists', () => {
         .expect(403);
       });
 
+      describe('with community not responding properly', () => {
+        beforeEach(() => {
+          arrangeCommunityServiceToRespondToPostWithServerError();
+        });
+        it('should handle no connection to community', () => {
+          return actingAsLoggedInUserGetLists()
+          .expect(expectCommunityServiceConnectionProblem);
+        });
+        afterEach(() => {
+          nock.cleanAll();
+        });
+      });
 
-      it('should retrieve lists', () => {
+      it('should retrieve lists', async () => {
         // Arrange.
         const loginToken = 'a-valid-login-token-seeded-on-test-start';
+        await sleep(100); // Apparently Elvis needs time get out of bed.
         // Act.
         return webapp.get(location)
         .set('cookie', `login-token=${loginToken}`)
@@ -72,16 +99,28 @@ describe('Lists', () => {
             expectValidate(links, 'schemas/lists-links-out.json');
             expect(links.self).to.equal(location);
             expectValidate(data, 'schemas/lists-data-out.json');
-            expect(data).to.deep.equal([{
+            expect(data).to.deep.include({
               id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
               type: 'SYSTEM_LIST',
+              public: false,
               title: 'My List',
               description: 'A brand new list',
               list: [{
                 pid: '870970-basis-22629344',
                 description: 'Magic to the people'
               }]
-            }]);
+            });
+            expect(data).to.deep.include({
+              id: 'fa4f3a3de3a34a188234ed298ecbe810',
+              type: 'CUSTOM_LIST',
+              public: false,
+              title: 'Gamle Perler',
+              description: 'Bøger man simpelthen må læse',
+              list: [{
+                pid: '870970-basis-47573974',
+                description: 'Russisk forvekslingskomedie'
+              }]
+            });
           });
         })
         .expect(200);
@@ -185,8 +224,23 @@ describe('Lists', () => {
         .expect(403);
       });
 
-      it('should overwrite profiles', () => {
+      describe('with community not responding properly', () => {
+        beforeEach(() => {
+          arrangeCommunityServiceToRespondToPostWithServerError();
+        });
+        it('should handle no connection to community', () => {
+          return actingAsLoggedInUserUpdateValidLists(newLists)
+          .expect(expectCommunityServiceConnectionProblem);
+        });
+        afterEach(() => {
+          nock.cleanAll();
+        });
+      });
+
+      it('should overwrite lists', () => {
         // Arrange.
+        const expectedOutput = _.clone(newLists);
+        Object.assign(expectedOutput[0], {public: false});
         const loginToken = 'a-valid-login-token-seeded-on-test-start';
         // Act.
         return webapp.put(location)
@@ -199,7 +253,7 @@ describe('Lists', () => {
             expect(links).to.have.property('self');
             expect(links.self).to.equal(location);
             expectValidate(data, 'schemas/lists-data-out.json');
-            expect(data).to.deep.equal(newLists);
+            expect(data).to.deep.equal(expectedOutput);
           });
         })
         .expect(200)
@@ -213,13 +267,47 @@ describe('Lists', () => {
                 expectValidate(links, 'schemas/lists-links-out.json');
                 expect(links.self).to.equal(location);
                 expectValidate(data, 'schemas/lists-data-out.json');
-                expect(data).to.deep.equal(newLists);
+                expect(data).to.deep.equal(expectedOutput);
               });
             })
             .expect(200);
         });
       });
+
     });
+
+    //
+    // Helpers.
+    //
+
+    function arrangeCommunityServiceToRespondToPostWithServerError () {
+      const config = require('server/config').community;
+      nock(config.url).post(() => true).reply(500);
+    }
+
+    function actingAsLoggedInUserUpdateValidLists (newLists) {
+      const loginToken = 'a-valid-login-token-seeded-on-test-start';
+      return webapp.put(location)
+      .set('cookie', `login-token=${loginToken}`)
+      .type('application/json')
+      .send(newLists);
+    }
+
+    function actingAsLoggedInUserGetLists () {
+      const loginToken = 'a-valid-login-token-seeded-on-test-start';
+      return webapp.get(location)
+      .set('cookie', `login-token=${loginToken}`);
+    }
+
+    function expectCommunityServiceConnectionProblem (response) {
+      expectFailure(response.body, errors => {
+        expect(errors).to.have.length(1);
+        const error = errors[0];
+        expect(error.title).to.match(/community-service.+connection problem/i);
+        expect(error.detail).to.match(/community service.+not reponding/i);
+      });
+      expect(response.status).to.equal(503);
+    }
 
   });
 });

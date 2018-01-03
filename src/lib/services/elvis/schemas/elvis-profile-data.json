@@ -1,0 +1,79 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "required": false,
+      "type": "string"
+    },
+    "attributes": {
+      "required": true,
+      "type": "object",
+      "properties": {
+        "shortlist": {
+          "required": true,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pid": {
+                "required": true,
+                "type": "string"
+              },
+              "origin": {
+                "required": true,
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "tastes": {
+          "required": true,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "required": true,
+                "type": "string"
+              },
+              "archetypes": {
+                "required": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "authors": {
+                "required": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "genres": {
+                "required": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "moods": {
+                "required": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "user_id": {
+          "required": false,
+          "type": "string"
+        }
+      }
+    }
+  }
+}

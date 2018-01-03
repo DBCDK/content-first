@@ -7,7 +7,7 @@ const transform = require('./transformers');
 
 describe('User data transformers for Community Service', () => {
 
-  const transformedUserInfo = require('./fixtures/community-data-from-user-info.json');
+  const transformedUserInfo = require('./fixtures/transformers-separated-user-info-out.json');
 
   describe('profileAndEntitiesFromFrontendUser', () => {
 
@@ -31,13 +31,13 @@ describe('User data transformers for Community Service', () => {
     });
 
     it('should handle complex user data', () => {
-      const input = require('./fixtures/user-info-from-frontend.json');
+      const input = require('./fixtures/frontend-user-info-out.json');
       const output = transform.transformFrontendUserToProfileAndEntities(input);
       expect(output).to.deep.equal(transformedUserInfo);
     });
   });
 
-  const queryResponseForListEntities = require('./fixtures/query-response-for-list-entities');
+  const queryResponseForListEntities = require('./fixtures/elvis-simple-query-for-list-entities-data');
 
   describe('divideListsIntoCreateUpdateAndDelete', () => {
 

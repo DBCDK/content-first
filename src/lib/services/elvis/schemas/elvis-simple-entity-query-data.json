@@ -1,27 +1,23 @@
 {
   "type": "object",
   "properties": {
-    "data": {
+    "List": {
+      "required": true,
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "id": {
+          "entity_id": {
             "required": true,
             "type": "integer"
           },
-          "name": {
+          "id": {
             "required": true,
             "type": "string"
           }
         },
-        "additionalProperties": true
+        "additionalProperties": false
       }
-    },
-    "links": {
-      "type": "object"
-    },
-    "additionalProperties": false
-  },
-  "additionalProperties": false
+    }
+  }
 }

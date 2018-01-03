@@ -1,0 +1,32 @@
+{
+  "Total": 2,
+  "NextOffset": null,
+  "List": [
+    {
+      "id": "c98c23925f857c5dbe41f8c6e8f49978",
+      "title": "Another list",
+      "description": "An oldie but goodie",
+      "list": [
+        {
+          "pid": "870970-basis-53188931",
+          "description": "Whoa, what a story"
+        }
+      ],
+      "public": false,
+      "type": "SYSTEM_LIST"
+    },
+    {
+      "id": "98c5ff8c6e8f49978c857c23925dbe41",
+      "title": "My list",
+      "description": "A brand new list",
+      "list": [
+        {
+          "pid": "870970-basis-22629344",
+          "description": "Magic to the people"
+        }
+      ],
+      "public": false,
+      "type": "CUSTOM_LIST"
+    }
+  ]
+}

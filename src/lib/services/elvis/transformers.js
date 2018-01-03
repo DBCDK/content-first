@@ -2,13 +2,14 @@
 
 module.exports = {
   divideListsIntoCreateUpdateAndDeleteForProfileId,
-  transformFrontendUserToProfileAndEntities
+  transformFrontendUserToProfileAndEntities,
+  transformListsToLists
 };
 
 const _ = require('lodash');
 
 function divideListsIntoCreateUpdateAndDeleteForProfileId (newEntities, existingEntities, profileId) {
-  const existingUuids = _.map(existingEntities, entity => entity.uuid);
+  const existingUuids = _.map(existingEntities, entity => entity.id);
   const newUuids = _.map(newEntities, entry => entry.attributes.uuid);
 
   const uuidsToDelete = _.difference(existingUuids, newUuids);
@@ -17,16 +18,16 @@ function divideListsIntoCreateUpdateAndDeleteForProfileId (newEntities, existing
 
   const entitiesToCreate = _.map(
     _.filter(newEntities, entity => uuidsToCreate.includes(entity.attributes.uuid)),
-    entity => Object.assign(entity, {owner_id: profileId})
+    entity => Object.assign({owner_id: profileId}, entity)
   );
 
-  const partition = _.partition(existingEntities, entity => uuidsToDelete.includes(entity.uuid));
-  const idsToDelete = _.map(partition[0], entry => entry.id);
+  const partition = _.partition(existingEntities, entity => uuidsToDelete.includes(entity.id));
+  const idsToDelete = _.map(partition[0], entry => entry.entity_id);
 
   const entriesToUpdate = partition[1];
   const entitiesToUpdate = _.map(
     _.filter(newEntities, entity => uuidsToUpdate.includes(entity.attributes.uuid)),
-    entity => Object.assign(entity, {id: _.find(entriesToUpdate, entry => entry.uuid === entity.attributes.uuid).id})
+    entity => Object.assign({id: _.find(entriesToUpdate, entry => entry.id === entity.attributes.uuid).entity_id}, entity)
   );
 
   return {
@@ -45,9 +46,13 @@ function transformFrontendUserToProfileAndEntities (userInfo) {
         tastes: _.map(userInfo.profiles, transformProfileToTaste)
       }
     },
-    lists: _.map(userInfo.lists, transformListToList)
+    lists: transformListsToLists(userInfo.lists)
   };
   return skeleton;
+}
+
+function transformListsToLists (lists) {
+  return _.map(lists, transformListToList);
 }
 
 function transformProfileToTaste (profile) {

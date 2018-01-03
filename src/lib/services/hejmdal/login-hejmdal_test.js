@@ -35,7 +35,16 @@ describe('Login connector', () => {
     login.clear();
   });
 
-  afterEach(nock.cleanAll);
+  afterEach(function() {
+    if (this.currentTest.state !== 'passed') {
+      const _ = require('lodash');
+      const logs = _.map(logger.log.debug.getCalls(), call => call.args);
+      const util = require('util');
+      console.log(util.inspect(logs, {depth: null})); // eslint-disable-line no-console
+    }
+    logger.log.debug.reset();
+    nock.cleanAll();
+  });
 
   describe('with unreachable service', () => {
 
@@ -72,7 +81,7 @@ describe('Login connector', () => {
       expect(login.getErrorLog()).to.have.length(0);
     });
 
-    it('should retrieve user info as JSON and redirect with cookie', () => {
+    it('should retrieve user info as JSON and return hashed IDs', () => {
       // Arrange.
       const token = '4686e9c89c02c33db198912164d60041';
       const id = 1234;
@@ -98,10 +107,37 @@ describe('Login connector', () => {
         .then(validating(schemaUserInfo))
         .then(data => {
           expect(data).to.deep.equal({
-            cprHash: '5e5975f69b565f538a12887434bac2105b6d6f010c06b8a3',
             userIdHash: '5e5975f69b565f538a12887434bac2105b6d6f010c06b8a3'
           });
         });
+    });
+
+    it('should reject user info without UserId', () => {
+      // Arrange.
+      const token = '4686e9c89c02c33db198912164d60041';
+      const id = 1234;
+      const slug = `${constants.apiGetTicket}/${token}/${id}`;
+      const server = nock(config.url).get(slug).reply(200, {
+        id,
+        token,
+        attributes: {
+          cpr: null,
+          gender: 'm',
+          userId: null,
+          wayfId: null,
+          agencies: [],
+          birthDate: '2508',
+          birthYear: '1971',
+          uniloginId: null,
+          municipality: null
+        }
+      });
+      // Act.
+      return expect(login.gettingTicket(token, id))
+      .to.be.rejectedWith(Error)
+      .then(() => {
+        expect(server.isDone()).to.be.true;
+      });
     });
 
     it('should retrieve user info as text and redirect with cookie', () => {
@@ -114,6 +150,7 @@ describe('Login connector', () => {
           cpr: '1701840000',
           userId: '1701840000',
           wayfId: null,
+          uniloginId: 'some-unilogin-id',
           agencies: [{
             userId: '1701840000',
             agencyId: '715100',
@@ -127,7 +164,6 @@ describe('Login connector', () => {
         .then(validating(schemaUserInfo))
         .then(data => {
           expect(data).to.deep.equal({
-            cprHash: '4fa1ef074f739f50eea243fa0e25caeea5494a558abbef48',
             userIdHash: '4fa1ef074f739f50eea243fa0e25caeea5494a558abbef48'
           });
         });

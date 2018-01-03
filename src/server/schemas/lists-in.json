@@ -21,6 +21,10 @@
         "required": true,
         "type": "string"
       },
+      "public": {
+        "required": false,
+        "type": "boolean"
+      },
       "list": {
         "required": true,
         "type": "array",

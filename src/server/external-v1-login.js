@@ -13,27 +13,24 @@ router.route('/')
   //
   .get(asyncMiddleware(async (req, res, next) => {
     const loginToken = req.cookies['login-token'];
-    let userId;
     if (loginToken) {
       try {
-        userId = await gettingUserIdFromLoginToken(loginToken);
-        const userLocation = '/v1/user';
+        const userId = await gettingUserIdFromLoginToken(loginToken);
         return gettingUser(userId)
-          .then(user => {
-            res.status(200).json({
-              data: user,
-              links: {self: userLocation}
-            });
-          })
-          .catch(error => {
-            Object.assign(error, {
-              meta: {resource: userLocation}
-            });
-            next(error);
+        .then(user => {
+          res.status(200).json({
+            data: user,
+            links: {self: '/v1/user'}
           });
+        })
+        .catch(error => {
+          const returnedError = {meta: {resource: '/v1/user'}};
+          Object.assign(returnedError, error);
+          next(returnedError);
+        });
       }
       catch (_) {
-        // Any error will result in a redirection to remote login service.
+        // Any error will result in a redirection below to remote login service.
       }
     }
     let token;

@@ -3,11 +3,7 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const config = require('server/config');
-const knex = require('knex')(config.db);
-const constants = require('server/constants')();
-const userTable = constants.users.table;
-const {gettingUserFromToken, gettingUser, gettingUserIdFromLoginToken} = require('server/user');
+const {gettingUserFromToken, gettingUser, gettingUserIdFromLoginToken, updatingUser} = require('server/user');
 const {validatingInput} = require('__/json');
 const path = require('path');
 const schema = path.join(__dirname, 'schemas/profiles-in.json');
@@ -86,8 +82,8 @@ router.route('/')
       });
     }
     try {
-      await knex(userTable).where('uuid', userId).update({
-        profiles: JSON.stringify(profiles)
+      await updatingUser(userId, {
+        profiles: profiles
       });
     }
     catch (error) {
@@ -105,10 +101,9 @@ router.route('/')
         });
       })
       .catch(error => {
-        Object.assign(error, {
-          meta: {resource: location}
-        });
-        next(error);
+        const returnedError = {meta: {resource: location}};
+        Object.assign(returnedError, error);
+        next(returnedError);
       });
   }))
 ;

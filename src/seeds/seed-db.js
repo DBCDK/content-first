@@ -4,7 +4,6 @@ const constants = require('server/constants')();
 const bookTable = constants.books.table;
 const coverTable = constants.covers.table;
 const tagTable = constants.tags.table;
-const userTable = constants.users.table;
 const cookieTable = constants.cookies.table;
 const topTable = constants.taxonomy.topTable;
 const middleTable = constants.taxonomy.middleTable;
@@ -60,43 +59,14 @@ exports.seed = async knex => {
     await knex(middleTable).insert(middleRawInsert);
     await knex(bottomTable).insert(bottomRawInsert);
   }
-  await knex(userTable).insert({
-    uuid: 'an-existing-user-seeded-on-test-start',
-    // CPR 1212719873 => e27ecb7c5207c19d388a83631b87065d9667790543e4820f
-    cpr: 'e27ecb7c5207c19d388a83631b87065d9667790543e4820f',
-    name: 'Jens Godfredsen',
-    shortlist: JSON.stringify([{
-      pid: '870970-basis-22629344',
-      origin: 'en-god-bog'
-    }]),
-    lists: JSON.stringify([{
-      id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
-      type: 'SYSTEM_LIST',
-      title: 'My List',
-      description: 'A brand new list',
-      list: [{
-        pid: '870970-basis-22629344',
-        description: 'Magic to the people'
-      }]
-    }]),
-    profiles: JSON.stringify([{
-      name: 'Med på den værste',
-      profile: {
-        moods: ['Åbent fortolkningsrum', 'frygtelig', 'fantasifuld'],
-        authors: ['Hanne Vibeke Holst', 'Anne Lise Marstrand Jørgensen'],
-        genres: ['Brevromaner', 'Noveller'],
-        archetypes: ['hestepigen']
-      }
-    }])
-  });
   await knex(cookieTable).insert({
-    uuid: 'a-valid-login-token-seeded-on-test-start',
-    user: 'an-existing-user-seeded-on-test-start',
+    cookie: 'valid-login-token-for-nonexisting-user-seeded-on-test-start',
+    community_profile_id: 123456,
     expires_epoch_s: (Math.ceil(Date.now() / 1000) + 10000)
   });
   await knex(cookieTable).insert({
-    uuid: 'expired-login-token-seeded-on-test-start',
-    user: 'an-existing-user-seeded-on-test-start',
+    cookie: 'expired-login-token-seeded-on-test-start',
+    community_profile_id: 123456,
     expires_epoch_s: Math.ceil(new Date(2009, 1, 25).getTime() / 1000)
   });
 };

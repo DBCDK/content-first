@@ -29,7 +29,7 @@ To only run a subset of tests that go together, pass the `--grep` option to moch
 
 The acceptance tests do not use the web service directly, instead they use a wrapper around the service:
 
-    const mock = require('./mock-server');
+    const mock = require('fixtures/mock-server');
 
 The wrapper mocks out the global logger and provides setup and teardown of the database for tests to use.
 

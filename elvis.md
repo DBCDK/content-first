@@ -125,16 +125,26 @@ becomes CommunityService records:
     }
 
 
+- [x] Create Profile (with tastes & shortlist) in Elvis after login (and for test).
+- [x] Create list Entity.
+
 The algorithm for an update from a PUT from the ContentFirst frontend is like this:
 - [x] Prepare the (user) Profile update and the Entities representing the lists provided by the frontend.
-- [ ] Use the login token to find the user `uuid` in the `cookies` table.
+- [x] Use the login token to find the user `uuid` in the `cookies` table.
 - [x] Use Community connector to get the user id in the community service.
 - [x] Update the user Profile with shortlist and tastes through the Community connector.
 - [x] Find all list-Entities that are owned by the user.
 - [x] Divide the update lists into those that match an existing community Entity UUID, and those that do not.
-- [ ] For each Entity: overwrite the entity with the frontend-provided for a matching UUID; if no UUID matches, delete the Entity.
-- [ ] Create new Entities for all remaining not-matched lists.
-
+- [x] For each Entity: overwrite the entity with the frontend-provided for a matching UUID; if no UUID matches, delete the Entity.
+- [x] Create new Entities for all remaining not-matched lists.
+- [ ] Document Elvis data model (user_id, type:list, etc).
 
 Later:
 - Community Query error => "details", but Profile error => "detail" ?
+- Create a general purpose class for dump-logs-after-test-error, see `afterEach` in `login-hejmdal_test`.
+- Include number-of-users in /stats.
+
+Elvis:
+- "Total" from lists queries seem to return the id of the first element in the list?
+- Queries on wrong community still returns the number of matches in another community.
+- GET /v1/community/6afe528 will give the same result as /v1/community/6 !
