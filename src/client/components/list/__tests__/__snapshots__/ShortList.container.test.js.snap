@@ -94,29 +94,26 @@ exports[`ShortList.container Clearing list 1`] = `
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid2"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid2",
-                                        "/v1/image/pid2",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid2",
+                                      "taxonomy_description": "some description2",
+                                      "title": "some title2",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title2"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -232,29 +229,26 @@ exports[`ShortList.container Clearing list 1`] = `
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid1"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid1",
-                                        "/v1/image/pid1",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -448,29 +442,26 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid1"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid1",
-                                        "/v1/image/pid1",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -688,29 +679,26 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid1"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid1",
-                                        "/v1/image/pid1",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -928,29 +916,26 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid1"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid1",
-                                        "/v1/image/pid1",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -1168,29 +1153,26 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid1"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid1",
-                                        "/v1/image/pid1",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -1431,29 +1413,26 @@ exports[`ShortList.container remove element 1`] = `
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid3"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid3",
-                                        "/v1/image/pid3",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid3",
+                                      "taxonomy_description": "some description3",
+                                      "title": "some title3",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title3"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -1569,29 +1548,26 @@ exports[`ShortList.container remove element 1`] = `
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid2"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid2",
-                                        "/v1/image/pid2",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid2",
+                                      "taxonomy_description": "some description2",
+                                      "title": "some title2",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title2"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -1707,29 +1683,26 @@ exports[`ShortList.container remove element 1`] = `
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid1"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid1",
-                                        "/v1/image/pid1",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -1963,29 +1936,26 @@ exports[`ShortList.container short list contains elements 1`] = `
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid3"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid3",
-                                        "/v1/image/pid3",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid3",
+                                      "taxonomy_description": "some description3",
+                                      "title": "some title3",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title3"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -2101,29 +2071,26 @@ exports[`ShortList.container short list contains elements 1`] = `
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid2"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid2",
-                                        "/v1/image/pid2",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid2",
+                                      "taxonomy_description": "some description2",
+                                      "title": "some title2",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title2"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
@@ -2239,29 +2206,26 @@ exports[`ShortList.container short list contains elements 1`] = `
                             <div
                               className="col-xs-2"
                             >
-                              <Component
-                                pid="pid1"
+                              <div
+                                className="book-cover"
                               >
-                                <div
-                                  className="book-cover"
-                                >
-                                  <Image
-                                    urls={
-                                      Array [
-                                        "https://metakompasset.demo.dbc.dk/api/cover/pid1",
-                                        "/v1/image/pid1",
-                                        "/default-book-cover.png",
-                                      ]
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
                                     }
-                                  >
-                                    <img
-                                      alt=""
-                                      onError={[Function]}
-                                      src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                    />
-                                  </Image>
-                                </div>
-                              </Component>
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
                             </div>
                             <div
                               className="col-xs-10 book-description"
