@@ -15,7 +15,7 @@ describe('SearchPage', () => {
           <SearchPage
             searching={false}
             query={'søgeforespørgsel'}
-            results={[{title: 'Titel', creator: 'Forfatter'}]}
+            results={[{pid: '123:samplepid-456', title: 'Titel', creator: 'Forfatter'}]}
             onSearch={() => {}}
           />
         )
@@ -28,9 +28,6 @@ describe('SearchPage', () => {
           <SearchPage
             searching={false}
             query={'søgeforespørgsel'}
-            results={[
-              {pid: '123:samplepid-456', title: 'Titel', creator: 'Forfatter'}
-            ]}
             onSearch={() => {}}
           />
         )

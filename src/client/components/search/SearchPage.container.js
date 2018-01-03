@@ -21,7 +21,9 @@ export const SearchPage = props => (
         <ul>
           {props.results.map(o => (
             <li key={o.pid}>
-              {o.title} - {o.creator}
+              <a href={'/værk/' + o.pid}>
+                {o.title} - {o.creator}
+              </a>
             </li>
           ))}
         </ul>
