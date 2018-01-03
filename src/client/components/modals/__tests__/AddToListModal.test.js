@@ -17,7 +17,7 @@ describe('AddToListModal', () => {
   const store = createStore();
   store.dispatch({type: ADD_LIST, list: createTestList(1)});
   store.dispatch({type: ADD_LIST, list: createTestList(2)});
-  const tree = renderer.create(
+  let tree = renderer.create(
     <Provider store={store}>
       <AddToListModal work={createTestElement(1)} />
     </Provider>,
@@ -28,6 +28,15 @@ describe('AddToListModal', () => {
   });
   test('newly added list is selected', () => {
     store.dispatch({type: ADD_LIST, list: createTestList(3)});
+    expect(tree.toJSON()).toMatchSnapshot();
+  });
+  test('multiple works as input', () => {
+    tree = renderer.create(
+      <Provider store={store}>
+        <AddToListModal works={[createTestElement(1), createTestElement(2)]} />
+      </Provider>,
+      {createNodeMock}
+    );
     expect(tree.toJSON()).toMatchSnapshot();
   });
 });

@@ -1,6 +1,7 @@
 import {differenceBy} from 'lodash';
 import {ON_LOGOUT_RESPONSE} from './profile.reducer';
 export const ON_SHORTLIST_ADD_ELEMENT = 'ON_SHORTLIST_ADD_ELEMENT';
+export const SHORTLIST_UPDATE_ORIGIN = 'SHORTLIST_UPDATE_ORIGIN';
 export const ON_SHORTLIST_REMOVE_ELEMENT = 'ON_SHORTLIST_REMOVE_ELEMENT';
 export const ON_SHORTLIST_TOGGLE_ELEMENT = 'ON_SHORTLIST_TOGGLE_ELEMENT';
 export const ON_SHORTLIST_EXPAND = 'ON_SHORTLIST_EXPAND';
@@ -80,6 +81,15 @@ const shortListReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {
         elements: [action.element, ...state.elements]
       });
+    }
+    case SHORTLIST_UPDATE_ORIGIN: {
+      const elements = state.elements.map(e => {
+        if (e.book.pid === action.pid) {
+          return {...e, origin: action.origin};
+        }
+        return e;
+      });
+      return Object.assign({}, state, {elements});
     }
     case ON_SHORTLIST_EXPAND:
       return Object.assign({}, state, {expanded: true});

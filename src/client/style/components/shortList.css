@@ -186,12 +186,24 @@
   width: 200px;
   margin-top: 10px;
 }
+.short-list-page .item form {
+  width: 200px;
+  margin-top: 10px;
+}
+.short-list-page textarea {
+  resize: none;
+}
 .short-list-page .glyphicon {
-  margin-left: 5px;
+  font-size: 11px;
 }
 .short-list-page .add-to-list > span,
 .short-list-page .order-book > span {
   cursor: pointer;
+}
+.short-list-page .empty-list-text {
+  font-family: var(--secondary-font);
+  font-size: 24px;
+  margin-top: 200px;
 }
 
 .shortlist-enter {

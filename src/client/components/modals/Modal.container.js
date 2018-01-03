@@ -41,7 +41,11 @@ class Modal extends React.Component {
     let modal = null;
     if (this.props.modalState.addToList.open) {
       const {context} = this.props.modalState.addToList;
-      modal = <AddToListModal key="addToList" work={context} />;
+      if (Array.isArray(context)) {
+        modal = <AddToListModal key="addToList" works={context} />;
+      } else {
+        modal = <AddToListModal key="addToList" work={context} />;
+      }
     }
     if (this.props.modalState.mergeShortList.open) {
       modal = <ShortListMergeModal key="mergeShortList" />;
