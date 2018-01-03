@@ -7,14 +7,13 @@ const request = require('supertest');
 const {expectSuccess} = require('fixtures/output-verifiers');
 
 describe('Endpoint /v1/search', () => {
-
   const webapp = request(mock.external);
 
   beforeEach(async () => {
     await mock.resetting();
   });
 
-  afterEach(function () {
+  afterEach(function() {
     if (this.currentTest.state !== 'passed') {
       mock.dumpLogs();
     }
@@ -24,7 +23,8 @@ describe('Endpoint /v1/search', () => {
     describe('GET /v1/search?q=...', () => {
       it('should handle search in title, including stemming', () => {
         const url = '/v1/search?q=riddere';
-        return webapp.get(url)
+        return webapp
+          .get(url)
           .expect(200)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
@@ -35,7 +35,8 @@ describe('Endpoint /v1/search', () => {
       });
       it('should handle search in creator', () => {
         const url = '/v1/search?q=blendstrup';
-        return webapp.get(url)
+        return webapp
+          .get(url)
           .expect(200)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {

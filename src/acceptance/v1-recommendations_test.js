@@ -4,27 +4,30 @@
 const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
+const {
+  expectSuccess,
+  expectFailure,
+  expectValidate
+} = require('fixtures/output-verifiers');
 
 describe('Endpoint /v1/recommendations', () => {
-
   const webapp = request(mock.external);
 
   beforeEach(async () => {
     await mock.resetting();
   });
 
-  afterEach(function () {
+  afterEach(function() {
     if (this.currentTest.state !== 'passed') {
       mock.dumpLogs();
     }
   });
 
   describe('GET /v1/recommendations?tags=...', () => {
-
     it('should handle no tags', () => {
       const url = '/v1/recommendations?tags=';
-      return webapp.get(url)
+      return webapp
+        .get(url)
         .expect(res => {
           expectFailure(res.body, errors => {
             expect(errors).to.have.length(1);
@@ -43,7 +46,8 @@ describe('Endpoint /v1/recommendations', () => {
     it('should return a list of books that include all specified tags', () => {
       const tags = [205, 144, 146];
       const url = `/v1/recommendations?tags=${tags.join()}`;
-      return webapp.get(url)
+      return webapp
+        .get(url)
         .expect(res => {
           expectSuccess(res.body, (links, data) => {
             expectValidate(links, 'schemas/books-links-out.json');

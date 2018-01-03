@@ -39,17 +39,15 @@ function createCoverTable(knex) {
 }
 
 function setup(knex) {
-  return createCoverTable(knex)
-    .then(() => {
-      return createBookTable(knex);
-    });
+  return createCoverTable(knex).then(() => {
+    return createBookTable(knex);
+  });
 }
 
 function destroy(knex) {
-  return knex.schema.dropTableIfExists(bookTable)
-    .then(() => {
-      return knex.schema.dropTableIfExists(coverTable);
-    });
+  return knex.schema.dropTableIfExists(bookTable).then(() => {
+    return knex.schema.dropTableIfExists(coverTable);
+  });
 }
 
 exports.up = function(knex) {

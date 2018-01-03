@@ -13,43 +13,46 @@ const logger = require('server/logger');
 const sinon = require('sinon');
 
 class MockServer {
-
-  constructor () {
+  constructor() {
     this.setupStubsForLogging();
     this.setupWebServices();
   }
 
-  setupStubsForLogging () {
+  setupStubsForLogging() {
     this.errorLog = sinon.stub(logger.log, 'error');
     this.infoLog = sinon.stub(logger.log, 'info');
     this.debugLog = sinon.stub(logger.log, 'debug');
   }
 
-  setupWebServices () {
+  setupWebServices() {
     this.server = require('server/external-server');
   }
 
-  getErrorLog () {
+  getErrorLog() {
     return this.errorLog;
   }
 
-  getInfoLog () {
+  getInfoLog() {
     return this.infoLog;
   }
 
-  beforeEach () {
+  beforeEach() {
     this.resetLogs();
   }
 
-  resetLogs () {
+  resetLogs() {
     this.errorLog.reset();
     this.infoLog.reset();
     this.debugLog.reset();
   }
 
-  dumpLogs () {
+  dumpLogs() {
     const _ = require('lodash');
-    const allLogCalls = _.concat(this.debugLog.getCalls(), this.infoLog.getCalls(), this.errorLog.getCalls());
+    const allLogCalls = _.concat(
+      this.debugLog.getCalls(),
+      this.infoLog.getCalls(),
+      this.errorLog.getCalls()
+    );
     const logs = _.map(allLogCalls, call => call.args);
     const util = require('util');
     console.log(util.inspect(logs, {depth: null})); // eslint-disable-line no-console

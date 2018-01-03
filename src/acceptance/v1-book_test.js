@@ -4,14 +4,18 @@
 const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
+const {
+  expectSuccess,
+  expectFailure,
+  expectValidate
+} = require('fixtures/output-verifiers');
 
 describe('Endpoint /v1/book', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
     await mock.resetting();
   });
-  afterEach(function () {
+  afterEach(function() {
     if (this.currentTest.state !== 'passed') {
       mock.dumpLogs();
     }
@@ -21,7 +25,8 @@ describe('Endpoint /v1/book', () => {
       it('should handle non-existing PID', () => {
         const pid = '12345:ost:3984';
         const url = `/v1/book/${pid}`;
-        return webapp.get(url)
+        return webapp
+          .get(url)
           .expect(404)
           .expect(res => {
             expectFailure(res.body, errors => {
@@ -37,7 +42,8 @@ describe('Endpoint /v1/book', () => {
       it('should give a book as result', () => {
         const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
         const url = `/v1/book/${pid}`;
-        return webapp.get(url)
+        return webapp
+          .get(url)
           .expect(200)
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
@@ -52,8 +58,10 @@ describe('Endpoint /v1/book', () => {
                 bibliographic_record_id: 53188931,
                 creator: 'Jens Blendstrup',
                 title: 'Havelågebogen',
-                title_full: 'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
-                taxonomy_description: 'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
+                title_full:
+                  'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
+                taxonomy_description:
+                  'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
                 description: 'Noget med låger',
                 pages: 645,
                 loans: 1020,
@@ -78,7 +86,8 @@ describe('Endpoint /v1/book', () => {
       it('should reject wrong content type', () => {
         const location = '/v1/book/123456-basis:987654321';
         const contentType = 'text/plain';
-        return hidden.put(location)
+        return hidden
+          .put(location)
           .type(contentType)
           .send('broken')
           .expect(400)
@@ -96,7 +105,8 @@ describe('Endpoint /v1/book', () => {
         const broken = require('fixtures/broken-book.json');
         const location = '/v1/book/123456-basis:987654321';
         const contentType = 'application/json';
-        return hidden.put(location)
+        return hidden
+          .put(location)
           .type(contentType)
           .send(broken)
           .expect(400)
@@ -112,7 +122,9 @@ describe('Endpoint /v1/book', () => {
               const problems = error.meta.problems;
               expect(problems).to.be.an('array');
               expect(problems).to.deep.include('field pid is the wrong type');
-              expect(problems).to.deep.include('field bibliographicRecordId is the wrong type');
+              expect(problems).to.deep.include(
+                'field bibliographicRecordId is the wrong type'
+              );
               expect(problems).to.deep.include('field loans is the wrong type');
               expect(problems).to.deep.include('field workId is required');
               expect(problems).to.deep.include('field creator is required');
@@ -134,7 +146,8 @@ describe('Endpoint /v1/book', () => {
         const wrongPid = '12335-basic:9782637';
         const location = `/v1/book/${wrongPid}`;
         const contentType = 'application/json';
-        return hidden.put(location)
+        return hidden
+          .put(location)
           .type(contentType)
           .send(harryPotter)
           .expect(400)
@@ -142,9 +155,13 @@ describe('Endpoint /v1/book', () => {
             expectFailure(res.body, errors => {
               expect(errors).to.have.length(1);
               const error = errors[0];
-              expect(error.title).to.match(/mismatch beetween book pid and location/i);
+              expect(error.title).to.match(
+                /mismatch beetween book pid and location/i
+              );
               expect(error).to.have.property('detail');
-              expect(error.detail).to.equal(`Expected PID ${wrongPid} but found ${pid}`);
+              expect(error.detail).to.equal(
+                `Expected PID ${wrongPid} but found ${pid}`
+              );
             });
           });
       });
@@ -154,7 +171,8 @@ describe('Endpoint /v1/book', () => {
         const pid = harryPotter.pid;
         const location = `/v1/book/${pid}`;
         // Act.
-        hidden.put(location)
+        hidden
+          .put(location)
           .type('application/json')
           .send(harryPotter)
           // Assert.
@@ -169,7 +187,8 @@ describe('Endpoint /v1/book', () => {
           .expect('location', location)
           .expect(201)
           .then(() => {
-            webapp.get(location)
+            webapp
+              .get(location)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
                   expectValidate(links, 'schemas/book-links-out.json');
@@ -181,7 +200,9 @@ describe('Endpoint /v1/book', () => {
                   expect(data.bibliographic_record_id).to.equal(22629344);
                   expect(data.creator).to.equal('Joanne K. Rowling');
                   expect(data.title).to.equal('Harry Potter og De Vises Sten');
-                  expect(data.title_full).to.equal('Harry Potter og De Vises Sten');
+                  expect(data.title_full).to.equal(
+                    'Harry Potter og De Vises Sten'
+                  );
                   expect(data.type).to.equal('Bog');
                   expect(data.work_type).to.equal('book');
                   expect(data.items).to.equal(2690);
@@ -200,7 +221,8 @@ describe('Endpoint /v1/book', () => {
         const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
         harryPotter.pid = pid;
         const location = `/v1/book/${pid}`;
-        hidden.put(location)
+        hidden
+          .put(location)
           .type('application/json')
           .send(harryPotter)
           .expect(res => {
@@ -216,7 +238,8 @@ describe('Endpoint /v1/book', () => {
           .expect(200)
           .expect('location', location)
           .then(() => {
-            webapp.get(location)
+            webapp
+              .get(location)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
                   expectValidate(links, 'schemas/book-links-out.json');

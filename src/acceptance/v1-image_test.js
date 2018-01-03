@@ -15,7 +15,7 @@ describe('Endpoint /v1/image', () => {
   beforeEach(async () => {
     await mock.resetting();
   });
-  afterEach(function () {
+  afterEach(function() {
     if (this.currentTest.state !== 'passed') {
       mock.dumpLogs();
     }
@@ -24,7 +24,8 @@ describe('Endpoint /v1/image', () => {
     describe('GET /v1/image/:pid', () => {
       it('should handle non-existing cover image', () => {
         const url = '/v1/image/does:not:exist';
-        return webapp.get(url)
+        return webapp
+          .get(url)
           .expect(404)
           .expect(res => {
             expectFailure(res.body, errors => {
@@ -41,7 +42,8 @@ describe('Endpoint /v1/image', () => {
     });
     describe('GET /v1/image/:pid', () => {
       it('should give a cover image', () => {
-        return webapp.get('/v1/image/already-seeded-pid-blendstrup-havelaagebogen')
+        return webapp
+          .get('/v1/image/already-seeded-pid-blendstrup-havelaagebogen')
           .expect(200)
           .expect('Content-Type', /image\/jpeg/)
           .expect('Content-Length', '29839');
@@ -54,7 +56,8 @@ describe('Endpoint /v1/image', () => {
       it('should reject wrong content type', () => {
         const location = '/v1/image/870970-basis:22629344';
         const contentType = 'application/json';
-        return hidden.put(location)
+        return hidden
+          .put(location)
           .type(contentType)
           .expect(400)
           .expect(res => {
@@ -64,14 +67,17 @@ describe('Endpoint /v1/image', () => {
               expect(error).to.have.property('title');
               expect(error.title).to.match(/unsupported image type/i);
               expect(error).to.have.property('detail');
-              expect(error.detail).to.match(/content.type application\/json.*not supported/i);
+              expect(error.detail).to.match(
+                /content.type application\/json.*not supported/i
+              );
             });
           });
       });
       it('should reject broken image', () => {
         const location = '/v1/image/870970-basis:22629344';
         const contentType = 'image/jpeg';
-        return hidden.put(location)
+        return hidden
+          .put(location)
           .type(contentType)
           .send('broken image data')
           .expect(400)
@@ -88,7 +94,8 @@ describe('Endpoint /v1/image', () => {
         const location = '/v1/image/870970-basis:22629344';
         readFileAsync(resolve.sync('fixtures/870970-basis-22629344.jpg'))
           .then(contents => {
-            return hidden.put(location)
+            return hidden
+              .put(location)
               .type('image/jpeg')
               .send(contents)
               .expect(201)
@@ -102,7 +109,8 @@ describe('Endpoint /v1/image', () => {
               });
           })
           .then(() => {
-            webapp.get(location)
+            webapp
+              .get(location)
               .expect(200)
               .expect('Content-Type', /image\/jpeg/)
               .expect('Content-Length', '30822')
@@ -111,10 +119,12 @@ describe('Endpoint /v1/image', () => {
           .catch(done);
       });
       it('should replace an image in the database', done => {
-        const location = '/v1/image/already-seeded-pid-blendstrup-havelaagebogen';
+        const location =
+          '/v1/image/already-seeded-pid-blendstrup-havelaagebogen';
         readFileAsync(resolve.sync('fixtures/870970-basis-53188931.jpg'))
           .then(contents => {
-            return hidden.put(location)
+            return hidden
+              .put(location)
               .type('image/jpeg')
               .send(contents)
               .expect(res => {
@@ -128,7 +138,8 @@ describe('Endpoint /v1/image', () => {
               .expect('location', location);
           })
           .then(() => {
-            webapp.get(location)
+            webapp
+              .get(location)
               .expect('Content-Type', /image\/jpeg/)
               .expect('Content-Length', '29839')
               .expect(200)

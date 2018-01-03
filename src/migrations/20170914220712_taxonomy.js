@@ -6,10 +6,11 @@ const taxonomyMiddleTable = constants.taxonomy.middleTable;
 const taxonomyBottomTable = constants.taxonomy.bottomTable;
 
 exports.up = function(knex) {
-  return knex.schema.createTable(taxonomyTopTable, table => {
-    table.integer('id').primary();
-    table.string('title').notNullable();
-  })
+  return knex.schema
+    .createTable(taxonomyTopTable, table => {
+      table.integer('id').primary();
+      table.string('title').notNullable();
+    })
     .then(() => {
       return knex.schema.createTable(taxonomyMiddleTable, table => {
         table.integer('id').primary();
@@ -29,7 +30,8 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists(taxonomyBottomTable)
+  return knex.schema
+    .dropTableIfExists(taxonomyBottomTable)
     .then(() => {
       return knex.schema.dropTableIfExists(taxonomyMiddleTable);
     })

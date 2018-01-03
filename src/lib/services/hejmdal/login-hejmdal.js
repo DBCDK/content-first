@@ -18,110 +18,114 @@ class Login {
   // Public methods.
   //
 
-  constructor (config, logger) {
+  constructor(config, logger) {
     this.config = config;
     this.logger = logger;
     this.clear();
   }
 
-  getName () {
+  getName() {
     return 'hejmdal';
   }
 
-  clear () {
+  clear() {
     this.setOk();
     this.errorLog = [];
   }
 
-  isOk () {
+  isOk() {
     return this.ok;
   }
 
-  getCurrentError () {
+  getCurrentError() {
     return this.currentError;
   }
 
-  getErrorLog () {
+  getErrorLog() {
     return this.errorLog;
   }
 
-  testingConnection () {
+  testingConnection() {
     return new Promise(resolve => {
       const me = this;
-      request.get(`${me.config.url}${constants.apiHealth}`)
-      .set('accept', 'application/json')
-      .then(response => {
-        return response.body;
-      })
-      .then(body => {
-        me.logger.log.debug(`Validating ${JSON.stringify(body)}`);
-        return validatingInput(body, schemaHealth);
-      })
-      .then(data => {
-        const ok = _.every(_.values(data), service => service.state === 'ok');
-        if (ok) {
-          me.setOk();
-        }
-        else {
-          me.logError(`Login service is unhealthy: ${JSON.stringify(data)}`);
-        }
-        return resolve(me.isOk());
-      })
-      .catch(error => {
-        if (error.status === 500) {
-          me.logError('Login service is unhealthy');
-        }
-        else {
-          me.logError(error);
-        }
-        return resolve(me.isOk());
-      });
+      request
+        .get(`${me.config.url}${constants.apiHealth}`)
+        .set('accept', 'application/json')
+        .then(response => {
+          return response.body;
+        })
+        .then(body => {
+          me.logger.log.debug(`Validating ${JSON.stringify(body)}`);
+          return validatingInput(body, schemaHealth);
+        })
+        .then(data => {
+          const ok = _.every(_.values(data), service => service.state === 'ok');
+          if (ok) {
+            me.setOk();
+          } else {
+            me.logError(`Login service is unhealthy: ${JSON.stringify(data)}`);
+          }
+          return resolve(me.isOk());
+        })
+        .catch(error => {
+          if (error.status === 500) {
+            me.logError('Login service is unhealthy');
+          } else {
+            me.logError(error);
+          }
+          return resolve(me.isOk());
+        });
     });
   }
 
-  gettingTicket (token, id) {
+  gettingTicket(token, id) {
     this.setOk();
     const me = this;
     return new Promise((resolve, reject) => {
       const url = `${me.config.url}${constants.apiGetTicket}/${token}/${id}`;
       me.logger.log.debug(`Getting user info from ${url}`);
-      request.get(url)
-      .set('accept', 'application/json')
-      .then(response => {
-        if (_.isEmpty(response.body)) {
-          return JSON.parse(response.text);
-        }
-        return response.body;
-      })
-      .then(data => {
-        if (!data.attributes) {
-          return reject(new Error('No user information received'));
-        }
-        me.logger.log.debug('Validating', data);
-        return validatingInput(data, schemaUserInfo);
-      })
-      .then(data => {
-        const attr = data.attributes;
-        // We should always get a user id from Hejmdal.
-        if (attr && attr.userId) {
-          return me.calculatingHash(attr.userId);
-        }
-        return reject(new Error(`User ID could not be retrieved from ${JSON.stringify(data)}`));
-      })
-      .then(hashedUserId => {
-        return resolve({
-          userIdHash: hashedUserId
+      request
+        .get(url)
+        .set('accept', 'application/json')
+        .then(response => {
+          if (_.isEmpty(response.body)) {
+            return JSON.parse(response.text);
+          }
+          return response.body;
+        })
+        .then(data => {
+          if (!data.attributes) {
+            return reject(new Error('No user information received'));
+          }
+          me.logger.log.debug('Validating', data);
+          return validatingInput(data, schemaUserInfo);
+        })
+        .then(data => {
+          const attr = data.attributes;
+          // We should always get a user id from Hejmdal.
+          if (attr && attr.userId) {
+            return me.calculatingHash(attr.userId);
+          }
+          return reject(
+            new Error(
+              `User ID could not be retrieved from ${JSON.stringify(data)}`
+            )
+          );
+        })
+        .then(hashedUserId => {
+          return resolve({
+            userIdHash: hashedUserId
+          });
+        })
+        .catch(error => {
+          me.logger.log.debug('Caught', error);
+          me.logError(error);
+          return reject(new Error(error));
         });
-      })
-      .catch(error => {
-        me.logger.log.debug('Caught', error);
-        me.logError(error);
-        return reject(new Error(error));
-      });
     });
   }
 
-  calculatingHash (data) {
+  calculatingHash(data) {
     const iterations = 10000;
     const hashLength = 24;
     const salt = this.config.salt;
@@ -139,21 +143,19 @@ class Login {
   // Private methods.
   //
 
-  setOk () {
+  setOk() {
     this.ok = true;
     this.currentError = null;
   }
 
-  logError (error) {
+  logError(error) {
     this.ok = false;
     this.currentError = 'Login-service communication failed';
     let logEntry = JSON.stringify(error);
     if (logEntry === '{}') {
       logEntry = error.toString();
     }
-    this.errorLog.push(
-      (new Date()).toISOString() + ': ' + logEntry
-    );
+    this.errorLog.push(new Date().toISOString() + ': ' + logEntry);
   }
 }
 

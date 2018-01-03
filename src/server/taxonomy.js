@@ -9,14 +9,14 @@ const path = require('path');
 const schema = path.join(__dirname, 'schemas/taxonomy-in.json');
 
 class IdChecker {
-  constructor () {
+  constructor() {
     this.problems = [];
     this.ids = [];
   }
-  getProblems () {
+  getProblems() {
     return this.problems;
   }
-  checkId (x) {
+  checkId(x) {
     const id = parseInt(x, 10);
     if (_.isNaN(id)) {
       this.problems.push(`Cannot convert ${x} to an integer`);
@@ -30,7 +30,7 @@ class IdChecker {
   }
 }
 
-function parsingTaxonomyInjection (obj) {
+function parsingTaxonomyInjection(obj) {
   return new Promise((resolve, reject) => {
     return validatingInput(obj, schema)
       .then(document => {

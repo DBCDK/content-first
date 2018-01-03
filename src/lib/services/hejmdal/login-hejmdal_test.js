@@ -15,7 +15,6 @@ const path = require('path');
 const schemaUserInfo = path.join(__dirname, 'login-user-info-out.json');
 
 describe('Login connector', () => {
-
   const logger = {
     log: {
       debug: sinon.stub(),
@@ -47,33 +46,33 @@ describe('Login connector', () => {
   });
 
   describe('with unreachable service', () => {
-
     it('should say there is no connection', () => {
       // Arrange.
       const token = '98912164d600414686e9c89c02c33db1';
       const id = 1234;
       const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      const server = nock(config.url).get(slug).replyWithError(
-        'Nope, Hejmdal is sleeping'
-      );
+      const server = nock(config.url)
+        .get(slug)
+        .replyWithError('Nope, Hejmdal is sleeping');
       // Act.
-      return expect(login.gettingTicket(token, id))
-        // Assert.
-        .to.be.rejectedWith(Error)
-        .then(error => {
-          expect(error).to.match(/hejmdal is sleeping/i);
-          expect(login.isOk()).to.be.false;
-          expect(login.getCurrentError()).to.match(/login-service.+failed/i);
-          const log = login.getErrorLog();
-          expect(log).to.have.length(1);
-          expect(log[0]).to.match(/hejmdal is sleeping/i);
-          expect(server.isDone()).to.be.true;
-        });
+      return (
+        expect(login.gettingTicket(token, id))
+          // Assert.
+          .to.be.rejectedWith(Error)
+          .then(error => {
+            expect(error).to.match(/hejmdal is sleeping/i);
+            expect(login.isOk()).to.be.false;
+            expect(login.getCurrentError()).to.match(/login-service.+failed/i);
+            const log = login.getErrorLog();
+            expect(log).to.have.length(1);
+            expect(log[0]).to.match(/hejmdal is sleeping/i);
+            expect(server.isDone()).to.be.true;
+          })
+      );
     });
   });
 
   describe('with responsive service', () => {
-
     it('should say that everything is ok initially', () => {
       // Assert.
       expect(login.isOk()).to.be.true;
@@ -86,30 +85,35 @@ describe('Login connector', () => {
       const token = '4686e9c89c02c33db198912164d60041';
       const id = 1234;
       const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      nock(config.url).get(slug).reply(200, {
-        id,
-        token,
-        attributes: {
-          cpr: '2508710000',
-          gender: 'm',
-          userId: '2508710000',
-          wayfId: null,
-          agencies: [],
-          birthDate: '2508',
-          birthYear: '1971',
-          uniloginId: null,
-          municipality: null
-        }
-      });
-      // Act.
-      return login.gettingTicket(token, id)
-        // Assert.
-        .then(validating(schemaUserInfo))
-        .then(data => {
-          expect(data).to.deep.equal({
-            userIdHash: '5e5975f69b565f538a12887434bac2105b6d6f010c06b8a3'
-          });
+      nock(config.url)
+        .get(slug)
+        .reply(200, {
+          id,
+          token,
+          attributes: {
+            cpr: '2508710000',
+            gender: 'm',
+            userId: '2508710000',
+            wayfId: null,
+            agencies: [],
+            birthDate: '2508',
+            birthYear: '1971',
+            uniloginId: null,
+            municipality: null
+          }
         });
+      // Act.
+      return (
+        login
+          .gettingTicket(token, id)
+          // Assert.
+          .then(validating(schemaUserInfo))
+          .then(data => {
+            expect(data).to.deep.equal({
+              userIdHash: '5e5975f69b565f538a12887434bac2105b6d6f010c06b8a3'
+            });
+          })
+      );
     });
 
     it('should reject user info without UserId', () => {
@@ -117,27 +121,29 @@ describe('Login connector', () => {
       const token = '4686e9c89c02c33db198912164d60041';
       const id = 1234;
       const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      const server = nock(config.url).get(slug).reply(200, {
-        id,
-        token,
-        attributes: {
-          cpr: null,
-          gender: 'm',
-          userId: null,
-          wayfId: null,
-          agencies: [],
-          birthDate: '2508',
-          birthYear: '1971',
-          uniloginId: null,
-          municipality: null
-        }
-      });
+      const server = nock(config.url)
+        .get(slug)
+        .reply(200, {
+          id,
+          token,
+          attributes: {
+            cpr: null,
+            gender: 'm',
+            userId: null,
+            wayfId: null,
+            agencies: [],
+            birthDate: '2508',
+            birthYear: '1971',
+            uniloginId: null,
+            municipality: null
+          }
+        });
       // Act.
       return expect(login.gettingTicket(token, id))
-      .to.be.rejectedWith(Error)
-      .then(() => {
-        expect(server.isDone()).to.be.true;
-      });
+        .to.be.rejectedWith(Error)
+        .then(() => {
+          expect(server.isDone()).to.be.true;
+        });
     });
 
     it('should retrieve user info as text and redirect with cookie', () => {
@@ -145,28 +151,38 @@ describe('Login connector', () => {
       const token = '4686e9c89c02c33db198912164d60041';
       const id = 1234;
       const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      nock(config.url).get(slug).reply(200, JSON.stringify({
-        attributes: {
-          cpr: '1701840000',
-          userId: '1701840000',
-          wayfId: null,
-          uniloginId: 'some-unilogin-id',
-          agencies: [{
-            userId: '1701840000',
-            agencyId: '715100',
-            userIdType: 'CPR'
-          }]
-        }
-      }));
+      nock(config.url)
+        .get(slug)
+        .reply(
+          200,
+          JSON.stringify({
+            attributes: {
+              cpr: '1701840000',
+              userId: '1701840000',
+              wayfId: null,
+              uniloginId: 'some-unilogin-id',
+              agencies: [
+                {
+                  userId: '1701840000',
+                  agencyId: '715100',
+                  userIdType: 'CPR'
+                }
+              ]
+            }
+          })
+        );
       // Act.
-      return login.gettingTicket(token, id)
-        // Assert.
-        .then(validating(schemaUserInfo))
-        .then(data => {
-          expect(data).to.deep.equal({
-            userIdHash: '4fa1ef074f739f50eea243fa0e25caeea5494a558abbef48'
-          });
-        });
+      return (
+        login
+          .gettingTicket(token, id)
+          // Assert.
+          .then(validating(schemaUserInfo))
+          .then(data => {
+            expect(data).to.deep.equal({
+              userIdHash: '4fa1ef074f739f50eea243fa0e25caeea5494a558abbef48'
+            });
+          })
+      );
     });
 
     it('should detect that token/id is rejected and redirect', () => {
@@ -174,51 +190,57 @@ describe('Login connector', () => {
       const token = '98912164d600414686e9c89c02c33db1';
       const id = 1234;
       const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      const server = nock(config.url).get(slug).reply(200, {attributes: null});
+      const server = nock(config.url)
+        .get(slug)
+        .reply(200, {attributes: null});
       // Act.
-      return expect(login.gettingTicket(token, id))
-        // Assert.
-        .to.be.rejectedWith(Error)
-        .then(error => {
-          expect(error).to.match(/no user information received/i);
-          expect(login.isOk()).to.be.true;
-          expect(server.isDone()).to.be.true;
-        });
+      return (
+        expect(login.gettingTicket(token, id))
+          // Assert.
+          .to.be.rejectedWith(Error)
+          .then(error => {
+            expect(error).to.match(/no user information received/i);
+            expect(login.isOk()).to.be.true;
+            expect(server.isDone()).to.be.true;
+          })
+      );
     });
 
     it('testingConnection() should say everything is fine', () => {
       // Arrange.
-      const server = nock(config.url).get(constants.apiHealth).reply(200, [
-        {name: 'db', state: 'ok'},
-        {name: 'borckh', state: 'ok'},
-        {name: 'culr', state: 'ok'},
-        {name: 'smaug', state: 'ok'},
-        {name: 'openAgency', state: 'ok'}
-      ]);
+      const server = nock(config.url)
+        .get(constants.apiHealth)
+        .reply(200, [
+          {name: 'db', state: 'ok'},
+          {name: 'borckh', state: 'ok'},
+          {name: 'culr', state: 'ok'},
+          {name: 'smaug', state: 'ok'},
+          {name: 'openAgency', state: 'ok'}
+        ]);
       // Act.
-      return login.testingConnection()
-        .then(ok => {
-          expect(ok).to.be.true;
-          expect(login.isOk()).to.be.true;
-          expect(login.getCurrentError()).to.be.null;
-          expect(server.isDone()).to.be.true;
-        });
+      return login.testingConnection().then(ok => {
+        expect(ok).to.be.true;
+        expect(login.isOk()).to.be.true;
+        expect(login.getCurrentError()).to.be.null;
+        expect(server.isDone()).to.be.true;
+      });
     });
 
     it('testingConnection() should detect unhealth login service', () => {
       // Arrange.
-      const server = nock(config.url).get(constants.apiHealth).reply(500);
+      const server = nock(config.url)
+        .get(constants.apiHealth)
+        .reply(500);
       // Act.
-      return login.testingConnection()
-        .then(ok => {
-          expect(ok).to.be.false;
-          expect(login.isOk()).to.be.false;
-          expect(login.getCurrentError()).to.match(/login-service.+failed/i);
-          const log = login.getErrorLog();
-          expect(log).to.have.length(1);
-          expect(log[0]).to.match(/login service.+unhealthy/i);
-          expect(server.isDone()).to.be.true;
-        });
+      return login.testingConnection().then(ok => {
+        expect(ok).to.be.false;
+        expect(login.isOk()).to.be.false;
+        expect(login.getCurrentError()).to.match(/login-service.+failed/i);
+        const log = login.getErrorLog();
+        expect(log).to.have.length(1);
+        expect(log[0]).to.match(/login service.+unhealthy/i);
+        expect(server.isDone()).to.be.true;
+      });
     });
   });
 });

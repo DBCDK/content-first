@@ -6,21 +6,26 @@ const internal = express();
 const parser = require('body-parser');
 const helmet = require('helmet');
 
-internal.use(parser.json({
-  type: 'application/json',
-  // Allow lone values.
-  strict: false,
-  limit: '50mb'
-}));
+internal.use(
+  parser.json({
+    type: 'application/json',
+    // Allow lone values.
+    strict: false,
+    limit: '50mb'
+  })
+);
 
-internal.use(parser.raw({
-  type: 'image/jpeg',
-  limit: '5mb'
-}));
+internal.use(
+  parser.raw({
+    type: 'image/jpeg',
+    limit: '5mb'
+  })
+);
 
 internal.use(helmet());
 
-internal.get('/crash', (req, res, next) => { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+internal.get('/crash', (req, res, next) => {
   if (config.server.environment !== 'production') {
     throw new Error('Deliberate water landing');
   }
@@ -48,8 +53,7 @@ internal.use((err, req, res, next) => {
       detail: 'JSON syntax error',
       meta: {body: err.body}
     });
-  }
-  else {
+  } else {
     next(err);
   }
 });
@@ -66,7 +70,8 @@ internal.use((err, req, res, next) => {
  * Additionally, in non-production mode, any stack trace and other properties
  * from err are included.
  */
-internal.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+internal.use((err, req, res, next) => {
   err.status = err.status || 500;
   let returnedError = {
     status: err.status,

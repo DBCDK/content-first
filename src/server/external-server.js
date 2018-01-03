@@ -27,18 +27,20 @@ external.use(helmet());
 
 // Auto-parse request bodies in JSON format.
 const parser = require('body-parser');
-external.use(parser.json({
-  type: 'application/json',
-  // Allow lone values.
-  strict: false
-}));
+external.use(
+  parser.json({
+    type: 'application/json',
+    // Allow lone values.
+    strict: false
+  })
+);
 
 // Auto-parse cookies.
 const cookieParser = require('cookie-parser');
 external.use(cookieParser());
 
 // Administrative API.
-external.get('/howru', async(req, res) => {
+external.get('/howru', async (req, res) => {
   const configWithoutSecrets = _.omit(config, [
     'db.connection.user',
     'db.connection.password',
@@ -46,12 +48,7 @@ external.get('/howru', async(req, res) => {
     'auth.secret',
     'login.salt'
   ]);
-  const services = [
-    authenticator,
-    community,
-    database,
-    login
-  ];
+  const services = [authenticator, community, database, login];
   const status = await generatingServiceStatus(services);
   Object.assign(status, {
     version: require('../../package').version,
@@ -94,8 +91,7 @@ external.use((err, req, res, next) => {
       detail: 'JSON syntax error',
       meta: {body: err.body}
     });
-  }
-  else {
+  } else {
     next(err);
   }
 });
@@ -112,7 +108,8 @@ external.use((err, req, res, next) => {
  * Additionally, in non-production mode, any stack trace and other properties
  * from err are included.
  */
-external.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+external.use((err, req, res, next) => {
   err.status = err.status || 500;
   let returnedError = {
     status: err.status,

@@ -141,7 +141,6 @@ module.exports = {
     'one-var': 0,
     'operator-assignment': [2, 'always'],
     'padded-blocks': 0,
-    quotes: [2, 'single'],
     'quote-props': [2, 'as-needed'],
     semi: [2, 'always'],
     'sort-vars': [

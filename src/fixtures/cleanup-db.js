@@ -21,7 +21,6 @@ const taxonomyBottomTable = constants.taxonomy.bottomTable;
 const cookieTable = constants.cookies.table;
 
 module.exports = knex => {
-
   /**
    * Truncate all tables in the current database.
    */

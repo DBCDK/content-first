@@ -7,7 +7,7 @@ const _ = require('lodash');
  * @param  {string} data Eg. "A,B,C"
  * @return {array}       ['A','B','C'] or null
  */
-function parseList (data) {
+function parseList(data) {
   if (!data || data.length === 0) {
     return null;
   }

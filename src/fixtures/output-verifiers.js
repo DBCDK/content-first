@@ -9,12 +9,17 @@ const validator = require('is-my-json-valid/require');
 const formats = require('__/schemas/formats');
 const {nicifyJsonValidationErrors} = require('__/json');
 
-function expectSuccess (document, next) {
+function expectSuccess(document, next) {
   const validate = validator('schemas/success-out.json');
   validate(document);
   const problems = nicifyJsonValidationErrors(validate);
   if (problems.length > 0) {
-    assert(false, `Got JSON ${JSON.stringify(document)} with the following problems: ${problems}`);
+    assert(
+      false,
+      `Got JSON ${JSON.stringify(
+        document
+      )} with the following problems: ${problems}`
+    );
   }
   const links = document.links;
   expect(document).to.have.property('data');
@@ -22,12 +27,17 @@ function expectSuccess (document, next) {
   next(links, data);
 }
 
-function expectFailure (document, next) {
+function expectFailure(document, next) {
   const validate = validator('schemas/failure-out.json');
   validate(document);
   const problems = nicifyJsonValidationErrors(validate);
   if (problems.length > 0) {
-    assert(false, `Got JSON ${JSON.stringify(document)} with the following problems: ${problems}`);
+    assert(
+      false,
+      `Got JSON ${JSON.stringify(
+        document
+      )} with the following problems: ${problems}`
+    );
   }
   expect(document).to.have.property('errors');
   const errors = document.errors;
@@ -35,12 +45,17 @@ function expectFailure (document, next) {
   next(errors);
 }
 
-function expectValidate (document, schema) {
+function expectValidate(document, schema) {
   const validate = validator(schema, formats);
   validate(document);
   const problems = nicifyJsonValidationErrors(validate);
   if (problems.length > 0) {
-    assert(false, `Got JSON ${JSON.stringify(document)} with the following problems: ${problems}`);
+    assert(
+      false,
+      `Got JSON ${JSON.stringify(
+        document
+      )} with the following problems: ${problems}`
+    );
   }
   expect(problems).to.deep.equal([]);
 }

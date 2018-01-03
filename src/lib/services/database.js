@@ -4,41 +4,40 @@
  * Database error accounting.
  */
 class Database {
-  constructor (knex) {
+  constructor(knex) {
     this.knex = knex;
     this.ok = true;
     this.currentError = null;
     this.databaseErrors = [];
   }
-  getName () {
+  getName() {
     return 'database';
   }
-  isOk () {
+  isOk() {
     return this.ok;
   }
-  setOk () {
+  setOk() {
     this.ok = true;
   }
-  getCurrentError () {
+  getCurrentError() {
     if (this.isOk()) {
       return null;
     }
     return this.currentError;
   }
-  getErrorLog () {
+  getErrorLog() {
     return this.databaseErrors;
   }
-  logError (error) {
+  logError(error) {
     this.currentError = 'Database probably unreachable';
-    this.databaseErrors.push(
-      (new Date()).toISOString() + ': ' + error
-    );
+    this.databaseErrors.push(new Date().toISOString() + ': ' + error);
     this.ok = false;
   }
-  testingConnection () {
+  testingConnection() {
     const me = this;
     // Make a dummy query.
-    return me.knex.raw('select 1+1 as result')
+    return me.knex
+      .raw('select 1+1 as result')
       .then(() => {
         me.setOk();
         return me.isOk();

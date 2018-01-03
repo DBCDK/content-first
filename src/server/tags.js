@@ -7,7 +7,7 @@ const {validatingInput} = require('__/json');
 const path = require('path');
 const schema = path.join(__dirname, 'schemas/tags-in.json');
 
-function parsingTagsInjection (obj) {
+function parsingTagsInjection(obj) {
   return new Promise((resolve, reject) => {
     return validatingInput(obj, schema)
       .then(document => {

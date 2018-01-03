@@ -8,8 +8,14 @@ exports.up = function(knex) {
     table.string('name');
     table.string('gender');
     table.integer('birth_year');
-    table.jsonb('authors').notNullable().defaultTo('[]');
-    table.jsonb('atmosphere').notNullable().defaultTo('[]');
+    table
+      .jsonb('authors')
+      .notNullable()
+      .defaultTo('[]');
+    table
+      .jsonb('atmosphere')
+      .notNullable()
+      .defaultTo('[]');
   });
 };
 

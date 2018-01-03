@@ -20,7 +20,9 @@ exports.seed = async knex => {
     const meta = await books.parsingMetaDataInjection(blendstrup);
     const spiked = books.transformMetaDataToBook(meta);
     await knex(bookTable).insert(spiked);
-    const image = await readFileAsync(resolve.sync('fixtures/870970-basis-53188931.jpg'));
+    const image = await readFileAsync(
+      resolve.sync('fixtures/870970-basis-53188931.jpg')
+    );
     await knex(coverTable).insert({pid: meta.pid, image: image});
   }
   {
@@ -28,7 +30,9 @@ exports.seed = async knex => {
     const meta = await books.parsingMetaDataInjection(martin);
     const spiked = books.transformMetaDataToBook(meta);
     await knex(bookTable).insert(spiked);
-    const image = await readFileAsync(resolve.sync('fixtures/870970-basis-51752341.jpg'));
+    const image = await readFileAsync(
+      resolve.sync('fixtures/870970-basis-51752341.jpg')
+    );
     await knex(coverTable).insert({pid: meta.pid, image: image});
     const tags = require('fixtures/martin-den-herreloese-ridder-tags.json');
     for (let tag of tags.selected) {
@@ -51,7 +55,11 @@ exports.seed = async knex => {
       for (let middle of top.items) {
         middleRawInsert.push({id: middle.id, top: top.id, title: middle.title});
         for (let bottom of middle.items) {
-          bottomRawInsert.push({id: bottom.id, middle: middle.id, title: bottom.title});
+          bottomRawInsert.push({
+            id: bottom.id,
+            middle: middle.id,
+            title: bottom.title
+          });
         }
       }
     }
@@ -62,7 +70,7 @@ exports.seed = async knex => {
   await knex(cookieTable).insert({
     cookie: 'valid-login-token-for-nonexisting-user-seeded-on-test-start',
     community_profile_id: 123456,
-    expires_epoch_s: (Math.ceil(Date.now() / 1000) + 10000)
+    expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
   await knex(cookieTable).insert({
     cookie: 'expired-login-token-seeded-on-test-start',

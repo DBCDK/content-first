@@ -6,31 +6,32 @@ const _ = require('lodash');
  * @param  {[services]} services List of subservices.
  * @return {{ok, services}}      Status object.
  */
-async function generatingServiceStatus (services) {
+async function generatingServiceStatus(services) {
   const servicesHealth = await Promise.all(
     _.map(services, service => {
       const name = service.getName();
-      return service.testingConnection()
-      .then(status => {
-        if (status) {
+      return service
+        .testingConnection()
+        .then(status => {
+          if (status) {
+            return {
+              service: name,
+              ok: status
+            };
+          }
           return {
             service: name,
-            ok: status
+            ok: status,
+            problem: service.getCurrentError()
           };
-        }
-        return {
-          service: name,
-          ok: status,
-          problem: service.getCurrentError()
-        };
-      })
-      .catch(error => {
-        return {
-          service: name,
-          ok: false,
-          problem: error
-        };
-      });
+        })
+        .catch(error => {
+          return {
+            service: name,
+            ok: false,
+            problem: error
+          };
+        });
     })
   );
   const ok = _.every(servicesHealth, health => health.ok);

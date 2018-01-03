@@ -9,8 +9,12 @@ export default middleware => {
   const providedMiddleware = middleware ? middleware : [];
   middleware = [...providedMiddleware, historyMiddleware(history)];
 
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  const store = createStore(reducer, composeEnhancers(applyMiddleware(...middleware)));
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const store = createStore(
+    reducer,
+    composeEnhancers(applyMiddleware(...middleware))
+  );
 
   // Redux-first routing is used as described:
   // https://medium.freecodecamp.org/an-introduction-to-the-redux-first-routing-model-98926ebf53cb

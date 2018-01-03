@@ -8,7 +8,7 @@ const {validatingInput} = require('__/json');
 const path = require('path');
 const schema = path.join(__dirname, 'schemas/book-in.json');
 
-function parsingMetaDataInjection (obj) {
+function parsingMetaDataInjection(obj) {
   return new Promise((resolve, reject) => {
     return validatingInput(obj, schema)
       .then(document => {
@@ -16,7 +16,10 @@ function parsingMetaDataInjection (obj) {
         book.pid = document.pid;
         book.unit_id = document.unitId;
         book.work_id = document.workId;
-        book.bibliographic_record_id = parseInt(document.bibliographicRecordId, 10);
+        book.bibliographic_record_id = parseInt(
+          document.bibliographicRecordId,
+          10
+        );
         if (!book.bibliographic_record_id) {
           return reject({
             status: 400,
@@ -47,7 +50,7 @@ function parsingMetaDataInjection (obj) {
   });
 }
 
-function transformMetaDataToBook (metadata) {
+function transformMetaDataToBook(metadata) {
   const filteredMetaData = _.pick(metadata, [
     'bibliographic_record_id',
     'creator',

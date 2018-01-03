@@ -2,7 +2,6 @@ import React from 'react';
 import Kryds from '../svg/Kryds.svg';
 
 export default class Modal extends React.Component {
-
   render() {
     const {doneText = 'OK'} = this.props;
 

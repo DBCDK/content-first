@@ -8,78 +8,99 @@ const {expect} = require('chai');
 const request = require('supertest');
 
 describe('Admin API on running database', () => {
-
   describe('Public endpoint', () => {
     const webapp = request(external);
 
     describe('/pid', () => {
       it('should return the process id', () => {
         // Act.
-        return webapp.get('/pid').set('Accept', 'text/plain')
-        // Assert.
-        .expect(200)
-        .expect('Content-Type', /text/)
-        .expect(/^[0-9]+$/);
+        return (
+          webapp
+            .get('/pid')
+            .set('Accept', 'text/plain')
+            // Assert.
+            .expect(200)
+            .expect('Content-Type', /text/)
+            .expect(/^[0-9]+$/)
+        );
       });
     });
 
     describe('/howru', () => {
-
       it('should answer that everything is fine and give additional information', () => {
         // Arrange.
         arrangeSubserviceResponse('ALC');
         // Act.
-        return webapp.get('/howru').set('Accept', 'application/json')
-        // Assert.
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .expect(res => {
-          expectStatusOkAndNoErrors(res.body);
-          expectStatusContainsServiceInfo(res.body);
-          expectNoSecretsRevealed(res.body);
-        });
+        return (
+          webapp
+            .get('/howru')
+            .set('Accept', 'application/json')
+            // Assert.
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .expect(res => {
+              expectStatusOkAndNoErrors(res.body);
+              expectStatusContainsServiceInfo(res.body);
+              expectNoSecretsRevealed(res.body);
+            })
+        );
       });
 
       it('should detect authenticator problems', () => {
         // Arrange.
         arrangeSubserviceResponse('_LC');
         // Act.
-        return webapp.get('/howru').set('Accept', 'application/json')
-        // Assert.
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .expect(res => {
-          expectStatusError(/authentication.* communication failed/i, res.body);
-          expectNoSecretsRevealed(res.body);
-        });
+        return (
+          webapp
+            .get('/howru')
+            .set('Accept', 'application/json')
+            // Assert.
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .expect(res => {
+              expectStatusError(
+                /authentication.* communication failed/i,
+                res.body
+              );
+              expectNoSecretsRevealed(res.body);
+            })
+        );
       });
 
       it('should detect login problems', () => {
         // Arrange.
         arrangeSubserviceResponse('A_C');
         // Act.
-        return webapp.get('/howru').set('Accept', 'application/json')
-        // Assert.
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .expect(res => {
-          expectStatusError(/login.* communication failed/i, res.body);
-          expectNoSecretsRevealed(res.body);
-        });
+        return (
+          webapp
+            .get('/howru')
+            .set('Accept', 'application/json')
+            // Assert.
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .expect(res => {
+              expectStatusError(/login.* communication failed/i, res.body);
+              expectNoSecretsRevealed(res.body);
+            })
+        );
       });
 
       it('should detect community problems', () => {
         // Arrange.
         arrangeSubserviceResponse('AL_');
         // Act.
-        return webapp.get('/howru').set('Accept', 'application/json')
-        // Assert.
-        .expect('Content-Type', /json/)
-        .expect(200)
-        .expect(res => {
-          expectStatusError(/community.* communication failed/i, res.body);
-          expectNoSecretsRevealed(res.body);
-        });
+        return (
+          webapp
+            .get('/howru')
+            .set('Accept', 'application/json')
+            // Assert.
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .expect(res => {
+              expectStatusError(/community.* communication failed/i, res.body);
+              expectNoSecretsRevealed(res.body);
+            })
+        );
       });
     });
   });
@@ -90,9 +111,12 @@ describe('Admin API on running database', () => {
     describe('server crashes', () => {
       it('should be catched', () => {
         // Act.
-        return hidden.get('/crash')
-          // Assert.
-          .expect(500);
+        return (
+          hidden
+            .get('/crash')
+            // Assert.
+            .expect(500)
+        );
       });
     });
   });
@@ -100,14 +124,14 @@ describe('Admin API on running database', () => {
 
 const {expectValidate} = require('fixtures/output-verifiers');
 
-function expectStatusOkAndNoErrors (document) {
+function expectStatusOkAndNoErrors(document) {
   expectValidate(document, 'schemas/status-out.json');
   expect(document.ok).to.be.true;
   expect(document).to.not.have.property('errorText');
   expect(document).to.not.have.property('errorLog');
 }
 
-function expectStatusError (errorMatcher, document) {
+function expectStatusError(errorMatcher, document) {
   expectValidate(document, 'schemas/status-out.json');
   expect(document.ok).to.be.false;
   expect(document).to.have.property('errorText');
@@ -115,7 +139,7 @@ function expectStatusError (errorMatcher, document) {
   expect(document).to.have.property('errorLog');
 }
 
-function expectStatusContainsServiceInfo (document) {
+function expectStatusContainsServiceInfo(document) {
   // Service info.
   expect(document).to.have.property('address');
   expect(document['api-version']).to.equal('1');
@@ -123,7 +147,7 @@ function expectStatusContainsServiceInfo (document) {
   expect(document.version).to.equal('0.2.0');
 }
 
-function expectNoSecretsRevealed (document) {
+function expectNoSecretsRevealed(document) {
   expect(document).to.not.have.nested.property('config.db.connection.user');
   expect(document).to.not.have.nested.property('config.db.connection.password');
   expect(document).to.not.have.nested.property('config.auth.id');
@@ -140,26 +164,35 @@ const loginConst = require('__/services/hejmdal/login-constants')();
 const communityConst = require('__/services/elvis/community-constants')();
 const nock = require('nock');
 
-function arrangeSubserviceResponse (authLoginCommunity) {
+function arrangeSubserviceResponse(authLoginCommunity) {
   const auth = authLoginCommunity[0];
   const login = authLoginCommunity[1];
   const community = authLoginCommunity[2];
   if (auth === 'A') {
-    nock(config.auth.url).get(authConst.apiHealth).reply(200, authConst.healthyResponse);
-  }
-  else {
-    nock(config.auth.url).get(authConst.apiHealth).reply(500);
+    nock(config.auth.url)
+      .get(authConst.apiHealth)
+      .reply(200, authConst.healthyResponse);
+  } else {
+    nock(config.auth.url)
+      .get(authConst.apiHealth)
+      .reply(500);
   }
   if (login === 'L') {
-    nock(config.login.url).get(loginConst.apiHealth).reply(200, loginConst.healthyResponse);
-  }
-  else {
-    nock(config.login.url).get(loginConst.apiHealth).reply(500);
+    nock(config.login.url)
+      .get(loginConst.apiHealth)
+      .reply(200, loginConst.healthyResponse);
+  } else {
+    nock(config.login.url)
+      .get(loginConst.apiHealth)
+      .reply(500);
   }
   if (community === 'C') {
-    nock(config.community.url).get(communityConst.apiHealth).reply(200, communityConst.healthyResponse);
-  }
-  else {
-    nock(config.community.url).get(communityConst.apiHealth).reply(500);
+    nock(config.community.url)
+      .get(communityConst.apiHealth)
+      .reply(200, communityConst.healthyResponse);
+  } else {
+    nock(config.community.url)
+      .get(communityConst.apiHealth)
+      .reply(500);
   }
 }
