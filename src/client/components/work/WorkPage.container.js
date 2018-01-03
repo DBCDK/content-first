@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import ScrollableBelt from '../general/ScrollableBelt.component';
 import WorkItem from './WorkItemConnected.component';
 import CheckmarkButton from '../general/CheckmarkButton.component';
-import Image from '../Image.component';
+import BookCover from '../general/BookCover.component';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
@@ -74,16 +74,7 @@ class WorkPage extends React.Component {
         <div className="row work-details">
           <div className="col-xs-11 col-centered text-left">
             <div className="col-xs-4 col-lg-3 cover-image-wrapper">
-              <Image
-                key={work.data.pid}
-                urls={[
-                  `https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(
-                    work.data.pid
-                  )}`,
-                  `/v1/image/${encodeURIComponent(work.data.pid)}`,
-                  '/default-book-cover.png'
-                ]}
-              />
+              <BookCover book={work.data} />
             </div>
             <div className="col-xs-8 col-lg-9 info">
               <div className="title">{work.data.title}</div>

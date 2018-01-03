@@ -20,7 +20,9 @@ export class ShortListItem extends React.Component {
           <div className="book col-xs-6">
             <div className="row">
               <div className="col-xs-2">
-                <BookCover pid={this.props.element.book.pid} />
+                <div className="book-cover">
+                  <BookCover book={this.props.element.book} />
+                </div>
               </div>
               <div className="col-xs-10 book-description">
                 <div className="title">{this.props.element.book.title}</div>

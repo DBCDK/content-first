@@ -45,10 +45,14 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
         <div
           className="short-list-element--cover-image"
         >
-          <img
-            alt=""
-            onError={[Function]}
-            src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+          <BookCover
+            book={
+              Object {
+                "pid": "pid1",
+                "taxonomy_description": "some description1",
+                "title": "some title1",
+              }
+            }
           />
         </div>
         <div
@@ -83,10 +87,14 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
         <div
           className="short-list-element--cover-image"
         >
-          <img
-            alt=""
-            onError={[Function]}
-            src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+          <BookCover
+            book={
+              Object {
+                "pid": "pid2",
+                "taxonomy_description": "some description2",
+                "title": "some title2",
+              }
+            }
           />
         </div>
         <div
@@ -165,10 +173,14 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
         <div
           className="short-list-element--cover-image"
         >
-          <img
-            alt=""
-            onError={[Function]}
-            src="https://metakompasset.demo.dbc.dk/api/cover/pid4"
+          <BookCover
+            book={
+              Object {
+                "pid": "pid4",
+                "taxonomy_description": "some description4",
+                "title": "some title4",
+              }
+            }
           />
         </div>
         <div
@@ -203,10 +215,14 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
         <div
           className="short-list-element--cover-image"
         >
-          <img
-            alt=""
-            onError={[Function]}
-            src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+          <BookCover
+            book={
+              Object {
+                "pid": "pid3",
+                "taxonomy_description": "some description3",
+                "title": "some title3",
+              }
+            }
           />
         </div>
         <div
@@ -241,10 +257,14 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
         <div
           className="short-list-element--cover-image"
         >
-          <img
-            alt=""
-            onError={[Function]}
-            src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+          <BookCover
+            book={
+              Object {
+                "pid": "pid2",
+                "taxonomy_description": "some description2",
+                "title": "some title2",
+              }
+            }
           />
         </div>
         <div
@@ -349,10 +369,14 @@ exports[`ShortListDropDown short list contains single element 1`] = `
         <div
           className="short-list-element--cover-image"
         >
-          <img
-            alt=""
-            onError={[Function]}
-            src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+          <BookCover
+            book={
+              Object {
+                "pid": "pid1",
+                "taxonomy_description": "some description1",
+                "title": "some title1",
+              }
+            }
           />
         </div>
         <div
