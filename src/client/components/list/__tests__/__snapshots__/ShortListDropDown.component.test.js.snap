@@ -39,90 +39,92 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
     <div
       className="short-list--elements"
     >
-      <div
-        className="short-list-element"
-      >
+      <span>
         <div
-          className="short-list-element--cover-image"
+          className="short-list-element"
         >
-          <BookCover
-            book={
-              Object {
-                "pid": "pid1",
-                "taxonomy_description": "some description1",
-                "title": "some title1",
+          <div
+            className="short-list-element--cover-image"
+          >
+            <BookCover
+              book={
+                Object {
+                  "pid": "pid1",
+                  "taxonomy_description": "some description1",
+                  "title": "some title1",
+                }
               }
-            }
+            />
+          </div>
+          <div
+            className="short-list-element--text"
+          >
+            <div
+              className="short-list-element--header"
+            >
+              some title1
+            </div>
+            <div
+              className="short-list-element--taxonomy-description"
+            >
+              some description1
+            </div>
+            <div
+              className="short-list-element--origin"
+            >
+              Minder om noget1
+            </div>
+          </div>
+          <img
+            alt="luk"
+            className="short-list-element--close-btn"
+            onClick={[Function]}
+            src="Kryds.svg"
           />
         </div>
         <div
-          className="short-list-element--text"
+          className="short-list-element"
         >
           <div
-            className="short-list-element--header"
+            className="short-list-element--cover-image"
           >
-            some title1
-          </div>
-          <div
-            className="short-list-element--taxonomy-description"
-          >
-            some description1
-          </div>
-          <div
-            className="short-list-element--origin"
-          >
-            Minder om noget1
-          </div>
-        </div>
-        <img
-          alt="luk"
-          className="short-list-element--close-btn"
-          onClick={[Function]}
-          src="Kryds.svg"
-        />
-      </div>
-      <div
-        className="short-list-element"
-      >
-        <div
-          className="short-list-element--cover-image"
-        >
-          <BookCover
-            book={
-              Object {
-                "pid": "pid2",
-                "taxonomy_description": "some description2",
-                "title": "some title2",
+            <BookCover
+              book={
+                Object {
+                  "pid": "pid2",
+                  "taxonomy_description": "some description2",
+                  "title": "some title2",
+                }
               }
-            }
+            />
+          </div>
+          <div
+            className="short-list-element--text"
+          >
+            <div
+              className="short-list-element--header"
+            >
+              some title2
+            </div>
+            <div
+              className="short-list-element--taxonomy-description"
+            >
+              some description2
+            </div>
+            <div
+              className="short-list-element--origin"
+            >
+              Minder om noget2
+            </div>
+          </div>
+          <img
+            alt="luk"
+            className="short-list-element--close-btn"
+            onClick={[Function]}
+            src="Kryds.svg"
           />
         </div>
-        <div
-          className="short-list-element--text"
-        >
-          <div
-            className="short-list-element--header"
-          >
-            some title2
-          </div>
-          <div
-            className="short-list-element--taxonomy-description"
-          >
-            some description2
-          </div>
-          <div
-            className="short-list-element--origin"
-          >
-            Minder om noget2
-          </div>
-        </div>
-        <img
-          alt="luk"
-          className="short-list-element--close-btn"
-          onClick={[Function]}
-          src="Kryds.svg"
-        />
-      </div>
+      </span>
     </div>
   </div>
 </div>
@@ -167,132 +169,134 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
     <div
       className="short-list--elements"
     >
-      <div
-        className="short-list-element"
-      >
+      <span>
         <div
-          className="short-list-element--cover-image"
+          className="short-list-element"
         >
-          <BookCover
-            book={
-              Object {
-                "pid": "pid4",
-                "taxonomy_description": "some description4",
-                "title": "some title4",
+          <div
+            className="short-list-element--cover-image"
+          >
+            <BookCover
+              book={
+                Object {
+                  "pid": "pid4",
+                  "taxonomy_description": "some description4",
+                  "title": "some title4",
+                }
               }
-            }
+            />
+          </div>
+          <div
+            className="short-list-element--text"
+          >
+            <div
+              className="short-list-element--header"
+            >
+              some title4
+            </div>
+            <div
+              className="short-list-element--taxonomy-description"
+            >
+              some description4
+            </div>
+            <div
+              className="short-list-element--origin"
+            >
+              Minder om noget4
+            </div>
+          </div>
+          <img
+            alt="luk"
+            className="short-list-element--close-btn"
+            onClick={[Function]}
+            src="Kryds.svg"
           />
         </div>
         <div
-          className="short-list-element--text"
+          className="short-list-element"
         >
           <div
-            className="short-list-element--header"
+            className="short-list-element--cover-image"
           >
-            some title4
-          </div>
-          <div
-            className="short-list-element--taxonomy-description"
-          >
-            some description4
-          </div>
-          <div
-            className="short-list-element--origin"
-          >
-            Minder om noget4
-          </div>
-        </div>
-        <img
-          alt="luk"
-          className="short-list-element--close-btn"
-          onClick={[Function]}
-          src="Kryds.svg"
-        />
-      </div>
-      <div
-        className="short-list-element"
-      >
-        <div
-          className="short-list-element--cover-image"
-        >
-          <BookCover
-            book={
-              Object {
-                "pid": "pid3",
-                "taxonomy_description": "some description3",
-                "title": "some title3",
+            <BookCover
+              book={
+                Object {
+                  "pid": "pid3",
+                  "taxonomy_description": "some description3",
+                  "title": "some title3",
+                }
               }
-            }
+            />
+          </div>
+          <div
+            className="short-list-element--text"
+          >
+            <div
+              className="short-list-element--header"
+            >
+              some title3
+            </div>
+            <div
+              className="short-list-element--taxonomy-description"
+            >
+              some description3
+            </div>
+            <div
+              className="short-list-element--origin"
+            >
+              Minder om noget3
+            </div>
+          </div>
+          <img
+            alt="luk"
+            className="short-list-element--close-btn"
+            onClick={[Function]}
+            src="Kryds.svg"
           />
         </div>
         <div
-          className="short-list-element--text"
+          className="short-list-element"
         >
           <div
-            className="short-list-element--header"
+            className="short-list-element--cover-image"
           >
-            some title3
-          </div>
-          <div
-            className="short-list-element--taxonomy-description"
-          >
-            some description3
-          </div>
-          <div
-            className="short-list-element--origin"
-          >
-            Minder om noget3
-          </div>
-        </div>
-        <img
-          alt="luk"
-          className="short-list-element--close-btn"
-          onClick={[Function]}
-          src="Kryds.svg"
-        />
-      </div>
-      <div
-        className="short-list-element"
-      >
-        <div
-          className="short-list-element--cover-image"
-        >
-          <BookCover
-            book={
-              Object {
-                "pid": "pid2",
-                "taxonomy_description": "some description2",
-                "title": "some title2",
+            <BookCover
+              book={
+                Object {
+                  "pid": "pid2",
+                  "taxonomy_description": "some description2",
+                  "title": "some title2",
+                }
               }
-            }
+            />
+          </div>
+          <div
+            className="short-list-element--text"
+          >
+            <div
+              className="short-list-element--header"
+            >
+              some title2
+            </div>
+            <div
+              className="short-list-element--taxonomy-description"
+            >
+              some description2
+            </div>
+            <div
+              className="short-list-element--origin"
+            >
+              Minder om noget2
+            </div>
+          </div>
+          <img
+            alt="luk"
+            className="short-list-element--close-btn"
+            onClick={[Function]}
+            src="Kryds.svg"
           />
         </div>
-        <div
-          className="short-list-element--text"
-        >
-          <div
-            className="short-list-element--header"
-          >
-            some title2
-          </div>
-          <div
-            className="short-list-element--taxonomy-description"
-          >
-            some description2
-          </div>
-          <div
-            className="short-list-element--origin"
-          >
-            Minder om noget2
-          </div>
-        </div>
-        <img
-          alt="luk"
-          className="short-list-element--close-btn"
-          onClick={[Function]}
-          src="Kryds.svg"
-        />
-      </div>
+      </span>
     </div>
     <div
       className="short-list--more-elements"
@@ -302,6 +306,11 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
       >
         <span
           className="line-behind-text--label"
+          style={
+            Object {
+              "backgroundColor": "white",
+            }
+          }
         >
           1 bog mere på listen
         </span>
@@ -363,48 +372,50 @@ exports[`ShortListDropDown short list contains single element 1`] = `
     <div
       className="short-list--elements"
     >
-      <div
-        className="short-list-element"
-      >
+      <span>
         <div
-          className="short-list-element--cover-image"
+          className="short-list-element"
         >
-          <BookCover
-            book={
-              Object {
-                "pid": "pid1",
-                "taxonomy_description": "some description1",
-                "title": "some title1",
+          <div
+            className="short-list-element--cover-image"
+          >
+            <BookCover
+              book={
+                Object {
+                  "pid": "pid1",
+                  "taxonomy_description": "some description1",
+                  "title": "some title1",
+                }
               }
-            }
+            />
+          </div>
+          <div
+            className="short-list-element--text"
+          >
+            <div
+              className="short-list-element--header"
+            >
+              some title1
+            </div>
+            <div
+              className="short-list-element--taxonomy-description"
+            >
+              some description1
+            </div>
+            <div
+              className="short-list-element--origin"
+            >
+              Minder om noget1
+            </div>
+          </div>
+          <img
+            alt="luk"
+            className="short-list-element--close-btn"
+            onClick={[Function]}
+            src="Kryds.svg"
           />
         </div>
-        <div
-          className="short-list-element--text"
-        >
-          <div
-            className="short-list-element--header"
-          >
-            some title1
-          </div>
-          <div
-            className="short-list-element--taxonomy-description"
-          >
-            some description1
-          </div>
-          <div
-            className="short-list-element--origin"
-          >
-            Minder om noget1
-          </div>
-        </div>
-        <img
-          alt="luk"
-          className="short-list-element--close-btn"
-          onClick={[Function]}
-          src="Kryds.svg"
-        />
-      </div>
+      </span>
     </div>
   </div>
 </div>
@@ -443,9 +454,6 @@ exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
     >
       Din huskeliste er tom
     </div>
-    <div
-      className="short-list--elements"
-    />
   </div>
 </div>
 `;

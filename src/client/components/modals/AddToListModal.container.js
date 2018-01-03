@@ -40,13 +40,23 @@ class AddToListModal extends React.Component {
     this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
   };
   onDone = () => {
-    this.props.dispatch({
-      type: ADD_ELEMENT_TO_LIST,
-      id: this.state.list.id,
-      element: this.props.work,
-      description: this.state.comment
-    });
-    this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
+    if (this.props.works) {
+      this.props.works.forEach(work =>
+        this.props.dispatch({
+          type: ADD_ELEMENT_TO_LIST,
+          id: this.state.list.id,
+          element: work,
+          description: work.origin || ''
+        })
+      );
+    } else {
+      this.props.dispatch({
+        type: ADD_ELEMENT_TO_LIST,
+        id: this.state.list.id,
+        element: this.props.work,
+        description: this.state.comment || this.props.work.origin || ''
+      });
+    }
     this.close();
   };
   onAddList = listName =>
@@ -114,13 +124,25 @@ class AddToListModal extends React.Component {
             </div>
           </div>
           <div className="col-xs-6">
-            {this.props.work && <WorkItemSmall work={this.props.work} />}
-            <textarea
-              className="comment"
-              placeholder="Skriv evt. en kommentar til bogen"
-              value={this.state.comment}
-              onChange={e => this.setState({comment: e.target.value})}
-            />
+            {this.props.works && (
+              <p className="mt2">{`Du er ved at gemme ${
+                this.props.works.length
+              } ${this.props.works.length > 1 ? 'bøger' : 'bog'} i '${
+                this.state.list.title
+              }'`}</p>
+            )}
+            {this.props.work && [
+              <WorkItemSmall key="item" work={this.props.work} />,
+              <textarea
+                key="textarea"
+                className="comment"
+                placeholder={
+                  this.props.work.origin || 'Skriv evt. en kommentar til bogen'
+                }
+                value={this.state.comment}
+                onChange={e => this.setState({comment: e.target.value})}
+              />
+            ]}
           </div>
         </div>
       </Modal>

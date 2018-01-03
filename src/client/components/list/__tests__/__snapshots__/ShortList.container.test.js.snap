@@ -1,0 +1,2409 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShortList.container Clearing list 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(ShortList)>
+    <ShortList
+      dispatch={[Function]}
+      shortListState={
+        Object {
+          "elements": Array [],
+          "expanded": false,
+          "isLoading": false,
+          "pendingMerge": null,
+        }
+      }
+    >
+      <div
+        className="short-list-page col-xs-11 col-centered"
+      >
+        <div
+          className="page-header-1"
+        >
+          Huskeliste
+        </div>
+        <div
+          className="items mb2"
+        >
+          <CSSTransitionGroup
+            transitionAppear={false}
+            transitionEnter={true}
+            transitionEnterTimeout={200}
+            transitionLeave={true}
+            transitionLeaveTimeout={200}
+            transitionName="shortlist"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={200}
+              transitionLeave={true}
+              transitionLeaveTimeout={200}
+              transitionName="shortlist"
+            >
+              <span>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid2"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid2",
+                          "taxonomy_description": "some description2",
+                          "title": "some title2",
+                        },
+                        "origin": "Minder om noget2",
+                      }
+                    }
+                    key=".$pid2"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid2",
+                                      "taxonomy_description": "some description2",
+                                      "title": "some title2",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title2"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title2
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget2"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget2"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid1"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid1",
+                          "taxonomy_description": "some description1",
+                          "title": "some title1",
+                        },
+                        "origin": "Minder om noget1",
+                      }
+                    }
+                    key=".$pid1"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title1
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget1"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget1"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+              </span>
+            </TransitionGroup>
+          </CSSTransitionGroup>
+        </div>
+        <div
+          className="empty-list-text"
+        >
+          Din huskeliste er tom
+        </div>
+      </div>
+    </ShortList>
+  </Connect(ShortList)>
+</Provider>
+`;
+
+exports[`ShortList.container Saving changed description, is hiding buttons and showing new value 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(ShortList)>
+    <ShortList
+      dispatch={[Function]}
+      shortListState={
+        Object {
+          "elements": Array [
+            Object {
+              "book": Object {
+                "pid": "pid1",
+                "taxonomy_description": "some description1",
+                "title": "some title1",
+              },
+              "origin": "description is changed",
+            },
+          ],
+          "expanded": false,
+          "isLoading": false,
+          "pendingMerge": null,
+        }
+      }
+    >
+      <div
+        className="short-list-page col-xs-11 col-centered"
+      >
+        <div
+          className="page-header-1"
+        >
+          Huskeliste
+        </div>
+        <div
+          className="items mb2"
+        >
+          <CSSTransitionGroup
+            transitionAppear={false}
+            transitionEnter={true}
+            transitionEnterTimeout={200}
+            transitionLeave={true}
+            transitionLeaveTimeout={200}
+            transitionName="shortlist"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={200}
+              transitionLeave={true}
+              transitionLeaveTimeout={200}
+              transitionName="shortlist"
+            >
+              <span>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid1"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid1",
+                          "taxonomy_description": "some description1",
+                          "title": "some title1",
+                        },
+                        "origin": "description is changed",
+                      }
+                    }
+                    key=".$pid1"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title1
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="description is changed"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="description is changed"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+              </span>
+            </TransitionGroup>
+          </CSSTransitionGroup>
+        </div>
+        <div
+          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+        >
+          <div
+            className="row"
+          >
+            <span
+              className="btn btn-success"
+              onClick={[Function]}
+            >
+              TILFØJ ALLE TIL LISTE
+            </span>
+            <span
+              className="btn btn-success ml2"
+              onClick={[Function]}
+            >
+              BESTIL HELE LISTEN
+            </span>
+            <span
+              className="clear-all-btn btn btn-success ml2"
+              onClick={[Function]}
+            >
+              RYD LISTEN
+              <span
+                className="glyphicon glyphicon-trash ml1"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </ShortList>
+  </Connect(ShortList)>
+</Provider>
+`;
+
+exports[`ShortList.container cancel changed description, is hiding buttons and showing old value 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(ShortList)>
+    <ShortList
+      dispatch={[Function]}
+      shortListState={
+        Object {
+          "elements": Array [
+            Object {
+              "book": Object {
+                "pid": "pid1",
+                "taxonomy_description": "some description1",
+                "title": "some title1",
+              },
+              "origin": "Minder om noget1",
+            },
+          ],
+          "expanded": false,
+          "isLoading": false,
+          "pendingMerge": null,
+        }
+      }
+    >
+      <div
+        className="short-list-page col-xs-11 col-centered"
+      >
+        <div
+          className="page-header-1"
+        >
+          Huskeliste
+        </div>
+        <div
+          className="items mb2"
+        >
+          <CSSTransitionGroup
+            transitionAppear={false}
+            transitionEnter={true}
+            transitionEnterTimeout={200}
+            transitionLeave={true}
+            transitionLeaveTimeout={200}
+            transitionName="shortlist"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={200}
+              transitionLeave={true}
+              transitionLeaveTimeout={200}
+              transitionName="shortlist"
+            >
+              <span>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid1"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid1",
+                          "taxonomy_description": "some description1",
+                          "title": "some title1",
+                        },
+                        "origin": "Minder om noget1",
+                      }
+                    }
+                    key=".$pid1"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title1
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget1"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget1"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+              </span>
+            </TransitionGroup>
+          </CSSTransitionGroup>
+        </div>
+        <div
+          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+        >
+          <div
+            className="row"
+          >
+            <span
+              className="btn btn-success"
+              onClick={[Function]}
+            >
+              TILFØJ ALLE TIL LISTE
+            </span>
+            <span
+              className="btn btn-success ml2"
+              onClick={[Function]}
+            >
+              BESTIL HELE LISTEN
+            </span>
+            <span
+              className="clear-all-btn btn btn-success ml2"
+              onClick={[Function]}
+            >
+              RYD LISTEN
+              <span
+                className="glyphicon glyphicon-trash ml1"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </ShortList>
+  </Connect(ShortList)>
+</Provider>
+`;
+
+exports[`ShortList.container cancel changed description, is hiding buttons and showing old value 2`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(ShortList)>
+    <ShortList
+      dispatch={[Function]}
+      shortListState={
+        Object {
+          "elements": Array [
+            Object {
+              "book": Object {
+                "pid": "pid1",
+                "taxonomy_description": "some description1",
+                "title": "some title1",
+              },
+              "origin": "Minder om noget1",
+            },
+          ],
+          "expanded": false,
+          "isLoading": false,
+          "pendingMerge": null,
+        }
+      }
+    >
+      <div
+        className="short-list-page col-xs-11 col-centered"
+      >
+        <div
+          className="page-header-1"
+        >
+          Huskeliste
+        </div>
+        <div
+          className="items mb2"
+        >
+          <CSSTransitionGroup
+            transitionAppear={false}
+            transitionEnter={true}
+            transitionEnterTimeout={200}
+            transitionLeave={true}
+            transitionLeaveTimeout={200}
+            transitionName="shortlist"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={200}
+              transitionLeave={true}
+              transitionLeaveTimeout={200}
+              transitionName="shortlist"
+            >
+              <span>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid1"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid1",
+                          "taxonomy_description": "some description1",
+                          "title": "some title1",
+                        },
+                        "origin": "Minder om noget1",
+                      }
+                    }
+                    key=".$pid1"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title1
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget1"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget1"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+              </span>
+            </TransitionGroup>
+          </CSSTransitionGroup>
+        </div>
+        <div
+          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+        >
+          <div
+            className="row"
+          >
+            <span
+              className="btn btn-success"
+              onClick={[Function]}
+            >
+              TILFØJ ALLE TIL LISTE
+            </span>
+            <span
+              className="btn btn-success ml2"
+              onClick={[Function]}
+            >
+              BESTIL HELE LISTEN
+            </span>
+            <span
+              className="clear-all-btn btn btn-success ml2"
+              onClick={[Function]}
+            >
+              RYD LISTEN
+              <span
+                className="glyphicon glyphicon-trash ml1"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </ShortList>
+  </Connect(ShortList)>
+</Provider>
+`;
+
+exports[`ShortList.container change description reveal cancel and submit buttons 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(ShortList)>
+    <ShortList
+      dispatch={[Function]}
+      shortListState={
+        Object {
+          "elements": Array [
+            Object {
+              "book": Object {
+                "pid": "pid1",
+                "taxonomy_description": "some description1",
+                "title": "some title1",
+              },
+              "origin": "Minder om noget1",
+            },
+          ],
+          "expanded": false,
+          "isLoading": false,
+          "pendingMerge": null,
+        }
+      }
+    >
+      <div
+        className="short-list-page col-xs-11 col-centered"
+      >
+        <div
+          className="page-header-1"
+        >
+          Huskeliste
+        </div>
+        <div
+          className="items mb2"
+        >
+          <CSSTransitionGroup
+            transitionAppear={false}
+            transitionEnter={true}
+            transitionEnterTimeout={200}
+            transitionLeave={true}
+            transitionLeaveTimeout={200}
+            transitionName="shortlist"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={200}
+              transitionLeave={true}
+              transitionLeaveTimeout={200}
+              transitionName="shortlist"
+            >
+              <span>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid1"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid1",
+                          "taxonomy_description": "some description1",
+                          "title": "some title1",
+                        },
+                        "origin": "Minder om noget1",
+                      }
+                    }
+                    key=".$pid1"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title1
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="description is changed"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="description is changed"
+                                  />
+                                </TextareaAutosize>
+                                <div
+                                  className="text-right mt1"
+                                >
+                                  <span
+                                    className="btn btn-default"
+                                    onClick={[Function]}
+                                  >
+                                    Fortryd
+                                  </span>
+                                  <input
+                                    className="btn btn-success ml2"
+                                    type="submit"
+                                    value="Gem"
+                                  />
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+              </span>
+            </TransitionGroup>
+          </CSSTransitionGroup>
+        </div>
+        <div
+          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+        >
+          <div
+            className="row"
+          >
+            <span
+              className="btn btn-success"
+              onClick={[Function]}
+            >
+              TILFØJ ALLE TIL LISTE
+            </span>
+            <span
+              className="btn btn-success ml2"
+              onClick={[Function]}
+            >
+              BESTIL HELE LISTEN
+            </span>
+            <span
+              className="clear-all-btn btn btn-success ml2"
+              onClick={[Function]}
+            >
+              RYD LISTEN
+              <span
+                className="glyphicon glyphicon-trash ml1"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </ShortList>
+  </Connect(ShortList)>
+</Provider>
+`;
+
+exports[`ShortList.container remove element 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(ShortList)>
+    <ShortList
+      dispatch={[Function]}
+      shortListState={
+        Object {
+          "elements": Array [
+            Object {
+              "book": Object {
+                "pid": "pid2",
+                "taxonomy_description": "some description2",
+                "title": "some title2",
+              },
+              "origin": "Minder om noget2",
+            },
+            Object {
+              "book": Object {
+                "pid": "pid1",
+                "taxonomy_description": "some description1",
+                "title": "some title1",
+              },
+              "origin": "Minder om noget1",
+            },
+          ],
+          "expanded": false,
+          "isLoading": false,
+          "pendingMerge": null,
+        }
+      }
+    >
+      <div
+        className="short-list-page col-xs-11 col-centered"
+      >
+        <div
+          className="page-header-1"
+        >
+          Huskeliste
+        </div>
+        <div
+          className="items mb2"
+        >
+          <CSSTransitionGroup
+            transitionAppear={false}
+            transitionEnter={true}
+            transitionEnterTimeout={200}
+            transitionLeave={true}
+            transitionLeaveTimeout={200}
+            transitionName="shortlist"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={200}
+              transitionLeave={true}
+              transitionLeaveTimeout={200}
+              transitionName="shortlist"
+            >
+              <span>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid3"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid3",
+                          "taxonomy_description": "some description3",
+                          "title": "some title3",
+                        },
+                        "origin": "Minder om noget3",
+                      }
+                    }
+                    key=".$pid3"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid3",
+                                      "taxonomy_description": "some description3",
+                                      "title": "some title3",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title3"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title3
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget3"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget3"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid2"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid2",
+                          "taxonomy_description": "some description2",
+                          "title": "some title2",
+                        },
+                        "origin": "Minder om noget2",
+                      }
+                    }
+                    key=".$pid2"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid2",
+                                      "taxonomy_description": "some description2",
+                                      "title": "some title2",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title2"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title2
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget2"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget2"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid1"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid1",
+                          "taxonomy_description": "some description1",
+                          "title": "some title1",
+                        },
+                        "origin": "Minder om noget1",
+                      }
+                    }
+                    key=".$pid1"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title1
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget1"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget1"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+              </span>
+            </TransitionGroup>
+          </CSSTransitionGroup>
+        </div>
+        <div
+          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+        >
+          <div
+            className="row"
+          >
+            <span
+              className="btn btn-success"
+              onClick={[Function]}
+            >
+              TILFØJ ALLE TIL LISTE
+            </span>
+            <span
+              className="btn btn-success ml2"
+              onClick={[Function]}
+            >
+              BESTIL HELE LISTEN
+            </span>
+            <span
+              className="clear-all-btn btn btn-success ml2"
+              onClick={[Function]}
+            >
+              RYD LISTEN
+              <span
+                className="glyphicon glyphicon-trash ml1"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </ShortList>
+  </Connect(ShortList)>
+</Provider>
+`;
+
+exports[`ShortList.container short list contains elements 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(ShortList)>
+    <ShortList
+      dispatch={[Function]}
+      shortListState={
+        Object {
+          "elements": Array [
+            Object {
+              "book": Object {
+                "pid": "pid3",
+                "taxonomy_description": "some description3",
+                "title": "some title3",
+              },
+              "origin": "Minder om noget3",
+            },
+            Object {
+              "book": Object {
+                "pid": "pid2",
+                "taxonomy_description": "some description2",
+                "title": "some title2",
+              },
+              "origin": "Minder om noget2",
+            },
+            Object {
+              "book": Object {
+                "pid": "pid1",
+                "taxonomy_description": "some description1",
+                "title": "some title1",
+              },
+              "origin": "Minder om noget1",
+            },
+          ],
+          "expanded": false,
+          "isLoading": false,
+          "pendingMerge": null,
+        }
+      }
+    >
+      <div
+        className="short-list-page col-xs-11 col-centered"
+      >
+        <div
+          className="page-header-1"
+        >
+          Huskeliste
+        </div>
+        <div
+          className="items mb2"
+        >
+          <CSSTransitionGroup
+            transitionAppear={false}
+            transitionEnter={true}
+            transitionEnterTimeout={200}
+            transitionLeave={true}
+            transitionLeaveTimeout={200}
+            transitionName="shortlist"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={200}
+              transitionLeave={true}
+              transitionLeaveTimeout={200}
+              transitionName="shortlist"
+            >
+              <span>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid3"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid3",
+                          "taxonomy_description": "some description3",
+                          "title": "some title3",
+                        },
+                        "origin": "Minder om noget3",
+                      }
+                    }
+                    key=".$pid3"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid3",
+                                      "taxonomy_description": "some description3",
+                                      "title": "some title3",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title3"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title3
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget3"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget3"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid2"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid2",
+                          "taxonomy_description": "some description2",
+                          "title": "some title2",
+                        },
+                        "origin": "Minder om noget2",
+                      }
+                    }
+                    key=".$pid2"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid2",
+                                      "taxonomy_description": "some description2",
+                                      "title": "some title2",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title2"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title2
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget2"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget2"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+                <CSSTransitionGroupChild
+                  appear={false}
+                  enter={true}
+                  enterTimeout={200}
+                  key=".$pid1"
+                  leave={true}
+                  leaveTimeout={200}
+                  name="shortlist"
+                >
+                  <ShortListItem
+                    element={
+                      Object {
+                        "book": Object {
+                          "pid": "pid1",
+                          "taxonomy_description": "some description1",
+                          "title": "some title1",
+                        },
+                        "origin": "Minder om noget1",
+                      }
+                    }
+                    key=".$pid1"
+                    onAddToList={[Function]}
+                    onOriginUpdate={[Function]}
+                    onRemove={[Function]}
+                  >
+                    <div
+                      className="item col-xs-12 col-lg-10 text-left"
+                    >
+                      <div
+                        className="row"
+                      >
+                        <div
+                          className="book col-xs-6"
+                        >
+                          <div
+                            className="row"
+                          >
+                            <div
+                              className="col-xs-2"
+                            >
+                              <div
+                                className="book-cover"
+                              >
+                                <BookCover
+                                  book={
+                                    Object {
+                                      "pid": "pid1",
+                                      "taxonomy_description": "some description1",
+                                      "title": "some title1",
+                                    }
+                                  }
+                                >
+                                  <img
+                                    alt="some title1"
+                                    className=""
+                                    onError={[Function]}
+                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                  />
+                                </BookCover>
+                              </div>
+                            </div>
+                            <div
+                              className="col-xs-10 book-description"
+                            >
+                              <div
+                                className="title"
+                              >
+                                some title1
+                              </div>
+                              <div
+                                className="creator"
+                              />
+                              <form
+                                onSubmit={[Function]}
+                              >
+                                <TextareaAutosize
+                                  className="form-control description"
+                                  name="item-description"
+                                  onChange={[Function]}
+                                  onHeightChange={[Function]}
+                                  placeholder="Skriv en beskrivelse"
+                                  useCacheForDOMMeasurements={false}
+                                  value="Minder om noget1"
+                                >
+                                  <textarea
+                                    className="form-control description"
+                                    name="item-description"
+                                    onChange={[Function]}
+                                    placeholder="Skriv en beskrivelse"
+                                    style={
+                                      Object {
+                                        "height": 0,
+                                      }
+                                    }
+                                    value="Minder om noget1"
+                                  />
+                                </TextareaAutosize>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="add-to-list col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Tilføj til liste
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <div
+                          className="order-book col-xs-3"
+                        >
+                          <span
+                            onClick={[Function]}
+                          >
+                            Bestil til dit bibliotek
+                            <span
+                              className="glyphicon glyphicon-menu-right"
+                            />
+                          </span>
+                        </div>
+                        <img
+                          alt="remove"
+                          className="remove-btn"
+                          onClick={[Function]}
+                          src="Kryds.svg"
+                        />
+                      </div>
+                    </div>
+                  </ShortListItem>
+                </CSSTransitionGroupChild>
+              </span>
+            </TransitionGroup>
+          </CSSTransitionGroup>
+        </div>
+        <div
+          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+        >
+          <div
+            className="row"
+          >
+            <span
+              className="btn btn-success"
+              onClick={[Function]}
+            >
+              TILFØJ ALLE TIL LISTE
+            </span>
+            <span
+              className="btn btn-success ml2"
+              onClick={[Function]}
+            >
+              BESTIL HELE LISTEN
+            </span>
+            <span
+              className="clear-all-btn btn btn-success ml2"
+              onClick={[Function]}
+            >
+              RYD LISTEN
+              <span
+                className="glyphicon glyphicon-trash ml1"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </ShortList>
+  </Connect(ShortList)>
+</Provider>
+`;
+
+exports[`ShortList.container short list is empty 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Connect(ShortList)>
+    <ShortList
+      dispatch={[Function]}
+      shortListState={
+        Object {
+          "elements": Array [],
+          "expanded": false,
+          "isLoading": false,
+          "pendingMerge": null,
+        }
+      }
+    >
+      <div
+        className="short-list-page col-xs-11 col-centered"
+      >
+        <div
+          className="page-header-1"
+        >
+          Huskeliste
+        </div>
+        <div
+          className="items mb2"
+        >
+          <CSSTransitionGroup
+            transitionAppear={false}
+            transitionEnter={true}
+            transitionEnterTimeout={200}
+            transitionLeave={true}
+            transitionLeaveTimeout={200}
+            transitionName="shortlist"
+          >
+            <TransitionGroup
+              childFactory={[Function]}
+              component="span"
+              transitionAppear={false}
+              transitionEnter={true}
+              transitionEnterTimeout={200}
+              transitionLeave={true}
+              transitionLeaveTimeout={200}
+              transitionName="shortlist"
+            >
+              <span />
+            </TransitionGroup>
+          </CSSTransitionGroup>
+        </div>
+        <div
+          className="empty-list-text"
+        >
+          Din huskeliste er tom
+        </div>
+      </div>
+    </ShortList>
+  </Connect(ShortList)>
+</Provider>
+`;

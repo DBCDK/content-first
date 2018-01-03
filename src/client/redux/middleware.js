@@ -24,11 +24,13 @@ import {
 } from './profile.reducer';
 import {
   ON_SHORTLIST_ADD_ELEMENT,
+  SHORTLIST_UPDATE_ORIGIN,
   ON_SHORTLIST_REMOVE_ELEMENT,
   ON_SHORTLIST_TOGGLE_ELEMENT,
   SHORTLIST_LOAD_REQUEST,
   SHORTLIST_LOAD_RESPONSE,
-  SHORTLIST_APPROVE_MERGE
+  SHORTLIST_APPROVE_MERGE,
+  SHORTLIST_CLEAR
 } from './shortlist.reducer';
 import {
   ADD_LIST,
@@ -138,11 +140,13 @@ export const loggerMiddleware = store => next => action => {
 
 export const shortListMiddleware = store => next => async action => {
   switch (action.type) {
+    case SHORTLIST_CLEAR:
     case SHORTLIST_APPROVE_MERGE:
     case ON_LOGOUT_RESPONSE:
     case ON_SHORTLIST_ADD_ELEMENT:
     case ON_SHORTLIST_REMOVE_ELEMENT:
-    case ON_SHORTLIST_TOGGLE_ELEMENT: {
+    case ON_SHORTLIST_TOGGLE_ELEMENT:
+    case SHORTLIST_UPDATE_ORIGIN: {
       const res = next(action);
       const {elements} = store.getState().shortListReducer;
       const {isLoggedIn} = store.getState().profileReducer.user;

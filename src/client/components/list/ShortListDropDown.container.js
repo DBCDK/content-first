@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import BookCover from '../general/BookCover.component';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Kryds from '../svg/Kryds.svg';
 import Huskeliste from '../svg/Huskeliste.svg';
 import LineBehindText from '../general/LineBehindText.component';
@@ -64,10 +65,21 @@ const ShortListContent = props => {
       <div className="short-list--empty-text text-center">
         {props.elements.length === 0 && 'Din huskeliste er tom'}
       </div>
-      <div className="short-list--elements">{props.children}</div>
+      {props.children &&
+        props.children.length > 0 && (
+          <div className="short-list--elements">
+            <ReactCSSTransitionGroup
+              transitionName="shortlist"
+              transitionEnterTimeout={200}
+              transitionLeaveTimeout={200}
+            >
+              {props.children}
+            </ReactCSSTransitionGroup>
+          </div>
+        )}
       {moreLabel && (
         <div className="short-list--more-elements">
-          <LineBehindText label={moreLabel} />
+          <LineBehindText label={moreLabel} backgroundColor="white" />
         </div>
       )}
       {moreLabel && (

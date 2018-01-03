@@ -1,6 +1,7 @@
 import {differenceBy} from 'lodash';
 import {ON_LOGOUT_RESPONSE} from './profile.reducer';
 export const ON_SHORTLIST_ADD_ELEMENT = 'ON_SHORTLIST_ADD_ELEMENT';
+export const SHORTLIST_UPDATE_ORIGIN = 'SHORTLIST_UPDATE_ORIGIN';
 export const ON_SHORTLIST_REMOVE_ELEMENT = 'ON_SHORTLIST_REMOVE_ELEMENT';
 export const ON_SHORTLIST_TOGGLE_ELEMENT = 'ON_SHORTLIST_TOGGLE_ELEMENT';
 export const ON_SHORTLIST_EXPAND = 'ON_SHORTLIST_EXPAND';
@@ -9,6 +10,7 @@ export const SHORTLIST_LOAD_REQUEST = 'SHORTLIST_LOAD_REQUEST';
 export const SHORTLIST_LOAD_RESPONSE = 'SHORTLIST_LOAD_RESPONSE';
 export const SHORTLIST_APPROVE_MERGE = 'SHORTLIST_APPROVE_MERGE';
 export const SHORTLIST_REJECT_MERGE = 'SHORTLIST_REJECT_MERGE';
+export const SHORTLIST_CLEAR = 'SHORTLIST_CLEAR';
 
 const defaultState = {
   expanded: false,
@@ -80,6 +82,15 @@ const shortListReducer = (state = defaultState, action) => {
         elements: [action.element, ...state.elements]
       });
     }
+    case SHORTLIST_UPDATE_ORIGIN: {
+      const elements = state.elements.map(e => {
+        if (e.book.pid === action.pid) {
+          return {...e, origin: action.origin};
+        }
+        return e;
+      });
+      return Object.assign({}, state, {elements});
+    }
     case ON_SHORTLIST_EXPAND:
       return Object.assign({}, state, {expanded: true});
     case ON_SHORTLIST_COLLAPSE:
@@ -88,6 +99,8 @@ const shortListReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {
         elements: state.elements.filter(e => e.book.pid !== action.pid)
       });
+    case SHORTLIST_CLEAR:
+      return defaultState;
     case ON_LOGOUT_RESPONSE:
       return defaultState;
     default:
