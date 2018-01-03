@@ -9,7 +9,7 @@ const path = require('path');
 
 describe('json', () => {
   describe('nicifyJsonValidationErrors', () => {
-    it('should return a list of human-readable errors', () => {
+    it('should return a list of human-readable problems', () => {
       expect(json.nicifyJsonValidationErrors({
         errors: [
           {field: 'data.pid', message: 'is the wrong type'},
