@@ -6,3 +6,6 @@ node_modules/
 npm-debug.log
 package-lock.json
 scratch.js
+src/data/*
+!src/data/README.MD
+!src/data/examples/

@@ -5,11 +5,11 @@ const {uniqBy} = require('lodash');
 const fs = require('fs');
 
 const HOST = process.argv[2];
-const taxonomy = require('../src/client/data/exportTaxonomy.json');
-const pidinfo = require('../src/client/data/pidinfo.json');
-const tags = require('../src/client/data/exportTags.json');
-const librarianRecommends = require('../src/client/data/librarian-recommends.json');
-const COVER_FOLDER = process.cwd() + '/covers/';
+const taxonomy = require('../src/data/exportTaxonomy.json');
+const pidinfo = require('../src/data/pidinfo.json');
+const tags = require('../src/data/exportTags.json');
+const librarianRecommends = require('../src/data/librarian-recommends.json');
+const COVER_FOLDER = process.cwd() + '/src/data/';
 
 async function doWork() {
   await request.put(`${HOST}/v1/taxonomy`)

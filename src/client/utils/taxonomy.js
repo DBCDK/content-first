@@ -1,4 +1,4 @@
-import taxonomyJson from '../data/exportTaxonomy.json';
+import taxonomyJson from '../../data/exportTaxonomy.json';
 import {getLeaves} from './filters';
 
 export const taxonomy = taxonomyJson;

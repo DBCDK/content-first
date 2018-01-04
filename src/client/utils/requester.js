@@ -8,8 +8,8 @@ import {
   ON_LOGOUT_RESPONSE
 } from '../redux/profile.reducer';
 import {getLeaves} from './filters';
-import profiles from '../data/ranked-profiles.json';
-import similar from '../data/similar-pids.json';
+import profiles from '../../data/ranked-profiles.json';
+import similar from '../../data/similar-pids.json';
 import {taxonomyMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
