@@ -7,5 +7,5 @@ npm-debug.log
 package-lock.json
 scratch.js
 src/data/*
-!src/data/README.MD
+!src/data/README.md
 !src/data/examples/
