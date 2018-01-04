@@ -430,7 +430,6 @@ describe('User login', () => {
             cpr: userId,
             userId: userId,
             wayfId: null,
-            uniloginId: null,
             agencies: [
               {
                 userId: userId,
