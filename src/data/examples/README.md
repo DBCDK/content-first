@@ -1,1 +1,0 @@
-These files are generated from data in metakompasset. Some are used to populate the content-first database, and some are used directly at client side. They may be overwritten at build time, to have synced state.
