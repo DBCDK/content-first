@@ -1,4 +1,4 @@
-Files in this folder is used to populate content-first with data. Some of the files are even required at build time to build the client application.
+Files in this folder are used to populate content-first with data. Some of the files are even required at build time to build the client application.
 
 Required files:
 - exportTags.json
