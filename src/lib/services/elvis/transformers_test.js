@@ -8,6 +8,17 @@ const transform = require('./transformers');
 describe('User data transformers for Community Service', () => {
   const transformedUserInfo = require('./fixtures/transformers-separated-user-info-out.json');
 
+  describe('transformFrontendUserToProfileAndEntities', () => {
+    it('should leave out parts not mentioned in input', () => {
+      const actual = transform.transformFrontendUserToProfileAndEntities({});
+      expect(actual).to.deep.equal({
+        profile: {
+          attributes: {}
+        }
+      });
+    });
+  });
+
   describe('profileAndEntitiesFromFrontendUser', () => {
     it('should handle user data without any lists or tastes', () => {
       const output = transform.transformFrontendUserToProfileAndEntities({

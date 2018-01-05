@@ -132,8 +132,12 @@ async function updatingUser(userId, partialData) {
   const {profile, lists} = transform.transformFrontendUserToProfileAndEntities(
     partialData
   );
-  await community.updatingProfileWithShortlistAndTastes(userId, profile);
-  await updatingTransformedLists(userId, lists);
+  if (profile.name || profile.attributes.shortlist || profile.attributes.tastes) {
+    await community.updatingProfileWithShortlistAndTastes(userId, profile);
+  }
+  if (lists) {
+    await updatingTransformedLists(userId, lists);
+  }
 }
 
 function gettingListsFromToken(req) {
