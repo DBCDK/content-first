@@ -31,19 +31,12 @@ const payloadToList = async payload => {
   });
   return result;
 };
-export const saveLists = (lists, isLoggedIn = false) => {
+export const saveLists = async (lists, isLoggedIn = false) => {
   setItem(LIST_KEY, lists, LIST_VERSION);
   if (isLoggedIn) {
     // Save on database
     const listsPayload = lists.map(l => listToPayload(l));
-    request
-      .put('/v1/lists')
-      .send(listsPayload)
-      .end(function(error) {
-        if (error) {
-          console.log('error persisting lists', error); // eslint-disable-line
-        }
-      });
+    await request.put('/v1/lists').send(listsPayload);
   }
 };
 export const loadLists = async isLoggedIn => {

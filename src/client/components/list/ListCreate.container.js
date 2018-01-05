@@ -98,14 +98,14 @@ class ListCreator extends React.Component {
       this.props.dispatch({type: CLEAR_CURRENT_LIST});
     }
   }
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
     if (!this.props.listState.currentList.title) {
       this.setState({hasError: true});
       window.scrollTo(0, 0);
       return;
     }
-    this.props.dispatch({
+    await this.props.dispatch({
       type: ADD_LIST,
       list: this.props.listState.currentList,
       clearCurrentList: true
