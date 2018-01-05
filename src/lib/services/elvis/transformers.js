@@ -59,14 +59,21 @@ function divideListsIntoCreateUpdateAndDeleteForProfileId(
 function transformFrontendUserToProfileAndEntities(userInfo) {
   let skeleton = {
     profile: {
-      name: userInfo.name,
-      attributes: {
-        shortlist: userInfo.shortlist,
-        tastes: _.map(userInfo.profiles, transformProfileToTaste)
-      }
-    },
-    lists: transformListsToLists(userInfo.lists)
+      attributes: {}
+    }
   };
+  if (userInfo.name) {
+    skeleton.profile.name = userInfo.name;
+  }
+  if (userInfo.shortlist) {
+    skeleton.profile.attributes.shortlist = userInfo.shortlist;
+  }
+  if (userInfo.profiles) {
+    skeleton.profile.attributes.tastes = _.map(userInfo.profiles, transformProfileToTaste);
+  }
+  if (userInfo.lists) {
+    skeleton.lists = transformListsToLists(userInfo.lists);
+  }
   return skeleton;
 }
 
