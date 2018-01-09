@@ -4,12 +4,14 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Kryds from '../svg/Kryds.svg';
 import BookCover from '../general/BookCover.component';
 import Textarea from 'react-textarea-autosize';
+import OrderButton from '../work/OrderButton.component';
 import {
   ON_SHORTLIST_REMOVE_ELEMENT,
   SHORTLIST_UPDATE_ORIGIN,
   SHORTLIST_CLEAR
 } from '../../redux/shortlist.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
+import {ORDER} from '../../redux/order.reducer';
 
 export class ShortListItem extends React.Component {
   constructor(props) {
@@ -75,9 +77,7 @@ export class ShortListItem extends React.Component {
             </span>
           </div>
           <div className="order-book col-xs-3">
-            <span onClick={() => {}}>
-              Bestil til dit bibliotek<span className="glyphicon glyphicon-menu-right" />
-            </span>
+            <OrderButton pid={this.props.element.book.pid} />
           </div>
           <img
             src={Kryds}
@@ -150,7 +150,9 @@ class ShortList extends React.Component {
               </span>
               <span
                 className="btn btn-success ml2"
-                onClick={() => {}}
+                onClick={() =>
+                  this.props.orderAll(elements.map(e => e.book.pid))
+                }
               >
                 BESTIL HELE LISTEN
               </span>
@@ -174,6 +176,16 @@ class ShortList extends React.Component {
 export default connect(
   // Map redux state to props
   state => {
-    return {shortListState: state.shortListReducer};
-  }
+    return {
+      shortListState: state.shortListReducer
+    };
+  },
+  (dispatch, ownProps) => ({
+    orderAll: pids =>
+      pids.forEach(pid => {
+        console.log('order pid', pid);
+        dispatch({type: ORDER, pid});
+      }),
+    dispatch
+  })
 )(ShortList);

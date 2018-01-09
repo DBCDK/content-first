@@ -10,7 +10,8 @@ import {
   profileMiddleware,
   shortListMiddleware,
   listMiddleware,
-  searchMiddleware
+  searchMiddleware,
+  orderMiddleware
 } from './client/redux/middleware';
 
 const store = createStore([
@@ -19,7 +20,8 @@ const store = createStore([
   profileMiddleware,
   shortListMiddleware,
   listMiddleware,
-  searchMiddleware
+  searchMiddleware,
+  orderMiddleware
 ]);
 ReactDOM.render(
   <Provider store={store}>

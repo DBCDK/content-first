@@ -4,6 +4,7 @@ import ScrollableBelt from '../general/ScrollableBelt.component';
 import WorkItem from './WorkItemConnected.component';
 import CheckmarkButton from '../general/CheckmarkButton.component';
 import BookCover from '../general/BookCover.component';
+import OrderButton from './OrderButton.component';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
@@ -115,6 +116,10 @@ class WorkPage extends React.Component {
                   Se mere på bibliotek.dk
                 </a>
               </div>
+              <OrderButton
+                pid={work.data.pid}
+                style={{marginTop: 10, float: 'right'}}
+              />
               <CheckmarkButton
                 label="Husk"
                 marked={remembered[work.data.pid]}
