@@ -129,28 +129,13 @@ exports[`ShortList.container Clearing list 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget2"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget2"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -264,28 +249,13 @@ exports[`ShortList.container Clearing list 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -477,28 +447,13 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="description is changed"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="description is changed"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -714,28 +669,13 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -951,28 +891,13 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -1188,28 +1113,13 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="description is changed"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="description is changed"
-                                  />
-                                </TextareaAutosize>
+                                />
                                 <div
                                   className="text-right mt1"
                                 >
@@ -1448,28 +1358,13 @@ exports[`ShortList.container remove element 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget3"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget3"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -1583,28 +1478,13 @@ exports[`ShortList.container remove element 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget2"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget2"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -1718,28 +1598,13 @@ exports[`ShortList.container remove element 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -1971,28 +1836,13 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget3"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget3"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -2106,28 +1956,13 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget2"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget2"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -2241,28 +2076,13 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
