@@ -250,19 +250,22 @@ export const orderMiddleware = store => next => action => {
       }
       (async () => {
         try {
-          const branch = '710110';
-          const openplatformToken = window.location.hash.slice(1);
+          const user = state.profileReducer.user;
+          if (!user.pickupBranch || !user.openplatformToken) {
+            throw new Error('missing pickupBranch or openplatformToken');
+          }
+          const branch = user.pickupBranch;
+          const openplatformToken = user.openplatformToken;
           if (!openplatform.connected()) {
             await openplatform.connect(openplatformToken);
           }
-          // TODO const result =
           await openplatform.order({
             pids: [action.pid],
             library: branch
           });
-          // TODO logging console.log('bestilling', result);
         } catch (e) {
-          // TODO console.log(e);
+          // eslint-disable-next-line no-unused-vars
+          console.log('Error on order:', e);
           store.dispatch({
             type: ORDER_FAILURE,
             pid: action.pid

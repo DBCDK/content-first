@@ -28,7 +28,13 @@ router
       return gettingUserFromToken(req)
         .then(user => {
           res.status(200).json({
-            data: user,
+            data: Object.assign(
+              {
+                pickupBranch: process.env.PICKUP_BRANCH,
+                openplatformToken: process.env.OPENPLATFORM_TOKEN
+              },
+              user
+            ),
             links: {self: location}
           });
         })
