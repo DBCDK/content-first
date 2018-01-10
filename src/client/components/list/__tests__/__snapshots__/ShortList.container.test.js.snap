@@ -15,6 +15,7 @@ exports[`ShortList.container Clearing list 1`] = `
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [],
@@ -155,14 +156,23 @@ exports[`ShortList.container Clearing list 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid2"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid2"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -275,14 +285,23 @@ exports[`ShortList.container Clearing list 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid1"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid1"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -324,6 +343,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -473,14 +493,23 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid1"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid1"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -546,6 +575,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -695,14 +725,23 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid1"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid1"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -768,6 +807,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -917,14 +957,23 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid1"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid1"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -990,6 +1039,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -1154,14 +1204,23 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid1"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid1"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1227,6 +1286,7 @@ exports[`ShortList.container remove element 1`] = `
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -1384,14 +1444,23 @@ exports[`ShortList.container remove element 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid3"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid3"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1504,14 +1573,23 @@ exports[`ShortList.container remove element 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid2"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid2"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1624,14 +1702,23 @@ exports[`ShortList.container remove element 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid1"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid1"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1697,6 +1784,7 @@ exports[`ShortList.container short list contains elements 1`] = `
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -1862,14 +1950,23 @@ exports[`ShortList.container short list contains elements 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid3"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid3"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1982,14 +2079,23 @@ exports[`ShortList.container short list contains elements 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid2"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid2"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -2102,14 +2208,23 @@ exports[`ShortList.container short list contains elements 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            pid="pid1"
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                              pid="pid1"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -2175,6 +2290,7 @@ exports[`ShortList.container short list is empty 1`] = `
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [],

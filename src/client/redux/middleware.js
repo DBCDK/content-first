@@ -1,3 +1,6 @@
+import _ from 'lodash';
+import openplatform from 'openplatform';
+
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
 import {
@@ -44,6 +47,7 @@ import {
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
+import {ORDER, ORDER_SUCCESS, ORDER_FAILURE} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 import {saveLists, loadLists} from '../utils/requestLists';
 
@@ -245,6 +249,50 @@ export const searchMiddleware = store => next => action => {
     case SEARCH_QUERY:
       fetchSearchResults({query: action.query, dispatch: store.dispatch});
       return next(action);
+    default:
+      return next(action);
+  }
+};
+
+export const orderMiddleware = store => next => action => {
+  switch (action.type) {
+    case ORDER: {
+      const state = store.getState();
+      if (
+        ['ordering', 'ordered'].includes(
+          _.get(state, ['orderReducer', action.pid, 'state'])
+        )
+      ) {
+        return;
+      }
+      (async () => {
+        try {
+          const branch = '710110';
+          const openplatformToken = window.location.hash.slice(1);
+          if (!openplatform.connected()) {
+            await openplatform.connect(openplatformToken);
+          }
+          // TODO const result =
+          await openplatform.order({
+            pids: [action.pid],
+            library: branch
+          });
+          // TODO logging console.log('bestilling', result);
+        } catch (e) {
+          // TODO console.log(e);
+          store.dispatch({
+            type: ORDER_FAILURE,
+            pid: action.pid
+          });
+          return;
+        }
+        store.dispatch({
+          type: ORDER_SUCCESS,
+          pid: action.pid
+        });
+      })();
+      return next(action);
+    }
     default:
       return next(action);
   }

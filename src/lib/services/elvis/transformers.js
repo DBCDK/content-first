@@ -69,7 +69,10 @@ function transformFrontendUserToProfileAndEntities(userInfo) {
     skeleton.profile.attributes.shortlist = userInfo.shortlist;
   }
   if (userInfo.profiles) {
-    skeleton.profile.attributes.tastes = _.map(userInfo.profiles, transformProfileToTaste);
+    skeleton.profile.attributes.tastes = _.map(
+      userInfo.profiles,
+      transformProfileToTaste
+    );
   }
   if (userInfo.lists) {
     skeleton.lists = transformListsToLists(userInfo.lists);
