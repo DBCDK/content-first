@@ -5,7 +5,6 @@ import App from './client/App';
 // import registerServiceWorker from './client/registerServiceWorker';
 import createStore from './client/redux/Store';
 import {
-  loggerMiddleware,
   requestMiddleware,
   profileMiddleware,
   shortListMiddleware,
@@ -14,7 +13,6 @@ import {
 } from './client/redux/middleware';
 
 const store = createStore([
-  loggerMiddleware,
   requestMiddleware,
   profileMiddleware,
   shortListMiddleware,
