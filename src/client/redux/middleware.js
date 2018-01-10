@@ -130,13 +130,11 @@ export const loggerMiddleware = store => next => action => {
   try {
     // console.log('Action dispatched', action);
     const res = next(action);
-    /* TODO uncomment
     console.log('Next state', {
       type: action.type,
       action,
       nextState: store.getState()
     });
-  */
     return res;
   } catch (error) {
     console.log('Action failed', {action, error});
@@ -258,10 +256,8 @@ export const searchMiddleware = store => next => action => {
 
 export const orderMiddleware = store => next => action => {
   switch (action.type) {
-    case ORDER:
+    case ORDER: {
       const state = store.getState();
-      window.dbcOpenPlatform = openplatform;
-      console.log(openplatform);
       if (
         ['ordering', 'ordered'].includes(
           _.get(state, ['orderReducer', action.pid, 'state'])
@@ -276,13 +272,14 @@ export const orderMiddleware = store => next => action => {
           if (!openplatform.connected()) {
             await openplatform.connect(openplatformToken);
           }
-          const result = await openplatform.order({
+          // TODO const result =
+          await openplatform.order({
             pids: [action.pid],
             library: branch
           });
-          console.log('bestilling', result);
+          // TODO logging console.log('bestilling', result);
         } catch (e) {
-          console.log(e);
+          // TODO console.log(e);
           store.dispatch({
             type: ORDER_FAILURE,
             pid: action.pid
@@ -295,6 +292,7 @@ export const orderMiddleware = store => next => action => {
         });
       })();
       return next(action);
+    }
     default:
       return next(action);
   }

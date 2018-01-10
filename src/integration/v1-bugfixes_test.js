@@ -24,8 +24,7 @@ describe('List interactions', () => {
   it('PUT /shortlist should not interact with other lists', () => {
     // Arrange.
     const loginToken = 'a-valid-login-token-seeded-on-test-start';
-    return (
-      webapp
+    return webapp
       .put('/v1/shortlist')
       .set('cookie', `login-token=${loginToken}`)
       .type('application/json')
@@ -33,8 +32,7 @@ describe('List interactions', () => {
       .expect(200)
       .then(() => {
         // Act.
-        return (
-          webapp
+        return webapp
           .get('/v1/lists')
           .set('cookie', `login-token=${loginToken}`)
           .expect(res => {
@@ -68,10 +66,7 @@ describe('List interactions', () => {
               });
             });
           })
-          .expect(200)
-        );
-      })
-    );
+          .expect(200);
+      });
   });
-
 });

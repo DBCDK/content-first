@@ -132,7 +132,11 @@ async function updatingUser(userId, partialData) {
   const {profile, lists} = transform.transformFrontendUserToProfileAndEntities(
     partialData
   );
-  if (profile.name || profile.attributes.shortlist || profile.attributes.tastes) {
+  if (
+    profile.name ||
+    profile.attributes.shortlist ||
+    profile.attributes.tastes
+  ) {
     await community.updatingProfileWithShortlistAndTastes(userId, profile);
   }
   if (lists) {

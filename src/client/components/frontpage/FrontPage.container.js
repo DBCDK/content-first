@@ -19,11 +19,15 @@ class FrontPage extends React.Component {
         this.props.dispatch({type: ON_BELT_REQUEST, beltName: belt.name});
       }
     });
-    window.$ && window.$('[data-toggle="tooltip"]').tooltip();
+    if (window.$) {
+      window.$('[data-toggle="tooltip"]').tooltip();
+    }
   }
 
   componentDidUpdate() {
-    window.$ && window.$('[data-toggle="tooltip"]').tooltip();
+    if (window.$) {
+      window.$('[data-toggle="tooltip"]').tooltip();
+    }
   }
 
   renderBelts() {

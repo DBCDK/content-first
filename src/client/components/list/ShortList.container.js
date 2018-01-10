@@ -180,12 +180,8 @@ export default connect(
       shortListState: state.shortListReducer
     };
   },
-  (dispatch, ownProps) => ({
-    orderAll: pids =>
-      pids.forEach(pid => {
-        console.log('order pid', pid);
-        dispatch({type: ORDER, pid});
-      }),
+  dispatch => ({
+    orderAll: pids => pids.forEach(pid => dispatch({type: ORDER, pid})),
     dispatch
   })
 )(ShortList);
