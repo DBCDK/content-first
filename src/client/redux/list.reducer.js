@@ -69,18 +69,20 @@ const defaultState = {
     },
     {
       type: CUSTOM_LIST,
-      id: 'test1',
+      id: 'test3',
       userId: 'user1',
       title: 'Goth du bør læse før eller siden',
       description:
         'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
-      list: [{
-        pid: '870970-basis:51319079'
-      }]
+      list: [
+        {
+          pid: '870970-basis:51319079'
+        }
+      ]
     },
     {
       type: CUSTOM_LIST,
-      id: 'test2',
+      id: 'test4',
       userId: 'user2',
       title: 'Bøger om bjørne - med meget lang titel',
       description: 'mange bjørne',
@@ -88,7 +90,7 @@ const defaultState = {
     },
     {
       type: CUSTOM_LIST,
-      id: 'test1',
+      id: 'test5',
       userId: 'user1',
       title: 'Goth du bør læse før eller siden',
       description:
@@ -97,7 +99,7 @@ const defaultState = {
     },
     {
       type: CUSTOM_LIST,
-      id: 'test2',
+      id: 'test6',
       userId: 'user2',
       title: 'Bøger om bjørne - med meget lang titel',
       description: 'mange bjørne',
@@ -105,7 +107,7 @@ const defaultState = {
     },
     {
       type: CUSTOM_LIST,
-      id: 'test1',
+      id: 'test7',
       userId: 'user1',
       title: 'Goth du bør læse før eller siden',
       description:
@@ -114,7 +116,7 @@ const defaultState = {
     },
     {
       type: CUSTOM_LIST,
-      id: 'test2',
+      id: 'test8',
       userId: 'user2',
       title: 'Bøger om bjørne - med meget lang titel',
       description: 'mange bjørne',

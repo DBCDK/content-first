@@ -314,6 +314,467 @@ exports[`renders without crashing 1`] = `
           </div>
         </div>
       </div>
+      <div
+        className="row belt text-left"
+      >
+        <div
+          className="col-xs-12 header"
+        >
+          <span
+            className="belt-title"
+          >
+            Seneste lister fra brugerne
+          </span>
+        </div>
+        <div
+          className="col-xs-12"
+        >
+          <react-slick
+            arrows={true}
+            dots={true}
+            infinite={false}
+            initialSlide={0}
+            nextArrow={<NextArrow />}
+            prevArrow={<PrevArrow />}
+            responsive={
+              Array [
+                Object {
+                  "breakpoint": 1450,
+                  "settings": Object {
+                    "slidesToScroll": 4,
+                    "slidesToShow": 4,
+                  },
+                },
+                Object {
+                  "breakpoint": 1200,
+                  "settings": Object {
+                    "slidesToScroll": 3,
+                    "slidesToShow": 3,
+                  },
+                },
+                Object {
+                  "breakpoint": 769,
+                  "settings": Object {
+                    "slidesToScroll": 2,
+                    "slidesToShow": 2,
+                  },
+                },
+                Object {
+                  "breakpoint": 480,
+                  "settings": Object {
+                    "slidesToScroll": 1,
+                    "slidesToShow": 1,
+                  },
+                },
+              ]
+            }
+            slidesToScroll={5}
+            slidesToShow={5}
+            speed={500}
+            variableWidth={true}
+          >
+            <div
+              className="slide-wrapper"
+              style={
+                Object {
+                  "display": "inline-block",
+                  "padding": 20,
+                  "verticalAlign": "top",
+                }
+              }
+            >
+              <div
+                className="list-small"
+                style={undefined}
+              >
+                <div
+                  className="list-small-covers"
+                >
+                  <div
+                    className="list-small-covers-wrapper"
+                  >
+                    <img
+                      alt=""
+                      className="high-contrast list-small-cover"
+                      onError={[Function]}
+                      src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51319079"
+                    />
+                    <img
+                      alt=""
+                      className="high-contrast list-small-cover"
+                      onError={[Function]}
+                      src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52930006"
+                    />
+                    <img
+                      alt=""
+                      className="high-contrast list-small-cover"
+                      onError={[Function]}
+                      src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52530423"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="list-small-summary"
+                >
+                  <react-truncate-markup
+                    lines={2}
+                  >
+                    <h3
+                      className="list-small-title h-tight"
+                    >
+                      Goth du bør læse før eller siden
+                    </h3>
+                  </react-truncate-markup>
+                  <react-truncate-markup
+                    lines={3}
+                  >
+                    <div
+                      className="list-small-description"
+                    >
+                      bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether
+                    </div>
+                  </react-truncate-markup>
+                </div>
+              </div>
+            </div>
+            <div
+              className="slide-wrapper"
+              style={
+                Object {
+                  "display": "inline-block",
+                  "padding": 20,
+                  "verticalAlign": "top",
+                }
+              }
+            >
+              <div
+                className="list-small"
+                style={undefined}
+              >
+                <div
+                  className="list-small-covers"
+                >
+                  <div
+                    className="list-small-covers-wrapper"
+                  >
+                    <img
+                      alt=""
+                      className="high-contrast list-small-cover"
+                      onError={[Function]}
+                      src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51319079"
+                    />
+                    <img
+                      alt=""
+                      className="high-contrast list-small-cover"
+                      onError={[Function]}
+                      src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52930006"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="list-small-summary"
+                >
+                  <react-truncate-markup
+                    lines={2}
+                  >
+                    <h3
+                      className="list-small-title h-tight"
+                    >
+                      Bøger om bjørne - med meget lang titel
+                    </h3>
+                  </react-truncate-markup>
+                  <react-truncate-markup
+                    lines={3}
+                  >
+                    <div
+                      className="list-small-description"
+                    >
+                      mange bjørne
+                    </div>
+                  </react-truncate-markup>
+                </div>
+              </div>
+            </div>
+            <div
+              className="slide-wrapper"
+              style={
+                Object {
+                  "display": "inline-block",
+                  "padding": 20,
+                  "verticalAlign": "top",
+                }
+              }
+            >
+              <div
+                className="list-small"
+                style={undefined}
+              >
+                <div
+                  className="list-small-covers"
+                >
+                  <div
+                    className="list-small-covers-wrapper"
+                  >
+                    <img
+                      alt=""
+                      className="high-contrast list-small-cover"
+                      onError={[Function]}
+                      src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51319079"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="list-small-summary"
+                >
+                  <react-truncate-markup
+                    lines={2}
+                  >
+                    <h3
+                      className="list-small-title h-tight"
+                    >
+                      Goth du bør læse før eller siden
+                    </h3>
+                  </react-truncate-markup>
+                  <react-truncate-markup
+                    lines={3}
+                  >
+                    <div
+                      className="list-small-description"
+                    >
+                      bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether
+                    </div>
+                  </react-truncate-markup>
+                </div>
+              </div>
+            </div>
+            <div
+              className="slide-wrapper"
+              style={
+                Object {
+                  "display": "inline-block",
+                  "padding": 20,
+                  "verticalAlign": "top",
+                }
+              }
+            >
+              <div
+                className="list-small"
+                style={undefined}
+              >
+                <div
+                  className="list-small-covers"
+                >
+                  <div
+                    className="list-small-covers-wrapper"
+                  />
+                </div>
+                <div
+                  className="list-small-summary"
+                >
+                  <react-truncate-markup
+                    lines={2}
+                  >
+                    <h3
+                      className="list-small-title h-tight"
+                    >
+                      Bøger om bjørne - med meget lang titel
+                    </h3>
+                  </react-truncate-markup>
+                  <react-truncate-markup
+                    lines={3}
+                  >
+                    <div
+                      className="list-small-description"
+                    >
+                      mange bjørne
+                    </div>
+                  </react-truncate-markup>
+                </div>
+              </div>
+            </div>
+            <div
+              className="slide-wrapper"
+              style={
+                Object {
+                  "display": "inline-block",
+                  "padding": 20,
+                  "verticalAlign": "top",
+                }
+              }
+            >
+              <div
+                className="list-small"
+                style={undefined}
+              >
+                <div
+                  className="list-small-covers"
+                >
+                  <div
+                    className="list-small-covers-wrapper"
+                  />
+                </div>
+                <div
+                  className="list-small-summary"
+                >
+                  <react-truncate-markup
+                    lines={2}
+                  >
+                    <h3
+                      className="list-small-title h-tight"
+                    >
+                      Goth du bør læse før eller siden
+                    </h3>
+                  </react-truncate-markup>
+                  <react-truncate-markup
+                    lines={3}
+                  >
+                    <div
+                      className="list-small-description"
+                    >
+                      bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether
+                    </div>
+                  </react-truncate-markup>
+                </div>
+              </div>
+            </div>
+            <div
+              className="slide-wrapper"
+              style={
+                Object {
+                  "display": "inline-block",
+                  "padding": 20,
+                  "verticalAlign": "top",
+                }
+              }
+            >
+              <div
+                className="list-small"
+                style={undefined}
+              >
+                <div
+                  className="list-small-covers"
+                >
+                  <div
+                    className="list-small-covers-wrapper"
+                  />
+                </div>
+                <div
+                  className="list-small-summary"
+                >
+                  <react-truncate-markup
+                    lines={2}
+                  >
+                    <h3
+                      className="list-small-title h-tight"
+                    >
+                      Bøger om bjørne - med meget lang titel
+                    </h3>
+                  </react-truncate-markup>
+                  <react-truncate-markup
+                    lines={3}
+                  >
+                    <div
+                      className="list-small-description"
+                    >
+                      mange bjørne
+                    </div>
+                  </react-truncate-markup>
+                </div>
+              </div>
+            </div>
+            <div
+              className="slide-wrapper"
+              style={
+                Object {
+                  "display": "inline-block",
+                  "padding": 20,
+                  "verticalAlign": "top",
+                }
+              }
+            >
+              <div
+                className="list-small"
+                style={undefined}
+              >
+                <div
+                  className="list-small-covers"
+                >
+                  <div
+                    className="list-small-covers-wrapper"
+                  />
+                </div>
+                <div
+                  className="list-small-summary"
+                >
+                  <react-truncate-markup
+                    lines={2}
+                  >
+                    <h3
+                      className="list-small-title h-tight"
+                    >
+                      Goth du bør læse før eller siden
+                    </h3>
+                  </react-truncate-markup>
+                  <react-truncate-markup
+                    lines={3}
+                  >
+                    <div
+                      className="list-small-description"
+                    >
+                      bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether
+                    </div>
+                  </react-truncate-markup>
+                </div>
+              </div>
+            </div>
+            <div
+              className="slide-wrapper"
+              style={
+                Object {
+                  "display": "inline-block",
+                  "padding": 20,
+                  "verticalAlign": "top",
+                }
+              }
+            >
+              <div
+                className="list-small"
+                style={undefined}
+              >
+                <div
+                  className="list-small-covers"
+                >
+                  <div
+                    className="list-small-covers-wrapper"
+                  />
+                </div>
+                <div
+                  className="list-small-summary"
+                >
+                  <react-truncate-markup
+                    lines={2}
+                  >
+                    <h3
+                      className="list-small-title h-tight"
+                    >
+                      Bøger om bjørne - med meget lang titel
+                    </h3>
+                  </react-truncate-markup>
+                  <react-truncate-markup
+                    lines={3}
+                  >
+                    <div
+                      className="list-small-description"
+                    >
+                      mange bjørne
+                    </div>
+                  </react-truncate-markup>
+                </div>
+              </div>
+            </div>
+          </react-slick>
+        </div>
+      </div>
     </div>
   </div>
   <span />

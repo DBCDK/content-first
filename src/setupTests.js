@@ -7,3 +7,5 @@ import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({adapter: new Adapter()});
 require('jest-localstorage-mock');
 jest.mock('react-textarea-autosize', () => 'textarea');
+jest.mock('react-slick', () => 'react-slick');
+jest.mock('react-truncate-markup', () => 'react-truncate-markup');

@@ -12,7 +12,7 @@ class ListViewSmall extends React.PureComponent {
           <div className="list-small-covers-wrapper">
             {elements.length > 0 &&
               elements.slice(0, 3).map(e => {
-                return <BookCover className="list-small-cover" book={e} />;
+                return <BookCover key={e.pid} className="list-small-cover" book={e} />;
               })}
           </div>
         </div>

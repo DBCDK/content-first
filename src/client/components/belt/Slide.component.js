@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Slide extends React.PureComponent {
+class Slide extends React.Component {
   shouldComponentUpdate(nextProps) {
     return nextProps.style.width !== this.props.style.width;
   }
