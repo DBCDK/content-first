@@ -250,6 +250,10 @@ export const orderMiddleware = store => next => action => {
       }
       (async () => {
         try {
+          // make sure we are in a different timeslice,
+          // such that dispatches comes after this dispatch.
+          await new Promise(resolve => setTimeout(resolve, 0));
+
           const user = state.profileReducer.user;
           if (!user.pickupBranch || !user.openplatformToken) {
             throw new Error('missing pickupBranch or openplatformToken');
