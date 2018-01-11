@@ -5,6 +5,11 @@
   background: white;
   box-shadow: 1px 1px 20px #666666;
   /*padding: 20px;*/
+  color: black;
+}
+.list-small-cover {
+  height: 120px;
+  margin: 0 2px;
 }
 .list-small:first {
   /*margin-left: 0px;*/
@@ -19,7 +24,14 @@
 .list-small-description {
   font-family: var(--secondary-font);
 }
-.list-small-cover-preview {
+.list-small-covers {
   height: 120px;
   background: #d5d5d5;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.list-small-covers-wrapper {
+  margin-left: -100%;
+  margin-right: -100%;
+  text-align: center;
 }

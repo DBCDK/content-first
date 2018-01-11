@@ -37,7 +37,20 @@ const defaultState = {
       title: 'Goth du bør læse før eller siden',
       description:
         'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
-      list: []
+      list: [
+        {
+          pid: '870970-basis:51319079'
+        },
+        {
+          pid: '870970-basis:52930006'
+        },
+        {
+          pid: '870970-basis:52530423'
+        },
+        {
+          pid: '870970-basis:52530423'
+        }
+      ]
     },
     {
       type: CUSTOM_LIST,
@@ -45,7 +58,14 @@ const defaultState = {
       userId: 'user2',
       title: 'Bøger om bjørne - med meget lang titel',
       description: 'mange bjørne',
-      list: []
+      list: [
+        {
+          pid: '870970-basis:51319079'
+        },
+        {
+          pid: '870970-basis:52930006'
+        }
+      ]
     },
     {
       type: CUSTOM_LIST,
@@ -54,7 +74,9 @@ const defaultState = {
       title: 'Goth du bør læse før eller siden',
       description:
         'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
-      list: []
+      list: [{
+        pid: '870970-basis:51319079'
+      }]
     },
     {
       type: CUSTOM_LIST,
