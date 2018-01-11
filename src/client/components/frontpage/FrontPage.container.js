@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Belt from './Belt.component';
 import ScrollableBelt from '../general/ScrollableBelt.component';
+import RecentListsBelt from '../belt/RecentListsBelt.container';
 import WorkItem from '../work/WorkItemConnected.component';
 import CreateProfile from '../profile/CreateProfile.component';
 import {ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
@@ -84,6 +85,7 @@ class FrontPage extends React.Component {
             </Belt>
           );
         })}
+        <RecentListsBelt />
       </div>
     );
   }

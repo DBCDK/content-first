@@ -1,8 +1,8 @@
 /* Global Settings */
 :root {
   --blue: rgb(109, 193, 236);
-  --orange:  #f04e23;
-  --green:  #6da262;
+  --orange: #f04e23;
+  --green: #6da262;
   --greybrown: #897571;
   --lightgrey: #d9d9d9;
   --mediumgrey: #545454;
@@ -42,6 +42,11 @@
 @import './components/simplelist.css';
 @import './components/linebehindtext.css';
 @import './components/bookcover.css';
+@import './components/listviewsmall.css';
+
+/* Import slick carousel - https://github.com/akiran/react-slick */
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
 
 html {
   /* Avoid content from jumping when modal is opened/closed */
@@ -228,7 +233,7 @@ h3 {
 }
 
 ::-webkit-scrollbar {
-    /*display: none;*/
+  /*display: none;*/
 }
 
 .noselect {

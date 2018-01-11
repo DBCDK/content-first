@@ -1,0 +1,25 @@
+.list-small {
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+  background: white;
+  box-shadow: 1px 1px 20px #666666;
+  /*padding: 20px;*/
+}
+.list-small:first {
+  /*margin-left: 0px;*/
+}
+.list-small-summary {
+  padding: 10px;
+}
+.list-small-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.list-small-description {
+  font-family: var(--secondary-font);
+}
+.list-small-cover-preview {
+  height: 120px;
+  background: #d5d5d5;
+}
