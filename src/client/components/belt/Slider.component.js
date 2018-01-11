@@ -4,7 +4,11 @@ import Slide from './Slide.component';
 
 const PrevArrow = function(props) {
   return (
-    <div {...props}>
+    <div
+      className={props.className}
+      style={props.style}
+      onClick={props.onClick}
+    >
       <span
         style={{color: '#f04e23', fontSize: 30}}
         className="glyphicon glyphicon-chevron-left"
@@ -15,7 +19,11 @@ const PrevArrow = function(props) {
 
 const NextArrow = function(props) {
   return (
-    <div {...props}>
+    <div
+      className={props.className}
+      style={props.style}
+      onClick={props.onClick}
+    >
       <span
         style={{color: '#f04e23', fontSize: 30}}
         className="glyphicon glyphicon-chevron-right"
