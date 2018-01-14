@@ -1,7 +1,6 @@
 .list-card {
   display: inline-block;
-  width: 200px;
-  height: 300px;
+  width: 220px;
   background: white;
   box-shadow: 1px 1px 20px #666666;
   /*padding: 20px;*/
@@ -16,6 +15,7 @@
 }
 .list-card-summary {
   padding: 10px;
+  height: 140px;
 }
 .list-card-title {
   font-size: 20px;
@@ -34,4 +34,19 @@
   margin-left: -100%;
   margin-right: -100%;
   text-align: center;
+}
+.list-card-bottom {
+  padding: 10px;
+  font-family: var(--secondary-font);
+  font-size: 10px;
+}
+.list-card-bottom p {
+  font-size: 12px !important;
+}
+.list-card-bottom .profile-image {
+  width: 30px;
+  height: 30px;
+}
+.list-card-bottom .profile-name {
+  margin-left: 0.5rem;
 }

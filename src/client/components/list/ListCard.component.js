@@ -2,6 +2,7 @@ import React from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import BookCover from '../general/BookCover.component';
 import ProfileImage from '../general/ProfileImage.component';
+import {Likes, Comments} from '../general/Icons';
 
 class ListCard extends React.PureComponent {
   render() {
@@ -19,11 +20,7 @@ class ListCard extends React.PureComponent {
             {elements.length > 0 &&
               elements.slice(0, 3).map(e => {
                 return (
-                  <BookCover
-                    key={e.pid}
-                    className="list-card-cover"
-                    book={e}
-                  />
+                  <BookCover key={e.pid} className="list-card-cover" book={e} />
                 );
               })}
           </div>
@@ -37,12 +34,18 @@ class ListCard extends React.PureComponent {
           </TruncateMarkup>
         </div>
         <div className="list-card-bottom">
-          <ProfileImage
-            src={profile.src}
-            name={profile.name}
-            type="list"
-            className="mb1"
-          />
+          <div style={{display: 'inline-block'}}>
+            <ProfileImage
+              src={profile.src}
+              name={profile.name}
+              type="list"
+              className="mb1"
+            />
+          </div>
+          <div style={{float: 'right', marginTop: 5}}>
+            <Likes value={14} />
+            <Comments value={14} className="ml1" />
+          </div>
         </div>
       </div>
     );

@@ -439,22 +439,109 @@ exports[`renders without crashing 1`] = `
                   className="list-card-bottom"
                 >
                   <div
-                    className="profile-list mb1"
+                    style={
+                      Object {
+                        "display": "inline-block",
+                      }
+                    }
+                  >
+                    <div
+                      className="profile-list mb1"
+                    >
+                      <span
+                        className="profile-image small round"
+                      >
+                        <img
+                          alt="Funky Bjarne"
+                          className="cover"
+                          src="http://p-hold.com/200/200"
+                        />
+                      </span>
+                      <p
+                        className="profile-name t-body h4"
+                      >
+                        Funky Bjarne
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "float": "right",
+                        "marginTop": 5,
+                      }
+                    }
                   >
                     <span
-                      className="profile-image small round"
+                      className={undefined}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      <img
-                        alt="Funky Bjarne"
-                        className="cover"
-                        src="http://p-hold.com/200/200"
+                      <span
+                        className="glyphicon glyphicon-heart"
+                        style={
+                          Object {
+                            "color": "red",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
                       />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
                     </span>
-                    <p
-                      className="profile-name t-body h4"
+                    <span
+                      className="ml1"
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      Funky Bjarne
-                    </p>
+                      <span
+                        className="glyphicon glyphicon-comment"
+                        style={
+                          Object {
+                            "color": "black",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                      />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -519,22 +606,109 @@ exports[`renders without crashing 1`] = `
                   className="list-card-bottom"
                 >
                   <div
-                    className="profile-list mb1"
+                    style={
+                      Object {
+                        "display": "inline-block",
+                      }
+                    }
+                  >
+                    <div
+                      className="profile-list mb1"
+                    >
+                      <span
+                        className="profile-image small round"
+                      >
+                        <img
+                          alt="Funky Bjarne"
+                          className="cover"
+                          src="http://p-hold.com/200/200"
+                        />
+                      </span>
+                      <p
+                        className="profile-name t-body h4"
+                      >
+                        Funky Bjarne
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "float": "right",
+                        "marginTop": 5,
+                      }
+                    }
                   >
                     <span
-                      className="profile-image small round"
+                      className={undefined}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      <img
-                        alt="Funky Bjarne"
-                        className="cover"
-                        src="http://p-hold.com/200/200"
+                      <span
+                        className="glyphicon glyphicon-heart"
+                        style={
+                          Object {
+                            "color": "red",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
                       />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
                     </span>
-                    <p
-                      className="profile-name t-body h4"
+                    <span
+                      className="ml1"
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      Funky Bjarne
-                    </p>
+                      <span
+                        className="glyphicon glyphicon-comment"
+                        style={
+                          Object {
+                            "color": "black",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                      />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -593,22 +767,109 @@ exports[`renders without crashing 1`] = `
                   className="list-card-bottom"
                 >
                   <div
-                    className="profile-list mb1"
+                    style={
+                      Object {
+                        "display": "inline-block",
+                      }
+                    }
+                  >
+                    <div
+                      className="profile-list mb1"
+                    >
+                      <span
+                        className="profile-image small round"
+                      >
+                        <img
+                          alt="Funky Bjarne"
+                          className="cover"
+                          src="http://p-hold.com/200/200"
+                        />
+                      </span>
+                      <p
+                        className="profile-name t-body h4"
+                      >
+                        Funky Bjarne
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "float": "right",
+                        "marginTop": 5,
+                      }
+                    }
                   >
                     <span
-                      className="profile-image small round"
+                      className={undefined}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      <img
-                        alt="Funky Bjarne"
-                        className="cover"
-                        src="http://p-hold.com/200/200"
+                      <span
+                        className="glyphicon glyphicon-heart"
+                        style={
+                          Object {
+                            "color": "red",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
                       />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
                     </span>
-                    <p
-                      className="profile-name t-body h4"
+                    <span
+                      className="ml1"
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      Funky Bjarne
-                    </p>
+                      <span
+                        className="glyphicon glyphicon-comment"
+                        style={
+                          Object {
+                            "color": "black",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                      />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -660,22 +921,109 @@ exports[`renders without crashing 1`] = `
                   className="list-card-bottom"
                 >
                   <div
-                    className="profile-list mb1"
+                    style={
+                      Object {
+                        "display": "inline-block",
+                      }
+                    }
+                  >
+                    <div
+                      className="profile-list mb1"
+                    >
+                      <span
+                        className="profile-image small round"
+                      >
+                        <img
+                          alt="Funky Bjarne"
+                          className="cover"
+                          src="http://p-hold.com/200/200"
+                        />
+                      </span>
+                      <p
+                        className="profile-name t-body h4"
+                      >
+                        Funky Bjarne
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "float": "right",
+                        "marginTop": 5,
+                      }
+                    }
                   >
                     <span
-                      className="profile-image small round"
+                      className={undefined}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      <img
-                        alt="Funky Bjarne"
-                        className="cover"
-                        src="http://p-hold.com/200/200"
+                      <span
+                        className="glyphicon glyphicon-heart"
+                        style={
+                          Object {
+                            "color": "red",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
                       />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
                     </span>
-                    <p
-                      className="profile-name t-body h4"
+                    <span
+                      className="ml1"
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      Funky Bjarne
-                    </p>
+                      <span
+                        className="glyphicon glyphicon-comment"
+                        style={
+                          Object {
+                            "color": "black",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                      />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -727,22 +1075,109 @@ exports[`renders without crashing 1`] = `
                   className="list-card-bottom"
                 >
                   <div
-                    className="profile-list mb1"
+                    style={
+                      Object {
+                        "display": "inline-block",
+                      }
+                    }
+                  >
+                    <div
+                      className="profile-list mb1"
+                    >
+                      <span
+                        className="profile-image small round"
+                      >
+                        <img
+                          alt="Funky Bjarne"
+                          className="cover"
+                          src="http://p-hold.com/200/200"
+                        />
+                      </span>
+                      <p
+                        className="profile-name t-body h4"
+                      >
+                        Funky Bjarne
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "float": "right",
+                        "marginTop": 5,
+                      }
+                    }
                   >
                     <span
-                      className="profile-image small round"
+                      className={undefined}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      <img
-                        alt="Funky Bjarne"
-                        className="cover"
-                        src="http://p-hold.com/200/200"
+                      <span
+                        className="glyphicon glyphicon-heart"
+                        style={
+                          Object {
+                            "color": "red",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
                       />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
                     </span>
-                    <p
-                      className="profile-name t-body h4"
+                    <span
+                      className="ml1"
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      Funky Bjarne
-                    </p>
+                      <span
+                        className="glyphicon glyphicon-comment"
+                        style={
+                          Object {
+                            "color": "black",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                      />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -794,22 +1229,109 @@ exports[`renders without crashing 1`] = `
                   className="list-card-bottom"
                 >
                   <div
-                    className="profile-list mb1"
+                    style={
+                      Object {
+                        "display": "inline-block",
+                      }
+                    }
+                  >
+                    <div
+                      className="profile-list mb1"
+                    >
+                      <span
+                        className="profile-image small round"
+                      >
+                        <img
+                          alt="Funky Bjarne"
+                          className="cover"
+                          src="http://p-hold.com/200/200"
+                        />
+                      </span>
+                      <p
+                        className="profile-name t-body h4"
+                      >
+                        Funky Bjarne
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "float": "right",
+                        "marginTop": 5,
+                      }
+                    }
                   >
                     <span
-                      className="profile-image small round"
+                      className={undefined}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      <img
-                        alt="Funky Bjarne"
-                        className="cover"
-                        src="http://p-hold.com/200/200"
+                      <span
+                        className="glyphicon glyphicon-heart"
+                        style={
+                          Object {
+                            "color": "red",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
                       />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
                     </span>
-                    <p
-                      className="profile-name t-body h4"
+                    <span
+                      className="ml1"
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      Funky Bjarne
-                    </p>
+                      <span
+                        className="glyphicon glyphicon-comment"
+                        style={
+                          Object {
+                            "color": "black",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                      />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -861,22 +1383,109 @@ exports[`renders without crashing 1`] = `
                   className="list-card-bottom"
                 >
                   <div
-                    className="profile-list mb1"
+                    style={
+                      Object {
+                        "display": "inline-block",
+                      }
+                    }
+                  >
+                    <div
+                      className="profile-list mb1"
+                    >
+                      <span
+                        className="profile-image small round"
+                      >
+                        <img
+                          alt="Funky Bjarne"
+                          className="cover"
+                          src="http://p-hold.com/200/200"
+                        />
+                      </span>
+                      <p
+                        className="profile-name t-body h4"
+                      >
+                        Funky Bjarne
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "float": "right",
+                        "marginTop": 5,
+                      }
+                    }
                   >
                     <span
-                      className="profile-image small round"
+                      className={undefined}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      <img
-                        alt="Funky Bjarne"
-                        className="cover"
-                        src="http://p-hold.com/200/200"
+                      <span
+                        className="glyphicon glyphicon-heart"
+                        style={
+                          Object {
+                            "color": "red",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
                       />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
                     </span>
-                    <p
-                      className="profile-name t-body h4"
+                    <span
+                      className="ml1"
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      Funky Bjarne
-                    </p>
+                      <span
+                        className="glyphicon glyphicon-comment"
+                        style={
+                          Object {
+                            "color": "black",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                      />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -928,22 +1537,109 @@ exports[`renders without crashing 1`] = `
                   className="list-card-bottom"
                 >
                   <div
-                    className="profile-list mb1"
+                    style={
+                      Object {
+                        "display": "inline-block",
+                      }
+                    }
+                  >
+                    <div
+                      className="profile-list mb1"
+                    >
+                      <span
+                        className="profile-image small round"
+                      >
+                        <img
+                          alt="Funky Bjarne"
+                          className="cover"
+                          src="http://p-hold.com/200/200"
+                        />
+                      </span>
+                      <p
+                        className="profile-name t-body h4"
+                      >
+                        Funky Bjarne
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "float": "right",
+                        "marginTop": 5,
+                      }
+                    }
                   >
                     <span
-                      className="profile-image small round"
+                      className={undefined}
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      <img
-                        alt="Funky Bjarne"
-                        className="cover"
-                        src="http://p-hold.com/200/200"
+                      <span
+                        className="glyphicon glyphicon-heart"
+                        style={
+                          Object {
+                            "color": "red",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
                       />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
                     </span>
-                    <p
-                      className="profile-name t-body h4"
+                    <span
+                      className="ml1"
+                      style={
+                        Object {
+                          "position": "relative",
+                        }
+                      }
                     >
-                      Funky Bjarne
-                    </p>
+                      <span
+                        className="glyphicon glyphicon-comment"
+                        style={
+                          Object {
+                            "color": "black",
+                            "fontSize": 24,
+                            "verticalAlign": "middle",
+                          }
+                        }
+                      />
+                      <span
+                        style={
+                          Object {
+                            "color": "white",
+                            "fontSize": 11,
+                            "fontWeight": "bold",
+                            "left": 0,
+                            "position": "absolute",
+                            "textAlign": "center",
+                            "top": -3,
+                            "width": "100%",
+                          }
+                        }
+                      >
+                        14
+                      </span>
+                    </span>
                   </div>
                 </div>
               </div>
