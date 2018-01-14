@@ -42,7 +42,7 @@
 @import './components/simplelist.css';
 @import './components/linebehindtext.css';
 @import './components/bookcover.css';
-@import './components/listviewsmall.css';
+@import './components/listcard.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */
 @import '~slick-carousel/slick/slick.css';

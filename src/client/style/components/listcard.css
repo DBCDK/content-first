@@ -1,4 +1,4 @@
-.list-small {
+.list-card {
   display: inline-block;
   width: 200px;
   height: 300px;
@@ -7,30 +7,30 @@
   /*padding: 20px;*/
   color: black;
 }
-.list-small-cover {
+.list-card-cover {
   height: 120px;
   margin: 0 2px;
 }
-.list-small:first {
+.list-card:first {
   /*margin-left: 0px;*/
 }
-.list-small-summary {
+.list-card-summary {
   padding: 10px;
 }
-.list-small-title {
+.list-card-title {
   font-size: 20px;
   font-weight: bold;
 }
-.list-small-description {
+.list-card-description {
   font-family: var(--secondary-font);
 }
-.list-small-covers {
+.list-card-covers {
   height: 120px;
   background: #d5d5d5;
   overflow: hidden;
   white-space: nowrap;
 }
-.list-small-covers-wrapper {
+.list-card-covers-wrapper {
   margin-left: -100%;
   margin-right: -100%;
   text-align: center;

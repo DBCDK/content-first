@@ -384,43 +384,43 @@ exports[`renders without crashing 1`] = `
               }
             >
               <div
-                className="list-small"
+                className="list-card"
                 style={undefined}
               >
                 <div
-                  className="list-small-covers"
+                  className="list-card-covers"
                 >
                   <div
-                    className="list-small-covers-wrapper"
+                    className="list-card-covers-wrapper"
                   >
                     <img
                       alt=""
-                      className="high-contrast list-small-cover"
+                      className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51319079"
                     />
                     <img
                       alt=""
-                      className="high-contrast list-small-cover"
+                      className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52930006"
                     />
                     <img
                       alt=""
-                      className="high-contrast list-small-cover"
+                      className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52530423"
                     />
                   </div>
                 </div>
                 <div
-                  className="list-small-summary"
+                  className="list-card-summary"
                 >
                   <react-truncate-markup
                     lines={2}
                   >
                     <h3
-                      className="list-small-title h-tight"
+                      className="list-card-title h-tight"
                     >
                       Goth du bør læse før eller siden
                     </h3>
@@ -429,11 +429,33 @@ exports[`renders without crashing 1`] = `
                     lines={3}
                   >
                     <div
-                      className="list-small-description"
+                      className="list-card-description"
                     >
                       bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether
                     </div>
                   </react-truncate-markup>
+                </div>
+                <div
+                  className="list-card-bottom"
+                >
+                  <div
+                    className="profile-list mb1"
+                  >
+                    <span
+                      className="profile-image small round"
+                    >
+                      <img
+                        alt="Funky Bjarne"
+                        className="cover"
+                        src="http://p-hold.com/200/200"
+                      />
+                    </span>
+                    <p
+                      className="profile-name t-body h4"
+                    >
+                      Funky Bjarne
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -448,37 +470,37 @@ exports[`renders without crashing 1`] = `
               }
             >
               <div
-                className="list-small"
+                className="list-card"
                 style={undefined}
               >
                 <div
-                  className="list-small-covers"
+                  className="list-card-covers"
                 >
                   <div
-                    className="list-small-covers-wrapper"
+                    className="list-card-covers-wrapper"
                   >
                     <img
                       alt=""
-                      className="high-contrast list-small-cover"
+                      className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51319079"
                     />
                     <img
                       alt=""
-                      className="high-contrast list-small-cover"
+                      className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52930006"
                     />
                   </div>
                 </div>
                 <div
-                  className="list-small-summary"
+                  className="list-card-summary"
                 >
                   <react-truncate-markup
                     lines={2}
                   >
                     <h3
-                      className="list-small-title h-tight"
+                      className="list-card-title h-tight"
                     >
                       Bøger om bjørne - med meget lang titel
                     </h3>
@@ -487,11 +509,33 @@ exports[`renders without crashing 1`] = `
                     lines={3}
                   >
                     <div
-                      className="list-small-description"
+                      className="list-card-description"
                     >
                       mange bjørne
                     </div>
                   </react-truncate-markup>
+                </div>
+                <div
+                  className="list-card-bottom"
+                >
+                  <div
+                    className="profile-list mb1"
+                  >
+                    <span
+                      className="profile-image small round"
+                    >
+                      <img
+                        alt="Funky Bjarne"
+                        className="cover"
+                        src="http://p-hold.com/200/200"
+                      />
+                    </span>
+                    <p
+                      className="profile-name t-body h4"
+                    >
+                      Funky Bjarne
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -506,31 +550,31 @@ exports[`renders without crashing 1`] = `
               }
             >
               <div
-                className="list-small"
+                className="list-card"
                 style={undefined}
               >
                 <div
-                  className="list-small-covers"
+                  className="list-card-covers"
                 >
                   <div
-                    className="list-small-covers-wrapper"
+                    className="list-card-covers-wrapper"
                   >
                     <img
                       alt=""
-                      className="high-contrast list-small-cover"
+                      className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51319079"
                     />
                   </div>
                 </div>
                 <div
-                  className="list-small-summary"
+                  className="list-card-summary"
                 >
                   <react-truncate-markup
                     lines={2}
                   >
                     <h3
-                      className="list-small-title h-tight"
+                      className="list-card-title h-tight"
                     >
                       Goth du bør læse før eller siden
                     </h3>
@@ -539,11 +583,33 @@ exports[`renders without crashing 1`] = `
                     lines={3}
                   >
                     <div
-                      className="list-small-description"
+                      className="list-card-description"
                     >
                       bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether
                     </div>
                   </react-truncate-markup>
+                </div>
+                <div
+                  className="list-card-bottom"
+                >
+                  <div
+                    className="profile-list mb1"
+                  >
+                    <span
+                      className="profile-image small round"
+                    >
+                      <img
+                        alt="Funky Bjarne"
+                        className="cover"
+                        src="http://p-hold.com/200/200"
+                      />
+                    </span>
+                    <p
+                      className="profile-name t-body h4"
+                    >
+                      Funky Bjarne
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -558,24 +624,24 @@ exports[`renders without crashing 1`] = `
               }
             >
               <div
-                className="list-small"
+                className="list-card"
                 style={undefined}
               >
                 <div
-                  className="list-small-covers"
+                  className="list-card-covers"
                 >
                   <div
-                    className="list-small-covers-wrapper"
+                    className="list-card-covers-wrapper"
                   />
                 </div>
                 <div
-                  className="list-small-summary"
+                  className="list-card-summary"
                 >
                   <react-truncate-markup
                     lines={2}
                   >
                     <h3
-                      className="list-small-title h-tight"
+                      className="list-card-title h-tight"
                     >
                       Bøger om bjørne - med meget lang titel
                     </h3>
@@ -584,11 +650,33 @@ exports[`renders without crashing 1`] = `
                     lines={3}
                   >
                     <div
-                      className="list-small-description"
+                      className="list-card-description"
                     >
                       mange bjørne
                     </div>
                   </react-truncate-markup>
+                </div>
+                <div
+                  className="list-card-bottom"
+                >
+                  <div
+                    className="profile-list mb1"
+                  >
+                    <span
+                      className="profile-image small round"
+                    >
+                      <img
+                        alt="Funky Bjarne"
+                        className="cover"
+                        src="http://p-hold.com/200/200"
+                      />
+                    </span>
+                    <p
+                      className="profile-name t-body h4"
+                    >
+                      Funky Bjarne
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -603,24 +691,24 @@ exports[`renders without crashing 1`] = `
               }
             >
               <div
-                className="list-small"
+                className="list-card"
                 style={undefined}
               >
                 <div
-                  className="list-small-covers"
+                  className="list-card-covers"
                 >
                   <div
-                    className="list-small-covers-wrapper"
+                    className="list-card-covers-wrapper"
                   />
                 </div>
                 <div
-                  className="list-small-summary"
+                  className="list-card-summary"
                 >
                   <react-truncate-markup
                     lines={2}
                   >
                     <h3
-                      className="list-small-title h-tight"
+                      className="list-card-title h-tight"
                     >
                       Goth du bør læse før eller siden
                     </h3>
@@ -629,11 +717,33 @@ exports[`renders without crashing 1`] = `
                     lines={3}
                   >
                     <div
-                      className="list-small-description"
+                      className="list-card-description"
                     >
                       bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether
                     </div>
                   </react-truncate-markup>
+                </div>
+                <div
+                  className="list-card-bottom"
+                >
+                  <div
+                    className="profile-list mb1"
+                  >
+                    <span
+                      className="profile-image small round"
+                    >
+                      <img
+                        alt="Funky Bjarne"
+                        className="cover"
+                        src="http://p-hold.com/200/200"
+                      />
+                    </span>
+                    <p
+                      className="profile-name t-body h4"
+                    >
+                      Funky Bjarne
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -648,24 +758,24 @@ exports[`renders without crashing 1`] = `
               }
             >
               <div
-                className="list-small"
+                className="list-card"
                 style={undefined}
               >
                 <div
-                  className="list-small-covers"
+                  className="list-card-covers"
                 >
                   <div
-                    className="list-small-covers-wrapper"
+                    className="list-card-covers-wrapper"
                   />
                 </div>
                 <div
-                  className="list-small-summary"
+                  className="list-card-summary"
                 >
                   <react-truncate-markup
                     lines={2}
                   >
                     <h3
-                      className="list-small-title h-tight"
+                      className="list-card-title h-tight"
                     >
                       Bøger om bjørne - med meget lang titel
                     </h3>
@@ -674,11 +784,33 @@ exports[`renders without crashing 1`] = `
                     lines={3}
                   >
                     <div
-                      className="list-small-description"
+                      className="list-card-description"
                     >
                       mange bjørne
                     </div>
                   </react-truncate-markup>
+                </div>
+                <div
+                  className="list-card-bottom"
+                >
+                  <div
+                    className="profile-list mb1"
+                  >
+                    <span
+                      className="profile-image small round"
+                    >
+                      <img
+                        alt="Funky Bjarne"
+                        className="cover"
+                        src="http://p-hold.com/200/200"
+                      />
+                    </span>
+                    <p
+                      className="profile-name t-body h4"
+                    >
+                      Funky Bjarne
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -693,24 +825,24 @@ exports[`renders without crashing 1`] = `
               }
             >
               <div
-                className="list-small"
+                className="list-card"
                 style={undefined}
               >
                 <div
-                  className="list-small-covers"
+                  className="list-card-covers"
                 >
                   <div
-                    className="list-small-covers-wrapper"
+                    className="list-card-covers-wrapper"
                   />
                 </div>
                 <div
-                  className="list-small-summary"
+                  className="list-card-summary"
                 >
                   <react-truncate-markup
                     lines={2}
                   >
                     <h3
-                      className="list-small-title h-tight"
+                      className="list-card-title h-tight"
                     >
                       Goth du bør læse før eller siden
                     </h3>
@@ -719,11 +851,33 @@ exports[`renders without crashing 1`] = `
                     lines={3}
                   >
                     <div
-                      className="list-small-description"
+                      className="list-card-description"
                     >
                       bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether
                     </div>
                   </react-truncate-markup>
+                </div>
+                <div
+                  className="list-card-bottom"
+                >
+                  <div
+                    className="profile-list mb1"
+                  >
+                    <span
+                      className="profile-image small round"
+                    >
+                      <img
+                        alt="Funky Bjarne"
+                        className="cover"
+                        src="http://p-hold.com/200/200"
+                      />
+                    </span>
+                    <p
+                      className="profile-name t-body h4"
+                    >
+                      Funky Bjarne
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -738,24 +892,24 @@ exports[`renders without crashing 1`] = `
               }
             >
               <div
-                className="list-small"
+                className="list-card"
                 style={undefined}
               >
                 <div
-                  className="list-small-covers"
+                  className="list-card-covers"
                 >
                   <div
-                    className="list-small-covers-wrapper"
+                    className="list-card-covers-wrapper"
                   />
                 </div>
                 <div
-                  className="list-small-summary"
+                  className="list-card-summary"
                 >
                   <react-truncate-markup
                     lines={2}
                   >
                     <h3
-                      className="list-small-title h-tight"
+                      className="list-card-title h-tight"
                     >
                       Bøger om bjørne - med meget lang titel
                     </h3>
@@ -764,11 +918,33 @@ exports[`renders without crashing 1`] = `
                     lines={3}
                   >
                     <div
-                      className="list-small-description"
+                      className="list-card-description"
                     >
                       mange bjørne
                     </div>
                   </react-truncate-markup>
+                </div>
+                <div
+                  className="list-card-bottom"
+                >
+                  <div
+                    className="profile-list mb1"
+                  >
+                    <span
+                      className="profile-image small round"
+                    >
+                      <img
+                        alt="Funky Bjarne"
+                        className="cover"
+                        src="http://p-hold.com/200/200"
+                      />
+                    </span>
+                    <p
+                      className="profile-name t-body h4"
+                    >
+                      Funky Bjarne
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
