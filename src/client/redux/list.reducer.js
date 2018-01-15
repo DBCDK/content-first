@@ -28,7 +28,101 @@ const defaultState = {
     description: '',
     list: []
   },
-  changeMap: {}
+  changeMap: {},
+  recent: [
+    {
+      type: CUSTOM_LIST,
+      id: 'test1',
+      userId: 'user1',
+      title: 'Goth du bør læse før eller siden',
+      description:
+        'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
+      list: [
+        {
+          pid: '870970-basis:51319079'
+        },
+        {
+          pid: '870970-basis:52930006'
+        },
+        {
+          pid: '870970-basis:52530423'
+        },
+        {
+          pid: '870970-basis:52530423'
+        }
+      ]
+    },
+    {
+      type: CUSTOM_LIST,
+      id: 'test2',
+      userId: 'user2',
+      title: 'Bøger om bjørne - med meget lang titel',
+      description: 'mange bjørne',
+      list: [
+        {
+          pid: '870970-basis:51319079'
+        },
+        {
+          pid: '870970-basis:52930006'
+        }
+      ]
+    },
+    {
+      type: CUSTOM_LIST,
+      id: 'test3',
+      userId: 'user1',
+      title: 'Goth du bør læse før eller siden',
+      description:
+        'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
+      list: [
+        {
+          pid: '870970-basis:51319079'
+        }
+      ]
+    },
+    {
+      type: CUSTOM_LIST,
+      id: 'test4',
+      userId: 'user2',
+      title: 'Bøger om bjørne - med meget lang titel',
+      description: 'mange bjørne',
+      list: []
+    },
+    {
+      type: CUSTOM_LIST,
+      id: 'test5',
+      userId: 'user1',
+      title: 'Goth du bør læse før eller siden',
+      description:
+        'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
+      list: []
+    },
+    {
+      type: CUSTOM_LIST,
+      id: 'test6',
+      userId: 'user2',
+      title: 'Bøger om bjørne - med meget lang titel',
+      description: 'mange bjørne',
+      list: []
+    },
+    {
+      type: CUSTOM_LIST,
+      id: 'test7',
+      userId: 'user1',
+      title: 'Goth du bør læse før eller siden',
+      description:
+        'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
+      list: []
+    },
+    {
+      type: CUSTOM_LIST,
+      id: 'test8',
+      userId: 'user2',
+      title: 'Bøger om bjørne - med meget lang titel',
+      description: 'mange bjørne',
+      list: []
+    }
+  ]
 };
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';

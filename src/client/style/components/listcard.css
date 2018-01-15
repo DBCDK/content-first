@@ -1,0 +1,52 @@
+.list-card {
+  display: inline-block;
+  width: 220px;
+  background: white;
+  box-shadow: 1px 1px 20px #666666;
+  /*padding: 20px;*/
+  color: black;
+}
+.list-card-cover {
+  height: 120px;
+  margin: 0 2px;
+}
+.list-card:first {
+  /*margin-left: 0px;*/
+}
+.list-card-summary {
+  padding: 10px;
+  height: 140px;
+}
+.list-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.list-card-description {
+  font-family: var(--secondary-font);
+}
+.list-card-covers {
+  height: 120px;
+  background: #d5d5d5;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.list-card-covers-wrapper {
+  margin-left: -100%;
+  margin-right: -100%;
+  text-align: center;
+}
+.list-card-bottom {
+  padding: 10px;
+  font-family: var(--secondary-font);
+  font-size: 10px;
+}
+.list-card-bottom p {
+  font-size: 12px !important;
+}
+.list-card-bottom .profile-image {
+  width: 30px;
+  height: 30px;
+}
+.list-card-bottom .profile-name {
+  margin-left: 0.5rem;
+}

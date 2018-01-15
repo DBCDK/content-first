@@ -17,7 +17,7 @@ class BookCover extends React.Component {
     return (
       <img
         alt={this.props.book.title || ''}
-        className={this.props.className || ''}
+        className={'high-contrast ' + (this.props.className || '')}
         src={this.urls[this.state.current]}
         onError={() => {
           this.setState({

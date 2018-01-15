@@ -96,7 +96,6 @@
 }
 .cover-image {
   padding: 3px;
-  filter: contrast(1.25);
   box-shadow: 1px 1px 20px #666666;
   height: 100%;
 }
