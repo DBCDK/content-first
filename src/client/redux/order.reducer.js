@@ -34,6 +34,9 @@ const orderReducer = (state = defaultState, action) => {
     case ORDER_FAILURE:
       return state.setIn(['orders', action.pid, 'orderState'], 'error');
 
+    case PICKUP_BRANCHES:
+      return state.set('pickupBranches', Immutable.fromJS(action.branches));
+
     default:
       return state;
   }
