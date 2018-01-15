@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Kryds from '../svg/Kryds.svg';
 import BookCover from '../general/BookCover.component';
 import Textarea from 'react-textarea-autosize';
-import OrderButton from '../work/OrderButton.component';
+import OrderButton from '../order/OrderButton.component';
 import {
   ON_SHORTLIST_REMOVE_ELEMENT,
   SHORTLIST_UPDATE_ORIGIN,
@@ -77,7 +77,7 @@ export class ShortListItem extends React.Component {
             </span>
           </div>
           <div className="order-book col-xs-3">
-            <OrderButton pid={this.props.element.book.pid} />
+            <OrderButton book={this.props.element.book} />
           </div>
           <img
             src={Kryds}
@@ -150,9 +150,7 @@ class ShortList extends React.Component {
               </span>
               <span
                 className="btn btn-success ml2"
-                onClick={() =>
-                  this.props.orderAll(elements.map(e => e.book.pid))
-                }
+                onClick={() => this.props.orderAll(elements.map(e => e.book))}
               >
                 BESTIL HELE LISTEN
               </span>
@@ -181,7 +179,7 @@ export default connect(
     };
   },
   dispatch => ({
-    orderAll: pids => pids.forEach(pid => dispatch({type: ORDER, pid})),
+    orderAll: books => books.forEach(book => dispatch({type: ORDER, book})),
     dispatch
   })
 )(ShortList);

@@ -248,6 +248,8 @@ export const orderMiddleware = store => next => action => {
       ) {
         return;
       }
+      store.dispatch({type: OPEN_MODAL, modal: 'order'});
+
       (async () => {
         try {
           // make sure we are in a different timeslice,
