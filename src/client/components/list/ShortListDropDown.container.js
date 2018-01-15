@@ -82,16 +82,15 @@ const ShortListContent = props => {
           <LineBehindText label={moreLabel} backgroundColor="white" />
         </div>
       )}
-      {moreLabel && (
-        <div className="short-list--more-btn text-center">
-          <span
-            className="btn btn-default text-center"
-            onClick={props.onViewShortList}
-          >
-            SE HELE LISTEN
-          </span>
-        </div>
-      )}
+
+      <div className="short-list--more-btn text-center">
+        <span
+          className="btn btn-default text-center"
+          onClick={props.onViewShortList}
+        >
+          SE HELE LISTEN
+        </span>
+      </div>
     </div>
   );
 };

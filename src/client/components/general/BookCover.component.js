@@ -7,7 +7,9 @@ class BookCover extends React.Component {
   }
   render() {
     const urls = [
-      `https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(this.props.book.pid)}`,
+      `https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(
+        this.props.book.pid
+      )}`,
       `/v1/image/${encodeURIComponent(this.props.book.pid)}`,
       '/default-book-cover.png'
     ];

@@ -126,6 +126,16 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
         </div>
       </span>
     </div>
+    <div
+      className="short-list--more-btn text-center"
+    >
+      <span
+        className="btn btn-default text-center"
+        onClick={[Function]}
+      >
+        SE HELE LISTEN
+      </span>
+    </div>
   </div>
 </div>
 `;
@@ -417,6 +427,16 @@ exports[`ShortListDropDown short list contains single element 1`] = `
         </div>
       </span>
     </div>
+    <div
+      className="short-list--more-btn text-center"
+    >
+      <span
+        className="btn btn-default text-center"
+        onClick={[Function]}
+      >
+        SE HELE LISTEN
+      </span>
+    </div>
   </div>
 </div>
 `;
@@ -453,6 +473,16 @@ exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
       className="short-list--empty-text text-center"
     >
       Din huskeliste er tom
+    </div>
+    <div
+      className="short-list--more-btn text-center"
+    >
+      <span
+        className="btn btn-default text-center"
+        onClick={[Function]}
+      >
+        SE HELE LISTEN
+      </span>
     </div>
   </div>
 </div>

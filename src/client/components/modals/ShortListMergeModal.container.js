@@ -54,20 +54,6 @@ class ShortListMergeModal extends React.Component {
                     : '1 anden bog'
                 }
               />
-              <div className="more-btn text-center">
-                <span
-                  className="btn btn-default text-center"
-                  onClick={() => {
-                    this.props.dispatch({
-                      type: HISTORY_PUSH,
-                      path: '/huskeliste'
-                    });
-                    this.props.dispatch({type: ON_SHORTLIST_COLLAPSE});
-                  }}
-                >
-                  SE HELE HUSKELISTEN
-                </span>
-              </div>
             </div>
           )}
       </Modal>
