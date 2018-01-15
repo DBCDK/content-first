@@ -246,6 +246,7 @@ export const orderMiddleware = store => next => action => {
   switch (action.type) {
     case ORDER: {
       const state = store.getState();
+      /*
       if (
         ['ordering', 'ordered'].includes(
           _.get(state, ['orderReducer', action.pid, 'state'])
@@ -253,6 +254,7 @@ export const orderMiddleware = store => next => action => {
       ) {
         return;
       }
+      */
 
       (async () => {
         try {

@@ -1,4 +1,9 @@
-const defaultState = {};
+import Immutable from 'immutable';
+
+const defaultState = Immutable.fromJS({
+  orders: {},
+  pickupBranches: []
+});
 
 export const ORDER = 'ORDER';
 export const AVAILABILITY = 'AVAILABILITY';
@@ -8,39 +13,23 @@ export const ORDER_FAILURE = 'ORDER_FAILURE';
 
 const orderReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ORDER: {
-      const pid = action.book.pid;
-      state = Object.assign({}, state);
-      state[pid] = Object.assign({}, state[pid], action.book, {
-        orderState: 'requested'
-      });
-      return state;
-    }
-    case AVAILABILITY: {
-      const pid = action.pid;
-      state = Object.assign({}, state);
-      state[pid] = Object.assign({}, state[pid], {
-        availability: action.availability
-      });
-      return state;
-    }
+    case ORDER:
+      return state
+        .setIn(['orders', action.book.pid], Immutable.fromJS(action.book))
+        .setIn(['orders', action.book.pid, 'orderState'], 'requested');
+    case AVAILABILITY:
+      return state.setIn(
+        ['orders', action.pid, 'availability'],
+        Immutable.fromJS(action.availability)
+      );
     case ORDER_START: {
-      const pid = action.pid;
-      state = Object.assign({}, state);
-      state[pid] = Object.assign({}, state[pid], {orderState: 'ordering'});
-      return state;
+      return state.setIn(['orders', action.pid, 'orderState'], 'ordering');
     }
     case ORDER_SUCCESS: {
-      const pid = action.pid;
-      state = Object.assign({}, state);
-      state[pid] = Object.assign({}, state[pid], {orderState: 'success'});
-      return state;
+      return state.setIn(['orders', action.pid, 'orderState'], 'ordered');
     }
     case ORDER_FAILURE: {
-      const pid = action.pid;
-      state = Object.assign({}, state);
-      state[pid] = Object.assign({}, state[pid], {orderState: 'failure'});
-      return state;
+      return state.setIn(['orders', action.pid, 'orderState'], 'error');
     }
     default:
       return state;
