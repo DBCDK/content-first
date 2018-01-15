@@ -47,7 +47,7 @@ import {
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {ORDER, ORDER_SUCCESS, ORDER_FAILURE} from './order.reducer';
+import {ORDER, ORDER_SUCCESS, ORDER_FAILURE, AVAILABILITY} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 import {saveLists, loadLists} from '../utils/requestLists';
 
@@ -248,13 +248,13 @@ export const orderMiddleware = store => next => action => {
       ) {
         return;
       }
-      store.dispatch({type: OPEN_MODAL, modal: 'order'});
 
       (async () => {
         try {
           // make sure we are in a different timeslice,
           // such that dispatches comes after this dispatch.
           await new Promise(resolve => setTimeout(resolve, 0));
+          store.dispatch({type: OPEN_MODAL, modal: 'order'});
 
           const user = state.profileReducer.user;
           if (!user.pickupBranch || !user.openplatformToken) {
@@ -265,8 +265,15 @@ export const orderMiddleware = store => next => action => {
           if (!openplatform.connected()) {
             await openplatform.connect(openplatformToken);
           }
+
+          const availability = await openplatform.availability({
+            pid: action.book.pid,
+          });
+          store.dispatch({ type: AVAILABILITY, pid: action.book.pid, availability });
+
+
           await openplatform.order({
-            pids: [action.pid],
+            pids: [action.book.pid],
             library: branch
           });
         } catch (e) {
@@ -274,13 +281,13 @@ export const orderMiddleware = store => next => action => {
           console.log('Error on order:', e);
           store.dispatch({
             type: ORDER_FAILURE,
-            pid: action.pid
+            pid: action.book.pid
           });
           return;
         }
         store.dispatch({
           type: ORDER_SUCCESS,
-          pid: action.pid
+          pid: action.book.pid
         });
       })();
       return next(action);
