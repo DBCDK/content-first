@@ -157,13 +157,25 @@ exports[`ShortList.container Clearing list 1`] = `
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid2"
+                            book={
+                              Object {
+                                "pid": "pid2",
+                                "taxonomy_description": "some description2",
+                                "title": "some title2",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid2",
+                                  "taxonomy_description": "some description2",
+                                  "title": "some title2",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid2"
                             >
                               <button
                                 className="btn btn-primary "
@@ -286,13 +298,25 @@ exports[`ShortList.container Clearing list 1`] = `
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid1"
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid1"
                             >
                               <button
                                 className="btn btn-primary "
@@ -494,13 +518,25 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid1"
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid1"
                             >
                               <button
                                 className="btn btn-primary "
@@ -726,13 +762,25 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid1"
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid1"
                             >
                               <button
                                 className="btn btn-primary "
@@ -958,13 +1006,25 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid1"
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid1"
                             >
                               <button
                                 className="btn btn-primary "
@@ -1205,13 +1265,25 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid1"
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid1"
                             >
                               <button
                                 className="btn btn-primary "
@@ -1445,13 +1517,25 @@ exports[`ShortList.container remove element 1`] = `
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid3"
+                            book={
+                              Object {
+                                "pid": "pid3",
+                                "taxonomy_description": "some description3",
+                                "title": "some title3",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid3",
+                                  "taxonomy_description": "some description3",
+                                  "title": "some title3",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid3"
                             >
                               <button
                                 className="btn btn-primary "
@@ -1574,13 +1658,25 @@ exports[`ShortList.container remove element 1`] = `
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid2"
+                            book={
+                              Object {
+                                "pid": "pid2",
+                                "taxonomy_description": "some description2",
+                                "title": "some title2",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid2",
+                                  "taxonomy_description": "some description2",
+                                  "title": "some title2",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid2"
                             >
                               <button
                                 className="btn btn-primary "
@@ -1703,13 +1799,25 @@ exports[`ShortList.container remove element 1`] = `
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid1"
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid1"
                             >
                               <button
                                 className="btn btn-primary "
@@ -1951,13 +2059,25 @@ exports[`ShortList.container short list contains elements 1`] = `
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid3"
+                            book={
+                              Object {
+                                "pid": "pid3",
+                                "taxonomy_description": "some description3",
+                                "title": "some title3",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid3",
+                                  "taxonomy_description": "some description3",
+                                  "title": "some title3",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid3"
                             >
                               <button
                                 className="btn btn-primary "
@@ -2080,13 +2200,25 @@ exports[`ShortList.container short list contains elements 1`] = `
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid2"
+                            book={
+                              Object {
+                                "pid": "pid2",
+                                "taxonomy_description": "some description2",
+                                "title": "some title2",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid2",
+                                  "taxonomy_description": "some description2",
+                                  "title": "some title2",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid2"
                             >
                               <button
                                 className="btn btn-primary "
@@ -2209,13 +2341,25 @@ exports[`ShortList.container short list contains elements 1`] = `
                           className="order-book col-xs-3"
                         >
                           <Connect(OrderButton)
-                            pid="pid1"
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
                             <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
                               className=""
                               order={[Function]}
                               orderState="not ordered"
-                              pid="pid1"
                             >
                               <button
                                 className="btn btn-primary "
