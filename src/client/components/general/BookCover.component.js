@@ -5,6 +5,11 @@ class BookCover extends React.Component {
     super(props);
     this.state = {current: 0};
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.book !== this.props.book) {
+      this.setState({current: 0});
+    }
+  }
   render() {
     const urls = [
       `https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(
