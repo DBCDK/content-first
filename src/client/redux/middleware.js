@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import openplatform from 'openplatform';
 
 import {ON_BELT_REQUEST} from './belts.reducer';
@@ -51,6 +50,7 @@ import {
   ORDER,
   ORDER_SUCCESS,
   ORDER_FAILURE,
+  PICKUP_BRANCHES,
   AVAILABILITY
 } from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
@@ -276,6 +276,17 @@ export const orderMiddleware = store => next => action => {
           const availability = await openplatform.availability({
             pid: action.book.pid
           });
+
+          if (state.orderReducer.get('pickupBranches').size === 0) {
+            const user = await openplatform.user();
+            console.log('XXXXx', user);
+            if (state.orderReducer.get('pickupBranches').size === 0) {
+              store.dispatch({
+                type: PICKUP_BRANCHES,
+                branches: await openplatform.libraries({agencyIds: []})
+              });
+            }
+          }
           store.dispatch({
             type: AVAILABILITY,
             pid: action.book.pid,
