@@ -19,7 +19,9 @@ const orderReducer = (state = defaultState, action) => {
     case AVAILABILITY: {
       const pid = action.pid;
       state = Object.assign({}, state);
-      state[pid] = Object.assign({}, state[pid], {availability: action.availability});
+      state[pid] = Object.assign({}, state[pid], {
+        availability: action.availability
+      });
       return state;
     }
     case ORDER_START: {

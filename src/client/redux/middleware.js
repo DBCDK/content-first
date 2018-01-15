@@ -47,7 +47,12 @@ import {
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {ORDER, ORDER_SUCCESS, ORDER_FAILURE, AVAILABILITY} from './order.reducer';
+import {
+  ORDER,
+  ORDER_SUCCESS,
+  ORDER_FAILURE,
+  AVAILABILITY
+} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 import {saveLists, loadLists} from '../utils/requestLists';
 
@@ -267,10 +272,13 @@ export const orderMiddleware = store => next => action => {
           }
 
           const availability = await openplatform.availability({
-            pid: action.book.pid,
+            pid: action.book.pid
           });
-          store.dispatch({ type: AVAILABILITY, pid: action.book.pid, availability });
-
+          store.dispatch({
+            type: AVAILABILITY,
+            pid: action.book.pid,
+            availability
+          });
 
           await openplatform.order({
             pids: [action.book.pid],
