@@ -12,8 +12,27 @@ export function OrderModal(props) {
       onDone={props.onDone}
       doneText="JA TAK, BESTIL NU"
     >
-      <div className="row">
-        {props.orders.map(book => <div key={book.pid}>{book.title}</div>)}
+      <div>
+        <div class="form-group">
+          <label>
+            Du er ved at bestille{props.orders.length > 1
+              ? ` ${props.orders.length} bøger`
+              : ''}:
+          </label>
+          {props.orders.map(book => <div key={book.pid}>{book.title}</div>)}
+        </div>
+        <div class="form-group" style={{marginBottom: 0}}>
+          <label htmlFor="pickupBranch">Til afhentning på:</label>
+          <select
+            class="form-control"
+            id="pickupBranch"
+            style={{width: 'auto'}}
+          >
+            <option>Foo Bibliotek</option>
+            <option>Bar Bibliotek</option>
+            <option>Baz Bibliotek</option>
+          </select>
+        </div>
       </div>
     </Modal>
   );
