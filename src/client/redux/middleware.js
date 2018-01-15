@@ -125,23 +125,6 @@ export const requestMiddleware = store => next => action => {
   }
 };
 
-/* eslint-disable no-console */
-export const loggerMiddleware = store => next => action => {
-  try {
-    // console.log('Action dispatched', action);
-    const res = next(action);
-    console.log('Next state', {
-      type: action.type,
-      action,
-      nextState: store.getState()
-    });
-    return res;
-  } catch (error) {
-    console.log('Action failed', {action, error});
-  }
-};
-/* eslint-enable no-console */
-
 export const shortListMiddleware = store => next => async action => {
   switch (action.type) {
     case SHORTLIST_CLEAR:
