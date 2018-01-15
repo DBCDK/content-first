@@ -58,9 +58,11 @@ export function OrderModal(props) {
             id="pickupBranch"
             style={{width: 'auto'}}
           >
-            <option>Foo Bibliotek</option>
-            <option>Bar Bibliotek</option>
-            <option>Baz Bibliotek</option>
+            {props.branches.map(branch => (
+              <option key={branch.get('id')} value={branch.get('id')}>
+                {branch.getIn(['branchName', 0])}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -70,7 +72,7 @@ export function OrderModal(props) {
 export function mapStateToProps(state) {
   return {
     orders: state.orderReducer.get('orders').valueSeq(),
-    pickupBranches: state.orderReducer.get('pickupBranches')
+    branches: state.orderReducer.get('pickupBranches')
   };
 }
 export function mapDispatchToProps(dispatch) {

@@ -279,11 +279,14 @@ export const orderMiddleware = store => next => action => {
 
           if (state.orderReducer.get('pickupBranches').size === 0) {
             const user = await openplatform.user();
-            console.log('XXXXx', user);
+            const agency = /*user.agency*/ '710100';
             if (state.orderReducer.get('pickupBranches').size === 0) {
               store.dispatch({
                 type: PICKUP_BRANCHES,
-                branches: await openplatform.libraries({agencyIds: []})
+                branches: await openplatform.libraries({
+                  agencyIds: [agency],
+                  fields: ['branchId', 'branchName']
+                })
               });
             }
           }
