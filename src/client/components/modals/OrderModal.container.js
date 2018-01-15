@@ -39,7 +39,8 @@ export function OrderModal(props) {
 }
 export function mapStateToProps(state) {
   return {
-    orders: Object.values(state.orderReducer)
+    orders: state.orderReducer.get('orders').valueSeq(),
+    pickupBranches: state.orderReducer.get('pickupBranches')
   };
 }
 export function mapDispatchToProps(dispatch) {
