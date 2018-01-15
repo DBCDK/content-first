@@ -3,12 +3,8 @@ import {connect} from 'react-redux';
 import Modal from './Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
 import LineBehindText from '../general/LineBehindText.component';
-import {
-  SHORTLIST_APPROVE_MERGE,
-  ON_SHORTLIST_COLLAPSE
-} from '../../redux/shortlist.reducer';
+import {SHORTLIST_APPROVE_MERGE} from '../../redux/shortlist.reducer';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import {HISTORY_PUSH} from '../../redux/middleware';
 
 const SHORT_LIST_MAX_LENGTH = 3;
 
