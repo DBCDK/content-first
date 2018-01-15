@@ -1,6 +1,7 @@
 const defaultState = {};
 
 export const ORDER = 'ORDER';
+export const AVAILABILITY = 'AVAILABILITY';
 export const ORDER_START = 'ORDER_START';
 export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const ORDER_FAILURE = 'ORDER_FAILURE';
@@ -13,6 +14,12 @@ const orderReducer = (state = defaultState, action) => {
       state[pid] = Object.assign({}, state[pid], action.book, {
         orderState: 'requested'
       });
+      return state;
+    }
+    case AVAILABILITY: {
+      const pid = action.pid;
+      state = Object.assign({}, state);
+      state[pid] = Object.assign({}, state[pid], {availability: action.availability});
       return state;
     }
     case ORDER_START: {
