@@ -2,7 +2,7 @@ import React from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import BookCover from '../general/BookCover.component';
 import ProfileImage from '../general/ProfileImage.component';
-import {Likes, Comments} from '../general/Icons';
+import {Likes, Comments, Badge} from '../general/Icons';
 
 class ListCard extends React.PureComponent {
   render() {
@@ -26,8 +26,18 @@ class ListCard extends React.PureComponent {
           </div>
         </div>
         <div className="list-card-summary">
-          <TruncateMarkup lines={2}>
-            <h3 className="list-card-title h-tight">{list.title}</h3>
+          <TruncateMarkup
+            lines={2}
+            ellipsis={
+              <span>
+                ...<Badge value={elements.length} className="ml1" />
+              </span>
+            }
+          >
+            <h3 className="list-card-title h-tight">
+              {list.title}
+              <Badge value={elements.length} className="ml1" />
+            </h3>
           </TruncateMarkup>
           <TruncateMarkup lines={3}>
             <div className="list-card-description">{list.description}</div>

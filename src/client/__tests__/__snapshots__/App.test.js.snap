@@ -427,12 +427,31 @@ exports[`renders without crashing 1`] = `
                   className="list-card-summary"
                 >
                   <react-truncate-markup
+                    ellipsis={
+                      <span>
+                        ...
+                        <Unknown
+                          className="ml1"
+                          value={4}
+                        />
+                      </span>
+                    }
                     lines={2}
                   >
                     <h3
                       className="list-card-title h-tight"
                     >
                       Goth du bør læse før eller siden
+                      <span
+                        className="badge number ml1"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        4
+                      </span>
                     </h3>
                   </react-truncate-markup>
                   <react-truncate-markup
@@ -501,15 +520,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -536,15 +556,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -594,12 +615,31 @@ exports[`renders without crashing 1`] = `
                   className="list-card-summary"
                 >
                   <react-truncate-markup
+                    ellipsis={
+                      <span>
+                        ...
+                        <Unknown
+                          className="ml1"
+                          value={2}
+                        />
+                      </span>
+                    }
                     lines={2}
                   >
                     <h3
                       className="list-card-title h-tight"
                     >
                       Bøger om bjørne - med meget lang titel
+                      <span
+                        className="badge number ml1"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        2
+                      </span>
                     </h3>
                   </react-truncate-markup>
                   <react-truncate-markup
@@ -668,15 +708,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -703,15 +744,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -755,12 +797,31 @@ exports[`renders without crashing 1`] = `
                   className="list-card-summary"
                 >
                   <react-truncate-markup
+                    ellipsis={
+                      <span>
+                        ...
+                        <Unknown
+                          className="ml1"
+                          value={1}
+                        />
+                      </span>
+                    }
                     lines={2}
                   >
                     <h3
                       className="list-card-title h-tight"
                     >
                       Goth du bør læse før eller siden
+                      <span
+                        className="badge number ml1"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        1
+                      </span>
                     </h3>
                   </react-truncate-markup>
                   <react-truncate-markup
@@ -829,15 +890,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -864,15 +926,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -909,12 +972,31 @@ exports[`renders without crashing 1`] = `
                   className="list-card-summary"
                 >
                   <react-truncate-markup
+                    ellipsis={
+                      <span>
+                        ...
+                        <Unknown
+                          className="ml1"
+                          value={0}
+                        />
+                      </span>
+                    }
                     lines={2}
                   >
                     <h3
                       className="list-card-title h-tight"
                     >
                       Bøger om bjørne - med meget lang titel
+                      <span
+                        className="badge number ml1"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        0
+                      </span>
                     </h3>
                   </react-truncate-markup>
                   <react-truncate-markup
@@ -983,15 +1065,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -1018,15 +1101,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -1063,12 +1147,31 @@ exports[`renders without crashing 1`] = `
                   className="list-card-summary"
                 >
                   <react-truncate-markup
+                    ellipsis={
+                      <span>
+                        ...
+                        <Unknown
+                          className="ml1"
+                          value={0}
+                        />
+                      </span>
+                    }
                     lines={2}
                   >
                     <h3
                       className="list-card-title h-tight"
                     >
                       Goth du bør læse før eller siden
+                      <span
+                        className="badge number ml1"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        0
+                      </span>
                     </h3>
                   </react-truncate-markup>
                   <react-truncate-markup
@@ -1137,15 +1240,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -1172,15 +1276,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -1217,12 +1322,31 @@ exports[`renders without crashing 1`] = `
                   className="list-card-summary"
                 >
                   <react-truncate-markup
+                    ellipsis={
+                      <span>
+                        ...
+                        <Unknown
+                          className="ml1"
+                          value={0}
+                        />
+                      </span>
+                    }
                     lines={2}
                   >
                     <h3
                       className="list-card-title h-tight"
                     >
                       Bøger om bjørne - med meget lang titel
+                      <span
+                        className="badge number ml1"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        0
+                      </span>
                     </h3>
                   </react-truncate-markup>
                   <react-truncate-markup
@@ -1291,15 +1415,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -1326,15 +1451,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -1371,12 +1497,31 @@ exports[`renders without crashing 1`] = `
                   className="list-card-summary"
                 >
                   <react-truncate-markup
+                    ellipsis={
+                      <span>
+                        ...
+                        <Unknown
+                          className="ml1"
+                          value={0}
+                        />
+                      </span>
+                    }
                     lines={2}
                   >
                     <h3
                       className="list-card-title h-tight"
                     >
                       Goth du bør læse før eller siden
+                      <span
+                        className="badge number ml1"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        0
+                      </span>
                     </h3>
                   </react-truncate-markup>
                   <react-truncate-markup
@@ -1445,15 +1590,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -1480,15 +1626,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -1525,12 +1672,31 @@ exports[`renders without crashing 1`] = `
                   className="list-card-summary"
                 >
                   <react-truncate-markup
+                    ellipsis={
+                      <span>
+                        ...
+                        <Unknown
+                          className="ml1"
+                          value={0}
+                        />
+                      </span>
+                    }
                     lines={2}
                   >
                     <h3
                       className="list-card-title h-tight"
                     >
                       Bøger om bjørne - med meget lang titel
+                      <span
+                        className="badge number ml1"
+                        style={
+                          Object {
+                            "fontWeight": "normal",
+                          }
+                        }
+                      >
+                        0
+                      </span>
                     </h3>
                   </react-truncate-markup>
                   <react-truncate-markup
@@ -1599,15 +1765,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
@@ -1634,15 +1801,16 @@ exports[`renders without crashing 1`] = `
                         }
                       />
                       <span
+                        className="number"
                         style={
                           Object {
                             "color": "white",
                             "fontSize": 11,
-                            "fontWeight": "bold",
+                            "fontWeight": "normal",
                             "left": 0,
                             "position": "absolute",
                             "textAlign": "center",
-                            "top": -3,
+                            "top": -2,
                             "width": "100%",
                           }
                         }
