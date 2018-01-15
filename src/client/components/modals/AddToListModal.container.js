@@ -15,9 +15,6 @@ const defaultState = {
 };
 
 class AddToListModal extends React.Component {
-  static defaultProps = {
-    show: true
-  };
   constructor(props) {
     super(props);
     const customLists = this.props.listState.lists.filter(
@@ -72,7 +69,6 @@ class AddToListModal extends React.Component {
     return (
       <Modal
         className="add-to-list--modal"
-        show={this.props.show}
         header={'GEM I LISTE'}
         onClose={this.close}
         onDone={this.onDone}
