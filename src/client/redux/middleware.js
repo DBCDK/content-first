@@ -256,18 +256,9 @@ async function openplatformLogin(state) {
 export const orderMiddleware = store => next => action => {
   switch (action.type) {
     case ORDER: {
-      const state = store.getState();
-      /*
-      if (
-        ['ordering', 'ordered'].includes(
-          _.get(state, ['orderReducer', action.pid, 'state'])
-        )
-      ) {
-        return;
-      }
-      */
-
       store.dispatch({type: OPEN_MODAL, modal: 'order'});
+
+      const state = store.getState();
 
       if (state.orderReducer.get('pickupBranches').size === 0) {
         (async () => {
@@ -304,6 +295,7 @@ export const orderMiddleware = store => next => action => {
           });
         })();
       }
+      return next(action);
     }
     case ORDER_START: {
       (async () => {

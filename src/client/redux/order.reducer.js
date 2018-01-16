@@ -7,6 +7,7 @@ const defaultState = Immutable.fromJS({
 
 export const ORDER = 'ORDER';
 export const AVAILABILITY = 'AVAILABILITY';
+export const SET_CURRENT_BRANCH = 'SET_CURRENT_BRANCH';
 export const ORDER_START = 'ORDER_START';
 export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const ORDER_FAILURE = 'ORDER_FAILURE';
@@ -16,7 +17,7 @@ const orderReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ORDER:
       return state
-        .setIn(['orders', action.book.pid], Immutable.fromJS(action.book))
+        .mergeIn(['orders', action.book.pid], Immutable.fromJS(action.book))
         .setIn(['orders', action.book.pid, 'orderState'], 'requested');
 
     case AVAILABILITY:
@@ -24,6 +25,9 @@ const orderReducer = (state = defaultState, action) => {
         ['orders', action.pid, 'availability'],
         Immutable.fromJS(action.availability)
       );
+
+    case SET_CURRENT_BRANCH:
+      return state.set('currentBranch', action.branch);
 
     case ORDER_START:
       return state.setIn(['orders', action.pid, 'orderState'], 'ordering');
