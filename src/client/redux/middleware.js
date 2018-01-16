@@ -48,6 +48,7 @@ import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
 import {
   ORDER,
+  ORDER_START,
   ORDER_SUCCESS,
   ORDER_FAILURE,
   PICKUP_BRANCHES,
@@ -242,6 +243,16 @@ export const searchMiddleware = store => next => action => {
   }
 };
 
+async function openplatformLogin(state) {
+  if (!openplatform.connected()) {
+    const token = state.profileReducer.user.openplatformToken;
+    if (!token) {
+      throw new Error('missing openplatformToken');
+    }
+    await openplatform.connect(token);
+  }
+}
+
 export const orderMiddleware = store => next => action => {
   switch (action.type) {
     case ORDER: {
@@ -256,6 +267,45 @@ export const orderMiddleware = store => next => action => {
       }
       */
 
+      store.dispatch({type: OPEN_MODAL, modal: 'order'});
+
+      if (state.orderReducer.get('pickupBranches').size === 0) {
+        (async () => {
+          await openplatformLogin(state);
+          const user = await openplatform.user();
+          const agency = user.agency;
+          if (state.orderReducer.get('pickupBranches').size === 0) {
+            store.dispatch({
+              type: PICKUP_BRANCHES,
+              branches: await openplatform.libraries({
+                agencyIds: [agency],
+                fields: ['branchId', 'branchName']
+              })
+            });
+          }
+        })();
+      }
+
+      if (
+        !state.orderReducer.getIn(
+          ['orders', action.book.pid, 'availability'],
+          false
+        )
+      ) {
+        (async () => {
+          await openplatformLogin(state);
+          const availability = await openplatform.availability({
+            pid: action.book.pid
+          });
+          store.dispatch({
+            type: AVAILABILITY,
+            pid: action.book.pid,
+            availability
+          });
+        })();
+      }
+    }
+    case ORDER_START: {
       (async () => {
         try {
           // make sure we are in a different timeslice,
@@ -263,42 +313,24 @@ export const orderMiddleware = store => next => action => {
           await new Promise(resolve => setTimeout(resolve, 0));
           store.dispatch({type: OPEN_MODAL, modal: 'order'});
 
-          const user = state.profileReducer.user;
-          if (!user.pickupBranch || !user.openplatformToken) {
-            throw new Error('missing pickupBranch or openplatformToken');
-          }
-          const branch = user.pickupBranch;
-          const openplatformToken = user.openplatformToken;
-          if (!openplatform.connected()) {
-            await openplatform.connect(openplatformToken);
-          }
-
-          const availability = await openplatform.availability({
-            pid: action.book.pid
-          });
-
-          if (state.orderReducer.get('pickupBranches').size === 0) {
-            const user = await openplatform.user();
-            const agency = user.agency || '710100';
-            if (state.orderReducer.get('pickupBranches').size === 0) {
-              store.dispatch({
-                type: PICKUP_BRANCHES,
-                branches: await openplatform.libraries({
-                  agencyIds: [agency],
-                  fields: ['branchId', 'branchName']
-                })
-              });
-            }
-          }
-          store.dispatch({
-            type: AVAILABILITY,
-            pid: action.book.pid,
-            availability
-          });
-
+          /*
           await openplatform.order({
             pids: [action.book.pid],
             library: branch
+          });
+          */
+
+          // TODO
+          // Dummy instead of order, to avoid sending orders to actual library during development
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          if (Math.random() < 0.1) {
+            throw new Error('pretending order error');
+          }
+          // /Dummy
+
+          store.dispatch({
+            type: ORDER_SUCCESS,
+            pid: action.book.pid
           });
         } catch (e) {
           // eslint-disable-next-line no-unused-vars
