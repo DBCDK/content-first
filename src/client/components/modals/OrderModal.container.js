@@ -30,52 +30,61 @@ export function OrderModal(props) {
             }}
           >
             {props.orders.map(book => {
-              const loading = !book.get('availability');
               let status = '';
-              if(book.getIn(['availability', 'holdingStatus', 'willLend']) === false) {
-                      status = <span style={{color: 'red'}}>
-                        Kan ikke bestilles<br />til dit bibliotek.
-                      </span>
-              }
-              if(!book.get('availability')) {
-                status = <span
-                        className="spinner"
-                        style={{
-                          display: 'inline-block',
-                          marginTop: 10,
-                          width: 30,
-                          height: 30
-                        }}
-                      />
-              }
-              return <div className="row short-list-page" key={book.get('pid')}>
-                <div
-                  className="col-xs-12"
-                  style={{
-                    paddingBottom: 5,
-                    paddingTop: 5,
-                    borderTop: '1px solid #ccc'
-                  }}
-                >
-                  <span
-                    className="book-cover"
-                    style={{height: 60, float: 'left', marginRight: 10}}
-                  >
-                    <BookCover book={book.toJS()} />
+              if (
+                book.getIn(['availability', 'holdingStatus', 'willLend']) ===
+                false
+              ) {
+                status = (
+                  <span style={{color: 'red'}}>
+                    Kan ikke bestilles<br />til dit bibliotek.
                   </span>
-                  <div
+                );
+              }
+              if (!book.get('availability')) {
+                status = (
+                  <span
+                    className="spinner"
                     style={{
                       display: 'inline-block',
-                      height: 60,
-                      float: 'right',
-                      marginRight: 10
+                      marginTop: 10,
+                      width: 30,
+                      height: 30
                     }}
-                  ><small>{status}</small>
+                  />
+                );
+              }
+              return (
+                <div className="row short-list-page" key={book.get('pid')}>
+                  <div
+                    className="col-xs-12"
+                    style={{
+                      paddingBottom: 5,
+                      paddingTop: 5,
+                      borderTop: '1px solid #ccc'
+                    }}
+                  >
+                    <span
+                      className="book-cover"
+                      style={{height: 60, float: 'left', marginRight: 10}}
+                    >
+                      <BookCover book={book.toJS()} />
+                    </span>
+                    <div
+                      style={{
+                        display: 'inline-block',
+                        height: 60,
+                        float: 'right',
+                        marginRight: 10
+                      }}
+                    >
+                      <small>{status}</small>
+                    </div>
+                    <div className="title">{book.get('title')}</div>
+                    <div className="creator">{book.get('creator')}</div>
                   </div>
-                  <div className="title">{book.get('title')}</div>
-                  <div className="creator">{book.get('creator')}</div>
                 </div>
-              </div>
+              );
             })}
           </div>
         </div>
@@ -89,7 +98,10 @@ export function OrderModal(props) {
             value={props.currentBranch}
           >
             {props.branches.map(branch => (
-              <option key={branch.get('branchId')} value={branch.get('branchId')}>
+              <option
+                key={branch.get('branchId')}
+                value={branch.get('branchId')}
+              >
                 {branch.getIn(['branchName', 0])}
               </option>
             ))}
@@ -108,7 +120,7 @@ export function mapStateToProps(state) {
 }
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeBranch: (o) => {
+    onChangeBranch: o => {
       dispatch({type: SET_CURRENT_BRANCH, branch: o.target.value});
     },
     onDone: () => {

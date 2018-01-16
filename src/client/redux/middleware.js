@@ -325,7 +325,7 @@ export const orderMiddleware = store => next => action => {
             pid: action.book.pid
           });
         } catch (e) {
-          // eslint-disable-next-line no-unused-vars
+          // eslint-disable-next-line
           console.log('Error on order:', e);
           store.dispatch({
             type: ORDER_FAILURE,
