@@ -10,7 +10,7 @@ const PrevArrow = function(props) {
       onClick={props.onClick}
     >
       <span
-        style={{color: '#f04e23', fontSize: 30}}
+        style={{color: '#f04e23', fontSize: 30, lineHeight: 0}}
         className="glyphicon glyphicon-chevron-left"
       />
     </div>
@@ -25,7 +25,7 @@ const NextArrow = function(props) {
       onClick={props.onClick}
     >
       <span
-        style={{color: '#f04e23', fontSize: 30}}
+        style={{color: '#f04e23', fontSize: 30, lineHeight: 0}}
         className="glyphicon glyphicon-chevron-right"
       />
     </div>
@@ -34,14 +34,14 @@ const NextArrow = function(props) {
 
 export default class Slider extends React.Component {
   render() {
-    var settings = {
+    const settings = {
       dots: true,
       arrows: true,
       infinite: false,
       speed: 500,
-      slidesToShow: 5,
-      slidesToScroll: 5,
+      slidesToScroll: 4,
       initialSlide: 0,
+      rows: 1,
       variableWidth: true,
       prevArrow: <PrevArrow />,
       nextArrow: <NextArrow />,
@@ -49,22 +49,20 @@ export default class Slider extends React.Component {
         {
           breakpoint: 1450,
           settings: {
-            slidesToShow: 4,
-            slidesToScroll: 4
+            slidesToScroll: 3
           }
         },
         {
           breakpoint: 1200,
           settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3
+            slidesToScroll: 2
           }
         },
         {
           breakpoint: 769,
           settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
+            // slidesToShow: 2,
+            // slidesToScroll: 2
           }
         },
         {
@@ -78,9 +76,10 @@ export default class Slider extends React.Component {
     };
     return (
       <SlickSlider {...settings}>
-        {this.props.children.map(l => {
-          return <Slide key={l.key}>{l}</Slide>;
-        })}
+        {this.props.children &&
+          this.props.children.map(l => {
+            return <Slide key={l.key}>{l}</Slide>;
+          })}
       </SlickSlider>
     );
   }
