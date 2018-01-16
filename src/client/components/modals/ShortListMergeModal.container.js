@@ -24,7 +24,6 @@ class ShortListMergeModal extends React.Component {
       <Modal
         className="short-list--merge-modal"
         header="HUSKELISTE"
-        show={true}
         onClose={this.approveMerge}
         onDone={this.approveMerge}
       >
