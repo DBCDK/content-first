@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import openplatform from 'openplatform';
 
 import {ON_BELT_REQUEST} from './belts.reducer';
@@ -47,7 +46,14 @@ import {
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {ORDER, ORDER_SUCCESS, ORDER_FAILURE} from './order.reducer';
+import {
+  ORDER,
+  ORDER_START,
+  ORDER_SUCCESS,
+  ORDER_FAILURE,
+  PICKUP_BRANCHES,
+  AVAILABILITY
+} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 import {saveLists, loadLists} from '../utils/requestLists';
 
@@ -237,42 +243,93 @@ export const searchMiddleware = store => next => action => {
   }
 };
 
+async function openplatformLogin(state) {
+  if (!openplatform.connected()) {
+    const token = state.profileReducer.user.openplatformToken;
+    if (!token) {
+      throw new Error('missing openplatformToken');
+    }
+    await openplatform.connect(token);
+  }
+}
+
 export const orderMiddleware = store => next => action => {
   switch (action.type) {
     case ORDER: {
+      store.dispatch({type: OPEN_MODAL, modal: 'order'});
+
       const state = store.getState();
+
+      if (state.orderReducer.get('pickupBranches').size === 0) {
+        (async () => {
+          await openplatformLogin(state);
+
+          let user;
+          try {
+            user = await openplatform.user();
+          } catch (e) {
+            // Dummy as we do not have proper logged in users yet
+            user = {agency: '710100'};
+          }
+          const agency = user.agency;
+
+          if (state.orderReducer.get('pickupBranches').size === 0) {
+            store.dispatch({
+              type: PICKUP_BRANCHES,
+              branches: await openplatform.libraries({
+                agencyIds: [agency],
+                fields: ['branchId', 'branchName']
+              })
+            });
+          }
+        })();
+      }
+
       if (
-        ['ordering', 'ordered'].includes(
-          _.get(state, ['orderReducer', action.pid, 'state'])
+        !state.orderReducer.getIn(
+          ['orders', action.book.pid, 'availability'],
+          false
         )
       ) {
-        return;
+        (async () => {
+          await openplatformLogin(state);
+          const availability = await openplatform.availability({
+            pid: action.book.pid
+          });
+          store.dispatch({
+            type: AVAILABILITY,
+            pid: action.book.pid,
+            availability
+          });
+        })();
       }
+      return next(action);
+    }
+    case ORDER_START: {
       (async () => {
         try {
-          const branch = '710110';
-          const openplatformToken = window.location.hash.slice(1);
-          if (!openplatform.connected()) {
-            await openplatform.connect(openplatformToken);
+          // Dummy instead of order, to avoid sending orders to
+          // actual library during development. TODO Should be:
+          // await openplatform.order({ pids: [action.book.pid], library: branch });
+          await new Promise(resolve =>
+            setTimeout(resolve, 500 + Math.random() * 2000)
+          );
+          if (Math.random() < 0.4) {
+            throw new Error('pretending order error');
           }
-          // TODO const result =
-          await openplatform.order({
-            pids: [action.pid],
-            library: branch
+
+          store.dispatch({
+            type: ORDER_SUCCESS,
+            pid: action.pid
           });
-          // TODO logging console.log('bestilling', result);
         } catch (e) {
-          // TODO console.log(e);
+          // eslint-disable-next-line
+          console.log('Error on order:', e);
           store.dispatch({
             type: ORDER_FAILURE,
             pid: action.pid
           });
-          return;
         }
-        store.dispatch({
-          type: ORDER_SUCCESS,
-          pid: action.pid
-        });
       })();
       return next(action);
     }

@@ -1,0 +1,312 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OrderModal render function renders initial request 1`] = `
+<Modal
+  className="add-to-list--modal"
+  doneText="JA TAK, BESTIL NU"
+  header="BESTIL"
+  onClose={undefined}
+  onDone={[Function]}
+>
+  <div>
+    <div
+      className="form-group"
+    >
+      <p
+        style={
+          Object {
+            "background": "#f66",
+            "textAlign": "center",
+          }
+        }
+      >
+        <strong>
+          <small>
+            Demo af bestil-UI, backend mangler, så bestillingerne går ikke igennem endnu.
+          </small>
+        </strong>
+      </p>
+      <strong>
+        Du er ved at bestille
+         3 bøger
+        :
+      </strong>
+      <div
+        style={
+          Object {
+            "background": "white",
+            "marginTop": 10,
+            "maxHeight": 250,
+            "overflowX": "hidden",
+            "overflowY": "scroll",
+            "scroll": "auto",
+          }
+        }
+      >
+        <div
+          className="row short-list-page"
+        >
+          <div
+            className="col-xs-12"
+            style={
+              Object {
+                "borderTop": "1px solid #ccc",
+                "paddingBottom": 5,
+                "paddingTop": 5,
+              }
+            }
+          >
+            <span
+              className="book-cover"
+              style={
+                Object {
+                  "float": "left",
+                  "height": 60,
+                  "marginRight": 10,
+                }
+              }
+            >
+              <BookCover
+                book={
+                  Object {
+                    "creator": "creator1",
+                    "pid": "pid1",
+                    "title": "title1",
+                  }
+                }
+              />
+            </span>
+            <div
+              style={
+                Object {
+                  "display": "inline-block",
+                  "float": "right",
+                  "height": 60,
+                  "marginRight": 10,
+                }
+              }
+            >
+              <small>
+                <span
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  <Spinner
+                    size={12}
+                    style={
+                      Object {
+                        "marginTop": 5,
+                      }
+                    }
+                  />
+                  <br />
+                  Checker 
+                  <br />
+                   tilgængelighed
+                </span>
+              </small>
+            </div>
+            <div
+              className="title"
+            >
+              title1
+            </div>
+            <div
+              className="creator"
+            >
+              creator1
+            </div>
+          </div>
+        </div>
+        <div
+          className="row short-list-page"
+        >
+          <div
+            className="col-xs-12"
+            style={
+              Object {
+                "borderTop": "1px solid #ccc",
+                "paddingBottom": 5,
+                "paddingTop": 5,
+              }
+            }
+          >
+            <span
+              className="book-cover"
+              style={
+                Object {
+                  "float": "left",
+                  "height": 60,
+                  "marginRight": 10,
+                }
+              }
+            >
+              <BookCover
+                book={
+                  Object {
+                    "creator": "creator2",
+                    "pid": "pid2",
+                    "title": "title2",
+                  }
+                }
+              />
+            </span>
+            <div
+              style={
+                Object {
+                  "display": "inline-block",
+                  "float": "right",
+                  "height": 60,
+                  "marginRight": 10,
+                }
+              }
+            >
+              <small>
+                <span
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  <Spinner
+                    size={12}
+                    style={
+                      Object {
+                        "marginTop": 5,
+                      }
+                    }
+                  />
+                  <br />
+                  Checker 
+                  <br />
+                   tilgængelighed
+                </span>
+              </small>
+            </div>
+            <div
+              className="title"
+            >
+              title2
+            </div>
+            <div
+              className="creator"
+            >
+              creator2
+            </div>
+          </div>
+        </div>
+        <div
+          className="row short-list-page"
+        >
+          <div
+            className="col-xs-12"
+            style={
+              Object {
+                "borderTop": "1px solid #ccc",
+                "paddingBottom": 5,
+                "paddingTop": 5,
+              }
+            }
+          >
+            <span
+              className="book-cover"
+              style={
+                Object {
+                  "float": "left",
+                  "height": 60,
+                  "marginRight": 10,
+                }
+              }
+            >
+              <BookCover
+                book={
+                  Object {
+                    "creator": "creator3",
+                    "pid": "pid3",
+                    "title": "title3",
+                  }
+                }
+              />
+            </span>
+            <div
+              style={
+                Object {
+                  "display": "inline-block",
+                  "float": "right",
+                  "height": 60,
+                  "marginRight": 10,
+                }
+              }
+            >
+              <small>
+                <span
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  <Spinner
+                    size={12}
+                    style={
+                      Object {
+                        "marginTop": 5,
+                      }
+                    }
+                  />
+                  <br />
+                  Checker 
+                  <br />
+                   tilgængelighed
+                </span>
+              </small>
+            </div>
+            <div
+              className="title"
+            >
+              title3
+            </div>
+            <div
+              className="creator"
+            >
+              creator3
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="form-group"
+      style={
+        Object {
+          "marginBottom": 0,
+        }
+      }
+    >
+      <label
+        htmlFor="pickupBranch"
+      >
+        Til afhentning på:
+      </label>
+      <select
+        className="form-control"
+        id="pickupBranch"
+        onChange={undefined}
+        style={
+          Object {
+            "width": "auto",
+          }
+        }
+        value={undefined}
+      />
+    </div>
+  </div>
+</Modal>
+`;

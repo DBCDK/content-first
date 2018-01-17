@@ -408,18 +408,21 @@ exports[`renders without crashing 1`] = `
                       className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51319079"
+                      style={undefined}
                     />
                     <img
                       alt=""
                       className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52930006"
+                      style={undefined}
                     />
                     <img
                       alt=""
                       className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52530423"
+                      style={undefined}
                     />
                   </div>
                 </div>
@@ -602,12 +605,14 @@ exports[`renders without crashing 1`] = `
                       className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51319079"
+                      style={undefined}
                     />
                     <img
                       alt=""
                       className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52930006"
+                      style={undefined}
                     />
                   </div>
                 </div>
@@ -790,6 +795,7 @@ exports[`renders without crashing 1`] = `
                       className="high-contrast list-card-cover"
                       onError={[Function]}
                       src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51319079"
+                      style={undefined}
                     />
                   </div>
                 </div>
