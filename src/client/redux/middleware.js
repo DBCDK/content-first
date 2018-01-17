@@ -263,8 +263,16 @@ export const orderMiddleware = store => next => action => {
       if (state.orderReducer.get('pickupBranches').size === 0) {
         (async () => {
           await openplatformLogin(state);
-          const user = await openplatform.user();
+
+          let user;
+          try {
+            user = await openplatform.user();
+          } catch (e) {
+            // Dummy as we do not have proper logged in users yet
+            user = {agency: '710100'};
+          }
           const agency = user.agency;
+
           if (state.orderReducer.get('pickupBranches').size === 0) {
             store.dispatch({
               type: PICKUP_BRANCHES,
@@ -300,25 +308,13 @@ export const orderMiddleware = store => next => action => {
     case ORDER_START: {
       (async () => {
         try {
-          // make sure we are in a different timeslice,
-          // such that dispatches comes after this dispatch.
-          await new Promise(resolve => setTimeout(resolve, 0));
-          store.dispatch({type: OPEN_MODAL, modal: 'order'});
-
-          /*
-          await openplatform.order({
-            pids: [action.book.pid],
-            library: branch
-          });
-          */
-
-          // TODO
-          // Dummy instead of order, to avoid sending orders to actual library during development
+          // Dummy instead of order, to avoid sending orders to
+          // actual library during development. TODO Should be:
+          // await openplatform.order({ pids: [action.book.pid], library: branch });
           await new Promise(resolve => setTimeout(resolve, 1000));
-          if (Math.random() < 0.1) {
+          if (Math.random() < 0.4) {
             throw new Error('pretending order error');
           }
-          // /Dummy
 
           store.dispatch({
             type: ORDER_SUCCESS,
@@ -331,12 +327,7 @@ export const orderMiddleware = store => next => action => {
             type: ORDER_FAILURE,
             pid: action.book.pid
           });
-          return;
         }
-        store.dispatch({
-          type: ORDER_SUCCESS,
-          pid: action.book.pid
-        });
       })();
       return next(action);
     }

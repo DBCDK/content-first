@@ -9,6 +9,7 @@ export const ORDER = 'ORDER';
 export const AVAILABILITY = 'AVAILABILITY';
 export const SET_CURRENT_BRANCH = 'SET_CURRENT_BRANCH';
 export const ORDER_START = 'ORDER_START';
+export const ORDER_DONE = 'ORDER_DONE';
 export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const ORDER_FAILURE = 'ORDER_FAILURE';
 export const PICKUP_BRANCHES = 'PICKUP_BRANCHES';
@@ -18,7 +19,7 @@ const orderReducer = (state = defaultState, action) => {
     case ORDER:
       return state
         .mergeIn(['orders', action.book.pid], Immutable.fromJS(action.book))
-        .setIn(['orders', action.book.pid, 'orderState'], 'requested');
+        .setIn(['orders', action.book.pid, 'ordering'], true);
 
     case AVAILABILITY:
       return state.setIn(
@@ -37,6 +38,11 @@ const orderReducer = (state = defaultState, action) => {
 
     case ORDER_FAILURE:
       return state.setIn(['orders', action.pid, 'orderState'], 'error');
+
+    case ORDER_DONE:
+      return state.update('orders', orders =>
+        orders.map(book => book.delete('ordering'))
+      );
 
     case PICKUP_BRANCHES:
       return state.set('pickupBranches', Immutable.fromJS(action.branches));

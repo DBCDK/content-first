@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Modal from './Modal.component';
 import BookCover from '../general/BookCover.component';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import {SET_CURRENT_BRANCH} from '../../redux/order.reducer';
+import {SET_CURRENT_BRANCH, ORDER_DONE} from '../../redux/order.reducer';
 
 export function OrderModal(props) {
   return (
@@ -113,7 +113,10 @@ export function OrderModal(props) {
 }
 export function mapStateToProps(state) {
   return {
-    orders: state.orderReducer.get('orders').valueSeq(),
+    orders: state.orderReducer
+      .get('orders')
+      .valueSeq()
+      .filter(book => book.get('ordering')),
     branches: state.orderReducer.get('pickupBranches'),
     currentBranch: state.orderReducer.get('currentBranch')
   };
@@ -124,9 +127,11 @@ export function mapDispatchToProps(dispatch) {
       dispatch({type: SET_CURRENT_BRANCH, branch: o.target.value});
     },
     onDone: () => {
+      dispatch({type: ORDER_DONE});
       dispatch({type: CLOSE_MODAL, modal: 'order'});
     },
     onClose: () => {
+      dispatch({type: ORDER_DONE});
       dispatch({type: CLOSE_MODAL, modal: 'order'});
     }
   };
