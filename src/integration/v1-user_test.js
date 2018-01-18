@@ -3,17 +3,26 @@
 
 const mock = require('fixtures/mock-server');
 const seeder = require('./seed-community');
-const {expect} = require('chai');
 const request = require('supertest');
+const nock = require('nock');
 const {
-  expectSuccess,
-  expectFailure,
-  expectValidate
-} = require('fixtures/output-verifiers');
-const _ = require('lodash');
+  arrangeCommunityServiceToRespondWithServerError_OnGet,
+  arrangeCommunityServiceToRespondWithServerError_OnPut,
+  expectError_CommunityConnectionProblem,
+  expectError_ExpiredLoginToken,
+  expectError_MalformedInput_AdditionalProperties,
+  expectError_MissingLoginToken,
+  expectError_UnknownLoginToken,
+  expectError_WrongContentType,
+  expectListsSeededOnTestStart,
+  expectSuccess_UserData,
+  expectSuccess_UserSeededOnTestStart,
+  sleep
+} = require('./test-commons');
 
 describe('User data', () => {
   const webapp = request(mock.external);
+  const location = '/v1/user';
 
   beforeEach(async () => {
     await mock.resetting();
@@ -26,417 +35,145 @@ describe('User data', () => {
     }
   });
 
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  describe('Public endpoint', () => {
-    const location = '/v1/user';
-
-    describe('GET /v1/user', () => {
-      it('should complain about user not logged in when no token', () => {
-        // Act.
-        return (
-          webapp
-            .get(location)
-            // Assert.
-            .expect(res => {
-              expectFailure(res.body, errors => {
-                expect(errors).to.have.length(1);
-                const error = errors[0];
-                expect(error.title).to.match(/user not logged in/i);
-                expect(error.detail).to.match(/missing login-token cookie/i);
-                expect(error).to.have.property('meta');
-                expect(error.meta).to.have.property('resource');
-                expect(error.meta.resource).to.equal(location);
-              });
-            })
-            .expect(403)
-        );
-      });
-
-      it('should complain about user not logged in when unknown token', () => {
-        // Arrange.
-        const loginToken = 'nofuture-nono-nono-nono-nofuture4you';
-        // Act.
-        return (
-          webapp
-            .get(location)
-            .set('cookie', `login-token=${loginToken}`)
-            // Assert.
-            .expect(res => {
-              expectFailure(res.body, errors => {
-                expect(errors).to.have.length(1);
-                const error = errors[0];
-                expect(error.title).to.match(/user not logged in/i);
-                expect(error.detail).to.match(/unknown login token/i);
-                expect(error).to.have.property('meta');
-                expect(error.meta).to.have.property('resource');
-                expect(error.meta.resource).to.equal(location);
-              });
-            })
-            .expect(403)
-        );
-      });
-
-      it('should complain about user not logged in when token has expired', () => {
-        // Arrange.
-        const loginToken = 'expired-login-token-seeded-on-test-start';
-        // Act.
-        return (
-          webapp
-            .get(location)
-            .set('cookie', `login-token=${loginToken}`)
-            // Assert.
-            .expect(res => {
-              expectFailure(res.body, errors => {
-                expect(errors).to.have.length(1);
-                const error = errors[0];
-                expect(error.title).to.match(/user not logged in/i);
-                expect(error.detail).to.match(/login token .+ has expired/i);
-                expect(error).to.have.property('meta');
-                expect(error.meta).to.have.property('resource');
-                expect(error.meta.resource).to.equal(location);
-              });
-            })
-            .expect(403)
-        );
-      });
-
-      it('should handle no connection to community');
-
-      it('should retrieve user data when logged in', async () => {
-        // Arrange.
-        const loginToken = 'a-valid-login-token-seeded-on-test-start';
-        await sleep(100); // Apperently Elvis needs time get out of bed.
-        // Act.
-        return (
-          webapp
-            .get(location)
-            .set('cookie', `login-token=${loginToken}`)
-            // Assert.
-            .expect(res => {
-              expectSuccess(res.body, (links, data) => {
-                expectValidate(links, 'schemas/user-links-out.json');
-                expect(links.self).to.equal(location);
-                expectValidate(data, 'schemas/user-data-out.json');
-                expectValidate(
-                  data.shortlist,
-                  'schemas/shortlist-data-out.json'
-                );
-                expectValidate(data.lists, 'schemas/lists-data-out.json');
-                expectValidate(data.profiles, 'schemas/profiles-data-out.json');
-                expect(data.name).to.deep.equal('Jens Godfredsen');
-                expect(data.shortlist).to.deep.equal([
-                  {
-                    pid: '870970-basis-22629344',
-                    origin: 'en-god-bog'
-                  }
-                ]);
-                expect(data.profiles).to.deep.equal([
-                  {
-                    name: 'Med på den værste',
-                    profile: {
-                      moods: [
-                        'Åbent fortolkningsrum',
-                        'frygtelig',
-                        'fantasifuld'
-                      ],
-                      genres: ['Brevromaner', 'Noveller'],
-                      authors: [
-                        'Hanne Vibeke Holst',
-                        'Anne Lise Marstrand Jørgensen'
-                      ],
-                      archetypes: ['hestepigen']
-                    }
-                  }
-                ]);
-                expect(data.lists).to.deep.include({
-                  id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
-                  type: 'SYSTEM_LIST',
-                  public: false,
-                  title: 'My List',
-                  description: 'A brand new list',
-                  list: [
-                    {
-                      pid: '870970-basis-22629344',
-                      description: 'Magic to the people'
-                    }
-                  ]
-                });
-                expect(data.lists).to.deep.include({
-                  id: 'fa4f3a3de3a34a188234ed298ecbe810',
-                  type: 'CUSTOM_LIST',
-                  public: false,
-                  title: 'Gamle Perler',
-                  description: 'Bøger man simpelthen må læse',
-                  list: [
-                    {
-                      pid: '870970-basis-47573974',
-                      description: 'Russisk forvekslingskomedie'
-                    }
-                  ]
-                });
-              });
-            })
-            .expect(200)
-        );
-      });
+  describe('GET /v1/user', () => {
+    it('should complain about user not logged in when no token', () => {
+      return webapp // force break
+        .get(location)
+        .expect(expectError_MissingLoginToken(location));
     });
 
-    describe('PUT /v1/user', () => {
-      const newUserInfo = {
-        name: 'Ole Henriksen',
-        shortlist: [
-          {
-            pid: 'already-seeded-pid-blendstrup-havelaagebogen',
-            origin: 'en-let-læst-bog'
-          },
-          {
-            pid: 'already-seeded-pid-martin-ridder',
-            origin: 'bibliotikarens-ugentlige-anbefaling'
+    it('should complain about user not logged in when unknown token', () => {
+      return webapp
+        .get(location)
+        .set('cookie', 'login-token=token-not-known-to-service')
+        .expect(expectError_UnknownLoginToken(location));
+    });
+
+    it('should complain about user not logged in when token has expired', () => {
+      return webapp
+        .get(location)
+        .set('cookie', 'login-token=expired-login-token')
+        .expect(expectError_ExpiredLoginToken(location));
+    });
+
+    describe('with community not responding properly', () => {
+      it('should handle no connection to community', () => {
+        arrangeCommunityServiceToRespondWithServerError_OnGet();
+        return webapp
+          .get(location)
+          .set('cookie', 'login-token=a-valid-login-token')
+          .expect(expectError_CommunityConnectionProblem);
+      });
+      afterEach(nock.cleanAll);
+    });
+
+    it('should retrieve user data when logged in', async () => {
+      await sleep(100); // Apparently Elvis needs time get out of bed.
+      return webapp
+        .get(location)
+        .set('cookie', 'login-token=a-valid-login-token')
+        .expect(expectSuccess_UserSeededOnTestStart);
+    });
+  });
+
+  describe('PUT /v1/user', () => {
+    const newUserInfo = {
+      name: 'Ole Henriksen',
+      shortlist: [
+        {
+          pid: 'already-seeded-pid-blendstrup-havelaagebogen',
+          origin: 'en-let-læst-bog'
+        },
+        {
+          pid: 'already-seeded-pid-martin-ridder',
+          origin: 'bibliotikarens-ugentlige-anbefaling'
+        }
+      ],
+      profiles: [
+        {
+          name: 'En tynd en',
+          profile: {
+            moods: ['frygtelig'],
+            authors: ['Carsten Jensen'],
+            genres: ['Skæbnefortællinger'],
+            archetypes: ['Goth']
           }
-        ],
-        lists: [
-          {
-            id: '98c5ff8c6e8f49978c857c23925dbe41',
-            type: 'CUSTOM_LIST',
-            title: 'Must read',
-            description: 'Interesting books',
-            list: [
-              {
-                pid: '870970-basis-51752341',
-                description: 'Exciting!'
-              }
-            ]
-          },
-          {
-            id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
-            type: 'SYSTEM_LIST',
-            title: 'My List',
-            description: 'A not so new list',
-            list: [
-              {
-                pid: '870970-basis-22629344',
-                description: 'Magic to the people'
-              },
-              {
-                pid: '870970-basis-93422624',
-                description: 'Mugglers'
-              }
-            ]
-          }
-        ],
-        profiles: [
-          {
-            name: 'En tynd en',
-            profile: {
-              moods: ['frygtelig'],
-              authors: ['Carsten Jensen'],
-              genres: ['Skæbnefortællinger'],
-              archetypes: ['Goth']
-            }
-          }
-        ]
-      };
+        }
+      ]
+    };
 
-      it('should complain about user not logged in when no token', () => {
-        // Act.
-        return (
-          webapp
-            .put(location)
-            .type('application/json')
-            .send(newUserInfo)
-            // Assert.
-            .expect(res => {
-              expectFailure(res.body, errors => {
-                expect(errors).to.have.length(1);
-                const error = errors[0];
-                expect(error.title).to.match(/user not logged in/i);
-                expect(error.detail).to.match(/missing login-token cookie/i);
-                expect(error).to.have.property('meta');
-                expect(error.meta).to.have.property('resource');
-                expect(error.meta.resource).to.equal(location);
-              });
-            })
-            .expect(403)
-        );
+    it('should complain about user not logged in when no token', () => {
+      return webapp
+        .put(location)
+        .type('application/json')
+        .send(newUserInfo)
+        .expect(expectError_MissingLoginToken(location));
+    });
+
+    it('should complain about user not logged in when unknown token', () => {
+      return webapp
+        .put(location)
+        .set('cookie', 'login-token=token-not-known-to-service')
+        .type('application/json')
+        .send(newUserInfo)
+        .expect(expectError_UnknownLoginToken(location));
+    });
+
+    it('should complain about user not logged in when token has expired', () => {
+      return webapp
+        .put(location)
+        .set('cookie', 'login-token=expired-login-token')
+        .type('application/json')
+        .send(newUserInfo)
+        .expect(expectError_ExpiredLoginToken(location));
+    });
+
+    it('should reject wrong content type', () => {
+      return webapp
+        .put(location)
+        .type('text/plain')
+        .send('broken')
+        .expect(expectError_WrongContentType);
+    });
+
+    it('should reject invalid content', () => {
+      return webapp
+        .put(location)
+        .type('application/json')
+        .send({foo: 'bar'})
+        .expect(expectError_MalformedInput_AdditionalProperties);
+    });
+
+    describe('with community not responding properly', () => {
+      it('should handle no connection to community', () => {
+        arrangeCommunityServiceToRespondWithServerError_OnPut();
+        return webapp
+          .put(location)
+          .set('cookie', 'login-token=a-valid-login-token')
+          .type('application/json')
+          .send(newUserInfo)
+          .expect(expectError_CommunityConnectionProblem);
       });
+      afterEach(nock.cleanAll);
+    });
 
-      it('should complain about user not logged in when unknown token', () => {
-        // Arrange.
-        const loginToken = 'nofuture-nono-nono-nono-nofuture4you';
-        // Act.
-        return (
-          webapp
-            .put(location)
-            .set('cookie', `login-token=${loginToken}`)
-            .type('application/json')
-            .send(newUserInfo)
-            // Assert.
+    it('should update valid content for logged-in user', () => {
+      // const expectedOutput = _.clone(newUserInfo);
+      return webapp
+        .put(location)
+        .set('cookie', 'login-token=a-valid-login-token')
+        .type('application/json')
+        .send(newUserInfo)
+        .expect(expectSuccess_UserData(location, newUserInfo))
+        .then(() => {
+          return webapp
+            .get(location)
+            .set('cookie', 'login-token=a-valid-login-token')
             .expect(res => {
-              expectFailure(res.body, errors => {
-                expect(errors).to.have.length(1);
-                const error = errors[0];
-                expect(error.title).to.match(/user not logged in/i);
-                expect(error.detail).to.match(/unknown login token/i);
-                expect(error).to.have.property('meta');
-                expect(error.meta).to.have.property('resource');
-                expect(error.meta.resource).to.equal(location);
-              });
-            })
-            .expect(403)
-        );
-      });
-
-      it('should complain about user not logged in when token has expired', () => {
-        // Arrange.
-        const loginToken = 'expired-login-token-seeded-on-test-start';
-        // Act.
-        return (
-          webapp
-            .put(location)
-            .set('cookie', `login-token=${loginToken}`)
-            .type('application/json')
-            .send(newUserInfo)
-            // Assert.
-            .expect(res => {
-              expectFailure(res.body, errors => {
-                expect(errors).to.have.length(1);
-                const error = errors[0];
-                expect(error.title).to.match(/user not logged in/i);
-                expect(error.detail).to.match(/login token .+ has expired/i);
-                expect(error).to.have.property('meta');
-                expect(error.meta).to.have.property('resource');
-                expect(error.meta.resource).to.equal(location);
-              });
-            })
-            .expect(403)
-        );
-      });
-
-      it('should reject wrong content type', () => {
-        // Act.
-        return (
-          webapp
-            .put(location)
-            .type('text/plain')
-            .send('broken')
-            // Assert.
-            .expect(400)
-            .expect(res => {
-              expectFailure(res.body, errors => {
-                expect(errors).to.have.length(1);
-                const error = errors[0];
-                expect(error.title).to.match(
-                  /user data.+provided as application\/json/i
-                );
-                expect(error).to.have.property('detail');
-                expect(error.detail).to.match(/text\/plain .*not supported/i);
-              });
-            })
-        );
-      });
-
-      it('should reject invalid content', () => {
-        // Act.
-        return (
-          webapp
-            .put(location)
-            .type('application/json')
-            .send({foo: 'bar'})
-            // Assert.
-            .expect(400)
-            .expect(res => {
-              expectFailure(res.body, errors => {
-                expect(errors).to.have.length(1);
-                const error = errors[0];
-                expect(error.title).to.match(/malformed user data/i);
-                expect(error).to.have.property('detail');
-                expect(error.detail).to.match(/does not adhere to schema/i);
-                expect(error).to.have.property('meta');
-                expect(error.meta).to.have.property('problems');
-                const problems = error.meta.problems;
-                expect(problems).to.be.an('array');
-                expect(problems).to.deep.include(
-                  'data has additional properties'
-                );
-              });
-            })
-        );
-      });
-
-      it('should handle no connection to community');
-
-      it('should update valid content for logged-in user', () => {
-        // Arrange.
-        const loginToken = 'a-valid-login-token-seeded-on-test-start';
-        const expectedOutput = _.clone(newUserInfo);
-        Object.assign(expectedOutput.lists[0], {public: false});
-        Object.assign(expectedOutput.lists[1], {public: false});
-        // Act.
-        return (
-          webapp
-            .put('/v1/user')
-            .send(newUserInfo)
-            .type('application/json')
-            .set('cookie', `login-token=${loginToken}`)
-            // Assert.
-            .expect(res => {
-              expectSuccess(res.body, (links, data) => {
-                expect(links).to.have.property('self');
-                expect(links.self).to.equal(location);
-                expectValidate(data, 'schemas/user-data-out.json');
-                expectValidate(
-                  data.shortlist,
-                  'schemas/shortlist-data-out.json'
-                );
-                expectValidate(data.lists, 'schemas/lists-data-out.json');
-                expectValidate(data.profiles, 'schemas/profiles-data-out.json');
-              });
-            })
-            .expect(200)
-            .then(() => {
-              // Act.
-              return (
-                webapp
-                  .get(location)
-                  .set('cookie', `login-token=${loginToken}`)
-                  // Assert.
-                  .expect(res => {
-                    expectSuccess(res.body, (links, data) => {
-                      expectValidate(links, 'schemas/user-links-out.json');
-                      expect(links.self).to.equal(location);
-                      expectValidate(data, 'schemas/user-data-out.json');
-                      expectValidate(
-                        data.shortlist,
-                        'schemas/shortlist-data-out.json'
-                      );
-                      expectValidate(data.lists, 'schemas/lists-data-out.json');
-                      expectValidate(
-                        data.profiles,
-                        'schemas/profiles-data-out.json'
-                      );
-                      expect(data.name).to.deep.equal(expectedOutput.name);
-                      expect(data.shortlist).to.deep.equal(
-                        expectedOutput.shortlist
-                      );
-                      expect(data.profiles).to.deep.equal(
-                        expectedOutput.profiles
-                      );
-                      expect(data.lists).to.deep.include(
-                        expectedOutput.lists[0]
-                      );
-                      expect(data.lists).to.deep.include(
-                        expectedOutput.lists[1]
-                      );
-                    });
-                  })
-                  .expect(200)
-              );
-            })
-        );
-      });
+              expectSuccess_UserData(location, newUserInfo)(res);
+              expectListsSeededOnTestStart(res.body.data.lists);
+            });
+        });
     });
   });
 });

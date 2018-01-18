@@ -2,39 +2,21 @@
 
 const request = require('superagent');
 const path = require('path');
-const schemaHealth = path.join(__dirname, './schemas/elvis-health-out.json');
-const schemaElvisCommunityData = path.join(
-  __dirname,
-  './schemas/elvis-community-data.json'
+const schemaHealth = absSchemaPath('elvis-health-out');
+const schemaElvisCommunityData = absSchemaPath('elvis-community-data');
+const schemaCommunityProfileIn = absSchemaPath('connector-profile-in');
+const schemaCommunityListIn = absSchemaPath('connector-list-in');
+const schemaCommunityUpdateListIn = absSchemaPath('connector-update-list-in');
+const schemaElvisProfileData = absSchemaPath('elvis-profile-data');
+const schemaElvisEntityQueryData = absSchemaPath('elvis-entity-query-data');
+const schemaElvisSimpleEntityQueryData = absSchemaPath(
+  'elvis-simple-entity-query-data'
 );
-const schemaCommunityProfileIn = path.join(
-  __dirname,
-  './schemas/connector-profile-in.json'
+const schemaElvisSingletonEntityQueryData = absSchemaPath(
+  'elvis-singleton-entity-query-data'
 );
-const schemaCommunityListIn = path.join(
-  __dirname,
-  './schemas/connector-list-in.json'
-);
-const schemaCommunityUpdateListIn = path.join(
-  __dirname,
-  './schemas/connector-update-list-in.json'
-);
-const schemaElvisProfileData = path.join(
-  __dirname,
-  './schemas/elvis-profile-data.json'
-);
-const schemaElvisEntityQueryData = path.join(
-  __dirname,
-  './schemas/elvis-entity-query-data.json'
-);
-const schemaElvisSimpleEntityQueryData = path.join(
-  __dirname,
-  './schemas/elvis-simple-entity-query-data.json'
-);
-const schemaElvisSuccessOut = path.join(
-  __dirname,
-  './schemas/elvis-success-out.json'
-);
+const schemaElvisEntityGetData = absSchemaPath('elvis-entity-get-data');
+const schemaElvisSuccessOut = absSchemaPath('elvis-success-out');
 const constants = require('./community-constants')();
 const {validating, validatingInput} = require('__/json');
 const _ = require('lodash');
@@ -46,12 +28,6 @@ class Community {
   //
   // Public methods.
   //
-
-  print(msg, document) {
-    console.log(msg); // eslint-disable-line no-console
-    const util = require('util');
-    console.log(util.inspect(document, {depth: 3})); // eslint-disable-line no-console
-  }
 
   constructor(config, logger) {
     this.config = config;
@@ -226,8 +202,98 @@ class Community {
           body,
           schemaElvisEntityQueryData
         );
-        return resolve(data.List);
+        const lists = _.map(data.List, entry => {
+          return {
+            data: _.omit(entry, 'id'),
+            links: {
+              self: `/v1/lists/${entry.id}`
+            }
+          };
+        });
+        return resolve(lists);
       } catch (error) {
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  gettingListByEntityId(entityId) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const entityUrl = await me.gettingEntityIdUrl(entityId);
+        const {body} = await request.get(entityUrl);
+        const data = await me.extractingCommunityResult(
+          body,
+          schemaElvisEntityGetData
+        );
+        const list = me.fromCommunityList(data);
+        return resolve(list);
+      } catch (error) {
+        if (error.status === 404) {
+          return reject({
+            status: 404,
+            title: 'List not found',
+            detail: `List ${entityId} does not exist or has been deleted`
+          });
+        }
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  gettingListEntityByUuid(uuid) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const queryUrl = await me.gettingQueryUrl();
+        const query = {
+          Entity: {
+            type: 'list',
+            'attributes.uuid': uuid
+          },
+          Include: {
+            entity_id: 'id',
+            type: 'attributes.type',
+            title: 'title',
+            description: 'contents',
+            profile_id: 'owner_id',
+            uuid: 'attributes.uuid',
+            list: 'attributes.list',
+            public: 'attributes.public'
+          }
+        };
+        const {body} = await request.post(queryUrl).send(query);
+        const data = await me.extractingCommunityResult(
+          body,
+          schemaElvisSingletonEntityQueryData
+        );
+        const result = {
+          data: _.omit(data, ['uuid', 'profile_id', 'entity_id']),
+          links: {
+            self: `/v1/lists/${data.uuid}`,
+            uuid,
+            profile_id: data.profile_id,
+            entity_id: data.entity_id
+          }
+        };
+        return resolve(result);
+      } catch (error) {
+        if (error.status === 400) {
+          const body = error.response.body;
+          if (body.errors && body.errors[0] && body.errors[0].detail) {
+            const detail = body.errors[0].detail;
+            if (detail.match(/no result/i)) {
+              return reject({
+                status: 404,
+                title: 'List not found',
+                detail: `List ${uuid} does not exist or has been deleted`
+              });
+            }
+          }
+        }
         me.interpretAndLogResponseError(error);
         return reject(error);
       }
@@ -270,7 +336,12 @@ class Community {
         const entityUrl = await me.gettingPostEntityUrl();
         const response = await request.post(entityUrl).send(ownedList);
         await validatingInput(response.body, schemaElvisSuccessOut);
-        return resolve(response.body);
+        const data = await me.extractingCommunityResult(
+          response.body,
+          schemaElvisEntityGetData
+        );
+        const list = me.fromCommunityList(data);
+        return resolve(list);
       } catch (error) {
         me.interpretAndLogResponseError(error);
         return reject(error);
@@ -287,12 +358,41 @@ class Community {
         return reject(error);
       }
       try {
-        const entityUrl = await me.gettingPutEntityUrl(entityId);
+        const entityUrl = await me.gettingEntityIdUrl(entityId);
         const update = Object.assign({modified_by: profileId}, document);
+        const response = await request.put(entityUrl).send(update);
+        await validatingInput(response.body, schemaElvisSuccessOut);
+        const data = await me.extractingCommunityResult(
+          response.body,
+          schemaElvisEntityGetData
+        );
+        const list = me.fromCommunityList(data);
+        return resolve(list);
+      } catch (error) {
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  deletingListEntity(profileId, entityId) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const entityUrl = await me.gettingEntityIdUrl(entityId);
+        // A deletion is done by only sending a modified_by.
+        const update = {modified_by: profileId};
         const response = await request.put(entityUrl).send(update);
         await validatingInput(response.body, schemaElvisSuccessOut);
         return resolve(response.body);
       } catch (error) {
+        if (error.status === 400) {
+          if (error.response && error.response.text) {
+            if (error.response.text.match(/entity.+not belong to community/i)) {
+              return reject(`List ${entityId} does not exist`);
+            }
+          }
+        }
         me.interpretAndLogResponseError(error);
         return reject(error);
       }
@@ -323,7 +423,12 @@ class Community {
         return resolve(toReturn);
       } catch (error) {
         if (error.status === 404) {
-          return reject(error.response.body);
+          if (error.response) {
+            if (error.response.body) {
+              return reject(error.response.body);
+            }
+          }
+          return reject(error);
         }
         me.interpretAndLogResponseError(error);
         return reject(error);
@@ -385,10 +490,11 @@ class Community {
   }
 
   gettingQueryUrl() {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiQuery(communityId);
-      return `${this.config.url}${endpoint}`;
-    });
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiQuery(communityId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
   creatingCommunity() {
@@ -410,32 +516,54 @@ class Community {
     });
   }
 
+  fromCommunityList(document) {
+    return {
+      data: {
+        type: document.attributes.type,
+        title: document.title,
+        description: document.contents,
+        list: document.attributes.list,
+        public: document.attributes.public
+      },
+      links: {
+        self: `/v1/lists/${document.attributes.uuid}`,
+        uuid: document.attributes.uuid,
+        profile_id: document.owner_id,
+        entity_id: document.id
+      }
+    };
+  }
+
   gettingProfileIdUrl(profileId) {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiProfileId(communityId, profileId);
-      return `${this.config.url}${endpoint}`;
-    });
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiProfileId(communityId, profileId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
   gettingPostProfileUrl() {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiPostProfile(communityId);
-      return `${this.config.url}${endpoint}`;
-    });
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiPostProfile(communityId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
   gettingPostEntityUrl() {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiPostEntity(communityId);
-      return `${this.config.url}${endpoint}`;
-    });
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiPostEntity(communityId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
-  gettingPutEntityUrl(entityId) {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiEntityId(communityId, entityId);
-      return `${this.config.url}${endpoint}`;
-    });
+  gettingEntityIdUrl(entityId) {
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiEntityId(communityId, entityId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
   transformTastesToFrontendProfiles(tastes) {
@@ -446,6 +574,10 @@ class Community {
       };
     });
   }
+}
+
+function absSchemaPath(schema) {
+  return path.join(__dirname, 'schemas', schema);
 }
 
 module.exports = Community;

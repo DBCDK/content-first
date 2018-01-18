@@ -8,6 +8,17 @@ const json = require('./json');
 const path = require('path');
 
 describe('json', () => {
+  describe('toLoggableString', () => {
+    it('should return a string as-is', () => {
+      expect(json.toLoggableString('Hello\nwörld')).to.equal('Hello world');
+    });
+    it('should flatten JSON', () => {
+      expect(
+        json.toLoggableString({Hello: [{world: ' - no answer '}]})
+      ).to.equal('{"Hello":[{"world":" - no answer "}]}');
+    });
+  });
+
   describe('nicifyJsonValidationErrors', () => {
     it('should return a list of human-readable problems', () => {
       expect(
@@ -25,6 +36,7 @@ describe('json', () => {
       ]);
     });
   });
+
   describe('validatingInput', () => {
     const schema = path.resolve('src/fixtures/schemas/status-out.json');
     it('should reject document that does not adhere to schema', () => {

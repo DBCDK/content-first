@@ -43,6 +43,13 @@ To manually migrate the database:
 
     $ npm run db-migrate
 
+If upgrade fails during development, then you can start from scratch by
+
+    $ docker kill contentfirst_database_1
+    $ docker system prune
+    $ docker-compose up -d
+    $ npm run db-migrate
+
 ## Node setup
 
 The [node setup](../tools/setup-node-env.sh) creates symbolic links

@@ -172,7 +172,7 @@ describe('Community connector', () => {
     });
 
     const userInfo = require('./fixtures/frontend-user-info-out.json');
-    const {profile} = transform.transformFrontendUserToProfileAndEntities(
+    const {profile} = transform.contentFirstUserToCommunityProfileAndEntities(
       userInfo
     );
 
@@ -197,7 +197,7 @@ describe('Community connector', () => {
     });
 
     const userInfo = require('./fixtures/frontend-user-info-out.json');
-    const {lists} = transform.transformFrontendUserToProfileAndEntities(
+    const {lists} = transform.contentFirstUserToCommunityProfileAndEntities(
       userInfo
     );
 
@@ -213,7 +213,9 @@ describe('Community connector', () => {
       const profileId = 123;
       arrangePostEntityReturnsTrivialEntity();
       const input = lists[0];
-      return sut.creatingListEntity(profileId, input);
+      return sut
+        .creatingListEntity(profileId, input)
+        .then(expectListWithExtraInfo);
     });
   });
 
@@ -225,7 +227,7 @@ describe('Community connector', () => {
     });
 
     const userInfo = require('./fixtures/frontend-user-info-out.json');
-    const {lists} = transform.transformFrontendUserToProfileAndEntities(
+    const {lists} = transform.contentFirstUserToCommunityProfileAndEntities(
       userInfo
     );
 
@@ -252,6 +254,31 @@ describe('Community connector', () => {
       arrangePutEntityToReturnTrivialEntity(entityId);
       const input = lists[0];
       return sut.updatingListEntity(123, entityId, input);
+    });
+  });
+
+  describe('deletingListEntity', () => {
+    it('should detect no connection', () => {
+      const entityId = 5432;
+      arrangePutEntityToRespondItIsDead(entityId);
+      return expect(sut.deletingListEntity(123, entityId))
+        .to.be.rejected // force break
+        .then(expectCommunityIsDead);
+    });
+
+    it('should complain about non-existing entry', () => {
+      const entityId = 5432;
+      arrangePutEntityToRespondNotBelongToCommunity(entityId);
+      return expect(sut.deletingListEntity(123, entityId))
+        .to.be.rejected // force break
+        .then(expectEntityNotFound);
+    });
+
+    it('should delete an existing entity', () => {
+      const profileId = 124;
+      const entityId = 5433;
+      arrangeListEntityToBeDeleted(profileId, entityId);
+      return sut.deletingListEntity(profileId, entityId);
     });
   });
 
@@ -293,6 +320,58 @@ describe('Community connector', () => {
       return sut
         .gettingAllListEntitiesOwnedByProfileId(123)
         .then(expectUserDataToHoldAllEntities);
+    });
+  });
+
+  describe('gettingListByEntityId', () => {
+    it('should detect no connection', () => {
+      const entityId = 1234;
+      arrangeGetEntityToRespondItIsDead(entityId);
+      return expect(sut.gettingListByEntityId(entityId))
+        .to.be.rejected // force break
+        .then(expectCommunityIsDead);
+    });
+
+    it('should return an existing list', () => {
+      const entityId = 1234;
+      const profileId = 123;
+      arrangeGetEntityToRespondWithPrivateEntity(profileId, entityId);
+      return sut // force break
+        .gettingListByEntityId(entityId)
+        .then(expectResponseToHoldList(profileId, entityId));
+    });
+
+    it('should handle non-existing list', () => {
+      const entityId = 1234;
+      arrangeGetEntityToRespondNotFound(entityId);
+      return expect(sut.gettingListByEntityId(entityId))
+        .to.be.rejected // force break
+        .then(expectError_ListNotFound);
+    });
+  });
+
+  describe('gettingListEntityByUuid', () => {
+    const uuid = '5fd81fcd17ca4b01a66dfe47a5f6efac';
+
+    it('should detect no connection', () => {
+      arrangeCommunityQueryToRespondItIsDead();
+      return expect(sut.gettingListEntityByUuid(uuid))
+        .to.be.rejectedWith(Error)
+        .then(expectCommunityIsDead);
+    });
+
+    it('should return an existing list', () => {
+      arrangeQueryToReturnList(uuid);
+      return sut // force break
+        .gettingListEntityByUuid(uuid)
+        .then(expectResponseToHoldList);
+    });
+
+    it('should handle non-existing list', () => {
+      arrangeQueryToReturnListNotFound();
+      return expect(sut.gettingListEntityByUuid(uuid))
+        .to.be.rejected // force break
+        .then(expectError_ListNotFound);
     });
   });
 
@@ -429,6 +508,15 @@ describe('Community connector', () => {
       .replyWithError('Nope, profile PUT is dead');
   }
 
+  function arrangeGetEntityToRespondItIsDead(entityId) {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiEntityId(communityId, entityId);
+    mockedSubservice = nock(config.url)
+      .get(endpoint)
+      .replyWithError('Nope, entity GET is dead');
+  }
+
   function expectNotFound(document) {
     expect(document.status === 404);
     expect(document).to.match(/not found/i);
@@ -449,6 +537,29 @@ describe('Community connector', () => {
             tastes: []
           }
         }
+      });
+  }
+
+  function arrangeGetEntityToRespondNotFound(entityId) {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiEntityId(communityId, entityId);
+    mockedSubservice = nock(config.url)
+      .get(endpoint)
+      .reply(404, {
+        errors: [
+          {
+            status: 404,
+            code: '404',
+            title: 'Entity does not exist',
+            meta: {
+              resource: `/v1/community/${communityId}/entity/${entityId}`
+            },
+            details: {
+              problem: `Entity ${entityId} does not exist`
+            }
+          }
+        ]
       });
   }
 
@@ -514,6 +625,72 @@ describe('Community connector', () => {
       .replyWithError('Nope, entity POST is dead');
   }
 
+  function arrangePutEntityToRespondNotBelongToCommunity(entityId) {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiEntityId(communityId, entityId);
+    mockedSubservice = nock(config.url)
+      .put(endpoint)
+      .reply(400, {
+        errors: [
+          {
+            status: 400,
+            code: '400',
+            title: 'Entity does not belong to community',
+            meta: {
+              resource: '/v1/community/536/entity/1116'
+            },
+            details: {
+              problem: 'Entity 1116 does not belong to community 536'
+            }
+          }
+        ]
+      });
+  }
+
+  function arrangeListEntityToBeDeleted(profileId, entityId) {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiEntityId(communityId, entityId);
+    mockedSubservice = nock(config.url)
+      .put(endpoint)
+      .reply(200, {
+        links: {
+          self: `/v1/community/1/entity/${entityId}`
+        },
+        data: {
+          id: entityId,
+          deleted_epoch: 1515603325,
+          deleted_by: profileId,
+          community_id: 1,
+          owner_id: profileId,
+          start_epoch: null,
+          end_epoch: null,
+          entity_ref: null,
+          type: 'list',
+          title: 'Deleted list',
+          contents: 'Noget jeg gerne vil glemme',
+          attributes: {
+            list: [
+              {
+                pid: '870970-basis-47573974',
+                description: 'Russisk forvekslingskomedie'
+              }
+            ],
+            type: 'CUSTOM_LIST',
+            uuid: '23e5d3928c2b4291986d1c3a43b1762c',
+            public: false
+          },
+          log: null
+        }
+      });
+  }
+
+  function expectEntityNotFound(document) {
+    expect(document).to.match(/does not exist/i);
+    expectCommunityOkAndMockedServerDone();
+  }
+
   function expectMalformedList(document) {
     const problems = document.meta.problems;
     expect(problems).to.include('field type is required');
@@ -539,10 +716,38 @@ describe('Community connector', () => {
       .reply(201, {
         data: {
           id: entityId,
+          modified_epoch: 1516115217,
+          type: 'list',
+          owner_id: 123,
           community_id: communityId,
-          attributes: {}
+          title: 'Brand New List',
+          contents: 'A too long\ndescription with several\nlines',
+          attributes: {
+            type: 'WEIRD_INTERNAL_TYPE',
+            public: false,
+            uuid: 'd7c39653d7bf45be8a09c0c589cf56aa',
+            list: [{pid: '1234-abc-5678', desription: 'a book'}]
+          }
         }
       });
+  }
+
+  function expectListWithExtraInfo(document) {
+    expect(document).to.deep.equal({
+      data: {
+        type: 'WEIRD_INTERNAL_TYPE',
+        title: 'Brand New List',
+        description: 'A too long\ndescription with several\nlines',
+        public: false,
+        list: [{pid: '1234-abc-5678', desription: 'a book'}]
+      },
+      links: {
+        self: '/v1/lists/d7c39653d7bf45be8a09c0c589cf56aa',
+        uuid: 'd7c39653d7bf45be8a09c0c589cf56aa',
+        profile_id: 123,
+        entity_id: 1234
+      }
+    });
   }
 
   function arrangeGetProfileToReturnNotFound(profileId) {
@@ -625,30 +830,34 @@ describe('Community connector', () => {
       ],
       lists: [
         {
-          type: 'SYSTEM_LIST',
-          title: 'Another list',
-          description: 'An oldie but goodie',
-          id: 'c98c23925f857c5dbe41f8c6e8f49978',
-          public: false,
-          list: [
-            {
-              pid: '870970-basis-53188931',
-              description: 'Whoa, what a story'
-            }
-          ]
+          data: {
+            type: 'SYSTEM_LIST',
+            title: 'Another list',
+            description: 'An oldie but goodie',
+            public: false,
+            list: [
+              {
+                pid: '870970-basis-53188931',
+                description: 'Whoa, what a story'
+              }
+            ]
+          },
+          links: {self: '/v1/lists/c98c23925f857c5dbe41f8c6e8f49978'}
         },
         {
-          type: 'CUSTOM_LIST',
-          title: 'My list',
-          description: 'A brand new list',
-          id: '98c5ff8c6e8f49978c857c23925dbe41',
-          public: false,
-          list: [
-            {
-              pid: '870970-basis-22629344',
-              description: 'Magic to the people'
-            }
-          ]
+          data: {
+            type: 'CUSTOM_LIST',
+            title: 'My list',
+            description: 'A brand new list',
+            public: false,
+            list: [
+              {
+                pid: '870970-basis-22629344',
+                description: 'Magic to the people'
+              }
+            ]
+          },
+          links: {self: '/v1/lists/98c5ff8c6e8f49978c857c23925dbe41'}
         }
       ]
     });
@@ -658,32 +867,65 @@ describe('Community connector', () => {
   function expectUserDataToHoldAllEntities(document) {
     expect(document).to.deep.equal([
       {
-        id: 'c98c23925f857c5dbe41f8c6e8f49978',
-        title: 'Another list',
-        description: 'An oldie but goodie',
-        list: [
-          {
-            pid: '870970-basis-53188931',
-            description: 'Whoa, what a story'
-          }
-        ],
-        public: false,
-        type: 'SYSTEM_LIST'
+        data: {
+          title: 'Another list',
+          description: 'An oldie but goodie',
+          list: [
+            {
+              pid: '870970-basis-53188931',
+              description: 'Whoa, what a story'
+            }
+          ],
+          public: false,
+          type: 'SYSTEM_LIST'
+        },
+        links: {
+          self: '/v1/lists/c98c23925f857c5dbe41f8c6e8f49978'
+        }
       },
       {
-        id: '98c5ff8c6e8f49978c857c23925dbe41',
-        title: 'My list',
-        description: 'A brand new list',
-        list: [
-          {
-            pid: '870970-basis-22629344',
-            description: 'Magic to the people'
-          }
-        ],
-        public: false,
-        type: 'CUSTOM_LIST'
+        data: {
+          title: 'My list',
+          description: 'A brand new list',
+          list: [
+            {
+              pid: '870970-basis-22629344',
+              description: 'Magic to the people'
+            }
+          ],
+          public: false,
+          type: 'CUSTOM_LIST'
+        },
+        links: {
+          self: '/v1/lists/98c5ff8c6e8f49978c857c23925dbe41'
+        }
       }
     ]);
+  }
+
+  function expectResponseToHoldList(profileId, entityId) {
+    return document => {
+      expect(document).to.deep.equal({
+        data: {
+          type: 'SYSTEM_LIST',
+          title: 'My List',
+          description: 'A brand new list',
+          list: [
+            {
+              pid: '870970-basis-22629344',
+              description: 'Magic to the people'
+            }
+          ],
+          public: false
+        },
+        links: {
+          self: '/v1/lists/fc8fbafab2a94bfaae5f84b1d5bfd480',
+          uuid: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+          entity_id: entityId,
+          profile_id: profileId
+        }
+      });
+    };
   }
 
   function arrangeCommunityQueryToRespondUserIdNotFound() {
@@ -729,7 +971,7 @@ describe('Community connector', () => {
     const endpoint = constants.apiEntityId(communityId, entityId);
     mockedSubservice = nock(config.url)
       .put(endpoint)
-      .replyWithError('Nope, profile PUT is dead');
+      .replyWithError('Nope, entity PUT is dead');
   }
 
   function arrangePutEntityToRespondNotFound(entityId) {
@@ -759,8 +1001,103 @@ describe('Community connector', () => {
       .reply(200, {
         data: {
           id: entityId,
+          modified_epoch: 1516115217,
+          type: 'list',
+          owner_id: 123,
           community_id: communityId,
-          attributes: {}
+          title: 'Brand New List',
+          contents: 'A too long\ndescription with several\nlines',
+          attributes: {
+            type: 'WEIRD_INTERNAL_TYPE',
+            public: false,
+            uuid: 'd7c39653d7bf45be8a09c0c589cf56aa',
+            list: [{pid: '1234-abc-5678', desription: 'a book'}]
+          }
+        }
+      });
+  }
+
+  function arrangeQueryToReturnList(uuid) {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiQuery(communityId);
+    mockedSubservice = nock(config.url)
+      .post(endpoint)
+      .reply(200, {
+        data: {
+          entity_id: 1,
+          type: 'SYSTEM_LIST',
+          title: 'My List',
+          description: 'A brand new list',
+          profile_id: 1,
+          uuid: uuid,
+          list: [
+            {
+              pid: '870970-basis-22629344',
+              description: 'Magic to the people'
+            }
+          ],
+          public: false
+        }
+      });
+  }
+
+  function arrangeQueryToReturnListNotFound() {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiQuery(communityId);
+    mockedSubservice = nock(config.url)
+      .post(endpoint)
+      .reply(400, {
+        errors: [
+          {
+            status: 400,
+            code: '400',
+            title: 'Error during execution of query',
+            detail: 'No result from singleton selector',
+            meta: {}
+          }
+        ]
+      });
+  }
+
+  function arrangeGetEntityToRespondWithPrivateEntity(profileId, entityId) {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiEntityId(communityId, entityId);
+    mockedSubservice = nock(config.url)
+      .get(endpoint)
+      .reply(200, {
+        links: {
+          self: `/v1/community/${communityId}/entity/${entityId}`
+        },
+        data: {
+          id: entityId,
+          created_epoch: 1515409049,
+          deleted_epoch: null,
+          modified_epoch: 1515409049,
+          modified_by: null,
+          deleted_by: null,
+          community_id: communityId,
+          owner_id: profileId,
+          start_epoch: null,
+          end_epoch: null,
+          entity_ref: null,
+          type: 'list',
+          title: 'My List',
+          contents: 'A brand new list',
+          attributes: {
+            list: [
+              {
+                pid: '870970-basis-22629344',
+                description: 'Magic to the people'
+              }
+            ],
+            type: 'SYSTEM_LIST',
+            uuid: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+            public: false
+          },
+          log: null
         }
       });
   }
@@ -771,7 +1108,15 @@ describe('Community connector', () => {
   }
 
   function expectUserIdNotFound(document) {
+    // TODO: align with expectError_ListNotFound
     expect(document).to.match(/user.+not found/i);
+    expectCommunityOkAndMockedServerDone();
+  }
+
+  function expectError_ListNotFound(document) {
+    expect(document.status).to.equal(404);
+    expect(document.title).to.match(/not found/i);
+    expect(document.detail).to.match(/does not exist.+or.+deleted/i);
     expectCommunityOkAndMockedServerDone();
   }
 

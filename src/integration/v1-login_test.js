@@ -16,6 +16,7 @@ const {
   expectFailure,
   expectValidate
 } = require('fixtures/output-verifiers');
+const {expectSuccess_UserSeededOnTestStart, sleep} = require('./test-commons');
 const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 
 describe('User login', () => {
@@ -34,82 +35,13 @@ describe('User login', () => {
     }
   });
 
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
   describe('GET /v1/login', () => {
     it('should retrieve existing user data on valid cookie', async () => {
-      await sleep(100); // Apperently Elvis needs time get out of bed.
-      // Act.
-      return (
-        webapp
-          .get('/v1/login')
-          .set('cookie', 'login-token=a-valid-login-token-seeded-on-test-start')
-          // Assert.
-          .expect(res => {
-            expectSuccess(res.body, (links, data) => {
-              expectValidate(links, 'schemas/user-links-out.json');
-              expectValidate(data, 'schemas/user-data-out.json');
-              expectValidate(data.shortlist, 'schemas/shortlist-data-out.json');
-              expectValidate(data.lists, 'schemas/lists-data-out.json');
-              expectValidate(data.profiles, 'schemas/profiles-data-out.json');
-              expect(data.name).to.deep.equal('Jens Godfredsen');
-              expect(data.shortlist).to.deep.equal([
-                {
-                  pid: '870970-basis-22629344',
-                  origin: 'en-god-bog'
-                }
-              ]);
-              expect(data.profiles).to.deep.equal([
-                {
-                  name: 'Med på den værste',
-                  profile: {
-                    moods: [
-                      'Åbent fortolkningsrum',
-                      'frygtelig',
-                      'fantasifuld'
-                    ],
-                    genres: ['Brevromaner', 'Noveller'],
-                    authors: [
-                      'Hanne Vibeke Holst',
-                      'Anne Lise Marstrand Jørgensen'
-                    ],
-                    archetypes: ['hestepigen']
-                  }
-                }
-              ]);
-              expect(data.lists).to.deep.include({
-                id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
-                type: 'SYSTEM_LIST',
-                public: false,
-                title: 'My List',
-                description: 'A brand new list',
-                list: [
-                  {
-                    pid: '870970-basis-22629344',
-                    description: 'Magic to the people'
-                  }
-                ]
-              });
-              expect(data.lists).to.deep.include({
-                id: 'fa4f3a3de3a34a188234ed298ecbe810',
-                type: 'CUSTOM_LIST',
-                public: false,
-                title: 'Gamle Perler',
-                description: 'Bøger man simpelthen må læse',
-                list: [
-                  {
-                    pid: '870970-basis-47573974',
-                    description: 'Russisk forvekslingskomedie'
-                  }
-                ]
-              });
-            });
-            expect(mock.getErrorLog().args).to.have.length(0);
-          })
-          .expect(200)
-      );
+      await sleep(100); // Apparently Elvis needs time get out of bed.
+      return webapp
+        .get('/v1/login')
+        .set('cookie', 'login-token=a-valid-login-token')
+        .expect(expectSuccess_UserSeededOnTestStart);
     });
 
     it('should redirect to remote login page on no cookie', () => {
@@ -190,7 +122,7 @@ describe('User login', () => {
       return (
         webapp
           .get('/v1/login')
-          .set('cookie', 'login-token=expired-login-token-seeded-on-test-start')
+          .set('cookie', 'login-token=expired-login-token')
           // Assert.
           .expect(res => {
             expectSuccess(res.body, (links, data) => {
@@ -244,11 +176,7 @@ describe('User login', () => {
       // Arrange.
       const token = 'f67837cd-f8f8-40fc-b80c-c2f2cff86944';
       const id = 1234;
-      const hejmdal = arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId(
-        '1234567890',
-        token,
-        id
-      );
+      const hejmdal = arrangeLoginServiceToReturnUser('1234567890', token, id);
       let loginToken;
       // Act.
       return (
@@ -293,11 +221,7 @@ describe('User login', () => {
       // Arrange.
       const token = '3b709b2a-37bb-4556-8021-e86b56e8f571';
       const id = 4321;
-      const hejmdal = arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId(
-        knownUserId,
-        token,
-        id
-      );
+      const hejmdal = arrangeLoginServiceToReturnUser(knownUserId, token, id);
       let loginToken;
       // Act.
       const location = `/hejmdal?token=${token}&id=${id}`;
@@ -314,79 +238,14 @@ describe('User login', () => {
             loginToken = cookieParts[1];
           })
           .then(() => {
-            // Act.
             return webapp
               .get('/v1/login')
               .set('cookie', `login-token=${loginToken}`)
               .expect(res => {
-                expectSuccess(res.body, (links, data) => {
-                  expectValidate(links, 'schemas/user-links-out.json');
-                  expectValidate(data, 'schemas/user-data-out.json');
-                  expectValidate(
-                    data.shortlist,
-                    'schemas/shortlist-data-out.json'
-                  );
-                  expectValidate(data.lists, 'schemas/lists-data-out.json');
-                  expectValidate(
-                    data.profiles,
-                    'schemas/profiles-data-out.json'
-                  );
-                  expect(data.name).to.deep.equal('Jens Godfredsen');
-                  expect(data.shortlist).to.deep.equal([
-                    {
-                      pid: '870970-basis-22629344',
-                      origin: 'en-god-bog'
-                    }
-                  ]);
-                  expect(data.profiles).to.deep.equal([
-                    {
-                      name: 'Med på den værste',
-                      profile: {
-                        moods: [
-                          'Åbent fortolkningsrum',
-                          'frygtelig',
-                          'fantasifuld'
-                        ],
-                        genres: ['Brevromaner', 'Noveller'],
-                        authors: [
-                          'Hanne Vibeke Holst',
-                          'Anne Lise Marstrand Jørgensen'
-                        ],
-                        archetypes: ['hestepigen']
-                      }
-                    }
-                  ]);
-                  expect(data.lists).to.deep.include({
-                    id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
-                    type: 'SYSTEM_LIST',
-                    public: false,
-                    title: 'My List',
-                    description: 'A brand new list',
-                    list: [
-                      {
-                        pid: '870970-basis-22629344',
-                        description: 'Magic to the people'
-                      }
-                    ]
-                  });
-                  expect(data.lists).to.deep.include({
-                    id: 'fa4f3a3de3a34a188234ed298ecbe810',
-                    type: 'CUSTOM_LIST',
-                    public: false,
-                    title: 'Gamle Perler',
-                    description: 'Bøger man simpelthen må læse',
-                    list: [
-                      {
-                        pid: '870970-basis-47573974',
-                        description: 'Russisk forvekslingskomedie'
-                      }
-                    ]
-                  });
-                });
+                expectSuccess_UserSeededOnTestStart(res);
                 expect(hejmdal.isDone());
                 expect(mock.getErrorLog().args).to.have.length(0);
-              })
-              .expect(200);
+              });
           })
       );
     });
@@ -395,10 +254,7 @@ describe('User login', () => {
       // Arrange.
       const token = 'b4c4ba3a-f251-4632-8535-a1c86730855c';
       const id = 5724;
-      const hejmdal = arrangeLoginServiceToReplyWIthErrorOnTokenAndId(
-        token,
-        id
-      );
+      const hejmdal = arrangeLoginServiceToReplyWithError(token, id);
       // Act.
       return (
         webapp
@@ -417,11 +273,7 @@ describe('User login', () => {
     // Helpers.
     //
 
-    function arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId(
-      userId,
-      token,
-      id
-    ) {
+    function arrangeLoginServiceToReturnUser(userId, token, id) {
       const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
       return nock(config.login.url)
         .get(slug)
@@ -453,7 +305,7 @@ describe('User login', () => {
       expect(s_ExpiresIn).to.equal(s_OneMonth);
     }
 
-    function arrangeLoginServiceToReplyWIthErrorOnTokenAndId(token, id) {
+    function arrangeLoginServiceToReplyWithError(token, id) {
       const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
       return nock(config.login.url)
         .get(slug)

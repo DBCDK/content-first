@@ -9,10 +9,6 @@
       "required": true,
       "type": "array"
     },
-    "lists": {
-      "required": true,
-      "type": "array"
-    },
     "profiles": {
       "required": true,
       "type": "array"

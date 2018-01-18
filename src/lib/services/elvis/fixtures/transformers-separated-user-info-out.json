@@ -15,33 +15,17 @@
       "tastes": [
         {
           "name": "En tynd en",
-          "moods": [
-            "frygtelig"
-          ],
-          "authors": [
-            "Carsten Jensen"
-          ],
-          "genres": [
-            "Skæbnefortællinger"
-          ],
-          "archetypes": [
-            "Goth"
-          ]
+          "moods": ["frygtelig"],
+          "authors": ["Carsten Jensen"],
+          "genres": ["Skæbnefortællinger"],
+          "archetypes": ["Goth"]
         },
         {
           "name": "Ny profile",
-          "moods": [
-            "dramatisk"
-          ],
-          "authors": [
-            "Helge Sander"
-          ],
-          "genres": [
-            "Skæbnefortællinger"
-          ],
-          "archetypes": [
-            "Goth"
-          ]
+          "moods": ["dramatisk"],
+          "authors": ["Helge Sander"],
+          "genres": ["Skæbnefortællinger"],
+          "archetypes": ["Goth"]
         }
       ]
     }
@@ -70,7 +54,7 @@
       "attributes": {
         "uuid": "dcbf8e7fb978459497fe4e08fc0fb9f4",
         "type": "CUSTOM_LIST",
-        "public": false,
+        "public": true,
         "list": [
           {
             "pid": "870970-basis-53188931",

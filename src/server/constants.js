@@ -15,6 +15,9 @@ const constants = {
   covers: {
     table: 'covers'
   },
+  lists: {
+    table: 'lists'
+  },
   pages: {
     start: '/',
     loggedOut: '/',

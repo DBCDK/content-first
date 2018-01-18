@@ -3,6 +3,7 @@
 module.exports = {
   creatingUser,
   findingUserByUserIdHash,
+  findingUserIdTroughLoginToken,
   gettingListsFromToken,
   gettingUser,
   gettingUserFromToken,
@@ -19,9 +20,15 @@ const cookieTable = constants.cookies.table;
 const community = require('server/community');
 const transform = require('__/services/elvis/transformers');
 const _ = require('lodash');
+const logger = require('server/logger');
 
 function gettingUser(userId) {
-  return community.gettingUserByProfileId(userId);
+  return community
+    .gettingUserByProfileId(userId) // force break
+    .catch(error => {
+      logger.log.debug(error);
+      return Promise.reject(error);
+    });
 }
 
 function findingUserByUserIdHash(userIdHash) {
@@ -44,6 +51,114 @@ function creatingUser(userIdHash) {
     .then(profile => {
       return profile.id;
     });
+}
+
+function removingLoginToken(token) {
+  return knex(cookieTable)
+    .where('cookie', token)
+    .del();
+}
+
+function gettingUserFromToken(req) {
+  return new Promise(async (resolve, reject) => {
+    let userId;
+    try {
+      userId = await findingUserIdTroughLoginToken(req);
+    } catch (error) {
+      return reject(error);
+    }
+    try {
+      const user = await gettingUser(userId);
+      return resolve(user);
+    } catch (error) {
+      let meta = error;
+      if (meta.response) {
+        meta = meta.response;
+      }
+      if (meta.error) {
+        meta = meta.error;
+      }
+      return reject({
+        status: 503,
+        title: 'Community-service connection problem',
+        detail: 'Community service is not reponding properly',
+        meta
+      });
+    }
+  });
+}
+
+/**
+ * Promise of looking up userId from login token in HTTP request.
+ * @param  {Request} req      HTTP Request object.
+ * @param  {string}  location  Defaults to req.baseUrl
+ * @return {Promise} Resolves to Community Profile ID, or rejects with status, title, etc
+ */
+function findingUserIdTroughLoginToken(req, location = null) {
+  const url = location || req.baseUrl;
+  return new Promise(async (resolve, reject) => {
+    const loginToken = req.cookies['login-token'];
+    if (!loginToken) {
+      return reject({
+        status: 403,
+        title: 'User not logged in',
+        detail: 'Missing login-token cookie',
+        meta: {resource: url}
+      });
+    }
+    let userId;
+    try {
+      userId = await gettingUserIdFromLoginToken(loginToken);
+    } catch (error) {
+      if (error.status === 404) {
+        return reject({
+          status: 403,
+          title: 'User not logged in',
+          detail: `Unknown login token ${loginToken}`,
+          meta: {resource: url}
+        });
+      }
+      return reject({
+        status: 403,
+        title: 'User not logged in',
+        detail: `Login token ${loginToken} has expired`,
+        meta: {resource: url}
+      });
+    }
+    return resolve(userId);
+  });
+}
+
+async function updatingUser(userId, partialData) {
+  const {profile} = transform.contentFirstUserToCommunityProfileAndEntities(
+    partialData
+  );
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (
+        profile.name ||
+        profile.attributes.shortlist ||
+        profile.attributes.tastes
+      ) {
+        await community.updatingProfileWithShortlistAndTastes(userId, profile);
+      }
+      return resolve();
+    } catch (error) {
+      let meta = error;
+      if (meta.response) {
+        meta = meta.response;
+      }
+      if (meta.error) {
+        meta = meta.error;
+      }
+      return reject({
+        status: 503,
+        title: 'Community-service connection problem',
+        detail: 'Community service is not reponding properly',
+        meta
+      });
+    }
+  });
 }
 
 function gettingUserIdFromLoginToken(token) {
@@ -78,70 +193,6 @@ function gettingUserIdFromLoginToken(token) {
         });
       });
   });
-}
-
-function removingLoginToken(token) {
-  return knex(cookieTable)
-    .where('cookie', token)
-    .del();
-}
-
-function gettingUserFromToken(req) {
-  return new Promise(async (resolve, reject) => {
-    const location = req.baseUrl;
-    const loginToken = req.cookies['login-token'];
-    if (!loginToken) {
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: 'Missing login-token cookie',
-        meta: {resource: location}
-      });
-    }
-    let userId;
-    try {
-      userId = await gettingUserIdFromLoginToken(loginToken);
-    } catch (error) {
-      if (error.status === 404) {
-        return reject({
-          status: 403,
-          title: 'User not logged in',
-          detail: `Unknown login token ${loginToken}`,
-          meta: {resource: location}
-        });
-      }
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: `Login token ${loginToken} has expired`,
-        meta: {resource: location}
-      });
-    }
-    try {
-      const user = await gettingUser(userId);
-      return resolve(user);
-    } catch (error) {
-      const returnedError = {meta: {resource: location}};
-      Object.assign(returnedError, error);
-      return reject(returnedError);
-    }
-  });
-}
-
-async function updatingUser(userId, partialData) {
-  const {profile, lists} = transform.transformFrontendUserToProfileAndEntities(
-    partialData
-  );
-  if (
-    profile.name ||
-    profile.attributes.shortlist ||
-    profile.attributes.tastes
-  ) {
-    await community.updatingProfileWithShortlistAndTastes(userId, profile);
-  }
-  if (lists) {
-    await updatingTransformedLists(userId, lists);
-  }
 }
 
 function gettingListsFromToken(req) {
@@ -198,10 +249,12 @@ function gettingListsFromToken(req) {
   });
 }
 
+// TODO: delete?
+
 function updatingLists(userId, lists) {
   return updatingTransformedLists(
     userId,
-    transform.transformListsToLists(lists)
+    transform.contentFirstListsToCommunityEntities(lists)
   );
 }
 
