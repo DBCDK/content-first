@@ -143,15 +143,17 @@ describe('Lists', () => {
     });
 
     it('should return Not Found for a list not existing in community', () => {
+      const location = '/v1/lists/ffffffffffffffffffffffffffffffff';
       return webapp
-        .get('/v1/lists/ffffffffffffffffffffffffffffffff')
-        .expect(expectError_ListNotFound);
+        .get(location) // force break
+        .expect(expectError_ListNotFound(location));
     });
 
     it('should return Not Found for a list deleted from community', () => {
+      const location = `/v1/lists/${seeder.deletedListUuid()}`;
       return webapp
-        .get(`/v1/lists/${seeder.deletedListUuid()}`)
-        .expect(expectError_ListNotFound);
+        .get(location) // force break
+        .expect(expectError_ListNotFound(location));
     });
 
     describe('on public list', () => {
@@ -218,10 +220,11 @@ describe('Lists', () => {
       });
 
       it('should restrict access to other users private lists', () => {
+        const location = `/v1/lists/${seeder.uncachedPrivateListUuid()}`;
         return webapp
-          .get(`/v1/lists/${seeder.uncachedPrivateListUuid()}`)
+          .get(location)
           .set('cookie', 'login-token=another-valid-login-token')
-          .expect(expectError_AccessDeniedPrivateList)
+          .expect(expectError_AccessDeniedPrivateList(location))
           .then(() => expectListToBeCached(seeder.uncachedPrivateListUuid()));
       });
 
@@ -329,7 +332,7 @@ describe('Lists', () => {
         .type('application/json')
         .send(newList)
         .set('cookie', 'login-token=a-valid-login-token')
-        .expect(expectError_ListNotFound);
+        .expect(expectError_ListNotFound(location));
     });
 
     it('should create new list', () => {
@@ -436,17 +439,19 @@ describe('Lists', () => {
     });
 
     it('should return Not Found for a list not existing in community', () => {
+      const location = '/v1/lists/ffffffffffffffffffffffffffffffff';
       return webapp
-        .delete('/v1/lists/ffffffffffffffffffffffffffffffff')
+        .delete(location)
         .set('cookie', 'login-token=a-valid-login-token')
-        .expect(expectError_ListNotFound);
+        .expect(expectError_ListNotFound(location));
     });
 
     it('should complain when the list belongs to another user', () => {
+      const location = `/v1/lists/${seeder.uncachedPrivateListUuid()}`;
       return webapp
-        .delete(`/v1/lists/${seeder.uncachedPrivateListUuid()}`)
+        .delete(location)
         .set('cookie', 'login-token=another-valid-login-token')
-        .expect(expectError_AccessDeniedPrivateList)
+        .expect(expectError_AccessDeniedPrivateList(location))
         .then(() => expectListToBeCached(seeder.uncachedPrivateListUuid()));
     });
 

@@ -100,7 +100,8 @@ router
         return next({
           status: 404,
           title: 'List not found',
-          detail: `List ${uuid} does not exist`
+          detail: `List ${uuid} does not exist`,
+          meta: {resource: location}
         });
       }
       if (profileId !== userId) {
@@ -115,32 +116,15 @@ router
       frontendList.id = uuid;
       if (!entityId) {
         try {
-          const listPlusCommunityInfo = await creatingList(
-            profileId,
-            frontendList
-          );
-          const listWithoutCommunityInfo = _.omit(listPlusCommunityInfo, [
-            'links.uuid',
-            'links.profile_id',
-            'links.entity_id'
-          ]);
-          return res.status(200).json(listWithoutCommunityInfo);
+          const list = await creatingList(profileId, frontendList);
+          return res.status(200).json(list);
         } catch (error) {
           return next(error);
         }
       }
       try {
-        const listPlusCommunityInfo = await updatingList(
-          profileId,
-          entityId,
-          frontendList
-        );
-        const listWithoutCommunityInfo = _.omit(listPlusCommunityInfo, [
-          'links.uuid',
-          'links.profile_id',
-          'links.entity_id'
-        ]);
-        return res.status(200).json(listWithoutCommunityInfo);
+        const list = await updatingList(profileId, entityId, frontendList);
+        return res.status(200).json(list);
       } catch (error) {
         return next(error);
       }

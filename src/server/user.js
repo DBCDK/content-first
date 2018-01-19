@@ -9,7 +9,6 @@ module.exports = {
   gettingUserFromToken,
   gettingUserIdFromLoginToken,
   removingLoginToken,
-  updatingLists,
   updatingUser
 };
 
@@ -19,7 +18,6 @@ const constants = require('server/constants')();
 const cookieTable = constants.cookies.table;
 const community = require('server/community');
 const transform = require('__/services/elvis/transformers');
-const _ = require('lodash');
 const logger = require('server/logger');
 
 function gettingUser(userId) {
@@ -247,47 +245,4 @@ function gettingListsFromToken(req) {
       });
     }
   });
-}
-
-// TODO: delete?
-
-function updatingLists(userId, lists) {
-  return updatingTransformedLists(
-    userId,
-    transform.contentFirstListsToCommunityEntities(lists)
-  );
-}
-
-async function updatingTransformedLists(userId, lists) {
-  const alreadyExist = await community.gettingIdsOfAllListEntitiesOwnedByUserWithProfileId(
-    userId
-  );
-  const {
-    toCreate,
-    toUpdate,
-    toDelete
-  } = transform.divideListsIntoCreateUpdateAndDeleteForProfileId(
-    lists,
-    alreadyExist,
-    userId
-  );
-  let chain = Promise.resolve();
-  for (const document of toCreate) {
-    chain = chain.then(() => {
-      return community.creatingListEntity(userId, document);
-    });
-  }
-  for (const document of toUpdate) {
-    chain = chain.then(() => {
-      const entityId = document.id;
-      const listWithoutId = _.omit(document, 'id');
-      return community.updatingListEntity(userId, entityId, listWithoutId);
-    });
-  }
-  for (const entityId of toDelete) {
-    chain = chain.then(() => {
-      return community.updatingListEntity(userId, entityId, {});
-    });
-  }
-  await chain;
 }

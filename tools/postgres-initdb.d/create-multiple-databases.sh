@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## Used inside Postgres Docker image to create multiple databases.
+
 set -e
 set -u
 

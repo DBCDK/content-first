@@ -16,6 +16,7 @@ const listTable = constants.lists.table;
 const community = require('server/community');
 const transform = require('__/services/elvis/transformers');
 const uuidv4 = require('uuid/v4');
+const _ = require('lodash');
 
 function deletingListByEntityId(userId, entityId) {
   return new Promise(async (resolve, reject) => {
@@ -43,7 +44,7 @@ function cachingListEntityId(listWithCommunityInfo) {
       .where('uuid', listWithCommunityInfo.links.uuid)
       .update({community_entity_id: listWithCommunityInfo.links.entity_id})
       .then(() => {
-        return resolve(listWithCommunityInfo);
+        return resolve(stripOffCommunityLinks(listWithCommunityInfo));
       })
       .catch(error => {
         reject({
@@ -55,6 +56,14 @@ function cachingListEntityId(listWithCommunityInfo) {
   });
 }
 
+function stripOffCommunityLinks(listPlusCommunityInfo) {
+  return _.omit(listPlusCommunityInfo, [
+    'links.uuid',
+    'links.profile_id',
+    'links.entity_id'
+  ]);
+}
+
 function updatingList(profileId, entityId, frontendListWithUuid) {
   const communityList = transform.contentFirstListToCommunityEntity(
     frontendListWithUuid
@@ -62,7 +71,9 @@ function updatingList(profileId, entityId, frontendListWithUuid) {
   return new Promise((resolve, reject) => {
     community
       .updatingListEntity(profileId, entityId, communityList)
-      .then(resolve)
+      .then(listWithCommunityInfo => {
+        return resolve(stripOffCommunityLinks(listWithCommunityInfo));
+      })
       .catch(error => {
         let meta = error;
         if (meta.response) {
@@ -88,6 +99,10 @@ function gettingListByUuid(uuid) {
       const res = await fetchingEntityAndProfileIdFromListCache(uuid);
       entityId = res.entityId;
     } catch (error) {
+      if (!error.meta) {
+        error.meta = {};
+      }
+      error.meta.resource = `/v1/lists/${uuid}`;
       reject(error);
     }
     let listPlusCommunityInfo;
@@ -100,6 +115,10 @@ function gettingListByUuid(uuid) {
         await puttingListInCache(links.uuid, links.profile_id, links.entity_id);
       }
     } catch (error) {
+      if (!error.meta) {
+        error.meta = {};
+      }
+      error.meta.resource = `/v1/lists/${uuid}`;
       return reject(error);
     }
     return resolve(listPlusCommunityInfo);

@@ -312,25 +312,35 @@ function expectError_MalformedInput_AdditionalProperties(response) {
   expect(response.status).to.equal(400);
 }
 
-// TODO: should test url also.
-function expectError_ListNotFound(response) {
-  expectFailure(response.body, errors => {
-    expect(errors).to.have.length(1);
-    const error = errors[0];
-    expect(error.title).to.match(/not found/i);
-  });
-  expect(response.status).to.equal(404);
+function expectError_ListNotFound(uri) {
+  expectLocation(uri);
+  return response => {
+    expectFailure(response.body, errors => {
+      expect(errors).to.have.length(1);
+      const error = errors[0];
+      expect(error.title).to.match(/not found/i);
+      expect(error).to.have.property('meta');
+      expect(error.meta).to.have.property('resource');
+      expect(error.meta.resource).to.equal(uri);
+    });
+    expect(response.status).to.equal(404);
+  };
 }
 
-// TODO: should test url also.
-function expectError_AccessDeniedPrivateList(response) {
-  expectFailure(response.body, errors => {
-    expect(errors).to.have.length(1);
-    const error = errors[0];
-    expect(error.title).to.match(/access denied/i);
-    expect(error.detail).to.match(/private list/i);
-  });
-  expect(response.status).to.equal(403);
+function expectError_AccessDeniedPrivateList(uri) {
+  expectLocation(uri);
+  return response => {
+    expectFailure(response.body, errors => {
+      expect(errors).to.have.length(1);
+      const error = errors[0];
+      expect(error.title).to.match(/access denied/i);
+      expect(error.detail).to.match(/private list/i);
+      expect(error).to.have.property('meta');
+      expect(error.meta).to.have.property('resource');
+      expect(error.meta.resource).to.equal(uri);
+    });
+    expect(response.status).to.equal(403);
+  };
 }
 
 function expectError_AccessDeniedOtherUser(uri) {
