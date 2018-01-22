@@ -1,13 +1,8 @@
 /* eslint-env mocha */
-/* eslint-disable no-unused-expressions */
 'use strict';
 
 const mock = require('fixtures/mock-server');
 const seeder = require('./seed-community');
-const config = require('server/config');
-const knex = require('knex')(config.db);
-const constants = require('server/constants')();
-const listTable = constants.lists.table;
 const request = require('supertest');
 const nock = require('nock');
 const {expect} = require('chai');
@@ -17,6 +12,7 @@ const {
   arrangeCommunityServiceToRespondWithServerError_OnGet,
   arrangeCommunityServiceToRespondWithServerError_OnPost,
   arrangeCommunityServiceToRespondWithServerError_OnPut,
+  arrangingEmptyListCache,
   expectError_AccessDeniedOtherUser,
   expectError_AccessDeniedPrivateList,
   expectError_CommunityConnectionProblem,
@@ -26,6 +22,7 @@ const {
   expectError_MissingLoginToken,
   expectError_UnknownLoginToken,
   expectError_WrongContentType,
+  expectListToBeCached,
   expectLocation,
   expectSuccess_CachedListSeededOnTestStart,
   expectSuccess_ListsSeededOnTestStart,
@@ -90,7 +87,8 @@ describe('Lists', () => {
       return webapp
         .get(location)
         .set('cookie', 'login-token=a-valid-login-token')
-        .expect(expectSuccess_ListsSeededOnTestStart);
+        .expect(expectSuccess_ListsSeededOnTestStart)
+        .then(() => expectListToBeCached(seeder.uncachedPrivateListUuid()));
     });
   });
 
@@ -474,21 +472,7 @@ describe('Lists', () => {
   //
   // HELPERS
   //
-  function arrangingEmptyListCache() {
-    return knex.raw(`truncate table ${listTable}`);
-  }
-
   function arrangingListToBeDeleted(uri) {
     return webapp.delete(uri);
-  }
-
-  async function expectListToBeCached(uuid) {
-    const rows = await knex(listTable)
-      .where('uuid', uuid)
-      .select();
-    expect(rows).to.have.length(1, 'List not found in cache');
-    const row = rows[0];
-    expect(row.community_profile_id).to.not.be.null;
-    expect(row.community_entity_id).to.not.be.null;
   }
 });

@@ -190,7 +190,9 @@ class Community {
           Entities: {type: 'list', owner_id: profileId},
           Limit: 999,
           Include: {
-            id: 'attributes.uuid',
+            entity_id: 'id',
+            profile_id: 'owner_id',
+            uuid: 'attributes.uuid',
             public: 'attributes.public',
             type: 'attributes.type',
             title: 'title',
@@ -204,9 +206,12 @@ class Community {
         );
         const lists = _.map(data.List, entry => {
           return {
-            data: _.omit(entry, 'id'),
+            data: _.omit(entry, 'uuid', 'profile_id', 'entity_id'),
             links: {
-              self: `/v1/lists/${entry.id}`
+              self: `/v1/lists/${entry.uuid}`,
+              uuid: entry.uuid,
+              profile_id: entry.profile_id,
+              entity_id: entry.entity_id
             }
           };
         });
@@ -417,9 +422,6 @@ class Community {
             profile.attributes.tastes
           )
         };
-        toReturn.lists = await me.gettingAllListEntitiesOwnedByProfileId(
-          profileId
-        );
         return resolve(toReturn);
       } catch (error) {
         if (error.status === 404) {
@@ -430,6 +432,55 @@ class Community {
           }
           return reject(error);
         }
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  gettingPublicLists(limit, offset = 0) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const queryUrl = await me.gettingQueryUrl();
+        const {body} = await request.post(queryUrl).send({
+          Entities: {type: 'list', 'attributes.public': true},
+          SortBy: 'created_epoch',
+          Order: 'descending',
+          Limit: limit,
+          Offset: offset,
+          Include: {
+            entity_id: 'id',
+            profile_id: 'owner_id',
+            uuid: 'attributes.uuid',
+            public: 'attributes.public',
+            type: 'attributes.type',
+            title: 'title',
+            description: 'contents',
+            list: 'attributes.list'
+          }
+        });
+        const data = await me.extractingCommunityResult(
+          body,
+          schemaElvisEntityQueryData
+        );
+        const lists = _.map(data.List, entry => {
+          return {
+            data: _.omit(entry, 'uuid', 'profile_id', 'entity_id'),
+            links: {
+              self: `/v1/lists/${entry.uuid}`,
+              uuid: entry.uuid,
+              profile_id: entry.profile_id,
+              entity_id: entry.entity_id
+            }
+          };
+        });
+        return resolve({
+          lists,
+          total: data.Total,
+          next_offset: data.NextOffset
+        });
+      } catch (error) {
         me.interpretAndLogResponseError(error);
         return reject(error);
       }

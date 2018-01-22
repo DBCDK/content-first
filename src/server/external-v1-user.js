@@ -5,8 +5,8 @@ const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {
   findingUserIdTroughLoginToken,
-  gettingUser,
   gettingUserFromToken,
+  gettingUserWithLists,
   updatingUser
 } = require('server/user');
 const {validatingInput} = require('__/json');
@@ -78,7 +78,7 @@ router
       } catch (error) {
         return next(error);
       }
-      return gettingUser(userId)
+      return gettingUserWithLists(userId)
         .then(user => {
           res.status(200).json({
             data: user,

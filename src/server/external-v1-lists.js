@@ -3,20 +3,20 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const {
-  findingUserIdTroughLoginToken,
-  gettingListsFromToken
-} = require('server/user');
-const {
-  creatingList,
-  fetchingEntityAndProfileIdFromListCache,
-  reservingListForProfileIdInCache,
-  updatingList
-} = require('server/lists');
+const {findingUserIdTroughLoginToken} = require('server/user');
 const {validatingInput} = require('__/json');
 const path = require('path');
 const listSchema = path.join(__dirname, 'schemas/list-in.json');
-const {gettingListByUuid, deletingListByEntityId} = require('server/lists');
+const {
+  creatingList,
+  deletingListByEntityId,
+  fetchingEntityAndProfileIdFromListCache,
+  gettingListByUuid,
+  gettingListsForProfileId,
+  omitCommunityInfoFromList,
+  reservingListForProfileIdInCache,
+  updatingList
+} = require('server/lists');
 const _ = require('lodash');
 
 router
@@ -27,17 +27,40 @@ router
   //
   .get(
     asyncMiddleware(async (req, res, next) => {
+      let userId;
+      try {
+        userId = await findingUserIdTroughLoginToken(req);
+      } catch (error) {
+        return next(error);
+      }
       const location = req.baseUrl;
-      return gettingListsFromToken(req)
-        .then(lists => {
-          res.status(200).json({
-            data: lists,
-            links: {self: location}
-          });
-        })
-        .catch(error => {
-          next(error);
+      let listsPlusCommunityInfo;
+      try {
+        listsPlusCommunityInfo = await gettingListsForProfileId(userId);
+      } catch (error) {
+        let meta = error;
+        if (meta.response) {
+          meta = meta.response;
+        }
+        if (meta.error) {
+          meta = meta.error;
+        }
+        meta.resource = location;
+        return next({
+          status: 503,
+          title: 'Community-service connection problem',
+          detail: 'Community service is not reponding properly',
+          meta
         });
+      }
+      const listsWithoutCommunityInfo = _.map(
+        listsPlusCommunityInfo,
+        omitCommunityInfoFromList
+      );
+      return res.status(200).json({
+        data: listsWithoutCommunityInfo,
+        links: {self: location}
+      });
     })
   )
 
@@ -218,11 +241,9 @@ router
           meta
         });
       }
-      const listWithoutCommunityInfo = _.omit(listPlusCommunityInfo, [
-        'links.uuid',
-        'links.profile_id',
-        'links.entity_id'
-      ]);
+      const listWithoutCommunityInfo = omitCommunityInfoFromList(
+        listPlusCommunityInfo
+      );
       if (listPlusCommunityInfo.data.public) {
         return res.status(200).json(listWithoutCommunityInfo);
       }

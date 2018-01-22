@@ -16,7 +16,8 @@ const constants = {
     table: 'covers'
   },
   lists: {
-    table: 'lists'
+    table: 'lists',
+    defaultLimit: 10
   },
   pages: {
     start: '/',

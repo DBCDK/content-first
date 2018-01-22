@@ -1,10 +1,19 @@
 'use strict';
 
+/**
+ * The pupose of this module is to take care of data-format translation
+ * between the community and the frontend, and to maintain the cache of the
+ * exact community-location of any list that gets accessed (for speed).
+ */
+
 module.exports = {
   creatingList,
   deletingListByEntityId,
   fetchingEntityAndProfileIdFromListCache,
   gettingListByUuid,
+  gettingListsForProfileId,
+  gettingPublicLists,
+  omitCommunityInfoFromList,
   reservingListForProfileIdInCache,
   updatingList
 };
@@ -38,13 +47,47 @@ function creatingList(profileId, frontendListWithUuid) {
     .then(cachingListEntityId);
 }
 
+function gettingPublicLists(limit, offset) {
+  let nextOffset;
+  return new Promise((resolve, reject) => {
+    community
+      .gettingPublicLists(limit, offset)
+      .then(result => {
+        nextOffset = result.next_offset;
+        const listsPlusCommunityInfo = result.lists;
+        return puttingListsInCache(listsPlusCommunityInfo);
+      })
+      .then(lists => {
+        return resolve({
+          lists,
+          next_offset: nextOffset
+        });
+      })
+      .catch(error => {
+        let meta = error;
+        if (meta.response) {
+          meta = meta.response;
+        }
+        if (meta.error) {
+          meta = meta.error;
+        }
+        return reject({
+          status: 503,
+          title: 'Community-service connection problem',
+          detail: 'Community service is not reponding properly',
+          meta
+        });
+      });
+  });
+}
+
 function cachingListEntityId(listWithCommunityInfo) {
   return new Promise((resolve, reject) => {
     knex(listTable)
       .where('uuid', listWithCommunityInfo.links.uuid)
       .update({community_entity_id: listWithCommunityInfo.links.entity_id})
       .then(() => {
-        return resolve(stripOffCommunityLinks(listWithCommunityInfo));
+        return resolve(omitCommunityInfoFromList(listWithCommunityInfo));
       })
       .catch(error => {
         reject({
@@ -56,14 +99,6 @@ function cachingListEntityId(listWithCommunityInfo) {
   });
 }
 
-function stripOffCommunityLinks(listPlusCommunityInfo) {
-  return _.omit(listPlusCommunityInfo, [
-    'links.uuid',
-    'links.profile_id',
-    'links.entity_id'
-  ]);
-}
-
 function updatingList(profileId, entityId, frontendListWithUuid) {
   const communityList = transform.contentFirstListToCommunityEntity(
     frontendListWithUuid
@@ -72,7 +107,7 @@ function updatingList(profileId, entityId, frontendListWithUuid) {
     community
       .updatingListEntity(profileId, entityId, communityList)
       .then(listWithCommunityInfo => {
-        return resolve(stripOffCommunityLinks(listWithCommunityInfo));
+        return resolve(omitCommunityInfoFromList(listWithCommunityInfo));
       })
       .catch(error => {
         let meta = error;
@@ -111,8 +146,7 @@ function gettingListByUuid(uuid) {
         listPlusCommunityInfo = await community.gettingListByEntityId(entityId);
       } else {
         listPlusCommunityInfo = await community.gettingListEntityByUuid(uuid);
-        const links = listPlusCommunityInfo.links;
-        await puttingListInCache(links.uuid, links.profile_id, links.entity_id);
+        await puttingListInCache(listPlusCommunityInfo);
       }
     } catch (error) {
       if (!error.meta) {
@@ -125,14 +159,73 @@ function gettingListByUuid(uuid) {
   });
 }
 
-function puttingListInCache(uuid, profileId, entityId) {
+function gettingListsForProfileId(userId) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const listsPlusCommunityInfo = await community.gettingAllListEntitiesOwnedByProfileId(
+        userId
+      );
+      await puttingListsInCache(listsPlusCommunityInfo);
+      return resolve(listsPlusCommunityInfo);
+    } catch (error) {
+      let meta = error;
+      if (meta.response) {
+        meta = meta.response;
+      }
+      if (meta.error) {
+        meta = meta.error;
+      }
+      return reject({
+        status: 503,
+        title: 'Community-service connection problem',
+        detail: 'Community service is not reponding properly',
+        meta
+      });
+    }
+  });
+}
+
+function puttingListsInCache(listsPlusCommunityInfo) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let chain = Promise.resolve();
+      listsPlusCommunityInfo.forEach(list => {
+        chain = chain.then(() => {
+          return puttingListInCache(list);
+        });
+      });
+      await chain;
+      return resolve(listsPlusCommunityInfo);
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+function puttingListInCache(listPlusCommunityInfo) {
+  const links = listPlusCommunityInfo.links;
+  return ensuringListInCache(links.uuid, links.profile_id, links.entity_id);
+}
+
+function omitCommunityInfoFromList(listPlusCommunityInfo) {
+  return _.omit(listPlusCommunityInfo, [
+    'links.uuid',
+    'links.profile_id',
+    'links.entity_id'
+  ]);
+}
+
+function ensuringListInCache(uuid, profileId, entityId) {
   return new Promise((resolve, reject) => {
-    knex(listTable)
+    const sql = knex(listTable)
       .insert({
         uuid,
         community_profile_id: profileId,
         community_entity_id: entityId
       })
+      .toString();
+    knex
+      .raw(sql + ' ON CONFLICT DO NOTHING')
       .then(resolve)
       .catch(error => {
         reject({

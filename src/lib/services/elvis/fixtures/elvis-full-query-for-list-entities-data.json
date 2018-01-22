@@ -3,7 +3,9 @@
   "NextOffset": null,
   "List": [
     {
-      "id": "c98c23925f857c5dbe41f8c6e8f49978",
+      "entity_id": 4567,
+      "profile_id": 123,
+      "uuid": "c98c23925f857c5dbe41f8c6e8f49978",
       "title": "Another list",
       "description": "An oldie but goodie",
       "list": [
@@ -16,7 +18,9 @@
       "type": "SYSTEM_LIST"
     },
     {
-      "id": "98c5ff8c6e8f49978c857c23925dbe41",
+      "entity_id": 4568,
+      "profile_id": 123,
+      "uuid": "98c5ff8c6e8f49978c857c23925dbe41",
       "title": "My list",
       "description": "A brand new list",
       "list": [

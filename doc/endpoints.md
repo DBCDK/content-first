@@ -461,6 +461,50 @@ Deletes a specific list for the currently logged-in user.
 
 If the user is not logged-in, the result is 403.
 
+### `GET /v1/public-lists?limit=`*number*`&offset=`*number*
+
+Get the most recent public [lists](../src/fixtures/schemas/lists-data-out.json) from the community, like
+
+    { "data":
+      [ { "data": 
+          { "type": "SYSTEM_LIST"
+          , "public": true,
+          , "title": "My List"
+          , "description": "A brand new list"
+          , "list":
+            [ { "pid": "870970-basis-22629344"
+              , "description": "Magic to the people"
+              }
+            ]
+          }
+        , "links":
+          { "self": "/v1/lists/98c5ff8c6e8f49978c857c23925dbe41"
+          }
+        }
+      , { "data":
+          { "type": "CUSTOM_LIST"
+          , "public": true
+          , "title": "Gamle Perler"
+          , "description": "Bøger man simpelthen må læse",
+          , "list": 
+            [ { "pid": "870970-basis-47573974"
+              , "description": "Russisk forvekslingskomedie"
+              }
+            ]            
+          }
+        , "links": 
+          { "self": "/v1/lists/fa4f3a3de3a34a188234ed298ecbe810"
+          }
+        }
+      ]
+    , "links": 
+      { "self": "/v1/lists/public-lists?limit=2&offset=0"
+      , "next": "/v1/lists/public-lists?limit=2&offset=2"
+      }
+    }
+
+If *offset* is not present in the query, it defaults to 0.  If *limit* is not present in the query, it defaults to 10.
+
 ## Misc
 
 ### `GET /hejmdal/?token=`*token*`&id=`*id*

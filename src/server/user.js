@@ -1,13 +1,18 @@
 'use strict';
 
+/**
+ * The pupose of this module is to take care of data-format translation
+ * between the community and the frontend.
+ */
+
 module.exports = {
   creatingUser,
   findingUserByUserIdHash,
   findingUserIdTroughLoginToken,
-  gettingListsFromToken,
   gettingUser,
   gettingUserFromToken,
   gettingUserIdFromLoginToken,
+  gettingUserWithLists,
   removingLoginToken,
   updatingUser
 };
@@ -19,6 +24,23 @@ const cookieTable = constants.cookies.table;
 const community = require('server/community');
 const transform = require('__/services/elvis/transformers');
 const logger = require('server/logger');
+const {
+  gettingListsForProfileId,
+  omitCommunityInfoFromList
+} = require('server/lists');
+const _ = require('lodash');
+
+async function gettingUserWithLists(userId) {
+  try {
+    const user = await community.gettingUserByProfileId(userId);
+    const listsPlusCommunityInfo = await gettingListsForProfileId(userId);
+    user.lists = _.map(listsPlusCommunityInfo, omitCommunityInfoFromList);
+    return user;
+  } catch (error) {
+    logger.log.debug(error);
+    return Promise.reject(error);
+  }
+}
 
 function gettingUser(userId) {
   return community
@@ -66,7 +88,7 @@ function gettingUserFromToken(req) {
       return reject(error);
     }
     try {
-      const user = await gettingUser(userId);
+      const user = await gettingUserWithLists(userId);
       return resolve(user);
     } catch (error) {
       let meta = error;
@@ -190,59 +212,5 @@ function gettingUserIdFromLoginToken(token) {
           detail: error
         });
       });
-  });
-}
-
-function gettingListsFromToken(req) {
-  return new Promise(async (resolve, reject) => {
-    const location = req.baseUrl;
-    const loginToken = req.cookies['login-token'];
-    if (!loginToken) {
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: 'Missing login-token cookie',
-        meta: {resource: location}
-      });
-    }
-    let userId;
-    try {
-      userId = await gettingUserIdFromLoginToken(loginToken);
-    } catch (error) {
-      if (error.status === 404) {
-        return reject({
-          status: 403,
-          title: 'User not logged in',
-          detail: `Unknown login token ${loginToken}`,
-          meta: {resource: location}
-        });
-      }
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: `Login token ${loginToken} has expired`,
-        meta: {resource: location}
-      });
-    }
-    try {
-      const lists = await community.gettingAllListEntitiesOwnedByProfileId(
-        userId
-      );
-      return resolve(lists);
-    } catch (error) {
-      let meta = error;
-      if (meta.response) {
-        meta = meta.response;
-      }
-      if (meta.error) {
-        meta = meta.error;
-      }
-      return reject({
-        status: 503,
-        title: 'Community-service connection problem',
-        detail: 'Community service is not reponding properly',
-        meta
-      });
-    }
   });
 }

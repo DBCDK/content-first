@@ -300,7 +300,7 @@ describe('Community connector', () => {
 
     it('should return all user data on success', () => {
       const profileId = 123;
-      arrangeGetProfileAndEntitiesToReturnAllUserData(profileId);
+      arrangeGetProfileToReturnAllUserData(profileId);
       return sut
         .gettingUserByProfileId(profileId)
         .then(expectUserDataToBeFullyPopulated);
@@ -385,9 +385,9 @@ describe('Community connector', () => {
 
     it('should handle non-existing userId', () => {
       arrangeCommunityQueryToRespondUserIdNotFound();
-      return expect(
-        sut.gettingProfileIdByUserIdHash('some-hash')
-      ).to.be.rejected.then(expectUserIdNotFound);
+      return expect(sut.gettingProfileIdByUserIdHash('some-hash'))
+        .to.be.rejected // force break
+        .then(expectUserIdNotFound);
     });
 
     it('should return profile id for existing userId', () => {
@@ -395,6 +395,29 @@ describe('Community connector', () => {
       return sut
         .gettingProfileIdByUserIdHash('some-hash')
         .then(expectProfileId);
+    });
+  });
+
+  describe('gettingPublicLists', () => {
+    it('should detect no connection', () => {
+      arrangeCommunityQueryToRespondItIsDead();
+      return expect(sut.gettingPublicLists(10, 10))
+        .to.be.rejectedWith(Error)
+        .then(expectCommunityIsDead);
+    });
+
+    it('should return empty list on out-of-bounds offset', () => {
+      arrangeCommunityQueryToReturnNoMoreLists();
+      return sut
+        .gettingPublicLists(10, 10) // force break
+        .then(expectEmptyListOfLists);
+    });
+
+    it('should return all public lists', () => {
+      arrangeCommunityToReturnTwoOutOfFourPublicLists();
+      return sut
+        .gettingPublicLists(2) // force break
+        .then(expectTwoOutOfFourPublicLists);
     });
   });
 
@@ -773,11 +796,6 @@ describe('Community connector', () => {
     expectCommunityOkAndMockedServerDone();
   }
 
-  function arrangeGetProfileAndEntitiesToReturnAllUserData(profileId) {
-    arrangeGetProfileToReturnAllUserData(profileId);
-    arrangeQueryToReturnListOfEntities();
-  }
-
   function arrangeQueryToReturnListOfEntities() {
     const fullQueryResponseForListEntities = require('./fixtures/elvis-full-query-for-list-entities-data');
     const endpoint = getQueryEndpoint();
@@ -827,38 +845,6 @@ describe('Community connector', () => {
             archetypes: ['hestepigen']
           }
         }
-      ],
-      lists: [
-        {
-          data: {
-            type: 'SYSTEM_LIST',
-            title: 'Another list',
-            description: 'An oldie but goodie',
-            public: false,
-            list: [
-              {
-                pid: '870970-basis-53188931',
-                description: 'Whoa, what a story'
-              }
-            ]
-          },
-          links: {self: '/v1/lists/c98c23925f857c5dbe41f8c6e8f49978'}
-        },
-        {
-          data: {
-            type: 'CUSTOM_LIST',
-            title: 'My list',
-            description: 'A brand new list',
-            public: false,
-            list: [
-              {
-                pid: '870970-basis-22629344',
-                description: 'Magic to the people'
-              }
-            ]
-          },
-          links: {self: '/v1/lists/98c5ff8c6e8f49978c857c23925dbe41'}
-        }
       ]
     });
     expectCommunityOkAndMockedServerDone();
@@ -880,7 +866,10 @@ describe('Community connector', () => {
           type: 'SYSTEM_LIST'
         },
         links: {
-          self: '/v1/lists/c98c23925f857c5dbe41f8c6e8f49978'
+          self: '/v1/lists/c98c23925f857c5dbe41f8c6e8f49978',
+          uuid: 'c98c23925f857c5dbe41f8c6e8f49978',
+          entity_id: 4567,
+          profile_id: 123
         }
       },
       {
@@ -897,7 +886,10 @@ describe('Community connector', () => {
           type: 'CUSTOM_LIST'
         },
         links: {
-          self: '/v1/lists/98c5ff8c6e8f49978c857c23925dbe41'
+          self: '/v1/lists/98c5ff8c6e8f49978c857c23925dbe41',
+          uuid: '98c5ff8c6e8f49978c857c23925dbe41',
+          entity_id: 4568,
+          profile_id: 123
         }
       }
     ]);
@@ -1100,6 +1092,124 @@ describe('Community connector', () => {
           log: null
         }
       });
+  }
+
+  function arrangeCommunityQueryToReturnNoMoreLists() {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiQuery(communityId);
+    mockedSubservice = nock(config.url)
+      .post(endpoint)
+      .reply(200, {
+        data: {
+          Total: 10,
+          NextOffset: null,
+          List: []
+        }
+      });
+  }
+
+  function expectEmptyListOfLists(document) {
+    expect(document).to.deep.equal({
+      lists: [],
+      total: 10,
+      next_offset: null
+    });
+  }
+
+  function arrangeCommunityToReturnTwoOutOfFourPublicLists() {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiQuery(communityId);
+    mockedSubservice = nock(config.url)
+      .post(endpoint)
+      .reply(200, {
+        data: {
+          Total: 4,
+          NextOffset: 2,
+          List: [
+            {
+              entity_id: 1623,
+              profile_id: 543,
+              uuid: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+              public: true,
+              type: 'SYSTEM_LIST',
+              title: 'My List',
+              description: 'A brand new list',
+              list: [
+                {
+                  pid: '870970-basis-22629344',
+                  description: 'Magic to the people'
+                }
+              ]
+            },
+            {
+              entity_id: 1624,
+              profile_id: 543,
+              uuid: 'fa4f3a3de3a34a188234ed298ecbe810',
+              public: true,
+              type: 'CUSTOM_LIST',
+              title: 'Gamle Perler',
+              description: 'Bøger man simpelthen må læse',
+              list: [
+                {
+                  pid: '870970-basis-47573974',
+                  description: 'Russisk forvekslingskomedie'
+                }
+              ]
+            }
+          ]
+        }
+      });
+  }
+
+  function expectTwoOutOfFourPublicLists(document) {
+    expect(document).to.deep.equal({
+      lists: [
+        {
+          data: {
+            description: 'A brand new list',
+            list: [
+              {
+                description: 'Magic to the people',
+                pid: '870970-basis-22629344'
+              }
+            ],
+            public: true,
+            title: 'My List',
+            type: 'SYSTEM_LIST'
+          },
+          links: {
+            entity_id: 1623,
+            profile_id: 543,
+            self: '/v1/lists/fc8fbafab2a94bfaae5f84b1d5bfd480',
+            uuid: 'fc8fbafab2a94bfaae5f84b1d5bfd480'
+          }
+        },
+        {
+          data: {
+            description: 'Bøger man simpelthen må læse',
+            list: [
+              {
+                description: 'Russisk forvekslingskomedie',
+                pid: '870970-basis-47573974'
+              }
+            ],
+            public: true,
+            title: 'Gamle Perler',
+            type: 'CUSTOM_LIST'
+          },
+          links: {
+            entity_id: 1624,
+            profile_id: 543,
+            self: '/v1/lists/fa4f3a3de3a34a188234ed298ecbe810',
+            uuid: 'fa4f3a3de3a34a188234ed298ecbe810'
+          }
+        }
+      ],
+      total: 4,
+      next_offset: 2
+    });
   }
 
   function expectProfileId(document) {

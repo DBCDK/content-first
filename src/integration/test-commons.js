@@ -1,12 +1,14 @@
 /* eslint-env mocha */
+/* eslint-disable no-unused-expressions */
 'use strict';
 
 module.exports = {
   arrangeCommunityServiceToRespondWithServerError_OnGet,
   arrangeCommunityServiceToRespondWithServerError_OnPost,
   arrangeCommunityServiceToRespondWithServerError_OnPut,
-  expectError_AccessDeniedPrivateList,
+  arrangingEmptyListCache,
   expectError_AccessDeniedOtherUser,
+  expectError_AccessDeniedPrivateList,
   expectError_CommunityConnectionProblem,
   expectError_ExpiredLoginToken,
   expectError_ListNotFound,
@@ -15,6 +17,7 @@ module.exports = {
   expectError_UnknownLoginToken,
   expectError_WrongContentType,
   expectListsSeededOnTestStart,
+  expectListToBeCached,
   expectLocation,
   expectSuccess_CachedListSeededOnTestStart,
   expectSuccess_ListsSeededOnTestStart,
@@ -22,6 +25,7 @@ module.exports = {
   expectSuccess_UncachedListSeededOnTestStart,
   expectSuccess_UserData,
   expectSuccess_UserSeededOnTestStart,
+  expectValidLists,
   sleep
 };
 
@@ -31,28 +35,29 @@ const seeder = require('./seed-community');
 const {expectSuccess} = require('fixtures/output-verifiers');
 const {expectFailure} = require('fixtures/output-verifiers');
 const {expectValidate} = require('fixtures/output-verifiers');
+const config = require('server/config');
+const constants = require('server/constants')();
+const knex = require('knex')(config.db);
+const listTable = constants.lists.table;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function arrangeCommunityServiceToRespondWithServerError_OnPost() {
-  const config = require('server/config').community;
-  nock(config.url)
+  nock(config.community.url)
     .post(() => true)
     .reply(500);
 }
 
 function arrangeCommunityServiceToRespondWithServerError_OnPut() {
-  const config = require('server/config').community;
-  nock(config.url)
+  nock(config.community.url)
     .put(() => true)
     .reply(500);
 }
 
 function arrangeCommunityServiceToRespondWithServerError_OnGet() {
-  const config = require('server/config').community;
-  nock(config.url)
+  nock(config.community.url)
     .get(() => true)
     .reply(500);
 }
@@ -259,6 +264,20 @@ function uncachedListSeededOnTestStart() {
   };
 }
 
+function arrangingEmptyListCache() {
+  return knex.raw(`truncate table ${listTable}`);
+}
+
+async function expectListToBeCached(uuid) {
+  const rows = await knex(listTable)
+    .where('uuid', uuid)
+    .select();
+  expect(rows).to.have.length(1, 'List not found in cache');
+  const row = rows[0];
+  expect(row.community_profile_id).to.not.be.null;
+  expect(row.community_entity_id).to.not.be.null;
+}
+
 function expectSuccess_NewListLocation(response) {
   expectSuccess(response.body, (links, data) => {
     expectValidate(links, 'schemas/list-links-out.json');
@@ -361,5 +380,5 @@ function expectError_AccessDeniedOtherUser(uri) {
 
 function expectLocation(uri) {
   expect(uri).to.be.a('string', 'Not a URI');
-  expect(uri).to.match(/^\/v1\/(lists|user)/i, 'Not a URI');
+  expect(uri).to.match(/^\/v1\/(lists|user|public-lists)/i, 'Not a URI');
 }
