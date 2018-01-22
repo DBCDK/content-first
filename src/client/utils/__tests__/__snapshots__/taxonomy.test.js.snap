@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getLeaves Get leaves of the tree 1`] = `
+Array [
+  Object {
+    "id": 1,
+    "parents": Array [
+      "a",
+      "aa",
+    ],
+    "score": 0,
+    "title": "leaf1",
+  },
+  Object {
+    "id": 2,
+    "parents": Array [
+      "a",
+      "aa",
+    ],
+    "score": 0,
+    "title": "leaf2",
+  },
+  Object {
+    "id": 3,
+    "parents": Array [
+      "a",
+      "aa",
+    ],
+    "score": 0,
+    "title": "leaf3",
+  },
+  Object {
+    "id": 4,
+    "parents": Array [
+      "b",
+    ],
+    "score": 0,
+    "title": "leaf4",
+  },
+  Object {
+    "id": 5,
+    "parents": Array [
+      "b",
+    ],
+    "score": 0,
+    "title": "leaf5",
+  },
+  Object {
+    "id": 6,
+    "parents": Array [
+      "c",
+      "cc",
+      "ccc",
+    ],
+    "score": 0,
+    "title": "leaf6",
+  },
+  Object {
+    "id": 7,
+    "parents": Array [
+      "c",
+      "cc",
+      "ccc",
+    ],
+    "score": 0,
+    "title": "leaf7",
+  },
+]
+`;
+
+exports[`getLeaves Get leaves of the tree as a map 1`] = `
+Object {
+  "1": Object {
+    "id": 1,
+    "parents": Array [
+      "a",
+      "aa",
+    ],
+    "score": 0,
+    "title": "leaf1",
+  },
+  "2": Object {
+    "id": 2,
+    "parents": Array [
+      "a",
+      "aa",
+    ],
+    "score": 0,
+    "title": "leaf2",
+  },
+  "3": Object {
+    "id": 3,
+    "parents": Array [
+      "a",
+      "aa",
+    ],
+    "score": 0,
+    "title": "leaf3",
+  },
+  "4": Object {
+    "id": 4,
+    "parents": Array [
+      "b",
+    ],
+    "score": 0,
+    "title": "leaf4",
+  },
+  "5": Object {
+    "id": 5,
+    "parents": Array [
+      "b",
+    ],
+    "score": 0,
+    "title": "leaf5",
+  },
+  "6": Object {
+    "id": 6,
+    "parents": Array [
+      "c",
+      "cc",
+      "ccc",
+    ],
+    "score": 0,
+    "title": "leaf6",
+  },
+  "7": Object {
+    "id": 7,
+    "parents": Array [
+      "c",
+      "cc",
+      "ccc",
+    ],
+    "score": 0,
+    "title": "leaf7",
+  },
+}
+`;

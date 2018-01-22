@@ -9,7 +9,7 @@ import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
-import {getLeaves} from '../../utils/filters';
+import {getLeaves} from '../../utils/taxonomy';
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -58,12 +58,9 @@ class WorkPage extends React.Component {
 
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
-    const tax_description =
-      work.data.taxonomy_description || work.data.description;
+    const tax_description = work.data.taxonomy_description || work.data.description;
 
-    const allowedFilterIds = getLeaves(this.props.filterState.filters).map(
-      f => f.id
-    );
+    const allowedFilterIds = getLeaves(this.props.filterState.filters).map(f => f.id);
 
     const remembered = this.props.shortListState.elements.reduce((map, e) => {
       map[e.book.pid] = e;
@@ -80,46 +77,25 @@ class WorkPage extends React.Component {
             <div className="col-xs-8 col-lg-9 info">
               <div className="title">{work.data.title}</div>
               <div className="creator">{work.data.creator}</div>
-              <div className="meta-description">
-                {tax_description &&
-                  tax_description
-                    .split('\n')
-                    .map((line, idx) => <p key={idx}>{line}</p>)}
-              </div>
+              <div className="meta-description">{tax_description && tax_description.split('\n').map((line, idx) => <p key={idx}>{line}</p>)}</div>
               <div className="line" />
               <div className="description">{work.data.description}</div>
               <div className="extra">
                 <div className="subjects">{work.data.subject}</div>
-                {work.data.pages && (
-                  <div className="page-count">{`${work.data.pages} sider`}</div>
-                )}
+                {work.data.pages && <div className="page-count">{`${work.data.pages} sider`}</div>}
                 <div className="year">
                   {work.data.literary_form}
-                  {work.data.literary_form && work.data.first_edition_year
-                    ? ', '
-                    : ''}
-                  {work.data.first_edition_year
-                    ? work.data.first_edition_year
-                    : ''}
+                  {work.data.literary_form && work.data.first_edition_year ? ', ' : ''}
+                  {work.data.first_edition_year ? work.data.first_edition_year : ''}
                 </div>
-                {work.data.genre && (
-                  <div className="genre">{work.data.genre}</div>
-                )}
+                {work.data.genre && <div className="genre">{work.data.genre}</div>}
               </div>
               <div className="bibliotek-dk-link">
-                <a
-                  target="_blank"
-                  href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(
-                    work.data.pid
-                  )}`}
-                >
+                <a target="_blank" href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(work.data.pid)}`}>
                   Se mere på bibliotek.dk
                 </a>
               </div>
-              <OrderButton
-                book={work.data}
-                style={{marginTop: 10, float: 'right'}}
-              />
+              <OrderButton book={work.data} style={{marginTop: 10, float: 'right'}} />
               <CheckmarkButton
                 label="Husk"
                 marked={remembered[work.data.pid]}
@@ -144,9 +120,7 @@ class WorkPage extends React.Component {
               {tagGroups.map(group => {
                 return (
                   <div key={group.title} className="tag-group">
-                    <div className="tag-group-title col-xs-3 col-lg-2">
-                      {group.title}
-                    </div>
+                    <div className="tag-group-title col-xs-3 col-lg-2">{group.title}</div>
                     <div className="col-xs-9 col-lg-10">
                       {group.data.map(t => {
                         if (allowedFilterIds.indexOf(t.id + '') >= 0) {
@@ -183,11 +157,7 @@ class WorkPage extends React.Component {
             </div>
             <div className="col-xs-9 col-xs-offset-3 col-lg-10 col-lg-offset-2">
               <button
-                className={
-                  this.state.tagsCollapsed
-                    ? 'expand-btn btn btn-primary'
-                    : 'expand-btn btn btn-success'
-                }
+                className={this.state.tagsCollapsed ? 'expand-btn btn btn-primary' : 'expand-btn btn btn-success'}
                 onClick={() => {
                   this.setState({
                     tagsCollapsed: !this.state.tagsCollapsed,
@@ -204,23 +174,11 @@ class WorkPage extends React.Component {
           <div className="row belt text-left">
             <div className="col-xs-11 col-centered">
               <div className="col-xs-12 header">
-                <span className="belt-title">
-                  Bøger der giver lignende oplevelser
-                </span>
+                <span className="belt-title">Bøger der giver lignende oplevelser</span>
               </div>
               <div className="row mb4">
                 <div className="col-xs-12">
-                  <Slider>
-                    {work.similar
-                      .slice(0, 50)
-                      .map(w => (
-                        <WorkItem
-                          work={w}
-                          key={w.book.pid}
-                          origin={`Minder om "${work.data.title}"`}
-                        />
-                      ))}
-                  </Slider>
+                  <Slider>{work.similar.map(w => <WorkItem work={w} key={w.book.pid} origin={`Minder om "${work.data.title}"`} />)}</Slider>
                 </div>
               </div>
             </div>

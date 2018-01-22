@@ -4,15 +4,9 @@ import SelectedFilters from './SelectedFilters.component';
 import EditFilters from './EditFilters.component';
 import WorkItem from '../work/WorkItemConnected.component';
 import BootstrapDropDown from './BootstrapDropdown.component';
-import {
-  ON_SORT_OPTION_SELECT,
-  ON_EDIT_FILTER_TOGGLE,
-  ON_FILTER_TOGGLE,
-  ON_RESET_FILTERS,
-  ON_EXPAND_FILTERS_TOGGLE
-} from '../../redux/filter.reducer';
+import {ON_SORT_OPTION_SELECT, ON_EDIT_FILTER_TOGGLE, ON_FILTER_TOGGLE, ON_RESET_FILTERS, ON_EXPAND_FILTERS_TOGGLE} from '../../redux/filter.reducer';
 import {ON_BELT_REQUEST} from '../../redux/belts.reducer';
-import {getLeaves} from '../../utils/filters';
+import {getLeaves} from '../../utils/taxonomy';
 import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 
@@ -25,9 +19,7 @@ class FilterPage extends React.Component {
   }
 
   toggleFilter(filterId) {
-    const allowedFilterIds = getLeaves(this.props.filterState.filters).map(
-      f => f.id
-    );
+    const allowedFilterIds = getLeaves(this.props.filterState.filters).map(f => f.id);
 
     // if this is not part of the allowed filters, we will not continue
     // otherwise hell is upon us (we'll end up in an endless loop)
@@ -35,16 +27,10 @@ class FilterPage extends React.Component {
       return;
     }
 
-    const selectedFilterIds = this.props.filterState.beltFilters[
-      this.props.belt.name
-    ];
-    const isRemoving =
-      selectedFilterIds && selectedFilterIds.indexOf(filterId) >= 0;
+    const selectedFilterIds = this.props.filterState.beltFilters[this.props.belt.name];
+    const isRemoving = selectedFilterIds && selectedFilterIds.indexOf(filterId) >= 0;
     const queryParams = this.props.routerState.params;
-    const isQueryParam =
-      queryParams &&
-      queryParams.filter &&
-      queryParams.filter.indexOf(filterId) >= 0;
+    const isQueryParam = queryParams && queryParams.filter && queryParams.filter.indexOf(filterId) >= 0;
 
     // we might need to remove filter from query parameters
     if (isRemoving && isQueryParam) {
@@ -65,9 +51,7 @@ class FilterPage extends React.Component {
 
   handleTagsFromQueryParams() {
     let didChange = false;
-    const selectedFilterIds = this.props.filterState.beltFilters[
-      this.props.belt.name
-    ];
+    const selectedFilterIds = this.props.filterState.beltFilters[this.props.belt.name];
     if (this.props.routerState.params.filter) {
       this.props.routerState.params.filter.forEach(id => {
         if (selectedFilterIds.indexOf(id) < 0) {
@@ -95,8 +79,7 @@ class FilterPage extends React.Component {
 
     // Check if we need to fetch works
     if (
-      prevProps.filterState.beltFilters[this.props.belt.name] !==
-        this.props.filterState.beltFilters[this.props.belt.name] ||
+      prevProps.filterState.beltFilters[this.props.belt.name] !== this.props.filterState.beltFilters[this.props.belt.name] ||
       prevProps.belt.name !== this.props.belt.name ||
       prevProps.filterState.sortBy !== this.props.filterState.sortBy
     ) {
@@ -109,9 +92,7 @@ class FilterPage extends React.Component {
 
   render() {
     const allFilters = getLeaves(this.props.filterState.filters);
-    const selectedFilters = this.props.filterState.beltFilters[
-      this.props.belt.name
-    ].map(id => allFilters.find(filter => filter.id === id));
+    const selectedFilters = this.props.filterState.beltFilters[this.props.belt.name].map(id => allFilters.find(filter => filter.id === id));
     let warningMessage = null;
     if (!this.props.belt.works || this.props.belt.works.length === 0) {
       warningMessage = 'De valgte filtre giver tomt resultat';
@@ -161,9 +142,7 @@ class FilterPage extends React.Component {
               <span>Sortér efter</span>
               <BootstrapDropDown
                 id="sort-select"
-                selected={
-                  this.props.filterState.sortBy.find(o => o.selected).title
-                }
+                selected={this.props.filterState.sortBy.find(o => o.selected).title}
                 options={this.props.filterState.sortBy.map(s => s.title)}
                 onChange={value => {
                   this.props.dispatch({type: ON_SORT_OPTION_SELECT, value});
@@ -187,18 +166,9 @@ class FilterPage extends React.Component {
             }}
           />
         </div>
-        {warningMessage && (
-          <div className="warning row text-center">{warningMessage}</div>
-        )}
+        {warningMessage && <div className="warning row text-center">{warningMessage}</div>}
         <div className="filter-page-works row text-left">
-          {this.props.belt.works &&
-            this.props.belt.works.map(work => (
-              <WorkItem
-                work={work}
-                key={work.book.pid}
-                origin={`Fra ${this.props.belt.name}`}
-              />
-            ))}
+          {this.props.belt.works && this.props.belt.works.map(work => <WorkItem work={work} key={work.book.pid} origin={`Fra ${this.props.belt.name}`} />)}
         </div>
       </div>
     );

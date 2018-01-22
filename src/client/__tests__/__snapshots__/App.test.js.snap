@@ -111,7 +111,7 @@ exports[`renders without crashing 1`] = `
           <span
             className="belt-title"
             data-html="true"
-            data-original-title="<span>Medium længde</span> <span>Er på mange biblioteker</span> <span>Medrivende</span> <span>Udlånes meget</span>"
+            data-original-title="<span>Medium længde</span> <span>Er på mange biblioteker</span> <span>medrivende/gribende</span> <span>Udlånes meget</span>"
             data-toggle="tooltip"
             onClick={[Function]}
           >
@@ -127,7 +127,7 @@ exports[`renders without crashing 1`] = `
           <span
             className="belt-link"
             data-html="true"
-            data-original-title="<span>Spændende</span> <span>Høj fart</span> <span>Plot</span>"
+            data-original-title="<span>spændende</span> <span>hurtig</span>"
             data-toggle="tooltip"
             onClick={[Function]}
           >
@@ -136,7 +136,7 @@ exports[`renders without crashing 1`] = `
           <span
             className="belt-link"
             data-html="true"
-            data-original-title="<span>Alternativ</span> <span>Innovativ</span>"
+            data-original-title="<span>anderledes</span>"
             data-toggle="tooltip"
             onClick={[Function]}
           >
@@ -230,44 +230,6 @@ exports[`renders without crashing 1`] = `
             className="col-xs-12"
           >
             <slider />
-          </div>
-        </div>
-      </div>
-      <div
-        className="row belt text-left"
-      >
-        <div
-          className="col-xs-12 header"
-        >
-          <span
-            className="belt-title"
-            data-html="true"
-            data-original-title="<span>Ingen filtre</span>"
-            data-toggle="tooltip"
-            onClick={[Function]}
-          >
-            Passer med min smag
-          </span>
-        </div>
-        <div
-          className="col-xs-12 belt-links"
-        />
-        <div
-          style={
-            Object {
-              "paddingLeft": "15px",
-              "paddingRight": "15px",
-            }
-          }
-        >
-          <div
-            className="create-profile col-xs-12 text-center"
-          >
-            <button
-              className="btn btn-success"
-            >
-              Opret profil
-            </button>
           </div>
         </div>
       </div>
