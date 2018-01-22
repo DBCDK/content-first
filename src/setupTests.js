@@ -9,3 +9,6 @@ require('jest-localstorage-mock');
 jest.mock('react-textarea-autosize', () => 'textarea');
 jest.mock('react-slick', () => 'react-slick');
 jest.mock('react-truncate-markup', () => 'react-truncate-markup');
+jest.mock('./client/data/exportTaxonomy.json', () => {
+  return require('./client/__tests__/__mocks__/mockedTaxonomy.json');
+});
