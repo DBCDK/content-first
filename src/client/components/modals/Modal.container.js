@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import AddToListModal from './AddToListModal.container';
 import ShortListMergeModal from './ShortListMergeModal.container';
+import OrderModal from './OrderModal.container';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Modal extends React.Component {
@@ -49,6 +50,9 @@ class Modal extends React.Component {
     }
     if (this.props.modalState.mergeShortList.open) {
       modal = <ShortListMergeModal key="mergeShortList" />;
+    }
+    if (this.props.modalState.order.open) {
+      modal = <OrderModal key="order" />;
     }
     return (
       <ReactCSSTransitionGroup

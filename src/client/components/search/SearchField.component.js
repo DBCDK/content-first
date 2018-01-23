@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from '../general/Spinner.component';
 
 const SearchField = props => (
   <form
@@ -20,18 +21,7 @@ const SearchField = props => (
           )
         }
       >
-        {props.searching ? (
-          <span
-            className="spinner"
-            style={{
-              display: 'inline-block',
-              width: 12,
-              height: 12
-            }}
-          />
-        ) : (
-          '🔍'
-        )}
+        {props.searching ? <Spinner size={12} /> : '🔍'}
       </button>
     </span>
   </form>

@@ -7,3 +7,4 @@ npm-debug.log
 package-lock.json
 scratch.js
 src/client/data/json-files*
+src/client/data/*.json
