@@ -4,6 +4,10 @@
     "userIdHash": {
       "required": true,
       "type": "string"
+    },
+    "openplatformToken": {
+      "required": false,
+      "type": "string"
     }
   },
   "additionalProperties": false

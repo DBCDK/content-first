@@ -1,5 +1,6 @@
 /* eslint-env mocha */
 /* eslint-disable no-unused-expressions */
+/* eslint-disable no-undefined */
 'use strict';
 
 const constants = require('./community-constants')();
@@ -650,7 +651,8 @@ describe('Community connector', () => {
             }
           ]
         }
-      ]
+      ],
+      openplatformToken: undefined
     });
     expectCommunityOkAndMockedServerDone();
   }

@@ -100,22 +100,20 @@ class Login {
           me.logger.log.debug('Validating', data);
           return validatingInput(data, schemaUserInfo);
         })
-        .then(data => {
+        .then(async data => {
           const attr = data.attributes;
           // We should always get a user id from Hejmdal.
           if (attr && attr.userId) {
-            return me.calculatingHash(attr.userId);
+            return resolve({
+              userIdHash: await me.calculatingHash(attr.userId),
+              openplatformToken: attr.authenticatedToken
+            });
           }
           return reject(
             new Error(
               `User ID could not be retrieved from ${JSON.stringify(data)}`
             )
           );
-        })
-        .then(hashedUserId => {
-          return resolve({
-            userIdHash: hashedUserId
-          });
         })
         .catch(error => {
           me.logger.log.debug('Caught', error);
