@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * The pupose of this module is to take care of data-format translation
+ * The purpose of this module is to take care of data-format translation
  * between the community and the frontend, and to maintain the cache of the
  * exact community-location of any list that gets accessed (for speed).
  */
