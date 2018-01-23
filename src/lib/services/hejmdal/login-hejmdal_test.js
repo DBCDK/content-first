@@ -91,6 +91,7 @@ describe('Login connector', () => {
           id,
           token,
           attributes: {
+            authenticatedToken: 'someToken',
             cpr: '2508710000',
             gender: 'm',
             userId: '2508710000',
@@ -110,7 +111,8 @@ describe('Login connector', () => {
           .then(validating(schemaUserInfo))
           .then(data => {
             expect(data).to.deep.equal({
-              userIdHash: '5e5975f69b565f538a12887434bac2105b6d6f010c06b8a3'
+              userIdHash: '5e5975f69b565f538a12887434bac2105b6d6f010c06b8a3',
+              openplatformToken: 'someToken'
             });
           })
       );
@@ -157,6 +159,7 @@ describe('Login connector', () => {
           200,
           JSON.stringify({
             attributes: {
+              authenticatedToken: 'someToken',
               cpr: '1701840000',
               userId: '1701840000',
               wayfId: null,
@@ -179,7 +182,8 @@ describe('Login connector', () => {
           .then(validating(schemaUserInfo))
           .then(data => {
             expect(data).to.deep.equal({
-              userIdHash: '4fa1ef074f739f50eea243fa0e25caeea5494a558abbef48'
+              userIdHash: '4fa1ef074f739f50eea243fa0e25caeea5494a558abbef48',
+              openplatformToken: 'someToken'
             });
           })
       );

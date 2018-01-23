@@ -16,7 +16,11 @@ const cookieTable = constants.cookies.table;
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const loginService = require('server/login');
 const uuidv4 = require('uuid/v4');
-const {findingUserByUserIdHash, creatingUser} = require('server/user');
+const {
+  findingUserByUserIdHash,
+  creatingUser,
+  updatingUser
+} = require('server/user');
 
 router
   .route('/')
@@ -30,34 +34,27 @@ router
       const loginToken = uuidv4();
       return loginService
         .gettingTicket(token, id)
-        .then(remoteUser => {
+        .then(async remoteUser => {
           logger.log.debug('Got remote user data');
-          return Promise.all([
-            findingUserByUserIdHash(remoteUser.userIdHash),
-            remoteUser
-          ]);
-        })
-        .then(results => {
-          const userId = results[0];
-          const remoteUser = results[1];
+
+          const userId =
+            (await findingUserByUserIdHash(remoteUser.userIdHash)) ||
+            (await creatingUser(remoteUser.userIdHash));
+
           logger.log.debug(
             `User info ${JSON.stringify(remoteUser)}, userId ${userId}`
           );
-          if (userId) {
-            return userId;
-          }
-          logger.log.info(`Creating user ${remoteUser.userIdHash}`);
-          return creatingUser(remoteUser.userIdHash);
-        })
-        .then(userId => {
+          updatingUser(userId, {
+            openplatformToken: remoteUser.openplatformToken
+          });
+
           logger.log.debug(`Creating login token ${loginToken}`);
-          return knex(cookieTable).insert({
+          await knex(cookieTable).insert({
             cookie: loginToken,
             community_profile_id: userId,
             expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
           });
-        })
-        .then(() => {
+
           logger.log.debug(`Redirecting with token ${loginToken}`);
           return res
             .status(303)

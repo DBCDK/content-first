@@ -134,6 +134,7 @@ async function updatingUser(userId, partialData) {
   );
   if (
     profile.name ||
+    profile.attributes.openplatformToken ||
     profile.attributes.shortlist ||
     profile.attributes.tastes
   ) {

@@ -62,6 +62,9 @@ function transformFrontendUserToProfileAndEntities(userInfo) {
       attributes: {}
     }
   };
+  if (userInfo.openplatformToken) {
+    skeleton.profile.attributes.openplatformToken = userInfo.openplatformToken;
+  }
   if (userInfo.name) {
     skeleton.profile.name = userInfo.name;
   }

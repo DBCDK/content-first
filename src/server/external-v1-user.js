@@ -28,15 +28,7 @@ router
       return gettingUserFromToken(req)
         .then(user => {
           res.status(200).json({
-            data: Object.assign(
-              {
-                // TODO: we should get this through hejmdal,
-                // this is a temporary token for anonymous user,
-                // for developmenet purposes, that will expire soon...
-                openplatformToken: 'b2448d7e95fcfe5bf977f501ea4e24df49f1ed40'
-              },
-              user
-            ),
+            data: user,
             links: {self: location}
           });
         })
