@@ -48,7 +48,8 @@ export function OrderState({book}) {
   }
   return '';
 }
-export function OrderModal(props) {
+
+function orderInfo({orders, onStart}) {
   let orderError = 0;
   let orderSuccess = 0;
   let orderable = [];
@@ -58,7 +59,7 @@ export function OrderModal(props) {
   let orderStatus = '';
   let unavailableCount = 0;
 
-  for (const o of props.orders) {
+  for (const o of orders) {
     const state = o.get('orderState');
     const unavailable =
       o.getIn(['availability', 'holdingStatus', 'willLend']) === false;
@@ -75,7 +76,7 @@ export function OrderModal(props) {
       !unavailable
     ) {
       doneText = 'JA TAK, BESTIL NU';
-      onDone = () => props.onStart(orderable);
+      onDone = () => onStart(orderable);
       reviewingOrder = true;
     }
     if (state === 'error') {
@@ -97,6 +98,30 @@ export function OrderModal(props) {
       orderable.push(o);
     }
   }
+
+  return {
+    orderError,
+    orderSuccess,
+    doneText,
+    onDone,
+    orderStatus,
+    unavailableCount,
+    reviewingOrder,
+    ordering
+  };
+}
+
+export function OrderModal(props) {
+  let {
+    ordering,
+    orderError,
+    orderSuccess,
+    doneText,
+    onDone,
+    orderStatus,
+    unavailableCount,
+    reviewingOrder
+  } = orderInfo(props);
 
   if (!reviewingOrder && !ordering) {
     doneText = 'OK';
