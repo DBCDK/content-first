@@ -30,7 +30,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2018-01-23 20:58:14 +0000</string>
+	<string>2018-01-24 08:32:12 +0000</string>
 	<key>Modifier</key>
 	<string>Jens Peter Secher</string>
 	<key>NotesVisible</key>
@@ -64,7 +64,7 @@
 		<key>NSPaperSize</key>
 		<array>
 			<string>size</string>
-			<string>{611.99997711181641, 792}</string>
+			<string>{612, 792}</string>
 		</array>
 		<key>NSPrintReverseOrientation</key>
 		<array>
@@ -94,7 +94,7 @@
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {575.99997711181641, 734}}</string>
+				<string>{{0, 0}, {576, 734}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -1466,7 +1466,7 @@
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{212.6849865921962, 142.40928960140752}, {153.98869323730469, 28}}</string>
+							<string>{{212.68498658997237, 142.40928960141227}, {153.98869323730469, 28}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -1608,8 +1608,8 @@
 							<integer>3242</integer>
 							<key>Points</key>
 							<array>
-								<string>{289.78312004019489, 121.24020400000019}</string>
-								<string>{289.55438231470521, 198.75000653161811}</string>
+								<string>{289.78312003961179, 121.24020400000019}</string>
+								<string>{289.55438231050613, 198.750006531618}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -2613,7 +2613,7 @@
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {575.99997711181641, 734}}</string>
+				<string>{{0, 0}, {576, 734}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -7183,7 +7183,7 @@ API\
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{13.734502953882931, 72.797419002861957}, {91.575844247235352, 25}}</string>
+							<string>{{13.734314718094737, 72.797418922355433}, {91.575844247235352, 25}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -7268,8 +7268,8 @@ API\
 							<integer>3263</integer>
 							<key>Points</key>
 							<array>
-								<string>{50.437848073285679, 68.236697719443498}</string>
-								<string>{78.365309248819813, 120.68411833662972}</string>
+								<string>{50.437794551877232, 68.236697719443498}</string>
+								<string>{78.364842563544485, 120.68411991073307}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -8477,7 +8477,7 @@ boundary}</string>
 			<key>BackgroundGraphic</key>
 			<dict>
 				<key>Bounds</key>
-				<string>{{0, 0}, {575.99997711181641, 734}}</string>
+				<string>{{0, 0}, {576, 734}}</string>
 				<key>Class</key>
 				<string>SolidGraphic</string>
 				<key>ID</key>
@@ -8505,7 +8505,7 @@ boundary}</string>
 			<array>
 				<dict>
 					<key>Bounds</key>
-					<string>{{23.583052419244083, 370.125}, {113.76279005061662, 86.625}}</string>
+					<string>{{23.583052419244098, 387}, {113.76279005061662, 86.625}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -8624,7 +8624,7 @@ Validation of data against schemas.}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{111.375, 474.75}, {113.76279005061662, 86.625}}</string>
+					<string>{{120.375, 484.875}, {113.76279005061662, 86.625}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -9099,7 +9099,7 @@ Unified logging.}</string>
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{221.33259471394132, 386.13043431382266}, {28.125, 13}}</string>
+							<string>{{219.40388412626174, 386.87003449226279}, {28.125, 13}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -9185,7 +9185,7 @@ Unified logging.}</string>
 							<array>
 								<string>{257.33056739541354, 421.9561250157808}</string>
 								<string>{249.66666666666666, 414}</string>
-								<string>{204.63560351709361, 359.48986593791977}</string>
+								<string>{206.51789138662483, 369.28178444744742}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -9349,7 +9349,7 @@ Maintains authentication tokens for login.}</string>
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{307.50597002973285, 374.11667957462379}, {28.125, 13}}</string>
+							<string>{{306.46938222719029, 373.63989628341619}, {28.125, 13}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -9435,7 +9435,7 @@ Maintains authentication tokens for login.}</string>
 							<array>
 								<string>{422.54608091634265, 441.99749474316661}</string>
 								<string>{321, 383.33333333333331}</string>
-								<string>{217.212806302475, 333.07645627132251}</string>
+								<string>{212.24876158122447, 339.10982727694625}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -9726,7 +9726,7 @@ Retrieves user info from Open Platform.}</string>
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{310.692284121201, 351.64523061187612}, {28.125, 13}}</string>
+							<string>{{309.18959500681251, 351.99882618243294}, {28.125, 13}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -9813,7 +9813,7 @@ Retrieves user info from Open Platform.}</string>
 								<string>{425.85279202742129, 352.77893271252464}</string>
 								<string>{371, 368.66666666666669}</string>
 								<string>{337.00639502530828, 364.66666666666669}</string>
-								<string>{217.23688207919466, 324.53378637523736}</string>
+								<string>{212.26850130673643, 331.18723589752716}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -9976,7 +9976,7 @@ Transforms between frontend lists and community entities.}</string>
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{452.07447682079402, 94.175064856625795}, {36.557783067195004, 13}}</string>
+							<string>{{451.99608855974969, 95.672476356228941}, {36.557783067195004, 13}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -10008,7 +10008,7 @@ Transforms between frontend lists and community entities.}</string>
 								<key>Offset</key>
 								<real>2.6666667461395264</real>
 								<key>Position</key>
-								<real>0.61802465866351786</real>
+								<real>0.70145443026197052</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -10060,7 +10060,7 @@ Transforms between frontend lists and community entities.}</string>
 							<integer>3426</integer>
 							<key>Points</key>
 							<array>
-								<string>{476.42015639565398, 74.855754414792813}</string>
+								<string>{478.79968918963829, 66.36953233672206}</string>
 								<string>{473, 101.28949574864491}</string>
 								<string>{475.20976588570704, 116.27514092145783}</string>
 							</array>
@@ -10104,7 +10104,7 @@ Transforms between frontend lists and community entities.}</string>
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{406.13821223356274, 236.49085883975624}, {28.125, 13}}</string>
+							<string>{{410.8226266004105, 245.24890246265875}, {28.125, 13}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -10188,9 +10188,9 @@ Transforms between frontend lists and community entities.}</string>
 							<integer>3423</integer>
 							<key>Points</key>
 							<array>
-								<string>{440.11341552962557, 224.74013061429952}</string>
-								<string>{425.85279202742129, 242.66666666666666}</string>
-								<string>{394.34277217905935, 257.02633601227268}</string>
+								<string>{446.26457144897444, 224.76197610460048}</string>
+								<string>{426.3330524192441, 254}</string>
+								<string>{394.36311217901823, 264.43474115273648}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -10353,7 +10353,7 @@ Retrieves and updates users &amp; lists.}</string>
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{234.19855853784736, 295.36212631640575}, {28.125, 13}}</string>
+							<string>{{231.59898098713029, 297.85020378036972}, {28.125, 13}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -10385,7 +10385,7 @@ Retrieves and updates users &amp; lists.}</string>
 								<key>Offset</key>
 								<real>2.6666667461395264</real>
 								<key>Position</key>
-								<real>0.57920170247485292</real>
+								<real>0.57920169830322266</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -10439,7 +10439,7 @@ Retrieves and updates users &amp; lists.}</string>
 							<array>
 								<string>{279.65091768361685, 302.37834831936027}</string>
 								<string>{274.33333333333331, 304.16054878630081}</string>
-								<string>{217.26276462275189, 304.73613940556083}</string>
+								<string>{212.283238580144, 310.20309087072792}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -10476,7 +10476,7 @@ Retrieves and updates users &amp; lists.}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{419.625, 23.165042958040473}, {120.4708424698607, 50.203111537490599}}</string>
+					<string>{{422.97902620962208, 14.686690624324036}, {120.4708424698607, 50.203111537490599}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -10697,7 +10697,7 @@ Transforms between frontend users and community profiles.}</string>
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{127.84052282799158, 111.81941256515647}, {54.885095033507923, 13}}</string>
+							<string>{{128.06810227853799, 109.74119567256002}, {54.885095033507923, 13}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -10781,8 +10781,8 @@ Transforms between frontend users and community profiles.}</string>
 							<integer>3404</integer>
 							<key>Points</key>
 							<array>
-								<string>{203.09686631523255, 80.367021749513498}</string>
-								<string>{136.899074651342, 137.79959382611102}</string>
+								<string>{207.7523955568989, 70.988654523166403}</string>
+								<string>{135.29919512657955, 138.81464765522531}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -10817,7 +10817,7 @@ Transforms between frontend users and community profiles.}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{23.583052419244098, 132.89571250272996}, {113.76279005061662, 107.57904746511889}}</string>
+					<string>{{23.583052419244098, 136.28778909130557}, {113.76279005061662, 107.57904746511889}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -10944,7 +10944,7 @@ Provides API to set meta data for books, including tags &amp; taxonomy.}</string
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{236.34218061473342, 245.28958917188541}, {29.031347317860138, 13}}</string>
+							<string>{{233.44113714106024, 247.87522231985844}, {29.031347317860138, 13}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -11030,7 +11030,7 @@ Provides API to set meta data for books, including tags &amp; taxonomy.}</string
 							<array>
 								<string>{277.30233895746431, 211.54078989170731}</string>
 								<string>{263, 245.9693412706157}</string>
-								<string>{217.19614814616557, 272.3297983492327}</string>
+								<string>{212.20559543516535, 278.77854575857344}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -11065,7 +11065,7 @@ Provides API to set meta data for books, including tags &amp; taxonomy.}</string
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{178.84353172429391, 24.079098726785766}, {113.76279005061662, 55.960258560874863}}</string>
+					<string>{{181.125, 14.686690624324036}, {113.76279005061662, 55.960258560874863}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -11176,7 +11176,7 @@ Database\
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{214.14291315472258, 222.66613436784374}, {28.125, 13}}</string>
+							<string>{{211.62346660651025, 227.85613022198814}, {28.125, 13}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -11260,8 +11260,8 @@ Database\
 							<integer>3395</integer>
 							<key>Points</key>
 							<array>
-								<string>{210.71620814292865, 251.54626441121769}</string>
-								<string>{248.99730571532132, 211.05588183038651}</string>
+								<string>{204.30940152973727, 261.70960680962469}</string>
+								<string>{250.31181805258478, 211.35329932409502}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -11303,7 +11303,7 @@ Database\
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{169.6800183304764, 147.13357560798656}, {59.69496580741955, 33}}</string>
+							<string>{{168.44893401616937, 147.50279606685163}, {59.69496580741955, 33}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -11335,7 +11335,7 @@ Database\
 								<key>Offset</key>
 								<real>2.6666667461395264</real>
 								<key>Position</key>
-								<real>0.49188556188437949</real>
+								<real>0.49188557267189026</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -11387,8 +11387,8 @@ Database\
 							<integer>3392</integer>
 							<key>Points</key>
 							<array>
-								<string>{227.20212977805434, 80.518339564458756}</string>
-								<string>{176.13322425236953, 251.04635804398796}</string>
+								<string>{229.34647199928409, 71.125292451330722}</string>
+								<string>{171.40842412213277, 261.52286757512587}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -11428,7 +11428,7 @@ Database\
 					<array>
 						<dict>
 							<key>Bounds</key>
-							<string>{{70.331283498206588, 88.387465780365929}, {54.885095033507923, 22}}</string>
+							<string>{{70.256464531505912, 96.175803567533237}, {54.885095033507923, 22}}</string>
 							<key>Class</key>
 							<string>ShapedGraphic</string>
 							<key>FitText</key>
@@ -11460,7 +11460,7 @@ Database\
 								<key>Offset</key>
 								<real>2.6666667461395264</real>
 								<key>Position</key>
-								<real>0.63873863220214844</real>
+								<real>0.46369100437437422</real>
 								<key>RotationType</key>
 								<integer>0</integer>
 							</dict>
@@ -11512,9 +11512,9 @@ Database\
 							<integer>3388</integer>
 							<key>Points</key>
 							<array>
-								<string>{91.805655709678859, 132.40628195630254}</string>
+								<string>{91.276997568549703, 135.79742345104927}</string>
 								<string>{94.955043014084296, 117.33333333333333}</string>
-								<string>{94.843774979606479, 77.746722082025158}</string>
+								<string>{93.943159665786382, 67.874686164995552}</string>
 							</array>
 							<key>Style</key>
 							<dict>
@@ -11549,7 +11549,7 @@ Database\
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{103, 251.52534090400576}, {113.76279005061662, 107.57904746511889}}</string>
+					<string>{{98.022802597238638, 262.00123418572809}, {113.76279005061662, 107.57904746511889}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
@@ -11671,7 +11671,7 @@ Provides API to get meta data for books, and user data &amp; lists.}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{34.536152642181676, 27.871728007223197}, {120.4708424698607, 48.375}}</string>
+					<string>{{33.18219967407363, 18}, {120.4708424698607, 48.375}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FontInfo</key>
