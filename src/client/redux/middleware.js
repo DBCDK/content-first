@@ -308,15 +308,10 @@ export const orderMiddleware = store => next => action => {
     case ORDER_START: {
       (async () => {
         try {
-          // Dummy instead of order, to avoid sending orders to
-          // actual library during development. TODO Should be:
-          // await openplatform.order({ pids: [action.book.pid], library: branch });
-          await new Promise(resolve =>
-            setTimeout(resolve, 500 + Math.random() * 2000)
-          );
-          if (Math.random() < 0.4) {
-            throw new Error('pretending order error');
-          }
+          await openplatform.order({
+            pids: [action.pid],
+            library: action.branch
+          });
 
           store.dispatch({
             type: ORDER_SUCCESS,
