@@ -12,20 +12,6 @@ exports[`OrderModal render function renders initial request 1`] = `
     <div
       className="form-group"
     >
-      <p
-        style={
-          Object {
-            "background": "#f66",
-            "textAlign": "center",
-          }
-        }
-      >
-        <strong>
-          <small>
-            Demo af bestil-UI, backend mangler, så bestillingerne går ikke igennem endnu.
-          </small>
-        </strong>
-      </p>
       <strong>
         Du er ved at bestille
          3 bøger

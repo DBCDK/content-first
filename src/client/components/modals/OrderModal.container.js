@@ -49,7 +49,7 @@ export function OrderState({book}) {
   return '';
 }
 
-function orderInfo({orders, onStart}) {
+function orderInfo({orders, onStart, currentBranch, branches}) {
   let orderError = 0;
   let orderSuccess = 0;
   let orderable = [];
@@ -76,7 +76,8 @@ function orderInfo({orders, onStart}) {
       !unavailable
     ) {
       doneText = 'JA TAK, BESTIL NU';
-      onDone = () => onStart(orderable);
+      onDone = () =>
+        onStart(orderable, currentBranch || branches.getIn([0, 'branchId']));
       reviewingOrder = true;
     }
     if (state === 'error') {
@@ -190,14 +191,6 @@ export function OrderModal(props) {
     >
       <div>
         <div className="form-group">
-          <p style={{background: '#f66', textAlign: 'center'}}>
-            <strong>
-              <small>
-                Demo af bestil-UI, backend mangler, så bestillingerne går ikke
-                igennem endnu.
-              </small>
-            </strong>
-          </p>
           <strong>
             Du er ved at bestille{props.orders.size > 1 &&
               ` ${props.orders.size} bøger`}:
@@ -297,9 +290,9 @@ export function mapDispatchToProps(dispatch) {
     onChangeBranch: o => {
       dispatch({type: SET_CURRENT_BRANCH, branch: o.target.value});
     },
-    onStart: books => {
+    onStart: (books, branch) => {
       for (const book of books) {
-        dispatch({type: ORDER_START, pid: book.get('pid')});
+        dispatch({type: ORDER_START, pid: book.get('pid'), branch});
       }
     },
     onClose: () => {
