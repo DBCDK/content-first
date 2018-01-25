@@ -1,0 +1,175 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`listReducer add element to list 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "",
+      "list": Array [
+        Object {
+          "book": Object {
+            "pid": "pid1",
+          },
+        },
+      ],
+      "title": "some list 1",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-1",
+    },
+  },
+]
+`;
+
+exports[`listReducer add element to list twice - no duplicates allowed 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "",
+      "list": Array [
+        Object {
+          "book": Object {
+            "pid": "pid1",
+          },
+        },
+      ],
+      "title": "some list 1",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-1",
+    },
+  },
+]
+`;
+
+exports[`listReducer add lists 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "a description 1",
+      "list": Array [],
+      "title": "some list 1",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-1",
+    },
+  },
+  Object {
+    "data": Object {
+      "description": "a description 2",
+      "list": Array [],
+      "title": "some list 2",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-2",
+    },
+  },
+]
+`;
+
+exports[`listReducer get lists by type 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "",
+      "list": Array [],
+      "title": "some list 1",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-1",
+    },
+  },
+  Object {
+    "data": Object {
+      "description": "",
+      "list": Array [],
+      "title": "some list 3",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-3",
+    },
+  },
+]
+`;
+
+exports[`listReducer remove element from list 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "",
+      "list": Array [
+        Object {
+          "book": Object {
+            "pid": "pid2",
+          },
+        },
+      ],
+      "title": "some list 1",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-1",
+    },
+  },
+]
+`;
+
+exports[`listReducer remove list 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "",
+      "list": Array [],
+      "title": "some list 2",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-2",
+    },
+  },
+]
+`;
+
+exports[`listReducer toggle element in list 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "",
+      "list": Array [
+        Object {
+          "book": Object {
+            "pid": "pid1",
+          },
+        },
+      ],
+      "title": "some list 1",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-1",
+    },
+  },
+]
+`;
+
+exports[`listReducer toggle element in list 2`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "",
+      "list": Array [],
+      "title": "some list 1",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "some-id-1",
+    },
+  },
+]
+`;
