@@ -55,6 +55,8 @@ exports.logger = {
 
 exports.login = {
   url: process.env.LOGIN_URL || 'https://login.bib.dk',
+  openplatformUrl:
+    process.env.OPENPLATFORM_URL || 'https://openplatform.dbc.dk',
   salt: common.secret
 };
 

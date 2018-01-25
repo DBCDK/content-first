@@ -1,7 +1,7 @@
 {
   "type": "object",
   "properties": {
-    "userIdHash": {
+    "openplatformId": {
       "required": true,
       "type": "string"
     },

@@ -24,9 +24,17 @@ const constants = {
       state: 'ok'
     }
   ],
-  apiGetTicket: '/getTicket'
+  apiGetTicket: '/getTicket',
+  apiGetUser: '/v3/user'
 };
 
 module.exports = () => {
-  return Object.assign({}, constants);
+  return Object.assign(
+    {
+      apiGetUserIdByToken: token => {
+        return `${constants.apiGetUser}?access_token=${token}`;
+      }
+    },
+    constants
+  );
 };
