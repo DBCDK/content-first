@@ -593,6 +593,7 @@ describe('Community connector', () => {
           name: 'Jens Godfredsen',
           attributes: {
             openplatform_id: '61dd1242cf774818a97a4ca2f3e633b1',
+            openplatform_token: 'myToken',
             tastes: [
               {
                 name: 'Med på den værste',
@@ -651,7 +652,8 @@ describe('Community connector', () => {
           ]
         }
       ],
-      openplatformToken: undefined
+      openplatformToken: 'myToken',
+      openplatformId: '61dd1242cf774818a97a4ca2f3e633b1'
     });
     expectCommunityOkAndMockedServerDone();
   }
