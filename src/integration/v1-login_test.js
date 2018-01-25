@@ -275,6 +275,8 @@ describe('User login', () => {
                   expectValidate(links, 'schemas/user-links-out.json');
                   expectValidate(data, 'schemas/user-data-out.json');
                   expect(data).to.deep.equal({
+                    openplatformId: '1234567890',
+                    openplatformToken: 'someToken',
                     name: '',
                     shortlist: [],
                     profiles: [],

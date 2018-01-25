@@ -312,7 +312,8 @@ class Community {
         );
         const toReturn = {
           name: profile.name,
-          openplatformToken: profile.attributes.openplatformToken,
+          openplatformId: profile.attributes.openplatform_id,
+          openplatformToken: profile.attributes.openplatform_token,
           shortlist: profile.attributes.shortlist,
           profiles: me.transformTastesToFrontendProfiles(
             profile.attributes.tastes

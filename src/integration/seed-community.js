@@ -22,7 +22,8 @@ async function seedingCommunity(openplatformId) {
   const profileId = data.id;
   await community.updatingProfileWithShortlistAndTastes(profileId, {
     attributes: {
-      openplatform_id: openplatformId
+      openplatform_id: openplatformId,
+      openplatform_token: 'someToken'
     }
   });
   await knex(cookieTable).insert({
