@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-  creatingUser,
-  findingUserByUserIdHash,
+  creatingUserByOpenplatformId,
+  findingUserByOpenplatformId,
   gettingListsFromToken,
   gettingUser,
   gettingUserFromToken,
@@ -24,14 +24,14 @@ function gettingUser(userId) {
   return community.gettingUserByProfileId(userId);
 }
 
-function findingUserByUserIdHash(userIdHash) {
+function findingUserByOpenplatformId(userIdHash) {
   return community.gettingProfileIdByUserIdHash(userIdHash).catch(() => {
     // UserId not found.
     return null;
   });
 }
 
-function creatingUser(userIdHash) {
+function creatingUserByOpenplatformId(userIdHash) {
   return community
     .creatingUserProfile({
       name: '',

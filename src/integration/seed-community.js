@@ -14,17 +14,16 @@ const constants = require('server/constants')();
 const cookieTable = constants.cookies.table;
 const uuidv4 = require('uuid/v4');
 
-async function seedingCommunity(knownUserId) {
+async function seedingCommunity(openplatformId) {
   setupRandomCommunityName();
   const {profile, lists} = transform.transformFrontendUserToProfileAndEntities(
     profileSeed
   );
   const data = await community.creatingUserProfile(profile);
   const profileId = data.id;
-  const userIdHash = await login.calculatingHash(knownUserId);
   await community.updatingProfileWithShortlistAndTastes(profileId, {
     attributes: {
-      user_id: userIdHash
+      user_id: openplatformId
     }
   });
   await knex(cookieTable).insert({

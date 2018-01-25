@@ -58,7 +58,7 @@ describe('Login connector', () => {
     const openplatformId = 'YaYu9Sg6MlduZVnCkhv4N0wnt8g7Oa+f';
     const token = '4686e9c89c02c33db198912164d60041';
     const id = 1234;
-    arrangeOpenplatformToReturnId(openplatformId);
+    arrangeOpenplatformToReturnId(openplatformToken, openplatformId);
     arrangeHejmdalToReturn({token, id, openplatformToken});
     return login
       .gettingTicket(token, id)
@@ -80,7 +80,7 @@ describe('Login connector', () => {
     const openplatformId = 'YaYu9Sg6MlduZVnCkhv4N0wnt8g7Oa+f';
     const token = '4686e9c89c02c33db198912164d60041';
     const id = 1234;
-    arrangeOpenplatformToReturnId(openplatformId);
+    arrangeOpenplatformToReturnId(openplatformToken, openplatformId);
     arrangeHejmdalToReturn({token, id, openplatformToken});
     // TODO: does 'redirect with cookie' actually get tested?
     return login
@@ -178,15 +178,15 @@ describe('Login connector', () => {
     const id = 1234;
     const openplatformToken = 'someToken';
     arrangeHejmdalToReturn({id, token, openplatformToken});
-    arrangeOpenplatformToFail();
+    arrangeOpenplatformToFail(openplatformToken);
     return expect(login.gettingTicket(token, id))
       .to.be.rejectedWith(Error)
       .then(expectErrorOpenplatformProblem);
   });
 
-  function arrangeOpenplatformToFail() {
+  function arrangeOpenplatformToFail(token) {
     nock(config.openplatformUrl)
-      .get(constants.apiGetUserIdByToken)
+      .get(constants.apiGetUserIdByToken(token))
       .replyWithError('Openplatform has sunk');
   }
 
@@ -200,9 +200,9 @@ describe('Login connector', () => {
     expectMockedServerToBeDone();
   }
 
-  function arrangeOpenplatformToReturnId(openplatformId) {
+  function arrangeOpenplatformToReturnId(token, openplatformId) {
     nock(config.openplatformUrl)
-      .get(constants.apiGetUserIdByToken)
+      .get(constants.apiGetUserIdByToken(token))
       .reply(200, {
         statusCode: 200,
         data: {

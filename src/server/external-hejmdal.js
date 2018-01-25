@@ -17,8 +17,8 @@ const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const loginService = require('server/login');
 const uuidv4 = require('uuid/v4');
 const {
-  findingUserByUserIdHash,
-  creatingUser,
+  findingUserByOpenplatformId,
+  creatingUserByOpenplatformId,
   updatingUser
 } = require('server/user');
 
@@ -38,8 +38,8 @@ router
           logger.log.debug('Got remote user data');
 
           const userId =
-            (await findingUserByUserIdHash(remoteUser.userIdHash)) ||
-            (await creatingUser(remoteUser.userIdHash));
+            (await findingUserByOpenplatformId(remoteUser.openplatformId)) ||
+            (await creatingUserByOpenplatformId(remoteUser.openplatformId));
 
           logger.log.debug(
             `User info ${JSON.stringify(remoteUser)}, userId ${userId}`
@@ -61,7 +61,8 @@ router
             .location(constants.pages.start)
             .cookie('login-token', loginToken, {
               maxAge: ms_OneMonth,
-              httpOnly: true /* TODO: secure: true*/
+              httpOnly: true
+              /* TODO: add "secure: true" in production. */
             })
             .send();
         })
