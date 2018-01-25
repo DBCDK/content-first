@@ -24,19 +24,21 @@ function gettingUser(userId) {
   return community.gettingUserByProfileId(userId);
 }
 
-function findingUserByOpenplatformId(userIdHash) {
-  return community.gettingProfileIdByUserIdHash(userIdHash).catch(() => {
-    // UserId not found.
-    return null;
-  });
+function findingUserByOpenplatformId(openplatformId) {
+  return community
+    .gettingProfileIdByOpenplatformId(openplatformId) // force break
+    .catch(() => {
+      // UserId not found.
+      return null;
+    });
 }
 
-function creatingUserByOpenplatformId(userIdHash) {
+function creatingUserByOpenplatformId(openplatformId) {
   return community
     .creatingUserProfile({
       name: '',
       attributes: {
-        user_id: userIdHash,
+        openplatform_id: openplatformId,
         shortlist: [],
         tastes: []
       }
@@ -132,12 +134,7 @@ async function updatingUser(userId, partialData) {
   const {profile, lists} = transform.transformFrontendUserToProfileAndEntities(
     partialData
   );
-  if (
-    profile.name ||
-    profile.attributes.openplatformToken ||
-    profile.attributes.shortlist ||
-    profile.attributes.tastes
-  ) {
+  if (profile.name || !_.isEmpty(profile.attributes)) {
     await community.updatingProfileWithShortlistAndTastes(userId, profile);
   }
   if (lists) {

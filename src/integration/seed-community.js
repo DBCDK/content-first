@@ -6,7 +6,6 @@ module.exports = {
 };
 
 const community = require('server/community');
-const login = require('server/login');
 const transform = require('__/services/elvis/transformers');
 const config = require('server/config');
 const knex = require('knex')(config.db);
@@ -23,7 +22,7 @@ async function seedingCommunity(openplatformId) {
   const profileId = data.id;
   await community.updatingProfileWithShortlistAndTastes(profileId, {
     attributes: {
-      user_id: openplatformId
+      openplatform_id: openplatformId
     }
   });
   await knex(cookieTable).insert({

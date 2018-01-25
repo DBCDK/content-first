@@ -132,13 +132,13 @@ class Community {
     });
   }
 
-  gettingProfileIdByUserIdHash(userIdHash) {
+  gettingProfileIdByOpenplatformId(openplatformId) {
     const me = this;
     return new Promise(async (resolve, reject) => {
       try {
         const queryUrl = await me.gettingQueryUrl();
         const response = await request.post(queryUrl).send({
-          Profile: {'attributes.user_id': userIdHash},
+          Profile: {'attributes.openplatform_id': openplatformId},
           Include: 'id'
         });
         await validatingInput(response.body, schemaElvisSuccessOut);
@@ -147,10 +147,10 @@ class Community {
         if (error.status === 400) {
           if (error.response && error.response.text) {
             if (error.response.text.match(/several results/i)) {
-              return reject(`Multiple users have id ${userIdHash}`);
+              return reject(`Multiple users have id ${openplatformId}`);
             }
           }
-          return reject(`User ${userIdHash} not found`);
+          return reject(`User ${openplatformId} not found`);
         }
         me.interpretAndLogResponseError(error);
         return reject(error);

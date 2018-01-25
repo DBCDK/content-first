@@ -2,7 +2,6 @@
 
 const request = require('superagent');
 const _ = require('lodash');
-const {pbkdf2} = require('crypto');
 const path = require('path');
 const schemaUserInfo = path.join(__dirname, 'login-user-info-in.json');
 const schemaHealth = path.join(__dirname, 'login-health-in.json');

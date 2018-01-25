@@ -18,7 +18,7 @@ const {
 } = require('fixtures/output-verifiers');
 const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 
-describe.only('User login', () => {
+describe('User login', () => {
   const webapp = request(mock.external);
 
   const knownUserId = 'u9YaYSg6MlduZVnCkhv4N0wnt8g7Oa+f';
@@ -271,8 +271,6 @@ describe.only('User login', () => {
               .get('/v1/login')
               .set('cookie', `login-token=${loginToken}`)
               .expect(res => {
-                console.log(res.body);
-
                 expectSuccess(res.body, (links, data) => {
                   expectValidate(links, 'schemas/user-links-out.json');
                   expectValidate(data, 'schemas/user-data-out.json');

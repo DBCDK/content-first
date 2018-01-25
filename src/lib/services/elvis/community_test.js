@@ -140,8 +140,7 @@ describe('Community connector', () => {
       arrangeGetProfileReturnsUserWithIdAndNoOtherData(profileId);
       return sut.updatingProfileWithShortlistAndTastes(profileId, {
         attributes: {
-          user_id: 'an-existing-user-seeded-on-test-start'
-          // user_id: 'e27ecb7c5207c19d388a83631b87065d9667790543e4820f'
+          openplatform_id: 'an-existing-user-seeded-on-test-start'
         }
       });
     });
@@ -297,10 +296,10 @@ describe('Community connector', () => {
     });
   });
 
-  describe('gettingProfileIdByUserIdHash', () => {
+  describe('gettingProfileIdByOpenplatformId', () => {
     it('should detect no connection', () => {
       arrangeCommunityQueryToRespondItIsDead();
-      return expect(sut.gettingProfileIdByUserIdHash('some-hash'))
+      return expect(sut.gettingProfileIdByOpenplatformId('some-hash'))
         .to.be.rejectedWith(Error)
         .then(expectCommunityIsDead);
     });
@@ -308,14 +307,14 @@ describe('Community connector', () => {
     it('should handle non-existing userId', () => {
       arrangeCommunityQueryToRespondUserIdNotFound();
       return expect(
-        sut.gettingProfileIdByUserIdHash('some-hash')
+        sut.gettingProfileIdByOpenplatformId('some-hash')
       ).to.be.rejected.then(expectUserIdNotFound);
     });
 
     it('should return profile id for existing userId', () => {
       arrangeCommunityQueryToRespondWithFoundProfileId();
       return sut
-        .gettingProfileIdByUserIdHash('some-hash')
+        .gettingProfileIdByOpenplatformId('some-hash')
         .then(expectProfileId);
     });
   });
@@ -593,7 +592,7 @@ describe('Community connector', () => {
           id: profileId,
           name: 'Jens Godfredsen',
           attributes: {
-            user_id: '61dd1242cf774818a97a4ca2f3e633b1',
+            openplatform_id: '61dd1242cf774818a97a4ca2f3e633b1',
             tastes: [
               {
                 name: 'Med på den værste',
@@ -702,12 +701,12 @@ describe('Community connector', () => {
             meta: {
               query: {
                 Profile: {
-                  'attributes.user_id': 'ost'
+                  'attributes.openplatform_id': 'ost'
                 },
                 Include: 'id'
               },
               subquery: {
-                'attributes.user_id': 'ost'
+                'attributes.openplatform_id': 'ost'
               },
               context: {}
             }
