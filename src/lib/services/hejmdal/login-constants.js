@@ -25,7 +25,7 @@ const constants = {
     }
   ],
   apiGetTicket: '/getTicket',
-  apiGetUser: '/v3/user'
+  apiGetUser: '/v2/user'
 };
 
 module.exports = () => {
