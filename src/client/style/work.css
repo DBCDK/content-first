@@ -2,10 +2,8 @@
   position: relative;
   width: 250px;
   height: 380px;
-  margin-right: 15px;
   display: inline-block;
   vertical-align: top;
-  margin-bottom: 30px;
 }
 
 .work.simplelist {
@@ -33,13 +31,13 @@
 }
 .scale-on-hover {
   transition: all 0.2s ease-in-out;
-  transform: scale(1,1);
+  transform: scale(1, 1);
 }
 .scale-on-hover:hover {
-  transform: scale(1.05,1.05);
+  transform: scale(1.05, 1.05);
 }
 .scale-on-hover.scale-1:hover {
-  transform: scale(1.1,1.1);
+  transform: scale(1.1, 1.1);
 }
 .work .metakompas-description {
   font-family: 'Raleway', sans-serif;
@@ -88,7 +86,7 @@
   opacity: 0;
   transition: all 0.15s ease-in-out;
   transition-delay: 0.25s;
-  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
 .cover-image-wrapper {
   border-radius: 1px;
@@ -104,7 +102,7 @@
   border-radius: 1px;
 }
 .work-page .tags {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 .work-page .work-details {
   padding: 40px 20px;
@@ -134,7 +132,6 @@
   border: 1px #fc492d solid;
 }
 
-
 .work-details .info {
   display: inline-block;
   font-family: 'Raleway', sans-serif;
@@ -149,7 +146,6 @@
   font-size: 32px;
   font-weight: 700;
   font-style: italic;
-
 }
 .work-details .creator {
   margin-top: 3px;

@@ -306,6 +306,7 @@ function expectSuccess_UserData(uri, partialUserData) {
 }
 
 function expectError_CommunityConnectionProblem(response) {
+  // console.log(response.body.errors[0].response);
   expectFailure(response.body, errors => {
     expect(errors).to.have.length(1);
     const error = errors[0];

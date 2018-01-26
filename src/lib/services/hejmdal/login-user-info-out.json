@@ -1,8 +1,12 @@
 {
   "type": "object",
   "properties": {
-    "userIdHash": {
+    "openplatformId": {
       "required": true,
+      "type": "string"
+    },
+    "openplatformToken": {
+      "required": false,
       "type": "string"
     }
   },

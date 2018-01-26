@@ -11,12 +11,14 @@ export class RecentListsBelt extends React.Component {
           <span className="belt-title">Seneste lister fra brugerne</span>
         </div>
         {this.props.recent && (
-          <div className="col-xs-12">
-            <Slider>
-              {this.props.recent.map(l => {
-                return <ListCard key={l.id} list={l} />;
-              })}
-            </Slider>
+          <div className="row mb4">
+            <div className="col-xs-12">
+              <Slider>
+                {this.props.recent.map(l => {
+                  return <ListCard key={l.id} list={l} />;
+                })}
+              </Slider>
+            </div>
           </div>
         )}
       </div>

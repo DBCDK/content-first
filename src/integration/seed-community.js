@@ -10,7 +10,6 @@ module.exports = {
 };
 
 const community = require('server/community');
-const login = require('server/login');
 const transform = require('__/services/elvis/transformers');
 const config = require('server/config');
 const knex = require('knex')(config.db);
@@ -19,7 +18,7 @@ const cookieTable = constants.cookies.table;
 const listTable = constants.lists.table;
 const uuidv4 = require('uuid/v4');
 
-async function seedingCommunity(knownUserId) {
+async function seedingCommunity(openplatformId) {
   setupRandomCommunityName();
   const {
     profile,
@@ -27,10 +26,10 @@ async function seedingCommunity(knownUserId) {
   } = transform.contentFirstUserToCommunityProfileAndEntities(profileSeed);
   const data = await community.creatingUserProfile(profile);
   const profileId = data.id;
-  const userIdHash = await login.calculatingHash(knownUserId);
   await community.updatingProfileWithShortlistAndTastes(profileId, {
     attributes: {
-      user_id: userIdHash
+      openplatform_id: openplatformId,
+      openplatform_token: 'someToken'
     }
   });
   await knex(cookieTable).insert({

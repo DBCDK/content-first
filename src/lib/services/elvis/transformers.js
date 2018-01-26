@@ -13,6 +13,12 @@ function contentFirstUserToCommunityProfileAndEntities(userInfo) {
       attributes: {}
     }
   };
+  if (userInfo.openplatformId) {
+    skeleton.profile.attributes.openplatform_id = userInfo.openplatformId;
+  }
+  if (userInfo.openplatformToken) {
+    skeleton.profile.attributes.openplatform_token = userInfo.openplatformToken;
+  }
   if (userInfo.name) {
     skeleton.profile.name = userInfo.name;
   }

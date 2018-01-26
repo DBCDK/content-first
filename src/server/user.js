@@ -6,8 +6,8 @@
  */
 
 module.exports = {
-  creatingUser,
-  findingUserByUserIdHash,
+  creatingUserByOpenplatformId,
+  findingUserByOpenplatformId,
   findingUserIdTroughLoginToken,
   gettingUser,
   gettingUserFromToken,
@@ -51,19 +51,21 @@ function gettingUser(userId) {
     });
 }
 
-function findingUserByUserIdHash(userIdHash) {
-  return community.gettingProfileIdByUserIdHash(userIdHash).catch(() => {
-    // UserId not found.
-    return null;
-  });
+function findingUserByOpenplatformId(openplatformId) {
+  return community
+    .gettingProfileIdByOpenplatformId(openplatformId) // force break
+    .catch(() => {
+      // UserId not found.
+      return null;
+    });
 }
 
-function creatingUser(userIdHash) {
+function creatingUserByOpenplatformId(openplatformId) {
   return community
     .creatingUserProfile({
       name: '',
       attributes: {
-        user_id: userIdHash,
+        openplatform_id: openplatformId,
         shortlist: [],
         tastes: []
       }
@@ -108,6 +110,8 @@ function gettingUserFromToken(req) {
   });
 }
 
+// HERE:
+
 /**
  * Promise of looking up userId from login token in HTTP request.
  * @param  {Request} req      HTTP Request object.
@@ -150,35 +154,17 @@ function findingUserIdTroughLoginToken(req, location = null) {
 }
 
 async function updatingUser(userId, partialData) {
-  const {profile} = transform.contentFirstUserToCommunityProfileAndEntities(
-    partialData
-  );
-  return new Promise(async (resolve, reject) => {
-    try {
-      if (
-        profile.name ||
-        profile.attributes.shortlist ||
-        profile.attributes.tastes
-      ) {
-        await community.updatingProfileWithShortlistAndTastes(userId, profile);
-      }
-      return resolve();
-    } catch (error) {
-      let meta = error;
-      if (meta.response) {
-        meta = meta.response;
-      }
-      if (meta.error) {
-        meta = meta.error;
-      }
-      return reject({
-        status: 503,
-        title: 'Community-service connection problem',
-        detail: 'Community service is not reponding properly',
-        meta
-      });
-    }
-  });
+  const {
+    profile,
+    lists
+  } = transform.contentFirstUserToCommunityProfileAndEntities(partialData);
+  if (profile.name || !_.isEmpty(profile.attributes)) {
+    await community.updatingProfileWithShortlistAndTastes(userId, profile);
+  }
+  if (lists) {
+    console.log('Lists not expected');
+    throw new Error(['Lists not expected', lists]);
+  }
 }
 
 function gettingUserIdFromLoginToken(token) {

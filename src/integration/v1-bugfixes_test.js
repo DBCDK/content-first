@@ -11,7 +11,7 @@ describe('Complex interactions', () => {
 
   beforeEach(async () => {
     await mock.resetting();
-    await seeder.seedingCommunity('0101781234');
+    await seeder.seedingCommunity('u9YaYSg6MlduZVnCkhv4N0wnt8g7Oa+f');
   });
 
   afterEach(function() {

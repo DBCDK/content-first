@@ -1,5 +1,6 @@
 /* eslint-env mocha */
 /* eslint-disable no-unused-expressions */
+/* eslint-disable no-undefined */
 'use strict';
 
 const constants = require('./community-constants')();
@@ -139,8 +140,7 @@ describe('Community connector', () => {
       arrangeGetProfileReturnsUserWithIdAndNoOtherData(profileId);
       return sut.updatingProfileWithShortlistAndTastes(profileId, {
         attributes: {
-          user_id: 'an-existing-user-seeded-on-test-start'
-          // user_id: 'e27ecb7c5207c19d388a83631b87065d9667790543e4820f'
+          openplatform_id: 'an-existing-user-seeded-on-test-start'
         }
       });
     });
@@ -375,17 +375,17 @@ describe('Community connector', () => {
     });
   });
 
-  describe('gettingProfileIdByUserIdHash', () => {
+  describe('gettingProfileIdByOpenplatformId', () => {
     it('should detect no connection', () => {
       arrangeCommunityQueryToRespondItIsDead();
-      return expect(sut.gettingProfileIdByUserIdHash('some-hash'))
+      return expect(sut.gettingProfileIdByOpenplatformId('some-hash'))
         .to.be.rejectedWith(Error)
         .then(expectCommunityIsDead);
     });
 
     it('should handle non-existing userId', () => {
       arrangeCommunityQueryToRespondUserIdNotFound();
-      return expect(sut.gettingProfileIdByUserIdHash('some-hash'))
+      return expect(sut.gettingProfileIdByOpenplatformId('some-hash'))
         .to.be.rejected // force break
         .then(expectUserIdNotFound);
     });
@@ -393,7 +393,7 @@ describe('Community connector', () => {
     it('should return profile id for existing userId', () => {
       arrangeCommunityQueryToRespondWithFoundProfileId();
       return sut
-        .gettingProfileIdByUserIdHash('some-hash')
+        .gettingProfileIdByOpenplatformId('some-hash')
         .then(expectProfileId);
     });
   });
@@ -815,7 +815,8 @@ describe('Community connector', () => {
           id: profileId,
           name: 'Jens Godfredsen',
           attributes: {
-            user_id: '61dd1242cf774818a97a4ca2f3e633b1',
+            openplatform_id: '61dd1242cf774818a97a4ca2f3e633b1',
+            openplatform_token: 'myToken',
             tastes: [
               {
                 name: 'Med på den værste',
@@ -833,6 +834,8 @@ describe('Community connector', () => {
 
   function expectUserDataToBeFullyPopulated(document) {
     expect(document).to.deep.equal({
+      openplatformId: '61dd1242cf774818a97a4ca2f3e633b1',
+      openplatformToken: 'myToken',
       name: 'Jens Godfredsen',
       shortlist: [{pid: '870970-basis-22629344', origin: 'en-god-bog'}],
       profiles: [
@@ -850,6 +853,7 @@ describe('Community connector', () => {
     expectCommunityOkAndMockedServerDone();
   }
 
+  // HERE:
   function expectUserDataToHoldAllEntities(document) {
     expect(document).to.deep.equal([
       {
@@ -893,6 +897,7 @@ describe('Community connector', () => {
         }
       }
     ]);
+    expectCommunityOkAndMockedServerDone();
   }
 
   function expectResponseToHoldList(profileId, entityId) {
@@ -934,12 +939,12 @@ describe('Community connector', () => {
             meta: {
               query: {
                 Profile: {
-                  'attributes.user_id': 'ost'
+                  'attributes.openplatform_id': 'ost'
                 },
                 Include: 'id'
               },
               subquery: {
-                'attributes.user_id': 'ost'
+                'attributes.openplatform_id': 'ost'
               },
               context: {}
             }

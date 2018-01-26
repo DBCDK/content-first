@@ -75,4 +75,5 @@ See also [service endpoints](doc/endpoints.md).
 [![Build Status](https://travis-ci.org/DBCDK/content-first.svg?branch=master)](https://travis-ci.org/DBCDK/content-first)
 [![bitHound Overall Score](https://www.bithound.io/github/DBCDK/content-first/badges/score.svg)](https://www.bithound.io/github/DBCDK/content-first)
 [![Coverage Status](https://coveralls.io/repos/github/DBCDK/content-first/badge.svg?branch=master)](https://coveralls.io/github/DBCDK/content-first?branch=master)
+[![LGTM](https://img.shields.io/badge/lgtm-analysed-blue.svg)](https://lgtm.com/projects/g/DBCDK/content-first)
 

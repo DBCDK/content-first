@@ -22,7 +22,7 @@ const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 describe('User login', () => {
   const webapp = request(mock.external);
 
-  const knownUserId = '0101781234';
+  const knownUserId = 'u9YaYSg6MlduZVnCkhv4N0wnt8g7Oa+f';
 
   beforeEach(async () => {
     await mock.resetting();
@@ -169,14 +169,18 @@ describe('User login', () => {
 
   describe('GET /hejmdal:token&id', () => {
     const cookieFormat =
-      /* TODO: /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly; secure/i;*/
+      /* TODO: include "secure" in production? */
       /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly/i;
 
     it('should retrieve user info, create user & redirect with new cookie', () => {
       // Arrange.
       const token = 'f67837cd-f8f8-40fc-b80c-c2f2cff86944';
       const id = 1234;
-      const hejmdal = arrangeLoginServiceToReturnUser('1234567890', token, id);
+      arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId(
+        '1234567890',
+        token,
+        id
+      );
       let loginToken;
       // Act.
       return (
@@ -203,13 +207,15 @@ describe('User login', () => {
                   expectValidate(links, 'schemas/user-links-out.json');
                   expectValidate(data, 'schemas/user-data-out.json');
                   expect(data).to.deep.equal({
+                    openplatformId: '1234567890',
+                    openplatformToken: 'someToken',
                     name: '',
                     shortlist: [],
                     profiles: [],
                     lists: []
                   });
                 });
-                expect(hejmdal.isDone());
+                expect(nock.isDone());
                 expect(mock.getErrorLog().args).to.have.length(0);
               })
               .expect(200);
@@ -221,7 +227,11 @@ describe('User login', () => {
       // Arrange.
       const token = '3b709b2a-37bb-4556-8021-e86b56e8f571';
       const id = 4321;
-      const hejmdal = arrangeLoginServiceToReturnUser(knownUserId, token, id);
+      arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId(
+        knownUserId,
+        token,
+        id
+      );
       let loginToken;
       // Act.
       const location = `/hejmdal?token=${token}&id=${id}`;
@@ -243,7 +253,7 @@ describe('User login', () => {
               .set('cookie', `login-token=${loginToken}`)
               .expect(res => {
                 expectSuccess_UserSeededOnTestStart(res);
-                expect(hejmdal.isDone());
+                expect(nock.isDone());
                 expect(mock.getErrorLog().args).to.have.length(0);
               });
           })
@@ -273,22 +283,42 @@ describe('User login', () => {
     // Helpers.
     //
 
-    function arrangeLoginServiceToReturnUser(userId, token, id) {
+    function arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId(
+      openplatformId,
+      token,
+      id
+    ) {
       const slug = `${loginConstants.apiGetTicket}/${token}/${id}`;
-      return nock(config.login.url)
+      nock(config.login.url)
         .get(slug)
         .reply(200, {
           attributes: {
-            cpr: userId,
-            userId: userId,
+            authenticatedToken: 'someToken',
+            cpr: 'someUserId',
+            userId: 'someUserId',
             wayfId: null,
             agencies: [
               {
-                userId: userId,
+                userId: 'someUserId',
                 agencyId: '715100',
                 userIdType: 'CPR'
               }
             ]
+          }
+        });
+      nock(config.login.openplatformUrl)
+        .get(loginConstants.apiGetUserIdByToken('someToken'))
+        .reply(200, {
+          statusCode: 200,
+          data: {
+            id: openplatformId,
+            name: 'BIBLO testlåner',
+            address: 'Roskilde Bibliotek',
+            postalCode: '0000',
+            loans: [],
+            orders: [],
+            debt: [],
+            ddbcmsapi: 'https://cmscontent.dbc.dk/'
           }
         });
     }

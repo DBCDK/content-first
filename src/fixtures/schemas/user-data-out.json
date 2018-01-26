@@ -1,6 +1,14 @@
 {
   "type": "object",
   "properties": {
+    "openplatformId": {
+      "required": true,
+      "type": "string"
+    },
+    "openplatformToken": {
+      "required": true,
+      "type": "string"
+    },
     "name": {
       "required": true,
       "type": "string"

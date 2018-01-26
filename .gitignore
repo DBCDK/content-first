@@ -4,6 +4,6 @@ coverage/
 current.env
 node_modules/
 npm-debug.log
-package-lock.json
 scratch.js
 src/client/data/json-files*
+src/client/data/*.json
