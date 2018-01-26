@@ -69,6 +69,10 @@
             "additionalProperties": false
           }
         },
+        "openplatformToken": {
+          "required": false,
+          "type": "string"
+        },
         "user_id": {
           "required": false,
           "type": "string"
