@@ -1,5 +1,3 @@
-import uuid from 'small-uuid';
-
 export const SYSTEM_LIST = 'SYSTEM_LIST';
 export const SHORT_LIST = 'SHORT_LIST';
 export const CUSTOM_LIST = 'CUSTOM_LIST';
@@ -8,11 +6,6 @@ export const CUSTOM_LIST = 'CUSTOM_LIST';
 // if a work has been added/removed to/from list
 const defaultState = {
   lists: {},
-  currentList: {
-    title: '',
-    description: '',
-    list: []
-  },
   changeMap: {},
   recent: [
     {
@@ -108,16 +101,16 @@ const defaultState = {
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
 export const LIST_LOAD_RESPONSE = 'LIST_LOAD_RESPONSE';
-export const LIST_LOAD_CURRENT_LIST = 'LIST_LOAD_CURRENT_LIST';
 export const ADD_LIST = 'ADD_LIST';
-export const UPDATE_CURRENT_LIST = 'UPDATE_LIST';
-export const CLEAR_CURRENT_LIST = 'CLEAR_CURRENT_LIST';
-export const SAVE_LIST = 'SAVE_LIST';
+export const UPDATE_LIST_DATA = 'UPDATE_LIST_DATA';
 export const REMOVE_LIST = 'REMOVE_LIST';
 export const ADD_ELEMENT_TO_LIST = 'ADD_ELEMENT_TO_LIST';
 export const REMOVE_ELEMENT_FROM_LIST = 'REMOVE_ELEMENT_FROM_LIST';
 export const LIST_TOGGLE_ELEMENT = 'LIST_TOGGLE_ELEMENT';
+export const LIST_INSERT_ELEMENT = 'LIST_INSERT_ELEMENT';
+export const STORE_LIST = 'STORE_LIST';
 
+// eslint-disable-next-line
 const listReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_LIST: {
@@ -125,8 +118,11 @@ const listReducer = (state = defaultState, action) => {
       if (!list.links.self) {
         throw new Error('Cant add list when list.links.self is not set');
       }
+      if (!list.data.id) {
+        throw new Error('Cant add list when list.data.id is not set');
+      }
       return Object.assign({}, state, {
-        lists: {...state.lists, [list.links.self]: list}
+        lists: {...state.lists, [list.data.id]: list}
       });
     }
     case REMOVE_LIST: {
@@ -173,6 +169,28 @@ const listReducer = (state = defaultState, action) => {
       list.data.list = list.data.list.filter(element => element.book.pid !== action.element.book.pid);
       return Object.assign({}, state, {lists: {...state.lists, [action.id]: list}, changeMap});
     }
+    case LIST_INSERT_ELEMENT: {
+      if (!action.id) {
+        throw new Error("'id' is missing from action");
+      }
+      if (!state.lists[action.id]) {
+        throw new Error(`Could not find list with id ${action.id}`);
+      }
+      if (!action.element) {
+        throw new Error("'element' is missing from action");
+      }
+      if (!action.pos) {
+        throw new Error("'pos' is missing from action");
+      }
+      const changeMap = Object.assign({}, state.changeMap, {
+        [action.element.book.pid]: {}
+      });
+      const list = {...state.lists[action.id], data: {...state.lists[action.id].data}};
+      const listElements = [...list.data.list];
+      listElements.splice(Math.min(action.pos, listElements.length), 0, action.element);
+      list.data.list = listElements.filter((element, idx) => !(element.book.pid === action.element.book.pid && idx !== action.pos));
+      return Object.assign({}, state, {lists: {...state.lists, [action.id]: list}, changeMap});
+    }
     case LIST_TOGGLE_ELEMENT: {
       if (!action.id) {
         throw new Error("'id' is missing from action");
@@ -195,15 +213,16 @@ const listReducer = (state = defaultState, action) => {
       }
       return Object.assign({}, state, {lists: {...state.lists, [action.id]: list}, changeMap});
     }
-    case UPDATE_CURRENT_LIST: {
-      const currentList = Object.assign({}, state.currentList, action.currentList);
-      return Object.assign({}, state, {currentList});
-    }
-    case LIST_LOAD_CURRENT_LIST: {
-      return Object.assign({}, state, {currentList: action.currentList});
-    }
-    case CLEAR_CURRENT_LIST: {
-      return Object.assign({}, state, {currentList: defaultState.currentList});
+    case UPDATE_LIST_DATA: {
+      if (!action.data) {
+        throw new Error("'data' is missing from action");
+      }
+      if (!state.lists[action.data.id]) {
+        throw new Error(`Could not find list with id ${action.data.id}`);
+      }
+      const list = {...state.lists[action.data.id]};
+      list.data = {...list.data, ...action.data};
+      return Object.assign({}, state, {lists: {...state.lists, [action.data.id]: list}});
     }
     case LIST_LOAD_RESPONSE: {
       let lists = action.lists;
@@ -211,9 +230,12 @@ const listReducer = (state = defaultState, action) => {
         list.data.list.forEach(element => (map[element.book.pid] = {}));
         return map;
       }, {});
+      const listMap = {};
+      lists.forEach(l => {
+        listMap[l.data.id] = l;
+      });
       return Object.assign({}, state, {
-        lists,
-        currentList: action.currentList || state.currentList || defaultState.currentList,
+        lists: listMap,
         changeMap
       });
     }
@@ -223,18 +245,25 @@ const listReducer = (state = defaultState, action) => {
 };
 
 // ACTION CREATORS
-export const addList = ({type = CUSTOM_LIST, title = '', description = '', list = []}) => {
+export const addList = ({type = CUSTOM_LIST, title = '', description = '', list = [], id = null}) => {
   return {
     type: ADD_LIST,
     list: {
       data: {
+        id,
         type,
         title,
         description,
         list
       },
-      links: {self: null}
+      links: {self: id ? `/v1/lists/${id}` : null}
     }
+  };
+};
+export const updateList = data => {
+  return {
+    type: UPDATE_LIST_DATA,
+    data
   };
 };
 export const removeList = id => {
@@ -264,6 +293,20 @@ export const toggleElementInList = (element, id) => {
     id
   };
 };
+export const insertElement = (element, pos, id) => {
+  return {
+    type: LIST_INSERT_ELEMENT,
+    element,
+    pos,
+    id
+  };
+};
+export const storeList = id => {
+  return {
+    type: STORE_LIST,
+    id
+  };
+};
 
 // SELECTORS
 export const getLists = (state, {type} = {}) => {
@@ -272,8 +315,8 @@ export const getLists = (state, {type} = {}) => {
   }
   return Object.values(state.lists).filter(l => l.data.type === type);
 };
-export const getListMap = state => {
-  return state.lists;
+export const getListById = (state, id) => {
+  return state.lists[id];
 };
 
 export default listReducer;

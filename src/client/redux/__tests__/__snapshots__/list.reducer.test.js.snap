@@ -5,6 +5,7 @@ Array [
   Object {
     "data": Object {
       "description": "",
+      "id": "some-id-1",
       "list": Array [
         Object {
           "book": Object {
@@ -16,7 +17,7 @@ Array [
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-1",
+      "self": "/v1/lists/some-id-1",
     },
   },
 ]
@@ -27,18 +28,20 @@ Array [
   Object {
     "data": Object {
       "description": "",
+      "id": "some-id-1",
       "list": Array [
         Object {
           "book": Object {
             "pid": "pid1",
           },
+          "description": "some-description-1",
         },
       ],
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-1",
+      "self": "/v1/lists/some-id-1",
     },
   },
 ]
@@ -49,23 +52,25 @@ Array [
   Object {
     "data": Object {
       "description": "a description 1",
+      "id": "some-id-1",
       "list": Array [],
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-1",
+      "self": "/v1/lists/some-id-1",
     },
   },
   Object {
     "data": Object {
       "description": "a description 2",
+      "id": "some-id-2",
       "list": Array [],
       "title": "some list 2",
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-2",
+      "self": "/v1/lists/some-id-2",
     },
   },
 ]
@@ -76,23 +81,58 @@ Array [
   Object {
     "data": Object {
       "description": "",
+      "id": "some-id-1",
       "list": Array [],
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-1",
+      "self": "/v1/lists/some-id-1",
     },
   },
   Object {
     "data": Object {
       "description": "",
+      "id": "some-id-3",
       "list": Array [],
       "title": "some list 3",
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-3",
+      "self": "/v1/lists/some-id-3",
+    },
+  },
+]
+`;
+
+exports[`listReducer insert element at specific pos in list 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "",
+      "id": "some-id-1",
+      "list": Array [
+        Object {
+          "book": Object {
+            "pid": "pid1",
+          },
+        },
+        Object {
+          "book": Object {
+            "pid": "pid3",
+          },
+        },
+        Object {
+          "book": Object {
+            "pid": "pid2",
+          },
+        },
+      ],
+      "title": "some list 1",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "/v1/lists/some-id-1",
     },
   },
 ]
@@ -103,6 +143,7 @@ Array [
   Object {
     "data": Object {
       "description": "",
+      "id": "some-id-1",
       "list": Array [
         Object {
           "book": Object {
@@ -114,7 +155,7 @@ Array [
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-1",
+      "self": "/v1/lists/some-id-1",
     },
   },
 ]
@@ -125,12 +166,13 @@ Array [
   Object {
     "data": Object {
       "description": "",
+      "id": "some-id-2",
       "list": Array [],
       "title": "some list 2",
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-2",
+      "self": "/v1/lists/some-id-2",
     },
   },
 ]
@@ -141,6 +183,7 @@ Array [
   Object {
     "data": Object {
       "description": "",
+      "id": "some-id-1",
       "list": Array [
         Object {
           "book": Object {
@@ -152,7 +195,7 @@ Array [
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-1",
+      "self": "/v1/lists/some-id-1",
     },
   },
 ]
@@ -163,12 +206,13 @@ Array [
   Object {
     "data": Object {
       "description": "",
+      "id": "some-id-1",
       "list": Array [],
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
     "links": Object {
-      "self": "some-id-1",
+      "self": "/v1/lists/some-id-1",
     },
   },
 ]
