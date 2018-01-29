@@ -226,7 +226,7 @@ describe('Shortlist', () => {
       );
     });
 
-    describe.skip('with community not responding properly', () => {
+    describe('with community not responding properly', () => {
       it('should handle no connection to community', () => {
         arrangeCommunityServiceToRespondWithServerError_OnPut();
         return webapp

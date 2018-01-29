@@ -153,18 +153,42 @@ function findingUserIdTroughLoginToken(req, location = null) {
   });
 }
 
-async function updatingUser(userId, partialData) {
+function updatingUser(userId, partialData) {
   const {
     profile,
     lists
   } = transform.contentFirstUserToCommunityProfileAndEntities(partialData);
-  if (profile.name || !_.isEmpty(profile.attributes)) {
-    await community.updatingProfileWithShortlistAndTastes(userId, profile);
-  }
   if (lists) {
-    console.log('Lists not expected');
-    throw new Error(['Lists not expected', lists]);
+    return Promise.reject({
+      status: 500,
+      title: 'Lists not expected',
+      meta: lists
+    });
   }
+  if (profile.name || !_.isEmpty(profile.attributes)) {
+    return community
+      .updatingProfileWithShortlistAndTastes(userId, profile)
+      .catch(error => {
+        let meta = error;
+        if (meta.response) {
+          meta = meta.response;
+        }
+        if (meta.error) {
+          meta = meta.error;
+        }
+        return Promise.reject({
+          status: 503,
+          title: 'Community-service connection problem',
+          detail: 'Community service is not reponding properly',
+          meta
+        });
+      });
+  }
+  return Promise.reject({
+    status: 500,
+    title: 'No user data to update',
+    meta: partialData
+  });
 }
 
 function gettingUserIdFromLoginToken(token) {
