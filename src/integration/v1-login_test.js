@@ -22,11 +22,9 @@ const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 describe('User login', () => {
   const webapp = request(mock.external);
 
-  const knownUserId = 'u9YaYSg6MlduZVnCkhv4N0wnt8g7Oa+f';
-
   beforeEach(async () => {
     await mock.resetting();
-    await seeder.seedingCommunity(knownUserId);
+    await seeder.seedingCommunity();
   });
 
   afterEach(async function() {
@@ -228,7 +226,7 @@ describe('User login', () => {
       const token = '3b709b2a-37bb-4556-8021-e86b56e8f571';
       const id = 4321;
       arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId(
-        knownUserId,
+        seeder.knownUserId(),
         token,
         id
       );

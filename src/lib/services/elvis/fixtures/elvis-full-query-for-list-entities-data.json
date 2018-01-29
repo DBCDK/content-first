@@ -6,6 +6,7 @@
       "entity_id": 4567,
       "profile_id": 123,
       "uuid": "c98c23925f857c5dbe41f8c6e8f49978",
+      "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f",
       "title": "Another list",
       "description": "An oldie but goodie",
       "list": [
@@ -21,6 +22,7 @@
       "entity_id": 4568,
       "profile_id": 123,
       "uuid": "98c5ff8c6e8f49978c857c23925dbe41",
+      "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f",
       "title": "My list",
       "description": "A brand new list",
       "list": [

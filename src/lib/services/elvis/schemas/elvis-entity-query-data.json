@@ -19,6 +19,10 @@
             "required": true,
             "type": "string"
           },
+          "owner": {
+            "required": true,
+            "type": "string"
+          },
           "title": {
             "required": true,
             "type": "string"

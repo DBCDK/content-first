@@ -206,6 +206,7 @@ function expectListsSeededOnTestStart(document) {
     data: {
       type: 'CUSTOM_LIST',
       public: false,
+      owner: seeder.knownUserId(),
       title: 'Gamle Perler',
       description: 'Bøger man simpelthen må læse',
       list: [
@@ -233,6 +234,7 @@ function cachedListSeededOnTestStart() {
     data: {
       type: 'SYSTEM_LIST',
       public: true,
+      owner: seeder.knownUserId(),
       title: 'My List',
       description: 'A brand new list',
       list: [
@@ -251,6 +253,7 @@ function uncachedListSeededOnTestStart() {
     data: {
       type: 'CUSTOM_LIST',
       public: false,
+      owner: seeder.knownUserId(),
       title: 'Gamle Perler',
       description: 'Bøger man simpelthen må læse',
       list: [

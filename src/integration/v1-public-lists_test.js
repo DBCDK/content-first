@@ -23,9 +23,9 @@ describe('Public lists', () => {
 
   beforeEach(async function() {
     await mock.resetting();
-    await seeder.seedingCommunity('0101781234');
+    await seeder.seedingCommunity();
     const profileId = await creatingProfile();
-    this.timeout(4 * 1000 + 1000);
+    this.timeout(4 * 1000 + 1500);
     await insertingThreePublicLists(profileId);
   });
 
@@ -100,6 +100,7 @@ describe('Public lists', () => {
     expect(document[0].data).to.deep.equal({
       type: threePublicLists[2].type,
       public: true,
+      owner: seeder.knownUserId(),
       title: threePublicLists[2].title,
       description: threePublicLists[2].description,
       list: threePublicLists[2].list
@@ -110,6 +111,7 @@ describe('Public lists', () => {
     expect(document[1].data).to.deep.equal({
       type: threePublicLists[1].type,
       public: true,
+      owner: seeder.knownUserId(),
       title: threePublicLists[1].title,
       description: threePublicLists[1].description,
       list: threePublicLists[1].list
@@ -138,6 +140,7 @@ describe('Public lists', () => {
     expect(document[0].data).to.deep.equal({
       type: threePublicLists[0].type,
       public: true,
+      owner: seeder.knownUserId(),
       title: threePublicLists[0].title,
       description: threePublicLists[0].description,
       list: threePublicLists[0].list
@@ -153,7 +156,7 @@ describe('Public lists', () => {
       expectSuccess(response.body, (links, data) => {
         expectValidate(links, 'schemas/lists-links-out.json');
         expect(links.self).to.equal(uri);
-        // Hmm, there seems to be a bug in community server:
+        // Hmm, there seems to be a bug in community server which makes this fail:
         // expect(links.next).to.match(/offset=4/);
         expectValidLists(data);
       });
@@ -167,6 +170,12 @@ describe('Public lists', () => {
     );
     const data = await community.creatingUserProfile(profile);
     const profileId = data.id;
+    await community.updatingProfileWithShortlistAndTastes(profileId, {
+      attributes: {
+        openplatform_id: seeder.knownUserId(),
+        openplatform_token: 'someToken'
+      }
+    });
     return profileId;
   }
 

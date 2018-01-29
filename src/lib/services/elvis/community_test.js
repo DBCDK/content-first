@@ -166,9 +166,8 @@ describe('Community connector', () => {
 
   describe('creatingUserProfile', () => {
     it('should reject malformed input', () => {
-      return expect(sut.creatingUserProfile({name: 123})).to.be.rejected.then(
-        expectMalformedProfile
-      );
+      return expect(sut.creatingUserProfile({name: 123})) // force break
+        .to.be.rejected.then(expectMalformedProfile);
     });
 
     const userInfo = require('./fixtures/frontend-user-info-out.json');
@@ -191,9 +190,9 @@ describe('Community connector', () => {
 
   describe('creatingListEntity', () => {
     it('should reject malformed input', () => {
-      return expect(
-        sut.creatingListEntity(123, {name: 123})
-      ).to.be.rejected.then(expectMalformedList);
+      return expect(sut.creatingListEntity(123, {name: 123}))
+        .to.be.rejected // force break
+        .then(expectMalformedList);
     });
 
     const userInfo = require('./fixtures/frontend-user-info-out.json');
@@ -734,7 +733,7 @@ describe('Community connector', () => {
     const entityId = 1234;
     sut.setCommunityId(communityId);
     const endpoint = constants.apiPostEntity(communityId);
-    mockedSubservice = nock(config.url)
+    nock(config.url)
       .post(endpoint)
       .reply(201, {
         data: {
@@ -753,6 +752,21 @@ describe('Community connector', () => {
           }
         }
       });
+    mockedSubservice = nock(config.url)
+      .get(constants.apiProfileId(communityId, 123))
+      .reply(200, {
+        data: {
+          id: 123,
+          modified_epoch: 1516115217,
+          community_id: communityId,
+          name: 'Mr Bean',
+          attributes: {
+            openplatform_id: '1234567890',
+            shortlist: [],
+            tastes: []
+          }
+        }
+      });
   }
 
   function expectListWithExtraInfo(document) {
@@ -762,6 +776,7 @@ describe('Community connector', () => {
         title: 'Brand New List',
         description: 'A too long\ndescription with several\nlines',
         public: false,
+        owner: '1234567890',
         list: [{pid: '1234-abc-5678', desription: 'a book'}]
       },
       links: {
@@ -853,7 +868,6 @@ describe('Community connector', () => {
     expectCommunityOkAndMockedServerDone();
   }
 
-  // HERE:
   function expectUserDataToHoldAllEntities(document) {
     expect(document).to.deep.equal([
       {
@@ -867,6 +881,7 @@ describe('Community connector', () => {
             }
           ],
           public: false,
+          owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
           type: 'SYSTEM_LIST'
         },
         links: {
@@ -887,6 +902,7 @@ describe('Community connector', () => {
             }
           ],
           public: false,
+          owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
           type: 'CUSTOM_LIST'
         },
         links: {
@@ -913,7 +929,8 @@ describe('Community connector', () => {
               description: 'Magic to the people'
             }
           ],
-          public: false
+          public: false,
+          owner: '1234567890'
         },
         links: {
           self: '/v1/lists/fc8fbafab2a94bfaae5f84b1d5bfd480',
@@ -993,7 +1010,7 @@ describe('Community connector', () => {
     const communityId = 1;
     sut.setCommunityId(communityId);
     const endpoint = constants.apiEntityId(communityId, entityId);
-    mockedSubservice = nock(config.url)
+    nock(config.url)
       .put(endpoint)
       .reply(200, {
         data: {
@@ -1009,6 +1026,21 @@ describe('Community connector', () => {
             public: false,
             uuid: 'd7c39653d7bf45be8a09c0c589cf56aa',
             list: [{pid: '1234-abc-5678', desription: 'a book'}]
+          }
+        }
+      });
+    mockedSubservice = nock(config.url)
+      .get(constants.apiProfileId(communityId, 123))
+      .reply(200, {
+        data: {
+          id: 123,
+          modified_epoch: 1516115217,
+          community_id: communityId,
+          name: 'Mr Bean',
+          attributes: {
+            openplatform_id: '1234567890',
+            shortlist: [],
+            tastes: []
           }
         }
       });
@@ -1028,6 +1060,7 @@ describe('Community connector', () => {
           description: 'A brand new list',
           profile_id: 1,
           uuid: uuid,
+          owner: 'ost',
           list: [
             {
               pid: '870970-basis-22629344',
@@ -1058,11 +1091,13 @@ describe('Community connector', () => {
       });
   }
 
+  // HERE
+
   function arrangeGetEntityToRespondWithPrivateEntity(profileId, entityId) {
     const communityId = 1;
     sut.setCommunityId(communityId);
     const endpoint = constants.apiEntityId(communityId, entityId);
-    mockedSubservice = nock(config.url)
+    nock(config.url)
       .get(endpoint)
       .reply(200, {
         links: {
@@ -1095,6 +1130,21 @@ describe('Community connector', () => {
             public: false
           },
           log: null
+        }
+      });
+    mockedSubservice = nock(config.url)
+      .get(constants.apiProfileId(communityId, profileId))
+      .reply(200, {
+        data: {
+          id: profileId,
+          modified_epoch: 1516115217,
+          community_id: communityId,
+          name: 'Mr Bean',
+          attributes: {
+            openplatform_id: '1234567890',
+            shortlist: [],
+            tastes: []
+          }
         }
       });
   }
@@ -1137,6 +1187,7 @@ describe('Community connector', () => {
               entity_id: 1623,
               profile_id: 543,
               uuid: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+              owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
               public: true,
               type: 'SYSTEM_LIST',
               title: 'My List',
@@ -1152,6 +1203,7 @@ describe('Community connector', () => {
               entity_id: 1624,
               profile_id: 543,
               uuid: 'fa4f3a3de3a34a188234ed298ecbe810',
+              owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
               public: true,
               type: 'CUSTOM_LIST',
               title: 'Gamle Perler',
@@ -1181,6 +1233,7 @@ describe('Community connector', () => {
               }
             ],
             public: true,
+            owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
             title: 'My List',
             type: 'SYSTEM_LIST'
           },
@@ -1201,6 +1254,7 @@ describe('Community connector', () => {
               }
             ],
             public: true,
+            owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
             title: 'Gamle Perler',
             type: 'CUSTOM_LIST'
           },

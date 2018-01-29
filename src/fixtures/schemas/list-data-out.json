@@ -18,6 +18,10 @@
       "required": true,
       "type": "boolean"
     },
+    "owner": {
+      "required": true,
+      "type": "string"
+    },
     "list": {
       "required": true,
       "type": "array",

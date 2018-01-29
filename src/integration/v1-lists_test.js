@@ -36,7 +36,7 @@ describe('Lists', () => {
 
   beforeEach(async () => {
     await mock.resetting();
-    await seeder.seedingCommunity('u9YaYSg6MlduZVnCkhv4N0wnt8g7Oa+f');
+    await seeder.seedingCommunity();
   });
 
   afterEach(function() {
@@ -390,7 +390,11 @@ describe('Lists', () => {
         expectSuccess(response.body, (links, data) => {
           expectValidate(links, 'schemas/list-links-out.json');
           expect(links.self).to.equal(uri);
-          expect(data).to.deep.equal(newList);
+          const listWithOwner = Object.assign(
+            {owner: seeder.knownUserId()},
+            newList
+          );
+          expect(data).to.deep.equal(listWithOwner);
         });
         expect(response.status).to.equal(200);
       };

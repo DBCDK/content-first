@@ -25,6 +25,10 @@
       "required": true,
       "type": "string"
     },
+    "owner": {
+      "required": true,
+      "type": "string"
+    },
     "public": {
       "required": true,
       "type": "boolean"

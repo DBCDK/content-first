@@ -181,17 +181,23 @@ class Community {
     });
   }
 
+  // HERE:
+
   gettingAllListEntitiesOwnedByProfileId(profileId) {
     const me = this;
     return new Promise(async (resolve, reject) => {
       try {
         const queryUrl = await me.gettingQueryUrl();
-        const {body} = await request.post(queryUrl).send({
+        const query = {
           Entities: {type: 'list', owner_id: profileId},
           Limit: 999,
           Include: {
             entity_id: 'id',
             profile_id: 'owner_id',
+            owner: {
+              Profile: {id: '^owner_id'},
+              Include: 'attributes.openplatform_id'
+            },
             uuid: 'attributes.uuid',
             public: 'attributes.public',
             type: 'attributes.type',
@@ -199,7 +205,8 @@ class Community {
             description: 'contents',
             list: 'attributes.list'
           }
-        });
+        };
+        const {body} = await request.post(queryUrl).send(query);
         const data = await me.extractingCommunityResult(
           body,
           schemaElvisEntityQueryData
@@ -233,7 +240,7 @@ class Community {
           body,
           schemaElvisEntityGetData
         );
-        const list = me.fromCommunityList(data);
+        const list = await me.spikingCommunityListWithOwner(data);
         return resolve(list);
       } catch (error) {
         if (error.status === 404) {
@@ -266,6 +273,10 @@ class Community {
             description: 'contents',
             profile_id: 'owner_id',
             uuid: 'attributes.uuid',
+            owner: {
+              Profile: {id: '^owner_id'},
+              Include: 'attributes.openplatform_id'
+            },
             list: 'attributes.list',
             public: 'attributes.public'
           }
@@ -287,9 +298,15 @@ class Community {
         return resolve(result);
       } catch (error) {
         if (error.status === 400) {
-          const body = error.response.body;
-          if (body.errors && body.errors[0] && body.errors[0].detail) {
-            const detail = body.errors[0].detail;
+          let info = error;
+          if (info.response) {
+            info = info.response;
+          }
+          if (info.body) {
+            info = info.body;
+          }
+          if (info.errors && info.errors[0] && info.errors[0].detail) {
+            const detail = info.errors[0].detail;
             if (detail.match(/no result/i)) {
               return reject({
                 status: 404,
@@ -345,7 +362,7 @@ class Community {
           response.body,
           schemaElvisEntityGetData
         );
-        const list = me.fromCommunityList(data);
+        const list = await me.spikingCommunityListWithOwner(data);
         return resolve(list);
       } catch (error) {
         me.interpretAndLogResponseError(error);
@@ -371,7 +388,7 @@ class Community {
           response.body,
           schemaElvisEntityGetData
         );
-        const list = me.fromCommunityList(data);
+        const list = await me.spikingCommunityListWithOwner(data);
         return resolve(list);
       } catch (error) {
         me.interpretAndLogResponseError(error);
@@ -455,6 +472,10 @@ class Community {
             entity_id: 'id',
             profile_id: 'owner_id',
             uuid: 'attributes.uuid',
+            owner: {
+              Profile: {id: '^owner_id'},
+              Include: 'attributes.openplatform_id'
+            },
             public: 'attributes.public',
             type: 'attributes.type',
             title: 'title',
@@ -567,6 +588,21 @@ class Community {
         return reject(error);
       }
     });
+  }
+
+  // HERE:
+  async spikingCommunityListWithOwner(document) {
+    const list = this.fromCommunityList(document);
+    try {
+      // TODO: It is somewhat wasteful to get all this Profile data just to
+      // get the openplatformId.  There should probably be a
+      // gettingOpenplatformIdByProfileId function.
+      const result = await this.gettingUserByProfileId(document.owner_id);
+      list.data.owner = result.openplatformId;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+    return list;
   }
 
   fromCommunityList(document) {

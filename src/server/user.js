@@ -114,7 +114,7 @@ function gettingUserFromToken(req) {
 
 /**
  * Promise of looking up userId from login token in HTTP request.
- * @param  {Request} req      HTTP Request object.
+ * @param  {Request} req       HTTP Request object.
  * @param  {string}  location  Defaults to req.baseUrl
  * @return {Promise} Resolves to Community Profile ID, or rejects with status, title, etc
  */

@@ -4,6 +4,7 @@
 module.exports = {
   cachedPublicListUuid,
   deletedListUuid,
+  knownUserId,
   reservedListUuid,
   seedingCommunity,
   uncachedPrivateListUuid
@@ -18,7 +19,7 @@ const cookieTable = constants.cookies.table;
 const listTable = constants.lists.table;
 const uuidv4 = require('uuid/v4');
 
-async function seedingCommunity(openplatformId) {
+async function seedingCommunity() {
   setupRandomCommunityName();
   const {
     profile,
@@ -28,7 +29,7 @@ async function seedingCommunity(openplatformId) {
   const profileId = data.id;
   await community.updatingProfileWithShortlistAndTastes(profileId, {
     attributes: {
-      openplatform_id: openplatformId,
+      openplatform_id: this.knownUserId(),
       openplatform_token: 'someToken'
     }
   });
@@ -79,6 +80,10 @@ function deletedListUuid() {
 
 function reservedListUuid() {
   return 'd7c39653d7bf45be8a09c0c589cf56aa';
+}
+
+function knownUserId() {
+  return 'u9YaYSg6MlduZVnCkhv4N0wnt8g7Oa+f';
 }
 
 async function cachingOneList(profileId, entityId) {
