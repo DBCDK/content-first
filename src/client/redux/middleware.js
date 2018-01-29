@@ -185,6 +185,9 @@ export const listMiddleware = store => next => async action => {
         action.list.links.self = location;
         action.list.data.id = id;
       }
+      if (!action.list.data.owner) {
+        action.list.data.owner = store.getState().profileReducer.user.openplatformId;
+      }
       return next(action);
     }
     case LIST_LOAD_REQUEST: {

@@ -219,7 +219,7 @@ export const storeList = id => {
 };
 
 // SELECTORS
-export const getLists = (state, {type, owner} = {}) => {
+export const getLists = (state, {type, owner, sort} = {}) => {
   const lists = Object.values(state.lists).filter(l => {
     if (type && l.data.type !== type) {
       return false;
@@ -229,8 +229,9 @@ export const getLists = (state, {type, owner} = {}) => {
     }
     return true;
   });
-
-  lists.sort((item1, item2) => item1.data.title.localeCompare(item2.data.title));
+  if (sort) {
+    lists.sort((item1, item2) => item1.data.title.localeCompare(item2.data.title));
+  }
   return lists;
 };
 export const getPublicLists = state => {
