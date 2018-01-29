@@ -28,14 +28,7 @@ import {
 import {ADD_LIST, STORE_LIST, LIST_LOAD_RESPONSE, LIST_LOAD_REQUEST, getListById} from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {
-  ORDER,
-  ORDER_START,
-  ORDER_SUCCESS,
-  ORDER_FAILURE,
-  PICKUP_BRANCHES,
-  AVAILABILITY
-} from './order.reducer';
+import {ORDER, ORDER_START, ORDER_SUCCESS, ORDER_FAILURE, PICKUP_BRANCHES, AVAILABILITY} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 import {saveList, loadLists, createListLocation} from '../utils/requestLists';
 
@@ -235,7 +228,6 @@ export const orderMiddleware = store => next => action => {
       store.dispatch({type: OPEN_MODAL, modal: 'order'});
 
       const state = store.getState();
-<<<<<<< HEAD
 
       if (state.orderReducer.get('pickupBranches').size === 0) {
         (async () => {
@@ -262,12 +254,7 @@ export const orderMiddleware = store => next => action => {
         })();
       }
 
-      if (
-        !state.orderReducer.getIn(
-          ['orders', action.book.pid, 'availability'],
-          false
-        )
-      ) {
+      if (!state.orderReducer.getIn(['orders', action.book.pid, 'availability'], false)) {
         (async () => {
           await openplatformLogin(state);
           const availability = await openplatform.availability({
@@ -279,10 +266,6 @@ export const orderMiddleware = store => next => action => {
             availability
           });
         })();
-=======
-      if (['ordering', 'ordered'].includes(_.get(state, ['orderReducer', action.pid, 'state']))) {
-        return;
->>>>>>> fix react components to work with refactored list reducer. fixing tests.
       }
       return next(action);
     }
