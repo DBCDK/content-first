@@ -54,7 +54,7 @@ class WorkItemConnected extends React.PureComponent {
 const mapStateToProps = state => {
   return {
     shortListState: state.shortListReducer,
-    systemLists: getLists(state.listReducer, {type: SYSTEM_LIST}),
+    systemLists: getLists(state.listReducer, {type: SYSTEM_LIST, owner: state.profileReducer.user.openplatformId}),
     changeMap: state.listReducer.changeMap,
     profileState: state.profileReducer
   };

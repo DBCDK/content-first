@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ListCard from '../list/ListCard.component';
 import Slider from './Slider.component';
+import {getPublicLists} from '../../redux/list.reducer';
 
 export class RecentListsBelt extends React.Component {
   render() {
@@ -15,7 +16,7 @@ export class RecentListsBelt extends React.Component {
             <div className="col-xs-12">
               <Slider>
                 {this.props.recent.map(l => {
-                  return <ListCard key={l.id} list={l} />;
+                  return <ListCard key={l.data.id} list={l} />;
                 })}
               </Slider>
             </div>
@@ -27,7 +28,7 @@ export class RecentListsBelt extends React.Component {
 }
 export const mapStateToProps = state => {
   return {
-    recent: state.listReducer.recent
+    recent: getPublicLists(state.listReducer)
   };
 };
 export default connect(mapStateToProps)(RecentListsBelt);

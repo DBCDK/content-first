@@ -98,7 +98,7 @@ class AddToListModal extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    customLists: getLists(state.listReducer, {type: CUSTOM_LIST})
+    customLists: getLists(state.listReducer, {type: CUSTOM_LIST, owner: state.profileReducer.user.openplatformId})
   };
 };
 export default connect(mapStateToProps)(AddToListModal);
