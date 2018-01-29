@@ -1,16 +1,27 @@
 'use strict';
 
 module.exports = {
-  validatingInput,
-  validatingInputs,
+  nicifyJsonValidationErrors,
+  toLoggableString,
   validating,
-  nicifyJsonValidationErrors
+  validatingInput,
+  validatingInputs
 };
 
 const _ = require('lodash');
 const validator = require('is-my-json-valid');
 const formats = require('__/schemas/formats');
 const path = require('path');
+
+function toLoggableString(data) {
+  let value = data;
+  if (typeof value === 'object') {
+    value = JSON.stringify(value);
+  }
+  value = _.toString(value);
+  value = _.deburr(_.trim(value.replace(/[\n\r]+/, ' ')));
+  return value;
+}
 
 /**
  * A promise to validate document against a JSON schema, which resolves to the

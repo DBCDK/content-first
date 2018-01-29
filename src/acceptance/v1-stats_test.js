@@ -21,7 +21,7 @@ describe('Statistics API', () => {
   });
 
   describe('/v1/stats', () => {
-    it('should give statistics about users', () => {
+    it('should give statistics about contents', () => {
       // Arrange.
       const location = '/v1/stats';
       // Act.

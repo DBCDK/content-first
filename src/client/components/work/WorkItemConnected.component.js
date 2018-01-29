@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import WorkItem from './WorkItem.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
-import {LIST_TOGGLE_ELEMENT} from '../../redux/list.reducer';
+import {storeList, getLists, toggleElementInList, SYSTEM_LIST} from '../../redux/list.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 
 class WorkItemConnected extends React.PureComponent {
@@ -20,10 +20,10 @@ class WorkItemConnected extends React.PureComponent {
       <WorkItem
         workClass={this.props.workClass}
         showTaxonomy={this.props.showTaxonomy}
-        changeMap={this.props.listState.changeMap}
+        changeMap={this.props.changeMap}
         isLoggedIn={this.props.profileState.user.isLoggedIn}
         work={this.props.work}
-        lists={this.props.listState.lists}
+        systemLists={this.props.systemLists}
         onCoverClick={pid => {
           this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
         }}
@@ -36,11 +36,8 @@ class WorkItemConnected extends React.PureComponent {
         }}
         marked={remembered[this.props.work.book.pid]}
         onAddToList={list => {
-          this.props.dispatch({
-            type: LIST_TOGGLE_ELEMENT,
-            id: list.id,
-            element: this.props.work
-          });
+          this.props.dispatch(toggleElementInList(this.props.work, list.data.id));
+          this.props.dispatch(storeList(list.data.id));
         }}
         onAddToListOpenModal={() => {
           this.props.dispatch({
@@ -54,10 +51,13 @@ class WorkItemConnected extends React.PureComponent {
   }
 }
 
-export default connect(state => {
+const mapStateToProps = state => {
   return {
     shortListState: state.shortListReducer,
-    listState: state.listReducer,
+    systemLists: getLists(state.listReducer, {type: SYSTEM_LIST}),
+    changeMap: state.listReducer.changeMap,
     profileState: state.profileReducer
   };
-})(WorkItemConnected);
+};
+
+export default connect(mapStateToProps)(WorkItemConnected);

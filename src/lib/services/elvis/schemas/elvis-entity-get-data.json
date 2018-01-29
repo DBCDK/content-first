@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "required": true,
+      "type": "integer"
+    },
+    "modified_epoch": {
+      "required": true,
+      "type": "integer"
+    },
+    "owner_id": {
+      "required": true,
+      "type": "integer"
+    },
+    "type": {
+      "required": true,
+      "type": "string"
+    },
+    "title": {
+      "required": true,
+      "type": "string"
+    },
+    "contents": {
+      "required": true,
+      "type": "string"
+    },
+    "attributes": {
+      "required": true,
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

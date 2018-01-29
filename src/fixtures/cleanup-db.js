@@ -13,12 +13,13 @@
 
 const constants = require('server/constants')();
 const bookTable = constants.books.table;
-const coverTable = constants.covers.table;
-const tagTable = constants.tags.table;
-const taxonomyTopTable = constants.taxonomy.topTable;
-const taxonomyMiddleTable = constants.taxonomy.middleTable;
-const taxonomyBottomTable = constants.taxonomy.bottomTable;
 const cookieTable = constants.cookies.table;
+const coverTable = constants.covers.table;
+const listTable = constants.lists.table;
+const tagTable = constants.tags.table;
+const taxonomyBottomTable = constants.taxonomy.bottomTable;
+const taxonomyMiddleTable = constants.taxonomy.middleTable;
+const taxonomyTopTable = constants.taxonomy.topTable;
 
 module.exports = knex => {
   /**
@@ -26,13 +27,14 @@ module.exports = knex => {
    */
   function clear() {
     const tables = [
+      bookTable,
       cookieTable,
+      coverTable,
+      listTable,
       tagTable,
       taxonomyBottomTable,
       taxonomyMiddleTable,
-      taxonomyTopTable,
-      bookTable,
-      coverTable
+      taxonomyTopTable
     ];
     return knex.raw(`truncate table ${tables.join()} cascade`);
   }

@@ -1,6 +1,6 @@
 # Content First
 
-The system currently runs on [`content-first.demo.dbc.dk`](http://content-first.demo.dbc.dk), and you can get an overview of how it is composed in the [architecture description](doc/content-first-achitecture.pdf).
+The system currently runs on [`content-first.demo.dbc.dk`](http://content-first.demo.dbc.dk), and you can get an overview of how it is composed in the [architecture description](doc/content-first-architecture.pdf).
 
 For development of the system, see [`src`](src/readme.md).
 
@@ -45,6 +45,7 @@ The backend service controlled by environment variables.  Most scripts assume th
 | DB_CONNECTIONS_POOL_MAX | 10           | Maximum connections in DB pool   |
 | DB_CONNECTIONS_POOL_MIN | 2            | Minimum connections in DB pool   |
 | DB_HOST                 | 127.0.0.1    | Database host                    |
+| DB_PORT                 | 5432         | Database port                    |
 | DB_NAME                 | contentfirst | Name of the database             |
 | DB_USER                 | contentfirst | Database user                    |
 | DB_USER_PASSWORD        |              | Database password                |

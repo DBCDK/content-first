@@ -2,16 +2,7 @@ import openplatform from 'openplatform';
 
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
-import {
-  fetchBeltWorks,
-  fetchWork,
-  fetchUser,
-  fetchProfileRecommendations,
-  fetchSearchResults,
-  logout,
-  saveShortList,
-  loadShortList
-} from '../utils/requester';
+import {fetchBeltWorks, fetchWork, fetchUser, fetchProfileRecommendations, fetchSearchResults, logout, saveShortList, loadShortList} from '../utils/requester';
 import {
   ON_PROFILE_LOAD_PROFILES_RESPONSE,
   ON_USER_DETAILS_REQUEST,
@@ -34,28 +25,12 @@ import {
   SHORTLIST_APPROVE_MERGE,
   SHORTLIST_CLEAR
 } from './shortlist.reducer';
-import {
-  ADD_LIST,
-  REMOVE_LIST,
-  LIST_LOAD_RESPONSE,
-  LIST_LOAD_REQUEST,
-  ADD_ELEMENT_TO_LIST,
-  LIST_TOGGLE_ELEMENT,
-  UPDATE_CURRENT_LIST,
-  REMOVE_ELEMENT_FROM_LIST
-} from './list.reducer';
+import {ADD_LIST, STORE_LIST, LIST_LOAD_RESPONSE, LIST_LOAD_REQUEST, getListById} from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {
-  ORDER,
-  ORDER_START,
-  ORDER_SUCCESS,
-  ORDER_FAILURE,
-  PICKUP_BRANCHES,
-  AVAILABILITY
-} from './order.reducer';
+import {ORDER, ORDER_START, ORDER_SUCCESS, ORDER_FAILURE, PICKUP_BRANCHES, AVAILABILITY} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
-import {saveLists, loadLists} from '../utils/requestLists';
+import {saveList, loadLists, createListLocation} from '../utils/requestLists';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -107,9 +82,7 @@ export const requestMiddleware = store => next => action => {
   switch (action.type) {
     case ON_BELT_REQUEST: {
       const state = store.getState();
-      const b = state.beltsReducer.belts.find(
-        belt => belt.name === action.beltName
-      );
+      const b = state.beltsReducer.belts.find(belt => belt.name === action.beltName);
       fetchBeltWorks(b, state.filterReducer, store.dispatch);
       return next(action);
     }
@@ -149,9 +122,7 @@ export const shortListMiddleware = store => next => async action => {
     case SHORTLIST_LOAD_REQUEST: {
       const res = next(action);
       const {isLoggedIn} = store.getState().profileReducer.user;
-      const {localStorageElements, databaseElements} = await loadShortList(
-        isLoggedIn
-      );
+      const {localStorageElements, databaseElements} = await loadShortList(isLoggedIn);
       store.dispatch({
         type: SHORTLIST_LOAD_RESPONSE,
         localStorageElements,
@@ -178,10 +149,7 @@ export const profileMiddleware = store => next => action => {
     case ON_PROFILE_CREATE_TASTE:
     case ON_ADD_PROFILE_ARCHETYPE: {
       const res = next(action);
-      const {
-        profiles,
-        currentTaste
-      } = store.getState().profileReducer.profileTastes;
+      const {profiles, currentTaste} = store.getState().profileReducer.profileTastes;
       saveProfiles(profiles, currentTaste);
       fetchProfileRecommendations(profiles[currentTaste], store.dispatch);
       return res;
@@ -201,30 +169,31 @@ export const profileMiddleware = store => next => action => {
 
 export const listMiddleware = store => next => async action => {
   switch (action.type) {
-    case LIST_TOGGLE_ELEMENT:
-    case ADD_ELEMENT_TO_LIST:
-    case REMOVE_ELEMENT_FROM_LIST:
-    case UPDATE_CURRENT_LIST:
-    case ADD_LIST:
-    case REMOVE_LIST: {
+    case STORE_LIST: {
       const res = next(action);
-      const {lists} = store.getState().listReducer;
       const {isLoggedIn} = store.getState().profileReducer.user;
-      await saveLists(lists, isLoggedIn);
+      const list = getListById(store.getState().listReducer, action.id);
+      if (!list) {
+        throw new Error(`list with id ${action.id} not found`);
+      }
+      await saveList(list, isLoggedIn);
       return res;
+    }
+    case ADD_LIST: {
+      if (!action.list.data.id) {
+        const {id, location} = await createListLocation();
+        action.list.links.self = location;
+        action.list.data.id = id;
+      }
+      return next(action);
     }
     case LIST_LOAD_REQUEST: {
       const res = next(action);
       const {isLoggedIn} = store.getState().profileReducer.user;
       const lists = await loadLists(isLoggedIn);
-      let currentList;
-      if (action.id) {
-        currentList = lists.filter(list => list.id === action.id)[0];
-      }
       store.dispatch({
         type: LIST_LOAD_RESPONSE,
-        lists,
-        currentList
+        lists
       });
       return res;
     }
@@ -285,12 +254,7 @@ export const orderMiddleware = store => next => action => {
         })();
       }
 
-      if (
-        !state.orderReducer.getIn(
-          ['orders', action.book.pid, 'availability'],
-          false
-        )
-      ) {
+      if (!state.orderReducer.getIn(['orders', action.book.pid, 'availability'], false)) {
         (async () => {
           await openplatformLogin(state);
           const availability = await openplatform.availability({

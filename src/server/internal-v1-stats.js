@@ -38,7 +38,6 @@ router
 
 class Statistics {
   async calculatingStats() {
-    await this.calculatingUserStats();
     await this.calculatingCookieStats();
     await this.calculatingBookStats();
     this.calculateTagsStats(await this.countingTagsForEachPid());
@@ -47,7 +46,6 @@ class Statistics {
   constructStatsStructure() {
     return {
       users: {
-        // total: this.users,
         'logged-in': this.cookies
       },
       books: {
@@ -60,11 +58,6 @@ class Statistics {
         max: this.tagsMax
       }
     };
-  }
-
-  async calculatingUserStats() {
-    // TODO: move test to integration?
-    // this.users = this.extractCountFromDbResultArray(await knex(userTable).count());
   }
 
   async calculatingCookieStats() {

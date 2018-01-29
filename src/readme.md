@@ -21,6 +21,7 @@ To run fast tests on local machine:
 To run full acceptance test:
 
     $ docker-compose up -d  // Start local PostgreSQL database.
+    $ npm run db-migrate
     $ npm run test-full     // Run all test, including database acceptance.
 
 Read [more about acceptance testing](acceptance/readme.md).
@@ -43,14 +44,21 @@ To manually migrate the database:
 
     $ npm run db-migrate
 
+If upgrade fails during development, then you can start from scratch by
+
+    $ docker kill contentfirst_database_1
+    $ docker system prune
+    $ docker-compose up -d
+    $ npm run db-migrate
+
 ## Node setup
 
 The [node setup](../tools/setup-node-env.sh) creates symbolic links
 
-    __ -> ../src/lib
-    server -> ../src/server
-    client -> ../src/client
-    fixtures -> ../src/fixtures
+    node_modules/__ -> ../src/lib
+    node_modules/server -> ../src/server
+    node_modules/client -> ../src/client
+    node_modules/fixtures -> ../src/fixtures
 
 inside `node_modules` such that [custom libraries](lib/) and [test fixtures](fixtures/) can used anywhere in the code likes this:
 
@@ -63,7 +71,7 @@ The node setup runs automatically after every `npm install`
 
 ## Coverage
 
-Use `npm run coverage --silent` (after starting the database) to produce a code-coverage report, which will end up in `coverage/lcov-report/index.html`.
+Use `npm run coverage --silent` (after starting the database and community service) to produce a code-coverage report, which will end up in `coverage/lcov-report/index.html`.
 
 On the build server, the [config file](../.travis.yml) uses the `after_script` to instruct Travis to send coverage data to Coveralls, which has been configured (through its UI) to look in the root directory for the code.
 
@@ -71,4 +79,4 @@ On the build server, the [config file](../.travis.yml) uses the `after_script` t
 
 - After adding new packages with `npm install --save newpackage`, you have to `npm run postinstall` to re-establish the symbolic links in `node_modules`.
 - In development mode, the `PORT` of the backend service needs to agree with the `proxy` setting in [`package.json`](package.json).
-- It seems you need to install *babel-eslint* globally: `npm install -g babel-eslint`.  And while you're at it, install *nsrun* globally, and use it like `nsrun test-frontend`.
+- It seems you need to install *babel-eslint* globally: `npm install -g babel-eslint`.  And while you're at it, install the nifty *nsrun* globally, and use it like `nsrun test-frontend`.
