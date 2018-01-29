@@ -19,7 +19,7 @@ class ListCard extends React.PureComponent {
           <div className="list-card-covers-wrapper">
             {elements.length > 0 &&
               elements.slice(0, 3).map(e => {
-                return <BookCover key={e.pid} className="list-card-cover" book={e} />;
+                return <BookCover key={e.book.pid} className="list-card-cover" book={e.book} />;
               })}
           </div>
         </div>

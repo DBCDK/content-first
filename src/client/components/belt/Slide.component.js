@@ -1,9 +1,9 @@
 import React from 'react';
 
 class Slide extends React.Component {
-  shouldComponentUpdate(nextProps) {
-    return nextProps.style.width !== this.props.style.width;
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   return nextProps.style.width !== this.props.style.width;
+  // }
   render() {
     return (
       <div
