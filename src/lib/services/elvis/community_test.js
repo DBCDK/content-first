@@ -13,7 +13,7 @@ const sinon = require('sinon');
 const Community = require('./community');
 const transform = require('./transformers');
 
-describe.only('Community connector', () => {
+describe('Community connector', () => {
   const logger = {
     log: {
       debug: sinon.stub(),
@@ -386,7 +386,7 @@ describe.only('Community connector', () => {
       arrangeCommunityQueryToRespondUserIdNotFound();
       return expect(sut.gettingProfileIdByOpenplatformId('some-hash'))
         .to.be.rejected // force break
-        .then(expectUserIdNotFound);
+        .then(expectError_UserIdNotFound);
     });
 
     it('should return profile id for existing userId', () => {
@@ -1279,9 +1279,10 @@ describe.only('Community connector', () => {
     expectCommunityOkAndMockedServerDone();
   }
 
-  function expectUserIdNotFound(document) {
-    // TODO: align with expectError_ListNotFound
-    expect(document).to.match(/user.+not found/i);
+  function expectError_UserIdNotFound(document) {
+    expect(document.status).to.equal(404);
+    expect(document.title).to.match(/not found/i);
+    expect(document.detail).to.match(/does not exist.+or.+deleted/i);
     expectCommunityOkAndMockedServerDone();
   }
 

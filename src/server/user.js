@@ -54,9 +54,24 @@ function gettingUser(userId) {
 function findingUserByOpenplatformId(openplatformId) {
   return community
     .gettingProfileIdByOpenplatformId(openplatformId) // force break
-    .catch(() => {
-      // UserId not found.
-      return null;
+    .catch(error => {
+      if (error.status === 404) {
+        // UserId not found.
+        return null;
+      }
+      let meta = error;
+      if (meta.response) {
+        meta = meta.response;
+      }
+      if (meta.error) {
+        meta = meta.error;
+      }
+      return Promise.reject({
+        status: 503,
+        title: 'Community-service connection problem',
+        detail: 'Community service is not reponding properly',
+        meta
+      });
     });
 }
 
@@ -109,8 +124,6 @@ function gettingUserFromToken(req) {
     }
   });
 }
-
-// HERE:
 
 /**
  * Promise of looking up userId from login token in HTTP request.
@@ -185,7 +198,7 @@ function updatingUser(userId, partialData) {
       });
   }
   return Promise.reject({
-    status: 500,
+    status: 400,
     title: 'No user data to update',
     meta: partialData
   });

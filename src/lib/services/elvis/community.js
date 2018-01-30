@@ -121,12 +121,18 @@ class Community {
         return resolve(response.body.data);
       } catch (error) {
         if (error.status === 400) {
+          let meta = {};
           if (error.response && error.response.text) {
             if (error.response.text.match(/several results/i)) {
-              return reject(`Multiple users have id ${openplatformId}`);
+              meta.debug = `Multiple users have id ${openplatformId}`;
             }
           }
-          return reject(`User ${openplatformId} not found`);
+          return reject({
+            status: 404,
+            title: 'User not found',
+            detail: `User ${openplatformId} does not exist or is deleted`,
+            meta
+          });
         }
         me.interpretAndLogResponseError(error);
         return reject(error);
@@ -180,8 +186,6 @@ class Community {
       }
     });
   }
-
-  // HERE:
 
   gettingAllListEntitiesOwnedByProfileId(profileId) {
     const me = this;
@@ -591,7 +595,6 @@ class Community {
     });
   }
 
-  // HERE:
   async spikingCommunityListWithOwner(document) {
     const list = this.fromCommunityList(document);
     try {

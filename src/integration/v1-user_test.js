@@ -20,7 +20,7 @@ const {
   sleep
 } = require('./test-commons');
 
-describe.only('User data', () => {
+describe('User data', () => {
   const webapp = request(mock.external);
   const location = '/v1/user';
 

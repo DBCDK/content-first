@@ -13,5 +13,6 @@ router.use('/books', require('server/internal-v1-books'));
 router.use('/tags', require('server/internal-v1-tags'));
 router.use('/taxonomy', require('server/internal-v1-taxonomy'));
 router.use('/stats', require('server/internal-v1-stats'));
+router.use('/role-add', require('server/internal-v1-role-add'));
 
 module.exports = router;
