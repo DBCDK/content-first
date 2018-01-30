@@ -213,7 +213,7 @@ Returns [user information](../src/fixtures/schemas/user-data-out.json) for a log
           }
         ]
       , "lists":
-        [ { "data": 
+        [ { "data":
             { "type": "SYSTEM_LIST"
             , "public": false,
             , "title": "My List"
@@ -240,7 +240,7 @@ Returns [user information](../src/fixtures/schemas/user-data-out.json) for a log
           }
         ]
       }
-    , "links": 
+    , "links":
       { "self": "/v1/user"
       }
     }
@@ -351,7 +351,7 @@ If the user is not logged-in, the result is 403.
 
 Returns the logged-in user's [shortlist](../src/fixtures/schemas/shortlist-data-out.json), like
 
-    { "data": 
+    { "data":
       [ { "pid": "870970-basis-53188931"
         , "origin": "en-let-læst-bog"
         }
@@ -385,9 +385,10 @@ If the user is not logged-in, the result is 403.
 Returns the logged-in user's [simple list](../src/fixtures/schemas/lists-data-out.json), like
 
     { "data":
-      [ { "data": 
+      [ { "data":
           { "type": "SYSTEM_LIST"
           , "public": true,
+          , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
           , "title": "My List"
           , "description": "A brand new list"
           , "list":
@@ -401,7 +402,7 @@ Returns the logged-in user's [simple list](../src/fixtures/schemas/lists-data-ou
           }
         }
       ]
-    , "links": 
+    , "links":
       { "self": "/v1/lists"
       }
     }
@@ -415,6 +416,7 @@ Returns a specific [simple list](../src/fixtures/schemas/list-data-out.json) for
     { "data":
       { "type": "CUSTOM_LIST"
       , "public": false
+      , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
       , "title": "My List"
       , "description": "A brand new list"
       , "list":
@@ -423,7 +425,7 @@ Returns a specific [simple list](../src/fixtures/schemas/list-data-out.json) for
           }
         ]
       }
-    , "links": 
+    , "links":
       { "self": "/v1/lists/98c5ff8c6e8f49978c857c23925dbe41"
       }
     }
@@ -468,9 +470,10 @@ If the user is not logged-in, the result is 403.
 Get the most recent public [lists](../src/fixtures/schemas/lists-data-out.json) from the community, like
 
     { "data":
-      [ { "data": 
+      [ { "data":
           { "type": "SYSTEM_LIST"
           , "public": true,
+          , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
           , "title": "My List"
           , "description": "A brand new list"
           , "list":
@@ -486,20 +489,21 @@ Get the most recent public [lists](../src/fixtures/schemas/lists-data-out.json) 
       , { "data":
           { "type": "CUSTOM_LIST"
           , "public": true
+          , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
           , "title": "Gamle Perler"
           , "description": "Bøger man simpelthen må læse",
-          , "list": 
+          , "list":
             [ { "pid": "870970-basis-47573974"
               , "description": "Russisk forvekslingskomedie"
               }
             ]            
           }
-        , "links": 
+        , "links":
           { "self": "/v1/lists/fa4f3a3de3a34a188234ed298ecbe810"
           }
         }
       ]
-    , "links": 
+    , "links":
       { "self": "/v1/lists/public-lists?limit=2&offset=0"
       , "next": "/v1/lists/public-lists?limit=2&offset=2"
       }
