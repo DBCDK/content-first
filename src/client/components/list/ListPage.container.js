@@ -1,13 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
+import {getListById} from '../../redux/list.reducer';
 import SimpleList from './templates/SimpleList.component';
 import Link from '../general/Link.component';
 
 class ListPage extends React.Component {
-  componentDidMount() {
-    this.props.dispatch({type: LIST_LOAD_REQUEST, id: this.props.id});
-  }
   getTemplate(list) {
     switch (list.template) {
       case 'simplelist':
@@ -31,13 +28,13 @@ class ListPage extends React.Component {
     const Template = this.getTemplate(list);
     return (
       <div className="list-wrapper tl">
-        <h1 className="t-title h-underline mb4">{list.title}</h1>
+        <h1 className="t-title h-underline mb4">{list.data.title}</h1>
         <div className="row">
           <div className="list tl col-xs-8">
-            <Template list={list} profile={profile} />;
+            <Template list={list} profile={profile} />
           </div>
           <div className="col-xs-4">
-            <Link href={`/lister/${list.id}/rediger`}>Rediger liste</Link>
+            <Link href={`/lister/${list.data.id}/rediger`}>Rediger liste</Link>
           </div>
         </div>
       </div>
@@ -45,8 +42,10 @@ class ListPage extends React.Component {
   }
 }
 
-export default connect((state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    list: state.listReducer.lists.filter(list => list.id === ownProps.id)[0]
+    list: getListById(state.listReducer, ownProps.id)
   };
-})(ListPage);
+};
+
+export default connect(mapStateToProps)(ListPage);

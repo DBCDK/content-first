@@ -3,15 +3,21 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const {
-  gettingUser,
-  gettingUserIdFromLoginToken,
-  gettingListsFromToken,
-  updatingLists
-} = require('server/user');
+const {findingUserIdTroughLoginToken} = require('server/user');
 const {validatingInput} = require('__/json');
 const path = require('path');
-const schema = path.join(__dirname, 'schemas/lists-in.json');
+const listSchema = path.join(__dirname, 'schemas/list-in.json');
+const {
+  creatingList,
+  deletingListByEntityId,
+  fetchingEntityAndProfileIdFromListCache,
+  gettingListByUuid,
+  gettingListsForProfileId,
+  omitCommunityInfoFromList,
+  reservingListForProfileIdInCache,
+  updatingList
+} = require('server/lists');
+const _ = require('lodash');
 
 router
   .route('/')
@@ -21,22 +27,66 @@ router
   //
   .get(
     asyncMiddleware(async (req, res, next) => {
+      let userId;
+      try {
+        userId = await findingUserIdTroughLoginToken(req);
+      } catch (error) {
+        return next(error);
+      }
       const location = req.baseUrl;
-      return gettingListsFromToken(req)
-        .then(lists => {
-          res.status(200).json({
-            data: lists,
-            links: {self: location}
-          });
-        })
-        .catch(error => {
-          next(error);
+      let listsPlusCommunityInfo;
+      try {
+        listsPlusCommunityInfo = await gettingListsForProfileId(userId);
+      } catch (error) {
+        let meta = error;
+        if (meta.response) {
+          meta = meta.response;
+        }
+        if (meta.error) {
+          meta = meta.error;
+        }
+        meta.resource = location;
+        return next({
+          status: 503,
+          title: 'Community-service connection problem',
+          detail: 'Community service is not reponding properly',
+          meta
         });
+      }
+      const listsWithoutCommunityInfo = _.map(
+        listsPlusCommunityInfo,
+        omitCommunityInfoFromList
+      );
+      return res.status(200).json({
+        data: listsWithoutCommunityInfo,
+        links: {self: location}
+      });
     })
   )
 
   //
-  // PUT /v1/lists
+  // POST /v1/lists
+  //
+  .post(
+    asyncMiddleware(async (req, res, next) => {
+      const location = req.baseUrl;
+      let userId;
+      try {
+        userId = await findingUserIdTroughLoginToken(req);
+      } catch (error) {
+        return next(error);
+      }
+      const uuid = await reservingListForProfileIdInCache(userId);
+      const url = `${location}/${uuid}`;
+      return res.status(201).json({data: url, links: {self: url}});
+    })
+  );
+
+router
+  .route('/:uuid')
+
+  //
+  // PUT /v1/lists/:uuid
   //
   .put(
     asyncMiddleware(async (req, res, next) => {
@@ -48,49 +98,86 @@ router
           detail: `Content type ${contentType} is not supported`
         });
       }
-      const lists = req.body;
+      const frontendList = req.body;
       try {
-        await validatingInput(lists, schema);
+        await validatingInput(frontendList, listSchema);
       } catch (error) {
         return next({
           status: 400,
-          title: 'Malformed lists',
-          detail: 'Lists do not adhere to schema',
+          title: 'Malformed list data',
+          detail: 'List data does not adhere to schema',
           meta: error.meta || error
         });
       }
-      const location = req.baseUrl;
-      const loginToken = req.cookies['login-token'];
-      if (!loginToken) {
-        return next({
-          status: 403,
-          title: 'User not logged in',
-          detail: 'Missing login-token cookie',
-          meta: {resource: location}
-        });
-      }
+      const uuid = req.params.uuid;
+      const location = `${req.baseUrl}/${uuid}`;
       let userId;
       try {
-        userId = await gettingUserIdFromLoginToken(loginToken);
+        userId = await findingUserIdTroughLoginToken(req, location);
       } catch (error) {
-        if (error.status === 404) {
-          return next({
-            status: 403,
-            title: 'User not logged in',
-            detail: `Unknown login token ${loginToken}`,
-            meta: {resource: location}
-          });
-        }
+        return next(error);
+      }
+      const result = await fetchingEntityAndProfileIdFromListCache(uuid);
+      const profileId = result.profileId;
+      if (!profileId) {
         return next({
-          status: 403,
-          title: 'User not logged in',
-          detail: `Login token ${loginToken} has expired`,
+          status: 404,
+          title: 'List not found',
+          detail: `List ${uuid} does not exist`,
           meta: {resource: location}
         });
       }
+      if (profileId !== userId) {
+        return next({
+          status: 403,
+          title: 'Access denied',
+          detail: 'List belongs to another user',
+          meta: {resource: location}
+        });
+      }
+      let entityId = result.entityId;
+      frontendList.id = uuid;
+      if (!entityId) {
+        try {
+          const list = await creatingList(profileId, frontendList);
+          return res.status(200).json(list);
+        } catch (error) {
+          return next(error);
+        }
+      }
       try {
-        await updatingLists(userId, lists);
+        const list = await updatingList(profileId, entityId, frontendList);
+        return res.status(200).json(list);
       } catch (error) {
+        return next(error);
+      }
+    })
+  )
+
+  //
+  // DELETE /v1/lists/:uuid
+  //
+  .delete(
+    asyncMiddleware(async (req, res, next) => {
+      const uuid = req.params.uuid;
+      const location = `${req.baseUrl}/${uuid}`;
+      let userId;
+      try {
+        userId = await findingUserIdTroughLoginToken(req, location);
+      } catch (error) {
+        return next(error);
+      }
+      let listPlusCommunityInfo;
+      try {
+        listPlusCommunityInfo = await gettingListByUuid(uuid);
+      } catch (error) {
+        // TODO: move this handling to lists.js
+        if (error.status === 404) {
+          return next(error);
+        }
+        if (error.status === 403) {
+          return next(error);
+        }
         let meta = error;
         if (meta.response) {
           meta = meta.response;
@@ -105,18 +192,77 @@ router
           meta
         });
       }
-      return gettingUser(userId)
-        .then(user => {
-          res.status(200).json({
-            data: user.lists,
-            links: {self: location}
-          });
-        })
-        .catch(error => {
-          const returnedError = {meta: {resource: location}};
-          Object.assign(returnedError, error);
-          next(returnedError);
+      if (userId === listPlusCommunityInfo.links.profile_id) {
+        try {
+          const entityId = listPlusCommunityInfo.links.entity_id;
+          await deletingListByEntityId(userId, entityId);
+          return res.status(200).send();
+        } catch (error) {
+          next(error);
+        }
+      }
+      return next({
+        status: 403,
+        title: 'Access denied',
+        detail: 'Private list',
+        meta: {resource: location}
+      });
+    })
+  )
+
+  //
+  // GET /v1/lists/:uuid
+  //
+  .get(
+    asyncMiddleware(async (req, res, next) => {
+      const uuid = req.params.uuid;
+      let listPlusCommunityInfo;
+      try {
+        listPlusCommunityInfo = await gettingListByUuid(uuid);
+      } catch (error) {
+        // TODO: move this handling to lists.js
+        if (error.status === 404) {
+          return next(error);
+        }
+        if (error.status === 403) {
+          return next(error);
+        }
+        let meta = error;
+        if (meta.response) {
+          meta = meta.response;
+        }
+        if (meta.error) {
+          meta = meta.error;
+        }
+        return next({
+          status: 503,
+          title: 'Community-service connection problem',
+          detail: 'Community service is not reponding properly',
+          meta
         });
+      }
+      const listWithoutCommunityInfo = omitCommunityInfoFromList(
+        listPlusCommunityInfo
+      );
+      if (listPlusCommunityInfo.data.public) {
+        return res.status(200).json(listWithoutCommunityInfo);
+      }
+      const location = `${req.baseUrl}/${uuid}`;
+      let userId;
+      try {
+        userId = await findingUserIdTroughLoginToken(req, location);
+      } catch (error) {
+        return next(error);
+      }
+      if (userId === listPlusCommunityInfo.links.profile_id) {
+        return res.status(200).json(listWithoutCommunityInfo);
+      }
+      return next({
+        status: 403,
+        title: 'Access denied',
+        detail: 'Private list',
+        meta: {resource: location}
+      });
     })
   );
 

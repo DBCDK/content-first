@@ -3,18 +3,13 @@ import {Provider} from 'react-redux';
 import ListPage from '../ListPage.container';
 import renderer from 'react-test-renderer';
 import {createStore, combineReducers} from 'redux';
-import listReducer, {ADD_LIST} from '../../../redux/list.reducer';
+import listReducer, {addList} from '../../../redux/list.reducer';
 
 const reducer = (state, action) => {
   if (action.type === 'CLEAR_STATE') {
     return {
       listReducer: {
-        lists: [],
-        currentList: {
-          title: '',
-          description: '',
-          list: []
-        }
+        lists: {}
       }
     };
   }
@@ -46,15 +41,12 @@ const createList = id => {
   };
 };
 
-jest.mock(
-  '../../work/WorkItemConnected.component.js',
-  () => 'WorkItemConnectedMock'
-);
+jest.mock('../../work/WorkItemConnected.component.js', () => 'WorkItemConnectedMock');
 
 describe('ListView', () => {
   test('List is rendered', () => {
     const store = createStore(reducer);
-    store.dispatch({type: ADD_LIST, list: createList('list1')});
+    store.dispatch(addList(createList('list1')));
     const tree = renderer
       .create(
         <Provider store={store}>

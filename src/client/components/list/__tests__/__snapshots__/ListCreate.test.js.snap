@@ -1,493 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ListCreate CreateList component is rendered 1`] = `
-<div
-  className="list-creator"
->
-  <h1
-    className="list-creator__headline"
-  >
-    Opret liste
-  </h1>
-  <div
-    className="row"
-  >
-    <div
-      className="col-xs-8"
-    >
-      <form
-        className="mb4"
-        onSubmit={[Function]}
-      >
-        <div
-          className="list-details"
-        >
-          <div
-            className="form-group"
-          >
-            <span
-              className="required "
-            >
-              <input
-                className="form-control"
-                name="list-title"
-                onChange={[Function]}
-                placeholder="Giv din liste en titel"
-                type="text"
-                value=""
-              />
-              
-            </span>
-            <textarea
-              className="form-control list-details__description"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv lidt om din liste"
-              value=""
-            />
-          </div>
-        </div>
-        <h2
-          className="list-creator__headline"
-        >
-          Tilføj bøger til listen
-        </h2>
-        <div
-          className="list-drag"
-        >
-          <div
-            className="suggestion-list"
-          >
-            <div
-              className="react-autosuggest__container"
-            >
-              <input
-                aria-activedescendant={null}
-                aria-autocomplete="list"
-                aria-expanded={false}
-                aria-haspopup={false}
-                aria-owns="react-autowhatever-1"
-                autoComplete="off"
-                className="form-control suggestion-list__search"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                placeholder="Skriv titlen på en bog"
-                role="combobox"
-                type="text"
-                value=""
-              />
-              <div
-                className="react-autosuggest__suggestions-container"
-                id="react-autowhatever-1"
-              />
-            </div>
-          </div>
-          <div
-            className="drag-list "
-          />
-        </div>
-        <div
-          className="list-creator__publication"
-        >
-          <label
-            htmlFor="public"
-          >
-            <input
-              checked={false}
-              id="public"
-              name="public"
-              onClick={[Function]}
-              type="checkbox"
-            />
-            <span />
-             Skal listen være offentlig?
-          </label>
-        </div>
-        <div
-          className="list-creator__submit text-right"
-        >
-          <button
-            className="btn btn-primary"
-            type="submit"
-          >
-            Gem liste
-          </button>
-        </div>
-      </form>
-    </div>
-    <div
-      className="col-xs-4"
-    />
-  </div>
-</div>
-`;
-
-exports[`ListCreate a book is added to the list 1`] = `
-<div
-  className="list-creator"
->
-  <h1
-    className="list-creator__headline"
-  >
-    Opret liste
-  </h1>
-  <div
-    className="row"
-  >
-    <div
-      className="col-xs-8"
-    >
-      <form
-        className="mb4"
-        onSubmit={[Function]}
-      >
-        <div
-          className="list-details"
-        >
-          <div
-            className="form-group"
-          >
-            <span
-              className="required "
-            >
-              <input
-                className="form-control"
-                name="list-title"
-                onChange={[Function]}
-                placeholder="Giv din liste en titel"
-                type="text"
-                value=""
-              />
-              
-            </span>
-            <textarea
-              className="form-control list-details__description"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv lidt om din liste"
-              value=""
-            />
-          </div>
-        </div>
-        <h2
-          className="list-creator__headline"
-        >
-          Tilføj bøger til listen
-        </h2>
-        <div
-          className="list-drag"
-        >
-          <div
-            className="suggestion-list"
-          >
-            <div
-              className="react-autosuggest__container"
-            >
-              <input
-                aria-activedescendant={null}
-                aria-autocomplete="list"
-                aria-expanded={false}
-                aria-haspopup={false}
-                aria-owns="react-autowhatever-1"
-                autoComplete="off"
-                className="form-control suggestion-list__search"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                placeholder="Skriv titlen på en bog"
-                role="combobox"
-                type="text"
-                value=""
-              />
-              <div
-                className="react-autosuggest__suggestions-container"
-                id="react-autowhatever-1"
-              />
-            </div>
-          </div>
-          <div
-            className="drag-list "
-          >
-            <div
-              className="drag-item flex"
-              onMouseEnter={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-            >
-              <img
-                alt="drag book"
-                className="drag-item__dragger"
-                onMouseDown={[Function]}
-                src="drag.svg"
-              />
-              <div
-                className="flex list-item"
-              >
-                <BookCover
-                  book={
-                    Object {
-                      "creator": "some creator1",
-                      "pid": "pid1",
-                      "title": "some title1",
-                    }
-                  }
-                  className="list-item__img"
-                />
-                <div
-                  className="list-item__details"
-                >
-                  <div
-                    className="list-item__title"
-                  >
-                    some title1
-                  </div>
-                  <div
-                    className="list-item__author"
-                  >
-                    some creator1
-                  </div>
-                  <textarea
-                    className="form-control"
-                    name="list-description"
-                    onChange={[Function]}
-                    placeholder="Skriv en kommentar til bogen"
-                    value="some description1"
-                  />
-                </div>
-              </div>
-              <div>
-                <span
-                  className="list-item__close"
-                  onClick={[Function]}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="list-creator__publication"
-        >
-          <label
-            htmlFor="public"
-          >
-            <input
-              checked={false}
-              id="public"
-              name="public"
-              onClick={[Function]}
-              type="checkbox"
-            />
-            <span />
-             Skal listen være offentlig?
-          </label>
-        </div>
-        <div
-          className="list-creator__submit text-right"
-        >
-          <button
-            className="btn btn-primary"
-            type="submit"
-          >
-            Gem liste
-          </button>
-        </div>
-      </form>
-    </div>
-    <div
-      className="col-xs-4"
-    />
-  </div>
-</div>
-`;
-
-exports[`ListCreate a books is removed from the list 1`] = `
-<div
-  className="list-creator"
->
-  <h1
-    className="list-creator__headline"
-  >
-    Opret liste
-  </h1>
-  <div
-    className="row"
-  >
-    <div
-      className="col-xs-8"
-    >
-      <form
-        className="mb4"
-        onSubmit={[Function]}
-      >
-        <div
-          className="list-details"
-        >
-          <div
-            className="form-group"
-          >
-            <span
-              className="required "
-            >
-              <input
-                className="form-control"
-                name="list-title"
-                onChange={[Function]}
-                placeholder="Giv din liste en titel"
-                type="text"
-                value=""
-              />
-              
-            </span>
-            <textarea
-              className="form-control list-details__description"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv lidt om din liste"
-              value=""
-            />
-          </div>
-        </div>
-        <h2
-          className="list-creator__headline"
-        >
-          Tilføj bøger til listen
-        </h2>
-        <div
-          className="list-drag"
-        >
-          <div
-            className="suggestion-list"
-          >
-            <div
-              className="react-autosuggest__container"
-            >
-              <input
-                aria-activedescendant={null}
-                aria-autocomplete="list"
-                aria-expanded={false}
-                aria-haspopup={false}
-                aria-owns="react-autowhatever-1"
-                autoComplete="off"
-                className="form-control suggestion-list__search"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                placeholder="Skriv titlen på en bog"
-                role="combobox"
-                type="text"
-                value=""
-              />
-              <div
-                className="react-autosuggest__suggestions-container"
-                id="react-autowhatever-1"
-              />
-            </div>
-          </div>
-          <div
-            className="drag-list "
-          >
-            <div
-              className="drag-item flex"
-              onMouseEnter={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-            >
-              <img
-                alt="drag book"
-                className="drag-item__dragger"
-                onMouseDown={[Function]}
-                src="drag.svg"
-              />
-              <div
-                className="flex list-item"
-              >
-                <BookCover
-                  book={
-                    Object {
-                      "creator": "some creator1",
-                      "pid": "pid1",
-                      "title": "some title1",
-                    }
-                  }
-                  className="list-item__img"
-                />
-                <div
-                  className="list-item__details"
-                >
-                  <div
-                    className="list-item__title"
-                  >
-                    some title1
-                  </div>
-                  <div
-                    className="list-item__author"
-                  >
-                    some creator1
-                  </div>
-                  <textarea
-                    className="form-control"
-                    name="list-description"
-                    onChange={[Function]}
-                    placeholder="Skriv en kommentar til bogen"
-                    value="some description1"
-                  />
-                </div>
-              </div>
-              <div>
-                <span
-                  className="list-item__close"
-                  onClick={[Function]}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="list-creator__publication"
-        >
-          <label
-            htmlFor="public"
-          >
-            <input
-              checked={false}
-              id="public"
-              name="public"
-              onClick={[Function]}
-              type="checkbox"
-            />
-            <span />
-             Skal listen være offentlig?
-          </label>
-        </div>
-        <div
-          className="list-creator__submit text-right"
-        >
-          <button
-            className="btn btn-primary"
-            type="submit"
-          >
-            Gem liste
-          </button>
-        </div>
-      </form>
-    </div>
-    <div
-      className="col-xs-4"
-    />
-  </div>
-</div>
-`;
-
 exports[`ListCreate list details is shown 1`] = `
 <div
   className="list-creator"
@@ -612,7 +124,7 @@ exports[`ListCreate list details is shown 1`] = `
 </div>
 `;
 
-exports[`ListCreate multible books are added to the list 1`] = `
+exports[`ListCreate renders a list with multiple books 1`] = `
 <div
   className="list-creator"
 >
@@ -646,7 +158,7 @@ exports[`ListCreate multible books are added to the list 1`] = `
                 onChange={[Function]}
                 placeholder="Giv din liste en titel"
                 type="text"
-                value=""
+                value="some title"
               />
               
             </span>
@@ -655,7 +167,7 @@ exports[`ListCreate multible books are added to the list 1`] = `
               name="list-description"
               onChange={[Function]}
               placeholder="Skriv lidt om din liste"
-              value=""
+              value="some description"
             />
           </div>
         </div>
@@ -813,6 +325,188 @@ exports[`ListCreate multible books are added to the list 1`] = `
                 />
               </div>
             </div>
+            <div
+              className="drag-item flex"
+              onMouseEnter={[Function]}
+              style={
+                Object {
+                  "opacity": 1,
+                }
+              }
+            >
+              <img
+                alt="drag book"
+                className="drag-item__dragger"
+                onMouseDown={[Function]}
+                src="drag.svg"
+              />
+              <div
+                className="flex list-item"
+              >
+                <BookCover
+                  book={
+                    Object {
+                      "creator": "some creator1",
+                      "pid": "pid1",
+                      "title": "some title1",
+                    }
+                  }
+                  className="list-item__img"
+                />
+                <div
+                  className="list-item__details"
+                >
+                  <div
+                    className="list-item__title"
+                  >
+                    some title1
+                  </div>
+                  <div
+                    className="list-item__author"
+                  >
+                    some creator1
+                  </div>
+                  <textarea
+                    className="form-control"
+                    name="list-description"
+                    onChange={[Function]}
+                    placeholder="Skriv en kommentar til bogen"
+                    value="some description1"
+                  />
+                </div>
+              </div>
+              <div>
+                <span
+                  className="list-item__close"
+                  onClick={[Function]}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="list-creator__publication"
+        >
+          <label
+            htmlFor="public"
+          >
+            <input
+              checked={false}
+              id="public"
+              name="public"
+              onClick={[Function]}
+              type="checkbox"
+            />
+            <span />
+             Skal listen være offentlig?
+          </label>
+        </div>
+        <div
+          className="list-creator__submit text-right"
+        >
+          <button
+            className="btn btn-primary"
+            type="submit"
+          >
+            Gem liste
+          </button>
+        </div>
+      </form>
+    </div>
+    <div
+      className="col-xs-4"
+    />
+  </div>
+</div>
+`;
+
+exports[`ListCreate renders a list with one book 1`] = `
+<div
+  className="list-creator"
+>
+  <h1
+    className="list-creator__headline"
+  >
+    Opret liste
+  </h1>
+  <div
+    className="row"
+  >
+    <div
+      className="col-xs-8"
+    >
+      <form
+        className="mb4"
+        onSubmit={[Function]}
+      >
+        <div
+          className="list-details"
+        >
+          <div
+            className="form-group"
+          >
+            <span
+              className="required "
+            >
+              <input
+                className="form-control"
+                name="list-title"
+                onChange={[Function]}
+                placeholder="Giv din liste en titel"
+                type="text"
+                value="some title"
+              />
+              
+            </span>
+            <textarea
+              className="form-control list-details__description"
+              name="list-description"
+              onChange={[Function]}
+              placeholder="Skriv lidt om din liste"
+              value="some description"
+            />
+          </div>
+        </div>
+        <h2
+          className="list-creator__headline"
+        >
+          Tilføj bøger til listen
+        </h2>
+        <div
+          className="list-drag"
+        >
+          <div
+            className="suggestion-list"
+          >
+            <div
+              className="react-autosuggest__container"
+            >
+              <input
+                aria-activedescendant={null}
+                aria-autocomplete="list"
+                aria-expanded={false}
+                aria-haspopup={false}
+                aria-owns="react-autowhatever-1"
+                autoComplete="off"
+                className="form-control suggestion-list__search"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Skriv titlen på en bog"
+                role="combobox"
+                type="text"
+                value=""
+              />
+              <div
+                className="react-autosuggest__suggestions-container"
+                id="react-autowhatever-1"
+              />
+            </div>
+          </div>
+          <div
+            className="drag-list "
+          >
             <div
               className="drag-item flex"
               onMouseEnter={[Function]}

@@ -1,7 +1,12 @@
 export const createTestList = id => {
   return {
-    title: 'title' + id,
-    list: []
+    data: {
+      type: 'CUSTOM_LIST',
+      id,
+      title: 'title' + id,
+      list: []
+    },
+    links: {self: '/v1/lists/' + id}
   };
 };
 

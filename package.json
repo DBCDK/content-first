@@ -68,7 +68,7 @@
   "scripts": {
     "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js",
     "build": "react-scripts build",
-    "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js src/acceptance/*_test.js",
+    "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js src/integration/*_test.js src/acceptance/*_test.js",
     "db-migrate": ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
     "inject-metakompas": "./tools/put-data.js http://localhost:8001",
     "lint-js": "eslint src",

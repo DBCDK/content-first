@@ -6,7 +6,7 @@ const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {
   gettingUserFromToken,
   gettingUser,
-  gettingUserIdFromLoginToken,
+  findingUserIdTroughLoginToken,
   updatingUser
 } = require('server/user');
 const {validatingInput} = require('__/json');
@@ -29,9 +29,7 @@ router
             links: {self: location}
           });
         })
-        .catch(error => {
-          next(error);
-        });
+        .catch(next);
     })
   )
 
@@ -60,44 +58,18 @@ router
         });
       }
       const location = req.baseUrl;
-      const loginToken = req.cookies['login-token'];
-      if (!loginToken) {
-        return next({
-          status: 403,
-          title: 'User not logged in',
-          detail: 'Missing login-token cookie',
-          meta: {resource: location}
-        });
-      }
       let userId;
       try {
-        userId = await gettingUserIdFromLoginToken(loginToken);
+        userId = await findingUserIdTroughLoginToken(req);
       } catch (error) {
-        if (error.status === 404) {
-          return next({
-            status: 403,
-            title: 'User not logged in',
-            detail: `Unknown login token ${loginToken}`,
-            meta: {resource: location}
-          });
-        }
-        return next({
-          status: 403,
-          title: 'User not logged in',
-          detail: `Login token ${loginToken} has expired`,
-          meta: {resource: location}
-        });
+        return next(error);
       }
       try {
         await updatingUser(userId, {
           profiles: profiles
         });
       } catch (error) {
-        return next({
-          status: 500,
-          title: 'Database operation failed',
-          detail: error
-        });
+        return next(error);
       }
       return gettingUser(userId)
         .then(user => {

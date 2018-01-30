@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "properties": {
+    "entity_id": {
+      "required": true,
+      "type": "integer"
+    },
+    "type": {
+      "required": true,
+      "type": "string"
+    },
+    "title": {
+      "required": true,
+      "type": "string"
+    },
+    "description": {
+      "required": true,
+      "type": "string"
+    },
+    "profile_id": {
+      "required": true,
+      "type": "integer"
+    },
+    "uuid": {
+      "required": true,
+      "type": "string"
+    },
+    "owner": {
+      "required": true,
+      "type": "string"
+    },
+    "public": {
+      "required": true,
+      "type": "boolean"
+    },
+    "list": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pid": {
+            "required": true,
+            "type": "string"
+          },
+          "description": {
+            "required": true,
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

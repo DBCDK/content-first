@@ -73,7 +73,7 @@ exports.seed = async knex => {
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
   await knex(cookieTable).insert({
-    cookie: 'expired-login-token-seeded-on-test-start',
+    cookie: 'expired-login-token',
     community_profile_id: 123456,
     expires_epoch_s: Math.ceil(new Date(2009, 1, 25).getTime() / 1000)
   });
