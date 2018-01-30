@@ -149,45 +149,7 @@ exports[`renders without crashing 1`] = `
           <div
             className="col-xs-12"
           >
-            <react-slick
-              arrows={true}
-              dots={true}
-              infinite={false}
-              initialSlide={0}
-              nextArrow={<NextArrow />}
-              prevArrow={<PrevArrow />}
-              responsive={
-                Array [
-                  Object {
-                    "breakpoint": 1450,
-                    "settings": Object {
-                      "slidesToScroll": 3,
-                    },
-                  },
-                  Object {
-                    "breakpoint": 1200,
-                    "settings": Object {
-                      "slidesToScroll": 2,
-                    },
-                  },
-                  Object {
-                    "breakpoint": 769,
-                    "settings": Object {},
-                  },
-                  Object {
-                    "breakpoint": 480,
-                    "settings": Object {
-                      "slidesToScroll": 1,
-                      "slidesToShow": 1,
-                    },
-                  },
-                ]
-              }
-              rows={1}
-              slidesToScroll={4}
-              speed={500}
-              variableWidth={true}
-            />
+            <slider />
           </div>
         </div>
       </div>
@@ -238,45 +200,7 @@ exports[`renders without crashing 1`] = `
           <div
             className="col-xs-12"
           >
-            <react-slick
-              arrows={true}
-              dots={true}
-              infinite={false}
-              initialSlide={0}
-              nextArrow={<NextArrow />}
-              prevArrow={<PrevArrow />}
-              responsive={
-                Array [
-                  Object {
-                    "breakpoint": 1450,
-                    "settings": Object {
-                      "slidesToScroll": 3,
-                    },
-                  },
-                  Object {
-                    "breakpoint": 1200,
-                    "settings": Object {
-                      "slidesToScroll": 2,
-                    },
-                  },
-                  Object {
-                    "breakpoint": 769,
-                    "settings": Object {},
-                  },
-                  Object {
-                    "breakpoint": 480,
-                    "settings": Object {
-                      "slidesToScroll": 1,
-                      "slidesToShow": 1,
-                    },
-                  },
-                ]
-              }
-              rows={1}
-              slidesToScroll={4}
-              speed={500}
-              variableWidth={true}
-            />
+            <slider />
           </div>
         </div>
       </div>
@@ -305,45 +229,7 @@ exports[`renders without crashing 1`] = `
           <div
             className="col-xs-12"
           >
-            <react-slick
-              arrows={true}
-              dots={true}
-              infinite={false}
-              initialSlide={0}
-              nextArrow={<NextArrow />}
-              prevArrow={<PrevArrow />}
-              responsive={
-                Array [
-                  Object {
-                    "breakpoint": 1450,
-                    "settings": Object {
-                      "slidesToScroll": 3,
-                    },
-                  },
-                  Object {
-                    "breakpoint": 1200,
-                    "settings": Object {
-                      "slidesToScroll": 2,
-                    },
-                  },
-                  Object {
-                    "breakpoint": 769,
-                    "settings": Object {},
-                  },
-                  Object {
-                    "breakpoint": 480,
-                    "settings": Object {
-                      "slidesToScroll": 1,
-                      "slidesToShow": 1,
-                    },
-                  },
-                ]
-              }
-              rows={1}
-              slidesToScroll={4}
-              speed={500}
-              variableWidth={true}
-            />
+            <slider />
           </div>
         </div>
       </div>
@@ -403,45 +289,7 @@ exports[`renders without crashing 1`] = `
           <div
             className="col-xs-12"
           >
-            <react-slick
-              arrows={true}
-              dots={true}
-              infinite={false}
-              initialSlide={0}
-              nextArrow={<NextArrow />}
-              prevArrow={<PrevArrow />}
-              responsive={
-                Array [
-                  Object {
-                    "breakpoint": 1450,
-                    "settings": Object {
-                      "slidesToScroll": 3,
-                    },
-                  },
-                  Object {
-                    "breakpoint": 1200,
-                    "settings": Object {
-                      "slidesToScroll": 2,
-                    },
-                  },
-                  Object {
-                    "breakpoint": 769,
-                    "settings": Object {},
-                  },
-                  Object {
-                    "breakpoint": 480,
-                    "settings": Object {
-                      "slidesToScroll": 1,
-                      "slidesToShow": 1,
-                    },
-                  },
-                ]
-              }
-              rows={1}
-              slidesToScroll={4}
-              speed={500}
-              variableWidth={true}
-            />
+            <slider />
           </div>
         </div>
       </div>
