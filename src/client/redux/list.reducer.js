@@ -6,97 +6,7 @@ export const CUSTOM_LIST = 'CUSTOM_LIST';
 // if a work has been added/removed to/from list
 const defaultState = {
   lists: {},
-  changeMap: {},
-  recent: [
-    {
-      type: CUSTOM_LIST,
-      id: 'test1',
-      userId: 'user1',
-      title: 'Goth du bør læse før eller siden',
-      description: 'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
-      list: [
-        {
-          pid: '870970-basis:51319079'
-        },
-        {
-          pid: '870970-basis:52930006'
-        },
-        {
-          pid: '870970-basis:52530423'
-        },
-        {
-          pid: '870970-basis:52530423'
-        }
-      ]
-    },
-    {
-      type: CUSTOM_LIST,
-      id: 'test2',
-      userId: 'user2',
-      title: 'Bøger om bjørne - med meget lang titel',
-      description: 'mange bjørne',
-      list: [
-        {
-          pid: '870970-basis:51319079'
-        },
-        {
-          pid: '870970-basis:52930006'
-        }
-      ]
-    },
-    {
-      type: CUSTOM_LIST,
-      id: 'test3',
-      userId: 'user1',
-      title: 'Goth du bør læse før eller siden',
-      description: 'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
-      list: [
-        {
-          pid: '870970-basis:51319079'
-        }
-      ]
-    },
-    {
-      type: CUSTOM_LIST,
-      id: 'test4',
-      userId: 'user2',
-      title: 'Bøger om bjørne - med meget lang titel',
-      description: 'mange bjørne',
-      list: []
-    },
-    {
-      type: CUSTOM_LIST,
-      id: 'test5',
-      userId: 'user1',
-      title: 'Goth du bør læse før eller siden',
-      description: 'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
-      list: []
-    },
-    {
-      type: CUSTOM_LIST,
-      id: 'test6',
-      userId: 'user2',
-      title: 'Bøger om bjørne - med meget lang titel',
-      description: 'mange bjørne',
-      list: []
-    },
-    {
-      type: CUSTOM_LIST,
-      id: 'test7',
-      userId: 'user1',
-      title: 'Goth du bør læse før eller siden',
-      description: 'bla blabela bla bla blaa bla bla bla bla bla, og bla sdfioi sdflkn sd fl sdldj sldfj salj sdf lsd flj sdgflj bla, og mere blah meget lang tekst dether',
-      list: []
-    },
-    {
-      type: CUSTOM_LIST,
-      id: 'test8',
-      userId: 'user2',
-      title: 'Bøger om bjørne - med meget lang titel',
-      description: 'mange bjørne',
-      list: []
-    }
-  ]
+  changeMap: {}
 };
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
@@ -309,12 +219,25 @@ export const storeList = id => {
 };
 
 // SELECTORS
-export const getLists = (state, {type} = {}) => {
-  if (!type) {
-    return Object.values(state.lists);
+export const getLists = (state, {type, owner, sort} = {}) => {
+  const lists = Object.values(state.lists).filter(l => {
+    if (type && l.data.type !== type) {
+      return false;
+    }
+    if (owner && l.data.owner !== owner) {
+      return false;
+    }
+    return true;
+  });
+  if (sort) {
+    lists.sort((item1, item2) => item1.data.title.localeCompare(item2.data.title));
   }
-  return Object.values(state.lists).filter(l => l.data.type === type);
+  return lists;
 };
+export const getPublicLists = state => {
+  return Object.values(state.lists).filter(l => l.data.public);
+};
+
 export const getListById = (state, id) => {
   return state.lists[id];
 };

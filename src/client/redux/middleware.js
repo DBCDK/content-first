@@ -30,7 +30,7 @@ import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
 import {ORDER, ORDER_START, ORDER_SUCCESS, ORDER_FAILURE, PICKUP_BRANCHES, AVAILABILITY} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
-import {saveList, loadLists, createListLocation} from '../utils/requestLists';
+import {saveList, loadLists, createListLocation, loadRecentPublic} from '../utils/requestLists';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -185,15 +185,19 @@ export const listMiddleware = store => next => async action => {
         action.list.links.self = location;
         action.list.data.id = id;
       }
+      if (!action.list.data.owner) {
+        action.list.data.owner = store.getState().profileReducer.user.openplatformId;
+      }
       return next(action);
     }
     case LIST_LOAD_REQUEST: {
       const res = next(action);
       const {isLoggedIn} = store.getState().profileReducer.user;
       const lists = await loadLists(isLoggedIn);
+      const recentLists = await loadRecentPublic();
       store.dispatch({
         type: LIST_LOAD_RESPONSE,
-        lists
+        lists: [...lists, ...recentLists]
       });
       return res;
     }
