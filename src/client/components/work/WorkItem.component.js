@@ -43,6 +43,11 @@ class WorkItem extends React.Component {
                 />
               ))}
               <MenuItem key="addToList" text="Tilføj til liste" onClick={this.props.onAddToListOpenModal} />
+              <MenuItem
+                key="order"
+                text="Bestil"
+                onClick={this.props.onOrder}
+              />
             </CheckmarkMenu>
           )}
         </TouchHover>

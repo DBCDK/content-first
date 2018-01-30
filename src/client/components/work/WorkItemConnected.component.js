@@ -5,6 +5,7 @@ import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
 import {storeList, getLists, toggleElementInList, SYSTEM_LIST} from '../../redux/list.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
+import {ORDER} from '../../redux/order.reducer';
 
 class WorkItemConnected extends React.PureComponent {
   static defaultProps = {
@@ -44,6 +45,12 @@ class WorkItemConnected extends React.PureComponent {
             type: OPEN_MODAL,
             modal: 'addToList',
             context: this.props.work
+          });
+        }}
+        onOrder={() => {
+          this.props.dispatch({
+            type: ORDER,
+            book: this.props.work.book
           });
         }}
       />
