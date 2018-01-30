@@ -204,7 +204,9 @@ Returns the complete taxonomy, like
 Returns [user information](../src/fixtures/schemas/user-data-out.json) for a logged-in user, like
 
     { "data":
-      { "name": "Jens Godfredsen"
+      { "openplatformId": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+      , "openplatformToken": "d659925b4ae29696d7c395faef9d1d850c66519f"
+      , "name": "Jens Godfredsen"
       , "shortlist":
         [ { "pid": "870970-basis-22629344"
           , "origin": "en-let-læst-bog"
