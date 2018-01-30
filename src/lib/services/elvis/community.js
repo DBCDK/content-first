@@ -426,14 +426,15 @@ class Community {
     return new Promise(async (resolve, reject) => {
       try {
         const profileUrl = await me.gettingProfileIdUrl(profileId);
-        const resp = await request.get(profileUrl);
-        const body = resp.body;
+        const response = await request.get(profileUrl);
         const profile = await me.extractingCommunityResult(
-          body,
+          response.body,
           schemaElvisProfileData
         );
+        const roles = profile.attributes.roles || [];
         const toReturn = {
           name: profile.name,
+          roles,
           openplatformId: profile.attributes.openplatform_id,
           openplatformToken: profile.attributes.openplatform_token,
           shortlist: profile.attributes.shortlist,

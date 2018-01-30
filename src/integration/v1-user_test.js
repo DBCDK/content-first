@@ -20,7 +20,7 @@ const {
   sleep
 } = require('./test-commons');
 
-describe('User data', () => {
+describe.only('User data', () => {
   const webapp = request(mock.external);
   const location = '/v1/user';
 
@@ -158,7 +158,6 @@ describe('User data', () => {
     });
 
     it('should update valid content for logged-in user', () => {
-      // const expectedOutput = _.clone(newUserInfo);
       return webapp
         .put(location)
         .set('cookie', 'login-token=a-valid-login-token')

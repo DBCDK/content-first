@@ -207,6 +207,7 @@ Returns [user information](../src/fixtures/schemas/user-data-out.json) for a log
       { "openplatformId": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
       , "openplatformToken": "d659925b4ae29696d7c395faef9d1d850c66519f"
       , "name": "Jens Godfredsen"
+      , "roles": ["editor"]
       , "shortlist":
         [ { "pid": "870970-basis-22629344"
           , "origin": "en-let-læst-bog"

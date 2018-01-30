@@ -13,7 +13,7 @@ const sinon = require('sinon');
 const Community = require('./community');
 const transform = require('./transformers');
 
-describe('Community connector', () => {
+describe.only('Community connector', () => {
   const logger = {
     log: {
       debug: sinon.stub(),
@@ -852,6 +852,7 @@ describe('Community connector', () => {
       openplatformId: '61dd1242cf774818a97a4ca2f3e633b1',
       openplatformToken: 'myToken',
       name: 'Jens Godfredsen',
+      roles: [],
       shortlist: [{pid: '870970-basis-22629344', origin: 'en-god-bog'}],
       profiles: [
         {
@@ -1039,6 +1040,7 @@ describe('Community connector', () => {
           name: 'Mr Bean',
           attributes: {
             openplatform_id: '1234567890',
+            roles: [],
             shortlist: [],
             tastes: []
           }
@@ -1142,6 +1144,7 @@ describe('Community connector', () => {
           name: 'Mr Bean',
           attributes: {
             openplatform_id: '1234567890',
+            roles: [],
             shortlist: [],
             tastes: []
           }

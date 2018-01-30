@@ -13,6 +13,13 @@
       "required": true,
       "type": "string"
     },
+    "roles": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "lists": {
       "required": true,
       "type": "array"
