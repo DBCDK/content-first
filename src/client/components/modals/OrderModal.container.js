@@ -46,6 +46,13 @@ export function OrderState({book}) {
       </span>
     );
   }
+  if (book.getIn(['availability', 'holdingStatus', 'willLend']) === true) {
+    return (
+      <div style={{color: '#666', textAlign: 'center'}}>
+        Kan <br /> bestilles.
+      </div>
+    );
+  }
   return '';
 }
 
