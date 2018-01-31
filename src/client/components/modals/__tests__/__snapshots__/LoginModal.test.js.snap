@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginModal renders function 1`] = `
+<Modal
+  className="short-list--merge-modal"
+  doneText="LOG IND"
+  header="abc"
+  onClose={undefined}
+  onDone={undefined}
+>
+  <p>
+    <strong>
+      def
+    </strong>
+  </p>
+  <small>
+    <p>
+      Har du ikke en profil? Du kan nemt oprette en profil med det login, du bruger på biblioteket.
+    </p>
+    <p>
+      Klik på login for at oprette en profil.
+    </p>
+  </small>
+</Modal>
+`;

@@ -2,7 +2,16 @@ import openplatform from 'openplatform';
 
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
-import {fetchBeltWorks, fetchWork, fetchUser, fetchProfileRecommendations, fetchSearchResults, logout, saveShortList, loadShortList} from '../utils/requester';
+import {
+  fetchBeltWorks,
+  fetchWork,
+  fetchUser,
+  fetchProfileRecommendations,
+  fetchSearchResults,
+  logout,
+  saveShortList,
+  loadShortList
+} from '../utils/requester';
 import {
   ON_PROFILE_LOAD_PROFILES_RESPONSE,
   ON_USER_DETAILS_REQUEST,
@@ -25,12 +34,30 @@ import {
   SHORTLIST_APPROVE_MERGE,
   SHORTLIST_CLEAR
 } from './shortlist.reducer';
-import {ADD_LIST, STORE_LIST, LIST_LOAD_RESPONSE, LIST_LOAD_REQUEST, getListById} from './list.reducer';
+import {
+  ADD_LIST,
+  STORE_LIST,
+  LIST_LOAD_RESPONSE,
+  LIST_LOAD_REQUEST,
+  getListById
+} from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {ORDER, ORDER_START, ORDER_SUCCESS, ORDER_FAILURE, PICKUP_BRANCHES, AVAILABILITY} from './order.reducer';
+import {
+  ORDER,
+  ORDER_START,
+  ORDER_SUCCESS,
+  ORDER_FAILURE,
+  PICKUP_BRANCHES,
+  AVAILABILITY
+} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
-import {saveList, loadLists, createListLocation, loadRecentPublic} from '../utils/requestLists';
+import {
+  saveList,
+  loadLists,
+  createListLocation,
+  loadRecentPublic
+} from '../utils/requestLists';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -82,7 +109,9 @@ export const requestMiddleware = store => next => action => {
   switch (action.type) {
     case ON_BELT_REQUEST: {
       const state = store.getState();
-      const b = state.beltsReducer.belts.find(belt => belt.name === action.beltName);
+      const b = state.beltsReducer.belts.find(
+        belt => belt.name === action.beltName
+      );
       fetchBeltWorks(b, state.filterReducer, store.dispatch);
       return next(action);
     }
@@ -122,7 +151,9 @@ export const shortListMiddleware = store => next => async action => {
     case SHORTLIST_LOAD_REQUEST: {
       const res = next(action);
       const {isLoggedIn} = store.getState().profileReducer.user;
-      const {localStorageElements, databaseElements} = await loadShortList(isLoggedIn);
+      const {localStorageElements, databaseElements} = await loadShortList(
+        isLoggedIn
+      );
       store.dispatch({
         type: SHORTLIST_LOAD_RESPONSE,
         localStorageElements,
@@ -149,7 +180,10 @@ export const profileMiddleware = store => next => action => {
     case ON_PROFILE_CREATE_TASTE:
     case ON_ADD_PROFILE_ARCHETYPE: {
       const res = next(action);
-      const {profiles, currentTaste} = store.getState().profileReducer.profileTastes;
+      const {
+        profiles,
+        currentTaste
+      } = store.getState().profileReducer.profileTastes;
       saveProfiles(profiles, currentTaste);
       fetchProfileRecommendations(profiles[currentTaste], store.dispatch);
       return res;
@@ -229,9 +263,21 @@ async function openplatformLogin(state) {
 export const orderMiddleware = store => next => action => {
   switch (action.type) {
     case ORDER: {
-      store.dispatch({type: OPEN_MODAL, modal: 'order'});
-
       const state = store.getState();
+
+      if (!state.profileReducer.user.openplatformToken) {
+        store.dispatch({
+          type: OPEN_MODAL,
+          modal: 'login',
+          context: {
+            title: 'BESTIL',
+            reason: 'Du skal logge ind for at bestille bøger.'
+          }
+        });
+        return next(action);
+      }
+
+      store.dispatch({type: OPEN_MODAL, modal: 'order'});
 
       if (state.orderReducer.get('pickupBranches').size === 0) {
         (async () => {
@@ -258,7 +304,12 @@ export const orderMiddleware = store => next => action => {
         })();
       }
 
-      if (!state.orderReducer.getIn(['orders', action.book.pid, 'availability'], false)) {
+      if (
+        !state.orderReducer.getIn(
+          ['orders', action.book.pid, 'availability'],
+          false
+        )
+      ) {
         (async () => {
           await openplatformLogin(state);
           const availability = await openplatform.availability({
