@@ -23,7 +23,7 @@ router
       if (contentType !== 'application/json') {
         return next({
           status: 400,
-          title: 'User data have to be provided as application/json',
+          title: 'Data has to be provided as application/json',
           detail: `Content type ${contentType} is not supported`
         });
       }
