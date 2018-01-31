@@ -15,6 +15,7 @@ module.exports = {
   expectError_MalformedInput_AdditionalProperties,
   expectError_MissingLoginToken,
   expectError_UnknownLoginToken,
+  expectError_UserDoesNotExist,
   expectError_WrongContentType,
   expectListsSeededOnTestStart,
   expectListToBeCached,
@@ -22,8 +23,10 @@ module.exports = {
   expectSuccess_CachedListSeededOnTestStart,
   expectSuccess_ListsSeededOnTestStart,
   expectSuccess_NewListLocation,
+  expectSuccess_PublicViewOfUserSeededOnTestStart,
   expectSuccess_UncachedListSeededOnTestStart,
   expectSuccess_UserData,
+  expectSuccess_UserHasRoles,
   expectSuccess_UserSeededOnTestStart,
   expectValidLists,
   sleep
@@ -75,6 +78,29 @@ function expectError_MissingLoginToken(uri) {
       expect(error.meta.resource).to.equal(uri);
     });
     expect(response.status).to.equal(403);
+  };
+}
+
+function expectError_UserDoesNotExist(response) {
+  expectFailure(response.body, errors => {
+    expect(errors).to.have.length(1);
+    const error = errors[0];
+    expect(error.title).to.match(/user not found/i);
+    // expect(error.detail).to.match(/no user with openplatform id/i);
+    expect(error.detail).to.match(/user.+does not exist or is deleted/i);
+  });
+  expect(response.status).to.equal(404);
+}
+
+function expectSuccess_UserHasRoles(roles) {
+  expect(roles).to.be.an('array');
+  return response => {
+    expectSuccess(response.body, (links, data) => {
+      expectValidate(links, 'schemas/public-user-links-out.json');
+      expectValidate(data, 'schemas/public-user-data-out.json');
+      expect(data.roles).to.deep.equal(roles);
+    });
+    expect(response.status).to.equal(200);
   };
 }
 
@@ -177,6 +203,20 @@ function expectSuccess_UserSeededOnTestStart(response) {
   expect(response.status).to.equal(200);
 }
 
+function expectSuccess_PublicViewOfUserSeededOnTestStart(response) {
+  expectSuccess(response.body, (links, data) => {
+    expectValidate(links, 'schemas/public-user-links-out.json');
+    expect(links.self).to.equal(
+      `/v1/user/${encodeURIComponent(seeder.knownUserId())}`
+    );
+    expectValidate(data, 'schemas/public-user-data-out.json');
+    expectValidLists(data.lists);
+    expect(data.name).to.deep.equal('Jens Godfredsen');
+    expectPublicListsSeededOnTestStart(data.lists);
+  });
+  expect(response.status).to.equal(200);
+}
+
 function expectShortlistSeededOnTestStart(document) {
   expect(document).to.deep.equal([
     {
@@ -219,6 +259,11 @@ function expectListsSeededOnTestStart(document) {
     links: {self: `/v1/lists/${seeder.uncachedPrivateListUuid()}`}
   });
   expect(document).to.have.length(2);
+}
+
+function expectPublicListsSeededOnTestStart(document) {
+  expect(document).to.deep.include(cachedListSeededOnTestStart());
+  expect(document).to.have.length(1, 'Private list included');
 }
 
 function expectCachedListSeededOnTestStart(document) {

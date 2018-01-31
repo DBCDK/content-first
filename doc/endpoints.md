@@ -217,6 +217,7 @@ Returns [user information](../src/fixtures/schemas/user-data-out.json) for a log
         [ { "data":
             { "type": "SYSTEM_LIST"
             , "public": false,
+            , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
             , "title": "My List"
             , "description": "A brand new list"
             , "list":
@@ -243,6 +244,7 @@ Returns [user information](../src/fixtures/schemas/user-data-out.json) for a log
       }
     , "links":
       { "self": "/v1/user"
+      , "image": "http://via.placeholder.com/256"
       }
     }
 
@@ -279,7 +281,40 @@ Updates the [user information](../src/server/schemas/user-in.json) like
       ]
     }
 
-The user info is updated selectively, that is, you can leave out some of the fields to not change their value.
+The user info is updated selectively, that is, you can leave out some of the fields to not change their value.  (TODO: not the case yet)
+
+### `GET /v1/user/`*id*
+
+Returns [public user information](../src/fixtures/schemas/public-user-data-out.json) for a user with the given Openplatform ID, like
+
+    { "data":
+      { "openplatformId": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+      , "name": "Jens Godfredsen"
+      , "roles": ["editor"]
+      , "lists":
+        [ { "data":
+            { "type": "SYSTEM_LIST"
+            , "public": true
+            , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+            , "title": "My List"
+            , "description": "A brand new list"
+            , "list":
+              [ { "pid": "870970-basis-22629344"
+                , "description": "Magic to the people"
+                }
+              ]
+            }
+          , "links":
+            { "self": "/v1/lists/98c5ff8c6e8f49978c857c23925dbe41"
+            }
+          }
+        ]
+      }
+    , "links":
+      { "self": "/v1/user/nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8%2Bf"
+      , "image": "http://via.placeholder.com/256"
+      }
+    }
 
 ### `GET /v1/login`
 

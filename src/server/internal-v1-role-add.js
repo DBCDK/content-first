@@ -6,7 +6,11 @@ const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {validatingInput} = require('__/json');
 const path = require('path');
 const schema = path.join(__dirname, 'schemas/role-in.json');
-const {updatingUser, findingUserByOpenplatformId} = require('server/user');
+const {
+  updatingUser,
+  gettingUserWithListsByOpenplatformId
+} = require('server/user');
+const _ = require('lodash');
 
 router
   .route('/')
@@ -34,22 +38,11 @@ router
         });
       }
       const openplatformId = req.body.openplatformId;
-      let userId;
       try {
-        userId = await findingUserByOpenplatformId(openplatformId);
-        if (!userId) {
-          return next({
-            status: 404,
-            title: 'User not found',
-            detail: `No user with Openplatform Id ${openplatformId}`
-          });
-        }
-        /*
-        const result = await updatingUser(userId, {
-          roles: []
-        });
-        */
-        return res.status(200).send();
+        const user = await gettingUserWithListsByOpenplatformId(openplatformId);
+        const roles = _.union(user.roles, [req.body.role]);
+        await updatingUser(user.id, {roles});
+        return res.status(200).send(user);
       } catch (error) {
         return next(error);
       }

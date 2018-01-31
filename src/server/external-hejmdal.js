@@ -17,7 +17,7 @@ const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const loginService = require('server/login');
 const uuidv4 = require('uuid/v4');
 const {
-  findingUserByOpenplatformId,
+  findingUserIdByOpenplatformId,
   creatingUserByOpenplatformId,
   updatingUser
 } = require('server/user');
@@ -36,9 +36,8 @@ router
         const remoteUser = await loginService.gettingTicket(token, id);
         logger.log.debug('Got remote user data');
         const userId =
-          (await findingUserByOpenplatformId(remoteUser.openplatformId)) ||
+          (await findingUserIdByOpenplatformId(remoteUser.openplatformId)) ||
           (await creatingUserByOpenplatformId(remoteUser.openplatformId));
-
         logger.log.debug(
           `User info ${JSON.stringify(remoteUser)}, userId ${userId}`
         );

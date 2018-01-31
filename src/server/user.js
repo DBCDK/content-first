@@ -7,12 +7,13 @@
 
 module.exports = {
   creatingUserByOpenplatformId,
-  findingUserByOpenplatformId,
+  findingUserIdByOpenplatformId,
   findingUserIdTroughLoginToken,
   gettingUser,
   gettingUserFromToken,
   gettingUserIdFromLoginToken,
   gettingUserWithLists,
+  gettingUserWithListsByOpenplatformId,
   removingLoginToken,
   updatingUser
 };
@@ -51,7 +52,37 @@ function gettingUser(userId) {
     });
 }
 
-function findingUserByOpenplatformId(openplatformId) {
+function gettingUserWithListsByOpenplatformId(openplatformId) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const user = await community.gettingUserByOpenplatformId(openplatformId);
+      const listsPlusCommunityInfo = await gettingListsForProfileId(user.id);
+      const publicLists = _.filter(listsPlusCommunityInfo, 'data.public');
+      user.lists = _.map(publicLists, omitCommunityInfoFromList);
+      return resolve(user);
+    } catch (error) {
+      logger.log.debug(error);
+      if (error.status === 404) {
+        return reject(error);
+      }
+      let meta = error;
+      if (meta.response) {
+        meta = meta.response;
+      }
+      if (meta.error) {
+        meta = meta.error;
+      }
+      return reject({
+        status: 503,
+        title: 'Community-service connection problem',
+        detail: 'Community service is not reponding properly',
+        meta
+      });
+    }
+  });
+}
+
+function findingUserIdByOpenplatformId(openplatformId) {
   return community
     .gettingProfileIdByOpenplatformId(openplatformId) // force break
     .catch(error => {
@@ -172,6 +203,7 @@ function updatingUser(userId, partialData) {
     lists
   } = transform.contentFirstUserToCommunityProfileAndEntities(partialData);
   if (lists) {
+    // Rest of obsolete functionality.
     return Promise.reject({
       status: 500,
       title: 'Lists not expected',
@@ -182,6 +214,9 @@ function updatingUser(userId, partialData) {
     return community
       .updatingProfileWithShortlistAndTastes(userId, profile)
       .catch(error => {
+        if (error.status === 400) {
+          return Promise.reject(error);
+        }
         let meta = error;
         if (meta.response) {
           meta = meta.response;

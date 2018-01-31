@@ -109,16 +109,33 @@ class Community {
   }
 
   gettingProfileIdByOpenplatformId(openplatformId) {
+    return this.gettingUserByOpenplatformId(openplatformId) // force break
+      .then(user => {
+        return user.id;
+      });
+  }
+
+  gettingUserByOpenplatformId(openplatformId) {
     const me = this;
     return new Promise(async (resolve, reject) => {
       try {
         const queryUrl = await me.gettingQueryUrl();
         const response = await request.post(queryUrl).send({
           Profile: {'attributes.openplatform_id': openplatformId},
-          Include: 'id'
+          Include: {
+            id: 'id',
+            created_epoch: 'created_epoch',
+            name: 'name',
+            roles: 'attributes.roles',
+            openplatformId: 'attributes.openplatform_id',
+            openplatformToken: 'attributes.openplatform_token',
+            image: 'attributes.images'
+          }
         });
         await validatingInput(response.body, schemaElvisSuccessOut);
-        return resolve(response.body.data);
+        const user = response.body.data;
+        user.roles = user.roles || [];
+        return resolve(user);
       } catch (error) {
         if (error.status === 400) {
           let meta = {};
@@ -197,11 +214,13 @@ class Community {
           Limit: 999,
           Include: {
             entity_id: 'id',
+            // TODO: also extract created_epoch & modified_epoch
             profile_id: 'owner_id',
             owner: {
               Profile: {id: '^owner_id'},
               Include: 'attributes.openplatform_id'
             },
+            // TODO: also extract Profile name & image, created_epoch modified_epoch
             uuid: 'attributes.uuid',
             public: 'attributes.public',
             type: 'attributes.type',

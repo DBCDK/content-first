@@ -89,6 +89,8 @@ describe('Community connector', () => {
     const input = {
       name: 'Jens Godfredsen',
       attributes: {
+        roles: ['monster'],
+        image: 'https://picsum.photos/200',
         shortlist: [
           {pid: '870970-basis-53188931', origin: 'en-let-læst-bog'},
           {
@@ -374,6 +376,29 @@ describe('Community connector', () => {
     });
   });
 
+  describe('gettingUserByOpenplatformId', () => {
+    it('should detect no connection', () => {
+      arrangeCommunityQueryToRespondItIsDead();
+      return expect(sut.gettingUserByOpenplatformId('some-hash'))
+        .to.be.rejectedWith(Error)
+        .then(expectCommunityIsDead);
+    });
+
+    it('should handle non-existing Openplatform Id', () => {
+      arrangeCommunityQueryToRespondUserIdNotFound();
+      return expect(sut.gettingUserByOpenplatformId('some-hash'))
+        .to.be.rejected // force break
+        .then(expectError_UserIdNotFound);
+    });
+
+    it('should return full profile for existing Openplatform Id', () => {
+      arrangeCommunityQueryToRespondWithUser();
+      return sut
+        .gettingUserByOpenplatformId('some-hash')
+        .then(expectPublicViewOfUser);
+    });
+  });
+
   describe('gettingProfileIdByOpenplatformId', () => {
     it('should detect no connection', () => {
       arrangeCommunityQueryToRespondItIsDead();
@@ -382,15 +407,15 @@ describe('Community connector', () => {
         .then(expectCommunityIsDead);
     });
 
-    it('should handle non-existing userId', () => {
+    it('should handle non-existing Openplatform Id', () => {
       arrangeCommunityQueryToRespondUserIdNotFound();
       return expect(sut.gettingProfileIdByOpenplatformId('some-hash'))
         .to.be.rejected // force break
         .then(expectError_UserIdNotFound);
     });
 
-    it('should return profile id for existing userId', () => {
-      arrangeCommunityQueryToRespondWithFoundProfileId();
+    it('should return profile id for existing Openplatform Id', () => {
+      arrangeCommunityQueryToRespondWithUser();
       return sut
         .gettingProfileIdByOpenplatformId('some-hash')
         .then(expectProfileId);
@@ -554,6 +579,8 @@ describe('Community connector', () => {
           id: profileId,
           community_id: communityId,
           attributes: {
+            roles: ['monster'],
+            image: 'https://picsum.photos/200',
             user_id: 'something',
             shortlist: [],
             tastes: []
@@ -869,6 +896,35 @@ describe('Community connector', () => {
     expectCommunityOkAndMockedServerDone();
   }
 
+  function arrangeCommunityQueryToRespondWithUser() {
+    mockedSubservice = nock(config.url)
+      .post(getQueryEndpoint())
+      .reply(200, {
+        data: {
+          id: 92,
+          created_epoch: 1517305146,
+          name: 'Jens Godfredsen',
+          image: 'http://via.placeholder.com/256',
+          roles: ['editor'],
+          openplatformId: 'someId',
+          openplatformToken: 'someToken'
+        }
+      });
+  }
+
+  function expectPublicViewOfUser(document) {
+    expect(document).to.deep.equal({
+      id: 92,
+      created_epoch: 1517305146,
+      openplatformId: 'someId',
+      openplatformToken: 'someToken',
+      name: 'Jens Godfredsen',
+      image: 'http://via.placeholder.com/256',
+      roles: ['editor']
+    });
+    expectCommunityOkAndMockedServerDone();
+  }
+
   function expectUserDataToHoldAllEntities(document) {
     expect(document).to.deep.equal([
       {
@@ -968,15 +1024,6 @@ describe('Community connector', () => {
             }
           }
         ]
-      });
-  }
-
-  function arrangeCommunityQueryToRespondWithFoundProfileId() {
-    const endpoint = getQueryEndpoint();
-    mockedSubservice = nock(config.url)
-      .post(endpoint)
-      .reply(200, {
-        data: 123
       });
   }
 
@@ -1092,8 +1139,6 @@ describe('Community connector', () => {
         ]
       });
   }
-
-  // HERE
 
   function arrangeGetEntityToRespondWithPrivateEntity(profileId, entityId) {
     const communityId = 1;
@@ -1275,7 +1320,7 @@ describe('Community connector', () => {
   }
 
   function expectProfileId(document) {
-    expect(document).to.equal(123);
+    expect(document).to.equal(92);
     expectCommunityOkAndMockedServerDone();
   }
 

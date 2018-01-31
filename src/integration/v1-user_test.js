@@ -7,14 +7,17 @@ const request = require('supertest');
 const nock = require('nock');
 const {
   arrangeCommunityServiceToRespondWithServerError_OnGet,
+  arrangeCommunityServiceToRespondWithServerError_OnPost,
   arrangeCommunityServiceToRespondWithServerError_OnPut,
   expectError_CommunityConnectionProblem,
   expectError_ExpiredLoginToken,
   expectError_MalformedInput_AdditionalProperties,
   expectError_MissingLoginToken,
   expectError_UnknownLoginToken,
+  expectError_UserDoesNotExist,
   expectError_WrongContentType,
   expectListsSeededOnTestStart,
+  expectSuccess_PublicViewOfUserSeededOnTestStart,
   expectSuccess_UserData,
   expectSuccess_UserSeededOnTestStart,
   sleep
@@ -33,6 +36,34 @@ describe('User data', () => {
     if (this.currentTest.state !== 'passed') {
       mock.dumpLogs();
     }
+  });
+
+  describe('GET /v1/user/:id', () => {
+    const existingUserUri = `/v1/user/${encodeURIComponent(
+      seeder.knownUserId()
+    )}`;
+    describe('with community not responding properly', () => {
+      it('should handle no connection to community', () => {
+        arrangeCommunityServiceToRespondWithServerError_OnPost();
+        return webapp
+          .get(existingUserUri)
+          .set('cookie', 'login-token=a-valid-login-token')
+          .expect(expectError_CommunityConnectionProblem);
+      });
+      afterEach(nock.cleanAll);
+    });
+
+    it('should handle non-existing user', () => {
+      return webapp
+        .get('/v1/user/does-not-exist')
+        .expect(expectError_UserDoesNotExist);
+    });
+
+    it('should retrieve user data', async () => {
+      return webapp
+        .get(existingUserUri)
+        .expect(expectSuccess_PublicViewOfUserSeededOnTestStart);
+    });
   });
 
   describe('GET /v1/user', () => {

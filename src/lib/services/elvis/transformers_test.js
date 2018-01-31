@@ -71,14 +71,18 @@ describe('User data transformers for Community Service', () => {
         name: 'Jens Godfredsen',
         shortlist: [],
         profiles: [],
-        lists: []
+        lists: [],
+        roles: ['basher'],
+        image: ['http://via.placeholder.com/256']
       });
       expect(output).to.deep.equal({
         profile: {
           name: 'Jens Godfredsen',
           attributes: {
             shortlist: [],
-            tastes: []
+            tastes: [],
+            roles: ['basher'],
+            image: ['http://via.placeholder.com/256']
           }
         },
         lists: []

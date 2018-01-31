@@ -31,6 +31,12 @@ function contentFirstUserToCommunityProfileAndEntities(userInfo) {
       contentFirstProfileToCommunityAttribute
     );
   }
+  if (userInfo.roles) {
+    skeleton.profile.attributes.roles = userInfo.roles;
+  }
+  if (userInfo.image) {
+    skeleton.profile.attributes.image = userInfo.image;
+  }
   if (userInfo.lists) {
     skeleton.lists = contentFirstListsToCommunityEntities(userInfo.lists);
   }
