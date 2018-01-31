@@ -4,11 +4,11 @@ The responses from the backend are either raw images or JSON loosely based on th
 
 To only expose non-destructive endpoint to the public (ie. those needed by the [frontend](../src/client/)), the [backend](../src/server) sets an internal HTTP server up on an a non-public port in addtion to the port used for public access.
 
-The internal endpoints are described in [internal-endpoints.md](internal-endpoints.md).  This document describes the public endpoint.
+The internal endpoints are described in [internal-endpoints.md](internal-endpoints.md). This document describes the public endpoint.
 
 ## Books
 
-### `GET /v1/book/`*pid*
+### `GET /v1/book/`_pid_
 
 Returns a [book structure](../src/fixtures/schemas/book-data-out.json), like
 
@@ -40,7 +40,7 @@ Returns a [book structure](../src/fixtures/schemas/book-data-out.json), like
       }
     }
 
-### `GET /v1/books?pids=`*pid*,...,*pid*
+### `GET /v1/books?pids=`_pid_,...,_pid_
 
 Results in a [list of books](../src/fixtures/schemas/books-data-out.json), each of the format as `GET /v1/book`, like
 
@@ -73,7 +73,7 @@ Results in a [list of books](../src/fixtures/schemas/books-data-out.json), each 
 
 ## Images
 
-### `GET /v1/image/`*pid*
+### `GET /v1/image/`_pid_
 
 The path must one that has been returned by a `/v1/book` or `/v1/books` request.
 
@@ -81,15 +81,15 @@ The result is an image file.
 
 ## Recommendations
 
-### `GET /v1/recommendations?tag=`*metatag*`&`...`&tag=`*metatag*
+### `GET /v1/recommendations?tag=`_metatag_`&`...`&tag=`_metatag_
 
-Each metatag must be a number defined by [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
+Each metatag must be a number defined by [Metakompasset](https://github.com/DBCDK/metakompasset). The client must provide at least one metatag.
 
 The result is a list of books such that each book include all the specified tags.
 
 ## Tags
 
-### `GET /v1/tags/`*pid*
+### `GET /v1/tags/`_pid_
 
 Returns a list of tag for a specific PID, like
 
@@ -131,9 +131,9 @@ Returns the top-level taxonomy, like
       }
     }
 
-### `GET /v1/taxonomy/`*tag*
+### `GET /v1/taxonomy/`_tag_
 
-Returns the second-level taxonomy under *tag*, like
+Returns the second-level taxonomy under _tag_, like
 
     { "data":
       [ { "id": 293
@@ -155,7 +155,7 @@ Returns the second-level taxonomy under *tag*, like
       }
     }
 
-Or returns the third-level taxonomy under *tag*, like
+Or returns the third-level taxonomy under _tag_, like
 
     { "data":
       [ { "id": 324
@@ -281,9 +281,9 @@ Updates the [user information](../src/server/schemas/user-in.json) like
       ]
     }
 
-The user info is updated selectively, that is, you can leave out some of the fields to not change their value.  (TODO: not the case yet)
+The user info is updated selectively, that is, you can leave out some of the fields to not change their value.
 
-### `GET /v1/user/`*id*
+### `GET /v1/user/`_id_
 
 Returns [public user information](../src/fixtures/schemas/public-user-data-out.json) for a user with the given Openplatform ID, like
 
@@ -320,11 +320,11 @@ Returns [public user information](../src/fixtures/schemas/public-user-data-out.j
 
 If the user is already logged in (ie. a valid cookie is present in the request), the result is the same as for `GET /v1/user/`.
 
-If there is no cookie or the cookie is invalid, then the web service will redirect to Adgangsplatform (Hejmdal) login page.  On successful login, the service will redirect to endpoint defined by the [server constant `start`](../src/server/constants.js), which can then use `GET /v1/login` or `GET /v1/user`.  On remote subsystem failure, the service will redirect to endpoint defined by the [server constant `generalError`](../src/server/constants.js).
+If there is no cookie or the cookie is invalid, then the web service will redirect to Adgangsplatform (Hejmdal) login page. On successful login, the service will redirect to endpoint defined by the [server constant `start`](../src/server/constants.js), which can then use `GET /v1/login` or `GET /v1/user`. On remote subsystem failure, the service will redirect to endpoint defined by the [server constant `generalError`](../src/server/constants.js).
 
 ### `POST /v1/logout`
 
-Makes sure the current login cookie is invalidated.  The result is a redirection to the logout endpoint in Adgangsplatform (Hejmdal).  When the client redirects to Hejmdal, Hejmdal will remove its own tokens, and finally redirect back to the (client) endpoint defined by the [server constant `loggedOut`](../src/server/constants.js).
+Makes sure the current login cookie is invalidated. The result is a redirection to the logout endpoint in Adgangsplatform (Hejmdal). When the client redirects to Hejmdal, Hejmdal will remove its own tokens, and finally redirect back to the (client) endpoint defined by the [server constant `loggedOut`](../src/server/constants.js).
 
 ### `GET /v1/profiles`
 
@@ -361,7 +361,7 @@ If the user is not logged-in, the result is 403.
 
 ### `PUT /v1/profiles`
 
-Updates the currently logged-in user's profiles.  The [input](../src/server/schemas/profiles-in.json) is like
+Updates the currently logged-in user's profiles. The [input](../src/server/schemas/profiles-in.json) is like
 
     [ { "name": "En tynd en"
       , "profile":
@@ -404,7 +404,7 @@ If the user is not logged-in, the result is 403.
 
 ### `PUT /v1/shortlist`
 
-Updates the currently logged-in user's [shortlist](../src/server/schemas/shortlist-in.json).  The input is like
+Updates the currently logged-in user's [shortlist](../src/server/schemas/shortlist-in.json). The input is like
 
     [ { "pid": "870970-basis-53188931"
       , "origin": "en-let-læst-bog"
@@ -413,7 +413,7 @@ Updates the currently logged-in user's [shortlist](../src/server/schemas/shortli
       , "origin": "bibliotikarens-ugentlige-anbefaling"
       }
     ]
-  
+
 If the user is not logged-in, the result is 403.
 
 ### `GET /v1/lists`
@@ -445,7 +445,7 @@ Returns the logged-in user's [simple list](../src/fixtures/schemas/lists-data-ou
 
 If the user is not logged-in, the result is 403.
 
-### `GET /v1/lists/`*uuid*
+### `GET /v1/lists/`_uuid_
 
 Returns a specific [simple list](../src/fixtures/schemas/list-data-out.json) for the logged-in user, like
 
@@ -467,9 +467,10 @@ Returns a specific [simple list](../src/fixtures/schemas/list-data-out.json) for
     }
 
 If the user is not logged-in, the result is 403.
+
 ### `POST /v1/lists`
 
-Reserves an address for a new list for the currently logged-in user.  Returns the location like:
+Reserves an address for a new list for the currently logged-in user. Returns the location like:
 
     { "data": "/v1/lists/8f27e592174546518a6cc2449e126eff"
     , "links":
@@ -479,9 +480,9 @@ Reserves an address for a new list for the currently logged-in user.  Returns th
 
 If the user is not logged-in, the result is 403.
 
-### `PUT /v1/lists/`*uuid*
+### `PUT /v1/lists/`_uuid_
 
-Updates a specific list for the currently logged-in user.  The [input](../src/server/schemas/list-in.json) is like
+Updates a specific list for the currently logged-in user. The [input](../src/server/schemas/list-in.json) is like
 
     { "type": "CUSTOM_LIST"
     , "public": true,
@@ -491,17 +492,17 @@ Updates a specific list for the currently logged-in user.  The [input](../src/se
     [ { "pid": "870970-basis-51752341"
       , "description": "Exciting!"
       }
-    ] 
+    ]
 
 If the user is not logged-in, the result is 403.
 
-### `DELETE /v1/lists/`*uuid*
+### `DELETE /v1/lists/`_uuid_
 
 Deletes a specific list for the currently logged-in user.
 
 If the user is not logged-in, the result is 403.
 
-### `GET /v1/public-lists?limit=`*number*`&offset=`*number*
+### `GET /v1/public-lists?limit=`_number_`&offset=`_number_
 
 Get the most recent public [lists](../src/fixtures/schemas/lists-data-out.json) from the community, like
 
@@ -532,7 +533,7 @@ Get the most recent public [lists](../src/fixtures/schemas/lists-data-out.json) 
             [ { "pid": "870970-basis-47573974"
               , "description": "Russisk forvekslingskomedie"
               }
-            ]            
+            ]
           }
         , "links":
           { "self": "/v1/lists/fa4f3a3de3a34a188234ed298ecbe810"
@@ -545,10 +546,10 @@ Get the most recent public [lists](../src/fixtures/schemas/lists-data-out.json) 
       }
     }
 
-If *offset* is not present in the query, it defaults to 0.  If *limit* is not present in the query, it defaults to 10.
+If _offset_ is not present in the query, it defaults to 0. If _limit_ is not present in the query, it defaults to 10.
 
 ## Misc
 
-### `GET /hejmdal/?token=`*token*`&id=`*id*
+### `GET /hejmdal/?token=`_token_`&id=`_id_
 
-Redirection point for Hejmdal to call after successful user login.  The result is a cookie that tells the service that which user is logged in, and a rediction to `/`
+Redirection point for Hejmdal to call after successful user login. The result is a cookie that tells the service that which user is logged in, and a rediction to `/`

@@ -2,15 +2,15 @@
   "type": "object",
   "properties": {
     "name": {
-      "required": true,
+      "required": false,
       "type": "string"
     },
     "shortlist": {
-      "required": true,
+      "required": false,
       "type": "array"
     },
     "profiles": {
-      "required": true,
+      "required": false,
       "type": "array"
     }
   },
