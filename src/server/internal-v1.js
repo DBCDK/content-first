@@ -14,5 +14,6 @@ router.use('/tags', require('server/internal-v1-tags'));
 router.use('/taxonomy', require('server/internal-v1-taxonomy'));
 router.use('/stats', require('server/internal-v1-stats'));
 router.use('/role-add', require('server/internal-v1-role-add'));
+router.use('/role-remove', require('server/internal-v1-role-remove'));
 
 module.exports = router;
