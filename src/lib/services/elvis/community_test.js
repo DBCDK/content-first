@@ -709,6 +709,8 @@ describe('Community connector', () => {
         },
         data: {
           id: entityId,
+          created_epoch: 1516115217,
+          modified_epoch: 1516115217,
           deleted_epoch: 1515603325,
           deleted_by: profileId,
           community_id: 1,
@@ -765,6 +767,7 @@ describe('Community connector', () => {
       .reply(201, {
         data: {
           id: entityId,
+          created_epoch: 1516115217,
           modified_epoch: 1516115217,
           type: 'list',
           owner_id: 123,
@@ -784,6 +787,7 @@ describe('Community connector', () => {
       .reply(200, {
         data: {
           id: 123,
+          created_epoch: 1516115217,
           modified_epoch: 1516115217,
           community_id: communityId,
           name: 'Mr Bean',
@@ -799,6 +803,8 @@ describe('Community connector', () => {
   function expectListWithExtraInfo(document) {
     expect(document).to.deep.equal({
       data: {
+        created_epoch: 1516115217,
+        modified_epoch: 1516115217,
         type: 'WEIRD_INTERNAL_TYPE',
         title: 'Brand New List',
         description: 'A too long\ndescription with several\nlines',
@@ -977,6 +983,8 @@ describe('Community connector', () => {
     return document => {
       expect(document).to.deep.equal({
         data: {
+          created_epoch: 1515409049,
+          modified_epoch: 1515409049,
           type: 'SYSTEM_LIST',
           title: 'My List',
           description: 'A brand new list',

@@ -22,6 +22,14 @@
       "required": true,
       "type": "string"
     },
+    "created_epoch": {
+      "required": true,
+      "type": "integer"
+    },
+    "modified_epoch": {
+      "required": true,
+      "type": "integer"
+    },
     "list": {
       "required": true,
       "type": "array",

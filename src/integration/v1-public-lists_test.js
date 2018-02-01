@@ -97,7 +97,7 @@ describe('Public lists', () => {
     expect(document[0].links).to.deep.equal({
       self: `/v1/lists/${threePublicLists[2].id}`
     });
-    expect(document[0].data).to.deep.equal({
+    expect(document[0].data).to.deep.include({
       type: threePublicLists[2].type,
       public: true,
       owner: seeder.knownUserId(),
@@ -108,7 +108,7 @@ describe('Public lists', () => {
     expect(document[1].links).to.deep.equal({
       self: `/v1/lists/${threePublicLists[1].id}`
     });
-    expect(document[1].data).to.deep.equal({
+    expect(document[1].data).to.deep.include({
       type: threePublicLists[1].type,
       public: true,
       owner: seeder.knownUserId(),
@@ -137,7 +137,7 @@ describe('Public lists', () => {
     expect(document[0].links).to.deep.equal({
       self: `/v1/lists/${threePublicLists[0].id}`
     });
-    expect(document[0].data).to.deep.equal({
+    expect(document[0].data).to.deep.include({
       type: threePublicLists[0].type,
       public: true,
       owner: seeder.knownUserId(),

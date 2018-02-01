@@ -11,6 +11,14 @@
             "required": true,
             "type": "integer"
           },
+          "created_epoch": {
+            "required": false,
+            "type": "integer"
+          },
+          "modified_epoch": {
+            "required": false,
+            "type": "integer"
+          },
           "profile_id": {
             "required": true,
             "type": "integer"
