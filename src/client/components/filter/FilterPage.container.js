@@ -52,8 +52,10 @@ class FilterPage extends React.Component {
   handleTagsFromQueryParams() {
     let didChange = false;
     const selectedFilterIds = this.props.filterState.beltFilters[this.props.belt.name];
+
     if (this.props.routerState.params.filter) {
-      this.props.routerState.params.filter.forEach(id => {
+      const paramIds = this.props.routerState.params.filter.map(id => parseInt(id, 10));
+      paramIds.forEach(id => {
         if (selectedFilterIds.indexOf(id) < 0) {
           this.toggleFilter(id);
           didChange = true;

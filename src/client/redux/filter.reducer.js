@@ -6,7 +6,8 @@ const defaultState = {
     'En god bog': [100001, 100003, 5672, 100005],
     'Bibliotekarens ugentlige anbefalinger': [-2],
     'En spændende bog': [5676, 5632],
-    'En anderledes bog': [5702]
+    'En anderledes bog': [5702],
+    'Passer med min smag': []
   },
   expandedFilters: {},
   filters: {

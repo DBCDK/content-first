@@ -27,6 +27,13 @@ const defaultState = {
       isLoading: false,
       onFrontPage: false,
       links: []
+    },
+    {
+      name: 'Passer med min smag',
+      isLoading: false,
+      onFrontPage: false,
+      links: [],
+      works: []
     }
   ]
 };

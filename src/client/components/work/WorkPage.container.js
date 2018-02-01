@@ -45,7 +45,7 @@ class WorkPage extends React.Component {
     // for all other teags we use the second level title
     let tagGroups = {};
     work.tags.forEach(t => {
-      let groupName = t.parents[0] === 'Stemning' ? t.parents[0] : t.parents[1];
+      let groupName = t.parents[0] === 'stemning' ? t.parents[0] : t.parents[1];
       if (!tagGroups[groupName]) {
         tagGroups[groupName] = [];
       }
@@ -123,7 +123,7 @@ class WorkPage extends React.Component {
                     <div className="tag-group-title col-xs-3 col-lg-2">{group.title}</div>
                     <div className="col-xs-9 col-lg-10">
                       {group.data.map(t => {
-                        if (allowedFilterIds.indexOf(t.id + '') >= 0) {
+                        if (allowedFilterIds.indexOf(t.id) >= 0) {
                           return (
                             <span
                               key={t.id}
