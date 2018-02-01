@@ -56,7 +56,6 @@ router
           return tagsArray.reduce((prev, tags) => {
             return prev.then(() => {
               return tagsUtil.parsingTagsInjection(tags).then(meta => {
-                console.log(meta);
                 const pid = meta.pid;
                 const rawTable = _.map(meta.tags, tag => {
                   return {pid, tag};
