@@ -30,7 +30,9 @@ class FilterPage extends React.Component {
     const selectedFilterIds = this.props.filterState.beltFilters[this.props.belt.name];
     const isRemoving = selectedFilterIds && selectedFilterIds.indexOf(filterId) >= 0;
     const queryParams = this.props.routerState.params;
-    const isQueryParam = queryParams && queryParams.filter && queryParams.filter.indexOf(filterId) >= 0;
+    const queryFilters = queryParams && queryParams.filter ? queryParams.filter.map(f => parseInt(f, 10)) : [];
+
+    const isQueryParam = queryFilters.indexOf(filterId) >= 0;
 
     // we might need to remove filter from query parameters
     if (isRemoving && isQueryParam) {
@@ -38,7 +40,7 @@ class FilterPage extends React.Component {
         type: HISTORY_REPLACE,
         path: beltNameToPath(this.props.belt.name),
         params: Object.assign({}, queryParams, {
-          filter: queryParams.filter.filter(id => id !== filterId)
+          filter: queryFilters.filter(id => id !== filterId)
         })
       });
     }
