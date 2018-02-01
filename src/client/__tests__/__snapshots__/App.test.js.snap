@@ -162,57 +162,6 @@ exports[`renders without crashing 1`] = `
           <span
             className="belt-title"
             data-html="true"
-            data-original-title="<span>Ligefrem</span> <span>I bevægelse</span>"
-            data-toggle="tooltip"
-            onClick={[Function]}
-          >
-            En let læst bog
-          </span>
-        </div>
-        <div
-          className="col-xs-12 belt-links"
-        >
-          <span>
-            Se også:
-          </span>
-          <span
-            className="belt-link"
-            data-html="true"
-            data-original-title="<span>Filosofisk</span> <span>Indsigtsfuld</span>"
-            data-toggle="tooltip"
-            onClick={[Function]}
-          >
-            En bog der gør dig klogere
-          </span>
-          <span
-            className="belt-link"
-            data-html="true"
-            data-original-title="<span>Meget åben for fortolkning</span> <span>Krævende</span>"
-            data-toggle="tooltip"
-            onClick={[Function]}
-          >
-            En udfordrende bog
-          </span>
-        </div>
-        <div
-          className="row mb4"
-        >
-          <div
-            className="col-xs-12"
-          >
-            <slider />
-          </div>
-        </div>
-      </div>
-      <div
-        className="row belt text-left"
-      >
-        <div
-          className="col-xs-12 header"
-        >
-          <span
-            className="belt-title"
-            data-html="true"
             data-original-title="<span>Bibliotekaren anbefaler</span>"
             data-toggle="tooltip"
             onClick={[Function]}
