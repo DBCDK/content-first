@@ -109,24 +109,47 @@ class Community {
   }
 
   gettingProfileIdByOpenplatformId(openplatformId) {
+    return this.gettingUserByOpenplatformId(openplatformId) // force break
+      .then(user => {
+        return user.id;
+      });
+  }
+
+  gettingUserByOpenplatformId(openplatformId) {
     const me = this;
     return new Promise(async (resolve, reject) => {
       try {
         const queryUrl = await me.gettingQueryUrl();
         const response = await request.post(queryUrl).send({
           Profile: {'attributes.openplatform_id': openplatformId},
-          Include: 'id'
+          Include: {
+            id: 'id',
+            created_epoch: 'created_epoch',
+            name: 'name',
+            roles: 'attributes.roles',
+            openplatformId: 'attributes.openplatform_id',
+            openplatformToken: 'attributes.openplatform_token',
+            image: 'attributes.images'
+          }
         });
         await validatingInput(response.body, schemaElvisSuccessOut);
-        return resolve(response.body.data);
+        const user = response.body.data;
+        user.roles = user.roles || [];
+        return resolve(user);
       } catch (error) {
         if (error.status === 400) {
+          let meta = {};
           if (error.response && error.response.text) {
             if (error.response.text.match(/several results/i)) {
-              return reject(`Multiple users have id ${openplatformId}`);
+              meta.debug = `Multiple users have id ${openplatformId}`;
             }
           }
-          return reject(`User ${openplatformId} not found`);
+          return reject({
+            status: 404,
+            title: 'User not found',
+            detail: `User ${openplatformId} does not exist or is deleted`,
+            meta
+          });
         }
         me.interpretAndLogResponseError(error);
         return reject(error);
@@ -181,8 +204,6 @@ class Community {
     });
   }
 
-  // HERE:
-
   gettingAllListEntitiesOwnedByProfileId(profileId) {
     const me = this;
     return new Promise(async (resolve, reject) => {
@@ -193,11 +214,13 @@ class Community {
           Limit: 999,
           Include: {
             entity_id: 'id',
+            // TODO: also extract created_epoch & modified_epoch
             profile_id: 'owner_id',
             owner: {
               Profile: {id: '^owner_id'},
               Include: 'attributes.openplatform_id'
             },
+            // TODO: also extract Profile name & image, created_epoch modified_epoch
             uuid: 'attributes.uuid',
             public: 'attributes.public',
             type: 'attributes.type',
@@ -426,14 +449,15 @@ class Community {
     return new Promise(async (resolve, reject) => {
       try {
         const profileUrl = await me.gettingProfileIdUrl(profileId);
-        const resp = await request.get(profileUrl);
-        const body = resp.body;
+        const response = await request.get(profileUrl);
         const profile = await me.extractingCommunityResult(
-          body,
+          response.body,
           schemaElvisProfileData
         );
+        const roles = profile.attributes.roles || [];
         const toReturn = {
           name: profile.name,
+          roles,
           openplatformId: profile.attributes.openplatform_id,
           openplatformToken: profile.attributes.openplatform_token,
           shortlist: profile.attributes.shortlist,
@@ -590,7 +614,6 @@ class Community {
     });
   }
 
-  // HERE:
   async spikingCommunityListWithOwner(document) {
     const list = this.fromCommunityList(document);
     try {

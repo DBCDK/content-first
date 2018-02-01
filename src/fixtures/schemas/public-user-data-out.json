@@ -1,11 +1,11 @@
 {
   "type": "object",
   "properties": {
-    "openplatformId": {
+    "created_epoch": {
       "required": true,
-      "type": "string"
+      "type": "integer"
     },
-    "openplatformToken": {
+    "openplatformId": {
       "required": true,
       "type": "string"
     },
@@ -21,14 +21,6 @@
       }
     },
     "lists": {
-      "required": true,
-      "type": "array"
-    },
-    "shortlist": {
-      "required": true,
-      "type": "array"
-    },
-    "profiles": {
       "required": true,
       "type": "array"
     }

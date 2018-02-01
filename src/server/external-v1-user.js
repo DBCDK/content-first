@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {
+  gettingUserWithListsByOpenplatformId,
   findingUserIdTroughLoginToken,
   gettingUserFromToken,
   gettingUserWithLists,
@@ -14,6 +15,7 @@ const path = require('path');
 const userSchema = path.join(__dirname, 'schemas/user-in.json');
 const shortlistSchema = path.join(__dirname, 'schemas/shortlist-in.json');
 const profilesSchema = path.join(__dirname, 'schemas/profiles-in.json');
+const _ = require('lodash');
 
 router
   .route('/')
@@ -44,7 +46,7 @@ router
       if (contentType !== 'application/json') {
         return next({
           status: 400,
-          title: 'User data has to be provided as application/json',
+          title: 'Data has to be provided as application/json',
           detail: `Content type ${contentType} is not supported`
         });
       }
@@ -90,6 +92,31 @@ router
           Object.assign(returnedError, error);
           next(returnedError);
         });
+    })
+  );
+
+router
+  .route('/:id')
+  //
+  // GET /v1/user/:id
+  //
+  .get(
+    asyncMiddleware(async (req, res, next) => {
+      const openplatformId = req.params.id;
+      const location = `/v1/user/${encodeURIComponent(openplatformId)}`;
+      let user;
+      try {
+        user = await gettingUserWithListsByOpenplatformId(openplatformId);
+      } catch (error) {
+        return next(error);
+      }
+      res.status(200).json({
+        data: _.omit(user, ['id', 'openplatformToken']),
+        links: {
+          self: location,
+          image: user.image
+        }
+      });
     })
   );
 

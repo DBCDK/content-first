@@ -55,8 +55,7 @@ The content-type must be `image/jpeg` or `image/png`.
 
 Creates or overwrites tags for a PID.  The input is like
 
-    {
-      "pid": "870970-basis:52947804",
+    { "pid": "870970-basis:52947804",
       "selected": ["44", "46", "49"]
     }
 
@@ -104,6 +103,28 @@ The data must be [valid taxonomy](../src/server/schemas/taxonomy-in.json), like
     ]
 
 Note that the ids are quoted.
+
+## Users
+
+### `POST /v1/role-add`
+
+Add a role to the existing set of user roles.  The data must be [valid role data](../src/server/schemas/role-in.json), like
+
+    { "openplatformId": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+    , "role": "editor"
+    }
+
+Success returns 200, including adding an already-present role.
+
+### `POST /v1/role-remove`
+
+Removes a role from the existing set of user roles.  The data must be [valid role data](../src/server/schemas/role-in.json), like
+
+    { "openplatformId": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+    , "role": "editor"
+    }
+
+Success returns 200, including removing an non-present role.
 
 ## Misc
 

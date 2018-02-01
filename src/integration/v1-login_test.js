@@ -208,6 +208,7 @@ describe('User login', () => {
                     openplatformId: '1234567890',
                     openplatformToken: 'someToken',
                     name: '',
+                    roles: [],
                     shortlist: [],
                     profiles: [],
                     lists: []

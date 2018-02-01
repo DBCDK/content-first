@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "self": {
+      "required": true,
+      "type": "string"
+    },
+    "image": {
+      "required": false,
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

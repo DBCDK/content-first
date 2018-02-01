@@ -164,7 +164,7 @@ describe('Profiles', () => {
               expect(errors).to.have.length(1);
               const error = errors[0];
               expect(error.title).to.match(
-                /user data.+provided as application\/json/i
+                /data.+provided as application\/json/i
               );
               expect(error).to.have.property('detail');
               expect(error.detail).to.match(/text\/plain .*not supported/i);
@@ -250,7 +250,6 @@ describe('Profiles', () => {
 
     describe('with community not responding properly', () => {
       it('should handle no connection to community', () => {
-        // HERE:
         arrangeCommunityServiceToRespondWithServerError_OnPut();
         return webapp
           .put(location)

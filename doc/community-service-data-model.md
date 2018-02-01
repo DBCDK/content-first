@@ -2,7 +2,10 @@
 
 ContentFirst profile:
 
-    { "name": "Ole Henriksen"
+    { "openplatformId": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+    , "openplatformToken": "d659925b4ae29696d7c395faef9d1d850c66519f"
+    , "name": "Jens Godfredsen"
+    , "roles": ["editor"]
     , "shortlist":
       [ { "pid": "870970-basis-53188931"
         , "origin": "en-let-læst-bog"
@@ -49,7 +52,9 @@ becomes CommunityService records:
       id: 123,
       name: 'Ole Henriksen',
       attributes: {
-        user_id: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
+        openplatform_id: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
+        openplatform_token: 'd659925b4ae29696d7c395faef9d1d850c66519f',
+        roles: ['editor'],
         shortlist: [
           {pid: '870970-basis-53188931', origin: 'en-let-læst-bog'},
           {pid: '870970-basis-51752341', origin: 'bibliotikarens-ugentlige-anbefaling'}
@@ -80,7 +85,6 @@ becomes CommunityService records:
       contents: 'A brand new list',
       attributes: {
         uuid: '98c5ff8c6e8f49978c857c23925dbe41',
-        owner_uuid: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
         public: false,
         list: [
           {pid: '870970-basis-22629344', description: 'Magic to the people'}
