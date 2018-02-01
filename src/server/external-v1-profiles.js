@@ -52,8 +52,8 @@ router
       } catch (error) {
         return next({
           status: 400,
-          title: 'Malformed profiles',
-          detail: 'Profiles do not adhere to schema',
+          title: 'Malformed profiles data',
+          detail: 'Profiles data does not adhere to schema',
           meta: error.meta || error
         });
       }

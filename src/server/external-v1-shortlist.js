@@ -54,7 +54,7 @@ router
       } catch (error) {
         return next({
           status: 400,
-          title: 'Malformed shortlist',
+          title: 'Malformed shortlist data',
           detail: 'Shortlist does not adhere to schema',
           meta: error.meta || error
         });

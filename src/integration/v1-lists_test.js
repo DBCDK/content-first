@@ -272,7 +272,7 @@ describe('Lists', () => {
 
     it('should complain about user not logged in when no token', () => {
       const location = `/v1/lists/${seeder.cachedPublicListUuid()}`;
-      return webapp // force break
+      return webapp
         .put(location)
         .type('application/json')
         .send(newList)

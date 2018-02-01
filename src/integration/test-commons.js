@@ -13,6 +13,7 @@ module.exports = {
   expectError_ExpiredLoginToken,
   expectError_ListNotFound,
   expectError_MalformedInput_AdditionalProperties,
+  expectError_MalformedInput_RequiredProperties,
   expectError_MissingLoginToken,
   expectError_UnknownLoginToken,
   expectError_UserDoesNotExist,
@@ -23,7 +24,9 @@ module.exports = {
   expectSuccess_CachedListSeededOnTestStart,
   expectSuccess_ListsSeededOnTestStart,
   expectSuccess_NewListLocation,
+  expectSuccess_ProfilesSeededOnTestStart,
   expectSuccess_PublicViewOfUserSeededOnTestStart,
+  expectSuccess_ShortlistSeededOnTestStart,
   expectSuccess_UncachedListSeededOnTestStart,
   expectSuccess_UserData,
   expectSuccess_UserHasRoles,
@@ -217,6 +220,26 @@ function expectSuccess_PublicViewOfUserSeededOnTestStart(response) {
   expect(response.status).to.equal(200);
 }
 
+function expectSuccess_ProfilesSeededOnTestStart(response) {
+  expectSuccess(response.body, (links, data) => {
+    expectValidate(links, 'schemas/profiles-links-out.json');
+    expect(links.self).to.equal('/v1/profiles');
+    expectValidate(data, 'schemas/profiles-data-out.json');
+    expectProfilesSeededOnTestStart(data);
+  });
+  expect(response.status).to.equal(200);
+}
+
+function expectSuccess_ShortlistSeededOnTestStart(response) {
+  expectSuccess(response.body, (links, data) => {
+    expectValidate(links, 'schemas/shortlist-links-out.json');
+    expect(links.self).to.equal('/v1/shortlist');
+    expectValidate(data, 'schemas/shortlist-data-out.json');
+    expectShortlistSeededOnTestStart(data);
+  });
+  expect(response.status).to.equal(200);
+}
+
 function expectShortlistSeededOnTestStart(document) {
   expect(document).to.deep.equal([
     {
@@ -354,7 +377,6 @@ function expectSuccess_UserData(uri, partialUserData) {
 }
 
 function expectError_CommunityConnectionProblem(response) {
-  // console.log(response.body.errors[0].response);
   expectFailure(response.body, errors => {
     expect(errors).to.have.length(1);
     const error = errors[0];
@@ -375,7 +397,23 @@ function expectError_MalformedInput_AdditionalProperties(response) {
     expect(error.meta).to.have.property('problems');
     const problems = error.meta.problems;
     expect(problems).to.be.an('array');
-    expect(problems).to.deep.include('data has additional properties');
+    expect(problems).to.deep.match(/has additional properties/i);
+  });
+  expect(response.status).to.equal(400);
+}
+
+function expectError_MalformedInput_RequiredProperties(response) {
+  expectFailure(response.body, errors => {
+    expect(errors).to.have.length(1);
+    const error = errors[0];
+    expect(error.title).to.match(/malformed.+data/i);
+    expect(error).to.have.property('detail');
+    expect(error.detail).to.match(/does not adhere to schema/i);
+    expect(error).to.have.property('meta');
+    expect(error.meta).to.have.property('problems');
+    const problems = error.meta.problems;
+    expect(problems).to.be.an('array');
+    expect(problems).to.deep.match(/is required/i);
   });
   expect(response.status).to.equal(400);
 }
@@ -429,5 +467,8 @@ function expectError_AccessDeniedOtherUser(uri) {
 
 function expectLocation(uri) {
   expect(uri).to.be.a('string', 'Not a URI');
-  expect(uri).to.match(/^\/v1\/(lists|user|public-lists)/i, 'Not a URI');
+  expect(uri).to.match(
+    /^\/v1\/(lists|profiles|public-lists|shortlist|user)/i,
+    'Not a URI'
+  );
 }
