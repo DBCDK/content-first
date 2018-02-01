@@ -285,7 +285,7 @@ The user info is updated selectively, that is, you can leave out some of the fie
 
 ### `GET /v1/user/`_id_
 
-Returns [public user information](../src/fixtures/schemas/public-user-data-out.json) for a user with the given Openplatform ID, like
+Returns [public user information](../src/fixtures/schemas/public-user-data-out.json) for a user with the given ([UrlEncoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)) Openplatform ID, like
 
     { "data":
       { "openplatformId": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
