@@ -20,7 +20,9 @@ exports.seed = async knex => {
     const meta = await books.parsingMetaDataInjection(blendstrup);
     const spiked = books.transformMetaDataToBook(meta);
     await knex(bookTable).insert(spiked);
-    const image = await readFileAsync(resolve.sync('fixtures/870970-basis-53188931.jpg'));
+    const image = await readFileAsync(
+      resolve.sync('fixtures/870970-basis-53188931.jpg')
+    );
     await knex(coverTable).insert({pid: meta.pid, image: image});
   }
   {
@@ -28,7 +30,9 @@ exports.seed = async knex => {
     const meta = await books.parsingMetaDataInjection(martin);
     const spiked = books.transformMetaDataToBook(meta);
     await knex(bookTable).insert(spiked);
-    const image = await readFileAsync(resolve.sync('fixtures/870970-basis-51752341.jpg'));
+    const image = await readFileAsync(
+      resolve.sync('fixtures/870970-basis-51752341.jpg')
+    );
     await knex(coverTable).insert({pid: meta.pid, image: image});
     const tags = require('fixtures/martin-den-herreloese-ridder-tags.json');
     for (let tag of tags.selected) {
@@ -64,7 +68,7 @@ exports.seed = async knex => {
     await knex(bottomTable).insert(bottomRawInsert);
   }
   await knex(cookieTable).insert({
-    cookie: 'valid-login-token-for-nonexisting-user-seeded-on-test-start',
+    cookie: 'valid-login-token-for-user-seeded-on-test-start',
     community_profile_id: 123456,
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });

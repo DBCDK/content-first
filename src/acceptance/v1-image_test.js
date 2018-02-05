@@ -49,6 +49,36 @@ describe('Endpoint /v1/image', () => {
           .expect('Content-Length', '29839');
       });
     });
+    describe('POST /v1/image/', () => {
+      it('should reject POST if user not logged in', async () => {
+        const location = '/v1/image/';
+        return readFileAsync(
+          resolve.sync('fixtures/870970-basis-22629344.jpg')
+        ).then(contents => {
+          return webapp
+            .post(location)
+            .type('image/jpeg')
+            .send(contents)
+            .expect(403);
+        });
+      });
+      it('should create image if user is logged in', async () => {
+        const location = '/v1/image/';
+        return readFileAsync(
+          resolve.sync('fixtures/870970-basis-22629344.jpg')
+        ).then(contents => {
+          return webapp
+            .post(location)
+            .set(
+              'cookie',
+              'login-token=valid-login-token-for-user-seeded-on-test-start'
+            )
+            .type('image/jpeg')
+            .send(contents)
+            .expect(201);
+        });
+      });
+    });
   });
   describe('Internal endpoint', () => {
     const hidden = request(mock.internal);
