@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const sharp = require('sharp');
 const router = express.Router({mergeParams: true});
 const jimp = require('jimp');
 const _ = require('lodash');
@@ -37,6 +38,43 @@ router
       res.end(image.image, 'binary');
     })
   );
+router
+  .route('/:pid/:width/:height')
+  //
+  // GET /v1/image/:pid/:width/:height
+  //
+  .get(async (req, res, next) => {
+    const {pid, width, height} = req.params;
+    const location = `${req.baseUrl}/${pid}/${width}/${height}`;
+    if (isNaN(width) || isNaN(height)) {
+      return next({
+        status: 404,
+        title: 'Invalid image dimensions',
+        detail: `Width and height must be numbers. ${width} and ${height} was provided`,
+        meta: {resource: location}
+      });
+    }
+    const images = await knex(coverTable)
+      .where('pid', pid)
+      .select();
+    if (!images || images.length !== 1) {
+      return next({
+        status: 404,
+        title: 'Unknown image',
+        detail: `No image with id ${pid}`,
+        meta: {resource: location}
+      });
+    }
+    try {
+      const resizedImage = await sharp(images[0].image)
+        .resize(parseInt(width, 10), parseInt(height, 10))
+        .toBuffer();
+      res.contentType('jpeg');
+      res.end(resizedImage, 'binary');
+    } catch (error) {
+      next(error);
+    }
+  });
 //
 // POST /v1/image/
 //
