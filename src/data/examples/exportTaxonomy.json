@@ -1,0 +1,74 @@
+{
+  "fortælleteknik": {
+    "tempo": [
+      {
+        "id": 5629,
+        "title": "statisk",
+        "score": 0
+      },
+      {
+        "id": 5630,
+        "title": "dvælende",
+        "score": 0
+      },
+      {
+        "id": 5631,
+        "title": "fremadskridende",
+        "score": 0
+      },
+      {
+        "id": 5632,
+        "title": "hurtig",
+        "score": 0
+      },
+      {
+        "id": 5633,
+        "title": "hæsblæsende",
+        "score": 0
+      }
+    ]
+  },
+  "stemning": {
+    "positiv": [
+      {
+        "id": 5634,
+        "title": "entusiastisk",
+        "score": 0
+      },
+      {
+        "id": 5676,
+        "title": "some-title-1",
+        "score": 0
+      },
+      {
+        "id": 5702,
+        "title": "some-title-2",
+        "score": 0
+      },
+      {
+        "id": 5672,
+        "title": "some-title-3",
+        "score": 0
+      }
+    ],
+    "humoristisk": [
+      {
+        "id": 5643,
+        "title": "grotesk",
+        "score": 0
+      }
+    ],
+    "romantisk": [
+      {
+        "id": 5654,
+        "title": "charmerende",
+        "score": 0
+      },
+      {
+        "id": 5655,
+        "title": "forførende",
+        "score": 0
+      }
+    ]
+  }
+}

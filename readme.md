@@ -23,6 +23,9 @@ To start the server in staging or production mode:
     $ npm install --production
     $ cp env/production.env current.env
     $ npm run start-backend
+    
+### required data files
+Some json files need to be copied to [`src/data`](src/data) in order to build the application. Also check out which files are required for building and how to populate the app with data [`here`](src/data).
 
 ## Build server
 

@@ -1,4 +1,4 @@
-import taxonomyJson from '../data/exportTaxonomy.json';
+import taxonomyJson from '../../data/exportTaxonomy.json';
 
 export const taxonomy = taxonomyJson;
 

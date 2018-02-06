@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import createStore from '../redux/Store';
 import renderer from 'react-test-renderer';
 
-jest.mock('../data/exportTaxonomy.json', () => {
+jest.mock('../../data/exportTaxonomy.json', () => {
   return require('./__mocks__/mockedTaxonomy.json');
 });
 jest.mock('../components/belt/Slider.component', () => 'slider');

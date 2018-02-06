@@ -5,5 +5,6 @@ current.env
 node_modules/
 npm-debug.log
 scratch.js
-src/client/data/json-files*
-src/client/data/*.json
+src/data/*
+!src/data/README.md
+!src/data/examples/
