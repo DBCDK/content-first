@@ -1,32 +1,6 @@
 import React from 'react';
-import {Provider} from 'react-redux';
-import ListCreate from '../ListCreate.container';
+import {ListCreator} from '../ListCreate.container';
 import renderer from 'react-test-renderer';
-import {createStore, combineReducers} from 'redux';
-import listReducer, {
-  REMOVE_ELEMENT_FROM_LIST,
-  UPDATE_CURRENT_LIST
-} from '../../../redux/list.reducer';
-
-import {ADD_ELEMENT_TO_LIST} from '../../../redux/list.reducer';
-
-const reducer = (state, action) => {
-  if (action.type === 'CLEAR_STATE') {
-    return {
-      listReducer: {
-        lists: [],
-        currentList: {
-          title: '',
-          description: '',
-          list: []
-        }
-      }
-    };
-  }
-  return combineReducers({
-    listReducer
-  })(state, action);
-};
 
 jest.mock('react-textarea-autosize', () => 'textarea');
 jest.mock('../../general/BookCover.component', () => 'BookCover');
@@ -45,81 +19,49 @@ const createTestElement = id => {
 };
 
 describe('ListCreate', () => {
-  test('CreateList component is rendered', () => {
-    const tree = renderer
-      .create(
-        <Provider store={createStore(reducer)}>
-          <ListCreate />
-        </Provider>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
   test('list details is shown', () => {
-    const store = createStore(reducer);
     const currentList = {
-      title: 'some title',
-      description: 'some description',
-      public: true,
-      list: []
+      data: {
+        id: 'current-list-id',
+        title: 'some title',
+        description: 'some description',
+        public: true,
+        list: []
+      },
+      links: {self: null}
     };
-    store.dispatch({type: UPDATE_CURRENT_LIST, currentList});
-    const tree = renderer
-      .create(
-        <Provider store={store}>
-          <ListCreate id="current-list-id" />
-        </Provider>
-      )
-      .toJSON();
+
+    const tree = renderer.create(<ListCreator id="current-list-id" currentList={currentList} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  test('a book is added to the list', () => {
-    const store = createStore(reducer);
-    store.dispatch({type: 'CLEAR_STATE'});
-    store.dispatch({type: ADD_ELEMENT_TO_LIST, element: createTestElement(1)});
-    const tree = renderer
-      .create(
-        <Provider store={store}>
-          <ListCreate id="current-list-id" />
-        </Provider>
-      )
-      .toJSON();
+  test('renders a list with one book', () => {
+    const currentList = {
+      data: {
+        id: 'current-list-id',
+        title: 'some title',
+        description: 'some description',
+        public: false,
+        list: [createTestElement(1)]
+      },
+      links: {self: null}
+    };
+    const tree = renderer.create(<ListCreator id="current-list-id" currentList={currentList} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  test('multible books are added to the list', () => {
-    const store = createStore(reducer);
-    store.dispatch({type: 'CLEAR_STATE'});
-    store.dispatch({type: ADD_ELEMENT_TO_LIST, element: createTestElement(1)});
-    store.dispatch({type: ADD_ELEMENT_TO_LIST, element: createTestElement(2)});
-    store.dispatch({type: ADD_ELEMENT_TO_LIST, element: createTestElement(3)});
-    const tree = renderer
-      .create(
-        <Provider store={store}>
-          <ListCreate id="current-list-id" />
-        </Provider>
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-  test('a books is removed from the list', () => {
-    const store = createStore(reducer);
-    store.dispatch({type: 'CLEAR_STATE'});
-    store.dispatch({type: ADD_ELEMENT_TO_LIST, element: createTestElement(1)});
-    store.dispatch({type: ADD_ELEMENT_TO_LIST, element: createTestElement(2)});
-    store.dispatch({
-      type: REMOVE_ELEMENT_FROM_LIST,
-      element: createTestElement(2)
-    });
-    const tree = renderer
-      .create(
-        <Provider store={store}>
-          <ListCreate id="current-list-id" />
-        </Provider>
-      )
-      .toJSON();
+  test('renders a list with multiple books', () => {
+    const currentList = {
+      data: {
+        id: 'current-list-id',
+        title: 'some title',
+        description: 'some description',
+        public: false,
+        list: [createTestElement(3), createTestElement(2), createTestElement(1)]
+      },
+      links: {self: null}
+    };
+    const tree = renderer.create(<ListCreator id="current-list-id" currentList={currentList} />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

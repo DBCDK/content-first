@@ -1,5 +1,6 @@
 import request from 'superagent';
 import {setItem, getItem} from '../utils/localstorage';
+import {SYSTEM_LIST} from '../redux/list.reducer';
 
 const LIST_KEY = 'contentFirstLists';
 const CURRENT_LIST_KEY = 'contentFirstCurrentList';
@@ -7,6 +8,8 @@ const LIST_VERSION = 1;
 
 const listToPayload = list => {
   const listCopy = Object.assign({}, list);
+  delete listCopy.id;
+  delete listCopy.owner;
   listCopy.list = listCopy.list.map(element => {
     return {
       pid: element.book.pid,
@@ -17,7 +20,8 @@ const listToPayload = list => {
 };
 const payloadToList = async payload => {
   const result = Object.assign({}, payload);
-  const pids = result.list.map(obj => obj.pid);
+  result.data.id = locationToId(result.links.self);
+  const pids = result.data.list.map(obj => obj.pid);
   if (pids.length === 0) {
     return result;
   }
@@ -26,30 +30,43 @@ const payloadToList = async payload => {
     map[w.book.pid] = w;
     return map;
   }, {});
-  result.list = payload.list.map(obj => {
+  result.data.list = payload.data.list.map(obj => {
     return Object.assign(obj, worksMap[obj.pid]);
   });
   return result;
 };
-export const saveLists = (lists, isLoggedIn = false) => {
+export const saveLists = async (lists, isLoggedIn = false) => {
   setItem(LIST_KEY, lists, LIST_VERSION);
   if (isLoggedIn) {
     // Save on database
     const listsPayload = lists.map(l => listToPayload(l));
-    request
-      .put('/v1/lists')
-      .send(listsPayload)
-      .end(function(error) {
-        if (error) {
-          console.log('error persisting lists', error); // eslint-disable-line
-        }
-      });
+    await request.put('/v1/lists').send(listsPayload);
   }
 };
+export const saveList = async list => {
+  const listPayload = listToPayload(list.data);
+  const location = list.links.self || (await createListLocation()).location;
+  await request.put(location).send(listPayload);
+  return Object.assign({}, list, {links: {self: location}});
+};
+export const createListLocation = async () => {
+  const location = (await request.post('/v1/lists')).body.data;
+  return {
+    id: locationToId(location),
+    location
+  };
+};
+export const loadRecentPublic = async () => {
+  const listsPayload = (await request.get('/v1/public-lists').query({limit: 30})).body.data;
+  const result = [];
+  for (let i = 0; i < listsPayload.length; i++) {
+    result.push(await payloadToList(listsPayload[i]));
+  }
+  return result;
+};
 export const loadLists = async isLoggedIn => {
-  const localStorageElements = getItem(LIST_KEY, LIST_VERSION, []);
   if (!isLoggedIn) {
-    return localStorageElements;
+    return [];
   }
   // Load from database
   const listsPayload = (await request.get('/v1/lists')).body.data;
@@ -57,7 +74,38 @@ export const loadLists = async isLoggedIn => {
   for (let i = 0; i < listsPayload.length; i++) {
     result.push(await payloadToList(listsPayload[i]));
   }
+
+  // Create system lists if they do not exist
+  if (!containsList(SYSTEM_LIST, 'Har læst', result)) {
+    const list = await saveList({
+      data: {
+        type: SYSTEM_LIST,
+        title: 'Har læst',
+        description: 'En liste over læste bøger',
+        list: []
+      },
+      links: {self: null}
+    });
+    result.push(list);
+  }
+  if (!containsList(SYSTEM_LIST, 'Vil læse', result)) {
+    const list = await saveList({
+      data: {
+        type: SYSTEM_LIST,
+        title: 'Vil læse',
+        description: 'En liste over bøger jeg gerne vil læse',
+        list: []
+      },
+      links: {self: null}
+    });
+    result.push(list);
+  }
+
   return result;
+};
+
+const containsList = (type, title, lists) => {
+  return lists.filter(l => l.data.type === type && l.data.title === title).length !== 0;
 };
 export const saveCurrentList = currentList => {
   setItem(CURRENT_LIST_KEY, currentList, LIST_VERSION);
@@ -65,4 +113,8 @@ export const saveCurrentList = currentList => {
 
 export const loadCurrentlist = () => {
   return getItem(CURRENT_LIST_KEY, LIST_VERSION, {title: '', list: []});
+};
+
+const locationToId = location => {
+  return location.split('/')[3];
 };

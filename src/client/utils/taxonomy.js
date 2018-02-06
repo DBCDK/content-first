@@ -1,27 +1,27 @@
 import taxonomyJson from '../../data/exportTaxonomy.json';
-import {getLeaves} from './filters';
 
 export const taxonomy = taxonomyJson;
-export const taxonomyMap = {};
 
-getLeaves(taxonomy).forEach(l => {
-  taxonomyMap[l.id] = l;
-});
-
-export const getById = (id, items) => {
-  items = items ? items : taxonomy;
-
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
-    if (item.id === id) {
-      return item;
-    }
-    if (item.items) {
-      const res = getById(id, item.items);
-      if (res) {
-        return res;
-      }
-    }
+export const getLeaves = (t = taxonomy, parentStack = []) => {
+  if (Array.isArray(t)) {
+    return t.map(leaf => {
+      return Object.assign({}, leaf, {parents: [...parentStack]});
+    });
   }
-  return null;
+  let result = [];
+  Object.entries(t).forEach(([key, value]) => {
+    parentStack.push(key);
+    const tmp = getLeaves(value, parentStack);
+    parentStack.pop();
+    result = result.concat(tmp);
+  });
+  return result;
+};
+
+export const getLeavesMap = (t = taxonomy) => {
+  const res = {};
+  getLeaves(t).forEach(leaf => {
+    res[leaf.id] = leaf;
+  });
+  return res;
 };

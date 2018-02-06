@@ -2,39 +2,21 @@
 
 const request = require('superagent');
 const path = require('path');
-const schemaHealth = path.join(__dirname, './schemas/elvis-health-out.json');
-const schemaElvisCommunityData = path.join(
-  __dirname,
-  './schemas/elvis-community-data.json'
+const schemaHealth = absSchemaPath('elvis-health-out');
+const schemaElvisCommunityData = absSchemaPath('elvis-community-data');
+const schemaCommunityProfileIn = absSchemaPath('connector-profile-in');
+const schemaCommunityListIn = absSchemaPath('connector-list-in');
+const schemaCommunityUpdateListIn = absSchemaPath('connector-update-list-in');
+const schemaElvisProfileData = absSchemaPath('elvis-profile-data');
+const schemaElvisEntityQueryData = absSchemaPath('elvis-entity-query-data');
+const schemaElvisSimpleEntityQueryData = absSchemaPath(
+  'elvis-simple-entity-query-data'
 );
-const schemaCommunityProfileIn = path.join(
-  __dirname,
-  './schemas/connector-profile-in.json'
+const schemaElvisSingletonEntityQueryData = absSchemaPath(
+  'elvis-singleton-entity-query-data'
 );
-const schemaCommunityListIn = path.join(
-  __dirname,
-  './schemas/connector-list-in.json'
-);
-const schemaCommunityUpdateListIn = path.join(
-  __dirname,
-  './schemas/connector-update-list-in.json'
-);
-const schemaElvisProfileData = path.join(
-  __dirname,
-  './schemas/elvis-profile-data.json'
-);
-const schemaElvisEntityQueryData = path.join(
-  __dirname,
-  './schemas/elvis-entity-query-data.json'
-);
-const schemaElvisSimpleEntityQueryData = path.join(
-  __dirname,
-  './schemas/elvis-simple-entity-query-data.json'
-);
-const schemaElvisSuccessOut = path.join(
-  __dirname,
-  './schemas/elvis-success-out.json'
-);
+const schemaElvisEntityGetData = absSchemaPath('elvis-entity-get-data');
+const schemaElvisSuccessOut = absSchemaPath('elvis-success-out');
 const constants = require('./community-constants')();
 const {validating, validatingInput} = require('__/json');
 const _ = require('lodash');
@@ -46,12 +28,6 @@ class Community {
   //
   // Public methods.
   //
-
-  print(msg, document) {
-    console.log(msg); // eslint-disable-line no-console
-    const util = require('util');
-    console.log(util.inspect(document, {depth: 3})); // eslint-disable-line no-console
-  }
 
   constructor(config, logger) {
     this.config = config;
@@ -132,25 +108,48 @@ class Community {
     });
   }
 
-  gettingProfileIdByUserIdHash(userIdHash) {
+  gettingProfileIdByOpenplatformId(openplatformId) {
+    return this.gettingUserByOpenplatformId(openplatformId) // force break
+      .then(user => {
+        return user.id;
+      });
+  }
+
+  gettingUserByOpenplatformId(openplatformId) {
     const me = this;
     return new Promise(async (resolve, reject) => {
       try {
         const queryUrl = await me.gettingQueryUrl();
         const response = await request.post(queryUrl).send({
-          Profile: {'attributes.user_id': userIdHash},
-          Include: 'id'
+          Profile: {'attributes.openplatform_id': openplatformId},
+          Include: {
+            id: 'id',
+            created_epoch: 'created_epoch',
+            name: 'name',
+            roles: 'attributes.roles',
+            openplatformId: 'attributes.openplatform_id',
+            openplatformToken: 'attributes.openplatform_token',
+            image: 'attributes.images'
+          }
         });
         await validatingInput(response.body, schemaElvisSuccessOut);
-        return resolve(response.body.data);
+        const user = response.body.data;
+        user.roles = user.roles || [];
+        return resolve(user);
       } catch (error) {
         if (error.status === 400) {
+          let meta = {};
           if (error.response && error.response.text) {
             if (error.response.text.match(/several results/i)) {
-              return reject(`Multiple users have id ${userIdHash}`);
+              meta.debug = `Multiple users have id ${openplatformId}`;
             }
           }
-          return reject(`User ${userIdHash} not found`);
+          return reject({
+            status: 404,
+            title: 'User not found',
+            detail: `User ${openplatformId} does not exist or is deleted`,
+            meta
+          });
         }
         me.interpretAndLogResponseError(error);
         return reject(error);
@@ -210,24 +209,136 @@ class Community {
     return new Promise(async (resolve, reject) => {
       try {
         const queryUrl = await me.gettingQueryUrl();
-        const {body} = await request.post(queryUrl).send({
+        const query = {
           Entities: {type: 'list', owner_id: profileId},
           Limit: 999,
           Include: {
-            id: 'attributes.uuid',
+            entity_id: 'id',
+            // TODO: also extract created_epoch & modified_epoch
+            profile_id: 'owner_id',
+            owner: {
+              Profile: {id: '^owner_id'},
+              Include: 'attributes.openplatform_id'
+            },
+            // TODO: also extract Profile name & image, created_epoch modified_epoch
+            uuid: 'attributes.uuid',
             public: 'attributes.public',
             type: 'attributes.type',
             title: 'title',
             description: 'contents',
             list: 'attributes.list'
           }
-        });
+        };
+        const {body} = await request.post(queryUrl).send(query);
         const data = await me.extractingCommunityResult(
           body,
           schemaElvisEntityQueryData
         );
-        return resolve(data.List);
+        const lists = _.map(data.List, entry => {
+          return {
+            data: _.omit(entry, 'uuid', 'profile_id', 'entity_id'),
+            links: {
+              self: `/v1/lists/${entry.uuid}`,
+              uuid: entry.uuid,
+              profile_id: entry.profile_id,
+              entity_id: entry.entity_id
+            }
+          };
+        });
+        return resolve(lists);
       } catch (error) {
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  gettingListByEntityId(entityId) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const entityUrl = await me.gettingEntityIdUrl(entityId);
+        const {body} = await request.get(entityUrl);
+        const data = await me.extractingCommunityResult(
+          body,
+          schemaElvisEntityGetData
+        );
+        const list = await me.spikingCommunityListWithOwner(data);
+        return resolve(list);
+      } catch (error) {
+        if (error.status === 404) {
+          return reject({
+            status: 404,
+            title: 'List not found',
+            detail: `List ${entityId} does not exist or has been deleted`
+          });
+        }
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  gettingListEntityByUuid(uuid) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const queryUrl = await me.gettingQueryUrl();
+        const query = {
+          Entity: {
+            type: 'list',
+            'attributes.uuid': uuid
+          },
+          Include: {
+            entity_id: 'id',
+            type: 'attributes.type',
+            title: 'title',
+            description: 'contents',
+            profile_id: 'owner_id',
+            uuid: 'attributes.uuid',
+            owner: {
+              Profile: {id: '^owner_id'},
+              Include: 'attributes.openplatform_id'
+            },
+            list: 'attributes.list',
+            public: 'attributes.public'
+          }
+        };
+        const {body} = await request.post(queryUrl).send(query);
+        const data = await me.extractingCommunityResult(
+          body,
+          schemaElvisSingletonEntityQueryData
+        );
+        const result = {
+          data: _.omit(data, ['uuid', 'profile_id', 'entity_id']),
+          links: {
+            self: `/v1/lists/${data.uuid}`,
+            uuid,
+            profile_id: data.profile_id,
+            entity_id: data.entity_id
+          }
+        };
+        return resolve(result);
+      } catch (error) {
+        if (error.status === 400) {
+          let info = error;
+          if (info.response) {
+            info = info.response;
+          }
+          if (info.body) {
+            info = info.body;
+          }
+          if (info.errors && info.errors[0] && info.errors[0].detail) {
+            const detail = info.errors[0].detail;
+            if (detail.match(/no result/i)) {
+              return reject({
+                status: 404,
+                title: 'List not found',
+                detail: `List ${uuid} does not exist or has been deleted`
+              });
+            }
+          }
+        }
         me.interpretAndLogResponseError(error);
         return reject(error);
       }
@@ -270,7 +381,12 @@ class Community {
         const entityUrl = await me.gettingPostEntityUrl();
         const response = await request.post(entityUrl).send(ownedList);
         await validatingInput(response.body, schemaElvisSuccessOut);
-        return resolve(response.body);
+        const data = await me.extractingCommunityResult(
+          response.body,
+          schemaElvisEntityGetData
+        );
+        const list = await me.spikingCommunityListWithOwner(data);
+        return resolve(list);
       } catch (error) {
         me.interpretAndLogResponseError(error);
         return reject(error);
@@ -287,12 +403,41 @@ class Community {
         return reject(error);
       }
       try {
-        const entityUrl = await me.gettingPutEntityUrl(entityId);
+        const entityUrl = await me.gettingEntityIdUrl(entityId);
         const update = Object.assign({modified_by: profileId}, document);
+        const response = await request.put(entityUrl).send(update);
+        await validatingInput(response.body, schemaElvisSuccessOut);
+        const data = await me.extractingCommunityResult(
+          response.body,
+          schemaElvisEntityGetData
+        );
+        const list = await me.spikingCommunityListWithOwner(data);
+        return resolve(list);
+      } catch (error) {
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  deletingListEntity(profileId, entityId) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const entityUrl = await me.gettingEntityIdUrl(entityId);
+        // A deletion is done by only sending a modified_by.
+        const update = {modified_by: profileId};
         const response = await request.put(entityUrl).send(update);
         await validatingInput(response.body, schemaElvisSuccessOut);
         return resolve(response.body);
       } catch (error) {
+        if (error.status === 400) {
+          if (error.response && error.response.text) {
+            if (error.response.text.match(/entity.+not belong to community/i)) {
+              return reject(`List ${entityId} does not exist`);
+            }
+          }
+        }
         me.interpretAndLogResponseError(error);
         return reject(error);
       }
@@ -304,27 +449,85 @@ class Community {
     return new Promise(async (resolve, reject) => {
       try {
         const profileUrl = await me.gettingProfileIdUrl(profileId);
-        const resp = await request.get(profileUrl);
-        const body = resp.body;
+        const response = await request.get(profileUrl);
         const profile = await me.extractingCommunityResult(
-          body,
+          response.body,
           schemaElvisProfileData
         );
+        const roles = profile.attributes.roles || [];
         const toReturn = {
           name: profile.name,
+          roles,
+          openplatformId: profile.attributes.openplatform_id,
+          openplatformToken: profile.attributes.openplatform_token,
           shortlist: profile.attributes.shortlist,
           profiles: me.transformTastesToFrontendProfiles(
             profile.attributes.tastes
           )
         };
-        toReturn.lists = await me.gettingAllListEntitiesOwnedByProfileId(
-          profileId
-        );
         return resolve(toReturn);
       } catch (error) {
         if (error.status === 404) {
-          return reject(error.response.body);
+          if (error.response) {
+            if (error.response.body) {
+              return reject(error.response.body);
+            }
+          }
+          return reject(error);
         }
+        me.interpretAndLogResponseError(error);
+        return reject(error);
+      }
+    });
+  }
+
+  gettingPublicLists(limit, offset = 0) {
+    const me = this;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const queryUrl = await me.gettingQueryUrl();
+        const {body} = await request.post(queryUrl).send({
+          Entities: {type: 'list', 'attributes.public': true},
+          SortBy: 'created_epoch',
+          Order: 'descending',
+          Limit: limit,
+          Offset: offset,
+          Include: {
+            entity_id: 'id',
+            profile_id: 'owner_id',
+            uuid: 'attributes.uuid',
+            owner: {
+              Profile: {id: '^owner_id'},
+              Include: 'attributes.openplatform_id'
+            },
+            public: 'attributes.public',
+            type: 'attributes.type',
+            title: 'title',
+            description: 'contents',
+            list: 'attributes.list'
+          }
+        });
+        const data = await me.extractingCommunityResult(
+          body,
+          schemaElvisEntityQueryData
+        );
+        const lists = _.map(data.List, entry => {
+          return {
+            data: _.omit(entry, 'uuid', 'profile_id', 'entity_id'),
+            links: {
+              self: `/v1/lists/${entry.uuid}`,
+              uuid: entry.uuid,
+              profile_id: entry.profile_id,
+              entity_id: entry.entity_id
+            }
+          };
+        });
+        return resolve({
+          lists,
+          total: data.Total,
+          next_offset: data.NextOffset
+        });
+      } catch (error) {
         me.interpretAndLogResponseError(error);
         return reject(error);
       }
@@ -385,10 +588,11 @@ class Community {
   }
 
   gettingQueryUrl() {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiQuery(communityId);
-      return `${this.config.url}${endpoint}`;
-    });
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiQuery(communityId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
   creatingCommunity() {
@@ -410,32 +614,68 @@ class Community {
     });
   }
 
+  async spikingCommunityListWithOwner(document) {
+    const list = this.fromCommunityList(document);
+    try {
+      // TODO: It is somewhat wasteful to get all this Profile data just to
+      // get the openplatformId.  There should probably be a
+      // gettingOpenplatformIdByProfileId function.
+      const result = await this.gettingUserByProfileId(document.owner_id);
+      list.data.owner = result.openplatformId;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+    return list;
+  }
+
+  fromCommunityList(document) {
+    return {
+      data: {
+        type: document.attributes.type,
+        title: document.title,
+        description: document.contents,
+        list: document.attributes.list,
+        public: document.attributes.public
+      },
+      links: {
+        self: `/v1/lists/${document.attributes.uuid}`,
+        uuid: document.attributes.uuid,
+        profile_id: document.owner_id,
+        entity_id: document.id
+      }
+    };
+  }
+
   gettingProfileIdUrl(profileId) {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiProfileId(communityId, profileId);
-      return `${this.config.url}${endpoint}`;
-    });
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiProfileId(communityId, profileId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
   gettingPostProfileUrl() {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiPostProfile(communityId);
-      return `${this.config.url}${endpoint}`;
-    });
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiPostProfile(communityId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
   gettingPostEntityUrl() {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiPostEntity(communityId);
-      return `${this.config.url}${endpoint}`;
-    });
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiPostEntity(communityId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
-  gettingPutEntityUrl(entityId) {
-    return this.gettingCommunityId().then(communityId => {
-      const endpoint = constants.apiEntityId(communityId, entityId);
-      return `${this.config.url}${endpoint}`;
-    });
+  gettingEntityIdUrl(entityId) {
+    return this.gettingCommunityId() // force break
+      .then(communityId => {
+        const endpoint = constants.apiEntityId(communityId, entityId);
+        return `${this.config.url}${endpoint}`;
+      });
   }
 
   transformTastesToFrontendProfiles(tastes) {
@@ -446,6 +686,10 @@ class Community {
       };
     });
   }
+}
+
+function absSchemaPath(schema) {
+  return path.join(__dirname, 'schemas', schema);
 }
 
 module.exports = Community;

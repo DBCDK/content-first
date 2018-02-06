@@ -3,12 +3,8 @@ import {connect} from 'react-redux';
 import Modal from './Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
 import LineBehindText from '../general/LineBehindText.component';
-import {
-  SHORTLIST_APPROVE_MERGE,
-  ON_SHORTLIST_COLLAPSE
-} from '../../redux/shortlist.reducer';
+import {SHORTLIST_APPROVE_MERGE} from '../../redux/shortlist.reducer';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import {HISTORY_PUSH} from '../../redux/middleware';
 
 const SHORT_LIST_MAX_LENGTH = 3;
 
@@ -26,9 +22,8 @@ class ShortListMergeModal extends React.Component {
     }
     return (
       <Modal
-        className="short-list--merge-modal"
+        className="short-list--merge-modal modal-narrow"
         header="HUSKELISTE"
-        show={true}
         onClose={this.approveMerge}
         onDone={this.approveMerge}
       >
@@ -54,20 +49,6 @@ class ShortListMergeModal extends React.Component {
                     : '1 anden bog'
                 }
               />
-              <div className="more-btn text-center">
-                <span
-                  className="btn btn-default text-center"
-                  onClick={() => {
-                    this.props.dispatch({
-                      type: HISTORY_PUSH,
-                      path: '/huskeliste'
-                    });
-                    this.props.dispatch({type: ON_SHORTLIST_COLLAPSE});
-                  }}
-                >
-                  SE HELE HUSKELISTEN
-                </span>
-              </div>
             </div>
           )}
       </Modal>

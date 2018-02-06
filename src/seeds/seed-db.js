@@ -20,9 +20,7 @@ exports.seed = async knex => {
     const meta = await books.parsingMetaDataInjection(blendstrup);
     const spiked = books.transformMetaDataToBook(meta);
     await knex(bookTable).insert(spiked);
-    const image = await readFileAsync(
-      resolve.sync('fixtures/870970-basis-53188931.jpg')
-    );
+    const image = await readFileAsync(resolve.sync('fixtures/870970-basis-53188931.jpg'));
     await knex(coverTable).insert({pid: meta.pid, image: image});
   }
   {
@@ -30,19 +28,17 @@ exports.seed = async knex => {
     const meta = await books.parsingMetaDataInjection(martin);
     const spiked = books.transformMetaDataToBook(meta);
     await knex(bookTable).insert(spiked);
-    const image = await readFileAsync(
-      resolve.sync('fixtures/870970-basis-51752341.jpg')
-    );
+    const image = await readFileAsync(resolve.sync('fixtures/870970-basis-51752341.jpg'));
     await knex(coverTable).insert({pid: meta.pid, image: image});
     const tags = require('fixtures/martin-den-herreloese-ridder-tags.json');
     for (let tag of tags.selected) {
-      await knex(tagTable).insert({pid: tags.pid, tag});
+      await knex(tagTable).insert({pid: tags.pid, tag: tag.id});
     }
   }
   {
     const tags = require('fixtures/carter-mordoffer-tags.json');
     for (let tag of tags.selected) {
-      await knex(tagTable).insert({pid: tags.pid, tag});
+      await knex(tagTable).insert({pid: tags.pid, tag: tag.id});
     }
   }
   {
@@ -73,7 +69,7 @@ exports.seed = async knex => {
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
   await knex(cookieTable).insert({
-    cookie: 'expired-login-token-seeded-on-test-start',
+    cookie: 'expired-login-token',
     community_profile_id: 123456,
     expires_epoch_s: Math.ceil(new Date(2009, 1, 25).getTime() / 1000)
   });

@@ -1,31 +1,28 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {LIST_LOAD_REQUEST, SYSTEM_LIST} from '../../redux/list.reducer';
+import {getLists, CUSTOM_LIST} from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 
 class Lists extends React.Component {
-  componentDidMount() {
-    this.props.dispatch({type: LIST_LOAD_REQUEST});
-  }
   render() {
-    const {lists} = this.props.listState;
     return (
       <div className="lists-page">
         <h1>Mine Lister</h1>
-        {lists.filter(list => list.type !== SYSTEM_LIST).map(list => (
+        {this.props.customLists.map(list => (
           <a
-            href={`/lister/${list.id}`}
+            key={list.data.id}
+            href={`/lister/${list.data.id}`}
             className="list"
             onClick={e => {
               this.props.dispatch({
                 type: HISTORY_PUSH,
-                path: `/lister/${list.id}`
+                path: `/lister/${list.data.id}`
               });
               e.preventDefault();
             }}
           >
-            <h2>{list.title}</h2>
-            <p>{list.description}</p>
+            <h2>{list.data.title}</h2>
+            <p>{list.data.description}</p>
           </a>
         ))}
         <div>
@@ -44,10 +41,9 @@ class Lists extends React.Component {
     );
   }
 }
-
-export default connect(
-  // Map redux state to props
-  state => {
-    return {listState: state.listReducer};
-  }
-)(Lists);
+const mapStateToProps = state => {
+  return {
+    customLists: getLists(state.listReducer, {type: CUSTOM_LIST, owner: state.profileReducer.user.openplatformId, sort: true})
+  };
+};
+export default connect(mapStateToProps)(Lists);

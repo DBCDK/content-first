@@ -7,7 +7,19 @@
       "items": {
         "type": "object",
         "properties": {
-          "id": {
+          "entity_id": {
+            "required": true,
+            "type": "integer"
+          },
+          "profile_id": {
+            "required": true,
+            "type": "integer"
+          },
+          "uuid": {
+            "required": true,
+            "type": "string"
+          },
+          "owner": {
             "required": true,
             "type": "string"
           },

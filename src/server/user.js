@@ -1,14 +1,20 @@
 'use strict';
 
+/**
+ * The pupose of this module is to take care of data-format translation
+ * between the community and the frontend.
+ */
+
 module.exports = {
-  creatingUser,
-  findingUserByUserIdHash,
-  gettingListsFromToken,
+  creatingUserByOpenplatformId,
+  findingUserIdByOpenplatformId,
+  findingUserIdTroughLoginToken,
   gettingUser,
   gettingUserFromToken,
   gettingUserIdFromLoginToken,
+  gettingUserWithLists,
+  gettingUserWithListsByOpenplatformId,
   removingLoginToken,
-  updatingLists,
   updatingUser
 };
 
@@ -18,25 +24,94 @@ const constants = require('server/constants')();
 const cookieTable = constants.cookies.table;
 const community = require('server/community');
 const transform = require('__/services/elvis/transformers');
+const logger = require('server/logger');
+const {
+  gettingListsForProfileId,
+  omitCommunityInfoFromList
+} = require('server/lists');
 const _ = require('lodash');
 
-function gettingUser(userId) {
-  return community.gettingUserByProfileId(userId);
+async function gettingUserWithLists(userId) {
+  try {
+    const user = await community.gettingUserByProfileId(userId);
+    const listsPlusCommunityInfo = await gettingListsForProfileId(userId);
+    user.lists = _.map(listsPlusCommunityInfo, omitCommunityInfoFromList);
+    return user;
+  } catch (error) {
+    logger.log.debug(error);
+    return Promise.reject(error);
+  }
 }
 
-function findingUserByUserIdHash(userIdHash) {
-  return community.gettingProfileIdByUserIdHash(userIdHash).catch(() => {
-    // UserId not found.
-    return null;
+function gettingUser(userId) {
+  return community
+    .gettingUserByProfileId(userId) // force break
+    .catch(error => {
+      logger.log.debug(error);
+      return Promise.reject(error);
+    });
+}
+
+function gettingUserWithListsByOpenplatformId(openplatformId) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const user = await community.gettingUserByOpenplatformId(openplatformId);
+      const listsPlusCommunityInfo = await gettingListsForProfileId(user.id);
+      const publicLists = _.filter(listsPlusCommunityInfo, 'data.public');
+      user.lists = _.map(publicLists, omitCommunityInfoFromList);
+      return resolve(user);
+    } catch (error) {
+      logger.log.debug(error);
+      if (error.status === 404) {
+        return reject(error);
+      }
+      let meta = error;
+      if (meta.response) {
+        meta = meta.response;
+      }
+      if (meta.error) {
+        meta = meta.error;
+      }
+      return reject({
+        status: 503,
+        title: 'Community-service connection problem',
+        detail: 'Community service is not reponding properly',
+        meta
+      });
+    }
   });
 }
 
-function creatingUser(userIdHash) {
+function findingUserIdByOpenplatformId(openplatformId) {
+  return community
+    .gettingProfileIdByOpenplatformId(openplatformId) // force break
+    .catch(error => {
+      if (error.status === 404) {
+        // UserId not found.
+        return null;
+      }
+      let meta = error;
+      if (meta.response) {
+        meta = meta.response;
+      }
+      if (meta.error) {
+        meta = meta.error;
+      }
+      return Promise.reject({
+        status: 503,
+        title: 'Community-service connection problem',
+        detail: 'Community service is not reponding properly',
+        meta
+      });
+    });
+}
+
+function creatingUserByOpenplatformId(openplatformId) {
   return community
     .creatingUserProfile({
       name: '',
       attributes: {
-        user_id: userIdHash,
+        openplatform_id: openplatformId,
         shortlist: [],
         tastes: []
       }
@@ -44,6 +119,124 @@ function creatingUser(userIdHash) {
     .then(profile => {
       return profile.id;
     });
+}
+
+function removingLoginToken(token) {
+  return knex(cookieTable)
+    .where('cookie', token)
+    .del();
+}
+
+function gettingUserFromToken(req) {
+  return new Promise(async (resolve, reject) => {
+    let userId;
+    try {
+      userId = await findingUserIdTroughLoginToken(req);
+    } catch (error) {
+      return reject(error);
+    }
+    try {
+      const user = await gettingUserWithLists(userId);
+      return resolve(user);
+    } catch (error) {
+      let meta = error;
+      if (meta.response) {
+        meta = meta.response;
+      }
+      if (meta.error) {
+        meta = meta.error;
+      }
+      return reject({
+        status: 503,
+        title: 'Community-service connection problem',
+        detail: 'Community service is not reponding properly',
+        meta
+      });
+    }
+  });
+}
+
+/**
+ * Promise of looking up userId from login token in HTTP request.
+ * @param  {Request} req       HTTP Request object.
+ * @param  {string}  location  Defaults to req.baseUrl
+ * @return {Promise} Resolves to Community Profile ID, or rejects with status, title, etc
+ */
+function findingUserIdTroughLoginToken(req, location = null) {
+  const url = location || req.baseUrl;
+  return new Promise(async (resolve, reject) => {
+    const loginToken = req.cookies['login-token'];
+    if (!loginToken) {
+      return reject({
+        status: 403,
+        title: 'User not logged in',
+        detail: 'Missing login-token cookie',
+        meta: {resource: url}
+      });
+    }
+    let userId;
+    try {
+      userId = await gettingUserIdFromLoginToken(loginToken);
+    } catch (error) {
+      if (error.status === 404) {
+        return reject({
+          status: 403,
+          title: 'User not logged in',
+          detail: `Unknown login token ${loginToken}`,
+          meta: {resource: url}
+        });
+      }
+      return reject({
+        status: 403,
+        title: 'User not logged in',
+        detail: `Login token ${loginToken} has expired`,
+        meta: {resource: url}
+      });
+    }
+    return resolve(userId);
+  });
+}
+
+function updatingUser(userId, partialData) {
+  const {
+    profile,
+    lists
+  } = transform.contentFirstUserToCommunityProfileAndEntities(partialData);
+  if (lists) {
+    // Rest of obsolete functionality.
+    return Promise.reject({
+      status: 500,
+      title: 'Lists not expected',
+      meta: lists
+    });
+  }
+  if (profile.name || !_.isEmpty(profile.attributes)) {
+    return community
+      .updatingProfileWithShortlistAndTastes(userId, profile)
+      .catch(error => {
+        if (error.status === 400) {
+          return Promise.reject(error);
+        }
+        let meta = error;
+        if (meta.response) {
+          meta = meta.response;
+        }
+        if (meta.error) {
+          meta = meta.error;
+        }
+        return Promise.reject({
+          status: 503,
+          title: 'Community-service connection problem',
+          detail: 'Community service is not reponding properly',
+          meta
+        });
+      });
+  }
+  return Promise.reject({
+    status: 400,
+    title: 'No user data to update',
+    meta: partialData
+  });
 }
 
 function gettingUserIdFromLoginToken(token) {
@@ -78,159 +271,4 @@ function gettingUserIdFromLoginToken(token) {
         });
       });
   });
-}
-
-function removingLoginToken(token) {
-  return knex(cookieTable)
-    .where('cookie', token)
-    .del();
-}
-
-function gettingUserFromToken(req) {
-  return new Promise(async (resolve, reject) => {
-    const location = req.baseUrl;
-    const loginToken = req.cookies['login-token'];
-    if (!loginToken) {
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: 'Missing login-token cookie',
-        meta: {resource: location}
-      });
-    }
-    let userId;
-    try {
-      userId = await gettingUserIdFromLoginToken(loginToken);
-    } catch (error) {
-      if (error.status === 404) {
-        return reject({
-          status: 403,
-          title: 'User not logged in',
-          detail: `Unknown login token ${loginToken}`,
-          meta: {resource: location}
-        });
-      }
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: `Login token ${loginToken} has expired`,
-        meta: {resource: location}
-      });
-    }
-    try {
-      const user = await gettingUser(userId);
-      return resolve(user);
-    } catch (error) {
-      const returnedError = {meta: {resource: location}};
-      Object.assign(returnedError, error);
-      return reject(returnedError);
-    }
-  });
-}
-
-async function updatingUser(userId, partialData) {
-  const {profile, lists} = transform.transformFrontendUserToProfileAndEntities(
-    partialData
-  );
-  if (profile.name || profile.attributes.shortlist || profile.attributes.tastes) {
-    await community.updatingProfileWithShortlistAndTastes(userId, profile);
-  }
-  if (lists) {
-    await updatingTransformedLists(userId, lists);
-  }
-}
-
-function gettingListsFromToken(req) {
-  return new Promise(async (resolve, reject) => {
-    const location = req.baseUrl;
-    const loginToken = req.cookies['login-token'];
-    if (!loginToken) {
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: 'Missing login-token cookie',
-        meta: {resource: location}
-      });
-    }
-    let userId;
-    try {
-      userId = await gettingUserIdFromLoginToken(loginToken);
-    } catch (error) {
-      if (error.status === 404) {
-        return reject({
-          status: 403,
-          title: 'User not logged in',
-          detail: `Unknown login token ${loginToken}`,
-          meta: {resource: location}
-        });
-      }
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: `Login token ${loginToken} has expired`,
-        meta: {resource: location}
-      });
-    }
-    try {
-      const lists = await community.gettingAllListEntitiesOwnedByProfileId(
-        userId
-      );
-      return resolve(lists);
-    } catch (error) {
-      let meta = error;
-      if (meta.response) {
-        meta = meta.response;
-      }
-      if (meta.error) {
-        meta = meta.error;
-      }
-      return reject({
-        status: 503,
-        title: 'Community-service connection problem',
-        detail: 'Community service is not reponding properly',
-        meta
-      });
-    }
-  });
-}
-
-function updatingLists(userId, lists) {
-  return updatingTransformedLists(
-    userId,
-    transform.transformListsToLists(lists)
-  );
-}
-
-async function updatingTransformedLists(userId, lists) {
-  const alreadyExist = await community.gettingIdsOfAllListEntitiesOwnedByUserWithProfileId(
-    userId
-  );
-  const {
-    toCreate,
-    toUpdate,
-    toDelete
-  } = transform.divideListsIntoCreateUpdateAndDeleteForProfileId(
-    lists,
-    alreadyExist,
-    userId
-  );
-  let chain = Promise.resolve();
-  for (const document of toCreate) {
-    chain = chain.then(() => {
-      return community.creatingListEntity(userId, document);
-    });
-  }
-  for (const document of toUpdate) {
-    chain = chain.then(() => {
-      const entityId = document.id;
-      const listWithoutId = _.omit(document, 'id');
-      return community.updatingListEntity(userId, entityId, listWithoutId);
-    });
-  }
-  for (const entityId of toDelete) {
-    chain = chain.then(() => {
-      return community.updatingListEntity(userId, entityId, {});
-    });
-  }
-  await chain;
 }

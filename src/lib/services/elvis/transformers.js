@@ -1,67 +1,24 @@
 'use strict';
 
 module.exports = {
-  divideListsIntoCreateUpdateAndDeleteForProfileId,
-  transformFrontendUserToProfileAndEntities,
-  transformListsToLists
+  contentFirstUserToCommunityProfileAndEntities,
+  contentFirstListToCommunityEntity
 };
 
 const _ = require('lodash');
 
-function divideListsIntoCreateUpdateAndDeleteForProfileId(
-  newEntities,
-  existingEntities,
-  profileId
-) {
-  const existingUuids = _.map(existingEntities, entity => entity.id);
-  const newUuids = _.map(newEntities, entry => entry.attributes.uuid);
-
-  const uuidsToDelete = _.difference(existingUuids, newUuids);
-  const uuidsToCreate = _.difference(newUuids, existingUuids);
-  const uuidsToUpdate = _.intersection(newUuids, existingUuids);
-
-  const entitiesToCreate = _.map(
-    _.filter(newEntities, entity =>
-      uuidsToCreate.includes(entity.attributes.uuid)
-    ),
-    entity => Object.assign({owner_id: profileId}, entity)
-  );
-
-  const partition = _.partition(existingEntities, entity =>
-    uuidsToDelete.includes(entity.id)
-  );
-  const idsToDelete = _.map(partition[0], entry => entry.entity_id);
-
-  const entriesToUpdate = partition[1];
-  const entitiesToUpdate = _.map(
-    _.filter(newEntities, entity =>
-      uuidsToUpdate.includes(entity.attributes.uuid)
-    ),
-    entity =>
-      Object.assign(
-        {
-          id: _.find(
-            entriesToUpdate,
-            entry => entry.id === entity.attributes.uuid
-          ).entity_id
-        },
-        entity
-      )
-  );
-
-  return {
-    toCreate: entitiesToCreate,
-    toUpdate: entitiesToUpdate,
-    toDelete: idsToDelete
-  };
-}
-
-function transformFrontendUserToProfileAndEntities(userInfo) {
+function contentFirstUserToCommunityProfileAndEntities(userInfo) {
   let skeleton = {
     profile: {
       attributes: {}
     }
   };
+  if (userInfo.openplatformId) {
+    skeleton.profile.attributes.openplatform_id = userInfo.openplatformId;
+  }
+  if (userInfo.openplatformToken) {
+    skeleton.profile.attributes.openplatform_token = userInfo.openplatformToken;
+  }
   if (userInfo.name) {
     skeleton.profile.name = userInfo.name;
   }
@@ -69,19 +26,28 @@ function transformFrontendUserToProfileAndEntities(userInfo) {
     skeleton.profile.attributes.shortlist = userInfo.shortlist;
   }
   if (userInfo.profiles) {
-    skeleton.profile.attributes.tastes = _.map(userInfo.profiles, transformProfileToTaste);
+    skeleton.profile.attributes.tastes = _.map(
+      userInfo.profiles,
+      contentFirstProfileToCommunityAttribute
+    );
+  }
+  if (userInfo.roles) {
+    skeleton.profile.attributes.roles = userInfo.roles;
+  }
+  if (userInfo.image) {
+    skeleton.profile.attributes.image = userInfo.image;
   }
   if (userInfo.lists) {
-    skeleton.lists = transformListsToLists(userInfo.lists);
+    skeleton.lists = contentFirstListsToCommunityEntities(userInfo.lists);
   }
   return skeleton;
 }
 
-function transformListsToLists(lists) {
-  return _.map(lists, transformListToList);
+function contentFirstListsToCommunityEntities(lists) {
+  return _.map(lists, contentFirstListToCommunityEntity);
 }
 
-function transformProfileToTaste(profile) {
+function contentFirstProfileToCommunityAttribute(profile) {
   return {
     name: profile.name,
     moods: profile.profile.moods,
@@ -91,14 +57,14 @@ function transformProfileToTaste(profile) {
   };
 }
 
-function transformListToList(list) {
+function contentFirstListToCommunityEntity(list) {
   return {
     type: 'list',
     title: list.title,
     contents: list.description,
     attributes: {
       uuid: list.id,
-      public: false,
+      public: list.public || false,
       type: list.type,
       list: list.list
     }

@@ -4,6 +4,10 @@
     "self": {
       "required": true,
       "type": "string"
+    },
+    "next": {
+      "required": false,
+      "type": "string"
     }
   },
   "additionalProperties": false

@@ -50,7 +50,7 @@
 }
 
 .mb1 {
-  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 
 .ml4 {
@@ -131,4 +131,7 @@
 .profile-list .profile-image {
   width: 40px;
   height: 40px;
+}
+.number {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

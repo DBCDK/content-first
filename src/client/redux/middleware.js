@@ -1,3 +1,5 @@
+import openplatform from 'openplatform';
+
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
 import {
@@ -34,18 +36,28 @@ import {
 } from './shortlist.reducer';
 import {
   ADD_LIST,
-  REMOVE_LIST,
+  STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
-  ADD_ELEMENT_TO_LIST,
-  LIST_TOGGLE_ELEMENT,
-  UPDATE_CURRENT_LIST,
-  REMOVE_ELEMENT_FROM_LIST
+  getListById
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
+import {
+  ORDER,
+  ORDER_START,
+  ORDER_SUCCESS,
+  ORDER_FAILURE,
+  PICKUP_BRANCHES,
+  AVAILABILITY
+} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
-import {saveLists, loadLists} from '../utils/requestLists';
+import {
+  saveList,
+  loadLists,
+  createListLocation,
+  loadRecentPublic
+} from '../utils/requestLists';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -121,23 +133,6 @@ export const requestMiddleware = store => next => action => {
   }
 };
 
-/* eslint-disable no-console */
-export const loggerMiddleware = store => next => action => {
-  try {
-    // console.log('Action dispatched', action);
-    const res = next(action);
-    console.log('Next state', {
-      type: action.type,
-      action,
-      nextState: store.getState()
-    });
-    return res;
-  } catch (error) {
-    console.log('Action failed', {action, error});
-  }
-};
-/* eslint-enable no-console */
-
 export const shortListMiddleware = store => next => async action => {
   switch (action.type) {
     case SHORTLIST_CLEAR:
@@ -208,30 +203,35 @@ export const profileMiddleware = store => next => action => {
 
 export const listMiddleware = store => next => async action => {
   switch (action.type) {
-    case LIST_TOGGLE_ELEMENT:
-    case ADD_ELEMENT_TO_LIST:
-    case REMOVE_ELEMENT_FROM_LIST:
-    case UPDATE_CURRENT_LIST:
-    case ADD_LIST:
-    case REMOVE_LIST: {
+    case STORE_LIST: {
       const res = next(action);
-      const {lists} = store.getState().listReducer;
       const {isLoggedIn} = store.getState().profileReducer.user;
-      saveLists(lists, isLoggedIn);
+      const list = getListById(store.getState().listReducer, action.id);
+      if (!list) {
+        throw new Error(`list with id ${action.id} not found`);
+      }
+      await saveList(list, isLoggedIn);
       return res;
+    }
+    case ADD_LIST: {
+      if (!action.list.data.id) {
+        const {id, location} = await createListLocation();
+        action.list.links.self = location;
+        action.list.data.id = id;
+      }
+      if (!action.list.data.owner) {
+        action.list.data.owner = store.getState().profileReducer.user.openplatformId;
+      }
+      return next(action);
     }
     case LIST_LOAD_REQUEST: {
       const res = next(action);
       const {isLoggedIn} = store.getState().profileReducer.user;
       const lists = await loadLists(isLoggedIn);
-      let currentList;
-      if (action.id) {
-        currentList = lists.filter(list => list.id === action.id)[0];
-      }
+      const recentLists = await loadRecentPublic();
       store.dispatch({
         type: LIST_LOAD_RESPONSE,
-        lists,
-        currentList
+        lists: [...lists, ...recentLists]
       });
       return res;
     }
@@ -245,6 +245,108 @@ export const searchMiddleware = store => next => action => {
     case SEARCH_QUERY:
       fetchSearchResults({query: action.query, dispatch: store.dispatch});
       return next(action);
+    default:
+      return next(action);
+  }
+};
+
+async function openplatformLogin(state) {
+  if (!openplatform.connected()) {
+    const token = state.profileReducer.user.openplatformToken;
+    if (!token) {
+      throw new Error('missing openplatformToken');
+    }
+    await openplatform.connect(token);
+  }
+}
+
+export const orderMiddleware = store => next => action => {
+  switch (action.type) {
+    case ORDER: {
+      const state = store.getState();
+
+      if (!state.profileReducer.user.openplatformToken) {
+        store.dispatch({
+          type: OPEN_MODAL,
+          modal: 'login',
+          context: {
+            title: 'BESTIL',
+            reason: 'Du skal logge ind for at bestille bøger.'
+          }
+        });
+        return next(action);
+      }
+
+      store.dispatch({type: OPEN_MODAL, modal: 'order'});
+
+      if (state.orderReducer.get('pickupBranches').size === 0) {
+        (async () => {
+          await openplatformLogin(state);
+
+          let user;
+          try {
+            user = await openplatform.user();
+          } catch (e) {
+            // Dummy as we do not have proper logged in users yet
+            user = {agency: '710100'};
+          }
+          const agency = user.agency;
+
+          if (state.orderReducer.get('pickupBranches').size === 0) {
+            store.dispatch({
+              type: PICKUP_BRANCHES,
+              branches: await openplatform.libraries({
+                agencyIds: [agency],
+                fields: ['branchId', 'branchName']
+              })
+            });
+          }
+        })();
+      }
+
+      if (
+        !state.orderReducer.getIn(
+          ['orders', action.book.pid, 'availability'],
+          false
+        )
+      ) {
+        (async () => {
+          await openplatformLogin(state);
+          const availability = await openplatform.availability({
+            pid: action.book.pid
+          });
+          store.dispatch({
+            type: AVAILABILITY,
+            pid: action.book.pid,
+            availability
+          });
+        })();
+      }
+      return next(action);
+    }
+    case ORDER_START: {
+      (async () => {
+        try {
+          await openplatform.order({
+            pids: [action.pid],
+            library: action.branch
+          });
+
+          store.dispatch({
+            type: ORDER_SUCCESS,
+            pid: action.pid
+          });
+        } catch (e) {
+          // eslint-disable-next-line
+          console.log('Error on order:', e);
+          store.dispatch({
+            type: ORDER_FAILURE,
+            pid: action.pid
+          });
+        }
+      })();
+      return next(action);
+    }
     default:
       return next(action);
   }

@@ -9,26 +9,12 @@ const defaultState = {
       works: []
     },
     {
-      name: 'En let læst bog',
-      isLoading: false,
-      onFrontPage: true,
-      links: ['En bog der gør dig klogere', 'En udfordrende bog']
-    },
-    {
       name: 'Bibliotekarens ugentlige anbefalinger',
       details: 'Detaljer for ugentlige anbefalinger',
       isLoading: false,
       onFrontPage: true,
       links: [],
       works: []
-    },
-    {
-      name: 'Passer med min smag',
-      details: 'Detaljer for min smag',
-      isLoading: false,
-      onFrontPage: true,
-      requireLogin: true,
-      links: []
     },
     {
       name: 'En spændende bog',
@@ -43,16 +29,11 @@ const defaultState = {
       links: []
     },
     {
-      name: 'En bog der gør dig klogere',
+      name: 'Passer med min smag',
       isLoading: false,
       onFrontPage: false,
-      links: []
-    },
-    {
-      name: 'En udfordrende bog',
-      isLoading: false,
-      onFrontPage: false,
-      links: []
+      links: [],
+      works: []
     }
   ]
 };
@@ -76,12 +57,7 @@ const beltsReducer = (state = defaultState, action) => {
     case ON_BELT_RESPONSE: {
       const belts = state.belts.map(belt => {
         if (belt.name === action.beltName) {
-          return Object.assign(
-            {},
-            belt,
-            {isLoading: false},
-            {works: action.response}
-          );
+          return Object.assign({}, belt, {isLoading: false}, {works: action.response});
         }
         return belt;
       });

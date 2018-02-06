@@ -4,6 +4,7 @@ const config = require('server/config');
 const constants = require('server/constants')();
 const logger = require('server/logger');
 const _ = require('lodash');
+const {toLoggableString} = require('__/json');
 
 // Remote services.
 const database = require('server/database');
@@ -114,11 +115,9 @@ external.use((err, req, res, next) => {
   let returnedError = {
     status: err.status,
     code: err.code || err.status.toString(),
-    title: err.title || (err.message || 'Unknown error')
+    title: err.title || (err.message || 'Unknown error'),
+    detail: err.detail || toLoggableString(err)
   };
-  if (err.detail) {
-    returnedError.detail = err.detail;
-  }
   if (err.meta) {
     returnedError.meta = err.meta;
   }

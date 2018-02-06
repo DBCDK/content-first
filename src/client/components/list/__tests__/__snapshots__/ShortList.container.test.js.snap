@@ -15,6 +15,7 @@ exports[`ShortList.container Clearing list 1`] = `
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [],
@@ -108,7 +109,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                 >
                                   <img
                                     alt="some title2"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
                                   />
@@ -129,28 +130,13 @@ exports[`ShortList.container Clearing list 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget2"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget2"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -170,14 +156,35 @@ exports[`ShortList.container Clearing list 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid2",
+                                "taxonomy_description": "some description2",
+                                "title": "some title2",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid2",
+                                  "taxonomy_description": "some description2",
+                                  "title": "some title2",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -243,7 +250,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                 >
                                   <img
                                     alt="some title1"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                                   />
@@ -264,28 +271,13 @@ exports[`ShortList.container Clearing list 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -305,14 +297,35 @@ exports[`ShortList.container Clearing list 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -354,6 +367,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -456,7 +470,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                 >
                                   <img
                                     alt="some title1"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                                   />
@@ -477,28 +491,13 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="description is changed"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="description is changed"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -518,14 +517,35 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -591,6 +611,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -693,7 +714,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                 >
                                   <img
                                     alt="some title1"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                                   />
@@ -714,28 +735,13 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -755,14 +761,35 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -828,6 +855,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -930,7 +958,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                 >
                                   <img
                                     alt="some title1"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                                   />
@@ -951,28 +979,13 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -992,14 +1005,35 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1065,6 +1099,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -1167,7 +1202,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                 >
                                   <img
                                     alt="some title1"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                                   />
@@ -1188,28 +1223,13 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="description is changed"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="description is changed"
-                                  />
-                                </TextareaAutosize>
+                                />
                                 <div
                                   className="text-right mt1"
                                 >
@@ -1244,14 +1264,35 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1317,6 +1358,7 @@ exports[`ShortList.container remove element 1`] = `
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -1427,7 +1469,7 @@ exports[`ShortList.container remove element 1`] = `
                                 >
                                   <img
                                     alt="some title3"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
                                   />
@@ -1448,28 +1490,13 @@ exports[`ShortList.container remove element 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget3"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget3"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -1489,14 +1516,35 @@ exports[`ShortList.container remove element 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid3",
+                                "taxonomy_description": "some description3",
+                                "title": "some title3",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid3",
+                                  "taxonomy_description": "some description3",
+                                  "title": "some title3",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1562,7 +1610,7 @@ exports[`ShortList.container remove element 1`] = `
                                 >
                                   <img
                                     alt="some title2"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
                                   />
@@ -1583,28 +1631,13 @@ exports[`ShortList.container remove element 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget2"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget2"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -1624,14 +1657,35 @@ exports[`ShortList.container remove element 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid2",
+                                "taxonomy_description": "some description2",
+                                "title": "some title2",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid2",
+                                  "taxonomy_description": "some description2",
+                                  "title": "some title2",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1697,7 +1751,7 @@ exports[`ShortList.container remove element 1`] = `
                                 >
                                   <img
                                     alt="some title1"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                                   />
@@ -1718,28 +1772,13 @@ exports[`ShortList.container remove element 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -1759,14 +1798,35 @@ exports[`ShortList.container remove element 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -1832,6 +1892,7 @@ exports[`ShortList.container short list contains elements 1`] = `
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [
@@ -1950,7 +2011,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                 >
                                   <img
                                     alt="some title3"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
                                   />
@@ -1971,28 +2032,13 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget3"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget3"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -2012,14 +2058,35 @@ exports[`ShortList.container short list contains elements 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid3",
+                                "taxonomy_description": "some description3",
+                                "title": "some title3",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid3",
+                                  "taxonomy_description": "some description3",
+                                  "title": "some title3",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -2085,7 +2152,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                 >
                                   <img
                                     alt="some title2"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
                                   />
@@ -2106,28 +2173,13 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget2"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget2"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -2147,14 +2199,35 @@ exports[`ShortList.container short list contains elements 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid2",
+                                "taxonomy_description": "some description2",
+                                "title": "some title2",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid2",
+                                  "taxonomy_description": "some description2",
+                                  "title": "some title2",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -2220,7 +2293,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                 >
                                   <img
                                     alt="some title1"
-                                    className=""
+                                    className="high-contrast "
                                     onError={[Function]}
                                     src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
                                   />
@@ -2241,28 +2314,13 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <form
                                 onSubmit={[Function]}
                               >
-                                <TextareaAutosize
+                                <textarea
                                   className="form-control description"
                                   name="item-description"
                                   onChange={[Function]}
-                                  onHeightChange={[Function]}
                                   placeholder="Skriv en beskrivelse"
-                                  useCacheForDOMMeasurements={false}
                                   value="Minder om noget1"
-                                >
-                                  <textarea
-                                    className="form-control description"
-                                    name="item-description"
-                                    onChange={[Function]}
-                                    placeholder="Skriv en beskrivelse"
-                                    style={
-                                      Object {
-                                        "height": 0,
-                                      }
-                                    }
-                                    value="Minder om noget1"
-                                  />
-                                </TextareaAutosize>
+                                />
                               </form>
                             </div>
                           </div>
@@ -2282,14 +2340,35 @@ exports[`ShortList.container short list contains elements 1`] = `
                         <div
                           className="order-book col-xs-3"
                         >
-                          <span
-                            onClick={[Function]}
+                          <Connect(OrderButton)
+                            book={
+                              Object {
+                                "pid": "pid1",
+                                "taxonomy_description": "some description1",
+                                "title": "some title1",
+                              }
+                            }
                           >
-                            Bestil til dit bibliotek
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
-                          </span>
+                            <OrderButton
+                              book={
+                                Object {
+                                  "pid": "pid1",
+                                  "taxonomy_description": "some description1",
+                                  "title": "some title1",
+                                }
+                              }
+                              className=""
+                              order={[Function]}
+                              orderState="not ordered"
+                            >
+                              <button
+                                className="btn btn-primary "
+                                onClick={[Function]}
+                              >
+                                Bestil
+                              </button>
+                            </OrderButton>
+                          </Connect(OrderButton)>
                         </div>
                         <img
                           alt="remove"
@@ -2355,6 +2434,7 @@ exports[`ShortList.container short list is empty 1`] = `
   <Connect(ShortList)>
     <ShortList
       dispatch={[Function]}
+      orderAll={[Function]}
       shortListState={
         Object {
           "elements": Array [],

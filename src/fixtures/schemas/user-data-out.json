@@ -1,9 +1,24 @@
 {
   "type": "object",
   "properties": {
+    "openplatformId": {
+      "required": true,
+      "type": "string"
+    },
+    "openplatformToken": {
+      "required": true,
+      "type": "string"
+    },
     "name": {
       "required": true,
       "type": "string"
+    },
+    "roles": {
+      "required": true,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "lists": {
       "required": true,

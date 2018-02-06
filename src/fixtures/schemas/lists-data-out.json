@@ -2,40 +2,24 @@
   "required": true,
   "type": "array",
   "items": {
-    "required": true,
     "type": "object",
     "properties": {
-      "id": {
+      "data": {
         "required": true,
-        "type": "string"
+        "type": "object"
       },
-      "title": {
+      "links": {
         "required": true,
-        "type": "string"
-      },
-      "description": {
-        "required": true,
-        "type": "string"
-      },
-      "list": {
-        "required": true,
-        "type": "array",
-        "items": {
-          "required": true,
-          "type": "object",
-          "properties": {
-            "pid": {
-              "required": true,
-              "type": "string"
-            },
-            "description": {
-              "required": true,
-              "type": "string"
-            },
-            "additionalProperties": false
+        "type": "object",
+        "properties": {
+          "self": {
+            "required": true,
+            "type": "string"
           }
-        }
+        },
+        "additionalProperties": false
       }
-    }
+    },
+    "additionalProperties": false
   }
 }

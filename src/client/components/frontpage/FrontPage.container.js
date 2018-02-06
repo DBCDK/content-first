@@ -1,14 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Belt from './Belt.component';
-import ScrollableBelt from '../general/ScrollableBelt.component';
+import RecentListsBelt from '../belt/RecentListsBelt.container';
 import WorkItem from '../work/WorkItemConnected.component';
 import CreateProfile from '../profile/CreateProfile.component';
 import {ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
-import {getLeaves} from '../../utils/filters';
+import Slider from '../belt/Slider.component';
+import {getLeaves} from '../../utils/taxonomy';
 
 class FrontPage extends React.Component {
   componentDidMount() {
@@ -19,11 +20,15 @@ class FrontPage extends React.Component {
         this.props.dispatch({type: ON_BELT_REQUEST, beltName: belt.name});
       }
     });
-    window.$('[data-toggle="tooltip"]').tooltip();
+    if (window.$) {
+      window.$('[data-toggle="tooltip"]').tooltip();
+    }
   }
 
   componentDidUpdate() {
-    window.$('[data-toggle="tooltip"]').tooltip();
+    if (window.$) {
+      window.$('[data-toggle="tooltip"]').tooltip();
+    }
   }
 
   renderBelts() {
@@ -35,15 +40,11 @@ class FrontPage extends React.Component {
           }
 
           const allFilters = getLeaves(this.props.filterState.filters);
-          const selectedFilters = this.props.filterState.beltFilters[
-            belt.name
-          ].map(id => allFilters.find(filter => filter.id === id));
+          const selectedFilters = this.props.filterState.beltFilters[belt.name].map(id => allFilters.find(filter => filter.id === id));
           const links = belt.links.map(beltName => {
             return {
               title: beltName,
-              filters: this.props.filterState.beltFilters[beltName].map(id =>
-                allFilters.find(filter => filter.id === id)
-              )
+              filters: this.props.filterState.beltFilters[beltName].map(id => allFilters.find(filter => filter.id === id))
             };
           });
 
@@ -70,20 +71,16 @@ class FrontPage extends React.Component {
             >
               {belt.requireLogin && <CreateProfile />}
               {!belt.requireLogin && (
-                <ScrollableBelt works={belt.works} scrollInterval={3}>
-                  {belt.works &&
-                    belt.works.map(work => (
-                      <WorkItem
-                        work={work}
-                        key={work.book.pid}
-                        origin={`Fra "${belt.name}"`}
-                      />
-                    ))}
-                </ScrollableBelt>
+                <div className="row mb4">
+                  <div className="col-xs-12">
+                    <Slider>{belt.works && belt.works.map(work => <WorkItem work={work} key={work.book.pid} origin={`Fra "${belt.name}"`} />)}</Slider>
+                  </div>
+                </div>
               )}
             </Belt>
           );
         })}
+        <RecentListsBelt />
       </div>
     );
   }

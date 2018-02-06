@@ -1,14 +1,16 @@
-# Service endpoints
+# Public service endpoints
 
-The responses from the backend are either raw images or JSON loosely based on the [JSON-API](http://jsonapi.org/) specification, see [schemas used when testing](../src/acceptance/schemas/).
+The responses from the backend are either raw images or JSON loosely based on the [JSON-API](http://jsonapi.org/) specification, see [schemas used when testing](../src/fixtures/schemas/).
 
 To only expose non-destructive endpoint to the public (ie. those needed by the [frontend](../src/client/)), the [backend](../src/server) sets an internal HTTP server up on an a non-public port in addtion to the port used for public access.
 
+The internal endpoints are described in [internal-endpoints.md](internal-endpoints.md). This document describes the public endpoint.
+
 ## Books
 
-### `GET /v1/book/`*pid*
+### `GET /v1/book/`_pid_
 
-Returns a [book structure](../src/acceptance/schemas/book-data-out.json), like
+Returns a [book structure](../src/fixtures/schemas/book-data-out.json), like
 
     { "data":
       { "pid": "870970-basis-53188931"
@@ -38,9 +40,9 @@ Returns a [book structure](../src/acceptance/schemas/book-data-out.json), like
       }
     }
 
-### `GET /v1/books?pids=`*pid*,...,*pid*
+### `GET /v1/books?pids=`_pid_,...,_pid_
 
-Results in a [list of books](../src/acceptance/schemas/books-data-out.json), each of the format as `GET /v1/book`, like
+Results in a [list of books](../src/fixtures/schemas/books-data-out.json), each of the format as `GET /v1/book`, like
 
     { "data":
       [ { "book":
@@ -69,66 +71,25 @@ Results in a [list of books](../src/acceptance/schemas/books-data-out.json), eac
       }
     }
 
-### `PUT /v1/book/`*pid*
-
-The data must be [valid book input](../src/server/schemas/book-in.json), like
-
-    { "pid": "870970-basis-53188931"
-    , "unitId": "unit:22125672"
-    , "workId": "work:20137979"
-    , "bibliographicRecordId": "53188931"
-    , "subject": "billedværker, humor, fotografier"
-    , "genre": "humor"
-    , "taxonomy_description": "Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne"
-    , "description": "Noget med låger"
-    , "creator": "Jens Blendstrup"
-    , "title": "Havelågebogen"
-    , "titleFull": "Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger"
-    , "dateFirstEdition": "2017"
-    , "literaryForm": "digte, fiktion"
-    , "type": "Bog"
-    , "workType": "book"
-    , "language": "Dansk"
-    , "items": 196
-    , "libraries": 80
-    , "pages": 645
-    , "image_detail": "https://moreinfo.addi.dk/2.9/more_info_get.php?lokalid=53188931&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=d2cc02a57d78c7015725"
-    , "loans": 1020
-    }
-
-### `PUT /v1/books`
-
-Replace all books.  The data must be a list of [valid book input](../src/server/schemas/book-in.json).  On success, the result is the total number of books in the list, like
-
-    { "data": "216 books created"
-    , "links": { "self": "/v1/books" }
-    }
-
-If unsuccessful, the previous books in the database are untouched.
-
 ## Images
 
-### `GET /v1/image/`*pid*
+### `GET /v1/image/`_pid_
 
 The path must one that has been returned by a `/v1/book` or `/v1/books` request.
 
 The result is an image file.
 
-### `PUT /v1/image/`*pid*
-
-The content-type must be `image/jpeg` or `image/png`.
-
 ## Recommendations
 
-### `GET /v1/recommendations?tag=`*metatag*`&`...`&tag=`*metatag*
+### `GET /v1/recommendations?tag=`_metatag_`&`...`&tag=`_metatag_
 
-Each metatag must be a number defined by [Metakompasset](https://github.com/DBCDK/metakompasset).  The client must provide at least one metatag.
+Each metatag must be a number defined by [Metakompasset](https://github.com/DBCDK/metakompasset). The client must provide at least one metatag.
 
 The result is a list of books such that each book include all the specified tags.
 
 ## Tags
 
-### `GET /v1/tags/`*pid*
+### `GET /v1/tags/`_pid_
 
 Returns a list of tag for a specific PID, like
 
@@ -140,41 +101,6 @@ Returns a list of tag for a specific PID, like
       { "self": "/v1/tags/870970-basis:53187404"
       }
     }
-
-### `PUT /v1/tags/`*pid*
-
-Creates or overwrites tags for a PID.  The input is like
-
-    {
-      "pid": "870970-basis:52947804",
-      "selected": ["44", "46", "49"]
-    }
-
-The result is like that of `GET /v1/tags/`*pid*.
-
-### `POST /v1/tags`
-
-Add tags for a PID.  The input is like
-
-    { "pid": "870970-basis:52947804"
-    , "selected": ["44", "46", "49"]
-    }
-
-The result is like that of `GET /v1/tags/`*pid*.
-
-### `DELETE /v1/tags/`*pid*
-
-Removes all tags for a specific PID.
-
-### `PUT /v1/tags`
-
-Replace all tags.  The data must be a list of [valid tag input](../src/server/schemas/tag-in.json).  On success, the result is the total number of books in the list, like
-
-    { "data": "106 tas created"
-    , "links": { "self": "/v1/tas" }
-    }
-
-If unsuccessful, the previous tags in the database are untouched.
 
 ## Taxonomy
 
@@ -205,9 +131,9 @@ Returns the top-level taxonomy, like
       }
     }
 
-### `GET /v1/taxonomy/`*tag*
+### `GET /v1/taxonomy/`_tag_
 
-Returns the second-level taxonomy under *tag*, like
+Returns the second-level taxonomy under _tag_, like
 
     { "data":
       [ { "id": 293
@@ -229,7 +155,7 @@ Returns the second-level taxonomy under *tag*, like
       }
     }
 
-Or returns the third-level taxonomy under *tag*, like
+Or returns the third-level taxonomy under _tag_, like
 
     { "data":
       [ { "id": 324
@@ -271,47 +197,39 @@ Returns the complete taxonomy, like
       }
     }
 
-
-### `PUT /v1/taxonomy`
-
-The data must be [valid taxonomy](../src/server/schemas/taxonomy-in.json), like
-
-    [ { "id": "0"
-      , "title": "Stemning"
-      , items:
-        [ { "id": "1",
-          , "title": "Optimistisk"
-          , "items": [ { "id": "2", title: "Entusiastisk" } ]
-          }
-        ]
-      }
-    ]
-
-Note that the ids are quoted.
-
 ## Users
 
 ### `GET /v1/user`
 
-Returns [user information](../src/acceptance/schemas/user-data-out.json) for a logged-in user, like
+Returns [user information](../src/fixtures/schemas/user-data-out.json) for a logged-in user, like
 
     { "data":
-      { "name": "Jens Godfredsen"
+      { "openplatformId": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+      , "openplatformToken": "d659925b4ae29696d7c395faef9d1d850c66519f"
+      , "name": "Jens Godfredsen"
+      , "roles": ["editor"]
       , "shortlist":
         [ { "pid": "870970-basis-22629344"
           , "origin": "en-let-læst-bog"
           }
         ]
       , "lists":
-        [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
-          , "type": "SYSTEM_LIST"
-          , "title": "My List"
-          , "description": "A brand new list"
-          , "list":
-          [ { "pid": "870970-basis-22629344"
-            , "description": "Magic to the people"
+        [ { "data":
+            { "type": "SYSTEM_LIST"
+            , "public": false,
+            , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+            , "title": "My List"
+            , "description": "A brand new list"
+            , "list":
+              [ { "pid": "870970-basis-22629344"
+                , "description": "Magic to the people"
+                }
+              ]
             }
-          ] 
+          , "links":
+            { "self": "/v1/lists/98c5ff8c6e8f49978c857c23925dbe41"
+            }
+          }
         ]
       , "profiles":
         [ { "name": "Med på den værste"
@@ -324,8 +242,9 @@ Returns [user information](../src/acceptance/schemas/user-data-out.json) for a l
           }
         ]
       }
-    , "links": 
+    , "links":
       { "self": "/v1/user"
+      , "image": "http://via.placeholder.com/256"
       }
     }
 
@@ -341,17 +260,6 @@ Updates the [user information](../src/server/schemas/user-in.json) like
       , { "pid": "870970-basis-51752341"
         , "origin": "bibliotikarens-ugentlige-anbefaling"
         }
-      ]
-    , "lists":
-      [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
-        , "type": "CUSTOM_LIST"
-        , "title": "My List"
-        , "description": "A brand new list"
-        , "list":
-        [ { "pid": "870970-basis-22629344"
-          , "description": "Magic to the people"
-          }
-        ] 
       ]
     , "profiles":
       [ { "name": "En tynd en"
@@ -375,19 +283,52 @@ Updates the [user information](../src/server/schemas/user-in.json) like
 
 The user info is updated selectively, that is, you can leave out some of the fields to not change their value.
 
+### `GET /v1/user/`_id_
+
+Returns [public user information](../src/fixtures/schemas/public-user-data-out.json) for a user with the given ([UrlEncoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent)) Openplatform ID, like
+
+    { "data":
+      { "openplatformId": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+      , "name": "Jens Godfredsen"
+      , "roles": ["editor"]
+      , "lists":
+        [ { "data":
+            { "type": "SYSTEM_LIST"
+            , "public": true
+            , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+            , "title": "My List"
+            , "description": "A brand new list"
+            , "list":
+              [ { "pid": "870970-basis-22629344"
+                , "description": "Magic to the people"
+                }
+              ]
+            }
+          , "links":
+            { "self": "/v1/lists/98c5ff8c6e8f49978c857c23925dbe41"
+            }
+          }
+        ]
+      }
+    , "links":
+      { "self": "/v1/user/nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8%2Bf"
+      , "image": "http://via.placeholder.com/256"
+      }
+    }
+
 ### `GET /v1/login`
 
 If the user is already logged in (ie. a valid cookie is present in the request), the result is the same as for `GET /v1/user/`.
 
-If there is no cookie or the cookie is invalid, then the web service will redirect to the Adgangsplatform (Hejmdal) login page.  On successful login, the service will redirect to `/`, which can then use `GET /v1/login` or `GET /v1/user`.  On remote subsystem failure, the service will refirect to `/general-error`.
+If there is no cookie or the cookie is invalid, then the web service will redirect to Adgangsplatform (Hejmdal) login page. On successful login, the service will redirect to endpoint defined by the [server constant `start`](../src/server/constants.js), which can then use `GET /v1/login` or `GET /v1/user`. On remote subsystem failure, the service will redirect to endpoint defined by the [server constant `generalError`](../src/server/constants.js).
 
 ### `POST /v1/logout`
 
-Makes sure the current login cookie is invalidated.  The result is a redirection to the logout endpoint in Adgangsplatform (Hejmdal).  When the client redirects to Hejmdal, Hejmdal will remove its own tokens, and finally redirect back to the (client) endpoint defined by the [server constant `loggedOut`](../src/server/constants.js).
+Makes sure the current login cookie is invalidated. The result is a redirection to the logout endpoint in Adgangsplatform (Hejmdal). When the client redirects to Hejmdal, Hejmdal will remove its own tokens, and finally redirect back to the (client) endpoint defined by the [server constant `loggedOut`](../src/server/constants.js).
 
 ### `GET /v1/profiles`
 
-Returns the currently logged-in user's [profiles](../src/acceptance/schemas/profiles-data-out.json), like
+Returns the currently logged-in user's [profiles](../src/fixtures/schemas/profiles-data-out.json), like
 
     { "data":
       [ { "name": "Med på den værste"
@@ -420,7 +361,7 @@ If the user is not logged-in, the result is 403.
 
 ### `PUT /v1/profiles`
 
-Updates the currently logged-in user's profiles.  The [input](../src/server/schemas/profiles-in.json) is like
+Updates the currently logged-in user's profiles. The [input](../src/server/schemas/profiles-in.json) is like
 
     [ { "name": "En tynd en"
       , "profile":
@@ -444,9 +385,9 @@ If the user is not logged-in, the result is 403.
 
 ### `GET /v1/shortlist`
 
-Returns the logged-in user's [shortlist](../src/acceptance/schemas/shortlist-data-out.json), like
+Returns the logged-in user's [shortlist](../src/fixtures/schemas/shortlist-data-out.json), like
 
-    { "data": 
+    { "data":
       [ { "pid": "870970-basis-53188931"
         , "origin": "en-let-læst-bog"
         }
@@ -463,7 +404,7 @@ If the user is not logged-in, the result is 403.
 
 ### `PUT /v1/shortlist`
 
-Updates the currently logged-in user's [shortlist](../src/server/schemas/shortlist-in.json).  The input is like
+Updates the currently logged-in user's [shortlist](../src/server/schemas/shortlist-in.json). The input is like
 
     [ { "pid": "870970-basis-53188931"
       , "origin": "en-let-læst-bog"
@@ -472,85 +413,143 @@ Updates the currently logged-in user's [shortlist](../src/server/schemas/shortli
       , "origin": "bibliotikarens-ugentlige-anbefaling"
       }
     ]
-  
+
 If the user is not logged-in, the result is 403.
 
 ### `GET /v1/lists`
 
-Returns the logged-in user's [simple list](../src/acceptance/schemas/lists-data-out.json), like
+Returns the logged-in user's [simple list](../src/fixtures/schemas/lists-data-out.json), like
 
     { "data":
-      [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
-        , "type": "CUSTOM_LIST"
-        , "title": "My List"
-        , "description": "A brand new list"
-        , "list":
-        [ { "pid": "870970-basis-22629344"
-          , "description": "Magic to the people"
+      [ { "data":
+          { "type": "SYSTEM_LIST"
+          , "public": true,
+          , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+          , "title": "My List"
+          , "description": "A brand new list"
+          , "list":
+            [ { "pid": "870970-basis-22629344"
+              , "description": "Magic to the people"
+              }
+            ]
           }
-        ] 
+        , "links":
+          { "self": "/v1/lists/98c5ff8c6e8f49978c857c23925dbe41"
+          }
+        }
       ]
-    , "links": 
+    , "links":
       { "self": "/v1/lists"
       }
     }
 
 If the user is not logged-in, the result is 403.
 
-### `PUT /v1/lists`
+### `GET /v1/lists/`_uuid_
 
-Updates the currently logged-in user's shortlist.  The [input](../src/server/schemas/lists-in.json) is like
+Returns a specific [simple list](../src/fixtures/schemas/list-data-out.json) for the logged-in user, like
 
-    [ { "id": "98c5ff8c6e8f49978c857c23925dbe41"
-      , "type": "CUSTOM_LIST"
-      , "title": "Must read"
-      , "description": "Interesting books"
+    { "data":
+      { "type": "CUSTOM_LIST"
+      , "public": false
+      , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+      , "title": "My List"
+      , "description": "A brand new list"
       , "list":
-      [ { "pid": "870970-basis-51752341"
-        , "description": "Exciting!"
-        }
-      ] 
+        [ { "pid": "870970-basis-22629344"
+          , "description": "Magic to the people"
+          }
+        ]
+      }
+    , "links":
+      { "self": "/v1/lists/98c5ff8c6e8f49978c857c23925dbe41"
+      }
+    }
+
+If the user is not logged-in, the result is 403.
+
+### `POST /v1/lists`
+
+Reserves an address for a new list for the currently logged-in user. Returns the location like:
+
+    { "data": "/v1/lists/8f27e592174546518a6cc2449e126eff"
+    , "links":
+      { "self": "/v1/lists/8f27e592174546518a6cc2449e126eff"
+      }
+    }
+
+If the user is not logged-in, the result is 403.
+
+### `PUT /v1/lists/`_uuid_
+
+Updates a specific list for the currently logged-in user. The [input](../src/server/schemas/list-in.json) is like
+
+    { "type": "CUSTOM_LIST"
+    , "public": true,
+    , "title": "Must read"
+    , "description": "Interesting books"
+    , "list":
+    [ { "pid": "870970-basis-51752341"
+      , "description": "Exciting!"
+      }
     ]
 
 If the user is not logged-in, the result is 403.
 
-## Misc
+### `DELETE /v1/lists/`_uuid_
 
-### `GET /hejmdal/?token=`*token*`&id=`*id*
+Deletes a specific list for the currently logged-in user.
 
-Redirection point for Hejmdal to call after successful user login.  The result is a cookie that tells the service that which user is logged in, and a rediction to `/`
+If the user is not logged-in, the result is 403.
 
-# Command-line interaction
+### `GET /v1/public-lists?limit=`_number_`&offset=`_number_
 
-To upload a book:
-
-    curl -X PUT -H "Content-Type: application/json" --data "@src/fixtures/min-oste-bog.json" http://localhost:3002/v1/book/12345-ost:98765
-
-To upload a cover image:
-
-    curl -X PUT -H "Content-Type: image/jpeg" --data-binary "@src/fixtures/12345-ost:98765.jpg" http://localhost:3002/v1/image/12345-ost:98765
-
-### `GET /v1/stats`
-
-Cleans up the database and returns statistics, like
+Get the most recent public [lists](../src/fixtures/schemas/lists-data-out.json) from the community, like
 
     { "data":
-      { "users":
-        { "total": 225
-        , "logged-in": 43
+      [ { "data":
+          { "type": "SYSTEM_LIST"
+          , "public": true,
+          , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+          , "title": "My List"
+          , "description": "A brand new list"
+          , "list":
+            [ { "pid": "870970-basis-22629344"
+              , "description": "Magic to the people"
+              }
+            ]
+          }
+        , "links":
+          { "self": "/v1/lists/98c5ff8c6e8f49978c857c23925dbe41"
+          }
         }
-      , "books":
-        { "total": 345
+      , { "data":
+          { "type": "CUSTOM_LIST"
+          , "public": true
+          , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
+          , "title": "Gamle Perler"
+          , "description": "Bøger man simpelthen må læse",
+          , "list":
+            [ { "pid": "870970-basis-47573974"
+              , "description": "Russisk forvekslingskomedie"
+              }
+            ]
+          }
+        , "links":
+          { "self": "/v1/lists/fa4f3a3de3a34a188234ed298ecbe810"
+          }
         }
-      , "tags":
-        { "total": 52
-        , "pids": 2
-        , "min": 22
-        , "max":30
-        }
-      }
+      ]
     , "links":
-      { "self": "/v1/stats"
+      { "self": "/v1/lists/public-lists?limit=2&offset=0"
+      , "next": "/v1/lists/public-lists?limit=2&offset=2"
       }
     }
 
+If _offset_ is not present in the query, it defaults to 0. If _limit_ is not present in the query, it defaults to 10.
+
+## Misc
+
+### `GET /hejmdal/?token=`_token_`&id=`_id_
+
+Redirection point for Hejmdal to call after successful user login. The result is a cookie that tells the service that which user is logged in, and a rediction to `/`

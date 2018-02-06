@@ -8,6 +8,7 @@ import listReducer from './list.reducer';
 import shortListReducer from './shortlist.reducer';
 import modalReducer from './modal.reducer';
 import searchReducer from './search.reducer';
+import orderReducer from './order.reducer';
 
 // const LOCAL_STORAGE_KEY = 'contentfirst';
 
@@ -29,7 +30,8 @@ const combined = combineReducers({
   workReducer,
   shortListReducer,
   modalReducer,
-  searchReducer
+  searchReducer,
+  orderReducer
 });
 
 const rootReducer = (state = {}, action) => {

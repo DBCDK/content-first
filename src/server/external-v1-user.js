@@ -4,17 +4,18 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {
+  gettingUserWithListsByOpenplatformId,
+  findingUserIdTroughLoginToken,
   gettingUserFromToken,
-  gettingUser,
-  gettingUserIdFromLoginToken,
+  gettingUserWithLists,
   updatingUser
 } = require('server/user');
 const {validatingInput} = require('__/json');
 const path = require('path');
 const userSchema = path.join(__dirname, 'schemas/user-in.json');
 const shortlistSchema = path.join(__dirname, 'schemas/shortlist-in.json');
-const listsSchema = path.join(__dirname, 'schemas/lists-in.json');
 const profilesSchema = path.join(__dirname, 'schemas/profiles-in.json');
+const _ = require('lodash');
 
 router
   .route('/')
@@ -45,14 +46,13 @@ router
       if (contentType !== 'application/json') {
         return next({
           status: 400,
-          title: 'User data has to be provided as application/json',
+          title: 'Data has to be provided as application/json',
           detail: `Content type ${contentType} is not supported`
         });
       }
       const userInfo = req.body;
       try {
         await validatingInput(userInfo, userSchema);
-        await validatingInput(userInfo.lists, listsSchema);
         await validatingInput(userInfo.shortlist, shortlistSchema);
         await validatingInput(userInfo.profiles, profilesSchema);
       } catch (error) {
@@ -64,33 +64,11 @@ router
         });
       }
       const location = req.baseUrl;
-      const loginToken = req.cookies['login-token'];
-      if (!loginToken) {
-        return next({
-          status: 403,
-          title: 'User not logged in',
-          detail: 'Missing login-token cookie',
-          meta: {resource: location}
-        });
-      }
       let userId;
       try {
-        userId = await gettingUserIdFromLoginToken(loginToken);
+        userId = await findingUserIdTroughLoginToken(req);
       } catch (error) {
-        if (error.status === 404) {
-          return next({
-            status: 403,
-            title: 'User not logged in',
-            detail: `Unknown login token ${loginToken}`,
-            meta: {resource: location}
-          });
-        }
-        return next({
-          status: 403,
-          title: 'User not logged in',
-          detail: `Login token ${loginToken} has expired`,
-          meta: {resource: location}
-        });
+        return next(error);
       }
       try {
         await updatingUser(userId, {
@@ -100,13 +78,9 @@ router
           profiles: userInfo.profiles
         });
       } catch (error) {
-        return next({
-          status: 500,
-          title: 'Database operation failed',
-          detail: error
-        });
+        return next(error);
       }
-      return gettingUser(userId)
+      return gettingUserWithLists(userId)
         .then(user => {
           res.status(200).json({
             data: user,
@@ -118,6 +92,31 @@ router
           Object.assign(returnedError, error);
           next(returnedError);
         });
+    })
+  );
+
+router
+  .route('/:id')
+  //
+  // GET /v1/user/:id
+  //
+  .get(
+    asyncMiddleware(async (req, res, next) => {
+      const openplatformId = req.params.id;
+      const location = `/v1/user/${encodeURIComponent(openplatformId)}`;
+      let user;
+      try {
+        user = await gettingUserWithListsByOpenplatformId(openplatformId);
+      } catch (error) {
+        return next(error);
+      }
+      res.status(200).json({
+        data: _.omit(user, ['id', 'openplatformToken']),
+        links: {
+          self: location,
+          image: user.image
+        }
+      });
     })
   );
 

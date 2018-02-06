@@ -15,6 +15,10 @@ const constants = {
   covers: {
     table: 'covers'
   },
+  lists: {
+    table: 'lists',
+    defaultLimit: 10
+  },
   pages: {
     start: '/',
     loggedOut: '/',

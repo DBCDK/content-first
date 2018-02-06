@@ -10,7 +10,7 @@ const expect = chai.expect;
 const sinon = require('sinon');
 const nock = require('nock');
 const Login = require('./login-hejmdal');
-const {validating} = require('__/json');
+const {validatingInput} = require('__/json');
 const path = require('path');
 const schemaUserInfo = path.join(__dirname, 'login-user-info-out.json');
 
@@ -25,6 +25,7 @@ describe('Login connector', () => {
 
   const config = {
     url: 'https://login.bib.dk',
+    openplatformUrl: 'https://openplatform.dbc.dk',
     salt: 'mysecret'
   };
 
@@ -45,202 +46,221 @@ describe('Login connector', () => {
     nock.cleanAll();
   });
 
-  describe('with unreachable service', () => {
-    it('should say there is no connection', () => {
-      // Arrange.
-      const token = '98912164d600414686e9c89c02c33db1';
-      const id = 1234;
-      const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      const server = nock(config.url)
-        .get(slug)
-        .replyWithError('Nope, Hejmdal is sleeping');
-      // Act.
-      return (
-        expect(login.gettingTicket(token, id))
-          // Assert.
-          .to.be.rejectedWith(Error)
-          .then(error => {
-            expect(error).to.match(/hejmdal is sleeping/i);
-            expect(login.isOk()).to.be.false;
-            expect(login.getCurrentError()).to.match(/login-service.+failed/i);
-            const log = login.getErrorLog();
-            expect(log).to.have.length(1);
-            expect(log[0]).to.match(/hejmdal is sleeping/i);
-            expect(server.isDone()).to.be.true;
-          })
-      );
-    });
+  it('should say that everything is ok initially', () => {
+    // Assert.
+    expect(login.isOk()).to.be.true;
+    expect(login.getCurrentError()).to.be.null;
+    expect(login.getErrorLog()).to.have.length(0);
   });
 
-  describe('with responsive service', () => {
-    it('should say that everything is ok initially', () => {
-      // Assert.
+  it('should retrieve user info as JSON and return hashed IDs', () => {
+    const openplatformToken = 'someToken';
+    const openplatformId = 'YaYu9Sg6MlduZVnCkhv4N0wnt8g7Oa+f';
+    const token = '4686e9c89c02c33db198912164d60041';
+    const id = 1234;
+    arrangeOpenplatformToReturnId(openplatformToken, openplatformId);
+    arrangeHejmdalToReturn({token, id, openplatformToken});
+    return login
+      .gettingTicket(token, id)
+      .then(expectOpenplatformIdAndToken(openplatformId, openplatformToken));
+  });
+
+  it('should reject user info without openplatform token', () => {
+    const token = '4686e9c89c02c33db198912164d60041';
+    const id = 1234;
+    arrangeHejmdalToReturn({token, id});
+    return expect(login.gettingTicket(token, id))
+      .to.be.rejectedWith(Error)
+      .then(expectMockedServerToBeDone)
+      .then(expectConnectorOkAndNoErrors);
+  });
+
+  it('should retrieve user info as text and redirect with cookie', () => {
+    const openplatformToken = 'someToken';
+    const openplatformId = 'YaYu9Sg6MlduZVnCkhv4N0wnt8g7Oa+f';
+    const token = '4686e9c89c02c33db198912164d60041';
+    const id = 1234;
+    arrangeOpenplatformToReturnId(openplatformToken, openplatformId);
+    arrangeHejmdalToReturn({token, id, openplatformToken});
+    // TODO: does 'redirect with cookie' actually get tested?
+    return login
+      .gettingTicket(token, id)
+      .then(expectOpenplatformIdAndToken(openplatformId, openplatformToken));
+  });
+
+  it('should detect that token/id is rejected and redirect', () => {
+    // Arrange.
+    const token = '98912164d600414686e9c89c02c33db1';
+    const id = 1234;
+    const slug = `${constants.apiGetTicket}/${token}/${id}`;
+    const server = nock(config.url)
+      .get(slug)
+      .reply(200, {attributes: null});
+    // Act.
+    return (
+      expect(login.gettingTicket(token, id))
+        // Assert.
+        .to.be.rejectedWith(Error)
+        .then(error => {
+          expect(error).to.match(/no login information received/i);
+          expect(login.isOk()).to.be.true;
+          expect(server.isDone()).to.be.true;
+        })
+        .then(expectMockedServerToBeDone)
+        .then(expectConnectorOkAndNoErrors)
+    );
+  });
+
+  it('testingConnection() should say everything is fine', () => {
+    // Arrange.
+    const server = nock(config.url)
+      .get(constants.apiHealth)
+      .reply(200, [
+        {name: 'db', state: 'ok'},
+        {name: 'borckh', state: 'ok'},
+        {name: 'culr', state: 'ok'},
+        {name: 'smaug', state: 'ok'},
+        {name: 'openAgency', state: 'ok'}
+      ]);
+    // Act.
+    return login.testingConnection().then(ok => {
+      expect(ok).to.be.true;
       expect(login.isOk()).to.be.true;
       expect(login.getCurrentError()).to.be.null;
-      expect(login.getErrorLog()).to.have.length(0);
-    });
-
-    it('should retrieve user info as JSON and return hashed IDs', () => {
-      // Arrange.
-      const token = '4686e9c89c02c33db198912164d60041';
-      const id = 1234;
-      const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      nock(config.url)
-        .get(slug)
-        .reply(200, {
-          id,
-          token,
-          attributes: {
-            cpr: '2508710000',
-            gender: 'm',
-            userId: '2508710000',
-            wayfId: null,
-            agencies: [],
-            birthDate: '2508',
-            birthYear: '1971',
-            uniloginId: null,
-            municipality: null
-          }
-        });
-      // Act.
-      return (
-        login
-          .gettingTicket(token, id)
-          // Assert.
-          .then(validating(schemaUserInfo))
-          .then(data => {
-            expect(data).to.deep.equal({
-              userIdHash: '5e5975f69b565f538a12887434bac2105b6d6f010c06b8a3'
-            });
-          })
-      );
-    });
-
-    it('should reject user info without UserId', () => {
-      // Arrange.
-      const token = '4686e9c89c02c33db198912164d60041';
-      const id = 1234;
-      const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      const server = nock(config.url)
-        .get(slug)
-        .reply(200, {
-          id,
-          token,
-          attributes: {
-            cpr: null,
-            gender: 'm',
-            userId: null,
-            wayfId: null,
-            agencies: [],
-            birthDate: '2508',
-            birthYear: '1971',
-            uniloginId: null,
-            municipality: null
-          }
-        });
-      // Act.
-      return expect(login.gettingTicket(token, id))
-        .to.be.rejectedWith(Error)
-        .then(() => {
-          expect(server.isDone()).to.be.true;
-        });
-    });
-
-    it('should retrieve user info as text and redirect with cookie', () => {
-      // Arrange.
-      const token = '4686e9c89c02c33db198912164d60041';
-      const id = 1234;
-      const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      nock(config.url)
-        .get(slug)
-        .reply(
-          200,
-          JSON.stringify({
-            attributes: {
-              cpr: '1701840000',
-              userId: '1701840000',
-              wayfId: null,
-              uniloginId: 'some-unilogin-id',
-              agencies: [
-                {
-                  userId: '1701840000',
-                  agencyId: '715100',
-                  userIdType: 'CPR'
-                }
-              ]
-            }
-          })
-        );
-      // Act.
-      return (
-        login
-          .gettingTicket(token, id)
-          // Assert.
-          .then(validating(schemaUserInfo))
-          .then(data => {
-            expect(data).to.deep.equal({
-              userIdHash: '4fa1ef074f739f50eea243fa0e25caeea5494a558abbef48'
-            });
-          })
-      );
-    });
-
-    it('should detect that token/id is rejected and redirect', () => {
-      // Arrange.
-      const token = '98912164d600414686e9c89c02c33db1';
-      const id = 1234;
-      const slug = `${constants.apiGetTicket}/${token}/${id}`;
-      const server = nock(config.url)
-        .get(slug)
-        .reply(200, {attributes: null});
-      // Act.
-      return (
-        expect(login.gettingTicket(token, id))
-          // Assert.
-          .to.be.rejectedWith(Error)
-          .then(error => {
-            expect(error).to.match(/no user information received/i);
-            expect(login.isOk()).to.be.true;
-            expect(server.isDone()).to.be.true;
-          })
-      );
-    });
-
-    it('testingConnection() should say everything is fine', () => {
-      // Arrange.
-      const server = nock(config.url)
-        .get(constants.apiHealth)
-        .reply(200, [
-          {name: 'db', state: 'ok'},
-          {name: 'borckh', state: 'ok'},
-          {name: 'culr', state: 'ok'},
-          {name: 'smaug', state: 'ok'},
-          {name: 'openAgency', state: 'ok'}
-        ]);
-      // Act.
-      return login.testingConnection().then(ok => {
-        expect(ok).to.be.true;
-        expect(login.isOk()).to.be.true;
-        expect(login.getCurrentError()).to.be.null;
-        expect(server.isDone()).to.be.true;
-      });
-    });
-
-    it('testingConnection() should detect unhealth login service', () => {
-      // Arrange.
-      const server = nock(config.url)
-        .get(constants.apiHealth)
-        .reply(500);
-      // Act.
-      return login.testingConnection().then(ok => {
-        expect(ok).to.be.false;
-        expect(login.isOk()).to.be.false;
-        expect(login.getCurrentError()).to.match(/login-service.+failed/i);
-        const log = login.getErrorLog();
-        expect(log).to.have.length(1);
-        expect(log[0]).to.match(/login service.+unhealthy/i);
-        expect(server.isDone()).to.be.true;
-      });
+      expect(server.isDone()).to.be.true;
     });
   });
+
+  it('testingConnection() should detect unhealth login service', () => {
+    // Arrange.
+    const server = nock(config.url)
+      .get(constants.apiHealth)
+      .reply(500);
+    // Act.
+    return login.testingConnection().then(ok => {
+      expect(ok).to.be.false;
+      expect(login.isOk()).to.be.false;
+      expect(login.getCurrentError()).to.match(/login-service.+failed/i);
+      const log = login.getErrorLog();
+      expect(log).to.have.length(1);
+      expect(log[0]).to.match(/login service.+unhealthy/i);
+      expect(server.isDone()).to.be.true;
+    });
+  });
+
+  it('should detect no connection to hejmdal', () => {
+    // Arrange.
+    const token = '98912164d600414686e9c89c02c33db1';
+    const id = 1234;
+    const slug = `${constants.apiGetTicket}/${token}/${id}`;
+    const server = nock(config.url)
+      .get(slug)
+      .replyWithError('Nope, Hejmdal is sleeping');
+    // Act.
+    return (
+      expect(login.gettingTicket(token, id))
+        // Assert.
+        .to.be.rejectedWith(Error)
+        .then(error => {
+          expect(error).to.match(/hejmdal is sleeping/i);
+          expect(login.isOk()).to.be.false;
+          expect(login.getCurrentError()).to.match(/login-service.+failed/i);
+          const log = login.getErrorLog();
+          expect(log).to.have.length(1);
+          expect(log[0]).to.match(/hejmdal is sleeping/i);
+          expect(server.isDone()).to.be.true;
+        })
+    );
+  });
+
+  it('should detect no connection to openplatform', () => {
+    const token = '98912164d600414686e9c89c02c33db1';
+    const id = 1234;
+    const openplatformToken = 'someToken';
+    arrangeHejmdalToReturn({id, token, openplatformToken});
+    arrangeOpenplatformToFail(openplatformToken);
+    return expect(login.gettingTicket(token, id))
+      .to.be.rejectedWith(Error)
+      .then(expectErrorOpenplatformProblem);
+  });
+
+  function arrangeOpenplatformToFail(token) {
+    nock(config.openplatformUrl)
+      .get(constants.apiGetUserIdByToken(token))
+      .replyWithError('Openplatform has sunk');
+  }
+
+  function expectErrorOpenplatformProblem(error) {
+    expect(error).to.match(/openplatform has sunk/i);
+    expect(login.isOk()).to.be.false;
+    expect(login.getCurrentError()).to.match(/login-service.+failed/i);
+    const log = login.getErrorLog();
+    expect(log).to.have.length(1);
+    expect(log[0]).to.match(/openplatform has sunk/i);
+    expectMockedServerToBeDone();
+  }
+
+  function arrangeOpenplatformToReturnId(token, openplatformId) {
+    nock(config.openplatformUrl)
+      .get(constants.apiGetUserIdByToken(token))
+      .reply(200, {
+        statusCode: 200,
+        data: {
+          id: openplatformId,
+          name: 'BIBLO testlåner',
+          address: 'Roskilde Bibliotek',
+          postalCode: '0000',
+          loans: [],
+          orders: [],
+          debt: [],
+          ddbcmsapi: 'https://cmscontent.dbc.dk/'
+        }
+      });
+  }
+
+  function arrangeHejmdalToReturn(options) {
+    const {id, token, openplatformToken} = options;
+    const slug = `${constants.apiGetTicket}/${token}/${id}`;
+    nock(config.url)
+      .get(slug)
+      .reply(200, {
+        id,
+        token,
+        attributes: {
+          authenticatedToken: openplatformToken,
+          cpr: '1701840000',
+          userId: '1701840000',
+          wayfId: null,
+          uniloginId: 'some-unilogin-id',
+          agencies: [
+            {
+              userId: '1701840000',
+              agencyId: '715100',
+              userIdType: 'CPR'
+            }
+          ]
+        }
+      });
+  }
+
+  function expectOpenplatformIdAndToken(openplatformId, openplatformToken) {
+    expect(typeof openplatformId).to.equal('string');
+    expect(typeof openplatformToken).to.equal('string');
+    return async document => {
+      await validatingInput(document, schemaUserInfo);
+      expect(document).to.deep.equal({openplatformId, openplatformToken});
+      expectMockedServerToBeDone();
+      expectConnectorOkAndNoErrors();
+    };
+  }
+
+  function expectMockedServerToBeDone() {
+    expect(nock.isDone()).to.be.true;
+  }
+
+  function expectConnectorOkAndNoErrors() {
+    expect(login.isOk()).to.be.true;
+    expect(login.getCurrentError()).to.be.null;
+    expect(login.getErrorLog()).to.have.length(0);
+  }
 });

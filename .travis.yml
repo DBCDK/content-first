@@ -1,12 +1,9 @@
 language: node_js
 dist: trusty
-sudo: false
 node_js:
   - "8"
-addons:
-  postgresql: "9.6"
 services:
-  - postgresql
+  - docker
 cache:
   directories:
     - $HOME/node_modules
@@ -17,12 +14,14 @@ branches:
     - stg
     - stable
 before_install:
-  - psql --version
+  - docker-compose --version
+  - docker-compose pull
   - cp env/travis.env current.env
   - . ./current.env
+  - docker-compose up -d
 script:
   - npm test --silent
   - npm run db-migrate --silent
-  - npm run test-no-elvis --silent
+  - npm run test-full --silent
 after_script:
   - npm run coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage

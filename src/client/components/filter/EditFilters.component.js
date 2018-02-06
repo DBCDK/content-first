@@ -16,84 +16,47 @@ const FilterButton = props => {
 
 const EditFilters = props => {
   return (
-    <div
-      className={
-        props.edit
-          ? 'edit-filters col-xs-12 text-left'
-          : 'edit-filters col-xs-12 text-left hidden'
-      }
-    >
-      {props.filters.map((f1, idx1) => {
-        if (f1.items) {
-          return (
-            <div key={idx1} className="first-level col-xs-4">
-              <h3>{f1.title}</h3>
-              {f1.items.map((f2, idx2) => {
-                if (f2.items) {
-                  // find selected filters of this category
-                  const selected = intersection(
-                    props.selectedFilters.map(f => f.id),
-                    f2.items.map(f => f.id)
-                  );
-                  const selectedClass =
-                    selected.length > 0 ? ' contains-selected' : '';
-
-                  return (
-                    <div
-                      key={idx2}
-                      className={`second-level col-xs-12${selectedClass}`}
-                    >
-                      <h4
-                        onClick={() => {
-                          props.onExpandFiltersToggle(f2.id);
-                        }}
-                      >
-                        {f2.title}
-                        <span>{f2.items.length}</span>
-                      </h4>
-                      {props.expandedFilters.indexOf(f2.id) >= 0 &&
-                        f2.items.map((f3, idx3) => {
-                          if (!f3.items) {
-                            return (
-                              <FilterButton
-                                key={idx3}
-                                filter={f3}
-                                selected={
-                                  props.selectedFilters
-                                    .map(f => f.id)
-                                    .indexOf(f3.id) >= 0
-                                }
-                                onFilterToggle={props.onFilterToggle}
-                              />
-                            );
-                          }
-                          return null;
-                        })}
-                    </div>
-                  );
-                }
+    <div className={props.edit ? 'edit-filters col-xs-12 text-left' : 'edit-filters col-xs-12 text-left hidden'}>
+      {Object.entries(props.filters).map(([title, values]) => {
+        return (
+          <div key={title} className="first-level col-xs-4">
+            <h3>{title}</h3>
+            {!Array.isArray(values) &&
+              Object.entries(values).map(([title2, values2]) => {
+                const id = title2;
+                // find selected filters of this category
+                const selected = intersection(props.selectedFilters.map(f => f.id), values2.map(f => f.id));
+                const selectedClass = selected.length > 0 ? ' contains-selected' : '';
                 return (
-                  <div key={idx2} className="second-level">
-                    <FilterButton
-                      filter={f2}
-                      selected={
-                        props.selectedFilters.map(f => f.id).indexOf(f2.id) >= 0
-                      }
-                      onFilterToggle={props.onFilterToggle}
-                    />
+                  <div key={id} className={`second-level col-xs-12${selectedClass}`}>
+                    <h4
+                      onClick={() => {
+                        props.onExpandFiltersToggle(title2);
+                      }}
+                    >
+                      {title2}
+                      <span>{values2.length}</span>
+                    </h4>
+                    {props.expandedFilters[id] &&
+                      values2.map(f => {
+                        return <FilterButton key={f.title} filter={f} selected={props.selectedFilters.map(s => s.id).indexOf(f.id) >= 0} onFilterToggle={props.onFilterToggle} />;
+                      })}
                   </div>
                 );
               })}
-            </div>
-          );
-        }
-        return null;
+            {Array.isArray(values) &&
+              values.map(f => {
+                return (
+                  <div key={f.title} className="second-level">
+                    <FilterButton filter={f} selected={props.selectedFilters.map(selected => selected.id).indexOf(f.id) >= 0} onFilterToggle={props.onFilterToggle} />
+                  </div>
+                );
+              })}
+          </div>
+        );
       })}
       <div className="col-xs-12 text-center">
-        <span
-          className="btn btn-success approve"
-          onClick={props.onEditFilterToggle}
-        >
+        <span className="btn btn-success approve" onClick={props.onEditFilterToggle}>
           Luk
         </span>
       </div>

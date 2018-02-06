@@ -1,16 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {
-  ADD_ELEMENT_TO_LIST,
-  UPDATE_CURRENT_LIST,
-  REMOVE_ELEMENT_FROM_LIST,
-  ADD_LIST,
-  LIST_LOAD_REQUEST,
-  CLEAR_CURRENT_LIST
-} from '../../redux/list.reducer';
+import {LIST_LOAD_REQUEST, addElementToList, removeElementFromList, updateList, storeList, getListById, addList} from '../../redux/list.reducer';
+import {createListLocation} from '../../utils/requestLists';
 import DragableList from './ListDrag.component';
 import Textarea from 'react-textarea-autosize';
-import {HISTORY_PUSH} from '../../redux/middleware';
+import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import BookSearchSuggester from './BookSearchSuggester';
 import BookCover from '../general/BookCover.component';
 
@@ -18,19 +12,8 @@ const ListDetails = ({title, description, hasError, onChange}) => (
   <div className="list-details">
     <div className="form-group">
       <span className={`required ${!title && hasError ? 'has-error' : ''}`}>
-        <input
-          className="form-control"
-          type="text"
-          name="list-title"
-          placeholder="Giv din liste en titel"
-          onChange={e => onChange({title: e.currentTarget.value})}
-          value={title}
-        />
-        {!title && hasError ? (
-          <div className="alert alert-danger">Din liste skal have en titel</div>
-        ) : (
-          ''
-        )}
+        <input className="form-control" type="text" name="list-title" placeholder="Giv din liste en titel" onChange={e => onChange({title: e.currentTarget.value})} value={title} />
+        {!title && hasError ? <div className="alert alert-danger">Din liste skal have en titel</div> : ''}
       </span>
       <Textarea
         className="form-control list-details__description"
@@ -62,66 +45,59 @@ const ListItem = ({item, onChange}) => (
 
 const ListBooks = ({list, dispatch}) => (
   <div className="list-drag">
-    <BookSearchSuggester
-      list={list}
-      onSubmit={book => dispatch({type: ADD_ELEMENT_TO_LIST, element: book})}
-    />
+    <BookSearchSuggester list={list} onSubmit={book => dispatch(addElementToList(book, list.data.id))} />
     <DragableList
-      list={list}
+      list={list.data.list}
       renderListItem={ListItem}
-      onUpdate={updatedList =>
-        dispatch({
-          type: UPDATE_CURRENT_LIST,
-          currentList: {list: updatedList}
-        })
-      }
-      onRemove={item =>
-        dispatch({type: REMOVE_ELEMENT_FROM_LIST, element: item})
-      }
+      onUpdate={updatedList => dispatch(updateList({id: list.data.id, list: updatedList}))}
+      onRemove={item => dispatch(removeElementFromList(item, list.data.id))}
     />
   </div>
 );
 
-class ListCreator extends React.Component {
+export class ListCreator extends React.Component {
   constructor() {
     super();
     this.state = {
       hasError: false
     };
   }
-  componentDidMount() {
-    if (this.props.id) {
-      // gotta load existing list
-      this.props.dispatch({type: LIST_LOAD_REQUEST, id: this.props.id});
-    } else {
-      // this is a new list, so clear current list
-      this.props.dispatch({type: CLEAR_CURRENT_LIST});
+  async componentWillMount() {
+    // check if we need to create a new list
+    if (!this.props.id && this.props.fetchListId) {
+      const {id} = await this.props.fetchListId();
+      this.props.dispatch(addList({id}));
+      this.props.dispatch({type: HISTORY_REPLACE, path: `/lister/${id}/rediger`});
     }
   }
-  onSubmit(e) {
+  componentWillUnmount() {
+    // reset any unsaved changes
+    // for now we just reload users lists from backend
+    // a client side undo mechanism would be more efficient
+    this.props.dispatch({type: LIST_LOAD_REQUEST});
+  }
+  async onSubmit(e) {
     e.preventDefault();
-    if (!this.props.listState.currentList.title) {
+    if (!this.props.currentList.data.title) {
       this.setState({hasError: true});
       window.scrollTo(0, 0);
       return;
     }
-    this.props.dispatch({
-      type: ADD_LIST,
-      list: this.props.listState.currentList,
-      clearCurrentList: true
-    });
+    await this.props.dispatch(storeList(this.props.currentList.data.id));
 
     this.props.dispatch({type: HISTORY_PUSH, path: '/lister'});
   }
   onChange(currentList) {
-    this.props.dispatch({type: UPDATE_CURRENT_LIST, currentList});
+    this.props.dispatch(updateList({...this.props.currentList.data, ...currentList}));
   }
   setStatus() {
-    const currentList = this.props.listState.currentList;
-    currentList.public = !currentList.public;
-    this.props.dispatch({type: UPDATE_CURRENT_LIST, currentList});
+    const currentList = this.props.currentList;
+    this.props.dispatch(updateList({id: currentList.data.id, public: !currentList.data.public}));
   }
   render() {
+    if (!this.props.currentList) {
+      return null;
+    }
     return (
       <div className="list-creator">
         <h1 className="list-creator__headline">Opret liste</h1>
@@ -130,30 +106,15 @@ class ListCreator extends React.Component {
             <form className="mb4" onSubmit={e => this.onSubmit(e)}>
               <ListDetails
                 hasError={this.state.hasError}
-                title={this.props.listState.currentList.title}
-                description={this.props.listState.currentList.description}
+                title={this.props.currentList.data.title}
+                description={this.props.currentList.data.description}
                 onChange={e => this.onChange(e)}
               />
-              <h2 className="list-creator__headline">
-                Tilføj bøger til listen
-              </h2>
-              <ListBooks
-                dispatch={this.props.dispatch}
-                list={
-                  this.props.listState.currentList
-                    ? this.props.listState.currentList.list
-                    : []
-                }
-              />
+              <h2 className="list-creator__headline">Tilføj bøger til listen</h2>
+              <ListBooks dispatch={this.props.dispatch} list={this.props.currentList} />
               <div className="list-creator__publication">
                 <label htmlFor="public">
-                  <input
-                    id="public"
-                    name="public"
-                    type="checkbox"
-                    checked={this.props.listState.currentList.public || false}
-                    onClick={() => this.setStatus()}
-                  />
+                  <input id="public" name="public" type="checkbox" checked={this.props.currentList.data.public || false} onClick={() => this.setStatus()} />
                   <span /> Skal listen være offentlig?
                 </label>
               </div>
@@ -171,9 +132,10 @@ class ListCreator extends React.Component {
   }
 }
 
-export default connect(
-  // Map redux state to props
-  state => {
-    return {listState: state.listReducer};
-  }
-)(ListCreator);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    currentList: getListById(state.listReducer, ownProps.id),
+    fetchListId: createListLocation
+  };
+};
+export default connect(mapStateToProps)(ListCreator);

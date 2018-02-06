@@ -4,7 +4,10 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const config = require('server/config');
-const {gettingUser, gettingUserIdFromLoginToken} = require('server/user');
+const {
+  gettingUserIdFromLoginToken,
+  gettingUserWithLists
+} = require('server/user');
 const authenticator = require('server/authenticator');
 
 router
@@ -18,7 +21,7 @@ router
       if (loginToken) {
         try {
           const userId = await gettingUserIdFromLoginToken(loginToken);
-          return gettingUser(userId)
+          return gettingUserWithLists(userId)
             .then(user => {
               res.status(200).json({
                 data: user,

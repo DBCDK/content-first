@@ -9,6 +9,17 @@
       "required": true,
       "type": "object",
       "properties": {
+        "roles": {
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "image": {
+          "required": false,
+          "type": "string"
+        },
         "shortlist": {
           "required": false,
           "type": "array",
@@ -69,7 +80,11 @@
             "additionalProperties": false
           }
         },
-        "user_id": {
+        "openplatform_id": {
+          "required": false,
+          "type": "string"
+        },
+        "openplatform_token": {
           "required": false,
           "type": "string"
         }
