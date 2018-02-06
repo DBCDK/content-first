@@ -7,8 +7,8 @@ const uuid = require('uuid/v4');
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const config = require('server/config');
 const knex = require('knex')(config.db);
-const constants = require('server/constants')();
 const {findingUserIdTroughLoginToken} = require('server/user');
+const constants = require('server/constants')();
 const coverTable = constants.covers.table;
 
 router
@@ -77,9 +77,9 @@ router
       const resizedImage = await sharp(images[0].image)
         .resize(parseInt(width, 10), parseInt(height, 10))
         .toBuffer();
+      await knex(coverTable).insert({pid: imageCacheId, image: resizedImage});
       res.contentType('jpeg');
       res.end(resizedImage, 'binary');
-      await knex(coverTable).insert({pid: imageCacheId, image: resizedImage});
     } catch (error) {
       next(error);
     }

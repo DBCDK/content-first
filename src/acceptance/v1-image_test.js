@@ -8,6 +8,10 @@ const {promisify} = require('util');
 const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
 const {expectSuccess, expectFailure} = require('fixtures/output-verifiers');
+const config = require('server/config');
+const knex = require('knex')(config.db);
+const constants = require('server/constants')();
+const coverTable = constants.covers.table;
 const resolve = require('resolve');
 
 describe('Endpoint /v1/image', () => {
@@ -77,6 +81,21 @@ describe('Endpoint /v1/image', () => {
           );
       });
       it('should return a rescaled image', () => {
+        return webapp
+          .get('/v1/image/already-seeded-pid-blendstrup-havelaagebogen/100/100')
+          .expect(200)
+          .expect('Content-Type', /image\/jpeg/)
+          .expect('Content-Length', '3340');
+      });
+      it('should save rescaled image in db', async () => {
+        await webapp.get(
+          '/v1/image/already-seeded-pid-blendstrup-havelaagebogen/100/100'
+        );
+        const cachedImage = await knex(coverTable)
+          .where('pid', `already-seeded-pid-blendstrup-havelaagebogen-100-100`)
+          .select();
+        expect(cachedImage.length).to.equal(1);
+        expect(cachedImage[0].image.length).to.equal(3340);
         return webapp
           .get('/v1/image/already-seeded-pid-blendstrup-havelaagebogen/100/100')
           .expect(200)
