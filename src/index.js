@@ -8,7 +8,7 @@ import {
   profileMiddleware,
   shortListMiddleware,
   listMiddleware,
-  searchMiddleware,
+  searchMiddleware
 } from './client/redux/middleware';
 import {orderMiddleware} from './client/redux/order.middleware';
 

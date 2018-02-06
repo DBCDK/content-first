@@ -1,5 +1,5 @@
 import openplatform from 'openplatform';
-
+import request from 'superagent';
 import {OPEN_MODAL} from './modal.reducer';
 import {
   ORDER,
@@ -20,12 +20,82 @@ async function openplatformLogin(state) {
   }
 }
 
+let anonymousTokenPromise;
+async function getCollectionPids(pid) {
+  if (!anonymousTokenPromise) {
+    anonymousTokenPromise = (async () =>
+      (await request.get('/v1/openplatform/anonymous_token')).body
+        .access_token)();
+  }
+  const access_token = await anonymousTokenPromise;
+
+  return (await openplatform.work({
+    pids: [pid],
+    access_token,
+    fields: ['collectionDetails']
+  }))[0].collectionDetails
+    .filter(o => o.workType[0] === 'book')
+    .map(o => o.pid[0]);
+}
+
+let librariesPromise;
+function fetchPickupBranches({store}) {
+  if (!librariesPromise) {
+    const state = store.getState();
+    librariesPromise = (async () => {
+      await openplatformLogin(state);
+
+      const user = await openplatform.user();
+
+      if (state.orderReducer.get('pickupBranches').size === 0) {
+        store.dispatch({
+          type: PICKUP_BRANCHES,
+          branches: await openplatform.libraries({
+            agencyIds: [user.agency],
+            fields: ['branchId', 'branchName']
+          })
+        });
+      }
+    })();
+  }
+}
+
+function fetchAvailability({store, pid}) {
+  const state = store.getState();
+  if (!state.orderReducer.getIn(['orders', pid, 'availability'])) {
+    (async () => {
+      await openplatformLogin(state);
+      let availability;
+      for (let i = 1; i <= 20; ++i) {
+        try {
+          const pids = await getCollectionPids(pid);
+          availability = await Promise.all(
+            pids.map(p => openplatform.availability({pid: p}))
+          );
+          availability =
+            availability.filter(
+              o => o.holdingstatus && o.holdingstatus.willLend
+            )[0] || availability[0];
+          break;
+        } catch (e) {
+          // TODO log til backend i stedet
+          // eslint-disable-next-line
+          console.warn('retrying', i, e);
+        }
+      }
+      store.dispatch({
+        type: AVAILABILITY,
+        pid: pid,
+        availability
+      });
+    })();
+  }
+}
+
 export const orderMiddleware = store => next => action => {
   switch (action.type) {
     case ORDER: {
-      const state = store.getState();
-
-      if (!state.profileReducer.user.openplatformToken) {
+      if (!store.getState().profileReducer.user.openplatformToken) {
         store.dispatch({
           type: OPEN_MODAL,
           modal: 'login',
@@ -38,65 +108,27 @@ export const orderMiddleware = store => next => action => {
       }
 
       store.dispatch({type: OPEN_MODAL, modal: 'order'});
+      fetchPickupBranches({store});
+      fetchAvailability({store, pid: action.book.pid});
 
-      if (state.orderReducer.get('pickupBranches').size === 0) {
-        (async () => {
-          await openplatformLogin(state);
-
-          let user;
-          try {
-            user = await openplatform.user();
-          } catch (e) {
-            // Dummy as we do not have proper logged in users yet
-            user = {agency: '710100'};
-          }
-          const agency = user.agency;
-
-          if (state.orderReducer.get('pickupBranches').size === 0) {
-            store.dispatch({
-              type: PICKUP_BRANCHES,
-              branches: await openplatform.libraries({
-                agencyIds: [agency],
-                fields: ['branchId', 'branchName']
-              })
-            });
-          }
-        })();
-      }
-
-      if (
-        !state.orderReducer.getIn(
-          ['orders', action.book.pid, 'availability'],
-          false
-        )
-      ) {
-        (async () => {
-          await openplatformLogin(state);
-          const availability = await openplatform.availability({
-            pid: action.book.pid
-          });
-          store.dispatch({
-            type: AVAILABILITY,
-            pid: action.book.pid,
-            availability
-          });
-        })();
-      }
       return next(action);
     }
     case ORDER_START: {
       (async () => {
         try {
+          const pids = await getCollectionPids(action.pid);
           await openplatform.order({
-            pids: [action.pid],
+            pids,
             library: action.branch
           });
+          // TODO log til backend ordersuccess
 
           store.dispatch({
             type: ORDER_SUCCESS,
             pid: action.pid
           });
         } catch (e) {
+          // TODO log til backend i stedet
           // eslint-disable-next-line
           console.log('Error on order:', e);
           store.dispatch({

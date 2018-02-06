@@ -17,6 +17,7 @@ router.use('/image', require('server/external-v1-image'));
 router.use('/lists', require('server/external-v1-lists'));
 router.use('/login', require('server/external-v1-login'));
 router.use('/logout', require('server/external-v1-logout'));
+router.use('/openplatform', require('server/external-v1-openplatform'));
 router.use('/profiles', require('server/external-v1-profiles'));
 router.use('/public-lists', require('server/external-v1-public-lists'));
 router.use('/recommendations', require('server/external-v1-recommendations'));
