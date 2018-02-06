@@ -10,6 +10,10 @@ const defaultState = {
   order: {
     open: false,
     context: null
+  },
+  login: {
+    open: false,
+    context: null
   }
 };
 
