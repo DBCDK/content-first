@@ -1,11 +1,9 @@
-'use strict';
-
 const express = require('express');
 const sharp = require('sharp');
 const router = express.Router({mergeParams: true});
 const jimp = require('jimp');
 const _ = require('lodash');
-const uuid = require('small-uuid');
+const uuid = require('uuid/v4');
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const config = require('server/config');
 const knex = require('knex')(config.db);
@@ -54,23 +52,34 @@ router
         meta: {resource: location}
       });
     }
-    const images = await knex(coverTable)
-      .where('pid', pid)
-      .select();
-    if (!images || images.length !== 1) {
-      return next({
-        status: 404,
-        title: 'Unknown image',
-        detail: `No image with id ${pid}`,
-        meta: {resource: location}
-      });
-    }
     try {
+      const imageCacheId = `${pid}-${width}-${height}`;
+      const cachedImage = await knex(coverTable)
+        .where('pid', imageCacheId)
+        .select();
+      if (cachedImage && cachedImage.length === 1) {
+        res.contentType('jpeg');
+        res.end(cachedImage[0].image, 'binary');
+        return;
+      }
+
+      const images = await knex(coverTable)
+        .where('pid', pid)
+        .select();
+      if (!images || images.length !== 1) {
+        return next({
+          status: 404,
+          title: 'Unknown image',
+          detail: `No image with id ${pid}`,
+          meta: {resource: location}
+        });
+      }
       const resizedImage = await sharp(images[0].image)
         .resize(parseInt(width, 10), parseInt(height, 10))
         .toBuffer();
       res.contentType('jpeg');
       res.end(resizedImage, 'binary');
+      await knex(coverTable).insert({pid: imageCacheId, image: resizedImage});
     } catch (error) {
       next(error);
     }
@@ -85,7 +94,7 @@ router.route('/').post(
     } catch (error) {
       return next(error);
     }
-    const pid = uuid.create();
+    const pid = uuid();
     const location = `${req.baseUrl}/${pid}`;
     const contentType = req.get('content-type');
     if (!_.includes([jimp.MIME_PNG, jimp.MIME_JPEG], contentType)) {
@@ -115,4 +124,5 @@ router.route('/').post(
       });
   })
 );
+
 module.exports = router;
