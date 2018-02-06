@@ -8,6 +8,10 @@ const {promisify} = require('util');
 const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
 const {expectSuccess, expectFailure} = require('fixtures/output-verifiers');
+const config = require('server/config');
+const knex = require('knex')(config.db);
+const constants = require('server/constants')();
+const coverTable = constants.covers.table;
 const resolve = require('resolve');
 
 describe('Endpoint /v1/image', () => {
@@ -47,6 +51,111 @@ describe('Endpoint /v1/image', () => {
           .expect(200)
           .expect('Content-Type', /image\/jpeg/)
           .expect('Content-Length', '29839');
+      });
+    });
+    describe('GET /v1/image/:pid/:width/:height', () => {
+      it('should handle invalid width or height', () => {
+        return webapp
+          .get('/v1/image/already-seeded-pid-blendstrup-havelaagebogen/nan/100')
+          .expect(404)
+          .expect(res =>
+            expectFailure(res.body, errors => {
+              const error = errors[0];
+              expect(error.title).to.equal('Invalid image dimensions');
+              expect(error.detail).to.include(
+                'Width and height must be numbers'
+              );
+            })
+          );
+      });
+      it('should handle invalid image', () => {
+        return webapp
+          .get('/v1/image/not-an-image/100/100')
+          .expect(404)
+          .expect(res =>
+            expectFailure(res.body, errors => {
+              const error = errors[0];
+              expect(error.title).to.equal('Unknown image');
+              expect(error.detail).to.include('No image with id');
+            })
+          );
+      });
+      it('should return a rescaled image', () => {
+        return webapp
+          .get('/v1/image/already-seeded-pid-blendstrup-havelaagebogen/100/100')
+          .expect(200)
+          .expect('Content-Type', /image\/jpeg/)
+          .expect('Content-Length', '3340');
+      });
+      it('should save rescaled image in db', async () => {
+        await webapp.get(
+          '/v1/image/already-seeded-pid-blendstrup-havelaagebogen/100/100'
+        );
+        const cachedImage = await knex(coverTable)
+          .where('pid', `already-seeded-pid-blendstrup-havelaagebogen-100-100`)
+          .select();
+        expect(cachedImage.length).to.equal(1);
+        expect(cachedImage[0].image.length).to.equal(3340);
+        return webapp
+          .get('/v1/image/already-seeded-pid-blendstrup-havelaagebogen/100/100')
+          .expect(200)
+          .expect('Content-Type', /image\/jpeg/)
+          .expect('Content-Length', '3340');
+      });
+    });
+    describe('POST /v1/image/', () => {
+      it('should reject POST if user not logged in', async () => {
+        const location = '/v1/image/';
+        return readFileAsync(
+          resolve.sync('fixtures/870970-basis-22629344.jpg')
+        ).then(contents => {
+          return webapp
+            .post(location)
+            .type('image/jpeg')
+            .send(contents)
+            .expect(403);
+        });
+      });
+      it('should reject wrong content type', () => {
+        const location = '/v1/image/';
+        const contentType = 'application/json';
+        return webapp
+          .post(location)
+          .set(
+            'cookie',
+            'login-token=valid-login-token-for-user-seeded-on-test-start'
+          )
+          .type(contentType)
+          .expect(400);
+      });
+      it('should reject broken image', () => {
+        const location = '/v1/image/';
+        const contentType = 'image/jpeg';
+        return webapp
+          .post(location)
+          .set(
+            'cookie',
+            'login-token=valid-login-token-for-user-seeded-on-test-start'
+          )
+          .type(contentType)
+          .send('broken image data')
+          .expect(400);
+      });
+      it('should create image if user is logged in', async () => {
+        const location = '/v1/image/';
+        return readFileAsync(
+          resolve.sync('fixtures/870970-basis-22629344.jpg')
+        ).then(contents => {
+          return webapp
+            .post(location)
+            .set(
+              'cookie',
+              'login-token=valid-login-token-for-user-seeded-on-test-start'
+            )
+            .type('image/jpeg')
+            .send(contents)
+            .expect(201);
+        });
       });
     });
   });
