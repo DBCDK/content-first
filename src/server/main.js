@@ -1,5 +1,8 @@
 'use strict';
 
+// Sharp needs to be required early, in order to prevent a conflict @see https://github.com/lovell/sharp/issues/843
+require('sharp');
+
 const config = require('./config');
 const logger = require('server/logger');
 const internal = require('server/internal-server');
