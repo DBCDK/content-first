@@ -2,7 +2,7 @@
 
 exports[`LoginModal renders function 1`] = `
 <Modal
-  className="short-list--merge-modal"
+  className="modal-narrow"
   doneText="LOG IND"
   header="abc"
   onClose={undefined}

@@ -7,7 +7,7 @@ import {CLOSE_MODAL} from '../../redux/modal.reducer';
 export function LoginModal({context, closeModal, login}) {
   return (
     <Modal
-      className="short-list--merge-modal"
+      className="modal-narrow"
       header={context.title}
       onClose={closeModal}
       onDone={login}

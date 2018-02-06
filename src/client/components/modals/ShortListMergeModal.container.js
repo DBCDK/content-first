@@ -22,7 +22,7 @@ class ShortListMergeModal extends React.Component {
     }
     return (
       <Modal
-        className="short-list--merge-modal"
+        className="short-list--merge-modal modal-narrow"
         header="HUSKELISTE"
         onClose={this.approveMerge}
         onDone={this.approveMerge}

@@ -133,9 +133,6 @@
 .short-list--more-btn {
   margin: 50px 0 30px 0;
 }
-.short-list--merge-modal {
-  width: 300px !important;
-}
 .short-list--merge-modal .work-list {
   margin-top: 20px;
 }

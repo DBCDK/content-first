@@ -28,6 +28,10 @@
   transition: all 0.2s;
 }
 
+.modal-narrow {
+  width: 300px !important;
+}
+
 .modal-backdrop {
   position: fixed;
   top: 0;
