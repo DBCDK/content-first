@@ -9,8 +9,8 @@ import {
   shortListMiddleware,
   listMiddleware,
   searchMiddleware,
-  orderMiddleware
 } from './client/redux/middleware';
+import {orderMiddleware} from './client/redux/order.middleware';
 
 const store = createStore([
   requestMiddleware,
