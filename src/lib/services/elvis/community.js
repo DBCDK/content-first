@@ -484,6 +484,8 @@ class Community {
     });
   }
 
+  // HERE
+
   gettingPublicLists(limit, offset = 0) {
     const me = this;
     return new Promise(async (resolve, reject) => {
