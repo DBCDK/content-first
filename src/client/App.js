@@ -19,6 +19,7 @@ import ListPage from './components/list/ListPage.container';
 import ListCreator from './components/list/ListCreate.container';
 import Lists from './components/list/Lists.container';
 import ShortList from './components/list/ShortList.container';
+import CircleTemplate from './components/list/templates/CircleTemplate.container';
 
 class App extends Component {
   componentWillMount() {
@@ -55,6 +56,8 @@ class App extends Component {
           currentPage = <ListCreator />;
         } else if (pathSplit[3] === 'rediger') {
           currentPage = <ListCreator id={pathSplit[2]} />;
+        } else if (pathSplit[3] === 'circle') {
+          currentPage = <CircleTemplate id={pathSplit[2]} />;
         } else {
           currentPage = <ListPage id={pathSplit[2]} />;
         }

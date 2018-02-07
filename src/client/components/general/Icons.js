@@ -2,10 +2,7 @@ import React from 'react';
 
 export const Badge = props => {
   return (
-    <span
-      style={{fontWeight: 'normal'}}
-      className={`badge number ${props.className}`}
-    >
+    <span style={{fontWeight: 'normal'}} className={`badge number ${props.className}`}>
       {props.value}
     </span>
   );
@@ -13,10 +10,7 @@ export const Badge = props => {
 
 export const Comments = props => {
   return (
-    <span
-      style={{position: 'relative', ...props.style}}
-      className={props.className}
-    >
+    <span style={{position: 'relative', fontSize: 10, fontFamily: 'var(--secondary-font)', ...props.style}} className={props.className}>
       <span
         style={{
           fontSize: 24,
@@ -46,10 +40,7 @@ export const Comments = props => {
 
 export const Likes = props => {
   return (
-    <span
-      style={{position: 'relative', ...props.style}}
-      className={props.className}
-    >
+    <span style={{position: 'relative', fontSize: 10, fontFamily: 'var(--secondary-font)', ...props.style}} className={props.className}>
       <span
         style={{
           fontSize: 24,
@@ -73,6 +64,20 @@ export const Likes = props => {
       >
         {props.value}
       </span>
+    </span>
+  );
+};
+export const Share = props => {
+  return (
+    <span style={{position: 'relative', ...props.style}} className={props.className}>
+      <span
+        style={{
+          fontSize: 24,
+          color: 'black',
+          verticalAlign: 'middle'
+        }}
+        className="glyphicon glyphicon-share"
+      />
     </span>
   );
 };

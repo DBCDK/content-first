@@ -47,6 +47,7 @@
 @import './components/listcard.css';
 @import './components/imageUpload.css';
 @import './components/profile.css';
+@import './components/circletemplate.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */
 @import '~slick-carousel/slick/slick.css';
@@ -155,6 +156,7 @@ h3 {
   /*border-bottom: 2px solid #333;
   padding-bottom: 2px;*/
 }
+
 .belt .belt-links {
   color: black;
   font-size: 20px;
