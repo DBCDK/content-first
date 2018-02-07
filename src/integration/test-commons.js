@@ -264,37 +264,28 @@ function expectProfilesSeededOnTestStart(document) {
 }
 
 function expectListsSeededOnTestStart(document) {
-  expect(document).to.deep.include(cachedListSeededOnTestStart());
-  expect(document).to.deep.include({
-    data: {
-      type: 'CUSTOM_LIST',
-      public: false,
-      owner: seeder.knownUserId(),
-      title: 'Gamle Perler',
-      description: 'Bøger man simpelthen må læse',
-      list: [
-        {
-          pid: '870970-basis-47573974',
-          description: 'Russisk forvekslingskomedie'
-        }
-      ]
-    },
-    links: {self: `/v1/lists/${seeder.uncachedPrivateListUuid()}`}
-  });
   expect(document).to.have.length(2);
+  // The returned order of the lists is unstable.
+  let list1 = document[0].data;
+  let list2 = document[1].data;
+  if (list2.type === 'SYSTEM_LIST') {
+    [list1, list2] = [list2, list1];
+  }
+  expect(list1).to.deep.include(cachedListSeededOnTestStart().data);
+  expect(list2).to.deep.include(uncachedListSeededOnTestStart().data);
 }
 
 function expectPublicListsSeededOnTestStart(document) {
-  expect(document).to.deep.include(cachedListSeededOnTestStart());
   expect(document).to.have.length(1, 'Private list included');
+  expect(document[0].data).to.deep.include(cachedListSeededOnTestStart().data);
 }
 
 function expectCachedListSeededOnTestStart(document) {
-  expect(document).to.deep.equal(cachedListSeededOnTestStart().data);
+  expect(document).to.deep.include(cachedListSeededOnTestStart().data);
 }
 
 function expectUncachedListSeededOnTestStart(document) {
-  expect(document).to.deep.equal(uncachedListSeededOnTestStart().data);
+  expect(document).to.deep.include(uncachedListSeededOnTestStart().data);
 }
 
 function cachedListSeededOnTestStart() {

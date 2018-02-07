@@ -394,7 +394,7 @@ describe('Lists', () => {
             {owner: seeder.knownUserId()},
             newList
           );
-          expect(data).to.deep.equal(listWithOwner);
+          expect(data).to.deep.include(listWithOwner);
         });
         expect(response.status).to.equal(200);
       };

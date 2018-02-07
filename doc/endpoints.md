@@ -216,6 +216,8 @@ Returns [user information](../src/fixtures/schemas/user-data-out.json) for a log
       , "lists":
         [ { "data":
             { "type": "SYSTEM_LIST"
+            , "created_epoch": 1515409049,
+            , "modified_epoch": 1515409049,
             , "public": false,
             , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
             , "title": "My List"
@@ -295,6 +297,8 @@ Returns [public user information](../src/fixtures/schemas/public-user-data-out.j
         [ { "data":
             { "type": "SYSTEM_LIST"
             , "public": true
+            , "created_epoch": 1515409049,
+            , "modified_epoch": 1515409049,
             , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
             , "title": "My List"
             , "description": "A brand new list"
@@ -423,6 +427,8 @@ Returns the logged-in user's [simple list](../src/fixtures/schemas/lists-data-ou
     { "data":
       [ { "data":
           { "type": "SYSTEM_LIST"
+          , "created_epoch": 1515409049,
+          , "modified_epoch": 1515409049,
           , "public": true,
           , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
           , "title": "My List"
@@ -451,6 +457,8 @@ Returns a specific [simple list](../src/fixtures/schemas/list-data-out.json) for
 
     { "data":
       { "type": "CUSTOM_LIST"
+      , "created_epoch": 1515409049,
+      , "modified_epoch": 1515409049,
       , "public": false
       , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
       , "title": "My List"
@@ -485,7 +493,10 @@ If the user is not logged-in, the result is 403.
 Updates a specific list for the currently logged-in user. The [input](../src/server/schemas/list-in.json) is like
 
     { "type": "CUSTOM_LIST"
+    , "created_epoch": 1515409049,
+    , "modified_epoch": 1515409049,
     , "public": true,
+    , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
     , "title": "Must read"
     , "description": "Interesting books"
     , "list":
@@ -509,6 +520,8 @@ Get the most recent public [lists](../src/fixtures/schemas/lists-data-out.json) 
     { "data":
       [ { "data":
           { "type": "SYSTEM_LIST"
+          , "created_epoch": 1515409049,
+          , "modified_epoch": 1515409049,
           , "public": true,
           , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
           , "title": "My List"
@@ -525,6 +538,8 @@ Get the most recent public [lists](../src/fixtures/schemas/lists-data-out.json) 
         }
       , { "data":
           { "type": "CUSTOM_LIST"
+          , "created_epoch": 1515409049,
+          , "modified_epoch": 1515409049,
           , "public": true
           , "owner": "nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f"
           , "title": "Gamle Perler"

@@ -214,7 +214,8 @@ class Community {
           Limit: 999,
           Include: {
             entity_id: 'id',
-            // TODO: also extract created_epoch & modified_epoch
+            created_epoch: 'created_epoch',
+            modified_epoch: 'modified_epoch',
             profile_id: 'owner_id',
             owner: {
               Profile: {id: '^owner_id'},
@@ -291,6 +292,8 @@ class Community {
           },
           Include: {
             entity_id: 'id',
+            created_epoch: 'created_epoch',
+            modified_epoch: 'modified_epoch',
             type: 'attributes.type',
             title: 'title',
             description: 'contents',
@@ -494,8 +497,11 @@ class Community {
           Offset: offset,
           Include: {
             entity_id: 'id',
+            created_epoch: 'created_epoch',
+            modified_epoch: 'modified_epoch',
             profile_id: 'owner_id',
             uuid: 'attributes.uuid',
+            // TODO: also extract Profile name & image, created_epoch modified_epoch
             owner: {
               Profile: {id: '^owner_id'},
               Include: 'attributes.openplatform_id'
@@ -631,6 +637,8 @@ class Community {
   fromCommunityList(document) {
     return {
       data: {
+        created_epoch: document.created_epoch,
+        modified_epoch: document.modified_epoch,
         type: document.attributes.type,
         title: document.title,
         description: document.contents,

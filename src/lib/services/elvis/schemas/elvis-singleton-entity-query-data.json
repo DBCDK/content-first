@@ -5,6 +5,14 @@
       "required": true,
       "type": "integer"
     },
+    "created_epoch": {
+      "required": false,
+      "type": "integer"
+    },
+    "modified_epoch": {
+      "required": false,
+      "type": "integer"
+    },
     "type": {
       "required": true,
       "type": "string"
