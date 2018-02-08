@@ -2,9 +2,12 @@
 
 exports[`AddToListModal multiple works as input 1`] = `
 <div
-  className="modal-backdrop"
-  onClick={[Function]}
+  className="modal-container"
 >
+  <div
+    className="modal-backdrop"
+    onClick={[Function]}
+  />
   <div
     className="modal-window text-left add-to-list--modal"
   >
@@ -118,9 +121,12 @@ exports[`AddToListModal multiple works as input 1`] = `
 
 exports[`AddToListModal newly added list is selected 1`] = `
 <div
-  className="modal-backdrop"
-  onClick={[Function]}
+  className="modal-container"
 >
+  <div
+    className="modal-backdrop"
+    onClick={[Function]}
+  />
   <div
     className="modal-window text-left add-to-list--modal"
   >
@@ -271,9 +277,12 @@ exports[`AddToListModal newly added list is selected 1`] = `
 
 exports[`AddToListModal renders lists from store, first is selected 1`] = `
 <div
-  className="modal-backdrop"
-  onClick={[Function]}
+  className="modal-container"
 >
+  <div
+    className="modal-backdrop"
+    onClick={[Function]}
+  />
   <div
     className="modal-window text-left add-to-list--modal"
   >
