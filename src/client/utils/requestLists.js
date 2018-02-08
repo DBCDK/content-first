@@ -7,10 +7,12 @@ const CURRENT_LIST_KEY = 'contentFirstCurrentList';
 const LIST_VERSION = 1;
 
 const listToPayload = list => {
-  const listCopy = Object.assign({}, list);
-  delete listCopy.id;
-  delete listCopy.owner;
-  listCopy.list = listCopy.list.map(element => {
+  const listCopy = {};
+  listCopy.title = list.title;
+  listCopy.description = list.description;
+  listCopy.type = list.type;
+  listCopy.public = list.public;
+  listCopy.list = list.list.map(element => {
     return {
       pid: element.book.pid,
       description: element.description || ''
