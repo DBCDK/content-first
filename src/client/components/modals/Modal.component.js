@@ -7,7 +7,7 @@ export default class Modal extends React.Component {
 
     return (
       <div className="modal-container">
-        <div className="modal-backdrop" onClick={this.props.onClose}></div>
+        <div className="modal-backdrop" onClick={this.props.onClose} />
         <div
           className={`modal-window text-left ${
             this.props.className ? this.props.className : ''

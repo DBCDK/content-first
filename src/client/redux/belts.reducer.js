@@ -57,7 +57,12 @@ const beltsReducer = (state = defaultState, action) => {
     case ON_BELT_RESPONSE: {
       const belts = state.belts.map(belt => {
         if (belt.name === action.beltName) {
-          return Object.assign({}, belt, {isLoading: false}, {works: action.response});
+          return Object.assign(
+            {},
+            belt,
+            {isLoading: false},
+            {works: action.response}
+          );
         }
         return belt;
       });

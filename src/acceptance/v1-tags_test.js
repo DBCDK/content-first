@@ -4,7 +4,11 @@
 
 const {expect} = require('chai');
 const request = require('supertest');
-const {expectSuccess, expectFailure, expectValidate} = require('fixtures/output-verifiers');
+const {
+  expectSuccess,
+  expectFailure,
+  expectValidate
+} = require('fixtures/output-verifiers');
 const mock = require('fixtures/mock-server');
 
 describe('Endpoint /v1/tags', () => {
@@ -139,7 +143,9 @@ describe('Endpoint /v1/tags', () => {
               const problems = error.meta.problems;
               expect(problems).to.be.an('array');
               expect(problems).to.deep.include('field pid is required');
-              expect(problems).to.deep.include('field selected is the wrong type');
+              expect(problems).to.deep.include(
+                'field selected is the wrong type'
+              );
             });
           })
           .expect(400)
@@ -265,9 +271,13 @@ describe('Endpoint /v1/tags', () => {
             expectFailure(res.body, errors => {
               expect(errors).to.have.length(1);
               const error = errors[0];
-              expect(error.title).to.match(/mismatch beetween pid and location/i);
+              expect(error.title).to.match(
+                /mismatch beetween pid and location/i
+              );
               expect(error).to.have.property('detail');
-              expect(error.detail).to.equal(`Expected PID ${wrongPid} but found ${pid}`);
+              expect(error.detail).to.equal(
+                `Expected PID ${wrongPid} but found ${pid}`
+              );
             });
           });
       });
@@ -286,7 +296,20 @@ describe('Endpoint /v1/tags', () => {
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/tags-data-out.json');
               expect(data.pid).to.equal(pid);
-              expect(data.tags).to.have.members([49, 55, 56, 90, 221, 223, 224, 230, 234, 281, 302, 313]);
+              expect(data.tags).to.have.members([
+                49,
+                55,
+                56,
+                90,
+                221,
+                223,
+                224,
+                230,
+                234,
+                281,
+                302,
+                313
+              ]);
             });
           })
           .expect('location', location)
@@ -374,7 +397,20 @@ describe('Endpoint /v1/tags', () => {
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/tags-data-out.json');
               expect(data.pid).to.equal(pid);
-              expect(data.tags).to.have.members([49, 55, 56, 90, 221, 223, 224, 230, 234, 281, 302, 313]);
+              expect(data.tags).to.have.members([
+                49,
+                55,
+                56,
+                90,
+                221,
+                223,
+                224,
+                230,
+                234,
+                281,
+                302,
+                313
+              ]);
             });
           })
           .expect('location', location)

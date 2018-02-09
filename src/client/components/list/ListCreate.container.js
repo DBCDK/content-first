@@ -1,6 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {LIST_LOAD_REQUEST, addElementToList, removeElementFromList, updateList, storeList, getListById, addList} from '../../redux/list.reducer';
+import {
+  LIST_LOAD_REQUEST,
+  addElementToList,
+  removeElementFromList,
+  updateList,
+  storeList,
+  getListById,
+  addList
+} from '../../redux/list.reducer';
 import {createListLocation} from '../../utils/requestLists';
 import DragableList from './ListDrag.component';
 import Textarea from 'react-textarea-autosize';
@@ -12,8 +20,19 @@ const ListDetails = ({title, description, hasError, onChange}) => (
   <div className="list-details">
     <div className="form-group">
       <span className={`required ${!title && hasError ? 'has-error' : ''}`}>
-        <input className="form-control" type="text" name="list-title" placeholder="Giv din liste en titel" onChange={e => onChange({title: e.currentTarget.value})} value={title} />
-        {!title && hasError ? <div className="alert alert-danger">Din liste skal have en titel</div> : ''}
+        <input
+          className="form-control"
+          type="text"
+          name="list-title"
+          placeholder="Giv din liste en titel"
+          onChange={e => onChange({title: e.currentTarget.value})}
+          value={title}
+        />
+        {!title && hasError ? (
+          <div className="alert alert-danger">Din liste skal have en titel</div>
+        ) : (
+          ''
+        )}
       </span>
       <Textarea
         className="form-control list-details__description"
@@ -45,11 +64,16 @@ const ListItem = ({item, onChange}) => (
 
 const ListBooks = ({list, dispatch}) => (
   <div className="list-drag">
-    <BookSearchSuggester list={list} onSubmit={book => dispatch(addElementToList(book, list.data.id))} />
+    <BookSearchSuggester
+      list={list}
+      onSubmit={book => dispatch(addElementToList(book, list.data.id))}
+    />
     <DragableList
       list={list.data.list}
       renderListItem={ListItem}
-      onUpdate={updatedList => dispatch(updateList({id: list.data.id, list: updatedList}))}
+      onUpdate={updatedList =>
+        dispatch(updateList({id: list.data.id, list: updatedList}))
+      }
       onRemove={item => dispatch(removeElementFromList(item, list.data.id))}
     />
   </div>
@@ -67,7 +91,10 @@ export class ListCreator extends React.Component {
     if (!this.props.id && this.props.fetchListId) {
       const {id} = await this.props.fetchListId();
       this.props.dispatch(addList({id}));
-      this.props.dispatch({type: HISTORY_REPLACE, path: `/lister/${id}/rediger`});
+      this.props.dispatch({
+        type: HISTORY_REPLACE,
+        path: `/lister/${id}/rediger`
+      });
     }
   }
   componentWillUnmount() {
@@ -88,11 +115,15 @@ export class ListCreator extends React.Component {
     this.props.dispatch({type: HISTORY_PUSH, path: '/lister'});
   }
   onChange(currentList) {
-    this.props.dispatch(updateList({...this.props.currentList.data, ...currentList}));
+    this.props.dispatch(
+      updateList({...this.props.currentList.data, ...currentList})
+    );
   }
   setStatus() {
     const currentList = this.props.currentList;
-    this.props.dispatch(updateList({id: currentList.data.id, public: !currentList.data.public}));
+    this.props.dispatch(
+      updateList({id: currentList.data.id, public: !currentList.data.public})
+    );
   }
   render() {
     if (!this.props.currentList) {
@@ -110,11 +141,22 @@ export class ListCreator extends React.Component {
                 description={this.props.currentList.data.description}
                 onChange={e => this.onChange(e)}
               />
-              <h2 className="list-creator__headline">Tilføj bøger til listen</h2>
-              <ListBooks dispatch={this.props.dispatch} list={this.props.currentList} />
+              <h2 className="list-creator__headline">
+                Tilføj bøger til listen
+              </h2>
+              <ListBooks
+                dispatch={this.props.dispatch}
+                list={this.props.currentList}
+              />
               <div className="list-creator__publication">
                 <label htmlFor="public">
-                  <input id="public" name="public" type="checkbox" checked={this.props.currentList.data.public || false} onClick={() => this.setStatus()} />
+                  <input
+                    id="public"
+                    name="public"
+                    type="checkbox"
+                    checked={this.props.currentList.data.public || false}
+                    onClick={() => this.setStatus()}
+                  />
                   <span /> Skal listen være offentlig?
                 </label>
               </div>
