@@ -27,6 +27,7 @@
   position: absolute;
   display: inline-block;
   width: 150px;
+  cursor: pointer;
 }
 .circle-template .list-element .title {
   font-family: var(--secondary-font);

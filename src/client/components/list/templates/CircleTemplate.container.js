@@ -13,7 +13,7 @@ const ELEMENT_WIDTH = 140; // width is fixed, height is dynamic based on circle 
 export class CircleTemplate extends React.Component {
   constructor() {
     super();
-    this.state = {circleWidth: 0};
+    this.state = {circleWidth: 0, popOverPid: null};
   }
   calcCoords(degree, elementHeight, circleWidth) {
     degree = Math.PI * degree / 180; // convert to radians.
@@ -79,18 +79,23 @@ export class CircleTemplate extends React.Component {
                     key={element.book.pid}
                     style={{top: y, left: x}}
                     className="list-element"
+                    onClick={() => {
+                      this.setState({popOverPid: element.book.pid});
+                    }}
                   >
                     <BookCover
                       style={{height: coverHeight}}
                       book={element.book}
                     />
                     <div className="title">{element.book.title}</div>
-                    <PopOver
-                      style={{left: popOverPos, width: 200}}
-                      className={popOverPos < 0 ? 'left' : 'right'}
-                    >
-                      <h4>hest</h4>
-                    </PopOver>
+                    {this.state.popOverPid === element.book.pid && (
+                      <PopOver
+                        style={{left: popOverPos, width: 200}}
+                        className={popOverPos < 0 ? 'left' : 'right'}
+                      >
+                        <h4>hest</h4>
+                      </PopOver>
+                    )}
                   </div>
                 );
               })}
