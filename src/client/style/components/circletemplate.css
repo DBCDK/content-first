@@ -11,7 +11,7 @@
   position: relative;
   /* background: lightgreen; */
   padding: 40px 0;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .circle-template .background-image {
   position: absolute;
@@ -19,8 +19,8 @@
   top: 0;
   width: 100%;
   height: 100%;
-  filter: blur(20px);
-  transform: scale(1.1);
+  /* filter: blur(20px);
+  transform: scale(1.1); */
 }
 
 .circle-template .list-element {

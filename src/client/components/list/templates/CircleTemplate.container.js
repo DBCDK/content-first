@@ -3,24 +3,22 @@ import {connect} from 'react-redux';
 import {getListById} from '../../../redux/list.reducer';
 import BookCover from '../../general/BookCover.component';
 import ProfileImage from '../../general/ProfileImage.component';
+import PopOver from '../../general/PopOver.component';
 import {Comments, Likes, Share} from '../../general/Icons';
 
-// const CIRCLE_HEIGHT = 1100;
 const CIRCLE_WIDTH_PERCENTAGE = 0.9; // percentage of parent width
-const CIRCLE_OFFSET = 45; // Offset in degrees (0-360) relative to center top of circle, at which first element occurs.
-// const ELEMENT_HEIGHT = 180;
-const ELEMENT_WIDTH = 140;
+const CIRCLE_OFFSET = 90; // Offset in degrees (0-360) relative to center top of circle, at which first element occurs.
+const ELEMENT_WIDTH = 140; // width is fixed, height is dynamic based on circle dimensions
 
 export class CircleTemplate extends React.Component {
   constructor() {
     super();
     this.state = {circleWidth: 0};
   }
-  calcCoords(degree, coverHeight) {
+  calcCoords(degree, elementHeight, circleWidth) {
     degree = Math.PI * degree / 180; // convert to radians.
-    const radiusX = this.state.circleWidth / 2 - ELEMENT_WIDTH / 2;
-    // const radiusY = CIRCLE_HEIGHT / 2 - ELEMENT_HEIGHT / 2;
-    const radiusY = this.state.circleWidth / 2 - (coverHeight + 20) / 2;
+    const radiusX = circleWidth / 2 - ELEMENT_WIDTH / 2;
+    const radiusY = circleWidth / 2 - elementHeight / 2;
     return {
       x: radiusX + radiusX * Math.cos(degree),
       y: radiusY + radiusY * Math.sin(degree)
@@ -68,11 +66,14 @@ export class CircleTemplate extends React.Component {
             {this.props.list &&
               this.props.list.data.list.map((element, idx) => {
                 const incrementBy = 360 / this.props.list.data.list.length;
-                const coverHeight = this.state.circleWidth * 0.15;
+                const coverHeight = this.state.circleWidth * 0.15; // element size is calculated based on circle dimensions
                 const {x, y} = this.calcCoords(
                   idx * incrementBy + CIRCLE_OFFSET - 90,
-                  coverHeight
+                  coverHeight + 20,
+                  this.state.circleWidth
                 );
+                const popOverPos =
+                  this.state.circleWidth - x < 300 ? -170 : 120;
                 return (
                   <div
                     key={element.book.pid}
@@ -84,6 +85,12 @@ export class CircleTemplate extends React.Component {
                       book={element.book}
                     />
                     <div className="title">{element.book.title}</div>
+                    <PopOver
+                      style={{left: popOverPos, width: 200}}
+                      className={popOverPos < 0 ? 'left' : 'right'}
+                    >
+                      <h4>hest</h4>
+                    </PopOver>
                   </div>
                 );
               })}
