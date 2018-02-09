@@ -27,7 +27,9 @@ export class CircleTemplate extends React.Component {
     };
   }
   onResize = () => {
-    this.setState({circleWidth: this.refs.wrapper.clientWidth * CIRCLE_WIDTH_PERCENTAGE});
+    this.setState({
+      circleWidth: this.refs.wrapper.clientWidth * CIRCLE_WIDTH_PERCENTAGE
+    });
   };
   componentDidMount() {
     window.addEventListener('resize', this.onResize);
@@ -46,18 +48,41 @@ export class CircleTemplate extends React.Component {
 
     return (
       <div ref="wrapper" className="circle-template row">
-        <div className="list-title text-left col-xs-offset-1 mb2 mt4">{this.props.list && this.props.list.data.title}</div>
+        <div className="list-title text-left col-xs-offset-1 mb2 mt4">
+          {this.props.list && this.props.list.data.title}
+        </div>
         <div className="list col-xs-12">
-          <img className="background-image" alt="" src="http://www.totalqualityphoto.com/images/700_Eldorado_Canyon_Fall_Colors_2382rw.jpg" />
-          <div style={{width: this.state.circleWidth, height: this.state.circleWidth, margin: '0 auto', position: 'relative'}}>
+          <img
+            className="background-image"
+            alt=""
+            src="http://www.totalqualityphoto.com/images/700_Eldorado_Canyon_Fall_Colors_2382rw.jpg"
+          />
+          <div
+            style={{
+              width: this.state.circleWidth,
+              height: this.state.circleWidth,
+              margin: '0 auto',
+              position: 'relative'
+            }}
+          >
             {this.props.list &&
               this.props.list.data.list.map((element, idx) => {
                 const incrementBy = 360 / this.props.list.data.list.length;
                 const coverHeight = this.state.circleWidth * 0.15;
-                const {x, y} = this.calcCoords(idx * incrementBy + CIRCLE_OFFSET - 90, coverHeight);
+                const {x, y} = this.calcCoords(
+                  idx * incrementBy + CIRCLE_OFFSET - 90,
+                  coverHeight
+                );
                 return (
-                  <div key={element.book.pid} style={{top: y, left: x}} className="list-element">
-                    <BookCover style={{height: coverHeight}} book={element.book} />
+                  <div
+                    key={element.book.pid}
+                    style={{top: y, left: x}}
+                    className="list-element"
+                  >
+                    <BookCover
+                      style={{height: coverHeight}}
+                      book={element.book}
+                    />
                     <div className="title">{element.book.title}</div>
                   </div>
                 );
@@ -68,7 +93,9 @@ export class CircleTemplate extends React.Component {
           <div className="col-xs-2 text-center">
             <ProfileImage src={profile.src} name={profile.name} />
           </div>
-          <div className="list-description col-xs-5">{this.props.list && this.props.list.data.description}</div>
+          <div className="list-description col-xs-5">
+            {this.props.list && this.props.list.data.description}
+          </div>
           <div className="social col-xs-5 col-md-4 text-right">
             <Likes value={14} />
             <span className="ml1">Like</span>
