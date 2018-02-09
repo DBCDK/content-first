@@ -1,12 +1,21 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 export default props => {
   return (
-    <div
-      className={`popover fade in ${props.className}`}
-      style={{display: 'block', minHeight: 60, ...props.style}}
+    <ReactCSSTransitionGroup
+      transitionName="popover"
+      transitionEnterTimeout={200}
+      transitionLeaveTimeout={200}
     >
-      <div className="arrow" style={{top: 30}} />
-      {props.children}
-    </div>
+      {props.show && (
+        <div
+          className={`popover ${props.className}`}
+          style={{display: 'block', minHeight: 60, ...props.style}}
+        >
+          <div className="arrow" style={{top: 30}} />
+          {props.children}
+        </div>
+      )}
+    </ReactCSSTransitionGroup>
   );
 };

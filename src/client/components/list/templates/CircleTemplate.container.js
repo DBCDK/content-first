@@ -88,14 +88,13 @@ export class CircleTemplate extends React.Component {
                       book={element.book}
                     />
                     <div className="title">{element.book.title}</div>
-                    {this.state.popOverPid === element.book.pid && (
-                      <PopOver
-                        style={{left: popOverPos, width: 200}}
-                        className={popOverPos < 0 ? 'left' : 'right'}
-                      >
-                        <h4>hest</h4>
-                      </PopOver>
-                    )}
+                    <PopOver
+                      show={this.state.popOverPid === element.book.pid}
+                      style={{left: popOverPos, width: 200}}
+                      className={popOverPos < 0 ? 'left' : 'right'}
+                    >
+                      <h4>hest</h4>
+                    </PopOver>
                   </div>
                 );
               })}
