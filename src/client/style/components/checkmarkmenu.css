@@ -1,6 +1,9 @@
 .checkmark-menu {
   font-family: 'Raleway', sans-serif;
   outline: none;
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
 }
 .checkmark-menu .btn:active {
   background: inherit;
@@ -10,8 +13,9 @@
 .checkmark-menu > div:first-child {
   text-align: right;
 }
-.checkmark-menu--content, .checkmark-menu--expand-btn {
-  box-shadow: 0 6px 12px rgba(0,0,0,.575);
+.checkmark-menu--content,
+.checkmark-menu--expand-btn {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.575);
 }
 .checkmark-menu--content {
   position: absolute;
@@ -58,7 +62,8 @@
   color: var(--darkgrey);
   border: 0;
 }
-.menu-item.checked, .menu-item.checked:hover {
+.menu-item.checked,
+.menu-item.checked:hover {
   background: var(--green);
   color: white;
 }
