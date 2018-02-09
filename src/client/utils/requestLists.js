@@ -59,7 +59,9 @@ export const createListLocation = async () => {
   };
 };
 export const loadRecentPublic = async () => {
-  const listsPayload = (await request.get('/v1/public-lists').query({limit: 30})).body.data;
+  const listsPayload = (await request
+    .get('/v1/public-lists')
+    .query({limit: 30})).body.data;
   const result = [];
   for (let i = 0; i < listsPayload.length; i++) {
     result.push(await payloadToList(listsPayload[i]));
@@ -107,7 +109,10 @@ export const loadLists = async isLoggedIn => {
 };
 
 const containsList = (type, title, lists) => {
-  return lists.filter(l => l.data.type === type && l.data.title === title).length !== 0;
+  return (
+    lists.filter(l => l.data.type === type && l.data.title === title).length !==
+    0
+  );
 };
 export const saveCurrentList = currentList => {
   setItem(CURRENT_LIST_KEY, currentList, LIST_VERSION);

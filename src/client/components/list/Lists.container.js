@@ -43,7 +43,11 @@ class Lists extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    customLists: getLists(state.listReducer, {type: CUSTOM_LIST, owner: state.profileReducer.user.openplatformId, sort: true})
+    customLists: getLists(state.listReducer, {
+      type: CUSTOM_LIST,
+      owner: state.profileReducer.user.openplatformId,
+      sort: true
+    })
   };
 };
 export default connect(mapStateToProps)(Lists);

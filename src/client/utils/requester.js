@@ -2,7 +2,11 @@ import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
 import {SEARCH_RESULTS} from '../redux/search.reducer';
-import {ON_PROFILE_RECOMMENDATIONS_RESPONSE, ON_USER_DETAILS_RESPONSE, ON_LOGOUT_RESPONSE} from '../redux/profile.reducer';
+import {
+  ON_PROFILE_RECOMMENDATIONS_RESPONSE,
+  ON_USER_DETAILS_RESPONSE,
+  ON_LOGOUT_RESPONSE
+} from '../redux/profile.reducer';
 import {getLeaves} from './taxonomy';
 import profiles from '../../data/ranked-profiles.json';
 import similar from '../../data/similar-pids.json';
@@ -67,7 +71,9 @@ export const fetchWork = (pid, dispatch) => {
 
   const getWork = request.get(`/v1/book/${pid}`);
   const getMetaTags = request.get(`/v1/tags/${pid}`);
-  const getSimilarWorks = request.get('/v1/books/').query({pids: similarList.map(o => o.pid)});
+  const getSimilarWorks = request
+    .get('/v1/books/')
+    .query({pids: similarList.map(o => o.pid)});
 
   Promise.all([getWork, getMetaTags, getSimilarWorks])
     .then(responses => {
@@ -133,7 +139,9 @@ export const fetchBeltWorks = (belt, filterState, dispatch) => {
 };
 
 export const fetchProfileRecommendations = (profileState, dispatch) => {
-  requestProfileRecommendations().then(recommendations => dispatch({type: ON_PROFILE_RECOMMENDATIONS_RESPONSE, recommendations}));
+  requestProfileRecommendations().then(recommendations =>
+    dispatch({type: ON_PROFILE_RECOMMENDATIONS_RESPONSE, recommendations})
+  );
 };
 
 export const fetchUser = (dispatch, cb) => {
@@ -150,7 +158,8 @@ export const fetchUser = (dispatch, cb) => {
 
 export const logout = dispatch => {
   dispatch({type: ON_LOGOUT_RESPONSE});
-  document.body.innerHTML += '<form id="logoutform" action="/v1/logout" method="post"></form>';
+  document.body.innerHTML +=
+    '<form id="logoutform" action="/v1/logout" method="post"></form>';
   document.getElementById('logoutform').submit();
 };
 
@@ -202,7 +211,9 @@ export const loadShortList = async isLoggedIn => {
 
 export async function fetchSearchResults({query, dispatch}) {
   try {
-    const result = await request.get('/v1/search?q=' + encodeURIComponent(query));
+    const result = await request.get(
+      '/v1/search?q=' + encodeURIComponent(query)
+    );
     dispatch({
       type: SEARCH_RESULTS,
       query,

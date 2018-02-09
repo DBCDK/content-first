@@ -56,11 +56,20 @@ const listReducer = (state = defaultState, action) => {
       const changeMap = Object.assign({}, state.changeMap, {
         [action.element.book.pid]: {}
       });
-      const list = {...state.lists[action.id], data: {...state.lists[action.id].data}};
-      if (list.data.list.filter(e => e.book.pid === action.element.book.pid).length === 0) {
+      const list = {
+        ...state.lists[action.id],
+        data: {...state.lists[action.id].data}
+      };
+      if (
+        list.data.list.filter(e => e.book.pid === action.element.book.pid)
+          .length === 0
+      ) {
         list.data.list = [...list.data.list, action.element];
       }
-      return Object.assign({}, state, {lists: {...state.lists, [action.id]: list}, changeMap});
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list},
+        changeMap
+      });
     }
     case REMOVE_ELEMENT_FROM_LIST: {
       if (!action.id) {
@@ -75,9 +84,17 @@ const listReducer = (state = defaultState, action) => {
       const changeMap = Object.assign({}, state.changeMap, {
         [action.element.book.pid]: {}
       });
-      const list = {...state.lists[action.id], data: {...state.lists[action.id].data}};
-      list.data.list = list.data.list.filter(element => element.book.pid !== action.element.book.pid);
-      return Object.assign({}, state, {lists: {...state.lists, [action.id]: list}, changeMap});
+      const list = {
+        ...state.lists[action.id],
+        data: {...state.lists[action.id].data}
+      };
+      list.data.list = list.data.list.filter(
+        element => element.book.pid !== action.element.book.pid
+      );
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list},
+        changeMap
+      });
     }
     case LIST_INSERT_ELEMENT: {
       if (!action.id) {
@@ -95,11 +112,24 @@ const listReducer = (state = defaultState, action) => {
       const changeMap = Object.assign({}, state.changeMap, {
         [action.element.book.pid]: {}
       });
-      const list = {...state.lists[action.id], data: {...state.lists[action.id].data}};
+      const list = {
+        ...state.lists[action.id],
+        data: {...state.lists[action.id].data}
+      };
       const listElements = [...list.data.list];
-      listElements.splice(Math.min(action.pos, listElements.length), 0, action.element);
-      list.data.list = listElements.filter((element, idx) => !(element.book.pid === action.element.book.pid && idx !== action.pos));
-      return Object.assign({}, state, {lists: {...state.lists, [action.id]: list}, changeMap});
+      listElements.splice(
+        Math.min(action.pos, listElements.length),
+        0,
+        action.element
+      );
+      list.data.list = listElements.filter(
+        (element, idx) =>
+          !(element.book.pid === action.element.book.pid && idx !== action.pos)
+      );
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list},
+        changeMap
+      });
     }
     case LIST_TOGGLE_ELEMENT: {
       if (!action.id) {
@@ -114,14 +144,22 @@ const listReducer = (state = defaultState, action) => {
       const changeMap = Object.assign({}, state.changeMap, {
         [action.element.book.pid]: {}
       });
-      const list = {...state.lists[action.id], data: {...state.lists[action.id].data}};
-      const removed = list.data.list.filter(e => e.book.pid !== action.element.book.pid);
+      const list = {
+        ...state.lists[action.id],
+        data: {...state.lists[action.id].data}
+      };
+      const removed = list.data.list.filter(
+        e => e.book.pid !== action.element.book.pid
+      );
       if (removed.length < list.data.list.length) {
         list.data.list = removed;
       } else {
         list.data.list = [...list.data.list, action.element];
       }
-      return Object.assign({}, state, {lists: {...state.lists, [action.id]: list}, changeMap});
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list},
+        changeMap
+      });
     }
     case UPDATE_LIST_DATA: {
       if (!action.data) {
@@ -132,7 +170,9 @@ const listReducer = (state = defaultState, action) => {
       }
       const list = {...state.lists[action.data.id]};
       list.data = {...list.data, ...action.data};
-      return Object.assign({}, state, {lists: {...state.lists, [action.data.id]: list}});
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.data.id]: list}
+      });
     }
     case LIST_LOAD_RESPONSE: {
       let lists = action.lists;
@@ -155,7 +195,13 @@ const listReducer = (state = defaultState, action) => {
 };
 
 // ACTION CREATORS
-export const addList = ({type = CUSTOM_LIST, title = '', description = '', list = [], id = null}) => {
+export const addList = ({
+  type = CUSTOM_LIST,
+  title = '',
+  description = '',
+  list = [],
+  id = null
+}) => {
   return {
     type: ADD_LIST,
     list: {
@@ -230,7 +276,9 @@ export const getLists = (state, {type, owner, sort} = {}) => {
     return true;
   });
   if (sort) {
-    lists.sort((item1, item2) => item1.data.title.localeCompare(item2.data.title));
+    lists.sort((item1, item2) =>
+      item1.data.title.localeCompare(item2.data.title)
+    );
   }
   return lists;
 };

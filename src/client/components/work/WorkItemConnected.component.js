@@ -3,7 +3,12 @@ import {connect} from 'react-redux';
 import WorkItem from './WorkItem.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
-import {storeList, getLists, toggleElementInList, SYSTEM_LIST} from '../../redux/list.reducer';
+import {
+  storeList,
+  getLists,
+  toggleElementInList,
+  SYSTEM_LIST
+} from '../../redux/list.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {ORDER} from '../../redux/order.reducer';
 
@@ -37,7 +42,9 @@ class WorkItemConnected extends React.PureComponent {
         }}
         marked={remembered[this.props.work.book.pid]}
         onAddToList={list => {
-          this.props.dispatch(toggleElementInList(this.props.work, list.data.id));
+          this.props.dispatch(
+            toggleElementInList(this.props.work, list.data.id)
+          );
           this.props.dispatch(storeList(list.data.id));
         }}
         onAddToListOpenModal={() => {
@@ -61,7 +68,11 @@ class WorkItemConnected extends React.PureComponent {
 const mapStateToProps = state => {
   return {
     shortListState: state.shortListReducer,
-    systemLists: getLists(state.listReducer, {type: SYSTEM_LIST, owner: state.profileReducer.user.openplatformId, sort: true}),
+    systemLists: getLists(state.listReducer, {
+      type: SYSTEM_LIST,
+      owner: state.profileReducer.user.openplatformId,
+      sort: true
+    }),
     changeMap: state.listReducer.changeMap,
     profileState: state.profileReducer
   };

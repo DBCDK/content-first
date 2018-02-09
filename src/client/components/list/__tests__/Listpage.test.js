@@ -41,7 +41,10 @@ const createList = id => {
   };
 };
 
-jest.mock('../../work/WorkItemConnected.component.js', () => 'WorkItemConnectedMock');
+jest.mock(
+  '../../work/WorkItemConnected.component.js',
+  () => 'WorkItemConnectedMock'
+);
 
 describe('ListView', () => {
   test('List is rendered', () => {
