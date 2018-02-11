@@ -78,9 +78,11 @@ function fetchAvailability({store, pid}) {
             )[0] || availability[0];
           break;
         } catch (e) {
-          // TODO log til backend i stedet
-          // eslint-disable-next-line
-          console.warn('retrying', i, e);
+          store.dispatch({
+            type: 'LOG_ERROR',
+            msg: 'retry fetch availability',
+            pid
+          });
         }
       }
       store.dispatch({
@@ -121,18 +123,14 @@ export const orderMiddleware = store => next => action => {
             pids,
             library: action.branch
           });
-          // TODO log til backend ordersuccess
-
           store.dispatch({
             type: ORDER_SUCCESS,
             pid: action.pid
           });
         } catch (e) {
-          // TODO log til backend i stedet
-          // eslint-disable-next-line
-          console.log('Error on order:', e);
           store.dispatch({
             type: ORDER_FAILURE,
+            error: String(e),
             pid: action.pid
           });
         }

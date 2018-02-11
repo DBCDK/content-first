@@ -1,3 +1,4 @@
+import request from 'superagent';
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
 import {
@@ -238,4 +239,39 @@ export const searchMiddleware = store => next => action => {
     default:
       return next(action);
   }
+};
+
+const logged = {
+  ON_LOCATION_CHANGE: ({type, path}) => ({type, path}),
+  ON_SHORTLIST_TOGGLE_ELEMENT: ({type, element, origin}) => ({
+    type,
+    pid: element.book.pid,
+    origin
+  }),
+  LIST_TOGGLE_ELEMENT: ({type, element, id}) => ({
+    type,
+    pid: element.book.pid,
+    id
+  }),
+  ORDER: ({type, book}) => ({type, pid: book.pid}),
+  ORDER_SUCCESS: o => o,
+  ORDER_FAILURE: o => o,
+  LOG_ERROR: o => o,
+  LOG: o => o
+};
+export const logMiddleware = store => next => action => {
+  if (logged[action.type]) {
+    try {
+      request
+        .post('/v1/log')
+        .send(logged[action.type](action, store))
+        .end();
+    } catch (e) {
+      request
+        .post('/v1/log')
+        .send({type: action.type, error: 'CLIENT_LOG_ERROR', msg: String(e)})
+        .end();
+    }
+  }
+  return next(action);
 };
