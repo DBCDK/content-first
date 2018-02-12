@@ -41,7 +41,7 @@ export class CheckMarkConnected extends React.PureComponent {
     this.props.dispatch(storeList(id));
   }
   // Open save-to-my-lists modal
-  openModal = (book, placeholder = '') => {
+  openModal = book => {
     this.props.dispatch({
       type: OPEN_MODAL,
       modal: 'addToList',
@@ -49,7 +49,7 @@ export class CheckMarkConnected extends React.PureComponent {
     });
   };
   // Open order-this-book Modal
-  order = (book, placeholder = '') => {
+  order = book => {
     this.props.dispatch({
       type: ORDER,
       book: book

@@ -2,15 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from './WorkItem.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
-import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
-import {
-  storeList,
-  getLists,
-  toggleElementInList,
-  SYSTEM_LIST
-} from '../../redux/list.reducer';
-import {OPEN_MODAL} from '../../redux/modal.reducer';
-import {ORDER} from '../../redux/order.reducer';
+import {getLists, SYSTEM_LIST} from '../../redux/list.reducer';
 
 class WorkItemConnected extends React.PureComponent {
   static defaultProps = {

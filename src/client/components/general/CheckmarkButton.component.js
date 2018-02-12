@@ -10,7 +10,7 @@ export default props => (
     </span>
     <div
       style={{
-        paddingLeft : '10px',
+        paddingLeft: '10px',
         fontSize: '10px',
         width: '20px',
         display: 'inline-block'
