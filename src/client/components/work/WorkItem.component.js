@@ -1,6 +1,6 @@
 import React from 'react';
 import BookCover from '../general/BookCover.component';
-import CheckmarkMenu, {MenuItem} from '../general/CheckmarkMenu.component';
+import CheckmarkMenu from '../general/CheckmarkConnected.component';
 import CheckmarkButton from '../general/CheckmarkButton.component';
 import TouchHover from '../general/TouchHover.component';
 
@@ -32,45 +32,7 @@ class WorkItem extends React.Component {
           >
             <BookCover book={this.props.work.book} />
           </TouchHover>
-          {!this.props.isLoggedIn && (
-            <CheckmarkButton
-              label="Husk"
-              marked={this.props.marked}
-              onClick={() => this.props.onRememberClick(this.props.work)}
-            />
-          )}
-          {this.props.isLoggedIn && (
-            <CheckmarkMenu
-              text="Husk"
-              checked={this.props.marked}
-              onClick={() => this.props.onRememberClick(this.props.work)}
-            >
-              {this.props.systemLists.map(l => (
-                <MenuItem
-                  key={l.data.id}
-                  text={l.data.title}
-                  checked={
-                    l.data.list.filter(
-                      element => element.book.pid === this.props.work.book.pid
-                    ).length > 0
-                  }
-                  onClick={() => {
-                    this.props.onAddToList(l);
-                  }}
-                />
-              ))}
-              <MenuItem
-                key="addToList"
-                text="Tilføj til liste"
-                onClick={this.props.onAddToListOpenModal}
-              />
-              <MenuItem
-                key="order"
-                text="Bestil"
-                onClick={this.props.onOrder}
-              />
-            </CheckmarkMenu>
-          )}
+          <CheckmarkMenu book={this.props.work} origin={this.props.origin} />
         </TouchHover>
         <div className="metakompas-description">
           {this.props.showTaxonomy &&

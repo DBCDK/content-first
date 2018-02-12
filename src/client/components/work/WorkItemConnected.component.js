@@ -25,6 +25,7 @@ class WorkItemConnected extends React.PureComponent {
     return (
       <WorkItem
         workClass={this.props.workClass}
+        origin={this.props.origin}
         showTaxonomy={this.props.showTaxonomy}
         changeMap={this.props.changeMap}
         isLoggedIn={this.props.profileState.user.isLoggedIn}
@@ -33,33 +34,7 @@ class WorkItemConnected extends React.PureComponent {
         onCoverClick={pid => {
           this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
         }}
-        onRememberClick={element => {
-          this.props.dispatch({
-            type: ON_SHORTLIST_TOGGLE_ELEMENT,
-            element,
-            origin: this.props.origin || ''
-          });
-        }}
         marked={remembered[this.props.work.book.pid]}
-        onAddToList={list => {
-          this.props.dispatch(
-            toggleElementInList(this.props.work, list.data.id)
-          );
-          this.props.dispatch(storeList(list.data.id));
-        }}
-        onAddToListOpenModal={() => {
-          this.props.dispatch({
-            type: OPEN_MODAL,
-            modal: 'addToList',
-            context: this.props.work
-          });
-        }}
-        onOrder={() => {
-          this.props.dispatch({
-            type: ORDER,
-            book: this.props.work.book
-          });
-        }}
       />
     );
   }

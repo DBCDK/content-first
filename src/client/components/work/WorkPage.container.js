@@ -1,27 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from './WorkItemConnected.component';
-import CheckmarkButton from '../general/CheckmarkButton.component';
+
+import CheckmarkMenu from '../general/CheckmarkConnected.component';
+
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Slider from '../belt/Slider.component';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
-import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
 import {getLeaves} from '../../utils/taxonomy';
 
-import CheckmarkMenu, {MenuItem} from '../general/CheckmarkMenu.component';
-import {
-  storeList,
-  getLists,
-  toggleElementInList,
-  SYSTEM_LIST
-} from '../../redux/list.reducer';
-import {OPEN_MODAL} from '../../redux/modal.reducer';
-import {ORDER} from '../../redux/order.reducer';
-
-import TouchHover from '../general/TouchHover.component';
+import {getLists, SYSTEM_LIST} from '../../redux/list.reducer';
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -77,11 +68,6 @@ class WorkPage extends React.Component {
       f => f.id
     );
 
-    const remembered = this.props.shortListState.elements.reduce((map, e) => {
-      map[e.book.pid] = e;
-      return map;
-    }, {});
-
     return (
       <div className="work-page">
         <div className="row work-details">
@@ -133,72 +119,10 @@ class WorkPage extends React.Component {
                 style={{marginTop: 10, float: 'right'}}
               />
 
-              {!this.props.isLoggedIn && (
-                <CheckmarkButton
-                  label="Husk"
-                  marked={remembered[work.data.pid]}
-                  onClick={() => {
-                    this.props.dispatch({
-                      type: ON_SHORTLIST_TOGGLE_ELEMENT,
-                      element: {book: work.data},
-                      origin: 'Fra egen værkside'
-                    });
-                  }}
-                />
-              )}
-              {this.props.isLoggedIn && (
-                <CheckmarkMenu
-                  text="Husk"
-                  checked={remembered[work.data.pid]}
-                  onClick={() => {
-                    this.props.dispatch({
-                      type: ON_SHORTLIST_TOGGLE_ELEMENT,
-                      element: {book: work.data},
-                      origin: 'Fra egen værkside'
-                    });
-                  }}
-                  className="checkmark-menu-left"
-                >
-                  {this.props.systemLists.map(l => (
-                    <MenuItem
-                      key={l.data.id}
-                      text={l.data.title}
-                      checked={
-                        l.data.list.filter(
-                          element => element.book.pid === work.data.pid
-                        ).length > 0
-                      }
-                      onClick={() => {
-                        this.props.dispatch(
-                          toggleElementInList({book: work.data}, l.data.id)
-                        );
-                        this.props.dispatch(storeList(l.data.id));
-                      }}
-                    />
-                  ))}
-                  <MenuItem
-                    key="addToList"
-                    text="Tilføj til liste"
-                    onClick={() => {
-                      this.props.dispatch({
-                        type: OPEN_MODAL,
-                        modal: 'addToList',
-                        context: {book: work.data}
-                      });
-                    }}
-                  />
-                  <MenuItem
-                    key="order"
-                    text="Bestil"
-                    onClick={() => {
-                      this.props.dispatch({
-                        type: ORDER,
-                        book: work.data
-                      });
-                    }}
-                  />
-                </CheckmarkMenu>
-              )}
+              <CheckmarkMenu
+                book={{book: work.data}}
+                origin="Fra egen værkside"
+              />
             </div>
             <div
               id="collapsable-tags"
