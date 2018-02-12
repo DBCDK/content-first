@@ -40,11 +40,15 @@ class FrontPage extends React.Component {
           }
 
           const allFilters = getLeaves(this.props.filterState.filters);
-          const selectedFilters = this.props.filterState.beltFilters[belt.name].map(id => allFilters.find(filter => filter.id === id));
+          const selectedFilters = this.props.filterState.beltFilters[
+            belt.name
+          ].map(id => allFilters.find(filter => filter.id === id));
           const links = belt.links.map(beltName => {
             return {
               title: beltName,
-              filters: this.props.filterState.beltFilters[beltName].map(id => allFilters.find(filter => filter.id === id))
+              filters: this.props.filterState.beltFilters[beltName].map(id =>
+                allFilters.find(filter => filter.id === id)
+              )
             };
           });
 
@@ -73,7 +77,16 @@ class FrontPage extends React.Component {
               {!belt.requireLogin && (
                 <div className="row mb4">
                   <div className="col-xs-12">
-                    <Slider>{belt.works && belt.works.map(work => <WorkItem work={work} key={work.book.pid} origin={`Fra "${belt.name}"`} />)}</Slider>
+                    <Slider>
+                      {belt.works &&
+                        belt.works.map(work => (
+                          <WorkItem
+                            work={work}
+                            key={work.book.pid}
+                            origin={`Fra "${belt.name}"`}
+                          />
+                        ))}
+                    </Slider>
                   </div>
                 </div>
               )}

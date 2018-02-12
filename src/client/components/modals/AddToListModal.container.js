@@ -2,7 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Modal from './Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
-import {CUSTOM_LIST, getLists, addList, addElementToList, storeList} from '../../redux/list.reducer';
+import {
+  CUSTOM_LIST,
+  getLists,
+  addList,
+  addElementToList,
+  storeList
+} from '../../redux/list.reducer';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import _ from 'lodash';
 const defaultState = {
@@ -14,7 +20,9 @@ const defaultState = {
 class AddToListModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, defaultState, {list: this.props.customLists[0] || null});
+    this.state = Object.assign({}, defaultState, {
+      list: this.props.customLists[0] || null
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -32,9 +40,24 @@ class AddToListModal extends React.Component {
   };
   onDone = () => {
     if (this.props.works) {
-      this.props.works.forEach(work => this.props.dispatch(addElementToList({book: work.book, description: work.origin || ''}, this.state.list.data.id)));
+      this.props.works.forEach(work =>
+        this.props.dispatch(
+          addElementToList(
+            {book: work.book, description: work.origin || ''},
+            this.state.list.data.id
+          )
+        )
+      );
     } else {
-      this.props.dispatch(addElementToList({book: this.props.work.book, description: this.state.comment || this.props.work.origin || ''}, this.state.list.data.id));
+      this.props.dispatch(
+        addElementToList(
+          {
+            book: this.props.work.book,
+            description: this.state.comment || this.props.work.origin || ''
+          },
+          this.state.list.data.id
+        )
+      );
     }
     this.props.dispatch(storeList(this.state.list.data.id));
     this.close();
@@ -45,7 +68,13 @@ class AddToListModal extends React.Component {
 
   render() {
     return (
-      <Modal className="add-to-list--modal" header={'GEM I LISTE'} onClose={this.close} onDone={this.onDone} doneText="JA TAK, GEM NU">
+      <Modal
+        className="add-to-list--modal"
+        header={'GEM I LISTE'}
+        onClose={this.close}
+        onDone={this.onDone}
+        doneText="JA TAK, GEM NU"
+      >
         <div className="row">
           <strong className="col-xs-12">Hvilken liste vil du gemme i?</strong>
         </div>
@@ -55,7 +84,12 @@ class AddToListModal extends React.Component {
               {this.props.customLists.map(l => {
                 return (
                   <div key={l.data.id}>
-                    <input type="radio" name="list" checked={_.get(this.state, 'list.data.id') === l.data.id} onChange={() => this.setState({list: l})} />
+                    <input
+                      type="radio"
+                      name="list"
+                      checked={_.get(this.state, 'list.data.id') === l.data.id}
+                      onChange={() => this.setState({list: l})}
+                    />
                     {l.data.title}
                   </div>
                 );
@@ -71,21 +105,38 @@ class AddToListModal extends React.Component {
                   e.preventDefault();
                 }}
               >
-                <input type="text" name="add-list" placeholder="Opret ny liste" value={this.state.listName} onChange={e => this.setState({listName: e.target.value})} />
-                <input className="add-list--btn text-center" type="submit" value="+" />
+                <input
+                  type="text"
+                  name="add-list"
+                  placeholder="Opret ny liste"
+                  value={this.state.listName}
+                  onChange={e => this.setState({listName: e.target.value})}
+                />
+                <input
+                  className="add-list--btn text-center"
+                  type="submit"
+                  value="+"
+                />
               </form>
             </div>
           </div>
           <div className="col-xs-6">
             {this.props.works && (
-              <p className="mt2">{`Du er ved at gemme ${this.props.works.length} ${this.props.works.length > 1 ? 'bøger' : 'bog'} i '${_.get(this.state, 'list.data.title')}'`}</p>
+              <p className="mt2">{`Du er ved at gemme ${
+                this.props.works.length
+              } ${this.props.works.length > 1 ? 'bøger' : 'bog'} i '${_.get(
+                this.state,
+                'list.data.title'
+              )}'`}</p>
             )}
             {this.props.work && [
               <WorkItemSmall key="item" work={this.props.work} />,
               <textarea
                 key="textarea"
                 className="comment"
-                placeholder={this.props.work.origin || 'Skriv evt. en kommentar til bogen'}
+                placeholder={
+                  this.props.work.origin || 'Skriv evt. en kommentar til bogen'
+                }
                 value={this.state.comment}
                 onChange={e => this.setState({comment: e.target.value})}
               />
@@ -98,7 +149,10 @@ class AddToListModal extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    customLists: getLists(state.listReducer, {type: CUSTOM_LIST, owner: state.profileReducer.user.openplatformId})
+    customLists: getLists(state.listReducer, {
+      type: CUSTOM_LIST,
+      owner: state.profileReducer.user.openplatformId
+    })
   };
 };
 export default connect(mapStateToProps)(AddToListModal);

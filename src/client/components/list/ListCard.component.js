@@ -19,7 +19,13 @@ class ListCard extends React.PureComponent {
           <div className="list-card-covers-wrapper">
             {elements.length > 0 &&
               elements.slice(0, 3).map(e => {
-                return <BookCover key={e.book.pid} className="list-card-cover" book={e.book} />;
+                return (
+                  <BookCover
+                    key={e.book.pid}
+                    className="list-card-cover"
+                    book={e.book}
+                  />
+                );
               })}
           </div>
         </div>
@@ -43,7 +49,12 @@ class ListCard extends React.PureComponent {
         </div>
         <div className="list-card-bottom">
           <div style={{display: 'inline-block'}}>
-            <ProfileImage src={profile.src} name={profile.name} type="list" className="mb1" />
+            <ProfileImage
+              src={profile.src}
+              name={profile.name}
+              type="list"
+              className="mb1"
+            />
           </div>
           <div style={{float: 'right', marginTop: 5}}>
             <Likes value={14} />

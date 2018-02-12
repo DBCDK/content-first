@@ -31,7 +31,9 @@ describe('ListCreate', () => {
       links: {self: null}
     };
 
-    const tree = renderer.create(<ListCreator id="current-list-id" currentList={currentList} />).toJSON();
+    const tree = renderer
+      .create(<ListCreator id="current-list-id" currentList={currentList} />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -46,7 +48,9 @@ describe('ListCreate', () => {
       },
       links: {self: null}
     };
-    const tree = renderer.create(<ListCreator id="current-list-id" currentList={currentList} />).toJSON();
+    const tree = renderer
+      .create(<ListCreator id="current-list-id" currentList={currentList} />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 
@@ -61,7 +65,9 @@ describe('ListCreate', () => {
       },
       links: {self: null}
     };
-    const tree = renderer.create(<ListCreator id="current-list-id" currentList={currentList} />).toJSON();
+    const tree = renderer
+      .create(<ListCreator id="current-list-id" currentList={currentList} />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

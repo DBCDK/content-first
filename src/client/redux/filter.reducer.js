@@ -12,7 +12,11 @@ const defaultState = {
   expandedFilters: {},
   filters: {
     'Vælg stemning': taxonomy.stemning,
-    'Vælg længde': [{id: 100000, title: 'Kort', custom: true}, {id: 100001, title: 'Medium længde', custom: true}, {id: 100002, title: 'Laaaaaaaaaaaaaaaang', custom: true}],
+    'Vælg længde': [
+      {id: 100000, title: 'Kort', custom: true},
+      {id: 100001, title: 'Medium længde', custom: true},
+      {id: 100002, title: 'Laaaaaaaaaaaaaaaang', custom: true}
+    ],
     'Vælg kvalitetsparametre': [
       {id: 100003, title: 'Er på mange biblioteker', custom: true},
       {id: -2, title: 'Bibliotekaren anbefaler'},
@@ -60,9 +64,14 @@ const filterReducer = (state = defaultState, action) => {
       }
       const beltFilters = Object.assign({}, state.beltFilters);
       if (beltFilters[action.beltName].indexOf(filterId) >= 0) {
-        beltFilters[action.beltName] = beltFilters[action.beltName].filter(id => filterId !== id);
+        beltFilters[action.beltName] = beltFilters[action.beltName].filter(
+          id => filterId !== id
+        );
       } else {
-        beltFilters[action.beltName] = [...beltFilters[action.beltName], filterId];
+        beltFilters[action.beltName] = [
+          ...beltFilters[action.beltName],
+          filterId
+        ];
       }
       return Object.assign({}, state, {beltFilters});
     }
