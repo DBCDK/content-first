@@ -1,6 +1,6 @@
 import React from 'react';
 import BookCover from '../general/BookCover.component';
-import {CheckmarkConnected} from '../general/CheckmarkConnected.component';
+import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import TouchHover from '../general/TouchHover.component';
 
 class WorkItem extends React.Component {

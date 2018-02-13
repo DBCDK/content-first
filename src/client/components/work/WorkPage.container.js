@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from './WorkItemConnected.component';
 
-import {CheckmarkConnected} from '../general/CheckmarkConnected.component';
+import CheckmarkConnected from '../general/CheckmarkConnected.component';
 
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
