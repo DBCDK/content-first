@@ -10,6 +10,7 @@ import FilterPage from './components/filter/FilterPage.container';
 import SearchPage from './components/search/SearchPage.container';
 import WorkPage from './components/work/WorkPage.container';
 import ProfilePage from './components/profile/ProfilePage.container';
+import Bookcase from './components/bookcase/Bookcase.component';
 import TopBar from './components/top/TopBar.component';
 import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
@@ -50,6 +51,8 @@ class App extends Component {
       currentPage = <ShortList />;
     } else if (pathSplit[1] === 'søg') {
       currentPage = <SearchPage />;
+    } else if (pathSplit[1] === 'bogreol') {
+      currentPage = <Bookcase />;
     } else {
       // check if current path matches a belt
       this.props.beltsState.belts.forEach(belt => {
