@@ -1,0 +1,37 @@
+section {
+  position: relative;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+section img {
+  width: 100%;
+  height: auto;
+}
+
+section div.row {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 15px;
+  top: 0;
+  background: rgba(255, 0, 0, 0.75);
+}
+
+section .row .celeb {
+  background-color: #ff0;
+  height: 100%;
+}
+
+section .row .celeb .celeb-img {
+  margin-top: 10%;
+}
+
+section .row .celeb .celeb-img img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 50%;
+}
+
+section .row .celeb .celeb-description {
+}
