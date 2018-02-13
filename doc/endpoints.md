@@ -568,3 +568,68 @@ If _offset_ is not present in the query, it defaults to 0. If _limit_ is not pre
 ### `GET /hejmdal/?token=`_token_`&id=`_id_
 
 Redirection point for Hejmdal to call after successful user login. The result is a cookie that tells the service that which user is logged in, and a rediction to `/`
+
+## Generic Objects
+
+TO BE IMPLEMENTED 
+
+Stored in community service, to be used for lists, comments, ...
+
+### `POST /object` or `PUT /object/$id`
+
+Stores an object in the community service. 
+
+If no id is supplied, it creates a new object. If an id is supplied, it must exists, and the user must have write-permission to it.
+
+If the supplied object has a `_rev` property, it will abort with a conflict, if it does not match the current revision of the document.
+
+When creating a new object, the logged in user will become the owner of the object. Only owners, and admins can write to the objects.
+
+Sample result:
+
+```
+{data: {"ok": true, "id": "8d7eee0d-1e9d-4f03-a2a8-2900fe9d252b", "rev": "79dc11d5-b61d4b43"}}
+{data: {"error":"conflict"}, errors: [...]}
+{data: {"error":"not found"}, errors: [...]}
+{data: {"error":"forbidden"}, errors: [...]}
+
+```
+
+### `GET /object/$id`
+
+Retrieves an object
+Only readable by owner and admin unless the object has the property `{"public": true}`.
+
+The following properties is added to the object:
+
+- `_id` object id
+- `_rev` current revision
+- `owner` id of the object owner.
+
+### `GET /object/find?type=`_type_\[`&key=`_key_\]\[`&owner=`_owner_\]\[`&limit=`_limit_\]\[`&offset=`_offset_\]
+
+Generic search. Only returns that are either owned by the logged in user, or public.
+Either `key` or `owner` should be specified, not both.
+
+So for example, if we have a comment object:
+
+```
+{
+    type: 'comment',
+    content: 'some text',
+    about: '123',
+    key: '123',
+    public: true
+}
+```
+
+It would be found by `GET /object/search?type=comment&tag=123`.
+
+
+### ~~`POST /lists/addElement?listId=`_listId_`&elementId=`_elementId_~~
+
+Not needed, to add an item to another users list, just create an object of `"type":"LIST_ITEM"` and `"key":` the id of the list.
+
+List items are found by searching for `LIST_ITEM`s with the list-id as key. The list object is only there for ordering of items / meta data. Items not in the list object, is just appended to the end.
+
+

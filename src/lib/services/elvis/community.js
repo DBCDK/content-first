@@ -20,6 +20,7 @@ const schemaElvisSuccessOut = absSchemaPath('elvis-success-out');
 const constants = require('./community-constants')();
 const {validating, validatingInput} = require('__/json');
 const _ = require('lodash');
+const uuidGenerator = require('uuid');
 
 /**
  * DBC Community Service (Elvis).
@@ -278,6 +279,175 @@ class Community {
         return reject(error);
       }
     });
+  }
+
+  // TODO move around/refactor
+  async query(q) {
+    const queryUrl = await this.gettingQueryUrl();
+    const {body} = await request.post(queryUrl).send(q);
+    if (!body.data) {
+      throw new Error('Expected body.data, body=' + JSON.stringify(body));
+    }
+    return body.data;
+  }
+  async findObjects(query, user = {}) {
+    let result;
+    if (!query.type) {
+      throw new Error('Query Error');
+    }
+    const entities = {};
+    if (query.owner) {
+      entities['attributes.owner'] = query.owner;
+      if (user.openplatformId !== query.owner && !user.admin) {
+        return {
+          data: {error: 'forbidden'},
+          errors: [{status: 403, message: 'forbidden'}]
+        };
+      }
+    } else if (query.key) {
+      entities['attributes.key'] = query.key;
+      entities['attributes.public'] = true;
+    } else {
+      throw new Error('Query Error');
+    }
+    try {
+      result = await this.query({
+        Entities: entities,
+        SortBy: 'modified_epoch',
+        Order: 'descending',
+        Limit: +query.limit || 10,
+        Offset: +query.offset || 0,
+        Include: {
+          json: 'contents'
+        }
+      });
+      result = result.List.map(o => JSON.parse(o.json));
+    } catch (e) {
+      throw e;
+    }
+    return {data: result};
+  }
+  async putObject({object, user}) {
+    object = Object.assign({}, object);
+
+    let prevObject;
+
+    if (object._id) {
+      try {
+        prevObject = await this.query({
+          Entity: {
+            type: 'object',
+            'attributes.id': object._id
+          },
+          Include: {
+            id: 'id',
+            owner: {
+              Profile: {id: '^owner_id'},
+              Include: 'attributes.openplatform_id'
+            },
+            owner_id: 'owner_id',
+            json: 'contents'
+          }
+        });
+        prevObject.json = JSON.parse(prevObject.json);
+      } catch (e) {
+        return {
+          data: {error: 'not found'},
+          errors: [{status: 404, message: 'not found'}]
+        };
+      }
+    } else {
+      object._id = uuidGenerator.v1();
+    }
+
+    if (
+      !user.admin &&
+      prevObject &&
+      prevObject.json.owner !== user.openplatformId
+    ) {
+      return {
+        data: {error: 'forbidden'},
+        errors: [{status: 403, message: 'forbidden'}]
+      };
+    }
+    if (object._rev && prevObject && object._rev !== prevObject.json._rev) {
+      return {
+        data: {error: 'conflict'},
+        errors: [{status: 409, message: 'conflict'}]
+      };
+    }
+
+    object._rev =
+      Date.now() +
+      '-' +
+      Math.random()
+        .toString(36)
+        .slice(2);
+    object.owner = (prevObject && prevObject.json.owner) || user.openplatformId;
+
+    const entity = {
+      type: 'object',
+      contents: JSON.stringify(object),
+      attributes: {
+        type: typeof object.type === 'string' ? object.type : '',
+        key: typeof object.key === 'string' ? object.key : '',
+        owner: object.owner,
+        public: !!object.public,
+        id: object._id
+      }
+    };
+
+    if (prevObject) {
+      entity.modified_by = user.id;
+      const entityUrl = await this.gettingEntityIdUrl(prevObject.id);
+      await request.put(entityUrl).send(entity);
+    } else {
+      entity.owner_id = prevObject ? prevObject.owner_id : user.id;
+      entity.title = '';
+      const entityUrl = await this.gettingPostEntityUrl();
+      await request.post(entityUrl).send(entity);
+    }
+    return {data: {ok: true, id: object._id, rev: object._rev}};
+  }
+  async getObjectById(id, user = {}) {
+    let result;
+    try {
+      result = JSON.parse(
+        (await this.query({
+          Entity: {'attributes.id': id},
+          Include: {
+            json: 'contents'
+          }
+        })).json
+      );
+    } catch (e) {
+      // TODO load/transform unmigrated data here
+      /*
+      try ...
+      return await this.query({
+        Entity: {'attributes.uuid': id},
+        Include: {
+        ...
+          owner: {
+            Profile: {id: '^owner_id'},
+            Include: 'attributes.openplatform_id'
+          }
+        }
+      })
+      catch ...
+      */
+      return {
+        data: {error: 'not found'},
+        errors: [{status: 404, message: 'not found'}]
+      };
+    }
+    if (!result.public && !user.admin && user.openplatformId !== result.owner) {
+      return {
+        data: {error: 'forbidden'},
+        errors: [{status: 403, message: 'forbidden'}]
+      };
+    }
+    return {data: result};
   }
 
   gettingListEntityByUuid(uuid) {
