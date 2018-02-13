@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CheckMarkConnected renders initial component 1`] = `
+exports[`CheckmarkConnected renders initial component 1`] = `
 <span
   className="btn checkmark-btn"
   onClick={[Function]}
@@ -29,7 +29,7 @@ exports[`CheckMarkConnected renders initial component 1`] = `
 </span>
 `;
 
-exports[`CheckMarkConnected renders initial component with loggedIn user 1`] = `
+exports[`CheckmarkConnected renders initial component with loggedIn user 1`] = `
 <div
   className="checkmark-menu"
   onBlur={[Function]}

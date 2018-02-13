@@ -1,6 +1,6 @@
 import React from 'react';
 import BookCover from '../general/BookCover.component';
-import CheckmarkMenu from '../general/CheckmarkConnected.component';
+import {CheckmarkConnected} from '../general/CheckmarkConnected.component';
 import TouchHover from '../general/TouchHover.component';
 
 class WorkItem extends React.Component {
@@ -31,7 +31,10 @@ class WorkItem extends React.Component {
           >
             <BookCover book={this.props.work.book} />
           </TouchHover>
-          <CheckmarkMenu book={this.props.work} origin={this.props.origin} />
+          <CheckmarkConnected
+            book={this.props.work}
+            origin={this.props.origin}
+          />
         </TouchHover>
         <div className="metakompas-description">
           {this.props.showTaxonomy &&

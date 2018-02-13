@@ -1,13 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import {CheckMarkConnected} from '../CheckmarkConnected.component';
+import {CheckmarkConnected} from '../CheckmarkConnected.component';
 
-describe('CheckMarkConnected', () => {
+describe('CheckmarkConnected', () => {
   it('renders initial component', () => {
     const tree = renderer
       .create(
-        <CheckMarkConnected
+        <CheckmarkConnected
           shortListState={{elements: []}}
           isLoggedIn={false}
           book={{book: {pid: '0123'}}}
@@ -20,7 +20,7 @@ describe('CheckMarkConnected', () => {
   it('renders initial component with loggedIn user', () => {
     const tree = renderer
       .create(
-        <CheckMarkConnected
+        <CheckmarkConnected
           shortListState={{elements: []}}
           isLoggedIn={true}
           book={{book: {pid: '0123'}}}

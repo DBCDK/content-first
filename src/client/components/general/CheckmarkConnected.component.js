@@ -18,7 +18,7 @@ import {ORDER} from '../../redux/order.reducer';
   <CheckMarkConnected book={{book: work.data}} origin="Fra egen værkside"/>
 */
 
-export class CheckMarkConnected extends React.PureComponent {
+export class CheckmarkConnected extends React.PureComponent {
   // Toggle remember (Husk) work
   shortlistToggle = (book, origin) => {
     this.props.dispatch({
@@ -121,4 +121,4 @@ export default connect(
       isLoggedIn: state.profileReducer.user.isLoggedIn
     };
   }
-)(CheckMarkConnected);
+)(CheckmarkConnected);

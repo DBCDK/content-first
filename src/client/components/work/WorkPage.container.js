@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from './WorkItemConnected.component';
 
-import CheckmarkMenu from '../general/CheckmarkConnected.component';
+import {CheckmarkConnected} from '../general/CheckmarkConnected.component';
 
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
@@ -119,7 +119,7 @@ class WorkPage extends React.Component {
                 style={{marginTop: 10, float: 'right'}}
               />
 
-              <CheckmarkMenu
+              <CheckmarkConnected
                 book={{book: work.data}}
                 origin="Fra egen værkside"
               />
