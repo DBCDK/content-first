@@ -1,5 +1,4 @@
-import openplatform from 'openplatform';
-
+import request from 'superagent';
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
 import {
@@ -43,14 +42,6 @@ import {
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {
-  ORDER,
-  ORDER_START,
-  ORDER_SUCCESS,
-  ORDER_FAILURE,
-  PICKUP_BRANCHES,
-  AVAILABILITY
-} from './order.reducer';
 import {saveProfiles, getProfiles} from '../utils/profile';
 import {
   saveList,
@@ -250,104 +241,37 @@ export const searchMiddleware = store => next => action => {
   }
 };
 
-async function openplatformLogin(state) {
-  if (!openplatform.connected()) {
-    const token = state.profileReducer.user.openplatformToken;
-    if (!token) {
-      throw new Error('missing openplatformToken');
+const logged = {
+  ON_LOCATION_CHANGE: ({type, path}) => ({type, path}),
+  ON_SHORTLIST_TOGGLE_ELEMENT: ({type, element, origin}) => ({
+    type,
+    pid: element.book.pid,
+    origin
+  }),
+  LIST_TOGGLE_ELEMENT: ({type, element, id}) => ({
+    type,
+    pid: element.book.pid,
+    id
+  }),
+  ORDER: ({type, book}) => ({type, pid: book.pid}),
+  ORDER_SUCCESS: o => o,
+  ORDER_FAILURE: o => o,
+  LOG_ERROR: o => o,
+  LOG: o => o
+};
+export const logMiddleware = store => next => action => {
+  if (logged[action.type]) {
+    try {
+      request
+        .post('/v1/log')
+        .send(logged[action.type](action, store))
+        .end();
+    } catch (e) {
+      request
+        .post('/v1/log')
+        .send({type: action.type, error: 'CLIENT_LOG_ERROR', msg: String(e)})
+        .end();
     }
-    await openplatform.connect(token);
   }
-}
-
-export const orderMiddleware = store => next => action => {
-  switch (action.type) {
-    case ORDER: {
-      const state = store.getState();
-
-      if (!state.profileReducer.user.openplatformToken) {
-        store.dispatch({
-          type: OPEN_MODAL,
-          modal: 'login',
-          context: {
-            title: 'BESTIL',
-            reason: 'Du skal logge ind for at bestille bøger.'
-          }
-        });
-        return next(action);
-      }
-
-      store.dispatch({type: OPEN_MODAL, modal: 'order'});
-
-      if (state.orderReducer.get('pickupBranches').size === 0) {
-        (async () => {
-          await openplatformLogin(state);
-
-          let user;
-          try {
-            user = await openplatform.user();
-          } catch (e) {
-            // Dummy as we do not have proper logged in users yet
-            user = {agency: '710100'};
-          }
-          const agency = user.agency;
-
-          if (state.orderReducer.get('pickupBranches').size === 0) {
-            store.dispatch({
-              type: PICKUP_BRANCHES,
-              branches: await openplatform.libraries({
-                agencyIds: [agency],
-                fields: ['branchId', 'branchName']
-              })
-            });
-          }
-        })();
-      }
-
-      if (
-        !state.orderReducer.getIn(
-          ['orders', action.book.pid, 'availability'],
-          false
-        )
-      ) {
-        (async () => {
-          await openplatformLogin(state);
-          const availability = await openplatform.availability({
-            pid: action.book.pid
-          });
-          store.dispatch({
-            type: AVAILABILITY,
-            pid: action.book.pid,
-            availability
-          });
-        })();
-      }
-      return next(action);
-    }
-    case ORDER_START: {
-      (async () => {
-        try {
-          await openplatform.order({
-            pids: [action.pid],
-            library: action.branch
-          });
-
-          store.dispatch({
-            type: ORDER_SUCCESS,
-            pid: action.pid
-          });
-        } catch (e) {
-          // eslint-disable-next-line
-          console.log('Error on order:', e);
-          store.dispatch({
-            type: ORDER_FAILURE,
-            pid: action.pid
-          });
-        }
-      })();
-      return next(action);
-    }
-    default:
-      return next(action);
-  }
+  return next(action);
 };

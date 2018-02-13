@@ -9,8 +9,9 @@ import {
   shortListMiddleware,
   listMiddleware,
   searchMiddleware,
-  orderMiddleware
+  logMiddleware
 } from './client/redux/middleware';
+import {orderMiddleware} from './client/redux/order.middleware';
 
 const store = createStore([
   requestMiddleware,
@@ -18,6 +19,7 @@ const store = createStore([
   shortListMiddleware,
   listMiddleware,
   searchMiddleware,
+  logMiddleware,
   orderMiddleware
 ]);
 ReactDOM.render(
