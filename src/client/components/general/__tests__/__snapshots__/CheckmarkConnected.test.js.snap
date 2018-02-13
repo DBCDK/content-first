@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckMarkConnected renders initial component 1`] = `
+<span
+  className="btn checkmark-btn"
+  onClick={[Function]}
+>
+  <span
+    className="checkmark-btn-label"
+    style={
+      Object {
+        "paddingRight": "0px",
+      }
+    }
+  >
+    Husk
+  </span>
+  <div
+    className=""
+    style={
+      Object {
+        "display": "inline-block",
+        "fontSize": "10px",
+        "paddingLeft": "10px",
+        "width": "20px",
+      }
+    }
+  />
+</span>
+`;
+
+exports[`CheckMarkConnected renders initial component with loggedIn user 1`] = `
+<div
+  className="checkmark-menu"
+  onBlur={[Function]}
+  tabIndex="1"
+>
+  <div>
+    <span
+      className="checkmark-menu--expand-btn"
+    >
+      <span
+        className="btn btn-default"
+        onClick={[Function]}
+      >
+        Husk
+      </span>
+      <span
+        className="btn btn-default"
+        onClick={[Function]}
+      >
+        <span
+          className="glyphicon glyphicon-option-vertical"
+        />
+      </span>
+    </span>
+  </div>
+  <div
+    className="checkmark-menu--content list-group"
+  />
+</div>
+`;

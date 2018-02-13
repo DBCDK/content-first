@@ -15,31 +15,23 @@ import {ORDER} from '../../redux/order.reducer';
 
 /*
   Class Connected use EXAMPLE:
-  <CheckmarkMenu book={{book: work.data}} origin="Fra egen værkside"/>
+  <CheckMarkConnected book={{book: work.data}} origin="Fra egen værkside"/>
 */
 
 export class CheckMarkConnected extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.shortlistToggle = this.shortlistToggle.bind(this);
-    this.toggleInList = this.toggleInList.bind(this);
-    this.openModal = this.openModal.bind(this);
-    this.order = this.order.bind(this);
-  }
-
   // Toggle remember (Husk) work
-  shortlistToggle(book, origin) {
+  shortlistToggle = (book, origin) => {
     this.props.dispatch({
       type: ON_SHORTLIST_TOGGLE_ELEMENT,
       element: book,
       origin: origin
     });
-  }
+  };
 
-  toggleInList(book, id) {
+  toggleInList = (book, id) => {
     this.props.dispatch(toggleElementInList(book, id));
     this.props.dispatch(storeList(id));
-  }
+  };
   // Open save-to-my-lists modal
   openModal = book => {
     this.props.dispatch({
@@ -62,20 +54,9 @@ export class CheckMarkConnected extends React.PureComponent {
       return map;
     }, {});
 
-    // Define button if user is NOT loggedIn
-    var button = (
-      <CheckmarkButton
-        label="Husk"
-        marked={remembered[this.props.book.book.pid]}
-        onClick={() => {
-          this.shortlistToggle(this.props.book, this.props.origin);
-        }}
-      />
-    );
-
     // Define button if user is loggedIn
     if (this.props.isLoggedIn) {
-      button = (
+      return (
         <CheckmarkMenu
           text="Husk"
           checked={remembered[this.props.book.book.pid]}
@@ -115,8 +96,15 @@ export class CheckMarkConnected extends React.PureComponent {
       );
     }
 
-    // Return button var
-    return button;
+    return (
+      <CheckmarkButton
+        label="Husk"
+        marked={remembered[this.props.book.book.pid]}
+        onClick={() => {
+          this.shortlistToggle(this.props.book, this.props.origin);
+        }}
+      />
+    );
   }
 }
 
