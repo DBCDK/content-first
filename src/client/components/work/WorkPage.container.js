@@ -1,15 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from './WorkItemConnected.component';
-import CheckmarkButton from '../general/CheckmarkButton.component';
+
+import CheckmarkConnected from '../general/CheckmarkConnected.component';
+
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Slider from '../belt/Slider.component';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
-import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
 import {getLeaves} from '../../utils/taxonomy';
+
+import {getLists, SYSTEM_LIST} from '../../redux/list.reducer';
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -65,11 +68,6 @@ class WorkPage extends React.Component {
       f => f.id
     );
 
-    const remembered = this.props.shortListState.elements.reduce((map, e) => {
-      map[e.book.pid] = e;
-      return map;
-    }, {});
-
     return (
       <div className="work-page">
         <div className="row work-details">
@@ -120,16 +118,10 @@ class WorkPage extends React.Component {
                 book={work.data}
                 style={{marginTop: 10, float: 'right'}}
               />
-              <CheckmarkButton
-                label="Husk"
-                marked={remembered[work.data.pid]}
-                onClick={() => {
-                  this.props.dispatch({
-                    type: ON_SHORTLIST_TOGGLE_ELEMENT,
-                    element: {book: work.data},
-                    origin: 'Fra egen værkside'
-                  });
-                }}
+
+              <CheckmarkConnected
+                book={{book: work.data}}
+                origin="Fra egen værkside"
               />
             </div>
             <div
@@ -234,7 +226,13 @@ export default connect(
     return {
       workState: state.workReducer,
       filterState: state.filterReducer,
-      shortListState: state.shortListReducer
+      shortListState: state.shortListReducer,
+      systemLists: getLists(state.listReducer, {
+        type: SYSTEM_LIST,
+        owner: state.profileReducer.user.openplatformId,
+        sort: true
+      }),
+      isLoggedIn: state.profileReducer.user.isLoggedIn
     };
   }
 )(WorkPage);

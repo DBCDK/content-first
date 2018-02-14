@@ -140,6 +140,12 @@
   padding-left: 40px;
   margin-bottom: 40px;
 }
+
+.work-details .info .checkmark-menu > div:first-child {
+  text-align: left;
+  margin-top: 10px;
+}
+
 .work-details .title {
   font-family: 'Lora', serif;
   color: black;
