@@ -44,6 +44,8 @@
 @import './components/bookcover.css';
 @import './components/listcard.css';
 @import './components/bookcase.css';
+@import './components/pulse.css';
+@import './components/rollover.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */
 @import '~slick-carousel/slick/slick.css';

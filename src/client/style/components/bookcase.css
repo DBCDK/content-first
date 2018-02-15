@@ -1,7 +1,10 @@
 section {
   position: relative;
-  margin-right: -15px;
-  margin-left: -15px;
+}
+
+section .bookswrap {
+  position: relative;
+  height: 100%;
 }
 
 section img {
@@ -15,11 +18,9 @@ section div.row {
   height: 100%;
   left: 15px;
   top: 0;
-  background: rgba(255, 0, 0, 0.75);
 }
 
 section .row .celeb {
-  background-color: #ff0;
   height: 100%;
 }
 
@@ -28,10 +29,27 @@ section .row .celeb .celeb-img {
 }
 
 section .row .celeb .celeb-img img {
-  max-width: 300px;
+  max-width: 250px;
   height: auto;
   border-radius: 50%;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.25);
 }
 
 section .row .celeb .celeb-description {
+  margin-top: 2%;
+}
+
+section .row .celeb .celeb-description h1 {
+  font-family: var(--primary-font);
+  color: var(--darkgrey);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+section .row .celeb .celeb-description p {
+  max-width: 250px;
+  margin: auto;
+  font-family: var(--secondary-font);
+  color: var(--darkgrey);
+  font-size: 14px;
 }

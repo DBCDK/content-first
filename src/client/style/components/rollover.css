@@ -1,0 +1,70 @@
+.rollover-display {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translate(-100%, 0%) !important;
+  transition: all 0.15s ease-in !important;
+}
+
+.rollover {
+  position: absolute;
+  width: 300px;
+  height: 350px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.175);
+  top: 38%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-100px, 0%);
+  z-index: 2;
+  transition: all 0.2s ease-out;
+  margin-top: -35px;
+  margin-left: -25px;
+}
+
+.rollover .rollover-close {
+  position: absolute;
+  margin: 1em;
+  cursor: pointer;
+  width: 10px;
+  right: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.rollover .rollover-caret {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  right: -6px;
+  top: 25px;
+}
+
+.rollover .rollover-img {
+  padding: 30px 0 0 30px;
+}
+
+.rollover .rollover-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.rollover .rollover-title {
+  padding-top: 30px;
+}
+
+.rollover .rollover-title h1 {
+  font-family: var(--primary-font);
+  color: var(--darkgrey);
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 0;
+}
+.rollover .rollover-description p {
+  font-family: var(--secondary-font);
+  color: var(--darkgrey);
+  font-size: 14px;
+}
