@@ -5,6 +5,14 @@
       "required": false,
       "type": "string"
     },
+    "image": {
+      "required": false,
+      "type": "string"
+    },
+    "acceptedTerms": {
+      "required": false,
+      "type": "boolean"
+    },
     "shortlist": {
       "required": false,
       "type": "array"

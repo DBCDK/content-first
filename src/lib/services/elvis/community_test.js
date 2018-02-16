@@ -863,6 +863,8 @@ describe('Community connector', () => {
           id: profileId,
           name: 'Jens Godfredsen',
           attributes: {
+            image: 'some_image_id',
+            acceptedTerms: true,
             openplatform_id: '61dd1242cf774818a97a4ca2f3e633b1',
             openplatform_token: 'myToken',
             tastes: [
@@ -885,6 +887,8 @@ describe('Community connector', () => {
       openplatformId: '61dd1242cf774818a97a4ca2f3e633b1',
       openplatformToken: 'myToken',
       name: 'Jens Godfredsen',
+      image: 'some_image_id',
+      acceptedTerms: true,
       roles: [],
       shortlist: [{pid: '870970-basis-22629344', origin: 'en-god-bog'}],
       profiles: [
