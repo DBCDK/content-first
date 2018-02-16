@@ -1,0 +1,29 @@
+.image-upload {
+  text-align: center;
+  font-family: var(--secondary-font);
+}
+
+.image-upload input {
+  display: none;
+}
+.image-upload--zone {
+  border: 1px solid lightgrey;
+  cursor: pointer;
+  margin: auto;
+}
+
+.image-upload .glyphicon {
+  color: lightgrey;
+  display: block;
+}
+
+.image-upload .glyphicon-user {
+  margin-top: 35px;
+  margin-bottom: 15px;
+  font-size: 70px;
+  display: block;
+}
+
+.image-upload .glyphicon-plus {
+  font-size: 30px;
+}

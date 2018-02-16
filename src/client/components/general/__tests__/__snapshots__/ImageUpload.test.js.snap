@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image Upload render function Add image 1`] = `
+<ImageUpload
+  onFile={[Function]}
+  previewImage="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+>
+  <div
+    className="image-upload"
+  >
+    <label>
+      <div
+        className="image-upload--zone"
+        style={
+          Object {
+            "height": "150px",
+            "overflow": "hidden",
+            "width": "150px",
+          }
+        }
+      >
+        <img
+          alt="User profile"
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        />
+        <div
+          className="droppable-image-overlay"
+        />
+      </div>
+      <h4
+        className="title"
+      >
+        Upload billede
+      </h4>
+      <Error />
+      <input
+        accept="image/png, image/jpeg"
+        className="droppable-image-field--file-input"
+        onChange={[Function]}
+        type="file"
+      />
+    </label>
+  </div>
+</ImageUpload>
+`;
+
+exports[`Image Upload render function Add preview image 1`] = `
+<div
+  className="image-upload"
+>
+  <label>
+    <div
+      className="image-upload--zone"
+      style={
+        Object {
+          "height": "150px",
+          "overflow": "hidden",
+          "width": "150px",
+        }
+      }
+    >
+      <img
+        alt="User profile"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      />
+      <div
+        className="droppable-image-overlay"
+      >
+        
+      </div>
+    </div>
+    <h4
+      className="title"
+    >
+      Upload billede
+    </h4>
+    <input
+      accept="image/png, image/jpeg"
+      className="droppable-image-field--file-input"
+      name={undefined}
+      onChange={[Function]}
+      type="file"
+    />
+  </label>
+</div>
+`;
+
+exports[`Image Upload render function Add spinner on loading 1`] = `
+<div
+  className="image-upload"
+>
+  <label>
+    <div
+      className="image-upload--zone"
+      style={
+        Object {
+          "height": "150px",
+          "overflow": "hidden",
+          "width": "150px",
+        }
+      }
+    >
+      <Spinner />
+      <div
+        className="droppable-image-overlay"
+      >
+        
+      </div>
+    </div>
+    <h4
+      className="title"
+    >
+      Upload billede
+    </h4>
+    <input
+      accept="image/png, image/jpeg"
+      className="droppable-image-field--file-input"
+      name={undefined}
+      onChange={[Function]}
+      type="file"
+    />
+  </label>
+</div>
+`;
+
+exports[`Image Upload render function renders an image upload form 1`] = `
+<div
+  className="image-upload"
+>
+  <label>
+    <div
+      className="image-upload--zone"
+      style={
+        Object {
+          "height": "150px",
+          "overflow": "hidden",
+          "width": "150px",
+        }
+      }
+    >
+      <div>
+        <span
+          className="glyphicon glyphicon-user"
+        />
+      </div>
+      <div
+        className="droppable-image-overlay"
+      >
+        
+      </div>
+    </div>
+    <h4
+      className="title"
+    >
+      Upload billede
+    </h4>
+    <input
+      accept="image/png, image/jpeg"
+      className="droppable-image-field--file-input"
+      name={undefined}
+      onChange={[Function]}
+      type="file"
+    />
+  </label>
+</div>
+`;
