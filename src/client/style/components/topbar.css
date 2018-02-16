@@ -2,7 +2,6 @@
   position: fixed;
   z-index: 3000;
   background: white;
-  width: inherit;
   padding-top: 5px;
   padding-bottom: 5px;
   /*border-bottom: gray solid 1px;*/
@@ -32,4 +31,18 @@
   display: inline-block;
   margin-left: 25px;
   vertical-align: middle;
+}
+
+.topbar .inline {
+  display: inline-block;
+}
+
+.topbar .default-user {
+  border-radius: 50%;
+  border: 1px solid;
+  display: inline-block;
+  padding: 7px;
+  vertical-align: middle;
+  font-size: 18px;
+  color: var(--greybrown);
 }
