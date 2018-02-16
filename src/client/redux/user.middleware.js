@@ -38,6 +38,9 @@ export const userMiddleware = store => next => action => {
       next(action);
       return (async () => {
         try {
+          if (!action.user) {
+            return;
+          }
           await openplatformLogin(store.getState());
           const user = await openplatform.user();
           const libs = await openplatform.libraries({
@@ -49,7 +52,10 @@ export const userMiddleware = store => next => action => {
             agencyName: libs[0].agencyName
           });
         } catch (e) {
-          console.error(e);
+          store.dispatch({
+            type: ADD_USER_AGENCY,
+            agencyName: ''
+          });
         }
       })();
     case SAVE_USER_PROFILE:

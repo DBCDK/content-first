@@ -35,7 +35,7 @@ describe('UserProfileForm', () => {
           updateProfile={updateProfile}
         />
       );
-      const form = tree
+      tree
         .find('form')
         .first()
         .simulate('submit');

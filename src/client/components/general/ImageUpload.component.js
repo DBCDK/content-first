@@ -19,7 +19,7 @@ const Error = ({error, name}) => {
       </div>
     );
   }
-  if (error.status === undefined || error.status === 500) {
+  if (!error.status || error.status === 500) {
     return (
       <div className="error">
         Der er sket en fejl. {name.toUpperCase()} kan ikke uploades.
