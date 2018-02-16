@@ -151,7 +151,7 @@ const mapStateToProps = state => {
   return {
     customLists: getLists(state.listReducer, {
       type: CUSTOM_LIST,
-      owner: state.profileReducer.user.openplatformId
+      owner: state.userReducer.openplatformId
     })
   };
 };

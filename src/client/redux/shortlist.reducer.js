@@ -1,5 +1,5 @@
 import {differenceBy} from 'lodash';
-import {ON_LOGOUT_RESPONSE} from './profile.reducer';
+import {ON_LOGOUT_RESPONSE} from './user.reducer';
 export const ON_SHORTLIST_ADD_ELEMENT = 'ON_SHORTLIST_ADD_ELEMENT';
 export const SHORTLIST_UPDATE_ORIGIN = 'SHORTLIST_UPDATE_ORIGIN';
 export const ON_SHORTLIST_REMOVE_ELEMENT = 'ON_SHORTLIST_REMOVE_ELEMENT';
