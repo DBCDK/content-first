@@ -10,14 +10,14 @@ export default class RollOver extends React.Component {
     };
   }
 
-  hideRollOver() {
-    this.setState({visible: false});
-  }
-
   componentWillReceiveProps(nextProps) {
     if (!this.props.loading == true && nextProps.loading == false) {
       this.setState({visible: true});
     }
+  }
+
+  hideRollOver() {
+    this.setState({visible: false});
   }
 
   render() {
@@ -47,20 +47,44 @@ export default class RollOver extends React.Component {
           <div className="col-xs-4 rollover-img">
             <BookCover book={this.props.book} />
           </div>
+
           <div className="col-xs-8 text-left rollover-text">
             <div className="col-xs-12 rollover-title">
-              <h1 id="rollover-title">{this.props.book.title}</h1>
+              <h1>{this.props.book.title}</h1>
+            </div>
+            <div className="col-xs-12 rollover-creator">
+              <h2>{this.props.book.creator}</h2>
             </div>
             <div className="col-xs-12 rollover-description">
-              <p id="rollover-desc">{description}</p>
+              <p>{description}</p>
             </div>
           </div>
-          <div className="col-xs-12 rollover-button">
-            <CheckmarkConnected
-              book={{book: {pid: this.props.book.pid}}}
-              origin="Fra bogreol"
+
+          <div className="col-xs-12 seperator-line" />
+
+          <div className="col-xs-12 rollover-bottom">
+            <div className="col-xs-8 col-xs-offset-4">
+              <CheckmarkConnected
+                book={{book: {pid: this.props.book.pid}}}
+                origin="Fra bogreol"
+              />
+            </div>
+            <span
+              class="glyphicon glyphicon-chevron-right"
+              aria-hidden="true"
+              onClick={() => {
+                this.props.onClick('next');
+              }}
+            />
+            <span
+              class="glyphicon glyphicon-chevron-left"
+              aria-hidden="true"
+              onClick={() => {
+                this.props.onClick('prev');
+              }}
             />
           </div>
+          <div className="clear" />
         </div>
       </div>
     );
