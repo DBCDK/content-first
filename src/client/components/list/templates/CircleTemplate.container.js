@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getListById} from '../../../redux/list.reducer';
 import BookCover from '../../general/BookCover.component';
-import ProfileImage from '../../general/ProfileImage.component';
 import PopOver from '../../general/PopOver.component';
-import {Comments, Likes, Share} from '../../general/Icons';
+import SimpleList from './SimpleList.component';
 
 const CIRCLE_WIDTH_PERCENTAGE = 0.9; // percentage of parent width
 const CIRCLE_OFFSET = 90; // Offset in degrees (0-360) relative to center top of circle, at which first element occurs.
@@ -101,22 +100,14 @@ export class CircleTemplate extends React.Component {
           </div>
         </div>
         <div className="col-xs-12 text-left mt4 mb4">
-          <div className="col-xs-2 text-center">
-            <ProfileImage src={profile.src} name={profile.name} />
-          </div>
-          <div className="list-description col-xs-5">
-            {this.props.list && this.props.list.data.description}
-          </div>
-          <div className="social col-xs-5 col-md-4 text-right">
-            <Likes value={14} />
-            <span className="ml1">Like</span>
-            <Comments className="ml2" />
-            <span className="ml1">Kommentér</span>
-            <Share className="ml2" />
-            <span className="ml1">Del</span>
+          <div className="row">
+            <div className="col-xs-offset-1 col-xs-8">
+              {this.props.list && (
+                <SimpleList list={this.props.list} profile={profile} />
+              )}
+            </div>
           </div>
         </div>
-        <div className="comments" />
       </div>
     );
   }
