@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getListById} from '../../redux/list.reducer';
 import SimpleList from './templates/SimpleList.component';
-import Link from '../general/Link.component';
+import {Link} from '../general/Links.component';
 
 class ListPage extends React.Component {
   getTemplate(list) {

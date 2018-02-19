@@ -2,14 +2,20 @@ import React from 'react';
 import ImageUpload from '../general/ImageUpload.component';
 import UserProfileForm from './UserProfileForm.component';
 import Spinner from '../general/Spinner.component';
+import {Link, LogoutLink} from '../general/Links.component';
 import {connect} from 'react-redux';
-import {ADD_PROFILE_IMAGE, SAVE_USER_PROFILE} from '../../redux/user.reducer';
+import {
+  ADD_PROFILE_IMAGE,
+  ON_LOGOUT_REQUEST,
+  SAVE_USER_PROFILE
+} from '../../redux/user.reducer';
+import {HISTORY_PUSH} from '../../redux/router.reducer';
 
 export class CreateProfilePage extends React.Component {
   render() {
     return (
       <div className="profile-page tl raleway">
-        <h1 className="headline mb2">Opret profil</h1>
+        <h1 className="headline mb2">{this.props.title}</h1>
         <div className="profile-form mb3">
           {this.props.isLoading ? (
             <div className="mb2 tc">
@@ -27,22 +33,36 @@ export class CreateProfilePage extends React.Component {
                       ? `/v1/image/${this.props.profileImageId}/150/150`
                       : null
                   }
+                  buttonText={
+                    this.props.profileImageId
+                      ? 'Skift profilbillede'
+                      : 'Upload profilbillede'
+                  }
                   onFile={this.props.addImage}
                 />
               </div>
-              <div className="col-xs-9">
+              <div className="col-xs-9 mb2">
                 <p className="mb2">
                   <b>Indtast dine personlige oplysninger:</b>
                 </p>
-                <UserProfileForm
-                  imageId={this.props.profileImageId}
-                  name={this.props.name}
-                  acceptedTerms={this.props.acceptedTerms}
-                  library={this.props.agencyName || <Spinner size="12px" />}
-                  updateProfile={this.props.saveUser}
-                  error={this.props.error}
-                  isSaving={this.props.isSaving}
-                />
+                <div className="mb2">
+                  <UserProfileForm
+                    imageId={this.props.profileImageId}
+                    name={this.props.name}
+                    acceptedTerms={this.props.acceptedTerms}
+                    library={this.props.agencyName || <Spinner size="12px" />}
+                    updateProfile={this.props.saveUser}
+                    error={this.props.error}
+                    isSaving={this.props.isSaving}
+                  />
+                </div>
+                {this.props.doCancel ? (
+                  <Link href="/profile">Fortryd redigéring</Link>
+                ) : (
+                  <LogoutLink>
+                    Jeg ønsker alligevel ikke oprette en profil
+                  </LogoutLink>
+                )}
               </div>
             </div>
           )}

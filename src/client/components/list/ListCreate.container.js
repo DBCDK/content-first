@@ -15,6 +15,7 @@ import Textarea from 'react-textarea-autosize';
 import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import BookSearchSuggester from './BookSearchSuggester';
 import BookCover from '../general/BookCover.component';
+import {Link} from '../general/Links.component';
 
 const ListDetails = ({title, description, hasError, onChange}) => (
   <div className="list-details">
@@ -165,6 +166,7 @@ export class ListCreator extends React.Component {
                   Gem liste
                 </button>
               </div>
+              <Link href="/profile">Fortryd oprettelse af liste</Link>
             </form>
           </div>
           <div className="col-xs-4" />

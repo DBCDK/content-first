@@ -20,7 +20,7 @@ export default class UserProfileForm extends React.Component {
     }
     if (this.state.name.length < 4) {
       return this.setState({
-        validationError: 'Dit brugernavn skal være minimum hep karakterer langt'
+        validationError: 'Dit brugernavn skal være minimum 3 karakterer langt'
       });
     }
     this.setState({validationError: null});
@@ -43,7 +43,7 @@ export default class UserProfileForm extends React.Component {
   render() {
     return (
       <form
-        className="profile-form mb4"
+        className="profile-form"
         style={{maxWidth: '400px'}}
         onSubmit={this.onSubmit}
       >
