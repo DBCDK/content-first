@@ -22,18 +22,20 @@
   /* filter: blur(20px);
   transform: scale(1.1); */
 }
-
 .circle-template .list-element {
   position: absolute;
   display: inline-block;
-  width: 150px;
+  width: 200px;
   cursor: pointer;
+}
+.circle-template .list-element p {
+  font-family: var(--secondary-font);
 }
 .circle-template .list-element .title {
   font-family: var(--secondary-font);
   text-shadow: 2px 2px 10px black;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   margin-top: 0.5em;
 }
@@ -49,6 +51,22 @@
 
 .circle-template .social {
   font-family: var(--secondary-font);
+}
+
+.circle-template .popover .profile-image {
+  width: 30px;
+  height: 30px;
+}
+.circle-template .popover .profile-name {
+  font-size: 12px;
+  margin-left: 0.5rem;
+  /* font-weight: 600; */
+}
+.popover {
+  cursor: auto;
+}
+.popover hr {
+  border-color: lightgrey;
 }
 
 .popover-enter {

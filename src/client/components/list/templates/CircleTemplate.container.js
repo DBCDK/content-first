@@ -4,10 +4,12 @@ import {getListById} from '../../../redux/list.reducer';
 import BookCover from '../../general/BookCover.component';
 import PopOver from '../../general/PopOver.component';
 import SimpleList from './SimpleList.component';
+import ProfileImage from '../../general/ProfileImage.component';
+import CheckmarkConnected from '../../general/CheckmarkConnected.component';
 
 const CIRCLE_WIDTH_PERCENTAGE = 0.9; // percentage of parent width
 const CIRCLE_OFFSET = 90; // Offset in degrees (0-360) relative to center top of circle, at which first element occurs.
-const ELEMENT_WIDTH = 140; // width is fixed, height is dynamic based on circle dimensions
+const ELEMENT_WIDTH = 200; // width is fixed, height is dynamic based on circle dimensions
 
 export class CircleTemplate extends React.Component {
   constructor() {
@@ -72,14 +74,19 @@ export class CircleTemplate extends React.Component {
                   this.state.circleWidth
                 );
                 const popOverPos =
-                  this.state.circleWidth - x < 300 ? -170 : 120;
+                  this.state.circleWidth - x < 300 ? -225 : 150;
                 return (
                   <div
                     key={element.book.pid}
                     style={{top: y, left: x}}
                     className="list-element"
                     onClick={() => {
-                      this.setState({popOverPid: element.book.pid});
+                      this.setState({
+                        popOverPid:
+                          this.state.popOverPid === element.book.pid
+                            ? null
+                            : element.book.pid
+                      });
                     }}
                   >
                     <BookCover
@@ -89,10 +96,29 @@ export class CircleTemplate extends React.Component {
                     <div className="title">{element.book.title}</div>
                     <PopOver
                       show={this.state.popOverPid === element.book.pid}
-                      style={{left: popOverPos, width: 200}}
+                      style={{left: popOverPos, width: 300}}
                       className={popOverPos < 0 ? 'left' : 'right'}
                     >
-                      <h4>hest</h4>
+                      <h4 className="w-title h-tight">{element.book.title}</h4>
+                      <h5 className="w-creator h-tight">
+                        {element.book.creator}
+                      </h5>
+                      <ProfileImage
+                        src={profile.src}
+                        name={profile.name}
+                        type="list"
+                        className="mt1 mb1"
+                      />
+                      <p>{element.description}</p>
+                      <hr />
+                      <div className="text-right">
+                        <CheckmarkConnected
+                          book={{book: element.book}}
+                          origin={`Fra ${this.props.list.data.title} lavet af ${
+                            profile.name
+                          }`}
+                        />
+                      </div>
                     </PopOver>
                   </div>
                 );

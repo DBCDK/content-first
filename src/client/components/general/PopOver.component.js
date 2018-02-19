@@ -10,7 +10,7 @@ export default props => {
       {props.show && (
         <div
           className={`popover ${props.className}`}
-          style={{display: 'block', minHeight: 60, ...props.style}}
+          style={{display: 'block', padding: 15, minHeight: 60, ...props.style}}
         >
           <div className="arrow" style={{top: 30}} />
           {props.children}
