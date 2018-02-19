@@ -3,31 +3,46 @@ import {connect} from 'react-redux';
 import Pulse from '../pulse/pulse.component';
 import RollOver from '../rollover/rollOver.component';
 
-export default class Bookcase extends React.Component {
+import {ON_BOOK_REQUEST_TEST} from '../../redux/bookcase.reducer';
+import {ON_WORK_REQUEST} from '../../redux/work.reducer';
+
+export class Bookcase extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pid: '',
+      position: {x: 0, y: 0},
+      description: '',
+      title: '',
+      cover: ''
+    };
+  }
+
+  fetchBooks() {
+    this.props.dispatch({type: ON_BOOK_REQUEST_TEST});
+  }
+
+  fetchWork(pidd) {
+    this.props.dispatch({type: ON_WORK_REQUEST, pid: pidd});
+  }
+
+  rollOverTrigger = (pid, desc, pos) => {
+    this.fetchWork(pid);
+    const work = this.props.workState.work;
+
+    this.setState({
+      pid: pid,
+      position: pos,
+      description: desc
+    });
+  };
+
   render() {
-    // Temp. book pulse obj
-    const aPulse = [
-      {
-        pid: '870970-basis:52530423',
-        position: {x: 13.5, y: 40},
-        description: 'lorem ipsum 1 . . .'
-      },
-      {
-        pid: '870970-basis:53079202',
-        position: {x: 21.8, y: 44},
-        description: 'lorem ipsum 2 . . .'
-      },
-      {
-        pid: '870970-basis:52038014',
-        position: {x: 26, y: 46},
-        description: 'lorem ipsum 3 . . .'
-      },
-      {
-        pid: '870970-basis:23211629',
-        position: {x: 36.5, y: 46},
-        description: 'lorem ipsum 4 . . .'
-      }
-    ];
+    let book = '';
+    if (this.state.pid && this.props.workState.isLoading === false) {
+      book = this.props.workState.work.data;
+    }
+    const books = this.props.bookcaseState.books;
 
     return (
       <section id="bookcase" className="row">
@@ -38,26 +53,48 @@ export default class Bookcase extends React.Component {
               <img src="img/bookcase/BS3.png" alt="bs" />
             </div>
             <div className="col-xs-12 celeb-description">
-              <h1>Bjarne Slot (BS) Christiansen</h1>
+              <h1>B.S. Christiansen</h1>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, Ut
-                volutpat vitae elit ut, pulvinar Praesent vehicula porttitor
-                magna vitae dictum, nunc imperdiet urna sed rutrum vestibulum
+                er en dansk forhenværende elitesoldat i Jægerkorpset og
+                fordragsholder. Han er især kendt for programserien{' '}
+                <span className="highlight"> På afveje </span>
+                med forskellige kendte personer, og har også deltaget i flere
+                selvhjælpsserier. Skrev i 2005 bogen
+                <span className="highlight"> Et liv på kanten </span>
               </p>
             </div>
           </div>
           <div className="col-xs-8 bookswrap">
-            {aPulse.map(p => (
+            {books.map(p => (
               <Pulse
+                onClick={() => {
+                  this.rollOverTrigger(p.pid, p.description, p.position);
+                }}
                 position={p.position}
-                pid={p.pid}
-                description={p.description}
               />
             ))}
-            <RollOver />
+            <RollOver
+              loading={
+                this.state.pid === '' &&
+                this.props.workState[this.state.pid] === undefined
+              }
+              position={this.state.position}
+              description={this.state.description}
+              book={book}
+            />
           </div>
         </div>
       </section>
     );
   }
 }
+
+export default connect(
+  // Map redux state to props
+  state => {
+    return {
+      bookcaseState: state.bookcaseReducer,
+      workState: state.workReducer
+    };
+  }
+)(Bookcase);

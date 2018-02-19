@@ -1,24 +1,37 @@
 .rollover-display {
-  opacity: 1 !important;
-  pointer-events: auto !important;
-  transform: translate(-100%, 0%) !important;
-  transition: all 0.15s ease-in !important;
+  z-index: 3;
 }
 
-.rollover {
+.rollover-display .rollover {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translate(-50%, 0%) !important;
+  transition: all 0.15s ease-in !important;
+  margin-left: -75px !important;
+  pointer-events: auto !important;
+}
+
+.rollover-container {
   position: absolute;
   width: 300px;
   height: 350px;
+  top: 38%;
+  /* background-color: rgba(255, 0, 0, 0.5); */
+  margin-top: -35px;
+  margin-left: 0px;
+  transform: translate(-100px, 0%);
+  pointer-events: none;
+}
+
+.rollover {
+  width: 100%;
+  height: 100%;
   background-color: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.175);
-  top: 38%;
   opacity: 0;
   pointer-events: none;
-  transform: translate(-100px, 0%);
-  z-index: 2;
+  margin-left: 100px;
   transition: all 0.2s ease-out;
-  margin-top: -35px;
-  margin-left: -25px;
 }
 
 .rollover .rollover-close {
@@ -49,7 +62,6 @@
 .rollover .rollover-img img {
   width: 100%;
   height: auto;
-  border-radius: 50%;
 }
 
 .rollover .rollover-title {
@@ -67,4 +79,16 @@
   font-family: var(--secondary-font);
   color: var(--darkgrey);
   font-size: 14px;
+}
+
+.rollover .rollover-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0 15px 15px 15px;
+}
+
+.rollover .rollover-button .checkmark-menu,
+.rollover .rollover-button .checkmark-btn {
+  float: right;
 }
