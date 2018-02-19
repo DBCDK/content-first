@@ -15,6 +15,7 @@ async function getUser(req) {
 async function getObject(req, res) {
   const id = req.params.id;
   const user = await getUser(req);
+  // TODO error-code
   res.status(200).json(await community.getObjectById(id, user));
 }
 async function putObject(req, res) {
@@ -24,11 +25,13 @@ async function putObject(req, res) {
   }
   const user = await getUser(req);
   const result = await community.putObject({object, user});
+  // TODO error-code
   return res.status(200).json(result);
 }
 async function findObject(req, res) {
   const query = req.query;
   const user = await getUser(req);
+  // TODO error-code
   res.status(200).json(await community.findObjects(query, user));
 }
 

@@ -281,15 +281,14 @@ class Community {
     });
   }
 
-  // TODO move around/refactor
+  // TODO move object-code to other part of file
+
   async query(q) {
     const queryUrl = await this.gettingQueryUrl();
     const {body} = await request.post(queryUrl).send(q);
-    if (!body.data) {
-      throw new Error('Expected body.data, body=' + JSON.stringify(body));
-    }
     return body.data;
   }
+
   async findObjects(query, user = {}) {
     let result;
     if (!query.type) {
@@ -310,23 +309,21 @@ class Community {
     } else {
       throw new Error('Query Error');
     }
-    try {
-      result = await this.query({
-        Entities: entities,
-        SortBy: 'modified_epoch',
-        Order: 'descending',
-        Limit: +query.limit || 10,
-        Offset: +query.offset || 0,
-        Include: {
-          json: 'contents'
-        }
-      });
-      result = result.List.map(o => JSON.parse(o.json));
-    } catch (e) {
-      throw e;
-    }
+
+    result = await this.query({
+      Entities: entities,
+      SortBy: 'modified_epoch',
+      Order: 'descending',
+      Limit: +query.limit || 10,
+      Offset: +query.offset || 0,
+      Include: {
+        json: 'contents'
+      }
+    });
+    result = result.List.map(o => JSON.parse(o.json));
     return {data: result};
   }
+
   async putObject({object, user}) {
     object = Object.assign({}, object);
 
@@ -409,6 +406,7 @@ class Community {
     }
     return {data: {ok: true, id: object._id, rev: object._rev}};
   }
+
   async getObjectById(id, user = {}) {
     let result;
     try {
@@ -421,21 +419,6 @@ class Community {
         })).json
       );
     } catch (e) {
-      // TODO load/transform unmigrated data here
-      /*
-      try ...
-      return await this.query({
-        Entity: {'attributes.uuid': id},
-        Include: {
-        ...
-          owner: {
-            Profile: {id: '^owner_id'},
-            Include: 'attributes.openplatform_id'
-          }
-        }
-      })
-      catch ...
-      */
       return {
         data: {error: 'not found'},
         errors: [{status: 404, message: 'not found'}]
