@@ -15,7 +15,7 @@ import Textarea from 'react-textarea-autosize';
 import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import BookSearchSuggester from './BookSearchSuggester';
 import BookCover from '../general/BookCover.component';
-import {Link} from '../general/Links.component';
+import Link from '../general/Link.component';
 
 const ListDetails = ({title, description, hasError, onChange}) => (
   <div className="list-details">

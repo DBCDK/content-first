@@ -2,14 +2,13 @@ import React from 'react';
 import ImageUpload from '../general/ImageUpload.component';
 import UserProfileForm from './UserProfileForm.component';
 import Spinner from '../general/Spinner.component';
-import {Link, LogoutLink} from '../general/Links.component';
+import Link from '../general/Link.component';
+import LogoutLink from '../general/Logout.component';
 import {connect} from 'react-redux';
 import {
   ADD_PROFILE_IMAGE,
-  ON_LOGOUT_REQUEST,
   SAVE_USER_PROFILE
 } from '../../redux/user.reducer';
-import {HISTORY_PUSH} from '../../redux/router.reducer';
 
 export class CreateProfilePage extends React.Component {
   render() {

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {getLists, CUSTOM_LIST} from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import BookCover from '../general/BookCover.component';
-import {Link} from '../general/Links.component';
+import Link from '../general/Link.component';
 
 const Cover = ({pid, title, width, height}) => (
   <BookCover

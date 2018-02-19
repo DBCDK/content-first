@@ -115,6 +115,11 @@ exports[`ListCreate list details is shown 1`] = `
             Gem liste
           </button>
         </div>
+        <Link
+          href="/profile"
+        >
+          Fortryd oprettelse af liste
+        </Link>
       </form>
     </div>
     <div
@@ -411,6 +416,11 @@ exports[`ListCreate renders a list with multiple books 1`] = `
             Gem liste
           </button>
         </div>
+        <Link
+          href="/profile"
+        >
+          Fortryd oprettelse af liste
+        </Link>
       </form>
     </div>
     <div
@@ -593,6 +603,11 @@ exports[`ListCreate renders a list with one book 1`] = `
             Gem liste
           </button>
         </div>
+        <Link
+          href="/profile"
+        >
+          Fortryd oprettelse af liste
+        </Link>
       </form>
     </div>
     <div

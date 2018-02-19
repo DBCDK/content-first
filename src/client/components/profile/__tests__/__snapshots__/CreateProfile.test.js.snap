@@ -9,9 +9,7 @@ exports[`Image Upload render function Add image 1`] = `
   >
     <h1
       className="headline mb2"
-    >
-      Opret profil
-    </h1>
+    />
     <div
       className="profile-form mb3"
     >
@@ -22,6 +20,7 @@ exports[`Image Upload render function Add image 1`] = `
           className="col-xs-3"
         >
           <ImageUpload
+            buttonText="Upload profilbillede"
             onFile={[Function]}
             previewImage={null}
             style={
@@ -54,11 +53,11 @@ exports[`Image Upload render function Add image 1`] = `
                     className="droppable-image-overlay"
                   />
                 </div>
-                <h4
-                  className="title"
+                <span
+                  className="btn btn-primary mt1"
                 >
-                  Upload billede
-                </h4>
+                  Upload profilbillede
+                </span>
                 <Error />
                 <input
                   accept="image/png, image/jpeg"
@@ -71,7 +70,7 @@ exports[`Image Upload render function Add image 1`] = `
           </ImageUpload>
         </div>
         <div
-          className="col-xs-9"
+          className="col-xs-9 mb2"
         >
           <p
             className="mb2"
@@ -80,74 +79,81 @@ exports[`Image Upload render function Add image 1`] = `
               Indtast dine personlige oplysninger:
             </b>
           </p>
-          <UserProfileForm
-            library={
-              <spinner
-                size="12px"
-              />
-            }
+          <div
+            className="mb2"
           >
-            <form
-              className="profile-form mb4"
-              onSubmit={[Function]}
-              style={
-                Object {
-                  "maxWidth": "400px",
-                }
-              }
-            >
-              <div
-                className="input-group mb2   has-feedback"
-              >
-                <input
-                  className="form-control mb3"
-                  name="name"
-                  onChange={[Function]}
-                  placeholder="Vælg brugernavn"
-                  type="text"
-                  value=""
-                />
-                <span
-                  aria-hidden="true"
-                  className="form-control-feedback glyphicon  "
-                />
-              </div>
-              <p
-                className="mb6"
-              >
-                Du er logget på via 
+            <UserProfileForm
+              library={
                 <spinner
                   size="12px"
                 />
-              </p>
-              <label
-                className="checkbox"
-                htmlFor="acceptedTerms"
+              }
+            >
+              <form
+                className="profile-form"
+                onSubmit={[Function]}
+                style={
+                  Object {
+                    "maxWidth": "400px",
+                  }
+                }
               >
-                <input
-                  className="checkbox"
-                  id="acceptedTerms"
-                  name="acceptedTerms"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-                <span />
-                 Jeg har læst og accepteret
-                 
-                <a
-                  href="#terms"
+                <div
+                  className="input-group mb2   has-feedback"
                 >
-                  reglerne for anvendelse af Læsekompasset
-                </a>
-              </label>
-              <button
-                className="btn btn-success btn-block"
-              >
-                Opret profil
-                 
-              </button>
-            </form>
-          </UserProfileForm>
+                  <input
+                    className="form-control mb3"
+                    name="name"
+                    onChange={[Function]}
+                    placeholder="Vælg brugernavn"
+                    type="text"
+                    value=""
+                  />
+                  <span
+                    aria-hidden="true"
+                    className="form-control-feedback glyphicon  "
+                  />
+                </div>
+                <p
+                  className="mb6"
+                >
+                  Du er logget på via 
+                  <spinner
+                    size="12px"
+                  />
+                </p>
+                <label
+                  className="checkbox"
+                  htmlFor="acceptedTerms"
+                >
+                  <input
+                    className="checkbox"
+                    id="acceptedTerms"
+                    name="acceptedTerms"
+                    onChange={[Function]}
+                    type="checkbox"
+                  />
+                  <span />
+                   Jeg har læst og accepteret
+                   
+                  <a
+                    href="#terms"
+                  >
+                    reglerne for anvendelse af Læsekompasset
+                  </a>
+                </label>
+                <button
+                  className="btn btn-success btn-block"
+                >
+                  Opret profil
+                   
+                </button>
+              </form>
+            </UserProfileForm>
+          </div>
+          <logout>
+            Jeg ønsker alligevel ikke oprette en profil
+          </logout>
         </div>
       </div>
     </div>
@@ -167,9 +173,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
 >
   <h1
     className="headline mb2"
-  >
-    Opret profil
-  </h1>
+  />
   <div
     className="profile-form mb3"
   >
@@ -205,11 +209,11 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 
               </div>
             </div>
-            <h4
-              className="title"
+            <span
+              className="btn btn-primary mt1"
             >
-              Upload billede
-            </h4>
+              Upload profilbillede
+            </span>
             <input
               accept="image/png, image/jpeg"
               className="droppable-image-field--file-input"
@@ -221,7 +225,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
         </div>
       </div>
       <div
-        className="col-xs-9"
+        className="col-xs-9 mb2"
       >
         <p
           className="mb2"
@@ -230,70 +234,77 @@ exports[`Image Upload render function renders an image upload form 1`] = `
             Indtast dine personlige oplysninger:
           </b>
         </p>
-        <form
-          className="profile-form mb4"
-          onSubmit={[Function]}
-          style={
-            Object {
-              "maxWidth": "400px",
-            }
-          }
+        <div
+          className="mb2"
         >
-          <div
-            className="input-group mb2   has-feedback"
+          <form
+            className="profile-form"
+            onSubmit={[Function]}
+            style={
+              Object {
+                "maxWidth": "400px",
+              }
+            }
           >
-            <input
-              className="form-control mb3"
-              name="name"
-              onChange={[Function]}
-              placeholder="Vælg brugernavn"
-              type="text"
-              value=""
-            />
-            <span
-              aria-hidden="true"
-              className="form-control-feedback glyphicon  "
-            />
-          </div>
-          <p
-            className="mb6"
-          >
-            Du er logget på via 
-            <spinner
-              size="12px"
-            />
-          </p>
-          <label
-            className="checkbox"
-            htmlFor="acceptedTerms"
-          >
-            <input
-              checked={undefined}
-              className="checkbox"
-              disabled={undefined}
-              id="acceptedTerms"
-              name="acceptedTerms"
-              onChange={[Function]}
-              type="checkbox"
-            />
-            <span />
-             Jeg har læst og accepteret
-             
-            <a
-              href="#terms"
+            <div
+              className="input-group mb2   has-feedback"
             >
-              reglerne for anvendelse af Læsekompasset
-            </a>
-          </label>
-          <button
-            className="btn btn-success btn-block"
-            disabled={undefined}
-          >
-            Opret profil
-             
-            
-          </button>
-        </form>
+              <input
+                className="form-control mb3"
+                name="name"
+                onChange={[Function]}
+                placeholder="Vælg brugernavn"
+                type="text"
+                value=""
+              />
+              <span
+                aria-hidden="true"
+                className="form-control-feedback glyphicon  "
+              />
+            </div>
+            <p
+              className="mb6"
+            >
+              Du er logget på via 
+              <spinner
+                size="12px"
+              />
+            </p>
+            <label
+              className="checkbox"
+              htmlFor="acceptedTerms"
+            >
+              <input
+                checked={undefined}
+                className="checkbox"
+                disabled={undefined}
+                id="acceptedTerms"
+                name="acceptedTerms"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <span />
+               Jeg har læst og accepteret
+               
+              <a
+                href="#terms"
+              >
+                reglerne for anvendelse af Læsekompasset
+              </a>
+            </label>
+            <button
+              className="btn btn-success btn-block"
+              disabled={undefined}
+            >
+              Opret profil
+               
+              
+            </button>
+          </form>
+        </div>
+        <logout>
+          Jeg ønsker alligevel ikke oprette en profil
+        </logout>
       </div>
     </div>
   </div>

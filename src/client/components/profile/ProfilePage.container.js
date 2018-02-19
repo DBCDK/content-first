@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ProfileImage from '../general/ProfileImage.component';
-import {Link} from '../general/Links.component';
+import Link from '../general/Link.component';
 import Lists from '../list/Lists.container';
 
 export class ProfilePage extends React.Component {

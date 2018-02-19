@@ -27,11 +27,11 @@ exports[`Image Upload render function Add image 1`] = `
           className="droppable-image-overlay"
         />
       </div>
-      <h4
-        className="title"
+      <span
+        className="btn btn-primary mt1"
       >
         Upload billede
-      </h4>
+      </span>
       <Error />
       <input
         accept="image/png, image/jpeg"
@@ -69,11 +69,11 @@ exports[`Image Upload render function Add preview image 1`] = `
         
       </div>
     </div>
-    <h4
-      className="title"
+    <span
+      className="btn btn-primary mt1"
     >
       Upload billede
-    </h4>
+    </span>
     <input
       accept="image/png, image/jpeg"
       className="droppable-image-field--file-input"
@@ -107,11 +107,11 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
         
       </div>
     </div>
-    <h4
-      className="title"
+    <span
+      className="btn btn-primary mt1"
     >
       Upload billede
-    </h4>
+    </span>
     <input
       accept="image/png, image/jpeg"
       className="droppable-image-field--file-input"
@@ -149,11 +149,11 @@ exports[`Image Upload render function renders an image upload form 1`] = `
         
       </div>
     </div>
-    <h4
-      className="title"
+    <span
+      className="btn btn-primary mt1"
     >
       Upload billede
-    </h4>
+    </span>
     <input
       accept="image/png, image/jpeg"
       className="droppable-image-field--file-input"
