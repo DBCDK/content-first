@@ -119,7 +119,7 @@ router.route('/').post(
       .location(location)
       .json({
         links: {self: location},
-        id: uuid,
+        id: pid,
         data: `Created ${location}`
       });
   })

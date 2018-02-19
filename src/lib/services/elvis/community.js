@@ -460,6 +460,8 @@ class Community {
         const roles = profile.attributes.roles || [];
         const toReturn = {
           name: profile.name,
+          image: profile.attributes.image,
+          acceptedTerms: profile.attributes.acceptedTerms,
           roles,
           openplatformId: profile.attributes.openplatform_id,
           openplatformToken: profile.attributes.openplatform_token,

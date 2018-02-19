@@ -39,7 +39,7 @@ external.use(
 external.use(
   parser.raw({
     type: 'image/jpeg',
-    limit: '5mb'
+    limit: '10mb'
   })
 );
 

@@ -1,0 +1,307 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image Upload render function Add image 1`] = `
+<CreateProfilePage
+  addImage={[Function]}
+>
+  <div
+    className="profile-page tl raleway"
+  >
+    <h1
+      className="headline mb2"
+    >
+      Opret profil
+    </h1>
+    <div
+      className="profile-form mb3"
+    >
+      <div
+        className="rows clearfix"
+      >
+        <div
+          className="col-xs-3"
+        >
+          <ImageUpload
+            onFile={[Function]}
+            previewImage={null}
+            style={
+              Object {
+                "borderRadius": "50%",
+              }
+            }
+          >
+            <div
+              className="image-upload"
+            >
+              <label>
+                <div
+                  className="image-upload--zone"
+                  style={
+                    Object {
+                      "borderRadius": "50%",
+                      "height": "150px",
+                      "overflow": "hidden",
+                      "width": "150px",
+                    }
+                  }
+                >
+                  <div>
+                    <span
+                      className="glyphicon glyphicon-user"
+                    />
+                  </div>
+                  <div
+                    className="droppable-image-overlay"
+                  />
+                </div>
+                <h4
+                  className="title"
+                >
+                  Upload billede
+                </h4>
+                <Error />
+                <input
+                  accept="image/png, image/jpeg"
+                  className="droppable-image-field--file-input"
+                  onChange={[Function]}
+                  type="file"
+                />
+              </label>
+            </div>
+          </ImageUpload>
+        </div>
+        <div
+          className="col-xs-9"
+        >
+          <p
+            className="mb2"
+          >
+            <b>
+              Indtast dine personlige oplysninger:
+            </b>
+          </p>
+          <UserProfileForm
+            library={
+              <spinner
+                size="12px"
+              />
+            }
+          >
+            <form
+              className="profile-form mb4"
+              onSubmit={[Function]}
+              style={
+                Object {
+                  "maxWidth": "400px",
+                }
+              }
+            >
+              <div
+                className="input-group mb2   has-feedback"
+              >
+                <input
+                  className="form-control mb3"
+                  name="name"
+                  onChange={[Function]}
+                  placeholder="Vælg brugernavn"
+                  type="text"
+                  value=""
+                />
+                <span
+                  aria-hidden="true"
+                  className="form-control-feedback glyphicon  "
+                />
+              </div>
+              <p
+                className="mb6"
+              >
+                Du er logget på via 
+                <spinner
+                  size="12px"
+                />
+              </p>
+              <label
+                className="checkbox"
+                htmlFor="acceptedTerms"
+              >
+                <input
+                  className="checkbox"
+                  id="acceptedTerms"
+                  name="acceptedTerms"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                 Jeg har læst og accepteret
+                 
+                <a
+                  href="#terms"
+                >
+                  reglerne for anvendelse af Læsekompasset
+                </a>
+              </label>
+              <button
+                className="btn btn-success btn-block"
+              >
+                Opret profil
+                 
+              </button>
+            </form>
+          </UserProfileForm>
+        </div>
+      </div>
+    </div>
+    <div
+      className="terms"
+      id="terms"
+    >
+      Her skal stå regler for anvendelse af læsekompasset...
+    </div>
+  </div>
+</CreateProfilePage>
+`;
+
+exports[`Image Upload render function renders an image upload form 1`] = `
+<div
+  className="profile-page tl raleway"
+>
+  <h1
+    className="headline mb2"
+  >
+    Opret profil
+  </h1>
+  <div
+    className="profile-form mb3"
+  >
+    <div
+      className="rows clearfix"
+    >
+      <div
+        className="col-xs-3"
+      >
+        <div
+          className="image-upload"
+        >
+          <label>
+            <div
+              className="image-upload--zone"
+              style={
+                Object {
+                  "borderRadius": "50%",
+                  "height": "150px",
+                  "overflow": "hidden",
+                  "width": "150px",
+                }
+              }
+            >
+              <div>
+                <span
+                  className="glyphicon glyphicon-user"
+                />
+              </div>
+              <div
+                className="droppable-image-overlay"
+              >
+                
+              </div>
+            </div>
+            <h4
+              className="title"
+            >
+              Upload billede
+            </h4>
+            <input
+              accept="image/png, image/jpeg"
+              className="droppable-image-field--file-input"
+              name={undefined}
+              onChange={[Function]}
+              type="file"
+            />
+          </label>
+        </div>
+      </div>
+      <div
+        className="col-xs-9"
+      >
+        <p
+          className="mb2"
+        >
+          <b>
+            Indtast dine personlige oplysninger:
+          </b>
+        </p>
+        <form
+          className="profile-form mb4"
+          onSubmit={[Function]}
+          style={
+            Object {
+              "maxWidth": "400px",
+            }
+          }
+        >
+          <div
+            className="input-group mb2   has-feedback"
+          >
+            <input
+              className="form-control mb3"
+              name="name"
+              onChange={[Function]}
+              placeholder="Vælg brugernavn"
+              type="text"
+              value=""
+            />
+            <span
+              aria-hidden="true"
+              className="form-control-feedback glyphicon  "
+            />
+          </div>
+          <p
+            className="mb6"
+          >
+            Du er logget på via 
+            <spinner
+              size="12px"
+            />
+          </p>
+          <label
+            className="checkbox"
+            htmlFor="acceptedTerms"
+          >
+            <input
+              checked={undefined}
+              className="checkbox"
+              disabled={undefined}
+              id="acceptedTerms"
+              name="acceptedTerms"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <span />
+             Jeg har læst og accepteret
+             
+            <a
+              href="#terms"
+            >
+              reglerne for anvendelse af Læsekompasset
+            </a>
+          </label>
+          <button
+            className="btn btn-success btn-block"
+            disabled={undefined}
+          >
+            Opret profil
+             
+            
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div
+    className="terms"
+    id="terms"
+  >
+    Her skal stå regler for anvendelse af læsekompasset...
+  </div>
+</div>
+`;

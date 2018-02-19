@@ -4,86 +4,88 @@ exports[`renders without crashing 1`] = `
 <div
   className="App container"
 >
-  <div
-    className="row topbar"
-  >
+  <div>
     <div
-      className="col-xs-6 text-left header"
-      onClick={[Function]}
-    >
-      <div>
-        <img
-          alt="logo"
-          src="logo.svg"
-        />
-      </div>
-      <div>
-        <h1>
-          Læsekompasset
-        </h1>
-      </div>
-    </div>
-    <div
-      className="col-xs-6 text-right login"
+      className="row topbar container"
     >
       <div
-        className="short-list"
-      >
-        <div
-          className="short-list--btn"
-          onClick={[Function]}
-        >
-          <img
-            alt=""
-            src="Huskeliste.svg"
-            title="Huskeliste"
-          />
-        </div>
-        <div
-          className="short-list--content text-left slide-out"
-        >
-          <img
-            alt="luk"
-            className="short-list--close-btn"
-            onClick={[Function]}
-            src="Kryds.svg"
-          />
-          <div
-            className="short-list--header"
-          >
-            HUSKELISTE
-          </div>
-          <div
-            className="short-list--empty-text text-center"
-          >
-            Din huskeliste er tom
-          </div>
-          <div
-            className="short-list--more-btn text-center"
-          >
-            <span
-              className="btn btn-default text-center"
-              onClick={[Function]}
-            >
-              SE HELE LISTEN
-            </span>
-          </div>
-        </div>
-      </div>
-      <span
+        className="col-xs-6 text-left header"
         onClick={[Function]}
       >
-        Log ind
-      </span>
+        <div>
+          <img
+            alt="logo"
+            src="logo.svg"
+          />
+        </div>
+        <div>
+          <h1>
+            Læsekompasset
+          </h1>
+        </div>
+      </div>
+      <div
+        className="col-xs-6 text-right login"
+      >
+        <div
+          className="short-list"
+        >
+          <div
+            className="short-list--btn"
+            onClick={[Function]}
+          >
+            <img
+              alt=""
+              src="Huskeliste.svg"
+              title="Huskeliste"
+            />
+          </div>
+          <div
+            className="short-list--content text-left slide-out"
+          >
+            <img
+              alt="luk"
+              className="short-list--close-btn"
+              onClick={[Function]}
+              src="Kryds.svg"
+            />
+            <div
+              className="short-list--header"
+            >
+              HUSKELISTE
+            </div>
+            <div
+              className="short-list--empty-text text-center"
+            >
+              Din huskeliste er tom
+            </div>
+            <div
+              className="short-list--more-btn text-center"
+            >
+              <span
+                className="btn btn-default text-center"
+                onClick={[Function]}
+              >
+                SE HELE LISTEN
+              </span>
+            </div>
+          </div>
+        </div>
+        <span
+          onClick={[Function]}
+        >
+          Log ind
+        </span>
+      </div>
     </div>
-  </div>
-  <div
-    style={
-      Object {
-        "height": "50px",
+    <div
+      style={
+        Object {
+          "height": "50px",
+        }
       }
-    }
-  />
+    />
+  </div>
   <div
     className="frontpage"
   >

@@ -6,17 +6,17 @@ import ProfileCreateTaste from './ProfileCreateTaste.component';
 import ArchetypeTooltip from './ArchetypeTooltip.component';
 import AuthorTooltip from './AuthorTooltip.component';
 import {
-  ON_ADD_PROFILE_ARCHETYPE,
-  ON_PROFILE_LOAD_PROFILES,
-  ON_PROFILE_REMOVE_CURRENT_PROFILE
-} from '../../redux/profile.reducer';
+  ADD_TASTE_ARCHETYPE,
+  LOAD_TASTES,
+  REMOVE_CURRENT_TASTE
+} from '../../redux/taste.reducer';
 
 class ProfilePage extends React.Component {
   componentDidMount() {
-    this.props.dispatch({type: ON_PROFILE_LOAD_PROFILES});
+    this.props.dispatch({type: LOAD_TASTES});
   }
   render() {
-    const {profileTastes, recommendations, belts} = this.props.profileState;
+    const {profileTastes, recommendations, belts} = this.props.tastes;
     const {currentTaste, profiles, loading} = profileTastes;
     if (loading) {
       return <div>Loading</div>;
@@ -42,7 +42,7 @@ class ProfilePage extends React.Component {
           recommendations={recommendations}
           currentTaste={currentTaste}
           onDeselectProfile={() =>
-            this.props.dispatch({type: ON_PROFILE_REMOVE_CURRENT_PROFILE})
+            this.props.dispatch({type: REMOVE_CURRENT_TASTE})
           }
         />
         <div className="profile-page-content">
@@ -55,7 +55,7 @@ class ProfilePage extends React.Component {
             type="archetypes"
             size="6"
             tooltip={ArchetypeTooltip}
-            add={ON_ADD_PROFILE_ARCHETYPE}
+            add={ADD_TASTE_ARCHETYPE}
           />
           <h2>Hvilke forfattere kan du godt lide at læse?</h2>
           <ProfileBelt
@@ -72,6 +72,6 @@ class ProfilePage extends React.Component {
 export default connect(
   // Map redux state to props
   state => {
-    return {profileState: state.profileReducer};
+    return {tastes: state.tasteReducer};
   }
 )(ProfilePage);

@@ -21,6 +21,7 @@
 @import './utils/grid.css';
 @import './utils/spinner.css';
 @import './utils/tags.css';
+@import './utils/forms.css';
 
 /* Import component classes */
 @import './components/profileCard.css';
@@ -43,6 +44,8 @@
 @import './components/linebehindtext.css';
 @import './components/bookcover.css';
 @import './components/listcard.css';
+@import './components/imageUpload.css';
+@import './components/profile.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */
 @import '~slick-carousel/slick/slick.css';
@@ -278,6 +281,16 @@ h3 {
   text-align: left;
   margin-top: 40px;
 }
+
+.headline {
+  display: block;
+  width: 100%;
+  border-bottom: solid 1px rgba(0, 0, 0, 1);
+  line-height: 1.5;
+  font-weight: 700;
+  margin-bottom: 4rem;
+}
+
 .high-contrast {
   filter: contrast(1.25);
 }

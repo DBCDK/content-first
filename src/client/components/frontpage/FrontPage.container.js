@@ -117,8 +117,7 @@ export default connect(
       beltsState: state.beltsReducer,
       filterState: state.filterReducer,
       shortListState: state.shortListReducer,
-      listState: state.listReducer,
-      profileState: state.profileReducer
+      listState: state.listReducer
     };
   }
 )(FrontPage);

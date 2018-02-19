@@ -2,15 +2,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-  ON_ADD_PROFILE_ELEMENT,
-  ON_REMOVE_PROFILE_ELEMENT
-} from '../../redux/profile.reducer';
+  ADD_TASTE_ELEMENT,
+  REMOVE_TASTE_ELEMENT
+} from '../../redux/taste.reducer';
 import Card from './ProfileCard.component';
 
 class ProfileBelt extends React.Component {
   isTagSelected(tag) {
-    const currentProfile = this.props.profileState.profileTastes.profiles[
-      this.props.profileState.profileTastes.currentTaste
+    const currentProfile = this.props.tastes.profileTastes.profiles[
+      this.props.tastes.profileTastes.currentTaste
     ];
     return (
       currentProfile[this.props.type].filter(label => label === tag.label)
@@ -22,18 +22,18 @@ class ProfileBelt extends React.Component {
       format = 'square',
       size = '8',
       selectionType = 'border',
-      profileState,
+      tastes,
       dispatch,
       type,
       tooltip = () => {},
-      add = ON_ADD_PROFILE_ELEMENT,
-      remove = ON_REMOVE_PROFILE_ELEMENT
+      add = ADD_TASTE_ELEMENT,
+      remove = REMOVE_TASTE_ELEMENT
     } = this.props;
     return (
       <div
         className={`profile-belt flex-grid flex-grid-${size} flex-grid-6-m ${format}`}
       >
-        {profileState.belts[type].map(element => (
+        {tastes.belts[type].map(element => (
           <Card
             key={element.label}
             onAddElement={() =>
@@ -56,6 +56,6 @@ class ProfileBelt extends React.Component {
 export default connect(
   // Map redux state to props
   state => {
-    return {profileState: state.profileReducer};
+    return {tastes: state.tasteReducer};
   }
 )(ProfileBelt);
