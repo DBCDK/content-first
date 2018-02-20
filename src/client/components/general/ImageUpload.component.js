@@ -69,7 +69,9 @@ export default class ImageUpload extends React.Component {
               {this.props.overlayText || ''}
             </div>
           </div>
-          <span className="btn btn-primary mt1">{this.props.buttonText || 'Upload billede'}</span>
+          <span className="btn btn-primary mt1">
+            {this.props.buttonText || 'Upload billede'}
+          </span>
           <Error error={this.props.error} name={this.state.imageName} />
           <input
             accept="image/png, image/jpeg"
