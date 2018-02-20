@@ -70,7 +70,7 @@ export default class UserProfileForm extends React.Component {
           />
         </div>
         <p className="mb6">Du er logget på via {this.props.library}</p>
-        {!this.props.editMode ?
+        {!this.props.editMode ? (
           <label htmlFor="acceptedTerms" className="checkbox">
             <input
               id="acceptedTerms"
@@ -85,7 +85,10 @@ export default class UserProfileForm extends React.Component {
             />
             <span /> Jeg har læst og accepteret{' '}
             <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
-          </label> : ''}
+          </label>
+        ) : (
+          ''
+        )}
         {this.renderErrors()}
         <button
           className="btn btn-success btn-block"

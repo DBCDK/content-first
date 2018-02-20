@@ -27,7 +27,7 @@ const ListItem = ({list, title, id, image}) => {
           Redigér
         </Link>
       </div>
-      < Link href={`/lister/${id}`} className="ml2">
+      <Link href={`/lister/${id}`} className="ml2">
         {list.map(el => (
           <span className="ml1" key={el.pid}>
             <Cover pid={el.pid} title={el.title} width="30px" height="45px" />
