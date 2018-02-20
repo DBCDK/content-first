@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pulse renders initial component 1`] = `
+<div
+  className="pulse-toucharea"
+  onClick={[Function]}
+  style={
+    Object {
+      "left": "26%",
+      "top": "46%",
+    }
+  }
+>
+  <div
+    className="pulse"
+  />
+</div>
+`;

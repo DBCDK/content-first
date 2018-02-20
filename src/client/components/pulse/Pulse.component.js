@@ -1,5 +1,14 @@
 import React from 'react';
 
+/*
+  <Pulse
+    onClick={() => {
+      this.rollOverTrigger('pid', 'description...', {x:-,y:-}, index);
+    }}
+    position={{x:-,y:-}}
+  />
+*/
+
 export default class Pulse extends React.Component {
   render() {
     let styles = {

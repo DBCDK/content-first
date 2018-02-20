@@ -2,6 +2,18 @@ import React from 'react';
 import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import BookCover from '../general/BookCover.component';
 
+/*
+  <RollOver
+    loading={true|false}
+    position={{x:-,y:-}}
+    description={'lorem ipsum...'}
+    onClick={('next' | 'prev') => {
+      this.nextBook(direction);
+    }}
+    book={book}
+  />
+*/
+
 export default class RollOver extends React.Component {
   constructor(props) {
     super(props);

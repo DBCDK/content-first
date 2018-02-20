@@ -1,10 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Pulse from '../pulse/pulse.component';
-import RollOver from '../rollover/rollOver.component';
+import Pulse from '../pulse/Pulse.component';
+import RollOver from '../rollover/RollOver.component';
 
 import {ON_BOOK_REQUEST_TEST} from '../../redux/bookcase.reducer';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
+
+/*
+  <Bookcase />
+*/
 
 export class Bookcase extends React.Component {
   constructor(props) {
@@ -14,7 +18,8 @@ export class Bookcase extends React.Component {
       position: {x: 0, y: 0},
       description: '',
       title: '',
-      cover: ''
+      cover: '',
+      curindex: 0
     };
   }
 
@@ -24,50 +29,37 @@ export class Bookcase extends React.Component {
 
   nextBook = direction => {
     let max = this.props.bookcaseState.books.length - 1;
-    let newpos = 0;
+    const curpos = this.state.curindex;
 
-    this.props.bookcaseState.books.map(
-      function(b, i) {
-        // Obj Match
-        if (b.pid == this.props.workState.pid) {
-          // Next in line command
-          if (direction == 'next') {
-            if (i < max) {
-              // Moving 1 obj forward
-              newpos = i + 1;
-            } else if (i == max) {
-              // Moving to first obj
-              newpos = 0;
-            }
-            // Previous in line command
-          } else if (direction == 'prev') {
-            if (i > 0) {
-              // Moving 1 obj back
-              newpos = i - 1;
-            } else if (i == 0) {
-              // Moving to last obj
-              newpos = max;
-            }
-          }
-          this.fetchWork(this.props.bookcaseState.books[newpos].pid);
-          this.rollOverTrigger(
-            this.props.bookcaseState.books[newpos].pid,
-            this.props.bookcaseState.books[newpos].description,
-            this.props.bookcaseState.books[newpos].position
-          );
-        }
-      }.bind(this)
+    let newpos = direction === 'next' ? curpos + 1 : curpos - 1;
+
+    if (newpos > max) {
+      newpos = 0;
+    }
+    if (newpos < 0) {
+      newpos = max;
+    }
+
+    this.fetchWork(this.props.bookcaseState.books[newpos].pid);
+    this.rollOverTrigger(
+      this.props.bookcaseState.books[newpos].pid,
+      this.props.bookcaseState.books[newpos].description,
+      this.props.bookcaseState.books[newpos].position
     );
+    this.setState({
+      curindex: newpos
+    });
   };
 
-  rollOverTrigger = (pid, desc, pos) => {
+  rollOverTrigger = (pid, desc, pos, i) => {
     this.fetchWork(pid);
     const work = this.props.workState.work;
 
     this.setState({
       pid: pid,
       position: pos,
-      description: desc
+      description: desc,
+      curindex: i
     });
   };
 
@@ -76,6 +68,7 @@ export class Bookcase extends React.Component {
     if (this.state.pid && this.props.workState.isLoading === false) {
       book = this.props.workState.work.data;
     }
+
     const books = this.props.bookcaseState.books;
 
     return (
@@ -99,10 +92,11 @@ export class Bookcase extends React.Component {
             </div>
           </div>
           <div className="col-xs-8 bookswrap">
-            {books.map(p => (
+            {books.map((p, i) => (
               <Pulse
+                key={'pulse-' + p.pid}
                 onClick={() => {
-                  this.rollOverTrigger(p.pid, p.description, p.position);
+                  this.rollOverTrigger(p.pid, p.description, p.position, i);
                 }}
                 position={p.position}
               />

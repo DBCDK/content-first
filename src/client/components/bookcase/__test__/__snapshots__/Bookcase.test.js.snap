@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bookcase renders initial component 1`] = `
+<section
+  className="row"
+  id="bookcase"
+>
+  <img
+    src="img/bookcase/BS-bogreol.png"
+  />
+  <div
+    className="row"
+  >
+    <div
+      className="col-xs-4 celeb"
+    >
+      <div
+        className="col-xs-12 celeb-img"
+      >
+        <img
+          alt="bs"
+          src="img/bookcase/BS3.png"
+        />
+      </div>
+      <div
+        className="col-xs-12 celeb-description"
+      >
+        <h1>
+          B.S. Christiansen
+        </h1>
+        <p>
+          er en dansk forhenværende elitesoldat i Jægerkorpset og fordragsholder. Han er især kendt for programserien
+           
+          <span
+            className="highlight"
+          >
+             På afveje 
+          </span>
+          med forskellige kendte personer, og har også deltaget i flere selvhjælpsserier. Skrev i 2005 bogen
+          <span
+            className="highlight"
+          >
+             Et liv på kanten 
+          </span>
+        </p>
+      </div>
+    </div>
+    <div
+      className="col-xs-8 bookswrap"
+    >
+      <Pulse
+        onClick={[Function]}
+        position={
+          Object {
+            "x": 26,
+            "y": 46,
+          }
+        }
+      />
+      <Pulse
+        onClick={[Function]}
+        position={
+          Object {
+            "x": 36.5,
+            "y": 46,
+          }
+        }
+      />
+      <RollOver
+        book=""
+        description=""
+        loading={true}
+        onClick={[Function]}
+        position={
+          Object {
+            "x": 0,
+            "y": 0,
+          }
+        }
+      />
+    </div>
+  </div>
+</section>
+`;

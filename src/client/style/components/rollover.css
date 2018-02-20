@@ -5,7 +5,7 @@
 .rollover-display .rollover {
   opacity: 1 !important;
   pointer-events: auto !important;
-  transform: translate(-50%, 0%);
+  transform: translate(-25%, 0%);
   transition: all 0.15s ease-in !important;
   margin-left: -25px !important;
 }
@@ -17,7 +17,7 @@
   top: 38%;
   /* background-color: rgba(255, 0, 0, 0.5); */
   margin-top: -35px;
-  transform: translate(-50%, 0%);
+  transform: translate(-75%, 0%);
   pointer-events: none;
 }
 
@@ -30,6 +30,7 @@
   pointer-events: none;
   margin-left: 100px;
   transition: all 0.2s ease-out;
+  border-radius: 3px;
 }
 
 .rollover .rollover-close {
