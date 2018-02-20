@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Lists Container List is rendered 1`] = `
+<div
+  className="lists-page"
+>
+  <div
+    className="mb3"
+  />
+  <div>
+    <a
+      className="btn btn-primary"
+      href="/lister/opret"
+      onClick={[Function]}
+    >
+      Ny liste
+      <span
+        className="glyphicon glyphicon-plus ml4"
+      />
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Lists Container List is rendered 2`] = `
+<div
+  className="lists-page"
+  lists={
+    Array [
+      Object {
+        "description": "some description",
+        "id": 1,
+        "list": Array [
+          Object {
+            "book": Object {
+              "creator": "some creator1",
+              "pid": "pid1",
+              "title": "some title 1",
+            },
+            "description": "some description1",
+            "links": Object {
+              "cover": "/cover1",
+            },
+          },
+          Object {
+            "book": Object {
+              "creator": "some creator2",
+              "pid": "pid2",
+              "title": "some title 2",
+            },
+            "description": "some description2",
+            "links": Object {
+              "cover": "/cover2",
+            },
+          },
+          Object {
+            "book": Object {
+              "creator": "some creator3",
+              "pid": "pid3",
+              "title": "some title 3",
+            },
+            "description": "some description3",
+            "links": Object {
+              "cover": "/cover3",
+            },
+          },
+        ],
+        "title": "some list",
+      },
+      Object {
+        "description": "some description",
+        "id": 2,
+        "list": Array [
+          Object {
+            "book": Object {
+              "creator": "some creator1",
+              "pid": "pid1",
+              "title": "some title 1",
+            },
+            "description": "some description1",
+            "links": Object {
+              "cover": "/cover1",
+            },
+          },
+          Object {
+            "book": Object {
+              "creator": "some creator2",
+              "pid": "pid2",
+              "title": "some title 2",
+            },
+            "description": "some description2",
+            "links": Object {
+              "cover": "/cover2",
+            },
+          },
+          Object {
+            "book": Object {
+              "creator": "some creator3",
+              "pid": "pid3",
+              "title": "some title 3",
+            },
+            "description": "some description3",
+            "links": Object {
+              "cover": "/cover3",
+            },
+          },
+        ],
+        "title": "some list",
+      },
+    ]
+  }
+>
+  <div
+    className="mb3"
+  />
+  <div>
+    <a
+      className="btn btn-primary"
+      href="/lister/opret"
+      onClick={[Function]}
+    >
+      Ny liste
+      <span
+        className="glyphicon glyphicon-plus ml4"
+      />
+    </a>
+  </div>
+</div>
+`;

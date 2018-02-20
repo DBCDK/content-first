@@ -5,10 +5,7 @@ import Spinner from '../general/Spinner.component';
 import Link from '../general/Link.component';
 import LogoutLink from '../general/Logout.component';
 import {connect} from 'react-redux';
-import {
-  ADD_PROFILE_IMAGE,
-  SAVE_USER_PROFILE
-} from '../../redux/user.reducer';
+import {ADD_PROFILE_IMAGE, SAVE_USER_PROFILE} from '../../redux/user.reducer';
 
 export class CreateProfilePage extends React.Component {
   render() {
@@ -53,9 +50,10 @@ export class CreateProfilePage extends React.Component {
                     updateProfile={this.props.saveUser}
                     error={this.props.error}
                     isSaving={this.props.isSaving}
+                    editMode={this.props.editMode}
                   />
                 </div>
-                {this.props.doCancel ? (
+                {this.props.editMode ? (
                   <Link href="/profile">Fortryd redigéring</Link>
                 ) : (
                   <LogoutLink>

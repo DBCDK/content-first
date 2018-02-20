@@ -16,15 +16,19 @@ export class ProfilePage extends React.Component {
                 src={`/v1/image/${this.props.user.image}/200/200`}
                 name={this.props.user.name}
               />
-              <Link className="small link-subtle" href="/profile/rediger">Redigér</Link>
+              <Link className="small link-subtle" href="/profile/rediger">
+                Redigér
+              </Link>
             </div>
           ) : (
             ''
           )}
         </div>
         <div className="col-xs-9">
-          <h1 className="headline mb2">Dine Lister</h1>
-          <Lists />
+          <h1 className="headline mb5">Dine Lister</h1>
+          <div className="profile-lists">
+            <Lists />
+          </div>
         </div>
       </div>
     );

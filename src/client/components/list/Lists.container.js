@@ -41,7 +41,7 @@ const ListItem = ({list, title, id, image}) => {
   );
 };
 
-class Lists extends React.Component {
+export class Lists extends React.Component {
   render() {
     return (
       <div className="lists-page">

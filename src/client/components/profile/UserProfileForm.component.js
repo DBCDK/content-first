@@ -70,21 +70,22 @@ export default class UserProfileForm extends React.Component {
           />
         </div>
         <p className="mb6">Du er logget på via {this.props.library}</p>
-        <label htmlFor="acceptedTerms" className="checkbox">
-          <input
-            id="acceptedTerms"
-            className="checkbox"
-            name="acceptedTerms"
-            type="checkbox"
-            disabled={this.props.isSaving}
-            checked={this.state.acceptedTerms}
-            onChange={() =>
-              this.setState({acceptedTerms: !this.state.acceptedTerms})
-            }
-          />
-          <span /> Jeg har læst og accepteret{' '}
-          <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
-        </label>
+        {!this.props.editMode ?
+          <label htmlFor="acceptedTerms" className="checkbox">
+            <input
+              id="acceptedTerms"
+              className="checkbox"
+              name="acceptedTerms"
+              type="checkbox"
+              disabled={this.props.isSaving}
+              checked={this.state.acceptedTerms}
+              onChange={() =>
+                this.setState({acceptedTerms: !this.state.acceptedTerms})
+              }
+            />
+            <span /> Jeg har læst og accepteret{' '}
+            <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
+          </label> : ''}
         {this.renderErrors()}
         <button
           className="btn btn-success btn-block"

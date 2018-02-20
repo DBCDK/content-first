@@ -42,7 +42,7 @@ class App extends Component {
       } else if (pathSplit[2] === 'rediger') {
         topbar = false;
         currentPage = (
-          <CreateProfilePage title="Redigér profil" doCancel={true} />
+          <CreateProfilePage title="Redigér profil" editMode={true} />
         );
       } else if (pathSplit[2] === 'smag') {
         currentPage = <TastePage />;
