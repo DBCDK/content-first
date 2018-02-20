@@ -47,11 +47,14 @@
             },
             "additionalProperties": false
           }
+        },
+        "image": {
+          "required": false,
+          "type": "string"
         }
       },
       "additionalProperties": false
     }
-
   },
   "additionalProperties": false
 }

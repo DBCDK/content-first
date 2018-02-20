@@ -27,7 +27,8 @@ describe('User data transformers for Community Service', () => {
               pid: '870970-basis-22629344',
               description: 'Magic to the people'
             }
-          ]
+          ],
+          image: 'some-image-id'
         }
       });
     });
@@ -46,7 +47,8 @@ describe('User data transformers for Community Service', () => {
               description: 'Idéer til haven',
               pid: '870970-basis-53188931'
             }
-          ]
+          ],
+          image: 'some-image-id'
         }
       });
     });

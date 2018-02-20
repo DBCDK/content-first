@@ -227,7 +227,8 @@ class Community {
             type: 'attributes.type',
             title: 'title',
             description: 'contents',
-            list: 'attributes.list'
+            list: 'attributes.list',
+            image: 'attributes.image'
           }
         };
         const {body} = await request.post(queryUrl).send(query);
@@ -304,7 +305,8 @@ class Community {
               Include: 'attributes.openplatform_id'
             },
             list: 'attributes.list',
-            public: 'attributes.public'
+            public: 'attributes.public',
+            image: 'attributes.image'
           }
         };
         const {body} = await request.post(queryUrl).send(query);
@@ -381,6 +383,7 @@ class Community {
       }
       try {
         const ownedList = Object.assign({owner_id: profileId}, document);
+
         const entityUrl = await me.gettingPostEntityUrl();
         const response = await request.post(entityUrl).send(ownedList);
         await validatingInput(response.body, schemaElvisSuccessOut);
@@ -512,7 +515,8 @@ class Community {
             type: 'attributes.type',
             title: 'title',
             description: 'contents',
-            list: 'attributes.list'
+            list: 'attributes.list',
+            image: 'attributes.image'
           }
         });
         const data = await me.extractingCommunityResult(

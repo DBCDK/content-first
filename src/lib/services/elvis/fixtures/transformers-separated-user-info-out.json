@@ -44,7 +44,8 @@
             "pid": "870970-basis-22629344",
             "description": "Magic to the people"
           }
-        ]
+        ],
+        "image": "some-image-id"
       }
     },
     {
@@ -60,7 +61,8 @@
             "pid": "870970-basis-53188931",
             "description": "Idéer til haven"
           }
-        ]
+        ],
+        "image": "some-image-id"
       }
     }
   ]
