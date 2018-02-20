@@ -29,6 +29,12 @@ exports[`ListView List is rendered 1`] = `
             >
               <span
                 className="profile-image small round"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": undefined,
+                  }
+                }
               >
                 <img
                   alt="Profile Name"
@@ -36,11 +42,11 @@ exports[`ListView List is rendered 1`] = `
                   src="http://p-hold.com/200/200"
                 />
               </span>
-              <p
-                className="profile-name t-body h4"
+              <h4
+                className="profile-name t-body h4 mt0 mb0"
               >
                 Profile Name
-              </p>
+              </h4>
             </div>
           </div>
           <div
@@ -97,6 +103,12 @@ exports[`ListView List is rendered 1`] = `
                 >
                   <span
                     className="profile-image small round"
+                    style={
+                      Object {
+                        "height": undefined,
+                        "width": undefined,
+                      }
+                    }
                   >
                     <img
                       alt="Profile Name"
@@ -104,11 +116,11 @@ exports[`ListView List is rendered 1`] = `
                       src="http://p-hold.com/200/200"
                     />
                   </span>
-                  <p
-                    className="profile-name t-body h4"
+                  <h4
+                    className="profile-name t-body h4 mt0 mb0"
                   >
                     Profile Name
-                  </p>
+                  </h4>
                 </div>
                 <p
                   className="t-body"
@@ -159,6 +171,12 @@ exports[`ListView List is rendered 1`] = `
                 >
                   <span
                     className="profile-image small round"
+                    style={
+                      Object {
+                        "height": undefined,
+                        "width": undefined,
+                      }
+                    }
                   >
                     <img
                       alt="Profile Name"
@@ -166,11 +184,11 @@ exports[`ListView List is rendered 1`] = `
                       src="http://p-hold.com/200/200"
                     />
                   </span>
-                  <p
-                    className="profile-name t-body h4"
+                  <h4
+                    className="profile-name t-body h4 mt0 mb0"
                   >
                     Profile Name
-                  </p>
+                  </h4>
                 </div>
                 <p
                   className="t-body"
@@ -221,6 +239,12 @@ exports[`ListView List is rendered 1`] = `
                 >
                   <span
                     className="profile-image small round"
+                    style={
+                      Object {
+                        "height": undefined,
+                        "width": undefined,
+                      }
+                    }
                   >
                     <img
                       alt="Profile Name"
@@ -228,11 +252,11 @@ exports[`ListView List is rendered 1`] = `
                       src="http://p-hold.com/200/200"
                     />
                   </span>
-                  <p
-                    className="profile-name t-body h4"
+                  <h4
+                    className="profile-name t-body h4 mt0 mb0"
                   >
                     Profile Name
-                  </p>
+                  </h4>
                 </div>
                 <p
                   className="t-body"

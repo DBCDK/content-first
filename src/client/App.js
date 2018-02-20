@@ -9,6 +9,7 @@ import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
 import SearchPage from './components/search/SearchPage.container';
 import WorkPage from './components/work/WorkPage.container';
+import TastePage from './components/profile/TastePage.container';
 import ProfilePage from './components/profile/ProfilePage.container';
 import CreateProfilePage from './components/profile/CreateProfilePage';
 import TopBar from './components/top/TopBar.component';
@@ -37,7 +38,14 @@ class App extends Component {
     } else if (pathSplit[1] === 'profile') {
       if (pathSplit[2] === 'opret') {
         topbar = false;
-        currentPage = <CreateProfilePage />;
+        currentPage = <CreateProfilePage title="Opret profil" />;
+      } else if (pathSplit[2] === 'rediger') {
+        topbar = false;
+        currentPage = (
+          <CreateProfilePage title="Redigér profil" editMode={true} />
+        );
+      } else if (pathSplit[2] === 'smag') {
+        currentPage = <TastePage />;
       } else {
         currentPage = <ProfilePage />;
       }

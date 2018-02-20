@@ -4,6 +4,7 @@ import renderer from 'react-test-renderer';
 
 jest.mock('react-textarea-autosize', () => 'textarea');
 jest.mock('../../general/BookCover.component', () => 'BookCover');
+jest.mock('../../general/Link.component', () => 'Link');
 const createTestElement = id => {
   return {
     book: {

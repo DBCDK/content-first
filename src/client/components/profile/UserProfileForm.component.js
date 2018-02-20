@@ -20,7 +20,7 @@ export default class UserProfileForm extends React.Component {
     }
     if (this.state.name.length < 4) {
       return this.setState({
-        validationError: 'Dit brugernavn skal være minimum hep karakterer langt'
+        validationError: 'Dit brugernavn skal være minimum 3 karakterer langt'
       });
     }
     this.setState({validationError: null});
@@ -43,7 +43,7 @@ export default class UserProfileForm extends React.Component {
   render() {
     return (
       <form
-        className="profile-form mb4"
+        className="profile-form"
         style={{maxWidth: '400px'}}
         onSubmit={this.onSubmit}
       >
@@ -70,21 +70,22 @@ export default class UserProfileForm extends React.Component {
           />
         </div>
         <p className="mb6">Du er logget på via {this.props.library}</p>
-        <label htmlFor="acceptedTerms" className="checkbox">
-          <input
-            id="acceptedTerms"
-            className="checkbox"
-            name="acceptedTerms"
-            type="checkbox"
-            disabled={this.props.isSaving}
-            checked={this.state.acceptedTerms}
-            onChange={() =>
-              this.setState({acceptedTerms: !this.state.acceptedTerms})
-            }
-          />
-          <span /> Jeg har læst og accepteret{' '}
-          <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
-        </label>
+        {!this.props.editMode ?
+          <label htmlFor="acceptedTerms" className="checkbox">
+            <input
+              id="acceptedTerms"
+              className="checkbox"
+              name="acceptedTerms"
+              type="checkbox"
+              disabled={this.props.isSaving}
+              checked={this.state.acceptedTerms}
+              onChange={() =>
+                this.setState({acceptedTerms: !this.state.acceptedTerms})
+              }
+            />
+            <span /> Jeg har læst og accepteret{' '}
+            <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
+          </label> : ''}
         {this.renderErrors()}
         <button
           className="btn btn-success btn-block"

@@ -1,6 +1,6 @@
 import React from 'react';
-import {HISTORY_PUSH} from '../../redux/middleware';
 import {connect} from 'react-redux';
+import {HISTORY_PUSH} from '../../redux/middleware';
 
 const Link = ({href, className = '', children = '', dispatch}) => (
   <a
