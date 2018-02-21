@@ -94,7 +94,7 @@ export default class UserProfileForm extends React.Component {
           className="btn btn-success btn-block"
           disabled={this.props.isSaving}
         >
-          Opret profil{' '}
+          {this.props.editMode ? 'Gem Profil' : 'Opret profil'}{' '}
           {(this.props.isSaving && (
             <Spinner size={12} color="white" style={{marginLeft: '10px'}} />
           )) ||
