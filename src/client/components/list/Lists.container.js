@@ -52,6 +52,7 @@ export class Lists extends React.Component {
               title={data.title}
               id={data.id}
               key={data.id}
+              image={`/v1/image/${data.image}/50/50`}
             />
           ))}
         </div>
