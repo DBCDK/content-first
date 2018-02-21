@@ -28,11 +28,18 @@ const ListItem = ({list, title, id, image}) => {
         </Link>
       </div>
       <Link href={`/lister/${id}`} className="ml2">
-        {list.map(el => (
-          <span className="ml1" key={el.pid}>
-            <Cover pid={el.pid} title={el.title} width="30px" height="45px" />
-          </span>
-        ))}
+        {list.map(el => {
+          return (
+            <span className="ml1" key={el.book.pid}>
+              <Cover
+                pid={el.book.pid}
+                title={el.book.title}
+                width="30px"
+                height="45px"
+              />
+            </span>
+          );
+        })}
         <Link href={`/lister/${id}`} className="small ml1">
           Se hele listen
         </Link>
