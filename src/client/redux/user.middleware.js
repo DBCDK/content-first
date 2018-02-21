@@ -76,12 +76,6 @@ export const userMiddleware = store => next => action => {
       next(action);
       return (async () => {
         try {
-          if (!['image/png', 'image/jpeg'].includes(action.image.type)) {
-            return store.dispatch({
-              type: ADD_PROFILE_IMAGE_ERROR,
-              error: {status: 400, msg: 'Invalid MIME type'}
-            });
-          }
           const image = await addImage(action.image);
           store.dispatch({type: ADD_PROFILE_IMAGE_SUCCESS, image});
         } catch (error) {
