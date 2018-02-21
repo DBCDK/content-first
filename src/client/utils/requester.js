@@ -191,6 +191,51 @@ export const saveUser = user => {
   });
 };
 
+export const fetchObjects = (key, type) => {
+  return new Promise((resolve, reject) => {
+    request
+      .get('/v1/object/find')
+      .query({key, type})
+      .end((error, res) => {
+        if (error) {
+          reject(res.body && res.body.errors ? res.body.errors[0] : error);
+        } else {
+          resolve(res.body);
+        }
+      });
+  });
+};
+
+export const addObject = object => {
+  return new Promise((resolve, reject) => {
+    request
+      .post('/v1/object/')
+      .send(object)
+      .end((error, res) => {
+        if (error) {
+          reject(res.body && res.body.errors ? res.body.errors[0] : error);
+        } else {
+          resolve(res.body);
+        }
+      });
+  });
+};
+
+export const updateObject = object => {
+  return new Promise((resolve, reject) => {
+    request
+      .put('/v1/object/')
+      .send(object)
+      .end((error, res) => {
+        if (error) {
+          reject(res.body && res.body.errors ? res.body.errors[0] : error);
+        } else {
+          resolve(res.body);
+        }
+      });
+  });
+};
+
 export const logout = dispatch => {
   dispatch({type: ON_LOGOUT_RESPONSE});
   document.body.innerHTML +=
