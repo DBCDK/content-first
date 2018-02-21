@@ -597,6 +597,8 @@ Comment objects could be implemented by, giving them a comment `type`, and havin
 
 Similarly entries for public writable lists can be implemented by having a list-entry `type`, and the `key` equal to the id for the list, - and then the list entries can also be found using the `/find` endpoint. If the owner of the list wants to reorder, the list should contain an array of object-ids, that represents the ordering. Similarly if the owner wants to be able to delete elements from the list, this can be done with a blacklist of entries, which the find result can be filtered by.
 
+The [integration test](../src/integration/v1-object_test.js) includes a sample usage flow, where you can see how the endpoint can be called.
+
 ### `POST /object` or `PUT /object/$id`
 
 Stores an object in the community service. 
@@ -630,8 +632,9 @@ The following properties is added to the object:
 
 ### `GET /object/find?type=`_type_\[`&key=`_key_\]\[`&owner=`_owner_\]\[`&limit=`_limit_\]\[`&offset=`_offset_\]
 
-Generic search. Only returns that are either owned by the logged in user, or public.
-Either `key` or `owner` should be specified, not both.
+Generic search. 
+If no owner is specified, it only returns publicly readable objects.
+If owner is specified, it shows private objects, if user is owner or admin. 
 
 So for example, if we have a comment object:
 
@@ -652,5 +655,6 @@ It would be found by `GET /object/find?type=comment&tag=123`.
 To make queries perform, there should be added an indices in the community service on
 
 - `attributes.id`
+- (`attributes.type`, `attributes.public`, `modified_epoch`)
 - (`attributes.type`, `attributes.owner`)
-- (`attributes.type`, `attributes.key`, `attributes.public`)
+- (`attributes.type`, `attributes.key`, `attributes.public`, `modified_epoch`)
