@@ -45,6 +45,79 @@ exports[`ListCreate list details is shown 1`] = `
               placeholder="Skriv lidt om din liste"
               value="some description"
             />
+            <div>
+              <span
+                className="ml1"
+              >
+                Skal vises som
+              </span>
+              <select
+                className="form-control ml1"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "width": "auto",
+                  }
+                }
+                value="simple"
+              >
+                <option
+                  value="simple"
+                >
+                  simpel liste
+                </option>
+                <option
+                  value="circle"
+                >
+                  visuel liste
+                </option>
+              </select>
+            </div>
+            <div
+              className="mt1 text-left"
+            >
+              <div
+                className="image-upload"
+              >
+                <label>
+                  <div
+                    className="image-upload--zone"
+                    style={
+                      Object {
+                        "borderRadius": "5%",
+                        "height": "150px",
+                        "overflow": "hidden",
+                        "width": "150px",
+                      }
+                    }
+                  >
+                    <div>
+                      <span
+                        className="background-icon glyphicon glyphicon-picture"
+                      />
+                    </div>
+                    <div
+                      className="droppable-image-overlay"
+                    >
+                      
+                    </div>
+                  </div>
+                  <span
+                    className="btn btn-primary mt1"
+                  >
+                    Upload billede
+                  </span>
+                  <input
+                    accept="image/png, image/jpeg"
+                    className="droppable-image-field--file-input"
+                    name={undefined}
+                    onChange={[Function]}
+                    type="file"
+                  />
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <h2
@@ -174,6 +247,79 @@ exports[`ListCreate renders a list with multiple books 1`] = `
               placeholder="Skriv lidt om din liste"
               value="some description"
             />
+            <div>
+              <span
+                className="ml1"
+              >
+                Skal vises som
+              </span>
+              <select
+                className="form-control ml1"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "width": "auto",
+                  }
+                }
+                value="simple"
+              >
+                <option
+                  value="simple"
+                >
+                  simpel liste
+                </option>
+                <option
+                  value="circle"
+                >
+                  visuel liste
+                </option>
+              </select>
+            </div>
+            <div
+              className="mt1 text-left"
+            >
+              <div
+                className="image-upload"
+              >
+                <label>
+                  <div
+                    className="image-upload--zone"
+                    style={
+                      Object {
+                        "borderRadius": "5%",
+                        "height": "150px",
+                        "overflow": "hidden",
+                        "width": "150px",
+                      }
+                    }
+                  >
+                    <div>
+                      <span
+                        className="background-icon glyphicon glyphicon-picture"
+                      />
+                    </div>
+                    <div
+                      className="droppable-image-overlay"
+                    >
+                      
+                    </div>
+                  </div>
+                  <span
+                    className="btn btn-primary mt1"
+                  >
+                    Upload billede
+                  </span>
+                  <input
+                    accept="image/png, image/jpeg"
+                    className="droppable-image-field--file-input"
+                    name={undefined}
+                    onChange={[Function]}
+                    type="file"
+                  />
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <h2
@@ -475,6 +621,79 @@ exports[`ListCreate renders a list with one book 1`] = `
               placeholder="Skriv lidt om din liste"
               value="some description"
             />
+            <div>
+              <span
+                className="ml1"
+              >
+                Skal vises som
+              </span>
+              <select
+                className="form-control ml1"
+                onChange={[Function]}
+                style={
+                  Object {
+                    "display": "inline-block",
+                    "width": "auto",
+                  }
+                }
+                value="simple"
+              >
+                <option
+                  value="simple"
+                >
+                  simpel liste
+                </option>
+                <option
+                  value="circle"
+                >
+                  visuel liste
+                </option>
+              </select>
+            </div>
+            <div
+              className="mt1 text-left"
+            >
+              <div
+                className="image-upload"
+              >
+                <label>
+                  <div
+                    className="image-upload--zone"
+                    style={
+                      Object {
+                        "borderRadius": "5%",
+                        "height": "150px",
+                        "overflow": "hidden",
+                        "width": "150px",
+                      }
+                    }
+                  >
+                    <div>
+                      <span
+                        className="background-icon glyphicon glyphicon-picture"
+                      />
+                    </div>
+                    <div
+                      className="droppable-image-overlay"
+                    >
+                      
+                    </div>
+                  </div>
+                  <span
+                    className="btn btn-primary mt1"
+                  >
+                    Upload billede
+                  </span>
+                  <input
+                    accept="image/png, image/jpeg"
+                    className="droppable-image-field--file-input"
+                    name={undefined}
+                    onChange={[Function]}
+                    type="file"
+                  />
+                </label>
+              </div>
+            </div>
           </div>
         </div>
         <h2

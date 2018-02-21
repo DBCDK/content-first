@@ -46,7 +46,7 @@ exports[`Image Upload render function Add image 1`] = `
                 >
                   <div>
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="background-icon glyphicon glyphicon-user"
                     />
                   </div>
                   <div
@@ -200,7 +200,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
             >
               <div>
                 <span
-                  className="glyphicon glyphicon-user"
+                  className="background-icon glyphicon glyphicon-user"
                 />
               </div>
               <div

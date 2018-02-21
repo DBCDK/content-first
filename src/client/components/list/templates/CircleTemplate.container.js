@@ -99,7 +99,6 @@ export default class CircleTemplate extends React.Component {
                   circleWidth,
                   circleHeight
                 );
-                console.log(degree);
                 const popOverPos =
                   degree < 180 ? -POPOVER_WIDTH + 40 : elementWidth - 15;
                 return (

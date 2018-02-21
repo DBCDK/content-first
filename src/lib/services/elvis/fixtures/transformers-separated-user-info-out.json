@@ -45,7 +45,8 @@
             "description": "Magic to the people"
           }
         ],
-        "image": "some-image-id"
+        "image": "some-image-id",
+        "template": "simple"
       }
     },
     {
@@ -62,7 +63,8 @@
             "description": "Idéer til haven"
           }
         ],
-        "image": "some-image-id"
+        "image": "some-image-id",
+        "template": "simple"
       }
     }
   ]
