@@ -150,13 +150,13 @@ describe('Community connector', () => {
 
   // TODO move code around
   describe('findObjects', () => {
-    it('should throw error if type is missing', async () => {
+    it('should throw if type is missing', async () => {
       // TODO maybe return error message instead
     });
     it('should return forbidden if querying owner, and not admin or owner', async () => {
       // TODO
     });
-    it('should throw error neither owner nor key is specified', async () => {
+    it('should throw if neither owner nor key is specified', async () => {
       // TODO maybe return error message instead
     });
     it('should search, and return json-parsed objects', async () => {
@@ -176,13 +176,13 @@ describe('Community connector', () => {
       expect(Object.keys(result.data)).to.deep.equal(['ok', 'id', 'rev']);
       expect(result.data.ok).to.equal(true);
     });
-    it('should return not-found-error if _id is present, and no previous object', async () => {
+    it('should return not-found if _id is present, and no previous object', async () => {
       // TODO
     });
-    it('should return forbidden-error if user is not owner of previous version', async () => {
+    it('should return forbidden if user is not owner of previous version', async () => {
       // TODO
     });
-    it('should return conflict error if revision does not matches previous version', async () => {
+    it('should return conflict if revision does not matches previous version', async () => {
       // TODO
     });
     it('should update existing object if object has _id', async () => {
@@ -214,7 +214,7 @@ describe('Community connector', () => {
         data: {_id: 'some_id', _rev: 'some_rev', owner: '123openplatformid456'}
       });
     });
-    it('should return permission error, object not public, and owned by other', async () => {
+    it('should return forbidden, if object not public, and owned by other', async () => {
       arrangeQueryObjectPrivate();
       let result = await sut.getObjectById('some_id', {
         id: 1,
