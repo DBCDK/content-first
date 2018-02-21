@@ -190,6 +190,7 @@ exports[`ListCreate list details is shown 1`] = `
         </div>
         <Link
           href="/profile"
+          replace={true}
         >
           Fortryd oprettelse af liste
         </Link>
@@ -564,6 +565,7 @@ exports[`ListCreate renders a list with multiple books 1`] = `
         </div>
         <Link
           href="/profile"
+          replace={true}
         >
           Fortryd oprettelse af liste
         </Link>
@@ -824,6 +826,7 @@ exports[`ListCreate renders a list with one book 1`] = `
         </div>
         <Link
           href="/profile"
+          replace={true}
         >
           Fortryd oprettelse af liste
         </Link>

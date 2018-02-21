@@ -10,9 +10,10 @@ import {
   addList,
   ADD_LIST_IMAGE
 } from '../../redux/list.reducer';
+import {createListLocation} from '../../utils/requestLists';
 import DragableList from './ListDrag.component';
 import Textarea from 'react-textarea-autosize';
-import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
+import {HISTORY_REPLACE} from '../../redux/middleware';
 import BookSearchSuggester from './BookSearchSuggester';
 import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
@@ -112,7 +113,7 @@ const ListBooks = props => (
       onUpdate={updatedList => {
         props.updateList({...props.list.data, list: updatedList});
       }}
-      onRemove={book => props.removeElementFromList(props.list.data.id, book)}
+      onRemove={book => props.removeElementFromList(book, props.list.data.id)}
     />
   </div>
 );
@@ -126,7 +127,7 @@ export class ListCreator extends React.Component {
   }
   async componentWillMount() {
     // check if we need to create a new list
-    if (!this.props.id && this.props.fetchListId) {
+    if (!this.props.id && this.props.createList) {
       this.props.createList();
     }
   }
@@ -159,9 +160,12 @@ export class ListCreator extends React.Component {
     if (!this.props.currentList) {
       return null;
     }
+    const isNew = this.props.currentList.data.created_epoch ? false : true;
     return (
       <div className="list-creator">
-        <h1 className="list-creator__headline">Opret liste</h1>
+        <h1 className="list-creator__headline">
+          {isNew ? 'Opret liste' : 'Redigér liste'}
+        </h1>
         <div className="row">
           <div className="col-xs-8">
             <form className="mb4" onSubmit={e => this.onSubmit(e)}>
@@ -203,7 +207,11 @@ export class ListCreator extends React.Component {
                   Gem liste
                 </button>
               </div>
-              <Link href="/profile">Fortryd oprettelse af liste</Link>
+              <Link href="/profile" replace={true}>
+                {isNew
+                  ? 'Fortryd oprettelse af liste'
+                  : 'Fortryd redigering af liste'}
+              </Link>
             </form>
           </div>
           <div className="col-xs-4" />
@@ -223,16 +231,16 @@ export const mapDispatchToProps = dispatch => ({
   updateList: data => dispatch(updateList(data)),
   storeList: async list => {
     await dispatch(storeList(list.data.id));
-    dispatch({type: HISTORY_PUSH, path: '/lister'});
+    dispatch({type: HISTORY_REPLACE, path: '/lister'});
   },
-  addElementToList: (id, book) => dispatch(addElementToList(book, id)),
-  removeElementFromList: (id, book) =>
+  addElementToList: (book, id) => dispatch(addElementToList(book, id)),
+  removeElementFromList: (book, id) =>
     dispatch(removeElementFromList(book, id)),
   loadLists: () => dispatch({type: LIST_LOAD_REQUEST}),
   createList: async () => {
-    const {id} = await this.props.fetchListId();
-    this.props.dispatch(addList({id}));
-    this.props.dispatch({
+    const {id} = await createListLocation();
+    dispatch(addList({id}));
+    dispatch({
       type: HISTORY_REPLACE,
       path: `/lister/${id}/rediger`
     });

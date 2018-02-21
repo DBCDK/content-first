@@ -11,6 +11,7 @@ const BACKGROUND_IMAGE_MAX_HEIGHT = 800;
 const CIRCLE_WIDTH_PERCENTAGE = 0.95; // percentage of parent width
 const CIRCLE_MAX_WIDTH = 900;
 const POPOVER_WIDTH = 300;
+const ELEMENT_MAX_SIZE = 200; // width or height
 
 export default class CircleTemplate extends React.Component {
   constructor() {
@@ -28,7 +29,9 @@ export default class CircleTemplate extends React.Component {
   }
   onResize = () => {
     this.setState({
-      clientWidth: this.refs.wrapper.clientWidth
+      clientWidth: this.refs.wrapper
+        ? this.refs.wrapper.clientWidth
+        : BACKGROUND_IMAGE_WIDTH
     });
   };
   componentDidMount() {
@@ -62,8 +65,8 @@ export default class CircleTemplate extends React.Component {
     );
     const circleHeight = backgroundImageHeight * 0.95;
     const rows = list.data.list.length / 1.5;
-    const coverHeight = circleHeight / rows;
-    const elementWidth = circleWidth / rows;
+    const coverHeight = Math.min(circleHeight / rows, ELEMENT_MAX_SIZE);
+    const elementWidth = Math.min(circleWidth / rows, ELEMENT_MAX_SIZE);
     const hideLabels = elementWidth < 120;
     return (
       <div className="circle-template row">
