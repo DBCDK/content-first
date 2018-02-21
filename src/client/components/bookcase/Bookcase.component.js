@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
-import RollOver from '../rollover/RollOver.component';
+import Carousel from './Carousel.component';
 
 import {ON_BOOK_REQUEST_TEST} from '../../redux/bookcase.reducer';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
@@ -19,12 +19,18 @@ export class Bookcase extends React.Component {
       description: '',
       title: '',
       cover: '',
-      curindex: 0
+      curindex: 0,
+      carousel: false
     };
+  }
+
+  hideCarousel() {
+    this.setState({carousel: false});
   }
 
   fetchWork(pid) {
     this.props.dispatch({type: ON_WORK_REQUEST, pid: pid});
+    this.setState({carousel: true});
   }
 
   nextBook = direction => {
@@ -63,6 +69,11 @@ export class Bookcase extends React.Component {
     });
   };
 
+  // test() {
+  //   var test = document.getElementById('section');
+  //   test.classList.add('section-active');
+  // }
+
   render() {
     let book = '';
     if (this.state.pid && this.props.workState.isLoading === false) {
@@ -72,25 +83,49 @@ export class Bookcase extends React.Component {
     const books = this.props.bookcaseState.books;
 
     return (
-      <section id="bookcase" className="row">
+      <section
+        className={`row ${this.state.carousel ? ' section-active' : ''}`}
+        onClick={this.test}
+      >
         <img src="img/bookcase/BS-bogreol.png" />
         <div className="row">
           <div className="col-xs-4 celeb">
-            <div className="col-xs-12 celeb-img">
-              <img src="img/bookcase/BS3.png" alt="bs" />
+            <div className="col-xs-12 celeb-top">
+              <div className="col-xs-12 celeb-img">
+                <img src="img/bookcase/BS3.png" alt="bs" />
+              </div>
+              <div className="col-xs-12 celeb-title">
+                <h1>B.S. Christiansen</h1>
+              </div>
+              <div className="col-xs-12 celeb-description">
+                <p>
+                  er en dansk forhenværende elitesoldat i Jægerkorpset og
+                  fordragsholder. Han er især kendt for programserien{' '}
+                  <span className="highlight"> På afveje </span>
+                  med forskellige kendte personer, og har også deltaget i flere
+                  selvhjælpsserier. Skrev i 2005 bogen
+                  <span className="highlight"> Et liv på kanten </span>
+                </p>
+              </div>
             </div>
-            <div className="col-xs-12 celeb-description">
-              <h1>B.S. Christiansen</h1>
-              <p>
-                er en dansk forhenværende elitesoldat i Jægerkorpset og
-                fordragsholder. Han er især kendt for programserien{' '}
-                <span className="highlight"> På afveje </span>
-                med forskellige kendte personer, og har også deltaget i flere
-                selvhjælpsserier. Skrev i 2005 bogen
-                <span className="highlight"> Et liv på kanten </span>
-              </p>
-            </div>
+
+            <Carousel
+              active={this.state.carousel}
+              loading={
+                this.state.pid === '' &&
+                this.props.workState[this.state.pid] === undefined
+              }
+              description={this.state.description}
+              book={book}
+              onDirectionClick={direction => {
+                this.nextBook(direction);
+              }}
+              onCloseClick={() => {
+                this.hideCarousel();
+              }}
+            />
           </div>
+
           <div className="col-xs-8 bookswrap">
             {books.map((p, i) => (
               <Pulse
@@ -101,18 +136,6 @@ export class Bookcase extends React.Component {
                 position={p.position}
               />
             ))}
-            <RollOver
-              loading={
-                this.state.pid === '' &&
-                this.props.workState[this.state.pid] === undefined
-              }
-              position={this.state.position}
-              description={this.state.description}
-              onClick={direction => {
-                this.nextBook(direction);
-              }}
-              book={book}
-            />
           </div>
         </div>
       </section>

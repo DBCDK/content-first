@@ -3,9 +3,8 @@ import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import BookCover from '../general/BookCover.component';
 
 /*
-  <RollOver
+  <Carousel
     loading={true|false}
-    position={{x:-,y:-}}
     description={'lorem ipsum...'}
     onClick={('next' | 'prev') => {
       this.nextBook(direction);
@@ -14,49 +13,20 @@ import BookCover from '../general/BookCover.component';
   />
 */
 
-export default class RollOver extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      visible: false
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (!this.props.loading == true && nextProps.loading == false) {
-      this.setState({visible: true});
-    }
-  }
-
-  hideRollOver() {
-    this.setState({visible: false});
-  }
-
+export default class Carousel extends React.Component {
   render() {
-    const description = this.props.description.substring(0, 175) + '. . .';
-
-    // Styles according to pulse
-    /*
-    let styles = {
-      left: this.props.position.x + '%',
-      top: this.props.position.y + '%'
-    };
-    */
-    let styles = {};
-
     return (
       <div
         className={`rollover-container ${
-          this.state.visible ? ' rollover-display' : ''
+          this.props.active ? ' rollover-display' : ''
         }`}
-        style={styles}
       >
         <div className="rollover">
           <img
             className="rollover-close"
             src="/static/media/Kryds.e69a54ef.svg"
             onClick={() => {
-              this.hideRollOver();
+              this.props.onCloseClick();
             }}
           />
           <div className="col-xs-4 rollover-img">
@@ -71,7 +41,7 @@ export default class RollOver extends React.Component {
               <h2>{this.props.book.creator}</h2>
             </div>
             <div className="col-xs-12 rollover-description">
-              <p>{description}</p>
+              <p>{this.props.description}</p>
             </div>
             <div className="col-xs-12">
               <CheckmarkConnected
@@ -81,21 +51,19 @@ export default class RollOver extends React.Component {
             </div>
           </div>
 
-          <div className="col-xs-12 seperator-line" />
-
           <div className="col-xs-12 rollover-bottom">
-            <span
-              class="glyphicon glyphicon-chevron-right"
-              aria-hidden="true"
-              onClick={() => {
-                this.props.onClick('next');
-              }}
-            />
             <span
               class="glyphicon glyphicon-chevron-left"
               aria-hidden="true"
               onClick={() => {
-                this.props.onClick('prev');
+                this.props.onDirectionClick('prev');
+              }}
+            />
+            <span
+              class="glyphicon glyphicon-chevron-right"
+              aria-hidden="true"
+              onClick={() => {
+                this.props.onDirectionClick('next');
               }}
             />
           </div>
