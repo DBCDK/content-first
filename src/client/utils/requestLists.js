@@ -50,7 +50,6 @@ export const saveLists = async (lists, isLoggedIn = false) => {
 export const saveList = async list => {
   const listPayload = listToPayload(list.data);
   const location = list.links.self || (await createListLocation()).location;
-  console.log('store list', listPayload);
   await request.put(location).send(listPayload);
   return Object.assign({}, list, {links: {self: location}});
 };

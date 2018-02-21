@@ -10,7 +10,6 @@ import {
   addList,
   ADD_LIST_IMAGE
 } from '../../redux/list.reducer';
-import {createListLocation} from '../../utils/requestLists';
 import DragableList from './ListDrag.component';
 import Textarea from 'react-textarea-autosize';
 import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
@@ -75,8 +74,8 @@ const ListDetails = ({
           style={{borderRadius: '5%'}}
           loading={imageIsLoading}
           previewImage={image ? `/v1/image/${image}/150/150` : null}
-          onFile={image => {
-            addImage(id, image);
+          onFile={img => {
+            addImage(id, img);
           }}
         />
       </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import {getListById} from '../../../redux/list.reducer';
 import BookCover from '../../general/BookCover.component';
 import PopOver from '../../general/PopOver.component';
 import SimpleList from './SimpleList.component';
