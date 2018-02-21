@@ -8,7 +8,9 @@ import CheckmarkConnected from '../../general/CheckmarkConnected.component';
 
 const BACKGROUND_IMAGE_WIDTH = 1200;
 const BACKGROUND_IMAGE_HEIGHT_PERCENTAGE = 0.85; // percentage of width
+const BACKGROUND_IMAGE_MAX_HEIGHT = 800;
 const CIRCLE_WIDTH_PERCENTAGE = 0.95; // percentage of parent width
+const CIRCLE_MAX_WIDTH = 900;
 const POPOVER_WIDTH = 300;
 
 export default class CircleTemplate extends React.Component {
@@ -16,11 +18,10 @@ export default class CircleTemplate extends React.Component {
     super();
     this.state = {clientWidth: 0, popOverPid: null};
   }
-  calcCoords(degree, elementWidth, elementHeight, circleWidth) {
+  calcCoords(degree, elementWidth, elementHeight, circleWidth, circleHeight) {
     degree = Math.PI * degree / 180; // convert to radians.
     const radiusX = circleWidth / 2 - elementWidth / 2;
-    const radiusY =
-      BACKGROUND_IMAGE_HEIGHT_PERCENTAGE * circleWidth / 2 - elementHeight / 2;
+    const radiusY = circleHeight / 2 - elementHeight / 2;
     return {
       x: radiusX + radiusX * Math.cos(degree),
       y: radiusY + radiusY * Math.sin(degree)
@@ -50,13 +51,17 @@ export default class CircleTemplate extends React.Component {
     if (!list) {
       return null;
     }
-    const backgroundImageHeight =
-      this.state.clientWidth * BACKGROUND_IMAGE_HEIGHT_PERCENTAGE;
+    const backgroundImageHeight = Math.min(
+      this.state.clientWidth * BACKGROUND_IMAGE_HEIGHT_PERCENTAGE,
+      BACKGROUND_IMAGE_MAX_HEIGHT
+    );
     const incrementBy = 360 / list.data.list.length;
     const circleOffset = incrementBy / 2;
-    const circleWidth = this.state.clientWidth * CIRCLE_WIDTH_PERCENTAGE;
-    const circleHeight =
-      circleWidth * BACKGROUND_IMAGE_HEIGHT_PERCENTAGE * 0.95;
+    const circleWidth = Math.min(
+      this.state.clientWidth * CIRCLE_WIDTH_PERCENTAGE,
+      CIRCLE_MAX_WIDTH
+    );
+    const circleHeight = backgroundImageHeight * 0.95;
     const rows = list.data.list.length / 1.5;
     const coverHeight = circleHeight / rows;
     const elementWidth = circleWidth / rows;
@@ -65,11 +70,11 @@ export default class CircleTemplate extends React.Component {
       <div className="circle-template row">
         <div
           ref="wrapper"
-          className="list col-xs-12 col-lg-8 col-lg-offset-1"
+          className="list col-xs-12"
           style={{height: backgroundImageHeight}}
         >
           <img
-            className="background-image"
+            className="background-image cover"
             alt=""
             src={`/v1/image/${
               list.data.image
@@ -91,7 +96,8 @@ export default class CircleTemplate extends React.Component {
                   degree + circleOffset - 90,
                   elementWidth,
                   coverHeight + 60,
-                  circleWidth
+                  circleWidth,
+                  circleHeight
                 );
                 console.log(degree);
                 const popOverPos =
