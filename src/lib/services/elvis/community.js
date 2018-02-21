@@ -228,7 +228,8 @@ class Community {
             title: 'title',
             description: 'contents',
             list: 'attributes.list',
-            image: 'attributes.image'
+            image: 'attributes.image',
+            template: 'attributes.template'
           }
         };
         const {body} = await request.post(queryUrl).send(query);
@@ -306,7 +307,8 @@ class Community {
             },
             list: 'attributes.list',
             public: 'attributes.public',
-            image: 'attributes.image'
+            image: 'attributes.image',
+            template: 'attributes.template'
           }
         };
         const {body} = await request.post(queryUrl).send(query);
@@ -516,7 +518,8 @@ class Community {
             title: 'title',
             description: 'contents',
             list: 'attributes.list',
-            image: 'attributes.image'
+            image: 'attributes.image',
+            template: 'attributes.template'
           }
         });
         const data = await me.extractingCommunityResult(

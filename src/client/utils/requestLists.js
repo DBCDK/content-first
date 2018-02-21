@@ -12,6 +12,8 @@ const listToPayload = list => {
   listCopy.description = list.description;
   listCopy.type = list.type;
   listCopy.public = list.public;
+  listCopy.image = list.image;
+  listCopy.template = list.template;
   listCopy.list = list.list.map(element => {
     return {
       pid: element.book.pid,
@@ -48,6 +50,7 @@ export const saveLists = async (lists, isLoggedIn = false) => {
 export const saveList = async list => {
   const listPayload = listToPayload(list.data);
   const location = list.links.self || (await createListLocation()).location;
+  console.log('store list', listPayload);
   await request.put(location).send(listPayload);
   return Object.assign({}, list, {links: {self: location}});
 };

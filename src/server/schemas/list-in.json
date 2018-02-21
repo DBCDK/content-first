@@ -18,6 +18,10 @@
       "required": false,
       "type": "string"
     },
+    "template": {
+      "required": false,
+      "type": "string"
+    },
     "public": {
       "required": false,
       "type": "boolean"

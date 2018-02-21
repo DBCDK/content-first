@@ -51,6 +51,10 @@
         "image": {
           "required": false,
           "type": "string"
+        },
+        "template": {
+          "required": false,
+          "type": "string"
         }
       },
       "additionalProperties": false

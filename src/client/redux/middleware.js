@@ -6,7 +6,8 @@ import {
   fetchWork,
   fetchSearchResults,
   saveShortList,
-  loadShortList
+  loadShortList,
+  addImage
 } from '../utils/requester';
 import {ON_LOGOUT_RESPONSE} from './user.reducer';
 import {
@@ -24,7 +25,10 @@ import {
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
-  getListById
+  getListById,
+  ADD_LIST_IMAGE,
+  ADD_LIST_IMAGE_SUCCESS,
+  ADD_LIST_IMAGE_ERROR
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
@@ -173,6 +177,23 @@ export const listMiddleware = store => next => async action => {
       });
       return res;
     }
+    case ADD_LIST_IMAGE:
+      next(action);
+      return (async () => {
+        try {
+          if (!['image/png', 'image/jpeg'].includes(action.image.type)) {
+            return store.dispatch({
+              id: action.id,
+              type: ADD_LIST_IMAGE_ERROR,
+              error: {status: 400, msg: 'Invalid MIME type'}
+            });
+          }
+          const image = await addImage(action.image);
+          store.dispatch({type: ADD_LIST_IMAGE_SUCCESS, image, id: action.id});
+        } catch (error) {
+          store.dispatch({type: ADD_LIST_IMAGE_ERROR, error, id: action.id});
+        }
+      })();
     default:
       return next(action);
   }

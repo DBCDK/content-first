@@ -73,7 +73,8 @@ function contentFirstListToCommunityEntity(list) {
       public: list.public || false,
       type: list.type,
       list: list.list,
-      image: list.image
+      image: list.image,
+      template: list.template
     }
   };
 }

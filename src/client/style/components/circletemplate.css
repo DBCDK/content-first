@@ -18,14 +18,12 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
   /* filter: blur(20px);
   transform: scale(1.1); */
 }
 .circle-template .list-element {
   position: absolute;
   display: inline-block;
-  width: 200px;
   cursor: pointer;
 }
 .circle-template .list-element p {

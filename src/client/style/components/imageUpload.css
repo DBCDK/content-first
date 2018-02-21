@@ -1,6 +1,8 @@
 .image-upload {
-  text-align: center;
   font-family: var(--secondary-font);
+}
+.image-upload label {
+  text-align: center;
 }
 
 .image-upload input {
@@ -17,7 +19,7 @@
   display: block;
 }
 
-.image-upload .glyphicon-user {
+.image-upload .background-icon {
   margin-top: 35px;
   margin-bottom: 15px;
   font-size: 70px;
