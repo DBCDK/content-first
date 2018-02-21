@@ -72,7 +72,9 @@
 .list-details__description {
   min-height: 100px;
 }
-
+/* .list-details select {
+  padding: 5px;
+} */
 .list-details textarea,
 .list-details input {
   width: 100%;

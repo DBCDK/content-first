@@ -19,6 +19,9 @@ export const REMOVE_ELEMENT_FROM_LIST = 'REMOVE_ELEMENT_FROM_LIST';
 export const LIST_TOGGLE_ELEMENT = 'LIST_TOGGLE_ELEMENT';
 export const LIST_INSERT_ELEMENT = 'LIST_INSERT_ELEMENT';
 export const STORE_LIST = 'STORE_LIST';
+export const ADD_LIST_IMAGE = 'ADD_LIST_IMAGE';
+export const ADD_LIST_IMAGE_SUCCESS = 'ADD_LIST_IMAGE_SUCCESS';
+export const ADD_LIST_IMAGE_ERROR = 'ADD_LIST_IMAGE_ERROR';
 
 // eslint-disable-next-line
 const listReducer = (state = defaultState, action) => {
@@ -189,6 +192,46 @@ const listReducer = (state = defaultState, action) => {
         changeMap
       });
     }
+    case ADD_LIST_IMAGE: {
+      validateId(state, action);
+      const list = {...state.lists[action.id]};
+      list.data = {
+        ...list.data,
+        imageIsLoading: true,
+        image: null,
+        imageError: null
+      };
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list}
+      });
+    }
+    case ADD_LIST_IMAGE_SUCCESS: {
+      validateId(state, action);
+      const list = {...state.lists[action.id]};
+      list.data = {
+        ...list.data,
+        imageIsLoading: false,
+        image: action.image.id,
+        imageError: null
+      };
+
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list}
+      });
+    }
+    case ADD_LIST_IMAGE_ERROR: {
+      validateId(state, action);
+      const list = {...state.lists[action.id]};
+      list.data = {
+        ...list.data,
+        imageIsLoading: true,
+        image: null,
+        imageError: action.error
+      };
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list}
+      });
+    }
     default:
       return state;
   }
@@ -288,6 +331,14 @@ export const getPublicLists = state => {
 
 export const getListById = (state, id) => {
   return state.lists[id];
+};
+const validateId = (state, action) => {
+  if (!action.id) {
+    throw new Error("'id' is not defined");
+  }
+  if (!state.lists[action.id]) {
+    throw new Error(`Could not find list with id ${action.id}`);
+  }
 };
 
 export default listReducer;

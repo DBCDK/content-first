@@ -7,17 +7,29 @@ import {
   updateList,
   storeList,
   getListById,
-  addList
+  addList,
+  ADD_LIST_IMAGE
 } from '../../redux/list.reducer';
 import {createListLocation} from '../../utils/requestLists';
 import DragableList from './ListDrag.component';
 import Textarea from 'react-textarea-autosize';
-import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
+import {HISTORY_REPLACE} from '../../redux/middleware';
 import BookSearchSuggester from './BookSearchSuggester';
 import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
-
-const ListDetails = ({title, description, hasError, onChange}) => (
+import ImageUpload from '../general/ImageUpload.component';
+const ListDetails = ({
+  id,
+  title,
+  description,
+  template,
+  hasError,
+  onChange,
+  addImage,
+  imageError,
+  imageIsLoading,
+  image
+}) => (
   <div className="list-details">
     <div className="form-group">
       <span className={`required ${!title && hasError ? 'has-error' : ''}`}>
@@ -42,6 +54,32 @@ const ListDetails = ({title, description, hasError, onChange}) => (
         onChange={e => onChange({description: e.currentTarget.value})}
         value={description}
       />
+      <div>
+        <span className="ml1">Skal vises som</span>
+        <select
+          value={template || 'simple'}
+          onChange={e => onChange({template: e.currentTarget.value})}
+          className="form-control ml1"
+          style={{width: 'auto', display: 'inline-block'}}
+        >
+          <option value="simple">simpel liste</option>
+          <option value="circle">visuel liste</option>
+        </select>
+      </div>
+
+      <div className="mt1 text-left">
+        <ImageUpload
+          className="mt1"
+          icon="glyphicon-picture"
+          error={imageError}
+          style={{borderRadius: '5%'}}
+          loading={imageIsLoading}
+          previewImage={image ? `/v1/image/${image}/150/150` : null}
+          onFile={img => {
+            addImage(id, img);
+          }}
+        />
+      </div>
     </div>
   </div>
 );
@@ -63,19 +101,19 @@ const ListItem = ({item, onChange}) => (
   </div>
 );
 
-const ListBooks = ({list, dispatch}) => (
+const ListBooks = props => (
   <div className="list-drag">
     <BookSearchSuggester
-      list={list}
-      onSubmit={book => dispatch(addElementToList(book, list.data.id))}
+      list={props.list}
+      onSubmit={book => props.addElementToList(book, props.list.data.id)}
     />
     <DragableList
-      list={list.data.list}
+      list={props.list.data.list}
       renderListItem={ListItem}
-      onUpdate={updatedList =>
-        dispatch(updateList({id: list.data.id, list: updatedList}))
-      }
-      onRemove={item => dispatch(removeElementFromList(item, list.data.id))}
+      onUpdate={updatedList => {
+        props.updateList({...props.list.data, list: updatedList});
+      }}
+      onRemove={book => props.removeElementFromList(book, props.list.data.id)}
     />
   </div>
 );
@@ -89,20 +127,15 @@ export class ListCreator extends React.Component {
   }
   async componentWillMount() {
     // check if we need to create a new list
-    if (!this.props.id && this.props.fetchListId) {
-      const {id} = await this.props.fetchListId();
-      this.props.dispatch(addList({id}));
-      this.props.dispatch({
-        type: HISTORY_REPLACE,
-        path: `/lister/${id}/rediger`
-      });
+    if (!this.props.id && this.props.createList) {
+      this.props.createList();
     }
   }
   componentWillUnmount() {
     // reset any unsaved changes
     // for now we just reload users lists from backend
     // a client side undo mechanism would be more efficient
-    this.props.dispatch({type: LIST_LOAD_REQUEST});
+    this.props.loadLists();
   }
   async onSubmit(e) {
     e.preventDefault();
@@ -111,42 +144,50 @@ export class ListCreator extends React.Component {
       window.scrollTo(0, 0);
       return;
     }
-    await this.props.dispatch(storeList(this.props.currentList.data.id));
-
-    this.props.dispatch({type: HISTORY_PUSH, path: '/lister'});
+    await this.props.storeList(this.props.currentList);
   }
   onChange(currentList) {
-    this.props.dispatch(
-      updateList({...this.props.currentList.data, ...currentList})
-    );
+    this.props.updateList({...this.props.currentList.data, ...currentList});
   }
   setStatus() {
     const currentList = this.props.currentList;
-    this.props.dispatch(
-      updateList({id: currentList.data.id, public: !currentList.data.public})
-    );
+    this.props.updateList({
+      id: currentList.data.id,
+      public: !currentList.data.public
+    });
   }
   render() {
     if (!this.props.currentList) {
       return null;
     }
+    const isNew = this.props.currentList.data.created_epoch ? false : true;
     return (
       <div className="list-creator">
-        <h1 className="list-creator__headline">Opret liste</h1>
+        <h1 className="list-creator__headline">
+          {isNew ? 'Opret liste' : 'Redigér liste'}
+        </h1>
         <div className="row">
           <div className="col-xs-8">
             <form className="mb4" onSubmit={e => this.onSubmit(e)}>
               <ListDetails
+                id={this.props.currentList.data.id}
                 hasError={this.state.hasError}
                 title={this.props.currentList.data.title}
                 description={this.props.currentList.data.description}
                 onChange={e => this.onChange(e)}
+                addImage={this.props.addImage}
+                image={this.props.currentList.data.image}
+                imageError={this.props.currentList.data.imageError}
+                imageIsLoading={this.props.currentList.data.imageIsLoading}
+                template={this.props.currentList.data.template}
               />
               <h2 className="list-creator__headline">
                 Tilføj bøger til listen
               </h2>
               <ListBooks
-                dispatch={this.props.dispatch}
+                updateList={this.props.updateList}
+                addElementToList={this.props.addElementToList}
+                removeElementFromList={this.props.removeElementFromList}
                 list={this.props.currentList}
               />
               <div className="list-creator__publication">
@@ -166,7 +207,11 @@ export class ListCreator extends React.Component {
                   Gem liste
                 </button>
               </div>
-              <Link href="/profile">Fortryd oprettelse af liste</Link>
+              <Link href="/profile" replace={true}>
+                {isNew
+                  ? 'Fortryd oprettelse af liste'
+                  : 'Fortryd redigering af liste'}
+              </Link>
             </form>
           </div>
           <div className="col-xs-4" />
@@ -178,8 +223,27 @@ export class ListCreator extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentList: getListById(state.listReducer, ownProps.id),
-    fetchListId: createListLocation
+    currentList: getListById(state.listReducer, ownProps.id)
   };
 };
-export default connect(mapStateToProps)(ListCreator);
+export const mapDispatchToProps = dispatch => ({
+  addImage: (id, image) => dispatch({type: ADD_LIST_IMAGE, image, id}),
+  updateList: data => dispatch(updateList(data)),
+  storeList: async list => {
+    await dispatch(storeList(list.data.id));
+    dispatch({type: HISTORY_REPLACE, path: '/lister'});
+  },
+  addElementToList: (book, id) => dispatch(addElementToList(book, id)),
+  removeElementFromList: (book, id) =>
+    dispatch(removeElementFromList(book, id)),
+  loadLists: () => dispatch({type: LIST_LOAD_REQUEST}),
+  createList: async () => {
+    const {id} = await createListLocation();
+    dispatch(addList({id}));
+    dispatch({
+      type: HISTORY_REPLACE,
+      path: `/lister/${id}/rediger`
+    });
+  }
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ListCreator);

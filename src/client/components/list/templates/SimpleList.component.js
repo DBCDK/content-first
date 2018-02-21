@@ -32,7 +32,7 @@ const SimpleListItem = ({book, description, profile}) => (
 
 export default ({list, profile}) => {
   return (
-    <div className="simplelist">
+    <div className="simplelist col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
       <div className="row mb4">
         <div className="col-xs-3 tc">
           <ProfileImage src={'http://p-hold.com/200/200'} name="Profile Name" />

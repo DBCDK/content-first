@@ -162,6 +162,9 @@ export const fetchUser = (dispatch, cb) => {
 
 export const addImage = imageData => {
   return new Promise((resolve, reject) => {
+    if (!['image/png', 'image/jpeg'].includes(imageData.type)) {
+      return reject({status: 400, msg: 'Invalid MIME type'});
+    }
     request
       .post('/v1/image/')
       .type('image/jpeg')

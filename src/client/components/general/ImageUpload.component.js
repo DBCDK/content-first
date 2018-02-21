@@ -62,7 +62,10 @@ export default class ImageUpload extends React.Component {
                 <img src={this.props.previewImage} alt="User profile" />
               )) || (
                 <div>
-                  <span className="glyphicon glyphicon-user" />
+                  <span
+                    className={`background-icon glyphicon ${this.props.icon ||
+                      'glyphicon-user'}`}
+                  />
                 </div>
               )}
             <div className="droppable-image-overlay">
