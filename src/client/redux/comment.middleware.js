@@ -15,6 +15,7 @@ export const commentMiddleware = store => next => action => {
           const response = await addObject({
             key: action.id,
             type: 'comment',
+            public: true,
             comment: action.comment
           });
           /*store.dispatch({

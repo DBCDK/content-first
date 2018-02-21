@@ -12,7 +12,7 @@ const commentReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_COMMENT: {
       const group = Object.assign(
-        {id: action.id, public: true, comments: []},
+        {id: action.id, comments: []},
         state[action.id]
       );
       group.comments = [...group.comments, action.comment];
