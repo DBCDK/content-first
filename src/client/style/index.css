@@ -47,6 +47,7 @@
 @import './components/listcard.css';
 @import './components/imageUpload.css';
 @import './components/profile.css';
+@import './components/comment.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */
 @import '~slick-carousel/slick/slick.css';

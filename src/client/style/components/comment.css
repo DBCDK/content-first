@@ -1,0 +1,30 @@
+.comments {
+  font-family: var(--secondary-font);
+}
+
+.comment {
+  width: 100%;
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.comment-author {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.comment-time {
+  color: var(--greybrown);
+  font-size: 1.4rem;
+}
+
+.comments .glyphicon-user {
+  font-size: 17px;
+  width: 100%;
+  /* height: 35px; */
+  text-align: center;
+  position: relative;
+  transform: translateY(-50%);
+  top: 50%;
+}

@@ -14,13 +14,12 @@ export const Badge = props => {
 export const Comments = props => {
   return (
     <span
-      style={{position: 'relative', ...props.style}}
+      style={{position: 'relative', color: 'black', ...props.style}}
       className={props.className}
     >
       <span
         style={{
           fontSize: 24,
-          color: 'black',
           verticalAlign: 'middle'
         }}
         className="glyphicon glyphicon-comment"
@@ -29,7 +28,8 @@ export const Comments = props => {
         style={{
           position: 'absolute',
           width: '100%',
-          top: -2,
+          top: '50%',
+          transform: 'translateY(-50%)',
           left: 0,
           color: 'white',
           fontSize: 11,

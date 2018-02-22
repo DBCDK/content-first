@@ -12,7 +12,7 @@ const commentReducer = (state = defaultState, action) => {
         {id: action.id, comments: []},
         state[action.id]
       );
-      group.comments = [...group.comments, action.comment];
+      group.comments = [...group.comments, action];
       return Object.assign({}, state, {[action.id]: group});
     }
     case FETCH_COMMENTS: {
