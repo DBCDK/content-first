@@ -23,7 +23,7 @@ export default class RollOver extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.props.loading == true && nextProps.loading == false) {
+    if (!this.props.loading === true && nextProps.loading === false) {
       this.setState({visible: true});
     }
   }

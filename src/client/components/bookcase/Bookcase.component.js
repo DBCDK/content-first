@@ -2,9 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
 import Carousel from './Carousel.component';
-import Slider from '../belt/Slider.component';
 
-import {ON_BOOK_REQUEST_TEST} from '../../redux/bookcase.reducer';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 
 /*
@@ -109,7 +107,7 @@ export class Bookcase extends React.Component {
               active={this.state.carousel}
               loading={
                 this.state.pid === '' &&
-                this.props.workState[this.state.pid] === undefined
+                typeof this.props.workState[this.state.pid] === 'undefined'
               }
               description={this.state.description}
               book={book}
