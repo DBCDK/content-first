@@ -6,6 +6,7 @@ function Spinner(props) {
       className="spinner"
       style={Object.assign(
         {
+          borderTopColor: props.color || null,
           display: 'inline-block',
           width: props.size || '100%',
           height: props.size || '100%'

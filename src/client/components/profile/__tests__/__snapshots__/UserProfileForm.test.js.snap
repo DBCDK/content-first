@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserProfileForm render function It adds validation error 1`] = `
+<UserProfileForm>
+  <form
+    className="profile-form"
+    onSubmit={[Function]}
+    style={
+      Object {
+        "maxWidth": "400px",
+      }
+    }
+  >
+    <div
+      className="input-group mb2   has-feedback"
+    >
+      <input
+        className="form-control mb3"
+        name="name"
+        onChange={[Function]}
+        placeholder="Vælg brugernavn"
+        type="text"
+        value=""
+      />
+      <span
+        aria-hidden="true"
+        className="form-control-feedback glyphicon  "
+      />
+    </div>
+    <p
+      className="mb6"
+    >
+      Du er logget på via 
+    </p>
+    <label
+      className="checkbox"
+      htmlFor="acceptedTerms"
+    >
+      <input
+        className="checkbox"
+        id="acceptedTerms"
+        name="acceptedTerms"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <span />
+       Jeg har læst og accepteret
+       
+      <a
+        href="#terms"
+      >
+        reglerne for anvendelse af Læsekompasset
+      </a>
+    </label>
+    <div
+      className="error mb2"
+    >
+      For at oprette en profil, skal du acceptere reglerne for anvendelse af Læsekompasset.
+    </div>
+    <button
+      className="btn btn-success btn-block"
+    >
+      Opret profil
+       
+    </button>
+  </form>
+</UserProfileForm>
+`;
+
+exports[`UserProfileForm render function It adds validation error 2`] = `
+<UserProfileForm
+  acceptedTerms={true}
+>
+  <form
+    className="profile-form"
+    onSubmit={[Function]}
+    style={
+      Object {
+        "maxWidth": "400px",
+      }
+    }
+  >
+    <div
+      className="input-group mb2   has-feedback"
+    >
+      <input
+        className="form-control mb3"
+        name="name"
+        onChange={[Function]}
+        placeholder="Vælg brugernavn"
+        type="text"
+        value=""
+      />
+      <span
+        aria-hidden="true"
+        className="form-control-feedback glyphicon  "
+      />
+    </div>
+    <p
+      className="mb6"
+    >
+      Du er logget på via 
+    </p>
+    <label
+      className="checkbox"
+      htmlFor="acceptedTerms"
+    >
+      <input
+        className="checkbox"
+        id="acceptedTerms"
+        name="acceptedTerms"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <span />
+       Jeg har læst og accepteret
+       
+      <a
+        href="#terms"
+      >
+        reglerne for anvendelse af Læsekompasset
+      </a>
+    </label>
+    <div
+      className="error mb2"
+    >
+      For at oprette en profil, skal du acceptere reglerne for anvendelse af Læsekompasset.
+    </div>
+    <button
+      className="btn btn-success btn-block"
+    >
+      Opret profil
+       
+    </button>
+  </form>
+</UserProfileForm>
+`;
+
+exports[`UserProfileForm render function renders an user profile form 1`] = `
+<form
+  className="profile-form"
+  onSubmit={[Function]}
+  style={
+    Object {
+      "maxWidth": "400px",
+    }
+  }
+>
+  <div
+    className="input-group mb2   has-feedback"
+  >
+    <input
+      className="form-control mb3"
+      name="name"
+      onChange={[Function]}
+      placeholder="Vælg brugernavn"
+      type="text"
+      value=""
+    />
+    <span
+      aria-hidden="true"
+      className="form-control-feedback glyphicon  "
+    />
+  </div>
+  <p
+    className="mb6"
+  >
+    Du er logget på via 
+  </p>
+  <label
+    className="checkbox"
+    htmlFor="acceptedTerms"
+  >
+    <input
+      checked={undefined}
+      className="checkbox"
+      disabled={undefined}
+      id="acceptedTerms"
+      name="acceptedTerms"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <span />
+     Jeg har læst og accepteret
+     
+    <a
+      href="#terms"
+    >
+      reglerne for anvendelse af Læsekompasset
+    </a>
+  </label>
+  <button
+    className="btn btn-success btn-block"
+    disabled={undefined}
+  >
+    Opret profil
+     
+    
+  </button>
+</form>
+`;

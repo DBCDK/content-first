@@ -6,17 +6,19 @@ import App from './client/App';
 import createStore from './client/redux/Store';
 import {
   requestMiddleware,
-  profileMiddleware,
   shortListMiddleware,
   listMiddleware,
   searchMiddleware,
   logMiddleware
 } from './client/redux/middleware';
+import {tasteMiddleware} from './client/redux/taste.middleware';
+import {userMiddleware} from './client/redux/user.middleware';
 import {orderMiddleware} from './client/redux/order.middleware';
 
 const store = createStore([
+  userMiddleware,
   requestMiddleware,
-  profileMiddleware,
+  tasteMiddleware,
   shortListMiddleware,
   listMiddleware,
   searchMiddleware,

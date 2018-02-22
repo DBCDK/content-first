@@ -9,11 +9,13 @@ import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
 import SearchPage from './components/search/SearchPage.container';
 import WorkPage from './components/work/WorkPage.container';
+import TastePage from './components/profile/TastePage.container';
 import ProfilePage from './components/profile/ProfilePage.container';
 import Bookcase from './components/bookcase/Bookcase.component';
+import CreateProfilePage from './components/profile/CreateProfilePage';
 import TopBar from './components/top/TopBar.component';
 import {beltNameToPath} from './utils/belt';
-import {ON_USER_DETAILS_REQUEST} from './redux/profile.reducer';
+import {ON_USER_DETAILS_REQUEST} from './redux/user.reducer';
 import ListPage from './components/list/ListPage.container';
 import ListCreator from './components/list/ListCreate.container';
 import Lists from './components/list/Lists.container';
@@ -29,12 +31,25 @@ class App extends Component {
     const pathSplit = path.split('/');
 
     let currentPage = null;
+    let topbar = true;
     if (pathSplit[1] === '') {
       currentPage = <FrontPage />;
     } else if (pathSplit[1] === 'værk') {
       currentPage = <WorkPage pid={pathSplit[2]} />;
     } else if (pathSplit[1] === 'profile') {
-      currentPage = <ProfilePage />;
+      if (pathSplit[2] === 'opret') {
+        topbar = false;
+        currentPage = <CreateProfilePage title="Opret profil" />;
+      } else if (pathSplit[2] === 'rediger') {
+        topbar = false;
+        currentPage = (
+          <CreateProfilePage title="Redigér profil" editMode={true} />
+        );
+      } else if (pathSplit[2] === 'smag') {
+        currentPage = <TastePage />;
+      } else {
+        currentPage = <ProfilePage />;
+      }
     } else if (pathSplit[1] === 'lister') {
       if (pathSplit[2]) {
         if (pathSplit[2] === 'opret') {
@@ -68,11 +83,14 @@ class App extends Component {
 
     return (
       <div className="App container">
-        <TopBar
-          dispatch={this.props.dispatch}
-          user={this.props.profileState.user}
-        />
-        <div style={{height: '50px'}} />
+        {topbar ? (
+          <div>
+            <TopBar dispatch={this.props.dispatch} user={this.props.user} />
+            <div style={{height: '50px'}} />
+          </div>
+        ) : (
+          ''
+        )}
         {currentPage}
         <Modal />
       </div>
@@ -85,7 +103,7 @@ export default connect(
     return {
       routerState: state.routerReducer,
       beltsState: state.beltsReducer,
-      profileState: state.profileReducer
+      user: state.userReducer
     };
   }
 )(App);

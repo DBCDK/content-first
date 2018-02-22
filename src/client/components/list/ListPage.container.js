@@ -2,13 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getListById} from '../../redux/list.reducer';
 import SimpleList from './templates/SimpleList.component';
+import CircleTemplate from './templates/CircleTemplate.container';
 import Link from '../general/Link.component';
 
 class ListPage extends React.Component {
   getTemplate(list) {
-    switch (list.template) {
-      case 'simplelist':
+    switch (list.data.template) {
+      case 'simple':
         return SimpleList;
+      case 'circle':
+        return CircleTemplate;
       default:
         return SimpleList;
     }
@@ -28,15 +31,18 @@ class ListPage extends React.Component {
     const Template = this.getTemplate(list);
     return (
       <div className="list-wrapper tl">
-        <h1 className="t-title h-underline mb4">{list.data.title}</h1>
-        <div className="row">
-          <div className="list tl col-xs-8">
-            <Template list={list} profile={profile} />
-          </div>
-          <div className="col-xs-4">
-            <Link href={`/lister/${list.data.id}/rediger`}>Rediger liste</Link>
-          </div>
+        <div className="mb4 mt5 col-xs-offset-0 col-md-offset-1">
+          <h1 className="t-title h-tight h-underline inline-block align-middle">
+            {list.data.title}
+          </h1>
+          <Link
+            className="small link-subtle align-middle ml2"
+            href={`/lister/${list.data.id}/rediger`}
+          >
+            Redigér liste
+          </Link>
         </div>
+        <Template list={list} profile={profile} />
       </div>
     );
   }

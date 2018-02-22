@@ -1,0 +1,27 @@
+.profile-form {
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.profile-form .input-group {
+    width: 100%;
+    position: relative;
+}
+.profile-form .input-group .glyphicon{
+    position: absolute;
+    top: 0px;
+    right: -40px;
+}
+
+.profile-lists {
+    border-top: 1px solid rgba(0,0,0, 0.2);
+    padding-top: 1rem;
+}
+
+.terms {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.error {
+    color: var(--orange);
+}

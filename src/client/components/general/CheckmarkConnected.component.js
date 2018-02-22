@@ -60,8 +60,9 @@ export class CheckmarkConnected extends React.PureComponent {
         <CheckmarkMenu
           text="Husk"
           checked={remembered[this.props.book.book.pid]}
-          onClick={() => {
+          onClick={e => {
             this.shortlistToggle(this.props.book, this.props.origin);
+            e.stopPropagation();
           }}
         >
           {this.props.systemLists.map(l => (
@@ -73,23 +74,26 @@ export class CheckmarkConnected extends React.PureComponent {
                   element => element.book.pid === this.props.book.book.pid
                 ).length > 0
               }
-              onClick={() => {
+              onClick={e => {
                 this.toggleInList(this.props.book, l.data.id);
+                e.stopPropagation();
               }}
             />
           ))}
           <MenuItem
             key="addToList"
             text="Tilføj til liste"
-            onClick={() => {
+            onClick={e => {
               this.openModal(this.props.book);
+              e.stopPropagation();
             }}
           />
           <MenuItem
             key="order"
             text="Bestil"
-            onClick={() => {
+            onClick={e => {
               this.order(this.props.book.book);
+              e.stopPropagation();
             }}
           />
         </CheckmarkMenu>
@@ -100,8 +104,9 @@ export class CheckmarkConnected extends React.PureComponent {
       <CheckmarkButton
         label="Husk"
         marked={remembered[this.props.book.book.pid]}
-        onClick={() => {
+        onClick={e => {
           this.shortlistToggle(this.props.book, this.props.origin);
+          e.stopPropagation();
         }}
       />
     );
@@ -115,10 +120,10 @@ export default connect(
       shortListState: state.shortListReducer,
       systemLists: getLists(state.listReducer, {
         type: SYSTEM_LIST,
-        owner: state.profileReducer.user.openplatformId,
+        owner: state.userReducer.openplatformId,
         sort: true
       }),
-      isLoggedIn: state.profileReducer.user.isLoggedIn
+      isLoggedIn: state.userReducer.isLoggedIn
     };
   }
 )(CheckmarkConnected);

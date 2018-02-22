@@ -73,6 +73,8 @@ router
       try {
         await updatingUser(userId, {
           name: userInfo.name,
+          image: userInfo.image,
+          acceptedTerms: userInfo.acceptedTerms,
           shortlist: userInfo.shortlist,
           lists: userInfo.lists,
           profiles: userInfo.profiles

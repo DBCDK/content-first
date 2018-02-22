@@ -148,6 +148,170 @@ describe('Community connector', () => {
     });
   });
 
+  // TODO move code around
+  describe('findObjects', () => {
+    it('should throw error if type is missing', async () => {
+      // TODO maybe return error message instead
+    });
+    it('should return forbidden if querying owner, and not admin or owner', async () => {
+      // TODO
+    });
+    it('should throw error neither owner nor key is specified', async () => {
+      // TODO maybe return error message instead
+    });
+    it('should search, and return json-parsed objects', async () => {
+      // TODO
+    });
+  });
+  describe('putObject', () => {
+    it('should create a new', async () => {
+      arrangePostObject();
+      let result = await sut.putObject({
+        object: {foo: 'bar', key: 'baz'},
+        user: {
+          id: 1,
+          openplatformId: '123openplatformid456'
+        }
+      });
+      expect(Object.keys(result.data)).to.deep.equal(['ok', 'id', 'rev']);
+      expect(result.data.ok).to.equal(true);
+    });
+    it('should return not-found-error if _id is present, and no previous object', async () => {
+      // TODO
+    });
+    it('should return forbidden-error if user is not owner of previous version', async () => {
+      // TODO
+    });
+    it('should return conflict error if revision does not matches previous version', async () => {
+      // TODO
+    });
+    it('should update existing object if object has _id', async () => {
+      // TODO
+    });
+  });
+  function arrangePostObject() {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiPostEntity(communityId);
+    mockedSubservice = nock(config.url)
+      .filteringRequestBody(() => '')
+      .post(endpoint, '')
+      .reply(200, {
+        data: {
+          json:
+            '{"_id":"some_id","_rev":"some_rev","owner":"123openplatformid456"}'
+        }
+      });
+  }
+  describe('getObjectById', () => {
+    it('should retrieve object', async () => {
+      arrangeQueryObjectPrivate();
+      let result = await sut.getObjectById('some_id', {
+        id: 1,
+        openplatformId: '123openplatformid456'
+      });
+      expect(result).to.deep.equal({
+        data: {_id: 'some_id', _rev: 'some_rev', owner: '123openplatformid456'}
+      });
+    });
+    it('should return permission error, object not public, and owned by other', async () => {
+      arrangeQueryObjectPrivate();
+      let result = await sut.getObjectById('some_id', {
+        id: 1,
+        openplatformId: 'notownerid'
+      });
+      expect(result).to.deep.equal({
+        data: {error: 'forbidden'},
+        errors: [{message: 'forbidden', status: 403}]
+      });
+    });
+    it('should return object not found, when entity is not found in community service', async () => {
+      arrangeQueryObjectNotFound();
+      let result = await sut.getObjectById('some_id', {
+        id: 1,
+        openplatformId: '123openplatformid456'
+      });
+      expect(result).to.deep.equal({
+        data: {error: 'not found'},
+        errors: [{message: 'not found', status: 404}]
+      });
+    });
+    it('should return public objects, even if owned by others', async () => {
+      arrangeQueryObjectPublic();
+      let result = await sut.getObjectById('some_id', {
+        id: 1,
+        openplatformId: '123openplatformid456'
+      });
+      expect(result).to.deep.equal({
+        data: {
+          _id: 'some_id',
+          _rev: 'some_rev',
+          owner: 'otherownerid',
+          public: true
+        }
+      });
+    });
+  });
+
+  function arrangeQueryObjectPrivate() {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiQuery(communityId);
+    mockedSubservice = nock(config.url)
+      .filteringRequestBody(() => '')
+      .post(endpoint, '')
+      .reply(200, {
+        data: {
+          json:
+            '{"_id":"some_id","_rev":"some_rev","owner":"123openplatformid456"}'
+        }
+      });
+  }
+  function arrangeQueryObjectPublic() {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiQuery(communityId);
+    mockedSubservice = nock(config.url)
+      .filteringRequestBody(() => '')
+      .post(endpoint, '')
+      .reply(200, {
+        data: {
+          json:
+            '{"_id":"some_id","_rev":"some_rev","public":true,"owner":"otherownerid"}'
+        }
+      });
+  }
+  function arrangeQueryObjectNotFound() {
+    const communityId = 1;
+    sut.setCommunityId(communityId);
+    const endpoint = constants.apiQuery(communityId);
+    mockedSubservice = nock(config.url)
+      .filteringRequestBody(() => '')
+      .post(endpoint, '')
+      .reply(400, {
+        errors: [
+          {
+            status: 400,
+            code: '400',
+            title: 'Error during execution of query',
+            detail: 'No result from singleton selector',
+            meta: {
+              query: {
+                Entity: {
+                  'attributes.id': 'f7eb29c0-1632-11e8-82df-3d3192c1e7xf'
+                },
+                Include: {json: 'contents'}
+              },
+              subquery: {
+                'attributes.id': 'f7eb29c0-1632-11e8-82df-3d3192c1e7xf'
+              },
+              context: {}
+            }
+          }
+        ]
+      });
+  }
+
   describe('gettingIdsOfAllListEntitiesOwnedByUserWithProfileId', () => {
     it('should detect no connnection', () => {
       arrangeCommunityQueryToRespondItIsDead();
@@ -863,6 +1027,8 @@ describe('Community connector', () => {
           id: profileId,
           name: 'Jens Godfredsen',
           attributes: {
+            image: 'some_image_id',
+            acceptedTerms: true,
             openplatform_id: '61dd1242cf774818a97a4ca2f3e633b1',
             openplatform_token: 'myToken',
             tastes: [
@@ -885,6 +1051,8 @@ describe('Community connector', () => {
       openplatformId: '61dd1242cf774818a97a4ca2f3e633b1',
       openplatformToken: 'myToken',
       name: 'Jens Godfredsen',
+      image: 'some_image_id',
+      acceptedTerms: true,
       roles: [],
       shortlist: [{pid: '870970-basis-22629344', origin: 'en-god-bog'}],
       profiles: [

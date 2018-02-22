@@ -229,10 +229,10 @@ export default connect(
       shortListState: state.shortListReducer,
       systemLists: getLists(state.listReducer, {
         type: SYSTEM_LIST,
-        owner: state.profileReducer.user.openplatformId,
+        owner: state.userReducer.openplatformId,
         sort: true
       }),
-      isLoggedIn: state.profileReducer.user.isLoggedIn
+      isLoggedIn: state.userReducer.isLoggedIn
     };
   }
 )(WorkPage);

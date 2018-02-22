@@ -2,11 +2,12 @@ import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
 import {SEARCH_RESULTS} from '../redux/search.reducer';
+import {HISTORY_PUSH} from '../redux/router.reducer';
 import {
-  ON_PROFILE_RECOMMENDATIONS_RESPONSE,
   ON_USER_DETAILS_RESPONSE,
   ON_LOGOUT_RESPONSE
-} from '../redux/profile.reducer';
+} from '../redux/user.reducer';
+import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
 import {getLeaves} from './taxonomy';
 import profiles from '../../data/ranked-profiles.json';
 import similar from '../../data/similar-pids.json';
@@ -140,7 +141,7 @@ export const fetchBeltWorks = (belt, filterState, dispatch) => {
 
 export const fetchProfileRecommendations = (profileState, dispatch) => {
   requestProfileRecommendations().then(recommendations =>
-    dispatch({type: ON_PROFILE_RECOMMENDATIONS_RESPONSE, recommendations})
+    dispatch({type: TASTE_RECOMMENDATIONS_RESPONSE, recommendations})
   );
 };
 
@@ -151,8 +152,45 @@ export const fetchUser = (dispatch, cb) => {
     } else {
       const user = JSON.parse(res.text).data;
       dispatch({type: ON_USER_DETAILS_RESPONSE, user});
+      if (!user.acceptedTerms) {
+        dispatch({type: HISTORY_PUSH, path: '/profile/opret'});
+      }
     }
     cb();
+  });
+};
+
+export const addImage = imageData => {
+  return new Promise((resolve, reject) => {
+    if (!['image/png', 'image/jpeg'].includes(imageData.type)) {
+      return reject({status: 400, msg: 'Invalid MIME type'});
+    }
+    request
+      .post('/v1/image/')
+      .type('image/jpeg')
+      .send(imageData)
+      .end((error, res) => {
+        if (error) {
+          reject(res.body && res.body.errors ? res.body.errors[0] : error);
+        } else {
+          resolve(res.body);
+        }
+      });
+  });
+};
+
+export const saveUser = user => {
+  return new Promise((resolve, reject) => {
+    request
+      .put('/v1/user')
+      .send(Object.assign({}, {shortlist: [], profiles: []}, user))
+      .end((error, res) => {
+        if (error) {
+          reject(res.body && res.body.errors ? res.body.errors[0] : error);
+        } else {
+          resolve(res.body.data);
+        }
+      });
   });
 };
 

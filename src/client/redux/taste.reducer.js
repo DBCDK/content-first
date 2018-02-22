@@ -1,7 +1,4 @@
-import {
-  addElementsToProfiles,
-  removeElementFromProfiles
-} from '../utils/profile';
+import {addElementsToTastes, removeElementFromTastes} from '../utils/tastes';
 
 const defaultProfile = {
   moods: [],
@@ -12,10 +9,6 @@ const defaultProfile = {
 };
 
 const defaultState = {
-  user: {
-    isLoading: false,
-    isLoggedIn: false
-  },
   profileTastes: {
     currentTaste: null,
     profiles: {}
@@ -179,48 +172,40 @@ const defaultState = {
   }
 };
 
-export const ON_ADD_PROFILE_ELEMENT = 'ON_ADD_PROFILE_ELEMENT';
-export const ON_REMOVE_PROFILE_ELEMENT = 'ON_REMOVE_PROFILE_ELEMENT';
-export const ON_ADD_PROFILE_ARCHETYPE = 'ON_ADD_PROFILE_ARCHETYPE';
-export const ON_PROFILE_RECOMMENDATIONS_REQUEST =
-  'ON_PROFILE_RECOMMENDATIONS_REQUEST';
-export const ON_PROFILE_RECOMMENDATIONS_RESPONSE =
-  'ON_PROFILE_RECOMMENDATIONS_RESPONSE';
-export const ON_USER_DETAILS_REQUEST = 'ON_USER_DETAILS_REQUEST';
-export const ON_USER_DETAILS_RESPONSE = 'ON_USER_DETAILS_RESPONSE';
-export const ON_LOGOUT_REQUEST = 'ON_LOGOUT_REQUEST';
-export const ON_LOGOUT_RESPONSE = 'ON_LOGOUT_RESPONSE';
-export const ON_PROFILE_CREATE_TASTE = 'ON_PROFILE_CREATE_TASTE';
-export const ON_PROFILE_SELECT_TASTE = 'ON_PROFILE_SELECT_TASTE';
-export const ON_PROFILE_LOAD_PROFILES = 'ON_PROFILE_LOAD_PROFILES';
-export const ON_PROFILE_LOAD_PROFILES_RESPONSE =
-  'ON_PROFILE_LOAD_PROFILES_RESPONSE';
-export const ON_PROFILE_REMOVE_CURRENT_PROFILE =
-  'ON_PROFILE_REMOVE_CURRENT_PROFILE';
+export const ADD_TASTE_ELEMENT = 'ADD_TASTE_ELEMENT';
+export const REMOVE_TASTE_ELEMENT = 'REMOVE_TASTE_ELEMENT';
+export const ADD_TASTE_ARCHETYPE = 'ADD_TASTE_ARCHETYPE';
+export const TASTE_RECOMMENDATIONS_REQUEST = 'TASTE_RECOMMENDATIONS_REQUEST';
+export const TASTE_RECOMMENDATIONS_RESPONSE = 'TASTE_RECOMMENDATIONS_RESPONSE';
+export const CREATE_TASTE = 'CREATE_TASTE';
+export const TASTE_SELECT_TASTE = 'TASTE_SELECT_TASTE';
+export const LOAD_TASTES = 'LOAD_TASTES';
+export const LOAD_TASTES_RESPONSE = 'LOAD_TASTES_RESPONSE';
+export const REMOVE_CURRENT_TASTE = 'REMOVE_CURRENT_TASTE';
 
-const profileReducer = (state = defaultState, action) => {
+const tasteReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ON_ADD_PROFILE_ELEMENT: {
+    case ADD_TASTE_ELEMENT: {
       return Object.assign(
         {},
         state,
-        addElementsToProfiles(state.profileTastes, {
+        addElementsToTastes(state.profileTastes, {
           [action.elementType]: [action.element.label]
         })
       );
     }
-    case ON_REMOVE_PROFILE_ELEMENT: {
+    case REMOVE_TASTE_ELEMENT: {
       return Object.assign(
         {},
         state,
-        removeElementFromProfiles(
+        removeElementFromTastes(
           state.profileTastes,
           action.elementType,
           action.element.label
         )
       );
     }
-    case ON_ADD_PROFILE_ARCHETYPE: {
+    case ADD_TASTE_ARCHETYPE: {
       const updateElements = {
         archetypes: [action.element.label],
         moods: action.element.moods,
@@ -229,45 +214,20 @@ const profileReducer = (state = defaultState, action) => {
       return Object.assign(
         {},
         state,
-        addElementsToProfiles(state.profileTastes, updateElements)
+        addElementsToTastes(state.profileTastes, updateElements)
       );
     }
-    case ON_PROFILE_RECOMMENDATIONS_REQUEST:
+    case TASTE_RECOMMENDATIONS_REQUEST:
       return Object.assign({}, state, {
         recommendations: Object.assign({}, state.recommendations, {
           isLoading: true
         })
       });
-    case ON_PROFILE_RECOMMENDATIONS_RESPONSE:
+    case TASTE_RECOMMENDATIONS_RESPONSE:
       return Object.assign({}, state, {
         recommendations: {elements: action.recommendations, isLoading: false}
       });
-    case ON_USER_DETAILS_REQUEST:
-      return Object.assign({}, state, {
-        user: Object.assign({}, state.user, {isLoading: true})
-      });
-    case ON_USER_DETAILS_RESPONSE:
-      if (!action.user) {
-        return Object.assign({}, state, {user: defaultState.user});
-      }
-      return Object.assign({}, state, {
-        user: Object.assign({}, action.user, {
-          isLoggedIn: true,
-          isLoading: false
-        })
-      });
-    case ON_LOGOUT_REQUEST:
-      return Object.assign({}, state, {
-        user: Object.assign({}, state.user, {isLoading: true})
-      });
-    case ON_LOGOUT_RESPONSE:
-      return Object.assign({}, state, {
-        user: Object.assign({}, state.user, {
-          isLoggedIn: false,
-          isLoading: false
-        })
-      });
-    case ON_PROFILE_CREATE_TASTE: {
+    case CREATE_TASTE: {
       const currentTaste = action.name;
       const profiles = Object.assign({}, state.profileTastes.profiles, {
         [currentTaste]: Object.assign({}, defaultProfile)
@@ -276,13 +236,13 @@ const profileReducer = (state = defaultState, action) => {
         profileTastes: {profiles, currentTaste}
       });
     }
-    case ON_PROFILE_SELECT_TASTE: {
+    case TASTE_SELECT_TASTE: {
       const currentTaste = action.name;
       return Object.assign({}, state, {
         profileTastes: Object.assign({}, state.profileTastes, {currentTaste})
       });
     }
-    case ON_PROFILE_LOAD_PROFILES_RESPONSE: {
+    case LOAD_TASTES_RESPONSE: {
       return Object.assign({}, state, {
         profileTastes: Object.assign(
           {},
@@ -291,12 +251,12 @@ const profileReducer = (state = defaultState, action) => {
         )
       });
     }
-    case ON_PROFILE_LOAD_PROFILES: {
+    case LOAD_TASTES: {
       return Object.assign({}, state, {
         profileTastes: Object.assign({}, state.profileTastes, {loading: true})
       });
     }
-    case ON_PROFILE_REMOVE_CURRENT_PROFILE: {
+    case REMOVE_CURRENT_TASTE: {
       return Object.assign({}, state, {
         profileTastes: Object.assign({}, state.profileTastes, {
           currentTaste: null
@@ -308,4 +268,4 @@ const profileReducer = (state = defaultState, action) => {
   }
 };
 
-export default profileReducer;
+export default tasteReducer;
