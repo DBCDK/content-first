@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
 import Carousel from './Carousel.component';
+import Slider from '../belt/Slider.component';
 
 import {ON_BOOK_REQUEST_TEST} from '../../redux/bookcase.reducer';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
@@ -59,7 +60,7 @@ export class Bookcase extends React.Component {
 
   rollOverTrigger = (pid, desc, pos, i) => {
     this.fetchWork(pid);
-    const work = this.props.workState.work;
+    // const work = this.props.workState.work;
 
     this.setState({
       pid: pid,
@@ -68,11 +69,6 @@ export class Bookcase extends React.Component {
       curindex: i
     });
   };
-
-  // test() {
-  //   var test = document.getElementById('section');
-  //   test.classList.add('section-active');
-  // }
 
   render() {
     let book = '';
@@ -95,7 +91,7 @@ export class Bookcase extends React.Component {
                 <img src="img/bookcase/BS3.png" alt="bs" />
               </div>
               <div className="col-xs-12 celeb-title">
-                <h1>B.S. Christiansen</h1>
+                <h1>Bjarne Slot Christiansen</h1>
               </div>
               <div className="col-xs-12 celeb-description">
                 <p>

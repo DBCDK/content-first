@@ -1,9 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RollOver renders initial component 1`] = `
+exports[`Carousel renders initial component 1`] = `
 <div
   className="rollover-container "
-  style={Object {}}
 >
   <div
     className="rollover"
@@ -45,7 +44,7 @@ exports[`RollOver renders initial component 1`] = `
         className="col-xs-12 rollover-description"
       >
         <p>
-          lorem ipsum . . .. . .
+          lorem ipsum . . .
         </p>
       </div>
       <div
@@ -64,19 +63,16 @@ exports[`RollOver renders initial component 1`] = `
       </div>
     </div>
     <div
-      className="col-xs-12 seperator-line"
-    />
-    <div
       className="col-xs-12 rollover-bottom"
     >
       <span
         aria-hidden="true"
-        class="glyphicon glyphicon-chevron-right"
+        class="glyphicon glyphicon-chevron-left"
         onClick={[Function]}
       />
       <span
         aria-hidden="true"
-        class="glyphicon glyphicon-chevron-left"
+        class="glyphicon glyphicon-chevron-right"
         onClick={[Function]}
       />
     </div>

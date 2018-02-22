@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import RollOver from '../RollOver.component';
+import Carousel from '../Carousel.component';
 
 jest.mock(
   '../../general/CheckmarkConnected.component',
@@ -20,11 +20,11 @@ const book = {
   description: description
 };
 
-describe('RollOver', () => {
+describe('Carousel', () => {
   it('renders initial component', () => {
     const tree = renderer
       .create(
-        <RollOver
+        <Carousel
           loading={true}
           position={position}
           description={description}
