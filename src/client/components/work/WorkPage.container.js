@@ -12,7 +12,7 @@ import {HISTORY_PUSH} from '../../redux/middleware';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {getLeaves} from '../../utils/taxonomy';
 
-import {getLists, SYSTEM_LIST} from '../../redux/list.reducer';
+import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -227,7 +227,7 @@ export default connect(
       workState: state.workReducer,
       filterState: state.filterReducer,
       shortListState: state.shortListReducer,
-      systemLists: getLists(state.listReducer, {
+      systemLists: getListsForOwner(state.listReducer, {
         type: SYSTEM_LIST,
         owner: state.userReducer.openplatformId,
         sort: true

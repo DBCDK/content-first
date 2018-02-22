@@ -63,15 +63,6 @@ exports[`AddToListModal multiple works as input 1`] = `
               />
               title2
             </div>
-            <div>
-              <input
-                checked={false}
-                name="list"
-                onChange={[Function]}
-                type="radio"
-              />
-              title3
-            </div>
           </div>
           <div
             className="add-list"
@@ -216,42 +207,22 @@ exports[`AddToListModal newly added list is selected 1`] = `
         <div
           className="col-xs-6"
         >
-          <div
-            className="work-item-small clearfix"
-          >
-            <div
-              className="col-xs-3"
-            >
-              <div
-                className="cover-image-wrapper"
-              >
-                <BookCover
-                  book={
-                    Object {
-                      "creator": "some creator1",
-                      "pid": "pid1",
-                      "taxonomy_description": "some taxonomy_description1",
-                      "title": "some title1",
-                    }
-                  }
-                />
-              </div>
-            </div>
-            <div
-              className="col-xs-9 info"
-            >
-              <div
-                className="title"
-              >
-                some title1
-              </div>
-              <div
-                className="creator"
-              >
-                some creator1
-              </div>
-            </div>
-          </div>
+          <WorkItemSmall
+            work={
+              Object {
+                "book": Object {
+                  "creator": "some creator1",
+                  "pid": "pid1",
+                  "taxonomy_description": "some taxonomy_description1",
+                  "title": "some title1",
+                },
+                "description": "some description1",
+                "links": Object {
+                  "cover": "/cover1",
+                },
+              }
+            }
+          />
           <textarea
             className="comment"
             onChange={[Function]}
@@ -363,42 +334,22 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
         <div
           className="col-xs-6"
         >
-          <div
-            className="work-item-small clearfix"
-          >
-            <div
-              className="col-xs-3"
-            >
-              <div
-                className="cover-image-wrapper"
-              >
-                <BookCover
-                  book={
-                    Object {
-                      "creator": "some creator1",
-                      "pid": "pid1",
-                      "taxonomy_description": "some taxonomy_description1",
-                      "title": "some title1",
-                    }
-                  }
-                />
-              </div>
-            </div>
-            <div
-              className="col-xs-9 info"
-            >
-              <div
-                className="title"
-              >
-                some title1
-              </div>
-              <div
-                className="creator"
-              >
-                some creator1
-              </div>
-            </div>
-          </div>
+          <WorkItemSmall
+            work={
+              Object {
+                "book": Object {
+                  "creator": "some creator1",
+                  "pid": "pid1",
+                  "taxonomy_description": "some taxonomy_description1",
+                  "title": "some title1",
+                },
+                "description": "some description1",
+                "links": Object {
+                  "cover": "/cover1",
+                },
+              }
+            }
+          />
           <textarea
             className="comment"
             onChange={[Function]}

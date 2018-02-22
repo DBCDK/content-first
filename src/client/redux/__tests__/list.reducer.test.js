@@ -1,6 +1,7 @@
 import listReducer, {
   addList,
   getLists,
+  getListsForOwner,
   removeList,
   addElementToList,
   removeElementFromList,
@@ -64,6 +65,37 @@ describe('listReducer', () => {
       addList({title: 'some list 3', type: CUSTOM_LIST, id: 'some-id-3'})
     );
     expect(getLists(state, {type: CUSTOM_LIST})).toMatchSnapshot();
+  });
+  test('get lists for owner', () => {
+    let state = listReducer(
+      {lists: {}},
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        owner: 'some-owner'
+      })
+    );
+    state = listReducer(
+      state,
+      addList({
+        title: 'some list 2',
+        type: SYSTEM_LIST,
+        id: 'some-id-2',
+        owner: 'some-owner-2'
+      })
+    );
+    state = listReducer(
+      state,
+      addList({
+        title: 'some list 3',
+        type: CUSTOM_LIST,
+        id: 'some-id-3',
+        owner: 'some-owner'
+      })
+    );
+    expect(getListsForOwner(state, {owner: 'some-owner'})).toMatchSnapshot(); // owned lists
+    expect(getListsForOwner(state)).toMatchSnapshot(); // no lists
   });
   test('add element to list', () => {
     let state = listReducer(

@@ -1,12 +1,10 @@
 import React from 'react';
-import {Provider} from 'react-redux';
-import AddToListModal from '../AddToListModal.container';
+import {AddToListModal} from '../AddToListModal.container';
 import renderer from 'react-test-renderer';
-import createStore from '../../../redux/Store';
-import {ADD_LIST} from '../../../redux/list.reducer';
 import {createTestList, createTestElement} from '../../../utils/testHelper';
 
 jest.mock('../../general/BookCover.component', () => 'BookCover');
+jest.mock('../../work/WorkItemSmall.component', () => 'WorkItemSmall');
 
 // for ref in AddToListModal not to be null
 function createNodeMock() {
@@ -14,28 +12,36 @@ function createNodeMock() {
 }
 
 describe('AddToListModal', () => {
-  const store = createStore();
-  store.dispatch({type: ADD_LIST, list: createTestList(1)});
-  store.dispatch({type: ADD_LIST, list: createTestList(2)});
   let tree = renderer.create(
-    <Provider store={store}>
-      <AddToListModal work={createTestElement(1)} />
-    </Provider>,
-    {createNodeMock}
+    <AddToListModal
+      work={createTestElement(1)}
+      customLists={[createTestList(1), createTestList(2)]}
+    />,
+    {
+      createNodeMock
+    }
   );
   test('renders lists from store, first is selected', () => {
     expect(tree.toJSON()).toMatchSnapshot();
   });
   test('newly added list is selected', () => {
-    store.dispatch({type: ADD_LIST, list: createTestList(3)});
+    tree.update(
+      <AddToListModal
+        work={createTestElement(1)}
+        customLists={[createTestList(1), createTestList(2), createTestList(3)]}
+      />
+    );
     expect(tree.toJSON()).toMatchSnapshot();
   });
   test('multiple works as input', () => {
     tree = renderer.create(
-      <Provider store={store}>
-        <AddToListModal works={[createTestElement(1), createTestElement(2)]} />
-      </Provider>,
-      {createNodeMock}
+      <AddToListModal
+        works={[createTestElement(1), createTestElement(2)]}
+        customLists={[createTestList(1), createTestList(2)]}
+      />,
+      {
+        createNodeMock
+      }
     );
     expect(tree.toJSON()).toMatchSnapshot();
   });
