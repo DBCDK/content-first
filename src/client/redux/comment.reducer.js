@@ -1,12 +1,9 @@
 const defaultState = {};
 
 export const ADD_COMMENT = 'ADD_COMMENT';
-// export const REMOVE_COMMENT = 'REMOVE_COMMENT';
-// export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
 export const FETCH_COMMENTS_ERROR = 'FETCH_COMMENTS_ERROR';
-// export const FETCH_COMMENT_WITH_ID = 'FETCH_COMMENT_WITH_ID';
 
 const commentReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -25,7 +22,12 @@ const commentReducer = (state = defaultState, action) => {
     }
     case FETCH_COMMENTS_SUCCESS: {
       return Object.assign({}, state, {
-        [action.id]: {comments: action.comments, loading: false}
+        [action.id]: {id: action.id, comments: action.comments, loading: false}
+      });
+    }
+    case FETCH_COMMENTS_ERROR: {
+      return Object.assign({}, state, {
+        [action.id]: {loading: false, comments: [], error: action.error}
       });
     }
     default:

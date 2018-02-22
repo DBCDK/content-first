@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`commentReducer Fetch comments 1`] = `
+Object {
+  "123": Object {
+    "loading": true,
+  },
+  "elements": Array [],
+  "expanded": false,
+  "isLoading": false,
+  "pendingMerge": null,
+}
+`;
+
+exports[`commentReducer Fetch comments error 1`] = `
+Object {
+  "123": Object {
+    "comments": Array [],
+    "error": "some error",
+    "loading": false,
+  },
+  "elements": Array [],
+  "expanded": false,
+  "isLoading": false,
+  "pendingMerge": null,
+}
+`;
+
+exports[`commentReducer Fetch comments success 1`] = `
+Object {
+  "123": Object {
+    "comments": Array [
+      Object {
+        "id": "comment_1",
+      },
+    ],
+    "id": "123",
+    "loading": false,
+  },
+  "elements": Array [],
+  "expanded": false,
+  "isLoading": false,
+  "pendingMerge": null,
+}
+`;
