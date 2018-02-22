@@ -22,6 +22,12 @@ function contentFirstUserToCommunityProfileAndEntities(userInfo) {
   if (userInfo.name) {
     skeleton.profile.name = userInfo.name;
   }
+  if (userInfo.image) {
+    skeleton.profile.attributes.image = userInfo.image;
+  }
+  if (userInfo.acceptedTerms) {
+    skeleton.profile.attributes.acceptedTerms = userInfo.acceptedTerms;
+  }
   if (userInfo.shortlist) {
     skeleton.profile.attributes.shortlist = userInfo.shortlist;
   }
@@ -66,7 +72,9 @@ function contentFirstListToCommunityEntity(list) {
       uuid: list.id,
       public: list.public || false,
       type: list.type,
-      list: list.list
+      list: list.list,
+      image: list.image,
+      template: list.template
     }
   };
 }

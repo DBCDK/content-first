@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  ON_PROFILE_CREATE_TASTE,
-  ON_PROFILE_SELECT_TASTE
-} from '../../redux/profile.reducer';
+import {CREATE_TASTE, TASTE_SELECT_TASTE} from '../../redux/taste.reducer';
 
 class ProfileCreateTaste extends React.Component {
   constructor() {
@@ -14,7 +11,7 @@ class ProfileCreateTaste extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     this.props.dispatch({
-      type: ON_PROFILE_CREATE_TASTE,
+      type: CREATE_TASTE,
       name: this.state.tastyName
     });
   }
@@ -64,7 +61,7 @@ class ProfileCreateTaste extends React.Component {
         className="card"
         key={taste}
         onClick={() =>
-          this.props.dispatch({type: ON_PROFILE_SELECT_TASTE, name: taste})
+          this.props.dispatch({type: TASTE_SELECT_TASTE, name: taste})
         }
       >
         <div className="card-container">

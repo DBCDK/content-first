@@ -20,7 +20,7 @@ class WorkItemConnected extends React.PureComponent {
         origin={this.props.origin}
         showTaxonomy={this.props.showTaxonomy}
         changeMap={this.props.changeMap}
-        isLoggedIn={this.props.profileState.user.isLoggedIn}
+        isLoggedIn={this.props.user.isLoggedIn}
         work={this.props.work}
         systemLists={this.props.systemLists}
         onCoverClick={pid => {
@@ -37,11 +37,11 @@ const mapStateToProps = state => {
     shortListState: state.shortListReducer,
     systemLists: getLists(state.listReducer, {
       type: SYSTEM_LIST,
-      owner: state.profileReducer.user.openplatformId,
+      owner: state.userReducer.openplatformId,
       sort: true
     }),
     changeMap: state.listReducer.changeMap,
-    profileState: state.profileReducer
+    user: state.userReducer
   };
 };
 

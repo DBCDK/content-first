@@ -9,3 +9,6 @@ src/data/*
 !src/data/README.md
 !src/data/librarian-recommends.json
 !src/data/examples/
+.cache
+alias
+versions

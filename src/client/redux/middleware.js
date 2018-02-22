@@ -4,25 +4,12 @@ import {ON_WORK_REQUEST} from './work.reducer';
 import {
   fetchBeltWorks,
   fetchWork,
-  fetchUser,
-  fetchProfileRecommendations,
   fetchSearchResults,
-  logout,
   saveShortList,
-  loadShortList
+  loadShortList,
+  addImage
 } from '../utils/requester';
-import {
-  ON_PROFILE_LOAD_PROFILES_RESPONSE,
-  ON_USER_DETAILS_REQUEST,
-  ON_ADD_PROFILE_ELEMENT,
-  ON_REMOVE_PROFILE_ELEMENT,
-  ON_ADD_PROFILE_ARCHETYPE,
-  ON_PROFILE_REMOVE_CURRENT_PROFILE,
-  ON_PROFILE_CREATE_TASTE,
-  ON_PROFILE_LOAD_PROFILES,
-  ON_LOGOUT_REQUEST,
-  ON_LOGOUT_RESPONSE
-} from './profile.reducer';
+import {ON_LOGOUT_RESPONSE} from './user.reducer';
 import {
   ON_SHORTLIST_ADD_ELEMENT,
   SHORTLIST_UPDATE_ORIGIN,
@@ -38,11 +25,13 @@ import {
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
-  getListById
+  getListById,
+  ADD_LIST_IMAGE,
+  ADD_LIST_IMAGE_SUCCESS,
+  ADD_LIST_IMAGE_ERROR
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {saveProfiles, getProfiles} from '../utils/profile';
 import {
   saveList,
   loadLists,
@@ -110,15 +99,6 @@ export const requestMiddleware = store => next => action => {
       fetchWork(action.pid, store.dispatch);
       return next(action);
     }
-    case ON_USER_DETAILS_REQUEST:
-      fetchUser(store.dispatch, () => {
-        store.dispatch({type: SHORTLIST_LOAD_REQUEST});
-        store.dispatch({type: LIST_LOAD_REQUEST});
-      });
-      return next(action);
-    case ON_LOGOUT_REQUEST:
-      logout(store.dispatch);
-      return next(action);
     default:
       return next(action);
   }
@@ -135,13 +115,13 @@ export const shortListMiddleware = store => next => async action => {
     case SHORTLIST_UPDATE_ORIGIN: {
       const res = next(action);
       const {elements} = store.getState().shortListReducer;
-      const {isLoggedIn} = store.getState().profileReducer.user;
+      const {isLoggedIn} = store.getState().userReducer;
       saveShortList(elements, isLoggedIn);
       return res;
     }
     case SHORTLIST_LOAD_REQUEST: {
       const res = next(action);
-      const {isLoggedIn} = store.getState().profileReducer.user;
+      const {isLoggedIn} = store.getState().userReducer;
       const {localStorageElements, databaseElements} = await loadShortList(
         isLoggedIn
       );
@@ -163,40 +143,11 @@ export const shortListMiddleware = store => next => async action => {
   }
 };
 
-export const profileMiddleware = store => next => action => {
-  switch (action.type) {
-    case ON_ADD_PROFILE_ELEMENT:
-    case ON_REMOVE_PROFILE_ELEMENT:
-    case ON_PROFILE_REMOVE_CURRENT_PROFILE:
-    case ON_PROFILE_CREATE_TASTE:
-    case ON_ADD_PROFILE_ARCHETYPE: {
-      const res = next(action);
-      const {
-        profiles,
-        currentTaste
-      } = store.getState().profileReducer.profileTastes;
-      saveProfiles(profiles, currentTaste);
-      fetchProfileRecommendations(profiles[currentTaste], store.dispatch);
-      return res;
-    }
-    case ON_PROFILE_LOAD_PROFILES:
-      getProfiles(profileTastes => {
-        store.dispatch({
-          type: ON_PROFILE_LOAD_PROFILES_RESPONSE,
-          profileTastes
-        });
-      });
-      return next(action);
-    default:
-      return next(action);
-  }
-};
-
 export const listMiddleware = store => next => async action => {
   switch (action.type) {
     case STORE_LIST: {
       const res = next(action);
-      const {isLoggedIn} = store.getState().profileReducer.user;
+      const {isLoggedIn} = store.getState().userReducer;
       const list = getListById(store.getState().listReducer, action.id);
       if (!list) {
         throw new Error(`list with id ${action.id} not found`);
@@ -211,13 +162,13 @@ export const listMiddleware = store => next => async action => {
         action.list.data.id = id;
       }
       if (!action.list.data.owner) {
-        action.list.data.owner = store.getState().profileReducer.user.openplatformId;
+        action.list.data.owner = store.getState().userReducer.openplatformId;
       }
       return next(action);
     }
     case LIST_LOAD_REQUEST: {
       const res = next(action);
-      const {isLoggedIn} = store.getState().profileReducer.user;
+      const {isLoggedIn} = store.getState().userReducer;
       const lists = await loadLists(isLoggedIn);
       const recentLists = await loadRecentPublic();
       store.dispatch({
@@ -226,6 +177,16 @@ export const listMiddleware = store => next => async action => {
       });
       return res;
     }
+    case ADD_LIST_IMAGE:
+      next(action);
+      return (async () => {
+        try {
+          const image = await addImage(action.image);
+          store.dispatch({type: ADD_LIST_IMAGE_SUCCESS, image, id: action.id});
+        } catch (error) {
+          store.dispatch({type: ADD_LIST_IMAGE_ERROR, error, id: action.id});
+        }
+      })();
     default:
       return next(action);
   }

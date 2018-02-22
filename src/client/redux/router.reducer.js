@@ -1,3 +1,6 @@
+export const HISTORY_PUSH = 'HISTORY_PUSH';
+export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
+export const HISTORY_REPLACE = 'HISTORY_REPLACE';
 export const ON_LOCATION_CHANGE = 'ON_LOCATION_CHANGE';
 
 const PARAMS_REGEX = /[?&](\w*)=(\w*)/g;

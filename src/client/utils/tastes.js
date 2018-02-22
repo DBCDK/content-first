@@ -1,6 +1,6 @@
 import unique from './unique';
 
-export function saveProfiles(profiles, currentTaste) {
+export function saveTastes(profiles, currentTaste) {
   if (window && window.localStorage) {
     localStorage.setItem(
       'contentFirstProfile',
@@ -9,7 +9,7 @@ export function saveProfiles(profiles, currentTaste) {
   }
 }
 
-export function getProfiles(cb) {
+export function getTastes(cb) {
   setTimeout(() => {
     if (window && window.localStorage) {
       return cb(JSON.parse(localStorage.getItem('contentFirstProfile')));
@@ -18,11 +18,7 @@ export function getProfiles(cb) {
   }, 500);
 }
 
-export function getAllSelectedTags(profile) {
-  return unique([...profile.moods, ...profile.authors, ...profile.genres]);
-}
-
-export function addElementsToProfiles({profiles, currentTaste}, obj) {
+export function addElementsToTastes({profiles, currentTaste}, obj) {
   const profile = Object.keys(obj).reduce((currentProfile, beltName) => {
     currentProfile[beltName] = unique([
       ...currentProfile[beltName],
@@ -42,7 +38,7 @@ export function addElementsToProfiles({profiles, currentTaste}, obj) {
   return {profiles: updatedProfiles, profile};
 }
 
-export function removeElementFromProfiles(
+export function removeElementFromTastes(
   {profiles, currentTaste},
   beltname,
   value

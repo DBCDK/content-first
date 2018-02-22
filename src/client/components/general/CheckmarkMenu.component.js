@@ -40,8 +40,9 @@ export default class CheckmarkMenu extends React.Component {
             </span>
             <span
               className="btn btn-default"
-              onClick={() => {
+              onClick={e => {
                 this.setState({expanded: !this.state.expanded});
+                e.stopPropagation();
               }}
             >
               <span className="glyphicon glyphicon-option-vertical" />

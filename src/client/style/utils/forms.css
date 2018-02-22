@@ -1,0 +1,39 @@
+/*.checkbox {
+    margin-right: 1rem;
+    display: none;
+}*/
+
+.checkbox {
+  font-weight: 500;
+}
+
+.checkbox input {
+  display: none;
+}
+
+.checkbox span {
+  display: inline-block;
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  position: relative;
+  top: 5px;
+}
+.checkbox span:before {
+  position: absolute;
+  content: ' ';
+  display: inline-block;
+  background: url('/checkmark.svg');
+  background-size: contain;
+  width: 22px;
+  height: 22px;
+  left: 1px;
+  bottom: 0px;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.checkbox input:checked + span:before {
+  opacity: 1;
+}

@@ -12,7 +12,7 @@ import {
 
 async function openplatformLogin(state) {
   if (!openplatform.connected()) {
-    const token = state.profileReducer.user.openplatformToken;
+    const token = state.userReducer.openplatformToken;
     if (!token) {
       throw new Error('missing openplatformToken');
     }
@@ -97,7 +97,7 @@ function fetchAvailability({store, pid}) {
 export const orderMiddleware = store => next => action => {
   switch (action.type) {
     case ORDER: {
-      if (!store.getState().profileReducer.user.openplatformToken) {
+      if (!store.getState().userReducer.openplatformToken) {
         store.dispatch({
           type: OPEN_MODAL,
           modal: 'login',
