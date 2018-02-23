@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Bookcase renders initial component 1`] = `
+<section
+  className="row "
+  onClick={undefined}
+>
+  <img
+    src="img/bookcase/BS-bogreol.png"
+  />
+  <div
+    className="row"
+  >
+    <div
+      className="col-xs-4 celeb"
+    >
+      <div
+        className="col-xs-12 celeb-top"
+      >
+        <div
+          className="col-xs-12 celeb-img"
+        >
+          <img
+            alt="bs"
+            src="img/bookcase/BS3.png"
+          />
+        </div>
+        <div
+          className="col-xs-12 celeb-title"
+        >
+          <h1>
+            Bjarne Slot Christiansen
+          </h1>
+        </div>
+        <div
+          className="col-xs-12 celeb-description"
+        >
+          <p>
+            er en dansk forhenværende elitesoldat i Jægerkorpset og fordragsholder. Han er især kendt for programserien
+             
+            <span
+              className="highlight"
+            >
+               På afveje 
+            </span>
+            med forskellige kendte personer, og har også deltaget i flere selvhjælpsserier. Skrev i 2005 bogen
+            <span
+              className="highlight"
+            >
+               Et liv på kanten 
+            </span>
+          </p>
+        </div>
+      </div>
+      <div
+        className="rollover-container "
+      >
+        <div
+          className="rollover"
+        >
+          <img
+            className="rollover-close"
+            onClick={[Function]}
+            src="/static/media/Kryds.e69a54ef.svg"
+          />
+          <div
+            className="col-xs-4 rollover-img"
+          >
+            <img
+              alt=""
+              className="high-contrast "
+              onError={[Function]}
+              src="https://metakompasset.demo.dbc.dk/api/cover/undefined"
+              style={undefined}
+            />
+          </div>
+          <div
+            className="col-xs-8 text-left rollover-text"
+          >
+            <div
+              className="col-xs-12 rollover-title"
+            >
+              <h1 />
+            </div>
+            <div
+              className="col-xs-12 rollover-creator"
+            >
+              <h2 />
+            </div>
+            <div
+              className="col-xs-12 rollover-description"
+            >
+              <p>
+                
+              </p>
+            </div>
+            <div
+              className="col-xs-12"
+            >
+              <CheckmarkConnected
+                book={
+                  Object {
+                    "book": Object {
+                      "pid": undefined,
+                    },
+                  }
+                }
+                origin="Fra bogreol"
+              />
+            </div>
+          </div>
+          <div
+            className="col-xs-12 rollover-bottom"
+          >
+            <span
+              aria-hidden="true"
+              class="glyphicon glyphicon-chevron-left"
+              onClick={[Function]}
+            />
+            <span
+              aria-hidden="true"
+              class="glyphicon glyphicon-chevron-right"
+              onClick={[Function]}
+            />
+          </div>
+          <div
+            className="clear"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="col-xs-8 bookswrap"
+    >
+      <Pulse
+        onClick={[Function]}
+        position={
+          Object {
+            "x": 26,
+            "y": 46,
+          }
+        }
+      />
+      <Pulse
+        onClick={[Function]}
+        position={
+          Object {
+            "x": 36.5,
+            "y": 46,
+          }
+        }
+      />
+    </div>
+  </div>
+</section>
+`;

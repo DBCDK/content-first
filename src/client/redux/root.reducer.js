@@ -10,6 +10,7 @@ import shortListReducer from './shortlist.reducer';
 import modalReducer from './modal.reducer';
 import searchReducer from './search.reducer';
 import orderReducer from './order.reducer';
+import bookcaseReducer from './bookcase.reducer';
 
 const combined = combineReducers({
   beltsReducer,
@@ -22,6 +23,7 @@ const combined = combineReducers({
   modalReducer,
   searchReducer,
   orderReducer,
+  bookcaseReducer,
   tasteReducer
 });
 

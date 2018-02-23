@@ -1,0 +1,114 @@
+.section-active {
+}
+
+.section-active .row .celeb {
+  background: rgba(255, 255, 255, 1);
+}
+
+.section-active .row .celeb .celeb-top {
+  padding: 30px 0 30px 15px;
+  border-bottom: 1px solid lightgrey;
+  height: 140px;
+}
+
+.section-active .row .celeb .celeb-img {
+  width: 33.3%;
+  padding: 0;
+}
+
+.section-active .row .celeb .celeb-img img {
+  width: 75px;
+  margin: auto;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.section-active .row .celeb .celeb-description {
+  opacity: 0;
+}
+.section-active .row .celeb .celeb-title {
+  width: 66.6%;
+}
+
+section {
+  position: relative;
+}
+
+section .bookswrap {
+  position: relative;
+  height: 100%;
+}
+
+section img {
+  width: 100%;
+  height: auto;
+}
+
+section div.row {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 15px;
+  top: 0;
+}
+
+section .row .celeb {
+  height: 100%;
+  position: relative;
+  background: rgba(255, 255, 255, 0.45);
+  transition: all 0.3s ease-in;
+  overflow: hidden;
+}
+
+section .row .celeb .celeb-top {
+  height: 100%;
+  transition: all 0.3s ease-in;
+}
+
+section .row .celeb .celeb-img {
+  transition: all 0.3s ease-in;
+  padding-top: 10%;
+}
+
+section .row .celeb .celeb-img img {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in;
+}
+
+section .row .celeb .celeb-title {
+  height: 50px;
+  float: right;
+  transition: all 0.3s ease-in;
+}
+
+section .row .celeb .celeb-title h1 {
+  font-family: var(--secondary-font);
+  color: var(--darkgrey);
+  font-size: 20px;
+  font-weight: 700;
+  padding: 15px 0 0 0;
+  margin: 0;
+}
+
+section .row .celeb .celeb-description {
+  transition: all 0.2s ease-in;
+}
+
+section .row .celeb .celeb-description p {
+  max-width: 300px;
+  margin: 25px auto 0 auto;
+  font-family: var(--secondary-font);
+  color: var(--darkgrey);
+  font-size: 14px;
+  display: block;
+}
+
+section .row .celeb .celeb-description p span.highlight {
+  font-weight: 700;
+  font-style: italic;
+  font-family: var(--secondary-font);
+  color: var(--darkgrey);
+  font-size: 14px;
+}
