@@ -28,5 +28,6 @@ router.use('/shortlist', require('server/external-v1-shortlist'));
 router.use('/tags', require('server/external-v1-tags'));
 router.use('/taxonomy', require('server/external-v1-taxonomy'));
 router.use('/user', require('server/external-v1-user'));
+router.use('/recompass', require('server/external-v1-recompass'));
 
 module.exports = router;

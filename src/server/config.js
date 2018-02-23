@@ -58,6 +58,10 @@ exports.login = {
   openplatformUrl: process.env.OPENPLATFORM_URL || 'https://openplatform.dbc.dk'
 };
 
+exports.recompass = {
+  url: process.env.RECOMPASS_URL
+};
+
 exports.server = {
   environment: common.environment,
   logServiceErrors: parseInt(process.env.LOG_SERVICE_ERRORS || 1, 10),
