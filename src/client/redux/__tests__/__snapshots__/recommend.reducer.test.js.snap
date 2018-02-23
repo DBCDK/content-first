@@ -1,47 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`recommendReducer normalized key is used for request, creators only 1`] = `
+exports[`recommendReducer request with creators and tags 1`] = `
 Object {
-  "recommendations": Object {
-    "arne-ib": Object {
-      "isLoading": true,
-    },
-  },
+  "isLoading": true,
 }
 `;
 
-exports[`recommendReducer normalized key is used for request, tags and creators 1`] = `
+exports[`recommendReducer request with creators only 1`] = `
 Object {
-  "recommendations": Object {
-    "1-2-4arne-ib": Object {
-      "isLoading": true,
-    },
-  },
+  "isLoading": true,
 }
 `;
 
-exports[`recommendReducer normalized key is used for request, tags only 1`] = `
+exports[`recommendReducer request with tags only 1`] = `
 Object {
-  "recommendations": Object {
-    "1-2-4": Object {
-      "isLoading": true,
-    },
-  },
+  "isLoading": true,
 }
 `;
 
-exports[`recommendReducer normalized key is used for response 1`] = `
+exports[`recommendReducer response 1`] = `
 Object {
-  "recommendations": Object {
-    "1-2-4arne-ib": Object {
-      "error": undefined,
-      "isLoading": false,
-      "pids": Array [
-        "pid1",
-        "pid2",
-        "pid3",
-      ],
-    },
-  },
+  "error": undefined,
+  "isLoading": false,
+  "pids": Array [
+    "pid1",
+    "pid2",
+    "pid3",
+  ],
 }
 `;

@@ -44,4 +44,9 @@ const recommendReducer = (state = defaultState, action) => {
   }
 };
 
+export const getRecommendations = (state, {tags, creators}) => {
+  const k = key(tags, creators);
+  return state.recommendations[k];
+};
+
 export default recommendReducer;
