@@ -11,6 +11,8 @@ import modalReducer from './modal.reducer';
 import searchReducer from './search.reducer';
 import orderReducer from './order.reducer';
 import commentReducer from './comment.reducer';
+import bookcaseReducer from './bookcase.reducer';
+import booksReducer from './books.reducer';
 
 const combined = combineReducers({
   beltsReducer,
@@ -23,8 +25,10 @@ const combined = combineReducers({
   modalReducer,
   searchReducer,
   orderReducer,
+  commentReducer,
+  bookcaseReducer,
   tasteReducer,
-  commentReducer
+  booksReducer
 });
 
 const rootReducer = (state = {}, action) => {

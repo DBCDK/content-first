@@ -1,12 +1,15 @@
 import request from 'superagent';
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
+import {BOOKS_REQUEST} from './books.reducer';
 import {
   fetchBeltWorks,
+  fetchBooks,
   fetchWork,
   fetchSearchResults,
   saveShortList,
-  loadShortList
+  loadShortList,
+  addImage
 } from '../utils/requester';
 import {ON_LOGOUT_RESPONSE} from './user.reducer';
 import {
@@ -24,7 +27,10 @@ import {
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
-  getListById
+  getListById,
+  ADD_LIST_IMAGE,
+  ADD_LIST_IMAGE_SUCCESS,
+  ADD_LIST_IMAGE_ERROR
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
@@ -93,6 +99,10 @@ export const requestMiddleware = store => next => action => {
     }
     case ON_WORK_REQUEST: {
       fetchWork(action.pid, store.dispatch);
+      return next(action);
+    }
+    case BOOKS_REQUEST: {
+      fetchBooks(action.pids, store.dispatch);
       return next(action);
     }
     default:
@@ -173,6 +183,16 @@ export const listMiddleware = store => next => async action => {
       });
       return res;
     }
+    case ADD_LIST_IMAGE:
+      next(action);
+      return (async () => {
+        try {
+          const image = await addImage(action.image);
+          store.dispatch({type: ADD_LIST_IMAGE_SUCCESS, image, id: action.id});
+        } catch (error) {
+          store.dispatch({type: ADD_LIST_IMAGE_ERROR, error, id: action.id});
+        }
+      })();
     default:
       return next(action);
   }

@@ -14,7 +14,12 @@ export const Badge = props => {
 export const Comments = props => {
   return (
     <span
-      style={{position: 'relative', color: 'black', ...props.style}}
+      style={{
+        position: 'relative',
+        fontSize: 10,
+        fontFamily: 'var(--secondary-font)',
+        ...props.style
+      }}
       className={props.className}
     >
       <span
@@ -47,7 +52,12 @@ export const Comments = props => {
 export const Likes = props => {
   return (
     <span
-      style={{position: 'relative', ...props.style}}
+      style={{
+        position: 'relative',
+        fontSize: 10,
+        fontFamily: 'var(--secondary-font)',
+        ...props.style
+      }}
       className={props.className}
     >
       <span
@@ -73,6 +83,23 @@ export const Likes = props => {
       >
         {props.value}
       </span>
+    </span>
+  );
+};
+export const Share = props => {
+  return (
+    <span
+      style={{position: 'relative', ...props.style}}
+      className={props.className}
+    >
+      <span
+        style={{
+          fontSize: 24,
+          color: 'black',
+          verticalAlign: 'middle'
+        }}
+        className="glyphicon glyphicon-share"
+      />
     </span>
   );
 };

@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RollOver renders initial component 1`] = `
+<div
+  className="rollover-container "
+  style={Object {}}
+>
+  <div
+    className="rollover"
+  >
+    <img
+      className="rollover-close"
+      onClick={[Function]}
+      src="/static/media/Kryds.e69a54ef.svg"
+    />
+    <div
+      className="col-xs-4 rollover-img"
+    >
+      <img
+        alt="test"
+        className="high-contrast "
+        onError={[Function]}
+        src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52038014"
+        style={undefined}
+      />
+    </div>
+    <div
+      className="col-xs-8 text-left rollover-text"
+    >
+      <div
+        className="col-xs-12 rollover-title"
+      >
+        <h1>
+          test
+        </h1>
+      </div>
+      <div
+        className="col-xs-12 rollover-creator"
+      >
+        <h2>
+          Nicole Boyle Rødtnes
+        </h2>
+      </div>
+      <div
+        className="col-xs-12 rollover-description"
+      >
+        <p>
+          lorem ipsum . . .. . .
+        </p>
+      </div>
+      <div
+        className="col-xs-12"
+      >
+        <CheckmarkConnected
+          book={
+            Object {
+              "book": Object {
+                "pid": "870970-basis:52038014",
+              },
+            }
+          }
+          origin="Fra bogreol"
+        />
+      </div>
+    </div>
+    <div
+      className="col-xs-12 seperator-line"
+    />
+    <div
+      className="col-xs-12 rollover-bottom"
+    >
+      <span
+        aria-hidden="true"
+        class="glyphicon glyphicon-chevron-right"
+        onClick={[Function]}
+      />
+      <span
+        aria-hidden="true"
+        class="glyphicon glyphicon-chevron-left"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="clear"
+    />
+  </div>
+</div>
+`;

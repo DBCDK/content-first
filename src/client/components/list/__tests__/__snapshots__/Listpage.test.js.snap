@@ -4,28 +4,110 @@ exports[`ListView List is rendered 1`] = `
 <div
   className="list-wrapper tl"
 >
-  <h1
-    className="t-title h-underline mb4"
-  >
-    some list
-  </h1>
   <div
-    className="row"
+    className="mb4 mt5 col-xs-offset-0 col-md-offset-1"
+  >
+    <h1
+      className="t-title h-tight h-underline inline-block align-middle"
+    >
+      some list
+    </h1>
+    <a
+      className="small link-subtle align-middle ml2"
+      href="/lister/list1/rediger"
+      onClick={[Function]}
+    >
+      Redigér liste
+    </a>
+  </div>
+  <div
+    className="simplelist col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1"
   >
     <div
-      className="list tl col-xs-8"
+      className="row mb4"
     >
       <div
-        className="simplelist"
+        className="col-xs-3 tc"
       >
         <div
-          className="row mb4"
+          className="profile-card "
         >
+          <span
+            className="profile-image small round"
+            style={
+              Object {
+                "height": undefined,
+                "width": undefined,
+              }
+            }
+          >
+            <img
+              alt="Profile Name"
+              className="cover"
+              src="http://p-hold.com/200/200"
+            />
+          </span>
+          <h4
+            className="profile-name t-body h4 mt0 mb0"
+          >
+            Profile Name
+          </h4>
+        </div>
+      </div>
+      <div
+        className="col-xs-9"
+      >
+        <p
+          className="t-body"
+        >
+          some description
+        </p>
+        <Comments
+          id="list1"
+        />
+      </div>
+    </div>
+    <div
+      className="list"
+    >
+      <div
+        className="row simplelist-item mb4"
+      >
+        <div
+          className="meta col-xs-3 tc"
+        >
+          <WorkItemConnectedMock
+            showTaxonomy={false}
+            work={
+              Object {
+                "book": Object {
+                  "creator": "some creator1",
+                  "pid": "pid1",
+                  "title": "some title 1",
+                },
+              }
+            }
+            workClass="work simplelist"
+          />
+        </div>
+        <div
+          className="meta col-xs-9"
+        >
+          <h4
+            className="w-title h-tight"
+          >
+            some title 1
+          </h4>
+          <h5
+            className="w-creator h-tight mb2"
+          >
+            some creator1
+          </h5>
           <div
-            className="col-xs-3 tc"
+            className="profile-description"
           >
             <div
-              className="profile-card "
+              className="profile-list mb1"
             >
               <span
                 className="profile-image small round"
@@ -48,240 +130,150 @@ exports[`ListView List is rendered 1`] = `
                 Profile Name
               </h4>
             </div>
-          </div>
-          <div
-            className="col-xs-9"
-          >
             <p
               className="t-body"
             >
-              some description
+              some description1
             </p>
-            <Comments
-              id="list1"
-            />
-          </div>
-        </div>
-        <div
-          className="list"
-        >
-          <div
-            className="row simplelist-item mb4"
-          >
-            <div
-              className="meta col-xs-3 tc"
-            >
-              <WorkItemConnectedMock
-                showTaxonomy={false}
-                work={
-                  Object {
-                    "book": Object {
-                      "creator": "some creator1",
-                      "pid": "pid1",
-                      "title": "some title 1",
-                    },
-                  }
-                }
-                workClass="work simplelist"
-              />
-            </div>
-            <div
-              className="meta col-xs-9"
-            >
-              <h4
-                className="w-title h-tight"
-              >
-                some title 1
-              </h4>
-              <h5
-                className="w-creator h-tight mb2"
-              >
-                some creator1
-              </h5>
-              <div
-                className="profile-description"
-              >
-                <div
-                  className="profile-list mb1"
-                >
-                  <span
-                    className="profile-image small round"
-                    style={
-                      Object {
-                        "height": undefined,
-                        "width": undefined,
-                      }
-                    }
-                  >
-                    <img
-                      alt="Profile Name"
-                      className="cover"
-                      src="http://p-hold.com/200/200"
-                    />
-                  </span>
-                  <h4
-                    className="profile-name t-body h4 mt0 mb0"
-                  >
-                    Profile Name
-                  </h4>
-                </div>
-                <p
-                  className="t-body"
-                >
-                  some description1
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            className="row simplelist-item mb4"
-          >
-            <div
-              className="meta col-xs-3 tc"
-            >
-              <WorkItemConnectedMock
-                showTaxonomy={false}
-                work={
-                  Object {
-                    "book": Object {
-                      "creator": "some creator2",
-                      "pid": "pid2",
-                      "title": "some title 2",
-                    },
-                  }
-                }
-                workClass="work simplelist"
-              />
-            </div>
-            <div
-              className="meta col-xs-9"
-            >
-              <h4
-                className="w-title h-tight"
-              >
-                some title 2
-              </h4>
-              <h5
-                className="w-creator h-tight mb2"
-              >
-                some creator2
-              </h5>
-              <div
-                className="profile-description"
-              >
-                <div
-                  className="profile-list mb1"
-                >
-                  <span
-                    className="profile-image small round"
-                    style={
-                      Object {
-                        "height": undefined,
-                        "width": undefined,
-                      }
-                    }
-                  >
-                    <img
-                      alt="Profile Name"
-                      className="cover"
-                      src="http://p-hold.com/200/200"
-                    />
-                  </span>
-                  <h4
-                    className="profile-name t-body h4 mt0 mb0"
-                  >
-                    Profile Name
-                  </h4>
-                </div>
-                <p
-                  className="t-body"
-                >
-                  some description2
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            className="row simplelist-item mb4"
-          >
-            <div
-              className="meta col-xs-3 tc"
-            >
-              <WorkItemConnectedMock
-                showTaxonomy={false}
-                work={
-                  Object {
-                    "book": Object {
-                      "creator": "some creator3",
-                      "pid": "pid3",
-                      "title": "some title 3",
-                    },
-                  }
-                }
-                workClass="work simplelist"
-              />
-            </div>
-            <div
-              className="meta col-xs-9"
-            >
-              <h4
-                className="w-title h-tight"
-              >
-                some title 3
-              </h4>
-              <h5
-                className="w-creator h-tight mb2"
-              >
-                some creator3
-              </h5>
-              <div
-                className="profile-description"
-              >
-                <div
-                  className="profile-list mb1"
-                >
-                  <span
-                    className="profile-image small round"
-                    style={
-                      Object {
-                        "height": undefined,
-                        "width": undefined,
-                      }
-                    }
-                  >
-                    <img
-                      alt="Profile Name"
-                      className="cover"
-                      src="http://p-hold.com/200/200"
-                    />
-                  </span>
-                  <h4
-                    className="profile-name t-body h4 mt0 mb0"
-                  >
-                    Profile Name
-                  </h4>
-                </div>
-                <p
-                  className="t-body"
-                >
-                  some description3
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      className="col-xs-4"
-    >
-      <a
-        className=""
-        href="/lister/list1/rediger"
-        onClick={[Function]}
+      <div
+        className="row simplelist-item mb4"
       >
-        Rediger liste
-      </a>
+        <div
+          className="meta col-xs-3 tc"
+        >
+          <WorkItemConnectedMock
+            showTaxonomy={false}
+            work={
+              Object {
+                "book": Object {
+                  "creator": "some creator2",
+                  "pid": "pid2",
+                  "title": "some title 2",
+                },
+              }
+            }
+            workClass="work simplelist"
+          />
+        </div>
+        <div
+          className="meta col-xs-9"
+        >
+          <h4
+            className="w-title h-tight"
+          >
+            some title 2
+          </h4>
+          <h5
+            className="w-creator h-tight mb2"
+          >
+            some creator2
+          </h5>
+          <div
+            className="profile-description"
+          >
+            <div
+              className="profile-list mb1"
+            >
+              <span
+                className="profile-image small round"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": undefined,
+                  }
+                }
+              >
+                <img
+                  alt="Profile Name"
+                  className="cover"
+                  src="http://p-hold.com/200/200"
+                />
+              </span>
+              <h4
+                className="profile-name t-body h4 mt0 mb0"
+              >
+                Profile Name
+              </h4>
+            </div>
+            <p
+              className="t-body"
+            >
+              some description2
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="row simplelist-item mb4"
+      >
+        <div
+          className="meta col-xs-3 tc"
+        >
+          <WorkItemConnectedMock
+            showTaxonomy={false}
+            work={
+              Object {
+                "book": Object {
+                  "creator": "some creator3",
+                  "pid": "pid3",
+                  "title": "some title 3",
+                },
+              }
+            }
+            workClass="work simplelist"
+          />
+        </div>
+        <div
+          className="meta col-xs-9"
+        >
+          <h4
+            className="w-title h-tight"
+          >
+            some title 3
+          </h4>
+          <h5
+            className="w-creator h-tight mb2"
+          >
+            some creator3
+          </h5>
+          <div
+            className="profile-description"
+          >
+            <div
+              className="profile-list mb1"
+            >
+              <span
+                className="profile-image small round"
+                style={
+                  Object {
+                    "height": undefined,
+                    "width": undefined,
+                  }
+                }
+              >
+                <img
+                  alt="Profile Name"
+                  className="cover"
+                  src="http://p-hold.com/200/200"
+                />
+              </span>
+              <h4
+                className="profile-name t-body h4 mt0 mb0"
+              >
+                Profile Name
+              </h4>
+            </div>
+            <p
+              className="t-body"
+            >
+              some description3
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

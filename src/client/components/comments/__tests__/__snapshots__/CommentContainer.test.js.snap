@@ -169,7 +169,8 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         className={undefined}
         style={
           Object {
-            "color": "black",
+            "fontFamily": "var(--secondary-font)",
+            "fontSize": 10,
             "position": "relative",
           }
         }
@@ -732,7 +733,8 @@ exports[`CommentContainer Component renders all comments 1`] = `
           <span
             style={
               Object {
-                "color": "black",
+                "fontFamily": "var(--secondary-font)",
+                "fontSize": 10,
                 "position": "relative",
               }
             }
@@ -1014,7 +1016,8 @@ exports[`CommentContainer Component renders error 1`] = `
           <span
             style={
               Object {
-                "color": "black",
+                "fontFamily": "var(--secondary-font)",
+                "fontSize": 10,
                 "position": "relative",
               }
             }
@@ -1331,7 +1334,8 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
           <span
             style={
               Object {
-                "color": "black",
+                "fontFamily": "var(--secondary-font)",
+                "fontSize": 10,
                 "position": "relative",
               }
             }
@@ -1633,7 +1637,8 @@ exports[`CommentContainer Toggle all comments 1`] = `
           <span
             style={
               Object {
-                "color": "black",
+                "fontFamily": "var(--secondary-font)",
+                "fontSize": 10,
                 "position": "relative",
               }
             }
@@ -2215,7 +2220,8 @@ exports[`CommentContainer Toggle all comments 2`] = `
           <span
             style={
               Object {
-                "color": "black",
+                "fontFamily": "var(--secondary-font)",
+                "fontSize": 10,
                 "position": "relative",
               }
             }
