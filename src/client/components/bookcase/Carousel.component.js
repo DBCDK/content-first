@@ -15,11 +15,10 @@ import BookCover from '../general/BookCover.component';
 
 export default class Carousel extends React.Component {
   render() {
-    if (this.props.book.length === 0) {
-      return null;
+    let book = '';
+    if (this.props.book.length !== 0) {
+      book = this.props.book[0].book;
     }
-
-    const book = this.props.book[0].book;
 
     return (
       <div

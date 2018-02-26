@@ -19,7 +19,8 @@ export class Bookcase extends React.Component {
       title: '',
       cover: '',
       curindex: 0,
-      carousel: false
+      carousel: false,
+      pulse: ''
     };
   }
 
@@ -39,7 +40,7 @@ export class Bookcase extends React.Component {
   }
 
   hideCarousel() {
-    this.setState({carousel: false, pid: ''});
+    this.setState({carousel: false, pulse: ''});
   }
 
   nextBook = direction => {
@@ -131,7 +132,7 @@ export class Bookcase extends React.Component {
           <div className="col-xs-8 bookswrap">
             {books.map((p, i) => (
               <Pulse
-                active={this.state.pid}
+                active={this.state.pulse}
                 pid={p.pid}
                 key={'pulse-' + p.pid}
                 onClick={() => {
