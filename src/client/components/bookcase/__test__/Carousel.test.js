@@ -9,7 +9,6 @@ jest.mock(
 );
 
 const pid = '870970-basis:52038014';
-const position = {x: 26, y: 46};
 const description = 'lorem ipsum . . .';
 
 const book = [

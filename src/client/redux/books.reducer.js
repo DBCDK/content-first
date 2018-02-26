@@ -11,16 +11,15 @@ const booksReducer = (state = defaultState, action) => {
   switch (action.type) {
     case BOOKS_REQUEST:
       return Object.assign({}, state, {pids: [action.pids]}, {isLoading: true});
-    case BOOKS_RESPONSE:
+    case BOOKS_RESPONSE: {
       const books = {...state.books};
-
-      console.log(action.response);
 
       action.response.forEach(b => {
         books[b.book.pid] = b;
       });
 
       return Object.assign({}, state, {books: books}, {isLoading: false});
+    }
     default:
       return state;
   }

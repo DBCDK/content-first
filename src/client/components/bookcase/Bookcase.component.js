@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
 import Carousel from './Carousel.component';
-import Slider from '../belt/Slider.component';
 
 import {BOOKS_REQUEST, getBooks} from '../../redux/books.reducer';
 

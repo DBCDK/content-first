@@ -19,7 +19,6 @@ export default class Carousel extends React.Component {
       return null;
     }
 
-    console.log(JSON.stringify(this.props.book));
     const book = this.props.book[0].book;
 
     return (
