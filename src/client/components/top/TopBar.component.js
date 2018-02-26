@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from '../general/Link.component';
 import {HISTORY_PUSH, HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import logo from '../../logo.svg';
@@ -37,12 +38,7 @@ export default function TopBar(props) {
         )}
         {props.user.isLoggedIn && (
           <div className="inline">
-            <span
-              className="profile-image"
-              onClick={() => {
-                props.dispatch({type: HISTORY_PUSH, path: '/profile'});
-              }}
-            >
+            <Link href="/profile" className="profile-image">
               {props.user.image ? (
                 <img
                   className="round micro"
@@ -52,7 +48,7 @@ export default function TopBar(props) {
               ) : (
                 <span className="glyphicon glyphicon-user default-user" />
               )}
-            </span>
+            </Link>
             <span
               className="topbar-logout ml2"
               onClick={() => {
