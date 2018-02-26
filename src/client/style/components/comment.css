@@ -10,6 +10,10 @@
   border-radius: 3px;
 }
 
+.comment-wrapper {
+  position: relative;
+}
+
 .comment-author {
   font-weight: bold;
   font-size: 1.4rem;
@@ -27,4 +31,20 @@
   position: relative;
   transform: translateY(-50%);
   top: 50%;
+}
+
+.comment-saving {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+}
+
+.comment-saving .spinner {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }

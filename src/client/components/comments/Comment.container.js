@@ -1,149 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {ADD_COMMENT, FETCH_COMMENTS} from '../../redux/comment.reducer';
-import Textarea from 'react-textarea-autosize';
-import {Likes, Comments, Badge} from '../general/Icons';
+import {Comments as CommentsIcon} from '../general/Icons';
+import CommentList from './CommentList.component';
+import CommentInput from './CommentInput.component';
 
-const UserImage = ({size = '35', user, style}) => {
-  return (
-    <span
-      className="profile-image small round"
-      style={{...style, width: `${size}px`, height: `${size}px`}}
-    >
-      {user.image ? (
-        <img
-          className="cover"
-          src={`/v1/image/${user.image}/200/200`}
-          alt={user.name}
-        />
-      ) : (
-        <span
-          className="glyphicon glyphicon-user"
-          style={{fontSize: `${size / 2}px`}}
-        />
-      )}
-    </span>
-  );
-};
-
-class CommentInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-      focus: false
-    };
-  }
-
-  onSubmit = () => {
-    this.props.onSubmit(this.state.value);
-    this.setState({value: ''});
-  };
-
-  render() {
-    return (
-      <div
-        style={{
-          display: 'flex'
-        }}
-      >
-        <UserImage user={this.props.user} />{' '}
-        <div
-          style={{width: '100%'}}
-          className="ml2"
-          onFocus={() => {
-            this.setState({focus: true});
-          }}
-        >
-          <Textarea
-            className="form-control mb1"
-            name="list-description"
-            placeholder="Skriv kommentar"
-            onChange={e => this.setState({value: e.target.value})}
-            onBlur={() => {
-              this.setState({focus: false});
-            }}
-            value={this.state.value}
-          />
-          <div
-            className="tr"
-            style={{
-              height: this.state.focus || this.state.value ? '35px' : '0px',
-              opacity: this.state.focus || this.state.value ? 1 : 0,
-              overflow: 'hidden',
-              transition: 'height 200ms, opacity 200ms'
-            }}
-          >
-            <button className="btn btn-success" onClick={this.onSubmit}>
-              Kommentér
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-class CommentList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      height: null
-    };
-  }
-  componentDidUpdate() {
-    if (
-      this.listWrapper &&
-      this.listWrapper.offsetHeight &&
-      this.state.height !== this.listWrapper.offsetHeight
-    ) {
-      this.setState({height: this.listWrapper.offsetHeight});
-    }
-  }
-
-  render() {
-    const {comments, showCount = 1} = this.props;
-    if (!comments || comments.length === 0) {
-      return null;
-    }
-
-    const showComments = comments.slice(-showCount);
-    return (
-      <div
-        style={{
-          overflow: 'hidden',
-          height: this.state.height,
-          transition: 'height 500ms'
-        }}
-      >
-        <div ref={el => (this.listWrapper = el)}>
-          {showComments.map(({comment, id}) => (
-            <div key={id}>
-              <div className="flex mb2" style={{width: '100%'}}>
-                <UserImage
-                  user={{name: 'Benny Cosmos'}}
-                  style={{flexShrink: 0}}
-                />
-                <div className="ml2" style={{flexGrow: 1}}>
-                  <div className="comment-author">Benny Cosmos</div>
-                  <div className="comment-time mb1">2 timer</div>
-                  <div className="comment">{comment}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-}
-
-class CommentContainer extends React.Component {
+export class CommentContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showCount: 1,
-      showAll: false
+      showAll: false,
+      newCommentValue: ''
     };
   }
   componentWillMount() {
@@ -151,8 +19,20 @@ class CommentContainer extends React.Component {
   }
   onSubmit = comment => {
     this.props.addComment(this.props.id, comment);
-    this.setState({showCount: ++this.state.showCount});
+    this.setState({showCount: ++this.state.showCount, newCommentValue: ''});
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.comments.error &&
+      this.props.comments.error !== nextProps.comments.error
+    ) {
+      this.setState({
+        showCount: this.state.showCount - 1,
+        newCommentValue: nextProps.comments.error.comment
+      });
+    }
+  }
   render() {
     return (
       <div className="comments">
@@ -165,11 +45,12 @@ class CommentContainer extends React.Component {
           }
         />
         <button
+          id="comment-toggle"
           onClick={() => this.setState({showAll: !this.state.showAll})}
           style={{marginLeft: 55, position: 'relative', paddingLeft: 0}}
           className="btn btn-link mt1 mb1 link-subtle"
         >
-          <Comments
+          <CommentsIcon
             value={
               this.props.comments.comments
                 ? this.props.comments.comments.length
@@ -182,7 +63,14 @@ class CommentContainer extends React.Component {
               : 'Vis færre kommentarer'}
           </span>
         </button>
-        <CommentInput user={this.props.user} onSubmit={this.onSubmit} />
+        <CommentInput
+          user={this.props.user}
+          value={this.state.newCommentValue}
+          onSubmit={this.onSubmit}
+          onChange={value => this.setState({newCommentValue: value})}
+          disabled={this.props.comments.saving}
+          error={this.props.comments.error || null}
+        />
       </div>
     );
   }
