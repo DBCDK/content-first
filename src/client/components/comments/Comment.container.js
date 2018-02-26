@@ -34,35 +34,46 @@ export class CommentContainer extends React.Component {
     }
   }
   render() {
+    const commentsCount =
+      (this.props.comments.comments && this.props.comments.comments.length) ||
+      0;
     return (
       <div className="comments">
-        <CommentList
-          comments={this.props.comments.comments}
-          showCount={
-            this.state.showAll
-              ? this.props.comments.comments.length
-              : this.state.showCount
-          }
-        />
-        <button
-          id="comment-toggle"
-          onClick={() => this.setState({showAll: !this.state.showAll})}
-          style={{marginLeft: 55, position: 'relative', paddingLeft: 0}}
-          className="btn btn-link mt1 mb1 link-subtle"
-        >
-          <CommentsIcon
-            value={
-              this.props.comments.comments
-                ? this.props.comments.comments.length
-                : ''
-            }
-          />
-          <span className="ml1">
-            {!this.state.showAll
-              ? 'Vis alle kommentarer'
-              : 'Vis færre kommentarer'}
-          </span>
-        </button>
+        {commentsCount ? (
+          <div className="mb3">
+            <CommentList
+              comments={this.props.comments.comments}
+              showCount={
+                this.state.showAll
+                  ? this.props.comments.comments.length
+                  : this.state.showCount
+              }
+            />
+            {commentsCount > this.state.showCount ? (
+              <button
+                id="comment-toggle"
+                onClick={() => this.setState({showAll: !this.state.showAll})}
+                style={{marginLeft: 55, position: 'relative', paddingLeft: 0}}
+                className="btn btn-link mt1 mb1 link-subtle"
+              >
+                <CommentsIcon
+                  value={
+                    this.props.comments.comments
+                      ? this.props.comments.comments.length
+                      : ''
+                  }
+                />
+                <span className="ml1">
+                  {!this.state.showAll
+                    ? 'Vis alle kommentarer'
+                    : 'Vis færre kommentarer'}
+                </span>
+              </button>
+            ) : (
+              ''
+            )}
+          </div>
+        ) : null}
         <CommentInput
           user={this.props.user}
           value={this.state.newCommentValue}
