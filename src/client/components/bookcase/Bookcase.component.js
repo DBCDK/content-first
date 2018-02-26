@@ -4,9 +4,7 @@ import Pulse from '../pulse/Pulse.component';
 import Carousel from './Carousel.component';
 import Slider from '../belt/Slider.component';
 
-import {ON_WORK_REQUEST} from '../../redux/work.reducer';
-
-import {BOOKS_REQUEST} from '../../redux/books.reducer';
+import {BOOKS_REQUEST, getBooks} from '../../redux/books.reducer';
 
 /*
   <Bookcase />
@@ -26,23 +24,23 @@ export class Bookcase extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   const pids = [
-  //     '870970-basis:52530423',
-  //     '870970-basis:53079202',
-  //     '870970-basis:52038014',
-  //     '870970-basis:23211629'
-  //   ];
-  //   this.fetchBooks(pids);
-  // }
+  componentDidMount() {
+    let pids = [];
+    this.props.bookcaseState.books.map(p => {
+      pids.push(p.pid);
+    });
+    if (this.props.dispatch) {
+      this.props.dispatch({type: BOOKS_REQUEST, pids: pids});
+    }
+  }
 
   fetchBooks(pids) {
-    this.props.dispatch({type: BOOKS_REQUEST, pids: pids});
+    getBooks(this.props.booksState, [pids]);
     this.setState({carousel: true});
   }
 
   hideCarousel() {
-    this.setState({carousel: false});
+    this.setState({carousel: false, pid: ''});
   }
 
   nextBook = direction => {
@@ -83,15 +81,7 @@ export class Bookcase extends React.Component {
   render() {
     let aBooks = [];
     if (this.state.pid && this.props.booksState.isLoading === false) {
-      aBooks = this.props.booksState.books;
-
-      console.log(JSON.stringify(aBooks));
-
-      console.log(aBooks[0].book.pid);
-
-      // aBooks.map(b => {
-      //   console.log(b.book.pid);
-      // });
+      aBooks = getBooks(this.props.booksState, [this.state.pid]);
     }
 
     const books = this.props.bookcaseState.books;
@@ -125,7 +115,7 @@ export class Bookcase extends React.Component {
             <Carousel
               active={this.state.carousel}
               loading={
-                this.state.pid === '' &&
+                this.state.pid !== '' &&
                 typeof this.props.booksState[this.state.pid] === 'undefined'
               }
               description={this.state.description}
