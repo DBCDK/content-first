@@ -466,7 +466,20 @@ describe('Community connector', () => {
       it('should search, and return json-parsed objects', async () => {
         genericArrangeQueryResponse({
           data: {
-            List: [{json: '{"some":"object"}'}, {json: '{"another":"object"}'}]
+            List: [
+              {
+                created: 1234567890,
+                modified: 1234567890,
+                owner: 'some owner',
+                json: '{"some":"object"}'
+              },
+              {
+                created: 1234567890,
+                modified: 1234567890,
+                owner: 'some owner',
+                json: '{"another":"object"}'
+              }
+            ]
           }
         });
 
@@ -480,7 +493,20 @@ describe('Community connector', () => {
           user
         );
         expect(result).to.deep.equal({
-          data: [{some: 'object'}, {another: 'object'}]
+          data: [
+            {
+              _created: 1234567890,
+              _modified: 1234567890,
+              _owner: 'some owner',
+              some: 'object'
+            },
+            {
+              _created: 1234567890,
+              _modified: 1234567890,
+              _owner: 'some owner',
+              another: 'object'
+            }
+          ]
         });
       });
     });
@@ -508,12 +534,21 @@ describe('Community connector', () => {
       it('should return forbidden if user is not owner of previous version', async () => {
         genericArrangeQueryResponse({
           data: {
+            created: 1234567890,
+            modified: 1234567890,
+            owner: '123owner-different-from-user',
             json:
               '{"_id":"some_id","_rev":"some_rev","_owner":"123owner-different-from-user"}'
           }
         });
         let result = await sut.putObject({
-          object: {_id: 'some_id', foo: 'bar', _key: 'baz'},
+          object: {
+            _id: 'some_id',
+            foo: 'bar',
+            _key: 'baz',
+            _created: 1234567890,
+            _modified: 1234567890
+          },
           user
         });
         expect(result).to.deep.equal({
@@ -524,6 +559,9 @@ describe('Community connector', () => {
       it('should return conflict if revision does not matches previous version', async () => {
         genericArrangeQueryResponse({
           data: {
+            created: 1234567890,
+            modified: 1234567890,
+            owner: user.openplatformId,
             json: `{"_id":"some_id","_rev":"some_rev","_owner":"${
               user.openplatformId
             }"}`
@@ -541,6 +579,9 @@ describe('Community connector', () => {
       it('should update existing object if object has _id', async () => {
         genericArrangeQueryResponse({
           data: {
+            created: 1234567890,
+            modified: 1234567890,
+            owner: user.openplatformId,
             id: 123,
             json: `{"_id":"some_id","_rev":"some_rev","_owner":"${
               user.openplatformId
@@ -573,6 +614,9 @@ describe('Community connector', () => {
           .put(constants.apiEntityId(communityId, 123), '')
           .reply(200, {
             data: {
+              created: 1234567890,
+              modified: 1234567890,
+              owner: '123openplatformid456',
               json:
                 '{"_id":"some_id","_rev":"some_rev","_owner":"123openplatformid456"}'
             }
@@ -595,6 +639,8 @@ describe('Community connector', () => {
         });
         expect(result).to.deep.equal({
           data: {
+            _created: 1234567890,
+            _modified: 1234567890,
             _id: 'some_id',
             _rev: 'some_rev',
             _owner: '123openplatformid456'
@@ -631,6 +677,8 @@ describe('Community connector', () => {
         });
         expect(result).to.deep.equal({
           data: {
+            _created: 1234567890,
+            _modified: 1234567890,
             _id: 'some_id',
             _rev: 'some_rev',
             _owner: 'otherownerid',
@@ -656,6 +704,9 @@ describe('Community connector', () => {
         .post(endpoint, '')
         .reply(200, {
           data: {
+            created: 1234567890,
+            modified: 1234567890,
+            owner: '123openplatformid456',
             json:
               '{"_id":"some_id","_rev":"some_rev","_owner":"123openplatformid456"}'
           }
@@ -664,6 +715,9 @@ describe('Community connector', () => {
     function arrangeQueryObjectPrivate() {
       genericArrangeQueryResponse({
         data: {
+          created: 1234567890,
+          modified: 1234567890,
+          owner: '123openplatformid456',
           json:
             '{"_id":"some_id","_rev":"some_rev","_owner":"123openplatformid456"}'
         }
@@ -672,6 +726,9 @@ describe('Community connector', () => {
     function arrangeQueryObjectPublic() {
       genericArrangeQueryResponse({
         data: {
+          created: 1234567890,
+          modified: 1234567890,
+          owner: 'otherownerid',
           json:
             '{"_id":"some_id","_rev":"some_rev","_public":true,"_owner":"otherownerid"}'
         }

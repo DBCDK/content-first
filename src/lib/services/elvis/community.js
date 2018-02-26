@@ -578,6 +578,8 @@ class Community {
       Limit: +query.limit || 10,
       Offset: +query.offset || 0,
       Include: {
+        created: 'created_epoch',
+        modified: 'modified_epoch',
         json: 'contents',
         owner: {
           Profile: {id: '^owner_id'},
@@ -586,7 +588,13 @@ class Community {
         owner_id: 'owner_id'
       }
     });
-    result = result.List.map(o => JSON.parse(o.json));
+    result = result.List.map(o =>
+      Object.assign(JSON.parse(o.json), {
+        _created: o.created,
+        _modified: o.modified,
+        _owner: o.owner
+      })
+    );
     return {data: result};
   }
 
@@ -677,14 +685,23 @@ class Community {
   async getObjectById(id, user = {}) {
     let result;
     try {
-      result = JSON.parse(
-        (await this.query({
-          Entity: {'attributes.id': id},
-          Include: {
-            json: 'contents'
-          }
-        })).json
-      );
+      result = await this.query({
+        Entity: {'attributes.id': id},
+        Include: {
+          created: 'created_epoch',
+          modified: 'modified_epoch',
+          json: 'contents',
+          owner: {
+            Profile: {id: '^owner_id'},
+            Include: 'attributes.openplatform_id'
+          },
+          owner_id: 'owner_id'
+        }
+      });
+      result = Object.assign(JSON.parse(result.json), {
+        _created: result.created,
+        _modified: result.modified
+      });
     } catch (e) {
       return {
         data: {error: 'not found'},

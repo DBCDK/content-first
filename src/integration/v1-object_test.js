@@ -62,6 +62,10 @@ describe('User data', () => {
 
       // We can fetch the list, even as anonymous user as it is public.
       const dbList = (await request.get(url + '/object/' + list._id)).body.data;
+      chai.assert(dbList._created);
+      delete dbList._created;
+      chai.assert(dbList._modified);
+      delete dbList._modified;
       expect(dbList).to.deep.equal(list);
 
       // anonymous cannot add list entries
