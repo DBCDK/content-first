@@ -5,9 +5,13 @@
 .comment {
   width: 100%;
   padding: 1rem;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+comment-textarea {
+  border-color: #999;
 }
 
 .comment-wrapper {

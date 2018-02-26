@@ -62,7 +62,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #f1f1f1;
+  background: #fdfdfd;
   font-family: 'Lora', serif;
 }
 
@@ -76,7 +76,7 @@ body {
 }*/
 
 .container {
-  background: #fcfcfc;
+  background: #fafafa;
 }
 
 @media (min-width: 1450px) {

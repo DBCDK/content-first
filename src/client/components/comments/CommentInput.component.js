@@ -36,7 +36,7 @@ export default class CommentInput extends React.Component {
         >
           <Textarea
             disabled={this.props.disabled}
-            className={`form-control mb1`}
+            className={`form-control mb1 comment-textarea`}
             name="list-description"
             placeholder="Skriv kommentar"
             onChange={e => this.props.onChange(e.target.value)}
@@ -71,7 +71,7 @@ export default class CommentInput extends React.Component {
               onClick={this.onSubmit}
               disabled={this.props.disabled || !this.props.value}
             >
-              Kommentér
+              Gem
             </button>
           </div>
         </div>
