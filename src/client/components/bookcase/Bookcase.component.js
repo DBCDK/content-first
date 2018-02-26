@@ -2,8 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
 import Carousel from './Carousel.component';
+import Slider from '../belt/Slider.component';
 
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
+
+import {BOOKS_REQUEST} from '../../redux/books.reducer';
 
 /*
   <Bookcase />
@@ -23,13 +26,23 @@ export class Bookcase extends React.Component {
     };
   }
 
-  hideCarousel() {
-    this.setState({carousel: false});
+  // componentDidMount() {
+  //   const pids = [
+  //     '870970-basis:52530423',
+  //     '870970-basis:53079202',
+  //     '870970-basis:52038014',
+  //     '870970-basis:23211629'
+  //   ];
+  //   this.fetchBooks(pids);
+  // }
+
+  fetchBooks(pids) {
+    this.props.dispatch({type: BOOKS_REQUEST, pids: pids});
+    this.setState({carousel: true});
   }
 
-  fetchWork(pid) {
-    this.props.dispatch({type: ON_WORK_REQUEST, pid: pid});
-    this.setState({carousel: true});
+  hideCarousel() {
+    this.setState({carousel: false});
   }
 
   nextBook = direction => {
@@ -45,8 +58,8 @@ export class Bookcase extends React.Component {
       newpos = max;
     }
 
-    this.fetchWork(this.props.bookcaseState.books[newpos].pid);
-    this.rollOverTrigger(
+    this.fetchBooks(this.props.bookcaseState.books[newpos].pid);
+    this.carouselTrigger(
       this.props.bookcaseState.books[newpos].pid,
       this.props.bookcaseState.books[newpos].description,
       this.props.bookcaseState.books[newpos].position
@@ -56,9 +69,8 @@ export class Bookcase extends React.Component {
     });
   };
 
-  rollOverTrigger = (pid, desc, pos, i) => {
-    this.fetchWork(pid);
-    // const work = this.props.workState.work;
+  carouselTrigger = (pid, desc, pos, i) => {
+    this.fetchBooks(pid);
 
     this.setState({
       pid: pid,
@@ -69,9 +81,17 @@ export class Bookcase extends React.Component {
   };
 
   render() {
-    let book = '';
-    if (this.state.pid && this.props.workState.isLoading === false) {
-      book = this.props.workState.work.data;
+    let aBooks = [];
+    if (this.state.pid && this.props.booksState.isLoading === false) {
+      aBooks = this.props.booksState.books;
+
+      console.log(JSON.stringify(aBooks));
+
+      console.log(aBooks[0].book.pid);
+
+      // aBooks.map(b => {
+      //   console.log(b.book.pid);
+      // });
     }
 
     const books = this.props.bookcaseState.books;
@@ -81,7 +101,7 @@ export class Bookcase extends React.Component {
         className={`row ${this.state.carousel ? ' section-active' : ''}`}
         onClick={this.test}
       >
-        <img src="img/bookcase/BS-bogreol.png" />
+        <img src="img/bookcase/BS-bogreol.png" alt="bogreol" />
         <div className="row">
           <div className="col-xs-4 celeb">
             <div className="col-xs-12 celeb-top">
@@ -102,15 +122,14 @@ export class Bookcase extends React.Component {
                 </p>
               </div>
             </div>
-
             <Carousel
               active={this.state.carousel}
               loading={
                 this.state.pid === '' &&
-                typeof this.props.workState[this.state.pid] === 'undefined'
+                typeof this.props.booksState[this.state.pid] === 'undefined'
               }
               description={this.state.description}
-              book={book}
+              book={aBooks}
               onDirectionClick={direction => {
                 this.nextBook(direction);
               }}
@@ -123,9 +142,11 @@ export class Bookcase extends React.Component {
           <div className="col-xs-8 bookswrap">
             {books.map((p, i) => (
               <Pulse
+                active={this.state.pid}
+                pid={p.pid}
                 key={'pulse-' + p.pid}
                 onClick={() => {
-                  this.rollOverTrigger(p.pid, p.description, p.position, i);
+                  this.carouselTrigger(p.pid, p.description, p.position, i);
                 }}
                 position={p.position}
               />
@@ -142,7 +163,7 @@ export default connect(
   state => {
     return {
       bookcaseState: state.bookcaseReducer,
-      workState: state.workReducer
+      booksState: state.booksReducer
     };
   }
 )(Bookcase);

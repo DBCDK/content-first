@@ -1,8 +1,10 @@
 import request from 'superagent';
 import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
+import {BOOKS_REQUEST} from './books.reducer';
 import {
   fetchBeltWorks,
+  fetchBooks,
   fetchWork,
   fetchSearchResults,
   saveShortList,
@@ -97,6 +99,10 @@ export const requestMiddleware = store => next => action => {
     }
     case ON_WORK_REQUEST: {
       fetchWork(action.pid, store.dispatch);
+      return next(action);
+    }
+    case BOOKS_REQUEST: {
+      fetchBooks(action.pids, store.dispatch);
       return next(action);
     }
     default:

@@ -27,9 +27,10 @@
   animation: none;
 }
 
-.pulse-active {
-  background-color: rgba(255, 255, 255, 1);
-  animation: none;
+.pulse-active .pulse {
+  transform: scale(3.5) !important;
+  background-color: rgba(255, 255, 255, 1) !important;
+  animation: none !important;
 }
 
 /* Pulse animation */
