@@ -626,7 +626,7 @@ class Community {
     if (
       !user.admin &&
       prevObject &&
-      prevObject.json.owner !== user.openplatformId
+      prevObject.json._owner !== user.openplatformId
     ) {
       return {
         data: {error: 'forbidden'},
@@ -646,16 +646,17 @@ class Community {
       Math.random()
         .toString(36)
         .slice(2);
-    object.owner = (prevObject && prevObject.json.owner) || user.openplatformId;
+    object._owner =
+      (prevObject && prevObject.json._owner) || user.openplatformId;
 
     const entity = {
       type: 'object',
       contents: JSON.stringify(object),
       attributes: {
-        type: typeof object.type === 'string' ? object.type : '',
-        key: typeof object.key === 'string' ? object.key : '',
-        owner: object.owner,
-        public: !!object.public,
+        type: typeof object._type === 'string' ? object._type : '',
+        key: typeof object._key === 'string' ? object._key : '',
+        owner: object._owner,
+        public: !!object._public,
         id: object._id
       }
     };
@@ -690,7 +691,11 @@ class Community {
         errors: [{status: 404, message: 'not found'}]
       };
     }
-    if (!result.public && !user.admin && user.openplatformId !== result.owner) {
+    if (
+      !result._public &&
+      !user.admin &&
+      user.openplatformId !== result._owner
+    ) {
       return {
         data: {error: 'forbidden'},
         errors: [{status: 403, message: 'forbidden'}]

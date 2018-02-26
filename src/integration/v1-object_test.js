@@ -36,15 +36,15 @@ describe('User data', () => {
       // Try to find a public writable list owned by user1
       result = (await request.get(url + '/object/find?type=list')).body.data;
       let list = result.find(
-        o => o.writable && o.owner === user1.openplatformId
+        o => o.writable && o._owner === user1.openplatformId
       );
 
       // Create a new public writable list owned by user1 if none found
       if (!list) {
         list = {
-          type: 'list',
+          _type: 'list',
+          _public: true,
           writable: true,
-          public: true,
           description: 'some list description',
           children: []
         };
@@ -56,7 +56,7 @@ describe('User data', () => {
         Object.assign(list, {
           _rev: result.rev,
           _id: result.id,
-          owner: user1.openplatformId
+          _owner: user1.openplatformId
         });
       }
 
@@ -66,10 +66,10 @@ describe('User data', () => {
 
       // anonymous cannot add list entries
       result = await request.post(url + '/object').send({
-        type: 'listEntry',
-        key: list._id,
         content: 'hi',
-        public: true
+        _type: 'listEntry',
+        _key: list._id,
+        _public: true
       });
       expect(result.statusCode).to.equal(403);
       expect(result.text).to.equal(
@@ -81,19 +81,19 @@ describe('User data', () => {
         .post(url + '/object')
         .set('cookie', cookieUser1)
         .send({
-          type: 'listEntry',
-          key: list._id,
           content: 'comment1',
-          public: true
+          _type: 'listEntry',
+          _key: list._id,
+          _public: true
         });
       await request
         .post(url + '/object')
         .set('cookie', cookieUser2)
         .send({
-          type: 'listEntry',
-          key: list._id,
           content: 'comment2',
-          public: true
+          _type: 'listEntry',
+          _key: list._id,
+          _public: true
         });
 
       let listEntries = await (await request.get(

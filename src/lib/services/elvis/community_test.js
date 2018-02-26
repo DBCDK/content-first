@@ -497,7 +497,7 @@ describe('Community connector', () => {
       it('should return not-found if _id is present, and no previous object', async () => {
         arrangeQueryObjectNotFound();
         let result = await sut.putObject({
-          object: {_id: '123id-not-in-database', foo: 'bar', key: 'baz'},
+          object: {_id: '123id-not-in-database', foo: 'bar', _key: 'baz'},
           user
         });
         expect(result).to.deep.equal({
@@ -509,11 +509,11 @@ describe('Community connector', () => {
         genericArrangeQueryResponse({
           data: {
             json:
-              '{"_id":"some_id","_rev":"some_rev","owner":"123owner-different-from-user"}'
+              '{"_id":"some_id","_rev":"some_rev","_owner":"123owner-different-from-user"}'
           }
         });
         let result = await sut.putObject({
-          object: {_id: 'some_id', foo: 'bar', key: 'baz'},
+          object: {_id: 'some_id', foo: 'bar', _key: 'baz'},
           user
         });
         expect(result).to.deep.equal({
@@ -524,13 +524,13 @@ describe('Community connector', () => {
       it('should return conflict if revision does not matches previous version', async () => {
         genericArrangeQueryResponse({
           data: {
-            json: `{"_id":"some_id","_rev":"some_rev","owner":"${
+            json: `{"_id":"some_id","_rev":"some_rev","_owner":"${
               user.openplatformId
             }"}`
           }
         });
         let result = await sut.putObject({
-          object: {_id: 'some_id', _rev: 'wrong_rev', foo: 'bar', key: 'baz'},
+          object: {_id: 'some_id', _rev: 'wrong_rev', foo: 'bar', _key: 'baz'},
           user
         });
         expect(result).to.deep.equal({
@@ -542,7 +542,7 @@ describe('Community connector', () => {
         genericArrangeQueryResponse({
           data: {
             id: 123,
-            json: `{"_id":"some_id","_rev":"some_rev","owner":"${
+            json: `{"_id":"some_id","_rev":"some_rev","_owner":"${
               user.openplatformId
             }"}`
           }
@@ -566,7 +566,7 @@ describe('Community connector', () => {
             });
             contentsObj = JSON.parse(reqObj.contents);
             expect(Object.keys(contentsObj)).to.deep.equal(
-              '_id _rev foo key owner'.split(' ')
+              '_id _rev foo _key _owner'.split(' ')
             );
             return '';
           })
@@ -574,11 +574,11 @@ describe('Community connector', () => {
           .reply(200, {
             data: {
               json:
-                '{"_id":"some_id","_rev":"some_rev","owner":"123openplatformid456"}'
+                '{"_id":"some_id","_rev":"some_rev","_owner":"123openplatformid456"}'
             }
           });
         let result = await sut.putObject({
-          object: {_id: 'some_id', _rev: 'some_rev', foo: 'bar', key: 'baz'},
+          object: {_id: 'some_id', _rev: 'some_rev', foo: 'bar', _key: 'baz'},
           user
         });
         expect(result).to.deep.equal({
@@ -597,7 +597,7 @@ describe('Community connector', () => {
           data: {
             _id: 'some_id',
             _rev: 'some_rev',
-            owner: '123openplatformid456'
+            _owner: '123openplatformid456'
           }
         });
       });
@@ -633,8 +633,8 @@ describe('Community connector', () => {
           data: {
             _id: 'some_id',
             _rev: 'some_rev',
-            owner: 'otherownerid',
-            public: true
+            _owner: 'otherownerid',
+            _public: true
           }
         });
       });
@@ -657,7 +657,7 @@ describe('Community connector', () => {
         .reply(200, {
           data: {
             json:
-              '{"_id":"some_id","_rev":"some_rev","owner":"123openplatformid456"}'
+              '{"_id":"some_id","_rev":"some_rev","_owner":"123openplatformid456"}'
           }
         });
     }
@@ -665,7 +665,7 @@ describe('Community connector', () => {
       genericArrangeQueryResponse({
         data: {
           json:
-            '{"_id":"some_id","_rev":"some_rev","owner":"123openplatformid456"}'
+            '{"_id":"some_id","_rev":"some_rev","_owner":"123openplatformid456"}'
         }
       });
     }
@@ -673,7 +673,7 @@ describe('Community connector', () => {
       genericArrangeQueryResponse({
         data: {
           json:
-            '{"_id":"some_id","_rev":"some_rev","public":true,"owner":"otherownerid"}'
+            '{"_id":"some_id","_rev":"some_rev","_public":true,"_owner":"otherownerid"}'
         }
       });
     }
