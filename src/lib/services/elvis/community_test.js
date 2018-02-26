@@ -148,170 +148,6 @@ describe('Community connector', () => {
     });
   });
 
-  // TODO move code around
-  describe('findObjects', () => {
-    it('should throw error if type is missing', async () => {
-      // TODO maybe return error message instead
-    });
-    it('should return forbidden if querying owner, and not admin or owner', async () => {
-      // TODO
-    });
-    it('should throw error neither owner nor key is specified', async () => {
-      // TODO maybe return error message instead
-    });
-    it('should search, and return json-parsed objects', async () => {
-      // TODO
-    });
-  });
-  describe('putObject', () => {
-    it('should create a new', async () => {
-      arrangePostObject();
-      let result = await sut.putObject({
-        object: {foo: 'bar', key: 'baz'},
-        user: {
-          id: 1,
-          openplatformId: '123openplatformid456'
-        }
-      });
-      expect(Object.keys(result.data)).to.deep.equal(['ok', 'id', 'rev']);
-      expect(result.data.ok).to.equal(true);
-    });
-    it('should return not-found-error if _id is present, and no previous object', async () => {
-      // TODO
-    });
-    it('should return forbidden-error if user is not owner of previous version', async () => {
-      // TODO
-    });
-    it('should return conflict error if revision does not matches previous version', async () => {
-      // TODO
-    });
-    it('should update existing object if object has _id', async () => {
-      // TODO
-    });
-  });
-  function arrangePostObject() {
-    const communityId = 1;
-    sut.setCommunityId(communityId);
-    const endpoint = constants.apiPostEntity(communityId);
-    mockedSubservice = nock(config.url)
-      .filteringRequestBody(() => '')
-      .post(endpoint, '')
-      .reply(200, {
-        data: {
-          json:
-            '{"_id":"some_id","_rev":"some_rev","owner":"123openplatformid456"}'
-        }
-      });
-  }
-  describe('getObjectById', () => {
-    it('should retrieve object', async () => {
-      arrangeQueryObjectPrivate();
-      let result = await sut.getObjectById('some_id', {
-        id: 1,
-        openplatformId: '123openplatformid456'
-      });
-      expect(result).to.deep.equal({
-        data: {_id: 'some_id', _rev: 'some_rev', owner: '123openplatformid456'}
-      });
-    });
-    it('should return permission error, object not public, and owned by other', async () => {
-      arrangeQueryObjectPrivate();
-      let result = await sut.getObjectById('some_id', {
-        id: 1,
-        openplatformId: 'notownerid'
-      });
-      expect(result).to.deep.equal({
-        data: {error: 'forbidden'},
-        errors: [{message: 'forbidden', status: 403}]
-      });
-    });
-    it('should return object not found, when entity is not found in community service', async () => {
-      arrangeQueryObjectNotFound();
-      let result = await sut.getObjectById('some_id', {
-        id: 1,
-        openplatformId: '123openplatformid456'
-      });
-      expect(result).to.deep.equal({
-        data: {error: 'not found'},
-        errors: [{message: 'not found', status: 404}]
-      });
-    });
-    it('should return public objects, even if owned by others', async () => {
-      arrangeQueryObjectPublic();
-      let result = await sut.getObjectById('some_id', {
-        id: 1,
-        openplatformId: '123openplatformid456'
-      });
-      expect(result).to.deep.equal({
-        data: {
-          _id: 'some_id',
-          _rev: 'some_rev',
-          owner: 'otherownerid',
-          public: true
-        }
-      });
-    });
-  });
-
-  function arrangeQueryObjectPrivate() {
-    const communityId = 1;
-    sut.setCommunityId(communityId);
-    const endpoint = constants.apiQuery(communityId);
-    mockedSubservice = nock(config.url)
-      .filteringRequestBody(() => '')
-      .post(endpoint, '')
-      .reply(200, {
-        data: {
-          json:
-            '{"_id":"some_id","_rev":"some_rev","owner":"123openplatformid456"}'
-        }
-      });
-  }
-  function arrangeQueryObjectPublic() {
-    const communityId = 1;
-    sut.setCommunityId(communityId);
-    const endpoint = constants.apiQuery(communityId);
-    mockedSubservice = nock(config.url)
-      .filteringRequestBody(() => '')
-      .post(endpoint, '')
-      .reply(200, {
-        data: {
-          json:
-            '{"_id":"some_id","_rev":"some_rev","public":true,"owner":"otherownerid"}'
-        }
-      });
-  }
-  function arrangeQueryObjectNotFound() {
-    const communityId = 1;
-    sut.setCommunityId(communityId);
-    const endpoint = constants.apiQuery(communityId);
-    mockedSubservice = nock(config.url)
-      .filteringRequestBody(() => '')
-      .post(endpoint, '')
-      .reply(400, {
-        errors: [
-          {
-            status: 400,
-            code: '400',
-            title: 'Error during execution of query',
-            detail: 'No result from singleton selector',
-            meta: {
-              query: {
-                Entity: {
-                  'attributes.id': 'f7eb29c0-1632-11e8-82df-3d3192c1e7xf'
-                },
-                Include: {json: 'contents'}
-              },
-              subquery: {
-                'attributes.id': 'f7eb29c0-1632-11e8-82df-3d3192c1e7xf'
-              },
-              context: {}
-            }
-          }
-        ]
-      });
-  }
-
   describe('gettingIdsOfAllListEntitiesOwnedByUserWithProfileId', () => {
     it('should detect no connnection', () => {
       arrangeCommunityQueryToRespondItIsDead();
@@ -607,6 +443,326 @@ describe('Community connector', () => {
         .gettingPublicLists(2) // force break
         .then(expectTwoOutOfFourPublicLists);
     });
+  });
+
+  describe('generic objects related tests', () => {
+    const communityId = 1;
+    beforeEach(() => {
+      sut.setCommunityId(communityId);
+    });
+    const user = {
+      id: 1,
+      openplatformId: '123openplatformid456'
+    };
+    describe('findObjects', () => {
+      it('should throw if type is missing', async () => {
+        try {
+          await sut.findObjects({}, user);
+        } catch (e) {
+          return expect(e.message).to.equal('Query Error');
+        }
+        chai.assert.fail("didn't throw");
+      });
+      it('should search, and return json-parsed objects', async () => {
+        genericArrangeQueryResponse({
+          data: {
+            List: [
+              {
+                created: 1234567890,
+                modified: 1234567890,
+                owner: 'some owner',
+                json: '{"some":"object"}'
+              },
+              {
+                created: 1234567890,
+                modified: 1234567890,
+                owner: 'some owner',
+                json: '{"another":"object"}'
+              }
+            ]
+          }
+        });
+
+        arrangeQueryObjectPublic();
+        const result = await sut.findObjects(
+          {
+            type: 'LIST_ENTRY',
+            owner: user.openplatformId,
+            key: '123my-list-id'
+          },
+          user
+        );
+        expect(result).to.deep.equal({
+          data: [
+            {
+              _created: 1234567890,
+              _modified: 1234567890,
+              _owner: 'some owner',
+              some: 'object'
+            },
+            {
+              _created: 1234567890,
+              _modified: 1234567890,
+              _owner: 'some owner',
+              another: 'object'
+            }
+          ]
+        });
+      });
+    });
+    describe('putObject', () => {
+      it('should create a new', async () => {
+        arrangePostObject();
+        let result = await sut.putObject({
+          object: {foo: 'bar', key: 'baz'},
+          user
+        });
+        expect(Object.keys(result.data)).to.deep.equal(['ok', 'id', 'rev']);
+        expect(result.data.ok).to.equal(true);
+      });
+      it('should return not-found if _id is present, and no previous object', async () => {
+        arrangeQueryObjectNotFound();
+        let result = await sut.putObject({
+          object: {_id: '123id-not-in-database', foo: 'bar', _key: 'baz'},
+          user
+        });
+        expect(result).to.deep.equal({
+          data: {error: 'not found'},
+          errors: [{message: 'not found', status: 404}]
+        });
+      });
+      it('should return forbidden if user is not owner of previous version', async () => {
+        genericArrangeQueryResponse({
+          data: {
+            created: 1234567890,
+            modified: 1234567890,
+            owner: '123owner-different-from-user',
+            json:
+              '{"_id":"some_id","_rev":"some_rev","_owner":"123owner-different-from-user"}'
+          }
+        });
+        let result = await sut.putObject({
+          object: {
+            _id: 'some_id',
+            foo: 'bar',
+            _key: 'baz',
+            _created: 1234567890,
+            _modified: 1234567890
+          },
+          user
+        });
+        expect(result).to.deep.equal({
+          data: {error: 'forbidden'},
+          errors: [{message: 'forbidden', status: 403}]
+        });
+      });
+      it('should return conflict if revision does not matches previous version', async () => {
+        genericArrangeQueryResponse({
+          data: {
+            created: 1234567890,
+            modified: 1234567890,
+            owner: user.openplatformId,
+            json: `{"_id":"some_id","_rev":"some_rev","_owner":"${
+              user.openplatformId
+            }"}`
+          }
+        });
+        let result = await sut.putObject({
+          object: {_id: 'some_id', _rev: 'wrong_rev', foo: 'bar', _key: 'baz'},
+          user
+        });
+        expect(result).to.deep.equal({
+          data: {error: 'conflict'},
+          errors: [{message: 'conflict', status: 409}]
+        });
+      });
+      it('should update existing object if object has _id', async () => {
+        genericArrangeQueryResponse({
+          data: {
+            created: 1234567890,
+            modified: 1234567890,
+            owner: user.openplatformId,
+            id: 123,
+            json: `{"_id":"some_id","_rev":"some_rev","_owner":"${
+              user.openplatformId
+            }"}`
+          }
+        });
+
+        let contentsObj;
+        mockedSubservice = nock(config.url)
+          .filteringRequestBody(req => {
+            const reqObj = JSON.parse(req);
+            expect(Object.assign({}, reqObj, {contents: ''})).to.deep.equal({
+              type: 'object',
+              contents: '',
+              attributes: {
+                type: '',
+                key: 'baz',
+                owner: '123openplatformid456',
+                public: false,
+                id: 'some_id'
+              },
+              modified_by: 1
+            });
+            contentsObj = JSON.parse(reqObj.contents);
+            expect(Object.keys(contentsObj)).to.deep.equal(
+              '_id _rev foo _key _owner'.split(' ')
+            );
+            return '';
+          })
+          .put(constants.apiEntityId(communityId, 123), '')
+          .reply(200, {
+            data: {
+              created: 1234567890,
+              modified: 1234567890,
+              owner: '123openplatformid456',
+              json:
+                '{"_id":"some_id","_rev":"some_rev","_owner":"123openplatformid456"}'
+            }
+          });
+        let result = await sut.putObject({
+          object: {_id: 'some_id', _rev: 'some_rev', foo: 'bar', _key: 'baz'},
+          user
+        });
+        expect(result).to.deep.equal({
+          data: {id: 'some_id', ok: true, rev: contentsObj._rev}
+        });
+      });
+    });
+    describe('getObjectById', () => {
+      it('should retrieve object', async () => {
+        arrangeQueryObjectPrivate();
+        let result = await sut.getObjectById('some_id', {
+          id: 1,
+          openplatformId: '123openplatformid456'
+        });
+        expect(result).to.deep.equal({
+          data: {
+            _created: 1234567890,
+            _modified: 1234567890,
+            _id: 'some_id',
+            _rev: 'some_rev',
+            _owner: '123openplatformid456'
+          }
+        });
+      });
+      it('should return forbidden, if object not public, and owned by other', async () => {
+        arrangeQueryObjectPrivate();
+        let result = await sut.getObjectById('some_id', {
+          id: 1,
+          openplatformId: 'notownerid'
+        });
+        expect(result).to.deep.equal({
+          data: {error: 'forbidden'},
+          errors: [{message: 'forbidden', status: 403}]
+        });
+      });
+      it('should return object not found, when entity is not found in community service', async () => {
+        arrangeQueryObjectNotFound();
+        let result = await sut.getObjectById('some_id', {
+          id: 1,
+          openplatformId: '123openplatformid456'
+        });
+        expect(result).to.deep.equal({
+          data: {error: 'not found'},
+          errors: [{message: 'not found', status: 404}]
+        });
+      });
+      it('should return public objects, even if owned by others', async () => {
+        arrangeQueryObjectPublic();
+        let result = await sut.getObjectById('some_id', {
+          id: 1,
+          openplatformId: '123openplatformid456'
+        });
+        expect(result).to.deep.equal({
+          data: {
+            _created: 1234567890,
+            _modified: 1234567890,
+            _id: 'some_id',
+            _rev: 'some_rev',
+            _owner: 'otherownerid',
+            _public: true
+          }
+        });
+      });
+    });
+
+    function genericArrangeQueryResponse(response) {
+      sut.setCommunityId(communityId);
+      const endpoint = constants.apiQuery(communityId);
+      mockedSubservice = nock(config.url)
+        .filteringRequestBody(() => '')
+        .post(endpoint, '')
+        .reply(200, response);
+    }
+    function arrangePostObject() {
+      sut.setCommunityId(communityId);
+      const endpoint = constants.apiPostEntity(communityId);
+      mockedSubservice = nock(config.url)
+        .filteringRequestBody(() => '')
+        .post(endpoint, '')
+        .reply(200, {
+          data: {
+            created: 1234567890,
+            modified: 1234567890,
+            owner: '123openplatformid456',
+            json:
+              '{"_id":"some_id","_rev":"some_rev","_owner":"123openplatformid456"}'
+          }
+        });
+    }
+    function arrangeQueryObjectPrivate() {
+      genericArrangeQueryResponse({
+        data: {
+          created: 1234567890,
+          modified: 1234567890,
+          owner: '123openplatformid456',
+          json:
+            '{"_id":"some_id","_rev":"some_rev","_owner":"123openplatformid456"}'
+        }
+      });
+    }
+    function arrangeQueryObjectPublic() {
+      genericArrangeQueryResponse({
+        data: {
+          created: 1234567890,
+          modified: 1234567890,
+          owner: 'otherownerid',
+          json:
+            '{"_id":"some_id","_rev":"some_rev","_public":true,"_owner":"otherownerid"}'
+        }
+      });
+    }
+    function arrangeQueryObjectNotFound() {
+      sut.setCommunityId(communityId);
+      const endpoint = constants.apiQuery(communityId);
+      mockedSubservice = nock(config.url)
+        .filteringRequestBody(() => '')
+        .post(endpoint, '')
+        .reply(400, {
+          errors: [
+            {
+              status: 400,
+              code: '400',
+              title: 'Error during execution of query',
+              detail: 'No result from singleton selector',
+              meta: {
+                query: {
+                  Entity: {
+                    'attributes.id': 'f7eb29c0-1632-11e8-82df-3d3192c1e7xf'
+                  },
+                  Include: {json: 'contents'}
+                },
+                subquery: {
+                  'attributes.id': 'f7eb29c0-1632-11e8-82df-3d3192c1e7xf'
+                },
+                context: {}
+              }
+            }
+          ]
+        });
+    }
   });
 
   //

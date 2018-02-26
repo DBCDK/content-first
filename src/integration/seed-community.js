@@ -50,6 +50,20 @@ async function seedingCommunity() {
   await addingListAndDeleteIt(profileId);
   await cachingOneList(profileId, firstId);
   await addingListReservation(profileId);
+
+  const data2 = await community.creatingUserProfile(profile);
+  const profileId2 = data2.id;
+  await community.updatingProfileWithShortlistAndTastes(profileId2, {
+    attributes: {
+      openplatform_id: '123openplatform-id-for-user-2',
+      openplatform_token: 'someToken2'
+    }
+  });
+  await knex(cookieTable).insert({
+    cookie: 'a-valid-login-token-for-other-user',
+    community_profile_id: profileId2,
+    expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
+  });
 }
 
 async function addingListAndDeleteIt(profileId) {
