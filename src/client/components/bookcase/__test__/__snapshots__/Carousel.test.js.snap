@@ -8,6 +8,7 @@ exports[`Carousel renders initial component 1`] = `
     className="rollover"
   >
     <img
+      alt="luk"
       className="rollover-close"
       onClick={[Function]}
       src="/static/media/Kryds.e69a54ef.svg"
@@ -67,12 +68,12 @@ exports[`Carousel renders initial component 1`] = `
     >
       <span
         aria-hidden="true"
-        class="glyphicon glyphicon-chevron-left"
+        className="glyphicon glyphicon-chevron-left"
         onClick={[Function]}
       />
       <span
         aria-hidden="true"
-        class="glyphicon glyphicon-chevron-right"
+        className="glyphicon glyphicon-chevron-right"
         onClick={[Function]}
       />
     </div>

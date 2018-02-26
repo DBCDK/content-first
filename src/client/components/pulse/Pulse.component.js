@@ -3,7 +3,7 @@ import React from 'react';
 /*
   <Pulse
     onClick={() => {
-      this.rollOverTrigger('pid', 'description...', {x:-,y:-}, index);
+      this.carouselTrigger('pid', 'description...', {x:-,y:-}, index);
     }}
     position={{x:-,y:-}}
   />
@@ -18,7 +18,9 @@ export default class Pulse extends React.Component {
 
     return (
       <div
-        className="pulse-toucharea"
+        className={`pulse-toucharea ${
+          this.props.active === this.props.pid ? ' pulse-active' : ''
+        }`}
         style={styles}
         onClick={this.props.onClick}
       >

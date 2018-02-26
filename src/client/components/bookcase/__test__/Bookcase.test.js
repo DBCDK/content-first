@@ -37,7 +37,7 @@ describe('Bookcase', () => {
   it('renders initial component', () => {
     const tree = renderer
       .create(
-        <Bookcase bookcaseState={bookcaseStateOBJ} workState={workStateOBJ} />
+        <Bookcase bookcaseState={bookcaseStateOBJ} booksState={workStateOBJ} />
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

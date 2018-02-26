@@ -1,6 +1,7 @@
 import request from 'superagent';
 import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
+import {BOOKS_RESPONSE} from '../redux/books.reducer';
 import {SEARCH_RESULTS} from '../redux/search.reducer';
 import {HISTORY_PUSH} from '../redux/router.reducer';
 import {
@@ -60,6 +61,58 @@ const sort = (works, profile) => {
 
   // will sort in place - no new array returned
   works.sort((w1, w2) => w1.score - w2.score);
+};
+
+export const fetchTags = async (pids = []) => {
+  /*
+    accepts:
+      pids = ["pid1","pid2","..."]
+    returns:
+      [{tag},{tag},{...}]
+  */
+  let result = {};
+  let requests = [];
+
+  for (var i = 0; i < pids.length; i++) {
+    const pid = pids[i];
+    requests.push({pid: pid, request: request.get(`/v1/tags/${pid}`)});
+  }
+
+  for (var x = 0; x < requests.length; x++) {
+    const req = requests[x];
+    const response = await req.request;
+    const tags = response.body.data.tags
+      .map(t => taxonomyMap[t])
+      .filter(t => t);
+    result[req.pid] = tags;
+  }
+
+  return result;
+};
+
+export const fetchBooks = (pids = [], dispatch) => {
+  /*
+    accepts:
+      pids = ["pid1","pid2","..."]
+    returns:
+      [{book},{book},{...}]
+  */
+  const getBooks = request.get('/v1/books/').query({pids: pids});
+
+  Promise.all([getBooks])
+    .then(async responses => {
+      const books = JSON.parse(responses[0].text).data;
+      const tags = await fetchTags(pids);
+
+      books.forEach(b => {
+        b.book.tags = tags[b.book.pid];
+      });
+
+      dispatch({type: BOOKS_RESPONSE, response: books});
+    })
+    .catch(error => {
+      dispatch({type: BOOKS_RESPONSE, pids, error});
+    });
 };
 
 export const fetchWork = (pid, dispatch) => {

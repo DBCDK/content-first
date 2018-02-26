@@ -23,30 +23,10 @@ const defaultState = {
   ]
 };
 
-// export const ON_BOOK_REQUEST = 'ON_BOOK_REQUEST';
-// export const ON_BOOK_RESPONSE = 'ON_BOOK_RESPONSE';
 export const ON_BOOK_REQUEST_TEST = 'ON_BOOK_REQUEST_TEST';
 
 const bookcaseReducer = (state = defaultState, action) => {
   switch (action.type) {
-    // case ON_BOOK_REQUEST: {
-    //   const books = state.books.map(b => {
-    //     if (b.pid === action.pid) {
-    //       return Object.assign({}, b);
-    //     }
-    //     return b;
-    //   });
-    //   return Object.assign({}, {books});
-    // }
-    // case ON_BOOK_RESPONSE: {
-    //   const books = state.books.map(b => {
-    //     if (b.pid === action.pid) {
-    //       return Object.assign({}, b, {work: action.response});
-    //     }
-    //     return b;
-    //   });
-    //   return Object.assign({}, {books});
-    // }
     case ON_BOOK_REQUEST_TEST: {
       return Object.assign({}, {state});
     }

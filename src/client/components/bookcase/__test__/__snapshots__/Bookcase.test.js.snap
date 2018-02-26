@@ -6,6 +6,7 @@ exports[`Bookcase renders initial component 1`] = `
   onClick={undefined}
 >
   <img
+    alt="bogreol"
     src="img/bookcase/BS-bogreol.png"
   />
   <div
@@ -52,88 +53,14 @@ exports[`Bookcase renders initial component 1`] = `
           </p>
         </div>
       </div>
-      <div
-        className="rollover-container "
-      >
-        <div
-          className="rollover"
-        >
-          <img
-            className="rollover-close"
-            onClick={[Function]}
-            src="/static/media/Kryds.e69a54ef.svg"
-          />
-          <div
-            className="col-xs-4 rollover-img"
-          >
-            <img
-              alt=""
-              className="high-contrast "
-              onError={[Function]}
-              src="https://metakompasset.demo.dbc.dk/api/cover/undefined"
-              style={undefined}
-            />
-          </div>
-          <div
-            className="col-xs-8 text-left rollover-text"
-          >
-            <div
-              className="col-xs-12 rollover-title"
-            >
-              <h1 />
-            </div>
-            <div
-              className="col-xs-12 rollover-creator"
-            >
-              <h2 />
-            </div>
-            <div
-              className="col-xs-12 rollover-description"
-            >
-              <p>
-                
-              </p>
-            </div>
-            <div
-              className="col-xs-12"
-            >
-              <CheckmarkConnected
-                book={
-                  Object {
-                    "book": Object {
-                      "pid": undefined,
-                    },
-                  }
-                }
-                origin="Fra bogreol"
-              />
-            </div>
-          </div>
-          <div
-            className="col-xs-12 rollover-bottom"
-          >
-            <span
-              aria-hidden="true"
-              class="glyphicon glyphicon-chevron-left"
-              onClick={[Function]}
-            />
-            <span
-              aria-hidden="true"
-              class="glyphicon glyphicon-chevron-right"
-              onClick={[Function]}
-            />
-          </div>
-          <div
-            className="clear"
-          />
-        </div>
-      </div>
     </div>
     <div
       className="col-xs-8 bookswrap"
     >
       <Pulse
+        active=""
         onClick={[Function]}
+        pid="870970-basis:52038014"
         position={
           Object {
             "x": 26,
@@ -142,7 +69,9 @@ exports[`Bookcase renders initial component 1`] = `
         }
       />
       <Pulse
+        active=""
         onClick={[Function]}
+        pid="870970-basis:23211629"
         position={
           Object {
             "x": 36.5,

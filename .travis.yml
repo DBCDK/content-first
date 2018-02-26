@@ -20,7 +20,6 @@ before_install:
   - . ./current.env
   - docker-compose up -d
 script:
-  - npm test --silent
   - npm run db-migrate --silent
   - npm run test-full --silent
 after_script:
