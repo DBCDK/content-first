@@ -40,7 +40,7 @@ export default ({list, profile}) => {
         </div>
         <div className="col-xs-9">
           <p className="t-body">{list.data.description}</p>
-          <Comments id={list.data.id} />
+          {list.data.social ? <Comments id={list.data.id} /> : ''}
         </div>
       </div>
       <div className="list">
