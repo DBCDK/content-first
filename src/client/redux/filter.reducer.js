@@ -1,5 +1,21 @@
-import {taxonomy, getLeaves} from '../utils/taxonomy';
+import {taxonomy, getLeaves, getLeavesMap} from '../utils/taxonomy';
 
+export const filters = {
+  'Vælg stemning': taxonomy.stemning,
+  'Vælg længde': [
+    {id: 100000, title: 'Kort', custom: true},
+    {id: 100001, title: 'Medium længde', custom: true},
+    {id: 100002, title: 'Laaaaaaaaaaaaaaaang', custom: true}
+  ],
+  'Vælg kvalitetsparametre': [
+    {id: 100003, title: 'Er på mange biblioteker', custom: true},
+    {id: -2, title: 'Bibliotekaren anbefaler', custom: true},
+    {id: 100005, title: 'Udlånes meget', custom: true}
+  ],
+  'Vælg tempo': taxonomy.fortælleteknik.tempo
+};
+export const filtersMap = getLeavesMap(filters);
+export const filterIds = getLeaves(filters).map(f => f.id);
 const defaultState = {
   editFilters: false,
   beltFilters: {
@@ -10,20 +26,7 @@ const defaultState = {
     'Passer med min smag': []
   },
   expandedFilters: {},
-  filters: {
-    'Vælg stemning': taxonomy.stemning,
-    'Vælg længde': [
-      {id: 100000, title: 'Kort', custom: true},
-      {id: 100001, title: 'Medium længde', custom: true},
-      {id: 100002, title: 'Laaaaaaaaaaaaaaaang', custom: true}
-    ],
-    'Vælg kvalitetsparametre': [
-      {id: 100003, title: 'Er på mange biblioteker', custom: true},
-      {id: -2, title: 'Bibliotekaren anbefaler'},
-      {id: 100005, title: 'Udlånes meget', custom: true}
-    ],
-    'Vælg tempo': taxonomy.fortælleteknik.tempo
-  },
+  filters,
   sortBy: [
     {id: 'default', title: 'Alfabetisk', selected: true},
     {id: 'linse', title: 'Linse Kesslers smag', selected: false},
@@ -73,6 +76,7 @@ const filterReducer = (state = defaultState, action) => {
           filterId
         ];
       }
+
       return Object.assign({}, state, {beltFilters});
     }
     case ON_EXPAND_FILTERS_TOGGLE: {

@@ -3,18 +3,21 @@
 exports[`recommendReducer request with creators and tags 1`] = `
 Object {
   "isLoading": true,
+  "pids": Array [],
 }
 `;
 
 exports[`recommendReducer request with creators only 1`] = `
 Object {
   "isLoading": true,
+  "pids": Array [],
 }
 `;
 
 exports[`recommendReducer request with tags only 1`] = `
 Object {
   "isLoading": true,
+  "pids": Array [],
 }
 `;
 
