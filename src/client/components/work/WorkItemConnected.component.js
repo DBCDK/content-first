@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from './WorkItem.component';
 import {HISTORY_PUSH} from '../../redux/middleware';
-import {getLists, SYSTEM_LIST} from '../../redux/list.reducer';
+import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
 
 class WorkItemConnected extends React.PureComponent {
   static defaultProps = {
@@ -35,7 +35,7 @@ class WorkItemConnected extends React.PureComponent {
 const mapStateToProps = state => {
   return {
     shortListState: state.shortListReducer,
-    systemLists: getLists(state.listReducer, {
+    systemLists: getListsForOwner(state.listReducer, {
       type: SYSTEM_LIST,
       owner: state.userReducer.openplatformId,
       sort: true
