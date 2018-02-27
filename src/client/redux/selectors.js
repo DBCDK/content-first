@@ -3,7 +3,7 @@ Selectors working on the global state object
 */
 
 import {getBooks} from './books.reducer';
-import {getRecommendedPids, applyClientSideFilters} from './recommend.reducer';
+import {getRecommendedPids, applyClientSideFilters} from './recommend';
 
 export const getRecommendedBooks = (state, tags, max) => {
   const {recommendReducer, booksReducer} = state;

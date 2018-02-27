@@ -2,7 +2,7 @@ import recommendReducer, {
   RECOMMEND_REQUEST,
   RECOMMEND_RESPONSE,
   getRecommendedPids
-} from '../recommend.reducer';
+} from '../recommend';
 
 describe('recommendReducer', () => {
   test('request with tags only', () => {

@@ -14,7 +14,7 @@ import {
 import {tasteMiddleware} from './client/redux/taste.middleware';
 import {userMiddleware} from './client/redux/user.middleware';
 import {orderMiddleware} from './client/redux/order.middleware';
-import {recommendMiddleware} from './client/redux/recommend.middleware';
+import {recommendMiddleware} from './client/redux/recommend';
 
 const store = createStore([
   userMiddleware,

@@ -13,7 +13,7 @@ import {
 } from '../../redux/filter.reducer';
 import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
-import {RECOMMEND_REQUEST} from '../../redux/recommend.reducer';
+import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {getRecommendedBooks} from '../../redux/selectors';
 import {filtersMap, filterIds} from '../../redux/filter.reducer';
 

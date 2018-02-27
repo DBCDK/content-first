@@ -12,7 +12,7 @@ import searchReducer from './search.reducer';
 import orderReducer from './order.reducer';
 import bookcaseReducer from './bookcase.reducer';
 import booksReducer from './books.reducer';
-import recommendReducer from './recommend.reducer';
+import recommendReducer from './recommend';
 
 const combined = combineReducers({
   beltsReducer,
