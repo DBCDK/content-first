@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {ADD_COMMENT, FETCH_COMMENTS} from '../../redux/comment.reducer';
+import {
+  ADD_COMMENT,
+  FETCH_COMMENTS,
+  getCommentsForId
+} from '../../redux/comment.reducer';
 import {Comments as CommentsIcon} from '../general/Icons';
 import CommentList from './CommentList.component';
 import CommentInput from './CommentInput.component';
@@ -27,29 +31,25 @@ export class CommentContainer extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.comments.error &&
-      this.props.comments.error !== nextProps.comments.error
-    ) {
+    if (nextProps.error && this.props.error !== nextProps.error) {
       this.setState({
         showCount: this.state.showCount - 1,
-        newCommentValue: nextProps.comments.error.comment
+        newCommentValue: nextProps.error.comment
       });
     }
   }
   render() {
     const commentsCount =
-      (this.props.comments.comments && this.props.comments.comments.length) ||
-      0;
+      (this.props.comments && this.props.comments.length) || 0;
     return (
       <div className="comments">
         {commentsCount ? (
           <div className="mb3">
             <CommentList
-              comments={this.props.comments.comments}
+              comments={this.props.comments}
               showCount={
                 this.state.showAll
-                  ? this.props.comments.comments.length
+                  ? this.props.comments.length
                   : this.state.showCount
               }
             />
@@ -61,11 +61,7 @@ export class CommentContainer extends React.Component {
                 className="btn btn-link mt1 mb1 link-subtle"
               >
                 <CommentsIcon
-                  value={
-                    this.props.comments.comments
-                      ? this.props.comments.comments.length
-                      : ''
-                  }
+                  value={this.props.comments ? this.props.comments.length : ''}
                 />
                 <span className="ml1">
                   {!this.state.showAll
@@ -83,8 +79,8 @@ export class CommentContainer extends React.Component {
           value={this.state.newCommentValue}
           onSubmit={this.onSubmit}
           onChange={value => this.setState({newCommentValue: value})}
-          disabled={this.props.comments.saving}
-          error={this.props.comments.error || null}
+          disabled={this.props.saving}
+          error={this.props.error || null}
         />
       </div>
     );
@@ -93,7 +89,7 @@ export class CommentContainer extends React.Component {
 
 const mapStateToProps = (state, ownProps) => ({
   user: state.userReducer,
-  comments: Object.assign({loading: true}, state.commentReducer[ownProps.id])
+  ...getCommentsForId(state, ownProps.id)
 });
 
 export const mapDispatchToProps = dispatch => ({

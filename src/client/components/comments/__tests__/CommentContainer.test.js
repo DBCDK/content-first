@@ -10,7 +10,10 @@ function generateComments(count) {
   for (let i = 0; i < count; i++) {
     comments.push({
       comment: `comment${i}`,
-      _id: `${i}`
+      _id: `${i}`,
+      user: {
+        name: 'Benny Cosmos'
+      }
     });
   }
   return comments;
@@ -24,7 +27,7 @@ describe('CommentContainer', () => {
         <CommentContainer
           id="some_id"
           fetchComments={fetch}
-          comments={{comments: []}}
+          comments={[]}
           user={{image: 'image_id'}}
         />
       )
@@ -38,9 +41,7 @@ describe('CommentContainer', () => {
         <CommentContainer
           id="some_id"
           fetchComments={jest.fn()}
-          comments={{
-            comments: generateComments(2)
-          }}
+          comments={generateComments(2)}
           user={{image: 'image_id'}}
         />
       )
@@ -52,13 +53,11 @@ describe('CommentContainer', () => {
       <CommentContainer
         id="some_id"
         fetchComments={jest.fn()}
-        comments={{
-          error: {
-            comment: 'comment3',
-            error: 'some error occures'
-          },
-          comments: generateComments(2)
+        error={{
+          comment: 'comment3',
+          error: 'some error occures'
         }}
+        comments={generateComments(2)}
         user={{image: 'image_id'}}
       />
     );
@@ -70,12 +69,15 @@ describe('CommentContainer', () => {
       <CommentContainer
         id="some_id"
         fetchComments={jest.fn()}
-        comments={{
-          comments: [
-            ...generateComments(2),
-            {comment: 'comment new', saving: true, _id: 'new_comment'}
-          ]
-        }}
+        comments={[
+          ...generateComments(2),
+          {
+            comment: 'comment new',
+            saving: true,
+            _id: 'new_comment',
+            user: {name: 'Benny Cosmos'}
+          }
+        ]}
         user={{image: 'image_id'}}
       />
     );
@@ -86,9 +88,7 @@ describe('CommentContainer', () => {
       <CommentContainer
         id="some_id"
         fetchComments={jest.fn()}
-        comments={{
-          comments: generateComments(5)
-        }}
+        comments={generateComments(5)}
         user={{image: 'image_id'}}
       />
     );
@@ -102,9 +102,7 @@ describe('CommentContainer', () => {
         id="some_id"
         fetchComments={jest.fn()}
         addComment={addComment}
-        comments={{
-          comments: []
-        }}
+        comments={[]}
         user={{image: 'image_id', openplatformId: 'owner_id'}}
       />
     );
@@ -119,9 +117,7 @@ describe('CommentContainer', () => {
       <CommentContainer
         id="some_id"
         fetchComments={jest.fn()}
-        comments={{
-          comments: generateComments(5)
-        }}
+        comments={generateComments(5)}
         user={{image: 'image_id'}}
       />
     );

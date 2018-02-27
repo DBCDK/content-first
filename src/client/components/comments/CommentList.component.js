@@ -37,7 +37,7 @@ export default class CommentList extends React.Component {
       >
         <div ref={el => (this.listWrapper = el)}>
           {showComments.map(
-            ({comment, _id, saving, _created = Date.now() / 1000}) => (
+            ({comment, user, _id, saving, _created = Date.now() / 1000}) => (
               <div key={_id} className="comment-wrapper">
                 {saving ? (
                   <div className="comment-saving">
@@ -47,12 +47,9 @@ export default class CommentList extends React.Component {
                   ''
                 )}
                 <div className="flex mb2" style={{width: '100%'}}>
-                  <CommentUserImage
-                    user={{name: 'Benny Cosmos'}}
-                    style={{flexShrink: 0}}
-                  />
+                  <CommentUserImage user={user} style={{flexShrink: 0}} />
                   <div className="ml2" style={{flexGrow: 1}}>
-                    <div className="comment-author">Benny Cosmos</div>
+                    <div className="comment-author">{user.name || ''}</div>
                     <div className="comment-time mb1">
                       {timeToString(_created)}
                     </div>

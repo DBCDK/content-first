@@ -33,7 +33,8 @@ const commentReducer = (state = defaultState, action) => {
         {saving: false}
       );
       group.comments = group.comments.map(
-        el => (el._id === 'new_comment' ? action.comment : el)
+        el =>
+          el._id === 'new_comment' ? {...el, ...action.data, saving: false} : el
       );
       return Object.assign({}, state, {[action.id]: group});
     }
@@ -76,3 +77,23 @@ const commentReducer = (state = defaultState, action) => {
 };
 
 export default commentReducer;
+
+export const addUserProfilesToComments = (state, comments) => {
+  return comments.map(comment => ({
+    ...comment,
+    user: state.users.has(comment._owner)
+      ? state.users.get(comment._owner).toJS()
+      : {}
+  }));
+};
+
+export const getCommentsForId = (state, id) => {
+  const {comments = [], loading = true, error, saving} =
+    state.commentReducer[id] || {};
+  return {
+    comments: addUserProfilesToComments(state, comments),
+    loading,
+    saving,
+    error
+  };
+};
