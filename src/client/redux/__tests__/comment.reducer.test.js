@@ -47,7 +47,7 @@ describe('commentReducer', () => {
   describe('Comment selectors', () => {
     test('getCommentsForId', () => {
       const state = {
-        commentReducer: {
+        comments: {
           id_with_comments: {
             comments: [
               {_owner: 'owner_1', comment: 'comment 1'},

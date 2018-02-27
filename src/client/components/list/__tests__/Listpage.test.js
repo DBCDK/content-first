@@ -46,10 +46,7 @@ jest.mock(
   () => 'WorkItemConnectedMock'
 );
 
-jest.mock(
-  '../../comments/Comment.container.js',
-  () => 'Comments'
-);
+jest.mock('../../comments/Comment.container.js', () => 'Comments');
 
 describe('ListView', () => {
   test('List is rendered', () => {

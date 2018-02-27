@@ -89,7 +89,7 @@ export const addUserProfilesToComments = (state, comments) => {
 
 export const getCommentsForId = (state, id) => {
   const {comments = [], loading = true, error, saving} =
-    state.commentReducer[id] || {};
+    state.comments[id] || {};
   return {
     comments: addUserProfilesToComments(state, comments),
     loading,
