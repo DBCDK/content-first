@@ -1,5 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`commentReducer Comment selectors getCommentsForId 1`] = `
+Object {
+  "comments": Array [],
+  "error": undefined,
+  "loading": true,
+  "saving": undefined,
+}
+`;
+
+exports[`commentReducer Comment selectors getCommentsForId 2`] = `
+Object {
+  "comments": Array [
+    Object {
+      "_owner": "owner_1",
+      "comment": "comment 1",
+      "user": Object {
+        "name": "name owner 1",
+      },
+    },
+    Object {
+      "_owner": "owner_2",
+      "comment": "comment 2",
+      "user": Object {},
+    },
+  ],
+  "error": undefined,
+  "loading": true,
+  "saving": undefined,
+}
+`;
+
+exports[`commentReducer Comment selectors getCommentsForId 3`] = `
+Object {
+  "comments": Array [],
+  "error": undefined,
+  "loading": true,
+  "saving": undefined,
+}
+`;
+
+exports[`commentReducer Comment selectors getCommentsForId 4`] = `
+Object {
+  "comments": Array [],
+  "error": Object {
+    "comment": "some comment",
+    "error": "some fail",
+  },
+  "loading": false,
+  "saving": undefined,
+}
+`;
+
 exports[`commentReducer Fetch comments 1`] = `
 Object {
   "123": Object {

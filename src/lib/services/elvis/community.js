@@ -130,7 +130,7 @@ class Community {
             roles: 'attributes.roles',
             openplatformId: 'attributes.openplatform_id',
             openplatformToken: 'attributes.openplatform_token',
-            image: 'attributes.images'
+            image: 'attributes.image'
           }
         });
         await validatingInput(response.body, schemaElvisSuccessOut);

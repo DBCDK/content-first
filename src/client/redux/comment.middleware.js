@@ -8,13 +8,14 @@ import {
   ADD_COMMENT_ERROR
 } from './comment.reducer';
 
+import {REQUEST_USER} from './users';
+
 export const commentMiddleware = store => next => action => {
   switch (action.type) {
     case ADD_COMMENT: {
       return (async () => {
         next(action);
         try {
-          const owner = store.getState().userReducer.openplatformId;
           const response = await addObject({
             _key: action.id,
             _type: 'comment',
@@ -24,12 +25,7 @@ export const commentMiddleware = store => next => action => {
           store.dispatch({
             type: ADD_COMMENT_SUCCESS,
             id: action.id,
-            comment: {
-              comment: action.comment,
-              _id: response.data.id,
-              _rev: response.data.rev,
-              _owner: owner
-            }
+            data: response.data
           });
         } catch (e) {
           store.dispatch({
@@ -46,6 +42,9 @@ export const commentMiddleware = store => next => action => {
         next(action);
         try {
           const comments = (await fetchObjects(action.id, 'comment')).data;
+          comments.forEach(comment =>
+            store.dispatch({type: REQUEST_USER, id: comment._owner})
+          );
           store.dispatch({
             type: FETCH_COMMENTS_SUCCESS,
             id: action.id,

@@ -286,30 +286,43 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
 exports[`CommentContainer Component renders all comments 1`] = `
 <CommentContainer
   comments={
-    Object {
-      "comments": Array [
-        Object {
-          "_id": "0",
-          "comment": "comment0",
+    Array [
+      Object {
+        "_id": "0",
+        "comment": "comment0",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "1",
-          "comment": "comment1",
+      },
+      Object {
+        "_id": "1",
+        "comment": "comment1",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "2",
-          "comment": "comment2",
+      },
+      Object {
+        "_id": "2",
+        "comment": "comment2",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "3",
-          "comment": "comment3",
+      },
+      Object {
+        "_id": "3",
+        "comment": "comment3",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "4",
-          "comment": "comment4",
+      },
+      Object {
+        "_id": "4",
+        "comment": "comment4",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-      ],
-    }
+      },
+    ]
   }
   fetchComments={[Function]}
   id="some_id"
@@ -331,22 +344,37 @@ exports[`CommentContainer Component renders all comments 1`] = `
             Object {
               "_id": "0",
               "comment": "comment0",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "1",
               "comment": "comment1",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "2",
               "comment": "comment2",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "3",
               "comment": "comment3",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "4",
               "comment": "comment4",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
           ]
         }
@@ -869,21 +897,27 @@ exports[`CommentContainer Component renders all comments 1`] = `
 exports[`CommentContainer Component renders error 1`] = `
 <CommentContainer
   comments={
-    Object {
-      "comments": Array [
-        Object {
-          "_id": "0",
-          "comment": "comment0",
+    Array [
+      Object {
+        "_id": "0",
+        "comment": "comment0",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "1",
-          "comment": "comment1",
-        },
-      ],
-      "error": Object {
-        "comment": "comment3",
-        "error": "some error occures",
       },
+      Object {
+        "_id": "1",
+        "comment": "comment1",
+        "user": Object {
+          "name": "Benny Cosmos",
+        },
+      },
+    ]
+  }
+  error={
+    Object {
+      "comment": "comment3",
+      "error": "some error occures",
     }
   }
   fetchComments={[Function]}
@@ -906,10 +940,16 @@ exports[`CommentContainer Component renders error 1`] = `
             Object {
               "_id": "0",
               "comment": "comment0",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "1",
               "comment": "comment1",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
           ]
         }
@@ -1162,23 +1202,30 @@ exports[`CommentContainer Component renders error 1`] = `
 exports[`CommentContainer Component renders saving overlay 1`] = `
 <CommentContainer
   comments={
-    Object {
-      "comments": Array [
-        Object {
-          "_id": "0",
-          "comment": "comment0",
+    Array [
+      Object {
+        "_id": "0",
+        "comment": "comment0",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "1",
-          "comment": "comment1",
+      },
+      Object {
+        "_id": "1",
+        "comment": "comment1",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "new_comment",
-          "comment": "comment new",
-          "saving": true,
+      },
+      Object {
+        "_id": "new_comment",
+        "comment": "comment new",
+        "saving": true,
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-      ],
-    }
+      },
+    ]
   }
   fetchComments={[Function]}
   id="some_id"
@@ -1200,15 +1247,24 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             Object {
               "_id": "0",
               "comment": "comment0",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "1",
               "comment": "comment1",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "new_comment",
               "comment": "comment new",
               "saving": true,
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
           ]
         }
@@ -1470,30 +1526,43 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
 exports[`CommentContainer Toggle all comments 1`] = `
 <CommentContainer
   comments={
-    Object {
-      "comments": Array [
-        Object {
-          "_id": "0",
-          "comment": "comment0",
+    Array [
+      Object {
+        "_id": "0",
+        "comment": "comment0",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "1",
-          "comment": "comment1",
+      },
+      Object {
+        "_id": "1",
+        "comment": "comment1",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "2",
-          "comment": "comment2",
+      },
+      Object {
+        "_id": "2",
+        "comment": "comment2",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "3",
-          "comment": "comment3",
+      },
+      Object {
+        "_id": "3",
+        "comment": "comment3",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "4",
-          "comment": "comment4",
+      },
+      Object {
+        "_id": "4",
+        "comment": "comment4",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-      ],
-    }
+      },
+    ]
   }
   fetchComments={[Function]}
   id="some_id"
@@ -1515,22 +1584,37 @@ exports[`CommentContainer Toggle all comments 1`] = `
             Object {
               "_id": "0",
               "comment": "comment0",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "1",
               "comment": "comment1",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "2",
               "comment": "comment2",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "3",
               "comment": "comment3",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "4",
               "comment": "comment4",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
           ]
         }
@@ -1773,30 +1857,43 @@ exports[`CommentContainer Toggle all comments 1`] = `
 exports[`CommentContainer Toggle all comments 2`] = `
 <CommentContainer
   comments={
-    Object {
-      "comments": Array [
-        Object {
-          "_id": "0",
-          "comment": "comment0",
+    Array [
+      Object {
+        "_id": "0",
+        "comment": "comment0",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "1",
-          "comment": "comment1",
+      },
+      Object {
+        "_id": "1",
+        "comment": "comment1",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "2",
-          "comment": "comment2",
+      },
+      Object {
+        "_id": "2",
+        "comment": "comment2",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "3",
-          "comment": "comment3",
+      },
+      Object {
+        "_id": "3",
+        "comment": "comment3",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-        Object {
-          "_id": "4",
-          "comment": "comment4",
+      },
+      Object {
+        "_id": "4",
+        "comment": "comment4",
+        "user": Object {
+          "name": "Benny Cosmos",
         },
-      ],
-    }
+      },
+    ]
   }
   fetchComments={[Function]}
   id="some_id"
@@ -1818,22 +1915,37 @@ exports[`CommentContainer Toggle all comments 2`] = `
             Object {
               "_id": "0",
               "comment": "comment0",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "1",
               "comment": "comment1",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "2",
               "comment": "comment2",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "3",
               "comment": "comment3",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
             Object {
               "_id": "4",
               "comment": "comment4",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             },
           ]
         }

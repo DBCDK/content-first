@@ -27,7 +27,7 @@ const combined = combineReducers({
   modalReducer,
   searchReducer,
   orderReducer,
-  commentReducer,
+  comments: commentReducer,
   bookcaseReducer,
   tasteReducer,
   booksReducer
