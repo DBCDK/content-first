@@ -18,7 +18,11 @@ export class CommentContainer extends React.Component {
     this.props.fetchComments(this.props.id);
   }
   onSubmit = comment => {
-    this.props.addComment(this.props.id, comment);
+    this.props.addComment({
+      id: this.props.id,
+      comment,
+      owner: this.props.user.openplatformId
+    });
     this.setState({showCount: ++this.state.showCount, newCommentValue: ''});
   };
 
@@ -93,7 +97,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  addComment: (id, comment) => dispatch({type: ADD_COMMENT, comment, id}),
+  addComment: ({id, comment, owner}) =>
+    dispatch({type: ADD_COMMENT, comment, id, owner}),
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 

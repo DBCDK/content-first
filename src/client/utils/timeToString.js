@@ -1,11 +1,11 @@
-export const MINUTE = 1000 * 60;
+export const MINUTE = 60;
 export const HOUR = MINUTE * 60;
 export const DAY = HOUR * 24;
 export const MONTH = DAY * 30;
 export const YEAR = DAY * 365;
 
 export default function TimeToString(past) {
-  const delta = Date.now() - past;
+  const delta = Math.abs(Date.now() / 1000 - past);
   const years = Math.floor(delta / YEAR);
   const months = Math.floor(delta / MONTH);
   const days = Math.floor(delta / DAY);

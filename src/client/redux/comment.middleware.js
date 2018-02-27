@@ -14,10 +14,11 @@ export const commentMiddleware = store => next => action => {
       return (async () => {
         next(action);
         try {
+          const owner = store.getState().userReducer.openplatformId;
           const response = await addObject({
-            key: action.id,
-            type: 'comment',
-            public: true,
+            _key: action.id,
+            _type: 'comment',
+            _public: true,
             comment: action.comment
           });
           store.dispatch({
@@ -26,7 +27,8 @@ export const commentMiddleware = store => next => action => {
             comment: {
               comment: action.comment,
               _id: response.data.id,
-              rev: response.data.rev
+              _rev: response.data.rev,
+              _owner: owner
             }
           });
         } catch (e) {

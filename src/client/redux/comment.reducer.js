@@ -17,7 +17,12 @@ const commentReducer = (state = defaultState, action) => {
       );
       group.comments = [
         ...group.comments,
-        {comment: action.comment, saving: true, _id: 'new_comment'}
+        {
+          comment: action.comment,
+          saving: true,
+          _id: 'new_comment',
+          _owner: action.owner
+        }
       ];
       return Object.assign({}, state, {[action.id]: group});
     }

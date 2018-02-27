@@ -105,12 +105,14 @@ describe('CommentContainer', () => {
         comments={{
           comments: []
         }}
-        user={{image: 'image_id'}}
+        user={{image: 'image_id', openplatformId: 'owner_id'}}
       />
     );
     tree.setState({newCommentValue: 'a new comment'});
     tree.find('#comment-submit').simulate('click');
-    expect(addComment.mock.calls[0]).toEqual(['some_id', 'a new comment']);
+    expect(addComment.mock.calls[0]).toEqual([
+      {id: 'some_id', comment: 'a new comment', owner: 'owner_id'}
+    ]);
   });
   test('Toggle all comments', () => {
     const tree = mount(
