@@ -16,6 +16,8 @@
         }
       ],
       "public": false,
+      "open": false,
+      "social": false,
       "type": "SYSTEM_LIST"
     },
     {
@@ -31,6 +33,8 @@
           "description": "Magic to the people"
         }
       ],
+      "open": false,
+      "social": false,
       "public": false,
       "type": "CUSTOM_LIST"
     }

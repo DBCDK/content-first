@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getLists, CUSTOM_LIST} from '../../redux/list.reducer';
+import {getListsForOwner, CUSTOM_LIST} from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
@@ -82,7 +82,7 @@ export class Lists extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    lists: getLists(state.listReducer, {
+    lists: getListsForOwner(state.listReducer, {
       type: CUSTOM_LIST,
       owner: state.userReducer.openplatformId,
       sort: true

@@ -4,7 +4,7 @@ import Modal from './Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
 import {
   CUSTOM_LIST,
-  getLists,
+  getListsForOwner,
   addList,
   addElementToList,
   storeList
@@ -17,7 +17,7 @@ const defaultState = {
   listName: ''
 };
 
-class AddToListModal extends React.Component {
+export class AddToListModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = Object.assign({}, defaultState, {
@@ -149,7 +149,7 @@ class AddToListModal extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    customLists: getLists(state.listReducer, {
+    customLists: getListsForOwner(state.listReducer, {
       type: CUSTOM_LIST,
       owner: state.userReducer.openplatformId
     })

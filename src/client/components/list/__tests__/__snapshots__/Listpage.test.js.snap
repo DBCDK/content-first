@@ -62,6 +62,9 @@ exports[`ListView List is rendered 1`] = `
         >
           some description
         </p>
+        <Comments
+          id="list1"
+        />
       </div>
     </div>
     <div

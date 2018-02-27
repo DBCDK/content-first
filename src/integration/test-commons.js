@@ -292,6 +292,8 @@ function cachedListSeededOnTestStart() {
   return {
     data: {
       type: 'SYSTEM_LIST',
+      open: true,
+      social: true,
       public: true,
       owner: seeder.knownUserId(),
       title: 'My List',
@@ -311,6 +313,8 @@ function uncachedListSeededOnTestStart() {
   return {
     data: {
       type: 'CUSTOM_LIST',
+      open: false,
+      social: false,
       public: false,
       owner: seeder.knownUserId(),
       title: 'Gamle Perler',

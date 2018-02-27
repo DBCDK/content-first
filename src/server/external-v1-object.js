@@ -7,16 +7,23 @@ const community = require('server/community');
 const {findingUserIdTroughLoginToken} = require('server/user');
 
 async function getUser(req) {
-  const userId = await findingUserIdTroughLoginToken(req);
-  const user = await community.gettingUserByProfileId(userId);
-  return {id: userId, openplatformId: user.openplatformId, admin: false};
+  try {
+    const userId = await findingUserIdTroughLoginToken(req);
+    const user = await community.gettingUserByProfileId(userId);
+    // TODO admin
+    return {id: userId, openplatformId: user.openplatformId, admin: false};
+  } catch (e) {
+    return;
+  }
 }
 
+function send(res, data) {
+  return res.status(data.errors ? data.errors[0].status : 200).json(data);
+}
 async function getObject(req, res) {
   const id = req.params.id;
   const user = await getUser(req);
-  // TODO error-code
-  res.status(200).json(await community.getObjectById(id, user));
+  send(res, await community.getObjectById(id, user || {}));
 }
 async function putObject(req, res) {
   const object = req.body;
@@ -24,15 +31,19 @@ async function putObject(req, res) {
     object._id = req.params.id;
   }
   const user = await getUser(req);
-  const result = await community.putObject({object, user});
-  // TODO error-code
-  return res.status(200).json(result);
+  if (user) {
+    send(res, await community.putObject({object, user}));
+  } else {
+    send(res, {
+      data: {error: 'forbidden'},
+      errors: [{message: 'forbidden', status: 403}]
+    });
+  }
 }
 async function findObject(req, res) {
   const query = req.query;
   const user = await getUser(req);
-  // TODO error-code
-  res.status(200).json(await community.findObjects(query, user));
+  send(res, await community.findObjects(query, user || {}));
 }
 
 router.route('/find').get(asyncMiddleware(findObject));

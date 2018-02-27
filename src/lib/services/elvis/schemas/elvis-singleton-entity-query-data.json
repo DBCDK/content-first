@@ -41,6 +41,14 @@
       "required": true,
       "type": "boolean"
     },
+    "open": {
+      "required": false,
+      "type": "boolean"
+    },
+    "social": {
+      "required": false,
+      "type": "boolean"
+    },
     "list": {
       "required": true,
       "type": "array",

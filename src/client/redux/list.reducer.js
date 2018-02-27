@@ -243,7 +243,8 @@ export const addList = ({
   title = '',
   description = '',
   list = [],
-  id = null
+  id = null,
+  owner = null
 }) => {
   return {
     type: ADD_LIST,
@@ -253,7 +254,8 @@ export const addList = ({
         type,
         title,
         description,
-        list
+        list,
+        owner
       },
       links: {self: id ? `/v1/lists/${id}` : null}
     }
@@ -308,12 +310,15 @@ export const storeList = id => {
 };
 
 // SELECTORS
-export const getLists = (state, {type, owner, sort} = {}) => {
+export const getListsForOwner = (state, params = {}) => {
+  if (!params.owner) {
+    return [];
+  }
+  return getLists(state, params).filter(l => params.owner === l.data.owner);
+};
+export const getLists = (state, {type, sort} = {}) => {
   const lists = Object.values(state.lists).filter(l => {
     if (type && l.data.type !== type) {
-      return false;
-    }
-    if (owner && l.data.owner !== owner) {
       return false;
     }
     return true;

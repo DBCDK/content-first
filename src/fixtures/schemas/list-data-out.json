@@ -18,6 +18,14 @@
       "required": true,
       "type": "boolean"
     },
+    "open": {
+      "required": true,
+      "type": "boolean"
+    },
+    "social": {
+      "required": true,
+      "type": "boolean"
+    },
     "owner": {
       "required": true,
       "type": "string"
