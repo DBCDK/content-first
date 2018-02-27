@@ -265,6 +265,8 @@ describe('Lists', () => {
     const newList = {
       title: 'Brand New List',
       description: 'A too long\ndescription with several\nlines',
+      open: false,
+      social: false,
       public: false,
       type: 'WEIRD_INTERNAL_TYPE',
       list: [{pid: '12345-abc-6789', description: 'A long pony tail'}]

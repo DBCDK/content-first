@@ -47,6 +47,8 @@
     },
     {
       "type": "CUSTOM_LIST",
+      "open": true,
+      "social": true,
       "public": true,
       "title": "My Other List",
       "description": "Some old list",

@@ -21,6 +21,8 @@ describe('User data transformers for Community Service', () => {
         attributes: {
           uuid: '98c5ff8c6e8f49978c857c23925dbe41',
           type: 'SYSTEM_LIST',
+          open: false,
+          social: false,
           public: false,
           list: [
             {
@@ -42,6 +44,8 @@ describe('User data transformers for Community Service', () => {
         attributes: {
           uuid: 'dcbf8e7fb978459497fe4e08fc0fb9f4',
           type: 'CUSTOM_LIST',
+          open: true,
+          social: true,
           public: true,
           list: [
             {

@@ -25,6 +25,14 @@
           "required": false,
           "type": "boolean"
         },
+        "open": {
+          "required": false,
+          "type": "boolean"
+        },
+        "social": {
+          "required": false,
+          "type": "boolean"
+        },
         "type": {
           "required": false,
           "type": "string"

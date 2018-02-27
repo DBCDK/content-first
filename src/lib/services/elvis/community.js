@@ -225,6 +225,8 @@ class Community {
             // TODO: also extract Profile name & image, created_epoch modified_epoch
             uuid: 'attributes.uuid',
             public: 'attributes.public',
+            social: 'attributes.social',
+            open: 'attributes.open',
             type: 'attributes.type',
             title: 'title',
             description: 'contents',
@@ -308,6 +310,8 @@ class Community {
             },
             list: 'attributes.list',
             public: 'attributes.public',
+            open: 'attributes.open',
+            social: 'attributes.social',
             image: 'attributes.image',
             template: 'attributes.template'
           }
@@ -515,6 +519,8 @@ class Community {
               Include: 'attributes.openplatform_id'
             },
             public: 'attributes.public',
+            open: 'attributes.open',
+            social: 'attributes.social',
             type: 'attributes.type',
             title: 'title',
             description: 'contents',
@@ -830,7 +836,9 @@ class Community {
         title: document.title,
         description: document.contents,
         list: document.attributes.list,
-        public: document.attributes.public
+        public: document.attributes.public,
+        open: document.attributes.open,
+        social: document.attributes.social
       },
       links: {
         self: `/v1/lists/${document.attributes.uuid}`,

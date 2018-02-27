@@ -33,6 +33,14 @@
           "required": true,
           "type": "boolean"
         },
+        "social": {
+          "required": true,
+          "type": "boolean"
+        },
+        "open": {
+          "required": true,
+          "type": "boolean"
+        },
         "type": {
           "required": true,
           "type": "string"
