@@ -22,6 +22,7 @@ import {
   SHORTLIST_APPROVE_MERGE,
   SHORTLIST_CLEAR
 } from './shortlist.reducer';
+import {REQUEST_USER} from './users';
 import {
   ADD_LIST,
   STORE_LIST,
@@ -181,6 +182,12 @@ export const listMiddleware = store => next => async action => {
         type: LIST_LOAD_RESPONSE,
         lists: [...lists, ...recentLists]
       });
+
+      for (const list of [...lists, ...recentLists]) {
+        const id = list.data && list.data.owner;
+        store.dispatch({type: REQUEST_USER, id});
+      }
+
       return res;
     }
     case ADD_LIST_IMAGE:
