@@ -10,7 +10,7 @@ import {
   addList,
   ADD_LIST_IMAGE
 } from '../../redux/list.reducer';
-import {createListLocation} from '../../utils/requestLists';
+import {saveList} from '../../utils/requestLists';
 import DragableList from './ListDrag.component';
 import Textarea from 'react-textarea-autosize';
 import {HISTORY_REPLACE} from '../../redux/middleware';
@@ -262,7 +262,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(removeElementFromList(book, id)),
   loadLists: () => dispatch({type: LIST_LOAD_REQUEST}),
   createList: async () => {
-    const {id} = await createListLocation();
+    const {id} = await saveList({});
     dispatch(addList({id}));
     dispatch({
       type: HISTORY_REPLACE,

@@ -1,30 +1,43 @@
 import request from 'superagent';
-import {setItem, getItem} from '../utils/localstorage';
 import {SYSTEM_LIST} from '../redux/list.reducer';
 
-const LIST_KEY = 'contentFirstLists';
-const CURRENT_LIST_KEY = 'contentFirstCurrentList';
-const LIST_VERSION = 1;
+// Note: only used exports are:
+//
+// - saveList
+// - loadLists
+// - loadRecentPublic
+//
 
-const listToPayload = list => {
-  const listCopy = {};
-  listCopy.title = list.title;
-  listCopy.description = list.description;
-  listCopy.type = list.type;
-  listCopy.public = list.public;
-  listCopy.social = list.social;
-  listCopy.open = list.open;
-  listCopy.image = list.image;
-  listCopy.template = list.template;
-  listCopy.list = list.list.map(element => {
-    return {
-      pid: element.book.pid,
-      description: element.description || ''
-    };
-  });
-  return listCopy;
+export const saveList = async list => {
+  list = Object.assign({}, list);
+  list._type = 'list';
+
+  // old-endpoint compat, refactor to just _id later
+  list._public = list.public;
+  if (!list.oldId) {
+    list._id = list._id || list.id;
+  }
+
+  const result = await request.post('/v1/object').send(
+    Object.assign({}, list, {
+      _rev: null,
+      list:
+        list.list &&
+        list.list.map(o => ({
+          pid: o.book.pid,
+          description: o.description || ''
+        }))
+    })
+  );
+  Object.assign(list, result.body.data);
+
+  // old-endpoint compat, refactor to just _id later
+  list.id = list._key || list._id;
+
+  return list;
 };
-const payloadToList = async payload => {
+
+const oldPayloadToList = async payload => {
   const result = Object.assign({}, payload.data);
   result.id = locationToId(payload.links.self);
   const pids = result.list.map(obj => obj.pid);
@@ -41,47 +54,58 @@ const payloadToList = async payload => {
   });
   return result;
 };
-export const saveLists = async (lists, isLoggedIn = false) => {
-  setItem(LIST_KEY, lists, LIST_VERSION);
-  if (isLoggedIn) {
-    // Save on database
-    const listsPayload = lists.map(l => listToPayload(l));
-    await request.put('/v1/lists').send(listsPayload);
-  }
-};
-export const saveList = async list => {
-  const listPayload = listToPayload(list);
-  const id = list.id || (await createListLocation()).id;
-  const location = `/v1/lists/${id}`;
-  await request.put(location).send(listPayload);
-  return Object.assign({}, list, {links: {self: location}});
-};
-export const createListLocation = async () => {
-  const location = (await request.post('/v1/lists')).body.data;
-  return {
-    id: locationToId(location),
-    location
-  };
-};
+
 export const loadRecentPublic = async () => {
-  const listsPayload = (await request
-    .get('/v1/public-lists')
-    .query({limit: 30})).body.data;
-  const result = [];
-  for (let i = 0; i < listsPayload.length; i++) {
-    result.push(await payloadToList(listsPayload[i]));
+  let lists = (await request.get(`/v1/object/find?type=list&limit=30`)).body
+    .data;
+
+  for (const list of lists) {
+    await enrichList(list);
   }
-  return result;
+  return lists;
 };
-export const loadLists = async isLoggedIn => {
-  if (!isLoggedIn) {
+
+async function enrichList(list) {
+  list.id = list.id || list._id;
+  list.owner = list._owner;
+  list.list = list.list || [];
+  const pids = list.list.map(o => o.pid);
+
+  if (pids.length > 0) {
+    const works = (await request.get('/v1/books/').query({pids})).body.data;
+    const worksMap = works.reduce((map, w) => {
+      map[w.book.pid] = w;
+      return map;
+    }, {});
+    list.list = list.list.map(obj => {
+      return Object.assign(obj, {book: {pid: obj.pid}}, worksMap[obj.pid]);
+    });
+  }
+}
+
+export const loadLists = async openplatformId => {
+  if (!openplatformId) {
     return [];
   }
-  // Load from database
+
+  // Load from database from old endpoint
   const listsPayload = (await request.get('/v1/lists')).body.data;
-  const result = [];
+  let result = [];
   for (let i = 0; i < listsPayload.length; i++) {
-    result.push(await payloadToList(listsPayload[i]));
+    result.push(await oldPayloadToList(listsPayload[i]));
+  }
+  result = result.map(o => Object.assign(o, {oldId: true}));
+
+  // Load new lists
+  const lists = (await request.get(
+    `/v1/object/find?type=list&owner=${encodeURIComponent(
+      openplatformId
+    )}&limit=100000`
+  )).body.data;
+
+  for (const list of lists) {
+    await enrichList(list);
+    result.push(list);
   }
 
   // Create system lists if they do not exist
@@ -109,13 +133,6 @@ export const loadLists = async isLoggedIn => {
 
 const containsList = (type, title, lists) => {
   return lists.filter(l => l.type === type && l.title === title).length !== 0;
-};
-export const saveCurrentList = currentList => {
-  setItem(CURRENT_LIST_KEY, currentList, LIST_VERSION);
-};
-
-export const loadCurrentlist = () => {
-  return getItem(CURRENT_LIST_KEY, LIST_VERSION, {title: '', list: []});
 };
 
 const locationToId = location => {
