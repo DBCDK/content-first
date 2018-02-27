@@ -162,21 +162,59 @@ exports[`ListCreate list details is shown 1`] = `
           />
         </div>
         <div
-          className="list-creator__publication"
+          className="mt3 mb3"
         >
-          <label
-            htmlFor="public"
+          <div
+            className="list-creator__checkbox"
           >
-            <input
-              checked={true}
-              id="public"
-              name="public"
-              onClick={[Function]}
-              type="checkbox"
-            />
-            <span />
-             Skal listen være offentlig?
-          </label>
+            <label
+              htmlFor="public"
+            >
+              <input
+                checked={true}
+                id="public"
+                name="public"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+              Skal listen være offentlig?
+            </label>
+          </div>
+          <div
+            className="list-creator__checkbox"
+          >
+            <label
+              htmlFor="social"
+            >
+              <input
+                checked={true}
+                id="social"
+                name="social"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+              Skal andre kunne kommentere på listen?
+            </label>
+          </div>
+          <div
+            className="list-creator__checkbox"
+          >
+            <label
+              htmlFor="open"
+            >
+              <input
+                checked={true}
+                id="open"
+                name="open"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+              Skal andre kunne føje til listen?
+            </label>
+          </div>
         </div>
         <div
           className="list-creator__submit text-right"
@@ -537,21 +575,59 @@ exports[`ListCreate renders a list with multiple books 1`] = `
           </div>
         </div>
         <div
-          className="list-creator__publication"
+          className="mt3 mb3"
         >
-          <label
-            htmlFor="public"
+          <div
+            className="list-creator__checkbox"
           >
-            <input
-              checked={false}
-              id="public"
-              name="public"
-              onClick={[Function]}
-              type="checkbox"
-            />
-            <span />
-             Skal listen være offentlig?
-          </label>
+            <label
+              htmlFor="public"
+            >
+              <input
+                checked={false}
+                id="public"
+                name="public"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+              Skal listen være offentlig?
+            </label>
+          </div>
+          <div
+            className="list-creator__checkbox"
+          >
+            <label
+              htmlFor="social"
+            >
+              <input
+                checked={false}
+                id="social"
+                name="social"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+              Skal andre kunne kommentere på listen?
+            </label>
+          </div>
+          <div
+            className="list-creator__checkbox"
+          >
+            <label
+              htmlFor="open"
+            >
+              <input
+                checked={false}
+                id="open"
+                name="open"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+              Skal andre kunne føje til listen?
+            </label>
+          </div>
         </div>
         <div
           className="list-creator__submit text-right"
@@ -798,21 +874,59 @@ exports[`ListCreate renders a list with one book 1`] = `
           </div>
         </div>
         <div
-          className="list-creator__publication"
+          className="mt3 mb3"
         >
-          <label
-            htmlFor="public"
+          <div
+            className="list-creator__checkbox"
           >
-            <input
-              checked={false}
-              id="public"
-              name="public"
-              onClick={[Function]}
-              type="checkbox"
-            />
-            <span />
-             Skal listen være offentlig?
-          </label>
+            <label
+              htmlFor="public"
+            >
+              <input
+                checked={false}
+                id="public"
+                name="public"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+              Skal listen være offentlig?
+            </label>
+          </div>
+          <div
+            className="list-creator__checkbox"
+          >
+            <label
+              htmlFor="social"
+            >
+              <input
+                checked={false}
+                id="social"
+                name="social"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+              Skal andre kunne kommentere på listen?
+            </label>
+          </div>
+          <div
+            className="list-creator__checkbox"
+          >
+            <label
+              htmlFor="open"
+            >
+              <input
+                checked={false}
+                id="open"
+                name="open"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+              Skal andre kunne føje til listen?
+            </label>
+          </div>
         </div>
         <div
           className="list-creator__submit text-right"
