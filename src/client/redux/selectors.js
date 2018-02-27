@@ -13,6 +13,6 @@ export const getRecommendedBooks = (state, tags, max) => {
   result.books = result.isLoading
     ? []
     : applyClientSideFilters(getBooks(booksReducer, r.pids), tags);
-  result.books = result.books.slic(0, max);
+  result.books = result.books.slice(0, max);
   return result;
 };
