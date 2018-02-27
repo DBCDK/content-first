@@ -517,8 +517,7 @@ describe('Community connector', () => {
           object: {foo: 'bar', key: 'baz'},
           user
         });
-        expect(Object.keys(result.data)).to.deep.equal(['ok', 'id', 'rev']);
-        expect(result.data.ok).to.equal(true);
+        expect(Object.keys(result.data)).to.deep.equal(['_id', '_rev']);
       });
       it('should return not-found if _id is present, and no previous object', async () => {
         arrangeQueryObjectNotFound();
@@ -626,7 +625,7 @@ describe('Community connector', () => {
           user
         });
         expect(result).to.deep.equal({
-          data: {id: 'some_id', ok: true, rev: contentsObj._rev}
+          data: {_id: 'some_id', _rev: contentsObj._rev}
         });
       });
     });

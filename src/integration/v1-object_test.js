@@ -52,12 +52,8 @@ describe('User data', () => {
           .post(url + '/object')
           .set('cookie', cookieUser1)
           .send(list)).body.data;
-        expect(Object.keys(result)).to.deep.equal(['ok', 'id', 'rev']);
-        Object.assign(list, {
-          _rev: result.rev,
-          _id: result.id,
-          _owner: user1.openplatformId
-        });
+        expect(Object.keys(result)).to.deep.equal(['_id', '_rev']);
+        Object.assign(list, result, {_owner: user1.openplatformId});
       }
 
       // We can fetch the list, even as anonymous user as it is public.
