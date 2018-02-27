@@ -22,16 +22,13 @@ const createTestElement = id => {
 describe('ListCreate', () => {
   test('list details is shown', () => {
     const currentList = {
-      data: {
-        id: 'current-list-id',
-        title: 'some title',
-        description: 'some description',
-        public: true,
-        open: true,
-        social: true,
-        list: []
-      },
-      links: {self: null}
+      id: 'current-list-id',
+      title: 'some title',
+      description: 'some description',
+      public: true,
+      open: true,
+      social: true,
+      list: []
     };
 
     const tree = renderer
@@ -42,16 +39,13 @@ describe('ListCreate', () => {
 
   test('renders a list with one book', () => {
     const currentList = {
-      data: {
-        id: 'current-list-id',
-        title: 'some title',
-        description: 'some description',
-        public: false,
-        open: false,
-        social: false,
-        list: [createTestElement(1)]
-      },
-      links: {self: null}
+      id: 'current-list-id',
+      title: 'some title',
+      description: 'some description',
+      public: false,
+      open: false,
+      social: false,
+      list: [createTestElement(1)]
     };
     const tree = renderer
       .create(<ListCreator id="current-list-id" currentList={currentList} />)
@@ -61,14 +55,11 @@ describe('ListCreate', () => {
 
   test('renders a list with multiple books', () => {
     const currentList = {
-      data: {
-        id: 'current-list-id',
-        title: 'some title',
-        description: 'some description',
-        public: false,
-        list: [createTestElement(3), createTestElement(2), createTestElement(1)]
-      },
-      links: {self: null}
+      id: 'current-list-id',
+      title: 'some title',
+      description: 'some description',
+      public: false,
+      list: [createTestElement(3), createTestElement(2), createTestElement(1)]
     };
     const tree = renderer
       .create(<ListCreator id="current-list-id" currentList={currentList} />)

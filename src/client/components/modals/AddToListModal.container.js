@@ -44,7 +44,7 @@ export class AddToListModal extends React.Component {
         this.props.dispatch(
           addElementToList(
             {book: work.book, description: work.origin || ''},
-            this.state.list.data.id
+            this.state.list.id
           )
         )
       );
@@ -55,11 +55,11 @@ export class AddToListModal extends React.Component {
             book: this.props.work.book,
             description: this.state.comment || this.props.work.origin || ''
           },
-          this.state.list.data.id
+          this.state.list.id
         )
       );
     }
-    this.props.dispatch(storeList(this.state.list.data.id));
+    this.props.dispatch(storeList(this.state.list.id));
     this.close();
   };
   onAddList = title => {
@@ -83,14 +83,14 @@ export class AddToListModal extends React.Component {
             <div className="list-overview" ref={e => (this.listsContainer = e)}>
               {this.props.customLists.map(l => {
                 return (
-                  <div key={l.data.id}>
+                  <div key={l.id}>
                     <input
                       type="radio"
                       name="list"
-                      checked={_.get(this.state, 'list.data.id') === l.data.id}
+                      checked={_.get(this.state, 'list.id') === l.id}
                       onChange={() => this.setState({list: l})}
                     />
-                    {l.data.title}
+                    {l.title}
                   </div>
                 );
               })}
@@ -126,7 +126,7 @@ export class AddToListModal extends React.Component {
                 this.props.works.length
               } ${this.props.works.length > 1 ? 'bøger' : 'bog'} i '${_.get(
                 this.state,
-                'list.data.title'
+                'list.title'
               )}'`}</p>
             )}
             {this.props.work && [

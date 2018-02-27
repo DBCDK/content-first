@@ -39,12 +39,12 @@ export default ({list, profile}) => {
           <ProfileImage src={'http://p-hold.com/200/200'} name="Profile Name" />
         </div>
         <div className="col-xs-9">
-          <p className="t-body">{list.data.description}</p>
-          {list.data.social ? <Comments id={list.data.id} /> : ''}
+          <p className="t-body">{list.description}</p>
+          {list.social ? <Comments id={list.id} /> : ''}
         </div>
       </div>
       <div className="list">
-        {list.data.list.map(({book, description}) => (
+        {list.list.map(({book, description}) => (
           <SimpleListItem
             key={book.pid}
             book={book}

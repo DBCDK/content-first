@@ -16,7 +16,7 @@ export class RecentListsBelt extends React.Component {
             <div className="col-xs-12">
               <Slider>
                 {this.props.recent.map(l => {
-                  return <ListCard key={l.data.id} list={l} />;
+                  return <ListCard key={l.id} list={l} />;
                 })}
               </Slider>
             </div>

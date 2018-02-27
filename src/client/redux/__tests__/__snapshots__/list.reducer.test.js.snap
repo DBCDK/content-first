@@ -3,23 +3,18 @@
 exports[`listReducer add element to list 1`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-1",
-      "list": Array [
-        Object {
-          "book": Object {
-            "pid": "pid1",
-          },
+    "description": "",
+    "id": "some-id-1",
+    "list": Array [
+      Object {
+        "book": Object {
+          "pid": "pid1",
         },
-      ],
-      "owner": null,
-      "title": "some list 1",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-1",
-    },
+      },
+    ],
+    "owner": null,
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;
@@ -27,24 +22,19 @@ Array [
 exports[`listReducer add element to list twice - no duplicates allowed 1`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-1",
-      "list": Array [
-        Object {
-          "book": Object {
-            "pid": "pid1",
-          },
-          "description": "some-description-1",
+    "description": "",
+    "id": "some-id-1",
+    "list": Array [
+      Object {
+        "book": Object {
+          "pid": "pid1",
         },
-      ],
-      "owner": null,
-      "title": "some list 1",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-1",
-    },
+        "description": "some-description-1",
+      },
+    ],
+    "owner": null,
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;
@@ -52,30 +42,20 @@ Array [
 exports[`listReducer add lists 1`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "a description 1",
-      "id": "some-id-1",
-      "list": Array [],
-      "owner": null,
-      "title": "some list 1",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-1",
-    },
+    "description": "a description 1",
+    "id": "some-id-1",
+    "list": Array [],
+    "owner": null,
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
   },
   Object {
-    "data": Object {
-      "description": "a description 2",
-      "id": "some-id-2",
-      "list": Array [],
-      "owner": null,
-      "title": "some list 2",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-2",
-    },
+    "description": "a description 2",
+    "id": "some-id-2",
+    "list": Array [],
+    "owner": null,
+    "title": "some list 2",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;
@@ -83,30 +63,20 @@ Array [
 exports[`listReducer get lists by type 1`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-1",
-      "list": Array [],
-      "owner": null,
-      "title": "some list 1",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-1",
-    },
+    "description": "",
+    "id": "some-id-1",
+    "list": Array [],
+    "owner": null,
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
   },
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-3",
-      "list": Array [],
-      "owner": null,
-      "title": "some list 3",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-3",
-    },
+    "description": "",
+    "id": "some-id-3",
+    "list": Array [],
+    "owner": null,
+    "title": "some list 3",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;
@@ -114,30 +84,20 @@ Array [
 exports[`listReducer get lists for owner 1`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-1",
-      "list": Array [],
-      "owner": "some-owner",
-      "title": "some list 1",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-1",
-    },
+    "description": "",
+    "id": "some-id-1",
+    "list": Array [],
+    "owner": "some-owner",
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
   },
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-3",
-      "list": Array [],
-      "owner": "some-owner",
-      "title": "some list 3",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-3",
-    },
+    "description": "",
+    "id": "some-id-3",
+    "list": Array [],
+    "owner": "some-owner",
+    "title": "some list 3",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;
@@ -147,33 +107,28 @@ exports[`listReducer get lists for owner 2`] = `Array []`;
 exports[`listReducer insert element at specific pos in list 1`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-1",
-      "list": Array [
-        Object {
-          "book": Object {
-            "pid": "pid1",
-          },
+    "description": "",
+    "id": "some-id-1",
+    "list": Array [
+      Object {
+        "book": Object {
+          "pid": "pid1",
         },
-        Object {
-          "book": Object {
-            "pid": "pid3",
-          },
+      },
+      Object {
+        "book": Object {
+          "pid": "pid3",
         },
-        Object {
-          "book": Object {
-            "pid": "pid2",
-          },
+      },
+      Object {
+        "book": Object {
+          "pid": "pid2",
         },
-      ],
-      "owner": null,
-      "title": "some list 1",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-1",
-    },
+      },
+    ],
+    "owner": null,
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;
@@ -181,23 +136,18 @@ Array [
 exports[`listReducer remove element from list 1`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-1",
-      "list": Array [
-        Object {
-          "book": Object {
-            "pid": "pid2",
-          },
+    "description": "",
+    "id": "some-id-1",
+    "list": Array [
+      Object {
+        "book": Object {
+          "pid": "pid2",
         },
-      ],
-      "owner": null,
-      "title": "some list 1",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-1",
-    },
+      },
+    ],
+    "owner": null,
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;
@@ -205,17 +155,12 @@ Array [
 exports[`listReducer remove list 1`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-2",
-      "list": Array [],
-      "owner": null,
-      "title": "some list 2",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-2",
-    },
+    "description": "",
+    "id": "some-id-2",
+    "list": Array [],
+    "owner": null,
+    "title": "some list 2",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;
@@ -223,23 +168,18 @@ Array [
 exports[`listReducer toggle element in list 1`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-1",
-      "list": Array [
-        Object {
-          "book": Object {
-            "pid": "pid1",
-          },
+    "description": "",
+    "id": "some-id-1",
+    "list": Array [
+      Object {
+        "book": Object {
+          "pid": "pid1",
         },
-      ],
-      "owner": null,
-      "title": "some list 1",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-1",
-    },
+      },
+    ],
+    "owner": null,
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;
@@ -247,17 +187,12 @@ Array [
 exports[`listReducer toggle element in list 2`] = `
 Array [
   Object {
-    "data": Object {
-      "description": "",
-      "id": "some-id-1",
-      "list": Array [],
-      "owner": null,
-      "title": "some list 1",
-      "type": "CUSTOM_LIST",
-    },
-    "links": Object {
-      "self": "/v1/lists/some-id-1",
-    },
+    "description": "",
+    "id": "some-id-1",
+    "list": Array [],
+    "owner": null,
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
   },
 ]
 `;

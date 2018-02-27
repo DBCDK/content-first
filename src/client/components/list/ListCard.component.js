@@ -12,7 +12,7 @@ class ListCard extends React.PureComponent {
       src: 'http://p-hold.com/200/200',
       description: 'This is a dummy profile. Profiles needs to be implemented'
     };
-    const elements = list.data.list;
+    const elements = list.list;
     return (
       <div className="list-card" style={style}>
         <div className="list-card-covers">
@@ -39,12 +39,12 @@ class ListCard extends React.PureComponent {
             }
           >
             <h3 className="list-card-title h-tight">
-              {list.data.title}
+              {list.title}
               <Badge value={elements.length} className="ml1" />
             </h3>
           </TruncateMarkup>
           <TruncateMarkup lines={3}>
-            <div className="list-card-description">{list.data.description}</div>
+            <div className="list-card-description">{list.description}</div>
           </TruncateMarkup>
         </div>
         <div className="list-card-bottom">

@@ -28,14 +28,11 @@ const listReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_LIST: {
       const {list} = action;
-      if (!list.links.self) {
-        throw new Error('Cant add list when list.links.self is not set');
-      }
-      if (!list.data.id) {
+      if (!list.id) {
         throw new Error('Cant add list when list.data.id is not set');
       }
       return Object.assign({}, state, {
-        lists: {...state.lists, [list.data.id]: list}
+        lists: {...state.lists, [list.id]: list}
       });
     }
     case REMOVE_LIST: {
@@ -60,14 +57,13 @@ const listReducer = (state = defaultState, action) => {
         [action.element.book.pid]: {}
       });
       const list = {
-        ...state.lists[action.id],
-        data: {...state.lists[action.id].data}
+        ...state.lists[action.id]
       };
       if (
-        list.data.list.filter(e => e.book.pid === action.element.book.pid)
-          .length === 0
+        list.list.filter(e => e.book.pid === action.element.book.pid).length ===
+        0
       ) {
-        list.data.list = [...list.data.list, action.element];
+        list.list = [...list.list, action.element];
       }
       return Object.assign({}, state, {
         lists: {...state.lists, [action.id]: list},
@@ -88,10 +84,9 @@ const listReducer = (state = defaultState, action) => {
         [action.element.book.pid]: {}
       });
       const list = {
-        ...state.lists[action.id],
-        data: {...state.lists[action.id].data}
+        ...state.lists[action.id]
       };
-      list.data.list = list.data.list.filter(
+      list.list = list.list.filter(
         element => element.book.pid !== action.element.book.pid
       );
       return Object.assign({}, state, {
@@ -116,16 +111,15 @@ const listReducer = (state = defaultState, action) => {
         [action.element.book.pid]: {}
       });
       const list = {
-        ...state.lists[action.id],
-        data: {...state.lists[action.id].data}
+        ...state.lists[action.id]
       };
-      const listElements = [...list.data.list];
+      const listElements = [...list.list];
       listElements.splice(
         Math.min(action.pos, listElements.length),
         0,
         action.element
       );
-      list.data.list = listElements.filter(
+      list.list = listElements.filter(
         (element, idx) =>
           !(element.book.pid === action.element.book.pid && idx !== action.pos)
       );
@@ -148,16 +142,15 @@ const listReducer = (state = defaultState, action) => {
         [action.element.book.pid]: {}
       });
       const list = {
-        ...state.lists[action.id],
-        data: {...state.lists[action.id].data}
+        ...state.lists[action.id]
       };
-      const removed = list.data.list.filter(
+      const removed = list.list.filter(
         e => e.book.pid !== action.element.book.pid
       );
-      if (removed.length < list.data.list.length) {
-        list.data.list = removed;
+      if (removed.length < list.list.length) {
+        list.list = removed;
       } else {
-        list.data.list = [...list.data.list, action.element];
+        list.list = [...list.list, action.element];
       }
       return Object.assign({}, state, {
         lists: {...state.lists, [action.id]: list},
@@ -171,8 +164,7 @@ const listReducer = (state = defaultState, action) => {
       if (!state.lists[action.data.id]) {
         throw new Error(`Could not find list with id ${action.data.id}`);
       }
-      const list = {...state.lists[action.data.id]};
-      list.data = {...list.data, ...action.data};
+      const list = {...state.lists[action.data.id], ...action.data};
       return Object.assign({}, state, {
         lists: {...state.lists, [action.data.id]: list}
       });
@@ -180,12 +172,12 @@ const listReducer = (state = defaultState, action) => {
     case LIST_LOAD_RESPONSE: {
       let lists = action.lists;
       const changeMap = lists.reduce((map, list) => {
-        list.data.list.forEach(element => (map[element.book.pid] = {}));
+        list.list.forEach(element => (map[element.book.pid] = {}));
         return map;
       }, {});
       const listMap = {};
       lists.forEach(l => {
-        listMap[l.data.id] = l;
+        listMap[l.id] = l;
       });
       return Object.assign({}, state, {
         lists: listMap,
@@ -194,9 +186,8 @@ const listReducer = (state = defaultState, action) => {
     }
     case ADD_LIST_IMAGE: {
       validateId(state, action);
-      const list = {...state.lists[action.id]};
-      list.data = {
-        ...list.data,
+      const list = {
+        ...state.lists[action.id],
         imageIsLoading: true,
         image: null,
         imageError: null
@@ -207,9 +198,8 @@ const listReducer = (state = defaultState, action) => {
     }
     case ADD_LIST_IMAGE_SUCCESS: {
       validateId(state, action);
-      const list = {...state.lists[action.id]};
-      list.data = {
-        ...list.data,
+      const list = {
+        ...state.lists[action.id],
         imageIsLoading: false,
         image: action.image.id,
         imageError: null
@@ -221,9 +211,8 @@ const listReducer = (state = defaultState, action) => {
     }
     case ADD_LIST_IMAGE_ERROR: {
       validateId(state, action);
-      const list = {...state.lists[action.id]};
-      list.data = {
-        ...list.data,
+      const list = {
+        ...state.lists[action.id],
         imageIsLoading: true,
         image: null,
         imageError: action.error
@@ -249,15 +238,12 @@ export const addList = ({
   return {
     type: ADD_LIST,
     list: {
-      data: {
-        id,
-        type,
-        title,
-        description,
-        list,
-        owner
-      },
-      links: {self: id ? `/v1/lists/${id}` : null}
+      id,
+      type,
+      title,
+      description,
+      list,
+      owner
     }
   };
 };
@@ -314,24 +300,22 @@ export const getListsForOwner = (state, params = {}) => {
   if (!params.owner) {
     return [];
   }
-  return getLists(state, params).filter(l => params.owner === l.data.owner);
+  return getLists(state, params).filter(l => params.owner === l.owner);
 };
 export const getLists = (state, {type, sort} = {}) => {
   const lists = Object.values(state.lists).filter(l => {
-    if (type && l.data.type !== type) {
+    if (type && l.type !== type) {
       return false;
     }
     return true;
   });
   if (sort) {
-    lists.sort((item1, item2) =>
-      item1.data.title.localeCompare(item2.data.title)
-    );
+    lists.sort((item1, item2) => item1.title.localeCompare(item2.title));
   }
   return lists;
 };
 export const getPublicLists = state => {
-  return Object.values(state.lists).filter(l => l.data.public);
+  return Object.values(state.lists).filter(l => l.public);
 };
 
 export const getListById = (state, id) => {

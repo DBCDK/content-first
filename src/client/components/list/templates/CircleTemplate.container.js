@@ -57,14 +57,14 @@ export default class CircleTemplate extends React.Component {
       this.state.clientWidth * BACKGROUND_IMAGE_HEIGHT_PERCENTAGE,
       BACKGROUND_IMAGE_MAX_HEIGHT
     );
-    const incrementBy = 360 / list.data.list.length;
+    const incrementBy = 360 / list.list.length;
     const circleOffset = incrementBy / 2;
     const circleWidth = Math.min(
       this.state.clientWidth * CIRCLE_WIDTH_PERCENTAGE,
       CIRCLE_MAX_WIDTH
     );
     const circleHeight = backgroundImageHeight * 0.95;
-    const rows = list.data.list.length / 1.5;
+    const rows = list.list.length / 1.5;
     const coverHeight = Math.min(circleHeight / rows, ELEMENT_MAX_SIZE);
     const elementWidth = Math.min(circleWidth / rows, ELEMENT_MAX_SIZE);
     const hideLabels = elementWidth < 120;
@@ -79,7 +79,7 @@ export default class CircleTemplate extends React.Component {
             className="background-image cover"
             alt=""
             src={`/v1/image/${
-              list.data.image
+              list.image
             }/${BACKGROUND_IMAGE_WIDTH}/${BACKGROUND_IMAGE_WIDTH *
               BACKGROUND_IMAGE_HEIGHT_PERCENTAGE}`}
           />
@@ -92,7 +92,7 @@ export default class CircleTemplate extends React.Component {
             }}
           >
             {list &&
-              list.data.list.map((element, idx) => {
+              list.list.map((element, idx) => {
                 const degree = idx * incrementBy;
                 const {x, y} = this.calcCoords(
                   degree + circleOffset - 90,
@@ -144,9 +144,7 @@ export default class CircleTemplate extends React.Component {
                       <div className="text-right">
                         <CheckmarkConnected
                           book={{book: element.book}}
-                          origin={`Fra ${list.data.title} lavet af ${
-                            profile.name
-                          }`}
+                          origin={`Fra ${list.title} lavet af ${profile.name}`}
                         />
                       </div>
                     </PopOver>

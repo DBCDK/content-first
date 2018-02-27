@@ -163,13 +163,12 @@ export const listMiddleware = store => next => async action => {
       return res;
     }
     case ADD_LIST: {
-      if (!action.list.data.id) {
-        const {id, location} = await createListLocation();
-        action.list.links.self = location;
-        action.list.data.id = id;
+      if (!action.list.id) {
+        const {id} = await createListLocation();
+        action.list.id = id;
       }
-      if (!action.list.data.owner) {
-        action.list.data.owner = store.getState().userReducer.openplatformId;
+      if (!action.list.owner) {
+        action.list.owner = store.getState().userReducer.openplatformId;
       }
       return next(action);
     }
@@ -184,8 +183,7 @@ export const listMiddleware = store => next => async action => {
       });
 
       for (const list of [...lists, ...recentLists]) {
-        const id = list.data && list.data.owner;
-        store.dispatch({type: REQUEST_USER, id});
+        store.dispatch({type: REQUEST_USER, id: list.owner});
       }
 
       return res;
