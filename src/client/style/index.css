@@ -50,6 +50,7 @@
 @import './components/carousel.css';
 @import './components/imageUpload.css';
 @import './components/profile.css';
+@import './components/comment.css';
 @import './components/circletemplate.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */
@@ -65,7 +66,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: #f1f1f1;
+  background: #fdfdfd;
   font-family: 'Lora', serif;
 }
 
@@ -79,7 +80,7 @@ body {
 }*/
 
 .container {
-  background: #fcfcfc;
+  background: #fafafa;
 }
 
 @media (min-width: 1450px) {

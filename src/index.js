@@ -15,6 +15,7 @@ import {tasteMiddleware} from './client/redux/taste.middleware';
 import {userMiddleware} from './client/redux/user.middleware';
 import {usersMiddleware} from './client/redux/users';
 import {orderMiddleware} from './client/redux/order.middleware';
+import {commentMiddleware} from './client/redux/comment.middleware';
 
 const store = createStore([
   userMiddleware,
@@ -25,7 +26,8 @@ const store = createStore([
   listMiddleware,
   searchMiddleware,
   logMiddleware,
-  orderMiddleware
+  orderMiddleware,
+  commentMiddleware
 ]);
 ReactDOM.render(
   <Provider store={store}>

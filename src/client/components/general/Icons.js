@@ -25,7 +25,6 @@ export const Comments = props => {
       <span
         style={{
           fontSize: 24,
-          color: 'black',
           verticalAlign: 'middle'
         }}
         className="glyphicon glyphicon-comment"
@@ -34,7 +33,8 @@ export const Comments = props => {
         style={{
           position: 'absolute',
           width: '100%',
-          top: -2,
+          top: '50%',
+          transform: 'translateY(-50%)',
           left: 0,
           color: 'white',
           fontSize: 11,

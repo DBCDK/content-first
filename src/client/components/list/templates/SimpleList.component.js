@@ -1,6 +1,7 @@
 import React from 'react';
 import WorkItem from '../../work/WorkItemConnected.component';
 import ProfileImage from '../../general/ProfileImage.component';
+import Comments from '../../comments/Comment.container';
 
 const SimpleListItem = ({book, description, profile}) => (
   <div className="row simplelist-item mb4">
@@ -39,6 +40,7 @@ export default ({list, profile}) => {
         </div>
         <div className="col-xs-9">
           <p className="t-body">{list.data.description}</p>
+          <Comments id={list.data.id} />
         </div>
       </div>
       <div className="list">

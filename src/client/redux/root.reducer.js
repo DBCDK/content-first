@@ -11,6 +11,7 @@ import shortListReducer from './shortlist.reducer';
 import modalReducer from './modal.reducer';
 import searchReducer from './search.reducer';
 import orderReducer from './order.reducer';
+import commentReducer from './comment.reducer';
 import bookcaseReducer from './bookcase.reducer';
 import booksReducer from './books.reducer';
 
@@ -26,6 +27,7 @@ const combined = combineReducers({
   modalReducer,
   searchReducer,
   orderReducer,
+  commentReducer,
   bookcaseReducer,
   tasteReducer,
   booksReducer

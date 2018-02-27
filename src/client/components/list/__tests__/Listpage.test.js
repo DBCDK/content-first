@@ -46,6 +46,11 @@ jest.mock(
   () => 'WorkItemConnectedMock'
 );
 
+jest.mock(
+  '../../comments/Comment.container.js',
+  () => 'Comments'
+);
+
 describe('ListView', () => {
   test('List is rendered', () => {
     const store = createStore(reducer);
