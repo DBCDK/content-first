@@ -99,6 +99,8 @@ describe('Public lists', () => {
     });
     expect(document[0].data).to.deep.include({
       type: threePublicLists[2].type,
+      open: true,
+      social: true,
       public: true,
       owner: seeder.knownUserId(),
       title: threePublicLists[2].title,
@@ -110,6 +112,8 @@ describe('Public lists', () => {
     });
     expect(document[1].data).to.deep.include({
       type: threePublicLists[1].type,
+      open: true,
+      social: true,
       public: true,
       owner: seeder.knownUserId(),
       title: threePublicLists[1].title,
@@ -139,6 +143,8 @@ describe('Public lists', () => {
     });
     expect(document[0].data).to.deep.include({
       type: threePublicLists[0].type,
+      open: true,
+      social: true,
       public: true,
       owner: seeder.knownUserId(),
       title: threePublicLists[0].title,
@@ -209,6 +215,8 @@ describe('Public lists', () => {
     {
       id: '64b7d06dc1ed4874b77aad99a0a630c2',
       type: 'CUSTOM_LIST',
+      open: true,
+      social: true,
       public: true,
       title: 'List 1',
       description: 'Se min liste 1',
@@ -222,6 +230,8 @@ describe('Public lists', () => {
     {
       id: '8390f9cee49b426294c8c888d4431ca0',
       type: 'CUSTOM_LIST',
+      open: true,
+      social: true,
       public: true,
       title: 'List 2',
       description: 'Se min liste 2',
@@ -235,6 +245,8 @@ describe('Public lists', () => {
     {
       id: '834cf89e233e457b9935018029a84e1d',
       type: 'CUSTOM_LIST',
+      open: true,
+      social: true,
       public: true,
       title: 'List 3',
       description: 'Se min liste 3',

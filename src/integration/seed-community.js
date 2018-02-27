@@ -128,6 +128,8 @@ const profileSeed = {
       id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
       type: 'SYSTEM_LIST',
       public: true,
+      open: true,
+      social: true,
       title: 'My List',
       description: 'A brand new list',
       list: [
@@ -140,6 +142,8 @@ const profileSeed = {
     {
       id: 'fa4f3a3de3a34a188234ed298ecbe810',
       type: 'CUSTOM_LIST',
+      open: false,
+      social: false,
       public: false,
       title: 'Gamle Perler',
       description: 'Bøger man simpelthen må læse',

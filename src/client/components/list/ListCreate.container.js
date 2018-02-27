@@ -118,6 +118,22 @@ const ListBooks = props => (
   </div>
 );
 
+const ListCheckbox = ({name, checked, onClick, text}) => (
+  <div className="list-creator__checkbox">
+    <label htmlFor={name}>
+      <input
+        id={name}
+        name={name}
+        type="checkbox"
+        checked={checked}
+        onClick={onClick}
+      />
+      <span />
+      {text}
+    </label>
+  </div>
+);
+
 export class ListCreator extends React.Component {
   constructor() {
     super();
@@ -149,11 +165,11 @@ export class ListCreator extends React.Component {
   onChange(currentList) {
     this.props.updateList({...this.props.currentList.data, ...currentList});
   }
-  setStatus() {
+  toggleStatus(selector) {
     const currentList = this.props.currentList;
     this.props.updateList({
       id: currentList.data.id,
-      public: !currentList.data.public
+      [selector]: !currentList.data[selector]
     });
   }
   render() {
@@ -190,17 +206,25 @@ export class ListCreator extends React.Component {
                 removeElementFromList={this.props.removeElementFromList}
                 list={this.props.currentList}
               />
-              <div className="list-creator__publication">
-                <label htmlFor="public">
-                  <input
-                    id="public"
-                    name="public"
-                    type="checkbox"
-                    checked={this.props.currentList.data.public || false}
-                    onClick={() => this.setStatus()}
-                  />
-                  <span /> Skal listen være offentlig?
-                </label>
+              <div className="mt3 mb3">
+                <ListCheckbox
+                  name="public"
+                  text="Skal listen være offentlig?"
+                  checked={this.props.currentList.data.public || false}
+                  onClick={() => this.toggleStatus('public')}
+                />
+                <ListCheckbox
+                  name="social"
+                  text="Skal andre kunne kommentere på listen?"
+                  checked={this.props.currentList.data.social || false}
+                  onClick={() => this.toggleStatus('social')}
+                />
+                <ListCheckbox
+                  name="open"
+                  text="Skal andre kunne føje til listen?"
+                  checked={this.props.currentList.data.open || false}
+                  onClick={() => this.toggleStatus('open')}
+                />
               </div>
               <div className="list-creator__submit text-right">
                 <button className="btn btn-primary" type="submit">

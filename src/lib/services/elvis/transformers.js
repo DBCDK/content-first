@@ -71,6 +71,8 @@ function contentFirstListToCommunityEntity(list) {
     attributes: {
       uuid: list.id,
       public: list.public || false,
+      open: list.open || false,
+      social: list.social || false,
       type: list.type,
       list: list.list,
       image: list.image,

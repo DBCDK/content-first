@@ -1049,7 +1049,9 @@ describe('Community connector', () => {
             ],
             type: 'CUSTOM_LIST',
             uuid: '23e5d3928c2b4291986d1c3a43b1762c',
-            public: false
+            public: false,
+            open: false,
+            social: false
           },
           log: null
         }
@@ -1096,6 +1098,8 @@ describe('Community connector', () => {
           attributes: {
             type: 'WEIRD_INTERNAL_TYPE',
             public: false,
+            open: false,
+            social: false,
             uuid: 'd7c39653d7bf45be8a09c0c589cf56aa',
             list: [{pid: '1234-abc-5678', desription: 'a book'}]
           }
@@ -1127,6 +1131,8 @@ describe('Community connector', () => {
         type: 'WEIRD_INTERNAL_TYPE',
         title: 'Brand New List',
         description: 'A too long\ndescription with several\nlines',
+        open: false,
+        social: false,
         public: false,
         owner: '1234567890',
         list: [{pid: '1234-abc-5678', desription: 'a book'}]
@@ -1266,6 +1272,8 @@ describe('Community connector', () => {
               description: 'Whoa, what a story'
             }
           ],
+          open: false,
+          social: false,
           public: false,
           owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
           type: 'SYSTEM_LIST'
@@ -1287,6 +1295,8 @@ describe('Community connector', () => {
               description: 'Magic to the people'
             }
           ],
+          open: false,
+          social: false,
           public: false,
           owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
           type: 'CUSTOM_LIST'
@@ -1317,6 +1327,8 @@ describe('Community connector', () => {
               description: 'Magic to the people'
             }
           ],
+          open: false,
+          social: false,
           public: false,
           owner: '1234567890'
         },
@@ -1402,6 +1414,8 @@ describe('Community connector', () => {
           contents: 'A too long\ndescription with several\nlines',
           attributes: {
             type: 'WEIRD_INTERNAL_TYPE',
+            open: false,
+            social: false,
             public: false,
             uuid: 'd7c39653d7bf45be8a09c0c589cf56aa',
             list: [{pid: '1234-abc-5678', desription: 'a book'}]
@@ -1447,6 +1461,8 @@ describe('Community connector', () => {
               description: 'Magic to the people'
             }
           ],
+          open: false,
+          social: false,
           public: false
         }
       });
@@ -1505,6 +1521,8 @@ describe('Community connector', () => {
             ],
             type: 'SYSTEM_LIST',
             uuid: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
+            open: false,
+            social: false,
             public: false
           },
           log: null
@@ -1567,6 +1585,8 @@ describe('Community connector', () => {
               profile_id: 543,
               uuid: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
               owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
+              open: true,
+              social: true,
               public: true,
               type: 'SYSTEM_LIST',
               title: 'My List',
@@ -1583,6 +1603,8 @@ describe('Community connector', () => {
               profile_id: 543,
               uuid: 'fa4f3a3de3a34a188234ed298ecbe810',
               owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
+              open: true,
+              social: true,
               public: true,
               type: 'CUSTOM_LIST',
               title: 'Gamle Perler',
@@ -1611,6 +1633,8 @@ describe('Community connector', () => {
                 pid: '870970-basis-22629344'
               }
             ],
+            open: true,
+            social: true,
             public: true,
             owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
             title: 'My List',
@@ -1632,6 +1656,8 @@ describe('Community connector', () => {
                 pid: '870970-basis-47573974'
               }
             ],
+            open: true,
+            social: true,
             public: true,
             owner: 'nCZVkYu9aYSg6Mlduhv4g7OaN0wnt8+f',
             title: 'Gamle Perler',

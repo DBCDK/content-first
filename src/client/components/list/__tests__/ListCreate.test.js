@@ -27,6 +27,8 @@ describe('ListCreate', () => {
         title: 'some title',
         description: 'some description',
         public: true,
+        open: true,
+        social: true,
         list: []
       },
       links: {self: null}
@@ -45,6 +47,8 @@ describe('ListCreate', () => {
         title: 'some title',
         description: 'some description',
         public: false,
+        open: false,
+        social: false,
         list: [createTestElement(1)]
       },
       links: {self: null}
