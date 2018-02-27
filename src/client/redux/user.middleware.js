@@ -11,6 +11,7 @@ import {
   ADD_USER_AGENCY,
   SAVE_USER_PROFILE_SUCCESS
 } from './user.reducer';
+import {RECEIVE_USER} from './users';
 import {SHORTLIST_LOAD_REQUEST} from './shortlist.reducer';
 import {LIST_LOAD_REQUEST} from './list.reducer';
 import openplatform from 'openplatform';
@@ -36,6 +37,12 @@ export const userMiddleware = store => next => action => {
       return next(action);
     case ON_USER_DETAILS_RESPONSE:
       next(action);
+      store.dispatch({
+        type: RECEIVE_USER,
+        id: action.user.openplatformId,
+        user: action.user
+      });
+
       return (async () => {
         try {
           if (!action.user) {
@@ -60,6 +67,12 @@ export const userMiddleware = store => next => action => {
       })();
     case SAVE_USER_PROFILE:
       next(action);
+      store.dispatch({
+        type: RECEIVE_USER,
+        id: action.user.openplatformId,
+        user: action.user
+      });
+
       return (async () => {
         try {
           const user = await saveUser(action.user);
