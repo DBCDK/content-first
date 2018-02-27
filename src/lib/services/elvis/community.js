@@ -679,7 +679,7 @@ class Community {
       const entityUrl = await this.gettingPostEntityUrl();
       await request.post(entityUrl).send(entity);
     }
-    return {data: {ok: true, id: object._id, rev: object._rev}};
+    return {data: {_id: object._id, _rev: object._rev}};
   }
 
   async getObjectById(id, user = {}) {
