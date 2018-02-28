@@ -7,7 +7,7 @@ import Link from '../general/Link.component';
 
 class ListPage extends React.Component {
   getTemplate(list) {
-    switch (list.data.template) {
+    switch (list.template) {
       case 'simple':
         return SimpleList;
       case 'circle':
@@ -33,11 +33,11 @@ class ListPage extends React.Component {
       <div className="list-wrapper tl">
         <div className="mb4 mt5 col-xs-offset-0 col-md-offset-1">
           <h1 className="t-title h-tight h-underline inline-block align-middle">
-            {list.data.title}
+            {list.title}
           </h1>
           <Link
             className="small link-subtle align-middle ml2"
-            href={`/lister/${list.data.id}/rediger`}
+            href={`/lister/${list.id}/rediger`}
           >
             Redigér liste
           </Link>

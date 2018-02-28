@@ -53,7 +53,7 @@ export class Lists extends React.Component {
     return (
       <div className="lists-page">
         <div className="mb3">
-          {this.props.lists.map(({data}) => (
+          {this.props.lists.map(data => (
             <ListItem
               list={data.list}
               title={data.title}

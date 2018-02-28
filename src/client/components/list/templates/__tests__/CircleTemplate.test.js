@@ -28,21 +28,18 @@ const createTestElement = id => {
 describe('CircleTemplate', () => {
   test('circle of list items is shown', () => {
     const list = {
-      data: {
-        id: 'current-list-id',
-        title: 'some title',
-        description: 'some description',
-        public: true,
-        list: [
-          createTestElement(1),
-          createTestElement(2),
-          createTestElement(3),
-          createTestElement(4),
-          createTestElement(5),
-          createTestElement(6)
-        ]
-      },
-      links: {self: null}
+      id: 'current-list-id',
+      title: 'some title',
+      description: 'some description',
+      public: true,
+      list: [
+        createTestElement(1),
+        createTestElement(2),
+        createTestElement(3),
+        createTestElement(4),
+        createTestElement(5),
+        createTestElement(6)
+      ]
     };
 
     const tree = renderer.create(<CircleTemplate list={list} />).toJSON();

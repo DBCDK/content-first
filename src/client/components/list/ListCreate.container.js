@@ -105,15 +105,15 @@ const ListBooks = props => (
   <div className="list-drag">
     <BookSearchSuggester
       list={props.list}
-      onSubmit={book => props.addElementToList(book, props.list.data.id)}
+      onSubmit={book => props.addElementToList(book, props.list.id)}
     />
     <DragableList
-      list={props.list.data.list}
+      list={props.list.list}
       renderListItem={ListItem}
       onUpdate={updatedList => {
-        props.updateList({...props.list.data, list: updatedList});
+        props.updateList({...props.list, list: updatedList});
       }}
-      onRemove={book => props.removeElementFromList(book, props.list.data.id)}
+      onRemove={book => props.removeElementFromList(book, props.list.id)}
     />
   </div>
 );
@@ -155,7 +155,7 @@ export class ListCreator extends React.Component {
   }
   async onSubmit(e) {
     e.preventDefault();
-    if (!this.props.currentList.data.title) {
+    if (!this.props.currentList.title) {
       this.setState({hasError: true});
       window.scrollTo(0, 0);
       return;
@@ -163,20 +163,20 @@ export class ListCreator extends React.Component {
     await this.props.storeList(this.props.currentList);
   }
   onChange(currentList) {
-    this.props.updateList({...this.props.currentList.data, ...currentList});
+    this.props.updateList({...this.props.currentList, ...currentList});
   }
   toggleStatus(selector) {
     const currentList = this.props.currentList;
     this.props.updateList({
-      id: currentList.data.id,
-      [selector]: !currentList.data[selector]
+      id: currentList.id,
+      [selector]: !currentList[selector]
     });
   }
   render() {
     if (!this.props.currentList) {
       return null;
     }
-    const isNew = this.props.currentList.data.created_epoch ? false : true;
+    const isNew = this.props.currentList.created_epoch ? false : true;
     return (
       <div className="list-creator">
         <h1 className="list-creator__headline">
@@ -186,16 +186,16 @@ export class ListCreator extends React.Component {
           <div className="col-xs-8">
             <form className="mb4" onSubmit={e => this.onSubmit(e)}>
               <ListDetails
-                id={this.props.currentList.data.id}
+                id={this.props.currentList.id}
                 hasError={this.state.hasError}
-                title={this.props.currentList.data.title}
-                description={this.props.currentList.data.description}
+                title={this.props.currentList.title}
+                description={this.props.currentList.description}
                 onChange={e => this.onChange(e)}
                 addImage={this.props.addImage}
-                image={this.props.currentList.data.image}
-                imageError={this.props.currentList.data.imageError}
-                imageIsLoading={this.props.currentList.data.imageIsLoading}
-                template={this.props.currentList.data.template}
+                image={this.props.currentList.image}
+                imageError={this.props.currentList.imageError}
+                imageIsLoading={this.props.currentList.imageIsLoading}
+                template={this.props.currentList.template}
               />
               <h2 className="list-creator__headline">
                 Tilføj bøger til listen
@@ -210,19 +210,19 @@ export class ListCreator extends React.Component {
                 <ListCheckbox
                   name="public"
                   text="Skal listen være offentlig?"
-                  checked={this.props.currentList.data.public || false}
+                  checked={this.props.currentList.public || false}
                   onClick={() => this.toggleStatus('public')}
                 />
                 <ListCheckbox
                   name="social"
                   text="Skal andre kunne kommentere på listen?"
-                  checked={this.props.currentList.data.social || false}
+                  checked={this.props.currentList.social || false}
                   onClick={() => this.toggleStatus('social')}
                 />
                 <ListCheckbox
                   name="open"
                   text="Skal andre kunne føje til listen?"
-                  checked={this.props.currentList.data.open || false}
+                  checked={this.props.currentList.open || false}
                   onClick={() => this.toggleStatus('open')}
                 />
               </div>
@@ -254,7 +254,7 @@ export const mapDispatchToProps = dispatch => ({
   addImage: (id, image) => dispatch({type: ADD_LIST_IMAGE, image, id}),
   updateList: data => dispatch(updateList(data)),
   storeList: async list => {
-    await dispatch(storeList(list.data.id));
+    await dispatch(storeList(list.id));
     dispatch({type: HISTORY_REPLACE, path: '/lister'});
   },
   addElementToList: (book, id) => dispatch(addElementToList(book, id)),

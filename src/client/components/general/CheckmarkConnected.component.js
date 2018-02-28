@@ -67,15 +67,15 @@ export class CheckmarkConnected extends React.PureComponent {
         >
           {this.props.systemLists.map(l => (
             <MenuItem
-              key={l.data.id}
-              text={l.data.title}
+              key={l.id}
+              text={l.title}
               checked={
-                l.data.list.filter(
+                l.list.filter(
                   element => element.book.pid === this.props.book.book.pid
                 ).length > 0
               }
               onClick={e => {
-                this.toggleInList(this.props.book, l.data.id);
+                this.toggleInList(this.props.book, l.id);
                 e.stopPropagation();
               }}
             />

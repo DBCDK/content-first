@@ -25,9 +25,9 @@ const listToPayload = list => {
   return listCopy;
 };
 const payloadToList = async payload => {
-  const result = Object.assign({}, payload);
-  result.data.id = locationToId(result.links.self);
-  const pids = result.data.list.map(obj => obj.pid);
+  const result = Object.assign({}, payload.data);
+  result.id = locationToId(payload.links.self);
+  const pids = result.list.map(obj => obj.pid);
   if (pids.length === 0) {
     return result;
   }
@@ -36,7 +36,7 @@ const payloadToList = async payload => {
     map[w.book.pid] = w;
     return map;
   }, {});
-  result.data.list = payload.data.list.map(obj => {
+  result.list = payload.data.list.map(obj => {
     return Object.assign(obj, worksMap[obj.pid]);
   });
   return result;
@@ -50,7 +50,7 @@ export const saveLists = async (lists, isLoggedIn = false) => {
   }
 };
 export const saveList = async list => {
-  const listPayload = listToPayload(list.data);
+  const listPayload = listToPayload(list);
   const location = list.links.self || (await createListLocation()).location;
   await request.put(location).send(listPayload);
   return Object.assign({}, list, {links: {self: location}});
@@ -86,25 +86,19 @@ export const loadLists = async isLoggedIn => {
   // Create system lists if they do not exist
   if (!containsList(SYSTEM_LIST, 'Har læst', result)) {
     const list = await saveList({
-      data: {
-        type: SYSTEM_LIST,
-        title: 'Har læst',
-        description: 'En liste over læste bøger',
-        list: []
-      },
-      links: {self: null}
+      type: SYSTEM_LIST,
+      title: 'Har læst',
+      description: 'En liste over læste bøger',
+      list: []
     });
     result.push(list);
   }
   if (!containsList(SYSTEM_LIST, 'Vil læse', result)) {
     const list = await saveList({
-      data: {
-        type: SYSTEM_LIST,
-        title: 'Vil læse',
-        description: 'En liste over bøger jeg gerne vil læse',
-        list: []
-      },
-      links: {self: null}
+      type: SYSTEM_LIST,
+      title: 'Vil læse',
+      description: 'En liste over bøger jeg gerne vil læse',
+      list: []
     });
     result.push(list);
   }
@@ -113,10 +107,7 @@ export const loadLists = async isLoggedIn => {
 };
 
 const containsList = (type, title, lists) => {
-  return (
-    lists.filter(l => l.data.type === type && l.data.title === title).length !==
-    0
-  );
+  return lists.filter(l => l.type === type && l.title === title).length !== 0;
 };
 export const saveCurrentList = currentList => {
   setItem(CURRENT_LIST_KEY, currentList, LIST_VERSION);
