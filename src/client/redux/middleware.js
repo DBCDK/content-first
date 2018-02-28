@@ -33,12 +33,7 @@ import {
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {
-  saveList,
-  loadLists,
-  createListLocation,
-  loadRecentPublic
-} from '../utils/requestLists';
+import {saveList, loadLists, loadRecentPublic} from '../utils/requestLists';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -144,18 +139,23 @@ export const listMiddleware = store => next => async action => {
   switch (action.type) {
     case STORE_LIST: {
       const res = next(action);
-      const {isLoggedIn} = store.getState().userReducer;
       const list = getListById(store.getState().listReducer, action.id);
       if (!list) {
         throw new Error(`list with id ${action.id} not found`);
       }
-      await saveList(list, isLoggedIn);
+      if (store.getState().userReducer.isLoggedIn) {
+        const updatedList = await saveList(list);
+        store.dispatch({
+          type: ADD_LIST,
+          id: updatedList.id,
+          list: updatedList
+        });
+      }
       return res;
     }
     case ADD_LIST: {
       if (!action.list.id) {
-        const {id} = await createListLocation();
-        action.list.id = id;
+        action.list = await saveList(action.list);
       }
       if (!action.list.owner) {
         action.list.owner = store.getState().userReducer.openplatformId;
@@ -164,8 +164,8 @@ export const listMiddleware = store => next => async action => {
     }
     case LIST_LOAD_REQUEST: {
       const res = next(action);
-      const {isLoggedIn} = store.getState().userReducer;
-      const lists = await loadLists(isLoggedIn);
+      const {openplatformId} = store.getState().userReducer;
+      const lists = await loadLists(openplatformId);
       const recentLists = await loadRecentPublic();
       store.dispatch({
         type: LIST_LOAD_RESPONSE,
