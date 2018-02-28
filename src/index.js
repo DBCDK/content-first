@@ -28,7 +28,7 @@ const store = createStore([
   searchMiddleware,
   logMiddleware,
   orderMiddleware,
-  recommendMiddleware
+  recommendMiddleware,
   commentMiddleware
 ]);
 ReactDOM.render(
