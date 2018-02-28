@@ -1,9 +1,7 @@
 import request from 'superagent';
-import {ON_BELT_REQUEST} from './belts.reducer';
 import {ON_WORK_REQUEST} from './work.reducer';
 import {BOOKS_REQUEST} from './books.reducer';
 import {
-  fetchBeltWorks,
   fetchBooks,
   fetchWork,
   fetchSearchResults,
@@ -89,14 +87,6 @@ export const historyMiddleware = history => store => next => action => {
 
 export const requestMiddleware = store => next => action => {
   switch (action.type) {
-    case ON_BELT_REQUEST: {
-      const state = store.getState();
-      const b = state.beltsReducer.belts.find(
-        belt => belt.name === action.beltName
-      );
-      fetchBeltWorks(b, state.filterReducer, store.dispatch);
-      return next(action);
-    }
     case ON_WORK_REQUEST: {
       fetchWork(action.pid, store.dispatch);
       return next(action);

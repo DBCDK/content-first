@@ -148,7 +148,6 @@ class FilterPage extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const selectedTagIds = state.filterReducer.beltFilters[ownProps.belt.name];
   return {
-    filterState: state.filterReducer,
     belts: state.beltsReducer.belts,
     queryFilters:
       state.routerReducer.params && state.routerReducer.params.filter

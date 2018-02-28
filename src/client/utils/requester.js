@@ -1,5 +1,4 @@
 import request from 'superagent';
-import {ON_BELT_RESPONSE} from '../redux/belts.reducer';
 import {ON_WORK_RESPONSE} from '../redux/work.reducer';
 import {BOOKS_RESPONSE} from '../redux/books.reducer';
 import {SEARCH_RESULTS} from '../redux/search.reducer';
@@ -9,8 +8,6 @@ import {
   ON_LOGOUT_RESPONSE
 } from '../redux/user.reducer';
 import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
-import {getLeaves} from './taxonomy';
-import profiles from '../../data/ranked-profiles.json';
 import similar from '../../data/similar-pids.json';
 import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
@@ -19,49 +16,6 @@ import {setItem, getItem} from '../utils/localstorage';
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;
-
-const filter = (works, selectedTitles) => {
-  // Lets perform some client side filtering of stuff which is not yet
-  // possible in backend
-  return works.filter(work => {
-    if (selectedTitles.indexOf('Kort') >= 0) {
-      if (work.book.pages > 150) {
-        return false;
-      }
-    }
-    if (selectedTitles.indexOf('Medium længde') >= 0) {
-      if (work.book.pages <= 150 || work.book.pages > 350) {
-        return false;
-      }
-    }
-    if (selectedTitles.indexOf('Laaaaaaaaaaaaaaaang') >= 0) {
-      if (work.book.pages <= 350) {
-        return false;
-      }
-    }
-    if (selectedTitles.indexOf('Er på mange biblioteker') >= 0) {
-      if (work.book.libraries < 50) {
-        return false;
-      }
-    }
-    if (selectedTitles.indexOf('Udlånes meget') >= 0) {
-      if (work.book.loans < 100) {
-        return false;
-      }
-    }
-    return true;
-  });
-};
-
-const sort = (works, profile) => {
-  const scores = profiles[profile.id];
-  works.forEach(w => {
-    w.score = scores[w.book.pid] || 0;
-  });
-
-  // will sort in place - no new array returned
-  works.sort((w1, w2) => w1.score - w2.score);
-};
 
 export const fetchTags = async (pids = []) => {
   /*
@@ -102,11 +56,11 @@ export const fetchBooks = (pids = [], dispatch) => {
   Promise.all([getBooks])
     .then(async responses => {
       const books = JSON.parse(responses[0].text).data;
-      const tags = await fetchTags(pids);
-
-      books.forEach(b => {
-        b.book.tags = tags[b.book.pid];
-      });
+      // const tags = await fetchTags(pids);
+      //
+      // books.forEach(b => {
+      //   b.book.tags = tags[b.book.pid];
+      // });
 
       dispatch({type: BOOKS_RESPONSE, response: books});
     })
@@ -152,43 +106,6 @@ export const fetchWork = (pid, dispatch) => {
     })
     .catch(error => {
       dispatch({type: ON_WORK_RESPONSE, pid, error});
-    });
-};
-
-export const fetchBeltWorks = (belt, filterState, dispatch) => {
-  // get the selected tag ids, which are part of the taxonomy
-  // these are the tags which do not have the custom property set to true
-  const allSelected = filterState.beltFilters[belt.name];
-  const selectedTags = getLeaves(filterState.filters)
-    .filter(f => !f.custom && allSelected.indexOf(f.id) >= 0)
-    .map(f => f.id);
-
-  // push 'all' tag to fetch all works if no taxonomy tags are selected.
-  // for instance if only client side filters are selected.
-  selectedTags.push('-1');
-
-  // get titles of custom selected tags. These tags are not part of the taxonomy
-  // and hence they need to be filtered by other means. We'll do that client side
-  // for now.
-  const selectedTitles = getLeaves(filterState.filters)
-    .filter(f => f.custom && allSelected.indexOf(f.id) >= 0)
-    .map(f => f.title);
-
-  request
-    .get('/v1/recommendations')
-    .query({tags: selectedTags})
-    .end(function(err, res) {
-      if (err) {
-        dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, error: err});
-        return;
-      }
-
-      // Lets perform some client side filtering of stuff which is not yet
-      // possible in backend
-      const works = filter(JSON.parse(res.text).data, selectedTitles);
-      sort(works, filterState.sortBy.find(o => o.selected));
-
-      dispatch({type: ON_BELT_RESPONSE, beltName: belt.name, response: works});
     });
 };
 
