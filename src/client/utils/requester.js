@@ -66,7 +66,12 @@ export const fetchBooks = (pids = [], dispatch) => {
       dispatch({type: BOOKS_RESPONSE, response: books});
     })
     .catch(error => {
-      dispatch({type: BOOKS_RESPONSE, pids, error});
+      dispatch({
+        type: 'LOG_ERROR',
+        actionType: BOOKS_RESPONSE,
+        pids,
+        error: String(error)
+      });
     });
 };
 
