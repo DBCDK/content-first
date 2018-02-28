@@ -6,7 +6,7 @@ import CheckmarkButton from './CheckmarkButton.component';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
 import {
   storeList,
-  getLists,
+  getListsForOwner,
   toggleElementInList,
   SYSTEM_LIST
 } from '../../redux/list.reducer';
@@ -118,7 +118,7 @@ export default connect(
   state => {
     return {
       shortListState: state.shortListReducer,
-      systemLists: getLists(state.listReducer, {
+      systemLists: getListsForOwner(state.listReducer, {
         type: SYSTEM_LIST,
         owner: state.userReducer.openplatformId,
         sort: true

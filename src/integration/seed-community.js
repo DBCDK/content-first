@@ -50,6 +50,20 @@ async function seedingCommunity() {
   await addingListAndDeleteIt(profileId);
   await cachingOneList(profileId, firstId);
   await addingListReservation(profileId);
+
+  const data2 = await community.creatingUserProfile(profile);
+  const profileId2 = data2.id;
+  await community.updatingProfileWithShortlistAndTastes(profileId2, {
+    attributes: {
+      openplatform_id: '123openplatform-id-for-user-2',
+      openplatform_token: 'someToken2'
+    }
+  });
+  await knex(cookieTable).insert({
+    cookie: 'a-valid-login-token-for-other-user',
+    community_profile_id: profileId2,
+    expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
+  });
 }
 
 async function addingListAndDeleteIt(profileId) {
@@ -114,6 +128,8 @@ const profileSeed = {
       id: 'fc8fbafab2a94bfaae5f84b1d5bfd480',
       type: 'SYSTEM_LIST',
       public: true,
+      open: true,
+      social: true,
       title: 'My List',
       description: 'A brand new list',
       list: [
@@ -126,6 +142,8 @@ const profileSeed = {
     {
       id: 'fa4f3a3de3a34a188234ed298ecbe810',
       type: 'CUSTOM_LIST',
+      open: false,
+      social: false,
       public: false,
       title: 'Gamle Perler',
       description: 'Bøger man simpelthen må læse',

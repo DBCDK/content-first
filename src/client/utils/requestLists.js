@@ -12,6 +12,8 @@ const listToPayload = list => {
   listCopy.description = list.description;
   listCopy.type = list.type;
   listCopy.public = list.public;
+  listCopy.social = list.social;
+  listCopy.open = list.open;
   listCopy.image = list.image;
   listCopy.template = list.template;
   listCopy.list = list.list.map(element => {

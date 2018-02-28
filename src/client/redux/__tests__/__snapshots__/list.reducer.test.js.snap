@@ -13,6 +13,7 @@ Array [
           },
         },
       ],
+      "owner": null,
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
@@ -37,6 +38,7 @@ Array [
           "description": "some-description-1",
         },
       ],
+      "owner": null,
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
@@ -54,6 +56,7 @@ Array [
       "description": "a description 1",
       "id": "some-id-1",
       "list": Array [],
+      "owner": null,
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
@@ -66,6 +69,7 @@ Array [
       "description": "a description 2",
       "id": "some-id-2",
       "list": Array [],
+      "owner": null,
       "title": "some list 2",
       "type": "CUSTOM_LIST",
     },
@@ -83,6 +87,7 @@ Array [
       "description": "",
       "id": "some-id-1",
       "list": Array [],
+      "owner": null,
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
@@ -95,6 +100,7 @@ Array [
       "description": "",
       "id": "some-id-3",
       "list": Array [],
+      "owner": null,
       "title": "some list 3",
       "type": "CUSTOM_LIST",
     },
@@ -104,6 +110,39 @@ Array [
   },
 ]
 `;
+
+exports[`listReducer get lists for owner 1`] = `
+Array [
+  Object {
+    "data": Object {
+      "description": "",
+      "id": "some-id-1",
+      "list": Array [],
+      "owner": "some-owner",
+      "title": "some list 1",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "/v1/lists/some-id-1",
+    },
+  },
+  Object {
+    "data": Object {
+      "description": "",
+      "id": "some-id-3",
+      "list": Array [],
+      "owner": "some-owner",
+      "title": "some list 3",
+      "type": "CUSTOM_LIST",
+    },
+    "links": Object {
+      "self": "/v1/lists/some-id-3",
+    },
+  },
+]
+`;
+
+exports[`listReducer get lists for owner 2`] = `Array []`;
 
 exports[`listReducer insert element at specific pos in list 1`] = `
 Array [
@@ -128,6 +167,7 @@ Array [
           },
         },
       ],
+      "owner": null,
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
@@ -151,6 +191,7 @@ Array [
           },
         },
       ],
+      "owner": null,
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
@@ -168,6 +209,7 @@ Array [
       "description": "",
       "id": "some-id-2",
       "list": Array [],
+      "owner": null,
       "title": "some list 2",
       "type": "CUSTOM_LIST",
     },
@@ -191,6 +233,7 @@ Array [
           },
         },
       ],
+      "owner": null,
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },
@@ -208,6 +251,7 @@ Array [
       "description": "",
       "id": "some-id-1",
       "list": Array [],
+      "owner": null,
       "title": "some list 1",
       "type": "CUSTOM_LIST",
     },

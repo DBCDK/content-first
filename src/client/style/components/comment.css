@@ -1,0 +1,54 @@
+.comments {
+  font-family: var(--secondary-font);
+}
+
+.comment {
+  width: 100%;
+  padding: 1rem;
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+comment-textarea {
+  border-color: #999;
+}
+
+.comment-wrapper {
+  position: relative;
+}
+
+.comment-author {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.comment-time {
+  color: var(--greybrown);
+  font-size: 1.4rem;
+}
+
+.comments .glyphicon-user {
+  font-size: 17px;
+  width: 100%;
+  /* height: 35px; */
+  text-align: center;
+  position: relative;
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.comment-saving {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+}
+
+.comment-saving .spinner {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
