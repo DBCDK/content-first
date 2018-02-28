@@ -4,20 +4,21 @@ import Belt from './Belt.component';
 import RecentListsBelt from '../belt/RecentListsBelt.container';
 import WorkItem from '../work/WorkItemConnected.component';
 import CreateProfile from '../profile/CreateProfile.component';
-import {ON_TAG_TOGGLE, ON_BELT_REQUEST} from '../../redux/belts.reducer';
+import {ON_TAG_TOGGLE} from '../../redux/belts.reducer';
 import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import Slider from '../belt/Slider.component';
-import {getLeaves} from '../../utils/taxonomy';
+import {RECOMMEND_REQUEST} from '../../redux/recommend';
+import {getRecommendedBooks} from '../../redux/selectors';
+import {filtersMap} from '../../redux/filter.reducer';
 
 class FrontPage extends React.Component {
   componentDidMount() {
     // Fetch works for each belt
-    this.props.beltsState.belts.forEach(belt => {
-      this.props.dispatch({type: ON_RESET_FILTERS, beltName: belt.name});
+    this.props.belts.forEach(belt => {
       if (belt.onFrontPage) {
-        this.props.dispatch({type: ON_BELT_REQUEST, beltName: belt.name});
+        this.props.fetchBelt(belt, this.props.getBeltTagIdList(belt));
       }
     });
     if (window.$) {
@@ -34,29 +35,22 @@ class FrontPage extends React.Component {
   renderBelts() {
     return (
       <div className="belts col-xs-11 col-centered">
-        {this.props.beltsState.belts.map((belt, idx) => {
+        {this.props.belts.map((belt, idx) => {
           if (!belt.onFrontPage) {
             return null;
           }
 
-          const allFilters = getLeaves(this.props.filterState.filters);
-          const selectedFilters = this.props.filterState.beltFilters[
-            belt.name
-          ].map(id => allFilters.find(filter => filter.id === id));
+          const selectedFilters = this.props.getBeltTags(belt.name);
           const links = belt.links.map(beltName => {
             return {
               title: beltName,
-              filters: this.props.filterState.beltFilters[beltName].map(id =>
-                allFilters.find(filter => filter.id === id)
-              )
+              filters: this.props.getBeltTags(beltName)
             };
           });
 
-          const remembered = {};
-          this.props.shortListState.elements.forEach(e => {
-            remembered[e.book.pid] = true;
-          });
-
+          const recommendedBooks = this.props.recommendedBooks(
+            this.props.getBeltTagIdList(belt)
+          );
           return (
             <Belt
               key={idx}
@@ -64,13 +58,10 @@ class FrontPage extends React.Component {
               links={links}
               filters={selectedFilters}
               onTagClick={tagId => {
-                this.props.dispatch({type: ON_TAG_TOGGLE, tagId, beltId: idx});
+                this.props.tagToggle(tagId, idx);
               }}
               onMoreClick={beltName => {
-                this.props.dispatch({
-                  type: HISTORY_PUSH,
-                  path: beltNameToPath(beltName)
-                });
+                this.props.historyPush(beltNameToPath(beltName));
               }}
             >
               {belt.requireLogin && <CreateProfile />}
@@ -78,8 +69,8 @@ class FrontPage extends React.Component {
                 <div className="row mb4">
                   <div className="col-xs-12">
                     <Slider>
-                      {belt.works &&
-                        belt.works.map(work => (
+                      {!recommendedBooks.isLoading &&
+                        recommendedBooks.books.map(work => (
                           <WorkItem
                             work={work}
                             key={work.book.pid}
@@ -110,14 +101,40 @@ class FrontPage extends React.Component {
     );
   }
 }
-export default connect(
-  // Map redux state to props
-  state => {
-    return {
-      beltsState: state.beltsReducer,
-      filterState: state.filterReducer,
-      shortListState: state.shortListReducer,
-      listState: state.listReducer
-    };
-  }
-)(FrontPage);
+
+const mapStateToProps = state => {
+  return {
+    belts: state.beltsReducer.belts,
+    recommendedBooks: tags => {
+      const b = getRecommendedBooks(state, tags, 40);
+      return b;
+    },
+    getBeltTagIdList: belt => state.filterReducer.beltFilters[belt.name],
+    getBeltTags: beltName =>
+      state.filterReducer.beltFilters[beltName].map(id => filtersMap[id]),
+    filterState: state.filterReducer,
+    shortListState: state.shortListReducer,
+    listState: state.listReducer
+  };
+};
+
+export const mapDispatchToProps = dispatch => ({
+  fetchBelt: (belt, tags) => {
+    dispatch({type: ON_RESET_FILTERS, beltName: belt.name});
+    dispatch({
+      type: RECOMMEND_REQUEST,
+      tags,
+      max: 100 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
+    });
+  },
+  historyPush: (path, params) => {
+    dispatch({
+      type: HISTORY_PUSH,
+      path,
+      params
+    });
+  },
+  tagToggle: (tagId, beltId) => dispatch({type: ON_TAG_TOGGLE, tagId, beltId})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FrontPage);
