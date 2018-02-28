@@ -31,7 +31,7 @@ export function usersReducer(state = defaultState, action) {
 export const usersMiddleware = store => next => action => {
   switch (action.type) {
     case REQUEST_USER:
-      if (!store.getState().users.getIn([action.id, 'loading'], false)) {
+      if (!store.getState().users.get(action.id, false)) {
         (async () => {
           try {
             const response = await request.get(
