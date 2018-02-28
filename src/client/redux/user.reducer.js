@@ -31,6 +31,8 @@ const userReducer = (state = defaultState, action) => {
         isLoggedIn: true,
         isLoading: false
       });
+    case ON_USER_DETAILS_ERROR:
+      return Object.assign({}, defaultState);
     case ON_LOGOUT_REQUEST:
       return Object.assign({}, {isLoading: true});
     case ON_LOGOUT_RESPONSE:

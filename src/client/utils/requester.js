@@ -5,7 +5,8 @@ import {SEARCH_RESULTS} from '../redux/search.reducer';
 import {HISTORY_PUSH} from '../redux/router.reducer';
 import {
   ON_USER_DETAILS_RESPONSE,
-  ON_LOGOUT_RESPONSE
+  ON_LOGOUT_RESPONSE,
+  ON_USER_DETAILS_ERROR
 } from '../redux/user.reducer';
 import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
 import similar from '../../data/similar-pids.json';
@@ -118,15 +119,15 @@ export const fetchProfileRecommendations = (profileState, dispatch) => {
 export const fetchUser = (dispatch, cb) => {
   request.get('/v1/user').end(function(error, res) {
     if (error) {
-      dispatch({type: ON_USER_DETAILS_RESPONSE, error});
+      dispatch({type: ON_USER_DETAILS_ERROR});
     } else {
       const user = JSON.parse(res.text).data;
       dispatch({type: ON_USER_DETAILS_RESPONSE, user});
       if (!user.acceptedTerms) {
         dispatch({type: HISTORY_PUSH, path: '/profile/opret'});
       }
+      cb();
     }
-    cb();
   });
 };
 
