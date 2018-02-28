@@ -134,6 +134,7 @@ exports[`ListView List is rendered 1`] = `
               some description1
             </p>
           </div>
+          
         </div>
       </div>
       <div
@@ -202,6 +203,7 @@ exports[`ListView List is rendered 1`] = `
               some description2
             </p>
           </div>
+          
         </div>
       </div>
       <div
@@ -270,6 +272,7 @@ exports[`ListView List is rendered 1`] = `
               some description3
             </p>
           </div>
+          
         </div>
       </div>
     </div>

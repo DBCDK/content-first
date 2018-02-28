@@ -3,7 +3,13 @@ import WorkItem from '../../work/WorkItemConnected.component';
 import ProfileImage from '../../general/ProfileImage.component';
 import Comments from '../../comments/Comment.container';
 
-const SimpleListItem = ({book, description, profile}) => (
+const SimpleListItem = ({
+  book,
+  description,
+  profile,
+  allowComments,
+  listId
+}) => (
   <div className="row simplelist-item mb4">
     <div className="meta col-xs-3 tc">
       <WorkItem
@@ -27,6 +33,7 @@ const SimpleListItem = ({book, description, profile}) => (
           <p className="t-body">{description}</p>
         </div>
       )) || <p className="t-body">{book.description}</p>}
+      {allowComments ? <Comments id={`${listId}-${book.pid}`} /> : ''}
     </div>
   </div>
 );
@@ -46,6 +53,8 @@ export default ({list, profile}) => {
       <div className="list">
         {list.list.map(({book, description}) => (
           <SimpleListItem
+            allowComments={list.social}
+            listId={list.id}
             key={book.pid}
             book={book}
             description={description}
