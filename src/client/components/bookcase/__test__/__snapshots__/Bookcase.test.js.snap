@@ -15,6 +15,12 @@ exports[`Bookcase renders initial component 1`] = `
     <div
       className="col-xs-4 celeb"
     >
+      <img
+        alt="luk"
+        className="carousel-close"
+        onClick={[Function]}
+        src="/static/media/Kryds.e69a54ef.svg"
+      />
       <div
         className="col-xs-12 celeb-top"
       >
@@ -52,6 +58,14 @@ exports[`Bookcase renders initial component 1`] = `
             </span>
           </p>
         </div>
+      </div>
+      <div
+        className="col-xs-12 celeb-bottom"
+      >
+        <CarouselSlider
+          onNextBook={[Function]}
+          slideIndex={null}
+        />
       </div>
     </div>
     <div

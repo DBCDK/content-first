@@ -1,3 +1,41 @@
+/* Slick slider stles overwrite */
+
+.slick-slider,
+.slick-list,
+.slick-track {
+  height: 100% !important;
+}
+
+.slick-prev,
+.slick-next {
+  top: inherit !important;
+  bottom: 5px;
+  z-index: 3;
+}
+
+.slick-prev {
+  left: 15px !important;
+}
+
+.slick-next {
+  right: 15px !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  content: '' !important;
+}
+
+.slick-dots {
+  bottom: 15px !important;
+}
+
+/*********************************/
+.slide-wrapper {
+  height: calc(100% - 50px);
+  float: left;
+}
+
 .rollover-display {
   z-index: 3;
 }
@@ -9,25 +47,16 @@
 }
 
 .rollover-container {
+  width: 100%;
 }
 
 .rollover {
   width: 100%;
   height: 100%;
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
   transition: all 0.2s ease-out;
   border-radius: 3px;
-}
-
-.rollover .rollover-close {
-  position: absolute;
-  margin: 1em;
-  cursor: pointer;
-  width: 10px;
-  right: 0;
-  cursor: pointer;
-  z-index: 2;
 }
 
 .rollover .rollover-img {

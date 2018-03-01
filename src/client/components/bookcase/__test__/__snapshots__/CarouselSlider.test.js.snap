@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider renders initial component 1`] = `
+<react-slick
+  afterChange={[Function]}
+  arrows={true}
+  dots={true}
+  infinite={true}
+  initialSlide={1}
+  nextArrow={
+    <NextArrow
+      className="slick-next"
+      onNextBook={[Function]}
+    />
+  }
+  prevArrow={
+    <PrevArrow
+      className="slick-prev"
+      onNextBook={[Function]}
+    />
+  }
+  speed={500}
+  variableWidth={false}
+>
+  <div
+    className="slide-wrapper"
+    style={
+      Object {
+        "display": "inline-block",
+        "padding": 20,
+        "verticalAlign": "top",
+      }
+    }
+  >
+    <h1>
+      test
+    </h1>
+  </div>
+  <div
+    className="slide-wrapper"
+    style={
+      Object {
+        "display": "inline-block",
+        "padding": 20,
+        "verticalAlign": "top",
+      }
+    }
+  >
+    <h1>
+      test
+    </h1>
+  </div>
+</react-slick>
+`;

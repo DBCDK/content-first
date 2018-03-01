@@ -11,13 +11,14 @@ import BookCover from '../general/BookCover.component';
     }}
     book={book}
   />
+
 */
 
 export default class Carousel extends React.Component {
   render() {
     let book = '';
     if (this.props.book.length !== 0) {
-      book = this.props.book[0].book;
+      book = this.props.book;
     }
 
     return (
@@ -27,14 +28,6 @@ export default class Carousel extends React.Component {
         }`}
       >
         <div className="rollover">
-          <img
-            className="rollover-close"
-            src="/static/media/Kryds.e69a54ef.svg"
-            alt="luk"
-            onClick={() => {
-              this.props.onCloseClick();
-            }}
-          />
           <div className="col-xs-4 rollover-img">
             <BookCover book={book} />
           </div>
@@ -55,23 +48,6 @@ export default class Carousel extends React.Component {
                 origin="Fra bogreol"
               />
             </div>
-          </div>
-
-          <div className="col-xs-12 rollover-bottom">
-            <span
-              className="glyphicon glyphicon-chevron-left"
-              aria-hidden="true"
-              onClick={() => {
-                this.props.onDirectionClick('prev');
-              }}
-            />
-            <span
-              className="glyphicon glyphicon-chevron-right"
-              aria-hidden="true"
-              onClick={() => {
-                this.props.onDirectionClick('next');
-              }}
-            />
           </div>
           <div className="clear" />
         </div>

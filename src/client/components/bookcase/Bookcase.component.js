@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
 import Carousel from './Carousel.component';
 
+import Slider from './CarouselSlider.component';
+
 import {BOOKS_REQUEST, getBooks} from '../../redux/books.reducer';
 
 /*
@@ -14,11 +16,7 @@ export class Bookcase extends React.Component {
     super(props);
     this.state = {
       pid: '',
-      position: {x: 0, y: 0},
-      description: '',
-      title: '',
-      cover: '',
-      curindex: 0,
+      slideIndex: null,
       carousel: false,
       pulse: ''
     };
@@ -29,6 +27,7 @@ export class Bookcase extends React.Component {
     this.props.bookcaseState.books.map(p => {
       pids.push(p.pid);
     });
+
     if (this.props.dispatch) {
       this.props.dispatch({type: BOOKS_REQUEST, pids: pids});
     }
@@ -43,48 +42,32 @@ export class Bookcase extends React.Component {
     this.setState({carousel: false, pulse: ''});
   }
 
-  nextBook = direction => {
-    let max = this.props.bookcaseState.books.length - 1;
-    const curpos = this.state.curindex;
-
-    let newpos = direction === 'next' ? curpos + 1 : curpos - 1;
-
-    if (newpos > max) {
-      newpos = 0;
+  nextBook = pos => {
+    if (this.state.carousel) {
+      this.setState({
+        pid: this.props.bookcaseState.books[pos].pid,
+        slideIndex: pos,
+        pulse: this.props.bookcaseState.books[pos].pid
+      });
     }
-    if (newpos < 0) {
-      newpos = max;
-    }
-
-    this.fetchBooks(this.props.bookcaseState.books[newpos].pid);
-    this.carouselTrigger(
-      this.props.bookcaseState.books[newpos].pid,
-      this.props.bookcaseState.books[newpos].description,
-      this.props.bookcaseState.books[newpos].position
-    );
-    this.setState({
-      curindex: newpos
-    });
   };
 
-  carouselTrigger = (pid, desc, pos, i) => {
-    this.fetchBooks(pid);
-
+  carouselTrigger = (pid, i) => {
     this.setState({
       pid: pid,
-      position: pos,
-      description: desc,
-      curindex: i
+      slideIndex: i,
+      carousel: true,
+      pulse: pid
     });
   };
 
   render() {
     let aBooks = [];
     if (this.state.pid && this.props.booksState.isLoading === false) {
-      aBooks = getBooks(this.props.booksState, [this.state.pid]);
+      aBooks = getBooks(this.props.booksState, this.props.booksState.pids);
     }
 
-    const books = this.props.bookcaseState.books;
+    const bookpos = this.props.bookcaseState.books;
 
     return (
       <section
@@ -94,6 +77,14 @@ export class Bookcase extends React.Component {
         <img src="img/bookcase/BS-bogreol.png" alt="bogreol" />
         <div className="row">
           <div className="col-xs-4 celeb">
+            <img
+              className="carousel-close"
+              src="/static/media/Kryds.e69a54ef.svg"
+              alt="luk"
+              onClick={() => {
+                this.hideCarousel();
+              }}
+            />
             <div className="col-xs-12 celeb-top">
               <div className="col-xs-12 celeb-img">
                 <img src="img/bookcase/BS3.png" alt="bs" />
@@ -112,31 +103,43 @@ export class Bookcase extends React.Component {
                 </p>
               </div>
             </div>
-            <Carousel
-              active={this.state.carousel}
-              loading={
-                this.state.pid !== '' &&
-                typeof this.props.booksState[this.state.pid] === 'undefined'
-              }
-              description={this.state.description}
-              book={aBooks}
-              onDirectionClick={direction => {
-                this.nextBook(direction);
-              }}
-              onCloseClick={() => {
-                this.hideCarousel();
-              }}
-            />
+            <div className="col-xs-12 celeb-bottom">
+              <Slider
+                slideIndex={this.state.slideIndex}
+                onNextBook={this.nextBook}
+              >
+                {aBooks.map(b => {
+                  return (
+                    <Carousel
+                      active={this.state.carousel}
+                      key={'carousel-' + b.book.pid}
+                      loading={
+                        this.state.pid !== '' &&
+                        typeof this.props.booksState[b.book.pid] === 'undefined'
+                      }
+                      description={b.book.description}
+                      book={b.book}
+                      onDirectionClick={direction => {
+                        this.nextBook(direction);
+                      }}
+                      onCloseClick={() => {
+                        this.hideCarousel();
+                      }}
+                    />
+                  );
+                })}
+              </Slider>
+            </div>
           </div>
 
           <div className="col-xs-8 bookswrap">
-            {books.map((p, i) => (
+            {bookpos.map((p, i) => (
               <Pulse
                 active={this.state.pulse}
                 pid={p.pid}
                 key={'pulse-' + p.pid}
                 onClick={() => {
-                  this.carouselTrigger(p.pid, p.description, p.position, i);
+                  this.carouselTrigger(p.pid, i);
                 }}
                 position={p.position}
               />
