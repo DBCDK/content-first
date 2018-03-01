@@ -26,7 +26,7 @@ const booksReducer = (state = defaultState, action) => {
 };
 
 export const getBooks = (state, pids) => {
-  return pids.map(p => state.books[p]);
+  return pids.map(p => state.books[p]).filter(b => b);
 };
 
 export default booksReducer;

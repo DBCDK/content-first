@@ -23,13 +23,10 @@ export class Bookcase extends React.Component {
   }
 
   componentDidMount() {
-    let pids = [];
-    this.props.bookcaseState.books.map(p => {
-      pids.push(p.pid);
-    });
+    let pids = this.props.bookcase.map(p => p.pid);
 
-    if (this.props.dispatch) {
-      this.props.dispatch({type: BOOKS_REQUEST, pids: pids});
+    if (this.props.booksRequest) {
+      this.props.booksRequest(pids);
     }
   }
 
@@ -45,9 +42,9 @@ export class Bookcase extends React.Component {
   nextBook = pos => {
     if (this.state.carousel) {
       this.setState({
-        pid: this.props.bookcaseState.books[pos].pid,
+        pid: this.props.bookcase[pos].pid,
         slideIndex: pos,
-        pulse: this.props.bookcaseState.books[pos].pid
+        pulse: this.props.bookcase[pos].pid
       });
     }
   };
@@ -62,13 +59,6 @@ export class Bookcase extends React.Component {
   };
 
   render() {
-    let aBooks = [];
-    if (this.state.pid && this.props.booksState.isLoading === false) {
-      aBooks = getBooks(this.props.booksState, this.props.booksState.pids);
-    }
-
-    const bookpos = this.props.bookcaseState.books;
-
     return (
       <section
         className={`row ${this.state.carousel ? ' section-active' : ''}`}
@@ -108,15 +98,11 @@ export class Bookcase extends React.Component {
                 slideIndex={this.state.slideIndex}
                 onNextBook={this.nextBook}
               >
-                {aBooks.map(b => {
+                {this.props.books.map(b => {
                   return (
                     <Carousel
                       active={this.state.carousel}
                       key={'carousel-' + b.book.pid}
-                      loading={
-                        this.state.pid !== '' &&
-                        typeof this.props.booksState[b.book.pid] === 'undefined'
-                      }
                       description={b.book.description}
                       book={b.book}
                       onDirectionClick={direction => {
@@ -133,7 +119,7 @@ export class Bookcase extends React.Component {
           </div>
 
           <div className="col-xs-8 bookswrap">
-            {bookpos.map((p, i) => (
+            {this.props.bookcase.map((p, i) => (
               <Pulse
                 active={this.state.pulse}
                 pid={p.pid}
@@ -151,12 +137,18 @@ export class Bookcase extends React.Component {
   }
 }
 
-export default connect(
-  // Map redux state to props
-  state => {
-    return {
-      bookcaseState: state.bookcaseReducer,
-      booksState: state.booksReducer
-    };
-  }
-)(Bookcase);
+const mapStateToProps = state => {
+  return {
+    bookcase: state.bookcaseReducer.books,
+    books: getBooks(
+      state.booksReducer,
+      state.bookcaseReducer.books.map(b => b.pid)
+    )
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  booksRequest: pids => dispatch({type: BOOKS_REQUEST, pids: pids})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Bookcase);
