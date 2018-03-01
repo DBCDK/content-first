@@ -65,7 +65,23 @@ exports[`Bookcase renders initial component 1`] = `
         <CarouselSlider
           onNextBook={[Function]}
           slideIndex={null}
-        />
+        >
+          <Carousel
+            active={false}
+            book={
+              Object {
+                "cover": "img/cover.png",
+                "creator": "Nicole Boyle Rødtnes",
+                "description": "lorem ipsum. . .",
+                "pid": "870970-basis:52530423",
+                "title": "test",
+              }
+            }
+            description="lorem ipsum. . ."
+            onCloseClick={[Function]}
+            onDirectionClick={[Function]}
+          />
+        </CarouselSlider>
       </div>
     </div>
     <div
