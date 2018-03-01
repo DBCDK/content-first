@@ -1,25 +1,20 @@
 import React from 'react';
 import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import BookCover from '../general/BookCover.component';
+import TruncateMarkup from 'react-truncate-markup';
 
 /*
   <Carousel
-    loading={true|false}
     description={'lorem ipsum...'}
-    onClick={('next' | 'prev') => {
-      this.nextBook(direction);
-    }}
+    active={this.state.carousel}
+    key={'carousel-' + b.book.pid}
     book={book}
   />
-
 */
 
-export default class Carousel extends React.Component {
+export default class CarouselItem extends React.Component {
   render() {
-    let book = '';
-    if (this.props.book.length !== 0) {
-      book = this.props.book;
-    }
+    const book = this.props.book;
 
     return (
       <div
@@ -40,7 +35,9 @@ export default class Carousel extends React.Component {
               <h2>{book.creator}</h2>
             </div>
             <div className="col-xs-12 rollover-description">
-              <p>{this.props.description}</p>
+              <TruncateMarkup lines={6}>
+                <p>{this.props.description}</p>
+              </TruncateMarkup>
             </div>
             <div className="col-xs-12">
               <CheckmarkConnected

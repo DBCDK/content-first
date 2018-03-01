@@ -8,7 +8,7 @@ jest.mock(
   () => 'CheckmarkConnected'
 );
 jest.mock('../../pulse/Pulse.component', () => 'Pulse');
-jest.mock('../Carousel.component', () => 'Carousel');
+jest.mock('../CarouselItem.component', () => 'CarouselItem');
 jest.mock('../CarouselSlider.component', () => 'CarouselSlider');
 
 const bookcase = [

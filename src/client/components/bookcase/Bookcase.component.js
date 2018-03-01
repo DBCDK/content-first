@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
-import Carousel from './Carousel.component';
+import CarouselItem from './CarouselItem.component';
 
 import Slider from './CarouselSlider.component';
 
@@ -100,17 +100,11 @@ export class Bookcase extends React.Component {
               >
                 {this.props.books.map(b => {
                   return (
-                    <Carousel
+                    <CarouselItem
                       active={this.state.carousel}
                       key={'carousel-' + b.book.pid}
                       description={b.book.description}
                       book={b.book}
-                      onDirectionClick={direction => {
-                        this.nextBook(direction);
-                      }}
-                      onCloseClick={() => {
-                        this.hideCarousel();
-                      }}
                     />
                   );
                 })}

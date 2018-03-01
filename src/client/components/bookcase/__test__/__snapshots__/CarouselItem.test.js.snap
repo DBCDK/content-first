@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Carousel renders initial component 1`] = `
+exports[`CarouselItem renders initial component 1`] = `
 <div
   className="rollover-container "
 >
@@ -34,9 +34,13 @@ exports[`Carousel renders initial component 1`] = `
       <div
         className="col-xs-12 rollover-description"
       >
-        <p>
-          lorem ipsum . . .
-        </p>
+        <react-truncate-markup
+          lines={6}
+        >
+          <p>
+            lorem ipsum . . .
+          </p>
+        </react-truncate-markup>
       </div>
       <div
         className="col-xs-12"
