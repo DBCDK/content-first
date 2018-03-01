@@ -131,8 +131,8 @@ export const fetchUser = (dispatch, cb) => {
       if (!user.acceptedTerms) {
         dispatch({type: HISTORY_PUSH, path: '/profile/opret'});
       }
-      cb();
     }
+    cb();
   });
 };
 
