@@ -10,7 +10,7 @@ export const BOOKS_RESPONSE = 'BOOKS_RESPONSE';
 const booksReducer = (state = defaultState, action) => {
   switch (action.type) {
     case BOOKS_REQUEST:
-      return Object.assign({}, state, {pids: [action.pids]}, {isLoading: true});
+      return Object.assign({}, state, {pids: action.pids}, {isLoading: true});
     case BOOKS_RESPONSE: {
       const books = {...state.books};
 
@@ -26,7 +26,7 @@ const booksReducer = (state = defaultState, action) => {
 };
 
 export const getBooks = (state, pids) => {
-  return pids.map(p => state.books[p]);
+  return pids.map(p => state.books[p]).filter(b => b);
 };
 
 export default booksReducer;

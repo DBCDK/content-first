@@ -1,26 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Carousel renders initial component 1`] = `
+exports[`CarouselItem renders initial component 1`] = `
 <div
   className="rollover-container "
 >
   <div
     className="rollover"
   >
-    <img
-      alt="luk"
-      className="rollover-close"
-      onClick={[Function]}
-      src="/static/media/Kryds.e69a54ef.svg"
-    />
     <div
       className="col-xs-4 rollover-img"
     >
       <img
-        alt="test"
+        alt=""
         className="high-contrast "
         onError={[Function]}
-        src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52038014"
+        src="https://metakompasset.demo.dbc.dk/api/cover/undefined"
         style={undefined}
       />
     </div>
@@ -30,23 +24,23 @@ exports[`Carousel renders initial component 1`] = `
       <div
         className="col-xs-12 rollover-title"
       >
-        <h1>
-          test
-        </h1>
+        <h1 />
       </div>
       <div
         className="col-xs-12 rollover-creator"
       >
-        <h2>
-          Nicole Boyle Rødtnes
-        </h2>
+        <h2 />
       </div>
       <div
         className="col-xs-12 rollover-description"
       >
-        <p>
-          lorem ipsum . . .
-        </p>
+        <react-truncate-markup
+          lines={6}
+        >
+          <p>
+            lorem ipsum . . .
+          </p>
+        </react-truncate-markup>
       </div>
       <div
         className="col-xs-12"
@@ -55,27 +49,13 @@ exports[`Carousel renders initial component 1`] = `
           book={
             Object {
               "book": Object {
-                "pid": "870970-basis:52038014",
+                "pid": undefined,
               },
             }
           }
           origin="Fra bogreol"
         />
       </div>
-    </div>
-    <div
-      className="col-xs-12 rollover-bottom"
-    >
-      <span
-        aria-hidden="true"
-        className="glyphicon glyphicon-chevron-left"
-        onClick={[Function]}
-      />
-      <span
-        aria-hidden="true"
-        className="glyphicon glyphicon-chevron-right"
-        onClick={[Function]}
-      />
     </div>
     <div
       className="clear"

@@ -1,25 +1,20 @@
 import React from 'react';
 import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import BookCover from '../general/BookCover.component';
+import TruncateMarkup from 'react-truncate-markup';
 
 /*
   <Carousel
-    loading={true|false}
     description={'lorem ipsum...'}
-    onClick={('next' | 'prev') => {
-      this.nextBook(direction);
-    }}
+    active={this.state.carousel}
+    key={'carousel-' + b.book.pid}
     book={book}
   />
 */
 
-export default class Carousel extends React.Component {
+export default class CarouselItem extends React.Component {
   render() {
-    if (this.props.book.length === 0) {
-      return null;
-    }
-
-    const book = this.props.book[0].book;
+    const book = this.props.book;
 
     return (
       <div
@@ -28,14 +23,6 @@ export default class Carousel extends React.Component {
         }`}
       >
         <div className="rollover">
-          <img
-            className="rollover-close"
-            src="/static/media/Kryds.e69a54ef.svg"
-            alt="luk"
-            onClick={() => {
-              this.props.onCloseClick();
-            }}
-          />
           <div className="col-xs-4 rollover-img">
             <BookCover book={book} />
           </div>
@@ -48,7 +35,9 @@ export default class Carousel extends React.Component {
               <h2>{book.creator}</h2>
             </div>
             <div className="col-xs-12 rollover-description">
-              <p>{this.props.description}</p>
+              <TruncateMarkup lines={6}>
+                <p>{this.props.description}</p>
+              </TruncateMarkup>
             </div>
             <div className="col-xs-12">
               <CheckmarkConnected
@@ -56,23 +45,6 @@ export default class Carousel extends React.Component {
                 origin="Fra bogreol"
               />
             </div>
-          </div>
-
-          <div className="col-xs-12 rollover-bottom">
-            <span
-              className="glyphicon glyphicon-chevron-left"
-              aria-hidden="true"
-              onClick={() => {
-                this.props.onDirectionClick('prev');
-              }}
-            />
-            <span
-              className="glyphicon glyphicon-chevron-right"
-              aria-hidden="true"
-              onClick={() => {
-                this.props.onDirectionClick('next');
-              }}
-            />
           </div>
           <div className="clear" />
         </div>

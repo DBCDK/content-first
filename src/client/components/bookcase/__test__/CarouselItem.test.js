@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Carousel from '../Carousel.component';
+import CarouselItem from '../CarouselItem.component';
 
 jest.mock(
   '../../general/CheckmarkConnected.component',
@@ -23,11 +23,11 @@ const book = [
   }
 ];
 
-describe('Carousel', () => {
+describe('CarouselItem', () => {
   it('renders initial component', () => {
     const tree = renderer
       .create(
-        <Carousel
+        <CarouselItem
           loading={true}
           description={description}
           onClick={() => {
