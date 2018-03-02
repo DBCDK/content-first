@@ -12,7 +12,6 @@ const PORT = config.server.port;
 const HOST = 'http://localhost:' + INTERNAL_PORT;
 const HOWRU = 'http://localhost:' + PORT + '/howru';
 const DATA_DIR = process.cwd() + '/src/data/';
-const TAR_GZ_PATH = DATA_DIR + 'json.tar.gz';
 
 const waitForReady = async () => {
   let ready = false;
@@ -29,31 +28,6 @@ const waitForReady = async () => {
   }
 };
 async function doWork() {
-  await new Promise(resolve =>
-    request
-      .get(JSON_FILES_URL)
-      .pipe(fs.createWriteStream(TAR_GZ_PATH))
-      .on('finish', resolve)
-  );
-  console.log('Downloaded json files'); // eslint-disable-line
-
-  await new Promise((resolve, reject) => {
-    targz.decompress(
-      {
-        src: TAR_GZ_PATH,
-        dest: DATA_DIR
-      },
-      err => {
-        if (err) {
-          reject();
-        } else {
-          resolve();
-        }
-      }
-    );
-  });
-  console.log('Decompressed json files'); // eslint-disable-line
-
   const taxonomy = require('../src/data/exportTaxonomy.json');
   const pidinfo = require('../src/data/pidinfo.json');
   const tags = require('../src/data/exportTags.json');
