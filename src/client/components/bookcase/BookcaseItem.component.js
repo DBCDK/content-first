@@ -30,11 +30,6 @@ export class BookcaseItem extends React.Component {
     }
   }
 
-  // fetchBooks(pids) {
-  //   getBooks(this.props.booksState, [pids]);
-  //   this.setState({carousel: true});
-  // }
-
   hideCarousel() {
     this.setState({carousel: false, pulse: ''});
   }

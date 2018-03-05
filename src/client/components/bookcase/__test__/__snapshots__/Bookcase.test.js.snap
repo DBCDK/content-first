@@ -1,113 +1,136 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Bookcase renders initial component 1`] = `
-<section
-  className="row "
-  onClick={undefined}
+<div
+  className="bookcase row"
 >
-  <img
-    alt="bogreol"
-    src="img/bookcase/BS-bogreol.png"
-  />
-  <div
-    className="row"
+  <BookcaseSlider
+    celebs={
+      Array [
+        Object {
+          "bookcase": "img/jd-bogreol.png",
+          "books": Array [
+            Object {
+              "description": "lorem ipsum . . .",
+              "pid": "870970-basis:52530423",
+              "position": Object {
+                "x": 13.5,
+                "y": 40,
+              },
+            },
+            Object {
+              "description": "lorem ipsum . . .",
+              "pid": "870970-basis:53079202",
+              "position": Object {
+                "x": 21.8,
+                "y": 44,
+              },
+            },
+          ],
+          "description": "lorem ipsum",
+          "id": "1",
+          "img": "img/jd.png",
+          "name": "John Doe",
+        },
+        Object {
+          "bookcase": "img/jd-bogreol.png",
+          "books": Array [
+            Object {
+              "description": "lorem ipsum . . .",
+              "pid": "870970-basis:52530423",
+              "position": Object {
+                "x": 13.5,
+                "y": 40,
+              },
+            },
+            Object {
+              "description": "lorem ipsum . . .",
+              "pid": "870970-basis:53079202",
+              "position": Object {
+                "x": 21.8,
+                "y": 44,
+              },
+            },
+          ],
+          "description": "lorem ipsum",
+          "id": "2",
+          "img": "img/jd.png",
+          "name": "Jane Doe",
+        },
+      ]
+    }
   >
-    <div
-      className="col-xs-4 celeb"
-    >
-      <img
-        alt="luk"
-        className="carousel-close"
-        onClick={[Function]}
-        src="/static/media/Kryds.e69a54ef.svg"
-      />
-      <div
-        className="col-xs-12 celeb-top"
-      >
-        <div
-          className="col-xs-12 celeb-img"
-        >
-          <img
-            alt="bs"
-            src="img/bookcase/BS3.png"
-          />
-        </div>
-        <div
-          className="col-xs-12 celeb-title"
-        >
-          <h1>
-            Bjarne Slot Christiansen
-          </h1>
-        </div>
-        <div
-          className="col-xs-12 celeb-description"
-        >
-          <p>
-            er en dansk forhenværende elitesoldat i Jægerkorpset og fordragsholder. Han er især kendt for programserien
-             
-            <span
-              className="highlight"
-            >
-               På afveje 
-            </span>
-            med forskellige kendte personer, og har også deltaget i flere selvhjælpsserier. Skrev i 2005 bogen
-            <span
-              className="highlight"
-            >
-               Et liv på kanten 
-            </span>
-          </p>
-        </div>
-      </div>
-      <div
-        className="col-xs-12 celeb-bottom"
-      >
-        <CarouselSlider
-          onNextBook={[Function]}
-          slideIndex={null}
-        >
-          <CarouselItem
-            active={false}
-            book={
-              Object {
-                "cover": "img/cover.png",
-                "creator": "Nicole Boyle Rødtnes",
-                "description": "lorem ipsum. . .",
-                "pid": "870970-basis:52530423",
-                "title": "test",
-              }
-            }
-            description="lorem ipsum. . ."
-          />
-        </CarouselSlider>
-      </div>
-    </div>
-    <div
-      className="col-xs-8 bookswrap"
-    >
-      <Pulse
-        active=""
-        onClick={[Function]}
-        pid="870970-basis:52038014"
-        position={
-          Object {
-            "x": 26,
-            "y": 46,
-          }
+    <BookcaseItem
+      celeb={
+        Object {
+          "bookcase": "img/jd-bogreol.png",
+          "books": Array [
+            Object {
+              "description": "lorem ipsum . . .",
+              "pid": "870970-basis:52530423",
+              "position": Object {
+                "x": 13.5,
+                "y": 40,
+              },
+            },
+            Object {
+              "description": "lorem ipsum . . .",
+              "pid": "870970-basis:53079202",
+              "position": Object {
+                "x": 21.8,
+                "y": 44,
+              },
+            },
+          ],
+          "description": "lorem ipsum",
+          "id": "1",
+          "img": "img/jd.png",
+          "name": "John Doe",
         }
-      />
-      <Pulse
-        active=""
-        onClick={[Function]}
-        pid="870970-basis:23211629"
-        position={
-          Object {
-            "x": 36.5,
-            "y": 46,
-          }
+      }
+    />
+    <BookcaseItem
+      celeb={
+        Object {
+          "bookcase": "img/jd-bogreol.png",
+          "books": Array [
+            Object {
+              "description": "lorem ipsum . . .",
+              "pid": "870970-basis:52530423",
+              "position": Object {
+                "x": 13.5,
+                "y": 40,
+              },
+            },
+            Object {
+              "description": "lorem ipsum . . .",
+              "pid": "870970-basis:53079202",
+              "position": Object {
+                "x": 21.8,
+                "y": 44,
+              },
+            },
+          ],
+          "description": "lorem ipsum",
+          "id": "2",
+          "img": "img/jd.png",
+          "name": "Jane Doe",
         }
-      />
-    </div>
+      }
+    />
+  </BookcaseSlider>
+  <div
+    className="bookcase-others"
+  >
+    <span
+      style={
+        Object {
+          "width": "285px",
+        }
+      }
+    >
+      Se andre bogreoler
+    </span>
   </div>
-</section>
+</div>
 `;

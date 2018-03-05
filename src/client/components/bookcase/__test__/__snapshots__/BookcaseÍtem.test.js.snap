@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BookcaseItem renders initial component 1`] = `
+<section
+  className=""
+  onClick={undefined}
+>
+  <img
+    alt="undefined bogreol"
+    src="img/bookcase/BS-bogreol.png"
+  />
+  <div
+    className="row"
+  >
+    <div
+      className="col-xs-4 celeb"
+    >
+      <img
+        alt="luk"
+        className="carousel-close"
+        onClick={[Function]}
+        src="/static/media/Kryds.e69a54ef.svg"
+      />
+      <div
+        className="col-xs-12 celeb-top"
+      >
+        <div
+          className="col-xs-12 celeb-img"
+        >
+          <img
+            alt="Bjarne Slot Christiansen"
+            src="img/bookcase/BS3.png"
+          />
+        </div>
+        <div
+          className="col-xs-12 celeb-title"
+        >
+          <h1>
+            Bjarne Slot Christiansen
+          </h1>
+        </div>
+        <div
+          className="col-xs-12 celeb-description"
+        >
+          <p>
+            lorem ipsum
+          </p>
+        </div>
+      </div>
+      <div
+        className="col-xs-12 celeb-bottom"
+      >
+        <CarouselSlider
+          onNextBook={[Function]}
+          slideIndex={null}
+        >
+          <CarouselItem
+            active={false}
+            book={
+              Object {
+                "cover": "img/cover.png",
+                "creator": "Nicole Boyle Rødtnes",
+                "description": "lorem ipsum...",
+                "pid": "1234",
+                "title": "test",
+              }
+            }
+            description="lorem ipsum..."
+          />
+        </CarouselSlider>
+      </div>
+    </div>
+    <div
+      className="col-xs-8 bookswrap"
+    >
+      <Pulse
+        active=""
+        onClick={[Function]}
+        pid="870970-basis:52530423"
+        position={
+          Object {
+            "x": 13.5,
+            "y": 40,
+          }
+        }
+      />
+      <Pulse
+        active=""
+        onClick={[Function]}
+        pid="870970-basis:53079202"
+        position={
+          Object {
+            "x": 21.8,
+            "y": 44,
+          }
+        }
+      />
+    </div>
+  </div>
+</section>
+`;

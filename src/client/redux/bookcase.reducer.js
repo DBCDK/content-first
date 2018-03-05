@@ -5,7 +5,7 @@ const defaultState = {
       name: 'Bjarne Slot Christiansen',
       img: 'img/bookcase/BS3.png',
       description:
-        'er en dansk forhenværende elitesoldat i Jægerkorpset og fordragsholder. Han er især kendt for programserien På afveje med forskellige kendte personer, og har også deltaget i flere selvhjælpsserier. Skrev i 2005 bogen Et liv på kanten',
+        'er en dansk forhenværende elitesoldat i Jægerkorpset og fordragsholder. Han er især kendt for programserien På afveje med forskellige kendte personer.',
       bookcase: 'img/bookcase/BS-bogreol.png',
       books: [
         {
@@ -35,7 +35,7 @@ const defaultState = {
       name: 'Helene Poulsen',
       img: 'img/bookcase/HP.png',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at rhoncus enim, ut facilisis velit. Donec eget augue vel lorem iaculis pulvinar a vitae nisl. Interdum et malesuada fames ac ante ipsum primis in faucibus. . . .',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at rhoncus enim, ut facilisis velit. Donec eget augue vel lorem iaculis.',
       bookcase: 'img/bookcase/HP-bogreol.png',
       books: [
         {
