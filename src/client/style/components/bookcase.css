@@ -1,3 +1,44 @@
+.bookcase {
+}
+
+.bookcase .bookcase-others {
+  height: 100px;
+  padding-top: 15px;
+}
+
+.bookcase .bookcase-others span {
+  float: right;
+  font-family: var(--secondary-font);
+  color: var(--darkgrey);
+  font-size: 16px;
+  text-align: left;
+}
+
+.bookcase .slick-dots-bookcase {
+  width: auto;
+  bottom: -100px;
+  right: 150px;
+}
+
+.bookcase .slick-dots-bookcase li,
+.bookcase .slick-dots-bookcase li a {
+  width: auto;
+  height: auto;
+  float: left;
+  margin: 0 5px 0 0 0;
+}
+
+.bookcase .slick-dots-bookcase .face-dots img {
+  width: 60px;
+  border-radius: 50%;
+  opacity: 0.4;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.bookcase .slick-active .face-dots img {
+  opacity: 1;
+}
+
 .section-active .row .celeb .carousel-close {
   top: 0px;
 }
@@ -170,15 +211,12 @@ section .row .celeb .celeb-bottom {
   section .row .celeb .celeb-img img {
     width: 75px;
   }
-
   section .row .celeb .celeb-title h1 {
     font-size: 16px;
   }
-
   section .row .celeb .celeb-description p {
     margin: 0 auto 0 auto;
   }
-
   .section-active .row .celeb .celeb-top {
     margin-top: -110px;
   }

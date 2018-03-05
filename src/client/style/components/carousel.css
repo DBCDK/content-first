@@ -26,8 +26,10 @@
   content: '' !important;
 }
 
-.celeb .slick-dots {
+.celeb .slick-dots-carousel {
   bottom: 15px !important;
+  right: 50%;
+  transform: translate(50%, 0%);
 }
 
 /*********************************/
@@ -124,7 +126,6 @@
   .celeb .slide-wrapper {
     padding: 0 !important;
   }
-
   .rollover {
     padding-top: 15px;
   }
@@ -138,11 +139,9 @@
   .rollover .rollover-img {
     padding: 0 5px 5px 5px;
   }
-
   .celeb .slick-prev {
     left: 0px !important;
   }
-
   .celeb .slick-next {
     right: 0px !important;
   }
