@@ -65,7 +65,7 @@ const shortListReducer = (state = defaultState, action) => {
       if (removed.length < state.elements.length) {
         return Object.assign({}, state, {elements: removed});
       }
-      action.element.origin = action.origin;
+      action.element.origin = action.origin || '';
       return Object.assign({}, state, {
         elements: [action.element, ...state.elements]
       });
@@ -77,7 +77,7 @@ const shortListReducer = (state = defaultState, action) => {
       if (removed.length < state.elements.length) {
         return state;
       }
-      action.element.origin = action.origin;
+      action.element.origin = action.origin || '';
       return Object.assign({}, state, {
         elements: [action.element, ...state.elements]
       });
@@ -85,7 +85,7 @@ const shortListReducer = (state = defaultState, action) => {
     case SHORTLIST_UPDATE_ORIGIN: {
       const elements = state.elements.map(e => {
         if (e.book.pid === action.pid) {
-          return {...e, origin: action.origin};
+          return {...e, origin: action.origin || ''};
         }
         return e;
       });
