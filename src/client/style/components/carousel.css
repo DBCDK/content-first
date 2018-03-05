@@ -126,7 +126,10 @@
   .celeb .slide-wrapper {
     padding: 0 !important;
   }
-  .rollover {
+  <<<<<<<
+    HEAD
+    =======>>>>>>>0ffaad5fafa3a43f807270517bd3144224b75337
+    .rollover {
     padding-top: 15px;
   }
 }
@@ -139,10 +142,14 @@
   .rollover .rollover-img {
     padding: 0 5px 5px 5px;
   }
-  .celeb .slick-prev {
+  <<<<<<< HEAD .celeb .slick-prev {
     left: 0px !important;
   }
-  .celeb .slick-next {
+  ======= .celeb .slick-prev {
+    left: 0px !important;
+  }
+
+  >>>>>>>0ffaad5fafa3a43f807270517bd3144224b75337 .celeb .slick-next {
     right: 0px !important;
   }
 }
