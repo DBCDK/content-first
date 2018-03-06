@@ -15,15 +15,46 @@ export const filters = {
   'Vælg tempo': taxonomy.fortælleteknik.tempo
 };
 export const filtersMap = getLeavesMap(filters);
+export const filtersMapAll = {...getLeavesMap(), ...filtersMap}; // all tags from taxonomy
 export const filterIds = getLeaves(filters).map(f => f.id);
 const defaultState = {
   editFilters: false,
   beltFilters: {
     'En god bog': [100001, 100003, 5672, 100005],
-    'Bibliotekarens ugentlige anbefalinger': [-2],
     'En spændende bog': [5676, 5632],
     'En anderledes bog': [5702],
-    'Passer med min smag': []
+    'Passer med min smag': [],
+    'Mennesket og Naturen': [5329, 3510, 5734, 5731, 5280, 5277, 2183, 2278],
+    'Familiens skyggesider': [1672, 5734, 5731, 5699, 5721, 5696, 5680, 5691],
+    'Tankevækkende Sci-fi': [4927, 5714, 5713],
+    'Bibliotekarens ugentlige anbefalinger': [-2],
+    'Krøllede fortællinger': [
+      2683,
+      5614,
+      5624,
+      // 5653, uncomment when a work is mapped to this tag
+      5652,
+      // 5711, uncomment when a work is mapped to this tag
+      5717
+    ],
+    Sofahygge: [5637, 5654, 5636, 5731, 5611],
+    Tolkiensque: [6131, 5726, 5730, 5704, 5705, 5707, 5708],
+    'Gotisk uhygge': [4044, 4895, 5149, 5680, 5700, 5670, 5676],
+    Lokalkrimi: [2683, 4907, 5368, 5734, 5731, 5670, 5676, 5691],
+    'Historisk romantik': [
+      5028,
+      5016,
+      5149,
+      4044,
+      4074,
+      5275,
+      5282,
+      189,
+      5660,
+      5661,
+      5671
+    ],
+    'Vemodige nordmænd': [4466, 5731, 3510, 5626, 5683, 5630]
   },
   expandedFilters: {},
   filters,
@@ -56,13 +87,8 @@ const filterReducer = (state = defaultState, action) => {
     case ON_EDIT_FILTER_TOGGLE:
       return Object.assign({}, state, {editFilters: !state.editFilters});
     case ON_FILTER_TOGGLE: {
-      let filterId;
-      getLeaves(state.filters).forEach(filter => {
-        if (filter.id === action.filterId) {
-          filterId = filter.id;
-        }
-      });
-      if (!filterId) {
+      const filterId = action.filterId;
+      if (!filtersMapAll[filterId]) {
         return state;
       }
       const beltFilters = Object.assign({}, state.beltFilters);

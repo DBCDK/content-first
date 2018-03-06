@@ -62,7 +62,6 @@ export const fetchBooks = (pids = [], dispatch) => {
       // books.forEach(b => {
       //   b.book.tags = tags[b.book.pid];
       // });
-
       dispatch({type: BOOKS_RESPONSE, response: books});
     })
     .catch(error => {

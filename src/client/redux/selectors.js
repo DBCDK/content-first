@@ -9,7 +9,16 @@ export const getRecommendedBooks = (state, tags, max) => {
   const {recommendReducer, booksReducer} = state;
   const result = {tags};
   const r = getRecommendedPids(recommendReducer, {tags});
-  result.isLoading = r.isLoading || booksReducer.isLoading || false;
+  const books = getBooks(booksReducer, r.pids);
+  let booksAreLoading = false;
+
+  books.forEach(b => {
+    if (b.isLoading) {
+      booksAreLoading = true;
+    }
+  });
+
+  result.isLoading = r.isLoading || booksAreLoading || false;
   result.books = result.isLoading
     ? []
     : applyClientSideFilters(getBooks(booksReducer, r.pids), tags);

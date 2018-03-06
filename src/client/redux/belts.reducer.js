@@ -9,14 +9,6 @@ const defaultState = {
       works: []
     },
     {
-      name: 'Bibliotekarens ugentlige anbefalinger',
-      details: 'Detaljer for ugentlige anbefalinger',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
-      works: []
-    },
-    {
       name: 'En spændende bog',
       isLoading: false,
       onFrontPage: false,
@@ -34,6 +26,74 @@ const defaultState = {
       onFrontPage: false,
       links: [],
       works: []
+    },
+    {
+      name: 'Mennesket og Naturen',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Familiens skyggesider',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Tankevækkende Sci-fi',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Bibliotekarens ugentlige anbefalinger',
+      details: 'Detaljer for ugentlige anbefalinger',
+      isLoading: false,
+      onFrontPage: true,
+      links: [],
+      works: []
+    },
+    {
+      name: 'Krøllede fortællinger',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Sofahygge',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Tolkiensque',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Gotisk uhygge',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Lokalkrimi',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Historisk romantik',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
+    },
+    {
+      name: 'Vemodige nordmænd',
+      isLoading: false,
+      onFrontPage: true,
+      links: []
     }
   ]
 };
