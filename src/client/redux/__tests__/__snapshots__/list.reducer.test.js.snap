@@ -136,10 +136,14 @@ Array [
 exports[`listReducer remove element from list 1`] = `
 Array [
   Object {
+    "deleted": Object {
+      "123": true,
+    },
     "description": "",
     "id": "some-id-1",
     "list": Array [
       Object {
+        "_id": "456",
         "book": Object {
           "pid": "pid2",
         },

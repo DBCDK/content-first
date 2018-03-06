@@ -133,15 +133,15 @@ describe('listReducer', () => {
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid1'}}, 'some-id-1')
+      addElementToList({_id: '123', book: {pid: 'pid1'}}, 'some-id-1')
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid2'}}, 'some-id-1')
+      addElementToList({_id: '456', book: {pid: 'pid2'}}, 'some-id-1')
     );
     state = listReducer(
       state,
-      removeElementFromList({book: {pid: 'pid1'}}, 'some-id-1')
+      removeElementFromList({_id: '123', book: {pid: 'pid1'}}, 'some-id-1')
     );
     expect(getLists(state)).toMatchSnapshot();
   });

@@ -86,6 +86,8 @@ const listReducer = (state = defaultState, action) => {
       const list = {
         ...state.lists[action.id]
       };
+      list.deleted = list.deleted || {};
+      list.deleted[action.element._id] = true;
       list.list = list.list.filter(
         element => element.book.pid !== action.element.book.pid
       );
