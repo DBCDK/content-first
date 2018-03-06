@@ -45,6 +45,13 @@ exports[`BookcaseItem renders initial component 1`] = `
           <p>
             lorem ipsum
           </p>
+          <button
+            className="celeb-books-btn btn btn-info"
+            onClick={[Function]}
+            type="button"
+          >
+            Se bøger
+          </button>
         </div>
       </div>
       <div
