@@ -82,6 +82,15 @@ export class BookcaseItem extends React.Component {
               </div>
               <div className="col-xs-12 celeb-description">
                 <p>{this.props.celeb.description}</p>
+                <button
+                  type="button"
+                  className="celeb-books-btn btn btn-info"
+                  onClick={() => {
+                    this.carouselTrigger(this.props.books[0].book.pid, 0);
+                  }}
+                >
+                  Se bøger
+                </button>
               </div>
             </div>
             <div className="col-xs-12 celeb-bottom">

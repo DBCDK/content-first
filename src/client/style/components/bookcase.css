@@ -136,6 +136,10 @@ section .row .celeb .celeb-description p {
   display: block;
 }
 
+section .row .celeb .celeb-description .celeb-books-btn {
+  margin-top: 15px;
+}
+
 section .row .celeb .celeb-description p span.highlight {
   font-weight: 700;
   font-style: italic;

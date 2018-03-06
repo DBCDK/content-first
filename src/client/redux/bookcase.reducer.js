@@ -2,6 +2,46 @@ const defaultState = {
   celebs: [
     {
       id: '1',
+      name: 'Helene Poulsen',
+      img: 'img/bookcase/HP.png',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at rhoncus enim, ut facilisis velit. Donec eget augue vel lorem iaculis.',
+      bookcase: 'img/bookcase/HP-bogreol3.png',
+      books: [
+        {
+          pid: '870970-basis:53089100',
+          position: {x: 24.5, y: 12},
+          description: 'lorem ipsum . . .'
+        },
+        {
+          pid: '870970-basis:52921589',
+          position: {x: 38.5, y: 12},
+          description: 'lorem ipsum . . .'
+        },
+        {
+          pid: '870970-basis:51283376',
+          position: {x: 58.5, y: 27},
+          description: 'lorem ipsum . . .'
+        },
+        {
+          pid: '870970-basis:52911567',
+          position: {x: 49.3, y: 61},
+          description: 'lorem ipsum . . .'
+        },
+        {
+          pid: '870970-basis:53077145',
+          position: {x: 28.3, y: 76},
+          description: 'lorem ipsum . . .'
+        },
+        {
+          pid: '870970-basis:29554129',
+          position: {x: 90, y: 61},
+          description: 'lorem ipsum . . .'
+        }
+      ]
+    },
+    {
+      id: '2',
       name: 'Bjarne Slot Christiansen',
       img: 'img/bookcase/BS3.png',
       description:
@@ -26,36 +66,6 @@ const defaultState = {
         {
           pid: '870970-basis:23211629',
           position: {x: 36.5, y: 46},
-          description: 'lorem ipsum . . .'
-        }
-      ]
-    },
-    {
-      id: '2',
-      name: 'Helene Poulsen',
-      img: 'img/bookcase/HP.png',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at rhoncus enim, ut facilisis velit. Donec eget augue vel lorem iaculis.',
-      bookcase: 'img/bookcase/HP-bogreol.png',
-      books: [
-        {
-          pid: '870970-basis:53089100',
-          position: {x: 28, y: 14},
-          description: 'lorem ipsum . . .'
-        },
-        {
-          pid: '870970-basis:52921589',
-          position: {x: 38, y: 32},
-          description: 'lorem ipsum . . .'
-        },
-        {
-          pid: '870970-basis:51283376',
-          position: {x: 59.5, y: 32},
-          description: 'lorem ipsum . . .'
-        },
-        {
-          pid: '870970-basis:52911567',
-          position: {x: 84, y: 74},
           description: 'lorem ipsum . . .'
         }
       ]
