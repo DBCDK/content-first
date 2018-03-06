@@ -1,6 +1,4 @@
 const defaultState = {
-  pids: [],
-  isLoading: false,
   books: {}
 };
 
@@ -9,16 +7,21 @@ export const BOOKS_RESPONSE = 'BOOKS_RESPONSE';
 
 const booksReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case BOOKS_REQUEST:
-      return Object.assign({}, state, {pids: action.pids}, {isLoading: true});
+    case BOOKS_REQUEST: {
+      const books = {...state.books};
+      action.pids.forEach(pid => {
+        books[pid] = {isLoading: true};
+      });
+      return Object.assign({}, state, {books});
+    }
     case BOOKS_RESPONSE: {
       const books = {...state.books};
 
       action.response.forEach(b => {
-        books[b.book.pid] = b;
+        books[b.book.pid] = {...b, isLoading: false};
       });
 
-      return Object.assign({}, state, {books: books}, {isLoading: false});
+      return Object.assign({}, state, {books: books});
     }
     default:
       return state;
