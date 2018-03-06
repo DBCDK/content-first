@@ -10,6 +10,10 @@ import React from 'react';
 */
 
 export default class Pulse extends React.Component {
+  randomDelay(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min) + '00';
+  }
+
   render() {
     let styles = {
       left: this.props.position.x + '%',
@@ -24,7 +28,10 @@ export default class Pulse extends React.Component {
         style={styles}
         onClick={this.props.onClick}
       >
-        <div className="pulse" />
+        <div
+          className="pulse delay"
+          style={{animationDelay: this.randomDelay(10, 50) + 'ms'}}
+        />
       </div>
     );
   }
