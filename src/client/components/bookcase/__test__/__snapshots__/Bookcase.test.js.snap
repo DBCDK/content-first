@@ -125,7 +125,7 @@ exports[`Bookcase renders initial component 1`] = `
     <span
       style={
         Object {
-          "width": "285px",
+          "width": "290px",
         }
       }
     >
