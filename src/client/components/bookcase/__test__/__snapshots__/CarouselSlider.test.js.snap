@@ -5,18 +5,18 @@ exports[`Slider renders initial component 1`] = `
   afterChange={[Function]}
   arrows={true}
   dots={true}
+  dotsClass="slick-dots slick-dots-carousel"
+  draggable={true}
   infinite={true}
-  initialSlide={1}
+  initialSlide={0}
   nextArrow={
     <NextArrow
       className="slick-next"
-      onNextBook={[Function]}
     />
   }
   prevArrow={
     <PrevArrow
       className="slick-prev"
-      onNextBook={[Function]}
     />
   }
   speed={500}

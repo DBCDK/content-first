@@ -49,28 +49,16 @@ export default class Slider extends React.Component {
 
   render() {
     const settings = {
+      draggable: true,
       dots: true,
       arrows: true,
       infinite: true,
-      initialSlide: 1,
+      initialSlide: 0,
       speed: 500,
       variableWidth: false,
-      prevArrow: (
-        <PrevArrow
-          className="slick-prev"
-          onNextBook={() => {
-            this.props.onNextBook('prev');
-          }}
-        />
-      ),
-      nextArrow: (
-        <NextArrow
-          className="slick-next"
-          onNextBook={() => {
-            this.props.onNextBook('next');
-          }}
-        />
-      ),
+      prevArrow: <PrevArrow className="slick-prev" />,
+      nextArrow: <NextArrow className="slick-next" />,
+      dotsClass: 'slick-dots slick-dots-carousel',
       afterChange: ns => {
         this.props.onNextBook(ns);
       }
