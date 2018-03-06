@@ -60,7 +60,7 @@ export default class CommentInput extends React.Component {
             }}
           >
             <button
-              className="btn -btn-link link-subtle"
+              className="btn btn-link link-subtle"
               onClick={this.onCancel}
             >
               Fortryd
