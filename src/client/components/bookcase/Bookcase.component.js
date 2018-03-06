@@ -18,7 +18,7 @@ export class Bookcase extends React.Component {
           })}
         </BookcaseSlider>
         <div className="bookcase-others">
-          <span style={{width: this.props.celebs.length * 65 + 155 + 'px'}}>
+          <span style={{width: this.props.celebs.length * 65 + 160 + 'px'}}>
             Se andre bogreoler
           </span>
         </div>

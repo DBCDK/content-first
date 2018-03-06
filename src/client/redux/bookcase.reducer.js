@@ -42,7 +42,7 @@ const defaultState = {
     },
     {
       id: '2',
-      name: 'Bjarne Slot Christiansen',
+      name: 'B. S. Christiansen',
       img: 'img/bookcase/BS3.png',
       description:
         'er en dansk forhenværende elitesoldat i Jægerkorpset og fordragsholder. Han er især kendt for programserien På afveje med forskellige kendte personer.',
@@ -66,6 +66,41 @@ const defaultState = {
         {
           pid: '870970-basis:23211629',
           position: {x: 36.5, y: 46},
+          description: 'lorem ipsum . . .'
+        }
+      ]
+    },
+    {
+      id: '3',
+      name: 'Dar Salim',
+      img: 'img/bookcase/DS2.png',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at rhoncus enim, ut facilisis velit. Donec eget augue vel lorem iaculis.',
+      bookcase: 'img/bookcase/DS-bogreol.png',
+      books: [
+        {
+          pid: '870970-basis:26378176',
+          position: {x: 58, y: 37},
+          description: 'lorem ipsum . . .'
+        },
+        {
+          pid: '870970-basis:53052932',
+          position: {x: 58, y: 46},
+          description: 'lorem ipsum . . .'
+        },
+        {
+          pid: '870970-basis:52728843',
+          position: {x: 64, y: 55},
+          description: 'lorem ipsum . . .'
+        },
+        {
+          pid: '870970-basis:29158347',
+          position: {x: 64, y: 68},
+          description: 'lorem ipsum . . .'
+        },
+        {
+          pid: '870970-basis:27617050',
+          position: {x: 60, y: 83},
           description: 'lorem ipsum . . .'
         }
       ]
