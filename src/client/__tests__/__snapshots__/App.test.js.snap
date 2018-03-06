@@ -89,18 +89,7 @@ exports[`renders without crashing 1`] = `
   <div
     className="frontpage"
   >
-    <div
-      className="row frontpage-image"
-    />
-    <div
-      className="row frontpage-image-credits text-right"
-    >
-      <a
-        href="https://www.flickr.com/people/fatseth/"
-      >
-        Foto ©G Morel
-      </a>
-    </div>
+    <Bookcase />
     <div
       className="belts col-xs-11 col-centered"
     >

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Bookcase from '../bookcase/Bookcase.component';
 import Belt from './Belt.component';
 import RecentListsBelt from '../belt/RecentListsBelt.container';
 import WorkItem from '../work/WorkItemConnected.component';
@@ -92,10 +93,7 @@ class FrontPage extends React.Component {
   render() {
     return (
       <div className="frontpage">
-        <div className="row frontpage-image" />
-        <div className="row frontpage-image-credits text-right">
-          <a href="https://www.flickr.com/people/fatseth/">Foto ©G Morel</a>
-        </div>
+        <Bookcase />
         {this.renderBelts()}
       </div>
     );
