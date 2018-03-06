@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
   ADD_COMMENT,
+  SAVE_COMMENT,
   FETCH_COMMENTS,
   getCommentsForId
 } from '../../redux/comment.reducer';
@@ -46,6 +47,8 @@ export class CommentContainer extends React.Component {
         {commentsCount ? (
           <div className="mb3">
             <CommentList
+              editComment={this.props.editComment}
+              user={this.props.user}
               comments={this.props.comments}
               showCount={
                 this.state.showAll
@@ -95,6 +98,7 @@ const mapStateToProps = (state, ownProps) => ({
 export const mapDispatchToProps = dispatch => ({
   addComment: ({id, comment, owner}) =>
     dispatch({type: ADD_COMMENT, comment, id, owner}),
+  editComment: ({id, comment}) => dispatch({type: SAVE_COMMENT, comment, id}),
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 

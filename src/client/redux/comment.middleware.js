@@ -1,7 +1,9 @@
-import {fetchObjects, addObject} from '../utils/requester';
+import {fetchObjects, addObject, updateObject} from '../utils/requester';
 import {
   ADD_COMMENT,
   ADD_COMMENT_SUCCESS,
+  SAVE_COMMENT,
+  SAVE_COMMENT_SUCCESS,
   FETCH_COMMENTS,
   FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_ERROR,
@@ -26,6 +28,26 @@ export const commentMiddleware = store => next => action => {
             type: ADD_COMMENT_SUCCESS,
             id: action.id,
             data: response.data
+          });
+        } catch (e) {
+          store.dispatch({
+            type: ADD_COMMENT_ERROR,
+            id: action.id,
+            error: e,
+            comment: action.comment
+          });
+        }
+      })();
+    }
+    case SAVE_COMMENT: {
+      return (async () => {
+        next(action);
+        try {
+          const response = await updateObject(comment._id, comment);
+          store.dispatch({
+            type: SAVE_COMMENT_SUCCESS,
+            id: action.id,
+            comment: {...action.comment, ...response.data}
           });
         } catch (e) {
           store.dispatch({
