@@ -12,7 +12,12 @@ exports[`Pulse renders initial component 1`] = `
   }
 >
   <div
-    className="pulse"
+    className="pulse delay"
+    style={
+      Object {
+        "animationDelay": "2ms",
+      }
+    }
   />
 </div>
 `;

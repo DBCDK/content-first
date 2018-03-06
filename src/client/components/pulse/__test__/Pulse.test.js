@@ -16,6 +16,7 @@ describe('Pulse', () => {
           onClick={() => {
             this.rollOverTrigger(pid, description, position, 0);
           }}
+          delay={2}
           position={position}
         />
       )

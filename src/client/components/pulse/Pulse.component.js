@@ -30,7 +30,10 @@ export default class Pulse extends React.Component {
       >
         <div
           className="pulse delay"
-          style={{animationDelay: this.randomDelay(10, 50) + 'ms'}}
+          style={{
+            animationDelay:
+              (this.props.delay || this.randomDelay(10, 50)) + 'ms'
+          }}
         />
       </div>
     );
