@@ -45,7 +45,7 @@ export class BooksBelt extends React.Component {
               this.props.historyPush(beltNameToPath(this.props.title))
             }
           >
-            {this.props.title || 'ost'}
+            {this.props.title}
           </span>
         </div>
         <LazyLoad
