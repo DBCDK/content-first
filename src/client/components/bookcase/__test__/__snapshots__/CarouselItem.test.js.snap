@@ -2,13 +2,13 @@
 
 exports[`CarouselItem renders initial component 1`] = `
 <div
-  className="rollover-container "
+  className="carousel-container "
 >
   <div
-    className="rollover"
+    className="carousel"
   >
     <div
-      className="col-xs-4 rollover-img"
+      className="col-xs-4 carousel-img"
     >
       <img
         alt=""
@@ -19,20 +19,20 @@ exports[`CarouselItem renders initial component 1`] = `
       />
     </div>
     <div
-      className="col-xs-8 text-left rollover-text"
+      className="col-xs-8 text-left carousel-text"
     >
       <div
-        className="col-xs-12 rollover-title"
+        className="col-xs-12 carousel-title"
       >
         <h1 />
       </div>
       <div
-        className="col-xs-12 rollover-creator"
+        className="col-xs-12 carousel-creator"
       >
         <h2 />
       </div>
       <div
-        className="col-xs-12 rollover-description"
+        className="col-xs-12 carousel-description"
       >
         <react-truncate-markup
           lines={6}

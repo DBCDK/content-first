@@ -18,23 +18,23 @@ export default class CarouselItem extends React.Component {
 
     return (
       <div
-        className={`rollover-container ${
-          this.props.active ? ' rollover-display' : ''
+        className={`carousel-container ${
+          this.props.active ? ' carousel-display' : ''
         }`}
       >
-        <div className="rollover">
-          <div className="col-xs-4 rollover-img">
+        <div className="carousel">
+          <div className="col-xs-4 carousel-img">
             <BookCover book={book} />
           </div>
 
-          <div className="col-xs-8 text-left rollover-text">
-            <div className="col-xs-12 rollover-title">
+          <div className="col-xs-8 text-left carousel-text">
+            <div className="col-xs-12 carousel-title">
               <h1>{book.title}</h1>
             </div>
-            <div className="col-xs-12 rollover-creator">
+            <div className="col-xs-12 carousel-creator">
               <h2>{book.creator}</h2>
             </div>
-            <div className="col-xs-12 rollover-description">
+            <div className="col-xs-12 carousel-description">
               <TruncateMarkup lines={6}>
                 <p>{this.props.description}</p>
               </TruncateMarkup>

@@ -3,10 +3,10 @@ const defaultState = {
     {
       id: '1',
       name: 'Helene Poulsen',
-      img: 'img/bookcase/HP.png',
+      img: 'img/bookcase/HP.jpg',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at rhoncus enim, ut facilisis velit. Donec eget augue vel lorem iaculis.',
-      bookcase: 'img/bookcase/HP-bogreol3.png',
+      bookcase: 'img/bookcase/HP-bogreol.jpg',
       books: [
         {
           pid: '870970-basis:53089100',
@@ -43,10 +43,10 @@ const defaultState = {
     {
       id: '2',
       name: 'B. S. Christiansen',
-      img: 'img/bookcase/BS3.png',
+      img: 'img/bookcase/BS.jpg',
       description:
         'er en dansk forhenværende elitesoldat i Jægerkorpset og fordragsholder. Han er især kendt for programserien På afveje med forskellige kendte personer.',
-      bookcase: 'img/bookcase/BS-bogreol.png',
+      bookcase: 'img/bookcase/BS-bogreol.jpg',
       books: [
         {
           pid: '870970-basis:52530423',
@@ -73,10 +73,10 @@ const defaultState = {
     {
       id: '3',
       name: 'Dar Salim',
-      img: 'img/bookcase/DS2.png',
+      img: 'img/bookcase/DS.jpg',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at rhoncus enim, ut facilisis velit. Donec eget augue vel lorem iaculis.',
-      bookcase: 'img/bookcase/DS-bogreol.png',
+      bookcase: 'img/bookcase/DS-bogreol.jpg',
       books: [
         {
           pid: '870970-basis:26378176',
