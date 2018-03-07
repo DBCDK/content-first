@@ -8,8 +8,8 @@ jest.mock('../../data/exportTaxonomy.json', () => {
   return require('./__mocks__/mockedTaxonomy.json');
 });
 jest.mock('../components/belt/Slider.component', () => 'slider');
-
 jest.mock('../components/bookcase/Bookcase.component', () => 'Bookcase');
+jest.mock('../components/belt/BooksBelt.container', () => 'BooksBelt');
 
 it('renders without crashing', () => {
   window.$ = () => ({tooltip: () => {}}); // mock jquery tooltip

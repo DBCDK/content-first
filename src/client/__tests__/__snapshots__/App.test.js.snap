@@ -93,86 +93,163 @@ exports[`renders without crashing 1`] = `
     <div
       className="belts col-xs-11 col-centered"
     >
-      <div
-        className="row belt text-left"
-      >
-        <div
-          className="col-xs-12 header"
-        >
-          <span
-            className="belt-title"
-            data-html="true"
-            data-original-title="<span>Medium længde</span> <span>Er på mange biblioteker</span> <span>some-title-3</span> <span>Udlånes meget</span>"
-            data-toggle="tooltip"
-            onClick={[Function]}
-          >
-            En god bog
-          </span>
-        </div>
-        <div
-          className="col-xs-12 belt-links"
-        >
-          <span>
-            Se også:
-          </span>
-          <span
-            className="belt-link"
-            data-html="true"
-            data-original-title="<span>some-title-1</span> <span>hurtig</span>"
-            data-toggle="tooltip"
-            onClick={[Function]}
-          >
-            En spændende bog
-          </span>
-          <span
-            className="belt-link"
-            data-html="true"
-            data-original-title="<span>some-title-2</span>"
-            data-toggle="tooltip"
-            onClick={[Function]}
-          >
-            En anderledes bog
-          </span>
-        </div>
-        <div
-          className="row mb4"
-        >
-          <div
-            className="col-xs-12"
-          >
-            <slider />
-          </div>
-        </div>
-      </div>
-      <div
-        className="row belt text-left"
-      >
-        <div
-          className="col-xs-12 header"
-        >
-          <span
-            className="belt-title"
-            data-html="true"
-            data-original-title="<span>Bibliotekaren anbefaler</span>"
-            data-toggle="tooltip"
-            onClick={[Function]}
-          >
-            Bibliotekarens ugentlige anbefalinger
-          </span>
-        </div>
-        <div
-          className="col-xs-12 belt-links"
-        />
-        <div
-          className="row mb4"
-        >
-          <div
-            className="col-xs-12"
-          >
-            <slider />
-          </div>
-        </div>
-      </div>
+      <BooksBelt
+        tags={
+          Array [
+            100001,
+            100003,
+            5672,
+            100005,
+          ]
+        }
+        title="En god bog"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            5329,
+            3510,
+            5734,
+            5731,
+            5280,
+            5277,
+            2183,
+            2278,
+          ]
+        }
+        title="Mennesket og Naturen"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            1672,
+            5734,
+            5731,
+            5699,
+            5721,
+            5696,
+            5680,
+            5691,
+          ]
+        }
+        title="Familiens skyggesider"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            4927,
+            5714,
+            5713,
+          ]
+        }
+        title="Tankevækkende Sci-fi"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            -2,
+          ]
+        }
+        title="Bibliotekarens ugentlige anbefalinger"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            2683,
+            5614,
+            5624,
+            5652,
+            5717,
+          ]
+        }
+        title="Krøllede fortællinger"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            5637,
+            5654,
+            5636,
+            5731,
+            5611,
+          ]
+        }
+        title="Sofahygge"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            6131,
+            5726,
+            5730,
+            5704,
+            5705,
+            5707,
+            5708,
+          ]
+        }
+        title="Tolkiensque"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            4044,
+            4895,
+            5149,
+            5680,
+            5700,
+            5670,
+            5676,
+          ]
+        }
+        title="Gotisk uhygge"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            2683,
+            4907,
+            5368,
+            5734,
+            5731,
+            5670,
+            5676,
+            5691,
+          ]
+        }
+        title="Lokalkrimi"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            5028,
+            5016,
+            5149,
+            4044,
+            4074,
+            5275,
+            5282,
+            189,
+            5660,
+            5661,
+            5671,
+          ]
+        }
+        title="Historisk romantik"
+      />
+      <BooksBelt
+        tags={
+          Array [
+            4466,
+            5731,
+            3510,
+            5626,
+            5683,
+            5630,
+          ]
+        }
+        title="Vemodige nordmænd"
+      />
       <div
         className="row belt text-left"
       >

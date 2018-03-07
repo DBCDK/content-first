@@ -1,10 +1,8 @@
 import librarianRecommends from '../../data/librarian-recommends.json';
 import {BOOKS_REQUEST} from './books.reducer';
 import request from 'superagent';
-import {getLeavesMap} from '../utils/taxonomy';
-import {filters} from './filter.reducer';
 import {uniq} from 'lodash';
-const tagsMap = getLeavesMap(filters);
+import {filtersMapAll} from './filter.reducer';
 
 const librarianRecommendsMap = librarianRecommends.reduce((map, pid) => {
   map[pid] = true;
@@ -109,7 +107,7 @@ export const applyClientSideFilters = (books, tags) => {
 };
 
 const fetchRecommendations = async ({tags = [], creators, max}) => {
-  let nonCustomTags = tags.filter(tag => !tagsMap[tag].custom);
+  let nonCustomTags = tags.filter(tag => !filtersMapAll[tag].custom);
   if (nonCustomTags.length === 0) {
     // hack alert
     // if no non custom tags are selected - for instance if only short books are selected

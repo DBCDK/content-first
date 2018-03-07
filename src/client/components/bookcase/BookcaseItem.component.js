@@ -134,7 +134,10 @@ export class BookcaseItem extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     // bookcase: state.bookcaseReducer.celebs,
-    books: getBooks(state.booksReducer, ownProps.celeb.books.map(b => b.pid))
+    books: getBooks(
+      state.booksReducer,
+      ownProps.celeb.books.map(b => b.pid)
+    ).filter(entry => entry.book)
   };
 };
 

@@ -15,7 +15,7 @@ import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import {beltNameToPath} from '../../utils/belt';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {getRecommendedBooks} from '../../redux/selectors';
-import {filtersMap, filterIds} from '../../redux/filter.reducer';
+import {filtersMapAll, filterIds} from '../../redux/filter.reducer';
 
 class FilterPage extends React.Component {
   constructor(props) {
@@ -26,13 +26,7 @@ class FilterPage extends React.Component {
   }
 
   toggleFilter(filterId) {
-    const {filterIdList, selectedTagIds, queryFilters} = this.props;
-
-    // if this is not part of the allowed filters, we will not continue
-    // otherwise hell is upon us (we'll end up in an endless loop)
-    if (filterIdList.indexOf(filterId) < 0) {
-      return;
-    }
+    const {selectedTagIds, queryFilters} = this.props;
 
     const isRemoving = selectedTagIds && selectedTagIds.indexOf(filterId) >= 0;
     const isQueryParam = queryFilters.indexOf(filterId) >= 0;
@@ -155,8 +149,8 @@ const mapStateToProps = (state, ownProps) => {
         : [],
     recommendations: getRecommendedBooks(state, selectedTagIds, 40),
     selectedTagIds,
-    selectedTags: selectedTagIds.map(id => filtersMap[id]),
-    filtersMap,
+    selectedTags: selectedTagIds.map(id => filtersMapAll[id]),
+    filtersMap: filtersMapAll,
     filterIdList: filterIds,
     filters: state.filterReducer.filters,
     editFilters: state.filterReducer.editFilters,

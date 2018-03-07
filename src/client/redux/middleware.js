@@ -88,7 +88,25 @@ export const requestMiddleware = store => next => action => {
       return next(action);
     }
     case BOOKS_REQUEST: {
-      fetchBooks(action.pids, store.dispatch);
+      const books = store.getState().booksReducer.books;
+
+      // only fetch books which are not already loading
+      let pidsToFetch = action.pids.filter(
+        pid => !books[pid] || !books[pid].isLoading
+      );
+
+      // only download cached book if forced
+      if (!action.force) {
+        pidsToFetch = pidsToFetch.filter(
+          pid => !books[pid] || !books[pid].book
+        );
+      }
+
+      if (pidsToFetch.length > 0) {
+        fetchBooks(action.pids, store.dispatch);
+      }
+
+      action.pids = pidsToFetch;
       return next(action);
     }
     default:
