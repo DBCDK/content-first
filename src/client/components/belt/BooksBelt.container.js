@@ -7,6 +7,7 @@ import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {getRecommendedBooks} from '../../redux/selectors';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import {beltNameToPath} from '../../utils/belt';
+import LazyLoad from 'react-lazy-load';
 
 export class BooksBelt extends React.Component {
   constructor() {
@@ -19,12 +20,6 @@ export class BooksBelt extends React.Component {
       nextProps.recommendedBooks.books.length !==
       this.props.recommendedBooks.books.length
     );
-  }
-
-  componentDidMount() {
-    if (this.props.recommendedBooks.books.length === 0) {
-      this.props.fetchBelt(this.props.tags);
-    }
   }
 
   getTooltipText(filters) {
@@ -53,22 +48,34 @@ export class BooksBelt extends React.Component {
             {this.props.title || 'ost'}
           </span>
         </div>
-        {this.props.recommendedBooks && (
-          <div className="row mb4">
-            <div className="col-xs-12">
-              <Slider>
-                {!this.props.recommendedBooks.isLoading &&
-                  this.props.recommendedBooks.books.map(work => (
-                    <WorkItem
-                      work={work}
-                      key={work.book.pid}
-                      origin={`Fra "${this.props.title}"`}
-                    />
-                  ))}
-              </Slider>
+        <LazyLoad
+          offsetVertical={800}
+          height={550}
+          debounce={false} // when false, it will load while scrolling
+          throttle={250} // scroll event fired every 500ms
+          onContentVisible={() => {
+            if (this.props.recommendedBooks.books.length === 0) {
+              this.props.fetchBelt(this.props.tags);
+            }
+          }}
+        >
+          {this.props.recommendedBooks && (
+            <div className="row mb4">
+              <div className="col-xs-12">
+                <Slider>
+                  {!this.props.recommendedBooks.isLoading &&
+                    this.props.recommendedBooks.books.map(work => (
+                      <WorkItem
+                        work={work}
+                        key={work.book.pid}
+                        origin={`Fra "${this.props.title}"`}
+                      />
+                    ))}
+                </Slider>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </LazyLoad>
       </div>
     );
   }
