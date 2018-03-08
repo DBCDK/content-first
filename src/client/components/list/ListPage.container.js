@@ -54,7 +54,7 @@ class ListPage extends React.Component {
           </h1>
           {editButton}
         </div>
-        <CircleTemplate list={list} profile={profile} />
+        <Template list={list} profile={profile} />
       </div>
     );
   }

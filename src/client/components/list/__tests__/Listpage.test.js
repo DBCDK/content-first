@@ -4,6 +4,7 @@ import ListPage from '../ListPage.container';
 import renderer from 'react-test-renderer';
 import {createStore, combineReducers} from 'redux';
 import listReducer, {addList} from '../../../redux/list.reducer';
+import {usersReducer} from '../../../redux/users';
 
 const reducer = (state, action) => {
   if (action.type === 'CLEAR_STATE') {
@@ -14,7 +15,8 @@ const reducer = (state, action) => {
     };
   }
   return combineReducers({
-    listReducer
+    listReducer,
+    users: usersReducer
   })(state, action);
 };
 
@@ -47,6 +49,9 @@ jest.mock(
 );
 
 jest.mock('../../comments/Comment.container.js', () => 'Comments');
+
+jest.mock('../../list/templates/SimpleList.component.js', () => 'Comments');
+jest.mock('../../list/templates/CircleTemplate.container.js', () => 'Comments');
 
 describe('ListView', () => {
   test('List is rendered', () => {
