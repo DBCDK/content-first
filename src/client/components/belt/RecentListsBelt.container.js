@@ -16,7 +16,13 @@ export class RecentListsBelt extends React.Component {
             <div className="col-xs-12">
               <Slider>
                 {this.props.recent.map(l => {
-                  return <ListCard key={l.id} list={l} />;
+                  return (
+                    <ListCard
+                      key={l.id}
+                      list={l}
+                      profile={this.props.profiles[l.owner]}
+                    />
+                  );
                 })}
               </Slider>
             </div>
@@ -28,7 +34,8 @@ export class RecentListsBelt extends React.Component {
 }
 export const mapStateToProps = state => {
   return {
-    recent: getPublicLists(state.listReducer)
+    recent: getPublicLists(state.listReducer),
+    profiles: state.users.toJS()
   };
 };
 export default connect(mapStateToProps)(RecentListsBelt);

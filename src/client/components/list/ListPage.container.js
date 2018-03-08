@@ -17,17 +17,21 @@ class ListPage extends React.Component {
     }
   }
   render() {
-    const {
+    let {
       list,
       profile = {
         name: 'Profile Name',
-        src: 'http://p-hold.com/200/200',
-        description: 'This is a dummy profile. Profiles needs to be implemented'
+        src: 'http://p-hold.com/200/200'
       }
     } = this.props;
+
     if (!list) {
       return <div>Listen findes ikke</div>;
     }
+    if (this.props.list) {
+      profile = this.props.profile[this.props.list.owner];
+    }
+
     const Template = this.getTemplate(list);
 
     let editButton = '';
@@ -50,7 +54,7 @@ class ListPage extends React.Component {
           </h1>
           {editButton}
         </div>
-        <Template list={list} profile={profile} />
+        <CircleTemplate list={list} profile={profile} />
       </div>
     );
   }
@@ -58,7 +62,8 @@ class ListPage extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    list: getListById(state.listReducer, ownProps.id)
+    list: getListById(state.listReducer, ownProps.id),
+    profile: state.users.toJS()
   };
 };
 
