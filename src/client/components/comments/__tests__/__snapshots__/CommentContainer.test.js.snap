@@ -11,22 +11,24 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
       }
     }
   >
-    <span
-      className="profile-image small round"
-      style={
-        Object {
-          "height": "35px",
-          "width": "35px",
+    <span>
+      <span
+        className="profile-image small round"
+        style={
+          Object {
+            "height": "35px",
+            "width": "35px",
+          }
         }
-      }
-    >
-      <img
-        alt={undefined}
-        className="cover"
-        src="/v1/image/image_id/200/200"
-      />
+      >
+        <img
+          alt={undefined}
+          className="cover"
+          src="/v1/image/image_id/200/200"
+        />
+      </span>
+       
     </span>
-     
     <div
       className="ml2 form-group "
       onFocus={[Function]}
@@ -37,6 +39,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
       }
     >
       <textarea
+        autoFocus={undefined}
         className="form-control mb1 comment-textarea"
         disabled={undefined}
         name="list-description"
@@ -58,7 +61,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
         }
       >
         <button
-          className="btn -btn-link link-subtle"
+          className="btn btn-link link-subtle"
           onClick={[Function]}
         >
           Fortryd
@@ -87,7 +90,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
     <div
       style={
         Object {
-          "height": null,
+          "height": 35,
           "overflow": "hidden",
           "transition": "height 500ms",
         }
@@ -98,6 +101,14 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           className="comment-wrapper"
         >
           
+          <button
+            className="btn btn-link link-subtle"
+            onClick={[Function]}
+          >
+            <span
+              className="glyphicon glyphicon-pencil"
+            />
+          </button>
           <div
             className="flex mb2"
             style={
@@ -217,22 +228,24 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
       }
     }
   >
-    <span
-      className="profile-image small round"
-      style={
-        Object {
-          "height": "35px",
-          "width": "35px",
+    <span>
+      <span
+        className="profile-image small round"
+        style={
+          Object {
+            "height": "35px",
+            "width": "35px",
+          }
         }
-      }
-    >
-      <img
-        alt={undefined}
-        className="cover"
-        src="/v1/image/image_id/200/200"
-      />
+      >
+        <img
+          alt={undefined}
+          className="cover"
+          src="/v1/image/image_id/200/200"
+        />
+      </span>
+       
     </span>
-     
     <div
       className="ml2 form-group "
       onFocus={[Function]}
@@ -243,6 +256,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
       }
     >
       <textarea
+        autoFocus={undefined}
         className="form-control mb1 comment-textarea"
         disabled={undefined}
         name="list-description"
@@ -264,7 +278,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         }
       >
         <button
-          className="btn -btn-link link-subtle"
+          className="btn btn-link link-subtle"
           onClick={[Function]}
         >
           Fortryd
@@ -379,367 +393,502 @@ exports[`CommentContainer Component renders all comments 1`] = `
           ]
         }
         showCount={5}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
       >
         <div
           style={
             Object {
-              "height": null,
+              "height": 35,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
           }
         >
           <div>
-            <div
-              className="comment-wrapper"
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "0",
+                  "comment": "comment0",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="0"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="0"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment0
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment0
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="comment-wrapper"
+            </CommentWrapper>
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "1",
+                  "comment": "comment1",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="1"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="1"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment1
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment1
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="comment-wrapper"
+            </CommentWrapper>
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "2",
+                  "comment": "comment2",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="2"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="2"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment2
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment2
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="comment-wrapper"
+            </CommentWrapper>
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "3",
+                  "comment": "comment3",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="3"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="3"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment3
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment3
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="comment-wrapper"
+            </CommentWrapper>
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "4",
+                  "comment": "comment4",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="4"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="4"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment4
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment4
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </CommentWrapper>
           </div>
         </div>
       </CommentList>
@@ -805,6 +954,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
     </div>
     <CommentInput
       error={null}
+      onCancel={[Function]}
       onChange={[Function]}
       onSubmit={[Function]}
       user={
@@ -821,29 +971,31 @@ exports[`CommentContainer Component renders all comments 1`] = `
           }
         }
       >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
+        <span>
+          <CommentUserImage
+            user={
               Object {
-                "height": "35px",
-                "width": "35px",
+                "image": "image_id",
               }
             }
           >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-         
+            <span
+              className="profile-image small round"
+              style={
+                Object {
+                  "height": "35px",
+                  "width": "35px",
+                }
+              }
+            >
+              <img
+                className="cover"
+                src="/v1/image/image_id/200/200"
+              />
+            </span>
+          </CommentUserImage>
+           
+        </span>
         <div
           className="ml2 form-group "
           onFocus={[Function]}
@@ -873,7 +1025,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
             }
           >
             <button
-              className="btn -btn-link link-subtle"
+              className="btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
@@ -954,87 +1106,118 @@ exports[`CommentContainer Component renders error 1`] = `
           ]
         }
         showCount={1}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
       >
         <div
           style={
             Object {
-              "height": null,
+              "height": 35,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
           }
         >
           <div>
-            <div
-              className="comment-wrapper"
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "1",
+                  "comment": "comment1",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="1"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="1"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment1
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment1
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </CommentWrapper>
           </div>
         </div>
       </CommentList>
@@ -1105,6 +1288,7 @@ exports[`CommentContainer Component renders error 1`] = `
           "error": "some error occures",
         }
       }
+      onCancel={[Function]}
       onChange={[Function]}
       onSubmit={[Function]}
       user={
@@ -1121,29 +1305,31 @@ exports[`CommentContainer Component renders error 1`] = `
           }
         }
       >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
+        <span>
+          <CommentUserImage
+            user={
               Object {
-                "height": "35px",
-                "width": "35px",
+                "image": "image_id",
               }
             }
           >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-         
+            <span
+              className="profile-image small round"
+              style={
+                Object {
+                  "height": "35px",
+                  "width": "35px",
+                }
+              }
+            >
+              <img
+                className="cover"
+                src="/v1/image/image_id/200/200"
+              />
+            </span>
+          </CommentUserImage>
+           
+        </span>
         <div
           className="ml2 form-group has-error"
           onFocus={[Function]}
@@ -1178,7 +1364,7 @@ exports[`CommentContainer Component renders error 1`] = `
             }
           >
             <button
-              className="btn -btn-link link-subtle"
+              className="btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
@@ -1269,106 +1455,138 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
           ]
         }
         showCount={1}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
       >
         <div
           style={
             Object {
-              "height": null,
+              "height": 35,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
           }
         >
           <div>
-            <div
-              className="comment-wrapper"
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "new_comment",
+                  "comment": "comment new",
+                  "saving": true,
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="new_comment"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="comment-saving"
+                className="comment-wrapper"
+                key="new_comment"
               >
-                <Spinner
-                  size="30px"
+                <div
+                  className="comment-saving"
+                >
+                  <Spinner
+                    size="30px"
+                  >
+                    <span
+                      className="spinner"
+                      style={
+                        Object {
+                          "borderTopColor": null,
+                          "display": "inline-block",
+                          "height": "30px",
+                          "width": "30px",
+                        }
+                      }
+                    />
+                  </Spinner>
+                </div>
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
                 >
                   <span
-                    className="spinner"
-                    style={
-                      Object {
-                        "borderTopColor": null,
-                        "display": "inline-block",
-                        "height": "30px",
-                        "width": "30px",
-                      }
-                    }
+                    className="glyphicon glyphicon-pencil"
                   />
-                </Spinner>
-              </div>
-              <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
-              >
-                <CommentUserImage
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment new
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment new
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </CommentWrapper>
           </div>
         </div>
       </CommentList>
@@ -1434,6 +1652,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
     </div>
     <CommentInput
       error={null}
+      onCancel={[Function]}
       onChange={[Function]}
       onSubmit={[Function]}
       user={
@@ -1450,29 +1669,31 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
           }
         }
       >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
+        <span>
+          <CommentUserImage
+            user={
               Object {
-                "height": "35px",
-                "width": "35px",
+                "image": "image_id",
               }
             }
           >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-         
+            <span
+              className="profile-image small round"
+              style={
+                Object {
+                  "height": "35px",
+                  "width": "35px",
+                }
+              }
+            >
+              <img
+                className="cover"
+                src="/v1/image/image_id/200/200"
+              />
+            </span>
+          </CommentUserImage>
+           
+        </span>
         <div
           className="ml2 form-group "
           onFocus={[Function]}
@@ -1502,7 +1723,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             }
           >
             <button
-              className="btn -btn-link link-subtle"
+              className="btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
@@ -1619,87 +1840,118 @@ exports[`CommentContainer Toggle all comments 1`] = `
           ]
         }
         showCount={1}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
       >
         <div
           style={
             Object {
-              "height": null,
+              "height": 35,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
           }
         >
           <div>
-            <div
-              className="comment-wrapper"
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "4",
+                  "comment": "comment4",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="4"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="4"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment4
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment4
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </CommentWrapper>
           </div>
         </div>
       </CommentList>
@@ -1765,6 +2017,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
     </div>
     <CommentInput
       error={null}
+      onCancel={[Function]}
       onChange={[Function]}
       onSubmit={[Function]}
       user={
@@ -1781,29 +2034,31 @@ exports[`CommentContainer Toggle all comments 1`] = `
           }
         }
       >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
+        <span>
+          <CommentUserImage
+            user={
               Object {
-                "height": "35px",
-                "width": "35px",
+                "image": "image_id",
               }
             }
           >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-         
+            <span
+              className="profile-image small round"
+              style={
+                Object {
+                  "height": "35px",
+                  "width": "35px",
+                }
+              }
+            >
+              <img
+                className="cover"
+                src="/v1/image/image_id/200/200"
+              />
+            </span>
+          </CommentUserImage>
+           
+        </span>
         <div
           className="ml2 form-group "
           onFocus={[Function]}
@@ -1833,7 +2088,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
             }
           >
             <button
-              className="btn -btn-link link-subtle"
+              className="btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
@@ -1950,367 +2205,502 @@ exports[`CommentContainer Toggle all comments 2`] = `
           ]
         }
         showCount={5}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
       >
         <div
           style={
             Object {
-              "height": null,
+              "height": 35,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
           }
         >
           <div>
-            <div
-              className="comment-wrapper"
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "0",
+                  "comment": "comment0",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="0"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="0"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment0
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment0
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="comment-wrapper"
+            </CommentWrapper>
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "1",
+                  "comment": "comment1",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="1"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="1"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment1
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment1
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="comment-wrapper"
+            </CommentWrapper>
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "2",
+                  "comment": "comment2",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="2"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="2"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment2
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment2
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="comment-wrapper"
+            </CommentWrapper>
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "3",
+                  "comment": "comment3",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="3"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="3"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment3
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment3
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              className="comment-wrapper"
+            </CommentWrapper>
+            <CommentWrapper
+              comment={
+                Object {
+                  "_id": "4",
+                  "comment": "comment4",
+                  "user": Object {
+                    "name": "Benny Cosmos",
+                  },
+                }
+              }
               key="4"
+              user={
+                Object {
+                  "image": "image_id",
+                }
+              }
             >
               <div
-                className="flex mb2"
-                style={
-                  Object {
-                    "width": "100%",
-                  }
-                }
+                className="comment-wrapper"
+                key="4"
               >
-                <CommentUserImage
+                <button
+                  className="btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                  />
+                </button>
+                <div
+                  className="flex mb2"
                   style={
                     Object {
-                      "flexShrink": 0,
-                    }
-                  }
-                  user={
-                    Object {
-                      "name": "Benny Cosmos",
+                      "width": "100%",
                     }
                   }
                 >
-                  <span
-                    className="profile-image small round"
+                  <CommentUserImage
                     style={
                       Object {
                         "flexShrink": 0,
-                        "height": "35px",
-                        "width": "35px",
+                      }
+                    }
+                    user={
+                      Object {
+                        "name": "Benny Cosmos",
                       }
                     }
                   >
                     <span
-                      className="glyphicon glyphicon-user"
+                      className="profile-image small round"
                       style={
                         Object {
-                          "fontSize": "17.5px",
+                          "flexShrink": 0,
+                          "height": "35px",
+                          "width": "35px",
                         }
                       }
-                    />
-                  </span>
-                </CommentUserImage>
-                <div
-                  className="ml2"
-                  style={
-                    Object {
-                      "flexGrow": 1,
+                    >
+                      <span
+                        className="glyphicon glyphicon-user"
+                        style={
+                          Object {
+                            "fontSize": "17.5px",
+                          }
+                        }
+                      />
+                    </span>
+                  </CommentUserImage>
+                  <div
+                    className="ml2"
+                    style={
+                      Object {
+                        "flexGrow": 1,
+                      }
                     }
-                  }
-                >
-                  <div
-                    className="comment-author"
                   >
-                    Benny Cosmos
-                  </div>
-                  <div
-                    className="comment-time mb1"
-                  >
-                    Lige nu
-                  </div>
-                  <div
-                    className="comment"
-                  >
-                    comment4
+                    <div
+                      className="comment-author"
+                    >
+                      Benny Cosmos
+                    </div>
+                    <div
+                      className="comment-time mb1"
+                    >
+                      Lige nu
+                    </div>
+                    <div
+                      className="comment"
+                    >
+                      comment4
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </CommentWrapper>
           </div>
         </div>
       </CommentList>
@@ -2376,6 +2766,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
     </div>
     <CommentInput
       error={null}
+      onCancel={[Function]}
       onChange={[Function]}
       onSubmit={[Function]}
       user={
@@ -2392,29 +2783,31 @@ exports[`CommentContainer Toggle all comments 2`] = `
           }
         }
       >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
+        <span>
+          <CommentUserImage
+            user={
               Object {
-                "height": "35px",
-                "width": "35px",
+                "image": "image_id",
               }
             }
           >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-         
+            <span
+              className="profile-image small round"
+              style={
+                Object {
+                  "height": "35px",
+                  "width": "35px",
+                }
+              }
+            >
+              <img
+                className="cover"
+                src="/v1/image/image_id/200/200"
+              />
+            </span>
+          </CommentUserImage>
+           
+        </span>
         <div
           className="ml2 form-group "
           onFocus={[Function]}
@@ -2444,7 +2837,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
             }
           >
             <button
-              className="btn -btn-link link-subtle"
+              className="btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
