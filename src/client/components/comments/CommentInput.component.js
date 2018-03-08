@@ -15,7 +15,7 @@ export default class CommentInput extends React.Component {
   };
 
   onCancel = () => {
-    this.props.onChange('');
+    this.props.onCancel();
     this.setState({focus: false});
   };
 
@@ -26,7 +26,13 @@ export default class CommentInput extends React.Component {
           display: 'flex'
         }}
       >
-        <CommentUserImage user={this.props.user} />{' '}
+        {!this.props.hideProfile ? (
+          <span>
+            <CommentUserImage user={this.props.user} />{' '}
+          </span>
+        ) : (
+          ''
+        )}
         <div
           style={{width: '100%'}}
           className={`ml2 form-group ${this.props.error ? 'has-error' : ''}`}
@@ -35,6 +41,8 @@ export default class CommentInput extends React.Component {
           }}
         >
           <Textarea
+            autoFocus={this.props.autoFocus}
+            ref={ref => (this.textarea = ref)}
             disabled={this.props.disabled}
             className={`form-control mb1 comment-textarea`}
             name="list-description"
@@ -53,7 +61,7 @@ export default class CommentInput extends React.Component {
           <div
             className="tr"
             style={{
-              height: this.state.focus || this.state.value ? '35px' : '0px',
+              height: this.state.focus || this.state.value ? '50px' : '0px',
               opacity: this.state.focus || this.state.value ? 1 : 0,
               overflow: 'hidden',
               transition: 'height 200ms, opacity 200ms'

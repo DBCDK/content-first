@@ -2,9 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
   ADD_COMMENT,
-  SAVE_COMMENT,
+  UPDATE_COMMENT,
   FETCH_COMMENTS,
-  getCommentsForId
+  getCommentsForId,
+  TOGGLE_EDIT_COMMENT
 } from '../../redux/comment.reducer';
 import {Comments as CommentsIcon} from '../general/Icons';
 import CommentList from './CommentList.component';
@@ -47,6 +48,7 @@ export class CommentContainer extends React.Component {
         {commentsCount ? (
           <div className="mb3">
             <CommentList
+              toggleEdit={this.props.toggleEdit}
               editComment={this.props.editComment}
               user={this.props.user}
               comments={this.props.comments}
@@ -81,6 +83,7 @@ export class CommentContainer extends React.Component {
           user={this.props.user}
           value={this.state.newCommentValue}
           onSubmit={this.onSubmit}
+          onCancel={() => this.setState({newCommentValue: ''})}
           onChange={value => this.setState({newCommentValue: value})}
           disabled={this.props.saving}
           error={this.props.error || null}
@@ -98,7 +101,9 @@ const mapStateToProps = (state, ownProps) => ({
 export const mapDispatchToProps = dispatch => ({
   addComment: ({id, comment, owner}) =>
     dispatch({type: ADD_COMMENT, comment, id, owner}),
-  editComment: ({id, comment}) => dispatch({type: SAVE_COMMENT, comment, id}),
+  editComment: ({id, comment}) => dispatch({type: UPDATE_COMMENT, comment, id}),
+  toggleEdit: ({comment, editing}) =>
+    dispatch({type: TOGGLE_EDIT_COMMENT, comment, editing}),
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 

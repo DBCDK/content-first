@@ -2,8 +2,8 @@ import {fetchObjects, addObject, updateObject} from '../utils/requester';
 import {
   ADD_COMMENT,
   ADD_COMMENT_SUCCESS,
-  SAVE_COMMENT,
-  SAVE_COMMENT_SUCCESS,
+  UPDATE_COMMENT,
+  UPDATE_COMMENT_SUCCESS,
   FETCH_COMMENTS,
   FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_ERROR,
@@ -27,7 +27,7 @@ export const commentMiddleware = store => next => action => {
           store.dispatch({
             type: ADD_COMMENT_SUCCESS,
             id: action.id,
-            data: response.data
+            data: {...response.data, _key: action.id}
           });
         } catch (e) {
           store.dispatch({
@@ -39,13 +39,15 @@ export const commentMiddleware = store => next => action => {
         }
       })();
     }
-    case SAVE_COMMENT: {
+    case UPDATE_COMMENT: {
+      // remove properties that we do not wont to save using spread/rest.
+      const {user, editing, saving, ...comment} = action.comment; // eslint-disable-line no-unused-vars
       return (async () => {
         next(action);
         try {
-          const response = await updateObject(comment._id, comment);
+          const response = await updateObject(comment);
           store.dispatch({
-            type: SAVE_COMMENT_SUCCESS,
+            type: UPDATE_COMMENT_SUCCESS,
             id: action.id,
             comment: {...action.comment, ...response.data}
           });

@@ -200,10 +200,10 @@ export const addObject = object => {
   });
 };
 
-export const updateObject = (id, object) => {
+export const updateObject = object => {
   return new Promise((resolve, reject) => {
     request
-      .put(`/v1/object/${id}`)
+      .put(`/v1/object/${object._id}`)
       .send(object)
       .end((error, res) => {
         if (error) {

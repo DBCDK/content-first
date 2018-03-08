@@ -9,6 +9,14 @@ class CommentWrapper extends React.Component {
     edit: false,
     comment: this.props.comment.comment
   };
+
+  toggleEdit(value) {
+    this.props.toggleEdit({
+      comment: this.props.comment,
+      editing: value
+    });
+  }
+
   editComment = () => {
     this.props.editComment({
       id: this.props.comment._key,
@@ -37,32 +45,37 @@ class CommentWrapper extends React.Component {
           ''
         )}
         {this.props.user.openplatformId === user.openplatformId ? (
-          <span
-            className="glyphicon glyphicon-pencil"
-            onClick={e => this.setState({edit: true})}
-          />
+          <button
+            className="btn btn-link link-subtle"
+            onClick={() => this.toggleEdit(!this.props.comment.editing)}
+          >
+            <span className="glyphicon glyphicon-pencil" />
+          </button>
         ) : (
           'not owner'
         )}
-        {this.state.edit ? (
-          <CommentInput
-            user={this.props.user}
-            value={this.state.comment}
-            onSubmit={this.editComment}
-            onChange={value => this.setState({comment: value})}
-            disabled={saving}
-            error={error || null}
-          />
-        ) : (
-          <div className="flex mb2" style={{width: '100%'}}>
-            <CommentUserImage user={user} style={{flexShrink: 0}} />
-            <div className="ml2" style={{flexGrow: 1}}>
-              <div className="comment-author">{user.name || ''}</div>
-              <div className="comment-time mb1">{timeToString(_created)}</div>
+        <div className="flex mb2" style={{width: '100%'}}>
+          <CommentUserImage user={user} style={{flexShrink: 0}} />
+          <div className="ml2" style={{flexGrow: 1}}>
+            <div className="comment-author">{user.name || ''}</div>
+            <div className="comment-time mb1">{timeToString(_created)}</div>
+            {this.props.comment.editing ? (
+              <CommentInput
+                hideProfile={true}
+                autoFocus={true}
+                user={this.props.user}
+                value={this.state.comment}
+                onSubmit={this.editComment}
+                onCancel={() => this.toggleEdit(false)}
+                onChange={value => this.setState({comment: value})}
+                disabled={saving}
+                error={error || null}
+              />
+            ) : (
               <div className="comment">{comment}</div>
-            </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     );
   }
@@ -96,13 +109,14 @@ export default class CommentList extends React.Component {
       <div
         style={{
           overflow: 'hidden',
-          height: this.state.height,
+          height: this.state.height + 35,
           transition: 'height 500ms'
         }}
       >
         <div ref={el => (this.listWrapper = el)}>
           {showComments.map(comment => (
             <CommentWrapper
+              toggleEdit={this.props.toggleEdit}
               user={this.props.user}
               key={comment._id}
               comment={comment}

@@ -4,9 +4,9 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_ERROR = 'ADD_COMMENT_ERROR';
 export const TOGGLE_EDIT_COMMENT = 'TOGGLE_EDIT_COMMENT';
-export const SAVE_COMMENT = 'SAVE_COMMENT';
-export const SAVE_COMMENT_SUCCESS = 'SAVE_COMMENT_SUCCESS';
-export const SAVE_COMMENT_ERROR = 'SAVE_COMMENT_ERROR';
+export const UPDATE_COMMENT = 'UPDATE_COMMENT';
+export const UPDATE_COMMENT_SUCCESS = 'UPDATE_COMMENT_SUCCESS';
+export const UPDATE_COMMENT_ERROR = 'UPDATE_COMMENT_ERROR';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
 export const FETCH_COMMENTS_ERROR = 'FETCH_COMMENTS_ERROR';
@@ -69,13 +69,13 @@ const commentReducer = (state = defaultState, action) => {
 
     case TOGGLE_EDIT_COMMENT: {
       return Object.assign({}, state, {
-        [action.id]: updateComment(state, action.id, {
+        [action.comment._key]: updateComment(state[action.comment._key], {
           _id: action.comment._id,
-          edit: action.edit
+          editing: action.editing
         })
       });
     }
-    case SAVE_COMMENT: {
+    case UPDATE_COMMENT: {
       const list = updateComment(state[action.id], {
         ...action.comment,
         saving: true
@@ -84,7 +84,7 @@ const commentReducer = (state = defaultState, action) => {
         [action.id]: {...list, saving: true, error: null}
       });
     }
-    case SAVE_COMMENT_SUCCESS: {
+    case UPDATE_COMMENT_SUCCESS: {
       const list = updateComment(state[action.id], {
         ...action.comment,
         saving: false,
