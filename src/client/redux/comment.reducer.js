@@ -83,10 +83,11 @@ const commentReducer = (state = defaultState, action) => {
     case UPDATE_COMMENT: {
       const list = updateComment(state[action.comment._key], {
         ...action.comment,
-        saving: true
+        saving: true,
+        error: null
       });
       return Object.assign({}, state, {
-        [action.comment._key]: {...list, saving: true, error: null}
+        [action.comment._key]: list
       });
     }
     case UPDATE_COMMENT_SUCCESS: {
@@ -96,7 +97,7 @@ const commentReducer = (state = defaultState, action) => {
         editing: false
       });
       return Object.assign({}, state, {
-        [action.comment._key]: {...list, saving: false}
+        [action.comment._key]: list
       });
     }
     case UPDATE_COMMENT_ERROR: {
