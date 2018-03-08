@@ -103,7 +103,7 @@ export const requestMiddleware = store => next => action => {
       }
 
       if (pidsToFetch.length > 0) {
-        fetchBooks(action.pids, store.dispatch);
+        fetchBooks(pidsToFetch, store.dispatch);
       }
 
       action.pids = pidsToFetch;
