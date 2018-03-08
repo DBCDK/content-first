@@ -5,7 +5,8 @@ import {
   UPDATE_COMMENT,
   FETCH_COMMENTS,
   getCommentsForId,
-  TOGGLE_EDIT_COMMENT
+  TOGGLE_EDIT_COMMENT,
+  DELETE_COMMENT
 } from '../../redux/comment.reducer';
 import {Comments as CommentsIcon} from '../general/Icons';
 import CommentList from './CommentList.component';
@@ -50,6 +51,7 @@ export class CommentContainer extends React.Component {
             <CommentList
               toggleEdit={this.props.toggleEdit}
               editComment={this.props.editComment}
+              deleteComment={this.props.deleteComment}
               user={this.props.user}
               comments={this.props.comments}
               showCount={
@@ -101,7 +103,8 @@ const mapStateToProps = (state, ownProps) => ({
 export const mapDispatchToProps = dispatch => ({
   addComment: ({id, comment, owner}) =>
     dispatch({type: ADD_COMMENT, comment, id, owner}),
-  editComment: ({id, comment}) => dispatch({type: UPDATE_COMMENT, comment, id}),
+  editComment: comment => dispatch({type: UPDATE_COMMENT, comment}),
+  deleteComment: comment => dispatch({type: DELETE_COMMENT, comment}),
   toggleEdit: ({comment, editing}) =>
     dispatch({type: TOGGLE_EDIT_COMMENT, comment, editing}),
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})

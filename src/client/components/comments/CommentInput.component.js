@@ -27,15 +27,11 @@ export default class CommentInput extends React.Component {
         }}
       >
         {!this.props.hideProfile ? (
-          <span>
-            <CommentUserImage user={this.props.user} />{' '}
-          </span>
-        ) : (
-          ''
-        )}
+          <CommentUserImage user={this.props.user} />
+        ) : null}
         <div
           style={{width: '100%'}}
-          className={`ml2 form-group ${this.props.error ? 'has-error' : ''}`}
+          className={`form-group ${this.props.error ? 'has-error' : ''}`}
           onFocus={() => {
             this.setState({focus: true});
           }}
@@ -67,8 +63,16 @@ export default class CommentInput extends React.Component {
               transition: 'height 200ms, opacity 200ms'
             }}
           >
+            {this.props.onDelete ? (
+              <button
+                className="comment-delete btn btn-link link-subtle"
+                onClick={this.props.onDelete}
+              >
+                Slet
+              </button>
+            ) : null}
             <button
-              className="btn btn-link link-subtle"
+              className="comment-cancel btn btn-link link-subtle"
               onClick={this.onCancel}
             >
               Fortryd

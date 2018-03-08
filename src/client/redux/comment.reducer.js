@@ -7,6 +7,9 @@ export const TOGGLE_EDIT_COMMENT = 'TOGGLE_EDIT_COMMENT';
 export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const UPDATE_COMMENT_SUCCESS = 'UPDATE_COMMENT_SUCCESS';
 export const UPDATE_COMMENT_ERROR = 'UPDATE_COMMENT_ERROR';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
+export const DELETE_COMMENT_ERROR = 'DELETE_COMMENT_ERROR';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const FETCH_COMMENTS_SUCCESS = 'FETCH_COMMENTS_SUCCESS';
 export const FETCH_COMMENTS_ERROR = 'FETCH_COMMENTS_ERROR';
@@ -71,27 +74,68 @@ const commentReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {
         [action.comment._key]: updateComment(state[action.comment._key], {
           _id: action.comment._id,
-          editing: action.editing
+          editing: action.editing,
+          error: null
         })
       });
     }
+    case DELETE_COMMENT:
     case UPDATE_COMMENT: {
-      const list = updateComment(state[action.id], {
+      const list = updateComment(state[action.comment._key], {
         ...action.comment,
         saving: true
       });
       return Object.assign({}, state, {
-        [action.id]: {...list, saving: true, error: null}
+        [action.comment._key]: {...list, saving: true, error: null}
       });
     }
     case UPDATE_COMMENT_SUCCESS: {
-      const list = updateComment(state[action.id], {
+      const list = updateComment(state[action.comment._key], {
         ...action.comment,
         saving: false,
         editing: false
       });
       return Object.assign({}, state, {
-        [action.id]: {...list, saving: false}
+        [action.comment._key]: {...list, saving: false}
+      });
+    }
+    case UPDATE_COMMENT_ERROR: {
+      const list = updateComment(state[action.comment._key], {
+        ...action.comment,
+        saving: false,
+        editing: true,
+        error: {
+          error: 'Det var ikke muligt at opdatere kommentaren',
+          comment: action.comment.comment
+        }
+      });
+      return Object.assign({}, state, {
+        [action.comment._key]: {...list, saving: false}
+      });
+    }
+
+    case DELETE_COMMENT_ERROR: {
+      const list = updateComment(state[action.comment._key], {
+        ...action.comment,
+        saving: false,
+        editing: true,
+        error: {
+          error: 'Det var ikke muligt at slette kommentaren',
+          comment: action.comment.comment
+        }
+      });
+      return Object.assign({}, state, {
+        [action.comment._key]: {...list, saving: false}
+      });
+    }
+
+    case DELETE_COMMENT_SUCCESS: {
+      const list = state[action.comment._key];
+      const comments = list.comments.filter(
+        comment => comment._id !== action.comment._id
+      );
+      return Object.assign({}, state, {
+        [action.comment._key]: {...list, comments}
       });
     }
 

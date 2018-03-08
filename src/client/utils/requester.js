@@ -214,6 +214,9 @@ export const updateObject = object => {
       });
   });
 };
+export const deleteObject = object => {
+  return updateObject({_id: object._id});
+};
 
 export const logout = dispatch => {
   dispatch({type: ON_LOGOUT_RESPONSE});

@@ -19,11 +19,8 @@ class CommentWrapper extends React.Component {
 
   editComment = () => {
     this.props.editComment({
-      id: this.props.comment._key,
-      comment: {
-        ...this.props.comment,
-        comment: this.state.comment
-      }
+      ...this.props.comment,
+      comment: this.state.comment
     });
   };
   render() {
@@ -46,17 +43,15 @@ class CommentWrapper extends React.Component {
         )}
         {this.props.user.openplatformId === user.openplatformId ? (
           <button
-            className="btn btn-link link-subtle"
+            className="comment-edit-button btn btn-link link-subtle"
             onClick={() => this.toggleEdit(!this.props.comment.editing)}
           >
             <span className="glyphicon glyphicon-pencil" />
           </button>
-        ) : (
-          'not owner'
-        )}
+        ) : null}
         <div className="flex mb2" style={{width: '100%'}}>
           <CommentUserImage user={user} style={{flexShrink: 0}} />
-          <div className="ml2" style={{flexGrow: 1}}>
+          <div style={{flexGrow: 1}}>
             <div className="comment-author">{user.name || ''}</div>
             <div className="comment-time mb1">{timeToString(_created)}</div>
             {this.props.comment.editing ? (
@@ -67,6 +62,7 @@ class CommentWrapper extends React.Component {
                 value={this.state.comment}
                 onSubmit={this.editComment}
                 onCancel={() => this.toggleEdit(false)}
+                onDelete={() => this.props.deleteComment(this.props.comment)}
                 onChange={value => this.setState({comment: value})}
                 disabled={saving}
                 error={error || null}
@@ -89,12 +85,15 @@ export default class CommentList extends React.Component {
     };
   }
   componentDidUpdate() {
+    const adjust = this.props.comments.filter(comment => comment.editing).length
+      ? 30
+      : 0;
     if (
       this.listWrapper &&
       this.listWrapper.offsetHeight &&
-      this.state.height !== this.listWrapper.offsetHeight
+      this.state.height !== this.listWrapper.offsetHeight + adjust
     ) {
-      this.setState({height: this.listWrapper.offsetHeight});
+      this.setState({height: this.listWrapper.offsetHeight + adjust});
     }
   }
 
@@ -109,7 +108,7 @@ export default class CommentList extends React.Component {
       <div
         style={{
           overflow: 'hidden',
-          height: this.state.height + 35,
+          height: this.state.height,
           transition: 'height 500ms'
         }}
       >
@@ -120,6 +119,7 @@ export default class CommentList extends React.Component {
               user={this.props.user}
               key={comment._id}
               comment={comment}
+              deleteComment={this.props.deleteComment}
               editComment={this.props.editComment}
             />
           ))}

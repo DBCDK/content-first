@@ -1,4 +1,9 @@
-import {fetchObjects, addObject, updateObject} from '../utils/requester';
+import {
+  fetchObjects,
+  addObject,
+  updateObject,
+  deleteObject
+} from '../utils/requester';
 import {
   ADD_COMMENT,
   ADD_COMMENT_SUCCESS,
@@ -7,7 +12,11 @@ import {
   FETCH_COMMENTS,
   FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_ERROR,
-  ADD_COMMENT_ERROR
+  ADD_COMMENT_ERROR,
+  DELETE_COMMENT,
+  DELETE_COMMENT_SUCCESS,
+  DELETE_COMMENT_ERROR,
+  UPDATE_COMMENT_ERROR
 } from './comment.reducer';
 
 import {REQUEST_USER} from './users';
@@ -48,13 +57,29 @@ export const commentMiddleware = store => next => action => {
           const response = await updateObject(comment);
           store.dispatch({
             type: UPDATE_COMMENT_SUCCESS,
-            id: action.id,
             comment: {...action.comment, ...response.data}
           });
         } catch (e) {
           store.dispatch({
-            type: ADD_COMMENT_ERROR,
-            id: action.id,
+            type: UPDATE_COMMENT_ERROR,
+            error: e,
+            comment: action.comment
+          });
+        }
+      })();
+    }
+    case DELETE_COMMENT: {
+      return (async () => {
+        next(action);
+        try {
+          await deleteObject(action.comment);
+          store.dispatch({
+            type: DELETE_COMMENT_SUCCESS,
+            comment: action.comment
+          });
+        } catch (e) {
+          store.dispatch({
+            type: DELETE_COMMENT_ERROR,
             error: e,
             comment: action.comment
           });

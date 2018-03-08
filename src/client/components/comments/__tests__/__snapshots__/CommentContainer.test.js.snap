@@ -11,26 +11,24 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
       }
     }
   >
-    <span>
-      <span
-        className="profile-image small round"
-        style={
-          Object {
-            "height": "35px",
-            "width": "35px",
-          }
+    <span
+      className="profile-image small round"
+      style={
+        Object {
+          "height": "35px",
+          "marginRight": "20px",
+          "width": "35px",
         }
-      >
-        <img
-          alt={undefined}
-          className="cover"
-          src="/v1/image/image_id/200/200"
-        />
-      </span>
-       
+      }
+    >
+      <img
+        alt={undefined}
+        className="cover"
+        src="/v1/image/image_id/200/200"
+      />
     </span>
     <div
-      className="ml2 form-group "
+      className="form-group "
       onFocus={[Function]}
       style={
         Object {
@@ -61,7 +59,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
         }
       >
         <button
-          className="btn btn-link link-subtle"
+          className="comment-cancel btn btn-link link-subtle"
           onClick={[Function]}
         >
           Fortryd
@@ -90,7 +88,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
     <div
       style={
         Object {
-          "height": 35,
+          "height": null,
           "overflow": "hidden",
           "transition": "height 500ms",
         }
@@ -102,7 +100,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         >
           
           <button
-            className="btn btn-link link-subtle"
+            className="comment-edit-button btn btn-link link-subtle"
             onClick={[Function]}
           >
             <span
@@ -123,6 +121,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
                 Object {
                   "flexShrink": 0,
                   "height": "35px",
+                  "marginRight": "20px",
                   "width": "35px",
                 }
               }
@@ -137,7 +136,6 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
               />
             </span>
             <div
-              className="ml2"
               style={
                 Object {
                   "flexGrow": 1,
@@ -228,26 +226,24 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
       }
     }
   >
-    <span>
-      <span
-        className="profile-image small round"
-        style={
-          Object {
-            "height": "35px",
-            "width": "35px",
-          }
+    <span
+      className="profile-image small round"
+      style={
+        Object {
+          "height": "35px",
+          "marginRight": "20px",
+          "width": "35px",
         }
-      >
-        <img
-          alt={undefined}
-          className="cover"
-          src="/v1/image/image_id/200/200"
-        />
-      </span>
-       
+      }
+    >
+      <img
+        alt={undefined}
+        className="cover"
+        src="/v1/image/image_id/200/200"
+      />
     </span>
     <div
-      className="ml2 form-group "
+      className="form-group "
       onFocus={[Function]}
       style={
         Object {
@@ -278,7 +274,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         }
       >
         <button
-          className="btn btn-link link-subtle"
+          className="comment-cancel btn btn-link link-subtle"
           onClick={[Function]}
         >
           Fortryd
@@ -402,7 +398,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
         <div
           style={
             Object {
-              "height": 35,
+              "height": null,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
@@ -431,7 +427,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 key="0"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -464,6 +460,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -479,7 +476,6 @@ exports[`CommentContainer Component renders all comments 1`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -527,7 +523,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 key="1"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -560,6 +556,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -575,7 +572,6 @@ exports[`CommentContainer Component renders all comments 1`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -623,7 +619,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 key="2"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -656,6 +652,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -671,7 +668,6 @@ exports[`CommentContainer Component renders all comments 1`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -719,7 +715,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 key="3"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -752,6 +748,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -767,7 +764,6 @@ exports[`CommentContainer Component renders all comments 1`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -815,7 +811,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 key="4"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -848,6 +844,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -863,7 +860,6 @@ exports[`CommentContainer Component renders all comments 1`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -971,33 +967,31 @@ exports[`CommentContainer Component renders all comments 1`] = `
           }
         }
       >
-        <span>
-          <CommentUserImage
-            user={
+        <CommentUserImage
+          user={
+            Object {
+              "image": "image_id",
+            }
+          }
+        >
+          <span
+            className="profile-image small round"
+            style={
               Object {
-                "image": "image_id",
+                "height": "35px",
+                "marginRight": "20px",
+                "width": "35px",
               }
             }
           >
-            <span
-              className="profile-image small round"
-              style={
-                Object {
-                  "height": "35px",
-                  "width": "35px",
-                }
-              }
-            >
-              <img
-                className="cover"
-                src="/v1/image/image_id/200/200"
-              />
-            </span>
-          </CommentUserImage>
-           
-        </span>
+            <img
+              className="cover"
+              src="/v1/image/image_id/200/200"
+            />
+          </span>
+        </CommentUserImage>
         <div
-          className="ml2 form-group "
+          className="form-group "
           onFocus={[Function]}
           style={
             Object {
@@ -1025,7 +1019,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
             }
           >
             <button
-              className="btn btn-link link-subtle"
+              className="comment-cancel btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
@@ -1115,7 +1109,7 @@ exports[`CommentContainer Component renders error 1`] = `
         <div
           style={
             Object {
-              "height": 35,
+              "height": null,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
@@ -1144,7 +1138,7 @@ exports[`CommentContainer Component renders error 1`] = `
                 key="1"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -1177,6 +1171,7 @@ exports[`CommentContainer Component renders error 1`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -1192,7 +1187,6 @@ exports[`CommentContainer Component renders error 1`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -1305,33 +1299,31 @@ exports[`CommentContainer Component renders error 1`] = `
           }
         }
       >
-        <span>
-          <CommentUserImage
-            user={
+        <CommentUserImage
+          user={
+            Object {
+              "image": "image_id",
+            }
+          }
+        >
+          <span
+            className="profile-image small round"
+            style={
               Object {
-                "image": "image_id",
+                "height": "35px",
+                "marginRight": "20px",
+                "width": "35px",
               }
             }
           >
-            <span
-              className="profile-image small round"
-              style={
-                Object {
-                  "height": "35px",
-                  "width": "35px",
-                }
-              }
-            >
-              <img
-                className="cover"
-                src="/v1/image/image_id/200/200"
-              />
-            </span>
-          </CommentUserImage>
-           
-        </span>
+            <img
+              className="cover"
+              src="/v1/image/image_id/200/200"
+            />
+          </span>
+        </CommentUserImage>
         <div
-          className="ml2 form-group has-error"
+          className="form-group has-error"
           onFocus={[Function]}
           style={
             Object {
@@ -1364,7 +1356,7 @@ exports[`CommentContainer Component renders error 1`] = `
             }
           >
             <button
-              className="btn btn-link link-subtle"
+              className="comment-cancel btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
@@ -1464,7 +1456,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
         <div
           style={
             Object {
-              "height": 35,
+              "height": null,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
@@ -1513,7 +1505,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                   </Spinner>
                 </div>
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -1546,6 +1538,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -1561,7 +1554,6 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -1669,33 +1661,31 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
           }
         }
       >
-        <span>
-          <CommentUserImage
-            user={
+        <CommentUserImage
+          user={
+            Object {
+              "image": "image_id",
+            }
+          }
+        >
+          <span
+            className="profile-image small round"
+            style={
               Object {
-                "image": "image_id",
+                "height": "35px",
+                "marginRight": "20px",
+                "width": "35px",
               }
             }
           >
-            <span
-              className="profile-image small round"
-              style={
-                Object {
-                  "height": "35px",
-                  "width": "35px",
-                }
-              }
-            >
-              <img
-                className="cover"
-                src="/v1/image/image_id/200/200"
-              />
-            </span>
-          </CommentUserImage>
-           
-        </span>
+            <img
+              className="cover"
+              src="/v1/image/image_id/200/200"
+            />
+          </span>
+        </CommentUserImage>
         <div
-          className="ml2 form-group "
+          className="form-group "
           onFocus={[Function]}
           style={
             Object {
@@ -1723,7 +1713,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             }
           >
             <button
-              className="btn btn-link link-subtle"
+              className="comment-cancel btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
@@ -1849,7 +1839,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
         <div
           style={
             Object {
-              "height": 35,
+              "height": null,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
@@ -1878,7 +1868,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
                 key="4"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -1911,6 +1901,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -1926,7 +1917,6 @@ exports[`CommentContainer Toggle all comments 1`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -2034,33 +2024,31 @@ exports[`CommentContainer Toggle all comments 1`] = `
           }
         }
       >
-        <span>
-          <CommentUserImage
-            user={
+        <CommentUserImage
+          user={
+            Object {
+              "image": "image_id",
+            }
+          }
+        >
+          <span
+            className="profile-image small round"
+            style={
               Object {
-                "image": "image_id",
+                "height": "35px",
+                "marginRight": "20px",
+                "width": "35px",
               }
             }
           >
-            <span
-              className="profile-image small round"
-              style={
-                Object {
-                  "height": "35px",
-                  "width": "35px",
-                }
-              }
-            >
-              <img
-                className="cover"
-                src="/v1/image/image_id/200/200"
-              />
-            </span>
-          </CommentUserImage>
-           
-        </span>
+            <img
+              className="cover"
+              src="/v1/image/image_id/200/200"
+            />
+          </span>
+        </CommentUserImage>
         <div
-          className="ml2 form-group "
+          className="form-group "
           onFocus={[Function]}
           style={
             Object {
@@ -2088,7 +2076,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
             }
           >
             <button
-              className="btn btn-link link-subtle"
+              className="comment-cancel btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
@@ -2214,7 +2202,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
         <div
           style={
             Object {
-              "height": 35,
+              "height": null,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
@@ -2243,7 +2231,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 key="0"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -2276,6 +2264,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -2291,7 +2280,6 @@ exports[`CommentContainer Toggle all comments 2`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -2339,7 +2327,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 key="1"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -2372,6 +2360,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -2387,7 +2376,6 @@ exports[`CommentContainer Toggle all comments 2`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -2435,7 +2423,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 key="2"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -2468,6 +2456,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -2483,7 +2472,6 @@ exports[`CommentContainer Toggle all comments 2`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -2531,7 +2519,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 key="3"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -2564,6 +2552,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -2579,7 +2568,6 @@ exports[`CommentContainer Toggle all comments 2`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -2627,7 +2615,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 key="4"
               >
                 <button
-                  className="btn btn-link link-subtle"
+                  className="comment-edit-button btn btn-link link-subtle"
                   onClick={[Function]}
                 >
                   <span
@@ -2660,6 +2648,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                         Object {
                           "flexShrink": 0,
                           "height": "35px",
+                          "marginRight": "20px",
                           "width": "35px",
                         }
                       }
@@ -2675,7 +2664,6 @@ exports[`CommentContainer Toggle all comments 2`] = `
                     </span>
                   </CommentUserImage>
                   <div
-                    className="ml2"
                     style={
                       Object {
                         "flexGrow": 1,
@@ -2783,33 +2771,31 @@ exports[`CommentContainer Toggle all comments 2`] = `
           }
         }
       >
-        <span>
-          <CommentUserImage
-            user={
+        <CommentUserImage
+          user={
+            Object {
+              "image": "image_id",
+            }
+          }
+        >
+          <span
+            className="profile-image small round"
+            style={
               Object {
-                "image": "image_id",
+                "height": "35px",
+                "marginRight": "20px",
+                "width": "35px",
               }
             }
           >
-            <span
-              className="profile-image small round"
-              style={
-                Object {
-                  "height": "35px",
-                  "width": "35px",
-                }
-              }
-            >
-              <img
-                className="cover"
-                src="/v1/image/image_id/200/200"
-              />
-            </span>
-          </CommentUserImage>
-           
-        </span>
+            <img
+              className="cover"
+              src="/v1/image/image_id/200/200"
+            />
+          </span>
+        </CommentUserImage>
         <div
-          className="ml2 form-group "
+          className="form-group "
           onFocus={[Function]}
           style={
             Object {
@@ -2837,7 +2823,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
             }
           >
             <button
-              className="btn btn-link link-subtle"
+              className="comment-cancel btn btn-link link-subtle"
               onClick={[Function]}
             >
               Fortryd
