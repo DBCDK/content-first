@@ -49,7 +49,6 @@ jest.mock(
 );
 
 jest.mock('../../comments/Comment.container.js', () => 'Comments');
-
 jest.mock('../../list/templates/SimpleList.component.js', () => 'Comments');
 jest.mock('../../list/templates/CircleTemplate.container.js', () => 'Comments');
 
