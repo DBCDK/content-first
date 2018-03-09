@@ -2,11 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
   ADD_COMMENT,
-  UPDATE_COMMENT,
   FETCH_COMMENTS,
-  getCommentsForId,
-  TOGGLE_EDIT_COMMENT,
-  DELETE_COMMENT
+  getCommentsForId
 } from '../../redux/comment.reducer';
 import {Comments as CommentsIcon} from '../general/Icons';
 import CommentList from './CommentList.component';

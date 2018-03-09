@@ -85,7 +85,7 @@ export class CommentWrapper extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   user: state.userReducer
 });
 
