@@ -2,6 +2,7 @@ import React from 'react';
 import WorkItem from '../../work/WorkItemConnected.component';
 import ProfileImage from '../../general/ProfileImage.component';
 import Comments from '../../comments/Comment.container';
+import AddToList from '../AddToList.container';
 
 const SimpleListItem = ({
   book,
@@ -62,6 +63,7 @@ export default ({list, profile}) => {
           />
         ))}
       </div>
+      <AddToList list={list} />
     </div>
   );
 };

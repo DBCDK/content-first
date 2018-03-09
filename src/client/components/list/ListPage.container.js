@@ -47,16 +47,18 @@ class ListPage extends React.Component {
           </h1>
           {editButton}
         </div>
-        <Template list={list} profile={profile} />
+        <Template list={list} profile={profile} isOwner={this.props.isOwner} />
       </div>
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const list = getListById(state.listReducer, ownProps.id);
   return {
     list: getListById(state.listReducer, ownProps.id),
-    profiles: state.users.toJS()
+    profiles: state.users.toJS(),
+    isOwner: list && list.owner === state.userReducer.openplatformId
   };
 };
 
