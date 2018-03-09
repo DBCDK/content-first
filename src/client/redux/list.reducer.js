@@ -305,12 +305,26 @@ export const getListsForOwner = (state, params = {}) => {
   return getLists(state, params).filter(l => params.owner === l.owner);
 };
 export const getLists = (state, {type, sort} = {}) => {
-  const lists = Object.values(state.lists).filter(l => {
-    if (type && l.type !== type) {
-      return false;
-    }
-    return true;
-  });
+  const lists = Object.values(state.lists)
+    .filter(l => {
+      if (type && l.type !== type) {
+        return false;
+      }
+      return true;
+    })
+    .map(l => {
+      if (l.type === SYSTEM_LIST) {
+        l.description =
+          l.title === 'Har læst'
+            ? 'har læst beskrivelse . . .'
+            : 'Vil læse beskrivelse . . .';
+        l.image =
+          l.title === 'Har læst'
+            ? 'img/lists/goal.png'
+            : 'img/lists/checklist.png';
+      }
+      return l;
+    });
   if (sort) {
     lists.sort((item1, item2) => item1.title.localeCompare(item2.title));
   }

@@ -72,7 +72,7 @@ export class Lists extends React.Component {
               id={data.id}
               key={data.id}
               type={data.type}
-              image={data.image ? `/v1/image/${data.image}/50/50` : null}
+              image={data.image}
               hideIfEmpty={false}
             />
           ))}
