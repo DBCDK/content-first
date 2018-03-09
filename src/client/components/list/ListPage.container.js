@@ -17,7 +17,7 @@ class ListPage extends React.Component {
     }
   }
   render() {
-    const {list, profiles = {}} = this.props;
+    const {list} = this.props;
 
     if (!list) {
       return <div>Listen findes ikke</div>;
