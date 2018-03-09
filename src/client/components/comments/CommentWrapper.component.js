@@ -1,10 +1,17 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {
+  UPDATE_COMMENT,
+  TOGGLE_EDIT_COMMENT,
+  DELETE_COMMENT
+} from '../../redux/comment.reducer';
+
 import Spinner from '../general/Spinner.component';
 import timeToString from '../../utils/timeToString';
 import CommentUserImage from './CommentUserImage.component';
 import CommentInput from './CommentInput.component';
 
-export default class CommentWrapper extends React.Component {
+export class CommentWrapper extends React.Component {
   state = {
     edit: false,
     comment: this.props.comment.comment
@@ -41,7 +48,8 @@ export default class CommentWrapper extends React.Component {
         ) : (
           ''
         )}
-        {this.props.user.openplatformId === user.openplatformId ? (
+        {this.props.user &&
+        this.props.user.openplatformId === user.openplatformId ? (
           <button
             className="comment-edit-button btn btn-link link-subtle"
             onClick={() => this.toggleEdit(!this.props.comment.editing)}
@@ -76,3 +84,16 @@ export default class CommentWrapper extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  user: state.userReducer
+});
+
+export const mapDispatchToProps = dispatch => ({
+  editComment: comment => dispatch({type: UPDATE_COMMENT, comment}),
+  deleteComment: comment => dispatch({type: DELETE_COMMENT, comment}),
+  toggleEdit: ({comment, editing}) =>
+    dispatch({type: TOGGLE_EDIT_COMMENT, comment, editing})
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentWrapper);

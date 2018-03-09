@@ -38,14 +38,7 @@ export default class CommentList extends React.Component {
       >
         <div ref={el => (this.listWrapper = el)}>
           {showComments.map(comment => (
-            <CommentWrapper
-              toggleEdit={this.props.toggleEdit}
-              user={this.props.user}
-              key={comment._id}
-              comment={comment}
-              deleteComment={this.props.deleteComment}
-              editComment={this.props.editComment}
-            />
+            <CommentWrapper key={comment._id} comment={comment} />
           ))}
         </div>
       </div>

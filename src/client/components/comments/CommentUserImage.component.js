@@ -4,7 +4,12 @@ const CommentUserImage = ({size = '35', user, style}) => {
   return (
     <span
       className="profile-image small round"
-      style={{...style, width: `${size}px`, height: `${size}px`, marginRight: "20px"}}
+      style={{
+        ...style,
+        width: `${size}px`,
+        height: `${size}px`,
+        marginRight: '20px'
+      }}
     >
       {user.image ? (
         <img

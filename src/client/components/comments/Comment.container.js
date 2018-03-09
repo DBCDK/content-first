@@ -49,9 +49,6 @@ export class CommentContainer extends React.Component {
         {commentsCount ? (
           <div className="mb3">
             <CommentList
-              toggleEdit={this.props.toggleEdit}
-              editComment={this.props.editComment}
-              deleteComment={this.props.deleteComment}
               user={this.props.user}
               comments={this.props.comments}
               showCount={
@@ -103,10 +100,6 @@ const mapStateToProps = (state, ownProps) => ({
 export const mapDispatchToProps = dispatch => ({
   addComment: ({id, comment, owner}) =>
     dispatch({type: ADD_COMMENT, comment, id, owner}),
-  editComment: comment => dispatch({type: UPDATE_COMMENT, comment}),
-  deleteComment: comment => dispatch({type: DELETE_COMMENT, comment}),
-  toggleEdit: ({comment, editing}) =>
-    dispatch({type: TOGGLE_EDIT_COMMENT, comment, editing}),
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
