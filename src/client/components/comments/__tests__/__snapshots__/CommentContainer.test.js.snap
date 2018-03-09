@@ -3,79 +3,7 @@
 exports[`CommentContainer Component fetches comments on mount 1`] = `
 <div
   className="comments"
->
-  <div
-    style={
-      Object {
-        "display": "flex",
-      }
-    }
-  >
-    <span
-      className="profile-image small round"
-      style={
-        Object {
-          "height": "35px",
-          "marginRight": "20px",
-          "width": "35px",
-        }
-      }
-    >
-      <img
-        alt={undefined}
-        className="cover"
-        src="/v1/image/image_id/200/200"
-      />
-    </span>
-    <div
-      className="form-group "
-      onFocus={[Function]}
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
-    >
-      <textarea
-        autoFocus={undefined}
-        className="form-control mb1 comment-textarea"
-        disabled={undefined}
-        name="list-description"
-        onBlur={[Function]}
-        onChange={[Function]}
-        placeholder="Skriv kommentar"
-        value=""
-      />
-      
-      <div
-        className="tr"
-        style={
-          Object {
-            "height": "0px",
-            "opacity": 0,
-            "overflow": "hidden",
-            "transition": "height 200ms, opacity 200ms",
-          }
-        }
-      >
-        <button
-          className="comment-cancel btn btn-link link-subtle"
-          onClick={[Function]}
-        >
-          Fortryd
-        </button>
-        <button
-          className="btn btn-success"
-          disabled={true}
-          id="comment-submit"
-          onClick={[Function]}
-        >
-          Gem
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+/>
 `;
 
 exports[`CommentContainer Component renders a list of comments 1`] = `
@@ -95,71 +23,17 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
       }
     >
       <div>
-        <div
-          className="comment-wrapper"
-        >
-          
-          <button
-            className="comment-edit-button btn btn-link link-subtle"
-            onClick={[Function]}
-          >
-            <span
-              className="glyphicon glyphicon-pencil"
-            />
-          </button>
-          <div
-            className="flex mb2"
-            style={
-              Object {
-                "width": "100%",
-              }
+        <comment
+          comment={
+            Object {
+              "_id": "1",
+              "comment": "comment1",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
             }
-          >
-            <span
-              className="profile-image small round"
-              style={
-                Object {
-                  "flexShrink": 0,
-                  "height": "35px",
-                  "marginRight": "20px",
-                  "width": "35px",
-                }
-              }
-            >
-              <span
-                className="glyphicon glyphicon-user"
-                style={
-                  Object {
-                    "fontSize": "17.5px",
-                  }
-                }
-              />
-            </span>
-            <div
-              style={
-                Object {
-                  "flexGrow": 1,
-                }
-              }
-            >
-              <div
-                className="comment-author"
-              >
-                Benny Cosmos
-              </div>
-              <div
-                className="comment-time mb1"
-              >
-                Lige nu
-              </div>
-              <div
-                className="comment"
-              >
-                comment1
-              </div>
-            </div>
-          </div>
-        </div>
+          }
+        />
       </div>
     </div>
     <button
@@ -218,77 +92,6 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         Vis alle kommentarer
       </span>
     </button>
-  </div>
-  <div
-    style={
-      Object {
-        "display": "flex",
-      }
-    }
-  >
-    <span
-      className="profile-image small round"
-      style={
-        Object {
-          "height": "35px",
-          "marginRight": "20px",
-          "width": "35px",
-        }
-      }
-    >
-      <img
-        alt={undefined}
-        className="cover"
-        src="/v1/image/image_id/200/200"
-      />
-    </span>
-    <div
-      className="form-group "
-      onFocus={[Function]}
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
-    >
-      <textarea
-        autoFocus={undefined}
-        className="form-control mb1 comment-textarea"
-        disabled={undefined}
-        name="list-description"
-        onBlur={[Function]}
-        onChange={[Function]}
-        placeholder="Skriv kommentar"
-        value=""
-      />
-      
-      <div
-        className="tr"
-        style={
-          Object {
-            "height": "0px",
-            "opacity": 0,
-            "overflow": "hidden",
-            "transition": "height 200ms, opacity 200ms",
-          }
-        }
-      >
-        <button
-          className="comment-cancel btn btn-link link-subtle"
-          onClick={[Function]}
-        >
-          Fortryd
-        </button>
-        <button
-          className="btn btn-success"
-          disabled={true}
-          id="comment-submit"
-          onClick={[Function]}
-        >
-          Gem
-        </button>
-      </div>
-    </div>
   </div>
 </div>
 `;
@@ -405,7 +208,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
           }
         >
           <div>
-            <CommentWrapper
+            <comment
               comment={
                 Object {
                   "_id": "0",
@@ -416,92 +219,8 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="0"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="0"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment0
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
-            <CommentWrapper
+            />
+            <comment
               comment={
                 Object {
                   "_id": "1",
@@ -512,92 +231,8 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="1"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="1"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment1
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
-            <CommentWrapper
+            />
+            <comment
               comment={
                 Object {
                   "_id": "2",
@@ -608,92 +243,8 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="2"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="2"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment2
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
-            <CommentWrapper
+            />
+            <comment
               comment={
                 Object {
                   "_id": "3",
@@ -704,92 +255,8 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="3"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="3"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment3
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
-            <CommentWrapper
+            />
+            <comment
               comment={
                 Object {
                   "_id": "4",
@@ -800,91 +267,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="4"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="4"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment4
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
+            />
           </div>
         </div>
       </CommentList>
@@ -959,83 +342,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
         }
       }
       value=""
-    >
-      <div
-        style={
-          Object {
-            "display": "flex",
-          }
-        }
-      >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
-              Object {
-                "height": "35px",
-                "marginRight": "20px",
-                "width": "35px",
-              }
-            }
-          >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-        <div
-          className="form-group "
-          onFocus={[Function]}
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        >
-          <textarea
-            className="form-control mb1 comment-textarea"
-            name="list-description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            placeholder="Skriv kommentar"
-            value=""
-          />
-          <div
-            className="tr"
-            style={
-              Object {
-                "height": "0px",
-                "opacity": 0,
-                "overflow": "hidden",
-                "transition": "height 200ms, opacity 200ms",
-              }
-            }
-          >
-            <button
-              className="comment-cancel btn btn-link link-subtle"
-              onClick={[Function]}
-            >
-              Fortryd
-            </button>
-            <button
-              className="btn btn-success"
-              disabled={true}
-              id="comment-submit"
-              onClick={[Function]}
-            >
-              Gem
-            </button>
-          </div>
-        </div>
-      </div>
-    </CommentInput>
+    />
   </div>
 </CommentContainer>
 `;
@@ -1116,7 +423,7 @@ exports[`CommentContainer Component renders error 1`] = `
           }
         >
           <div>
-            <CommentWrapper
+            <comment
               comment={
                 Object {
                   "_id": "1",
@@ -1127,91 +434,7 @@ exports[`CommentContainer Component renders error 1`] = `
                 }
               }
               key="1"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="1"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment1
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
+            />
           </div>
         </div>
       </CommentList>
@@ -1291,88 +514,7 @@ exports[`CommentContainer Component renders error 1`] = `
         }
       }
       value="comment3"
-    >
-      <div
-        style={
-          Object {
-            "display": "flex",
-          }
-        }
-      >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
-              Object {
-                "height": "35px",
-                "marginRight": "20px",
-                "width": "35px",
-              }
-            }
-          >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-        <div
-          className="form-group has-error"
-          onFocus={[Function]}
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        >
-          <textarea
-            className="form-control mb1 comment-textarea"
-            name="list-description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            placeholder="Skriv kommentar"
-            value="comment3"
-          />
-          <div
-            className="error"
-          >
-            some error occures
-          </div>
-          <div
-            className="tr"
-            style={
-              Object {
-                "height": "0px",
-                "opacity": 0,
-                "overflow": "hidden",
-                "transition": "height 200ms, opacity 200ms",
-              }
-            }
-          >
-            <button
-              className="comment-cancel btn btn-link link-subtle"
-              onClick={[Function]}
-            >
-              Fortryd
-            </button>
-            <button
-              className="btn btn-success"
-              disabled={false}
-              id="comment-submit"
-              onClick={[Function]}
-            >
-              Gem
-            </button>
-          </div>
-        </div>
-      </div>
-    </CommentInput>
+    />
   </div>
 </CommentContainer>
 `;
@@ -1463,7 +605,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
           }
         >
           <div>
-            <CommentWrapper
+            <comment
               comment={
                 Object {
                   "_id": "new_comment",
@@ -1475,110 +617,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                 }
               }
               key="new_comment"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="new_comment"
-              >
-                <div
-                  className="comment-saving"
-                >
-                  <Spinner
-                    size="30px"
-                  >
-                    <span
-                      className="spinner"
-                      style={
-                        Object {
-                          "borderTopColor": null,
-                          "display": "inline-block",
-                          "height": "30px",
-                          "width": "30px",
-                        }
-                      }
-                    />
-                  </Spinner>
-                </div>
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment new
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
+            />
           </div>
         </div>
       </CommentList>
@@ -1653,83 +692,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
         }
       }
       value=""
-    >
-      <div
-        style={
-          Object {
-            "display": "flex",
-          }
-        }
-      >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
-              Object {
-                "height": "35px",
-                "marginRight": "20px",
-                "width": "35px",
-              }
-            }
-          >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-        <div
-          className="form-group "
-          onFocus={[Function]}
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        >
-          <textarea
-            className="form-control mb1 comment-textarea"
-            name="list-description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            placeholder="Skriv kommentar"
-            value=""
-          />
-          <div
-            className="tr"
-            style={
-              Object {
-                "height": "0px",
-                "opacity": 0,
-                "overflow": "hidden",
-                "transition": "height 200ms, opacity 200ms",
-              }
-            }
-          >
-            <button
-              className="comment-cancel btn btn-link link-subtle"
-              onClick={[Function]}
-            >
-              Fortryd
-            </button>
-            <button
-              className="btn btn-success"
-              disabled={true}
-              id="comment-submit"
-              onClick={[Function]}
-            >
-              Gem
-            </button>
-          </div>
-        </div>
-      </div>
-    </CommentInput>
+    />
   </div>
 </CommentContainer>
 `;
@@ -1846,7 +809,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
           }
         >
           <div>
-            <CommentWrapper
+            <comment
               comment={
                 Object {
                   "_id": "4",
@@ -1857,91 +820,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
                 }
               }
               key="4"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="4"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment4
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
+            />
           </div>
         </div>
       </CommentList>
@@ -2016,83 +895,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
         }
       }
       value=""
-    >
-      <div
-        style={
-          Object {
-            "display": "flex",
-          }
-        }
-      >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
-              Object {
-                "height": "35px",
-                "marginRight": "20px",
-                "width": "35px",
-              }
-            }
-          >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-        <div
-          className="form-group "
-          onFocus={[Function]}
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        >
-          <textarea
-            className="form-control mb1 comment-textarea"
-            name="list-description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            placeholder="Skriv kommentar"
-            value=""
-          />
-          <div
-            className="tr"
-            style={
-              Object {
-                "height": "0px",
-                "opacity": 0,
-                "overflow": "hidden",
-                "transition": "height 200ms, opacity 200ms",
-              }
-            }
-          >
-            <button
-              className="comment-cancel btn btn-link link-subtle"
-              onClick={[Function]}
-            >
-              Fortryd
-            </button>
-            <button
-              className="btn btn-success"
-              disabled={true}
-              id="comment-submit"
-              onClick={[Function]}
-            >
-              Gem
-            </button>
-          </div>
-        </div>
-      </div>
-    </CommentInput>
+    />
   </div>
 </CommentContainer>
 `;
@@ -2209,7 +1012,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
           }
         >
           <div>
-            <CommentWrapper
+            <comment
               comment={
                 Object {
                   "_id": "0",
@@ -2220,92 +1023,8 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="0"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="0"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment0
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
-            <CommentWrapper
+            />
+            <comment
               comment={
                 Object {
                   "_id": "1",
@@ -2316,92 +1035,8 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="1"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="1"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment1
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
-            <CommentWrapper
+            />
+            <comment
               comment={
                 Object {
                   "_id": "2",
@@ -2412,92 +1047,8 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="2"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="2"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment2
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
-            <CommentWrapper
+            />
+            <comment
               comment={
                 Object {
                   "_id": "3",
@@ -2508,92 +1059,8 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="3"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="3"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment3
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
-            <CommentWrapper
+            />
+            <comment
               comment={
                 Object {
                   "_id": "4",
@@ -2604,91 +1071,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="4"
-              user={
-                Object {
-                  "image": "image_id",
-                }
-              }
-            >
-              <div
-                className="comment-wrapper"
-                key="4"
-              >
-                <button
-                  className="comment-edit-button btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  <span
-                    className="glyphicon glyphicon-pencil"
-                  />
-                </button>
-                <div
-                  className="flex mb2"
-                  style={
-                    Object {
-                      "width": "100%",
-                    }
-                  }
-                >
-                  <CommentUserImage
-                    style={
-                      Object {
-                        "flexShrink": 0,
-                      }
-                    }
-                    user={
-                      Object {
-                        "name": "Benny Cosmos",
-                      }
-                    }
-                  >
-                    <span
-                      className="profile-image small round"
-                      style={
-                        Object {
-                          "flexShrink": 0,
-                          "height": "35px",
-                          "marginRight": "20px",
-                          "width": "35px",
-                        }
-                      }
-                    >
-                      <span
-                        className="glyphicon glyphicon-user"
-                        style={
-                          Object {
-                            "fontSize": "17.5px",
-                          }
-                        }
-                      />
-                    </span>
-                  </CommentUserImage>
-                  <div
-                    style={
-                      Object {
-                        "flexGrow": 1,
-                      }
-                    }
-                  >
-                    <div
-                      className="comment-author"
-                    >
-                      Benny Cosmos
-                    </div>
-                    <div
-                      className="comment-time mb1"
-                    >
-                      Lige nu
-                    </div>
-                    <div
-                      className="comment"
-                    >
-                      comment4
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CommentWrapper>
+            />
           </div>
         </div>
       </CommentList>
@@ -2763,83 +1146,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
         }
       }
       value=""
-    >
-      <div
-        style={
-          Object {
-            "display": "flex",
-          }
-        }
-      >
-        <CommentUserImage
-          user={
-            Object {
-              "image": "image_id",
-            }
-          }
-        >
-          <span
-            className="profile-image small round"
-            style={
-              Object {
-                "height": "35px",
-                "marginRight": "20px",
-                "width": "35px",
-              }
-            }
-          >
-            <img
-              className="cover"
-              src="/v1/image/image_id/200/200"
-            />
-          </span>
-        </CommentUserImage>
-        <div
-          className="form-group "
-          onFocus={[Function]}
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        >
-          <textarea
-            className="form-control mb1 comment-textarea"
-            name="list-description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            placeholder="Skriv kommentar"
-            value=""
-          />
-          <div
-            className="tr"
-            style={
-              Object {
-                "height": "0px",
-                "opacity": 0,
-                "overflow": "hidden",
-                "transition": "height 200ms, opacity 200ms",
-              }
-            }
-          >
-            <button
-              className="comment-cancel btn btn-link link-subtle"
-              onClick={[Function]}
-            >
-              Fortryd
-            </button>
-            <button
-              className="btn btn-success"
-              disabled={true}
-              id="comment-submit"
-              onClick={[Function]}
-            >
-              Gem
-            </button>
-          </div>
-        </div>
-      </div>
-    </CommentInput>
+    />
   </div>
 </CommentContainer>
 `;
