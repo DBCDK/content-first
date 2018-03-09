@@ -27,7 +27,9 @@ const createList = id => {
 
 describe('Lists Container', () => {
   test('List is rendered', () => {
-    const tree = renderer.create(<Lists lists={[]} />).toJSON();
+    const tree = renderer
+      .create(<Lists lists={[]} systemLists={[]} />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
     tree.props.lists = [createList(1), createList(2)];
     expect(tree).toMatchSnapshot();
