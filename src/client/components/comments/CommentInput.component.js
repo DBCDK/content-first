@@ -20,6 +20,9 @@ export default class CommentInput extends React.Component {
   };
 
   render() {
+    if (!this.props.user.openplatformId) {
+      return null;
+    }
     return (
       <div
         style={{
