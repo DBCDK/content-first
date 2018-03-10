@@ -22,8 +22,13 @@ class BookCover extends React.Component {
       <img
         style={this.props.style}
         alt={this.props.book.title || ''}
-        className={'high-contrast ' + (this.props.className || '')}
+        className={
+          'high-contrast ' +
+          (this.state.loading ? 'loading ' : ' ') +
+          (this.props.className || '')
+        }
         src={urls[this.state.current]}
+        onLoad={this.props.onLoad}
         onError={() => {
           this.setState({
             current: Math.min(this.state.current + 1, urls.length - 1)

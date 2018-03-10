@@ -33,6 +33,10 @@ const NextArrow = function(props) {
 };
 
 export default class Slider extends React.Component {
+  constructor() {
+    super();
+    this.state = {isLoadedIndex: 0};
+  }
   componentWillReceiveProps() {
     // A fix for initial wrong width calculation
     // https://github.com/akiran/react-slick/issues/809#issuecomment-317277508
@@ -78,13 +82,28 @@ export default class Slider extends React.Component {
             slidesToScroll: 1
           }
         }
-      ]
+      ],
+      afterChange: idx => {
+        if (idx > this.state.isLoadedIndex) {
+          this.setState({
+            isLoadedIndex: idx
+          });
+        }
+      }
     };
     return (
       <SlickSlider ref="slick" {...settings}>
         {this.props.children &&
-          this.props.children.map(l => {
-            return <Slide key={l.key}>{l}</Slide>;
+          this.props.children.map((l, idx) => {
+            return (
+              <Slide key={l.key}>
+                {React.cloneElement(l, {
+                  visibleInSlider:
+                    idx <
+                    this.state.isLoadedIndex + (this.props.loadAheadCount || 7)
+                })}
+              </Slide>
+            );
           })}
       </SlickSlider>
     );

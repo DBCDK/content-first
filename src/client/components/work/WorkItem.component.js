@@ -4,13 +4,19 @@ import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import TouchHover from '../general/TouchHover.component';
 
 class WorkItem extends React.Component {
-  shouldComponentUpdate(nextProps) {
+  constructor() {
+    super();
+    this.state = {coverLoaded: false};
+  }
+  shouldComponentUpdate(nextProps, nextState) {
     return (
       this.props.changeMap[this.props.work.book.pid] !==
         nextProps.changeMap[this.props.work.book.pid] ||
       this.props.marked !== nextProps.marked ||
       this.props.work !== nextProps.work ||
-      this.props.systemLists.length !== nextProps.systemLists.length
+      this.props.systemLists.length !== nextProps.systemLists.length ||
+      this.props.visibleInSlider !== nextProps.visibleInSlider ||
+      this.state.coverLoaded !== nextState.coverLoaded
     );
   }
 
@@ -20,21 +26,32 @@ class WorkItem extends React.Component {
       this.props.work.book.description;
     return (
       <div className={this.props.workClass}>
-        <TouchHover className="cover-image-wrapper">
-          <TouchHover
-            className="cover-image"
-            onClick={touches => {
-              if (touches !== 1) {
-                this.props.onCoverClick(this.props.work.book.pid);
-              }
-            }}
-          >
-            <BookCover book={this.props.work.book} />
-          </TouchHover>
-          <CheckmarkConnected
-            book={this.props.work}
-            origin={this.props.origin}
-          />
+        <TouchHover
+          className={`cover-image-wrapper ${
+            this.state.coverLoaded ? 'loaded' : ''
+          }`}
+        >
+          {this.props.visibleInSlider !== false && [
+            <TouchHover
+              key="cover"
+              className="cover-image"
+              onClick={touches => {
+                if (touches !== 1) {
+                  this.props.onCoverClick(this.props.work.book.pid);
+                }
+              }}
+            >
+              <BookCover
+                book={this.props.work.book}
+                onLoad={() => this.setState({coverLoaded: true})}
+              />
+            </TouchHover>,
+            <CheckmarkConnected
+              key="checkmarkmenu"
+              book={this.props.work}
+              origin={this.props.origin}
+            />
+          ]}
         </TouchHover>
         <div className="metakompas-description">
           {this.props.showTaxonomy &&
