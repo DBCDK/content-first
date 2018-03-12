@@ -150,6 +150,14 @@ Array [
       },
     ],
     "owner": null,
+    "pending": Array [
+      Object {
+        "_id": "123",
+        "book": Object {
+          "pid": "pid1",
+        },
+      },
+    ],
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },

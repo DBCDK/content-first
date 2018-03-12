@@ -14,7 +14,7 @@ const SimpleListItem = ({
   allowComments,
   listId,
   allowDelete,
-  allowModify,
+  // allowModify,
   onRemove
 }) => (
   <div className="row simplelist-item mb4">
@@ -61,19 +61,20 @@ export const SimpleList = ({list, profile, loggedInUserId, removeElement}) => {
         </div>
       </div>
       <div className="list">
-        {list.list.map(({book, description, _owner}) => (
+        {list.list.map(element => (
           <SimpleListItem
             allowComments={list.social}
             listId={list.id}
-            key={book.pid}
-            book={book}
-            description={description}
+            key={element.book.pid}
+            book={element.book}
+            description={element.description}
             profile={profile}
             allowDelete={
-              _owner === loggedInUserId || list._owner === loggedInUserId
+              element._owner === loggedInUserId ||
+              list._owner === loggedInUserId
             }
-            allowModify={_owner === loggedInUserId}
-            onRemove={() => removeElement(book, list)}
+            allowModify={element._owner === loggedInUserId}
+            onRemove={() => removeElement(element, list)}
           />
         ))}
       </div>
@@ -83,11 +84,15 @@ export const SimpleList = ({list, profile, loggedInUserId, removeElement}) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  return {};
+  return {
+    loggedInUserId: state.userReducer.openplatformId,
+    isOwner:
+      ownProps.list && ownProps.list._owner === state.userReducer.openplatformId
+  };
 };
 export const mapDispatchToProps = dispatch => ({
-  removeElement: async (book, list) => {
-    await dispatch(removeElementFromList({book}, list.id));
+  removeElement: async (element, list) => {
+    await dispatch(removeElementFromList(element, list.id));
     dispatch(storeList(list.id));
   }
 });
