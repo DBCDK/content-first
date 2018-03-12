@@ -4,6 +4,7 @@ import renderer from 'react-test-renderer';
 import {mount} from 'enzyme';
 
 jest.mock('react-textarea-autosize', () => 'textarea');
+jest.mock('../CommentWrapper.component.js', () => 'comment');
 
 function generateComments(count) {
   const comments = [];

@@ -26,6 +26,17 @@ comment-textarea {
   color: var(--greybrown);
   font-size: 1.4rem;
 }
+.comment-edit-button {
+  position: absolute;
+  right: 0;
+}
+
+.comment-delete {
+  color: var(--orange);
+}
+.comment-cancel {
+  margin-right: 10px;
+}
 
 .comments .glyphicon-user {
   font-size: 17px;

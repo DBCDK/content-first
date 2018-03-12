@@ -46,6 +46,7 @@ export class CommentContainer extends React.Component {
         {commentsCount ? (
           <div className="mb3">
             <CommentList
+              user={this.props.user}
               comments={this.props.comments}
               showCount={
                 this.state.showAll
@@ -78,6 +79,7 @@ export class CommentContainer extends React.Component {
           user={this.props.user}
           value={this.state.newCommentValue}
           onSubmit={this.onSubmit}
+          onCancel={() => this.setState({newCommentValue: ''})}
           onChange={value => this.setState({newCommentValue: value})}
           disabled={this.props.saving}
           error={this.props.error || null}

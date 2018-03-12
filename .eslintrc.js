@@ -101,7 +101,7 @@ module.exports = {
     'no-unused-vars': 2,
     'no-use-before-define': 0,
     // Stylistic Issues
-    indent: ['error', 2, {SwitchCase: 1, MemberExpression: 'off'}],
+    indent: 0,
     'brace-style': 0,
     camelcase: 0,
     'comma-spacing': 2,

@@ -1,7 +1,5 @@
 import React from 'react';
-import Spinner from '../general/Spinner.component';
-import timeToString from '../../utils/timeToString';
-import CommentUserImage from './CommentUserImage.component';
+import CommentWrapper from './CommentWrapper.component';
 
 export default class CommentList extends React.Component {
   constructor(props) {
@@ -11,12 +9,15 @@ export default class CommentList extends React.Component {
     };
   }
   componentDidUpdate() {
+    const adjust = this.props.comments.filter(comment => comment.editing).length
+      ? 30
+      : 0;
     if (
       this.listWrapper &&
       this.listWrapper.offsetHeight &&
-      this.state.height !== this.listWrapper.offsetHeight
+      this.state.height !== this.listWrapper.offsetHeight + adjust
     ) {
-      this.setState({height: this.listWrapper.offsetHeight});
+      this.setState({height: this.listWrapper.offsetHeight + adjust});
     }
   }
 
@@ -36,29 +37,9 @@ export default class CommentList extends React.Component {
         }}
       >
         <div ref={el => (this.listWrapper = el)}>
-          {showComments.map(
-            ({comment, user, _id, saving, _created = Date.now() / 1000}) => (
-              <div key={_id} className="comment-wrapper">
-                {saving ? (
-                  <div className="comment-saving">
-                    <Spinner size="30px" />
-                  </div>
-                ) : (
-                  ''
-                )}
-                <div className="flex mb2" style={{width: '100%'}}>
-                  <CommentUserImage user={user} style={{flexShrink: 0}} />
-                  <div className="ml2" style={{flexGrow: 1}}>
-                    <div className="comment-author">{user.name || ''}</div>
-                    <div className="comment-time mb1">
-                      {timeToString(_created)}
-                    </div>
-                    <div className="comment">{comment}</div>
-                  </div>
-                </div>
-              </div>
-            )
-          )}
+          {showComments.map(comment => (
+            <CommentWrapper key={comment._id} comment={comment} />
+          ))}
         </div>
       </div>
     );

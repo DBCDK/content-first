@@ -202,7 +202,7 @@ export const addObject = object => {
 export const updateObject = object => {
   return new Promise((resolve, reject) => {
     request
-      .put('/v1/object/')
+      .put(`/v1/object/${object._id}`)
       .send(object)
       .end((error, res) => {
         if (error) {
@@ -212,6 +212,9 @@ export const updateObject = object => {
         }
       });
   });
+};
+export const deleteObject = object => {
+  return updateObject({_id: object._id});
 };
 
 export const logout = dispatch => {

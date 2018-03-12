@@ -15,26 +15,33 @@ export default class CommentInput extends React.Component {
   };
 
   onCancel = () => {
-    this.props.onChange('');
+    this.props.onCancel();
     this.setState({focus: false});
   };
 
   render() {
+    if (!this.props.user.openplatformId) {
+      return null;
+    }
     return (
       <div
         style={{
           display: 'flex'
         }}
       >
-        <CommentUserImage user={this.props.user} />{' '}
+        {!this.props.hideProfile ? (
+          <CommentUserImage user={this.props.user} />
+        ) : null}
         <div
           style={{width: '100%'}}
-          className={`ml2 form-group ${this.props.error ? 'has-error' : ''}`}
+          className={`form-group ${this.props.error ? 'has-error' : ''}`}
           onFocus={() => {
             this.setState({focus: true});
           }}
         >
           <Textarea
+            autoFocus={this.props.autoFocus}
+            ref={ref => (this.textarea = ref)}
             disabled={this.props.disabled}
             className={`form-control mb1 comment-textarea`}
             name="list-description"
@@ -53,14 +60,22 @@ export default class CommentInput extends React.Component {
           <div
             className="tr"
             style={{
-              height: this.state.focus || this.state.value ? '35px' : '0px',
+              height: this.state.focus || this.state.value ? '50px' : '0px',
               opacity: this.state.focus || this.state.value ? 1 : 0,
               overflow: 'hidden',
               transition: 'height 200ms, opacity 200ms'
             }}
           >
+            {this.props.onDelete ? (
+              <button
+                className="comment-delete btn btn-link link-subtle"
+                onClick={this.props.onDelete}
+              >
+                Slet
+              </button>
+            ) : null}
             <button
-              className="btn -btn-link link-subtle"
+              className="comment-cancel btn btn-link link-subtle"
               onClick={this.onCancel}
             >
               Fortryd
