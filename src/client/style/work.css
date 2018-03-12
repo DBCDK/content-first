@@ -64,6 +64,10 @@
   display: inline-block;
   cursor: pointer;
   z-index: 10;
+  opacity: 0;
+}
+.work .cover-image-wrapper.loaded {
+  opacity: 1;
 }
 .work .cover-image-wrapper.touch-hover .checkmark-btn, /* first touch on mobile device */
 .work .cover-image-wrapper.touch-hover .checkmark-menu, /* first touch on mobile device */

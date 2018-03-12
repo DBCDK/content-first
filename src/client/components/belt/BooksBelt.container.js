@@ -7,12 +7,16 @@ import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {getRecommendedBooks} from '../../redux/selectors';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import {beltNameToPath} from '../../utils/belt';
-import LazyLoad from 'react-lazy-load';
 
 export class BooksBelt extends React.Component {
   constructor() {
     super();
     this.state = {showDetails: false};
+  }
+  componentDidMount() {
+    if (this.props.recommendedBooks.books.length === 0) {
+      this.props.fetchBelt(this.props.tags);
+    }
   }
 
   shouldComponentUpdate(nextProps) {
@@ -48,34 +52,23 @@ export class BooksBelt extends React.Component {
             {this.props.title}
           </span>
         </div>
-        <LazyLoad
-          offsetVertical={800}
-          height={550}
-          debounce={false} // when false, it will load while scrolling
-          throttle={250} // scroll event fired every 500ms
-          onContentVisible={() => {
-            if (this.props.recommendedBooks.books.length === 0) {
-              this.props.fetchBelt(this.props.tags);
-            }
-          }}
-        >
-          {this.props.recommendedBooks && (
-            <div className="row mb4">
-              <div className="col-xs-12">
-                <Slider>
-                  {!this.props.recommendedBooks.isLoading &&
-                    this.props.recommendedBooks.books.map(work => (
-                      <WorkItem
-                        work={work}
-                        key={work.book.pid}
-                        origin={`Fra "${this.props.title}"`}
-                      />
-                    ))}
-                </Slider>
-              </div>
+
+        {this.props.recommendedBooks && (
+          <div className="row mb4">
+            <div className="col-xs-12">
+              <Slider>
+                {!this.props.recommendedBooks.isLoading &&
+                  this.props.recommendedBooks.books.map(work => (
+                    <WorkItem
+                      work={work}
+                      key={work.book.pid}
+                      origin={`Fra "${this.props.title}"`}
+                    />
+                  ))}
+              </Slider>
             </div>
-          )}
-        </LazyLoad>
+          </div>
+        )}
       </div>
     );
   }

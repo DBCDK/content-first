@@ -27,6 +27,7 @@ class WorkItemConnected extends React.PureComponent {
           this.props.dispatch({type: HISTORY_PUSH, path: `/værk/${pid}`});
         }}
         marked={remembered[this.props.work.book.pid]}
+        visibleInSlider={this.props.visibleInSlider}
       />
     );
   }

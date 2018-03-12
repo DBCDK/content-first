@@ -30,6 +30,13 @@ export class BookcaseItem extends React.Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      this.props.books.length !== nextProps.books.length ||
+      this.state !== nextState
+    );
+  }
+
   hideCarousel() {
     this.setState({carousel: false, pulse: ''});
   }
