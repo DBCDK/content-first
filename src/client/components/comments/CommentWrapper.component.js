@@ -10,6 +10,7 @@ import Spinner from '../general/Spinner.component';
 import timeToString from '../../utils/timeToString';
 import CommentUserImage from './CommentUserImage.component';
 import CommentInput from './CommentInput.component';
+import textParser from '../../utils/textParser';
 
 export class CommentWrapper extends React.Component {
   state = {
@@ -76,7 +77,7 @@ export class CommentWrapper extends React.Component {
                 error={error || null}
               />
             ) : (
-              <div className="comment">{comment}</div>
+              <div className="comment" dangerouslySetInnerHTML={{__html: textParser(comment)}} />
             )}
           </div>
         </div>
