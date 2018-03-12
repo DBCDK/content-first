@@ -21,3 +21,8 @@ services:
       - "${DB_PORT:-5432}:5432"
     environment:
       POSTGRES_MULTIPLE_DATABASES: contentfirst, communityservice
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 10.0.0.0/16

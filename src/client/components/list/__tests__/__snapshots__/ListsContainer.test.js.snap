@@ -7,6 +7,9 @@ exports[`Lists Container List is rendered 1`] = `
   <div
     className="mb3"
   />
+  <div
+    className="mb3"
+  />
   <div>
     <a
       className="btn btn-primary"
@@ -110,6 +113,9 @@ exports[`Lists Container List is rendered 2`] = `
     ]
   }
 >
+  <div
+    className="mb3"
+  />
   <div
     className="mb3"
   />

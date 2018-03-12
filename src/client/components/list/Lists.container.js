@@ -1,6 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getListsForOwner, CUSTOM_LIST} from '../../redux/list.reducer';
+import {
+  getListsForOwner,
+  CUSTOM_LIST,
+  SYSTEM_LIST
+} from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
@@ -12,10 +16,20 @@ const Cover = ({pid, title, width, height}) => (
   />
 );
 
-const ListItem = ({list, title, id, image}) => {
-  if (list.length === 0) {
+const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
+  if (list.length === 0 && hideIfEmpty === true) {
     return null;
   }
+
+  let editButton = '';
+  if (type === CUSTOM_LIST) {
+    editButton = (
+      <Link href={`/lister/${id}/rediger`} className="small ml1">
+        Redigér
+      </Link>
+    );
+  }
+
   return (
     <div className="list-item tl mb1">
       <Link href={`/lister/${id}`} className="list-image" style={{}}>
@@ -23,9 +37,7 @@ const ListItem = ({list, title, id, image}) => {
       </Link>
       <div className="ml2" style={{flexGrow: 1}}>
         <Link href={`/lister/${id}`}>{title}</Link>
-        <Link href={`/lister/${id}/rediger`} className="small ml1">
-          Redigér
-        </Link>
+        {editButton}
       </div>
       <Link href={`/lister/${id}`} className="ml2">
         {list.map(el => {
@@ -53,12 +65,26 @@ export class Lists extends React.Component {
     return (
       <div className="lists-page">
         <div className="mb3">
+          {this.props.systemLists.map(data => (
+            <ListItem
+              list={data.list}
+              title={data.title}
+              id={data.id}
+              key={data.id}
+              type={data.type}
+              image={data.image}
+              hideIfEmpty={false}
+            />
+          ))}
+        </div>
+        <div className="mb3">
           {this.props.lists.map(data => (
             <ListItem
               list={data.list}
               title={data.title}
               id={data.id}
               key={data.id}
+              type={data.type}
               image={data.image ? `/v1/image/${data.image}/50/50` : null}
             />
           ))}
@@ -84,6 +110,11 @@ const mapStateToProps = state => {
   return {
     lists: getListsForOwner(state.listReducer, {
       type: CUSTOM_LIST,
+      owner: state.userReducer.openplatformId,
+      sort: true
+    }),
+    systemLists: getListsForOwner(state.listReducer, {
+      type: SYSTEM_LIST,
       owner: state.userReducer.openplatformId,
       sort: true
     })
