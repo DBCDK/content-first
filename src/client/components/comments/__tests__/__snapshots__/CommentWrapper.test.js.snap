@@ -41,10 +41,11 @@ exports[`CommentContainer Cancel button 1`] = `
         }
       }
     >
-      <CommentUserImage
+      <Component
+        size="35"
         style={
           Object {
-            "flexShrink": 0,
+            "marginRight": "20px",
           }
         }
         user={
@@ -54,27 +55,30 @@ exports[`CommentContainer Cancel button 1`] = `
           }
         }
       >
-        <span
-          className="profile-image small round"
-          style={
-            Object {
-              "flexShrink": 0,
-              "height": "35px",
-              "marginRight": "20px",
-              "width": "35px",
-            }
-          }
+        <div
+          className="profile-card "
         >
           <span
-            className="glyphicon glyphicon-user"
+            className="profile-image small round"
             style={
               Object {
-                "fontSize": "17.5px",
+                "height": "35px",
+                "marginRight": "20px",
+                "width": "35px",
               }
             }
-          />
-        </span>
-      </CommentUserImage>
+          >
+            <span
+              className="glyphicon glyphicon-user"
+              style={
+                Object {
+                  "fontSize": "17.5px",
+                }
+              }
+            />
+          </span>
+        </div>
+      </Component>
       <div
         style={
           Object {
@@ -215,10 +219,11 @@ exports[`CommentContainer Delete button 1`] = `
         }
       }
     >
-      <CommentUserImage
+      <Component
+        size="35"
         style={
           Object {
-            "flexShrink": 0,
+            "marginRight": "20px",
           }
         }
         user={
@@ -228,27 +233,30 @@ exports[`CommentContainer Delete button 1`] = `
           }
         }
       >
-        <span
-          className="profile-image small round"
-          style={
-            Object {
-              "flexShrink": 0,
-              "height": "35px",
-              "marginRight": "20px",
-              "width": "35px",
-            }
-          }
+        <div
+          className="profile-card "
         >
           <span
-            className="glyphicon glyphicon-user"
+            className="profile-image small round"
             style={
               Object {
-                "fontSize": "17.5px",
+                "height": "35px",
+                "marginRight": "20px",
+                "width": "35px",
               }
             }
-          />
-        </span>
-      </CommentUserImage>
+          >
+            <span
+              className="glyphicon glyphicon-user"
+              style={
+                Object {
+                  "fontSize": "17.5px",
+                }
+              }
+            />
+          </span>
+        </div>
+      </Component>
       <div
         style={
           Object {
@@ -388,10 +396,11 @@ exports[`CommentContainer Edit button 1`] = `
         }
       }
     >
-      <CommentUserImage
+      <Component
+        size="35"
         style={
           Object {
-            "flexShrink": 0,
+            "marginRight": "20px",
           }
         }
         user={
@@ -401,27 +410,30 @@ exports[`CommentContainer Edit button 1`] = `
           }
         }
       >
-        <span
-          className="profile-image small round"
-          style={
-            Object {
-              "flexShrink": 0,
-              "height": "35px",
-              "marginRight": "20px",
-              "width": "35px",
-            }
-          }
+        <div
+          className="profile-card "
         >
           <span
-            className="glyphicon glyphicon-user"
+            className="profile-image small round"
             style={
               Object {
-                "fontSize": "17.5px",
+                "height": "35px",
+                "marginRight": "20px",
+                "width": "35px",
               }
             }
-          />
-        </span>
-      </CommentUserImage>
+          >
+            <span
+              className="glyphicon glyphicon-user"
+              style={
+                Object {
+                  "fontSize": "17.5px",
+                }
+              }
+            />
+          </span>
+        </div>
+      </Component>
       <div
         style={
           Object {
@@ -463,26 +475,30 @@ exports[`CommentContainer Render comment 1`] = `
       }
     }
   >
-    <span
-      className="profile-image small round"
-      style={
-        Object {
-          "flexShrink": 0,
-          "height": "35px",
-          "marginRight": "20px",
-          "width": "35px",
-        }
-      }
+    <div
+      className="profile-card "
     >
       <span
-        className="glyphicon glyphicon-user"
+        className="profile-image small round"
         style={
           Object {
-            "fontSize": "17.5px",
+            "height": "35px",
+            "marginRight": "20px",
+            "width": "35px",
           }
         }
-      />
-    </span>
+      >
+        <span
+          className="glyphicon glyphicon-user"
+          style={
+            Object {
+              "fontSize": "17.5px",
+            }
+          }
+        />
+      </span>
+      
+    </div>
     <div
       style={
         Object {
@@ -531,26 +547,30 @@ exports[`CommentContainer Render edit form 1`] = `
       }
     }
   >
-    <span
-      className="profile-image small round"
-      style={
-        Object {
-          "flexShrink": 0,
-          "height": "35px",
-          "marginRight": "20px",
-          "width": "35px",
-        }
-      }
+    <div
+      className="profile-card "
     >
       <span
-        className="glyphicon glyphicon-user"
+        className="profile-image small round"
         style={
           Object {
-            "fontSize": "17.5px",
+            "height": "35px",
+            "marginRight": "20px",
+            "width": "35px",
           }
         }
-      />
-    </span>
+      >
+        <span
+          className="glyphicon glyphicon-user"
+          style={
+            Object {
+              "fontSize": "17.5px",
+            }
+          }
+        />
+      </span>
+      
+    </div>
     <div
       style={
         Object {
@@ -669,26 +689,30 @@ exports[`CommentContainer Render save form 1`] = `
       }
     }
   >
-    <span
-      className="profile-image small round"
-      style={
-        Object {
-          "flexShrink": 0,
-          "height": "35px",
-          "marginRight": "20px",
-          "width": "35px",
-        }
-      }
+    <div
+      className="profile-card "
     >
       <span
-        className="glyphicon glyphicon-user"
+        className="profile-image small round"
         style={
           Object {
-            "fontSize": "17.5px",
+            "height": "35px",
+            "marginRight": "20px",
+            "width": "35px",
           }
         }
-      />
-    </span>
+      >
+        <span
+          className="glyphicon glyphicon-user"
+          style={
+            Object {
+              "fontSize": "17.5px",
+            }
+          }
+        />
+      </span>
+      
+    </div>
     <div
       style={
         Object {
@@ -758,10 +782,11 @@ exports[`CommentContainer Save button 1`] = `
         }
       }
     >
-      <CommentUserImage
+      <Component
+        size="35"
         style={
           Object {
-            "flexShrink": 0,
+            "marginRight": "20px",
           }
         }
         user={
@@ -771,27 +796,30 @@ exports[`CommentContainer Save button 1`] = `
           }
         }
       >
-        <span
-          className="profile-image small round"
-          style={
-            Object {
-              "flexShrink": 0,
-              "height": "35px",
-              "marginRight": "20px",
-              "width": "35px",
-            }
-          }
+        <div
+          className="profile-card "
         >
           <span
-            className="glyphicon glyphicon-user"
+            className="profile-image small round"
             style={
               Object {
-                "fontSize": "17.5px",
+                "height": "35px",
+                "marginRight": "20px",
+                "width": "35px",
               }
             }
-          />
-        </span>
-      </CommentUserImage>
+          >
+            <span
+              className="glyphicon glyphicon-user"
+              style={
+                Object {
+                  "fontSize": "17.5px",
+                }
+              }
+            />
+          </span>
+        </div>
+      </Component>
       <div
         style={
           Object {

@@ -46,8 +46,9 @@ class ListCard extends React.PureComponent {
         <div className="list-card-bottom">
           <div style={{display: 'inline-block'}}>
             <ProfileImage
-              src={'/v1/image/' + this.props.profile.image + '/50/50'}
-              name={this.props.profile.name}
+              user={this.props.profile}
+              size={'35'}
+              namePosition={'right'}
               type="list"
               className="mb1"
             />

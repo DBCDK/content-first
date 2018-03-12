@@ -12,9 +12,9 @@ export class ProfilePage extends React.Component {
           {this.props.user.isLoggedIn ? (
             <div className="tc mt3">
               <ProfileImage
-                size="60px"
-                src={`/v1/image/${this.props.user.image}/200/200`}
-                name={this.props.user.name}
+                user={this.props.user}
+                size={'60'}
+                namePosition={'bottom'}
               />
               <Link className="small link-subtle" href="/profile/rediger">
                 Redigér

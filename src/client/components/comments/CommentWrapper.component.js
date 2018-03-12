@@ -8,7 +8,7 @@ import {
 
 import Spinner from '../general/Spinner.component';
 import timeToString from '../../utils/timeToString';
-import CommentUserImage from './CommentUserImage.component';
+import ProfileImage from '../general/ProfileImage.component';
 import CommentInput from './CommentInput.component';
 
 export class CommentWrapper extends React.Component {
@@ -58,7 +58,12 @@ export class CommentWrapper extends React.Component {
           </button>
         ) : null}
         <div className="flex mb2" style={{width: '100%'}}>
-          <CommentUserImage user={user} style={{flexShrink: 0}} />
+          <ProfileImage
+            user={user}
+            style={{flexShrink: 0}}
+            size="35"
+            style={{marginRight: '20px'}}
+          />
           <div style={{flexGrow: 1}}>
             <div className="comment-author">{user.name || ''}</div>
             <div className="comment-time mb1">{timeToString(_created)}</div>

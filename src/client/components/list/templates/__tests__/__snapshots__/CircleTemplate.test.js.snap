@@ -79,9 +79,15 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           </h5>
           <ProfileImage
             className="mt1 mb1"
-            name="LæseLotte"
-            src="/v1/image/undefined/50/50"
+            namePosition="bottom"
+            size="50"
             type="list"
+            user={
+              Object {
+                "name": "LæseLotte",
+                "src": "http://p-hold.com/200/200",
+              }
+            }
           />
           <p>
             some description1
@@ -157,9 +163,15 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           </h5>
           <ProfileImage
             className="mt1 mb1"
-            name="LæseLotte"
-            src="/v1/image/undefined/50/50"
+            namePosition="bottom"
+            size="50"
             type="list"
+            user={
+              Object {
+                "name": "LæseLotte",
+                "src": "http://p-hold.com/200/200",
+              }
+            }
           />
           <p>
             some description2
@@ -235,9 +247,15 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           </h5>
           <ProfileImage
             className="mt1 mb1"
-            name="LæseLotte"
-            src="/v1/image/undefined/50/50"
+            namePosition="bottom"
+            size="50"
             type="list"
+            user={
+              Object {
+                "name": "LæseLotte",
+                "src": "http://p-hold.com/200/200",
+              }
+            }
           />
           <p>
             some description3
@@ -313,9 +331,15 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           </h5>
           <ProfileImage
             className="mt1 mb1"
-            name="LæseLotte"
-            src="/v1/image/undefined/50/50"
+            namePosition="bottom"
+            size="50"
             type="list"
+            user={
+              Object {
+                "name": "LæseLotte",
+                "src": "http://p-hold.com/200/200",
+              }
+            }
           />
           <p>
             some description4
@@ -391,9 +415,15 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           </h5>
           <ProfileImage
             className="mt1 mb1"
-            name="LæseLotte"
-            src="/v1/image/undefined/50/50"
+            namePosition="bottom"
+            size="50"
             type="list"
+            user={
+              Object {
+                "name": "LæseLotte",
+                "src": "http://p-hold.com/200/200",
+              }
+            }
           />
           <p>
             some description5
@@ -469,9 +499,15 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           </h5>
           <ProfileImage
             className="mt1 mb1"
-            name="LæseLotte"
-            src="/v1/image/undefined/50/50"
+            namePosition="bottom"
+            size="50"
             type="list"
+            user={
+              Object {
+                "name": "LæseLotte",
+                "src": "http://p-hold.com/200/200",
+              }
+            }
           />
           <p>
             some description6

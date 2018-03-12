@@ -131,9 +131,10 @@ export default class CircleTemplate extends React.Component {
                         {element.book.creator}
                       </h5>
                       <ProfileImage
-                        src={'/v1/image/' + profile.image + '/50/50'}
-                        name={profile.name}
+                        user={profile}
+                        size={'50'}
                         type="list"
+                        namePosition={'bottom'}
                         className="mt1 mb1"
                       />
                       <p>{element.description}</p>
