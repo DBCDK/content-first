@@ -6,3 +6,11 @@
 .simplelist .addbook {
   margin-bottom: 400px;
 }
+
+.simplelist .remove-btn {
+  position: absolute;
+  right: 0px;
+  /*top: 10px;*/
+  cursor: pointer;
+  width: 10px;
+}

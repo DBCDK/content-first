@@ -1,15 +1,21 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import WorkItem from '../../work/WorkItemConnected.component';
 import ProfileImage from '../../general/ProfileImage.component';
 import Comments from '../../comments/Comment.container';
 import AddToList from '../AddToList.container';
+import Kryds from '../../svg/Kryds.svg';
+import {removeElementFromList, storeList} from '../../../redux/list.reducer';
 
 const SimpleListItem = ({
   book,
   description,
   profile,
   allowComments,
-  listId
+  listId,
+  allowDelete,
+  allowModify,
+  onRemove
 }) => (
   <div className="row simplelist-item mb4">
     <div className="meta col-xs-3 tc">
@@ -36,10 +42,13 @@ const SimpleListItem = ({
       )) || <p className="t-body">{book.description}</p>}
       {allowComments ? <Comments id={`${listId}-${book.pid}`} /> : ''}
     </div>
+    {allowDelete && (
+      <img src={Kryds} alt="remove" className="remove-btn" onClick={onRemove} />
+    )}
   </div>
 );
 
-export default ({list, profile}) => {
+export const SimpleList = ({list, profile, loggedInUserId, removeElement}) => {
   return (
     <div className="simplelist col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
       <div className="row mb4">
@@ -52,7 +61,7 @@ export default ({list, profile}) => {
         </div>
       </div>
       <div className="list">
-        {list.list.map(({book, description}) => (
+        {list.list.map(({book, description, _owner}) => (
           <SimpleListItem
             allowComments={list.social}
             listId={list.id}
@@ -60,6 +69,11 @@ export default ({list, profile}) => {
             book={book}
             description={description}
             profile={profile}
+            allowDelete={
+              _owner === loggedInUserId || list._owner === loggedInUserId
+            }
+            allowModify={_owner === loggedInUserId}
+            onRemove={() => removeElement(book, list)}
           />
         ))}
       </div>
@@ -67,3 +81,14 @@ export default ({list, profile}) => {
     </div>
   );
 };
+
+const mapStateToProps = (state, ownProps) => {
+  return {};
+};
+export const mapDispatchToProps = dispatch => ({
+  removeElement: async (book, list) => {
+    await dispatch(removeElementFromList({book}, list.id));
+    dispatch(storeList(list.id));
+  }
+});
+export default connect(mapStateToProps, mapDispatchToProps)(SimpleList);
