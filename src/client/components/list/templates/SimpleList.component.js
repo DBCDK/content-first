@@ -25,9 +25,10 @@ const SimpleListItem = ({
       {(description && (
         <div className="profile-description">
           <ProfileImage
-            src={profile.src}
-            name={profile.name}
+            user={profile}
             type="list"
+            size={'50'}
+            namePosition={'bottom'}
             className="mb1"
           />
           <p className="t-body">{description}</p>
@@ -43,7 +44,7 @@ export default ({list, profile}) => {
     <div className="simplelist col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
       <div className="row mb4">
         <div className="col-xs-3 tc">
-          <ProfileImage src={'http://p-hold.com/200/200'} name="Profile Name" />
+          <ProfileImage user={profile} size={'50'} namePosition={'bottom'} />
         </div>
         <div className="col-xs-9">
           <p className="t-body">{list.description}</p>

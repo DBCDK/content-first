@@ -7,11 +7,7 @@ import {Likes, Comments, Badge} from '../general/Icons';
 class ListCard extends React.PureComponent {
   render() {
     const {list, style} = this.props;
-    const profile = {
-      name: 'Funky Bjarne',
-      src: 'http://p-hold.com/200/200',
-      description: 'This is a dummy profile. Profiles needs to be implemented'
-    };
+
     const elements = list.list;
     return (
       <div className="list-card" style={style}>
@@ -50,8 +46,9 @@ class ListCard extends React.PureComponent {
         <div className="list-card-bottom">
           <div style={{display: 'inline-block'}}>
             <ProfileImage
-              src={profile.src}
-              name={profile.name}
+              user={this.props.profile}
+              size={'35'}
+              namePosition={'right'}
               type="list"
               className="mb1"
             />

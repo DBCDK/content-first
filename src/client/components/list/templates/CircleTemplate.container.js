@@ -44,15 +44,12 @@ export default class CircleTemplate extends React.Component {
 
   render() {
     const {list} = this.props;
-    const profile = {
-      name: 'LæseLotte',
-      src: 'http://p-hold.com/200/200',
-      description: 'This is a dummy profile. Profiles needs to be implemented'
-    };
-
     if (!list) {
       return null;
     }
+
+    const profile = this.props.profile;
+
     const backgroundImageHeight = Math.min(
       this.state.clientWidth * BACKGROUND_IMAGE_HEIGHT_PERCENTAGE,
       BACKGROUND_IMAGE_MAX_HEIGHT
@@ -134,9 +131,10 @@ export default class CircleTemplate extends React.Component {
                         {element.book.creator}
                       </h5>
                       <ProfileImage
-                        src={profile.src}
-                        name={profile.name}
+                        user={profile}
+                        size={'50'}
                         type="list"
+                        namePosition={'bottom'}
                         className="mt1 mb1"
                       />
                       <p>{element.description}</p>
