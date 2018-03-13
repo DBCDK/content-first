@@ -57,9 +57,7 @@ const mapStateToProps = (state, ownProps) => {
   const list = getListById(state.listReducer, ownProps.id);
   return {
     list,
-    profiles: state.users.toJS(),
-    loggedInUserId: state.userReducer.openplatformId,
-    isOwner: list && list.owner === state.userReducer.openplatformId
+    profiles: state.users.toJS()
   };
 };
 
