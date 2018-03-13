@@ -82,7 +82,10 @@ export class CommentWrapper extends React.Component {
                 error={error || null}
               />
             ) : (
-              <div className="comment" dangerouslySetInnerHTML={{__html: textParser(comment)}} />
+              <div
+                className="comment"
+                dangerouslySetInnerHTML={{__html: textParser(comment)}}
+              />
             )}
           </div>
         </div>
