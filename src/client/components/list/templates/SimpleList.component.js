@@ -27,7 +27,6 @@ const SimpleListItem = ({
           <ProfileImage
             user={profile}
             type="list"
-            size={'50'}
             namePosition={'bottom'}
             className="mb1"
           />

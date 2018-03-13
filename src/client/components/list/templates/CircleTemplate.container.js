@@ -132,7 +132,6 @@ export default class CircleTemplate extends React.Component {
                       </h5>
                       <ProfileImage
                         user={profile}
-                        size={'50'}
                         type="list"
                         namePosition={'bottom'}
                         className="mt1 mb1"
