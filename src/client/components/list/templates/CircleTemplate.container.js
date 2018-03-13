@@ -48,7 +48,7 @@ export default class CircleTemplate extends React.Component {
       return null;
     }
 
-    const profile = this.props.profile;
+    const profile = this.props.profile || {};
 
     const backgroundImageHeight = Math.min(
       this.state.clientWidth * BACKGROUND_IMAGE_HEIGHT_PERCENTAGE,
