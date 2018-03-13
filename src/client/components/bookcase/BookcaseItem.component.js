@@ -105,12 +105,15 @@ export class BookcaseItem extends React.Component {
                 slideIndex={this.state.slideIndex}
                 onNextBook={this.nextBook}
               >
-                {this.props.books.map(b => {
+                {this.props.books.map((b, i) => {
                   return (
                     <CarouselItem
                       active={this.state.carousel}
                       key={'carousel-' + b.book.pid}
-                      description={b.book.description}
+                      description={
+                        this.props.celeb.books[i].description ||
+                        b.book.description
+                      }
                       book={b.book}
                     />
                   );
