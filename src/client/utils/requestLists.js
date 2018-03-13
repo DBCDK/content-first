@@ -70,7 +70,8 @@ const oldPayloadToList = async payload => {
   if (pids.length === 0) {
     return result;
   }
-  const works = (await request.get('/v1/books/').query({pids: unique(pids)})).body.data;
+  const works = (await request.get('/v1/books/').query({pids: unique(pids)}))
+    .body.data;
   const worksMap = works.reduce((map, w) => {
     map[w.book.pid] = w;
     return map;
@@ -129,7 +130,8 @@ async function enrichList(list) {
   list.list = list.list.filter(o => o.pid);
   const pids = list.list.map(o => o.pid);
   if (pids.length > 0) {
-    const works = (await request.get('/v1/books/').query({pids: unique(pids)})).body.data;
+    const works = (await request.get('/v1/books/').query({pids: unique(pids)}))
+      .body.data;
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;
       return map;
