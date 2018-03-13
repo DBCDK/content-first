@@ -5,7 +5,7 @@ const defaultState = {
       name: 'Helene Poulsen',
       img: 'img/bookcase/HP.jpg',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at rhoncus enim, ut facilisis velit. Donec eget augue vel lorem iaculis.',
+        'Helene Jeppesen er Danmarks mest fulgte booktuber. Hun læser bredt – både klassikere og helt ny skønlitteratur. Reolen bærer præg af hendes store interesse og kærlighed til det engelske sprog.',
       bookcase: 'img/bookcase/HP-bogreol.jpg',
       books: [
         {
