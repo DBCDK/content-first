@@ -255,7 +255,7 @@ export const mapDispatchToProps = dispatch => ({
   updateList: data => dispatch(updateList(data)),
   storeList: async list => {
     await dispatch(storeList(list.id));
-    dispatch({type: HISTORY_REPLACE, path: '/lister'});
+    dispatch({type: HISTORY_REPLACE, path: '/profile'});
   },
   addElementToList: (book, id) => dispatch(addElementToList(book, id)),
   removeElementFromList: (book, id) =>
