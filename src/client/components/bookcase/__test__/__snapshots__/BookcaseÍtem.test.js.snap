@@ -72,7 +72,7 @@ exports[`BookcaseItem renders initial component 1`] = `
                 "title": "test",
               }
             }
-            description="lorem ipsum..."
+            description="lorem ipsum . . ."
           />
         </CarouselSlider>
       </div>

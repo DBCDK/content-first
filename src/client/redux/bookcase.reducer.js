@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const defaultState = {
   celebs: [
     {
@@ -94,6 +96,8 @@ const defaultState = {
     }
   ]
 };
+
+/* eslint-enable */
 
 export const ON_BOOK_REQUEST_TEST = 'ON_BOOK_REQUEST_TEST';
 

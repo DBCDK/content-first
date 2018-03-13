@@ -49,9 +49,17 @@ exports[`CarouselItem renders initial component 1`] = `
         <CheckmarkConnected
           book={
             Object {
-              "book": Object {
-                "pid": undefined,
-              },
+              "book": Array [
+                Object {
+                  "book": Object {
+                    "cover": "img/cover.png",
+                    "creator": "Nicole Boyle Rødtnes",
+                    "description": "lorem ipsum . . .",
+                    "pid": "870970-basis:52038014",
+                    "title": "test",
+                  },
+                },
+              ],
             }
           }
           origin="Fra bogreol"
