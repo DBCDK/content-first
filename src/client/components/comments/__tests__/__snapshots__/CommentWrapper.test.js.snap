@@ -453,9 +453,12 @@ exports[`CommentContainer Edit button 1`] = `
         </div>
         <div
           className="comment"
-        >
-          comment_test
-        </div>
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "comment_test",
+            }
+          }
+        />
       </div>
     </div>
   </div>
@@ -518,9 +521,12 @@ exports[`CommentContainer Render comment 1`] = `
       </div>
       <div
         className="comment"
-      >
-        comment_test
-      </div>
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "comment_test",
+          }
+        }
+      />
     </div>
   </div>
 </div>
@@ -732,9 +738,12 @@ exports[`CommentContainer Render save form 1`] = `
       </div>
       <div
         className="comment"
-      >
-        comment_test
-      </div>
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "comment_test",
+          }
+        }
+      />
     </div>
   </div>
 </div>

@@ -347,6 +347,42 @@ exports[`CommentContainer Component renders all comments 1`] = `
 </CommentContainer>
 `;
 
+exports[`CommentContainer Component renders comment with links and emojis 1`] = `
+<div
+  className="comments"
+>
+  <div
+    className="mb3"
+  >
+    <div
+      style={
+        Object {
+          "height": null,
+          "overflow": "hidden",
+          "transition": "height 500ms",
+        }
+      }
+    >
+      <div>
+        <comment
+          comment={
+            Object {
+              "_id": "comment",
+              "comment": "This is a comment with ❤️ and links.com 
+             and line breaks",
+              "user": Object {
+                "name": "Benny Cosmos",
+              },
+            }
+          }
+        />
+      </div>
+    </div>
+    
+  </div>
+</div>
+`;
+
 exports[`CommentContainer Component renders error 1`] = `
 <CommentContainer
   comments={
