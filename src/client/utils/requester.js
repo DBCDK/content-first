@@ -257,7 +257,8 @@ export const loadShortList = async isLoggedIn => {
       return {localStorageElements, databaseElements: []};
     }
     const pids = databaseElements.map(e => e.pid);
-    const works = (await request.get('/v1/books/').query({pids: unique(pids)})).body.data;
+    const works = (await request.get('/v1/books/').query({pids: unique(pids)}))
+      .body.data;
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;
       return map;
