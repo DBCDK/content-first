@@ -40,7 +40,7 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
         {editButton}
       </div>
       <Link href={`/lister/${id}`} className="ml2">
-        {list.map(el => {
+        {list.slice(0, 5).map(el => {
           return (
             <span className="ml1" key={el.book.pid}>
               <Cover
