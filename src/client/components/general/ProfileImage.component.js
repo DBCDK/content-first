@@ -25,7 +25,7 @@ export const ProfileImage = ({
         ...style
       }}
     >
-      {user.image ? (
+      {user && user.image ? (
         <img
           className="cover"
           src={'/v1/image/' + user.image + '/' + size + '/' + size}
@@ -39,7 +39,7 @@ export const ProfileImage = ({
       )}
     </span>
 
-    {!namePosition === false ? (
+    {user && !namePosition === false ? (
       <h4 className="profile-name t-body h4 mt0 mb0">{user.name}</h4>
     ) : (
       ''
