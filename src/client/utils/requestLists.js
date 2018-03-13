@@ -13,12 +13,8 @@ export const saveList = async list => {
   list = Object.assign({}, list);
   list._type = 'list';
   list.list = list.list || [];
-
-  // old-endpoint compat, refactor to just _id later
   list._public = list.public;
-  if (!list.oldId) {
-    list._id = list._id || list.id;
-  }
+  list._id = list._id || list.id;
 
   if (!list._id && list.list.length > 0) {
     Object.assign(list, (await request.post('/v1/object').send({})).body.data);
@@ -61,25 +57,6 @@ export const saveList = async list => {
   list.id = list._key || list._id;
 
   return list;
-};
-
-const oldPayloadToList = async payload => {
-  const result = Object.assign({}, payload.data);
-  result.id = locationToId(payload.links.self);
-  const pids = result.list.map(obj => obj.pid);
-  if (pids.length === 0) {
-    return result;
-  }
-  const works = (await request.get('/v1/books/').query({pids: unique(pids)}))
-    .body.data;
-  const worksMap = works.reduce((map, w) => {
-    map[w.book.pid] = w;
-    return map;
-  }, {});
-  result.list = payload.data.list.map(obj => {
-    return Object.assign(obj, worksMap[obj.pid]);
-  });
-  return result;
 };
 
 export const loadRecentPublic = async () => {
@@ -146,22 +123,13 @@ export const loadLists = async openplatformId => {
   if (!openplatformId) {
     return [];
   }
-
-  // Load from database from old endpoint
-  const listsPayload = (await request.get('/v1/lists')).body.data;
-  let result = [];
-  for (let i = 0; i < listsPayload.length; i++) {
-    result.push(await oldPayloadToList(listsPayload[i]));
-  }
-  result = result.map(o => Object.assign(o, {oldId: true}));
-
-  // Load new lists
   const lists = (await request.get(
     `/v1/object/find?type=list&owner=${encodeURIComponent(
       openplatformId
     )}&limit=100000`
   )).body.data;
 
+  let result = [];
   for (const list of lists) {
     await enrichList(list);
     result.push(list);
@@ -192,8 +160,4 @@ export const loadLists = async openplatformId => {
 
 const containsList = (type, title, lists) => {
   return lists.filter(l => l.type === type && l.title === title).length !== 0;
-};
-
-const locationToId = location => {
-  return location.split('/')[3];
 };
