@@ -21,7 +21,8 @@ export class AddToListModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = Object.assign({}, defaultState, {
-      list: this.props.customLists[0] || null
+      list: this.props.customLists[0] || null,
+      loadingList: false
     });
   }
 
@@ -32,19 +33,23 @@ export class AddToListModal extends React.Component {
       this.setState({
         list: this.props.customLists[this.props.customLists.length - 1]
       });
+      // if loadingList is true - add book/books to auto-created list
+      if (this.state.loadingList) {
+        this.addElementsToList(
+          this.props.customLists[this.props.customLists.length - 1].id
+        );
+        this.setState({loadingList: false});
+      }
     }
   }
-  close = () => {
-    this.setState(Object.assign({}, defaultState));
-    this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
-  };
-  onDone = () => {
+
+  addElementsToList(listId) {
     if (this.props.works) {
       this.props.works.forEach(work =>
         this.props.dispatch(
           addElementToList(
             {book: work.book, description: work.origin || ''},
-            this.state.list.id
+            listId
           )
         )
       );
@@ -55,13 +60,30 @@ export class AddToListModal extends React.Component {
             book: this.props.work.book,
             description: this.state.comment || this.props.work.origin || ''
           },
-          this.state.list.id
+          listId
         )
       );
     }
-    this.props.dispatch(storeList(this.state.list.id));
+    this.props.dispatch(storeList(listId));
     this.close();
+  }
+
+  close = () => {
+    this.setState(Object.assign({}, defaultState));
+    this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
   };
+  onDone = () => {
+    // If the "create-new-list" field is NOT empty - auto-create new list
+    if (this.state.listName) {
+      this.onAddList(this.state.listName);
+      this.setState({
+        loadingList: true
+      });
+    } else {
+      this.addElementsToList(this.state.list.id);
+    }
+  };
+
   onAddList = title => {
     this.props.dispatch(addList({title}));
   };
@@ -81,16 +103,22 @@ export class AddToListModal extends React.Component {
         <div className="row">
           <div className="col-xs-6">
             <div className="list-overview" ref={e => (this.listsContainer = e)}>
-              {this.props.customLists.map(l => {
+              {this.props.customLists.map((l, i) => {
                 return (
                   <div key={l.id}>
                     <input
+                      id={'radio' + '-' + l.title + '-' + i}
                       type="radio"
                       name="list"
-                      checked={_.get(this.state, 'list.id') === l.id}
+                      checked={
+                        _.get(this.state, 'list.id') === l.id &&
+                        !this.state.listName
+                      }
                       onChange={() => this.setState({list: l})}
                     />
-                    {l.title}
+                    <label for={'radio' + '-' + l.title + '-' + i}>
+                      {l.title}
+                    </label>
                   </div>
                 );
               })}
@@ -116,6 +144,7 @@ export class AddToListModal extends React.Component {
                   className="add-list--btn btn-success text-center"
                   type="submit"
                   value="+"
+                  type="hidden"
                 />
               </form>
             </div>

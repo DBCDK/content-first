@@ -4,21 +4,33 @@
 .add-to-list--modal .work-item-small > div {
   padding: 0;
 }
+
 .list-overview {
   font-size: 18px;
   color: grey;
   margin-top: 20px;
-  padding: 10px;
+
   height: 200px;
   background: white;
   overflow-y: auto;
   border-right: 1px solid var(--lightgrey);
 }
-.list-overview > div {
-  margin-bottom: 5px;
+.list-overview label {
+  width: 100%;
+  font-weight: normal;
+  margin: 0;
+  padding: 5px 5px 5px 10px;
+  cursor: pointer;
+}
+.list-overview label:hover {
+  background-color: var(--lightgrey);
 }
 .list-overview input {
-  margin-right: 10px;
+  display: none;
+}
+.list-overview input:checked + label {
+  background-color: #5bc0de;
+  color: white;
 }
 .add-to-list--modal .work-item-small {
   margin-top: 20px;
