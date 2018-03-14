@@ -176,7 +176,7 @@ export class ListCreator extends React.Component {
     if (!this.props.currentList) {
       return null;
     }
-    const isNew = this.props.currentList.created_epoch ? false : true;
+    const isNew = this.props.currentList._created ? false : true;
     return (
       <div className="list-creator">
         <h1 className="list-creator__headline">
