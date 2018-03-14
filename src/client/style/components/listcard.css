@@ -26,6 +26,7 @@
 }
 .list-card-description {
   font-family: var(--secondary-font);
+   color:black;
 }
 .list-card-covers {
   height: 120px;
