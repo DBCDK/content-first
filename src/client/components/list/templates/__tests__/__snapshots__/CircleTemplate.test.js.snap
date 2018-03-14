@@ -80,7 +80,6 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           <ProfileImage
             className="mt1 mb1"
             namePosition="bottom"
-            size="50"
             type="list"
             user={
               Object {
@@ -164,7 +163,6 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           <ProfileImage
             className="mt1 mb1"
             namePosition="bottom"
-            size="50"
             type="list"
             user={
               Object {
@@ -248,7 +246,6 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           <ProfileImage
             className="mt1 mb1"
             namePosition="bottom"
-            size="50"
             type="list"
             user={
               Object {
@@ -332,7 +329,6 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           <ProfileImage
             className="mt1 mb1"
             namePosition="bottom"
-            size="50"
             type="list"
             user={
               Object {
@@ -416,7 +412,6 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           <ProfileImage
             className="mt1 mb1"
             namePosition="bottom"
-            size="50"
             type="list"
             user={
               Object {
@@ -500,7 +495,6 @@ exports[`CircleTemplate circle of list items is shown 1`] = `
           <ProfileImage
             className="mt1 mb1"
             namePosition="bottom"
-            size="50"
             type="list"
             user={
               Object {

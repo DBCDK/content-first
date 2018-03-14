@@ -84,7 +84,7 @@ const ListDetails = ({
   </div>
 );
 
-const ListItem = ({item, onChange}) => (
+export const ListItem = ({item, onChange}) => (
   <div key={item.book.pid} className="flex list-item">
     <BookCover className="list-item__img" book={item.book} />
     <div className="list-item__details">

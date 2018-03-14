@@ -1,6 +1,7 @@
 import request from 'superagent';
 import {SYSTEM_LIST} from '../redux/list.reducer';
 import unique from './unique';
+import {deleteObject} from './requester';
 
 // Note: only used exports are:
 //
@@ -9,7 +10,7 @@ import unique from './unique';
 // - loadRecentPublic
 //
 
-export const saveList = async list => {
+export const saveList = async (list, loggedInUserId) => {
   list = Object.assign({}, list);
   list._type = 'list';
   list.list = list.list || [];
@@ -21,8 +22,13 @@ export const saveList = async list => {
     list.id = list._key || list._id;
   }
 
+  // update all elements owned by logged in user
+  // consider only updating those which are actually modified
   list.list = await Promise.all(
     list.list.map(async o => {
+      if (o._owner && loggedInUserId !== o._owner) {
+        return o;
+      }
       const {book} = o;
       try {
         const saved = Object.assign({}, o, {
@@ -45,14 +51,33 @@ export const saveList = async list => {
     })
   );
 
-  const result = await request.post('/v1/object').send(
-    Object.assign({}, list, {
-      _rev: null,
-      list: list.list && list.list.map(({_id}) => ({_id}))
-    })
-  );
-  Object.assign(list, result.body.data);
+  // delete elements which are owned by logged in user
+  if (list.pending) {
+    await Promise.all(
+      list.pending
+        .filter(
+          ({_id, _owner}) => list.deleted[_id] && _owner === loggedInUserId
+        )
+        .map(async ({_id}) => {
+          try {
+            await deleteObject({_id});
+          } catch (e) {
+            // possibly permission denied if not owner of list element
+          }
+        })
+    );
+  }
 
+  if (list._owner === loggedInUserId) {
+    const result = await request.post('/v1/object').send(
+      Object.assign({}, list, {
+        _rev: null,
+        pending: null,
+        list: list.list && list.list.map(({_id}) => ({_id}))
+      })
+    );
+    Object.assign(list, result.body.data);
+  }
   // old-endpoint compat, refactor to just _id later
   list.id = list._key || list._id;
 

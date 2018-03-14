@@ -29,7 +29,8 @@ import {
   getListById,
   ADD_LIST_IMAGE,
   ADD_LIST_IMAGE_SUCCESS,
-  ADD_LIST_IMAGE_ERROR
+  ADD_LIST_IMAGE_ERROR,
+  ADD_ELEMENT_TO_LIST
 } from './list.reducer';
 import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
@@ -156,20 +157,20 @@ export const shortListMiddleware = store => next => async action => {
 export const listMiddleware = store => next => async action => {
   switch (action.type) {
     case STORE_LIST: {
-      const res = next(action);
+      const {openplatformId} = store.getState().userReducer;
       const list = getListById(store.getState().listReducer, action.id);
       if (!list) {
         throw new Error(`list with id ${action.id} not found`);
       }
       if (store.getState().userReducer.isLoggedIn) {
-        const updatedList = await saveList(list);
+        const updatedList = await saveList(list, openplatformId);
         store.dispatch({
           type: ADD_LIST,
           id: updatedList.id,
           list: updatedList
         });
       }
-      return res;
+      return next(action);
     }
     case ADD_LIST: {
       if (!action.list.id) {
@@ -178,6 +179,11 @@ export const listMiddleware = store => next => async action => {
       if (!action.list.owner) {
         action.list.owner = store.getState().userReducer.openplatformId;
       }
+      return next(action);
+    }
+    case ADD_ELEMENT_TO_LIST: {
+      const {openplatformId} = store.getState().userReducer;
+      action.element._owner = openplatformId;
       return next(action);
     }
     case LIST_LOAD_REQUEST: {
