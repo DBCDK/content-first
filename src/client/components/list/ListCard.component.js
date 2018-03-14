@@ -4,9 +4,15 @@ import BookCover from '../general/BookCover.component';
 import ProfileImage from '../general/ProfileImage.component';
 import {Likes, Comments, Badge} from '../general/Icons';
 
+//New
+import Link from '../general/Link.component';
+//
+
+
 class ListCard extends React.PureComponent {
   render() {
     const {list, style} = this.props;
+    // console.log("list "+JSON.stringify(list))
     const profile = {
       name: 'Funky Bjarne',
       src: 'http://p-hold.com/200/200',
@@ -15,7 +21,8 @@ class ListCard extends React.PureComponent {
     const elements = list.list;
     return (
       <div className="list-card" style={style}>
-        <div className="list-card-covers">
+      <Link href={`/lister/${list.id}`}>
+        <div className="list-card-covers" >
           <div className="list-card-covers-wrapper">
             {elements.length > 0 &&
               elements.slice(0, 3).map(e => {
@@ -29,7 +36,9 @@ class ListCard extends React.PureComponent {
               })}
           </div>
         </div>
+
         <div className="list-card-summary">
+         
           <TruncateMarkup
             lines={2}
             ellipsis={
@@ -39,14 +48,18 @@ class ListCard extends React.PureComponent {
             }
           >
             <h3 className="list-card-title h-tight">
-              {list.title}
+              
+                {list.title}
+             
               <Badge value={elements.length} className="ml1" />
             </h3>
           </TruncateMarkup>
           <TruncateMarkup lines={3}>
             <div className="list-card-description">{list.description}</div>
           </TruncateMarkup>
+
         </div>
+          
         <div className="list-card-bottom">
           <div style={{display: 'inline-block'}}>
             <ProfileImage
@@ -61,6 +74,7 @@ class ListCard extends React.PureComponent {
             <Comments value={14} className="ml1" />
           </div>
         </div>
+        </Link>
       </div>
     );
   }
