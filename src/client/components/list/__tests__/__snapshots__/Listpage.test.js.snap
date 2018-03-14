@@ -12,13 +12,7 @@ exports[`ListView List is rendered 1`] = `
     >
       some list
     </h1>
-    <a
-      className="small link-subtle align-middle ml2"
-      href="/lister/list1/rediger"
-      onClick={[Function]}
-    >
-      Redigér liste
-    </a>
+    
   </div>
   <Comments
     list={
@@ -60,18 +54,82 @@ exports[`ListView List is rendered 1`] = `
             },
           },
         ],
-        "owner": null,
+        "owner": "owner1",
         "title": "some list",
-        "type": "CUSTOM_LIST",
       }
     }
-    profile={undefined}
+    profile={
+      Object {
+        "name": "Frans",
+      }
+    }
   />
 </div>
 `;
 
-exports[`ListView no list is rendered when id is invalid 1`] = `
-<div>
-  Listen findes ikke
+exports[`ListView edit button enabled, when isOwner true 1`] = `
+<div
+  className="list-wrapper tl"
+>
+  <div
+    className="mb4 mt5 col-xs-offset-0 col-md-offset-1"
+  >
+    <h1
+      className="t-title h-tight h-underline inline-block align-middle"
+    >
+      some list
+    </h1>
+    
+  </div>
+  <Comments
+    list={
+      Object {
+        "description": "some description",
+        "id": "list1",
+        "list": Array [
+          Object {
+            "book": Object {
+              "creator": "some creator1",
+              "pid": "pid1",
+              "title": "some title 1",
+            },
+            "description": "some description1",
+            "links": Object {
+              "cover": "/cover1",
+            },
+          },
+          Object {
+            "book": Object {
+              "creator": "some creator2",
+              "pid": "pid2",
+              "title": "some title 2",
+            },
+            "description": "some description2",
+            "links": Object {
+              "cover": "/cover2",
+            },
+          },
+          Object {
+            "book": Object {
+              "creator": "some creator3",
+              "pid": "pid3",
+              "title": "some title 3",
+            },
+            "description": "some description3",
+            "links": Object {
+              "cover": "/cover3",
+            },
+          },
+        ],
+        "owner": "owner1",
+        "title": "some list",
+      }
+    }
+    profile={
+      Object {
+        "name": "Frans",
+      }
+    }
+  />
 </div>
 `;
