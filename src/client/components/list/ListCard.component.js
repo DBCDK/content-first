@@ -3,6 +3,8 @@ import TruncateMarkup from 'react-truncate-markup';
 import BookCover from '../general/BookCover.component';
 import ProfileImage from '../general/ProfileImage.component';
 import {Likes, Comments, Badge} from '../general/Icons';
+import Link from '../general/Link.component';
+
 
 class ListCard extends React.PureComponent {
   render() {
@@ -11,6 +13,7 @@ class ListCard extends React.PureComponent {
     const elements = list.list;
     return (
       <div className="list-card" style={style}>
+      <Link href={`/lister/${list.id}`} >
         <div className="list-card-covers">
           <div className="list-card-covers-wrapper">
             {elements.length > 0 &&
@@ -58,6 +61,8 @@ class ListCard extends React.PureComponent {
             <Comments value={14} className="ml1" />
           </div>
         </div>
+
+        </Link>
       </div>
     );
   }
