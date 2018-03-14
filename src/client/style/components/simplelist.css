@@ -2,3 +2,15 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 40px;
 }
+
+.simplelist .addbook {
+  margin-bottom: 400px;
+}
+
+.simplelist .remove-btn {
+  position: absolute;
+  right: 0px;
+  /*top: 10px;*/
+  cursor: pointer;
+  width: 10px;
+}

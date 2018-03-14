@@ -88,6 +88,8 @@ const listReducer = (state = defaultState, action) => {
       };
       list.deleted = list.deleted || {};
       list.deleted[action.element._id] = true;
+      list.pending = list.pending || [];
+      list.pending = [...list.pending, action.element];
       list.list = list.list.filter(
         element => element.book.pid !== action.element.book.pid
       );
@@ -218,6 +220,15 @@ const listReducer = (state = defaultState, action) => {
         imageIsLoading: true,
         image: null,
         imageError: action.error
+      };
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list}
+      });
+    }
+    case STORE_LIST: {
+      const list = {
+        ...state.lists[action.id],
+        pending: []
       };
       return Object.assign({}, state, {
         lists: {...state.lists, [action.id]: list}

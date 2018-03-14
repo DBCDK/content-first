@@ -5,7 +5,7 @@ import SimpleList from './templates/SimpleList.component';
 import CircleTemplate from './templates/CircleTemplate.container';
 import Link from '../general/Link.component';
 
-class ListPage extends React.Component {
+export class ListPage extends React.Component {
   getTemplate(list) {
     switch (list.template) {
       case 'simple':
@@ -17,7 +17,7 @@ class ListPage extends React.Component {
     }
   }
   render() {
-    const {list} = this.props;
+    const {list, isOwner} = this.props;
 
     if (!list) {
       return <div>Listen findes ikke</div>;
@@ -28,7 +28,7 @@ class ListPage extends React.Component {
     const Template = this.getTemplate(list);
 
     let editButton = '';
-    if (list.type === 'CUSTOM_LIST') {
+    if (list.type === 'CUSTOM_LIST' && isOwner) {
       editButton = (
         <Link
           className="small link-subtle align-middle ml2"
@@ -54,8 +54,10 @@ class ListPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const list = getListById(state.listReducer, ownProps.id);
   return {
-    list: getListById(state.listReducer, ownProps.id),
+    list,
+    isOwner: list && list._owner === state.userReducer.openplatformId,
     profiles: state.users.toJS()
   };
 };
