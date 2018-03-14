@@ -25,6 +25,11 @@ const createTestElement = id => {
   };
 };
 
+const profile = {
+  name: 'LæseLotte',
+  src: 'http://p-hold.com/200/200'
+};
+
 describe('CircleTemplate', () => {
   test('circle of list items is shown', () => {
     const list = {
@@ -42,7 +47,9 @@ describe('CircleTemplate', () => {
       ]
     };
 
-    const tree = renderer.create(<CircleTemplate list={list} />).toJSON();
+    const tree = renderer
+      .create(<CircleTemplate list={list} profile={profile} />)
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

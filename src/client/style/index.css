@@ -23,6 +23,7 @@
 @import './utils/spinner.css';
 @import './utils/tags.css';
 @import './utils/forms.css';
+@import './utils/emoji.css';
 
 /* Import component classes */
 @import './components/profileCard.css';

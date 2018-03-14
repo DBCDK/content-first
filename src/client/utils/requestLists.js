@@ -1,5 +1,7 @@
 import request from 'superagent';
 import {SYSTEM_LIST} from '../redux/list.reducer';
+import unique from './unique';
+import {deleteObject} from './requester';
 
 // Note: only used exports are:
 //
@@ -8,24 +10,25 @@ import {SYSTEM_LIST} from '../redux/list.reducer';
 // - loadRecentPublic
 //
 
-export const saveList = async list => {
+export const saveList = async (list, loggedInUserId) => {
   list = Object.assign({}, list);
   list._type = 'list';
   list.list = list.list || [];
-
-  // old-endpoint compat, refactor to just _id later
   list._public = list.public;
-  if (!list.oldId) {
-    list._id = list._id || list.id;
-  }
+  list._id = list._id || list.id;
 
   if (!list._id && list.list.length > 0) {
     Object.assign(list, (await request.post('/v1/object').send({})).body.data);
     list.id = list._key || list._id;
   }
 
+  // update all elements owned by logged in user
+  // consider only updating those which are actually modified
   list.list = await Promise.all(
     list.list.map(async o => {
+      if (o._owner && loggedInUserId !== o._owner) {
+        return o;
+      }
       const {book} = o;
       try {
         const saved = Object.assign({}, o, {
@@ -48,36 +51,37 @@ export const saveList = async list => {
     })
   );
 
-  const result = await request.post('/v1/object').send(
-    Object.assign({}, list, {
-      _rev: null,
-      list: list.list && list.list.map(({_id}) => ({_id}))
-    })
-  );
-  Object.assign(list, result.body.data);
+  // delete elements which are owned by logged in user
+  if (list.pending) {
+    await Promise.all(
+      list.pending
+        .filter(
+          ({_id, _owner}) => list.deleted[_id] && _owner === loggedInUserId
+        )
+        .map(async ({_id}) => {
+          try {
+            await deleteObject({_id});
+          } catch (e) {
+            // possibly permission denied if not owner of list element
+          }
+        })
+    );
+  }
 
+  if (list._owner === loggedInUserId) {
+    const result = await request.post('/v1/object').send(
+      Object.assign({}, list, {
+        _rev: null,
+        pending: null,
+        list: list.list && list.list.map(({_id}) => ({_id}))
+      })
+    );
+    Object.assign(list, result.body.data);
+  }
   // old-endpoint compat, refactor to just _id later
   list.id = list._key || list._id;
 
   return list;
-};
-
-const oldPayloadToList = async payload => {
-  const result = Object.assign({}, payload.data);
-  result.id = locationToId(payload.links.self);
-  const pids = result.list.map(obj => obj.pid);
-  if (pids.length === 0) {
-    return result;
-  }
-  const works = (await request.get('/v1/books/').query({pids})).body.data;
-  const worksMap = works.reduce((map, w) => {
-    map[w.book.pid] = w;
-    return map;
-  }, {});
-  result.list = payload.data.list.map(obj => {
-    return Object.assign(obj, worksMap[obj.pid]);
-  });
-  return result;
 };
 
 export const loadRecentPublic = async () => {
@@ -128,7 +132,8 @@ async function enrichList(list) {
   list.list = list.list.filter(o => o.pid);
   const pids = list.list.map(o => o.pid);
   if (pids.length > 0) {
-    const works = (await request.get('/v1/books/').query({pids})).body.data;
+    const works = (await request.get('/v1/books/').query({pids: unique(pids)}))
+      .body.data;
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;
       return map;
@@ -143,22 +148,13 @@ export const loadLists = async openplatformId => {
   if (!openplatformId) {
     return [];
   }
-
-  // Load from database from old endpoint
-  const listsPayload = (await request.get('/v1/lists')).body.data;
-  let result = [];
-  for (let i = 0; i < listsPayload.length; i++) {
-    result.push(await oldPayloadToList(listsPayload[i]));
-  }
-  result = result.map(o => Object.assign(o, {oldId: true}));
-
-  // Load new lists
   const lists = (await request.get(
     `/v1/object/find?type=list&owner=${encodeURIComponent(
       openplatformId
     )}&limit=100000`
   )).body.data;
 
+  let result = [];
   for (const list of lists) {
     await enrichList(list);
     result.push(list);
@@ -189,8 +185,4 @@ export const loadLists = async openplatformId => {
 
 const containsList = (type, title, lists) => {
   return lists.filter(l => l.type === type && l.title === title).length !== 0;
-};
-
-const locationToId = location => {
-  return location.split('/')[3];
 };

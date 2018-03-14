@@ -40,10 +40,7 @@ export default class CarouselItem extends React.Component {
               </TruncateMarkup>
             </div>
             <div className="col-xs-12">
-              <CheckmarkConnected
-                book={{book: {pid: book.pid}}}
-                origin="Fra bogreol"
-              />
+              <CheckmarkConnected book={{book}} origin="Fra bogreol" />
             </div>
           </div>
           <div className="clear" />

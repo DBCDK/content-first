@@ -96,6 +96,22 @@ describe('CommentContainer', () => {
     tree.setState({showAll: true});
     expect(tree).toMatchSnapshot();
   });
+  test('Component renders comment with links and emojis', () => {
+    const comment = {
+      comment: 'This is a comment with ❤️ and links.com \n and line breaks',
+      _id: 'comment',
+      user: {name: 'Benny Cosmos'}
+    };
+    const tree = renderer.create(
+      <CommentContainer
+        id="some_id"
+        fetchComments={jest.fn()}
+        comments={[comment]}
+        user={{image: 'image_id'}}
+      />
+    );
+    expect(tree).toMatchSnapshot();
+  });
   test('Component Submits a new comment', () => {
     const addComment = jest.fn();
     const tree = mount(

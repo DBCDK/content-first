@@ -13,6 +13,7 @@ import similar from '../../data/similar-pids.json';
 import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
+import unique from './unique';
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
@@ -52,7 +53,7 @@ export const fetchBooks = (pids = [], dispatch) => {
     returns:
       [{book},{book},{...}]
   */
-  const getBooks = request.get('/v1/books/').query({pids: pids});
+  const getBooks = request.get('/v1/books/').query({pids: unique(pids)});
 
   Promise.all([getBooks])
     .then(async responses => {
@@ -256,7 +257,8 @@ export const loadShortList = async isLoggedIn => {
       return {localStorageElements, databaseElements: []};
     }
     const pids = databaseElements.map(e => e.pid);
-    const works = (await request.get('/v1/books/').query({pids})).body.data;
+    const works = (await request.get('/v1/books/').query({pids: unique(pids)}))
+      .body.data;
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;
       return map;

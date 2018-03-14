@@ -40,6 +40,7 @@
     "targz": "^1.0.1"
   },
   "dependencies": {
+    "autolinker": "^1.6.2",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
@@ -69,36 +70,43 @@
     "small-uuid": "^1.0.1",
     "stdio": "^0.2.7",
     "superagent": "^3.8.1",
+    "twemoji": "^2.5.1",
     "uuid": "^3.1.0",
     "xml2js": "^0.4.19"
   },
   "proxy": "http://localhost:3001",
   "scripts": {
-    "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js src/*/*/*/*/*/*.js",
+    "prettier":
+      "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js src/*/*/*/*/*/*.js",
     "build": "react-scripts build",
-    "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js src/integration/*_test.js src/acceptance/*_test.js",
-    "db-migrate": ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
+    "coverage":
+      ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js src/integration/*_test.js src/acceptance/*_test.js",
+    "db-migrate":
+      ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
     "fetch-metakompas": ". ./current.env && ./tools/fetch-data.js",
     "inject-metakompas": ". ./current.env && ./tools/put-data.js",
-    "fetch-inject-metakompas": ". ./current.env && ./tools/fetch-data.js && ./tools/put-data.js",
+    "fetch-inject-metakompas":
+      ". ./current.env && ./tools/fetch-data.js && ./tools/put-data.js",
     "lint-js": "eslint src",
     "postinstall": "./tools/setup-node-env.sh",
     "start": "run-p start-backend start-frontend",
-    "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/",
+    "start-backend":
+      ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/",
     "start-frontend": "react-scripts start",
     "test": "run-s test-frontend test-units lint-js",
-    "test-acceptance": ". ./current.env && mocha --exit src/acceptance/*_test.js",
+    "test-acceptance":
+      ". ./current.env && mocha --exit src/acceptance/*_test.js",
     "test-frontend": "CI=true react-scripts test --env=jsdom",
     "test-frontend:watch": "react-scripts test --env=jsdom",
     "test-full": "run-s test test-no-elvis test-integration",
-    "test-integration": ". ./current.env && mocha --exit src/integration/*_test.js",
+    "test-integration":
+      ". ./current.env && mocha --exit src/integration/*_test.js",
     "test-no-db": ". ./current.env && mocha --exit src/acceptance/*_no-db.js",
     "test-no-elvis": "run-s test-no-db test-acceptance test-frontend",
-    "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js"
+    "test-units":
+      "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js"
   },
   "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ]
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   }
 }

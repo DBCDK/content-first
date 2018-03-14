@@ -1,6 +1,6 @@
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
-import CommentUserImage from './CommentUserImage.component';
+import ProfileImage from '../general/ProfileImage.component';
 
 export default class CommentInput extends React.Component {
   constructor(props) {
@@ -30,7 +30,11 @@ export default class CommentInput extends React.Component {
         }}
       >
         {!this.props.hideProfile ? (
-          <CommentUserImage user={this.props.user} />
+          <ProfileImage
+            user={this.props.user}
+            size={'35'}
+            style={{marginRight: '20px'}}
+          />
         ) : null}
         <div
           style={{width: '100%'}}

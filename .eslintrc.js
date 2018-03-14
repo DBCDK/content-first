@@ -1,10 +1,10 @@
 module.exports = {
-  "root": true,
-  "env": {
-    "node": true,
-    "es6": true,
-    "mocha": true,
-    "jest": true
+  root: true,
+  env: {
+    node: true,
+    es6: true,
+    mocha: true,
+    jest: true
   },
   parserOptions: {
     ecmaVersion: 8
@@ -124,7 +124,7 @@ module.exports = {
     'no-inline-comments': 0,
     'no-lonely-if': 2,
     'no-mixed-spaces-and-tabs': 2,
-    'no-nested-ternary': 2,
+    'no-nested-ternary': 0,
     'no-new-object': 2,
     'semi-spacing': [
       2,

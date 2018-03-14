@@ -5,14 +5,17 @@
   padding-top: 5px;
   padding-bottom: 5px;
   /*border-bottom: gray solid 1px;*/
-  box-shadow: 0 6px 6px -4px rgba(0,0,0,.175);
+  box-shadow: 0 6px 6px -4px rgba(0, 0, 0, 0.175);
 }
 .topbar .login {
   margin-top: 3px;
 }
+.topbar .login > span,
+.topbar .topbar-logout {
+  cursor: pointer;
+}
 .topbar .login > span {
   margin-right: 25px;
-  cursor: pointer;
 }
 .topbar h1 {
   font-size: 26px;
