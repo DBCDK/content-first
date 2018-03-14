@@ -22,7 +22,7 @@ class ListCard extends React.PureComponent {
     return (
       <div className="list-card" style={style}>
       <Link href={`/lister/${list.id}`}>
-        <div className="list-card-covers" >
+        <div className="list-card-covers">
           <div className="list-card-covers-wrapper">
             {elements.length > 0 &&
               elements.slice(0, 3).map(e => {

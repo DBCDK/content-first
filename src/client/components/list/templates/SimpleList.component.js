@@ -1,4 +1,4 @@
- import React from 'react';
+import React from 'react';
 import WorkItem from '../../work/WorkItemConnected.component';
 import ProfileImage from '../../general/ProfileImage.component';
 import Comments from '../../comments/Comment.container';
@@ -39,7 +39,6 @@ const SimpleListItem = ({
 );
 
 export default ({list, profile}) => {
-    
   return (
     <div className="simplelist col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
       <div className="row mb4">
@@ -53,7 +52,6 @@ export default ({list, profile}) => {
       </div>
       <div className="list">
         {list.list.map(({book, description}) => (
-
           <SimpleListItem
             allowComments={list.social}
             listId={list.id}
