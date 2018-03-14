@@ -45,11 +45,14 @@
 }
 .list-card-bottom p {
   font-size: 12px !important;
+
 }
 .list-card-bottom .profile-image {
   width: 30px;
   height: 30px;
+  color: black;
 }
 .list-card-bottom .profile-name {
   margin-left: 0.5rem;
+   color: black;
 }
