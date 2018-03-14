@@ -4,7 +4,7 @@ import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 
 const Link = ({
   href,
-  className = 'list-card-nohover',
+  className = '',
   children = '',
   dispatch,
   replace = false
