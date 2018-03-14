@@ -22,7 +22,11 @@
   font-size: 20px;
   font-weight: bold;
   color:black;
+}
 
+a.list-card-nohover{
+  color:black;
+  text-decoration: none; 
 }
 .list-card-description {
   font-family: var(--secondary-font);
