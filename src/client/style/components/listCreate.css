@@ -101,9 +101,6 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.list-item a {
-  color: var(--greybrown);
-}
 .list-item__title {
   font-weight: 700;
   font-style: italic;

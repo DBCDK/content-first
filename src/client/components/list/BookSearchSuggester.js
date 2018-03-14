@@ -86,7 +86,7 @@ class BookSearchSuggester extends React.Component {
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: 'Skriv titlen på en bog',
+      placeholder: 'Skriv titel eller forfatter',
       className: 'form-control suggestion-list__search',
       value,
       onChange: (e, change) => this.onChange(e, change)

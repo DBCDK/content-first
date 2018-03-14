@@ -51,6 +51,10 @@
   color: var(--greybrown);
 }
 
+.link-dark {
+  color: var(--darkgrey);
+}
+
 .h4 {
   font-size: 16px;
 }
