@@ -55,10 +55,7 @@ class ListCard extends React.PureComponent {
                 className="mb1"
               />
             </div>
-            <div style={{float: 'right', marginTop: 5}}>
-              <Likes value={14} />
-              <Comments value={14} className="ml1" />
-            </div>
+
           </div>
         </Link>
       </div>
