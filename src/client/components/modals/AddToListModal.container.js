@@ -113,7 +113,7 @@ export class AddToListModal extends React.Component {
                   onChange={e => this.setState({listName: e.target.value})}
                 />
                 <input
-                  className="add-list--btn text-center"
+                  className="add-list--btn btn-success text-center"
                   type="submit"
                   value="+"
                 />
