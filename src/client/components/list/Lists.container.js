@@ -24,7 +24,7 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
   let editButton = '';
   if (type === CUSTOM_LIST) {
     editButton = (
-      <Link href={`/lister/${id}/rediger`} className="small ml1">
+      <Link href={`/lister/${id}/rediger`} className="small ml1 link-subtle">
         Redigér
       </Link>
     );
@@ -32,11 +32,13 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
 
   return (
     <div className="list-item tl mb1">
-      <Link href={`/lister/${id}`} className="list-image" style={{}}>
+      <Link href={`/lister/${id}`} className="list-image">
         {image ? <img src={image} alt={title} /> : ''}
       </Link>
       <div className="ml2" style={{flexGrow: 1}}>
-        <Link href={`/lister/${id}`}>{title}</Link>
+        <Link href={`/lister/${id}`} className="link-dark">
+          {title}
+        </Link>
         {editButton}
       </div>
       <Link href={`/lister/${id}`} className="ml2">
@@ -52,7 +54,7 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
             </span>
           );
         })}
-        <Link href={`/lister/${id}`} className="small ml1">
+        <Link href={`/lister/${id}`} className="small ml1 link-subtle">
           Se hele listen
         </Link>
       </Link>
