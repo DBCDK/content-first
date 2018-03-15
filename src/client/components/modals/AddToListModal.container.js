@@ -127,7 +127,7 @@ export class AddToListModal extends React.Component {
               <form
                 onSubmit={e => {
                   if (this.state.listName) {
-                    //this.onAddList(this.state.listName);
+                    // this.onAddList(this.state.listName);
                     this.setState({listName: ''});
                   }
                   e.preventDefault();

@@ -330,6 +330,7 @@ export const getLists = (state, {type, sort} = {}) => {
     })
     .map(l => {
       if (l.type === SYSTEM_LIST) {
+        /* eslint-disable */
         l.description =
           l.title === 'Har læst'
             ? 'Her kan du se listen over de bøger, som du har markeret som "Har læst". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.'
@@ -338,6 +339,8 @@ export const getLists = (state, {type, sort} = {}) => {
           l.title === 'Har læst'
             ? 'img/lists/goal.png'
             : 'img/lists/checklist.png';
+
+        /* eslint-enable */
       }
       return l;
     });

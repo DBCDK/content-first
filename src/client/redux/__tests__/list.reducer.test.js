@@ -16,7 +16,11 @@ describe('listReducer', () => {
     expect(() => {
       listReducer(
         {lists: {}},
-        addList({title: 'some list 1', description: 'a description 1'})
+        addList({
+          title: 'some list 1',
+          description: 'a description 1',
+          _created: '1234'
+        })
       );
     }).toThrow();
   });
@@ -26,7 +30,8 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         description: 'a description 1',
-        id: 'some-id-1'
+        id: 'some-id-1',
+        _created: '1234'
       })
     );
     state = listReducer(
@@ -34,7 +39,8 @@ describe('listReducer', () => {
       addList({
         title: 'some list 2',
         description: 'a description 2',
-        id: 'some-id-2'
+        id: 'some-id-2',
+        _created: '1234'
       })
     );
     expect(getLists(state)).toMatchSnapshot();
@@ -42,11 +48,21 @@ describe('listReducer', () => {
   test('remove list', () => {
     let state = listReducer(
       {lists: {}},
-      addList({title: 'some list 1', type: CUSTOM_LIST, id: 'some-id-1'})
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        _created: '1234'
+      })
     );
     state = listReducer(
       state,
-      addList({title: 'some list 2', type: CUSTOM_LIST, id: 'some-id-2'})
+      addList({
+        title: 'some list 2',
+        type: CUSTOM_LIST,
+        id: 'some-id-2',
+        _created: '1234'
+      })
     );
     state = listReducer(state, removeList('some-id-1'));
     expect(getLists(state)).toMatchSnapshot();
@@ -54,15 +70,30 @@ describe('listReducer', () => {
   test('get lists by type', () => {
     let state = listReducer(
       {lists: {}},
-      addList({title: 'some list 1', type: CUSTOM_LIST, id: 'some-id-1'})
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        _created: '1234'
+      })
     );
     state = listReducer(
       state,
-      addList({title: 'some list 2', type: SYSTEM_LIST, id: 'some-id-2'})
+      addList({
+        title: 'some list 2',
+        type: SYSTEM_LIST,
+        id: 'some-id-2',
+        _created: '1234'
+      })
     );
     state = listReducer(
       state,
-      addList({title: 'some list 3', type: CUSTOM_LIST, id: 'some-id-3'})
+      addList({
+        title: 'some list 3',
+        type: CUSTOM_LIST,
+        id: 'some-id-3',
+        _created: '1234'
+      })
     );
     expect(getLists(state, {type: CUSTOM_LIST})).toMatchSnapshot();
   });
@@ -73,7 +104,8 @@ describe('listReducer', () => {
         title: 'some list 1',
         type: CUSTOM_LIST,
         id: 'some-id-1',
-        owner: 'some-owner'
+        owner: 'some-owner',
+        _created: '1234'
       })
     );
     state = listReducer(
@@ -82,7 +114,8 @@ describe('listReducer', () => {
         title: 'some list 2',
         type: SYSTEM_LIST,
         id: 'some-id-2',
-        owner: 'some-owner-2'
+        owner: 'some-owner-2',
+        _created: '1234'
       })
     );
     state = listReducer(
@@ -91,7 +124,8 @@ describe('listReducer', () => {
         title: 'some list 3',
         type: CUSTOM_LIST,
         id: 'some-id-3',
-        owner: 'some-owner'
+        owner: 'some-owner',
+        _created: '1234'
       })
     );
     expect(getListsForOwner(state, {owner: 'some-owner'})).toMatchSnapshot(); // owned lists
@@ -100,7 +134,12 @@ describe('listReducer', () => {
   test('add element to list', () => {
     let state = listReducer(
       {lists: {}},
-      addList({title: 'some list 1', type: CUSTOM_LIST, id: 'some-id-1'})
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        _created: '1234'
+      })
     );
     state = listReducer(
       state,
@@ -111,7 +150,12 @@ describe('listReducer', () => {
   test('add element to list twice - no duplicates allowed', () => {
     let state = listReducer(
       {lists: {}},
-      addList({title: 'some list 1', type: CUSTOM_LIST, id: 'some-id-1'})
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        _created: '1234'
+      })
     );
     state = listReducer(
       state,
@@ -129,7 +173,12 @@ describe('listReducer', () => {
   test('remove element from list', () => {
     let state = listReducer(
       {lists: {}},
-      addList({title: 'some list 1', type: CUSTOM_LIST, id: 'some-id-1'})
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        _created: '1234'
+      })
     );
     state = listReducer(
       state,
@@ -148,7 +197,12 @@ describe('listReducer', () => {
   test('toggle element in list', () => {
     let state = listReducer(
       {lists: {}},
-      addList({title: 'some list 1', type: CUSTOM_LIST, id: 'some-id-1'})
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        _created: '1234'
+      })
     );
     state = listReducer(
       state,
@@ -164,7 +218,12 @@ describe('listReducer', () => {
   test('insert element at specific pos in list', () => {
     let state = listReducer(
       {lists: {}},
-      addList({title: 'some list 1', type: CUSTOM_LIST, id: 'some-id-1'})
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        _created: '1234'
+      })
     );
     state = listReducer(
       state,
