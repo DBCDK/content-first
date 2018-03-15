@@ -22,6 +22,7 @@ export class AddToListModal extends React.Component {
     super(props);
     this.state = Object.assign({}, defaultState, {
       list: this.props.customLists[0] || null,
+      latestUsedId: this.props.latestUsedId,
       loadingList: false
     });
   }
@@ -35,9 +36,7 @@ export class AddToListModal extends React.Component {
       });
       // if loadingList is true - add book/books to auto-created list
       if (this.state.loadingList) {
-        this.addElementsToList(
-          this.props.customLists[this.props.customLists.length - 1].id
-        );
+        this.addElementsToList(this.props.customLists[0].id);
         this.setState({loadingList: false});
       }
     }
@@ -111,12 +110,13 @@ export class AddToListModal extends React.Component {
                       type="radio"
                       name="list"
                       checked={
-                        _.get(this.state, 'list.id') === l.id &&
-                        !this.state.listName
+                        this.state.latestUsedId === l.id && !this.state.listName
                       }
-                      onChange={() => this.setState({list: l})}
+                      onChange={() =>
+                        this.setState({list: l, latestUsedId: l.id})
+                      }
                     />
-                    <label for={'radio' + '-' + l.title + '-' + i}>
+                    <label htmlFor={'radio' + '-' + l.title + '-' + i}>
                       {l.title}
                     </label>
                   </div>
@@ -127,13 +127,14 @@ export class AddToListModal extends React.Component {
               <form
                 onSubmit={e => {
                   if (this.state.listName) {
-                    this.onAddList(this.state.listName);
+                    //this.onAddList(this.state.listName);
                     this.setState({listName: ''});
                   }
                   e.preventDefault();
                 }}
               >
                 <input
+                  className=""
                   type="text"
                   name="add-list"
                   placeholder="Opret ny liste"
@@ -141,10 +142,9 @@ export class AddToListModal extends React.Component {
                   onChange={e => this.setState({listName: e.target.value})}
                 />
                 <input
-                  className="add-list--btn btn-success text-center"
-                  type="submit"
-                  value="+"
-                  type="hidden"
+                  className="add-list--btn text-center"
+                  value="×"
+                  type={`${!this.state.listName ? 'hidden' : 'submit'}`}
                 />
               </form>
             </div>
@@ -177,11 +177,18 @@ export class AddToListModal extends React.Component {
   }
 }
 const mapStateToProps = state => {
+  const customLists = getListsForOwner(state.listReducer, {
+    type: CUSTOM_LIST,
+    owner: state.userReducer.openplatformId
+  }).sort(function(a, b) {
+    return b._created - a._created;
+  });
   return {
-    customLists: getListsForOwner(state.listReducer, {
-      type: CUSTOM_LIST,
-      owner: state.userReducer.openplatformId
-    })
+    customLists: customLists,
+    latestUsedId: state.listReducer.latestUsedId
+      ? state.listReducer.latestUsedId
+      : customLists[0].id
   };
 };
+
 export default connect(mapStateToProps)(AddToListModal);

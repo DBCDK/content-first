@@ -28,6 +28,7 @@
 .list-overview input {
   display: none;
 }
+
 .list-overview input:checked + label {
   background-color: #5bc0de;
   color: white;
@@ -67,5 +68,7 @@
   padding: 0px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  color: white;
+  color: black;
+  line-height: 30px;
+  background-color: white;
 }
