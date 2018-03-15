@@ -7,16 +7,17 @@ const Link = ({
   className = '',
   children = '',
   dispatch,
-  replace = false
+  replace = false,
+  params = {}
 }) => (
   <a
     className={className}
     href={href}
     onClick={e => {
       if (replace) {
-        dispatch({type: HISTORY_REPLACE, path: href});
+        dispatch({type: HISTORY_REPLACE, path: href, params});
       } else {
-        dispatch({type: HISTORY_PUSH, path: href});
+        dispatch({type: HISTORY_PUSH, path: href, params});
       }
       e.preventDefault();
     }}

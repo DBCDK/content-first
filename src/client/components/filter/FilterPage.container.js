@@ -4,72 +4,40 @@ import SelectedFilters from './SelectedFilters.component';
 import EditFilters from './EditFilters.component';
 import WorkItem from '../work/WorkItemConnected.component';
 import Spinner from '../general/Spinner.component';
-import BootstrapDropDown from './BootstrapDropdown.component';
 import {
   ON_EDIT_FILTER_TOGGLE,
-  ON_FILTER_TOGGLE,
-  ON_RESET_FILTERS,
   ON_EXPAND_FILTERS_TOGGLE
 } from '../../redux/filter.reducer';
-import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
-import {beltNameToPath} from '../../utils/belt';
+import {HISTORY_REPLACE} from '../../redux/middleware';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {getRecommendedBooks} from '../../redux/selectors';
-import {filtersMapAll, filterIds} from '../../redux/filter.reducer';
+import {filtersMapAll} from '../../redux/filter.reducer';
+import {isEqual} from 'lodash';
 
 class FilterPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      addToList: null
-    };
-  }
-
   toggleFilter(filterId) {
-    const {selectedTagIds, queryFilters} = this.props;
-
-    const isRemoving = selectedTagIds && selectedTagIds.indexOf(filterId) >= 0;
-    const isQueryParam = queryFilters.indexOf(filterId) >= 0;
-
-    // we might need to remove filter from query parameters
-    if (isRemoving && isQueryParam) {
-      this.props.historyReplace(
-        beltNameToPath(this.props.belt.name),
-        queryFilters.filter(id => id !== filterId)
-      );
-    }
-    this.props.filterToggle(filterId);
-  }
-
-  handleTagsFromQueryParams() {
-    const {selectedTagIds, queryFilters} = this.props;
-    let didChange = false;
-
-    if (queryFilters) {
-      queryFilters.forEach(id => {
-        if (selectedTagIds.indexOf(id) < 0) {
-          this.toggleFilter(id);
-          didChange = true;
-        }
-      });
-    }
-    return didChange;
+    const {selectedTagIds} = this.props;
+    const tags = selectedTagIds.includes(filterId)
+      ? selectedTagIds.filter(id => filterId !== id)
+      : [...selectedTagIds, filterId];
+    this.props.historyReplace('/find', {tag: tags});
   }
 
   componentDidMount() {
-    // if query params changes the state, we will not
-    // make belt request, since it will be done at the next componentDidUpdate
-    if (!this.handleTagsFromQueryParams()) {
-      this.props.fetchRecommendations(this.props.selectedTagIds);
-    }
+    this.fetch();
   }
 
   componentDidUpdate(prevProps) {
-    this.handleTagsFromQueryParams();
+    this.fetch(prevProps);
+  }
 
-    // Check if we need to fetch works
-    if (prevProps.selectedTagIds !== this.props.selectedTagIds) {
+  fetch(prevProps) {
+    if (
+      !prevProps ||
+      !isEqual(prevProps.selectedTagIds, this.props.selectedTagIds)
+    ) {
       this.props.fetchRecommendations(this.props.selectedTagIds);
+      // console.log('fetching');
     }
   }
 
@@ -85,18 +53,6 @@ class FilterPage extends React.Component {
       <div className="filter-page">
         <div className="filters row">
           <div className="filter-page-top col-xs-12">
-            <div className="filter-page-title text-left col-xs-12">
-              <span>Vis mig</span>
-              <BootstrapDropDown
-                id="belt-select"
-                selected={this.props.belt.name}
-                options={this.props.belts.map(b => b.name)}
-                onChange={this.props.beltChange}
-              />
-              <span className="reset-filters" onClick={this.props.resetFilters}>
-                Nulstil filtre
-              </span>
-            </div>
             <SelectedFilters
               selectedFilters={this.props.selectedTags}
               filters={this.props.filters}
@@ -128,7 +84,9 @@ class FilterPage extends React.Component {
               <WorkItem
                 work={work}
                 key={work.book.pid}
-                origin={`Fra ${this.props.belt.name}`}
+                origin={`Fra din søgning på ${this.props.selectedTags
+                  .map(t => t.title)
+                  .join(', ')}`}
               />
             ))}
         </div>
@@ -139,38 +97,22 @@ class FilterPage extends React.Component {
     );
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  const selectedTagIds = state.filterReducer.beltFilters[ownProps.belt.name];
+const mapStateToProps = state => {
+  const selectedTagIds = state.routerReducer.params.tag
+    ? state.routerReducer.params.tag.map(tag => parseInt(tag, 10))
+    : [];
   return {
-    belts: state.beltsReducer.belts,
-    queryFilters:
-      state.routerReducer.params && state.routerReducer.params.filter
-        ? state.routerReducer.params.filter.map(f => parseInt(f, 10))
-        : [],
     recommendations: getRecommendedBooks(state, selectedTagIds, 40),
     selectedTagIds,
     selectedTags: selectedTagIds.map(id => filtersMapAll[id]),
-    filtersMap: filtersMapAll,
-    filterIdList: filterIds,
     filters: state.filterReducer.filters,
     editFilters: state.filterReducer.editFilters,
     expandedFilters: state.filterReducer.expandedFilters
   };
 };
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = dispatch => ({
   editFilterToggle: () => dispatch({type: ON_EDIT_FILTER_TOGGLE}),
   expandFiltersToggle: id => dispatch({type: ON_EXPAND_FILTERS_TOGGLE, id}),
-  filterToggle: filterId =>
-    dispatch({
-      type: ON_FILTER_TOGGLE,
-      filterId,
-      beltName: ownProps.belt.name
-    }),
-  beltChange: value =>
-    dispatch({
-      type: HISTORY_PUSH,
-      path: beltNameToPath(value)
-    }),
   historyReplace: (path, params) => {
     dispatch({
       type: HISTORY_REPLACE,
@@ -178,11 +120,6 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       params
     });
   },
-  resetFilters: () =>
-    dispatch({
-      type: ON_RESET_FILTERS,
-      beltName: ownProps.belt.name
-    }),
   fetchRecommendations: tags =>
     dispatch({
       type: RECOMMEND_REQUEST,

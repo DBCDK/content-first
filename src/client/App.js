@@ -14,7 +14,6 @@ import ProfilePage from './components/profile/ProfilePage.container';
 import Bookcase from './components/bookcase/Bookcase.component';
 import CreateProfilePage from './components/profile/CreateProfilePage';
 import TopBar from './components/top/TopBar.component';
-import {beltNameToPath} from './utils/belt';
 import {ON_USER_DETAILS_REQUEST} from './redux/user.reducer';
 import ListPage from './components/list/ListPage.container';
 import ListCreator from './components/list/ListCreate.container';
@@ -68,13 +67,8 @@ class App extends Component {
       currentPage = <SearchPage />;
     } else if (pathSplit[1] === 'bogreol') {
       currentPage = <Bookcase />;
-    } else {
-      // check if current path matches a belt
-      this.props.beltsState.belts.forEach(belt => {
-        if (beltNameToPath(belt.name) === path) {
-          currentPage = <FilterPage belt={belt} />;
-        }
-      });
+    } else if (pathSplit[1] === 'find') {
+      currentPage = <FilterPage />;
     }
 
     if (!currentPage) {

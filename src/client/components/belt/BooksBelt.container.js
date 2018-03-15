@@ -6,7 +6,7 @@ import Slider from '../belt/Slider.component';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {getRecommendedBooks} from '../../redux/selectors';
 import {filtersMapAll} from '../../redux/filter.reducer';
-import {beltNameToPath} from '../../utils/belt';
+import Link from '../general/Link.component';
 
 export class BooksBelt extends React.Component {
   constructor() {
@@ -40,17 +40,19 @@ export class BooksBelt extends React.Component {
     return (
       <div className="row belt text-left">
         <div className="col-xs-12 header">
-          <span
-            className="belt-title"
-            data-html="true"
-            data-toggle="tooltip"
-            data-original-title={this.getTooltipText(this.props.tagObjects)}
-            onClick={() =>
-              this.props.historyPush(beltNameToPath(this.props.title))
-            }
+          <Link
+            href="/find"
+            params={{tag: this.props.tagObjects.map(t => t.id)}}
           >
-            {this.props.title}
-          </span>
+            <span
+              className="belt-title"
+              data-html="true"
+              data-toggle="tooltip"
+              data-original-title={this.getTooltipText(this.props.tagObjects)}
+            >
+              {this.props.title}
+            </span>
+          </Link>
         </div>
 
         {this.props.recommendedBooks && (
