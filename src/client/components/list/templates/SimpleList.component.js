@@ -34,6 +34,9 @@ export class SimpleListItem extends React.Component {
       onDescriptionChange,
       onSubmit
     } = this.props;
+    if (!profile || !element) {
+      return null;
+    }
     return (
       <div className="row simplelist-item mb4">
         <div className="meta col-xs-3 tc">
@@ -127,7 +130,8 @@ export const SimpleList = ({
   loggedInUserId,
   removeElement,
   updateElement,
-  submit
+  submit,
+  profiles
 }) => {
   return (
     <div className="simplelist col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
@@ -149,7 +153,7 @@ export const SimpleList = ({
             element={element}
             book={element.book}
             description={element.description}
-            profile={profile}
+            profile={profiles[element._owner]}
             allowDelete={
               element._owner === loggedInUserId ||
               list._owner === loggedInUserId
@@ -173,7 +177,9 @@ const mapStateToProps = (state, ownProps) => {
   return {
     loggedInUserId: state.userReducer.openplatformId,
     isOwner:
-      ownProps.list && ownProps.list._owner === state.userReducer.openplatformId
+      ownProps.list &&
+      ownProps.list._owner === state.userReducer.openplatformId,
+    profiles: state.users.toJS()
   };
 };
 export const mapDispatchToProps = dispatch => ({
