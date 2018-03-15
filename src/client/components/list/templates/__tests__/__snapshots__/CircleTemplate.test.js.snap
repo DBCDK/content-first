@@ -1,619 +1,588 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CircleTemplate circle of list items is shown 1`] = `
-<div
-  className="circle-template row"
+Array [
+  <div
+    className="circle-template row pb4 b-dark"
 >
-  <div
-    className="list col-xs-12"
-    style={
-      Object {
-        "height": 800,
-      }
-    }
-  >
-    <img
-      alt=""
-      className="background-image cover"
-      src="/v1/image/undefined/1200/1020"
-    />
     <div
-      style={
-        Object {
-          "height": 760,
-          "margin": "0 auto",
-          "position": "relative",
-          "width": 900,
+        className="list col-xs-12"
+        style={
+            Object {
+                "height": 800,
+              }
         }
-      }
     >
-      <div
-        className="list-element text-center"
-        onClick={[Function]}
-        style={
-          Object {
-            "left": 525,
-            "top": 34.16352203496817,
-            "width": 200,
-          }
-        }
-      >
-        <BookCover
-          book={
-            Object {
-              "creator": "some creator1",
-              "pid": "pid1",
-              "title": "some title1",
-            }
-          }
-          style={
-            Object {
-              "height": 190,
-            }
-          }
+        <img
+            alt=""
+            className="background-image cover"
+            src="/v1/image/undefined/1200/1020"
         />
         <div
-          className="title"
-        >
-          some title1
-        </div>
-        <PopOver
-          className="left"
-          show={false}
-          style={
-            Object {
-              "left": -260,
-              "width": 300,
-            }
-          }
-        >
-          <h4
-            className="w-title h-tight"
-          >
-            some title1
-          </h4>
-          <h5
-            className="w-creator h-tight"
-          >
-            some creator1
-          </h5>
-          <ProfileImage
-            className="mt1 mb1"
-            namePosition="bottom"
-            type="list"
-            user={
-              Object {
-                "name": "LæseLotte",
-                "src": "http://p-hold.com/200/200",
-              }
-            }
-          />
-          <p>
-            some description1
-          </p>
-          <hr />
-          <div
-            className="text-right"
-          >
-            <CheckmarkConnected
-              book={
+            style={
                 Object {
-                  "book": Object {
-                    "creator": "some creator1",
-                    "pid": "pid1",
-                    "title": "some title1",
-                  },
-                }
-              }
-              origin="Fra some title lavet af LæseLotte"
-            />
-          </div>
-        </PopOver>
-      </div>
-      <div
-        className="list-element text-center"
-        onClick={[Function]}
-        style={
-          Object {
-            "left": 700,
-            "top": 255,
-            "width": 200,
-          }
-        }
-      >
-        <BookCover
-          book={
-            Object {
-              "creator": "some creator2",
-              "pid": "pid2",
-              "title": "some title2",
+                    "height": 760,
+                    "margin": "0 auto",
+                    "position": "relative",
+                    "width": 900,
+                  }
             }
-          }
-          style={
-            Object {
-              "height": 190,
-            }
-          }
-        />
-        <div
-          className="title"
         >
-          some title2
+            <div
+                className="list-element text-center"
+                onClick={[Function]}
+                style={
+                    Object {
+                        "left": 525,
+                        "top": 34.16352203496817,
+                        "width": 200,
+                      }
+                }
+            >
+                <BookCover
+                    book={
+                        Object {
+                            "creator": "some creator1",
+                            "pid": "pid1",
+                            "title": "some title1",
+                          }
+                    }
+                    style={
+                        Object {
+                            "height": 190,
+                          }
+                    }
+                />
+                <div
+                    className="title"
+                >
+                    some title1
+                </div>
+                <PopOver
+                    className="left"
+                    show={false}
+                    style={
+                        Object {
+                            "left": -260,
+                            "width": 300,
+                          }
+                    }
+                >
+                    <h4
+                        className="w-title h-tight"
+                    >
+                        some title1
+                    </h4>
+                    <h5
+                        className="w-creator h-tight"
+                    >
+                        some creator1
+                    </h5>
+                    <ProfileImage
+                        className="mt1 mb1"
+                        namePosition="bottom"
+                        type="list"
+                        user={undefined}
+                    />
+                    <p>
+                        some description1
+                    </p>
+                    <hr />
+                    <div
+                        className="text-right"
+                    >
+                        <CheckmarkConnected
+                            book={
+                                Object {
+                                    "book": Object {
+                                      "creator": "some creator1",
+                                      "pid": "pid1",
+                                      "title": "some title1",
+                                    },
+                                  }
+                            }
+                            origin="Fra some title lavet af LæseLotte"
+                        />
+                    </div>
+                </PopOver>
+            </div>
+            <div
+                className="list-element text-center"
+                onClick={[Function]}
+                style={
+                    Object {
+                        "left": 700,
+                        "top": 255,
+                        "width": 200,
+                      }
+                }
+            >
+                <BookCover
+                    book={
+                        Object {
+                            "creator": "some creator2",
+                            "pid": "pid2",
+                            "title": "some title2",
+                          }
+                    }
+                    style={
+                        Object {
+                            "height": 190,
+                          }
+                    }
+                />
+                <div
+                    className="title"
+                >
+                    some title2
+                </div>
+                <PopOver
+                    className="left"
+                    show={false}
+                    style={
+                        Object {
+                            "left": -260,
+                            "width": 300,
+                          }
+                    }
+                >
+                    <h4
+                        className="w-title h-tight"
+                    >
+                        some title2
+                    </h4>
+                    <h5
+                        className="w-creator h-tight"
+                    >
+                        some creator2
+                    </h5>
+                    <ProfileImage
+                        className="mt1 mb1"
+                        namePosition="bottom"
+                        type="list"
+                        user={undefined}
+                    />
+                    <p>
+                        some description2
+                    </p>
+                    <hr />
+                    <div
+                        className="text-right"
+                    >
+                        <CheckmarkConnected
+                            book={
+                                Object {
+                                    "book": Object {
+                                      "creator": "some creator2",
+                                      "pid": "pid2",
+                                      "title": "some title2",
+                                    },
+                                  }
+                            }
+                            origin="Fra some title lavet af LæseLotte"
+                        />
+                    </div>
+                </PopOver>
+            </div>
+            <div
+                className="list-element text-center"
+                onClick={[Function]}
+                style={
+                    Object {
+                        "left": 525,
+                        "top": 475.8364779650318,
+                        "width": 200,
+                      }
+                }
+            >
+                <BookCover
+                    book={
+                        Object {
+                            "creator": "some creator3",
+                            "pid": "pid3",
+                            "title": "some title3",
+                          }
+                    }
+                    style={
+                        Object {
+                            "height": 190,
+                          }
+                    }
+                />
+                <div
+                    className="title"
+                >
+                    some title3
+                </div>
+                <PopOver
+                    className="left"
+                    show={false}
+                    style={
+                        Object {
+                            "left": -260,
+                            "width": 300,
+                          }
+                    }
+                >
+                    <h4
+                        className="w-title h-tight"
+                    >
+                        some title3
+                    </h4>
+                    <h5
+                        className="w-creator h-tight"
+                    >
+                        some creator3
+                    </h5>
+                    <ProfileImage
+                        className="mt1 mb1"
+                        namePosition="bottom"
+                        type="list"
+                        user={undefined}
+                    />
+                    <p>
+                        some description3
+                    </p>
+                    <hr />
+                    <div
+                        className="text-right"
+                    >
+                        <CheckmarkConnected
+                            book={
+                                Object {
+                                    "book": Object {
+                                      "creator": "some creator3",
+                                      "pid": "pid3",
+                                      "title": "some title3",
+                                    },
+                                  }
+                            }
+                            origin="Fra some title lavet af LæseLotte"
+                        />
+                    </div>
+                </PopOver>
+            </div>
+            <div
+                className="list-element text-center"
+                onClick={[Function]}
+                style={
+                    Object {
+                        "left": 175.00000000000009,
+                        "top": 475.83647796503186,
+                        "width": 200,
+                      }
+                }
+            >
+                <BookCover
+                    book={
+                        Object {
+                            "creator": "some creator4",
+                            "pid": "pid4",
+                            "title": "some title4",
+                          }
+                    }
+                    style={
+                        Object {
+                            "height": 190,
+                          }
+                    }
+                />
+                <div
+                    className="title"
+                >
+                    some title4
+                </div>
+                <PopOver
+                    className="right"
+                    show={false}
+                    style={
+                        Object {
+                            "left": 185,
+                            "width": 300,
+                          }
+                    }
+                >
+                    <h4
+                        className="w-title h-tight"
+                    >
+                        some title4
+                    </h4>
+                    <h5
+                        className="w-creator h-tight"
+                    >
+                        some creator4
+                    </h5>
+                    <ProfileImage
+                        className="mt1 mb1"
+                        namePosition="bottom"
+                        type="list"
+                        user={undefined}
+                    />
+                    <p>
+                        some description4
+                    </p>
+                    <hr />
+                    <div
+                        className="text-right"
+                    >
+                        <CheckmarkConnected
+                            book={
+                                Object {
+                                    "book": Object {
+                                      "creator": "some creator4",
+                                      "pid": "pid4",
+                                      "title": "some title4",
+                                    },
+                                  }
+                            }
+                            origin="Fra some title lavet af LæseLotte"
+                        />
+                    </div>
+                </PopOver>
+            </div>
+            <div
+                className="list-element text-center"
+                onClick={[Function]}
+                style={
+                    Object {
+                        "left": 0,
+                        "top": 255.00000000000003,
+                        "width": 200,
+                      }
+                }
+            >
+                <BookCover
+                    book={
+                        Object {
+                            "creator": "some creator5",
+                            "pid": "pid5",
+                            "title": "some title5",
+                          }
+                    }
+                    style={
+                        Object {
+                            "height": 190,
+                          }
+                    }
+                />
+                <div
+                    className="title"
+                >
+                    some title5
+                </div>
+                <PopOver
+                    className="right"
+                    show={false}
+                    style={
+                        Object {
+                            "left": 185,
+                            "width": 300,
+                          }
+                    }
+                >
+                    <h4
+                        className="w-title h-tight"
+                    >
+                        some title5
+                    </h4>
+                    <h5
+                        className="w-creator h-tight"
+                    >
+                        some creator5
+                    </h5>
+                    <ProfileImage
+                        className="mt1 mb1"
+                        namePosition="bottom"
+                        type="list"
+                        user={undefined}
+                    />
+                    <p>
+                        some description5
+                    </p>
+                    <hr />
+                    <div
+                        className="text-right"
+                    >
+                        <CheckmarkConnected
+                            book={
+                                Object {
+                                    "book": Object {
+                                      "creator": "some creator5",
+                                      "pid": "pid5",
+                                      "title": "some title5",
+                                    },
+                                  }
+                            }
+                            origin="Fra some title lavet af LæseLotte"
+                        />
+                    </div>
+                </PopOver>
+            </div>
+            <div
+                className="list-element text-center"
+                onClick={[Function]}
+                style={
+                    Object {
+                        "left": 174.99999999999986,
+                        "top": 34.163522034968196,
+                        "width": 200,
+                      }
+                }
+            >
+                <BookCover
+                    book={
+                        Object {
+                            "creator": "some creator6",
+                            "pid": "pid6",
+                            "title": "some title6",
+                          }
+                    }
+                    style={
+                        Object {
+                            "height": 190,
+                          }
+                    }
+                />
+                <div
+                    className="title"
+                >
+                    some title6
+                </div>
+                <PopOver
+                    className="right"
+                    show={false}
+                    style={
+                        Object {
+                            "left": 185,
+                            "width": 300,
+                          }
+                    }
+                >
+                    <h4
+                        className="w-title h-tight"
+                    >
+                        some title6
+                    </h4>
+                    <h5
+                        className="w-creator h-tight"
+                    >
+                        some creator6
+                    </h5>
+                    <ProfileImage
+                        className="mt1 mb1"
+                        namePosition="bottom"
+                        type="list"
+                        user={undefined}
+                    />
+                    <p>
+                        some description6
+                    </p>
+                    <hr />
+                    <div
+                        className="text-right"
+                    >
+                        <CheckmarkConnected
+                            book={
+                                Object {
+                                    "book": Object {
+                                      "creator": "some creator6",
+                                      "pid": "pid6",
+                                      "title": "some title6",
+                                    },
+                                  }
+                            }
+                            origin="Fra some title lavet af LæseLotte"
+                        />
+                    </div>
+                </PopOver>
+            </div>
         </div>
-        <PopOver
-          className="left"
-          show={false}
-          style={
-            Object {
-              "left": -260,
-              "width": 300,
-            }
-          }
-        >
-          <h4
-            className="w-title h-tight"
-          >
-            some title2
-          </h4>
-          <h5
-            className="w-creator h-tight"
-          >
-            some creator2
-          </h5>
-          <ProfileImage
-            className="mt1 mb1"
-            namePosition="bottom"
-            type="list"
-            user={
-              Object {
-                "name": "LæseLotte",
-                "src": "http://p-hold.com/200/200",
-              }
-            }
-          />
-          <p>
-            some description2
-          </p>
-          <hr />
-          <div
-            className="text-right"
-          >
-            <CheckmarkConnected
-              book={
-                Object {
-                  "book": Object {
-                    "creator": "some creator2",
-                    "pid": "pid2",
-                    "title": "some title2",
-                  },
-                }
-              }
-              origin="Fra some title lavet af LæseLotte"
-            />
-          </div>
-        </PopOver>
-      </div>
-      <div
-        className="list-element text-center"
-        onClick={[Function]}
-        style={
-          Object {
-            "left": 525,
-            "top": 475.8364779650318,
-            "width": 200,
-          }
-        }
-      >
-        <BookCover
-          book={
-            Object {
-              "creator": "some creator3",
-              "pid": "pid3",
-              "title": "some title3",
-            }
-          }
-          style={
-            Object {
-              "height": 190,
-            }
-          }
-        />
-        <div
-          className="title"
-        >
-          some title3
-        </div>
-        <PopOver
-          className="left"
-          show={false}
-          style={
-            Object {
-              "left": -260,
-              "width": 300,
-            }
-          }
-        >
-          <h4
-            className="w-title h-tight"
-          >
-            some title3
-          </h4>
-          <h5
-            className="w-creator h-tight"
-          >
-            some creator3
-          </h5>
-          <ProfileImage
-            className="mt1 mb1"
-            namePosition="bottom"
-            type="list"
-            user={
-              Object {
-                "name": "LæseLotte",
-                "src": "http://p-hold.com/200/200",
-              }
-            }
-          />
-          <p>
-            some description3
-          </p>
-          <hr />
-          <div
-            className="text-right"
-          >
-            <CheckmarkConnected
-              book={
-                Object {
-                  "book": Object {
-                    "creator": "some creator3",
-                    "pid": "pid3",
-                    "title": "some title3",
-                  },
-                }
-              }
-              origin="Fra some title lavet af LæseLotte"
-            />
-          </div>
-        </PopOver>
-      </div>
-      <div
-        className="list-element text-center"
-        onClick={[Function]}
-        style={
-          Object {
-            "left": 175.00000000000009,
-            "top": 475.83647796503186,
-            "width": 200,
-          }
-        }
-      >
-        <BookCover
-          book={
-            Object {
-              "creator": "some creator4",
-              "pid": "pid4",
-              "title": "some title4",
-            }
-          }
-          style={
-            Object {
-              "height": 190,
-            }
-          }
-        />
-        <div
-          className="title"
-        >
-          some title4
-        </div>
-        <PopOver
-          className="right"
-          show={false}
-          style={
-            Object {
-              "left": 185,
-              "width": 300,
-            }
-          }
-        >
-          <h4
-            className="w-title h-tight"
-          >
-            some title4
-          </h4>
-          <h5
-            className="w-creator h-tight"
-          >
-            some creator4
-          </h5>
-          <ProfileImage
-            className="mt1 mb1"
-            namePosition="bottom"
-            type="list"
-            user={
-              Object {
-                "name": "LæseLotte",
-                "src": "http://p-hold.com/200/200",
-              }
-            }
-          />
-          <p>
-            some description4
-          </p>
-          <hr />
-          <div
-            className="text-right"
-          >
-            <CheckmarkConnected
-              book={
-                Object {
-                  "book": Object {
-                    "creator": "some creator4",
-                    "pid": "pid4",
-                    "title": "some title4",
-                  },
-                }
-              }
-              origin="Fra some title lavet af LæseLotte"
-            />
-          </div>
-        </PopOver>
-      </div>
-      <div
-        className="list-element text-center"
-        onClick={[Function]}
-        style={
-          Object {
-            "left": 0,
-            "top": 255.00000000000003,
-            "width": 200,
-          }
-        }
-      >
-        <BookCover
-          book={
-            Object {
-              "creator": "some creator5",
-              "pid": "pid5",
-              "title": "some title5",
-            }
-          }
-          style={
-            Object {
-              "height": 190,
-            }
-          }
-        />
-        <div
-          className="title"
-        >
-          some title5
-        </div>
-        <PopOver
-          className="right"
-          show={false}
-          style={
-            Object {
-              "left": 185,
-              "width": 300,
-            }
-          }
-        >
-          <h4
-            className="w-title h-tight"
-          >
-            some title5
-          </h4>
-          <h5
-            className="w-creator h-tight"
-          >
-            some creator5
-          </h5>
-          <ProfileImage
-            className="mt1 mb1"
-            namePosition="bottom"
-            type="list"
-            user={
-              Object {
-                "name": "LæseLotte",
-                "src": "http://p-hold.com/200/200",
-              }
-            }
-          />
-          <p>
-            some description5
-          </p>
-          <hr />
-          <div
-            className="text-right"
-          >
-            <CheckmarkConnected
-              book={
-                Object {
-                  "book": Object {
-                    "creator": "some creator5",
-                    "pid": "pid5",
-                    "title": "some title5",
-                  },
-                }
-              }
-              origin="Fra some title lavet af LæseLotte"
-            />
-          </div>
-        </PopOver>
-      </div>
-      <div
-        className="list-element text-center"
-        onClick={[Function]}
-        style={
-          Object {
-            "left": 174.99999999999986,
-            "top": 34.163522034968196,
-            "width": 200,
-          }
-        }
-      >
-        <BookCover
-          book={
-            Object {
-              "creator": "some creator6",
-              "pid": "pid6",
-              "title": "some title6",
-            }
-          }
-          style={
-            Object {
-              "height": 190,
-            }
-          }
-        />
-        <div
-          className="title"
-        >
-          some title6
-        </div>
-        <PopOver
-          className="right"
-          show={false}
-          style={
-            Object {
-              "left": 185,
-              "width": 300,
-            }
-          }
-        >
-          <h4
-            className="w-title h-tight"
-          >
-            some title6
-          </h4>
-          <h5
-            className="w-creator h-tight"
-          >
-            some creator6
-          </h5>
-          <ProfileImage
-            className="mt1 mb1"
-            namePosition="bottom"
-            type="list"
-            user={
-              Object {
-                "name": "LæseLotte",
-                "src": "http://p-hold.com/200/200",
-              }
-            }
-          />
-          <p>
-            some description6
-          </p>
-          <hr />
-          <div
-            className="text-right"
-          >
-            <CheckmarkConnected
-              book={
-                Object {
-                  "book": Object {
-                    "creator": "some creator6",
-                    "pid": "pid6",
-                    "title": "some title6",
-                  },
-                }
-              }
-              origin="Fra some title lavet af LæseLotte"
-            />
-          </div>
-        </PopOver>
-      </div>
     </div>
-  </div>
-  <div
-    className="col-xs-12 mt4 mb4"
-  >
-    <SimpleList
-      list={
+</div>,
+  <SimpleList
+    list={
         Object {
-          "description": "some description",
-          "id": "current-list-id",
-          "list": Array [
-            Object {
-              "book": Object {
-                "creator": "some creator1",
-                "pid": "pid1",
-                "title": "some title1",
+            "description": "some description",
+            "id": "current-list-id",
+            "list": Array [
+              Object {
+                "book": Object {
+                  "creator": "some creator1",
+                  "pid": "pid1",
+                  "title": "some title1",
+                },
+                "description": "some description1",
+                "links": Object {
+                  "cover": "/cover1",
+                },
               },
-              "description": "some description1",
-              "links": Object {
-                "cover": "/cover1",
+              Object {
+                "book": Object {
+                  "creator": "some creator2",
+                  "pid": "pid2",
+                  "title": "some title2",
+                },
+                "description": "some description2",
+                "links": Object {
+                  "cover": "/cover2",
+                },
               },
-            },
-            Object {
-              "book": Object {
-                "creator": "some creator2",
-                "pid": "pid2",
-                "title": "some title2",
+              Object {
+                "book": Object {
+                  "creator": "some creator3",
+                  "pid": "pid3",
+                  "title": "some title3",
+                },
+                "description": "some description3",
+                "links": Object {
+                  "cover": "/cover3",
+                },
               },
-              "description": "some description2",
-              "links": Object {
-                "cover": "/cover2",
+              Object {
+                "book": Object {
+                  "creator": "some creator4",
+                  "pid": "pid4",
+                  "title": "some title4",
+                },
+                "description": "some description4",
+                "links": Object {
+                  "cover": "/cover4",
+                },
               },
-            },
-            Object {
-              "book": Object {
-                "creator": "some creator3",
-                "pid": "pid3",
-                "title": "some title3",
+              Object {
+                "book": Object {
+                  "creator": "some creator5",
+                  "pid": "pid5",
+                  "title": "some title5",
+                },
+                "description": "some description5",
+                "links": Object {
+                  "cover": "/cover5",
+                },
               },
-              "description": "some description3",
-              "links": Object {
-                "cover": "/cover3",
+              Object {
+                "book": Object {
+                  "creator": "some creator6",
+                  "pid": "pid6",
+                  "title": "some title6",
+                },
+                "description": "some description6",
+                "links": Object {
+                  "cover": "/cover6",
+                },
               },
-            },
-            Object {
-              "book": Object {
-                "creator": "some creator4",
-                "pid": "pid4",
-                "title": "some title4",
-              },
-              "description": "some description4",
-              "links": Object {
-                "cover": "/cover4",
-              },
-            },
-            Object {
-              "book": Object {
-                "creator": "some creator5",
-                "pid": "pid5",
-                "title": "some title5",
-              },
-              "description": "some description5",
-              "links": Object {
-                "cover": "/cover5",
-              },
-            },
-            Object {
-              "book": Object {
-                "creator": "some creator6",
-                "pid": "pid6",
-                "title": "some title6",
-              },
-              "description": "some description6",
-              "links": Object {
-                "cover": "/cover6",
-              },
-            },
-          ],
-          "public": true,
-          "title": "some title",
-        }
-      }
-      profile={
+            ],
+            "public": true,
+            "title": "some title",
+          }
+    }
+    profile={
         Object {
-          "name": "LæseLotte",
-          "src": "http://p-hold.com/200/200",
-        }
-      }
-    />
-  </div>
-</div>
+            "name": "LæseLotte",
+            "src": "http://p-hold.com/200/200",
+          }
+    }
+    profiles={undefined}
+/>,
+]
 `;

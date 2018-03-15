@@ -134,41 +134,45 @@ export const SimpleList = ({
   profiles
 }) => {
   return (
-    <div className="simplelist col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
-      <div className="row mb4">
-        <div className="col-xs-3 tc">
-          <ProfileImage user={profile} size={'50'} namePosition={'bottom'} />
-        </div>
-        <div className="col-xs-9">
-          <p className="t-body">{list.description}</p>
-          {list.social ? <Comments id={list.id} /> : ''}
+    <div className="simplelist">
+      <div className="row mb4 b-dark">
+        <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
+          <div className="col-xs-3 tc">
+            <ProfileImage user={profile} size={'50'} namePosition={'bottom'} />
+          </div>
+          <div className="col-xs-9 mb4">
+            <p className="t-body">{list.description}</p>
+            {list.social ? <Comments id={list.id} /> : ''}
+          </div>
         </div>
       </div>
-      <div className="list">
-        {list.list.map(element => (
-          <SimpleListItem
-            allowComments={list.social}
-            list={list}
-            key={element.book.pid}
-            element={element}
-            book={element.book}
-            description={element.description}
-            profile={profiles[element._owner]}
-            allowDelete={
-              element._owner === loggedInUserId ||
-              list._owner === loggedInUserId
-            }
-            allowModify={element._owner === loggedInUserId}
-            _created={list._created}
-            onRemove={() => removeElement(element, list)}
-            onDescriptionChange={description =>
-              updateElement({...element, description}, list)
-            }
-            onSubmit={() => submit(list)}
-          />
-        ))}
+      <div className="list col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
+        <div>
+          {list.list.map(element => (
+            <SimpleListItem
+              allowComments={list.social}
+              list={list}
+              key={element.book.pid}
+              element={element}
+              book={element.book}
+              description={element.description}
+              profile={profiles[element._owner]}
+              allowDelete={
+                element._owner === loggedInUserId ||
+                list._owner === loggedInUserId
+              }
+              allowModify={element._owner === loggedInUserId}
+              _created={list._created}
+              onRemove={() => removeElement(element, list)}
+              onDescriptionChange={description =>
+                updateElement({...element, description}, list)
+              }
+              onSubmit={() => submit(list)}
+            />
+          ))}
+        </div>
+        <AddToList list={list} />
       </div>
-      <AddToList list={list} />
     </div>
   );
 };
@@ -177,9 +181,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     loggedInUserId: state.userReducer.openplatformId,
     isOwner:
-      ownProps.list &&
-      ownProps.list._owner === state.userReducer.openplatformId,
-    profiles: state.users.toJS()
+      ownProps.list && ownProps.list._owner === state.userReducer.openplatformId
   };
 };
 export const mapDispatchToProps = dispatch => ({
