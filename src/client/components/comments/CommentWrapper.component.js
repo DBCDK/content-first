@@ -31,6 +31,12 @@ export class CommentWrapper extends React.Component {
       comment: this.state.comment
     });
   };
+  onChange = value => {
+    this.setState({comment: value});
+    if (this.props.onChange) {
+      this.props.onChange(value);
+    }
+  };
   render() {
     const {
       comment,
@@ -77,7 +83,7 @@ export class CommentWrapper extends React.Component {
                 onSubmit={this.editComment}
                 onCancel={() => this.toggleEdit(false)}
                 onDelete={() => this.props.deleteComment(this.props.comment)}
-                onChange={value => this.setState({comment: value})}
+                onChange={this.onChange}
                 disabled={saving}
                 error={error || null}
               />
