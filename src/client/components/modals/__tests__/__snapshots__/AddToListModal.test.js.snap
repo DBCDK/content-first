@@ -47,21 +47,31 @@ exports[`AddToListModal multiple works as input 1`] = `
           >
             <div>
               <input
-                checked={true}
+                checked={false}
+                id="radio-title1-0"
                 name="list"
                 onChange={[Function]}
                 type="radio"
               />
-              title1
+              <label
+                htmlFor="radio-title1-0"
+              >
+                title1
+              </label>
             </div>
             <div>
               <input
                 checked={false}
+                id="radio-title2-1"
                 name="list"
                 onChange={[Function]}
                 type="radio"
               />
-              title2
+              <label
+                htmlFor="radio-title2-1"
+              >
+                title2
+              </label>
             </div>
           </div>
           <div
@@ -71,6 +81,7 @@ exports[`AddToListModal multiple works as input 1`] = `
               onSubmit={[Function]}
             >
               <input
+                className=""
                 name="add-list"
                 onChange={[Function]}
                 placeholder="Opret ny liste"
@@ -79,8 +90,8 @@ exports[`AddToListModal multiple works as input 1`] = `
               />
               <input
                 className="add-list--btn text-center"
-                type="submit"
-                value="+"
+                type="hidden"
+                value="×"
               />
             </form>
           </div>
@@ -158,29 +169,44 @@ exports[`AddToListModal newly added list is selected 1`] = `
             <div>
               <input
                 checked={false}
+                id="radio-title1-0"
                 name="list"
                 onChange={[Function]}
                 type="radio"
               />
-              title1
+              <label
+                htmlFor="radio-title1-0"
+              >
+                title1
+              </label>
             </div>
             <div>
               <input
                 checked={false}
+                id="radio-title2-1"
                 name="list"
                 onChange={[Function]}
                 type="radio"
               />
-              title2
+              <label
+                htmlFor="radio-title2-1"
+              >
+                title2
+              </label>
             </div>
             <div>
               <input
-                checked={true}
+                checked={false}
+                id="radio-title3-2"
                 name="list"
                 onChange={[Function]}
                 type="radio"
               />
-              title3
+              <label
+                htmlFor="radio-title3-2"
+              >
+                title3
+              </label>
             </div>
           </div>
           <div
@@ -190,6 +216,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
               onSubmit={[Function]}
             >
               <input
+                className=""
                 name="add-list"
                 onChange={[Function]}
                 placeholder="Opret ny liste"
@@ -198,8 +225,8 @@ exports[`AddToListModal newly added list is selected 1`] = `
               />
               <input
                 className="add-list--btn text-center"
-                type="submit"
-                value="+"
+                type="hidden"
+                value="×"
               />
             </form>
           </div>
@@ -293,21 +320,31 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
           >
             <div>
               <input
-                checked={true}
+                checked={false}
+                id="radio-title1-0"
                 name="list"
                 onChange={[Function]}
                 type="radio"
               />
-              title1
+              <label
+                htmlFor="radio-title1-0"
+              >
+                title1
+              </label>
             </div>
             <div>
               <input
                 checked={false}
+                id="radio-title2-1"
                 name="list"
                 onChange={[Function]}
                 type="radio"
               />
-              title2
+              <label
+                htmlFor="radio-title2-1"
+              >
+                title2
+              </label>
             </div>
           </div>
           <div
@@ -317,6 +354,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
               onSubmit={[Function]}
             >
               <input
+                className=""
                 name="add-list"
                 onChange={[Function]}
                 placeholder="Opret ny liste"
@@ -325,8 +363,8 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
               />
               <input
                 className="add-list--btn text-center"
-                type="submit"
-                value="+"
+                type="hidden"
+                value="×"
               />
             </form>
           </div>

@@ -3,6 +3,7 @@
 exports[`listReducer add element to list 1`] = `
 Array [
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-1",
     "list": Array [
@@ -22,6 +23,7 @@ Array [
 exports[`listReducer add element to list twice - no duplicates allowed 1`] = `
 Array [
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-1",
     "list": Array [
@@ -42,6 +44,7 @@ Array [
 exports[`listReducer add lists 1`] = `
 Array [
   Object {
+    "_created": "1234",
     "description": "a description 1",
     "id": "some-id-1",
     "list": Array [],
@@ -50,6 +53,7 @@ Array [
     "type": "CUSTOM_LIST",
   },
   Object {
+    "_created": "1234",
     "description": "a description 2",
     "id": "some-id-2",
     "list": Array [],
@@ -63,6 +67,7 @@ Array [
 exports[`listReducer get lists by type 1`] = `
 Array [
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-1",
     "list": Array [],
@@ -71,6 +76,7 @@ Array [
     "type": "CUSTOM_LIST",
   },
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-3",
     "list": Array [],
@@ -84,6 +90,7 @@ Array [
 exports[`listReducer get lists for owner 1`] = `
 Array [
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-1",
     "list": Array [],
@@ -92,6 +99,7 @@ Array [
     "type": "CUSTOM_LIST",
   },
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-3",
     "list": Array [],
@@ -107,6 +115,7 @@ exports[`listReducer get lists for owner 2`] = `Array []`;
 exports[`listReducer insert element at specific pos in list 1`] = `
 Array [
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-1",
     "list": Array [
@@ -136,6 +145,7 @@ Array [
 exports[`listReducer remove element from list 1`] = `
 Array [
   Object {
+    "_created": "1234",
     "deleted": Object {
       "123": true,
     },
@@ -167,6 +177,7 @@ Array [
 exports[`listReducer remove list 1`] = `
 Array [
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-2",
     "list": Array [],
@@ -180,6 +191,7 @@ Array [
 exports[`listReducer toggle element in list 1`] = `
 Array [
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-1",
     "list": Array [
@@ -199,6 +211,7 @@ Array [
 exports[`listReducer toggle element in list 2`] = `
 Array [
   Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-1",
     "list": Array [],
