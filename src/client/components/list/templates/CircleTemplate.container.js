@@ -49,6 +49,7 @@ export default class CircleTemplate extends React.Component {
     }
 
     const profile = this.props.profile || {};
+    const profiles = this.props.profiles || {};
 
     const backgroundImageHeight = Math.min(
       this.state.clientWidth * BACKGROUND_IMAGE_HEIGHT_PERCENTAGE,
@@ -65,8 +66,8 @@ export default class CircleTemplate extends React.Component {
     const coverHeight = Math.min(circleHeight / rows, ELEMENT_MAX_SIZE);
     const elementWidth = Math.min(circleWidth / rows, ELEMENT_MAX_SIZE);
     const hideLabels = elementWidth < 120;
-    return (
-      <div className="circle-template row">
+    return [
+      <div key="circle-template" className="circle-template row pb4 b-dark">
         <div
           ref="wrapper"
           className="list col-xs-12"
@@ -131,7 +132,7 @@ export default class CircleTemplate extends React.Component {
                         {element.book.creator}
                       </h5>
                       <ProfileImage
-                        user={profile}
+                        user={profiles[element._owner]}
                         type="list"
                         namePosition={'bottom'}
                         className="mt1 mb1"
@@ -150,10 +151,13 @@ export default class CircleTemplate extends React.Component {
               })}
           </div>
         </div>
-        <div className="col-xs-12 mt4 mb4">
-          {list && <SimpleList list={list} profile={profile} />}
-        </div>
-      </div>
-    );
+      </div>,
+      <SimpleList
+        key="simple-list"
+        list={list}
+        profile={profile}
+        profiles={this.props.profiles}
+      />
+    ];
   }
 }

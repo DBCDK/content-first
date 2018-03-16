@@ -5,14 +5,18 @@ exports[`ListView List is rendered 1`] = `
   className="list-wrapper tl"
 >
   <div
-    className="mb4 mt5 col-xs-offset-0 col-md-offset-1"
+    className="row b-dark"
   >
-    <h1
-      className="t-title h-tight h-underline inline-block align-middle"
+    <div
+      className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1"
     >
-      some list
-    </h1>
-    
+      <h1
+        className="t-title h-tight h-underline inline-block align-middle"
+      >
+        some list
+      </h1>
+      
+    </div>
   </div>
   <Comments
     list={
@@ -61,6 +65,13 @@ exports[`ListView List is rendered 1`] = `
     profile={
       Object {
         "name": "Frans",
+      }
+    }
+    profiles={
+      Object {
+        "owner1": Object {
+          "name": "Frans",
+        },
       }
     }
   />
@@ -72,14 +83,18 @@ exports[`ListView edit button enabled, when isOwner true 1`] = `
   className="list-wrapper tl"
 >
   <div
-    className="mb4 mt5 col-xs-offset-0 col-md-offset-1"
+    className="row b-dark"
   >
-    <h1
-      className="t-title h-tight h-underline inline-block align-middle"
+    <div
+      className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1"
     >
-      some list
-    </h1>
-    
+      <h1
+        className="t-title h-tight h-underline inline-block align-middle"
+      >
+        some list
+      </h1>
+      
+    </div>
   </div>
   <Comments
     list={
@@ -128,6 +143,13 @@ exports[`ListView edit button enabled, when isOwner true 1`] = `
     profile={
       Object {
         "name": "Frans",
+      }
+    }
+    profiles={
+      Object {
+        "owner1": Object {
+          "name": "Frans",
+        },
       }
     }
   />
