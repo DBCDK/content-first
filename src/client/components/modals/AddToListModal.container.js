@@ -28,10 +28,12 @@ export class AddToListModal extends React.Component {
   }
 
   componentDidMount() {
-    // Autoscroll to previous selected list - but remain a distance of 2 list items (and 20px padding) from the top of the list div
-    const fromTop = 2 * this.checked.parentElement.offsetHeight + 20;
-    this.listsContainer.scrollTop =
-      this.checked.parentElement.offsetTop - fromTop;
+    if (this.checked) {
+      // Autoscroll to previous selected list - but remain a distance of 2 list items (and 20px padding) from the top of the list div
+      const fromTop = 2 * this.checked.parentElement.offsetHeight + 20;
+      this.listsContainer.scrollTop =
+        this.checked.parentElement.offsetTop - fromTop;
+    }
   }
 
   componentDidUpdate(prevProps) {
