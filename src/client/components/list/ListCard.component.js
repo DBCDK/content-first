@@ -2,7 +2,7 @@ import React from 'react';
 import TruncateMarkup from 'react-truncate-markup';
 import BookCover from '../general/BookCover.component';
 import ProfileImage from '../general/ProfileImage.component';
-import {Likes, Comments, Badge} from '../general/Icons';
+import {Badge} from '../general/Icons';
 import Link from '../general/Link.component';
 
 class ListCard extends React.PureComponent {
@@ -55,10 +55,7 @@ class ListCard extends React.PureComponent {
                 className="mb1"
               />
             </div>
-            <div style={{float: 'right', marginTop: 5}}>
-              <Likes value={14} />
-              <Comments value={14} className="ml1" />
-            </div>
+
           </div>
         </Link>
       </div>
