@@ -22,8 +22,9 @@
 .image-upload .background-icon {
   margin-top: 35px;
   margin-bottom: 15px;
-  font-size: 70px;
+  font-size: 120px;
   display: block;
+  line-height: 120px;
 }
 
 .image-upload .glyphicon-plus {
