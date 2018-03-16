@@ -3,11 +3,8 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const config = require('server/config');
 const parameters = require('__/parameters');
-const request = require('superagent');
-const logger = require('server/logger');
-const _ = require('lodash');
+const recompas = require('server/recompas');
 
 router
   .route('/')
@@ -52,17 +49,14 @@ router
       }
 
       try {
-        const result = await request
-          .post(config.recompass.url)
-          .send({tags: tagsWeighted, creators: creatorsWeighted, maxresults});
-        res.status(200).json(result.body);
-      } catch (e) {
-        const msg = _.get(e, 'response.body.value') || 'Internal server error';
-        logger.log.error({
-          source: 'external-v1-recompass',
-          error: msg
+        const result = await recompas.getRecommendations({
+          tags: tagsWeighted,
+          creators: creatorsWeighted,
+          maxresults
         });
-        res.status(500).end(msg);
+        res.status(200).json(result);
+      } catch (e) {
+        res.status(500).end(e.message);
       }
     })
   );

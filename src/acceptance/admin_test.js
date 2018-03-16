@@ -195,4 +195,7 @@ function arrangeSubserviceResponse(authLoginCommunity) {
       .get(communityConst.apiHealth)
       .reply(500);
   }
+  nock(config.recompass.url)
+    .get('/status')
+    .reply(200, authConst.healthyResponse);
 }
