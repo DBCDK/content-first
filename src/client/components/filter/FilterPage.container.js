@@ -99,7 +99,9 @@ class FilterPage extends React.Component {
 }
 const mapStateToProps = state => {
   const selectedTagIds = state.routerReducer.params.tag
-    ? state.routerReducer.params.tag.map(tag => parseInt(tag, 10))
+    ? state.routerReducer.params.tag
+        .map(id => parseInt(id, 10))
+        .filter(id => filtersMapAll[id])
     : [];
   return {
     recommendations: getRecommendedBooks(state, selectedTagIds, 40),
