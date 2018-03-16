@@ -17,6 +17,7 @@ export const UPDATE_LIST_DATA = 'UPDATE_LIST_DATA';
 export const REMOVE_LIST = 'REMOVE_LIST';
 export const ADD_ELEMENT_TO_LIST = 'ADD_ELEMENT_TO_LIST';
 export const REMOVE_ELEMENT_FROM_LIST = 'REMOVE_ELEMENT_FROM_LIST';
+export const UPDATE_LIST_ELEMENT = 'UPDATE_LIST_ELEMENT';
 export const LIST_TOGGLE_ELEMENT = 'LIST_TOGGLE_ELEMENT';
 export const LIST_INSERT_ELEMENT = 'LIST_INSERT_ELEMENT';
 export const STORE_LIST = 'STORE_LIST';
@@ -197,6 +198,25 @@ const listReducer = (state = defaultState, action) => {
         image: null,
         imageError: null
       };
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list}
+      });
+    }
+    case UPDATE_LIST_ELEMENT: {
+      validateId(state, action);
+      if (!action.element) {
+        throw new Error("'element' is missing from action");
+      }
+      const list = {
+        ...state.lists[action.id]
+      };
+      list.list = list.list.map(element => {
+        if (action.element._id === element._id) {
+          return action.element;
+        }
+        return element;
+      });
+
       return Object.assign({}, state, {
         lists: {...state.lists, [action.id]: list}
       });

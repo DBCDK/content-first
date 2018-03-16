@@ -176,7 +176,7 @@ export class ListCreator extends React.Component {
     if (!this.props.currentList) {
       return null;
     }
-    const isNew = this.props.currentList.created_epoch ? false : true;
+    const isNew = this.props.currentList._created ? false : true;
     return (
       <div className="list-creator">
         <h1 className="list-creator__headline">
@@ -255,7 +255,7 @@ export const mapDispatchToProps = dispatch => ({
   updateList: data => dispatch(updateList(data)),
   storeList: async list => {
     await dispatch(storeList(list.id));
-    dispatch({type: HISTORY_REPLACE, path: '/lister'});
+    dispatch({type: HISTORY_REPLACE, path: '/profile'});
   },
   addElementToList: (book, id) => dispatch(addElementToList(book, id)),
   removeElementFromList: (book, id) =>

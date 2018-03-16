@@ -1,6 +1,12 @@
 .simplelist-item {
+  position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 40px;
+
+  font-family: var(--secondary-font);
+}
+.simplelist .profile-description {
+  position: relative;
 }
 
 .simplelist .addbook {

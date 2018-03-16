@@ -68,7 +68,9 @@ export const saveList = async (list, loggedInUserId) => {
     );
   }
 
-  if (list._owner === loggedInUserId) {
+  // todo refactor places where list.owner is used.
+  // instead list._owner should be used
+  if (list._owner === loggedInUserId || list.owner === loggedInUserId) {
     const result = await request.post('/v1/object').send(
       Object.assign({}, list, {
         _rev: null,
