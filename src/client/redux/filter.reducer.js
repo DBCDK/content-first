@@ -20,41 +20,97 @@ export const filterIds = getLeaves(filters).map(f => f.id);
 const defaultState = {
   editFilters: false,
   beltFilters: {
-    'En god bog': [100001, 100003, 5672, 100005],
+    'En god bog': [100001, 100003, {id: 5672, weight: 10}, 100005],
     'En spændende bog': [5676, 5632],
     'En anderledes bog': [5702],
     'Passer med min smag': [],
-    'Mennesket og Naturen': [5329, 3510, 5734, 5731, 5280, 5277, 2183, 2278],
-    'Familiens skyggesider': [1672, 5734, 5731, 5699, 5721, 5696, 5680, 5691],
-    'Tankevækkende Sci-fi': [4927, 5714, 5713],
+    'Mennesket og Naturen': [
+      {id: 5329, weight: 10},
+      {id: 3510, weight: 10},
+      5734,
+      5731,
+      5280,
+      5277,
+      2183,
+      2278
+    ],
+    'Familiens skyggesider': [
+      {id: 1672, weight: 10},
+      5734,
+      {id: 5731, weight: 10},
+      5699,
+      5721,
+      5696,
+      5680,
+      {id: 5691, weight: 10}
+    ],
+    'Tankevækkende Sci-fi': [{id: 4927, weight: 10}, 5714, 5713],
     'Bibliotekarens ugentlige anbefalinger': [-2],
     'Krøllede fortællinger': [
-      2683,
-      5614,
+      {id: 2683, weight: 10},
+      {id: 5614, weight: 10},
       5624,
       // 5653, uncomment when a work is mapped to this tag
       5652,
       // 5711, uncomment when a work is mapped to this tag
       5717
     ],
-    Sofahygge: [5637, 5654, 5636, 5731, 5611],
-    Tolkiensque: [6131, 5726, 5730, 5704, 5705, 5707, 5708],
-    'Gotisk uhygge': [4044, 4895, 5149, 5680, 5700, 5670, 5676],
-    Lokalkrimi: [2683, 4907, 5368, 5734, 5731, 5670, 5676, 5691],
-    'Historisk romantik': [
-      5028,
-      5016,
+    Sofahygge: [
+      {id: 5637, weight: 10},
+      5654,
+      5636,
+      5731,
+      {id: 5611, weight: 10}
+    ],
+    Tolkiensque: [
+      {id: 6131, weight: 10},
+      5726,
+      5730,
+      5704,
+      5705,
+      {id: 5707, weight: 10},
+      5708
+    ],
+    'Gotisk uhygge': [
+      4044,
+      {id: 4895, weight: 10},
       5149,
+      5680,
+      {id: 5700, weight: 10},
+      5670,
+      5676
+    ],
+    Lokalkrimi: [
+      2683,
+      {id: 4907, weight: 10},
+      {id: 5368, weight: 10},
+      5734,
+      5731,
+      5670,
+      5676,
+      5691
+    ],
+    'Historisk romantik': [
+      {id: 5028, weight: 10},
+      5016,
+      {id: 5149, weight: 10},
       4044,
       4074,
       5275,
       5282,
       189,
-      5660,
+      {id: 5660, weight: 10},
       5661,
       5671
     ],
-    'Vemodige nordmænd': [4466, 5731, 3510, 5626, 5683, 5630]
+    'Vemodige nordmænd': [
+      {id: 4466, weight: 10},
+      5731,
+      3510,
+      5626,
+      {id: 5683, weight: 10},
+      5630
+    ]
   },
   expandedFilters: {},
   filters,

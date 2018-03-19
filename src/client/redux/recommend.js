@@ -116,7 +116,6 @@ const fetchRecommendations = async ({tags = [], creators, max}) => {
     nonCustomTags = [5642]; // varme bøger
   }
 
-  console.log(tags);
   const tagsMap = nonCustomTags.reduce((tMap, t) => {
     if (t.weight) {
       return {...tMap, [t.id]: t.weight};
