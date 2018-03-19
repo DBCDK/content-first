@@ -144,7 +144,7 @@ exports[`CommentContainer Cancel button 1`] = `
                     "height": "0px",
                     "opacity": 0,
                     "overflow": "hidden",
-                    "transition": "height 200ms, opacity 200ms",
+                    "transition": "opacity 200ms",
                   }
                 }
               >
@@ -322,7 +322,7 @@ exports[`CommentContainer Delete button 1`] = `
                     "height": "0px",
                     "opacity": 0,
                     "overflow": "hidden",
-                    "transition": "height 200ms, opacity 200ms",
+                    "transition": "opacity 200ms",
                   }
                 }
               >
@@ -628,7 +628,7 @@ exports[`CommentContainer Render edit form 1`] = `
                 "height": "0px",
                 "opacity": 0,
                 "overflow": "hidden",
-                "transition": "height 200ms, opacity 200ms",
+                "transition": "opacity 200ms",
               }
             }
           >
@@ -894,7 +894,7 @@ exports[`CommentContainer Save button 1`] = `
                     "height": "0px",
                     "opacity": 0,
                     "overflow": "hidden",
-                    "transition": "height 200ms, opacity 200ms",
+                    "transition": "opacity 200ms",
                   }
                 }
               >

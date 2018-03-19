@@ -33,6 +33,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
               },
             }
           }
+          onChange={[Function]}
         />
       </div>
     </div>
@@ -219,6 +220,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="0"
+              onChange={[Function]}
             />
             <comment
               comment={
@@ -231,6 +233,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="1"
+              onChange={[Function]}
             />
             <comment
               comment={
@@ -243,6 +246,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="2"
+              onChange={[Function]}
             />
             <comment
               comment={
@@ -255,6 +259,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="3"
+              onChange={[Function]}
             />
             <comment
               comment={
@@ -267,6 +272,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 }
               }
               key="4"
+              onChange={[Function]}
             />
           </div>
         </div>
@@ -375,6 +381,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
               },
             }
           }
+          onChange={[Function]}
         />
       </div>
     </div>
@@ -470,6 +477,7 @@ exports[`CommentContainer Component renders error 1`] = `
                 }
               }
               key="1"
+              onChange={[Function]}
             />
           </div>
         </div>
@@ -653,6 +661,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                 }
               }
               key="new_comment"
+              onChange={[Function]}
             />
           </div>
         </div>
@@ -856,6 +865,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
                 }
               }
               key="4"
+              onChange={[Function]}
             />
           </div>
         </div>
@@ -1059,6 +1069,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="0"
+              onChange={[Function]}
             />
             <comment
               comment={
@@ -1071,6 +1082,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="1"
+              onChange={[Function]}
             />
             <comment
               comment={
@@ -1083,6 +1095,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="2"
+              onChange={[Function]}
             />
             <comment
               comment={
@@ -1095,6 +1108,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="3"
+              onChange={[Function]}
             />
             <comment
               comment={
@@ -1107,6 +1121,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 }
               }
               key="4"
+              onChange={[Function]}
             />
           </div>
         </div>

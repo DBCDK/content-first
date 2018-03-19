@@ -9,18 +9,21 @@ export default class CommentList extends React.Component {
     };
   }
   componentDidUpdate() {
-    const adjust = this.props.comments.filter(comment => comment.editing).length
-      ? 30
-      : 0;
-    if (
-      this.listWrapper &&
-      this.listWrapper.offsetHeight &&
-      this.state.height !== this.listWrapper.offsetHeight + adjust
-    ) {
-      this.setState({height: this.listWrapper.offsetHeight + adjust});
-    }
+    this.updateHeight();
   }
 
+  updateHeight = () => {
+    // To make sure that height of listwrapper is updated we need to defer the check.  This is done with setTimeout
+    setTimeout(() => {
+      if (
+        this.listWrapper &&
+        this.listWrapper.offsetHeight &&
+        this.state.height !== this.listWrapper.offsetHeight
+      ) {
+        this.setState({height: this.listWrapper.offsetHeight});
+      }
+    }, 10);
+  };
   render() {
     const {comments, showCount = 1} = this.props;
     if (!comments || comments.length === 0) {
@@ -38,7 +41,11 @@ export default class CommentList extends React.Component {
       >
         <div ref={el => (this.listWrapper = el)}>
           {showComments.map(comment => (
-            <CommentWrapper key={comment._id} comment={comment} />
+            <CommentWrapper
+              key={comment._id}
+              comment={comment}
+              onChange={this.updateHeight}
+            />
           ))}
         </div>
       </div>

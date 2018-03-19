@@ -67,7 +67,7 @@ export default class CommentInput extends React.Component {
               height: this.state.focus || this.state.value ? '50px' : '0px',
               opacity: this.state.focus || this.state.value ? 1 : 0,
               overflow: 'hidden',
-              transition: 'height 200ms, opacity 200ms'
+              transition: 'opacity 200ms'
             }}
           >
             {this.props.onDelete ? (
