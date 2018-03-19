@@ -107,7 +107,7 @@ export const applyClientSideFilters = (books, tags) => {
 };
 
 const fetchRecommendations = async ({tags = [], creators, max}) => {
-  let nonCustomTags = tags.filter(tag => !filtersMapAll[tag].custom);
+  let nonCustomTags = tags.filter(tag => !filtersMapAll[tag.id || tag].custom);
   if (nonCustomTags.length === 0) {
     // hack alert
     // if no non custom tags are selected - for instance if only short books are selected
@@ -116,9 +116,17 @@ const fetchRecommendations = async ({tags = [], creators, max}) => {
     nonCustomTags = [5642]; // varme bøger
   }
 
+  console.log(tags);
+  const tagsMap = nonCustomTags.reduce((tMap, t) => {
+    if (t.weight) {
+      return {...tMap, [t.id]: t.weight};
+    }
+    return {...tMap, [t]: 1};
+  }, {});
+
   const recompassResponse = (await request
     .get('/v1/recompass')
-    .query({tags: nonCustomTags, creators, maxresults: max})).body.response;
+    .query({tags: tagsMap, creators, maxresults: max})).body.response;
   let pids = recompassResponse.map(entry => entry.pid);
 
   if (tags.includes(-2)) {

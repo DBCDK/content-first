@@ -55,7 +55,6 @@ class ListCard extends React.PureComponent {
                 className="mb1"
               />
             </div>
-
           </div>
         </Link>
       </div>
