@@ -7,9 +7,8 @@ import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Slider from '../belt/Slider.component';
+import Link from '../general/Link.component';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
-import {HISTORY_PUSH} from '../../redux/middleware';
-import {ON_RESET_FILTERS} from '../../redux/filter.reducer';
 import {getLeaves} from '../../utils/taxonomy';
 
 import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
@@ -143,23 +142,14 @@ class WorkPage extends React.Component {
                       {group.data.map(t => {
                         if (allowedFilterIds.indexOf(t.id) >= 0) {
                           return (
-                            <span
-                              key={t.id}
+                            <Link
                               className="tag active"
-                              onClick={() => {
-                                this.props.dispatch({
-                                  type: ON_RESET_FILTERS,
-                                  beltName: 'Passer med min smag'
-                                });
-                                this.props.dispatch({
-                                  type: HISTORY_PUSH,
-                                  path: '/passer-med-min-smag',
-                                  params: {filter: t.id}
-                                });
-                              }}
+                              key={t.id}
+                              href="/find"
+                              params={{tag: t.id}}
                             >
                               {t.title}
-                            </span>
+                            </Link>
                           );
                         }
                         return (
