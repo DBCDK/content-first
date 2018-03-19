@@ -59,7 +59,9 @@ exports.login = {
 };
 
 exports.recompass = {
-  url: process.env.RECOMPASS_URL || 'http://staging.recompass.mcp1-proxy.dbc.dk/recompass'
+  url:
+    process.env.RECOMPASS_URL ||
+    'http://staging.recompass.mcp1-proxy.dbc.dk/recompass'
 };
 
 exports.server = {

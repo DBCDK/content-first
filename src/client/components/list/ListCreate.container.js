@@ -8,6 +8,7 @@ import {
   storeList,
   getListById,
   addList,
+  removeList,
   ADD_LIST_IMAGE
 } from '../../redux/list.reducer';
 import {saveList} from '../../utils/requestLists';
@@ -18,6 +19,7 @@ import BookSearchSuggester from './BookSearchSuggester';
 import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
 import ImageUpload from '../general/ImageUpload.component';
+import Spinner from '../general/Spinner.component';
 const ListDetails = ({
   id,
   title,
@@ -147,6 +149,14 @@ export class ListCreator extends React.Component {
       this.props.createList();
     }
   }
+  componentWillReceiveProps(nextProps) {
+    // if (this.props.currentList.deletingIsLoading) {
+    //   if (this.nextProps.currentList.deletingIsLoading === undefined) {
+    //     alert('to profile page');
+    //   }
+    // }
+  }
+
   componentWillUnmount() {
     // reset any unsaved changes
     // for now we just reload users lists from backend
@@ -172,10 +182,16 @@ export class ListCreator extends React.Component {
       [selector]: !currentList[selector]
     });
   }
+  deleteList() {
+    this.props.removeList(this.props.currentList.id);
+  }
   render() {
+    console.log(this.props.currentList);
+
     if (!this.props.currentList) {
       return null;
     }
+
     const isNew = this.props.currentList._created ? false : true;
     return (
       <div className="list-creator">
@@ -231,6 +247,18 @@ export class ListCreator extends React.Component {
                   Gem liste
                 </button>
               </div>
+              <span className="text-danger" onClick={() => this.deleteList()}>
+                {isNew ? (
+                  ''
+                ) : this.props.currentList.deletingIsLoading ? (
+                  <span>
+                    <Spinner size="12px" />{' '}
+                    <span className="text-danger"> | </span>
+                  </span>
+                ) : (
+                  'Slet liste | '
+                )}
+              </span>
               <Link href="/profile" replace={true}>
                 {isNew
                   ? 'Fortryd oprettelse af liste'
@@ -253,6 +281,7 @@ const mapStateToProps = (state, ownProps) => {
 export const mapDispatchToProps = dispatch => ({
   addImage: (id, image) => dispatch({type: ADD_LIST_IMAGE, image, id}),
   updateList: data => dispatch(updateList(data)),
+  removeList: id => dispatch(removeList(id)),
   storeList: async list => {
     await dispatch(storeList(list.id));
     dispatch({type: HISTORY_REPLACE, path: '/profile'});

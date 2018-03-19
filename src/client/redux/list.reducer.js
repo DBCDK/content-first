@@ -15,6 +15,8 @@ export const LIST_LOAD_RESPONSE = 'LIST_LOAD_RESPONSE';
 export const ADD_LIST = 'ADD_LIST';
 export const UPDATE_LIST_DATA = 'UPDATE_LIST_DATA';
 export const REMOVE_LIST = 'REMOVE_LIST';
+export const REMOVE_LIST_SUCCESS = 'REMOVE_LIST_SUCCESS';
+export const REMOVE_LIST_ERROR = 'REMOVE_LIST_ERROR';
 export const ADD_ELEMENT_TO_LIST = 'ADD_ELEMENT_TO_LIST';
 export const REMOVE_ELEMENT_FROM_LIST = 'REMOVE_ELEMENT_FROM_LIST';
 export const UPDATE_LIST_ELEMENT = 'UPDATE_LIST_ELEMENT';
@@ -41,9 +43,47 @@ const listReducer = (state = defaultState, action) => {
       if (!action.id) {
         throw new Error("'id' is missing from action");
       }
-      const newLists = {...state.lists};
-      delete newLists[action.id];
-      return Object.assign({}, state, {lists: newLists});
+      const lists = {...state.lists};
+
+      const list = {
+        ...state.lists[action.id],
+        deletingIsLoading: true
+      };
+
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list}
+      });
+    }
+    case REMOVE_LIST_SUCCESS: {
+      if (!action.id) {
+        throw new Error("'id' is missing from action");
+      }
+
+      console.log('REMOVE_LIST_SUCCESS');
+
+      const lists = {...state.lists};
+
+      delete lists[action.id];
+
+      return Object.assign({}, state, {
+        lists: {...state.lists}
+      });
+    }
+    case REMOVE_LIST_ERROR: {
+      if (!action.id) {
+        throw new Error("'id' is missing from action");
+      }
+      const lists = {...state.lists};
+
+      const list = {
+        ...state.lists[action.id],
+        error: action.error,
+        deletingIsLoading: false
+      };
+
+      return Object.assign({}, state, {
+        lists: {...state.lists, [action.id]: list}
+      });
     }
     case ADD_ELEMENT_TO_LIST: {
       if (!action.id) {
