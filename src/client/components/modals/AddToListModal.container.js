@@ -27,10 +27,17 @@ export class AddToListModal extends React.Component {
     });
   }
 
+  componentDidMount() {
+    if (this.checked) {
+      // Autoscroll to previous selected list - but remain a distance of 2 list items (and 20px padding) from the top of the list div
+      const fromTop = 2 * this.checked.parentElement.offsetHeight + 20;
+      this.listsContainer.scrollTop =
+        this.checked.parentElement.offsetTop - fromTop;
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.customLists.length < this.props.customLists.length) {
-      // list has just been added, lets scroll down and select it
-      this.listsContainer.scrollTop = this.listsContainer.scrollHeight;
       this.setState({
         list: this.props.customLists[this.props.customLists.length - 1]
       });
@@ -107,6 +114,11 @@ export class AddToListModal extends React.Component {
                   <div key={l.id}>
                     <input
                       id={'radio' + '-' + l.title + '-' + i}
+                      ref={
+                        this.state.latestUsedId === l.id && !this.state.listName
+                          ? e => (this.checked = e)
+                          : ''
+                      }
                       type="radio"
                       name="list"
                       checked={
@@ -127,7 +139,6 @@ export class AddToListModal extends React.Component {
               <form
                 onSubmit={e => {
                   if (this.state.listName) {
-                    // this.onAddList(this.state.listName);
                     this.setState({listName: ''});
                   }
                   e.preventDefault();
