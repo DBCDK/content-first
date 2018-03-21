@@ -102,6 +102,22 @@ Returns a list of tag for a specific PID, like
       }
     }
 
+### `GET /v1/tags/suggest/?q=...`
+
+Returns a list of tags that contains q
+
+    [
+        {
+            "id": 568,
+            "title": "heste",
+            "sort": 0,
+            "parents": [
+                "handling",
+                "Handler om"
+            ]
+        }
+    ]
+
 ## Taxonomy
 
 ### `GET /v1/taxonomy`
