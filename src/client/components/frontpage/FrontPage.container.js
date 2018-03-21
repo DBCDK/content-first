@@ -27,6 +27,7 @@ class FrontPage extends React.Component {
             <BooksBelt
               key={idx}
               title={belt.name}
+              subtext={belt.subtext}
               tags={this.props.getBeltTagIdList(belt)}
             />
           );
