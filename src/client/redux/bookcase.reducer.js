@@ -8,7 +8,8 @@ const defaultState = {
       img: 'img/bookcase/HP.jpg',
       description:
         'Helene Jeppesen er Danmarks mest fulgte booktuber. Hun læser bredt – både klassikere og helt ny skønlitteratur. Reolen bærer præg af hendes store interesse og kærlighed til det engelske sprog.',
-      bookcase: 'img/bookcase/HP-bogreol.jpg',
+      // bookcase: 'img/bookcase/HP-bogreol.jpg',
+      bookcase: 'img/bookcase/Helene_bogreol.png',
       books: [
         {
           pid: '870970-basis:51704185',
@@ -40,11 +41,11 @@ const defaultState = {
     },
     {
       id: '2',
-      name: 'B. S. Christiansen',
-      img: 'img/bookcase/BS.jpg',
+      name: 'Cecilie Frøkjær',
+      img: 'img/bookcase/CF.jpg',
       description:
         'er en dansk forhenværende elitesoldat i Jægerkorpset og fordragsholder. Han er især kendt for programserien På afveje med forskellige kendte personer.',
-      bookcase: 'img/bookcase/BS-bogreol.jpg',
+      bookcase: 'img/bookcase/CF-bogreol.jpg',
       books: [
         {
           pid: '870970-basis:52530423',
@@ -66,11 +67,11 @@ const defaultState = {
     },
     {
       id: '3',
-      name: 'Dar Salim',
-      img: 'img/bookcase/DS.jpg',
+      name: 'Nynne Bjerre',
+      img: 'img/bookcase/BS.jpg',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at rhoncus enim, ut facilisis velit. Donec eget augue vel lorem iaculis.',
-      bookcase: 'img/bookcase/DS-bogreol.jpg',
+      bookcase: 'img/bookcase/N-bogreol.jpg',
       books: [
         {
           pid: '870970-basis:26378176',
