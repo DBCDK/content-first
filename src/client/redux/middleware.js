@@ -191,7 +191,7 @@ export const listMiddleware = store => next => async action => {
       next(action);
       return (async () => {
         try {
-          //await deleteObject({_id: id});
+          await deleteObject({_id: id});
           store.dispatch({type: REMOVE_LIST_SUCCESS, id: id});
         } catch (error) {
           store.dispatch({type: REMOVE_LIST_ERROR, error, id: id});

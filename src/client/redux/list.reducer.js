@@ -59,12 +59,8 @@ const listReducer = (state = defaultState, action) => {
         throw new Error("'id' is missing from action");
       }
 
-      console.log('REMOVE_LIST_SUCCESS');
-
       const lists = {...state.lists};
-
       delete lists[action.id];
-
       return Object.assign({}, state, {
         lists: {...state.lists}
       });

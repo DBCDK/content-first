@@ -20,6 +20,8 @@ import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
 import ImageUpload from '../general/ImageUpload.component';
 import Spinner from '../general/Spinner.component';
+import Modal from '../modals/Modal.component';
+import {OPEN_MODAL, CLOSE_MODAL} from '../../redux/modal.reducer';
 const ListDetails = ({
   id,
   title,
@@ -140,7 +142,8 @@ export class ListCreator extends React.Component {
   constructor() {
     super();
     this.state = {
-      hasError: false
+      hasError: false,
+      showConfirmDeleteModal: false
     };
   }
   async componentWillMount() {
@@ -149,12 +152,11 @@ export class ListCreator extends React.Component {
       this.props.createList();
     }
   }
+
   componentWillReceiveProps(nextProps) {
-    // if (this.props.currentList.deletingIsLoading) {
-    //   if (this.nextProps.currentList.deletingIsLoading === undefined) {
-    //     alert('to profile page');
-    //   }
-    // }
+    if (nextProps.currentList.deletingIsLoading) {
+      this.props.exitList('/profile');
+    }
   }
 
   componentWillUnmount() {
@@ -182,17 +184,17 @@ export class ListCreator extends React.Component {
       [selector]: !currentList[selector]
     });
   }
-  deleteList() {
-    this.props.removeList(this.props.currentList.id);
-  }
+  deleteList = () => {
+    // this.props.removeList(this.props.currentList.id);
+    alert('deleted');
+  };
   render() {
-    console.log(this.props.currentList);
-
     if (!this.props.currentList) {
       return null;
     }
 
     const isNew = this.props.currentList._created ? false : true;
+
     return (
       <div className="list-creator">
         <h1 className="list-creator__headline">
@@ -247,7 +249,10 @@ export class ListCreator extends React.Component {
                   Gem liste
                 </button>
               </div>
-              <span className="text-danger" onClick={() => this.deleteList()}>
+              <span
+                className="text-danger"
+                onClick={this.props.confirmDeleteModal}
+              >
                 {isNew ? (
                   ''
                 ) : this.props.currentList.deletingIsLoading ? (
@@ -286,6 +291,7 @@ export const mapDispatchToProps = dispatch => ({
     await dispatch(storeList(list.id));
     dispatch({type: HISTORY_REPLACE, path: '/profile'});
   },
+  exitList: path => dispatch({type: HISTORY_REPLACE, path: path}),
   addElementToList: (book, id) => dispatch(addElementToList(book, id)),
   removeElementFromList: (book, id) =>
     dispatch(removeElementFromList(book, id)),
@@ -296,6 +302,24 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: HISTORY_REPLACE,
       path: `/lister/${id}/rediger`
+    });
+  },
+  confirmDeleteModal: () => {
+    dispatch({
+      type: 'OPEN_MODAL',
+      modal: 'confirm',
+      context: {
+        title: 'Skal denne liste slettes?',
+        reason: 'Er du sikker på du vil slette den valgte liste.',
+        confirmText: 'Slet liste',
+        onConfirm: '',
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        }
+      }
     });
   }
 });
