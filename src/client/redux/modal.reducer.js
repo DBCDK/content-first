@@ -14,6 +14,10 @@ const defaultState = {
   login: {
     open: false,
     context: null
+  },
+  confirm: {
+    open: false,
+    context: null
   }
 };
 

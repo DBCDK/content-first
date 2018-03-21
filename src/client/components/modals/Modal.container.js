@@ -4,6 +4,7 @@ import AddToListModal from './AddToListModal.container';
 import ShortListMergeModal from './ShortListMergeModal.container';
 import OrderModal from './OrderModal.container';
 import LoginModal from './LoginModal.component';
+import ConfirmModal from './ConfirmModal.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Modal extends React.Component {
@@ -57,6 +58,9 @@ class Modal extends React.Component {
     }
     if (this.props.modalState.login.open) {
       modal = <LoginModal context={this.props.modalState.login.context} />;
+    }
+    if (this.props.modalState.confirm.open) {
+      modal = <ConfirmModal context={this.props.modalState.confirm.context} />;
     }
     return (
       <ReactCSSTransitionGroup
