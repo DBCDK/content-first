@@ -9,7 +9,7 @@ export class RecentListsBelt extends React.Component {
     return (
       <div className="row belt text-left">
         <div className="col-xs-12 header">
-          <span className="belt-title">Seneste lister fra brugerne</span>
+          <span className="belt-title-latest">Seneste lister fra brugerne</span>
         </div>
         {this.props.recent && (
           <div className="row mb4">
