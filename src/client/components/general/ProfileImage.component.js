@@ -1,6 +1,8 @@
 import React from 'react';
 
 /*
+<ProfileImage user={user} />
+
 // namePosition: false (default) || 'bottom' || 'right'
 */
 
@@ -14,10 +16,11 @@ export const ProfileImage = ({
 }) => (
   <div className={`profile-${type} ${className}`}>
     <span
-      className="profile-image small round"
+      className="profile-image text-center small round"
       style={{
         width: size + 'px',
         height: size + 'px',
+        lineHeight: user && user.image ? 'inherit' : size * 1.85 + 'px',
         marginRight:
           namePosition === 'right'
             ? style.marginRight ? style.marginRight : '5px'
@@ -34,11 +37,14 @@ export const ProfileImage = ({
       ) : (
         <span
           className="glyphicon glyphicon-user"
-          style={{fontSize: size / 2 + 'px'}}
+          style={{
+            fontSize: size * 0.85 + 'px',
+            display: 'inline-block',
+            color: '#897571'
+          }}
         />
       )}
     </span>
-
     {user && !namePosition === false ? (
       <h4 className="profile-name t-body h4 mt0 mb0">{user.name}</h4>
     ) : (

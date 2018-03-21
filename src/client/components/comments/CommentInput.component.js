@@ -30,11 +30,7 @@ export default class CommentInput extends React.Component {
         }}
       >
         {!this.props.hideProfile ? (
-          <ProfileImage
-            user={this.props.user}
-            size={'35'}
-            style={{marginRight: '20px'}}
-          />
+          <ProfileImage user={this.props.user} style={{marginRight: '20px'}} />
         ) : null}
         <div
           style={{width: '100%'}}

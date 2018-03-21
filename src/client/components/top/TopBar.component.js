@@ -4,6 +4,7 @@ import {HISTORY_PUSH, HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import logo from '../../logo.svg';
 import ShortListDropDown from '../list/ShortListDropDown.container';
+import ProfileImage from '../general/ProfileImage.component';
 
 export default function TopBar(props) {
   // eslint-disable-line no-unused-vars
@@ -38,16 +39,8 @@ export default function TopBar(props) {
         )}
         {props.user.isLoggedIn && (
           <div className="inline">
-            <Link href="/profile" className="profile-image">
-              {props.user.image ? (
-                <img
-                  className="round micro"
-                  src={`/v1/image/${props.user.image}/50/50`}
-                  alt="min profil"
-                />
-              ) : (
-                <span className="glyphicon glyphicon-user default-user" />
-              )}
+            <Link href="/profile">
+              <ProfileImage type="top" user={props.user} />
             </Link>
             <span
               className="topbar-logout ml2"

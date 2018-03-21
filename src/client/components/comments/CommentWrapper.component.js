@@ -68,7 +68,6 @@ export class CommentWrapper extends React.Component {
           <ProfileImage
             user={user}
             style={{flexShrink: 0}}
-            size="35"
             style={{marginRight: '20px'}}
           />
           <div style={{flexGrow: 1}}>

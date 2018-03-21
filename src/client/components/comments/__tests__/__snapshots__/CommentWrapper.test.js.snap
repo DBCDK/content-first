@@ -42,7 +42,6 @@ exports[`CommentContainer Cancel button 1`] = `
       }
     >
       <Component
-        size="35"
         style={
           Object {
             "marginRight": "20px",
@@ -59,10 +58,11 @@ exports[`CommentContainer Cancel button 1`] = `
           className="profile-card "
         >
           <span
-            className="profile-image small round"
+            className="profile-image text-center small round"
             style={
               Object {
                 "height": "35px",
+                "lineHeight": "64.75px",
                 "marginRight": "20px",
                 "width": "35px",
               }
@@ -72,7 +72,9 @@ exports[`CommentContainer Cancel button 1`] = `
               className="glyphicon glyphicon-user"
               style={
                 Object {
-                  "fontSize": "17.5px",
+                  "color": "#897571",
+                  "display": "inline-block",
+                  "fontSize": "29.75px",
                 }
               }
             />
@@ -220,7 +222,6 @@ exports[`CommentContainer Delete button 1`] = `
       }
     >
       <Component
-        size="35"
         style={
           Object {
             "marginRight": "20px",
@@ -237,10 +238,11 @@ exports[`CommentContainer Delete button 1`] = `
           className="profile-card "
         >
           <span
-            className="profile-image small round"
+            className="profile-image text-center small round"
             style={
               Object {
                 "height": "35px",
+                "lineHeight": "64.75px",
                 "marginRight": "20px",
                 "width": "35px",
               }
@@ -250,7 +252,9 @@ exports[`CommentContainer Delete button 1`] = `
               className="glyphicon glyphicon-user"
               style={
                 Object {
-                  "fontSize": "17.5px",
+                  "color": "#897571",
+                  "display": "inline-block",
+                  "fontSize": "29.75px",
                 }
               }
             />
@@ -397,7 +401,6 @@ exports[`CommentContainer Edit button 1`] = `
       }
     >
       <Component
-        size="35"
         style={
           Object {
             "marginRight": "20px",
@@ -414,10 +417,11 @@ exports[`CommentContainer Edit button 1`] = `
           className="profile-card "
         >
           <span
-            className="profile-image small round"
+            className="profile-image text-center small round"
             style={
               Object {
                 "height": "35px",
+                "lineHeight": "64.75px",
                 "marginRight": "20px",
                 "width": "35px",
               }
@@ -427,7 +431,9 @@ exports[`CommentContainer Edit button 1`] = `
               className="glyphicon glyphicon-user"
               style={
                 Object {
-                  "fontSize": "17.5px",
+                  "color": "#897571",
+                  "display": "inline-block",
+                  "fontSize": "29.75px",
                 }
               }
             />
@@ -482,10 +488,11 @@ exports[`CommentContainer Render comment 1`] = `
       className="profile-card "
     >
       <span
-        className="profile-image small round"
+        className="profile-image text-center small round"
         style={
           Object {
             "height": "35px",
+            "lineHeight": "64.75px",
             "marginRight": "20px",
             "width": "35px",
           }
@@ -495,7 +502,9 @@ exports[`CommentContainer Render comment 1`] = `
           className="glyphicon glyphicon-user"
           style={
             Object {
-              "fontSize": "17.5px",
+              "color": "#897571",
+              "display": "inline-block",
+              "fontSize": "29.75px",
             }
           }
         />
@@ -557,10 +566,11 @@ exports[`CommentContainer Render edit form 1`] = `
       className="profile-card "
     >
       <span
-        className="profile-image small round"
+        className="profile-image text-center small round"
         style={
           Object {
             "height": "35px",
+            "lineHeight": "64.75px",
             "marginRight": "20px",
             "width": "35px",
           }
@@ -570,7 +580,9 @@ exports[`CommentContainer Render edit form 1`] = `
           className="glyphicon glyphicon-user"
           style={
             Object {
-              "fontSize": "17.5px",
+              "color": "#897571",
+              "display": "inline-block",
+              "fontSize": "29.75px",
             }
           }
         />
@@ -699,10 +711,11 @@ exports[`CommentContainer Render save form 1`] = `
       className="profile-card "
     >
       <span
-        className="profile-image small round"
+        className="profile-image text-center small round"
         style={
           Object {
             "height": "35px",
+            "lineHeight": "64.75px",
             "marginRight": "20px",
             "width": "35px",
           }
@@ -712,7 +725,9 @@ exports[`CommentContainer Render save form 1`] = `
           className="glyphicon glyphicon-user"
           style={
             Object {
-              "fontSize": "17.5px",
+              "color": "#897571",
+              "display": "inline-block",
+              "fontSize": "29.75px",
             }
           }
         />
@@ -792,7 +807,6 @@ exports[`CommentContainer Save button 1`] = `
       }
     >
       <Component
-        size="35"
         style={
           Object {
             "marginRight": "20px",
@@ -809,10 +823,11 @@ exports[`CommentContainer Save button 1`] = `
           className="profile-card "
         >
           <span
-            className="profile-image small round"
+            className="profile-image text-center small round"
             style={
               Object {
                 "height": "35px",
+                "lineHeight": "64.75px",
                 "marginRight": "20px",
                 "width": "35px",
               }
@@ -822,7 +837,9 @@ exports[`CommentContainer Save button 1`] = `
               className="glyphicon glyphicon-user"
               style={
                 Object {
-                  "fontSize": "17.5px",
+                  "color": "#897571",
+                  "display": "inline-block",
+                  "fontSize": "29.75px",
                 }
               }
             />

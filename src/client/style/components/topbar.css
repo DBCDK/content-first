@@ -9,6 +9,8 @@
 }
 .topbar .login {
   margin-top: 3px;
+  display: flex;
+  justify-content: flex-end;
 }
 .topbar .login > span,
 .topbar .topbar-logout {
@@ -16,6 +18,10 @@
 }
 .topbar .login > span {
   margin-right: 25px;
+  line-height: 35px;
+}
+.topbar .topbar-logout {
+  line-height: 35px;
 }
 .topbar h1 {
   font-size: 26px;
@@ -37,15 +43,5 @@
 }
 
 .topbar .inline {
-  display: inline-block;
-}
-
-.topbar .default-user {
-  border-radius: 50%;
-  border: 1px solid;
-  display: inline-block;
-  padding: 7px;
-  vertical-align: middle;
-  font-size: 18px;
-  color: var(--greybrown);
+  display: flex;
 }
