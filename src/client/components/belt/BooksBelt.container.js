@@ -53,6 +53,7 @@ export class BooksBelt extends React.Component {
               {this.props.title}
             </span>
           </Link>
+          <div className={'belt-subtext'}> {this.props.subtext}</div>
         </div>
 
         {this.props.recommendedBooks && (
