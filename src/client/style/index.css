@@ -161,11 +161,20 @@ h3 {
   /*border-bottom: 2px solid #333;
   padding-bottom: 2px;*/
 }
+
 div.belt-subtext {
   color: #333333;
   font-size: 16px;
   font-family: 'Raleway', sans-serif;
   text-decoration: none;
+}
+
+.belt-title-latest{
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+  vertical-align: bottom;
+  text-decoration: underline;
 }
 
 .belt .belt-links {

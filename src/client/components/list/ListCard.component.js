@@ -8,24 +8,37 @@ import Link from '../general/Link.component';
 class ListCard extends React.PureComponent {
   render() {
     const {list, style} = this.props;
-
     const elements = list.list;
+
+    function renderBookCover(img){
+      let cardCover;
+      if(img && elements.length===0){
+        cardCover=(<div><img src={"v1/image/"+img+"/220/120"}/></div>)
+      }else{
+        cardCover = (<div className="list-card-covers-wrapper">
+            {elements.length > 0 &&
+            elements.slice(0, 3).map(e => {
+              return (
+                <BookCover
+                  key={e.book.pid}
+                  className="list-card-cover"
+                  book={e.book}
+                />
+              );
+            })}
+          </div>
+        )
+      }
+
+      return cardCover;
+    }
+
+
     return (
       <div className="list-card" style={style}>
         <Link href={`/lister/${list.id}`}>
           <div className="list-card-covers">
-            <div className="list-card-covers-wrapper">
-              {elements.length > 0 &&
-                elements.slice(0, 3).map(e => {
-                  return (
-                    <BookCover
-                      key={e.book.pid}
-                      className="list-card-cover"
-                      book={e.book}
-                    />
-                  );
-                })}
-            </div>
+            {renderBookCover(list.image)}
           </div>
           <div className="list-card-summary">
             <TruncateMarkup
