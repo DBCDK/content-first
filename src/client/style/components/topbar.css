@@ -42,6 +42,14 @@
   vertical-align: middle;
 }
 
+.topbar .icon {
+  margin-right: 25px;
+  display: inline-block;
+  font-size: 18px;
+  vertical-align: middle;
+  color: var(--darkgrey);
+}
+
 .topbar .inline {
   display: flex;
 }
