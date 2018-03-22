@@ -19,13 +19,9 @@ router
       const results = await knex(bookTable)
         .select()
         .whereRaw(
-          "to_tsvector('danish', creator || ' ' || title_full) @@ to_tsquery('danish', ?)",
+          "to_tsvector('simple', creator || ' ' || title_full) @@ ?",
           [req.query.q || '']
         );
-
-      // TODO: remove the sleep, - currently added because search is fast due to very few data, and we also want to see what things looks like if search is slow.
-      await new Promise(resolve => setTimeout(resolve, 500));
-
       res.status(200).json({data: results});
     })
   );

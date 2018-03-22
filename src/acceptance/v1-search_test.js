@@ -21,8 +21,8 @@ describe('Endpoint /v1/search', () => {
 
   describe('Public endpoint', () => {
     describe('GET /v1/search?q=...', () => {
-      it('should handle search in title, including stemming', () => {
-        const url = '/v1/search?q=riddere';
+      it('should handle search in title', () => {
+        const url = '/v1/search?q=ridder';
         return webapp
           .get(url)
           .expect(200)
