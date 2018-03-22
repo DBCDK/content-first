@@ -36,7 +36,7 @@ exports[`ListCreate list details is shown 1`] = `
                 type="text"
                 value="some title"
               />
-              
+
             </span>
             <textarea
               className="form-control list-details__description"
@@ -100,7 +100,7 @@ exports[`ListCreate list details is shown 1`] = `
                     <div
                       className="droppable-image-overlay"
                     >
-                      
+
                     </div>
                   </div>
                   <span
@@ -128,20 +128,34 @@ exports[`ListCreate list details is shown 1`] = `
         <div
           className="list-drag"
         >
-          <BookSearchSuggester
-            list={
-              Object {
-                "description": "some description",
-                "id": "current-list-id",
-                "list": Array [],
-                "open": true,
-                "public": true,
-                "social": true,
-                "title": "some title",
-              }
-            }
-            onSubmit={[Function]}
-          />
+          <div
+            className="suggestion-list"
+          >
+            <div
+              className="react-autosuggest__container"
+            >
+              <input
+                aria-activedescendant={null}
+                aria-autocomplete="list"
+                aria-expanded={false}
+                aria-owns="react-autowhatever-1"
+                autoComplete="off"
+                className="form-control suggestion-list__search"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Skriv titel eller forfatter"
+                role="combobox"
+                type="text"
+                value=""
+              />
+              <div
+                className="react-autosuggest__suggestions-container"
+                id="react-autowhatever-1"
+              />
+            </div>
+          </div>
           <div
             className="drag-list "
           />
@@ -230,9 +244,9 @@ exports[`ListCreate list details is shown 1`] = `
             }
           }
         >
-           
+
           |
-           
+
         </span>
         <Link
           href="/profile"
@@ -285,7 +299,7 @@ exports[`ListCreate renders a list with multiple books 1`] = `
                 type="text"
                 value="some title"
               />
-              
+
             </span>
             <textarea
               className="form-control list-details__description"
@@ -349,7 +363,7 @@ exports[`ListCreate renders a list with multiple books 1`] = `
                     <div
                       className="droppable-image-overlay"
                     >
-                      
+
                     </div>
                   </div>
                   <span
@@ -377,6 +391,7 @@ exports[`ListCreate renders a list with multiple books 1`] = `
         <div
           className="list-drag"
         >
+<<<<<<< HEAD
           <BookSearchSuggester
             list={
               Object {
@@ -423,6 +438,36 @@ exports[`ListCreate renders a list with multiple books 1`] = `
             }
             onSubmit={[Function]}
           />
+=======
+          <div
+            className="suggestion-list"
+          >
+            <div
+              className="react-autosuggest__container"
+            >
+              <input
+                aria-activedescendant={null}
+                aria-autocomplete="list"
+                aria-expanded={false}
+                aria-owns="react-autowhatever-1"
+                autoComplete="off"
+                className="form-control suggestion-list__search"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Skriv titel eller forfatter"
+                role="combobox"
+                type="text"
+                value=""
+              />
+              <div
+                className="react-autosuggest__suggestions-container"
+                id="react-autowhatever-1"
+              />
+            </div>
+          </div>
+>>>>>>> 870d9f7cc5aca361f4f11581be4f5bcd63faaebb
           <div
             className="drag-list "
           >
@@ -683,9 +728,9 @@ exports[`ListCreate renders a list with multiple books 1`] = `
             }
           }
         >
-           
+
           |
-           
+
         </span>
         <Link
           href="/profile"
@@ -738,7 +783,7 @@ exports[`ListCreate renders a list with one book 1`] = `
                 type="text"
                 value="some title"
               />
-              
+
             </span>
             <textarea
               className="form-control list-details__description"
@@ -802,7 +847,7 @@ exports[`ListCreate renders a list with one book 1`] = `
                     <div
                       className="droppable-image-overlay"
                     >
-                      
+
                     </div>
                   </div>
                   <span
@@ -830,6 +875,7 @@ exports[`ListCreate renders a list with one book 1`] = `
         <div
           className="list-drag"
         >
+<<<<<<< HEAD
           <BookSearchSuggester
             list={
               Object {
@@ -856,6 +902,36 @@ exports[`ListCreate renders a list with one book 1`] = `
             }
             onSubmit={[Function]}
           />
+=======
+          <div
+            className="suggestion-list"
+          >
+            <div
+              className="react-autosuggest__container"
+            >
+              <input
+                aria-activedescendant={null}
+                aria-autocomplete="list"
+                aria-expanded={false}
+                aria-owns="react-autowhatever-1"
+                autoComplete="off"
+                className="form-control suggestion-list__search"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                placeholder="Skriv titel eller forfatter"
+                role="combobox"
+                type="text"
+                value=""
+              />
+              <div
+                className="react-autosuggest__suggestions-container"
+                id="react-autowhatever-1"
+              />
+            </div>
+          </div>
+>>>>>>> 870d9f7cc5aca361f4f11581be4f5bcd63faaebb
           <div
             className="drag-list "
           >
@@ -1002,9 +1078,9 @@ exports[`ListCreate renders a list with one book 1`] = `
             }
           }
         >
-           
+
           |
-           
+
         </span>
         <Link
           href="/profile"
