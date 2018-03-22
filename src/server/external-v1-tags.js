@@ -30,11 +30,11 @@ async function suggest(q) {
   if (!q) {
     return tags;
   }
-  const tokens = q.split(' ');
+  const tokens = q.toLowerCase().split(' ');
   return tags.filter(tag => {
     const list = tag.title.split(' ');
     return (
-      tokens.filter(word => list.filter(w => w.indexOf(word) === 0).length > 0)
+      tokens.filter(word => list.filter(w => w.toLowerCase().indexOf(word) === 0).length > 0)
         .length === tokens.length
     );
   });
