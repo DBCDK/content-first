@@ -52,6 +52,9 @@
   padding-right: 25px;
   margin-top: -15px;
 }
+.edit-filters .btn {
+  text-transform: capitalize;
+}
 .edit-filters .tags {
   transition: all 0.2s ease-in-out;
   opacity: 1;
@@ -96,6 +99,7 @@
   cursor: pointer;
 }
 .selected-filter {
+  text-transform: capitalize;
   position: relative;
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
@@ -151,6 +155,7 @@
 }
 .tags-suggestion-list .react-autosuggest__suggestion {
   margin-bottom: 5px;
+  text-transform: capitalize;
 }
 .tags-suggestion-list .section-title {
   text-align: right;
