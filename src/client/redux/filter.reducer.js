@@ -1,18 +1,59 @@
 import {taxonomy, getLeaves, getLeavesMap} from '../utils/taxonomy';
-
+const leavesMap = getLeavesMap();
 export const filters = {
-  'Vælg stemning': taxonomy.stemning,
-  'Vælg længde': [
+  Stemning: [
+    leavesMap[5636],
+    leavesMap[5637],
+    leavesMap[5647],
+    leavesMap[5648],
+    leavesMap[5660],
+    leavesMap[5661],
+    leavesMap[5657],
+    leavesMap[5635],
+    leavesMap[5663],
+    leavesMap[5667],
+    leavesMap[5670],
+    leavesMap[5672],
+    leavesMap[5676],
+    leavesMap[5680],
+    leavesMap[5688],
+    leavesMap[5681],
+    leavesMap[5699],
+    leavesMap[5701],
+    leavesMap[5700],
+    leavesMap[5705],
+    leavesMap[5708],
+    leavesMap[5712],
+    leavesMap[5735],
+    leavesMap[5721],
+    leavesMap[5725]
+  ],
+  Længde: [
     {id: 100000, title: 'Kort', custom: true},
     {id: 100001, title: 'Medium længde', custom: true},
     {id: 100002, title: 'Laaaaaaaaaaaaaaaang', custom: true}
   ],
-  'Vælg kvalitetsparametre': [
+  'På biblioteket': [
     {id: 100003, title: 'Er på mange biblioteker', custom: true},
-    {id: -2, title: 'Bibliotekaren anbefaler', custom: true},
-    {id: 100005, title: 'Udlånes meget', custom: true}
+    {id: 100005, title: 'Udlånes meget', custom: true},
+    {id: -2, title: 'Bibliotekaren anbefaler', custom: true}
   ],
-  'Vælg tempo': taxonomy.fortælleteknik.tempo
+  Tempo: taxonomy.fortælleteknik.tempo,
+  'Handlingens tid': [
+    leavesMap[5734],
+    leavesMap[4995],
+    leavesMap[4970],
+    leavesMap[5169],
+    leavesMap[5016],
+    leavesMap[4961]
+  ],
+  Struktur: [
+    leavesMap[5621],
+    leavesMap[5623],
+    leavesMap[5625],
+    leavesMap[5624]
+  ],
+  Skrivestil: [leavesMap[5611], leavesMap[5610], leavesMap[5612]]
 };
 export const filtersMap = getLeavesMap(filters);
 export const filtersMapAll = {...getLeavesMap(), ...filtersMap}; // all tags from taxonomy
