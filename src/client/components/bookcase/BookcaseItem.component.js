@@ -71,7 +71,11 @@ export class BookcaseItem extends React.Component {
           alt={this.props.name + ' bogreol'}
         />
         <div className="row">
-          <div className="col-xs-4 celeb">
+          <div
+            className={`col-xs-4 celeb ${
+              this.props.celeb.descriptionImage ? '' : 'no-description-img'
+            }`}
+          >
             <img
               className="carousel-close"
               src="/static/media/Kryds.e69a54ef.svg"
@@ -81,9 +85,13 @@ export class BookcaseItem extends React.Component {
               }}
             />
             <div className="col-xs-12 celeb-top">
-              <div className="col-xs-12 celeb-img">
-                <img src={this.props.celeb.img} alt={this.props.celeb.name} />
-              </div>
+              {this.props.celeb.descriptionImage ? (
+                <div className="col-xs-12 celeb-img">
+                  <img src={this.props.celeb.img} alt={this.props.celeb.name} />
+                </div>
+              ) : (
+                <div className="celeb-img-placeholder" />
+              )}
               <div className="col-xs-12 celeb-title">
                 <h1>{this.props.celeb.name}</h1>
               </div>
