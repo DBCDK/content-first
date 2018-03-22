@@ -138,7 +138,6 @@ exports[`ListCreate list details is shown 1`] = `
                 aria-activedescendant={null}
                 aria-autocomplete="list"
                 aria-expanded={false}
-                aria-haspopup={false}
                 aria-owns="react-autowhatever-1"
                 autoComplete="off"
                 className="form-control suggestion-list__search"
@@ -226,6 +225,12 @@ exports[`ListCreate list details is shown 1`] = `
             Gem liste
           </button>
         </div>
+        <span
+          className="text-danger"
+          onClick={[Function]}
+        >
+          
+        </span>
         <Link
           href="/profile"
           replace={true}
@@ -379,7 +384,6 @@ exports[`ListCreate renders a list with multiple books 1`] = `
                 aria-activedescendant={null}
                 aria-autocomplete="list"
                 aria-expanded={false}
-                aria-haspopup={false}
                 aria-owns="react-autowhatever-1"
                 autoComplete="off"
                 className="form-control suggestion-list__search"
@@ -639,6 +643,12 @@ exports[`ListCreate renders a list with multiple books 1`] = `
             Gem liste
           </button>
         </div>
+        <span
+          className="text-danger"
+          onClick={[Function]}
+        >
+          
+        </span>
         <Link
           href="/profile"
           replace={true}
@@ -792,7 +802,6 @@ exports[`ListCreate renders a list with one book 1`] = `
                 aria-activedescendant={null}
                 aria-autocomplete="list"
                 aria-expanded={false}
-                aria-haspopup={false}
                 aria-owns="react-autowhatever-1"
                 autoComplete="off"
                 className="form-control suggestion-list__search"
@@ -938,6 +947,12 @@ exports[`ListCreate renders a list with one book 1`] = `
             Gem liste
           </button>
         </div>
+        <span
+          className="text-danger"
+          onClick={[Function]}
+        >
+          
+        </span>
         <Link
           href="/profile"
           replace={true}

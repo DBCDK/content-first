@@ -43,7 +43,6 @@ const listReducer = (state = defaultState, action) => {
       if (!action.id) {
         throw new Error("'id' is missing from action");
       }
-      const lists = {...state.lists};
 
       const list = {
         ...state.lists[action.id],
@@ -69,7 +68,6 @@ const listReducer = (state = defaultState, action) => {
       if (!action.id) {
         throw new Error("'id' is missing from action");
       }
-      const lists = {...state.lists};
 
       const list = {
         ...state.lists[action.id],
