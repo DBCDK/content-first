@@ -188,8 +188,7 @@ export const listMiddleware = store => next => async action => {
     case REMOVE_LIST: {
       const id = action.id;
 
-      next(action);
-      return (async () => {
+      (async () => {
         try {
           await deleteObject({_id: id});
           store.dispatch({type: REMOVE_LIST_SUCCESS, id: id});
@@ -197,6 +196,7 @@ export const listMiddleware = store => next => async action => {
           store.dispatch({type: REMOVE_LIST_ERROR, error, id: id});
         }
       })();
+      return next(action);
     }
     case ADD_ELEMENT_TO_LIST: {
       const {openplatformId} = store.getState().userReducer;
