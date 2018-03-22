@@ -10,23 +10,33 @@
 }
 
 .filter-page-top {
-  color: white;
-  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url('/Filter-bg_v1.jpg');
-  background-size: 1400px;
-  padding: 30px;
+  background: white;
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+.filter-page-top input {
+  font-family: var(--secondary-font);
 }
 .filters {
-  box-shadow: 0px 5px 10px -4px  #888888;
+  /* box-shadow: 0px 5px 10px -4px #888888; */
 }
 .selected-filters {
-
+}
+.selected-filters hr {
+  border-color: black;
+  border-width: 2px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 .add-filter {
   display: inline-block;
-  font-size: 24px;
-  opacity: 0.9;
+  font-size: 14px;
+  padding: 3px 8px;
+  /* opacity: 0.9; */
   vertical-align: middle;
-  margin-top: 20px;
+  /* margin-bottom: -1em; */
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 .sort-options {
   margin-top: 30px;
@@ -36,48 +46,49 @@
   margin-right: 10px;
 }
 .edit-filters {
-  /*transition: all 1.2s ease-in-out;*/
+  /* transition: all 1.2s ease-in-out; */
   background: white;
   padding-bottom: 20px;
+  padding-right: 25px;
+  margin-top: -15px;
+}
+.edit-filters .btn {
+  text-transform: capitalize;
+}
+.edit-filters .tags {
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+.edit-filters .hide-tags {
+  opacity: 0;
 }
 .edit-filters .btn {
   margin-right: 10px;
   margin-top: 10px;
+  padding: 3px 8px;
+  font-size: 13px;
 }
 .edit-filters .btn-inactive {
-  background: #f2dcd6;
-  color: #d4574d;
-  border: 1px #f2dcd6 solid;
+  background: #f3f3f3;
+  color: var(--darkgrey);
+  border: 1px #f3f3f3 solid;
 }
 .edit-filters .btn-active {
-  color: white;
-  background: #fc492d;
-  border: 1px #fc492d solid;
+  /* color: black; */
+  background: #cdcdcd;
+  /* border: 1px var(--orange) solid; */
 }
 .edit-filters .approve {
   font-size: 20px;
   width: 180px;
 }
-.filter-page .dropdown {
-  display: inline-block;
-}
-.filter-page .dropdown span {
-  font-weight: normal;
-  font-size: inherit;
-  font-family: inherit;
-  border-bottom: 1px white solid;
+.selected-filter img {
+  margin-left: 10px;
+  padding-bottom: 2px;
   cursor: pointer;
 }
-.filter-page .dropdown a {
-  font-family: 'Raleway', sans-serif;
-  font-size: 16px;
-}
-.selected-filter span {
-  font-size: 16px;
-  position: absolute;
-  right: 5px;
-  top: 2px;
-  cursor: pointer;
+.selected-filter {
+  vertical-align: top;
 }
 .reset-filters {
   font-size: 16px;
@@ -88,10 +99,11 @@
   cursor: pointer;
 }
 .selected-filter {
+  text-transform: capitalize;
   position: relative;
   font-family: 'Raleway', sans-serif;
-  font-size: 24px;
-  margin-right: 20px;
+  font-size: 16px;
+  margin-right: 10px;
   margin-top: 20px;
   display: inline-block;
   border: 1px solid white;
@@ -99,23 +111,14 @@
   color: white;
   padding: 5px;
   padding-left: 10px;
-  padding-right: 25px;
+  padding-right: 15px;
   vertical-align: top;
+  background: var(--orange);
 }
 
 .filter-page-works {
   margin-top: 80px;
   padding-left: 60px;
-}
-.second-level h4  {
-  cursor: pointer;
-}
-.second-level h4 span {
-  margin-left: 6px;
-  font-size: 12px;
-}
-.first-level {
-  margin-bottom: 50px;
 }
 .contains-selected {
   color: #fc492d;
@@ -124,4 +127,49 @@
   font-size: 26px;
   margin-bottom: 150px;
   margin-top: 150px;
+}
+
+.filter-page .filter-group hr {
+  border: 1px var(--lightgrey) solid;
+}
+.filter-page .filter-group h4 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.tags-suggestion-list {
+  border: 0;
+}
+.tags-suggestion-list input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.tags-suggestion-list:hover {
+  border: 0;
+}
+.tags-suggestion-list .react-autosuggest__suggestions-container {
+  margin-top: 15px;
+  border: 0;
+  color: black;
+  font-family: var(--secondary-font);
+}
+.tags-suggestion-list .react-autosuggest__suggestion {
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+.tags-suggestion-list .section-title {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: -18px;
+  padding-right: 5px;
+  padding-top: 8px;
+  border-top: solid var(--lightgrey) 1px;
+}
+
+.tags-suggestion-list
+  .react-autosuggest__section-container:first-child
+  .section-title {
+  border-top: 0;
 }

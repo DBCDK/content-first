@@ -1,4 +1,6 @@
 import React from 'react';
+import TagsSuggester from './TagsSuggester.component';
+import Kryds from '../svg/KrydsWhite.svg';
 
 const SelectedFilter = props => {
   return (
@@ -9,40 +11,45 @@ const SelectedFilter = props => {
           props.onDisableFilter(props.filter);
         }}
       >
-        X
+        <img style={{width: 10}} src={Kryds} alt="remove" />
       </span>
     </div>
   );
 };
 
-const SelectedFilters = props => {
-  return (
-    <div>
-      <div className="selected-filters text-left">
-        <div className="col-xs-12">
-          {props.selectedFilters.map((filter, idx) => {
-            return (
-              <SelectedFilter
-                key={idx}
-                filter={filter}
-                onDisableFilter={props.onFilterToggle}
-              />
-            );
-          })}
-          <span
-            className={
-              props.edit
-                ? 'add-filter btn btn-success'
-                : 'add-filter btn btn-primary'
-            }
-            onClick={props.onEditFilterToggle}
-          >
-            Tilføj filter
-          </span>
-        </div>
-      </div>
-    </div>
-  );
-};
+class SelectedFilters extends React.Component {
+  componentDidMount() {
+    if (this.props.selectedFilters.length === 0) {
+      this.autosuggestRef.input.focus();
+    }
+  }
 
+  render() {
+    return (
+      <div className="selected-filters text-left col-xs-12">
+        {this.props.selectedFilters.map((filter, idx) => {
+          return (
+            <SelectedFilter
+              key={idx}
+              filter={filter}
+              onDisableFilter={this.props.onFilterToggle}
+            />
+          );
+        })}
+        <TagsSuggester
+          autosuggestRef={r => {
+            this.autosuggestRef = r;
+          }}
+          value={this.props.query}
+          onFocus={this.props.onFocus}
+          onChange={this.props.onQueryChange}
+          onSuggestionSelected={(e, {suggestion}) => {
+            this.props.onFilterToggle(suggestion);
+          }}
+        />
+        <hr />
+      </div>
+    );
+  }
+}
 export default SelectedFilters;

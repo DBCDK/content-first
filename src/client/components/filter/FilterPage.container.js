@@ -15,6 +15,10 @@ import {filtersMapAll} from '../../redux/filter.reducer';
 import {isEqual} from 'lodash';
 
 class FilterPage extends React.Component {
+  constructor() {
+    super();
+    this.state = {query: '', expanded: false};
+  }
   toggleFilter(filterId) {
     const {selectedTagIds} = this.props;
     const tags = selectedTagIds.includes(filterId)
@@ -56,22 +60,26 @@ class FilterPage extends React.Component {
             <SelectedFilters
               selectedFilters={this.props.selectedTags}
               filters={this.props.filters}
-              edit={this.props.editFilters}
+              edit={this.state.expanded}
               onEditFilterToggle={this.props.editFilterToggle}
+              query={this.state.query}
+              onQueryChange={e => this.setState({query: e.target.value})}
               onFilterToggle={filter => {
                 this.toggleFilter(filter.id);
               }}
+              onFocus={() => this.setState({expanded: true})}
             />
           </div>
           <EditFilters
-            edit={this.props.editFilters}
+            showTags={!this.state.query}
+            edit={this.state.expanded}
             filters={this.props.filters}
             selectedFilters={this.props.selectedTags}
             expandedFilters={this.props.expandedFilters}
             onFilterToggle={filter => {
               this.toggleFilter(filter.id);
             }}
-            onEditFilterToggle={this.props.editFilterToggle}
+            onEditFilterToggle={() => this.setState({expanded: false})}
             onExpandFiltersToggle={this.props.expandFiltersToggle}
           />
         </div>

@@ -1,6 +1,31 @@
 import React from 'react';
-import intersection from 'lodash.intersection';
+import Kryds from '../svg/Kryds.svg';
 
+const FilterGroup = ({
+  title,
+  filters,
+  selectedFilters,
+  onFilterToggle,
+  className,
+  showDelimiter
+}) => (
+  <div className={`filter-group ${className}`}>
+    {showDelimiter && <hr className="mb1 mt2" />}
+    <h4 className="mb0">{title}</h4>
+    {filters[title].map(f => {
+      return (
+        <FilterButton
+          key={f.id}
+          filter={f}
+          selected={
+            selectedFilters.map(selected => selected.id).indexOf(f.id) >= 0
+          }
+          onFilterToggle={onFilterToggle}
+        />
+      );
+    })}
+  </div>
+);
 const FilterButton = props => {
   return (
     <span
@@ -22,79 +47,61 @@ const EditFilters = props => {
           ? 'edit-filters col-xs-12 text-left'
           : 'edit-filters col-xs-12 text-left hidden'
       }
+      style={props.style}
     >
-      {Object.entries(props.filters).map(([title, values]) => {
-        return (
-          <div key={title} className="first-level col-xs-4">
-            <h3>{title}</h3>
-            {!Array.isArray(values) &&
-              Object.entries(values).map(([title2, values2]) => {
-                const id = title2;
-                // find selected filters of this category
-                const selected = intersection(
-                  props.selectedFilters.map(f => f.id),
-                  values2.map(f => f.id)
-                );
-                const selectedClass =
-                  selected.length > 0 ? ' contains-selected' : '';
-                return (
-                  <div
-                    key={id}
-                    className={`second-level col-xs-12${selectedClass}`}
-                  >
-                    <h4
-                      onClick={() => {
-                        props.onExpandFiltersToggle(title2);
-                      }}
-                    >
-                      {title2}
-                      <span>{values2.length}</span>
-                    </h4>
-                    {props.expandedFilters[id] &&
-                      values2.map(f => {
-                        return (
-                          <FilterButton
-                            key={f.title}
-                            filter={f}
-                            selected={
-                              props.selectedFilters
-                                .map(s => s.id)
-                                .indexOf(f.id) >= 0
-                            }
-                            onFilterToggle={props.onFilterToggle}
-                          />
-                        );
-                      })}
-                  </div>
-                );
-              })}
-            {Array.isArray(values) &&
-              values.map(f => {
-                return (
-                  <div key={f.title} className="second-level">
-                    <FilterButton
-                      filter={f}
-                      selected={
-                        props.selectedFilters
-                          .map(selected => selected.id)
-                          .indexOf(f.id) >= 0
-                      }
-                      onFilterToggle={props.onFilterToggle}
-                    />
-                  </div>
-                );
-              })}
+      <div className={props.showTags ? 'tags' : 'tags hide-tags'}>
+        <FilterGroup className="col-xs-4" title="Stemning" {...props} />
+        <div className="col-xs-8">
+          <div className="row">
+            <FilterGroup className="col-xs-6" title="Længde" {...props} />
+            <FilterGroup
+              className="col-xs-6"
+              title="På biblioteket"
+              {...props}
+            />
           </div>
-        );
-      })}
-      <div className="col-xs-12 text-center">
-        <span
-          className="btn btn-success approve"
-          onClick={props.onEditFilterToggle}
-        >
-          Luk
-        </span>
+          <div className="row">
+            <FilterGroup
+              className="col-xs-6"
+              title="Tempo"
+              showDelimiter={true}
+              {...props}
+            />
+            <FilterGroup
+              className="col-xs-6"
+              title="Handlingens tid"
+              showDelimiter={true}
+              {...props}
+            />
+          </div>
+          <div className="row">
+            <FilterGroup
+              className="col-xs-6"
+              title="Struktur"
+              showDelimiter={true}
+              {...props}
+            />
+            <FilterGroup
+              className="col-xs-6"
+              title="Skrivestil"
+              showDelimiter={true}
+              {...props}
+            />
+          </div>
+        </div>
       </div>
+      <img
+        src={Kryds}
+        style={{
+          width: 10,
+          position: 'absolute',
+          right: 30,
+          top: 10,
+          cursor: 'pointer'
+        }}
+        onClick={props.onEditFilterToggle}
+        alt="Luk"
+      />
     </div>
   );
 };
