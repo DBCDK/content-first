@@ -25,7 +25,7 @@ export default function TopBar(props) {
       </div>
       <div className="col-xs-6 text-right login">
         <div className="inline">
-          <Link href="/filter">
+          <Link href="/find">
             <i className="glyphicon glyphicon-search icon" />
           </Link>
         </div>
