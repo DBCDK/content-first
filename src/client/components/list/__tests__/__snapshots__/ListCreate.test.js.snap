@@ -7,7 +7,7 @@ exports[`ListCreate list details is shown 1`] = `
   <h1
     className="list-creator__headline"
   >
-    Opret liste
+    Redigér liste
   </h1>
   <div
     className="row"
@@ -214,14 +214,31 @@ exports[`ListCreate list details is shown 1`] = `
         <span
           className="text-danger"
           onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
         >
-          
+          Slet liste
+        </span>
+        <span
+          className="text-danger"
+          style={
+            Object {
+              "cursor": "default",
+            }
+          }
+        >
+           
+          |
+           
         </span>
         <Link
           href="/profile"
           replace={true}
         >
-          Fortryd oprettelse af liste
+          Fortryd redigering af liste
         </Link>
       </form>
     </div>
@@ -239,7 +256,7 @@ exports[`ListCreate renders a list with multiple books 1`] = `
   <h1
     className="list-creator__headline"
   >
-    Opret liste
+    Redigér liste
   </h1>
   <div
     className="row"
@@ -650,14 +667,31 @@ exports[`ListCreate renders a list with multiple books 1`] = `
         <span
           className="text-danger"
           onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
         >
-          
+          Slet liste
+        </span>
+        <span
+          className="text-danger"
+          style={
+            Object {
+              "cursor": "default",
+            }
+          }
+        >
+           
+          |
+           
         </span>
         <Link
           href="/profile"
           replace={true}
         >
-          Fortryd oprettelse af liste
+          Fortryd redigering af liste
         </Link>
       </form>
     </div>
@@ -675,7 +709,7 @@ exports[`ListCreate renders a list with one book 1`] = `
   <h1
     className="list-creator__headline"
   >
-    Opret liste
+    Redigér liste
   </h1>
   <div
     className="row"
@@ -952,14 +986,31 @@ exports[`ListCreate renders a list with one book 1`] = `
         <span
           className="text-danger"
           onClick={[Function]}
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
         >
-          
+          Slet liste
+        </span>
+        <span
+          className="text-danger"
+          style={
+            Object {
+              "cursor": "default",
+            }
+          }
+        >
+           
+          |
+           
         </span>
         <Link
           href="/profile"
           replace={true}
         >
-          Fortryd oprettelse af liste
+          Fortryd redigering af liste
         </Link>
       </form>
     </div>

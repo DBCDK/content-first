@@ -137,10 +137,11 @@ const ListCheckbox = ({name, checked, onClick, text}) => (
 );
 
 export class ListCreator extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      hasError: false
+      hasError: false,
+      isNew: false
     };
   }
   async componentWillMount() {
@@ -151,7 +152,18 @@ export class ListCreator extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentList.deletingIsLoading) {
+    if (
+      !this.props.currentList &&
+      nextProps.currentList &&
+      !nextProps.currentList.title
+    ) {
+      this.setState({isNew: true});
+    }
+    if (
+      this.props.currentList &&
+      this.props.currentList.deletingIsLoading &&
+      !nextProps.currentList
+    ) {
       this.props.exitList('/profile');
     }
   }
@@ -190,7 +202,7 @@ export class ListCreator extends React.Component {
       return null;
     }
 
-    const isNew = this.props.currentList._created ? false : true;
+    const isNew = this.state.isNew;
 
     return (
       <div className="list-creator">
@@ -248,6 +260,7 @@ export class ListCreator extends React.Component {
               </div>
               <span
                 className="text-danger"
+                style={{cursor: 'pointer'}}
                 onClick={() =>
                   this.props.confirmDeleteModal(this.props.currentList.id)
                 }
@@ -257,12 +270,19 @@ export class ListCreator extends React.Component {
                 ) : this.props.currentList.deletingIsLoading ? (
                   <span>
                     <Spinner size="12px" />{' '}
-                    <span className="text-danger"> | </span>
                   </span>
                 ) : (
-                  'Slet liste | '
+                  'Slet liste'
                 )}
               </span>
+              {isNew ? (
+                ''
+              ) : (
+                <span className="text-danger" style={{cursor: 'default'}}>
+                  {' '}
+                  |{' '}
+                </span>
+              )}
               <Link href="/profile" replace={true}>
                 {isNew
                   ? 'Fortryd oprettelse af liste'

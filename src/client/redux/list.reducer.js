@@ -59,10 +59,10 @@ const listReducer = (state = defaultState, action) => {
       }
 
       const lists = {...state.lists};
+
       delete lists[action.id];
-      return Object.assign({}, state, {
-        lists: {...state.lists}
-      });
+
+      return Object.assign({}, state, {lists});
     }
     case REMOVE_LIST_ERROR: {
       if (!action.id) {
