@@ -7,7 +7,8 @@ import {
   fetchSearchResults,
   saveShortList,
   loadShortList,
-  addImage
+  addImage,
+  deleteObject
 } from '../utils/requester';
 import {ON_LOGOUT_RESPONSE} from './user.reducer';
 import {
@@ -23,6 +24,9 @@ import {
 import {REQUEST_USER} from './users';
 import {
   ADD_LIST,
+  REMOVE_LIST,
+  REMOVE_LIST_SUCCESS,
+  REMOVE_LIST_ERROR,
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
@@ -179,6 +183,19 @@ export const listMiddleware = store => next => async action => {
       if (!action.list.owner) {
         action.list.owner = store.getState().userReducer.openplatformId;
       }
+      return next(action);
+    }
+    case REMOVE_LIST: {
+      const id = action.id;
+
+      (async () => {
+        try {
+          await deleteObject({_id: id});
+          store.dispatch({type: REMOVE_LIST_SUCCESS, id: id});
+        } catch (error) {
+          store.dispatch({type: REMOVE_LIST_ERROR, error, id: id});
+        }
+      })();
       return next(action);
     }
     case ADD_ELEMENT_TO_LIST: {

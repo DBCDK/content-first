@@ -178,6 +178,16 @@ exports[`listReducer remove list 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "deletingIsLoading": true,
+    "description": "",
+    "id": "some-id-1",
+    "list": Array [],
+    "owner": null,
+    "title": "some list 1",
+    "type": "CUSTOM_LIST",
+  },
+  Object {
+    "_created": "1234",
     "description": "",
     "id": "some-id-2",
     "list": Array [],

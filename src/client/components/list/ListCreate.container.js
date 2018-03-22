@@ -8,6 +8,7 @@ import {
   storeList,
   getListById,
   addList,
+  removeList,
   ADD_LIST_IMAGE
 } from '../../redux/list.reducer';
 import {saveList} from '../../utils/requestLists';
@@ -18,6 +19,7 @@ import BookSearchSuggester from './BookSearchSuggester';
 import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
 import ImageUpload from '../general/ImageUpload.component';
+import Spinner from '../general/Spinner.component';
 const ListDetails = ({
   id,
   title,
@@ -135,10 +137,11 @@ const ListCheckbox = ({name, checked, onClick, text}) => (
 );
 
 export class ListCreator extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      hasError: false
+      hasError: false,
+      isNew: false
     };
   }
   async componentWillMount() {
@@ -147,6 +150,24 @@ export class ListCreator extends React.Component {
       this.props.createList();
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      !this.props.currentList &&
+      nextProps.currentList &&
+      !nextProps.currentList.title
+    ) {
+      this.setState({isNew: true});
+    }
+    if (
+      this.props.currentList &&
+      this.props.currentList.deletingIsLoading &&
+      !nextProps.currentList
+    ) {
+      this.props.exitList('/profile');
+    }
+  }
+
   componentWillUnmount() {
     // reset any unsaved changes
     // for now we just reload users lists from backend
@@ -172,11 +193,17 @@ export class ListCreator extends React.Component {
       [selector]: !currentList[selector]
     });
   }
+  // deleteList = () => {
+  //   // this.props.removeList(this.props.currentList.id);
+  //   alert('deleted');
+  // };
   render() {
     if (!this.props.currentList) {
       return null;
     }
-    const isNew = this.props.currentList._created ? false : true;
+
+    const isNew = this.state.isNew;
+
     return (
       <div className="list-creator">
         <h1 className="list-creator__headline">
@@ -231,6 +258,31 @@ export class ListCreator extends React.Component {
                   Gem liste
                 </button>
               </div>
+              <span
+                className="text-danger"
+                style={{cursor: 'pointer'}}
+                onClick={() =>
+                  this.props.confirmDeleteModal(this.props.currentList.id)
+                }
+              >
+                {isNew ? (
+                  ''
+                ) : this.props.currentList.deletingIsLoading ? (
+                  <span>
+                    <Spinner size="12px" />{' '}
+                  </span>
+                ) : (
+                  'Slet liste'
+                )}
+              </span>
+              {isNew ? (
+                ''
+              ) : (
+                <span className="text-danger" style={{cursor: 'default'}}>
+                  {' '}
+                  |{' '}
+                </span>
+              )}
               <Link href="/profile" replace={true}>
                 {isNew
                   ? 'Fortryd oprettelse af liste'
@@ -257,6 +309,7 @@ export const mapDispatchToProps = dispatch => ({
     await dispatch(storeList(list.id));
     dispatch({type: HISTORY_REPLACE, path: '/profile'});
   },
+  exitList: path => dispatch({type: HISTORY_REPLACE, path: path}),
   addElementToList: (book, id) => dispatch(addElementToList(book, id)),
   removeElementFromList: (book, id) =>
     dispatch(removeElementFromList(book, id)),
@@ -267,6 +320,31 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: HISTORY_REPLACE,
       path: `/lister/${id}/rediger`
+    });
+  },
+  confirmDeleteModal: id => {
+    dispatch({
+      type: 'OPEN_MODAL',
+      modal: 'confirm',
+      context: {
+        title: 'Skal denne liste slettes?',
+        reason: 'Er du sikker på du vil slette den valgte liste.',
+        confirmText: 'Slet liste',
+        onConfirm: () =>
+          dispatch(
+            removeList(id),
+            dispatch({
+              type: 'CLOSE_MODAL',
+              modal: 'confirm'
+            })
+          ),
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        }
+      }
     });
   }
 });
