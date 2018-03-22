@@ -20,8 +20,6 @@ import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
 import ImageUpload from '../general/ImageUpload.component';
 import Spinner from '../general/Spinner.component';
-import Modal from '../modals/Modal.component';
-import {OPEN_MODAL, CLOSE_MODAL} from '../../redux/modal.reducer';
 const ListDetails = ({
   id,
   title,
@@ -142,8 +140,7 @@ export class ListCreator extends React.Component {
   constructor() {
     super();
     this.state = {
-      hasError: false,
-      showConfirmDeleteModal: false
+      hasError: false
     };
   }
   async componentWillMount() {
@@ -184,10 +181,10 @@ export class ListCreator extends React.Component {
       [selector]: !currentList[selector]
     });
   }
-  deleteList = () => {
-    // this.props.removeList(this.props.currentList.id);
-    alert('deleted');
-  };
+  // deleteList = () => {
+  //   // this.props.removeList(this.props.currentList.id);
+  //   alert('deleted');
+  // };
   render() {
     if (!this.props.currentList) {
       return null;
@@ -251,7 +248,9 @@ export class ListCreator extends React.Component {
               </div>
               <span
                 className="text-danger"
-                onClick={this.props.confirmDeleteModal}
+                onClick={() =>
+                  this.props.confirmDeleteModal(this.props.currentList.id)
+                }
               >
                 {isNew ? (
                   ''
@@ -286,7 +285,6 @@ const mapStateToProps = (state, ownProps) => {
 export const mapDispatchToProps = dispatch => ({
   addImage: (id, image) => dispatch({type: ADD_LIST_IMAGE, image, id}),
   updateList: data => dispatch(updateList(data)),
-  removeList: id => dispatch(removeList(id)),
   storeList: async list => {
     await dispatch(storeList(list.id));
     dispatch({type: HISTORY_REPLACE, path: '/profile'});
@@ -304,7 +302,7 @@ export const mapDispatchToProps = dispatch => ({
       path: `/lister/${id}/rediger`
     });
   },
-  confirmDeleteModal: () => {
+  confirmDeleteModal: id => {
     dispatch({
       type: 'OPEN_MODAL',
       modal: 'confirm',
@@ -312,7 +310,14 @@ export const mapDispatchToProps = dispatch => ({
         title: 'Skal denne liste slettes?',
         reason: 'Er du sikker på du vil slette den valgte liste.',
         confirmText: 'Slet liste',
-        onConfirm: '',
+        onConfirm: () =>
+          dispatch(
+            removeList(id),
+            dispatch({
+              type: 'CLOSE_MODAL',
+              modal: 'confirm'
+            })
+          ),
         onCancel: () => {
           dispatch({
             type: 'CLOSE_MODAL',
