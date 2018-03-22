@@ -31,8 +31,8 @@ exports[`renders without crashing 1`] = `
           className="inline"
         >
           <a
-            className=""
-            href="/filter"
+            className="list-card-nohover"
+            href="/find"
             onClick={[Function]}
           >
             <i
