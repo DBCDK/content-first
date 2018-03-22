@@ -34,8 +34,9 @@ async function suggest(q) {
   return tags.filter(tag => {
     const list = tag.title.split(' ');
     return (
-      tokens.filter(word => list.filter(w => w.toLowerCase().indexOf(word) === 0).length > 0)
-        .length === tokens.length
+      tokens.filter(
+        word => list.filter(w => w.toLowerCase().indexOf(word) === 0).length > 0
+      ).length === tokens.length
     );
   });
 }
