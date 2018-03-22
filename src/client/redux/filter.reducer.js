@@ -31,7 +31,7 @@ export const filters = {
   Længde: [
     {id: 100000, title: 'Kort', custom: true},
     {id: 100001, title: 'Medium længde', custom: true},
-    {id: 100002, title: 'Lang', custom: true}
+    {id: 100002, title: 'Laaaaaaaaaaaaaaaang', custom: true}
   ],
   'På biblioteket': [
     {id: 100003, title: 'Er på mange biblioteker', custom: true},

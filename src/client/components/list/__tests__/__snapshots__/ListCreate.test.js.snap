@@ -128,34 +128,20 @@ exports[`ListCreate list details is shown 1`] = `
         <div
           className="list-drag"
         >
-          <div
-            className="suggestion-list"
-          >
-            <div
-              className="react-autosuggest__container"
-            >
-              <input
-                aria-activedescendant={null}
-                aria-autocomplete="list"
-                aria-expanded={false}
-                aria-owns="react-autowhatever-1"
-                autoComplete="off"
-                className="form-control suggestion-list__search"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                placeholder="Skriv titel eller forfatter"
-                role="combobox"
-                type="text"
-                value=""
-              />
-              <div
-                className="react-autosuggest__suggestions-container"
-                id="react-autowhatever-1"
-              />
-            </div>
-          </div>
+          <BookSearchSuggester
+            list={
+              Object {
+                "description": "some description",
+                "id": "current-list-id",
+                "list": Array [],
+                "open": true,
+                "public": true,
+                "social": true,
+                "title": "some title",
+              }
+            }
+            onSubmit={[Function]}
+          />
           <div
             className="drag-list "
           />
@@ -368,34 +354,52 @@ exports[`ListCreate renders a list with multiple books 1`] = `
         <div
           className="list-drag"
         >
-          <div
-            className="suggestion-list"
-          >
-            <div
-              className="react-autosuggest__container"
-            >
-              <input
-                aria-activedescendant={null}
-                aria-autocomplete="list"
-                aria-expanded={false}
-                aria-owns="react-autowhatever-1"
-                autoComplete="off"
-                className="form-control suggestion-list__search"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                placeholder="Skriv titel eller forfatter"
-                role="combobox"
-                type="text"
-                value=""
-              />
-              <div
-                className="react-autosuggest__suggestions-container"
-                id="react-autowhatever-1"
-              />
-            </div>
-          </div>
+          <BookSearchSuggester
+            list={
+              Object {
+                "description": "some description",
+                "id": "current-list-id",
+                "list": Array [
+                  Object {
+                    "book": Object {
+                      "creator": "some creator3",
+                      "pid": "pid3",
+                      "title": "some title3",
+                    },
+                    "description": "some description3",
+                    "links": Object {
+                      "cover": "/cover3",
+                    },
+                  },
+                  Object {
+                    "book": Object {
+                      "creator": "some creator2",
+                      "pid": "pid2",
+                      "title": "some title2",
+                    },
+                    "description": "some description2",
+                    "links": Object {
+                      "cover": "/cover2",
+                    },
+                  },
+                  Object {
+                    "book": Object {
+                      "creator": "some creator1",
+                      "pid": "pid1",
+                      "title": "some title1",
+                    },
+                    "description": "some description1",
+                    "links": Object {
+                      "cover": "/cover1",
+                    },
+                  },
+                ],
+                "public": false,
+                "title": "some title",
+              }
+            }
+            onSubmit={[Function]}
+          />
           <div
             className="drag-list "
           >
@@ -780,34 +784,32 @@ exports[`ListCreate renders a list with one book 1`] = `
         <div
           className="list-drag"
         >
-          <div
-            className="suggestion-list"
-          >
-            <div
-              className="react-autosuggest__container"
-            >
-              <input
-                aria-activedescendant={null}
-                aria-autocomplete="list"
-                aria-expanded={false}
-                aria-owns="react-autowhatever-1"
-                autoComplete="off"
-                className="form-control suggestion-list__search"
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                onKeyDown={[Function]}
-                placeholder="Skriv titel eller forfatter"
-                role="combobox"
-                type="text"
-                value=""
-              />
-              <div
-                className="react-autosuggest__suggestions-container"
-                id="react-autowhatever-1"
-              />
-            </div>
-          </div>
+          <BookSearchSuggester
+            list={
+              Object {
+                "description": "some description",
+                "id": "current-list-id",
+                "list": Array [
+                  Object {
+                    "book": Object {
+                      "creator": "some creator1",
+                      "pid": "pid1",
+                      "title": "some title1",
+                    },
+                    "description": "some description1",
+                    "links": Object {
+                      "cover": "/cover1",
+                    },
+                  },
+                ],
+                "open": false,
+                "public": false,
+                "social": false,
+                "title": "some title",
+              }
+            }
+            onSubmit={[Function]}
+          />
           <div
             className="drag-list "
           >
