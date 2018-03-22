@@ -1,12 +1,10 @@
 import React from 'react';
 import request from 'superagent';
 import Autosuggest from 'react-autosuggest';
-import {getLeaves} from '../../utils/taxonomy';
-const tagObjects = getLeaves();
 
-const search = query => {
+const parseSearchRes = (query, response) => {
   const result = {};
-  tagObjects
+  response
     .filter(tagObject => {
       if (tagObject.title.toLowerCase().search(query.toLowerCase()) > -1) {
         return true;
@@ -64,8 +62,9 @@ class TagsSuggester extends React.Component {
     };
   }
 
-  onSuggestionsFetchRequested({value}) {
-    const result = search(value);
+  async onSuggestionsFetchRequested({value}) {
+    const response = await request.get('/v1/tags/suggest').query({q: value});
+    const result = parseSearchRes(value, response.body.data.tags);
     this.setState({suggestions: result});
   }
 

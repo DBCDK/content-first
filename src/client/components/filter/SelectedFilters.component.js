@@ -18,10 +18,6 @@ const SelectedFilter = props => {
 };
 
 class SelectedFilters extends React.Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     if (this.props.selectedFilters.length === 0) {
       this.autosuggestRef.input.focus();
