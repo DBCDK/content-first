@@ -24,6 +24,11 @@ export default function TopBar(props) {
         </div>
       </div>
       <div className="col-xs-6 text-right login">
+        <div className="inline">
+          <Link href="/filter">
+            <i className="glyphicon glyphicon-search icon" />
+          </Link>
+        </div>
         <ShortListDropDown />
         {!props.user.isLoggedIn && (
           <span

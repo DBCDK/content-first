@@ -28,6 +28,19 @@ exports[`renders without crashing 1`] = `
         className="col-xs-6 text-right login"
       >
         <div
+          className="inline"
+        >
+          <a
+            className=""
+            href="/filter"
+            onClick={[Function]}
+          >
+            <i
+              className="glyphicon glyphicon-search icon"
+            />
+          </a>
+        </div>
+        <div
           className="short-list"
         >
           <div
