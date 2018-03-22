@@ -79,7 +79,9 @@ export class BooksBelt extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     recommendedBooks: getRecommendedBooks(state, ownProps.tags, 20),
-    tagObjects: ownProps.tags.map(id => filtersMapAll[id])
+    tagObjects: ownProps.tags.map(tag => {
+      return filtersMapAll[tag.id || tag];
+    })
   };
 };
 

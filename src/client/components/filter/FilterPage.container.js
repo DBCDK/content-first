@@ -106,7 +106,7 @@ const mapStateToProps = state => {
   return {
     recommendations: getRecommendedBooks(state, selectedTagIds, 40),
     selectedTagIds,
-    selectedTags: selectedTagIds.map(id => filtersMapAll[id]),
+    selectedTags: selectedTagIds.map(tag => filtersMapAll[tag.id || tag]),
     filters: state.filterReducer.filters,
     editFilters: state.filterReducer.editFilters,
     expandedFilters: state.filterReducer.expandedFilters
