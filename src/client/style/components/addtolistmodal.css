@@ -30,7 +30,7 @@
 }
 
 .list-overview input:checked + label {
-  background-color: #5bc0de;
+  background-color: #337ab7;
   color: white;
 }
 .add-to-list--modal .work-item-small {

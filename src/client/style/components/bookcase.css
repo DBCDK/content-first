@@ -77,7 +77,7 @@ section div.row {
 section .row .celeb {
   height: 100%;
   position: relative;
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.85);
   transition: all 0.3s ease-in;
   overflow: hidden;
 }
@@ -108,12 +108,10 @@ section .row .celeb .celeb-img img {
   width: 150px;
   height: auto;
   border-radius: 50%;
-  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease-in;
 }
 
 section .row .celeb .celeb-title {
-  height: 50px;
   float: right;
   transition: all 0.3s ease-in;
 }
@@ -142,19 +140,25 @@ section .row .celeb .celeb-description p {
 
 section .row .celeb .celeb-description .celeb-books-btn {
   margin-top: 15px;
-}
-
-section .row .celeb .celeb-description p span.highlight {
-  font-weight: 700;
-  font-style: italic;
-  font-family: var(--secondary-font);
-  color: var(--darkgrey);
-  font-size: 14px;
+  background-color: var(--greybrown);
+  color: white;
 }
 
 section .row .celeb .celeb-bottom {
   padding: 0;
   height: calc(100% - 140px);
+}
+
+/* If no description image */
+
+section .row .celeb .celeb-img-placeholder {
+  height: 150px;
+  transition: all 0.3s ease-in;
+  margin-top: 10%;
+}
+
+section .row .celeb.no-description-img .celeb-bottom {
+  height: calc(100% - 100px);
 }
 
 /* !NOTIZE: All screensizes above 992px */
@@ -182,6 +186,26 @@ section .row .celeb .celeb-bottom {
     text-align: left;
     transition: all 0s ease-in;
   }
+
+  /* If no description image */
+
+  .section-active .row .celeb .celeb-img-placeholder {
+    height: 0;
+    margin-top: 0;
+  }
+
+  .section-active .row .celeb.no-description-img .celeb-top {
+    padding-left: 0;
+    height: 100px;
+  }
+  .section-active .row .celeb.no-description-img .celeb-top .celeb-title {
+    width: 100%;
+    text-align: center;
+  }
+  .section-active .row .celeb.no-description-img .celeb-top .celeb-title h1 {
+    padding-top: 10px;
+    text-align: center;
+  }
 }
 
 /* !NOTIZE: All screensizes below 1200px */
@@ -197,12 +221,28 @@ section .row .celeb .celeb-bottom {
     text-align: left;
   }
 
+  .section-active .row .celeb .celeb-top {
+    height: 110px;
+  }
+
   .section-active .row .celeb .celeb-bottom {
     height: calc(100% - 110px);
   }
 
-  .section-active .row .celeb .celeb-top {
-    height: 110px;
+  /* If no description image */
+
+  section .row .celeb .celeb-img-placeholder {
+    height: 15%;
+  }
+
+  .section-active .row .celeb .celeb-img-placeholder {
+    height: 0;
+  }
+  .section-active .row .celeb.no-description-img .celeb-top {
+    height: 90px;
+  }
+  .section-active .row .celeb.no-description-img .celeb-bottom {
+    height: calc(100% - 90px);
   }
 }
 
@@ -214,6 +254,7 @@ section .row .celeb .celeb-bottom {
   section .row .celeb .celeb-description {
     padding: 0;
   }
+
   section .row .celeb .celeb-img img {
     width: 75px;
   }
@@ -241,5 +282,23 @@ section .row .celeb .celeb-bottom {
   .bookcase .slick-dots-bookcase {
     right: 0px;
     bottom: -70px;
+  }
+
+  /* If no description image */
+
+  section .row .celeb .celeb-img-placeholder {
+    height: 5%;
+  }
+
+  .section .row .celeb .celeb-img-placeholder {
+    display: none;
+  }
+
+  .section-active .row .celeb.no-description-img .celeb-top {
+    margin-top: -60px;
+  }
+
+  .section-active .row .celeb.no-description-img .celeb-bottom {
+    height: calc(100% - 30px);
   }
 }

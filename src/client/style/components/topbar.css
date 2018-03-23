@@ -20,6 +20,7 @@
   margin-right: 25px;
   line-height: 35px;
 }
+
 .topbar .topbar-logout {
   line-height: 35px;
 }
@@ -43,9 +44,9 @@
 }
 
 .topbar .icon {
-  margin-right: 25px;
+  margin: 6px 25px 0 0;
   display: inline-block;
-  font-size: 18px;
+  font-size: 22px;
   vertical-align: middle;
   color: var(--darkgrey);
 }

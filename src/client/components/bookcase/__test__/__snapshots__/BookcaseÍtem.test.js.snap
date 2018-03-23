@@ -13,7 +13,7 @@ exports[`BookcaseItem renders initial component 1`] = `
     className="row"
   >
     <div
-      className="col-xs-4 celeb"
+      className="col-xs-4 celeb no-description-img"
     >
       <img
         alt="luk"
@@ -25,13 +25,8 @@ exports[`BookcaseItem renders initial component 1`] = `
         className="col-xs-12 celeb-top"
       >
         <div
-          className="col-xs-12 celeb-img"
-        >
-          <img
-            alt="Bjarne Slot Christiansen"
-            src="img/bookcase/BS3.png"
-          />
-        </div>
+          className="celeb-img-placeholder"
+        />
         <div
           className="col-xs-12 celeb-title"
         >
@@ -46,7 +41,7 @@ exports[`BookcaseItem renders initial component 1`] = `
             lorem ipsum
           </p>
           <button
-            className="celeb-books-btn btn btn-info"
+            className="celeb-books-btn btn"
             onClick={[Function]}
             type="button"
           >
