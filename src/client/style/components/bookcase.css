@@ -140,6 +140,8 @@ section .row .celeb .celeb-description p {
 
 section .row .celeb .celeb-description .celeb-books-btn {
   margin-top: 15px;
+  background-color: var(--greybrown);
+  color: white;
 }
 
 section .row .celeb .celeb-bottom {
