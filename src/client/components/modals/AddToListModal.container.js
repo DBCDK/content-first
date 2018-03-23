@@ -140,6 +140,7 @@ export class AddToListModal extends React.Component {
                 onSubmit={e => {
                   if (this.state.listName) {
                     this.setState({listName: ''});
+                    this.onDone();
                   }
                   e.preventDefault();
                 }}
@@ -155,7 +156,7 @@ export class AddToListModal extends React.Component {
                 <input
                   className="add-list--btn text-center"
                   value="×"
-                  type={`${!this.state.listName ? 'hidden' : 'submit'}`}
+                  type={`${!this.state.listName ? 'hidden' : 'button'}`}
                 />
               </form>
             </div>
