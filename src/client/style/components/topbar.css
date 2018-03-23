@@ -1,4 +1,4 @@
-.topbar {
+.container.topbar {
   position: fixed;
   z-index: 3000;
   background: white;
