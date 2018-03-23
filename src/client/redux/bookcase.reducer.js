@@ -68,7 +68,7 @@ const defaultState = {
     },
     {
       id: '3',
-      name: 'Helene Jacobsen',
+      name: 'Helene Jeppesen',
       img: 'img/bookcase/HJ.jpg',
       description:
         'Helene Jeppesen er Danmarks mest fulgte booktuber. Hun læser bredt – både klassikere og helt ny skønlitteratur. Reolen bærer præg af hendes store interesse og kærlighed til det engelske sprog.',
