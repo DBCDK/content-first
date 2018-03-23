@@ -107,6 +107,7 @@ exports[`renders without crashing 1`] = `
       className="belts col-xs-11 col-centered"
     >
       <BooksBelt
+        subtext={undefined}
         tags={
           Array [
             100001,
@@ -121,6 +122,7 @@ exports[`renders without crashing 1`] = `
         title="En god bog"
       />
       <BooksBelt
+        subtext="Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen."
         tags={
           Array [
             Object {
@@ -142,6 +144,7 @@ exports[`renders without crashing 1`] = `
         title="Mennesket og Naturen"
       />
       <BooksBelt
+        subtext="Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge."
         tags={
           Array [
             Object {
@@ -166,6 +169,7 @@ exports[`renders without crashing 1`] = `
         title="Familiens skyggesider"
       />
       <BooksBelt
+        subtext="Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores."
         tags={
           Array [
             Object {
@@ -179,6 +183,7 @@ exports[`renders without crashing 1`] = `
         title="Tankevækkende Sci-fi"
       />
       <BooksBelt
+        subtext={undefined}
         tags={
           Array [
             -2,
@@ -187,6 +192,7 @@ exports[`renders without crashing 1`] = `
         title="Bibliotekarens ugentlige anbefalinger"
       />
       <BooksBelt
+        subtext="Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt."
         tags={
           Array [
             Object {
@@ -205,6 +211,7 @@ exports[`renders without crashing 1`] = `
         title="Krøllede fortællinger"
       />
       <BooksBelt
+        subtext="Hent teen, tænd stearinlyset og så op med fødderne og på med plaiden."
         tags={
           Array [
             Object {
@@ -223,6 +230,7 @@ exports[`renders without crashing 1`] = `
         title="Sofahygge"
       />
       <BooksBelt
+        subtext="De store eventyr og udfordringer venter i en anden verden, hvor magiske kræfter og overnaturlige væsner prøver hinanden af."
         tags={
           Array [
             Object {
@@ -243,6 +251,7 @@ exports[`renders without crashing 1`] = `
         title="Tolkiensque"
       />
       <BooksBelt
+        subtext="Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt."
         tags={
           Array [
             4044,
@@ -263,6 +272,7 @@ exports[`renders without crashing 1`] = `
         title="Gotisk uhygge"
       />
       <BooksBelt
+        subtext="Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger."
         tags={
           Array [
             2683,
@@ -284,6 +294,7 @@ exports[`renders without crashing 1`] = `
         title="Lokalkrimi"
       />
       <BooksBelt
+        subtext="Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær."
         tags={
           Array [
             Object {
@@ -311,6 +322,7 @@ exports[`renders without crashing 1`] = `
         title="Historisk romantik"
       />
       <BooksBelt
+        subtext="Når du har lyst til at tænke over livet - også det svære og sårbare."
         tags={
           Array [
             Object {
