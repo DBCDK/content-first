@@ -4,6 +4,7 @@ import Modal from './Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
 import {
   CUSTOM_LIST,
+  SYSTEM_LIST,
   getListsForOwner,
   addList,
   addElementToList,
@@ -134,6 +135,32 @@ export class AddToListModal extends React.Component {
                   </div>
                 );
               })}
+              <hr />
+              {this.props.systemLists.map((l, i) => {
+                return (
+                  <div key={l.id}>
+                    <input
+                      id={'radio' + '-' + l.title + '-' + i}
+                      ref={
+                        this.state.latestUsedId === l.id && !this.state.listName
+                          ? e => (this.checked = e)
+                          : ''
+                      }
+                      type="radio"
+                      name="list"
+                      checked={
+                        this.state.latestUsedId === l.id && !this.state.listName
+                      }
+                      onChange={() =>
+                        this.setState({list: l, latestUsedId: l.id})
+                      }
+                    />
+                    <label htmlFor={'radio' + '-' + l.title + '-' + i}>
+                      {l.title}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
             <div className="add-list">
               <form
@@ -197,6 +224,11 @@ const mapStateToProps = state => {
   });
   return {
     customLists: customLists,
+    systemLists: getListsForOwner(state.listReducer, {
+      type: SYSTEM_LIST,
+      owner: state.userReducer.openplatformId,
+      sort: true
+    }),
     latestUsedId: state.listReducer.latestUsedId
       ? state.listReducer.latestUsedId
       : customLists[0] ? customLists[0].id : ''

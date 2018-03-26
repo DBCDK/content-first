@@ -15,6 +15,9 @@
   overflow-y: auto;
   border-right: 1px solid var(--lightgrey);
 }
+.list-overview hr {
+  margin: 5px 0 5px 0;
+}
 .list-overview label {
   width: 100%;
   font-weight: normal;
