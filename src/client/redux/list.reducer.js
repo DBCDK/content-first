@@ -403,8 +403,13 @@ export const getLists = (state, {type, sort} = {}) => {
   }
   return lists;
 };
+
 export const getPublicLists = state => {
-  return Object.values(state.lists).filter(l => l.public);
+  return Object.values(state.lists)
+    .filter(l => l.public)
+    .sort(function(a, b) {
+      return b._created - a._created;
+    });
 };
 
 export const getListById = (state, id) => {
