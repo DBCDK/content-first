@@ -73,6 +73,49 @@ exports[`AddToListModal multiple works as input 1`] = `
                 title2
               </label>
             </div>
+            <hr />
+            <div>
+              <input
+                checked={false}
+                id="radio-title1-0"
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                htmlFor="radio-title1-0"
+              >
+                title1
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                id="radio-title2-1"
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                htmlFor="radio-title2-1"
+              >
+                title2
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                id="radio-title3-2"
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                htmlFor="radio-title3-2"
+              >
+                title3
+              </label>
+            </div>
           </div>
           <div
             className="add-list"
@@ -166,6 +209,49 @@ exports[`AddToListModal newly added list is selected 1`] = `
           <div
             className="list-overview"
           >
+            <div>
+              <input
+                checked={false}
+                id="radio-title1-0"
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                htmlFor="radio-title1-0"
+              >
+                title1
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                id="radio-title2-1"
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                htmlFor="radio-title2-1"
+              >
+                title2
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                id="radio-title3-2"
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                htmlFor="radio-title3-2"
+              >
+                title3
+              </label>
+            </div>
+            <hr />
             <div>
               <input
                 checked={false}
@@ -344,6 +430,49 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
                 htmlFor="radio-title2-1"
               >
                 title2
+              </label>
+            </div>
+            <hr />
+            <div>
+              <input
+                checked={false}
+                id="radio-title1-0"
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                htmlFor="radio-title1-0"
+              >
+                title1
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                id="radio-title2-1"
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                htmlFor="radio-title2-1"
+              >
+                title2
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                id="radio-title3-2"
+                name="list"
+                onChange={[Function]}
+                type="radio"
+              />
+              <label
+                htmlFor="radio-title3-2"
+              >
+                title3
               </label>
             </div>
           </div>

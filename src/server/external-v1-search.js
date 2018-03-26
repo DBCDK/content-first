@@ -18,10 +18,9 @@ router
     asyncMiddleware(async (req, res, next) => {
       const results = await knex(bookTable)
         .select()
-        .whereRaw(
-          "to_tsvector('simple', creator || ' ' || title_full) @@ ?",
-          [req.query.q || '']
-        );
+        .whereRaw("to_tsvector('simple', creator || ' ' || title_full) @@ ?", [
+          req.query.q || ''
+        ]);
       res.status(200).json({data: results});
     })
   );

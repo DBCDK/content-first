@@ -16,6 +16,7 @@ describe('AddToListModal', () => {
     <AddToListModal
       work={createTestElement(1)}
       customLists={[createTestList(1), createTestList(2)]}
+      systemLists={[createTestList(1), createTestList(2), createTestList(3)]}
     />,
     {
       createNodeMock
@@ -29,6 +30,7 @@ describe('AddToListModal', () => {
       <AddToListModal
         work={createTestElement(1)}
         customLists={[createTestList(1), createTestList(2), createTestList(3)]}
+        systemLists={[createTestList(1), createTestList(2), createTestList(3)]}
       />
     );
     expect(tree.toJSON()).toMatchSnapshot();
@@ -38,6 +40,7 @@ describe('AddToListModal', () => {
       <AddToListModal
         works={[createTestElement(1), createTestElement(2)]}
         customLists={[createTestList(1), createTestList(2)]}
+        systemLists={[createTestList(1), createTestList(2), createTestList(3)]}
       />,
       {
         createNodeMock
