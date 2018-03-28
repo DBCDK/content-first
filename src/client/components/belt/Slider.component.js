@@ -50,6 +50,7 @@ export default class Slider extends React.Component {
       infinite: false,
       speed: 500,
       slidesToScroll: 4,
+      slidesToShow: 4,
       initialSlide: 0,
       rows: 1,
       variableWidth: true,
@@ -59,13 +60,15 @@ export default class Slider extends React.Component {
         {
           breakpoint: 1450,
           settings: {
-            slidesToScroll: 3
+            slidesToScroll: 3,
+            slidesToShow: 3
           }
         },
         {
           breakpoint: 1200,
           settings: {
-            slidesToScroll: 2
+            slidesToScroll: 2,
+            slidesToShow: 2
           }
         },
         {
