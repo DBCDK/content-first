@@ -106,25 +106,14 @@ class ShortList extends React.Component {
               <ShortListItem
                 key={e.book.pid}
                 element={e}
-                onRemove={() =>
-                  this.props.dispatch({
-                    type: ON_SHORTLIST_REMOVE_ELEMENT,
-                    pid: e.book.pid
-                  })
-                }
+                onRemove={() => {
+                  this.props.remove(e.book.pid);
+                }}
                 onOriginUpdate={origin => {
-                  this.props.dispatch({
-                    type: SHORTLIST_UPDATE_ORIGIN,
-                    pid: e.book.pid,
-                    origin
-                  });
+                  this.props.originUpdate(origin, e.book.pid);
                 }}
                 onAddToList={() => {
-                  this.props.dispatch({
-                    type: OPEN_MODAL,
-                    modal: 'addToList',
-                    context: e
-                  });
+                  this.props.addToList(e, this.props.isLoggedIn);
                 }}
               />
             ))}
@@ -138,13 +127,9 @@ class ShortList extends React.Component {
             <div className="row">
               <span
                 className="btn btn-success"
-                onClick={() =>
-                  this.props.dispatch({
-                    type: OPEN_MODAL,
-                    modal: 'addToList',
-                    context: elements
-                  })
-                }
+                onClick={() => {
+                  this.props.addToList(elements, this.props.isLoggedIn);
+                }}
               >
                 TILFØJ ALLE TIL LISTE
               </span>
@@ -156,11 +141,7 @@ class ShortList extends React.Component {
               </span>
               <span
                 className="clear-all-btn btn btn-success ml2"
-                onClick={() =>
-                  this.props.dispatch({
-                    type: SHORTLIST_CLEAR
-                  })
-                }
+                onClick={() => this.props.clearList()}
               >
                 RYD LISTEN<span className="glyphicon glyphicon-trash ml1" />
               </span>
@@ -171,15 +152,37 @@ class ShortList extends React.Component {
     );
   }
 }
-export default connect(
-  // Map redux state to props
-  state => {
-    return {
-      shortListState: state.shortListReducer
-    };
-  },
-  dispatch => ({
-    orderAll: books => books.forEach(book => dispatch({type: ORDER, book})),
-    dispatch
-  })
-)(ShortList);
+
+const mapStateToProps = state => {
+  return {
+    shortListState: state.shortListReducer,
+    isLoggedIn: state.userReducer.isLoggedIn
+  };
+};
+
+export const mapDispatchToProps = dispatch => ({
+  orderAll: books => books.forEach(book => dispatch({type: ORDER, book})),
+  remove: pid =>
+    dispatch({
+      type: ON_SHORTLIST_REMOVE_ELEMENT,
+      pid
+    }),
+  originUpdate: (origin, pid) =>
+    dispatch({
+      type: SHORTLIST_UPDATE_ORIGIN,
+      pid,
+      origin
+    }),
+  addToList: (element, isLoggedIn) =>
+    dispatch({
+      type: OPEN_MODAL,
+      modal: isLoggedIn ? 'addToList' : 'login',
+      context: element
+    }),
+  clearList: () =>
+    dispatch({
+      type: SHORTLIST_CLEAR
+    })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShortList);

@@ -1,17 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from './WorkItemConnected.component';
-
 import CheckmarkConnected from '../general/CheckmarkConnected.component';
-
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Slider from '../belt/Slider.component';
 import Link from '../general/Link.component';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {getLeaves} from '../../utils/taxonomy';
-
 import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
+import {RECOMMEND_REQUEST} from '../../redux/recommend';
+import {getRecommendedBooks} from '../../redux/selectors';
+
+let selectedTagIds = [];
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class WorkPage extends React.Component {
   }
 
   fetchWork() {
-    this.props.dispatch({type: ON_WORK_REQUEST, pid: this.props.pid});
+    this.props.fetchWork(this.props.pid);
     this.setState({tagsCollapsed: true, transition: false});
   }
 
@@ -32,6 +33,16 @@ class WorkPage extends React.Component {
     // only fetch work if pid has changed to avoid endless loop
     if (this.props.pid !== this.props.workState.pid) {
       this.fetchWork();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.workState.work.tags) {
+      selectedTagIds = nextProps.workState.work.tags.map(t => t.id);
+
+      if (this.props.workState.work.tags !== nextProps.workState.work.tags) {
+        this.props.fetchRecommendations(selectedTagIds);
+      }
     }
   }
 
@@ -182,7 +193,7 @@ class WorkPage extends React.Component {
             </div>
           </div>
         </div>
-        {work.similar && (
+        {this.props.recommendations.books && (
           <div className="row belt text-left">
             <div className="col-xs-11 col-centered">
               <div className="col-xs-12 header">
@@ -193,13 +204,15 @@ class WorkPage extends React.Component {
               <div className="row mb4">
                 <div className="col-xs-12">
                   <Slider>
-                    {work.similar.map(w => (
-                      <WorkItem
-                        work={w}
-                        key={w.book.pid}
-                        origin={`Minder om "${work.data.title}"`}
-                      />
-                    ))}
+                    {this.props.recommendations.books.map(w => {
+                      return (
+                        <WorkItem
+                          work={w}
+                          key={w.book.pid}
+                          origin={`Minder om "${work.data.title}"`}
+                        />
+                      );
+                    })}
                   </Slider>
                 </div>
               </div>
@@ -210,19 +223,37 @@ class WorkPage extends React.Component {
     );
   }
 }
-export default connect(
-  // Map redux state to props
-  state => {
-    return {
-      workState: state.workReducer,
-      filterState: state.filterReducer,
-      shortListState: state.shortListReducer,
-      systemLists: getListsForOwner(state.listReducer, {
-        type: SYSTEM_LIST,
-        owner: state.userReducer.openplatformId,
-        sort: true
-      }),
-      isLoggedIn: state.userReducer.isLoggedIn
-    };
-  }
-)(WorkPage);
+
+const mapStateToProps = state => {
+  const workstate = state.workReducer;
+  const recommendations = getRecommendedBooks(state, selectedTagIds, 21);
+
+  recommendations.books = recommendations.books.filter(
+    r => r.book.pid !== workstate.pid
+  );
+
+  return {
+    workState: workstate,
+    filterState: state.filterReducer,
+    shortListState: state.shortListReducer,
+    systemLists: getListsForOwner(state.listReducer, {
+      type: SYSTEM_LIST,
+      owner: state.userReducer.openplatformId,
+      sort: true
+    }),
+    recommendations: recommendations,
+    isLoggedIn: state.userReducer.isLoggedIn
+  };
+};
+
+export const mapDispatchToProps = dispatch => ({
+  fetchWork: pid => dispatch({type: ON_WORK_REQUEST, pid}),
+  fetchRecommendations: tags =>
+    dispatch({
+      type: RECOMMEND_REQUEST,
+      tags,
+      max: 21
+    })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkPage);
