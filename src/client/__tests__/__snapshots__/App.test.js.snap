@@ -348,7 +348,7 @@ exports[`renders without crashing 1`] = `
           className="col-xs-12 header"
         >
           <span
-            className="belt-title"
+            className="belt-title-latest"
           >
             Seneste lister fra brugerne
           </span>
