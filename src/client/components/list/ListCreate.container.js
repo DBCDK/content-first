@@ -188,15 +188,22 @@ export class ListCreator extends React.Component {
   }
   toggleStatus(selector) {
     const currentList = this.props.currentList;
+
     this.props.updateList({
       id: currentList.id,
       [selector]: !currentList[selector]
     });
+
+    if (selector !== 'public') {
+      if (!currentList.social || !currentList.open) {
+        this.props.updateList({
+          id: currentList.id,
+          ['public']: true
+        });
+      }
+    }
   }
-  // deleteList = () => {
-  //   // this.props.removeList(this.props.currentList.id);
-  //   alert('deleted');
-  // };
+
   render() {
     if (!this.props.currentList) {
       return null;
