@@ -133,6 +133,7 @@ exports[`AddToListModal multiple works as input 1`] = `
               />
               <input
                 className="add-list--btn text-center"
+                onClick={[Function]}
                 type="hidden"
                 value="×"
               />
@@ -145,7 +146,7 @@ exports[`AddToListModal multiple works as input 1`] = `
           <p
             className="mt2"
           >
-            Du er ved at gemme 2 bøger i 'title1'
+            Du er ved at gemme 2 bøger
           </p>
         </div>
       </div>
@@ -154,7 +155,7 @@ exports[`AddToListModal multiple works as input 1`] = `
       className="modal-window--buttons text-center"
     >
       <span
-        className="btn btn-success"
+        className="btn btn-success "
         onClick={[Function]}
       >
         JA TAK, GEM NU
@@ -311,6 +312,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
               />
               <input
                 className="add-list--btn text-center"
+                onClick={[Function]}
                 type="hidden"
                 value="×"
               />
@@ -349,7 +351,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
       className="modal-window--buttons text-center"
     >
       <span
-        className="btn btn-success"
+        className="btn btn-success "
         onClick={[Function]}
       >
         JA TAK, GEM NU
@@ -492,6 +494,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
               />
               <input
                 className="add-list--btn text-center"
+                onClick={[Function]}
                 type="hidden"
                 value="×"
               />
@@ -530,7 +533,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
       className="modal-window--buttons text-center"
     >
       <span
-        className="btn btn-success"
+        className="btn btn-success "
         onClick={[Function]}
       >
         JA TAK, GEM NU

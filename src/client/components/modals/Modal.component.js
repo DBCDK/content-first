@@ -5,6 +5,8 @@ export default class Modal extends React.Component {
   render() {
     const {doneText = 'OK'} = this.props;
 
+    const status = this.props.doneDisabled ? 'disabled' : '';
+
     return (
       <div className="modal-container">
         <div className="modal-backdrop" onClick={this.props.onClose} />
@@ -24,7 +26,10 @@ export default class Modal extends React.Component {
           </div>
           <div className="modal-window--content">{this.props.children}</div>
           <div className="modal-window--buttons text-center">
-            <span className="btn btn-success" onClick={this.props.onDone}>
+            <span
+              className={`btn btn-success ${status}`}
+              onClick={this.props.onDone}
+            >
               {doneText}
             </span>
           </div>

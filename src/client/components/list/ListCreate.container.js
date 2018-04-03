@@ -188,15 +188,32 @@ export class ListCreator extends React.Component {
   }
   toggleStatus(selector) {
     const currentList = this.props.currentList;
+
     this.props.updateList({
       id: currentList.id,
       [selector]: !currentList[selector]
     });
+
+    // Relations between checkboxes
+    // if public gets unchecked, uncheck both social and open
+    if (selector === 'public' && currentList.public) {
+      this.props.updateList({
+        id: currentList.id,
+        ['social']: false
+      });
+      this.props.updateList({
+        id: currentList.id,
+        ['open']: false
+      });
+      // if open or social gets checked, public is forced checked
+    } else if (!currentList.social || !currentList.open) {
+      this.props.updateList({
+        id: currentList.id,
+        ['public']: true
+      });
+    }
   }
-  // deleteList = () => {
-  //   // this.props.removeList(this.props.currentList.id);
-  //   alert('deleted');
-  // };
+
   render() {
     if (!this.props.currentList) {
       return null;
