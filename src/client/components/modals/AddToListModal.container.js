@@ -103,6 +103,7 @@ export class AddToListModal extends React.Component {
         onClose={this.close}
         onDone={this.onDone}
         doneText="JA TAK, GEM NU"
+        doneDisabled={this.state.list || this.state.listName ? false : true}
       >
         <div className="row">
           <strong className="col-xs-12">Hvilken liste vil du gemme i?</strong>
@@ -135,7 +136,9 @@ export class AddToListModal extends React.Component {
                   </div>
                 );
               })}
-              <hr />
+
+              {this.props.customLists.length > 0 ? <hr /> : ''}
+
               {this.props.systemLists.map((l, i) => {
                 return (
                   <div key={l.id}>
@@ -184,6 +187,9 @@ export class AddToListModal extends React.Component {
                   className="add-list--btn text-center"
                   value="×"
                   type={`${!this.state.listName ? 'hidden' : 'button'}`}
+                  onClick={() => {
+                    this.setState({listName: ''});
+                  }}
                 />
               </form>
             </div>
@@ -192,10 +198,7 @@ export class AddToListModal extends React.Component {
             {this.props.works && (
               <p className="mt2">{`Du er ved at gemme ${
                 this.props.works.length
-              } ${this.props.works.length > 1 ? 'bøger' : 'bog'} i '${_.get(
-                this.state,
-                'list.title'
-              )}'`}</p>
+              } ${this.props.works.length > 1 ? 'bøger' : 'bog'}`}</p>
             )}
             {this.props.work && [
               <WorkItemSmall key="item" work={this.props.work} />,

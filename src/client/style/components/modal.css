@@ -32,7 +32,8 @@
   width: 300px !important;
 }
 
-.modal-container, .modal-backdrop{
+.modal-container,
+.modal-backdrop {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -84,4 +85,8 @@
 }
 .modal-window--buttons .btn {
   min-width: 80px;
+}
+
+.modal-window--buttons .btn.disabled {
+  pointer-events: none;
 }

@@ -27,6 +27,14 @@
   line-height: 120px;
 }
 
+.image-upload .background-icon.glyphicon-picture {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 80px;
+  display: block;
+  line-height: 150px;
+}
+
 .image-upload .glyphicon-plus {
   font-size: 30px;
 }
