@@ -46,15 +46,21 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
           <div
             className="short-list-element--cover-image"
           >
-            <BookCover
-              book={
-                Object {
-                  "pid": "pid1",
-                  "taxonomy_description": "some description1",
-                  "title": "some title1",
+            <a
+              className="list-card-nohover"
+              href="/værk/pid1"
+              onClick={[Function]}
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid1",
+                    "taxonomy_description": "some description1",
+                    "title": "some title1",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </div>
           <div
             className="short-list-element--text"
@@ -62,7 +68,13 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
             <div
               className="short-list-element--header"
             >
-              some title1
+              <a
+                className="list-card-nohover"
+                href="/værk/pid1"
+                onClick={[Function]}
+              >
+                some title1
+              </a>
             </div>
             <div
               className="short-list-element--taxonomy-description"
@@ -88,15 +100,21 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
           <div
             className="short-list-element--cover-image"
           >
-            <BookCover
-              book={
-                Object {
-                  "pid": "pid2",
-                  "taxonomy_description": "some description2",
-                  "title": "some title2",
+            <a
+              className="list-card-nohover"
+              href="/værk/pid2"
+              onClick={[Function]}
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid2",
+                    "taxonomy_description": "some description2",
+                    "title": "some title2",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </div>
           <div
             className="short-list-element--text"
@@ -104,7 +122,13 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
             <div
               className="short-list-element--header"
             >
-              some title2
+              <a
+                className="list-card-nohover"
+                href="/værk/pid2"
+                onClick={[Function]}
+              >
+                some title2
+              </a>
             </div>
             <div
               className="short-list-element--taxonomy-description"
@@ -186,15 +210,21 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
           <div
             className="short-list-element--cover-image"
           >
-            <BookCover
-              book={
-                Object {
-                  "pid": "pid4",
-                  "taxonomy_description": "some description4",
-                  "title": "some title4",
+            <a
+              className="list-card-nohover"
+              href="/værk/pid4"
+              onClick={[Function]}
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid4",
+                    "taxonomy_description": "some description4",
+                    "title": "some title4",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </div>
           <div
             className="short-list-element--text"
@@ -202,7 +232,13 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
             <div
               className="short-list-element--header"
             >
-              some title4
+              <a
+                className="list-card-nohover"
+                href="/værk/pid4"
+                onClick={[Function]}
+              >
+                some title4
+              </a>
             </div>
             <div
               className="short-list-element--taxonomy-description"
@@ -228,15 +264,21 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
           <div
             className="short-list-element--cover-image"
           >
-            <BookCover
-              book={
-                Object {
-                  "pid": "pid3",
-                  "taxonomy_description": "some description3",
-                  "title": "some title3",
+            <a
+              className="list-card-nohover"
+              href="/værk/pid3"
+              onClick={[Function]}
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid3",
+                    "taxonomy_description": "some description3",
+                    "title": "some title3",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </div>
           <div
             className="short-list-element--text"
@@ -244,7 +286,13 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
             <div
               className="short-list-element--header"
             >
-              some title3
+              <a
+                className="list-card-nohover"
+                href="/værk/pid3"
+                onClick={[Function]}
+              >
+                some title3
+              </a>
             </div>
             <div
               className="short-list-element--taxonomy-description"
@@ -270,15 +318,21 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
           <div
             className="short-list-element--cover-image"
           >
-            <BookCover
-              book={
-                Object {
-                  "pid": "pid2",
-                  "taxonomy_description": "some description2",
-                  "title": "some title2",
+            <a
+              className="list-card-nohover"
+              href="/værk/pid2"
+              onClick={[Function]}
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid2",
+                    "taxonomy_description": "some description2",
+                    "title": "some title2",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </div>
           <div
             className="short-list-element--text"
@@ -286,7 +340,13 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
             <div
               className="short-list-element--header"
             >
-              some title2
+              <a
+                className="list-card-nohover"
+                href="/værk/pid2"
+                onClick={[Function]}
+              >
+                some title2
+              </a>
             </div>
             <div
               className="short-list-element--taxonomy-description"
@@ -389,15 +449,21 @@ exports[`ShortListDropDown short list contains single element 1`] = `
           <div
             className="short-list-element--cover-image"
           >
-            <BookCover
-              book={
-                Object {
-                  "pid": "pid1",
-                  "taxonomy_description": "some description1",
-                  "title": "some title1",
+            <a
+              className="list-card-nohover"
+              href="/værk/pid1"
+              onClick={[Function]}
+            >
+              <BookCover
+                book={
+                  Object {
+                    "pid": "pid1",
+                    "taxonomy_description": "some description1",
+                    "title": "some title1",
+                  }
                 }
-              }
-            />
+              />
+            </a>
           </div>
           <div
             className="short-list-element--text"
@@ -405,7 +471,13 @@ exports[`ShortListDropDown short list contains single element 1`] = `
             <div
               className="short-list-element--header"
             >
-              some title1
+              <a
+                className="list-card-nohover"
+                href="/værk/pid1"
+                onClick={[Function]}
+              >
+                some title1
+              </a>
             </div>
             <div
               className="short-list-element--taxonomy-description"
