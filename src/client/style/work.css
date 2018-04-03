@@ -121,19 +121,19 @@
 .work-page .tag {
   display: inline-block;
   margin-right: 10px;
-  margin-top: 10px;
   font-family: 'Raleway', sans-serif;
   padding: 6px 12px;
   border-radius: 4px;
-  background: grey;
-  border: 1px grey solid;
-  color: white;
-}
-.work-page .tag.active {
+  color: #333;
+  background-color: #f3f3f3;
+  border: none;
   cursor: pointer;
-  color: white;
-  background: #fc492d;
-  border: 1px #fc492d solid;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.work-page .tag::first-letter {
+  text-transform: uppercase;
 }
 
 .work-details .info {
@@ -200,7 +200,11 @@
 .work-page .tag-group-title {
   padding-left: 0px;
   text-decoration: underline;
-  margin-top: 16px;
+  margin-top: 6px;
   color: black;
   font-weight: bold;
+}
+
+.work-page .tag-group-title::first-letter {
+  text-transform: uppercase;
 }

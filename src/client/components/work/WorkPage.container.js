@@ -138,7 +138,7 @@ class WorkPage extends React.Component {
               id="collapsable-tags"
               style={{
                 transition: this.state.transition ? null : 'none',
-                height: this.state.tagsCollapsed ? '120px' : height + 'px',
+                height: this.state.tagsCollapsed ? '100px' : height + 'px',
                 overflowY: 'hidden'
               }}
               className="tags text-left"
@@ -151,22 +151,15 @@ class WorkPage extends React.Component {
                     </div>
                     <div className="col-xs-9 col-lg-10">
                       {group.data.map(t => {
-                        if (allowedFilterIds.indexOf(t.id) >= 0) {
-                          return (
-                            <Link
-                              className="tag active"
-                              key={t.id}
-                              href="/find"
-                              params={{tag: t.id}}
-                            >
-                              {t.title}
-                            </Link>
-                          );
-                        }
                         return (
-                          <span key={t.id} className="tag">
+                          <Link
+                            className="tag"
+                            key={t.id}
+                            href="/find"
+                            params={{tag: t.id}}
+                          >
                             {t.title}
-                          </span>
+                          </Link>
                         );
                       })}
                     </div>

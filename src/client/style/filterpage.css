@@ -52,9 +52,11 @@
   padding-right: 25px;
   margin-top: -15px;
 }
-.edit-filters .btn {
-  text-transform: capitalize;
+
+.edit-filters .btn::first-letter {
+  text-transform: uppercase;
 }
+
 .edit-filters .tags {
   transition: all 0.2s ease-in-out;
   opacity: 1;
@@ -75,7 +77,7 @@
 }
 .edit-filters .btn-active {
   /* color: black; */
-  background: #cdcdcd;
+  background: #d9d9d9;
   /* border: 1px var(--orange) solid; */
 }
 .edit-filters .approve {
@@ -99,7 +101,6 @@
   cursor: pointer;
 }
 .selected-filter {
-  text-transform: capitalize;
   position: relative;
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
@@ -114,6 +115,9 @@
   padding-right: 15px;
   vertical-align: top;
   background: var(--orange);
+}
+.selected-filter::first-letter {
+  text-transform: uppercase;
 }
 
 .filter-page-works {
@@ -155,8 +159,11 @@
 }
 .tags-suggestion-list .react-autosuggest__suggestion {
   margin-bottom: 5px;
-  text-transform: capitalize;
 }
+.tags-suggestion-list .react-autosuggest__suggestion::first-letter {
+  text-transform: uppercase;
+}
+
 .tags-suggestion-list .section-title {
   text-align: right;
   font-size: 12px;
