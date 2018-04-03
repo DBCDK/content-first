@@ -11,7 +11,6 @@ import {
   storeList
 } from '../../redux/list.reducer';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import _ from 'lodash';
 const defaultState = {
   comment: '',
   list: '',
