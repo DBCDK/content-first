@@ -7,7 +7,6 @@ import OrderButton from '../order/OrderButton.component';
 import Slider from '../belt/Slider.component';
 import Link from '../general/Link.component';
 import {ON_WORK_REQUEST} from '../../redux/work.reducer';
-import {getLeaves} from '../../utils/taxonomy';
 import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {getRecommendedBooks} from '../../redux/selectors';
@@ -73,10 +72,6 @@ class WorkPage extends React.Component {
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
     const tax_description =
       work.data.taxonomy_description || work.data.description;
-
-    const allowedFilterIds = getLeaves(this.props.filterState.filters).map(
-      f => f.id
-    );
 
     return (
       <div className="work-page">
