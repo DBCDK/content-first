@@ -102,22 +102,37 @@ exports[`ShortList.container Clearing list 1`] = `
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid2",
-                                      "taxonomy_description": "some description2",
-                                      "title": "some title2",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid2"
                                 >
-                                  <img
-                                    alt="some title2"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid2"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid2"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid2",
+                                            "taxonomy_description": "some description2",
+                                            "title": "some title2",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title2"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -126,7 +141,22 @@ exports[`ShortList.container Clearing list 1`] = `
                               <div
                                 className="title"
                               >
-                                some title2
+                                <Connect(Link)
+                                  href="/værk/pid2"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid2"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid2"
+                                      onClick={[Function]}
+                                    >
+                                      some title2
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -243,22 +273,37 @@ exports[`ShortList.container Clearing list 1`] = `
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid1",
-                                      "taxonomy_description": "some description1",
-                                      "title": "some title1",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <img
-                                    alt="some title1"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title1"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -267,7 +312,22 @@ exports[`ShortList.container Clearing list 1`] = `
                               <div
                                 className="title"
                               >
-                                some title1
+                                <Connect(Link)
+                                  href="/værk/pid1"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      some title1
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -467,22 +527,37 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid1",
-                                      "taxonomy_description": "some description1",
-                                      "title": "some title1",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <img
-                                    alt="some title1"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title1"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -491,7 +566,22 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               <div
                                 className="title"
                               >
-                                some title1
+                                <Connect(Link)
+                                  href="/værk/pid1"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      some title1
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -715,22 +805,37 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid1",
-                                      "taxonomy_description": "some description1",
-                                      "title": "some title1",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <img
-                                    alt="some title1"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title1"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -739,7 +844,22 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <div
                                 className="title"
                               >
-                                some title1
+                                <Connect(Link)
+                                  href="/værk/pid1"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      some title1
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -963,22 +1083,37 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid1",
-                                      "taxonomy_description": "some description1",
-                                      "title": "some title1",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <img
-                                    alt="some title1"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title1"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -987,7 +1122,22 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <div
                                 className="title"
                               >
-                                some title1
+                                <Connect(Link)
+                                  href="/værk/pid1"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      some title1
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -1211,22 +1361,37 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid1",
-                                      "taxonomy_description": "some description1",
-                                      "title": "some title1",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <img
-                                    alt="some title1"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title1"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -1235,7 +1400,22 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               <div
                                 className="title"
                               >
-                                some title1
+                                <Connect(Link)
+                                  href="/værk/pid1"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      some title1
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -1482,22 +1662,37 @@ exports[`ShortList.container remove element 1`] = `
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid3",
-                                      "taxonomy_description": "some description3",
-                                      "title": "some title3",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid3"
                                 >
-                                  <img
-                                    alt="some title3"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid3"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid3"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid3",
+                                            "taxonomy_description": "some description3",
+                                            "title": "some title3",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title3"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -1506,7 +1701,22 @@ exports[`ShortList.container remove element 1`] = `
                               <div
                                 className="title"
                               >
-                                some title3
+                                <Connect(Link)
+                                  href="/værk/pid3"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid3"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid3"
+                                      onClick={[Function]}
+                                    >
+                                      some title3
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -1623,22 +1833,37 @@ exports[`ShortList.container remove element 1`] = `
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid2",
-                                      "taxonomy_description": "some description2",
-                                      "title": "some title2",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid2"
                                 >
-                                  <img
-                                    alt="some title2"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid2"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid2"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid2",
+                                            "taxonomy_description": "some description2",
+                                            "title": "some title2",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title2"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -1647,7 +1872,22 @@ exports[`ShortList.container remove element 1`] = `
                               <div
                                 className="title"
                               >
-                                some title2
+                                <Connect(Link)
+                                  href="/værk/pid2"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid2"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid2"
+                                      onClick={[Function]}
+                                    >
+                                      some title2
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -1764,22 +2004,37 @@ exports[`ShortList.container remove element 1`] = `
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid1",
-                                      "taxonomy_description": "some description1",
-                                      "title": "some title1",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <img
-                                    alt="some title1"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title1"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -1788,7 +2043,22 @@ exports[`ShortList.container remove element 1`] = `
                               <div
                                 className="title"
                               >
-                                some title1
+                                <Connect(Link)
+                                  href="/værk/pid1"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      some title1
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -2028,22 +2298,37 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid3",
-                                      "taxonomy_description": "some description3",
-                                      "title": "some title3",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid3"
                                 >
-                                  <img
-                                    alt="some title3"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid3"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid3"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid3",
+                                            "taxonomy_description": "some description3",
+                                            "title": "some title3",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title3"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -2052,7 +2337,22 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <div
                                 className="title"
                               >
-                                some title3
+                                <Connect(Link)
+                                  href="/værk/pid3"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid3"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid3"
+                                      onClick={[Function]}
+                                    >
+                                      some title3
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -2169,22 +2469,37 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid2",
-                                      "taxonomy_description": "some description2",
-                                      "title": "some title2",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid2"
                                 >
-                                  <img
-                                    alt="some title2"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid2"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid2"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid2",
+                                            "taxonomy_description": "some description2",
+                                            "title": "some title2",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title2"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -2193,7 +2508,22 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <div
                                 className="title"
                               >
-                                some title2
+                                <Connect(Link)
+                                  href="/værk/pid2"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid2"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid2"
+                                      onClick={[Function]}
+                                    >
+                                      some title2
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"
@@ -2310,22 +2640,37 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <div
                                 className="book-cover"
                               >
-                                <BookCover
-                                  book={
-                                    Object {
-                                      "pid": "pid1",
-                                      "taxonomy_description": "some description1",
-                                      "title": "some title1",
-                                    }
-                                  }
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <img
-                                    alt="some title1"
-                                    className="high-contrast  "
-                                    onError={[Function]}
-                                    src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
-                                  />
-                                </BookCover>
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      <BookCover
+                                        book={
+                                          Object {
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
+                                          }
+                                        }
+                                      >
+                                        <img
+                                          alt="some title1"
+                                          className="high-contrast  "
+                                          onError={[Function]}
+                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                        />
+                                      </BookCover>
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                             </div>
                             <div
@@ -2334,7 +2679,22 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <div
                                 className="title"
                               >
-                                some title1
+                                <Connect(Link)
+                                  href="/værk/pid1"
+                                >
+                                  <Link
+                                    dispatch={[Function]}
+                                    href="/værk/pid1"
+                                  >
+                                    <a
+                                      className="list-card-nohover"
+                                      href="/værk/pid1"
+                                      onClick={[Function]}
+                                    >
+                                      some title1
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="creator"

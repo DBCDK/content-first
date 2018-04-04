@@ -5,6 +5,7 @@ import Kryds from '../svg/Kryds.svg';
 import BookCover from '../general/BookCover.component';
 import Textarea from 'react-textarea-autosize';
 import OrderButton from '../order/OrderButton.component';
+import Link from '../general/Link.component';
 import {
   ON_SHORTLIST_REMOVE_ELEMENT,
   SHORTLIST_UPDATE_ORIGIN,
@@ -22,6 +23,7 @@ export class ShortListItem extends React.Component {
   }
 
   render() {
+    const url = `/værk/${this.props.element.book.pid}`;
     return (
       <div className="item col-xs-12 col-lg-10 text-left">
         <div className="row">
@@ -29,12 +31,17 @@ export class ShortListItem extends React.Component {
             <div className="row">
               <div className="col-xs-2">
                 <div className="book-cover">
-                  <BookCover book={this.props.element.book} />
+                  <Link href={url}>
+                    <BookCover book={this.props.element.book} />
+                  </Link>
                 </div>
               </div>
               <div className="col-xs-10 book-description">
-                <div className="title">{this.props.element.book.title}</div>
+                <div className="title">
+                  <Link href={url}>{this.props.element.book.title}</Link>
+                </div>
                 <div className="creator">{this.props.element.book.creator}</div>
+
                 <form
                   onSubmit={e => {
                     e.preventDefault();

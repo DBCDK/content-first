@@ -5,6 +5,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Kryds from '../svg/Kryds.svg';
 import Huskeliste from '../svg/Huskeliste.svg';
 import LineBehindText from '../general/LineBehindText.component';
+import Link from '../general/Link.component';
 import {
   ON_SHORTLIST_EXPAND,
   ON_SHORTLIST_COLLAPSE,
@@ -15,14 +16,18 @@ import {HISTORY_PUSH} from '../../redux/middleware';
 const SHORT_LIST_MAX_LENGTH = 3;
 
 const ShortListElement = props => {
+  const url = `/værk/${props.element.book.pid}`;
+
   return (
     <div className="short-list-element">
       <div className="short-list-element--cover-image">
-        <BookCover book={props.element.book} />
+        <Link href={url}>
+          <BookCover book={props.element.book} />
+        </Link>
       </div>
       <div className="short-list-element--text">
         <div className="short-list-element--header">
-          {props.element.book.title}
+          <Link href={url}>{props.element.book.title}</Link>
         </div>
         <div className="short-list-element--taxonomy-description">
           {props.element.book.taxonomy_description}
