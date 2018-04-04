@@ -141,7 +141,7 @@ class WorkPage extends React.Component {
                 height: this.state.tagsCollapsed ? '100px' : height + 'px',
                 overflowY: 'hidden'
               }}
-              className="tags text-left"
+              className="tags-container text-left"
             >
               {tagGroups.map(group => {
                 return (
@@ -153,7 +153,7 @@ class WorkPage extends React.Component {
                       {group.data.map(t => {
                         return (
                           <Link
-                            className="tag"
+                            className="tag tags tag-medium"
                             key={t.id}
                             href="/find"
                             params={{tag: t.id}}

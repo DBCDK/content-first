@@ -4,7 +4,7 @@ import Kryds from '../svg/KrydsWhite.svg';
 
 const SelectedFilter = props => {
   return (
-    <div className="selected-filter">
+    <div className="selected-filter tag tags tag-large tag-orange">
       {props.filter.title}
       <span
         onClick={() => {
