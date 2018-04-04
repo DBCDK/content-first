@@ -204,8 +204,7 @@ export function OrderModal(props) {
           </strong>
           {props.orders.count() >= 10 && (
             <small>
-              <br />Du kan højest bestille 10 bøger ad gangen... Tekst som
-              Anders formulerer her...
+              <br />Du kan højest bestille 10 bøger ad gangen. Klik på "Bestil hele listen" igen for at bestille flere bøger.
             </small>
           )}
           {unavailableCount > 0 && (
