@@ -141,9 +141,14 @@ class ShortList extends React.Component {
                 TILFØJ ALLE TIL LISTE
               </span>
               <span
-                className="btn btn-success ml2"
-                onClick={() =>
-                  this.props.orderAll(this.props.orderList.map(e => e.book))
+                className={
+                  'btn ml2 ' +
+                  (this.props.orderList.length > 0 ? 'btn-success' : 'disabled')
+                }
+                onClick={
+                  this.props.orderList.length > 0 &&
+                  (() =>
+                    this.props.orderAll(this.props.orderList.map(e => e.book)))
                 }
               >
                 BESTIL HELE LISTEN
