@@ -199,9 +199,14 @@ export function OrderModal(props) {
       <div>
         <div className="form-group">
           <strong>
-            Du er ved at bestille{props.orders.size > 1 &&
-              ` ${props.orders.size} bøger`}:
+            Du er ved at bestille{props.orders.count() > 1 &&
+              ` ${props.orders.count()} bøger`}:
           </strong>
+          {props.orders.count() >= 10 && (
+            <small>
+              <br />Du kan højest bestille 10 bøger ad gangen. Klik på "Bestil hele listen" igen for at bestille flere bøger.
+            </small>
+          )}
           {unavailableCount > 0 && (
             <small style={{color: 'red'}}>
               <br />Bemærk: Der er problemer med bestillingen af mindst en af
