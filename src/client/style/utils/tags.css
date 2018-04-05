@@ -1,38 +1,79 @@
-.tags {
-  width: calc(100% + 1rem);
-  margin-bottom: -1rem;
-}
+/*
+.tag : Default tag styling
+.tags : Multiple tags (Space between tags)
+.tag-small,
+.tag-medium,
+.tag-large : tag sizes (font-size + padding).
+.tag-blue,
+.tag-orange,
+.tag-active: (overwrites the dafualt light grey color)
+*/
 
-.tags .tag {
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-}
+/* General tag styling */
 
 .tag {
   font-family: var(--secondary-font);
-  color: white;
+  color: var(--darkgrey);
   display: inline-block;
-  padding: 6px 12px;
   font-weight: 400;
-  line-height: 1.42857143;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   border-radius: 4px;
+  background-color: #f3f3f3;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 13px;
 }
 
-.tags .tag:last-of-type {
-  margin-right: 0;
+.tag::first-letter {
+  text-transform: uppercase;
 }
 
-.tag.small {
-  font-size: 1rem;
-  padding: 4px 6px;
+.tag:hover {
+  text-decoration: none;
+  color: inherit;
 }
+
+.tag:active {
+  background: var(--lightgrey);
+}
+
+/* Tag size */
+
+.tag.tag-small {
+  padding: 3px 8px;
+}
+.tag.tag-medium {
+  padding: 4px 10px;
+}
+.tag.tag-large {
+  padding: 6px 12px;
+  font-size: 16px;
+}
+
+/* Tag color */
 
 .tag-blue {
-  background-color: var(--blue);
+  background-color: var(--blue) !important;
+  color: white !important;
 }
 .tag-orange {
-  background-color: var(--orange);
+  background-color: var(--orange) !important;
+  color: white !important;
+}
+.tag-active {
+  background: var(--lightgrey) !important;
+}
+
+/* Multiple tags */
+
+.tag.tags {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.tags.tag:last-of-type {
+  margin-right: 0;
 }
