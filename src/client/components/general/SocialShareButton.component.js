@@ -9,13 +9,6 @@ import React from 'react';
   size={40}
   shape="round"
 />
-
-<meta property="og:title" content="Fletpdf.dk" />
-<meta property="og:type" content="service" />
-<meta property="og:url" content="https://www.fletpdf.dk" />
-<meta property="og:image" content="https://www.fletpdf.dk/img/cover1_large.jpg" />
-<meta property="og:description" content="Upload, håndter og sammensæt flere pdf filer til en, hurtigt, sikkert, nemt og selvfølgelig helt gratis!" />
-<meta property="og:local" content="da_DK" />
 */
 
 export default class SocialShareButton extends React.Component {

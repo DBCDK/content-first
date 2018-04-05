@@ -144,7 +144,7 @@ export const SimpleList = ({
       </Helmet>
       <SocialShareButton
         className="ssb-fb"
-        href="www.fletpdf.dk"
+        href={'https://content-first.demo.dbc.dk/lister/' + list.id}
         icon={'glyphicon-share'}
         hex={'#3b5998'}
         size={40}
