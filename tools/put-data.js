@@ -9,8 +9,8 @@ const config = require('server/config');
 const JSON_FILES_URL = process.env.JSON_FILES_URL;
 const INTERNAL_PORT = config.server.internalPort;
 const PORT = config.server.port;
-const HOST = 'http://localhost:' + INTERNAL_PORT;
-const HOWRU = 'http://localhost:' + PORT + '/howru';
+const HOST = (process.env.HOST || 'http://localhost') + ':' + INTERNAL_PORT;
+const HOWRU = (process.env.HOST || 'http://localhost') + ':' + PORT + '/howru';
 const DATA_DIR = process.cwd() + '/src/data/';
 
 const waitForReady = async () => {
