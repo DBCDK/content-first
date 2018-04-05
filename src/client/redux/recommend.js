@@ -126,7 +126,9 @@ const fetchRecommendations = async ({tags = [], creators, max}) => {
   const recompassResponse = (await request
     .get('/v1/recompass')
     .query({tags: tagsMap, creators, maxresults: max})).body.response;
-  let pids = recompassResponse.filter(entry => entry.value).map(entry => entry.pid);
+  let pids = recompassResponse
+    .filter(entry => entry.value)
+    .map(entry => entry.pid);
 
   if (tags.includes(-2)) {
     // recompass knows nothing about librarian recommendations, so we gotta include those pids as well
