@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Helmet} from 'react-helmet';
 import WorkItem from '../../work/WorkItemConnected.component';
 import ProfileImage from '../../general/ProfileImage.component';
+import SocialShareButton from '../../general/SocialShareButton.component';
 import Comments from '../../comments/Comment.container';
 import AddToList from '../AddToList.container';
 import Kryds from '../../svg/Kryds.svg';
@@ -134,6 +136,20 @@ export const SimpleList = ({
 }) => {
   return (
     <div className="simplelist">
+      <Helmet>
+        <title>{list.title}</title>
+        <meta name="description" content={list.description} />
+        <meta property="og:title" content={list.title} />
+        <meta property="og:description" content={list.description} />
+      </Helmet>
+      <SocialShareButton
+        className="ssb-fb"
+        href="www.fletpdf.dk"
+        icon={'glyphicon-share'}
+        hex={'#3b5998'}
+        size={40}
+        shape="round"
+      />
       <div className="row mb4 b-dark">
         <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
           <div className="col-xs-3 tc">
