@@ -143,7 +143,7 @@ export const SimpleList = ({
         <meta property="og:description" content={list.description} />
       </Helmet>
       <SocialShareButton
-        className="ssb-fb"
+        className="ssb-fb hidden"
         href={'https://content-first.demo.dbc.dk/lister/' + list.id}
         icon={'glyphicon-share'}
         hex={'#3b5998'}
