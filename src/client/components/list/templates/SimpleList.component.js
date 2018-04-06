@@ -136,7 +136,7 @@ export const SimpleList = ({
   return (
     <div className="simplelist">
       <SocialShareButton
-        className="ssb-fb"
+        className="ssb-fb hidden"
         href={'https://content-first.demo.dbc.dk/lister/' + list.id}
         icon={'fb-icon'}
         hex={'#3b5998'}
