@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+<<<<<<< c03c829f2da790df02b50017caaeba7c9ac81173
 const request = require('superagent');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
@@ -8,6 +9,11 @@ const community = require('server/community');
 const config = require('./config');
 
 const showTitles = 3;
+=======
+const router = express.Router({mergeParams: true});
+const asyncMiddleware = require('__/async-express').asyncMiddleware;
+const community = require('server/community');
+>>>>>>> added server evaluated list on bot detection
 
 router
   .route('/')
@@ -16,6 +22,7 @@ router
     asyncMiddleware(async (req, res, next) => {
       if (JSON.stringify(res.locals) === JSON.stringify({})) {
         return next();
+<<<<<<< c03c829f2da790df02b50017caaeba7c9ac81173
       }
 
       const listId = req.params.id;
@@ -98,6 +105,31 @@ router
 
       // Return Page
       return res.send(html);
+=======
+      } else {
+        const listId = req.params.id;
+        const list = await community.getObjectById(listId, {});
+        const title = '<title>' + list.data.title + '</title>';
+        const ogTitle =
+          '<meta property="og:title" content="' + list.data.title + '" />';
+        const ogDescription =
+          '<meta property="og:description" content="' +
+          list.data.description +
+          '" />';
+        const img = list.data.image
+          ? list.data.image
+          : 'img/bookcase/NB-bogreol.jpg';
+        const ogImage =
+          '<meta property="og:image" content="/v1/image/' + img + '" />';
+        const head =
+          '<head>' + title + ogTitle + ogDescription + ogImage + '</head>';
+
+        const body = '<body>Hello Bot!</body>';
+        const html = '<html>' + head + body + '</html>';
+
+        return res.send(html);
+      }
+>>>>>>> added server evaluated list on bot detection
     })
   );
 

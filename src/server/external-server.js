@@ -50,7 +50,13 @@ external.use(cookieParser());
 
 // Detect visits from bots
 // test bot visit with: querystring: {use: true,key: 'bot',value: '1'}
+<<<<<<< c03c829f2da790df02b50017caaeba7c9ac81173
 external.use(require('server/robots')({}));
+=======
+external.use(
+  require('express-bot')({querystring: {use: true, key: 'bot', value: '1'}})
+);
+>>>>>>> added server evaluated list on bot detection
 
 // Administrative API.
 external.get('/howru', async (req, res) => {
