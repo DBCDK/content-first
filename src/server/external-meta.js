@@ -10,19 +10,9 @@ router
 
   .get(
     asyncMiddleware(async (req, res, next) => {
-      console.log('User Agent: ');
-      console.log(req.headers['user-agent']);
-
       if (JSON.stringify(res.locals) === JSON.stringify({})) {
-        console.log('... This is NOT a BOT - return normal page');
         return next();
       }
-
-      if (req.headers['user-agent'] === 'facebookexternalhit/1.1') {
-        console.log('THIS IS a Facebook bot!');
-      }
-
-      console.log('... This is a BOT! - return OG:META page');
 
       const listId = req.params.id;
       const list = await community.getObjectById(listId, {});
