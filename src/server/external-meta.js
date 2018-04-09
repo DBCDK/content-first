@@ -31,6 +31,7 @@ router
 <<<<<<< c03c829f2da790df02b50017caaeba7c9ac81173
       }
 
+<<<<<<< 99ed04f5270b2639648ed665f4f7b0e488fab8d4
       const listId = req.params.id;
       const list = await community.getObjectById(listId, {});
       const host = req.get('host');
@@ -132,6 +133,11 @@ router
 =======
       }
 >>>>>>> SocialShareButton Done + ready for demo test
+=======
+      if (req.headers['user-agent'] === 'facebookexternalhit/1.1') {
+        console.log('THIS IS a Facebook bot!');
+      }
+>>>>>>> dobbel check
 
       console.log('... This is a BOT! - return OG:META page');
 

@@ -16,7 +16,7 @@ const generatingServiceStatus = require('__/services/service-status');
 
 // Public web server.
 const express = require('express');
-const external = express();git rebase --continue
+const external = express();
 
 // Static frontend content.
 const path = require('path');
@@ -50,13 +50,7 @@ external.use(cookieParser());
 
 // Detect visits from bots
 // test bot visit with: querystring: {use: true,key: 'bot',value: '1'}
-<<<<<<< f00b5aa85b454f75c1e7e570c906a70a87ad5f0f
 external.use(require('server/robots')({}));
-=======
-external.use(
-  require('server/robots')({querystring: {use: true, key: 'bot', value: '1'}})
-);
->>>>>>> moved express-bot to external file + added extra crawler detecors - ready for another test
 
 // Administrative API.
 external.get('/howru', async (req, res) => {
