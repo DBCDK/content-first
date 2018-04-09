@@ -20,16 +20,13 @@ router
 
   .get(
     asyncMiddleware(async (req, res, next) => {
-      console.log('User Agent: ');
-      console.log(req.headers['user-agent']);
-
       if (JSON.stringify(res.locals) === JSON.stringify({})) {
-        console.log('... This is NOT a BOT - return normal page');
         return next();
 <<<<<<< 86eb9249a24f42523034165de65c2bfbd28bc6bd
 <<<<<<< c03c829f2da790df02b50017caaeba7c9ac81173
       }
 
+<<<<<<< d45066e711743020f4d6b9d087b47651a1bc5555
 <<<<<<< 99ed04f5270b2639648ed665f4f7b0e488fab8d4
       const listId = req.params.id;
       const list = await community.getObjectById(listId, {});
@@ -140,6 +137,8 @@ router
 
       console.log('... This is a BOT! - return OG:META page');
 
+=======
+>>>>>>> back to express-bot
       const listId = req.params.id;
       const list = await community.getObjectById(listId, {});
       const title = '<title>' + list.data.title + '</title>';
