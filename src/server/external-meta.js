@@ -19,6 +19,10 @@ router
         return next();
       }
 
+      if (req.headers['user-agent'] === 'facebookexternalhit/1.1') {
+        console.log('THIS IS a Facebook bot!');
+      }
+
       console.log('... This is a BOT! - return OG:META page');
 
       const listId = req.params.id;
