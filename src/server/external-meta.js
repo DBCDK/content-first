@@ -22,6 +22,7 @@ router
     asyncMiddleware(async (req, res, next) => {
       if (JSON.stringify(res.locals) === JSON.stringify({})) {
         return next();
+<<<<<<< 86eb9249a24f42523034165de65c2bfbd28bc6bd
 <<<<<<< c03c829f2da790df02b50017caaeba7c9ac81173
       }
 
@@ -123,13 +124,37 @@ router
           '<meta property="og:image" content="/v1/image/' + img + '" />';
         const head =
           '<head>' + title + ogTitle + ogDescription + ogImage + '</head>';
+=======
+      }
+>>>>>>> SocialShareButton Done + ready for demo test
 
-        const body = '<body>Hello Bot!</body>';
-        const html = '<html>' + head + body + '</html>';
+      const listId = req.params.id;
+      const list = await community.getObjectById(listId, {});
+      const title = '<title>' + list.data.title + '</title>';
+      const ogTitle =
+        '<meta property="og:title" content="' + list.data.title + '" />';
+      const ogDescription =
+        '<meta property="og:description" content="' +
+        list.data.description +
+        '" />';
+      const img = list.data.image
+        ? list.data.image
+        : 'img/bookcase/NB-bogreol.jpg';
+      const ogImage =
+        '<meta property="og:image" content="/v1/image/' + img + '" />';
+      const head =
+        '<head>' + title + ogTitle + ogDescription + ogImage + '</head>';
 
+<<<<<<< 86eb9249a24f42523034165de65c2bfbd28bc6bd
         return res.send(html);
       }
 >>>>>>> added server evaluated list on bot detection
+=======
+      const body = '<body>Hello Bot!</body>';
+      const html = '<html>' + head + body + '</html>';
+
+      return res.send(html);
+>>>>>>> SocialShareButton Done + ready for demo test
     })
   );
 
