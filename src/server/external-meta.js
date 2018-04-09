@@ -15,7 +15,6 @@ router
 
       if (JSON.stringify(res.locals) === JSON.stringify({})) {
         console.log('... This is NOT a BOT - return normal page');
-
         return next();
       }
 
@@ -39,10 +38,12 @@ router
         : 'img/bookcase/NB-bogreol.jpg';
       const ogImage =
         '<meta property="og:image" content="/v1/image/' + img + '" />';
+
       const ogURL =
         '<meta property="og:url" content="https://content-first.demo.dbc.dk/lister/' +
         listId +
         '" />';
+
       const head =
         '<head>' +
         title +
