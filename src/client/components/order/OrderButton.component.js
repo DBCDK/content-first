@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {ORDER} from '../../redux/order.reducer.js';
-import _ from 'lodash';
 
 export function OrderButton(props) {
   const [buttonClass, buttonLabel] = {
@@ -38,9 +37,12 @@ export function OrderButton(props) {
 export const mapStateToProps = (state, ownProps) => ({
   className: ownProps.className || '',
   style: ownProps.style,
-  orderState:
-    _.get(state, ['orderReducer', ownProps.book, 'state']) || 'not ordered'
+  orderState: state.orderReducer.getIn(
+    ['orders', ownProps.book.pid, 'orderState'],
+    'not ordered'
+  )
 });
+
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   order: () => dispatch({type: ORDER, book: ownProps.book})
 });
