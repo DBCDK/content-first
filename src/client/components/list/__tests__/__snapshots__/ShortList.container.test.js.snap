@@ -685,7 +685,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
               TILFØJ ALLE TIL LISTE
             </span>
             <span
-              className="btn btn-success ml2"
+              className="btn ml2 btn-success"
               onClick={[Function]}
             >
               BESTIL HELE LISTEN
@@ -975,7 +975,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
               TILFØJ ALLE TIL LISTE
             </span>
             <span
-              className="btn btn-success ml2"
+              className="btn ml2 btn-success"
               onClick={[Function]}
             >
               BESTIL HELE LISTEN
@@ -1265,7 +1265,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
               TILFØJ ALLE TIL LISTE
             </span>
             <span
-              className="btn btn-success ml2"
+              className="btn ml2 btn-success"
               onClick={[Function]}
             >
               BESTIL HELE LISTEN
@@ -1570,7 +1570,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
               TILFØJ ALLE TIL LISTE
             </span>
             <span
-              className="btn btn-success ml2"
+              className="btn ml2 btn-success"
               onClick={[Function]}
             >
               BESTIL HELE LISTEN
@@ -2218,7 +2218,7 @@ exports[`ShortList.container remove element 1`] = `
               TILFØJ ALLE TIL LISTE
             </span>
             <span
-              className="btn btn-success ml2"
+              className="btn ml2 btn-success"
               onClick={[Function]}
             >
               BESTIL HELE LISTEN
@@ -2882,7 +2882,7 @@ exports[`ShortList.container short list contains elements 1`] = `
               TILFØJ ALLE TIL LISTE
             </span>
             <span
-              className="btn btn-success ml2"
+              className="btn ml2 btn-success"
               onClick={[Function]}
             >
               BESTIL HELE LISTEN
