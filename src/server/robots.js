@@ -14,7 +14,6 @@ var BOTS = [
   'applebot',
   'curl',
   'PycURL',
-  //'Bot',
   'B-O-T',
   'Crawler',
   'Spider',
