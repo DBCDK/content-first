@@ -10,6 +10,7 @@ router
 
   .get(
     asyncMiddleware(async (req, res, next) => {
+
       console.log('User Agent: ');
       console.log(req.headers['user-agent']);
 
