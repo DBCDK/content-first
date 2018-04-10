@@ -10,8 +10,6 @@ const config = require('./config');
 
 const showTitles = 3;
 
-const showTitles = 3;
-
 router
   .route('/')
 
