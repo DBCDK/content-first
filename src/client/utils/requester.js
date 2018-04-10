@@ -9,7 +9,6 @@ import {
   ON_USER_DETAILS_ERROR
 } from '../redux/user.reducer';
 import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
-import similar from '../../data/similar-pids.json';
 import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
@@ -76,27 +75,13 @@ export const fetchBooks = (pids = [], dispatch) => {
 };
 
 export const fetchWork = (pid, dispatch) => {
-  // mapping pid to score
-  const similarList = similar[pid] || [];
-  const scores = {};
-  similarList.forEach(o => {
-    scores[o.pid] = o.val;
-  });
-
   const getWork = request.get(`/v1/book/${pid}`);
   const getMetaTags = request.get(`/v1/tags/${pid}`);
-  const getSimilarWorks = request
-    .get('/v1/books/')
-    .query({pids: similarList.map(o => o.pid)});
 
-  Promise.all([getWork, getMetaTags, getSimilarWorks])
+  Promise.all([getWork, getMetaTags])
     .then(responses => {
       const work = JSON.parse(responses[0].text);
       const tags = JSON.parse(responses[1].text).data.tags;
-      const similarWorks = JSON.parse(responses[2].text).data.map(w => {
-        w.score = scores[w.book.pid];
-        return w;
-      });
 
       work.tags = [];
       tags.forEach(t => {
@@ -104,9 +89,6 @@ export const fetchWork = (pid, dispatch) => {
           work.tags.push(taxonomyMap[t]);
         }
       });
-
-      work.similar = similarWorks;
-      work.similar.sort((w1, w2) => w2.score - w1.score);
 
       dispatch({type: ON_WORK_RESPONSE, response: work});
     })
