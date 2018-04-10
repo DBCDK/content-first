@@ -51,7 +51,9 @@ export default class SocialShareButton extends React.Component {
       >
         <a
           href={
-            'https://www.facebook.com/sharer/sharer.php?display=page&u=' +
+            'https://www.facebook.com/sharer/sharer.php?display=page&ts=' +
+            Date.now() +
+            '&u=' +
             this.props.href
           }
           target="_blank"
