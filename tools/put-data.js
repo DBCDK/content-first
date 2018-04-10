@@ -4,7 +4,7 @@ const request = require('superagent');
 const {uniqBy} = require('lodash');
 const fs = require('fs');
 const targz = require('targz');
-const config = require('server/config');
+const config = require('../src/server/config');
 
 const JSON_FILES_URL = process.env.JSON_FILES_URL;
 const INTERNAL_PORT = config.server.internalPort;
