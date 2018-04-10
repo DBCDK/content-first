@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require('express');
-<<<<<<< c03c829f2da790df02b50017caaeba7c9ac81173
+
 const request = require('superagent');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
@@ -15,6 +15,8 @@ const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const community = require('server/community');
 >>>>>>> added server evaluated list on bot detection
 
+const showTitles = 3;
+
 router
   .route('/')
 
@@ -22,12 +24,8 @@ router
     asyncMiddleware(async (req, res, next) => {
       if (JSON.stringify(res.locals) === JSON.stringify({})) {
         return next();
-<<<<<<< 86eb9249a24f42523034165de65c2bfbd28bc6bd
-<<<<<<< c03c829f2da790df02b50017caaeba7c9ac81173
       }
 
-<<<<<<< d45066e711743020f4d6b9d087b47651a1bc5555
-<<<<<<< 99ed04f5270b2639648ed665f4f7b0e488fab8d4
       const listId = req.params.id;
       const list = await community.getObjectById(listId, {});
       const host = req.get('host');
@@ -39,7 +37,7 @@ router
           key: listId
         });
 
-      let aPids = listPids.body;
+      let aPids = JSON.parse(listPids.text);
       aPids = aPids.data;
 
       const pids = aPids.map(p => p.pid);
@@ -48,7 +46,7 @@ router
         .get('http://' + host + '/v1/books/')
         .query({pids});
 
-      let aBooks = books.body;
+      let aBooks = JSON.parse(books.text);
       aBooks = aBooks.data;
 
       let titles = aBooks.map(b => b.book.title);
@@ -56,13 +54,12 @@ router
 
       // Construct title shortner sentence according to showTitle number
       const bookBooks = aBooks.length - showTitles > 1 ? 'bøger' : 'bog';
-
       const andMore =
         aBooks.length > showTitles
           ? ' & ' + (aBooks.length - showTitles) + ' ' + bookBooks + ' mere'
           : '';
 
-      titles += andMore;
+      titles = titles + andMore;
 
       // Evaluate meta content
       const description =
@@ -78,14 +75,11 @@ router
       const ogTitle =
         '<meta property="og:title" content="' + list.data.title + '" />';
       const ogDescription =
-
         '<meta property="og:description" content="' + description + '" />';
       const ogImage =
         '<meta property="og:image" content="/v1/image/' + img + '" />';
       const ogURL =
-        '<meta property="og:url" content="http://' +
-        config.server.hostname +
-        '/lister/' +
+        '<meta property="og:url" content="https://content-first.demo.dbc.dk/lister/' +
         listId +
         '" />';
 
@@ -99,8 +93,6 @@ router
         ogURL +
         '</head>';
 
-
-      // Build <body>
       const body = '<body>Hello Bot!</body>';
 
       // Build <html>
@@ -108,76 +100,7 @@ router
 
       // Return Page
       return res.send(html);
-=======
-      } else {
-        const listId = req.params.id;
-        const list = await community.getObjectById(listId, {});
-        const title = '<title>' + list.data.title + '</title>';
-        const ogTitle =
-          '<meta property="og:title" content="' + list.data.title + '" />';
-        const ogDescription =
-          '<meta property="og:description" content="' +
-          list.data.description +
-          '" />';
-        const img = list.data.image
-          ? list.data.image
-          : 'img/bookcase/NB-bogreol.jpg';
-        const ogImage =
-          '<meta property="og:image" content="/v1/image/' + img + '" />';
-        const head =
-          '<head>' + title + ogTitle + ogDescription + ogImage + '</head>';
-=======
-      }
->>>>>>> SocialShareButton Done + ready for demo test
-=======
-      if (req.headers['user-agent'] === 'facebookexternalhit/1.1') {
-        console.log('THIS IS a Facebook bot!');
-      }
->>>>>>> dobbel check
 
-      console.log('... This is a BOT! - return OG:META page');
-
-=======
->>>>>>> back to express-bot
-      const listId = req.params.id;
-      const list = await community.getObjectById(listId, {});
-      const title = '<title>' + list.data.title + '</title>';
-      const ogTitle =
-        '<meta property="og:title" content="' + list.data.title + '" />';
-      const ogDescription =
-        '<meta property="og:description" content="' +
-        list.data.description +
-        '" />';
-      const img = list.data.image
-        ? list.data.image
-        : 'img/bookcase/NB-bogreol.jpg';
-      const ogImage =
-        '<meta property="og:image" content="/v1/image/' + img + '" />';
-
-      const ogURL =
-        '<meta property="og:url" content="https://content-first.demo.dbc.dk/lister/' +
-        listId +
-        '" />';
-
-      const head =
-        '<head>' +
-        title +
-        ogTitle +
-        ogDescription +
-        ogImage +
-        ogURL +
-        '</head>';
-
-<<<<<<< 86eb9249a24f42523034165de65c2bfbd28bc6bd
-        return res.send(html);
-      }
->>>>>>> added server evaluated list on bot detection
-=======
-      const body = '<body>Hello Bot!</body>';
-      const html = '<html>' + head + body + '</html>';
-
-      return res.send(html);
->>>>>>> SocialShareButton Done + ready for demo test
     })
   );
 
