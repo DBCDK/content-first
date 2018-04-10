@@ -5,6 +5,7 @@ const request = require('superagent');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const community = require('server/community');
+const config = require('./config');
 
 const showTitles = 3;
 
@@ -28,7 +29,7 @@ router
           key: listId
         });
 
-      let aPids = JSON.parse(listPids.text);
+      let aPids = listPids.body;
       aPids = aPids.data;
 
       const pids = aPids.map(p => p.pid);
@@ -37,7 +38,7 @@ router
         .get('http://' + host + '/v1/books/')
         .query({pids});
 
-      let aBooks = JSON.parse(books.text);
+      let aBooks = books.body;
       aBooks = aBooks.data;
 
       let titles = aBooks.map(b => b.book.title);
@@ -71,7 +72,9 @@ router
       const ogImage =
         '<meta property="og:image" content="/v1/image/' + img + '" />';
       const ogURL =
-        '<meta property="og:url" content="https://content-first.demo.dbc.dk/lister/' +
+        '<meta property="og:url" content="http://' +
+        config.server.hostname +
+        '/lister/' +
         listId +
         '" />';
 
