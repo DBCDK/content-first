@@ -11,6 +11,7 @@ import React from 'react';
   shape="round || square" (Not req)
   txt="Del" (Not req)
   hoverTitle="Del på facebook" (Not req)
+  stamp="123456789" (not req) (uniq cash key for test)
 />
 
 */
@@ -52,9 +53,9 @@ export default class SocialShareButton extends React.Component {
         <a
           href={
             'https://www.facebook.com/sharer/sharer.php?display=page&u=' +
-            this.props.href +
-            '&ts=' +
-            Date.now()
+              this.props.href +
+              '&ts=' +
+              this.props.stamp || Date.now()
           }
           target="_blank"
         >
