@@ -45,12 +45,13 @@ router
 
       // Construct title shortner sentence according to showTitle number
       const bookBooks = aBooks.length - showTitles > 1 ? 'bøger' : 'bog';
+
       const andMore =
         aBooks.length > showTitles
           ? ' & ' + (aBooks.length - showTitles) + ' ' + bookBooks + ' mere'
           : '';
 
-      titles = titles + andMore;
+      titles += andMore;
 
       // Evaluate meta content
       const description =
