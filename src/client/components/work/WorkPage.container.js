@@ -6,10 +6,11 @@ import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Slider from '../belt/Slider.component';
 import Link from '../general/Link.component';
-import {ON_WORK_REQUEST} from '../../redux/work.reducer';
 import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
+import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {getRecommendedBooks} from '../../redux/selectors';
+import {get} from 'lodash';
 
 let selectedTagIds = [];
 
@@ -19,36 +20,31 @@ class WorkPage extends React.Component {
     this.state = {tagsCollapsed: true, transition: true, addToList: null};
   }
 
-  fetchWork() {
-    this.props.fetchWork(this.props.pid);
+  fetchWork(pid) {
+    this.props.fetchWork(pid);
     this.setState({tagsCollapsed: true, transition: false});
   }
 
   componentDidMount() {
-    this.fetchWork();
-  }
-
-  componentDidUpdate() {
-    // only fetch work if pid has changed to avoid endless loop
-    if (this.props.pid !== this.props.workState.pid) {
-      this.fetchWork();
-    }
+    this.fetchWork(this.props.pid);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.workState.work.tags) {
-      selectedTagIds = nextProps.workState.work.tags.map(t => t.id);
-
-      if (this.props.workState.work.tags !== nextProps.workState.work.tags) {
-        this.props.fetchRecommendations(selectedTagIds);
-      }
+    if (this.props.pid !== nextProps.pid) {
+      this.fetchWork(nextProps.pid);
+    }
+    const nextTags = get(nextProps, 'work.book.tags');
+    const prevTags = get(this.props, 'work.book.tags');
+    if (nextTags && prevTags !== nextTags) {
+      selectedTagIds = nextTags.map(t => t.id);
+      this.props.fetchRecommendations(selectedTagIds);
     }
   }
 
   render() {
-    const work = this.props.workState.work;
+    const work = this.props.work;
 
-    if (!work || !work.data) {
+    if (!work || !work.book) {
       return null;
     }
 
@@ -56,13 +52,15 @@ class WorkPage extends React.Component {
     // stemnings tags, we use the taxonomy first level title
     // for all other teags we use the second level title
     let tagGroups = {};
-    work.tags.forEach(t => {
-      let groupName = t.parents[0] === 'stemning' ? t.parents[0] : t.parents[1];
-      if (!tagGroups[groupName]) {
-        tagGroups[groupName] = [];
-      }
-      tagGroups[groupName].push(t);
-    });
+    work.book.tags &&
+      work.book.tags.forEach(t => {
+        let groupName =
+          t.parents[0] === 'stemning' ? t.parents[0] : t.parents[1];
+        if (!tagGroups[groupName]) {
+          tagGroups[groupName] = [];
+        }
+        tagGroups[groupName].push(t);
+      });
     tagGroups = Object.keys(tagGroups).map(key => {
       return {title: key, data: tagGroups[key]};
     });
@@ -71,18 +69,18 @@ class WorkPage extends React.Component {
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
     const tax_description =
-      work.data.taxonomy_description || work.data.description;
+      work.book.taxonomy_description || work.book.description;
 
     return (
       <div className="work-page">
         <div className="row work-details">
           <div className="col-xs-11 col-centered text-left">
             <div className="col-xs-4 col-lg-3 cover-image-wrapper">
-              <BookCover book={work.data} />
+              <BookCover book={work.book} />
             </div>
             <div className="col-xs-8 col-lg-9 info">
-              <div className="title">{work.data.title}</div>
-              <div className="creator">{work.data.creator}</div>
+              <div className="title">{work.book.title}</div>
+              <div className="creator">{work.book.creator}</div>
               <div className="meta-description">
                 {tax_description &&
                   tax_description
@@ -90,42 +88,42 @@ class WorkPage extends React.Component {
                     .map((line, idx) => <p key={idx}>{line}</p>)}
               </div>
               <div className="line" />
-              <div className="description">{work.data.description}</div>
+              <div className="description">{work.book.description}</div>
               <div className="extra">
-                <div className="subjects">{work.data.subject}</div>
-                {work.data.pages && (
-                  <div className="page-count">{`${work.data.pages} sider`}</div>
+                <div className="subjects">{work.book.subject}</div>
+                {work.book.pages && (
+                  <div className="page-count">{`${work.book.pages} sider`}</div>
                 )}
                 <div className="year">
-                  {work.data.literary_form}
-                  {work.data.literary_form && work.data.first_edition_year
+                  {work.book.literary_form}
+                  {work.book.literary_form && work.book.first_edition_year
                     ? ', '
                     : ''}
-                  {work.data.first_edition_year
-                    ? work.data.first_edition_year
+                  {work.book.first_edition_year
+                    ? work.book.first_edition_year
                     : ''}
                 </div>
-                {work.data.genre && (
-                  <div className="genre">{work.data.genre}</div>
+                {work.book.genre && (
+                  <div className="genre">{work.book.genre}</div>
                 )}
               </div>
               <div className="bibliotek-dk-link">
                 <a
                   target="_blank"
                   href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(
-                    work.data.pid
+                    work.book.pid
                   )}`}
                 >
                   Se mere på bibliotek.dk
                 </a>
               </div>
               <OrderButton
-                book={work.data}
+                book={work.book}
                 style={{marginTop: 10, float: 'right'}}
               />
 
               <CheckmarkConnected
-                book={{book: work.data}}
+                book={{book: work.book}}
                 origin="Fra egen værkside"
               />
             </div>
@@ -197,7 +195,7 @@ class WorkPage extends React.Component {
                         <WorkItem
                           work={w}
                           key={w.book.pid}
-                          origin={`Minder om "${work.data.title}"`}
+                          origin={`Minder om "${work.book.title}"`}
                         />
                       );
                     })}
@@ -212,16 +210,15 @@ class WorkPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  const workstate = state.workReducer;
+const mapStateToProps = (state, ownProps) => {
   const recommendations = getRecommendedBooks(state, selectedTagIds, 21);
 
   recommendations.books = recommendations.books.filter(
-    r => r.book.pid !== workstate.pid
+    r => r.book.pid !== ownProps.pid
   );
 
   return {
-    workState: workstate,
+    work: state.booksReducer.books[ownProps.pid],
     filterState: state.filterReducer,
     shortListState: state.shortListReducer,
     systemLists: getListsForOwner(state.listReducer, {
@@ -235,7 +232,13 @@ const mapStateToProps = state => {
 };
 
 export const mapDispatchToProps = dispatch => ({
-  fetchWork: pid => dispatch({type: ON_WORK_REQUEST, pid}),
+  fetchWork: pid =>
+    dispatch({
+      type: BOOKS_REQUEST,
+      pids: [pid],
+      includeTags: true,
+      force: true
+    }),
   fetchRecommendations: tags =>
     dispatch({
       type: RECOMMEND_REQUEST,
