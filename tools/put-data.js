@@ -4,11 +4,10 @@ const request = require('superagent');
 const {uniqBy} = require('lodash');
 const fs = require('fs');
 const targz = require('targz');
-const config = require('server/config');
 
 const JSON_FILES_URL = process.env.JSON_FILES_URL;
-const INTERNAL_PORT = config.server.internalPort;
-const PORT = config.server.port;
+const INTERNAL_PORT = process.env.INTERNAL_PORT || 3002;
+const PORT = process.env.PORT || 3001;
 const HOST = (process.env.HOST || 'http://localhost') + ':' + INTERNAL_PORT;
 const HOWRU = (process.env.HOST || 'http://localhost') + ':' + PORT + '/howru';
 const DATA_DIR = process.cwd() + '/src/data/';

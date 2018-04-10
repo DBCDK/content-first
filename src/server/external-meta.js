@@ -68,6 +68,7 @@ router
       const ogTitle =
         '<meta property="og:title" content="' + list.data.title + '" />';
       const ogDescription =
+
         '<meta property="og:description" content="' + description + '" />';
       const ogImage =
         '<meta property="og:image" content="/v1/image/' + img + '" />';
@@ -87,6 +88,7 @@ router
         ogImage +
         ogURL +
         '</head>';
+
 
       // Build <body>
       const body = '<body>Hello Bot!</body>';
