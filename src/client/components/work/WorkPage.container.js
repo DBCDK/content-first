@@ -52,7 +52,7 @@ class WorkPage extends React.Component {
     // stemnings tags, we use the taxonomy first level title
     // for all other teags we use the second level title
     let tagGroups = {};
-    work.book.tags &&
+    if (work.book.tags) {
       work.book.tags.forEach(t => {
         let groupName =
           t.parents[0] === 'stemning' ? t.parents[0] : t.parents[1];
@@ -61,6 +61,7 @@ class WorkPage extends React.Component {
         }
         tagGroups[groupName].push(t);
       });
+    }
     tagGroups = Object.keys(tagGroups).map(key => {
       return {title: key, data: tagGroups[key]};
     });
