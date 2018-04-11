@@ -8,8 +8,6 @@ Enzyme.configure({adapter: new Adapter()});
 require('jest-localstorage-mock');
 [
   'exportTaxonomy.json',
-  'ranked-profiles.json',
-  'similar-pids.json',
   'exportTags.json',
   'librarian-recommends.json',
   'pidinfo.json'

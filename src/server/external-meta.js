@@ -86,7 +86,6 @@ router
 
       const ogImageWidth = '<meta property="og:image:width" content="1200"/>';
       const ogImageHeight = '<meta property="og:image:height" content="600"/>';
-
       const ogType = '<meta property="og:type" content="books" />';
 
       // Build <head>
