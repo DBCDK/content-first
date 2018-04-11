@@ -81,10 +81,7 @@ router
       const ogURL =
         '<meta property="og:url" content="' +
         hostUrl +
-        '/lister/' +
-        listId +
-        '?ts=' +
-        Date.now() +
+        req.originalUrl +
         '" />';
 
       const ogImageWidth = '<meta property="og:image:width" content="1200"/>';
