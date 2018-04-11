@@ -42,9 +42,9 @@ class WorkPage extends React.Component {
   }
 
   render() {
-    const work = this.props.work;
+    const book = get(this.props, 'work.book');
 
-    if (!work || !work.book) {
+    if (!book) {
       return null;
     }
 
@@ -52,8 +52,8 @@ class WorkPage extends React.Component {
     // stemnings tags, we use the taxonomy first level title
     // for all other teags we use the second level title
     let tagGroups = {};
-    if (work.book.tags) {
-      work.book.tags.forEach(t => {
+    if (book.tags) {
+      book.tags.forEach(t => {
         let groupName =
           t.parents[0] === 'stemning' ? t.parents[0] : t.parents[1];
         if (!tagGroups[groupName]) {
@@ -69,19 +69,18 @@ class WorkPage extends React.Component {
 
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
-    const tax_description =
-      work.book.taxonomy_description || work.book.description;
+    const tax_description = book.taxonomy_description || book.description;
 
     return (
       <div className="work-page">
         <div className="row work-details">
           <div className="col-xs-11 col-centered text-left">
             <div className="col-xs-4 col-lg-3 cover-image-wrapper">
-              <BookCover book={work.book} />
+              <BookCover book={book} />
             </div>
             <div className="col-xs-8 col-lg-9 info">
-              <div className="title">{work.book.title}</div>
-              <div className="creator">{work.book.creator}</div>
+              <div className="title">{book.title}</div>
+              <div className="creator">{book.creator}</div>
               <div className="meta-description">
                 {tax_description &&
                   tax_description
@@ -89,42 +88,36 @@ class WorkPage extends React.Component {
                     .map((line, idx) => <p key={idx}>{line}</p>)}
               </div>
               <div className="line" />
-              <div className="description">{work.book.description}</div>
+              <div className="description">{book.description}</div>
               <div className="extra">
-                <div className="subjects">{work.book.subject}</div>
-                {work.book.pages && (
-                  <div className="page-count">{`${work.book.pages} sider`}</div>
+                <div className="subjects">{book.subject}</div>
+                {book.pages && (
+                  <div className="page-count">{`${book.pages} sider`}</div>
                 )}
                 <div className="year">
-                  {work.book.literary_form}
-                  {work.book.literary_form && work.book.first_edition_year
-                    ? ', '
-                    : ''}
-                  {work.book.first_edition_year
-                    ? work.book.first_edition_year
-                    : ''}
+                  {book.literary_form}
+                  {book.literary_form && book.first_edition_year ? ', ' : ''}
+                  {book.first_edition_year ? book.first_edition_year : ''}
                 </div>
-                {work.book.genre && (
-                  <div className="genre">{work.book.genre}</div>
-                )}
+                {book.genre && <div className="genre">{book.genre}</div>}
               </div>
               <div className="bibliotek-dk-link">
                 <a
                   target="_blank"
                   href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(
-                    work.book.pid
+                    book.pid
                   )}`}
                 >
                   Se mere på bibliotek.dk
                 </a>
               </div>
               <OrderButton
-                book={work.book}
+                book={book}
                 style={{marginTop: 10, float: 'right'}}
               />
 
               <CheckmarkConnected
-                book={{book: work.book}}
+                book={{book: book}}
                 origin="Fra egen værkside"
               />
             </div>
@@ -196,7 +189,7 @@ class WorkPage extends React.Component {
                         <WorkItem
                           work={w}
                           key={w.book.pid}
-                          origin={`Minder om "${work.book.title}"`}
+                          origin={`Minder om "${book.title}"`}
                         />
                       );
                     })}
