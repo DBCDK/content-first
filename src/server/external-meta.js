@@ -9,6 +9,7 @@ const community = require('server/community');
 const config = require('./config');
 
 const showTitles = 3;
+const hostUrl = 'http://' + config.server.hostname;
 
 router
   .route('/')
@@ -35,25 +36,30 @@ router
 
       const pids = aPids.map(p => p.pid);
 
-      const books = await request
-        .get('http://' + host + '/v1/books/')
-        .query({pids});
+      let titles =
+        'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.';
 
-      let aBooks = books.body;
-      aBooks = aBooks.data;
+      // Fetch books from list if any
+      if (pids.length > 0) {
+        const books = await request
+          .get('http://' + host + '/v1/books/')
+          .query({pids});
 
-      let titles = aBooks.map(b => b.book.title);
-      titles = titles.slice(0, showTitles).join(', ');
+        let aBooks = books.body;
+        aBooks = aBooks.data;
 
-      // Construct title shortner sentence according to showTitle number
-      const bookBooks = aBooks.length - showTitles > 1 ? 'bøger' : 'bog';
+        titles = aBooks.map(b => b.book.title);
+        titles = titles.slice(0, showTitles).join(', ');
 
-      const andMore =
-        aBooks.length > showTitles
-          ? ' & ' + (aBooks.length - showTitles) + ' ' + bookBooks + ' mere'
-          : '';
+        // Construct title shortner sentence according to showTitle number
+        const bookBooks = aBooks.length - showTitles > 1 ? 'bøger' : 'bog';
+        const andMore =
+          aBooks.length > showTitles
+            ? ' & ' + (aBooks.length - showTitles) + ' ' + bookBooks + ' mere'
+            : '';
 
-      titles += andMore;
+        titles += andMore;
+      }
 
       // Evaluate meta content
       const description =
@@ -61,8 +67,8 @@ router
           ? list.data.description
           : titles;
       const img = list.data.image
-        ? list.data.image
-        : 'img/bookcase/NB-bogreol.jpg';
+        ? hostUrl + '/v1/image/' + list.data.image + '/1200/600'
+        : hostUrl + '/img/bookcase/NB-bogreol.jpg';
 
       // Create Meta content in HTML markup
       const title = '<title>' + list.data.title + '</title>';
@@ -70,20 +76,22 @@ router
         '<meta property="og:title" content="' + list.data.title + '" />';
       const ogDescription =
         '<meta property="og:description" content="' + description + '" />';
-      const ogImage =
-        '<meta property="og:image" content="/v1/image/' + img + '" />';
+      const ogImage = '<meta property="og:image" content="' + img + '" />';
       const ogURL =
-        '<meta property="og:url" content="http://' +
-        config.server.hostname +
+        '<meta property="og:url" content="' +
+        hostUrl +
         '/lister/' +
         listId +
         '" />';
+
+      const ogType = '<meta property="og:type" content="books.reads" />';
 
       // Build <head>
       const head =
         '<head>' +
         title +
         ogTitle +
+        ogType +
         ogDescription +
         ogImage +
         ogURL +
