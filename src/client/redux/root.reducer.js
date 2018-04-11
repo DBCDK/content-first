@@ -2,7 +2,6 @@ import {combineReducers} from 'redux';
 import beltsReducer from './belts.reducer';
 import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
-import workReducer from './work.reducer';
 import userReducer from './user.reducer';
 import {usersReducer} from './users';
 import tasteReducer from './taste.reducer';
@@ -23,7 +22,6 @@ const combined = combineReducers({
   userReducer: userReducer,
   users: usersReducer,
   routerReducer,
-  workReducer,
   shortListReducer,
   modalReducer,
   searchReducer,

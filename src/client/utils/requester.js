@@ -1,5 +1,4 @@
 import request from 'superagent';
-import {ON_WORK_RESPONSE} from '../redux/work.reducer';
 import {BOOKS_RESPONSE} from '../redux/books.reducer';
 import {SEARCH_RESULTS} from '../redux/search.reducer';
 import {HISTORY_PUSH} from '../redux/router.reducer';
@@ -9,7 +8,6 @@ import {
   ON_USER_DETAILS_ERROR
 } from '../redux/user.reducer';
 import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
-import similar from '../../data/similar-pids.json';
 import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
@@ -46,7 +44,7 @@ export const fetchTags = async (pids = []) => {
   return result;
 };
 
-export const fetchBooks = (pids = [], dispatch) => {
+export const fetchBooks = (pids = [], includeTags, dispatch) => {
   /*
     accepts:
       pids = ["pid1","pid2","..."]
@@ -58,11 +56,13 @@ export const fetchBooks = (pids = [], dispatch) => {
   Promise.all([getBooks])
     .then(async responses => {
       const books = JSON.parse(responses[0].text).data;
-      // const tags = await fetchTags(pids);
-      //
-      // books.forEach(b => {
-      //   b.book.tags = tags[b.book.pid];
-      // });
+      if (includeTags) {
+        const tags = await fetchTags(pids);
+
+        books.forEach(b => {
+          b.book.tags = tags[b.book.pid];
+        });
+      }
       dispatch({type: BOOKS_RESPONSE, response: books});
     })
     .catch(error => {
@@ -72,46 +72,6 @@ export const fetchBooks = (pids = [], dispatch) => {
         pids,
         error: String(error)
       });
-    });
-};
-
-export const fetchWork = (pid, dispatch) => {
-  // mapping pid to score
-  const similarList = similar[pid] || [];
-  const scores = {};
-  similarList.forEach(o => {
-    scores[o.pid] = o.val;
-  });
-
-  const getWork = request.get(`/v1/book/${pid}`);
-  const getMetaTags = request.get(`/v1/tags/${pid}`);
-  const getSimilarWorks = request
-    .get('/v1/books/')
-    .query({pids: similarList.map(o => o.pid)});
-
-  Promise.all([getWork, getMetaTags, getSimilarWorks])
-    .then(responses => {
-      const work = JSON.parse(responses[0].text);
-      const tags = JSON.parse(responses[1].text).data.tags;
-      const similarWorks = JSON.parse(responses[2].text).data.map(w => {
-        w.score = scores[w.book.pid];
-        return w;
-      });
-
-      work.tags = [];
-      tags.forEach(t => {
-        if (taxonomyMap[t]) {
-          work.tags.push(taxonomyMap[t]);
-        }
-      });
-
-      work.similar = similarWorks;
-      work.similar.sort((w1, w2) => w2.score - w1.score);
-
-      dispatch({type: ON_WORK_RESPONSE, response: work});
-    })
-    .catch(error => {
-      dispatch({type: ON_WORK_RESPONSE, pid, error});
     });
 };
 
