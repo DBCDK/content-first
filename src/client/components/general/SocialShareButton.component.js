@@ -44,6 +44,8 @@ export default class SocialShareButton extends React.Component {
         ? this.props.size / 2 + 'px'
         : '0px';
 
+    const ts = this.props.stamp ? this.props.stamp : Date.now();
+
     return (
       <button
         className={'ssb ' + this.props.className}
@@ -53,9 +55,9 @@ export default class SocialShareButton extends React.Component {
         <a
           href={
             'https://www.facebook.com/sharer/sharer.php?display=page&u=' +
-              this.props.href +
-              '&ts=' +
-              this.props.stamp || Date.now()
+            this.props.href +
+            '&ts=' +
+            ts
           }
           target="_blank"
         >

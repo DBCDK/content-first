@@ -10,6 +10,8 @@ const config = require('./config');
 
 const showTitles = 3;
 const hostUrl = 'http://' + config.server.hostname;
+let description =
+  'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.';
 
 router
   .route('/')
@@ -24,48 +26,47 @@ router
       const list = await community.getObjectById(listId, {});
       const host = req.get('host');
 
-      const listPids = await request
-        .get('http://' + host + '/v1/object/find')
-        .query({
-          type: 'list-entry',
-          key: listId
-        });
+      if (list.data.description) {
+        // if the list contains a description use that default
+        description = list.data.description;
+      } else {
+        // if the list DOSNT contain a description, search for the book titles.
+        const listPids = await request
+          .get('http://' + host + '/v1/object/find')
+          .query({
+            type: 'list-entry',
+            key: listId
+          });
 
-      let aPids = listPids.body;
-      aPids = aPids.data;
+        let aPids = listPids.body;
+        aPids = aPids.data;
 
-      const pids = aPids.map(p => p.pid);
+        const pids = aPids.map(p => p.pid);
 
-      let titles =
-        'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.';
+        // Fetch books from list if any
+        if (pids.length > 0) {
+          const books = await request
+            .get('http://' + host + '/v1/books/')
+            .query({pids});
 
-      // Fetch books from list if any
-      if (pids.length > 0) {
-        const books = await request
-          .get('http://' + host + '/v1/books/')
-          .query({pids});
+          let aBooks = books.body;
+          aBooks = aBooks.data;
 
-        let aBooks = books.body;
-        aBooks = aBooks.data;
+          description = aBooks.map(b => b.book.title);
+          description = description.slice(0, showTitles).join(', ');
 
-        titles = aBooks.map(b => b.book.title);
-        titles = titles.slice(0, showTitles).join(', ');
+          // Construct title shortner sentence according to showTitle number
+          const bookBooks = aBooks.length - showTitles > 1 ? 'bøger' : 'bog';
+          const andMore =
+            aBooks.length > showTitles
+              ? ' & ' + (aBooks.length - showTitles) + ' ' + bookBooks + ' mere'
+              : '';
 
-        // Construct title shortner sentence according to showTitle number
-        const bookBooks = aBooks.length - showTitles > 1 ? 'bøger' : 'bog';
-        const andMore =
-          aBooks.length > showTitles
-            ? ' & ' + (aBooks.length - showTitles) + ' ' + bookBooks + ' mere'
-            : '';
-
-        titles += andMore;
+          description += andMore;
+        }
       }
 
       // Evaluate meta content
-      const description =
-        list.data.description && list.data.description !== ''
-          ? list.data.description
-          : titles;
       const img = list.data.image
         ? hostUrl + '/v1/image/' + list.data.image + '/1200/600'
         : hostUrl + '/img/bookcase/NB-bogreol.jpg';
@@ -80,11 +81,12 @@ router
       const ogURL =
         '<meta property="og:url" content="' +
         hostUrl +
-        '/lister/' +
-        listId +
+        req.originalUrl +
         '" />';
 
-      const ogType = '<meta property="og:type" content="books.reads" />';
+      const ogImageWidth = '<meta property="og:image:width" content="1200"/>';
+      const ogImageHeight = '<meta property="og:image:height" content="600"/>';
+      const ogType = '<meta property="og:type" content="books" />';
 
       // Build <head>
       const head =
@@ -94,6 +96,8 @@ router
         ogType +
         ogDescription +
         ogImage +
+        ogImageWidth +
+        ogImageHeight +
         ogURL +
         '</head>';
 
