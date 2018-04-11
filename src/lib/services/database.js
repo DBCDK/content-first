@@ -10,6 +10,9 @@ class Database {
     this.currentError = null;
     this.databaseErrors = [];
   }
+  clear() {
+    this.setOk();
+  }
   getName() {
     return 'database';
   }
@@ -18,6 +21,7 @@ class Database {
   }
   setOk() {
     this.ok = true;
+    this.currentError = null;
   }
   getCurrentError() {
     if (this.isOk()) {
