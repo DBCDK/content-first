@@ -199,17 +199,17 @@ export class ListCreator extends React.Component {
     if (selector === 'public' && currentList.public) {
       this.props.updateList({
         id: currentList.id,
-        ['social']: false
+        social: false
       });
       this.props.updateList({
         id: currentList.id,
-        ['open']: false
+        open: false
       });
       // if open or social gets checked, public is forced checked
     } else if (!currentList.social || !currentList.open) {
       this.props.updateList({
         id: currentList.id,
-        ['public']: true
+        public: true
       });
     }
   }

@@ -3,6 +3,7 @@
   color: white;
   text-align: center;
   font-family: var(--secondary-font);
+  z-index: 1;
 }
 
 .ssb a {

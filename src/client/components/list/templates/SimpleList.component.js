@@ -9,6 +9,7 @@ import Kryds from '../../svg/Kryds.svg';
 import {
   UPDATE_LIST_ELEMENT,
   removeElementFromList,
+  updateList,
   storeList
 } from '../../../redux/list.reducer';
 import CommentInput from '../../comments/CommentInput.component';
@@ -20,9 +21,11 @@ export class SimpleListItem extends React.Component {
     super();
     this.state = {
       editing: false,
+      listPublic: this.props.list.public,
       originalDescription: props.element.description
     };
   }
+
   render() {
     const {
       element,
@@ -131,19 +134,28 @@ export const SimpleList = ({
   removeElement,
   updateElement,
   submit,
-  profiles
+  profiles,
+  confirmShareModal
 }) => {
   return (
     <div className="simplelist">
       <SocialShareButton
         className="ssb-fb"
-        href={'https://content-first.demo.dbc.dk/lister/' + list.id}
+        href={
+          list.public
+            ? 'https://content-first.demo.dbc.dk/lister/' + list.id
+            : null
+        }
         icon={'fb-icon'}
         hex={'#3b5998'}
+        status={!list.public ? 'passive' : 'active'}
         size={30}
         shape="square"
         txt="Del"
         hoverTitle="Del på facebook"
+        onClick={() => {
+          confirmShareModal(list.id);
+        }}
       />
       <div className="row mb4 b-dark">
         <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
@@ -202,6 +214,37 @@ export const mapDispatchToProps = dispatch => ({
   updateElement: (element, list) => {
     dispatch({type: UPDATE_LIST_ELEMENT, id: list.id, element});
   },
-  submit: list => dispatch(storeList(list.id))
+  submit: list => dispatch(storeList(list.id)),
+  confirmShareModal: id => {
+    dispatch({
+      type: 'OPEN_MODAL',
+      modal: 'confirm',
+      context: {
+        title: 'Din liste skal være offentlig!',
+        reason:
+          'For at du kan dele din liste, skal listen være offentlig. Vil du ændre din listes status til offentlig?',
+        confirmText: 'Gør min liste offentlig',
+        onConfirm: () => {
+          dispatch(
+            updateList({
+              id: id,
+              public: true
+            }),
+            dispatch({
+              type: 'CLOSE_MODAL',
+              modal: 'confirm'
+            })
+          );
+          dispatch(storeList(id));
+        },
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        }
+      }
+    });
+  }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleList);
