@@ -72,6 +72,9 @@ external.get('/howru', async (req, res) => {
     address: req.ip,
     config: configWithoutSecrets
   });
+  if (!status.ok) {
+    res.status(503);
+  }
   res.json(status);
 });
 

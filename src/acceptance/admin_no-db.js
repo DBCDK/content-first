@@ -41,7 +41,7 @@ describe('Admin API', () => {
             .get('/howru')
             .set('Accept', 'application/json')
             // Assert.
-            .expect(200)
+            .expect(503)
             .expect(res => {
               expectValidate(res.body, 'schemas/status-out.json');
               expect(res.body.ok).to.be.false;

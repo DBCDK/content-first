@@ -56,7 +56,7 @@ describe('Admin API on running database', () => {
             .set('Accept', 'application/json')
             // Assert.
             .expect('Content-Type', /json/)
-            .expect(200)
+            .expect(503)
             .expect(res => {
               expectStatusError(
                 /authentication.* communication failed/i,
@@ -77,7 +77,7 @@ describe('Admin API on running database', () => {
             .set('Accept', 'application/json')
             // Assert.
             .expect('Content-Type', /json/)
-            .expect(200)
+            .expect(503)
             .expect(res => {
               expectStatusError(/login.* communication failed/i, res.body);
               expectNoSecretsRevealed(res.body);
@@ -95,7 +95,7 @@ describe('Admin API on running database', () => {
             .set('Accept', 'application/json')
             // Assert.
             .expect('Content-Type', /json/)
-            .expect(200)
+            .expect(503)
             .expect(res => {
               expectStatusError(/community.* communication failed/i, res.body);
               expectNoSecretsRevealed(res.body);

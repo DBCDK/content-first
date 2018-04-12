@@ -7,6 +7,9 @@ const _ = require('lodash');
  * @return {{ok, services}}      Status object.
  */
 async function generatingServiceStatus(services) {
+  services.forEach(service => {
+    service.clear();
+  });
   const servicesHealth = await Promise.all(
     _.map(services, service => {
       const name = service.getName();
