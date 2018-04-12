@@ -3,7 +3,7 @@ import React from 'react';
 /*
 <SocialShareButton
   className="ssb-fb" (Not req)
-  href={'https://content-first.demo.dbc.dk/lister/1234567 || undefined} (Not req)
+  href={'https://myurltoshare.dk/lister/1234567 || null} (Not req)
   icon={'glyphicon || icon from media folder'} (Not req)
   hex={'#3b5998'}
   size={40}

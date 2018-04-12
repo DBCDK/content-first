@@ -21,7 +21,6 @@ export class SimpleListItem extends React.Component {
     super();
     this.state = {
       editing: false,
-      listPublic: this.props.list.public,
       originalDescription: props.element.description
     };
   }
@@ -140,7 +139,7 @@ export const SimpleList = ({
   return (
     <div className="simplelist">
       <SocialShareButton
-        className="ssb-fb"
+        className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-fb'}
         href={
           list.public
             ? 'https://content-first.demo.dbc.dk/lister/' + list.id
