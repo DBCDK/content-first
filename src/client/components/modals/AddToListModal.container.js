@@ -86,7 +86,7 @@ export class AddToListModal extends React.Component {
         loadingList: true
       });
     } else {
-      this.addElementsToList(this.state.list.id);
+      this.addElementsToList(this.state.latestUsedId);
     }
   };
 
