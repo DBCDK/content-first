@@ -1,19 +1,19 @@
 import React from 'react';
 
 /*
-
 <SocialShareButton
   className="ssb-fb" (Not req)
-  href={'https://content-first.demo.dbc.dk/lister/' + list.id}
+  href={'https://myurltoshare.dk/lister/1234567 || null} (Not req)
   icon={'glyphicon || icon from media folder'} (Not req)
   hex={'#3b5998'}
   size={40}
   shape="round || square" (Not req)
   txt="Del" (Not req)
   hoverTitle="Del på facebook" (Not req)
-  stamp="123456789" (not req) (uniq cash key for test)
+  stamp="123456789" (not req) (uniq cash prevent key for test)
+  status={'active || passive || disabled'} (Not req)
+  onClick={() => this.props.clickMe()} (Not req)
 />
-
 */
 
 export default class SocialShareButton extends React.Component {
@@ -43,23 +43,28 @@ export default class SocialShareButton extends React.Component {
       this.props.shape !== 'round' && this.props.txt
         ? this.props.size / 2 + 'px'
         : '0px';
+    buttonStyles.backgroundColor =
+      this.props.status === 'passive' ? '#ccc' : this.props.hex;
 
     const ts = this.props.stamp ? this.props.stamp : Date.now();
 
     return (
-      <button
-        className={'ssb ' + this.props.className}
-        style={buttonStyles}
-        title={this.props.hoverTitle || this.props.txt || 'Del'}
+      <a
+        href={
+          this.props.href
+            ? 'https://www.facebook.com/sharer/sharer.php?display=page&u=' +
+              this.props.href +
+              '&ts=' +
+              ts
+            : null
+        }
+        target="_blank"
+        onClick={this.props.href ? null : this.props.onClick}
       >
-        <a
-          href={
-            'https://www.facebook.com/sharer/sharer.php?display=page&u=' +
-            this.props.href +
-            '&ts=' +
-            ts
-          }
-          target="_blank"
+        <button
+          className={'ssb ' + this.props.className}
+          style={buttonStyles}
+          title={this.props.hoverTitle || this.props.txt || 'Del'}
         >
           <span style={spanStyles}>
             {this.props.shape !== 'round' && this.props.txt
@@ -67,8 +72,8 @@ export default class SocialShareButton extends React.Component {
               : ''}
           </span>
           <span className={'glyphicon ' + this.props.icon} />
-        </a>
-      </button>
+        </button>
+      </a>
     );
   }
 }
