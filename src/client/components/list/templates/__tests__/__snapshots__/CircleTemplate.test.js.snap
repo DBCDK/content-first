@@ -500,6 +500,7 @@ Array [
     </div>
 </div>,
   <SimpleList
+    editButton={undefined}
     list={
         Object {
             "description": "some description",

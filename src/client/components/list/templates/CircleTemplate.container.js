@@ -154,6 +154,7 @@ export default class CircleTemplate extends React.Component {
       </div>,
       <SimpleList
         key="simple-list"
+        editButton={this.props.editButton}
         list={list}
         profile={profile}
         profiles={this.props.profiles}
