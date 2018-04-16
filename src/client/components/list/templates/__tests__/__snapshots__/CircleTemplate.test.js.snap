@@ -3,7 +3,7 @@
 exports[`CircleTemplate circle of list items is shown 1`] = `
 Array [
   <div
-    className="circle-template row pb4 b-dark"
+    className="circle-template row b-dark"
 >
     <div
         className="list col-xs-12"
