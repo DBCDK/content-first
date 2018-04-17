@@ -13,30 +13,37 @@ import CommentInput from './CommentInput.component';
 import textParser from '../../utils/textParser';
 
 export class CommentWrapper extends React.Component {
-  state = {
-    edit: false,
-    comment: this.props.comment.comment
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      editing: false,
+      comment: this.props.comment.comment
+    };
+  }
 
-  toggleEdit(value) {
+  toggleEdit = value => {
     this.props.toggleEdit({
       comment: this.props.comment,
       editing: value
     });
-  }
+    this.setState({editing: value});
+  };
 
   editComment = () => {
     this.props.editComment({
       ...this.props.comment,
       comment: this.state.comment
     });
+    this.toggleEdit(false);
   };
+
   onChange = value => {
     this.setState({comment: value});
     if (this.props.onChange) {
       this.props.onChange(value);
     }
   };
+
   render() {
     const {
       comment,
@@ -59,7 +66,7 @@ export class CommentWrapper extends React.Component {
         this.props.user.openplatformId === user.openplatformId ? (
           <button
             className="comment-edit-button btn btn-link link-subtle"
-            onClick={() => this.toggleEdit(!this.props.comment.editing)}
+            onClick={() => this.toggleEdit(!this.state.editing)}
           >
             <span className="glyphicon glyphicon-pencil" />
           </button>
@@ -73,7 +80,7 @@ export class CommentWrapper extends React.Component {
           <div style={{flexGrow: 1}}>
             <div className="comment-author">{user.name || ''}</div>
             <div className="comment-time mb1">{timeToString(_created)}</div>
-            {this.props.comment.editing ? (
+            {this.state.editing ? (
               <CommentInput
                 hideProfile={true}
                 autoFocus={true}
