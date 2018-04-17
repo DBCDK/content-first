@@ -168,7 +168,7 @@ describe('User login', () => {
   describe('GET /hejmdal:token&id', () => {
     const cookieFormat =
       /* TODO: include "secure" in production? */
-      /^login-token=([^;]+); max-age=([0-9]+); path=\/; expires=([^;]+); httponly/i;
+      /^login-token=([^;]+); path=\/; httponly/i;
 
     it('should retrieve user info, create user & redirect with new cookie', () => {
       // Arrange.
@@ -189,7 +189,6 @@ describe('User login', () => {
             const cookies = res.headers['set-cookie'];
             const cookieParts = extractLoginCookie(cookies);
             loginToken = cookieParts[1];
-            expectExpireInOneMonth(cookieParts[2]);
             expect(mock.getErrorLog().args).to.have.length(0);
           })
           .expect(303)
@@ -326,12 +325,6 @@ describe('User login', () => {
       expect(cookies).to.have.length(1);
       expect(cookies[0]).to.match(cookieFormat);
       return cookies[0].match(cookieFormat);
-    }
-
-    function expectExpireInOneMonth(epochString) {
-      const s_ExpiresIn = parseInt(epochString, 10);
-      const s_OneMonth = 30 * 24 * 60 * 60;
-      expect(s_ExpiresIn).to.equal(s_OneMonth);
     }
 
     function arrangeLoginServiceToReplyWithError(token, id) {
