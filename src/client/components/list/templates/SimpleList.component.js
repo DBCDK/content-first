@@ -134,65 +134,80 @@ export const SimpleList = ({
   updateElement,
   submit,
   profiles,
-  confirmShareModal
+  confirmShareModal,
+  editButton
 }) => {
   return (
-    <div className="simplelist">
-      <SocialShareButton
-        className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-fb'}
-        href={
-          list.public
-            ? 'https://content-first.demo.dbc.dk/lister/' + list.id
-            : null
-        }
-        icon={'fb-icon'}
-        hex={'#3b5998'}
-        status={!list.public ? 'passive' : 'active'}
-        size={30}
-        shape="square"
-        txt="Del"
-        hoverTitle="Del på facebook"
-        onClick={() => {
-          confirmShareModal(list.id);
-        }}
-      />
-      <div className="row mb4 b-dark">
-        <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
-          <div className="col-xs-3 tc">
-            <ProfileImage user={profile} size={'50'} namePosition={'bottom'} />
-          </div>
-          <div className="col-xs-9 mb4">
-            <p className="t-body">{list.description}</p>
-            {list.social ? <Comments id={list.id} /> : ''}
-          </div>
+    <div className="list-wrapper tl">
+      <div className="row b-dark">
+        <SocialShareButton
+          className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-fb'}
+          href={
+            list.public
+              ? 'https://content-first.demo.dbc.dk/lister/' + list.id
+              : null
+          }
+          icon={'fb-icon'}
+          hex={'#3b5998'}
+          status={!list.public ? 'passive' : 'active'}
+          size={30}
+          shape="square"
+          txt="Del"
+          hoverTitle="Del på facebook"
+          onClick={() => {
+            confirmShareModal(list.id);
+          }}
+        />
+        <div className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1">
+          <h1 className="t-title h-tight h-underline inline-block align-middle">
+            {list.title}
+          </h1>
+          {editButton}
         </div>
       </div>
-      <div className="list col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
-        <div>
-          {list.list.map(element => (
-            <SimpleListItem
-              allowComments={list.social}
-              list={list}
-              key={element.book.pid}
-              element={element}
-              book={element.book}
-              description={element.description}
-              profile={profiles[element._owner]}
-              allowDelete={
-                element._owner === loggedInUserId ||
-                list._owner === loggedInUserId
-              }
-              allowModify={element._owner === loggedInUserId}
-              _created={list._created}
-              onRemove={() => removeElement(element, list)}
-              onDescriptionChange={description =>
-                updateElement({...element, description}, list)
-              }
-              onSubmit={() => submit(list)}
-            />
-          ))}
+      <div className="simplelist">
+        <div className="row mb4 b-dark">
+          <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1 mb4">
+            <div className="col-xs-3 tc">
+              <ProfileImage
+                user={profile}
+                size={'50'}
+                namePosition={'bottom'}
+              />
+            </div>
+            <div className="col-xs-9">
+              <p className="t-body">{list.description}</p>
+              {list.social ? <Comments id={list.id} /> : ''}
+            </div>
+          </div>
         </div>
-        <AddToList list={list} />
+        <div className="list col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
+          <div>
+            {list.list.map(element => (
+              <SimpleListItem
+                allowComments={list.social}
+                list={list}
+                key={element.book.pid}
+                element={element}
+                book={element.book}
+                description={element.description}
+                profile={profiles[element._owner]}
+                allowDelete={
+                  element._owner === loggedInUserId ||
+                  list._owner === loggedInUserId
+                }
+                allowModify={element._owner === loggedInUserId}
+                _created={list._created}
+                onRemove={() => removeElement(element, list)}
+                onDescriptionChange={description =>
+                  updateElement({...element, description}, list)
+                }
+                onSubmit={() => submit(list)}
+              />
+            ))}
+          </div>
+          <AddToList list={list} />
+        </div>
       </div>
     </div>
   );

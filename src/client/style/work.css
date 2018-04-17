@@ -122,11 +122,11 @@
   font-size: 18px;
   padding-left: 40px;
   margin-bottom: 40px;
+  position: relative;
 }
 
 .work-details .info .checkmark-menu > div:first-child {
   text-align: left;
-  margin-top: 10px;
 }
 
 .work-details .title {
@@ -161,10 +161,7 @@
   margin-top: 10px;
 }
 .work-details .bibliotek-dk-link {
-  margin-top: 10px;
-}
-.work-details .checkmark-btn {
-  margin-top: 10px;
+  margin: 10px 0 10px 0;
 }
 .work-page .work-details .cover-image-wrapper {
   margin-bottom: 40px;
@@ -186,4 +183,10 @@
 
 .work-page .tag-group-title::first-letter {
   text-transform: uppercase;
+}
+
+.work-page .work-details .col-centered .info .ssb-fb {
+  position: absolute;
+  right: 15px;
+  top: 0;
 }

@@ -1,157 +1,123 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ListView List is rendered 1`] = `
-<div
-  className="list-wrapper tl"
->
-  <div
-    className="row b-dark"
-  >
-    <div
-      className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1"
-    >
-      <h1
-        className="t-title h-tight h-underline inline-block align-middle"
-      >
-        some list
-      </h1>
-      
-    </div>
-  </div>
-  <Comments
-    list={
-      Object {
-        "description": "some description",
-        "id": "list1",
-        "list": Array [
-          Object {
-            "book": Object {
-              "creator": "some creator1",
-              "pid": "pid1",
-              "title": "some title 1",
-            },
-            "description": "some description1",
-            "links": Object {
-              "cover": "/cover1",
-            },
+<Comments
+  editButton=""
+  list={
+    Object {
+      "description": "some description",
+      "id": "list1",
+      "list": Array [
+        Object {
+          "book": Object {
+            "creator": "some creator1",
+            "pid": "pid1",
+            "title": "some title 1",
           },
-          Object {
-            "book": Object {
-              "creator": "some creator2",
-              "pid": "pid2",
-              "title": "some title 2",
-            },
-            "description": "some description2",
-            "links": Object {
-              "cover": "/cover2",
-            },
+          "description": "some description1",
+          "links": Object {
+            "cover": "/cover1",
           },
-          Object {
-            "book": Object {
-              "creator": "some creator3",
-              "pid": "pid3",
-              "title": "some title 3",
-            },
-            "description": "some description3",
-            "links": Object {
-              "cover": "/cover3",
-            },
-          },
-        ],
-        "owner": "owner1",
-        "title": "some list",
-      }
-    }
-    profile={
-      Object {
-        "name": "Frans",
-      }
-    }
-    profiles={
-      Object {
-        "owner1": Object {
-          "name": "Frans",
         },
-      }
+        Object {
+          "book": Object {
+            "creator": "some creator2",
+            "pid": "pid2",
+            "title": "some title 2",
+          },
+          "description": "some description2",
+          "links": Object {
+            "cover": "/cover2",
+          },
+        },
+        Object {
+          "book": Object {
+            "creator": "some creator3",
+            "pid": "pid3",
+            "title": "some title 3",
+          },
+          "description": "some description3",
+          "links": Object {
+            "cover": "/cover3",
+          },
+        },
+      ],
+      "owner": "owner1",
+      "title": "some list",
     }
-  />
-</div>
+  }
+  profile={
+    Object {
+      "name": "Frans",
+    }
+  }
+  profiles={
+    Object {
+      "owner1": Object {
+        "name": "Frans",
+      },
+    }
+  }
+/>
 `;
 
 exports[`ListView edit button enabled, when isOwner true 1`] = `
-<div
-  className="list-wrapper tl"
->
-  <div
-    className="row b-dark"
-  >
-    <div
-      className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1"
-    >
-      <h1
-        className="t-title h-tight h-underline inline-block align-middle"
-      >
-        some list
-      </h1>
-      
-    </div>
-  </div>
-  <Comments
-    list={
-      Object {
-        "description": "some description",
-        "id": "list1",
-        "list": Array [
-          Object {
-            "book": Object {
-              "creator": "some creator1",
-              "pid": "pid1",
-              "title": "some title 1",
-            },
-            "description": "some description1",
-            "links": Object {
-              "cover": "/cover1",
-            },
+<Comments
+  editButton=""
+  list={
+    Object {
+      "description": "some description",
+      "id": "list1",
+      "list": Array [
+        Object {
+          "book": Object {
+            "creator": "some creator1",
+            "pid": "pid1",
+            "title": "some title 1",
           },
-          Object {
-            "book": Object {
-              "creator": "some creator2",
-              "pid": "pid2",
-              "title": "some title 2",
-            },
-            "description": "some description2",
-            "links": Object {
-              "cover": "/cover2",
-            },
+          "description": "some description1",
+          "links": Object {
+            "cover": "/cover1",
           },
-          Object {
-            "book": Object {
-              "creator": "some creator3",
-              "pid": "pid3",
-              "title": "some title 3",
-            },
-            "description": "some description3",
-            "links": Object {
-              "cover": "/cover3",
-            },
-          },
-        ],
-        "owner": "owner1",
-        "title": "some list",
-      }
-    }
-    profile={
-      Object {
-        "name": "Frans",
-      }
-    }
-    profiles={
-      Object {
-        "owner1": Object {
-          "name": "Frans",
         },
-      }
+        Object {
+          "book": Object {
+            "creator": "some creator2",
+            "pid": "pid2",
+            "title": "some title 2",
+          },
+          "description": "some description2",
+          "links": Object {
+            "cover": "/cover2",
+          },
+        },
+        Object {
+          "book": Object {
+            "creator": "some creator3",
+            "pid": "pid3",
+            "title": "some title 3",
+          },
+          "description": "some description3",
+          "links": Object {
+            "cover": "/cover3",
+          },
+        },
+      ],
+      "owner": "owner1",
+      "title": "some list",
     }
-  />
-</div>
+  }
+  profile={
+    Object {
+      "name": "Frans",
+    }
+  }
+  profiles={
+    Object {
+      "owner1": Object {
+        "name": "Frans",
+      },
+    }
+  }
+/>
 `;

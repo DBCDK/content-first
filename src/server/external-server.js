@@ -86,7 +86,11 @@ external.get('/pid', (req, res) => {
 // API routes.  Should agree with constants.apiversion.
 external.use('/v1', require('server/external-v1'));
 external.use('/hejmdal', require('server/external-hejmdal'));
-external.use('/lister/:id', require('server/external-meta'));
+external.use('/lister/:id', require('server/external-meta-list'));
+external.use(
+  '/' + encodeURIComponent('værk') + '/:pid',
+  require('server/external-meta-work')
+);
 
 // Let frontend React handle all other routes.
 external.get('*', (req, res) => {

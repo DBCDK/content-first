@@ -1,5 +1,12 @@
-.simplelist {
+.simplelist,
+.list-wrapper .b-dark {
   position: relative;
+}
+
+.list-wrapper .b-dark .ssb-fb {
+  position: absolute;
+  right: 4em;
+  top: 4em;
 }
 
 .simplelist-item {

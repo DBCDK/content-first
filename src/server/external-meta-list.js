@@ -7,6 +7,7 @@ const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const community = require('server/community');
 const config = require('./config');
+const template = require('./meta-response-template');
 
 const showTitles = 3;
 const hostUrl = 'http://' + config.server.hostname;
@@ -71,40 +72,15 @@ router
         ? hostUrl + '/v1/image/' + list.data.image + '/1200/600'
         : hostUrl + '/img/bookcase/NB-bogreol.jpg';
 
-      // Create Meta content in HTML markup
-      const title = '<title>' + list.data.title + '</title>';
-      const ogTitle =
-        '<meta property="og:title" content="' + list.data.title + '" />';
-      const ogDescription =
-        '<meta property="og:description" content="' + description + '" />';
-      const ogImage = '<meta property="og:image" content="' + img + '" />';
-      const ogURL =
-        '<meta property="og:url" content="' +
-        hostUrl +
-        req.originalUrl +
-        '" />';
-
-      const ogImageWidth = '<meta property="og:image:width" content="1200"/>';
-      const ogImageHeight = '<meta property="og:image:height" content="600"/>';
-      const ogType = '<meta property="og:type" content="books" />';
-
-      // Build <head>
-      const head =
-        '<head>' +
-        title +
-        ogTitle +
-        ogType +
-        ogDescription +
-        ogImage +
-        ogImageWidth +
-        ogImageHeight +
-        ogURL +
-        '</head>';
-
-      const body = '<body>Hello Bot!</body>';
-
-      // Build <html>
-      const html = '<html>' + head + body + '</html>';
+      // const message = 'hello';
+      const html = template.constructHtml(
+        list.data.title,
+        description,
+        img,
+        hostUrl + req.originalUrl,
+        {width: 1200, height: 600},
+        'Books'
+      );
 
       // Return Page
       return res.send(html);

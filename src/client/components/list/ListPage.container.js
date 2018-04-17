@@ -40,21 +40,12 @@ export class ListPage extends React.Component {
     }
 
     return (
-      <div className="list-wrapper tl">
-        <div className="row b-dark">
-          <div className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1">
-            <h1 className="t-title h-tight h-underline inline-block align-middle">
-              {list.title}
-            </h1>
-            {editButton}
-          </div>
-        </div>
-        <Template
-          list={list}
-          profile={profile}
-          profiles={this.props.profiles}
-        />
-      </div>
+      <Template
+        list={list}
+        profile={profile}
+        editButton={editButton}
+        profiles={this.props.profiles}
+      />
     );
   }
 }

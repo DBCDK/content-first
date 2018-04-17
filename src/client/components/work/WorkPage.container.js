@@ -6,6 +6,7 @@ import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Slider from '../belt/Slider.component';
 import Link from '../general/Link.component';
+import SocialShareButton from '../general/SocialShareButton.component';
 import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
@@ -111,14 +112,22 @@ class WorkPage extends React.Component {
                   Se mere på bibliotek.dk
                 </a>
               </div>
+
+              <CheckmarkConnected book={{book}} origin="Fra egen værkside" />
               <OrderButton
                 book={book}
-                style={{marginTop: 10, float: 'right'}}
+                style={{marginLeft: 10, border: 'none'}}
               />
 
-              <CheckmarkConnected
-                book={{book: book}}
-                origin="Fra egen værkside"
+              <SocialShareButton
+                className={'ssb-fb'}
+                href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
+                icon={'fb-icon'}
+                hex={'#3b5998'}
+                size={30}
+                shape="square"
+                txt="Del"
+                hoverTitle="Del på facebook"
               />
             </div>
             <div

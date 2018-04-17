@@ -2,7 +2,7 @@
 
 exports[`SocialShareButton renders initial component 1`] = `
 <a
-  href="https://www.facebook.com/sharer/sharer.php?display=page&u=https://content-first.demo.dbc.dk/lister/1234&ts=123456789"
+  href="https://www.facebook.com/sharer/sharer.php?display=page&u=https://content-first.demo.dbc.dk/lister/1234?123456789"
   onClick={null}
   target="_blank"
 >
