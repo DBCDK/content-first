@@ -172,7 +172,8 @@ const mapStateToProps = state => {
   const orderList = (elements || [])
     .filter(
       o =>
-        state.orderReducer.getIn(['orders', o.pid, 'orderState']) !== 'ordered'
+        state.orderReducer.getIn(['orders', o.book.pid, 'orderState']) !==
+        'ordered'
     )
     .slice(0, 10);
   return {
