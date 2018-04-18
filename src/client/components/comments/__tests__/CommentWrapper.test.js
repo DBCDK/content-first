@@ -5,7 +5,7 @@ import {mount} from 'enzyme';
 
 jest.mock('react-textarea-autosize', () => 'textarea');
 
-function generateComments({key = 'test', editing, saving, error} = {}) {
+function generateComments({key = 'test', saving, error} = {}) {
   const comment = {
     comment: `comment_${key}`,
     _id: `${key}`,
@@ -14,10 +14,6 @@ function generateComments({key = 'test', editing, saving, error} = {}) {
       openplatformId: '1234'
     }
   };
-
-  if (editing) {
-    comment.editing = editing;
-  }
 
   if (saving) {
     comment.saving = saving;
@@ -38,7 +34,7 @@ describe('CommentContainer', () => {
     expect(tree).toMatchSnapshot();
   });
   test('Render edit form', () => {
-    const comment = generateComments({editing: true});
+    const comment = generateComments();
     const tree = renderer.create(
       <CommentWrapper comment={comment} user={comment.user} />
     );
@@ -53,20 +49,16 @@ describe('CommentContainer', () => {
   });
   test('Edit button', () => {
     const comment = generateComments();
-    const toggleEdit = jest.fn();
     const tree = mount(
-      <CommentWrapper
-        comment={comment}
-        user={comment.user}
-        toggleEdit={toggleEdit}
-      />
+      <CommentWrapper comment={comment} user={comment.user} />
     );
+
     expect(tree).toMatchSnapshot();
     tree.find('.comment-edit-button').simulate('click');
-    expect(toggleEdit.mock.calls[0][0]).toEqual({comment, editing: true});
+    expect(tree).toMatchSnapshot();
   });
   test('Delete button', () => {
-    const comment = generateComments({editing: true});
+    const comment = generateComments();
     const deleteComment = jest.fn();
     const tree = mount(
       <CommentWrapper
@@ -76,25 +68,22 @@ describe('CommentContainer', () => {
       />
     );
     expect(tree).toMatchSnapshot();
+    tree.find('.comment-edit-button').simulate('click');
     tree.find('.comment-delete').simulate('click');
     expect(deleteComment.mock.calls[0][0]).toEqual(comment);
   });
   test('Cancel button', () => {
-    const comment = generateComments({editing: true});
-    const toggleEdit = jest.fn();
+    const comment = generateComments();
     const tree = mount(
-      <CommentWrapper
-        comment={comment}
-        user={comment.user}
-        toggleEdit={toggleEdit}
-      />
+      <CommentWrapper comment={comment} user={comment.user} />
     );
     expect(tree).toMatchSnapshot();
+    tree.find('.comment-edit-button').simulate('click');
     tree.find('.comment-cancel').simulate('click');
-    expect(toggleEdit.mock.calls[0][0]).toEqual({comment, editing: false});
+    expect(tree).toMatchSnapshot();
   });
   test('Save button', () => {
-    const comment = generateComments({editing: true});
+    const comment = generateComments();
     const editComment = jest.fn();
     const toggleComment = jest.fn();
     const tree = mount(
@@ -106,6 +95,7 @@ describe('CommentContainer', () => {
       />
     );
     expect(tree).toMatchSnapshot();
+    tree.find('.comment-edit-button').simulate('click');
     tree
       .find('.comment-textarea')
       .simulate('change', {target: {value: 'some updated comment'}});

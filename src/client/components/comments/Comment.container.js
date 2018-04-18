@@ -18,9 +18,23 @@ export class CommentContainer extends React.Component {
       newCommentValue: ''
     };
   }
+
   componentWillMount() {
-    this.props.fetchComments(this.props.id);
+    this.updateComments();
   }
+
+  componentDidMount() {
+    this.intervalId = setInterval(this.updateComments, 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
+  }
+
+  updateComments = () => {
+    this.props.fetchComments(this.props.id);
+  };
+
   onSubmit = comment => {
     this.props.addComment({
       id: this.props.id,
