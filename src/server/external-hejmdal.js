@@ -55,9 +55,9 @@ router
           .status(303)
           .location(constants.pages.start)
           .cookie('login-token', loginToken, {
-            maxAge: ms_OneMonth,
             httpOnly: true
             /* TODO: add "secure: true" in production? */
+            /* maxAge is not set, hence the cookie is removed when user closes browser (like it is in Hejmdal) */
           })
           .send();
       } catch (error) {
