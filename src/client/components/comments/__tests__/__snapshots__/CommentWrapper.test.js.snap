@@ -6,373 +6,12 @@ exports[`CommentContainer Cancel button 1`] = `
     Object {
       "_id": "test",
       "comment": "comment_test",
-      "editing": true,
       "user": Object {
         "name": "Benny Cosmos",
         "openplatformId": "1234",
       },
     }
   }
-  toggleEdit={[Function]}
-  user={
-    Object {
-      "name": "Benny Cosmos",
-      "openplatformId": "1234",
-    }
-  }
->
-  <div
-    className="comment-wrapper"
-    key="test"
-  >
-    <button
-      className="comment-edit-button btn btn-link link-subtle"
-      onClick={[Function]}
-    >
-      <span
-        className="glyphicon glyphicon-pencil"
-      />
-    </button>
-    <div
-      className="flex mb2"
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
-    >
-      <Component
-        style={
-          Object {
-            "marginRight": "20px",
-          }
-        }
-        user={
-          Object {
-            "name": "Benny Cosmos",
-            "openplatformId": "1234",
-          }
-        }
-      >
-        <div
-          className="profile-card "
-        >
-          <span
-            className="profile-image text-center small round"
-            style={
-              Object {
-                "height": "35px",
-                "lineHeight": "64.75px",
-                "marginRight": "20px",
-                "width": "35px",
-              }
-            }
-          >
-            <span
-              className="glyphicon glyphicon-user"
-              style={
-                Object {
-                  "color": "#897571",
-                  "display": "inline-block",
-                  "fontSize": "29.75px",
-                }
-              }
-            />
-          </span>
-        </div>
-      </Component>
-      <div
-        style={
-          Object {
-            "flexGrow": 1,
-          }
-        }
-      >
-        <div
-          className="comment-author"
-        >
-          Benny Cosmos
-        </div>
-        <div
-          className="comment-time mb1"
-        >
-          Lige nu
-        </div>
-        <CommentInput
-          autoFocus={true}
-          error={null}
-          hideProfile={true}
-          onCancel={[Function]}
-          onChange={[Function]}
-          onDelete={[Function]}
-          onSubmit={[Function]}
-          user={
-            Object {
-              "name": "Benny Cosmos",
-              "openplatformId": "1234",
-            }
-          }
-          value="comment_test"
-        >
-          <div
-            style={
-              Object {
-                "display": "flex",
-              }
-            }
-          >
-            <div
-              className="form-group "
-              onFocus={[Function]}
-              style={
-                Object {
-                  "width": "100%",
-                }
-              }
-            >
-              <textarea
-                autoFocus={true}
-                className="form-control mb1 comment-textarea"
-                name="list-description"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Skriv kommentar"
-                value="comment_test"
-              />
-              <div
-                className="tr"
-                style={
-                  Object {
-                    "height": "0px",
-                    "opacity": 0,
-                    "overflow": "hidden",
-                    "transition": "opacity 200ms",
-                  }
-                }
-              >
-                <button
-                  className="comment-delete btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  Slet
-                </button>
-                <button
-                  className="comment-cancel btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  Fortryd
-                </button>
-                <button
-                  className="btn btn-success"
-                  disabled={false}
-                  id="comment-submit"
-                  onClick={[Function]}
-                >
-                  Gem
-                </button>
-              </div>
-            </div>
-          </div>
-        </CommentInput>
-      </div>
-    </div>
-  </div>
-</CommentWrapper>
-`;
-
-exports[`CommentContainer Delete button 1`] = `
-<CommentWrapper
-  comment={
-    Object {
-      "_id": "test",
-      "comment": "comment_test",
-      "editing": true,
-      "user": Object {
-        "name": "Benny Cosmos",
-        "openplatformId": "1234",
-      },
-    }
-  }
-  deleteComment={[Function]}
-  user={
-    Object {
-      "name": "Benny Cosmos",
-      "openplatformId": "1234",
-    }
-  }
->
-  <div
-    className="comment-wrapper"
-    key="test"
-  >
-    <button
-      className="comment-edit-button btn btn-link link-subtle"
-      onClick={[Function]}
-    >
-      <span
-        className="glyphicon glyphicon-pencil"
-      />
-    </button>
-    <div
-      className="flex mb2"
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
-    >
-      <Component
-        style={
-          Object {
-            "marginRight": "20px",
-          }
-        }
-        user={
-          Object {
-            "name": "Benny Cosmos",
-            "openplatformId": "1234",
-          }
-        }
-      >
-        <div
-          className="profile-card "
-        >
-          <span
-            className="profile-image text-center small round"
-            style={
-              Object {
-                "height": "35px",
-                "lineHeight": "64.75px",
-                "marginRight": "20px",
-                "width": "35px",
-              }
-            }
-          >
-            <span
-              className="glyphicon glyphicon-user"
-              style={
-                Object {
-                  "color": "#897571",
-                  "display": "inline-block",
-                  "fontSize": "29.75px",
-                }
-              }
-            />
-          </span>
-        </div>
-      </Component>
-      <div
-        style={
-          Object {
-            "flexGrow": 1,
-          }
-        }
-      >
-        <div
-          className="comment-author"
-        >
-          Benny Cosmos
-        </div>
-        <div
-          className="comment-time mb1"
-        >
-          Lige nu
-        </div>
-        <CommentInput
-          autoFocus={true}
-          error={null}
-          hideProfile={true}
-          onCancel={[Function]}
-          onChange={[Function]}
-          onDelete={[Function]}
-          onSubmit={[Function]}
-          user={
-            Object {
-              "name": "Benny Cosmos",
-              "openplatformId": "1234",
-            }
-          }
-          value="comment_test"
-        >
-          <div
-            style={
-              Object {
-                "display": "flex",
-              }
-            }
-          >
-            <div
-              className="form-group "
-              onFocus={[Function]}
-              style={
-                Object {
-                  "width": "100%",
-                }
-              }
-            >
-              <textarea
-                autoFocus={true}
-                className="form-control mb1 comment-textarea"
-                name="list-description"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Skriv kommentar"
-                value="comment_test"
-              />
-              <div
-                className="tr"
-                style={
-                  Object {
-                    "height": "0px",
-                    "opacity": 0,
-                    "overflow": "hidden",
-                    "transition": "opacity 200ms",
-                  }
-                }
-              >
-                <button
-                  className="comment-delete btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  Slet
-                </button>
-                <button
-                  className="comment-cancel btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  Fortryd
-                </button>
-                <button
-                  className="btn btn-success"
-                  disabled={false}
-                  id="comment-submit"
-                  onClick={[Function]}
-                >
-                  Gem
-                </button>
-              </div>
-            </div>
-          </div>
-        </CommentInput>
-      </div>
-    </div>
-  </div>
-</CommentWrapper>
-`;
-
-exports[`CommentContainer Edit button 1`] = `
-<CommentWrapper
-  comment={
-    Object {
-      "_id": "test",
-      "comment": "comment_test",
-      "user": Object {
-        "name": "Benny Cosmos",
-        "openplatformId": "1234",
-      },
-    }
-  }
-  toggleEdit={[Function]}
   user={
     Object {
       "name": "Benny Cosmos",
@@ -465,6 +104,515 @@ exports[`CommentContainer Edit button 1`] = `
             }
           }
         />
+      </div>
+    </div>
+  </div>
+</CommentWrapper>
+`;
+
+exports[`CommentContainer Cancel button 2`] = `
+<CommentWrapper
+  comment={
+    Object {
+      "_id": "test",
+      "comment": "comment_test",
+      "user": Object {
+        "name": "Benny Cosmos",
+        "openplatformId": "1234",
+      },
+    }
+  }
+  user={
+    Object {
+      "name": "Benny Cosmos",
+      "openplatformId": "1234",
+    }
+  }
+>
+  <div
+    className="comment-wrapper"
+    key="test"
+  >
+    <button
+      className="comment-edit-button btn btn-link link-subtle"
+      onClick={[Function]}
+    >
+      <span
+        className="glyphicon glyphicon-pencil"
+      />
+    </button>
+    <div
+      className="flex mb2"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <Component
+        style={
+          Object {
+            "marginRight": "20px",
+          }
+        }
+        user={
+          Object {
+            "name": "Benny Cosmos",
+            "openplatformId": "1234",
+          }
+        }
+      >
+        <div
+          className="profile-card "
+        >
+          <span
+            className="profile-image text-center small round"
+            style={
+              Object {
+                "height": "35px",
+                "lineHeight": "64.75px",
+                "marginRight": "20px",
+                "width": "35px",
+              }
+            }
+          >
+            <span
+              className="glyphicon glyphicon-user"
+              style={
+                Object {
+                  "color": "#897571",
+                  "display": "inline-block",
+                  "fontSize": "29.75px",
+                }
+              }
+            />
+          </span>
+        </div>
+      </Component>
+      <div
+        style={
+          Object {
+            "flexGrow": 1,
+          }
+        }
+      >
+        <div
+          className="comment-author"
+        >
+          Benny Cosmos
+        </div>
+        <div
+          className="comment-time mb1"
+        >
+          Lige nu
+        </div>
+        <div
+          className="comment"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "comment_test",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</CommentWrapper>
+`;
+
+exports[`CommentContainer Delete button 1`] = `
+<CommentWrapper
+  comment={
+    Object {
+      "_id": "test",
+      "comment": "comment_test",
+      "user": Object {
+        "name": "Benny Cosmos",
+        "openplatformId": "1234",
+      },
+    }
+  }
+  deleteComment={[Function]}
+  user={
+    Object {
+      "name": "Benny Cosmos",
+      "openplatformId": "1234",
+    }
+  }
+>
+  <div
+    className="comment-wrapper"
+    key="test"
+  >
+    <button
+      className="comment-edit-button btn btn-link link-subtle"
+      onClick={[Function]}
+    >
+      <span
+        className="glyphicon glyphicon-pencil"
+      />
+    </button>
+    <div
+      className="flex mb2"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <Component
+        style={
+          Object {
+            "marginRight": "20px",
+          }
+        }
+        user={
+          Object {
+            "name": "Benny Cosmos",
+            "openplatformId": "1234",
+          }
+        }
+      >
+        <div
+          className="profile-card "
+        >
+          <span
+            className="profile-image text-center small round"
+            style={
+              Object {
+                "height": "35px",
+                "lineHeight": "64.75px",
+                "marginRight": "20px",
+                "width": "35px",
+              }
+            }
+          >
+            <span
+              className="glyphicon glyphicon-user"
+              style={
+                Object {
+                  "color": "#897571",
+                  "display": "inline-block",
+                  "fontSize": "29.75px",
+                }
+              }
+            />
+          </span>
+        </div>
+      </Component>
+      <div
+        style={
+          Object {
+            "flexGrow": 1,
+          }
+        }
+      >
+        <div
+          className="comment-author"
+        >
+          Benny Cosmos
+        </div>
+        <div
+          className="comment-time mb1"
+        >
+          Lige nu
+        </div>
+        <div
+          className="comment"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "comment_test",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</CommentWrapper>
+`;
+
+exports[`CommentContainer Edit button 1`] = `
+<CommentWrapper
+  comment={
+    Object {
+      "_id": "test",
+      "comment": "comment_test",
+      "user": Object {
+        "name": "Benny Cosmos",
+        "openplatformId": "1234",
+      },
+    }
+  }
+  user={
+    Object {
+      "name": "Benny Cosmos",
+      "openplatformId": "1234",
+    }
+  }
+>
+  <div
+    className="comment-wrapper"
+    key="test"
+  >
+    <button
+      className="comment-edit-button btn btn-link link-subtle"
+      onClick={[Function]}
+    >
+      <span
+        className="glyphicon glyphicon-pencil"
+      />
+    </button>
+    <div
+      className="flex mb2"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <Component
+        style={
+          Object {
+            "marginRight": "20px",
+          }
+        }
+        user={
+          Object {
+            "name": "Benny Cosmos",
+            "openplatformId": "1234",
+          }
+        }
+      >
+        <div
+          className="profile-card "
+        >
+          <span
+            className="profile-image text-center small round"
+            style={
+              Object {
+                "height": "35px",
+                "lineHeight": "64.75px",
+                "marginRight": "20px",
+                "width": "35px",
+              }
+            }
+          >
+            <span
+              className="glyphicon glyphicon-user"
+              style={
+                Object {
+                  "color": "#897571",
+                  "display": "inline-block",
+                  "fontSize": "29.75px",
+                }
+              }
+            />
+          </span>
+        </div>
+      </Component>
+      <div
+        style={
+          Object {
+            "flexGrow": 1,
+          }
+        }
+      >
+        <div
+          className="comment-author"
+        >
+          Benny Cosmos
+        </div>
+        <div
+          className="comment-time mb1"
+        >
+          Lige nu
+        </div>
+        <div
+          className="comment"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "comment_test",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+</CommentWrapper>
+`;
+
+exports[`CommentContainer Edit button 2`] = `
+<CommentWrapper
+  comment={
+    Object {
+      "_id": "test",
+      "comment": "comment_test",
+      "user": Object {
+        "name": "Benny Cosmos",
+        "openplatformId": "1234",
+      },
+    }
+  }
+  user={
+    Object {
+      "name": "Benny Cosmos",
+      "openplatformId": "1234",
+    }
+  }
+>
+  <div
+    className="comment-wrapper"
+    key="test"
+  >
+    <button
+      className="comment-edit-button btn btn-link link-subtle"
+      onClick={[Function]}
+    >
+      <span
+        className="glyphicon glyphicon-pencil"
+      />
+    </button>
+    <div
+      className="flex mb2"
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <Component
+        style={
+          Object {
+            "marginRight": "20px",
+          }
+        }
+        user={
+          Object {
+            "name": "Benny Cosmos",
+            "openplatformId": "1234",
+          }
+        }
+      >
+        <div
+          className="profile-card "
+        >
+          <span
+            className="profile-image text-center small round"
+            style={
+              Object {
+                "height": "35px",
+                "lineHeight": "64.75px",
+                "marginRight": "20px",
+                "width": "35px",
+              }
+            }
+          >
+            <span
+              className="glyphicon glyphicon-user"
+              style={
+                Object {
+                  "color": "#897571",
+                  "display": "inline-block",
+                  "fontSize": "29.75px",
+                }
+              }
+            />
+          </span>
+        </div>
+      </Component>
+      <div
+        style={
+          Object {
+            "flexGrow": 1,
+          }
+        }
+      >
+        <div
+          className="comment-author"
+        >
+          Benny Cosmos
+        </div>
+        <div
+          className="comment-time mb1"
+        >
+          Lige nu
+        </div>
+        <CommentInput
+          autoFocus={true}
+          error={null}
+          hideProfile={true}
+          onCancel={[Function]}
+          onChange={[Function]}
+          onDelete={[Function]}
+          onSubmit={[Function]}
+          user={
+            Object {
+              "name": "Benny Cosmos",
+              "openplatformId": "1234",
+            }
+          }
+          value="comment_test"
+        >
+          <div
+            style={
+              Object {
+                "display": "flex",
+              }
+            }
+          >
+            <div
+              className="form-group "
+              onFocus={[Function]}
+              style={
+                Object {
+                  "width": "100%",
+                }
+              }
+            >
+              <textarea
+                autoFocus={true}
+                className="form-control mb1 comment-textarea"
+                name="list-description"
+                onBlur={[Function]}
+                onChange={[Function]}
+                placeholder="Skriv kommentar"
+                value="comment_test"
+              />
+              <div
+                className="tr"
+                style={
+                  Object {
+                    "height": "0px",
+                    "opacity": 0,
+                    "overflow": "hidden",
+                    "transition": "opacity 200ms",
+                  }
+                }
+              >
+                <button
+                  className="comment-delete btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  Slet
+                </button>
+                <button
+                  className="comment-cancel btn btn-link link-subtle"
+                  onClick={[Function]}
+                >
+                  Fortryd
+                </button>
+                <button
+                  className="btn btn-success"
+                  disabled={false}
+                  id="comment-submit"
+                  onClick={[Function]}
+                >
+                  Gem
+                </button>
+              </div>
+            </div>
+          </div>
+        </CommentInput>
       </div>
     </div>
   </div>
@@ -607,66 +755,13 @@ exports[`CommentContainer Render edit form 1`] = `
         Lige nu
       </div>
       <div
-        style={
+        className="comment"
+        dangerouslySetInnerHTML={
           Object {
-            "display": "flex",
+            "__html": "comment_test",
           }
         }
-      >
-        <div
-          className="form-group "
-          onFocus={[Function]}
-          style={
-            Object {
-              "width": "100%",
-            }
-          }
-        >
-          <textarea
-            autoFocus={true}
-            className="form-control mb1 comment-textarea"
-            disabled={undefined}
-            name="list-description"
-            onBlur={[Function]}
-            onChange={[Function]}
-            placeholder="Skriv kommentar"
-            value="comment_test"
-          />
-          
-          <div
-            className="tr"
-            style={
-              Object {
-                "height": "0px",
-                "opacity": 0,
-                "overflow": "hidden",
-                "transition": "opacity 200ms",
-              }
-            }
-          >
-            <button
-              className="comment-delete btn btn-link link-subtle"
-              onClick={[Function]}
-            >
-              Slet
-            </button>
-            <button
-              className="comment-cancel btn btn-link link-subtle"
-              onClick={[Function]}
-            >
-              Fortryd
-            </button>
-            <button
-              className="btn btn-success"
-              disabled={false}
-              id="comment-submit"
-              onClick={[Function]}
-            >
-              Gem
-            </button>
-          </div>
-        </div>
-      </div>
+      />
     </div>
   </div>
 </div>
@@ -770,7 +865,6 @@ exports[`CommentContainer Save button 1`] = `
     Object {
       "_id": "test",
       "comment": "comment_test",
-      "editing": true,
       "user": Object {
         "name": "Benny Cosmos",
         "openplatformId": "1234",
@@ -863,82 +957,14 @@ exports[`CommentContainer Save button 1`] = `
         >
           Lige nu
         </div>
-        <CommentInput
-          autoFocus={true}
-          error={null}
-          hideProfile={true}
-          onCancel={[Function]}
-          onChange={[Function]}
-          onDelete={[Function]}
-          onSubmit={[Function]}
-          user={
+        <div
+          className="comment"
+          dangerouslySetInnerHTML={
             Object {
-              "name": "Benny Cosmos",
-              "openplatformId": "1234",
+              "__html": "comment_test",
             }
           }
-          value="comment_test"
-        >
-          <div
-            style={
-              Object {
-                "display": "flex",
-              }
-            }
-          >
-            <div
-              className="form-group "
-              onFocus={[Function]}
-              style={
-                Object {
-                  "width": "100%",
-                }
-              }
-            >
-              <textarea
-                autoFocus={true}
-                className="form-control mb1 comment-textarea"
-                name="list-description"
-                onBlur={[Function]}
-                onChange={[Function]}
-                placeholder="Skriv kommentar"
-                value="comment_test"
-              />
-              <div
-                className="tr"
-                style={
-                  Object {
-                    "height": "0px",
-                    "opacity": 0,
-                    "overflow": "hidden",
-                    "transition": "opacity 200ms",
-                  }
-                }
-              >
-                <button
-                  className="comment-delete btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  Slet
-                </button>
-                <button
-                  className="comment-cancel btn btn-link link-subtle"
-                  onClick={[Function]}
-                >
-                  Fortryd
-                </button>
-                <button
-                  className="btn btn-success"
-                  disabled={false}
-                  id="comment-submit"
-                  onClick={[Function]}
-                >
-                  Gem
-                </button>
-              </div>
-            </div>
-          </div>
-        </CommentInput>
+        />
       </div>
     </div>
   </div>

@@ -22,10 +22,9 @@ export class CommentWrapper extends React.Component {
   }
 
   toggleEdit = value => {
-    this.props.toggleEdit({
-      comment: this.props.comment,
-      editing: value
-    });
+    if (this.props.onChange) {
+      this.props.onChange();
+    }
     this.setState({editing: value});
   };
 
@@ -40,7 +39,7 @@ export class CommentWrapper extends React.Component {
   onChange = value => {
     this.setState({comment: value});
     if (this.props.onChange) {
-      this.props.onChange(value);
+      this.props.onChange();
     }
   };
 
