@@ -1,4 +1,4 @@
-const supported = window && window.localStorage;
+const supported = window && window.sessionStorage;
 
 export const setItem = (key, value, version) => {
   if (supported) {
@@ -7,7 +7,7 @@ export const setItem = (key, value, version) => {
       version,
       value
     };
-    localStorage.setItem(key, JSON.stringify(entry));
+    sessionStorage.setItem(key, JSON.stringify(entry));
   }
 };
 
@@ -15,7 +15,7 @@ export const getItem = (key, version, defaultValue) => {
   if (!supported) {
     return defaultValue;
   }
-  const jsonString = localStorage.getItem(key);
+  const jsonString = sessionStorage.getItem(key);
   if (!jsonString) {
     return defaultValue;
   }
@@ -29,7 +29,7 @@ export const getItem = (key, version, defaultValue) => {
     }
     return parsed.value;
   } catch (e) {
-    console.log(`Could not parse localstorage item with key=${key}`); // eslint-disable-line
+    console.log(`Could not parse sessionStorage item with key=${key}`); // eslint-disable-line
     return defaultValue;
   }
 };
