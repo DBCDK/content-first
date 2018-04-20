@@ -22,17 +22,17 @@ export default middleware => {
   // In this way we change page by dispatching a HISTORY_PUSH action; historyMiddleware pushes
   // path to history object, and the history listener below dispatches ON_LOCATION_CHANGE, which updates state.
   // The state is then the single source of truth, as we always use the path stored in state when rendering.
-  store.dispatch({
-    type: ON_LOCATION_CHANGE,
-    path: history.location.pathname,
-    location: history.location
-  });
   history.listen(location => {
     store.dispatch({
       type: ON_LOCATION_CHANGE,
       path: location.pathname,
       location
     });
+  });
+  store.dispatch({
+    type: ON_LOCATION_CHANGE,
+    path: history.location.pathname,
+    location: history.location
   });
 
   return store;

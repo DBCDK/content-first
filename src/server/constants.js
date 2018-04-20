@@ -20,7 +20,7 @@ const constants = {
     defaultLimit: 10
   },
   pages: {
-    start: '/',
+    start: '/replay',
     loggedOut: '/',
     generalError: '/general-error'
   },
