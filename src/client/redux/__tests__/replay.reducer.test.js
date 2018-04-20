@@ -2,13 +2,6 @@ import {replayReducer} from '../replay';
 import {ORDER} from '../order.reducer';
 import {ON_LOCATION_CHANGE} from '../router.reducer';
 
-const createTestState = () => ({
-  expanded: false,
-  elements: [],
-  isLoading: false,
-  pendingMerge: null
-});
-
 const initState = {
   isReplaying: false,
   actions: []

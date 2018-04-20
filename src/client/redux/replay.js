@@ -21,7 +21,7 @@ const replayableActions = {
 // Some times we want to clear the replay queue,
 // for instance, at page changes and when modal closes
 const clearActions = {
-  CLOSE_MODAL: action => true,
+  CLOSE_MODAL: () => true,
   ON_LOCATION_CHANGE: action => action.path !== REPLAY_PATH
 };
 
