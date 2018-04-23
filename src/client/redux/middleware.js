@@ -34,7 +34,6 @@ import {
   ADD_LIST_IMAGE_ERROR,
   ADD_ELEMENT_TO_LIST
 } from './list.reducer';
-import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
 import {saveList, loadLists, loadRecentPublic} from '../utils/requestLists';
 
@@ -140,10 +139,7 @@ export const shortListMiddleware = store => next => async action => {
         databaseElements
       });
       if (store.getState().shortListReducer.pendingMerge) {
-        store.dispatch({
-          type: OPEN_MODAL,
-          modal: 'mergeShortList'
-        });
+        store.dispatch({type: SHORTLIST_APPROVE_MERGE});
       }
       return res;
     }

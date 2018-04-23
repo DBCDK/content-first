@@ -20,9 +20,9 @@ const constants = {
     defaultLimit: 10
   },
   pages: {
-    start: '/',
+    start: '/replay',
     loggedOut: '/',
-    generalError: '/general-error'
+    generalError: '/replay?error=true'
   },
   tags: {
     table: 'tags'

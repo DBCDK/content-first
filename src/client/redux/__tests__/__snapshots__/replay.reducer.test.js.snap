@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`replayReducer Actions are not recorded if they are not allowed 1`] = `
+Object {
+  "actions": Array [],
+  "isReplaying": false,
+}
+`;
+
+exports[`replayReducer Allowed actions are recorded 1`] = `
+Object {
+  "actions": Array [
+    Object {
+      "location": Object {
+        "search": "?param=val",
+      },
+      "type": "ON_LOCATION_CHANGE",
+    },
+    Object {
+      "somekey": 1,
+      "type": "ORDER",
+    },
+    Object {
+      "somekey": 2,
+      "type": "ORDER",
+    },
+  ],
+  "isReplaying": false,
+}
+`;
+
+exports[`replayReducer ON_LOCATION_CHANGE clears actions 1`] = `
+Object {
+  "actions": Array [
+    Object {
+      "location": Object {
+        "search": "?param=val2",
+      },
+      "type": "ON_LOCATION_CHANGE",
+    },
+  ],
+  "isReplaying": false,
+}
+`;
+
+exports[`replayReducer ON_LOCATION_CHANGE replaces existing action of this type 1`] = `
+Object {
+  "actions": Array [
+    Object {
+      "location": Object {
+        "search": "?param=val2",
+      },
+      "type": "ON_LOCATION_CHANGE",
+    },
+  ],
+  "isReplaying": false,
+}
+`;
