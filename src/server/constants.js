@@ -22,7 +22,7 @@ const constants = {
   pages: {
     start: '/replay',
     loggedOut: '/',
-    generalError: '/general-error'
+    generalError: '/replay?error=true'
   },
   tags: {
     table: 'tags'
