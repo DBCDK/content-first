@@ -19,6 +19,7 @@ import ListPage from './components/list/ListPage.container';
 import ListCreator from './components/list/ListCreate.container';
 import Lists from './components/list/Lists.container';
 import ShortList from './components/list/ShortList.container';
+import Spinner from './components/general/Spinner.component';
 
 class App extends Component {
   componentWillMount() {
@@ -69,6 +70,8 @@ class App extends Component {
       currentPage = <Bookcase />;
     } else if (pathSplit[1] === 'find') {
       currentPage = <FilterPage />;
+    } else if (pathSplit[1] === 'replay') {
+      currentPage = <Spinner size="50px" style={{marginTop: 100}} />;
     }
 
     if (!currentPage) {
