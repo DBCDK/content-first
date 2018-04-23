@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import AddToListModal from './AddToListModal.container';
-import ShortListMergeModal from './ShortListMergeModal.container';
 import OrderModal from './OrderModal.container';
 import LoginModal from './LoginModal.component';
 import ConfirmModal from './ConfirmModal.component';
@@ -49,9 +48,6 @@ class Modal extends React.Component {
       } else {
         modal = <AddToListModal key="addToList" work={context} />;
       }
-    }
-    if (this.props.modalState.mergeShortList.open) {
-      modal = <ShortListMergeModal key="mergeShortList" />;
     }
     if (this.props.modalState.order.open) {
       modal = <OrderModal key="order" />;
