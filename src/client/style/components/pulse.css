@@ -1,11 +1,11 @@
 .pulse-toucharea {
   width: 30px;
   height: 30px;
-  position: absolute;
   z-index: 1;
   border-radius: 50%;
   cursor: pointer;
   transform: translate(-50%, -50%);
+  position: absolute;
 }
 
 .pulse-toucharea .pulse {
@@ -25,6 +25,12 @@
   animation: none;
 }
 
+.pulse-toucharea:active .pulse {
+  transform: scale(3.5);
+  background-color: rgba(255, 255, 255, 1);
+  animation: none;
+}
+
 .pulse-active .pulse {
   transform: scale(3);
   background-color: rgba(255, 255, 255, 1);
@@ -35,6 +41,22 @@
   transform: scale(3.5);
   background-color: rgba(255, 255, 255, 1);
   animation: none;
+}
+
+.pulse-toucharea .pulse-label {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  transition: all 0.2s ease-in-out;
+  color: var(--lightgrey);
+  width: 100px;
+  display: block;
+  pointer-events: none;
+}
+
+.pulse-toucharea:hover .pulse-label {
+  top: 35px;
 }
 
 /* Pulse animation */

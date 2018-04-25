@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
 import {
   LIST_LOAD_REQUEST,
   addElementToList,
@@ -20,71 +21,7 @@ import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
 import ImageUpload from '../general/ImageUpload.component';
 import Spinner from '../general/Spinner.component';
-const ListDetails = ({
-  id,
-  title,
-  description,
-  template,
-  hasError,
-  onChange,
-  addImage,
-  imageError,
-  imageIsLoading,
-  image
-}) => (
-  <div className="list-details">
-    <div className="form-group">
-      <span className={`required ${!title && hasError ? 'has-error' : ''}`}>
-        <input
-          className="form-control"
-          type="text"
-          name="list-title"
-          placeholder="Giv din liste en titel"
-          onChange={e => onChange({title: e.currentTarget.value})}
-          value={title}
-        />
-        {!title && hasError ? (
-          <div className="alert alert-danger">Din liste skal have en titel</div>
-        ) : (
-          ''
-        )}
-      </span>
-      <Textarea
-        className="form-control list-details__description"
-        name="list-description"
-        placeholder="Skriv lidt om din liste"
-        onChange={e => onChange({description: e.currentTarget.value})}
-        value={description}
-      />
-      <div>
-        <span className="ml1">Skal vises som</span>
-        <select
-          value={template || 'simple'}
-          onChange={e => onChange({template: e.currentTarget.value})}
-          className="form-control ml1"
-          style={{width: 'auto', display: 'inline-block'}}
-        >
-          <option value="simple">simpel liste</option>
-          <option value="circle">visuel liste</option>
-        </select>
-      </div>
-
-      <div className="mt1 text-left">
-        <ImageUpload
-          className="mt1"
-          icon="glyphicon-picture"
-          error={imageError}
-          style={{borderRadius: '5%'}}
-          loading={imageIsLoading}
-          previewImage={image ? `/v1/image/${image}/150/150` : null}
-          onFile={img => {
-            addImage(id, img);
-          }}
-        />
-      </div>
-    </div>
-  </div>
-);
+import Pulse from '../pulse/Pulse.component';
 
 export const ListItem = ({item, onChange}) => (
   <div key={item.book.pid} className="flex list-item">
@@ -141,7 +78,8 @@ export class ListCreator extends React.Component {
     super(props);
     this.state = {
       hasError: false,
-      isNew: false
+      isNew: false,
+      dotHandlerWidth: 0
     };
   }
   async componentWillMount() {
@@ -168,12 +106,37 @@ export class ListCreator extends React.Component {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  }
+
+  onResize = () => {
+    this.setState({
+      dotHandlerWidth: this.refs.dotHandler
+        ? this.refs.dotHandler.clientWidth
+        : 0
+    });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.refs.dotHandler) {
+      if (prevState.dotHandlerWidth !== this.refs.dotHandler.clientWidth) {
+        this.setState({dotHandlerWidth: this.refs.dotHandler.clientWidth});
+      }
+    }
+  }
+
   componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
     // reset any unsaved changes
     // for now we just reload users lists from backend
     // a client side undo mechanism would be more efficient
     this.props.loadLists();
   }
+  // componentDidMount() {
+  //   this.props.updateList({...this.props.currentList, ...currentList});
+  // }
   async onSubmit(e) {
     e.preventDefault();
     if (!this.props.currentList.title) {
@@ -214,12 +177,46 @@ export class ListCreator extends React.Component {
     }
   }
 
+  percentageObjToPixel(e, pos) {
+    const x = Number(pos.x) * this.state.dotHandlerWidth / 100;
+    const y = Number(pos.y) * this.state.dotHandlerWidth / 100;
+    console.log('exist');
+    return {x, y};
+  }
+
+  pixelObjToPercentage(e, pos) {
+    const x = Number(pos.x) / this.state.dotHandlerWidth * 100;
+    const y = Number(pos.y) / this.state.dotHandlerWidth * 100;
+    console.log('exist');
+    return {x, y};
+  }
+
   render() {
     if (!this.props.currentList) {
       return null;
     }
 
+    console.log(this.state.dotHandlerWidth);
+
+    let size = '/150/150';
+    let bookcaseBoxClass = '';
+    let imgUploadStyles = {};
+
+    if (
+      this.props.currentList &&
+      this.props.currentList.template === 'bookcase' &&
+      this.props.currentList.image &&
+      !this.props.currentList.imageIsLoading
+    ) {
+      imgUploadStyles = {width: '100%', height: 'auto'};
+      bookcaseBoxClass = 'dotHandler-active';
+      size = '';
+    }
+
     const isNew = this.state.isNew;
+    const currentList = this.props.currentList;
+
+    console.log(currentList);
 
     return (
       <div className="list-creator">
@@ -229,18 +226,125 @@ export class ListCreator extends React.Component {
         <div className="row">
           <div className="col-xs-8">
             <form className="mb4" onSubmit={e => this.onSubmit(e)}>
-              <ListDetails
-                id={this.props.currentList.id}
-                hasError={this.state.hasError}
-                title={this.props.currentList.title}
-                description={this.props.currentList.description}
-                onChange={e => this.onChange(e)}
-                addImage={this.props.addImage}
-                image={this.props.currentList.image}
-                imageError={this.props.currentList.imageError}
-                imageIsLoading={this.props.currentList.imageIsLoading}
-                template={this.props.currentList.template}
-              />
+              <div className="list-details">
+                <div className="form-group">
+                  <span
+                    className={`required ${
+                      !currentList.title && this.state.hasError
+                        ? 'has-error'
+                        : ''
+                    }`}
+                  >
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="list-title"
+                      placeholder="Giv din liste en titel"
+                      onChange={e =>
+                        this.onChange({title: e.currentTarget.value})
+                      }
+                      value={currentList.title}
+                    />
+                    {!currentList.title && this.state.hasError ? (
+                      <div className="alert alert-danger">
+                        Din liste skal have en titel
+                      </div>
+                    ) : (
+                      ''
+                    )}
+                  </span>
+                  <Textarea
+                    className="form-control list-details__description"
+                    name="list-description"
+                    placeholder="Skriv lidt om din liste"
+                    onChange={e =>
+                      this.onChange({description: e.currentTarget.value})
+                    }
+                    value={currentList.description}
+                  />
+                  <div>
+                    <span className="ml1">Skal vises som</span>
+                    <select
+                      value={currentList.template || 'simple'}
+                      onChange={e =>
+                        this.onChange({template: e.currentTarget.value})
+                      }
+                      className="form-control ml1"
+                      style={{width: 'auto', display: 'inline-block'}}
+                    >
+                      <option value="simple">Simpel liste</option>
+                      <option value="circle">Visuel liste</option>
+                      <option value="bookcase">Bogreol</option>
+                    </select>
+                  </div>
+
+                  <div className="mt1 text-left">
+                    <ImageUpload
+                      className={'mt1 ' + bookcaseBoxClass}
+                      icon="glyphicon-picture"
+                      error={currentList.imageError}
+                      style={{borderRadius: '5px', ...imgUploadStyles}}
+                      loading={currentList.imageIsLoading}
+                      previewImage={
+                        currentList.image
+                          ? `/v1/image/${currentList.image}${size}`
+                          : null
+                      }
+                      onFile={img => {
+                        this.props.addImage(currentList.id, img);
+                      }}
+                    >
+                      {currentList.template === 'bookcase' ? (
+                        <div className="cols-xs-12 dotHandler" ref="dotHandler">
+                          {currentList.list.map(p => {
+                            const position = this.percentageObjToPixel(
+                              this.refs.dotHandler,
+                              p.position
+                            );
+
+                            return (
+                              <Pulse
+                                dragContainer={'parent'}
+                                position={position}
+                                className="handle"
+                                draggable={true}
+                                pid={p.book.pid}
+                                label={p.book.title}
+                                key={'pulse-' + p.book.pid}
+                                onStop={(e, ui) => {
+                                  console.log(ui);
+
+                                  const pos = this.pixelObjToPercentage(
+                                    this.refs.dotHandler,
+                                    {x: ui.x, y: ui.y}
+                                  );
+
+                                  console.log(pos);
+
+                                  const newList = currentList.list.map(
+                                    listItem => {
+                                      if (listItem === p) {
+                                        p.position = pos;
+                                      }
+                                      return listItem;
+                                    }
+                                  );
+                                  this.props.updateList({
+                                    ...currentList,
+                                    ...newList
+                                  });
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </ImageUpload>
+                  </div>
+                </div>
+              </div>
               <h2 className="list-creator__headline">
                 Tilføj bøger til listen
               </h2>

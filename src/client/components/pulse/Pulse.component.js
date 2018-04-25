@@ -1,4 +1,5 @@
 import React from 'react';
+import Draggable from 'react-draggable';
 
 /*
   <Pulse
@@ -15,27 +16,47 @@ export default class Pulse extends React.Component {
   }
 
   render() {
-    let styles = {
-      left: this.props.position.x + '%',
-      top: this.props.position.y + '%'
-    };
+    let styles = {};
+
+    if (this.props.position) {
+      styles.left = this.props.position.x + '%';
+      styles.top = this.props.position.y + '%';
+      styles.position = 'absolute';
+    }
 
     return (
-      <div
-        className={`pulse-toucharea ${
-          this.props.active === this.props.pid ? ' pulse-active' : ''
-        }`}
-        style={styles}
-        onClick={this.props.onClick}
+      <Draggable
+        pid={this.props.pid}
+        bounds={this.props.dragContainer || false}
+        disabled={!this.props.draggable}
+        position={this.props.position}
+        handle=".handle"
+        onStop={this.props.onStop}
+        onDrag={this.props.onDrag}
       >
         <div
-          className="pulse delay"
-          style={{
-            animationDelay:
-              (this.props.delay || this.randomDelay(10, 50)) + 'ms'
-          }}
-        />
-      </div>
+          className={`pulse-toucharea ${this.props.className} ${
+            this.props.active === this.props.pid ? ' pulse-active' : ''
+          }`}
+          style={null}
+          posx={this.props.position.x}
+          posy={this.props.position.y}
+          onClick={this.props.onClick}
+        >
+          {this.props.label ? (
+            <span className="pulse-label">{this.props.label}</span>
+          ) : (
+            ''
+          )}
+          <div
+            className="pulse delay"
+            style={{
+              animationDelay:
+                (this.props.delay || this.randomDelay(10, 50)) + 'ms'
+            }}
+          />
+        </div>
+      </Draggable>
     );
   }
 }

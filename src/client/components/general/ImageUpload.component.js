@@ -46,32 +46,36 @@ export default class ImageUpload extends React.Component {
 
   render() {
     return (
-      <div className="image-upload">
-        <label>
-          <div
-            className="image-upload--zone"
-            style={{
-              width: '150px',
-              height: '150px',
-              overflow: 'hidden',
-              ...this.props.style
-            }}
-          >
-            {(this.props.loading && <Spinner />) ||
-              (this.props.previewImage && (
+      <div className={'image-upload ' + this.props.className}>
+        <div
+          className="image-upload--zone"
+          style={{
+            width: '150px',
+            height: '150px',
+            overflow: 'hidden',
+            ...this.props.style
+          }}
+        >
+          {(this.props.loading && <Spinner />) ||
+            (this.props.previewImage && (
+              <div>
+                {this.props.children}
                 <img src={this.props.previewImage} alt="User profile" />
-              )) || (
-                <div>
-                  <span
-                    className={`background-icon glyphicon ${this.props.icon ||
-                      'glyphicon-user'}`}
-                  />
-                </div>
-              )}
-            <div className="droppable-image-overlay">
-              {this.props.overlayText || ''}
-            </div>
+              </div>
+            )) || (
+              <div>
+                <span
+                  className={`background-icon glyphicon ${this.props.icon ||
+                    'glyphicon-user'}`}
+                />
+              </div>
+            )}
+          <div className="droppable-image-overlay">
+            {this.props.overlayText || ''}
           </div>
+        </div>
+        <div style={{clear: 'both'}} />
+        <label>
           <span className="btn btn-primary mt1">
             {this.props.buttonText || 'Upload billede'}
           </span>
