@@ -65,12 +65,17 @@ exports[`ListCreate list details is shown 1`] = `
                 <option
                   value="simple"
                 >
-                  simpel liste
+                  Simpel liste
                 </option>
                 <option
                   value="circle"
                 >
-                  visuel liste
+                  Visuel liste
+                </option>
+                <option
+                  value="bookcase"
+                >
+                  Bogreol
                 </option>
               </select>
             </div>
@@ -78,31 +83,38 @@ exports[`ListCreate list details is shown 1`] = `
               className="mt1 text-left"
             >
               <div
-                className="image-upload"
+                className="image-upload mt1 "
               >
-                <label>
-                  <div
-                    className="image-upload--zone"
-                    style={
-                      Object {
-                        "borderRadius": "5%",
-                        "height": "150px",
-                        "overflow": "hidden",
-                        "width": "150px",
-                      }
+                <div
+                  className="image-upload--zone"
+                  style={
+                    Object {
+                      "borderRadius": "5px",
+                      "height": "150px",
+                      "overflow": "hidden",
+                      "width": "150px",
                     }
-                  >
-                    <div>
-                      <span
-                        className="background-icon glyphicon glyphicon-picture"
-                      />
-                    </div>
-                    <div
-                      className="droppable-image-overlay"
-                    >
-                      
-                    </div>
+                  }
+                >
+                  <div>
+                    <span
+                      className="background-icon glyphicon glyphicon-picture"
+                    />
                   </div>
+                  <div
+                    className="droppable-image-overlay"
+                  >
+                    
+                  </div>
+                </div>
+                <div
+                  style={
+                    Object {
+                      "clear": "both",
+                    }
+                  }
+                />
+                <label>
                   <span
                     className="btn btn-primary mt1"
                   >
@@ -314,12 +326,17 @@ exports[`ListCreate renders a list with multiple books 1`] = `
                 <option
                   value="simple"
                 >
-                  simpel liste
+                  Simpel liste
                 </option>
                 <option
                   value="circle"
                 >
-                  visuel liste
+                  Visuel liste
+                </option>
+                <option
+                  value="bookcase"
+                >
+                  Bogreol
                 </option>
               </select>
             </div>
@@ -327,31 +344,38 @@ exports[`ListCreate renders a list with multiple books 1`] = `
               className="mt1 text-left"
             >
               <div
-                className="image-upload"
+                className="image-upload mt1 "
               >
-                <label>
-                  <div
-                    className="image-upload--zone"
-                    style={
-                      Object {
-                        "borderRadius": "5%",
-                        "height": "150px",
-                        "overflow": "hidden",
-                        "width": "150px",
-                      }
+                <div
+                  className="image-upload--zone"
+                  style={
+                    Object {
+                      "borderRadius": "5px",
+                      "height": "150px",
+                      "overflow": "hidden",
+                      "width": "150px",
                     }
-                  >
-                    <div>
-                      <span
-                        className="background-icon glyphicon glyphicon-picture"
-                      />
-                    </div>
-                    <div
-                      className="droppable-image-overlay"
-                    >
-                      
-                    </div>
+                  }
+                >
+                  <div>
+                    <span
+                      className="background-icon glyphicon glyphicon-picture"
+                    />
                   </div>
+                  <div
+                    className="droppable-image-overlay"
+                  >
+                    
+                  </div>
+                </div>
+                <div
+                  style={
+                    Object {
+                      "clear": "both",
+                    }
+                  }
+                />
+                <label>
                   <span
                     className="btn btn-primary mt1"
                   >
@@ -767,12 +791,17 @@ exports[`ListCreate renders a list with one book 1`] = `
                 <option
                   value="simple"
                 >
-                  simpel liste
+                  Simpel liste
                 </option>
                 <option
                   value="circle"
                 >
-                  visuel liste
+                  Visuel liste
+                </option>
+                <option
+                  value="bookcase"
+                >
+                  Bogreol
                 </option>
               </select>
             </div>
@@ -780,31 +809,38 @@ exports[`ListCreate renders a list with one book 1`] = `
               className="mt1 text-left"
             >
               <div
-                className="image-upload"
+                className="image-upload mt1 "
               >
-                <label>
-                  <div
-                    className="image-upload--zone"
-                    style={
-                      Object {
-                        "borderRadius": "5%",
-                        "height": "150px",
-                        "overflow": "hidden",
-                        "width": "150px",
-                      }
+                <div
+                  className="image-upload--zone"
+                  style={
+                    Object {
+                      "borderRadius": "5px",
+                      "height": "150px",
+                      "overflow": "hidden",
+                      "width": "150px",
                     }
-                  >
-                    <div>
-                      <span
-                        className="background-icon glyphicon glyphicon-picture"
-                      />
-                    </div>
-                    <div
-                      className="droppable-image-overlay"
-                    >
-                      
-                    </div>
+                  }
+                >
+                  <div>
+                    <span
+                      className="background-icon glyphicon glyphicon-picture"
+                    />
                   </div>
+                  <div
+                    className="droppable-image-overlay"
+                  >
+                    
+                  </div>
+                </div>
+                <div
+                  style={
+                    Object {
+                      "clear": "both",
+                    }
+                  }
+                />
+                <label>
                   <span
                     className="btn btn-primary mt1"
                   >
@@ -849,6 +885,7 @@ exports[`ListCreate renders a list with one book 1`] = `
                   },
                 ],
                 "open": false,
+                "owner": 1,
                 "public": false,
                 "social": false,
                 "title": "some title",

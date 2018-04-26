@@ -4,7 +4,8 @@
   z-index: 1;
   border-radius: 50%;
   cursor: pointer;
-  transform: translate(-50%, -50%);
+  margin-left: -15px;
+  margin-top: -15px;
   position: absolute;
 }
 

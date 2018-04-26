@@ -53,6 +53,7 @@
 @import './components/profile.css';
 @import './components/comment.css';
 @import './components/circletemplate.css';
+@import './components/bookcaseTemplate.css';
 @import './components/socialShareButton.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */

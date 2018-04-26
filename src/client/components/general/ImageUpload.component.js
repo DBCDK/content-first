@@ -60,7 +60,12 @@ export default class ImageUpload extends React.Component {
             (this.props.previewImage && (
               <div>
                 {this.props.children}
-                <img src={this.props.previewImage} alt="User profile" />
+                <img
+                  onLoad={this.props.handleLoaded}
+                  src={this.props.previewImage}
+                  alt="User profile"
+                  className="preview-img"
+                />
               </div>
             )) || (
               <div>

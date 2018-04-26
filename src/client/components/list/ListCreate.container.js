@@ -79,7 +79,8 @@ export class ListCreator extends React.Component {
     this.state = {
       hasError: false,
       isNew: false,
-      dotHandlerWidth: 0
+      dotHandlerWidth: 0,
+      dotHandlerHeight: 0
     };
   }
   async componentWillMount() {
@@ -115,6 +116,9 @@ export class ListCreator extends React.Component {
     this.setState({
       dotHandlerWidth: this.refs.dotHandler
         ? this.refs.dotHandler.clientWidth
+        : 0,
+      dotHandlerHeight: this.refs.dotHandler
+        ? this.refs.dotHandler.clientHeight
         : 0
     });
   };
@@ -122,7 +126,10 @@ export class ListCreator extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.refs.dotHandler) {
       if (prevState.dotHandlerWidth !== this.refs.dotHandler.clientWidth) {
-        this.setState({dotHandlerWidth: this.refs.dotHandler.clientWidth});
+        this.setState({
+          dotHandlerWidth: this.refs.dotHandler.clientWidth,
+          dotHandlerHeight: this.refs.dotHandler.clientHeight
+        });
       }
     }
   }
@@ -179,15 +186,13 @@ export class ListCreator extends React.Component {
 
   percentageObjToPixel(e, pos) {
     const x = Number(pos.x) * this.state.dotHandlerWidth / 100;
-    const y = Number(pos.y) * this.state.dotHandlerWidth / 100;
-    console.log('exist');
+    const y = Number(pos.y) * this.state.dotHandlerHeight / 100;
     return {x, y};
   }
 
   pixelObjToPercentage(e, pos) {
     const x = Number(pos.x) / this.state.dotHandlerWidth * 100;
-    const y = Number(pos.y) / this.state.dotHandlerWidth * 100;
-    console.log('exist');
+    const y = Number(pos.y) / this.state.dotHandlerHeight * 100;
     return {x, y};
   }
 
@@ -195,8 +200,6 @@ export class ListCreator extends React.Component {
     if (!this.props.currentList) {
       return null;
     }
-
-    console.log(this.state.dotHandlerWidth);
 
     let size = '/150/150';
     let bookcaseBoxClass = '';
@@ -210,13 +213,14 @@ export class ListCreator extends React.Component {
     ) {
       imgUploadStyles = {width: '100%', height: 'auto'};
       bookcaseBoxClass = 'dotHandler-active';
-      size = '';
+      size = '/1200/600';
     }
 
     const isNew = this.state.isNew;
     const currentList = this.props.currentList;
-
-    console.log(currentList);
+    const profile = this.props.profile
+      ? this.props.profile
+      : this.props.profiles[currentList.owner];
 
     return (
       <div className="list-creator">
@@ -285,6 +289,7 @@ export class ListCreator extends React.Component {
                       error={currentList.imageError}
                       style={{borderRadius: '5px', ...imgUploadStyles}}
                       loading={currentList.imageIsLoading}
+                      handleLoaded={this.onResize}
                       previewImage={
                         currentList.image
                           ? `/v1/image/${currentList.image}${size}`
@@ -295,48 +300,55 @@ export class ListCreator extends React.Component {
                       }}
                     >
                       {currentList.template === 'bookcase' ? (
-                        <div className="cols-xs-12 dotHandler" ref="dotHandler">
-                          {currentList.list.map(p => {
-                            const position = this.percentageObjToPixel(
-                              this.refs.dotHandler,
-                              p.position
-                            );
-
-                            return (
-                              <Pulse
-                                dragContainer={'parent'}
-                                position={position}
-                                className="handle"
-                                draggable={true}
-                                pid={p.book.pid}
-                                label={p.book.title}
-                                key={'pulse-' + p.book.pid}
-                                onStop={(e, ui) => {
-                                  console.log(ui);
-
-                                  const pos = this.pixelObjToPercentage(
-                                    this.refs.dotHandler,
-                                    {x: ui.x, y: ui.y}
-                                  );
-
-                                  console.log(pos);
-
-                                  const newList = currentList.list.map(
-                                    listItem => {
-                                      if (listItem === p) {
-                                        p.position = pos;
+                        <div className="dotHandler-wrap">
+                          <div className="col-xs-4 bookcase-profile">
+                            <img
+                              src={'/v1/image/' + profile.image + '/100/100'}
+                              alt={profile.name + ' bogreol'}
+                            />
+                            <h4>{profile.name}</h4>
+                          </div>
+                          <div className="col-xs-8 dotHandler" ref="dotHandler">
+                            {currentList.list.map(p => {
+                              const position = this.percentageObjToPixel(
+                                this.refs.dotHandler,
+                                p.position || {
+                                  x: Math.floor(
+                                    Math.random() * Math.floor(100)
+                                  ),
+                                  y: Math.floor(Math.random() * Math.floor(100))
+                                }
+                              );
+                              return (
+                                <Pulse
+                                  dragContainer={'parent'}
+                                  position={position}
+                                  draggable={true}
+                                  pid={p.book.pid}
+                                  label={p.book.title}
+                                  key={'pulse-' + p.book.pid}
+                                  onStop={(e, ui) => {
+                                    const pos = this.pixelObjToPercentage(
+                                      this.refs.dotHandler,
+                                      {x: ui.x, y: ui.y}
+                                    );
+                                    const newList = currentList.list.map(
+                                      listItem => {
+                                        if (listItem === p) {
+                                          p.position = pos;
+                                        }
+                                        return listItem;
                                       }
-                                      return listItem;
-                                    }
-                                  );
-                                  this.props.updateList({
-                                    ...currentList,
-                                    ...newList
-                                  });
-                                }}
-                              />
-                            );
-                          })}
+                                    );
+                                    this.props.updateList({
+                                      ...currentList,
+                                      ...newList
+                                    });
+                                  }}
+                                />
+                              );
+                            })}
+                          </div>
                         </div>
                       ) : (
                         ''
@@ -420,7 +432,8 @@ export class ListCreator extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentList: getListById(state.listReducer, ownProps.id)
+    currentList: getListById(state.listReducer, ownProps.id),
+    profiles: state.users.toJS()
   };
 };
 export const mapDispatchToProps = dispatch => ({

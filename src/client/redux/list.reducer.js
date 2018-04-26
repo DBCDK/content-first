@@ -99,13 +99,13 @@ const listReducer = (state = defaultState, action) => {
         list.list.filter(e => e.book.pid === action.element.book.pid).length ===
         0
       ) {
-        action.element.position = {
-          // x: Math.floor(Math.random() * Math.floor(100)),
-          // y: Math.floor(Math.random() * Math.floor(100))
-          x: 0,
-          y: 0
-        };
-        list.list = [...list.list, action.element];
+        if (!action.element.position) {
+          action.element.position = {
+            x: Math.floor(Math.random() * Math.floor(100)),
+            y: Math.floor(Math.random() * Math.floor(100))
+          };
+          list.list = [...list.list, action.element];
+        }
       }
       return Object.assign({}, state, {
         lists: {...state.lists, [action.id]: list},

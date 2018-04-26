@@ -7,6 +7,11 @@ jest.mock('../../general/BookCover.component', () => 'BookCover');
 jest.mock('../../general/Link.component', () => 'Link');
 jest.mock('../BookSearchSuggester', () => 'BookSearchSuggester');
 
+const profile = {
+  name: 'LæseLotte',
+  image: 'http://p-hold.com/200/200'
+};
+
 const createTestElement = id => {
   return {
     book: {
@@ -34,7 +39,13 @@ describe('ListCreate', () => {
     };
 
     const tree = renderer
-      .create(<ListCreator id="current-list-id" currentList={currentList} />)
+      .create(
+        <ListCreator
+          id="current-list-id"
+          profile={profile}
+          currentList={currentList}
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -47,10 +58,17 @@ describe('ListCreate', () => {
       public: false,
       open: false,
       social: false,
+      owner: 1,
       list: [createTestElement(1)]
     };
     const tree = renderer
-      .create(<ListCreator id="current-list-id" currentList={currentList} />)
+      .create(
+        <ListCreator
+          id="current-list-id"
+          profile={profile}
+          currentList={currentList}
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -64,7 +82,13 @@ describe('ListCreate', () => {
       list: [createTestElement(3), createTestElement(2), createTestElement(1)]
     };
     const tree = renderer
-      .create(<ListCreator id="current-list-id" currentList={currentList} />)
+      .create(
+        <ListCreator
+          id="current-list-id"
+          profile={profile}
+          currentList={currentList}
+        />
+      )
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

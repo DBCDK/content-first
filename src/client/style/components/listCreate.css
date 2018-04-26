@@ -147,19 +147,35 @@
   object-fit: cover;
 }
 
-.dotHandler {
+.dotHandler-wrap {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+}
+
+.dotHandler-wrap .bookcase-profile {
+  height: 100%;
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.dotHandler-wrap .bookcase-profile img {
+  border-radius: 50%;
+  margin-top: 50%;
+  transform: translate(0%, 0%);
+}
+
+.dotHandler {
+  height: 100%;
   z-index: 1;
   pointer-events: auto;
-  background: rgba(0, 0, 0, 0.25);
+
   padding: 0;
 }
 
-.dotHandler-active .image-upload--zone img {
-  width: 100% !important;
-  height: auto !important;
+.dotHandler-active .image-upload--zone .preview-img {
+  width: 100%;
+  height: auto;
 }

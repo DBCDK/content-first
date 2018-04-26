@@ -6,27 +6,37 @@ exports[`Image Upload render function Add image 1`] = `
   previewImage="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
 >
   <div
-    className="image-upload"
+    className="image-upload undefined"
   >
-    <label>
-      <div
-        className="image-upload--zone"
-        style={
-          Object {
-            "height": "150px",
-            "overflow": "hidden",
-            "width": "150px",
-          }
+    <div
+      className="image-upload--zone"
+      style={
+        Object {
+          "height": "150px",
+          "overflow": "hidden",
+          "width": "150px",
         }
-      >
+      }
+    >
+      <div>
         <img
           alt="User profile"
+          className="preview-img"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
         />
-        <div
-          className="droppable-image-overlay"
-        />
       </div>
+      <div
+        className="droppable-image-overlay"
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "clear": "both",
+        }
+      }
+    />
+    <label>
       <span
         className="btn btn-primary mt1"
       >
@@ -46,29 +56,40 @@ exports[`Image Upload render function Add image 1`] = `
 
 exports[`Image Upload render function Add preview image 1`] = `
 <div
-  className="image-upload"
+  className="image-upload undefined"
 >
-  <label>
-    <div
-      className="image-upload--zone"
-      style={
-        Object {
-          "height": "150px",
-          "overflow": "hidden",
-          "width": "150px",
-        }
+  <div
+    className="image-upload--zone"
+    style={
+      Object {
+        "height": "150px",
+        "overflow": "hidden",
+        "width": "150px",
       }
-    >
+    }
+  >
+    <div>
       <img
         alt="User profile"
+        className="preview-img"
+        onLoad={undefined}
         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
       />
-      <div
-        className="droppable-image-overlay"
-      >
-        
-      </div>
     </div>
+    <div
+      className="droppable-image-overlay"
+    >
+      
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  />
+  <label>
     <span
       className="btn btn-primary mt1"
     >
@@ -87,26 +108,33 @@ exports[`Image Upload render function Add preview image 1`] = `
 
 exports[`Image Upload render function Add spinner on loading 1`] = `
 <div
-  className="image-upload"
+  className="image-upload undefined"
 >
-  <label>
-    <div
-      className="image-upload--zone"
-      style={
-        Object {
-          "height": "150px",
-          "overflow": "hidden",
-          "width": "150px",
-        }
+  <div
+    className="image-upload--zone"
+    style={
+      Object {
+        "height": "150px",
+        "overflow": "hidden",
+        "width": "150px",
       }
+    }
+  >
+    <Spinner />
+    <div
+      className="droppable-image-overlay"
     >
-      <Spinner />
-      <div
-        className="droppable-image-overlay"
-      >
-        
-      </div>
+      
     </div>
+  </div>
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  />
+  <label>
     <span
       className="btn btn-primary mt1"
     >
@@ -125,30 +153,37 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
 
 exports[`Image Upload render function renders an image upload form 1`] = `
 <div
-  className="image-upload"
+  className="image-upload undefined"
 >
-  <label>
-    <div
-      className="image-upload--zone"
-      style={
-        Object {
-          "height": "150px",
-          "overflow": "hidden",
-          "width": "150px",
-        }
+  <div
+    className="image-upload--zone"
+    style={
+      Object {
+        "height": "150px",
+        "overflow": "hidden",
+        "width": "150px",
       }
-    >
-      <div>
-        <span
-          className="background-icon glyphicon glyphicon-user"
-        />
-      </div>
-      <div
-        className="droppable-image-overlay"
-      >
-        
-      </div>
+    }
+  >
+    <div>
+      <span
+        className="background-icon glyphicon glyphicon-user"
+      />
     </div>
+    <div
+      className="droppable-image-overlay"
+    >
+      
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  />
+  <label>
     <span
       className="btn btn-primary mt1"
     >

@@ -18,7 +18,7 @@ export default class Pulse extends React.Component {
   render() {
     let styles = {};
 
-    if (this.props.position) {
+    if (!this.props.draggable && this.props.position) {
       styles.left = this.props.position.x + '%';
       styles.top = this.props.position.y + '%';
       styles.position = 'absolute';
@@ -29,18 +29,16 @@ export default class Pulse extends React.Component {
         pid={this.props.pid}
         bounds={this.props.dragContainer || false}
         disabled={!this.props.draggable}
-        position={this.props.position}
-        handle=".handle"
+        position={this.props.draggable ? this.props.position : null}
+        handle=".pulse-toucharea"
         onStop={this.props.onStop}
         onDrag={this.props.onDrag}
       >
         <div
-          className={`pulse-toucharea ${this.props.className} ${
-            this.props.active === this.props.pid ? ' pulse-active' : ''
+          className={`pulse-toucharea ${
+            this.props.active === this.props.pid ? 'pulse-active' : ''
           }`}
-          style={null}
-          posx={this.props.position.x}
-          posy={this.props.position.y}
+          style={styles}
           onClick={this.props.onClick}
         >
           {this.props.label ? (

@@ -143,7 +143,10 @@ describe('listReducer', () => {
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid1'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     expect(getLists(state)).toMatchSnapshot();
   });
@@ -160,13 +163,20 @@ describe('listReducer', () => {
     state = listReducer(
       state,
       addElementToList(
-        {book: {pid: 'pid1'}, description: 'some-description-1'},
+        {
+          book: {pid: 'pid1'},
+          position: {x: 0, y: 0},
+          description: 'some-description-1'
+        },
         'some-id-1'
       )
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid1'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     expect(getLists(state)).toMatchSnapshot();
   });
@@ -182,11 +192,17 @@ describe('listReducer', () => {
     );
     state = listReducer(
       state,
-      addElementToList({_id: '123', book: {pid: 'pid1'}}, 'some-id-1')
+      addElementToList(
+        {_id: '123', book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,
-      addElementToList({_id: '456', book: {pid: 'pid2'}}, 'some-id-1')
+      addElementToList(
+        {_id: '456', book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,
@@ -227,15 +243,24 @@ describe('listReducer', () => {
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid1'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid2'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid3'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid3'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,
