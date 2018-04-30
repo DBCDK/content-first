@@ -140,7 +140,7 @@ async function enrichList(list) {
       map[w.book.pid] = w;
       return map;
     }, {});
-    list.list = list.list.map(obj => {
+    list.list = list.list.filter(obj => !worksMap[obj.pid]).map(obj => {
       return Object.assign(obj, {book: {pid: obj.pid}}, worksMap[obj.pid]);
     });
   }
