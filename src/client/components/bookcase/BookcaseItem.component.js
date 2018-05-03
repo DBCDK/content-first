@@ -52,7 +52,7 @@ export class BookcaseItem extends React.Component {
   };
 
   render() {
-    if (!this.props.lists) {
+    if (!this.props.list) {
       return null;
     }
 
