@@ -330,7 +330,6 @@ export class ListCreator extends React.Component {
                                   onStart={e => {
                                     e.preventDefault();
                                   }}
-                                  onDrag={e => {}}
                                   onStop={(e, ui) => {
                                     const pos = this.pixelObjToPercentage(
                                       this.refs.dotHandler,

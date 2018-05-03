@@ -5,64 +5,112 @@ exports[`BookcaseTemplate circle of list items is shown 1`] = `
   className="bookcase-template"
 >
   <BookcaseItem
-    celeb={
+    list={
       Object {
-        "bookcase": "/v1/image/undefined/1200/600",
-        "books": Array [
+        "description": "some description",
+        "descriptionImage": true,
+        "id": "current-list-id",
+        "list": Array [
           Object {
+            "book": Object {
+              "creator": "some creator1",
+              "pid": "pid1",
+              "title": "some title1",
+            },
             "description": "some description1",
-            "pid": "pid1",
+            "links": Object {
+              "cover": "/cover1",
+            },
             "position": Object {
               "x": 0,
               "y": 0,
             },
           },
           Object {
+            "book": Object {
+              "creator": "some creator2",
+              "pid": "pid2",
+              "title": "some title2",
+            },
             "description": "some description2",
-            "pid": "pid2",
+            "links": Object {
+              "cover": "/cover2",
+            },
             "position": Object {
               "x": 0,
               "y": 0,
             },
           },
           Object {
+            "book": Object {
+              "creator": "some creator3",
+              "pid": "pid3",
+              "title": "some title3",
+            },
             "description": "some description3",
-            "pid": "pid3",
+            "links": Object {
+              "cover": "/cover3",
+            },
             "position": Object {
               "x": 0,
               "y": 0,
             },
           },
           Object {
+            "book": Object {
+              "creator": "some creator4",
+              "pid": "pid4",
+              "title": "some title4",
+            },
             "description": "some description4",
-            "pid": "pid4",
+            "links": Object {
+              "cover": "/cover4",
+            },
             "position": Object {
               "x": 0,
               "y": 0,
             },
           },
           Object {
+            "book": Object {
+              "creator": "some creator5",
+              "pid": "pid5",
+              "title": "some title5",
+            },
             "description": "some description5",
-            "pid": "pid5",
+            "links": Object {
+              "cover": "/cover5",
+            },
             "position": Object {
               "x": 0,
               "y": 0,
             },
           },
           Object {
+            "book": Object {
+              "creator": "some creator6",
+              "pid": "pid6",
+              "title": "some title6",
+            },
             "description": "some description6",
-            "pid": "pid6",
+            "links": Object {
+              "cover": "/cover6",
+            },
             "position": Object {
               "x": 0,
               "y": 0,
             },
           },
         ],
-        "description": "some description",
-        "descriptionImage": true,
-        "id": "current-list-id",
-        "img": "/v1/image/http://p-hold.com/200/200/150/150",
+        "public": true,
+        "title": "some title",
+      }
+    }
+    profile={
+      Object {
+        "image": "http://p-hold.com/200/200",
         "name": "LæseLotte",
+        "src": "http://p-hold.com/200/200",
       }
     }
   />
@@ -71,6 +119,7 @@ exports[`BookcaseTemplate circle of list items is shown 1`] = `
     list={
       Object {
         "description": "some description",
+        "descriptionImage": true,
         "id": "current-list-id",
         "list": Array [
           Object {

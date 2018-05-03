@@ -33,7 +33,6 @@ export default class Pulse extends React.Component {
         handle=".pulse-toucharea"
         onStart={this.props.onStart}
         onStop={this.props.onStop}
-        onDrag={this.props.onDrag}
       >
         <div
           className={`pulse-toucharea pulse-expand ${

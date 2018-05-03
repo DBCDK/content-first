@@ -7,28 +7,22 @@ jest.mock(
   '../../general/CheckmarkConnected.component',
   () => 'CheckmarkConnected'
 );
+jest.mock('../../general/Link.component', () => 'Link');
 
-const pid = '870970-basis:52038014';
 const description = 'lorem ipsum . . .';
 
-const book = [
-  {
-    book: {
-      pid: pid,
-      creator: 'Nicole Boyle Rødtnes',
-      title: 'test',
-      cover: 'img/cover.png',
-      description: description
-    }
-  }
-];
+const book = {
+  pid: '870970-basis:51642899',
+  titel: 'Alt det lys vi ikke ser',
+  creator: 'Anthony Doerr',
+  description: 'Roman nder 2. verdenskrig'
+};
 
 describe('CarouselItem', () => {
   it('renders initial component', () => {
     const tree = renderer
       .create(
         <CarouselItem
-          loading={true}
           description={description}
           onClick={() => {
             this.nextBook('next');

@@ -1,13 +1,10 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
 import CarouselItem from './CarouselItem.component';
 
 import TruncateMarkup from 'react-truncate-markup';
 
 import CarouselSlider from './CarouselSlider.component';
-
-import {BOOKS_REQUEST, getBooks} from '../../redux/books.reducer';
 
 /*
   <BookcaseItem list={obj} profile={obj}/>
@@ -55,6 +52,10 @@ export class BookcaseItem extends React.Component {
   };
 
   render() {
+    if (!this.props.lists) {
+      return null;
+    }
+
     return (
       <section
         className={`${this.state.carousel ? ' section-active' : ''}`}
@@ -120,7 +121,7 @@ export class BookcaseItem extends React.Component {
                 slideIndex={this.state.slideIndex}
                 onNextBook={this.nextBook}
               >
-                {this.props.list.list.map((b, i) => {
+                {this.props.list.list.map(b => {
                   return (
                     <CarouselItem
                       active={this.state.carousel}

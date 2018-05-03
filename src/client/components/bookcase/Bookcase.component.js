@@ -10,6 +10,9 @@ import BookcaseItem from './BookcaseItem.component';
 
 export class Bookcase extends React.Component {
   render() {
+    if (!this.props.lists) {
+      return null;
+    }
     return (
       <div className="bookcase row">
         <BookcaseSlider profiles={this.props.profiles}>

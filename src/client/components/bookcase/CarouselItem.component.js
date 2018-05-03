@@ -18,8 +18,6 @@ export default class CarouselItem extends React.Component {
     const book = this.props.book;
     const url = `/værk/${book.pid}`;
 
-    console.log(book);
-
     return (
       <div
         className={`carousel-container ${
