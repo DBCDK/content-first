@@ -15,26 +15,11 @@ export default class BookcaseTemplate extends React.Component {
       return null;
     }
 
-    const bookcaseObj = {
-      id: list.id,
-      name: profile.name,
-      img: '/v1/image/' + profile.image + '/150/150',
-      description: list.description,
-      descriptionImage: true,
-      bookcase: '/v1/image/' + list.image + '/1200/600',
-      books: []
-    };
-    bookcaseObj.books = list.list.map(e => {
-      return {
-        pid: e.book.pid,
-        position: e.position,
-        description: e.description
-      };
-    });
+    list.descriptionImage = true;
 
     return (
       <div className="bookcase-template">
-        <BookcaseItem celeb={bookcaseObj} />
+        <BookcaseItem profile={profile} list={list} />
         <SimpleList
           key="simple-list"
           editButton={this.props.editButton}

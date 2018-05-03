@@ -327,6 +327,10 @@ export class ListCreator extends React.Component {
                                   pid={p.book.pid}
                                   label={p.book.title}
                                   key={'pulse-' + p.book.pid}
+                                  onStart={e => {
+                                    e.preventDefault();
+                                  }}
+                                  onDrag={e => {}}
                                   onStop={(e, ui) => {
                                     const pos = this.pixelObjToPercentage(
                                       this.refs.dotHandler,

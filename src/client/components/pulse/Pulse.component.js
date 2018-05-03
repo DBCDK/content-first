@@ -31,11 +31,12 @@ export default class Pulse extends React.Component {
         disabled={!this.props.draggable}
         position={this.props.draggable ? this.props.position : null}
         handle=".pulse-toucharea"
+        onStart={this.props.onStart}
         onStop={this.props.onStop}
         onDrag={this.props.onDrag}
       >
         <div
-          className={`pulse-toucharea ${
+          className={`pulse-toucharea pulse-expand ${
             this.props.active === this.props.pid ? 'pulse-active' : ''
           }`}
           style={styles}
