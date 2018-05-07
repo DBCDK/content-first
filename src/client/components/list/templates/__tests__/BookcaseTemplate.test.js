@@ -1,16 +1,9 @@
 import React from 'react';
-import CircleTemplate from '../CircleTemplate.container';
+import BookcaseTemplate from '../BookcaseTemplate.component';
 import renderer from 'react-test-renderer';
 
-jest.mock('../../../general/BookCover.component', () => 'BookCover');
-jest.mock('../../../general/PopOver.component', () => 'PopOver');
-jest.mock('../../../general/ProfileImage.component', () => 'ProfileImage');
-jest.mock(
-  '../../../general/CheckmarkConnected.component',
-  () => 'CheckmarkConnected'
-);
 jest.mock('../SimpleList.component', () => 'SimpleList');
-jest.mock('../BookcaseTemplate.component', () => 'BookcaseTemplate');
+jest.mock('../../../bookcase/BookcaseItem.component', () => 'BookcaseItem');
 
 const createTestElement = id => {
   return {
@@ -22,16 +15,18 @@ const createTestElement = id => {
     links: {
       cover: '/cover' + id
     },
+    position: {x: 0, y: 0},
     description: 'some description' + id
   };
 };
 
 const profile = {
   name: 'LæseLotte',
-  src: 'http://p-hold.com/200/200'
+  src: 'http://p-hold.com/200/200',
+  image: 'http://p-hold.com/200/200'
 };
 
-describe('CircleTemplate', () => {
+describe('BookcaseTemplate', () => {
   test('circle of list items is shown', () => {
     const list = {
       id: 'current-list-id',
@@ -49,7 +44,7 @@ describe('CircleTemplate', () => {
     };
 
     const tree = renderer
-      .create(<CircleTemplate list={list} profile={profile} />)
+      .create(<BookcaseTemplate list={list} profile={profile} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });

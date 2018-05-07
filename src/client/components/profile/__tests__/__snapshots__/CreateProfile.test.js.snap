@@ -30,29 +30,36 @@ exports[`Image Upload render function Add image 1`] = `
             }
           >
             <div
-              className="image-upload"
+              className="image-upload undefined"
             >
-              <label>
-                <div
-                  className="image-upload--zone"
-                  style={
-                    Object {
-                      "borderRadius": "50%",
-                      "height": "150px",
-                      "overflow": "hidden",
-                      "width": "150px",
-                    }
+              <div
+                className="image-upload--zone"
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": "150px",
+                    "overflow": "hidden",
+                    "width": "150px",
                   }
-                >
-                  <div>
-                    <span
-                      className="background-icon glyphicon glyphicon-user"
-                    />
-                  </div>
-                  <div
-                    className="droppable-image-overlay"
+                }
+              >
+                <div>
+                  <span
+                    className="background-icon glyphicon glyphicon-user"
                   />
                 </div>
+                <div
+                  className="droppable-image-overlay"
+                />
+              </div>
+              <div
+                style={
+                  Object {
+                    "clear": "both",
+                  }
+                }
+              />
+              <label>
                 <span
                   className="btn btn-primary mt1"
                 >
@@ -184,31 +191,38 @@ exports[`Image Upload render function renders an image upload form 1`] = `
         className="col-xs-3"
       >
         <div
-          className="image-upload"
+          className="image-upload undefined"
         >
-          <label>
-            <div
-              className="image-upload--zone"
-              style={
-                Object {
-                  "borderRadius": "50%",
-                  "height": "150px",
-                  "overflow": "hidden",
-                  "width": "150px",
-                }
+          <div
+            className="image-upload--zone"
+            style={
+              Object {
+                "borderRadius": "50%",
+                "height": "150px",
+                "overflow": "hidden",
+                "width": "150px",
               }
-            >
-              <div>
-                <span
-                  className="background-icon glyphicon glyphicon-user"
-                />
-              </div>
-              <div
-                className="droppable-image-overlay"
-              >
-                
-              </div>
+            }
+          >
+            <div>
+              <span
+                className="background-icon glyphicon glyphicon-user"
+              />
             </div>
+            <div
+              className="droppable-image-overlay"
+            >
+              
+            </div>
+          </div>
+          <div
+            style={
+              Object {
+                "clear": "both",
+              }
+            }
+          />
+          <label>
             <span
               className="btn btn-primary mt1"
             >

@@ -1,17 +1,17 @@
 .image-upload {
   font-family: var(--secondary-font);
 }
-.image-upload label {
-  text-align: center;
-}
 
 .image-upload input {
   display: none;
 }
 .image-upload--zone {
   border: 1px solid lightgrey;
-  cursor: pointer;
+  cursor: default;
   margin: auto;
+  text-align: center;
+  position: relative;
+  float: left;
 }
 
 .image-upload .glyphicon {

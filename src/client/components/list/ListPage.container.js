@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {getListById} from '../../redux/list.reducer';
 import SimpleList from './templates/SimpleList.component';
 import CircleTemplate from './templates/CircleTemplate.container';
+import BookcaseTemplate from './templates/BookcaseTemplate.component';
 import Link from '../general/Link.component';
 
 export class ListPage extends React.Component {
@@ -12,6 +13,8 @@ export class ListPage extends React.Component {
         return SimpleList;
       case 'circle':
         return CircleTemplate;
+      case 'bookcase':
+        return BookcaseTemplate;
       default:
         return SimpleList;
     }
