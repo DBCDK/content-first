@@ -1,6 +1,7 @@
 import listReducer, {
   addList,
   getLists,
+  getListById,
   getListsForOwner,
   removeList,
   addElementToList,
@@ -12,6 +13,29 @@ import listReducer, {
 } from '../list.reducer';
 
 describe('listReducer', () => {
+  test('add position to list elements if none given', () => {
+    let state = listReducer(
+      {lists: {}},
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        _created: '1234'
+      })
+    );
+    state = listReducer(
+      state,
+      addElementToList(
+        {
+          book: {pid: 'pid1'},
+          description: 'some-description-1'
+        },
+        'some-id-1'
+      )
+    );
+    // Expects, if a book dont have a position, a position will be added in LIST_LOAD_RESPONSE
+    expect(getListById(state, 'some-id-1').list[0].position);
+  });
   test('add list throws when id is missing', () => {
     expect(() => {
       listReducer(
