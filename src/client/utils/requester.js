@@ -1,3 +1,4 @@
+import openplatform from 'openplatform';
 import request from 'superagent';
 import {BOOKS_RESPONSE} from '../redux/books.reducer';
 import {SEARCH_RESULTS} from '../redux/search.reducer';
@@ -51,7 +52,19 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
     returns:
       [{book},{book},{...}]
   */
-  const getBooks = request.get('/v1/books/').query({pids: unique(pids)});
+  pids = unique(pids);
+  const getBooks = request.get('/v1/books/').query({pids});
+
+  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
+  const coversPromise = Promise.all(
+    pids.map(async pid => {
+      const [{coverUrlFull}] = await openplatform.work({
+        pids: [pid],
+        fields: ['coverUrlFull']
+      });
+      return coverUrlFull && coverUrlFull[0];
+    })
+  );
 
   Promise.all([getBooks])
     .then(async responses => {
@@ -63,6 +76,20 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
           b.book.tags = tags[b.book.pid];
         });
       }
+
+      const coversResult = await coversPromise;
+      const covers = {};
+      for (let i = 0; i < pids.length; ++i) {
+        covers[pids[i]] = coversResult[i];
+      }
+
+      books.forEach(b => {
+        const {book: {pid}} = b;
+        if (covers[pid]) {
+          b.book.coverUrl = covers[pid];
+        }
+      });
+
       dispatch({type: BOOKS_RESPONSE, response: books});
     })
     .catch(error => {
