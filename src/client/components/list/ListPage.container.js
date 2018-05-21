@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {getListById} from '../../redux/list.reducer';
 import SimpleList from './templates/SimpleList.component';
 import CircleTemplate from './templates/CircleTemplate.container';
+import BookcaseTemplate from './templates/BookcaseTemplate.component';
 import Link from '../general/Link.component';
 
 export class ListPage extends React.Component {
@@ -12,6 +13,8 @@ export class ListPage extends React.Component {
         return SimpleList;
       case 'circle':
         return CircleTemplate;
+      case 'bookcase':
+        return BookcaseTemplate;
       default:
         return SimpleList;
     }
@@ -40,21 +43,12 @@ export class ListPage extends React.Component {
     }
 
     return (
-      <div className="list-wrapper tl">
-        <div className="row b-dark">
-          <div className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1">
-            <h1 className="t-title h-tight h-underline inline-block align-middle">
-              {list.title}
-            </h1>
-            {editButton}
-          </div>
-        </div>
-        <Template
-          list={list}
-          profile={profile}
-          profiles={this.props.profiles}
-        />
-      </div>
+      <Template
+        list={list}
+        profile={profile}
+        editButton={editButton}
+        profiles={this.props.profiles}
+      />
     );
   }
 }

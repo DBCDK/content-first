@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SocialShareButton renders initial component 1`] = `
+<a
+  href="https://www.facebook.com/sharer/sharer.php?display=page&u=https://content-first.demo.dbc.dk/lister/1234?123456789"
+  onClick={null}
+  target="_blank"
+>
+  <button
+    className="ssb undefined"
+    style={
+      Object {
+        "backgroundColor": "#3b5998",
+        "borderRadius": "50%",
+        "fontSize": "16px",
+        "height": "40px",
+        "lineHeight": "40px",
+        "paddingLeft": "0px",
+        "paddingRight": "0px",
+        "width": "40px",
+      }
+    }
+    title="Del på facebook"
+  >
+    <span
+      style={
+        Object {
+          "fontWeight": "bold",
+          "marginRight": "0px",
+        }
+      }
+    >
+      
+    </span>
+    <span
+      className="glyphicon undefined"
+    />
+  </button>
+</a>
+`;

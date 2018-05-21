@@ -2,7 +2,6 @@ import {combineReducers} from 'redux';
 import beltsReducer from './belts.reducer';
 import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
-import workReducer from './work.reducer';
 import userReducer from './user.reducer';
 import {usersReducer} from './users';
 import tasteReducer from './taste.reducer';
@@ -16,6 +15,8 @@ import bookcaseReducer from './bookcase.reducer';
 import booksReducer from './books.reducer';
 import recommendReducer from './recommend';
 import interactionReducer from './interaction.reducer';
+import {replayReducer} from './replay';
+
 
 const combined = combineReducers({
   beltsReducer,
@@ -24,7 +25,6 @@ const combined = combineReducers({
   userReducer: userReducer,
   users: usersReducer,
   routerReducer,
-  workReducer,
   shortListReducer,
   modalReducer,
   searchReducer,
@@ -34,7 +34,8 @@ const combined = combineReducers({
   tasteReducer,
   booksReducer,
   recommendReducer,
-  interactionReducer
+  interactionReducer,
+  replay: replayReducer
 });
 
 const rootReducer = (state = {}, action) => {

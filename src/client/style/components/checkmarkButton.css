@@ -2,7 +2,7 @@
   background: var(--blue);
   border: 0;
   color: white;
-  outline:none !important;
+  outline: none !important;
 }
 .checkmark-btn:hover {
   background: var(--blue);

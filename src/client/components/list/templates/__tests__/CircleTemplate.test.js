@@ -10,6 +10,7 @@ jest.mock(
   () => 'CheckmarkConnected'
 );
 jest.mock('../SimpleList.component', () => 'SimpleList');
+jest.mock('../BookcaseTemplate.component', () => 'BookcaseTemplate');
 
 const createTestElement = id => {
   return {

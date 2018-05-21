@@ -1,0 +1,20 @@
+.ssb {
+  border: 0;
+  color: white;
+  text-align: center;
+  font-family: var(--secondary-font);
+  z-index: 1;
+}
+
+.ssb a {
+  color: white;
+  text-decoration: none;
+}
+
+.fb-icon {
+  width: 1em;
+  height: 1em;
+  background-image: url('../media/fb.svg');
+  background-position: center;
+  background-size: cover;
+}

@@ -5,6 +5,18 @@
       "required": true,
       "type": "string"
     },
+    "originalPid": {
+      "required": false,
+      "type": "string"
+    },
+    "kompasWorkId": {
+      "required": false,
+      "type": "string"
+    },
+    "created": {
+      "required": false,
+      "type": "string"
+    },
     "selected": {
       "required": true,
       "type": "array",

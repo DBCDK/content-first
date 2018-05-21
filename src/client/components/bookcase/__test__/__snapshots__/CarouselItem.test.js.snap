@@ -10,14 +10,18 @@ exports[`CarouselItem renders initial component 1`] = `
     <div
       className="col-xs-4 carousel-img"
     >
-      <img
-        alt=""
-        className="high-contrast  "
-        onError={[Function]}
-        onLoad={undefined}
-        src="https://metakompasset.demo.dbc.dk/api/cover/undefined"
-        style={undefined}
-      />
+      <Link
+        href="/værk/870970-basis:51642899"
+      >
+        <img
+          alt=""
+          className="high-contrast  "
+          onError={[Function]}
+          onLoad={undefined}
+          src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51642899"
+          style={undefined}
+        />
+      </Link>
     </div>
     <div
       className="col-xs-8 text-left carousel-text"
@@ -30,7 +34,13 @@ exports[`CarouselItem renders initial component 1`] = `
       <div
         className="col-xs-12 carousel-creator"
       >
-        <h2 />
+        <Link
+          href="/værk/870970-basis:51642899"
+        >
+          <h2>
+            Anthony Doerr
+          </h2>
+        </Link>
       </div>
       <div
         className="col-xs-12 carousel-description"
@@ -49,17 +59,12 @@ exports[`CarouselItem renders initial component 1`] = `
         <CheckmarkConnected
           book={
             Object {
-              "book": Array [
-                Object {
-                  "book": Object {
-                    "cover": "img/cover.png",
-                    "creator": "Nicole Boyle Rødtnes",
-                    "description": "lorem ipsum . . .",
-                    "pid": "870970-basis:52038014",
-                    "title": "test",
-                  },
-                },
-              ],
+              "book": Object {
+                "creator": "Anthony Doerr",
+                "description": "Roman nder 2. verdenskrig",
+                "pid": "870970-basis:51642899",
+                "titel": "Alt det lys vi ikke ser",
+              },
             }
           }
           origin="Fra bogreol"

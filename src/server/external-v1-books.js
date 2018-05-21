@@ -29,16 +29,10 @@ router
       const books = await knex(bookTable)
         .whereIn('pid', pids)
         .select();
-      if (books.length !== pids.length) {
-        return next({
-          status: 404,
-          title: 'Unknown PIDs',
-          detail: 'Some PIDs were not found',
-          meta: {pids, resource: link}
-        });
-      }
+      const failed = _.difference(pids, books.map(b => b.pid));
       res.status(200).json({
         data: _.map(books, bookToSelfSufficientDataElement),
+        failed: failed.length > 0 ? failed : void 0,
         links: {self: link}
       });
     })

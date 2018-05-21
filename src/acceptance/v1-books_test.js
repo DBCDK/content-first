@@ -36,16 +36,9 @@ describe('Endpoint /v1/books', () => {
         const url = `/v1/books?pids=${pid}`;
         return webapp
           .get(url)
-          .expect(404)
+          .expect(200)
           .expect(res => {
-            expectFailure(res.body, errors => {
-              expect(errors).to.have.length(1);
-              const error = errors[0];
-              expect(error.title).to.match(/unknown pids/i);
-              expect(error).to.have.property('meta');
-              expect(error.meta).to.have.property('resource');
-              expect(error.meta.resource).to.equal(url);
-            });
+            expect(res.body.failed).to.have.length(1);
           });
       });
 

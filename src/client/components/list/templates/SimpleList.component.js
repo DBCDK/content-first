@@ -2,12 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from '../../work/WorkItemConnected.component';
 import ProfileImage from '../../general/ProfileImage.component';
+import SocialShareButton from '../../general/SocialShareButton.component';
 import Comments from '../../comments/Comment.container';
 import AddToList from '../AddToList.container';
 import Kryds from '../../svg/Kryds.svg';
 import {
   UPDATE_LIST_ELEMENT,
   removeElementFromList,
+  updateList,
   storeList
 } from '../../../redux/list.reducer';
 import CommentInput from '../../comments/CommentInput.component';
@@ -22,6 +24,7 @@ export class SimpleListItem extends React.Component {
       originalDescription: props.element.description
     };
   }
+
   render() {
     const {
       element,
@@ -130,47 +133,81 @@ export const SimpleList = ({
   removeElement,
   updateElement,
   submit,
-  profiles
+  profiles,
+  confirmShareModal,
+  editButton
 }) => {
   return (
-    <div className="simplelist">
-      <div className="row mb4 b-dark">
-        <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
-          <div className="col-xs-3 tc">
-            <ProfileImage user={profile} size={'50'} namePosition={'bottom'} />
-          </div>
-          <div className="col-xs-9 mb4">
-            <p className="t-body">{list.description}</p>
-            {list.social ? <Comments id={list.id} /> : ''}
-          </div>
+    <div className="list-wrapper tl">
+      <div className="row b-dark">
+        <SocialShareButton
+          className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-fb'}
+          href={
+            list.public
+              ? 'https://content-first.demo.dbc.dk/lister/' + list.id
+              : null
+          }
+          icon={'fb-icon'}
+          hex={'#3b5998'}
+          status={!list.public ? 'passive' : 'active'}
+          size={30}
+          shape="square"
+          txt="Del"
+          hoverTitle="Del på facebook"
+          onClick={() => {
+            confirmShareModal(list.id);
+          }}
+        />
+        <div className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1">
+          <h1 className="t-title h-tight h-underline inline-block align-middle">
+            {list.title}
+          </h1>
+          {editButton}
         </div>
       </div>
-      <div className="list col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
-        <div>
-          {list.list.map(element => (
-            <SimpleListItem
-              allowComments={list.social}
-              list={list}
-              key={element.book.pid}
-              element={element}
-              book={element.book}
-              description={element.description}
-              profile={profiles[element._owner]}
-              allowDelete={
-                element._owner === loggedInUserId ||
-                list._owner === loggedInUserId
-              }
-              allowModify={element._owner === loggedInUserId}
-              _created={list._created}
-              onRemove={() => removeElement(element, list)}
-              onDescriptionChange={description =>
-                updateElement({...element, description}, list)
-              }
-              onSubmit={() => submit(list)}
-            />
-          ))}
+      <div className="simplelist">
+        <div className="row mb4 b-dark">
+          <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1 mb4">
+            <div className="col-xs-3 tc">
+              <ProfileImage
+                user={profile}
+                size={'50'}
+                namePosition={'bottom'}
+              />
+            </div>
+            <div className="col-xs-9">
+              <p className="t-body">{list.description}</p>
+              {list.social ? <Comments id={list.id} /> : ''}
+            </div>
+          </div>
         </div>
-        <AddToList list={list} />
+        <div className="list col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
+          <div>
+            {list.list.map(element => (
+              <SimpleListItem
+                allowComments={list.social}
+                list={list}
+                key={element.book.pid}
+                element={element}
+                book={element.book}
+                description={element.description}
+                profile={profiles[element._owner]}
+                allowDelete={
+                  element._owner === loggedInUserId ||
+                  list._owner === loggedInUserId
+                }
+                allowModify={element._owner === loggedInUserId}
+                _created={list._created}
+                onRemove={() => removeElement(element, list)}
+                onDescriptionChange={description =>
+                  updateElement({...element, description}, list)
+                }
+                onSubmit={() => submit(list)}
+              />
+            ))}
+          </div>
+          <AddToList list={list} />
+        </div>
       </div>
     </div>
   );
@@ -191,6 +228,37 @@ export const mapDispatchToProps = dispatch => ({
   updateElement: (element, list) => {
     dispatch({type: UPDATE_LIST_ELEMENT, id: list.id, element});
   },
-  submit: list => dispatch(storeList(list.id))
+  submit: list => dispatch(storeList(list.id)),
+  confirmShareModal: id => {
+    dispatch({
+      type: 'OPEN_MODAL',
+      modal: 'confirm',
+      context: {
+        title: 'Din liste skal være offentlig!',
+        reason:
+          'For at du kan dele din liste, skal listen være offentlig. Vil du ændre din listes status til offentlig?',
+        confirmText: 'Gør min liste offentlig',
+        onConfirm: () => {
+          dispatch(
+            updateList({
+              id: id,
+              public: true
+            }),
+            dispatch({
+              type: 'CLOSE_MODAL',
+              modal: 'confirm'
+            })
+          );
+          dispatch(storeList(id));
+        },
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        }
+      }
+    });
+  }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SimpleList);

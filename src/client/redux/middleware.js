@@ -1,9 +1,7 @@
 import request from 'superagent';
-import {ON_WORK_REQUEST} from './work.reducer';
 import {BOOKS_REQUEST} from './books.reducer';
 import {
   fetchBooks,
-  fetchWork,
   fetchSearchResults,
   saveShortList,
   loadShortList,
@@ -36,7 +34,6 @@ import {
   ADD_LIST_IMAGE_ERROR,
   ADD_ELEMENT_TO_LIST
 } from './list.reducer';
-import {OPEN_MODAL} from './modal.reducer';
 import {SEARCH_QUERY} from './search.reducer';
 import {saveList, loadLists, loadRecentPublic} from '../utils/requestLists';
 
@@ -88,10 +85,6 @@ export const historyMiddleware = history => store => next => action => {
 
 export const requestMiddleware = store => next => action => {
   switch (action.type) {
-    case ON_WORK_REQUEST: {
-      fetchWork(action.pid, store.dispatch);
-      return next(action);
-    }
     case BOOKS_REQUEST: {
       const books = store.getState().booksReducer.books;
 
@@ -108,7 +101,7 @@ export const requestMiddleware = store => next => action => {
       }
 
       if (pidsToFetch.length > 0) {
-        fetchBooks(pidsToFetch, store.dispatch);
+        fetchBooks(pidsToFetch, action.includeTags, store.dispatch);
       }
 
       action.pids = pidsToFetch;
@@ -146,10 +139,7 @@ export const shortListMiddleware = store => next => async action => {
         databaseElements
       });
       if (store.getState().shortListReducer.pendingMerge) {
-        store.dispatch({
-          type: OPEN_MODAL,
-          modal: 'mergeShortList'
-        });
+        store.dispatch({type: SHORTLIST_APPROVE_MERGE});
       }
       return res;
     }

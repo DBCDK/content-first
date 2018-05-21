@@ -5,6 +5,18 @@
       "required": true,
       "type": "string"
     },
+    "originalPid": {
+      "required": false,
+      "type": "string"
+    },
+    "kompasWorkId": {
+      "required": false,
+      "type": "string"
+    },
+    "collection": {
+      "required": false,
+      "type": "array"
+    },
     "unitId": {
       "required": true,
       "type": "string"

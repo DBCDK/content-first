@@ -3,10 +3,6 @@ const defaultState = {
     open: false,
     context: null
   },
-  mergeShortList: {
-    open: false,
-    context: null
-  },
   order: {
     open: false,
     context: null

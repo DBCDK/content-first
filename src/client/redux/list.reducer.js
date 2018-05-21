@@ -99,7 +99,13 @@ const listReducer = (state = defaultState, action) => {
         list.list.filter(e => e.book.pid === action.element.book.pid).length ===
         0
       ) {
-        list.list = [...list.list, action.element];
+        if (!action.element.position) {
+          action.element.position = {
+            x: Math.floor(Math.random() * Math.floor(100)),
+            y: Math.floor(Math.random() * Math.floor(100))
+          };
+          list.list = [...list.list, action.element];
+        }
       }
       return Object.assign({}, state, {
         lists: {...state.lists, [action.id]: list},
@@ -216,9 +222,19 @@ const listReducer = (state = defaultState, action) => {
         return map;
       }, {});
       const listMap = {};
+
       lists.forEach(l => {
-        listMap[l.id] = l;
+        l.list.map(element => {
+          if (!element.position) {
+            element.position = {
+              x: Math.floor(Math.random() * Math.floor(100)),
+              y: Math.floor(Math.random() * Math.floor(100))
+            };
+          }
+        });
+        return (listMap[l.id] = l);
       });
+
       return Object.assign({}, state, {
         lists: listMap,
         changeMap
@@ -415,6 +431,7 @@ export const getPublicLists = state => {
 export const getListById = (state, id) => {
   return state.lists[id];
 };
+
 const validateId = (state, action) => {
   if (!action.id) {
     throw new Error("'id' is not defined");

@@ -1,6 +1,7 @@
 import listReducer, {
   addList,
   getLists,
+  getListById,
   getListsForOwner,
   removeList,
   addElementToList,
@@ -12,6 +13,29 @@ import listReducer, {
 } from '../list.reducer';
 
 describe('listReducer', () => {
+  test('add position to list elements if none given', () => {
+    let state = listReducer(
+      {lists: {}},
+      addList({
+        title: 'some list 1',
+        type: CUSTOM_LIST,
+        id: 'some-id-1',
+        _created: '1234'
+      })
+    );
+    state = listReducer(
+      state,
+      addElementToList(
+        {
+          book: {pid: 'pid1'},
+          description: 'some-description-1'
+        },
+        'some-id-1'
+      )
+    );
+    // Expects, if a book dont have a position, a position will be added in LIST_LOAD_RESPONSE
+    expect(getListById(state, 'some-id-1').list[0].position);
+  });
   test('add list throws when id is missing', () => {
     expect(() => {
       listReducer(
@@ -143,7 +167,10 @@ describe('listReducer', () => {
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid1'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     expect(getLists(state)).toMatchSnapshot();
   });
@@ -160,13 +187,20 @@ describe('listReducer', () => {
     state = listReducer(
       state,
       addElementToList(
-        {book: {pid: 'pid1'}, description: 'some-description-1'},
+        {
+          book: {pid: 'pid1'},
+          position: {x: 0, y: 0},
+          description: 'some-description-1'
+        },
         'some-id-1'
       )
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid1'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     expect(getLists(state)).toMatchSnapshot();
   });
@@ -182,11 +216,17 @@ describe('listReducer', () => {
     );
     state = listReducer(
       state,
-      addElementToList({_id: '123', book: {pid: 'pid1'}}, 'some-id-1')
+      addElementToList(
+        {_id: '123', book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,
-      addElementToList({_id: '456', book: {pid: 'pid2'}}, 'some-id-1')
+      addElementToList(
+        {_id: '456', book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,
@@ -227,15 +267,24 @@ describe('listReducer', () => {
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid1'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid2'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,
-      addElementToList({book: {pid: 'pid3'}}, 'some-id-1')
+      addElementToList(
+        {book: {pid: 'pid3'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
     );
     state = listReducer(
       state,

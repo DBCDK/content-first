@@ -48,6 +48,12 @@ external.use(
 const cookieParser = require('cookie-parser');
 external.use(cookieParser());
 
+// Detect visits from bots
+// test bot visit with: querystring: {use: true,key: 'bot',value: '1'}
+external.use(
+  require('express-bot')({querystring: {use: true, key: 'bot', value: '1'}})
+);
+
 // Administrative API.
 external.get('/howru', async (req, res) => {
   const configWithoutSecrets = _.omit(config, [
@@ -66,6 +72,9 @@ external.get('/howru', async (req, res) => {
     address: req.ip,
     config: configWithoutSecrets
   });
+  if (!status.ok) {
+    res.status(503);
+  }
   res.json(status);
 });
 
@@ -77,6 +86,11 @@ external.get('/pid', (req, res) => {
 // API routes.  Should agree with constants.apiversion.
 external.use('/v1', require('server/external-v1'));
 external.use('/hejmdal', require('server/external-hejmdal'));
+external.use('/lister/:id', require('server/external-meta-list'));
+external.use(
+  '/' + encodeURIComponent('værk') + '/:pid',
+  require('server/external-meta-work')
+);
 
 // Let frontend React handle all other routes.
 external.get('*', (req, res) => {

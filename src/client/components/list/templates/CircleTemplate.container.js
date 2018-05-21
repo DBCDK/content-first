@@ -67,7 +67,7 @@ export default class CircleTemplate extends React.Component {
     const elementWidth = Math.min(circleWidth / rows, ELEMENT_MAX_SIZE);
     const hideLabels = elementWidth < 120;
     return [
-      <div key="circle-template" className="circle-template row pb4 b-dark">
+      <div key="circle-template" className="circle-template row b-dark">
         <div
           ref="wrapper"
           className="list col-xs-12"
@@ -154,6 +154,7 @@ export default class CircleTemplate extends React.Component {
       </div>,
       <SimpleList
         key="simple-list"
+        editButton={this.props.editButton}
         list={list}
         profile={profile}
         profiles={this.props.profiles}

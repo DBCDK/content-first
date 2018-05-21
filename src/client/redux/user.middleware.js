@@ -1,6 +1,8 @@
 import {fetchUser, logout, addImage, saveUser} from '../utils/requester';
+import request from 'superagent';
 import {
   ON_USER_DETAILS_REQUEST,
+  ON_USER_DETAILS_ERROR,
   ON_LOGOUT_REQUEST,
   ADD_PROFILE_IMAGE,
   ADD_PROFILE_IMAGE_SUCCESS,
@@ -36,6 +38,17 @@ export const userMiddleware = store => next => action => {
         store.dispatch({type: LIST_LOAD_REQUEST});
         store.dispatch({type: FETCH_INTERACTIONS});
       });
+      return next(action);
+    case ON_USER_DETAILS_ERROR:
+      (async () => {
+        openplatformLogin({
+          userReducer: {
+            openplatformToken: (await request.get(
+              '/v1/openplatform/anonymous_token'
+            )).body.access_token
+          }
+        });
+      })();
       return next(action);
     case ON_USER_DETAILS_RESPONSE:
       next(action);

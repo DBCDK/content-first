@@ -10,15 +10,24 @@ import BookcaseItem from './BookcaseItem.component';
 
 export class Bookcase extends React.Component {
   render() {
+    if (!this.props.lists) {
+      return null;
+    }
     return (
       <div className="bookcase row">
-        <BookcaseSlider celebs={this.props.celebs}>
-          {this.props.celebs.map(c => {
-            return <BookcaseItem celeb={c} key={'bookcase-' + c.id} />;
+        <BookcaseSlider profiles={this.props.profiles}>
+          {this.props.lists.map((l, i) => {
+            return (
+              <BookcaseItem
+                profile={this.props.profiles[i]}
+                list={l}
+                key={'bookcase-' + i}
+              />
+            );
           })}
         </BookcaseSlider>
         <div className="bookcase-others">
-          <span style={{width: this.props.celebs.length * 65 + 160 + 'px'}}>
+          <span style={{width: this.props.profiles.length * 65 + 160 + 'px'}}>
             Se andre bogreoler
           </span>
         </div>
@@ -28,7 +37,8 @@ export class Bookcase extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    celebs: state.bookcaseReducer.celebs
+    lists: state.bookcaseReducer.lists,
+    profiles: state.bookcaseReducer.profiles
   };
 };
 

@@ -1,14 +1,13 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
 import CarouselItem from './CarouselItem.component';
 
-import Slider from './CarouselSlider.component';
+import TruncateMarkup from 'react-truncate-markup';
 
-import {BOOKS_REQUEST, getBooks} from '../../redux/books.reducer';
+import CarouselSlider from './CarouselSlider.component';
 
 /*
-  <BookcaseItem />
+  <BookcaseItem list={obj} profile={obj}/>
 */
 
 export class BookcaseItem extends React.Component {
@@ -22,17 +21,9 @@ export class BookcaseItem extends React.Component {
     };
   }
 
-  componentDidMount() {
-    let pids = this.props.celeb.books.map(p => p.pid);
-
-    if (this.props.booksRequest) {
-      this.props.booksRequest(pids);
-    }
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      this.props.books.length !== nextProps.books.length ||
+      this.props.list.list.length !== nextProps.list.list.length ||
       this.state !== nextState
     );
   }
@@ -44,9 +35,9 @@ export class BookcaseItem extends React.Component {
   nextBook = pos => {
     if (this.state.carousel) {
       this.setState({
-        pid: this.props.celeb.books[pos].pid,
+        pid: this.props.list.list[pos].book.pid,
         slideIndex: pos,
-        pulse: this.props.celeb.books[pos].pid
+        pulse: this.props.list.list[pos].book.pid
       });
     }
   };
@@ -61,19 +52,27 @@ export class BookcaseItem extends React.Component {
   };
 
   render() {
+    if (!this.props.list) {
+      return null;
+    }
+
     return (
       <section
         className={`${this.state.carousel ? ' section-active' : ''}`}
         onClick={this.test}
       >
         <img
-          src={this.props.celeb.bookcase}
-          alt={this.props.name + ' bogreol'}
+          src={
+            this.props.list.image
+              ? '/v1/image/' + this.props.list.image + '/1200/600'
+              : this.props.list.bookcase
+          }
+          alt={this.props.name + '´s bogreol'}
         />
         <div className="row">
           <div
             className={`col-xs-4 celeb ${
-              this.props.celeb.descriptionImage ? '' : 'no-description-img'
+              this.props.list.descriptionImage ? '' : 'no-description-img'
             }`}
           >
             <img
@@ -85,63 +84,71 @@ export class BookcaseItem extends React.Component {
               }}
             />
             <div className="col-xs-12 celeb-top">
-              {this.props.celeb.descriptionImage ? (
+              {this.props.list.descriptionImage ? (
                 <div className="col-xs-12 celeb-img">
-                  <img src={this.props.celeb.img} alt={this.props.celeb.name} />
+                  <img
+                    src={'/v1/image/' + this.props.profile.image + '/150/150'}
+                    alt={this.props.profile.name}
+                  />
                 </div>
               ) : (
                 <div className="celeb-img-placeholder" />
               )}
               <div className="col-xs-12 celeb-title">
-                <h1>{this.props.celeb.name}</h1>
+                <h1>{this.props.profile.name}</h1>
               </div>
               <div className="col-xs-12 celeb-description">
-                <p>{this.props.celeb.description}</p>
-                <button
-                  type="button"
-                  className="celeb-books-btn btn"
-                  onClick={() => {
-                    this.carouselTrigger(this.props.books[0].book.pid, 0);
-                  }}
-                >
-                  Se bøger
-                </button>
+                <TruncateMarkup lines={8}>
+                  <p>{this.props.list.description}</p>
+                </TruncateMarkup>
+                {this.props.list.list.length !== 0 ? (
+                  <button
+                    type="button"
+                    className="celeb-books-btn btn"
+                    onClick={() => {
+                      this.carouselTrigger(this.props.list.list[0].book.pid, 0);
+                    }}
+                  >
+                    Se bøger
+                  </button>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
             <div className="col-xs-12 celeb-bottom">
-              <Slider
+              <CarouselSlider
                 slideIndex={this.state.slideIndex}
                 onNextBook={this.nextBook}
               >
-                {this.props.books.map((b, i) => {
+                {this.props.list.list.map(b => {
                   return (
                     <CarouselItem
                       active={this.state.carousel}
                       key={'carousel-' + b.book.pid}
-                      description={
-                        this.props.celeb.books[i].description ||
-                        b.book.description
-                      }
+                      description={b.description || b.book.description}
                       book={b.book}
                     />
                   );
                 })}
-              </Slider>
+              </CarouselSlider>
             </div>
           </div>
 
           <div className="col-xs-8 bookswrap">
-            {this.props.celeb.books.map((p, i) => (
-              <Pulse
-                active={this.state.pulse}
-                pid={p.pid}
-                key={'pulse-' + p.pid}
-                onClick={() => {
-                  this.carouselTrigger(p.pid, i);
-                }}
-                position={p.position}
-              />
-            ))}
+            {this.props.list.list.map((p, i) => {
+              return (
+                <Pulse
+                  active={this.state.pulse}
+                  pid={p.book.pid}
+                  key={'pulse-' + p.book.pid}
+                  onClick={() => {
+                    this.carouselTrigger(p.book.pid, i);
+                  }}
+                  position={p.position}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -149,18 +156,4 @@ export class BookcaseItem extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    // bookcase: state.bookcaseReducer.celebs,
-    books: getBooks(
-      state.booksReducer,
-      ownProps.celeb.books.map(b => b.pid)
-    ).filter(entry => entry.book)
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  booksRequest: pids => dispatch({type: BOOKS_REQUEST, pids: pids})
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookcaseItem);
+export default BookcaseItem;

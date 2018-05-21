@@ -6,13 +6,7 @@ Array [
     "_created": "1234",
     "description": "",
     "id": "some-id-1",
-    "list": Array [
-      Object {
-        "book": Object {
-          "pid": "pid1",
-        },
-      },
-    ],
+    "list": Array [],
     "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -26,14 +20,7 @@ Array [
     "_created": "1234",
     "description": "",
     "id": "some-id-1",
-    "list": Array [
-      Object {
-        "book": Object {
-          "pid": "pid1",
-        },
-        "description": "some-description-1",
-      },
-    ],
+    "list": Array [],
     "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -118,23 +105,7 @@ Array [
     "_created": "1234",
     "description": "",
     "id": "some-id-1",
-    "list": Array [
-      Object {
-        "book": Object {
-          "pid": "pid1",
-        },
-      },
-      Object {
-        "book": Object {
-          "pid": "pid3",
-        },
-      },
-      Object {
-        "book": Object {
-          "pid": "pid2",
-        },
-      },
-    ],
+    "list": Array [],
     "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -151,14 +122,7 @@ Array [
     },
     "description": "",
     "id": "some-id-1",
-    "list": Array [
-      Object {
-        "_id": "456",
-        "book": Object {
-          "pid": "pid2",
-        },
-      },
-    ],
+    "list": Array [],
     "owner": null,
     "pending": Array [
       Object {

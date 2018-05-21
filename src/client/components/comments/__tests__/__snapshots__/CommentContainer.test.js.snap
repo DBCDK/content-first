@@ -16,7 +16,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
     <div
       style={
         Object {
-          "height": null,
+          "height": 0,
           "overflow": "hidden",
           "transition": "height 500ms",
         }
@@ -202,7 +202,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
         <div
           style={
             Object {
-              "height": null,
+              "height": 0,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
@@ -363,7 +363,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
     <div
       style={
         Object {
-          "height": null,
+          "height": 0,
           "overflow": "hidden",
           "transition": "height 500ms",
         }
@@ -459,7 +459,7 @@ exports[`CommentContainer Component renders error 1`] = `
         <div
           style={
             Object {
-              "height": null,
+              "height": 0,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
@@ -642,7 +642,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
         <div
           style={
             Object {
-              "height": null,
+              "height": 0,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
@@ -847,7 +847,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
         <div
           style={
             Object {
-              "height": null,
+              "height": 0,
               "overflow": "hidden",
               "transition": "height 500ms",
             }
@@ -1051,7 +1051,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
         <div
           style={
             Object {
-              "height": null,
+              "height": 0,
               "overflow": "hidden",
               "transition": "height 500ms",
             }

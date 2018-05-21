@@ -53,6 +53,8 @@
 @import './components/profile.css';
 @import './components/comment.css';
 @import './components/circletemplate.css';
+@import './components/bookcaseTemplate.css';
+@import './components/socialShareButton.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */
 @import '~slick-carousel/slick/slick.css';
@@ -161,7 +163,7 @@ h3 {
   /*border-bottom: 2px solid #333;
   padding-bottom: 2px;*/
 }
-.belt-title-latest{
+.belt-title-latest {
   color: black;
   font-size: 30px;
   font-weight: bold;

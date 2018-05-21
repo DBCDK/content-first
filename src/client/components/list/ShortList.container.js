@@ -141,8 +141,15 @@ class ShortList extends React.Component {
                 TILFØJ ALLE TIL LISTE
               </span>
               <span
-                className="btn btn-success ml2"
-                onClick={() => this.props.orderAll(elements.map(e => e.book))}
+                className={
+                  'btn ml2 ' +
+                  (this.props.orderList.length > 0 ? 'btn-success' : 'disabled')
+                }
+                onClick={
+                  this.props.orderList.length > 0 &&
+                  (() =>
+                    this.props.orderAll(this.props.orderList.map(e => e.book)))
+                }
               >
                 BESTIL HELE LISTEN
               </span>
@@ -161,9 +168,18 @@ class ShortList extends React.Component {
 }
 
 const mapStateToProps = state => {
+  const {elements} = state.shortListReducer;
+  const orderList = (elements || [])
+    .filter(
+      o =>
+        state.orderReducer.getIn(['orders', o.book.pid, 'orderState']) !==
+        'ordered'
+    )
+    .slice(0, 10);
   return {
     shortListState: state.shortListReducer,
-    isLoggedIn: state.userReducer.isLoggedIn
+    isLoggedIn: state.userReducer.isLoggedIn,
+    orderList
   };
 };
 

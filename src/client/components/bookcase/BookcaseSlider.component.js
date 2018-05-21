@@ -2,11 +2,11 @@ import React from 'react';
 import SlickSlider from 'react-slick';
 import Slide from '../belt/Slide.component';
 
-let celebs = [];
+let profiles = [];
 
 export default class BookcaseSlider extends React.Component {
   componentDidMount() {
-    celebs = this.props.celebs;
+    profiles = this.props.profiles;
   }
 
   componentWillReceiveProps() {
@@ -31,7 +31,7 @@ export default class BookcaseSlider extends React.Component {
       customPaging: function(i) {
         return (
           <a className="face-dots">
-            <img src={celebs[i].img} alt="bs" />
+            <img src={profiles[i].image} alt={profiles[i].name} />
           </a>
         );
       }

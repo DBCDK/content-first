@@ -29,7 +29,11 @@ const FilterGroup = ({
 const FilterButton = props => {
   return (
     <span
-      className={props.selected ? 'btn btn-active' : 'btn btn-inactive'}
+      className={
+        props.selected
+          ? 'tag tags tag-small tag-active'
+          : 'tag tags tag-small tag-inactive'
+      }
       onClick={() => {
         props.onFilterToggle(props.filter);
       }}
@@ -49,7 +53,13 @@ const EditFilters = props => {
       }
       style={props.style}
     >
-      <div className={props.showTags ? 'tags' : 'tags hide-tags'}>
+      <div
+        className={
+          props.showTags
+            ? 'tags-container'
+            : 'tags-container hide-tags-container'
+        }
+      >
         <FilterGroup className="col-xs-4" title="Stemning" {...props} />
         <div className="col-xs-8">
           <div className="row">

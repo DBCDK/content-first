@@ -12,7 +12,7 @@ class ListCard extends React.PureComponent {
 
     function renderBookCover(img) {
       let cardCover;
-      if (img && elements.length === 0) {
+      if (img) {
         cardCover = (
           <div>
             <img src={'v1/image/' + img + '/220/120'} />

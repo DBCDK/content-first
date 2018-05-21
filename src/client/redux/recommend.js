@@ -108,12 +108,14 @@ export const applyClientSideFilters = (books, tags) => {
 
 const fetchRecommendations = async ({tags = [], creators, max}) => {
   let nonCustomTags = tags.filter(tag => !filtersMapAll[tag.id || tag].custom);
+  let customTagsSelected = true;
   if (nonCustomTags.length === 0) {
     // hack alert
     // if no non custom tags are selected - for instance if only short books are selected
     // we just pick one in order to not get an empty list.
 
     nonCustomTags = [5642]; // varme bøger
+    customTagsSelected = false;
   }
 
   const tagsMap = nonCustomTags.reduce((tMap, t) => {
@@ -126,7 +128,16 @@ const fetchRecommendations = async ({tags = [], creators, max}) => {
   const recompassResponse = (await request
     .get('/v1/recompass')
     .query({tags: tagsMap, creators, maxresults: max})).body.response;
-  let pids = recompassResponse.map(entry => entry.pid);
+
+  let pids = recompassResponse
+    .filter(entry => {
+      // if custom tags selected move values less than 1
+      if (customTagsSelected) {
+        return entry.value;
+      }
+      return true;
+    })
+    .map(entry => entry.pid);
 
   if (tags.includes(-2)) {
     // recompass knows nothing about librarian recommendations, so we gotta include those pids as well
