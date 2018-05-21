@@ -1,17 +1,24 @@
-
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from './shortlist.reducer';
 import {LIST_TOGGLE_ELEMENT} from './list.reducer';
 import {ORDER} from './order.reducer';
 import {ON_LOCATION_CHANGE} from "./router.reducer";
-import request from "superagent";
 import {fetchObjects} from "../utils/requester";
 import {INTERACTION, FETCH_INTERACTIONS, FETCH_INTERACTIONS_ERROR, FETCH_INTERACTIONS_SUCCESS} from "./interaction.reducer";
-
+import {INTERACTION} from './interaction.reducer';
+import {ON_LOCATION_CHANGE} from './router.reducer';
+import request from 'superagent';
+import {fetchObjects} from '../utils/requester';
+import {
+  FETCH_INTERACTIONS,
+  FETCH_INTERACTIONS_ERROR,
+  FETCH_INTERACTIONS_SUCCESS
+} from './interaction.reducer';
+const LOG_INTERACTION = 'LOG_INTERACTION';
 
 
 export const interactionMiddleware = store => next => action => {
-
   switch (action.type) {
+
     case INTERACTION: {
       try {
         request
@@ -46,27 +53,111 @@ export const interactionMiddleware = store => next => action => {
       return next(action);
     }
     case LIST_TOGGLE_ELEMENT: {
-      console.log("LIST_TOGGLE_ELEMENT : "+ JSON.stringify(action.id.slice(0,8)))
-      let actid=action.id.slice(0,8)
-      let inter="in_list";
+      store.dispatch({type: INTERACTION, pid: action.element.book.pid, interaction: "LIST_TOGGLE_ELEMENT"});
+      return next(action);
+    }
 
-        store.dispatch({type: INTERACTION, pid: action.element.book.pid, interaction: "LIST_TOGGLE_ELEMENT" });
-      if(actid=="cfdae590"){  }
-        if(actid=="cfe10010"){
-          inter="vil_læse"
-        }
+    case ON_LOCATION_CHANGE: {
+      let pidPath = action.path;
+      let pid = pidPath.slice(6, pidPath.length);
+
+      store.dispatch({
+        type: INTERACTION,
+        pid: pid,
+        interaction: 'on_location_change'
+      });
+      store.dispatch({
+        type: LOG_INTERACTION,
+        pid: pid,
+        interaction: 'on_location_change'
+      });
+      return next(action);
+    };
+    case ON_SHORTLIST_TOGGLE_ELEMENT: {
+      store.dispatch({
+        type: INTERACTION,
+        pid: action.element.book.pid,
+        interaction: 'on_shortlist_toggle'
+      });
+      store.dispatch({
+        type: LOG_INTERACTION,
+        pid: action.element.book.pid,
+        interaction: 'on_shortlist_toggle'
+      });
+      return next(action);
+    }
+    case ORDER: {
+      store.dispatch({
+        type: INTERACTION,
+        pid: action.book.pid,
+        interaction: 'order'
+      });
+      store.dispatch({
+        type: LOG_INTERACTION,
+        pid: action.book.pid,
+        interaction: 'order'
+      });
+      return next(action);
+    }
+    case LIST_TOGGLE_ELEMENT: {
+      store.dispatch({
+        type: INTERACTION,
+        pid: action.element.book.pid,
+        interaction: 'list_toggle_element'
+      });
+      store.dispatch({
+        type: LOG_INTERACTION,
+        pid: action.element.book.pid,
+        interaction: 'list_toggle_element'
+      });
+      return next(action);
+    }
 
       return next(action);
+
+  }
+};
+
+export const logInteractionsMiddleware = store => next => action => {
+  switch (action.type) {
+    case LOG_INTERACTION: {
+      try {
+        request
+          .post('/v1/object/')
+          .send({
+            _type: 'INTERACTION',
+            interaction: action.interaction,
+            pid: action.pid,
+            _public: true
+          })
+          .end();
+      } catch (e) {
+        request
+          .post('/v1/object/')
+          .send({
+            _type: 'INTERACTION',
+            error: 'CLIENT_LOG_ERROR',
+            content: String(e)
+          })
+          .end();
+      }
+      break;
     }
 
     case FETCH_INTERACTIONS:
       return (async () => {
         next(action);
         try {
-          const dbInteractionData = (await fetchObjects("", 'INTERACTION', 20)).data;
-          let interactions=[];
-          dbInteractionData.forEach((interactionObj, key)=>
-            interactions[key]={type:'INTERACTION', interaction:interactionObj.interaction, pid:interactionObj.pid }
+          const dbInteractionData = (await fetchObjects('', 'INTERACTION', 20))
+            .data;
+          let interactions = [];
+          dbInteractionData.forEach(
+            (interactionObj, key) =>
+              (interactions[key] = {
+                type: 'INTERACTION',
+                interaction: interactionObj.interaction,
+                pid: interactionObj.pid
+              })
           );
           interactions.reverse();
           store.dispatch({
@@ -86,5 +177,3 @@ export const interactionMiddleware = store => next => action => {
       return next(action);
   }
 };
-
-
