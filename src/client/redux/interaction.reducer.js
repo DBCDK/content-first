@@ -4,35 +4,40 @@ export const FETCH_INTERACTIONS_SUCCESS = 'FETCH_INTERACTIONS_SUCCESS';
 export const FETCH_INTERACTIONS_ERROR = 'FETCH_INTERACTIONS_ERROR';
 
 const defaultState = {
-  interactions:[]
+  interactions: []
 };
 
-const interactionReducer = (state=defaultState, action) => {
-
+const interactionReducer = (state = defaultState, action) => {
   switch (action.type) {
-
     case INTERACTION: {
-      const newState=Object.assign({}, state)
-      if(state.interactions.length>0){
+      const newState = Object.assign({}, state);
+      if (state.interactions.length > 0) {
         newState.interactions.push({
-          type:'INTERACTION',
+          type: 'INTERACTION',
           interaction: action.interaction,
-          pid:action.pid
-        })
+          pid: action.pid
+        });
       }
       return newState;
     }
 
     case FETCH_INTERACTIONS: {
-      return Object.assign({}, state,{...state.interactions, isLoading: true} )
+      return Object.assign({}, state, {...state.interactions, isLoading: true});
     }
 
     case FETCH_INTERACTIONS_SUCCESS: {
-      return Object.assign({}, state,{...state.interactions, interactions: action.interactions, isLoading: false} )
+      return Object.assign({}, state, {
+        ...state.interactions,
+        interactions: action.interactions,
+        isLoading: false
+      });
     }
 
     case FETCH_INTERACTIONS_ERROR: {
-      return Object.assign({}, state, {...state.interactions, error:action.error} );
+      return Object.assign({}, state, {
+        ...state.interactions,
+        error: action.error
+      });
     }
 
     default:
