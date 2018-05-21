@@ -17,6 +17,10 @@ import {usersMiddleware} from './client/redux/users';
 import {orderMiddleware} from './client/redux/order.middleware';
 import {recommendMiddleware} from './client/redux/recommend';
 import {commentMiddleware} from './client/redux/comment.middleware';
+import {interactionMiddleware, logInteractionsMiddleware} from './client/redux/interaction.middleware';
+
+
+
 
 const store = createStore([
   userMiddleware,
@@ -29,7 +33,10 @@ const store = createStore([
   logMiddleware,
   orderMiddleware,
   recommendMiddleware,
-  commentMiddleware
+  commentMiddleware,
+  interactionMiddleware,
+  logInteractionsMiddleware
+
 ]);
 ReactDOM.render(
   <Provider store={store}>
