@@ -130,9 +130,10 @@ export const shortListMiddleware = store => next => async action => {
     case SHORTLIST_LOAD_REQUEST: {
       const res = next(action);
       const {isLoggedIn} = store.getState().userReducer;
-      const {localStorageElements, databaseElements} = await loadShortList(
-        isLoggedIn
-      );
+      const {localStorageElements, databaseElements} = await loadShortList({
+        isLoggedIn,
+        dispatch: store.dispatch
+      });
       store.dispatch({
         type: SHORTLIST_LOAD_RESPONSE,
         localStorageElements,
@@ -196,8 +197,8 @@ export const listMiddleware = store => next => async action => {
     case LIST_LOAD_REQUEST: {
       const res = next(action);
       const {openplatformId} = store.getState().userReducer;
-      const lists = await loadLists(openplatformId);
-      const recentLists = await loadRecentPublic();
+      const lists = await loadLists({openplatformId, dispatch: store.dispatch});
+      const recentLists = await loadRecentPublic({dispatch: store.dispatch});
       store.dispatch({
         type: LIST_LOAD_RESPONSE,
         lists: [...lists, ...recentLists]

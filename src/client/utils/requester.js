@@ -66,7 +66,7 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
     })
   );
 
-  Promise.all([getBooks])
+  return Promise.all([getBooks])
     .then(async responses => {
       const books = JSON.parse(responses[0].text).data;
       if (includeTags) {
@@ -91,6 +91,7 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
       });
 
       dispatch({type: BOOKS_RESPONSE, response: books});
+      return books;
     })
     .catch(error => {
       dispatch({
@@ -99,6 +100,7 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
         pids,
         error: String(error)
       });
+      throw error;
     });
 };
 
@@ -232,7 +234,7 @@ export const saveShortList = (elements, isLoggedIn) => {
   }
 };
 
-export const loadShortList = async isLoggedIn => {
+export const loadShortList = async ({isLoggedIn, dispatch}) => {
   const localStorageElements = getItem(SHORT_LIST_KEY, SHORT_LIST_VERSION, []);
   if (!isLoggedIn) {
     return {localStorageElements};
@@ -244,8 +246,8 @@ export const loadShortList = async isLoggedIn => {
       return {localStorageElements, databaseElements: []};
     }
     const pids = databaseElements.map(e => e.pid);
-    const works = (await request.get('/v1/books/').query({pids: unique(pids)}))
-      .body.data;
+    const works = await fetchBooks(pids, false, dispatch);
+
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;
       return map;
