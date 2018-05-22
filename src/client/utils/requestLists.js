@@ -1,7 +1,6 @@
 import request from 'superagent';
 import {SYSTEM_LIST} from '../redux/list.reducer';
-import unique from './unique';
-import {deleteObject} from './requester';
+import {deleteObject, fetchBooks} from './requester';
 
 // Note: only used exports are:
 //
@@ -86,17 +85,17 @@ export const saveList = async (list, loggedInUserId) => {
   return list;
 };
 
-export const loadRecentPublic = async () => {
+export const loadRecentPublic = async ({dispatch}) => {
   let lists = (await request.get(`/v1/object/find?type=list&limit=30`)).body
     .data;
 
   for (const list of lists) {
-    await enrichList(list);
+    await enrichList({list, dispatch});
   }
   return lists;
 };
 
-async function enrichList(list) {
+async function enrichList({list, dispatch}) {
   list.id = list.id || list._id;
   list.owner = list._owner;
 
@@ -134,8 +133,7 @@ async function enrichList(list) {
   list.list = list.list.filter(o => o.pid);
   const pids = list.list.map(o => o.pid);
   if (pids.length > 0) {
-    const works = (await request.get('/v1/books/').query({pids: unique(pids)}))
-      .body.data;
+    const works = await fetchBooks(pids, false, dispatch);
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;
       return map;
@@ -146,7 +144,7 @@ async function enrichList(list) {
   }
 }
 
-export const loadLists = async openplatformId => {
+export const loadLists = async ({openplatformId, dispatch}) => {
   if (!openplatformId) {
     return [];
   }
@@ -158,7 +156,7 @@ export const loadLists = async openplatformId => {
 
   let result = [];
   for (const list of lists) {
-    await enrichList(list);
+    await enrichList({list, dispatch});
     result.push(list);
   }
 
