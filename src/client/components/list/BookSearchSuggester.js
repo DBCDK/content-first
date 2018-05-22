@@ -54,6 +54,7 @@ class BookSearchSuggester extends React.Component {
   }
 
   async onSuggestionsFetchRequested({value}) {
+    value = value.toLowerCase();
     this.currentRequest = value;
     const results = JSON.parse(
       (await request.get(
