@@ -38,6 +38,7 @@ export const mapStateToProps = state => ({
   results: state.searchReducer.results
 });
 export const mapDispatchToProps = dispatch => ({
-  onSearch: query => dispatch({type: 'SEARCH_QUERY', query})
+  onSearch: query =>
+    dispatch({type: 'SEARCH_QUERY', query: query.toLowerCase()})
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
