@@ -10,6 +10,7 @@ const createTestElement = id => {
     book: {
       pid: 'pid' + id,
       title: 'some title' + id,
+      coverUrl: 'https://some/cover/url' + id,
       taxonomy_description: 'some description' + id
     },
     origin: 'Minder om noget' + id

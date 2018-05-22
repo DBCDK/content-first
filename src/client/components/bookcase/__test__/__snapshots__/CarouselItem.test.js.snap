@@ -15,10 +15,9 @@ exports[`CarouselItem renders initial component 1`] = `
       >
         <img
           alt=""
-          className="high-contrast  "
-          onError={[Function]}
+          className="high-contrast "
           onLoad={undefined}
-          src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A51642899"
+          src="/default-book-cover.png"
           style={undefined}
         />
       </Link>

@@ -18,10 +18,9 @@ exports[`RollOver renders initial component 1`] = `
     >
       <img
         alt="test"
-        className="high-contrast  "
-        onError={[Function]}
+        className="high-contrast "
         onLoad={undefined}
-        src="https://metakompasset.demo.dbc.dk/api/cover/870970-basis%3A52038014"
+        src="/default-book-cover.png"
         style={undefined}
       />
     </div>
