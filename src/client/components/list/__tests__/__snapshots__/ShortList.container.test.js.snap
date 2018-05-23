@@ -73,6 +73,7 @@ exports[`ShortList.container Clearing list 1`] = `
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url2",
                           "pid": "pid2",
                           "taxonomy_description": "some description2",
                           "title": "some title2",
@@ -118,6 +119,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url2",
                                             "pid": "pid2",
                                             "taxonomy_description": "some description2",
                                             "title": "some title2",
@@ -126,9 +128,8 @@ exports[`ShortList.container Clearing list 1`] = `
                                       >
                                         <img
                                           alt="some title2"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                          className="high-contrast "
+                                          src="https://some/cover/url2"
                                         />
                                       </BookCover>
                                     </a>
@@ -194,6 +195,7 @@ exports[`ShortList.container Clearing list 1`] = `
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url2",
                                 "pid": "pid2",
                                 "taxonomy_description": "some description2",
                                 "title": "some title2",
@@ -203,6 +205,7 @@ exports[`ShortList.container Clearing list 1`] = `
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url2",
                                   "pid": "pid2",
                                   "taxonomy_description": "some description2",
                                   "title": "some title2",
@@ -244,6 +247,7 @@ exports[`ShortList.container Clearing list 1`] = `
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url1",
                           "pid": "pid1",
                           "taxonomy_description": "some description1",
                           "title": "some title1",
@@ -289,6 +293,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url1",
                                             "pid": "pid1",
                                             "taxonomy_description": "some description1",
                                             "title": "some title1",
@@ -297,9 +302,8 @@ exports[`ShortList.container Clearing list 1`] = `
                                       >
                                         <img
                                           alt="some title1"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                          className="high-contrast "
+                                          src="https://some/cover/url1"
                                         />
                                       </BookCover>
                                     </a>
@@ -365,6 +369,7 @@ exports[`ShortList.container Clearing list 1`] = `
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url1",
                                 "pid": "pid1",
                                 "taxonomy_description": "some description1",
                                 "title": "some title1",
@@ -374,6 +379,7 @@ exports[`ShortList.container Clearing list 1`] = `
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url1",
                                   "pid": "pid1",
                                   "taxonomy_description": "some description1",
                                   "title": "some title1",
@@ -439,6 +445,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
         Array [
           Object {
             "book": Object {
+              "coverUrl": "https://some/cover/url1",
               "pid": "pid1",
               "taxonomy_description": "some description1",
               "title": "some title1",
@@ -454,6 +461,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
           "elements": Array [
             Object {
               "book": Object {
+                "coverUrl": "https://some/cover/url1",
                 "pid": "pid1",
                 "taxonomy_description": "some description1",
                 "title": "some title1",
@@ -510,6 +518,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url1",
                           "pid": "pid1",
                           "taxonomy_description": "some description1",
                           "title": "some title1",
@@ -555,6 +564,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url1",
                                             "pid": "pid1",
                                             "taxonomy_description": "some description1",
                                             "title": "some title1",
@@ -563,9 +573,8 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                       >
                                         <img
                                           alt="some title1"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                          className="high-contrast "
+                                          src="https://some/cover/url1"
                                         />
                                       </BookCover>
                                     </a>
@@ -631,6 +640,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url1",
                                 "pid": "pid1",
                                 "taxonomy_description": "some description1",
                                 "title": "some title1",
@@ -640,6 +650,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url1",
                                   "pid": "pid1",
                                   "taxonomy_description": "some description1",
                                   "title": "some title1",
@@ -729,6 +740,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
         Array [
           Object {
             "book": Object {
+              "coverUrl": "https://some/cover/url1",
               "pid": "pid1",
               "taxonomy_description": "some description1",
               "title": "some title1",
@@ -744,6 +756,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
           "elements": Array [
             Object {
               "book": Object {
+                "coverUrl": "https://some/cover/url1",
                 "pid": "pid1",
                 "taxonomy_description": "some description1",
                 "title": "some title1",
@@ -800,6 +813,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url1",
                           "pid": "pid1",
                           "taxonomy_description": "some description1",
                           "title": "some title1",
@@ -845,6 +859,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url1",
                                             "pid": "pid1",
                                             "taxonomy_description": "some description1",
                                             "title": "some title1",
@@ -853,9 +868,8 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                       >
                                         <img
                                           alt="some title1"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                          className="high-contrast "
+                                          src="https://some/cover/url1"
                                         />
                                       </BookCover>
                                     </a>
@@ -921,6 +935,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url1",
                                 "pid": "pid1",
                                 "taxonomy_description": "some description1",
                                 "title": "some title1",
@@ -930,6 +945,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url1",
                                   "pid": "pid1",
                                   "taxonomy_description": "some description1",
                                   "title": "some title1",
@@ -1019,6 +1035,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
         Array [
           Object {
             "book": Object {
+              "coverUrl": "https://some/cover/url1",
               "pid": "pid1",
               "taxonomy_description": "some description1",
               "title": "some title1",
@@ -1034,6 +1051,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
           "elements": Array [
             Object {
               "book": Object {
+                "coverUrl": "https://some/cover/url1",
                 "pid": "pid1",
                 "taxonomy_description": "some description1",
                 "title": "some title1",
@@ -1090,6 +1108,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url1",
                           "pid": "pid1",
                           "taxonomy_description": "some description1",
                           "title": "some title1",
@@ -1135,6 +1154,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url1",
                                             "pid": "pid1",
                                             "taxonomy_description": "some description1",
                                             "title": "some title1",
@@ -1143,9 +1163,8 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                       >
                                         <img
                                           alt="some title1"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                          className="high-contrast "
+                                          src="https://some/cover/url1"
                                         />
                                       </BookCover>
                                     </a>
@@ -1211,6 +1230,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url1",
                                 "pid": "pid1",
                                 "taxonomy_description": "some description1",
                                 "title": "some title1",
@@ -1220,6 +1240,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url1",
                                   "pid": "pid1",
                                   "taxonomy_description": "some description1",
                                   "title": "some title1",
@@ -1309,6 +1330,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
         Array [
           Object {
             "book": Object {
+              "coverUrl": "https://some/cover/url1",
               "pid": "pid1",
               "taxonomy_description": "some description1",
               "title": "some title1",
@@ -1324,6 +1346,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
           "elements": Array [
             Object {
               "book": Object {
+                "coverUrl": "https://some/cover/url1",
                 "pid": "pid1",
                 "taxonomy_description": "some description1",
                 "title": "some title1",
@@ -1380,6 +1403,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url1",
                           "pid": "pid1",
                           "taxonomy_description": "some description1",
                           "title": "some title1",
@@ -1425,6 +1449,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url1",
                                             "pid": "pid1",
                                             "taxonomy_description": "some description1",
                                             "title": "some title1",
@@ -1433,9 +1458,8 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                       >
                                         <img
                                           alt="some title1"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                          className="high-contrast "
+                                          src="https://some/cover/url1"
                                         />
                                       </BookCover>
                                     </a>
@@ -1516,6 +1540,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url1",
                                 "pid": "pid1",
                                 "taxonomy_description": "some description1",
                                 "title": "some title1",
@@ -1525,6 +1550,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url1",
                                   "pid": "pid1",
                                   "taxonomy_description": "some description1",
                                   "title": "some title1",
@@ -1614,6 +1640,7 @@ exports[`ShortList.container remove element 1`] = `
         Array [
           Object {
             "book": Object {
+              "coverUrl": "https://some/cover/url2",
               "pid": "pid2",
               "taxonomy_description": "some description2",
               "title": "some title2",
@@ -1622,6 +1649,7 @@ exports[`ShortList.container remove element 1`] = `
           },
           Object {
             "book": Object {
+              "coverUrl": "https://some/cover/url1",
               "pid": "pid1",
               "taxonomy_description": "some description1",
               "title": "some title1",
@@ -1637,6 +1665,7 @@ exports[`ShortList.container remove element 1`] = `
           "elements": Array [
             Object {
               "book": Object {
+                "coverUrl": "https://some/cover/url2",
                 "pid": "pid2",
                 "taxonomy_description": "some description2",
                 "title": "some title2",
@@ -1645,6 +1674,7 @@ exports[`ShortList.container remove element 1`] = `
             },
             Object {
               "book": Object {
+                "coverUrl": "https://some/cover/url1",
                 "pid": "pid1",
                 "taxonomy_description": "some description1",
                 "title": "some title1",
@@ -1701,6 +1731,7 @@ exports[`ShortList.container remove element 1`] = `
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url3",
                           "pid": "pid3",
                           "taxonomy_description": "some description3",
                           "title": "some title3",
@@ -1746,6 +1777,7 @@ exports[`ShortList.container remove element 1`] = `
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url3",
                                             "pid": "pid3",
                                             "taxonomy_description": "some description3",
                                             "title": "some title3",
@@ -1754,9 +1786,8 @@ exports[`ShortList.container remove element 1`] = `
                                       >
                                         <img
                                           alt="some title3"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+                                          className="high-contrast "
+                                          src="https://some/cover/url3"
                                         />
                                       </BookCover>
                                     </a>
@@ -1822,6 +1853,7 @@ exports[`ShortList.container remove element 1`] = `
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url3",
                                 "pid": "pid3",
                                 "taxonomy_description": "some description3",
                                 "title": "some title3",
@@ -1831,6 +1863,7 @@ exports[`ShortList.container remove element 1`] = `
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url3",
                                   "pid": "pid3",
                                   "taxonomy_description": "some description3",
                                   "title": "some title3",
@@ -1872,6 +1905,7 @@ exports[`ShortList.container remove element 1`] = `
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url2",
                           "pid": "pid2",
                           "taxonomy_description": "some description2",
                           "title": "some title2",
@@ -1917,6 +1951,7 @@ exports[`ShortList.container remove element 1`] = `
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url2",
                                             "pid": "pid2",
                                             "taxonomy_description": "some description2",
                                             "title": "some title2",
@@ -1925,9 +1960,8 @@ exports[`ShortList.container remove element 1`] = `
                                       >
                                         <img
                                           alt="some title2"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                          className="high-contrast "
+                                          src="https://some/cover/url2"
                                         />
                                       </BookCover>
                                     </a>
@@ -1993,6 +2027,7 @@ exports[`ShortList.container remove element 1`] = `
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url2",
                                 "pid": "pid2",
                                 "taxonomy_description": "some description2",
                                 "title": "some title2",
@@ -2002,6 +2037,7 @@ exports[`ShortList.container remove element 1`] = `
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url2",
                                   "pid": "pid2",
                                   "taxonomy_description": "some description2",
                                   "title": "some title2",
@@ -2043,6 +2079,7 @@ exports[`ShortList.container remove element 1`] = `
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url1",
                           "pid": "pid1",
                           "taxonomy_description": "some description1",
                           "title": "some title1",
@@ -2088,6 +2125,7 @@ exports[`ShortList.container remove element 1`] = `
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url1",
                                             "pid": "pid1",
                                             "taxonomy_description": "some description1",
                                             "title": "some title1",
@@ -2096,9 +2134,8 @@ exports[`ShortList.container remove element 1`] = `
                                       >
                                         <img
                                           alt="some title1"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                          className="high-contrast "
+                                          src="https://some/cover/url1"
                                         />
                                       </BookCover>
                                     </a>
@@ -2164,6 +2201,7 @@ exports[`ShortList.container remove element 1`] = `
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url1",
                                 "pid": "pid1",
                                 "taxonomy_description": "some description1",
                                 "title": "some title1",
@@ -2173,6 +2211,7 @@ exports[`ShortList.container remove element 1`] = `
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url1",
                                   "pid": "pid1",
                                   "taxonomy_description": "some description1",
                                   "title": "some title1",
@@ -2262,6 +2301,7 @@ exports[`ShortList.container short list contains elements 1`] = `
         Array [
           Object {
             "book": Object {
+              "coverUrl": "https://some/cover/url3",
               "pid": "pid3",
               "taxonomy_description": "some description3",
               "title": "some title3",
@@ -2270,6 +2310,7 @@ exports[`ShortList.container short list contains elements 1`] = `
           },
           Object {
             "book": Object {
+              "coverUrl": "https://some/cover/url2",
               "pid": "pid2",
               "taxonomy_description": "some description2",
               "title": "some title2",
@@ -2278,6 +2319,7 @@ exports[`ShortList.container short list contains elements 1`] = `
           },
           Object {
             "book": Object {
+              "coverUrl": "https://some/cover/url1",
               "pid": "pid1",
               "taxonomy_description": "some description1",
               "title": "some title1",
@@ -2293,6 +2335,7 @@ exports[`ShortList.container short list contains elements 1`] = `
           "elements": Array [
             Object {
               "book": Object {
+                "coverUrl": "https://some/cover/url3",
                 "pid": "pid3",
                 "taxonomy_description": "some description3",
                 "title": "some title3",
@@ -2301,6 +2344,7 @@ exports[`ShortList.container short list contains elements 1`] = `
             },
             Object {
               "book": Object {
+                "coverUrl": "https://some/cover/url2",
                 "pid": "pid2",
                 "taxonomy_description": "some description2",
                 "title": "some title2",
@@ -2309,6 +2353,7 @@ exports[`ShortList.container short list contains elements 1`] = `
             },
             Object {
               "book": Object {
+                "coverUrl": "https://some/cover/url1",
                 "pid": "pid1",
                 "taxonomy_description": "some description1",
                 "title": "some title1",
@@ -2365,6 +2410,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url3",
                           "pid": "pid3",
                           "taxonomy_description": "some description3",
                           "title": "some title3",
@@ -2410,6 +2456,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url3",
                                             "pid": "pid3",
                                             "taxonomy_description": "some description3",
                                             "title": "some title3",
@@ -2418,9 +2465,8 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       >
                                         <img
                                           alt="some title3"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid3"
+                                          className="high-contrast "
+                                          src="https://some/cover/url3"
                                         />
                                       </BookCover>
                                     </a>
@@ -2486,6 +2532,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url3",
                                 "pid": "pid3",
                                 "taxonomy_description": "some description3",
                                 "title": "some title3",
@@ -2495,6 +2542,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url3",
                                   "pid": "pid3",
                                   "taxonomy_description": "some description3",
                                   "title": "some title3",
@@ -2536,6 +2584,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url2",
                           "pid": "pid2",
                           "taxonomy_description": "some description2",
                           "title": "some title2",
@@ -2581,6 +2630,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url2",
                                             "pid": "pid2",
                                             "taxonomy_description": "some description2",
                                             "title": "some title2",
@@ -2589,9 +2639,8 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       >
                                         <img
                                           alt="some title2"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid2"
+                                          className="high-contrast "
+                                          src="https://some/cover/url2"
                                         />
                                       </BookCover>
                                     </a>
@@ -2657,6 +2706,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url2",
                                 "pid": "pid2",
                                 "taxonomy_description": "some description2",
                                 "title": "some title2",
@@ -2666,6 +2716,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url2",
                                   "pid": "pid2",
                                   "taxonomy_description": "some description2",
                                   "title": "some title2",
@@ -2707,6 +2758,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                     element={
                       Object {
                         "book": Object {
+                          "coverUrl": "https://some/cover/url1",
                           "pid": "pid1",
                           "taxonomy_description": "some description1",
                           "title": "some title1",
@@ -2752,6 +2804,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       <BookCover
                                         book={
                                           Object {
+                                            "coverUrl": "https://some/cover/url1",
                                             "pid": "pid1",
                                             "taxonomy_description": "some description1",
                                             "title": "some title1",
@@ -2760,9 +2813,8 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       >
                                         <img
                                           alt="some title1"
-                                          className="high-contrast  "
-                                          onError={[Function]}
-                                          src="https://metakompasset.demo.dbc.dk/api/cover/pid1"
+                                          className="high-contrast "
+                                          src="https://some/cover/url1"
                                         />
                                       </BookCover>
                                     </a>
@@ -2828,6 +2880,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                           <Connect(OrderButton)
                             book={
                               Object {
+                                "coverUrl": "https://some/cover/url1",
                                 "pid": "pid1",
                                 "taxonomy_description": "some description1",
                                 "title": "some title1",
@@ -2837,6 +2890,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                             <OrderButton
                               book={
                                 Object {
+                                  "coverUrl": "https://some/cover/url1",
                                   "pid": "pid1",
                                   "taxonomy_description": "some description1",
                                   "title": "some title1",

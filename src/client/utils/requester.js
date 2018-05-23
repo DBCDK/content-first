@@ -58,11 +58,16 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   const coversPromise = Promise.all(
     pids.map(async pid => {
-      const [{coverUrlFull}] = await openplatform.work({
-        pids: [pid],
-        fields: ['coverUrlFull']
-      });
-      return coverUrlFull && coverUrlFull[0];
+      try {
+        const [{coverUrlFull}] = await openplatform.work({
+          pids: [pid],
+          fields: ['coverUrlFull']
+        });
+        return coverUrlFull && coverUrlFull[0];
+      } catch (e) {
+        // ignore errors/missing on fetching covers
+        return;
+      }
     })
   );
 

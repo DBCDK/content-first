@@ -1,42 +1,13 @@
 import React from 'react';
 
-class BookCover extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {current: 0};
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.book !== this.props.book) {
-      this.setState({current: 0});
-    }
-  }
-  render() {
-    const urls = [
-      `https://metakompasset.demo.dbc.dk/api/cover/${encodeURIComponent(
-        this.props.book.pid
-      )}`,
-      `/v1/image/${encodeURIComponent(this.props.book.pid)}`,
-      '/default-book-cover.png'
-    ];
-    return (
-      <img
-        style={this.props.style}
-        alt={this.props.book.title || ''}
-        className={
-          'high-contrast ' +
-          (this.state.loading ? 'loading ' : ' ') +
-          (this.props.className || '')
-        }
-        src={urls[this.state.current]}
-        onLoad={this.props.onLoad}
-        onError={() => {
-          this.setState({
-            current: Math.min(this.state.current + 1, urls.length - 1)
-          });
-        }}
-      />
-    );
-  }
-}
+const BookCover = props => (
+  <img
+    style={props.style}
+    alt={props.book.title || ''}
+    className={'high-contrast ' + (props.className || '')}
+    src={props.book.coverUrl || '/default-book-cover.png'}
+    onLoad={props.onLoad}
+  />
+);
 
 export default BookCover;
