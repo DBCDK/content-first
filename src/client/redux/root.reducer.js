@@ -17,7 +17,6 @@ import recommendReducer from './recommend';
 import {replayReducer} from './replay';
 import interactionReducer from './interaction.reducer';
 
-
 const combined = combineReducers({
   beltsReducer,
   filterReducer,
