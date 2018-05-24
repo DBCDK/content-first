@@ -1,19 +1,10 @@
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from './shortlist.reducer';
+import {ON_LOCATION_CHANGE} from './router.reducer';
 import {LIST_TOGGLE_ELEMENT} from './list.reducer';
 import {ORDER} from './order.reducer';
-import {ON_LOCATION_CHANGE} from "./router.reducer";
+import request from "superagent";
 import {fetchObjects} from "../utils/requester";
 import {INTERACTION, FETCH_INTERACTIONS, FETCH_INTERACTIONS_ERROR, FETCH_INTERACTIONS_SUCCESS} from "./interaction.reducer";
-import {INTERACTION} from './interaction.reducer';
-import {ON_LOCATION_CHANGE} from './router.reducer';
-import request from 'superagent';
-import {fetchObjects} from '../utils/requester';
-import {
-  FETCH_INTERACTIONS,
-  FETCH_INTERACTIONS_ERROR,
-  FETCH_INTERACTIONS_SUCCESS
-} from './interaction.reducer';
-const LOG_INTERACTION = 'LOG_INTERACTION';
 
 
 export const interactionMiddleware = store => next => action => {
@@ -23,7 +14,7 @@ export const interactionMiddleware = store => next => action => {
       try {
         request
           .post('/v1/object/')
-          .send({_type: "INTERACTION", interaction:action.interaction, pid: action.pid, _public:true})
+          .send({_type: INTERACTION, interaction:action.interaction, pid: action.pid, _public:true})
           .end();
       } catch (e) {
         request
@@ -32,116 +23,6 @@ export const interactionMiddleware = store => next => action => {
           .end();
       }
       return next(action);
-    }
-
-    case ON_LOCATION_CHANGE:{
-      let pidPath=action.path
-      let pid=pidPath;
-      if(pidPath.startsWith('/værk/')){
-        pid=pidPath.slice(6,pidPath.length);
-      }
-      store.dispatch({type: INTERACTION, pid: pid, interaction: 'NEW_LOCATION'});
-      return next(action);
-    }
-    case ON_SHORTLIST_TOGGLE_ELEMENT: {
-
-      store.dispatch({type: INTERACTION, pid: action.element.book.pid, interaction: 'SHORTLIST'});
-      return next(action);
-    }
-    case ORDER: {
-      store.dispatch({type: INTERACTION, pid: action.book.pid, interaction: 'order'});
-      return next(action);
-    }
-    case LIST_TOGGLE_ELEMENT: {
-      store.dispatch({type: INTERACTION, pid: action.element.book.pid, interaction: "LIST_TOGGLE_ELEMENT"});
-      return next(action);
-    }
-
-    case ON_LOCATION_CHANGE: {
-      let pidPath = action.path;
-      let pid = pidPath.slice(6, pidPath.length);
-
-      store.dispatch({
-        type: INTERACTION,
-        pid: pid,
-        interaction: 'on_location_change'
-      });
-      store.dispatch({
-        type: LOG_INTERACTION,
-        pid: pid,
-        interaction: 'on_location_change'
-      });
-      return next(action);
-    };
-    case ON_SHORTLIST_TOGGLE_ELEMENT: {
-      store.dispatch({
-        type: INTERACTION,
-        pid: action.element.book.pid,
-        interaction: 'on_shortlist_toggle'
-      });
-      store.dispatch({
-        type: LOG_INTERACTION,
-        pid: action.element.book.pid,
-        interaction: 'on_shortlist_toggle'
-      });
-      return next(action);
-    }
-    case ORDER: {
-      store.dispatch({
-        type: INTERACTION,
-        pid: action.book.pid,
-        interaction: 'order'
-      });
-      store.dispatch({
-        type: LOG_INTERACTION,
-        pid: action.book.pid,
-        interaction: 'order'
-      });
-      return next(action);
-    }
-    case LIST_TOGGLE_ELEMENT: {
-      store.dispatch({
-        type: INTERACTION,
-        pid: action.element.book.pid,
-        interaction: 'list_toggle_element'
-      });
-      store.dispatch({
-        type: LOG_INTERACTION,
-        pid: action.element.book.pid,
-        interaction: 'list_toggle_element'
-      });
-      return next(action);
-    }
-
-      return next(action);
-
-  }
-};
-
-export const logInteractionsMiddleware = store => next => action => {
-  switch (action.type) {
-    case LOG_INTERACTION: {
-      try {
-        request
-          .post('/v1/object/')
-          .send({
-            _type: 'INTERACTION',
-            interaction: action.interaction,
-            pid: action.pid,
-            _public: true
-          })
-          .end();
-      } catch (e) {
-        request
-          .post('/v1/object/')
-          .send({
-            _type: 'INTERACTION',
-            error: 'CLIENT_LOG_ERROR',
-            content: String(e)
-          })
-          .end();
-      }
-      break;
     }
 
     case FETCH_INTERACTIONS:
@@ -173,7 +54,35 @@ export const logInteractionsMiddleware = store => next => action => {
         }
       })();
 
+    case ON_LOCATION_CHANGE:{
+      let pidPath=action.path
+      let pid=pidPath;
+      if(pidPath.startsWith('/værk/')){
+        pid=pidPath.slice(6,pidPath.length);
+      }
+      store.dispatch({type: INTERACTION, pid: pid, interaction: 'NEW_LOCATION'});
+      return next(action);
+    }
+
+    case ON_SHORTLIST_TOGGLE_ELEMENT: {
+      store.dispatch({type: INTERACTION, pid: action.element.book.pid, interaction: 'SHORTLIST'});
+      return next(action);
+    }
+
+    case ORDER: {
+      store.dispatch({type: INTERACTION, pid: action.book.pid, interaction: 'ORDER'});
+      return next(action);
+    }
+
+    case LIST_TOGGLE_ELEMENT: {
+      store.dispatch({type: INTERACTION, pid: action.element.book.pid, interaction: "LIST_TOGGLE_ELEMENT"});
+      return next(action);
+    }
+
+
+
     default:
       return next(action);
   }
 };
+
