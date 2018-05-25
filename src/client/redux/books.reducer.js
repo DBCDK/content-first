@@ -1,3 +1,5 @@
+import {merge} from 'lodash';
+
 const defaultState = {
   books: {}
 };
@@ -18,7 +20,8 @@ const booksReducer = (state = defaultState, action) => {
       const books = {...state.books};
 
       action.response.forEach(b => {
-        books[b.book.pid] = {...b, isLoading: false};
+        const pid = b.book.pid;
+        books[pid] = merge({}, books[pid], b, {isLoading: false});
       });
 
       return Object.assign({}, state, {books: books});

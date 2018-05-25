@@ -1,5 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import createStore from '../../../redux/Store';
 
 import CarouselItem from '../CarouselItem.component';
 
@@ -22,13 +24,15 @@ describe('CarouselItem', () => {
   it('renders initial component', () => {
     const tree = renderer
       .create(
-        <CarouselItem
-          description={description}
-          onClick={() => {
-            this.nextBook('next');
-          }}
-          book={book}
-        />
+        <Provider store={createStore()}>
+          <CarouselItem
+            description={description}
+            onClick={() => {
+              this.nextBook('next');
+            }}
+            book={book}
+          />
+        </Provider>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
