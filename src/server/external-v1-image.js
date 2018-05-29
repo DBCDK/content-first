@@ -7,9 +7,9 @@ const uuid = require('uuid/v4');
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const config = require('server/config');
 const knex = require('knex')(config.db);
-const {findingUserIdTroughLoginToken} = require('server/user');
 const constants = require('server/constants')();
 const coverTable = constants.covers.table;
+const {getUser} = require('./object');
 
 router
   .route('/:pid')
@@ -77,7 +77,11 @@ router
       const resizedImage = await sharp(images[0].image)
         .resize(parseInt(width, 10), parseInt(height, 10))
         .toBuffer();
-      await knex(coverTable).insert({pid: imageCacheId, image: resizedImage});
+      await knex(coverTable).insert({
+        pid: imageCacheId,
+        image: resizedImage,
+        owner: images[0].owner
+      });
       res.contentType('jpeg');
       res.end(resizedImage, 'binary');
     } catch (error) {
@@ -89,11 +93,11 @@ router
 //
 router.route('/').post(
   asyncMiddleware(async (req, res, next) => {
-    try {
-      await findingUserIdTroughLoginToken(req);
-    } catch (error) {
-      return next(error);
+    const user = await getUser(req);
+    if (!user) {
+      return next({status: 403, title: 'User not logged in'});
     }
+
     const pid = uuid();
     const location = `${req.baseUrl}/${pid}`;
     const contentType = req.get('content-type');
@@ -113,7 +117,11 @@ router.route('/').post(
         meta: {resource: location}
       });
     }
-    await knex(coverTable).insert({pid, image: req.body});
+    await knex(coverTable).insert({
+      pid,
+      image: req.body,
+      owner: user.openplatformId
+    });
     res
       .status(201)
       .location(location)
