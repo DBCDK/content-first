@@ -11,25 +11,29 @@ import {
   FETCH_INTERACTIONS_SUCCESS
 } from './interaction.reducer';
 
+let isNotChecked=(list, pid)=>{
+  return !list.find(element => element.book.pid===pid)
+};
+
 export const interactionMiddleware = store => next => action => {
   switch (action.type) {
     case INTERACTION: {
-      try {
-        request
-          .post('/v1/object/')
-          .send({
-            _type: INTERACTION,
-            interaction: action.interaction,
-            pid: action.pid,
-            _public: true
-          })
-          .end();
-      } catch (e) {
-        request
-          .post('/v1/log')
-          .send({type: action.type, error: 'CLIENT_LOG_ERROR', msg: String(e)})
-          .end();
-      }
+        try {
+          request
+            .post('/v1/object/')
+            .send({
+              _type: INTERACTION,
+              interaction: action.interaction,
+              pid: action.pid,
+              _public: true
+            })
+            .end();
+        } catch (e) {
+          request
+            .post('/v1/log')
+            .send({type: action.type, error: 'CLIENT_LOG_ERROR', msg: String(e)})
+            .end();
+        }
       return next(action);
     }
 
@@ -77,11 +81,16 @@ export const interactionMiddleware = store => next => action => {
     }
 
     case ON_SHORTLIST_TOGGLE_ELEMENT: {
-      store.dispatch({
-        type: INTERACTION,
-        pid: action.element.book.pid,
-        interaction: 'SHORTLIST'
-      });
+      //HUSK button is clicked
+      const notChecked=isNotChecked(store.getState().shortListReducer.elements, action.element.book.pid);
+
+      if(notChecked) {
+        store.dispatch({
+          type: INTERACTION,
+          pid: action.element.book.pid,
+          interaction: 'SHORTLIST'
+        });
+      }
       return next(action);
     }
 
@@ -95,11 +104,15 @@ export const interactionMiddleware = store => next => action => {
     }
 
     case LIST_TOGGLE_ELEMENT: {
-      store.dispatch({
-        type: INTERACTION,
-        pid: action.element.book.pid,
-        interaction: 'LIST_TOGGLE_ELEMENT'
-      });
+      const notChecked=isNotChecked(store.getState().listReducer.lists[action.id].list, action.element.book.pid);
+
+      if(notChecked) {
+        store.dispatch({
+          type: INTERACTION,
+          pid: action.element.book.pid,
+          interaction: 'LIST_TOGGLE_ELEMENT'
+        });
+      }
       return next(action);
     }
 
