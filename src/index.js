@@ -18,6 +18,7 @@ import {orderMiddleware} from './client/redux/order.middleware';
 import {recommendMiddleware} from './client/redux/recommend';
 import {commentMiddleware} from './client/redux/comment.middleware';
 import {replayMiddleware} from './client/redux/replay';
+import {interactionMiddleware} from './client/redux/interaction.middleware';
 
 const store = createStore([
   userMiddleware,
@@ -31,8 +32,10 @@ const store = createStore([
   orderMiddleware,
   recommendMiddleware,
   commentMiddleware,
-  replayMiddleware
+  replayMiddleware,
+  interactionMiddleware
 ]);
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

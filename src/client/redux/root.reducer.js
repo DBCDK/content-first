@@ -15,6 +15,7 @@ import bookcaseReducer from './bookcase.reducer';
 import booksReducer from './books.reducer';
 import recommendReducer from './recommend';
 import {replayReducer} from './replay';
+import interactionReducer from './interaction.reducer';
 
 const combined = combineReducers({
   beltsReducer,
@@ -32,7 +33,8 @@ const combined = combineReducers({
   tasteReducer,
   booksReducer,
   recommendReducer,
-  replay: replayReducer
+  replay: replayReducer,
+  interactionReducer
 });
 
 const rootReducer = (state = {}, action) => {
