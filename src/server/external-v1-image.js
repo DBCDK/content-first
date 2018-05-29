@@ -9,7 +9,7 @@ const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const coverTable = constants.covers.table;
-const {getUser} = require('./object');
+const {getUser} = require('./objectStore');
 
 router
   .route('/:pid')
