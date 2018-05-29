@@ -11,6 +11,7 @@ import {
   searchMiddleware,
   logMiddleware
 } from './client/redux/middleware';
+import {followMiddleware} from './client/redux/follow.middleware';
 import {tasteMiddleware} from './client/redux/taste.middleware';
 import {userMiddleware} from './client/redux/user.middleware';
 import {usersMiddleware} from './client/redux/users';
@@ -26,6 +27,7 @@ const store = createStore([
   tasteMiddleware,
   shortListMiddleware,
   listMiddleware,
+  followMiddleware,
   searchMiddleware,
   logMiddleware,
   orderMiddleware,

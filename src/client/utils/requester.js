@@ -164,11 +164,11 @@ export const saveUser = user => {
   });
 };
 
-export const fetchObjects = (key, type, limit = 100) => {
+export const fetchObjects = (key, type, owner = null, limit = 100) => {
   return new Promise((resolve, reject) => {
     request
       .get('/v1/object/find')
-      .query({key, type, limit})
+      .query({key, type, owner, limit})
       .end((error, res) => {
         if (error) {
           reject(res.body && res.body.errors ? res.body.errors[0] : error);

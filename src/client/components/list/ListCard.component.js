@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import TruncateMarkup from 'react-truncate-markup';
 import BookCover from '../general/BookCover.component';
 import ProfileImage from '../general/ProfileImage.component';
@@ -15,7 +16,7 @@ class ListCard extends React.PureComponent {
       if (img) {
         cardCover = (
           <div>
-            <img src={'v1/image/' + img + '/220/120'} />
+            <img alt="" src={'v1/image/' + img + '/220/120'} />
           </div>
         );
       } else {
@@ -40,40 +41,45 @@ class ListCard extends React.PureComponent {
 
     return (
       <div className="list-card" style={style}>
-        <Link href={`/lister/${list.id}`}>
-          <div className="list-card-covers">{renderBookCover(list.image)}</div>
-          <div className="list-card-summary">
-            <TruncateMarkup
-              lines={2}
-              ellipsis={
-                <span>
-                  ...<Badge value={elements.length} className="ml1" />
-                </span>
-              }
-            >
-              <h3 className="list-card-title h-tight">
-                {list.title}
-                <Badge value={elements.length} className="ml1" />
-              </h3>
-            </TruncateMarkup>
-            <TruncateMarkup lines={3}>
-              <div className="list-card-description">{list.description}</div>
-            </TruncateMarkup>
+        <Link href={`/lister/${list.id}`} />
+        <div className="list-card-covers">{renderBookCover(list.image)}</div>
+        <div className="list-card-summary">
+          <TruncateMarkup
+            lines={2}
+            ellipsis={
+              <span>
+                ...<Badge value={elements.length} className="ml1" />
+              </span>
+            }
+          >
+            <h3 className="list-card-title h-tight">
+              {list.title}
+              <Badge value={elements.length} className="ml1" />
+            </h3>
+          </TruncateMarkup>
+          <TruncateMarkup lines={3}>
+            <div className="list-card-description">{list.description}</div>
+          </TruncateMarkup>
+        </div>
+        <div className="list-card-bottom">
+          <div style={{display: 'inline-block'}}>
+            <ProfileImage
+              user={this.props.profile}
+              namePosition={'right'}
+              type="list"
+              className="mb1"
+            />
           </div>
-          <div className="list-card-bottom">
-            <div style={{display: 'inline-block'}}>
-              <ProfileImage
-                user={this.props.profile}
-                namePosition={'right'}
-                type="list"
-                className="mb1"
-              />
-            </div>
-          </div>
-        </Link>
+        </div>
       </div>
     );
   }
 }
 
-export default ListCard;
+const mapStateToProps = state => {
+  return {
+    owner: state.userReducer.openplatformId
+  };
+};
+
+export default connect(mapStateToProps)(ListCard);

@@ -16,7 +16,9 @@ import CommentInput from '../../comments/CommentInput.component';
 import timeToString from '../../../utils/timeToString';
 import textParser from '../../../utils/textParser';
 
-export class SimpleListItem extends React.Component {
+import {FOLLOW, UNFOLLOW} from '../../../redux/follow.reducer';
+
+export class Item extends React.Component {
   constructor(props) {
     super();
     this.state = {
@@ -64,8 +66,7 @@ export class SimpleListItem extends React.Component {
             <div className="flex" style={{width: '100%'}}>
               <ProfileImage
                 user={profile}
-                style={{flexShrink: 0}}
-                style={{marginRight: '20px'}}
+                style={{marginRight: '20px', flexShrink: 0}}
               />
               <div style={{flexGrow: 1}}>
                 <div className="comment-author">{profile.name || ''}</div>
@@ -126,96 +127,141 @@ export class SimpleListItem extends React.Component {
   }
 }
 
-export const SimpleList = ({
-  list,
-  profile,
-  loggedInUserId,
-  removeElement,
-  updateElement,
-  submit,
-  profiles,
-  confirmShareModal,
-  editButton
-}) => {
-  return (
-    <div className="list-wrapper tl">
-      <div className="row b-dark">
-        <SocialShareButton
-          className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-fb'}
-          href={
-            list.public
-              ? 'https://content-first.demo.dbc.dk/lister/' + list.id
-              : null
-          }
-          icon={'fb-icon'}
-          hex={'#3b5998'}
-          status={!list.public ? 'passive' : 'active'}
-          size={30}
-          shape="square"
-          txt="Del"
-          hoverTitle="Del på facebook"
-          onClick={() => {
-            confirmShareModal(list.id);
-          }}
-        />
-        <div className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1">
-          <h1 className="t-title h-tight h-underline inline-block align-middle">
-            {list.title}
-          </h1>
-          {editButton}
-        </div>
-      </div>
-      <div className="simplelist">
-        <div className="row mb4 b-dark">
-          <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1 mb4">
-            <div className="col-xs-3 tc">
-              <ProfileImage
-                user={profile}
-                size={'50'}
-                namePosition={'bottom'}
-              />
-            </div>
-            <div className="col-xs-9">
-              <p className="t-body">{list.description}</p>
-              {list.social ? <Comments id={list.id} /> : ''}
-            </div>
+export class SimpleList extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      follow: false
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.follows && this.props.follows[this.props.list.id]) {
+      this.setState({follow: true});
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({follow: nextProps.follows[this.props.list.id]});
+  }
+
+  toggleFollow(id, cat) {
+    const followObj = this.props.follows[id];
+
+    if (this.state.follow) {
+      this.props.unfollow(id, followObj._id);
+    } else {
+      this.props.follow(id, cat);
+    }
+  }
+
+  render() {
+    const {
+      list,
+      profile,
+      loggedInUserId,
+      removeElement,
+      updateElement,
+      submit,
+      profiles,
+      confirmShareModal,
+      editButton
+    } = this.props;
+
+    return (
+      <div className="list-wrapper tl">
+        <div className="row b-dark">
+          <div className="list-media-icons">
+            <SocialShareButton
+              className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-follow'}
+              href={null}
+              icon={'glyphicon-pushpin'}
+              hex={'#6dc1ec'}
+              size={30}
+              shape="square"
+              txt="Følg"
+              hoverTitle={'Følg ' + list.title}
+              status={this.state.follow ? 'active' : 'passive'}
+              onClick={() => this.toggleFollow(list.id, 'list')}
+            />
+            <SocialShareButton
+              className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-fb'}
+              href={
+                list.public
+                  ? 'https://content-first.demo.dbc.dk/lister/' + list.id
+                  : null
+              }
+              icon={'fb-icon'}
+              hex={'#3b5998'}
+              status={!list.public ? 'passive' : 'active'}
+              size={30}
+              shape="square"
+              txt="Del"
+              hoverTitle="Del på facebook"
+              onClick={() => {
+                confirmShareModal(list.id);
+              }}
+            />
+          </div>
+          <div className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1">
+            <h1 className="t-title h-tight h-underline inline-block align-middle">
+              {list.title}
+            </h1>
+            {editButton}
           </div>
         </div>
-        <div className="list col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
-          <div>
-            {list.list.map(element => (
-              <SimpleListItem
-                allowComments={list.social}
-                list={list}
-                key={element.book.pid}
-                element={element}
-                book={element.book}
-                description={element.description}
-                profile={profiles[element._owner]}
-                allowDelete={
-                  element._owner === loggedInUserId ||
-                  list._owner === loggedInUserId
-                }
-                allowModify={element._owner === loggedInUserId}
-                _created={list._created}
-                onRemove={() => removeElement(element, list)}
-                onDescriptionChange={description =>
-                  updateElement({...element, description}, list)
-                }
-                onSubmit={() => submit(list)}
-              />
-            ))}
+        <div className="simplelist">
+          <div className="row mb4 b-dark">
+            <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1 mb4">
+              <div className="col-xs-3 tc">
+                <ProfileImage
+                  user={profile}
+                  size={'50'}
+                  namePosition={'bottom'}
+                />
+              </div>
+              <div className="col-xs-9">
+                <p className="t-body">{list.description}</p>
+                {list.social ? <Comments id={list.id} /> : ''}
+              </div>
+            </div>
           </div>
-          <AddToList list={list} />
+          <div className="list col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
+            <div>
+              {list.list.map(element => (
+                <Item
+                  allowComments={list.social}
+                  list={list}
+                  key={element.book.pid}
+                  element={element}
+                  book={element.book}
+                  description={element.description}
+                  profile={profiles[element._owner]}
+                  allowDelete={
+                    element._owner === loggedInUserId ||
+                    list._owner === loggedInUserId
+                  }
+                  allowModify={element._owner === loggedInUserId}
+                  _created={list._created}
+                  onRemove={() => removeElement(element, list)}
+                  onDescriptionChange={description =>
+                    updateElement({...element, description}, list)
+                  }
+                  onSubmit={() => submit(list)}
+                />
+              ))}
+            </div>
+            <AddToList list={list} />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = (state, ownProps) => {
   return {
     loggedInUserId: state.userReducer.openplatformId,
+    follows: state.followReducer,
     isOwner:
       ownProps.list && ownProps.list._owner === state.userReducer.openplatformId
   };
@@ -229,6 +275,19 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({type: UPDATE_LIST_ELEMENT, id: list.id, element});
   },
   submit: list => dispatch(storeList(list.id)),
+  follow: (id, cat) =>
+    dispatch({
+      type: FOLLOW,
+      id,
+      cat
+    }),
+  unfollow: (id, _id) => {
+    dispatch({
+      type: UNFOLLOW,
+      id,
+      _id
+    });
+  },
   confirmShareModal: id => {
     dispatch({
       type: 'OPEN_MODAL',
