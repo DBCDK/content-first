@@ -34,6 +34,9 @@ const constants = {
   },
   users: {
     table: 'users'
+  },
+  objects: {
+    table: 'objects'
   }
 };
 

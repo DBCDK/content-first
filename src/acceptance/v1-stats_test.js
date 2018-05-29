@@ -36,7 +36,7 @@ describe('Statistics API', () => {
               expectValidate(data, 'schemas/statistics-out.json');
               // Only one of the seeded cookies should survive implicit
               // cleanup done by /stats.
-              expect(data.users['logged-in']).to.equal(1);
+              expect(data.users['logged-in']).to.equal(2);
               // Books & Tags.
               expect(data.books.total).to.equal(2);
               expect(data.tags.total).to.equal(52);

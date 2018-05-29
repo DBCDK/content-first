@@ -4,6 +4,7 @@
 const mock = require('fixtures/mock-server');
 const seeder = require('./seed-community');
 const supertest = require('supertest');
+const _ = require('underscore');
 
 const chai = require('chai');
 const expect = require('chai').expect;
@@ -44,6 +45,7 @@ describe('User data', () => {
         list = {
           _type: 'list',
           _public: true,
+          _key: '',
           writable: true,
           description: 'some list description',
           children: []
@@ -62,7 +64,7 @@ describe('User data', () => {
       delete dbList._created;
       chai.assert(dbList._modified);
       delete dbList._modified;
-      expect(dbList).to.deep.equal(list);
+      expect(dbList).to.deep.equal(_.omit(list, ['_created', '_modified']));
 
       // anonymous cannot add list entries
       result = await request.post(url + '/object').send({
@@ -112,15 +114,6 @@ describe('User data', () => {
       expect(result.text).to.equal(
         '{"data":{"error":"forbidden"},"errors":[{"status":403,"message":"forbidden"}]}'
       );
-
-      // user 1 can change the list
-      list.children = [listEntries[1]._id];
-      list.blacklist = [listEntries[0]._id];
-      result = await request
-        .put(url + '/object/' + list._id)
-        .set('cookie', cookieUser1)
-        .send(list);
-      expect(result.statusCode).to.equal(200);
     });
   });
 });
