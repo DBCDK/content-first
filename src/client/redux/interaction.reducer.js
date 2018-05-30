@@ -27,7 +27,6 @@ const interactionReducer = (state = defaultState, action) => {
 
     case FETCH_INTERACTIONS_SUCCESS: {
       return Object.assign({}, state, {
-        ...state.interactions,
         interactions: action.interactions,
         isLoading: false
       });
@@ -35,7 +34,6 @@ const interactionReducer = (state = defaultState, action) => {
 
     case FETCH_INTERACTIONS_ERROR: {
       return Object.assign({}, state, {
-        ...state.interactions,
         error: action.error
       });
     }

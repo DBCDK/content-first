@@ -15,8 +15,3 @@ versions
 .idea/
 content-first.iml
 .DS_Store
-src/.DS_Store
-src/client/.DS_Store
-src/client/redux/.DS_Store
-
-git
