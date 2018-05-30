@@ -81,7 +81,7 @@ export const interactionMiddleware = store => next => action => {
     }
 
     case ON_SHORTLIST_TOGGLE_ELEMENT: {
-      //HUSK button is clicked
+      // HUSK button is clicked
       const notChecked = isNotChecked(
         store.getState().shortListReducer.elements,
         action.element.book.pid
