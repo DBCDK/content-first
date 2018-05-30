@@ -9,7 +9,10 @@ const defaultState = {
 
 const interactionReducer = (state = defaultState, action) => {
   switch (action.type) {
+
     case INTERACTION: {
+
+
       const newState = Object.assign({}, state);
       if (state.interactions.length > 0) {
         newState.interactions.push({
@@ -18,6 +21,8 @@ const interactionReducer = (state = defaultState, action) => {
           pid: action.pid
         });
       }
+
+
       return newState;
     }
 

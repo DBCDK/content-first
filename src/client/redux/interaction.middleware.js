@@ -111,6 +111,7 @@ export const interactionMiddleware = store => next => action => {
         store.getState().listReducer.lists[action.id].list,
         action.element.book.pid
       );
+      console.log("notchecked "+notChecked)
 
       if (notChecked) {
         store.dispatch({
