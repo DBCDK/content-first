@@ -3,9 +3,9 @@ import {CUSTOM_LIST} from '../../redux/list.reducer';
 import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
 
-const Cover = ({pid, title, width, height}) => (
+const Cover = ({pid, title, coverUrl, width, height}) => (
   <BookCover
-    book={{pid, title}}
+    book={{pid, title, coverUrl}}
     style={{width: width, height: height, objectFit: 'cover'}}
   />
 );
@@ -42,6 +42,7 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
               <Cover
                 pid={el.book.pid}
                 title={el.book.title}
+                coverUrl={el.book.coverUrl}
                 width="30px"
                 height="45px"
               />
