@@ -86,7 +86,6 @@ export const interactionMiddleware = store => next => action => {
         store.getState().shortListReducer.elements,
         action.element.book.pid
       );
-
       if (notChecked) {
         store.dispatch({
           type: INTERACTION,
@@ -111,8 +110,6 @@ export const interactionMiddleware = store => next => action => {
         store.getState().listReducer.lists[action.id].list,
         action.element.book.pid
       );
-      console.log("notchecked "+notChecked)
-
       if (notChecked) {
         store.dispatch({
           type: INTERACTION,
