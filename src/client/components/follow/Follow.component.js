@@ -38,8 +38,7 @@ export class Follow extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    followedLists: getFollowedLists(state),
-    owner: state.userReducer.openplatformId
+    followedLists: getFollowedLists(state)
   };
 };
 

@@ -31,7 +31,7 @@ export const followMiddleware = store => next => async action => {
       return next(action);
     }
 
-    case FOLLOW_LOAD_REQUEST:
+    case FOLLOW_LOAD_REQUEST: {
       const openplatformId = store.getState().userReducer.openplatformId;
       return (async () => {
         next(action);
@@ -42,6 +42,7 @@ export const followMiddleware = store => next => async action => {
           data: follows
         });
       })();
+    }
     default:
       return next(action);
   }

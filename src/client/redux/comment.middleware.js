@@ -69,7 +69,6 @@ export const commentMiddleware = store => next => action => {
       })();
     }
     case DELETE_COMMENT: {
-      console.log('action.comment: ', action.comment);
       return (async () => {
         next(action);
         try {

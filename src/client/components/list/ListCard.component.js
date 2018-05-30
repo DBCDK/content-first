@@ -40,38 +40,39 @@ class ListCard extends React.PureComponent {
     }
 
     return (
-      <div className="list-card" style={style}>
-        <Link href={`/lister/${list.id}`} />
-        <div className="list-card-covers">{renderBookCover(list.image)}</div>
-        <div className="list-card-summary">
-          <TruncateMarkup
-            lines={2}
-            ellipsis={
-              <span>
-                ...<Badge value={elements.length} className="ml1" />
-              </span>
-            }
-          >
-            <h3 className="list-card-title h-tight">
-              {list.title}
-              <Badge value={elements.length} className="ml1" />
-            </h3>
-          </TruncateMarkup>
-          <TruncateMarkup lines={3}>
-            <div className="list-card-description">{list.description}</div>
-          </TruncateMarkup>
-        </div>
-        <div className="list-card-bottom">
-          <div style={{display: 'inline-block'}}>
-            <ProfileImage
-              user={this.props.profile}
-              namePosition={'right'}
-              type="list"
-              className="mb1"
-            />
+      <Link href={`/lister/${list.id}`}>
+        <div className="list-card" style={style}>
+          <div className="list-card-covers">{renderBookCover(list.image)}</div>
+          <div className="list-card-summary">
+            <TruncateMarkup
+              lines={2}
+              ellipsis={
+                <span>
+                  ...<Badge value={elements.length} className="ml1" />
+                </span>
+              }
+            >
+              <h3 className="list-card-title h-tight">
+                {list.title}
+                <Badge value={elements.length} className="ml1" />
+              </h3>
+            </TruncateMarkup>
+            <TruncateMarkup lines={3}>
+              <div className="list-card-description">{list.description}</div>
+            </TruncateMarkup>
+          </div>
+          <div className="list-card-bottom">
+            <div style={{display: 'inline-block'}}>
+              <ProfileImage
+                user={this.props.profile}
+                namePosition={'right'}
+                type="list"
+                className="mb1"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }

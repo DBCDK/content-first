@@ -128,7 +128,7 @@ export class Item extends React.Component {
 }
 
 export class SimpleList extends React.Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       follow: false
