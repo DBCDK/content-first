@@ -2,17 +2,28 @@
 
 const assert = require('assert');
 const community = require('server/community');
-const {findingUserIdTroughLoginToken} = require('server/user');
+
+const config = require('server/config');
+const knex = require('knex')(config.db);
+const constants = require('server/constants')();
+const cookieTable = constants.cookies.table;
 
 async function getUser(req) {
-  try {
-    const userId = await findingUserIdTroughLoginToken(req);
-    const user = await community.gettingUserByProfileId(userId);
-    // TODO admin
-    return {id: userId, openplatformId: user.openplatformId, admin: false};
-  } catch (e) {
-    return;
+  const loginToken = req.cookies['login-token'];
+  if (loginToken) {
+    let result = await knex(cookieTable)
+      .where('cookie', loginToken)
+      .select();
+    if (result.length === 1) {
+      return {
+        id: result[0].community_profile_id,
+        openplatformId: result[0].openplatform_id,
+        admin: false
+      };
+    }
   }
+  // return undefined as user, if not logged in.
+  return;
 }
 
 function get(id, user = {}) {
