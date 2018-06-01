@@ -55,6 +55,7 @@
 @import './components/circletemplate.css';
 @import './components/bookcaseTemplate.css';
 @import './components/socialShareButton.css';
+@import './components/follow.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */
 @import '~slick-carousel/slick/slick.css';
