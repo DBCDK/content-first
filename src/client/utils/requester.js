@@ -56,7 +56,7 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
   const getBooks = request.get('/v1/books/').query({pids});
 
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
-  const coversPromise = Promise.all(
+  Promise.all(
     pids.map(async pid => {
       try {
         const [{coverUrlFull}] = await openplatform.work({
@@ -68,6 +68,16 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
         // ignore errors/missing on fetching covers
         return;
       }
+    })
+  ).then(coversResult =>
+    dispatch({
+      type: BOOKS_RESPONSE,
+      response: pids.map((pid, i) => ({
+        book: {
+          pid: pid,
+          coverUrl: coversResult[i]
+        }
+      }))
     })
   );
 
@@ -81,19 +91,6 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
           b.book.tags = tags[b.book.pid];
         });
       }
-
-      const coversResult = await coversPromise;
-      const covers = {};
-      for (let i = 0; i < pids.length; ++i) {
-        covers[pids[i]] = coversResult[i];
-      }
-
-      books.forEach(b => {
-        const {book: {pid}} = b;
-        if (covers[pid]) {
-          b.book.coverUrl = covers[pid];
-        }
-      });
 
       dispatch({type: BOOKS_RESPONSE, response: books});
       return books;

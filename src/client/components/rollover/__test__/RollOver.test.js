@@ -1,5 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import createStore from '../../../redux/Store';
 
 import RollOver from '../RollOver.component';
 
@@ -24,15 +26,17 @@ describe('RollOver', () => {
   it('renders initial component', () => {
     const tree = renderer
       .create(
-        <RollOver
-          loading={true}
-          position={position}
-          description={description}
-          onClick={() => {
-            this.nextBook('next');
-          }}
-          book={book}
-        />
+        <Provider store={createStore()}>
+          <RollOver
+            loading={true}
+            position={position}
+            description={description}
+            onClick={() => {
+              this.nextBook('next');
+            }}
+            book={book}
+          />
+        </Provider>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();

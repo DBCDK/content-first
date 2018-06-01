@@ -19,6 +19,7 @@ import {LIST_LOAD_REQUEST} from './list.reducer';
 import {FOLLOW_LOAD_REQUEST} from './follow.reducer';
 import openplatform from 'openplatform';
 import {HISTORY_PUSH} from './router.reducer';
+import {FETCH_INTERACTIONS} from './interaction.reducer';
 
 async function openplatformLogin(state) {
   if (!openplatform.connected()) {
@@ -37,6 +38,7 @@ export const userMiddleware = store => next => action => {
         store.dispatch({type: SHORTLIST_LOAD_REQUEST});
         store.dispatch({type: LIST_LOAD_REQUEST});
         store.dispatch({type: FOLLOW_LOAD_REQUEST});
+        store.dispatch({type: FETCH_INTERACTIONS});
       });
       return next(action);
     case ON_USER_DETAILS_ERROR:
