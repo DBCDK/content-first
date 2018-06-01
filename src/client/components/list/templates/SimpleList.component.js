@@ -128,27 +128,9 @@ export class Item extends React.Component {
 }
 
 export class SimpleList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      follow: false
-    };
-  }
-
-  componentDidMount() {
-    if (this.props.follows && this.props.follows[this.props.list.id]) {
-      this.setState({follow: true});
-    }
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setState({follow: nextProps.follows[this.props.list.id]});
-  }
-
   toggleFollow(id, cat) {
-    const followObj = this.props.follows[id];
-
-    if (this.state.follow) {
-      this.props.unfollow(id, followObj._id);
+    if (this.props.follows[id]) {
+      this.props.unfollow(id);
     } else {
       this.props.follow(id, cat);
     }
@@ -180,7 +162,9 @@ export class SimpleList extends React.Component {
               shape="square"
               txt="Følg"
               hoverTitle={'Følg ' + list.title}
-              status={this.state.follow ? 'active' : 'passive'}
+              status={
+                this.props.follows[this.props.list.id] ? 'active' : 'passive'
+              }
               onClick={() => this.toggleFollow(list.id, 'list')}
             />
             <SocialShareButton
@@ -281,11 +265,10 @@ export const mapDispatchToProps = dispatch => ({
       id,
       cat
     }),
-  unfollow: (id, _id) => {
+  unfollow: id => {
     dispatch({
       type: UNFOLLOW,
-      id,
-      _id
+      id
     });
   },
   confirmShareModal: id => {

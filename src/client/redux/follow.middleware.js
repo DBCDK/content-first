@@ -26,7 +26,7 @@ export const followMiddleware = store => next => async action => {
     }
 
     case UNFOLLOW: {
-      const _id = action._id;
+      const _id = store.getState().followReducer[action.id]._id;
       deleteObject({_id});
       return next(action);
     }

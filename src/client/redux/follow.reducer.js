@@ -35,9 +35,6 @@ const followReducer = (state = defaultState, action) => {
       if (!action.id) {
         throw new Error("'id' is missing from action");
       }
-      if (!action._id) {
-        throw new Error('Cant unfollow when no _id (obj id) is set');
-      }
 
       let obj = state;
       delete obj[action.id];
@@ -57,11 +54,10 @@ export const follow = (id, cat) => {
     cat
   };
 };
-export const unfollow = (id, _id) => {
+export const unfollow = id => {
   return {
     type: UNFOLLOW,
-    id,
-    _id
+    id
   };
 };
 

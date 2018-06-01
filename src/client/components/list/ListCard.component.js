@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import TruncateMarkup from 'react-truncate-markup';
 import BookCover from '../general/BookCover.component';
 import ProfileImage from '../general/ProfileImage.component';
@@ -77,10 +76,4 @@ class ListCard extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    owner: state.userReducer.openplatformId
-  };
-};
-
-export default connect(mapStateToProps)(ListCard);
+export default ListCard;
