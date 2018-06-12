@@ -25,7 +25,7 @@ describe('User logout', () => {
       }
     });
 
-    it('should invalidate current cookie and redirect to external logout page', () => {
+    it('should invalidate current cookie and redirect to external logout page', async () => {
       // Arrange.
       authenticator.clear();
       const token = '840e75ac9af8448898fe7f7c99198a7d';
@@ -45,25 +45,33 @@ describe('User logout', () => {
           constants.pages.loggedOut
       );
       // Act.
+      let user = await webapp
+        .get('/v1/user')
+        .set(
+          'cookie',
+          'login-token=valid-login-token-for-user-seeded-on-test-start'
+        );
+      expect(user.status).to.equal(200);
+
       return (
         webapp
           .post('/v1/logout')
-          .set('cookie', 'login-token=a-valid-login-token')
+          .set(
+            'cookie',
+            'login-token=valid-login-token-for-user-seeded-on-test-start'
+          )
           // Assert.
           .expect(303)
           .expect('location', remoteLogoutStem)
           // Act.
-          .then(() => {
-            return (
-              webapp
-                .get('/v1/user')
-                .set('cookie', 'login-token=a-valid-login-token')
-                // Assert.
-                .expect(403)
-                .expect(() => {
-                  expect(mock.getErrorLog().args).to.have.length(0);
-                })
-            );
+          .then(async () => {
+            user = await webapp
+              .get('/v1/user')
+              .set(
+                'cookie',
+                'login-token=valid-login-token-for-user-seeded-on-test-start'
+              );
+            expect(user.status).to.equal(403);
           })
       );
     });

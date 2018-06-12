@@ -2,7 +2,6 @@
 'use strict';
 
 const mock = require('fixtures/mock-server');
-const seeder = require('./seed-community');
 const {expect} = require('chai');
 const request = require('supertest');
 const nock = require('nock');
@@ -16,7 +15,6 @@ const {
   expectFailure,
   expectValidate
 } = require('fixtures/output-verifiers');
-const {expectSuccess_UserSeededOnTestStart, sleep} = require('./test-commons');
 const remoteLoginStem = new RegExp('^' + config.login.url + '/login\\?token');
 
 describe('User login', () => {
@@ -24,7 +22,6 @@ describe('User login', () => {
 
   beforeEach(async () => {
     await mock.resetting();
-    await seeder.seedingCommunity();
   });
 
   afterEach(async function() {
@@ -35,11 +32,65 @@ describe('User login', () => {
 
   describe('GET /v1/login', () => {
     it('should retrieve existing user data on valid cookie', async () => {
-      await sleep(100); // Apparently Elvis needs time get out of bed.
-      return webapp
+      const result = await webapp
         .get('/v1/login')
-        .set('cookie', 'login-token=a-valid-login-token')
-        .expect(expectSuccess_UserSeededOnTestStart);
+        .set(
+          'cookie',
+          'login-token=valid-login-token-for-user-seeded-on-test-start'
+        );
+
+      expect(result.status).to.equal(200);
+      expect(result.body).to.deep.equal({
+        data: {
+          id: 123456,
+          created_epoch: 1517919638,
+          name: 'testuser 123456',
+          openplatformId: '123openplatformId456',
+          openplatformToken: '123openplatformToken456',
+          image: 'b667c0cd-94ef-4732-b740-43cf8340511a',
+          roles: [],
+          acceptedTerms: true,
+          profiles: [],
+          lists: [
+            {
+              data: {
+                created_epoch: 1522753045,
+                modified_epoch: 1522753045,
+                owner: '123openplatformId456',
+                public: false,
+                social: false,
+                open: false,
+                type: 'SYSTEM_LIST',
+                title: 'Har læst',
+                description: 'En liste over læste bøger',
+                list: []
+              },
+              links: {self: '/v1/lists/830e113a-e2f3-44a6-8d4c-3918668b5769'}
+            },
+            {
+              data: {
+                created_epoch: 1522753045,
+                modified_epoch: 1522753045,
+                owner: '123openplatformId456',
+                public: false,
+                social: false,
+                open: false,
+                type: 'SYSTEM_LIST',
+                title: 'Vil læse',
+                description: 'En liste over bøger jeg gerne vil læse',
+                list: []
+              },
+              links: {self: '/v1/lists/7c4a330b-750f-460a-8b17-00bab11a2c6f'}
+            }
+          ],
+          shortlist: [
+            {pid: '870970-basis:52041082', origin: 'Fra "En god bog"'},
+            {pid: '870970-basis:26296218', origin: 'Fra "En god bog"'},
+            {pid: '870970-basis:52817757', origin: 'Fra "En god bog"'}
+          ]
+        },
+        links: {self: '/v1/user'}
+      });
     });
 
     it('should redirect to remote login page on no cookie', () => {
@@ -201,8 +252,6 @@ describe('User login', () => {
               .set('cookie', `login-token=${loginToken}`)
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
-                  expectValidate(links, 'schemas/user-links-out.json');
-                  expectValidate(data, 'schemas/user-data-out.json');
                   expect(data).to.deep.equal({
                     openplatformId: '1234567890',
                     openplatformToken: 'someToken',
@@ -226,7 +275,7 @@ describe('User login', () => {
       const token = '3b709b2a-37bb-4556-8021-e86b56e8f571';
       const id = 4321;
       arrangeLoginServiceToReturnUserWithUserIdOnTokenAndId(
-        seeder.knownUserId(),
+        '123openplatformId456',
         token,
         id
       );
@@ -250,7 +299,68 @@ describe('User login', () => {
               .get('/v1/login')
               .set('cookie', `login-token=${loginToken}`)
               .expect(res => {
-                expectSuccess_UserSeededOnTestStart(res);
+                expect(res.status).to.equal(200);
+                expect(res.body).to.deep.equal({
+                  data: {
+                    openplatformToken: 'someToken',
+                    id: 123456,
+                    created_epoch: 1517919638,
+                    name: 'testuser 123456',
+                    openplatformId: '123openplatformId456',
+                    image: 'b667c0cd-94ef-4732-b740-43cf8340511a',
+                    roles: [],
+                    acceptedTerms: true,
+                    profiles: [],
+                    lists: [
+                      {
+                        data: {
+                          created_epoch: 1522753045,
+                          modified_epoch: 1522753045,
+                          owner: '123openplatformId456',
+                          public: false,
+                          social: false,
+                          open: false,
+                          type: 'SYSTEM_LIST',
+                          title: 'Har læst',
+                          description: 'En liste over læste bøger',
+                          list: []
+                        },
+                        links: {
+                          self: '/v1/lists/830e113a-e2f3-44a6-8d4c-3918668b5769'
+                        }
+                      },
+                      {
+                        data: {
+                          created_epoch: 1522753045,
+                          modified_epoch: 1522753045,
+                          owner: '123openplatformId456',
+                          public: false,
+                          social: false,
+                          open: false,
+                          type: 'SYSTEM_LIST',
+                          title: 'Vil læse',
+                          description: 'En liste over bøger jeg gerne vil læse',
+                          list: []
+                        },
+                        links: {
+                          self: '/v1/lists/7c4a330b-750f-460a-8b17-00bab11a2c6f'
+                        }
+                      }
+                    ],
+                    shortlist: [
+                      {
+                        pid: '870970-basis:52041082',
+                        origin: 'Fra "En god bog"'
+                      },
+                      {
+                        pid: '870970-basis:26296218',
+                        origin: 'Fra "En god bog"'
+                      },
+                      {pid: '870970-basis:52817757', origin: 'Fra "En god bog"'}
+                    ]
+                  },
+                  links: {self: '/v1/user'}
+                });
                 expect(nock.isDone());
                 expect(mock.getErrorLog().args).to.have.length(0);
               });

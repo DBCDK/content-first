@@ -37,7 +37,6 @@ module.exports = {
 
 const {expect} = require('chai');
 const nock = require('nock');
-const seeder = require('./seed-community');
 const {expectSuccess} = require('fixtures/output-verifiers');
 const {expectFailure} = require('fixtures/output-verifiers');
 const {expectValidate} = require('fixtures/output-verifiers');
@@ -75,7 +74,7 @@ function expectError_MissingLoginToken(uri) {
       expect(errors).to.have.length(1);
       const error = errors[0];
       expect(error.title).to.match(/user not logged in/i);
-      expect(error.detail).to.match(/missing login-token cookie/i);
+      expect(error.detail).to.match(/User not logged in or session expired/i);
       expect(error).to.have.property('meta');
       expect(error.meta).to.have.property('resource');
       expect(error.meta.resource).to.equal(uri);
@@ -114,7 +113,7 @@ function expectError_UnknownLoginToken(uri) {
       expect(errors).to.have.length(1);
       const error = errors[0];
       expect(error.title).to.match(/user not logged in/i);
-      expect(error.detail).to.match(/unknown login token/i);
+      expect(error.detail).to.match(/User not logged in or session expired/i);
       expect(error).to.have.property('meta');
       expect(error.meta).to.have.property('resource');
       expect(error.meta.resource).to.equal(uri);
@@ -171,7 +170,6 @@ function expectValidLists(document) {
 function expectSuccess_CachedListSeededOnTestStart(response) {
   expectSuccess(response.body, (links, data) => {
     expectValidate(links, 'schemas/list-links-out.json');
-    expect(links.self).to.equal(`/v1/lists/${seeder.cachedPublicListUuid()}`);
     expectValidate(data, 'schemas/list-data-out.json');
     expectCachedListSeededOnTestStart(data);
   });
@@ -181,9 +179,6 @@ function expectSuccess_CachedListSeededOnTestStart(response) {
 function expectSuccess_UncachedListSeededOnTestStart(response) {
   expectSuccess(response.body, (links, data) => {
     expectValidate(links, 'schemas/list-links-out.json');
-    expect(links.self).to.equal(
-      `/v1/lists/${seeder.uncachedPrivateListUuid()}`
-    );
     expectValidate(data, 'schemas/list-data-out.json');
     expectUncachedListSeededOnTestStart(data);
   });
@@ -209,9 +204,6 @@ function expectSuccess_UserSeededOnTestStart(response) {
 function expectSuccess_PublicViewOfUserSeededOnTestStart(response) {
   expectSuccess(response.body, (links, data) => {
     expectValidate(links, 'schemas/public-user-links-out.json');
-    expect(links.self).to.equal(
-      `/v1/user/${encodeURIComponent(seeder.knownUserId())}`
-    );
     expectValidate(data, 'schemas/public-user-data-out.json');
     expectValidLists(data.lists);
     expect(data.name).to.deep.equal('Jens Godfredsen');
@@ -295,7 +287,6 @@ function cachedListSeededOnTestStart() {
       open: true,
       social: true,
       public: true,
-      owner: seeder.knownUserId(),
       title: 'My List',
       description: 'A brand new list',
       list: [
@@ -304,8 +295,7 @@ function cachedListSeededOnTestStart() {
           description: 'Magic to the people'
         }
       ]
-    },
-    links: {self: `/v1/lists/${seeder.cachedPublicListUuid()}`}
+    }
   };
 }
 
@@ -316,7 +306,6 @@ function uncachedListSeededOnTestStart() {
       open: false,
       social: false,
       public: false,
-      owner: seeder.knownUserId(),
       title: 'Gamle Perler',
       description: 'Bøger man simpelthen må læse',
       list: [
@@ -325,8 +314,7 @@ function uncachedListSeededOnTestStart() {
           description: 'Russisk forvekslingskomedie'
         }
       ]
-    },
-    links: {self: `/v1/lists/${seeder.uncachedPrivateListUuid()}`}
+    }
   };
 }
 

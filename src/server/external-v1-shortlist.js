@@ -3,15 +3,8 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const {
-  gettingUserFromToken,
-  gettingUser,
-  findingUserIdTroughLoginToken,
-  updatingUser
-} = require('server/user');
-const {validatingInput} = require('__/json');
-const path = require('path');
-const schema = path.join(__dirname, 'schemas/shortlist-in.json');
+const {getUserData, putUserData} = require('server/user');
+const logger = require('server/logger');
 
 router
   .route('/')
@@ -21,17 +14,14 @@ router
   //
   .get(
     asyncMiddleware(async (req, res, next) => {
-      const location = req.baseUrl;
-      return gettingUserFromToken(req)
-        .then(user => {
-          res.status(200).json({
-            data: user.shortlist,
-            links: {self: location}
-          });
-        })
-        .catch(error => {
-          next(error);
+      try {
+        res.status(200).json({
+          data: (await getUserData({req})).shortlist,
+          links: {self: req.baseUrl}
         });
+      } catch (error) {
+        next(error);
+      }
     })
   )
 
@@ -40,6 +30,7 @@ router
   //
   .put(
     asyncMiddleware(async (req, res, next) => {
+      const location = req.baseUrl;
       const contentType = req.get('content-type');
       if (contentType !== 'application/json') {
         return next({
@@ -48,43 +39,21 @@ router
           detail: `Content type ${contentType} is not supported`
         });
       }
-      const shortlist = req.body;
       try {
-        await validatingInput(shortlist, schema);
-      } catch (error) {
-        return next({
-          status: 400,
-          title: 'Malformed shortlist data',
-          detail: 'Shortlist does not adhere to schema',
-          meta: error.meta || error
-        });
-      }
-      const location = req.baseUrl;
-      let userId;
-      try {
-        userId = await findingUserIdTroughLoginToken(req);
-      } catch (error) {
-        return next(error);
-      }
-      try {
-        await updatingUser(userId, {
-          shortlist: shortlist
+        const shortlist = req.body;
+        await putUserData({shortlist}, req);
+        const userData = await getUserData({req});
+        res.status(200).json({
+          data: userData.shortlist,
+          links: {self: location}
         });
       } catch (error) {
-        return next(error);
+        logger.log.error(error);
+
+        const returnedError = {meta: {resource: location}};
+        Object.assign(returnedError, error);
+        next(returnedError);
       }
-      return gettingUser(userId)
-        .then(user => {
-          res.status(200).json({
-            data: user.shortlist,
-            links: {self: location}
-          });
-        })
-        .catch(error => {
-          const returnedError = {meta: {resource: location}};
-          Object.assign(returnedError, error);
-          next(returnedError);
-        });
     })
   );
 

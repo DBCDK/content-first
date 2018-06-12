@@ -16,11 +16,9 @@ const cookieTable = constants.cookies.table;
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const loginService = require('server/login');
 const uuidv4 = require('uuid/v4');
-const {
-  findingUserIdByOpenplatformId,
-  creatingUserByOpenplatformId,
-  updatingUser
-} = require('server/user');
+const {putUserData} = require('server/user');
+const objectStore = require('server/objectStore');
+const community = require('server/community');
 
 router
   .route('/')
@@ -33,24 +31,60 @@ router
       const id = req.query.id;
       const loginToken = uuidv4();
       try {
-        const remoteUser = await loginService.gettingTicket(token, id);
+        const {
+          openplatformId,
+          openplatformToken
+        } = await loginService.gettingTicket(token, id);
+
         logger.log.debug('Got remote user data');
-        const userId =
-          (await findingUserIdByOpenplatformId(remoteUser.openplatformId)) ||
-          (await creatingUserByOpenplatformId(remoteUser.openplatformId));
+        // TODO remove legacy code when users migrated BEGIN
+        let userId = -1;
+        try {
+          userId = await community.gettingProfileIdByOpenplatformId(
+            openplatformId
+          );
+        } catch (e) {
+          // do nothing;
+        }
+        // TODO remove legacy code END
+
         logger.log.debug(
-          `User info ${JSON.stringify(remoteUser)}, userId ${userId}`
+          `User info ${JSON.stringify(
+            openplatformId,
+            openplatformToken
+          )}, userId ${userId}, openplatformId, ${openplatformId}`
         );
-        await updatingUser(userId, remoteUser);
 
         logger.log.debug(`Creating login token ${loginToken}`);
         await knex(cookieTable).insert({
           cookie: loginToken,
-          community_profile_id: userId,
-          openplatform_id: remoteUser.openplatformId,
-          openplatform_token: remoteUser.openplatformToken,
+          community_profile_id: userId, // TODO remove this when users migrated
+          openplatform_id: openplatformId,
+          openplatform_token: openplatformToken,
           expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
         });
+
+        req.cookies['login-token'] = loginToken;
+        if (
+          userId === -1 &&
+          (await objectStore.find({
+            type: 'USER_PROFILE',
+            owner: openplatformId,
+            limit: 1
+          })).data.length === 0
+        ) {
+          await putUserData(
+            {
+              name: '',
+              roles: [],
+              openplatformId,
+              shortlist: [],
+              profiles: [],
+              lists: []
+            },
+            req
+          );
+        }
 
         logger.log.debug(`Redirecting with token ${loginToken}`);
         return res
