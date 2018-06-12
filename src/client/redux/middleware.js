@@ -1,7 +1,13 @@
 import request from 'superagent';
-import {BOOKS_REQUEST} from './books.reducer';
+import {
+  BOOKS_REQUEST,
+  REVIEW_REQUEST,
+  COLLECTION_REQUEST
+} from './books.reducer';
 import {
   fetchBooks,
+  fetchReviews,
+  fetchCollection,
   fetchSearchResults,
   saveShortList,
   loadShortList,
@@ -94,6 +100,7 @@ export const requestMiddleware = store => next => action => {
       );
 
       // only download cached book if forced
+
       if (!action.force) {
         pidsToFetch = pidsToFetch.filter(
           pid => !books[pid] || !books[pid].book
@@ -106,6 +113,31 @@ export const requestMiddleware = store => next => action => {
 
       action.pids = pidsToFetch;
       return next(action);
+    }
+    case REVIEW_REQUEST: {
+      if (
+        action.reviews &&
+        action.reviews.data &&
+        action.reviews.data.length > 0
+      ) {
+        const books = store.getState().booksReducer.books;
+        if (
+          // we select for .pid to check if reviews.data is an array of objects or strings.
+          !books[action.pid].book.reviews.data[0].pid &&
+          !books[action.pid].book.reviews.isLoading
+        ) {
+          fetchReviews(action.pid, action.reviews, store.dispatch);
+        }
+      }
+    }
+    case COLLECTION_REQUEST: {
+      if (
+        action.collection &&
+        action.collection.data &&
+        action.collection.data.length > 0
+      ) {
+        fetchCollection(action.pid, action.collection, store.dispatch);
+      }
     }
     default:
       return next(action);

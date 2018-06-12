@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from './WorkItemConnected.component';
+import Spinner from '../general/Spinner.component';
 import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
@@ -9,7 +10,11 @@ import Link from '../general/Link.component';
 import SocialShareButton from '../general/SocialShareButton.component';
 import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
-import {BOOKS_REQUEST} from '../../redux/books.reducer';
+import {
+  BOOKS_REQUEST,
+  REVIEW_REQUEST,
+  COLLECTION_REQUEST
+} from '../../redux/books.reducer';
 import {getRecommendedBooks} from '../../redux/selectors';
 import {get} from 'lodash';
 
@@ -39,6 +44,19 @@ class WorkPage extends React.Component {
     if (nextTags && prevTags !== nextTags) {
       selectedTagIds = nextTags.map(t => t.id);
       this.props.fetchRecommendations(selectedTagIds);
+    }
+
+    const nextReviews = get(nextProps, 'work.book.reviews');
+    const prevReviews = get(this.props, 'work.book.reviews');
+    console.log('nextReviews', nextReviews);
+    console.log('prevReviews', prevReviews);
+    if (nextReviews && prevReviews !== nextReviews) {
+      console.log('????');
+      this.props.fetchWorkReviews(nextProps.pid, nextProps.work.book.reviews);
+      this.props.fetchWorkCollection(
+        nextProps.pid,
+        nextProps.work.book.collection
+      );
     }
   }
 
@@ -89,38 +107,116 @@ class WorkPage extends React.Component {
                     .map((line, idx) => <p key={idx}>{line}</p>)}
               </div>
               <div className="line" />
-              <div className="description">{book.description}</div>
-              <div className="extra">
-                <div className="subjects">{book.subject}</div>
-                {book.pages && (
-                  <div className="page-count">{`${book.pages} sider`}</div>
-                )}
-                <div className="year">
-                  {book.literary_form}
-                  {book.literary_form && book.first_edition_year ? ', ' : ''}
-                  {book.first_edition_year ? book.first_edition_year : ''}
-                </div>
-                {book.genre && <div className="genre">{book.genre}</div>}
-              </div>
-              <div className="bibliotek-dk-link">
-                <a
-                  target="_blank"
-                  href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(
-                    book.pid
-                  )}`}
-                >
-                  Se mere på bibliotek.dk
-                </a>
-              </div>
+              <div className="row">
+                <div className="col-xs-8">
+                  <div className="description">{book.description}</div>
+                  <div className="extra">
+                    <div className="subjects">{book.subject}</div>
+                    {book.pages && (
+                      <div className="page-count">{`${book.pages} sider`}</div>
+                    )}
+                    <div className="year">
+                      {book.literary_form}
+                      {book.literary_form && book.first_edition_year
+                        ? ', '
+                        : ''}
+                      {book.first_edition_year ? book.first_edition_year : ''}
+                    </div>
+                    {book.genre && <div className="genre">{book.genre}</div>}
+                  </div>
+                  <div className="bibliotek-dk-link">
+                    <a
+                      target="_blank"
+                      href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(
+                        book.pid
+                      )}`}
+                    >
+                      Se mere på bibliotek.dk
+                    </a>
+                  </div>
 
-              <CheckmarkConnected book={{book}} origin="Fra egen værkside" />
-              <OrderButton
-                book={book}
-                style={{marginLeft: 10, border: 'none'}}
-              />
+                  <CheckmarkConnected
+                    book={{book}}
+                    origin="Fra egen værkside"
+                  />
+
+                  <OrderButton
+                    book={book}
+                    style={{marginLeft: 10, border: 'none'}}
+                  />
+                  {book.collection && book.collection.isLoading ? (
+                    <Spinner
+                      style={{
+                        width: 20,
+                        height: 20,
+                        margin: '10px 30px 0px 30px'
+                      }}
+                    />
+                  ) : book.collection &&
+                  book.collection.data &&
+                  book.collection.data.length > 0 ? (
+                    book.collection.data.map(r => {
+                      if (r.type && r.type[0] === 'Ebog') {
+                        return (
+                          <SocialShareButton
+                            className={'ssb-ereolen'}
+                            styles={{
+                              display: 'inlineBlock',
+                              marginLeft: '10px'
+                            }}
+                            href={r.iURI}
+                            icon={null}
+                            hex={'#337ab7'}
+                            size={32}
+                            shape="square"
+                            txt="Bestil på eReolen"
+                          />
+                        );
+                      }
+                    })
+                  ) : book.collection && !book.collection.isLoading ? (
+                    ''
+                  ) : (
+                    ''
+                  )}
+                </div>
+
+                <div className="col-xs-4 reviews">
+                  <div className="col-xs-12 reviews-heading">
+                    Anmeldelser fra litteratursiden:
+                  </div>
+                  {book.reviews && book.reviews.isLoading ? (
+                    <Spinner style={{width: 50, height: 50}} />
+                  ) : book.reviews &&
+                  book.reviews.data &&
+                  book.reviews.data.length > 0 ? (
+                    book.reviews.data.map(r => {
+                      if (r.creatorOth !== '' && r.isPartOf !== '') {
+                        return (
+                          <a
+                            className="tag tags tag-medium review"
+                            key={r.pid}
+                            target={'blank'}
+                            href={r.iURI ? r.iURI : ''}
+                          >
+                            <div className="review-creator">{r.creatorOth}</div>
+                            <div className="review-partOf">{r.isPartOf}</div>
+                          </a>
+                        );
+                      }
+                    })
+                  ) : book.reviews && !book.reviews.isLoading ? (
+                    <p>Der er ingen anmeldelser til dette værk.</p>
+                  ) : (
+                    ''
+                  )}
+                </div>
+              </div>
 
               <SocialShareButton
                 className={'ssb-fb'}
+                styles={{fontWeight: 'bold'}}
+                facebook={true}
                 href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
                 icon={'fb-icon'}
                 hex={'#3b5998'}
@@ -247,6 +343,18 @@ export const mapDispatchToProps = dispatch => ({
       type: RECOMMEND_REQUEST,
       tags,
       max: 21
+    }),
+  fetchWorkReviews: (pid, reviews) =>
+    dispatch({
+      type: REVIEW_REQUEST,
+      pid,
+      reviews
+    }),
+  fetchWorkCollection: (pid, collection) =>
+    dispatch({
+      type: COLLECTION_REQUEST,
+      pid,
+      collection
     })
 });
 

@@ -6,6 +6,10 @@ const defaultState = {
 
 export const BOOKS_REQUEST = 'BOOKS_REQUEST';
 export const BOOKS_RESPONSE = 'BOOKS_RESPONSE';
+export const REVIEW_REQUEST = 'REVIEW_REQUEST';
+export const REVIEW_RESPONSE = 'REVIEW_RESPONSE';
+export const COLLECTION_REQUEST = 'COLLECTION_REQUEST';
+export const COLLECTION_RESPONSE = 'COLLECTION_RESPONSE';
 
 const booksReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -25,6 +29,44 @@ const booksReducer = (state = defaultState, action) => {
       });
 
       return Object.assign({}, state, {books: books});
+    }
+    case REVIEW_REQUEST: {
+      const books = {...state.books};
+      const pid = action.pid;
+
+      if (books[pid].book.reviews) {
+        books[pid].book.reviews.isLoading = true;
+        return Object.assign({}, state, {books});
+      }
+    }
+    case REVIEW_RESPONSE: {
+      const books = {...state.books};
+      const pid = action.pid;
+
+      if (action.response) {
+        books[pid].book.reviews.data = action.response;
+        books[pid].book.reviews.isLoading = false;
+      }
+      return Object.assign({}, state, {books});
+    }
+    case COLLECTION_REQUEST: {
+      const books = {...state.books};
+      const pid = action.pid;
+
+      if (books[pid].book.collection) {
+        books[pid].book.collection.isLoading = true;
+        return Object.assign({}, state, {books});
+      }
+    }
+    case COLLECTION_RESPONSE: {
+      const books = {...state.books};
+      const pid = action.pid;
+
+      if (action.response) {
+        books[pid].book.collection.data = action.response;
+        books[pid].book.collection.isLoading = false;
+      }
+      return Object.assign({}, state, {books});
     }
     default:
       return state;
