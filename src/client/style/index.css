@@ -8,9 +8,11 @@
   --lightgrey: #d9d9d9;
   --mediumgrey: #545454;
   --darkgrey: #333333;
-  --primary-font: 'Lora', serif;
   --secondary-font: 'Raleway', sans-serif;
 }
+
+/*imports for new design*/
+@import './global.css';
 
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
@@ -62,6 +64,7 @@
 @import '~slick-carousel/slick/slick-theme.css';
 
 html {
+  font-size: 14px;
   /* Avoid content from jumping when modal is opened/closed */
   overflow-y: scroll;
 }
@@ -71,7 +74,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   background: #fdfdfd;
-  font-family: 'Lora', serif;
+  font-family: var(--primary-font);
 }
 
 /*body.modal-open {
@@ -92,7 +95,6 @@ body {
     width: 1400px;
   }
 }
-.btn,
 .raleway {
   font-family: 'Raleway', sans-serif;
 }
