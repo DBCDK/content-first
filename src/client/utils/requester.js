@@ -1,10 +1,6 @@
 import openplatform from 'openplatform';
 import request from 'superagent';
-import {
-  BOOKS_RESPONSE,
-  REVIEW_RESPONSE,
-  COLLECTION_RESPONSE
-} from '../redux/books.reducer';
+import {BOOKS_RESPONSE} from '../redux/books.reducer';
 import {SEARCH_RESULTS} from '../redux/search.reducer';
 import {HISTORY_PUSH} from '../redux/router.reducer';
 import {
@@ -43,12 +39,31 @@ export const fetchTags = async (pids = []) => {
   return result;
 };
 
-export const fetchBooks = (pids = [], includeTags, dispatch) => {
+export const fetchBooks = (pids = [], dispatch) => {
   pids = unique(pids);
   const getBooks = request.get('/v1/books/').query({pids});
 
+  return Promise.all([getBooks])
+    .then(async responses => {
+      let books = JSON.parse(responses[0].text).data;
+      return books;
+    })
+    .catch(error => {
+      dispatch({
+        type: 'LOG_ERROR',
+        actionType: BOOKS_RESPONSE,
+        pids,
+        error: String(error)
+      });
+      throw error;
+    });
+};
+
+export const fetchBooksRefs = (pids = []) => {
+  pids = unique(pids);
+
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
-  Promise.all(
+  return Promise.all(
     pids.map(async pid => {
       try {
         const [{coverUrlFull, hasReview, collection}] = await openplatform.work(
@@ -68,9 +83,7 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
       }
     })
   ).then(result => {
-    console.log('ost');
-    dispatch({
-      type: BOOKS_RESPONSE,
+    return {
       response: pids
         .map((pid, i) => {
           if (result && result[i]) {
@@ -85,49 +98,42 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
           }
         })
         .filter(b => b)
-    });
+    };
   });
-
-  return Promise.all([getBooks])
-    .then(async responses => {
-      const books = JSON.parse(responses[0].text).data;
-      if (includeTags) {
-        const tags = await fetchTags(pids);
-
-        books.forEach(b => {
-          b.book.tags = tags[b.book.pid];
-        });
-      }
-      dispatch({type: BOOKS_RESPONSE, response: books});
-      return books;
-    })
-    .catch(error => {
-      dispatch({
-        type: 'LOG_ERROR',
-        actionType: BOOKS_RESPONSE,
-        pids,
-        error: String(error)
-      });
-      throw error;
-    });
 };
 
-export const fetchReviews = (pid, reviews, dispatch) => {
+export const fetchBooksTags = async (pids = []) => {
+  pids = unique(pids);
+  const tags = await fetchTags(pids);
+  let books = pids.map(pid => {
+    return {
+      book: {
+        pid: pid,
+        tags: tags[pid]
+      }
+    };
+  });
+  return books;
+};
+
+export const fetchReviews = refsResponse => {
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
-  Promise.all(
-    reviews.data.map(async review => {
+  return Promise.all(
+    refsResponse.map(async ref => {
       try {
-        const [
-          {identifierURI, creatorOth, isPartOf, date}
-        ] = await openplatform.work({
-          pids: [review],
+        const result = await openplatform.work({
+          pids: ref.book.reviews.data,
           fields: ['identifierURI', 'creatorOth', 'isPartOf', 'date']
         });
+
         return {
-          identifierURI,
-          creatorOth,
-          isPartOf,
-          date
+          book: {
+            pid: ref.book.pid,
+            reviews: {
+              data: result,
+              isLoading: false
+            }
+          }
         };
       } catch (e) {
         // ignore errors/missing on fetching covers
@@ -135,39 +141,28 @@ export const fetchReviews = (pid, reviews, dispatch) => {
       }
     })
   ).then(result => {
-    dispatch({
-      type: REVIEW_RESPONSE,
-      pid,
-      response: reviews.data
-        .map((review, i) => {
-          if (result && result[i]) {
-            return {
-              pid: review,
-              iURI: result[i].identifierURI || false,
-              creatorOth: result[i].creatorOth || '',
-              isPartOf: result[i].isPartOf || '',
-              date: result[i].date || ''
-            };
-          }
-        })
-        .filter(r => r && r.iURI)
-        .filter(r => r.iURI[0].includes('litteratursiden.dk'))
-    });
+    return result;
   });
 };
 
-export const fetchCollection = (pid, collection = [], dispatch) => {
+export const fetchCollection = refsResponse => {
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
-  Promise.all(
-    collection.data.map(async col => {
+  return Promise.all(
+    refsResponse.map(async ref => {
       try {
-        const [{type, identifierURI}] = await openplatform.work({
-          pids: [col],
+        const result = await openplatform.work({
+          pids: ref.book.collection.data,
           fields: ['type', 'identifierURI']
         });
+
         return {
-          type,
-          identifierURI
+          book: {
+            pid: ref.book.pid,
+            collection: {
+              data: result,
+              isLoading: false
+            }
+          }
         };
       } catch (e) {
         // ignore errors/missing on fetching covers
@@ -175,22 +170,7 @@ export const fetchCollection = (pid, collection = [], dispatch) => {
       }
     })
   ).then(result => {
-    dispatch({
-      type: COLLECTION_RESPONSE,
-      pid,
-      response: collection.data
-        .map((col, i) => {
-          if (result && result[i]) {
-            return {
-              pid: col,
-              type: result[i].type || '',
-              iURI: result[i].identifierURI || false
-            };
-          }
-        })
-        .filter(r => r.iURI)
-        .filter(r => r.iURI[0].includes('ereolen.dk'))
-    });
+    return result;
   });
 };
 

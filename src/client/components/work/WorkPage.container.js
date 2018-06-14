@@ -10,11 +10,7 @@ import Link from '../general/Link.component';
 import SocialShareButton from '../general/SocialShareButton.component';
 import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
-import {
-  BOOKS_REQUEST,
-  REVIEW_REQUEST,
-  COLLECTION_REQUEST
-} from '../../redux/books.reducer';
+import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {getRecommendedBooks} from '../../redux/selectors';
 import {get} from 'lodash';
 
@@ -41,22 +37,10 @@ class WorkPage extends React.Component {
     }
     const nextTags = get(nextProps, 'work.book.tags');
     const prevTags = get(this.props, 'work.book.tags');
+
     if (nextTags && prevTags !== nextTags) {
       selectedTagIds = nextTags.map(t => t.id);
       this.props.fetchRecommendations(selectedTagIds);
-    }
-
-    const nextReviews = get(nextProps, 'work.book.reviews');
-    const prevReviews = get(this.props, 'work.book.reviews');
-    console.log('nextReviews', nextReviews);
-    console.log('prevReviews', prevReviews);
-    if (nextReviews && prevReviews !== nextReviews) {
-      console.log('????');
-      this.props.fetchWorkReviews(nextProps.pid, nextProps.work.book.reviews);
-      this.props.fetchWorkCollection(
-        nextProps.pid,
-        nextProps.work.book.collection
-      );
     }
   }
 
@@ -164,7 +148,7 @@ class WorkPage extends React.Component {
                               display: 'inlineBlock',
                               marginLeft: '10px'
                             }}
-                            href={r.iURI}
+                            href={r.identifierURI}
                             icon={null}
                             hex={'#337ab7'}
                             size={32}
@@ -191,18 +175,27 @@ class WorkPage extends React.Component {
                   book.reviews.data &&
                   book.reviews.data.length > 0 ? (
                     book.reviews.data.map(r => {
-                      if (r.creatorOth !== '' && r.isPartOf !== '') {
-                        return (
-                          <a
-                            className="tag tags tag-medium review"
-                            key={r.pid}
-                            target={'blank'}
-                            href={r.iURI ? r.iURI : ''}
-                          >
-                            <div className="review-creator">{r.creatorOth}</div>
-                            <div className="review-partOf">{r.isPartOf}</div>
-                          </a>
-                        );
+                      // Select only obj in reviews
+                      if (
+                        r.identifierURI &&
+                        r.identifierURI[0].includes('litteratursiden.dk')
+                      ) {
+                        // Dont show reviews without a creator and ref
+                        if (r.creatorOth !== '' && r.isPartOf !== '') {
+                          return (
+                            <a
+                              className="tag tags tag-medium review"
+                              key={r.pid}
+                              target={'blank'}
+                              href={r.identifierURI ? r.identifierURI : ''}
+                            >
+                              <div className="review-creator">
+                                {r.creatorOth}
+                              </div>
+                              <div className="review-partOf">{r.isPartOf}</div>
+                            </a>
+                          );
+                        }
                       }
                     })
                   ) : book.reviews && !book.reviews.isLoading ? (
@@ -336,25 +329,14 @@ export const mapDispatchToProps = dispatch => ({
       type: BOOKS_REQUEST,
       pids: [pid],
       includeTags: true,
-      force: true
+      includeReviews: true,
+      includeCollection: true
     }),
   fetchRecommendations: tags =>
     dispatch({
       type: RECOMMEND_REQUEST,
       tags,
       max: 21
-    }),
-  fetchWorkReviews: (pid, reviews) =>
-    dispatch({
-      type: REVIEW_REQUEST,
-      pid,
-      reviews
-    }),
-  fetchWorkCollection: (pid, collection) =>
-    dispatch({
-      type: COLLECTION_REQUEST,
-      pid,
-      collection
     })
 });
 
