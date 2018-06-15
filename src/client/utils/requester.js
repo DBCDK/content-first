@@ -13,6 +13,7 @@ import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
+import {get} from 'lodash';
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
@@ -59,6 +60,41 @@ export const fetchBooks = (pids = [], dispatch) => {
     });
 };
 
+export const fetchCoverRefs = (pids = []) => {
+  pids = unique(pids);
+
+  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
+  return Promise.all(
+    pids.map(async pid => {
+      try {
+        const [{coverUrlFull}] = await openplatform.work({
+          pids: [pid],
+          fields: ['coverUrlFull']
+        });
+        return {
+          coverUrlFull: coverUrlFull && coverUrlFull[0]
+        };
+      } catch (e) {
+        // ignore errors/missing on fetching covers
+        return;
+      }
+    })
+  ).then(result => {
+    return pids
+      .map((pid, i) => {
+        if (result && result[i]) {
+          return {
+            book: {
+              pid: pid,
+              coverUrl: result[i].coverUrlFull || ''
+            }
+          };
+        }
+      })
+      .filter(b => b);
+  });
+};
+
 export const fetchBooksRefs = (pids = []) => {
   pids = unique(pids);
 
@@ -66,14 +102,11 @@ export const fetchBooksRefs = (pids = []) => {
   return Promise.all(
     pids.map(async pid => {
       try {
-        const [{coverUrlFull, hasReview, collection}] = await openplatform.work(
-          {
-            pids: [pid],
-            fields: ['coverUrlFull', 'hasReview', 'collection']
-          }
-        );
+        const [{hasReview, collection}] = await openplatform.work({
+          pids: [pid],
+          fields: ['hasReview', 'collection']
+        });
         return {
-          coverUrlFull: coverUrlFull && coverUrlFull[0],
           hasReview,
           collection
         };
@@ -83,22 +116,19 @@ export const fetchBooksRefs = (pids = []) => {
       }
     })
   ).then(result => {
-    return {
-      response: pids
-        .map((pid, i) => {
-          if (result && result[i]) {
-            return {
-              book: {
-                pid: pid,
-                coverUrl: result[i].coverUrlFull || '',
-                reviews: {data: result[i].hasReview || []},
-                collection: {data: result[i].collection || []}
-              }
-            };
-          }
-        })
-        .filter(b => b)
-    };
+    return pids
+      .map((pid, i) => {
+        if (result && result[i]) {
+          return {
+            book: {
+              pid: pid,
+              reviews: {data: result[i].hasReview || []},
+              collection: {data: result[i].collection || []}
+            }
+          };
+        }
+      })
+      .filter(b => b);
   });
 };
 
@@ -116,10 +146,14 @@ export const fetchBooksTags = async (pids = []) => {
   return books;
 };
 
-export const fetchReviews = refsResponse => {
+export const fetchReviews = (pids, store) => {
+  const books = store.getState().booksReducer.books;
+  const booksToBeFetched = pids
+    .map(pid => books[pid])
+    .filter(work => get(work, 'book.reviews.data.length') > 0);
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
-    refsResponse.map(async ref => {
+    booksToBeFetched.map(async ref => {
       try {
         const result = await openplatform.work({
           pids: ref.book.reviews.data,
@@ -145,10 +179,14 @@ export const fetchReviews = refsResponse => {
   });
 };
 
-export const fetchCollection = refsResponse => {
+export const fetchCollection = (pids, store) => {
+  const books = store.getState().booksReducer.books;
+  const booksToBeFetched = pids
+    .map(pid => books[pid])
+    .filter(work => get(work, 'book.collection.data.length') > 0);
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
-    refsResponse.map(async ref => {
+    booksToBeFetched.map(async ref => {
       try {
         const result = await openplatform.work({
           pids: ref.book.collection.data,

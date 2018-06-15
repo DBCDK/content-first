@@ -2,14 +2,7 @@ import request from 'superagent';
 import {
   BOOKS_REQUEST,
   BOOKS_RESPONSE,
-  BOOKS_DETAILS_REQUEST,
-  BOOKS_DETAILS_RESPONSE,
-  TAGS_REQUEST,
-  TAGS_RESPONSE,
-  REVIEW_REQUEST,
-  REVIEW_RESPONSE,
-  COLLECTION_REQUEST,
-  COLLECTION_RESPONSE
+  BOOKS_PARTIAL_UPDATE
 } from './books.reducer';
 import {
   fetchBooks,
@@ -17,6 +10,7 @@ import {
   fetchBooksTags,
   fetchReviews,
   fetchCollection,
+  fetchCoverRefs,
   fetchSearchResults,
   saveShortList,
   loadShortList,
@@ -51,7 +45,7 @@ import {
 } from './list.reducer';
 import {SEARCH_QUERY} from './search.reducer';
 import {saveList, loadLists, loadRecentPublic} from '../utils/requestLists';
-import {merge} from 'lodash';
+import {get} from 'lodash';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -99,140 +93,72 @@ export const historyMiddleware = history => store => next => action => {
   }
 };
 
+const partialUpdateRequest = async (name, pids, requestFunction, store) => {
+  const books = store.getState().booksReducer.books;
+  const pidsToFetch = pids.filter(
+    pid =>
+      !get(books[pid], `${name}HasLoaded`) &&
+      !get(books[pid], `${name}IsLoading`)
+  );
+  if (pidsToFetch.length === 0) {
+    return;
+  }
+  store.dispatch({
+    type: BOOKS_PARTIAL_UPDATE,
+    books: pidsToFetch.map(pid => {
+      return {
+        book: {pid},
+        [`${name}IsLoading`]: true,
+        [`${name}HasLoaded`]: false
+      };
+    })
+  });
+  const response = await requestFunction(pidsToFetch, store);
+  store.dispatch({
+    type: BOOKS_PARTIAL_UPDATE,
+    books: response.map(work => ({
+      ...work,
+      [`${name}IsLoading`]: false,
+      [`${name}HasLoaded`]: true
+    }))
+  });
+};
 export const requestMiddleware = store => next => action => {
   switch (action.type) {
     case BOOKS_REQUEST:
-      {
-        const books = store.getState().booksReducer.books;
-
-        // only fetch books which are not already loading
-        // let pidsToFetch = action.pids.filter(
-        //   pid => !books[pid] || !books[pid].isLoading
-        // );
-        //
-        // // only download cached book if forced
-        // pidsToFetch = pidsToFetch.filter(
-        //   pid => !books[pid] || !books[pid].book
-        // );
-
-        // fetch Books
-        (async () => {
-          const pidsToFetch = action.pids.filter(
-            pid => !books[pid] || !(books[pid].book && !books[pid].isLoading)
-          );
-
-          if (pidsToFetch.length > 0) {
-            store.dispatch({type: BOOKS_DETAILS_REQUEST, pids: pidsToFetch});
-            const booksResponse = await fetchBooks(pidsToFetch, store.dispatch);
-            store.dispatch({
-              type: BOOKS_DETAILS_RESPONSE,
-              response: booksResponse
-            });
-          }
-        })();
-
-        // Fetch tags for book
-        if (action.includeTags) {
-          (async () => {
-            const pidsToFetch = action.pids.filter(
-              pid => !books[pid] || !(books[pid].book && books[pid].book.tags)
-            );
-
-            if (pidsToFetch.length > 0) {
-              store.dispatch({type: TAGS_REQUEST, pids: pidsToFetch});
-              const tagsResponse = await fetchBooksTags(pidsToFetch);
-              store.dispatch({type: TAGS_RESPONSE, response: tagsResponse});
-            }
-          })();
+      (async () => {
+        const {includeTags, includeReviews, includeCollection} = action;
+        partialUpdateRequest('details', action.pids, fetchBooks, store);
+        partialUpdateRequest('cover', action.pids, fetchCoverRefs, store);
+        // includeReviews: true,
+        // includeCollection: true
+        if (includeTags) {
+          partialUpdateRequest('tags', action.pids, fetchBooksTags, store);
         }
 
-        // Fetch Book references like coverURL, collection & reviews
-        (async () => {
-          const pidsToFetch = action.pids.filter(
-            pid =>
-              !books[pid] ||
-              !books[pid].book ||
-              !(books[pid].book && books[pid].book.reviews)
+        if (includeReviews || includeCollection) {
+          // we await the refs request, since the following requests depends on it to be complete
+          await partialUpdateRequest(
+            'refs',
+            action.pids,
+            fetchBooksRefs,
+            store
           );
-
-          let refsResponse = [];
-          if (pidsToFetch.length > 0) {
-            refsResponse = await fetchBooksRefs(pidsToFetch);
-            refsResponse = refsResponse.response;
-            store.dispatch({
-              type: BOOKS_DETAILS_RESPONSE,
-              response: refsResponse
-            });
+          if (includeReviews) {
+            partialUpdateRequest('reviews', action.pids, fetchReviews, store);
           }
-
-          // Fetch reviews for book
-          if (action.includeReviews) {
-            console.log('refsResponse before', refsResponse);
-            refsResponse = refsResponse.filter(
-              work =>
-                !(work.book.reviews.data.pid && !work.book.reviews.isLoading)
+          if (includeCollection) {
+            partialUpdateRequest(
+              'collection',
+              action.pids,
+              fetchCollection,
+              store
             );
-
-            console.log('refsResponse after', refsResponse);
-
-            if (refsResponse.length > 0) {
-              console.log('fetchReviews running . . .');
-              store.dispatch({type: REVIEW_REQUEST, pids: action.pids});
-
-              (async () => {
-                const reviewResponse = await fetchReviews(refsResponse);
-                store.dispatch({
-                  type: REVIEW_RESPONSE,
-                  response: reviewResponse
-                });
-              })();
-            }
           }
-
-          // // Fetch book collection
-          // if (action.includeCollection) {
-          //   if (refsResponse.length > 0) {
-          //     store.dispatch({type: COLLECTION_REQUEST, pids: action.pids});
-          //
-          //     (async () => {
-          //       const collectionResponse = await fetchCollection(refsResponse);
-          //       store.dispatch({
-          //         type: COLLECTION_RESPONSE,
-          //         response: collectionResponse
-          //       });
-          //     })();
-          //   }
-          // }
-        })();
-      }
+        }
+      })();
 
       return next(action);
-
-    // case REVIEW_REQUEST: {
-    //   if (
-    //     action.reviews &&
-    //     action.reviews.data &&
-    //     action.reviews.data.length > 0
-    //   ) {
-    //     const books = store.getState().booksReducer.books;
-    //     if (
-    //       // we select for .pid to check if reviews.data is an array of objects or strings.
-    //       !books[action.pid].book.reviews.data[0].pid &&
-    //       !books[action.pid].book.reviews.isLoading
-    //     ) {
-    //       fetchReviews(action.pid, action.reviews, store.dispatch);
-    //     }
-    //   }
-    // }
-    // case COLLECTION_REQUEST: {
-    //   if (
-    //     action.collection &&
-    //     action.collection.data &&
-    //     action.collection.data.length > 0
-    //   ) {
-    //     fetchCollection(action.pid, action.collection, store.dispatch);
-    //   }
-    // }
     default:
       return next(action);
   }

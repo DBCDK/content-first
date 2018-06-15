@@ -36,9 +36,11 @@ class WorkPage extends React.Component {
       this.fetchWork(nextProps.pid);
     }
     const nextTags = get(nextProps, 'work.book.tags');
-    const prevTags = get(this.props, 'work.book.tags');
 
-    if (nextTags && prevTags !== nextTags) {
+    if (
+      nextTags &&
+      get(this.props, 'work.book.tags.length') !== nextTags.length
+    ) {
       selectedTagIds = nextTags.map(t => t.id);
       this.props.fetchRecommendations(selectedTagIds);
     }
@@ -73,7 +75,6 @@ class WorkPage extends React.Component {
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
     const tax_description = book.taxonomy_description || book.description;
-
     return (
       <div className="work-page">
         <div className="row work-details">
