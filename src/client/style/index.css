@@ -76,6 +76,9 @@ body {
   font-family: var(--primary-font);
 }
 
+.scrolling-wrapper .card {
+  display: inline-block;
+}
 /*body.modal-open {
   position: fixed;
   overflow-y: hidden;
@@ -86,7 +89,7 @@ body {
 }*/
 
 .container {
-  background: #fafafa;
+  background: white;
 }
 
 @media (min-width: 1450px) {
@@ -142,7 +145,6 @@ body {
   margin-top: 20px;
   /*border: 1px solid lightgray;*/
   /*border-radius: 8px;*/
-  background: #fcfcfc;
   position: relative;
   /*box-shadow: 1px 1px 3px #999999;*/
 }

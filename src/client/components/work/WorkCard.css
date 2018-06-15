@@ -1,0 +1,32 @@
+.WorkCard {
+  display: inline-block;
+  height: 430px;
+  width: 215px;
+  margin: 10px;
+  vertical-align: top;
+}
+.WorkCard .cover-wrapper {
+  height: 70%;
+  padding: 20px;
+  background: #f8f8f8;
+}
+.WorkCard .cover-wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+.WorkCard .taxonomy-description {
+  font-size: 1.5rem;
+  line-height: 2.4rem;
+  font-family: Montserrat, sans-serif;
+  color: #00414b;
+  white-space: normal;
+  margin-top: 1em;
+}
+
+@media only screen and (max-width: 768px) {
+  .WorkCard {
+    height: 270px;
+    width: 135px;
+  }
+}

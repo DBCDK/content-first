@@ -5,7 +5,7 @@ const BookCover = props => (
   <img
     style={props.style}
     alt={props.book.title || ''}
-    className={'high-contrast ' + (props.className || '')}
+    className={props.className || ''}
     src={props.coverUrl || '/default-book-cover.png'}
     onLoad={props.onLoad}
   />

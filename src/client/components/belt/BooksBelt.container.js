@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import WorkItem from '../work/WorkItemConnected.component';
+import WorkCard from '../work/WorkCard.container';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import Slider from '../belt/Slider.component';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
@@ -62,7 +62,7 @@ export class BooksBelt extends React.Component {
               <Slider>
                 {!this.props.recommendedBooks.isLoading &&
                   this.props.recommendedBooks.books.map(work => (
-                    <WorkItem
+                    <WorkCard
                       work={work}
                       key={work.book.pid}
                       origin={`Fra "${this.props.title}"`}
