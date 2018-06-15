@@ -4,7 +4,7 @@ import './Button.css';
 
 const Button = ({
   Tag = 'button',
-  size = 'medium',
+  size = 'large',
   type = 'primary',
   children,
   className,
@@ -13,7 +13,7 @@ const Button = ({
   return (
     <Tag
       className={`${className ||
-        ''} btn Button Button__${size} Button__${type}`}
+        ''} btn Button Button__${type} Button__${size}`}
       {...props}
     >
       {children}
@@ -22,7 +22,7 @@ const Button = ({
 };
 
 Button.propTypes = {
-  size: PropTypes.oneOf(['small']),
+  size: PropTypes.oneOf(['small', 'medium']),
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary'])
 };
 

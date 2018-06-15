@@ -7,17 +7,12 @@
   line-height: 1em;
   font-weight: 600;
   text-decoration: none;
-  text-transform: uppercase;
   transition: background-color 200ms;
 }
 
-.Button__small {
-  text-transform: none;
-  padding: 5px 10px;
-  font-size: 0.75em;
-}
-
+/* Variants */
 .Button__primary {
+  text-transform: uppercase;
   background-color: var(--fersken);
 }
 .Button__primary:hover {
@@ -25,6 +20,7 @@
 }
 
 .Button__secondary {
+  text-transform: uppercase;
   background-color: var(--lys-due); 
 }
 .Button__secondary:hover {
@@ -32,11 +28,33 @@
 }
 
 .Button__tertiary {
+  text-transform: none;
+  background-color: var(--mellemlys-graa); 
+}
+
+.Button__tertiary:hover {
+  background-color: var(--pistache); 
+}
+
+.Button__term {
   font-size: 0.9em;
   text-transform: none;
   background-color: var(--graa); 
 }
 
-.Button__tertiary:hover {
+.Button__term:hover {
   background-color: var(--pistache); 
+}
+
+/* Sizes */
+.Button__medium {
+  text-transform: none;
+  padding: 7px 10px;
+  font-size: 0.9em;
+}
+
+.Button__small {
+  text-transform: none;
+  padding: 5px 10px;
+  font-size: 0.75em;
 }
