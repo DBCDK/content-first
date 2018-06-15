@@ -130,8 +130,6 @@ export const requestMiddleware = store => next => action => {
         const {includeTags, includeReviews, includeCollection} = action;
         partialUpdateRequest('details', action.pids, fetchBooks, store);
         partialUpdateRequest('cover', action.pids, fetchCoverRefs, store);
-        // includeReviews: true,
-        // includeCollection: true
         if (includeTags) {
           partialUpdateRequest('tags', action.pids, fetchBooksTags, store);
         }
