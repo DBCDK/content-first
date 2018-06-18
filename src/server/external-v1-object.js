@@ -3,27 +3,14 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const community = require('server/community');
-const {findingUserIdTroughLoginToken} = require('server/user');
-
-async function getUser(req) {
-  try {
-    const userId = await findingUserIdTroughLoginToken(req);
-    const user = await community.gettingUserByProfileId(userId);
-    // TODO admin
-    return {id: userId, openplatformId: user.openplatformId, admin: false};
-  } catch (e) {
-    return;
-  }
-}
+const objectStore = require('./objectStore');
+const {getUser} = objectStore;
 
 function send(res, data) {
   return res.status(data.errors ? data.errors[0].status : 200).json(data);
 }
 async function getObject(req, res) {
-  const id = req.params.id;
-  const user = await getUser(req);
-  send(res, await community.getObjectById(id, user || {}));
+  send(res, await objectStore.get(req.params.id, await getUser(req)));
 }
 async function putObject(req, res) {
   const object = req.body;
@@ -32,7 +19,7 @@ async function putObject(req, res) {
   }
   const user = await getUser(req);
   if (user) {
-    send(res, await community.putObject({object, user}));
+    send(res, await objectStore.put(object, user));
   } else {
     send(res, {
       data: {error: 'forbidden'},
@@ -41,9 +28,7 @@ async function putObject(req, res) {
   }
 }
 async function findObject(req, res) {
-  const query = req.query;
-  const user = await getUser(req);
-  send(res, await community.findObjects(query, user || {}));
+  send(res, await objectStore.find(req.query, await getUser(req)));
 }
 
 router.route('/find').get(asyncMiddleware(findObject));

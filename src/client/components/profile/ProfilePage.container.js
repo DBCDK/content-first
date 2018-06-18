@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import ProfileImage from '../general/ProfileImage.component';
 import Link from '../general/Link.component';
 import Lists from '../list/Lists.container';
+import Follow from '../follow/Follow.component';
 
 export class ProfilePage extends React.Component {
   render() {
@@ -28,6 +29,9 @@ export class ProfilePage extends React.Component {
           <h1 className="headline mb5">Dine Lister</h1>
           <div className="profile-lists">
             <Lists />
+          </div>
+          <div className="profile-follow">
+            <Follow />
           </div>
         </div>
       </div>

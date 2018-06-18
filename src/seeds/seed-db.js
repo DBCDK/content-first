@@ -70,11 +70,13 @@ exports.seed = async knex => {
   await knex(cookieTable).insert({
     cookie: 'valid-login-token-for-user-seeded-on-test-start',
     community_profile_id: 123456,
+    openplatform_id: '123openplatformId456',
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
   await knex(cookieTable).insert({
     cookie: 'expired-login-token',
     community_profile_id: 123456,
+    openplatform_id: '123openplatformId456',
     expires_epoch_s: Math.ceil(new Date(2009, 1, 25).getTime() / 1000)
   });
 };
