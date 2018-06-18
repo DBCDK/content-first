@@ -150,12 +150,14 @@ const fetchRecommendations = async ({tags = [], creators, max}) => {
 export const recommendMiddleware = store => next => action => {
   switch (action.type) {
     case RECOMMEND_REQUEST: {
-      if (
-        !getRecommendedPids(store.getState().recommendReducer, {
+      const recommendations = getRecommendedPids(
+        store.getState().recommendReducer,
+        {
           tags: action.tags,
           creators: action.creators
-        }).isLoading
-      ) {
+        }
+      );
+      if (!recommendations.isLoading && recommendations.pids.length === 0) {
         (async () => {
           try {
             const pids = await fetchRecommendations(action);
@@ -175,8 +177,9 @@ export const recommendMiddleware = store => next => action => {
             });
           }
         })();
+        return next(action);
       }
-      return next(action);
+      return;
     }
     default:
       return next(action);

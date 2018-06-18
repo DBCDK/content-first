@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import WorkItem from './WorkItemConnected.component';
+import Spinner from '../general/Spinner.component';
 import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
@@ -35,14 +36,18 @@ class WorkPage extends React.Component {
       this.fetchWork(nextProps.pid);
     }
     const nextTags = get(nextProps, 'work.book.tags');
-    const prevTags = get(this.props, 'work.book.tags');
-    if (nextTags && prevTags !== nextTags) {
+
+    if (
+      nextTags &&
+      get(this.props, 'work.book.tags.length') !== nextTags.length
+    ) {
       selectedTagIds = nextTags.map(t => t.id);
       this.props.fetchRecommendations(selectedTagIds);
     }
   }
 
   render() {
+    const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
 
     if (!book) {
@@ -72,6 +77,19 @@ class WorkPage extends React.Component {
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
     const tax_description = book.taxonomy_description || book.description;
 
+    // check if reviews contain one or more external urls and they point to litteratursiden
+    let reviewHasContent = false;
+    if (work.reviewsHasLoaded) {
+      book.reviews.data.filter(review => {
+        if (
+          review.identifierURI &&
+          review.identifierURI[0].includes('litteratursiden.dk')
+        ) {
+          reviewHasContent = true;
+        }
+      });
+    }
+
     return (
       <div className="work-page">
         <div className="row work-details">
@@ -89,38 +107,128 @@ class WorkPage extends React.Component {
                     .map((line, idx) => <p key={idx}>{line}</p>)}
               </div>
               <div className="line" />
-              <div className="description">{book.description}</div>
-              <div className="extra">
-                <div className="subjects">{book.subject}</div>
-                {book.pages && (
-                  <div className="page-count">{`${book.pages} sider`}</div>
-                )}
-                <div className="year">
-                  {book.literary_form}
-                  {book.literary_form && book.first_edition_year ? ', ' : ''}
-                  {book.first_edition_year ? book.first_edition_year : ''}
-                </div>
-                {book.genre && <div className="genre">{book.genre}</div>}
-              </div>
-              <div className="bibliotek-dk-link">
-                <a
-                  target="_blank"
-                  href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(
-                    book.pid
-                  )}`}
-                >
-                  Se mere på bibliotek.dk
-                </a>
-              </div>
+              <div className="row">
+                <div className="col-xs-8">
+                  <div className="description">{book.description}</div>
+                  <div className="extra">
+                    <div className="subjects">{book.subject}</div>
+                    {book.pages && (
+                      <div className="page-count">{`${book.pages} sider`}</div>
+                    )}
+                    <div className="year">
+                      {book.literary_form}
+                      {book.literary_form && book.first_edition_year
+                        ? ', '
+                        : ''}
+                      {book.first_edition_year ? book.first_edition_year : ''}
+                    </div>
+                    {book.genre && <div className="genre">{book.genre}</div>}
+                  </div>
+                  <div className="bibliotek-dk-link">
+                    <a
+                      target="_blank"
+                      href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(
+                        book.pid
+                      )}`}
+                    >
+                      Se mere på bibliotek.dk
+                    </a>
+                  </div>
 
-              <CheckmarkConnected book={{book}} origin="Fra egen værkside" />
-              <OrderButton
-                book={book}
-                style={{marginLeft: 10, border: 'none'}}
-              />
+                  <div className="buttonContainer">
+                    <CheckmarkConnected
+                      book={{book}}
+                      origin="Fra egen værkside"
+                    />
+
+                    <OrderButton
+                      book={book}
+                      style={{marginLeft: 10, border: 'none'}}
+                    />
+                    {(work && work.refsIsLoading) ||
+                    (work && work.collectionIsLoading) ? (
+                      <Spinner
+                        style={{
+                          width: 20,
+                          height: 20,
+                          margin: '0px 0px 0px 30px'
+                        }}
+                      />
+                    ) : work.collectionHasLoaded &&
+                    book.collection.data.length > 0 ? (
+                      book.collection.data.map(r => {
+                        if (
+                          r.identifierURI &&
+                          r.identifierURI[0].includes('ereolen.dk') &&
+                          r.type[0] === 'Ebog'
+                        ) {
+                          return (
+                            <SocialShareButton
+                              className={'ssb-ereolen'}
+                              styles={{
+                                display: 'inlineBlock',
+                                marginLeft: '10px'
+                              }}
+                              href={r.identifierURI}
+                              icon={null}
+                              hex={'#337ab7'}
+                              size={32}
+                              shape="square"
+                              txt="Bestil på eReolen"
+                            />
+                          );
+                        }
+                      })
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </div>
+
+                <div className="col-xs-4 reviews">
+                  <div className="col-xs-12 reviews-heading">
+                    Anmeldelser fra litteratursiden:
+                  </div>
+                  {(work && work.refsIsLoading) ||
+                  (work && work.reviewsIsLoading) ? (
+                    <Spinner style={{width: 50, height: 50}} />
+                  ) : work.reviewsHasLoaded &&
+                  book.reviews.data.length > 0 &&
+                  reviewHasContent ? (
+                    book.reviews.data.map(r => {
+                      // Select only obj in reviews
+                      if (
+                        r.identifierURI &&
+                        r.identifierURI[0].includes('litteratursiden.dk')
+                      ) {
+                        // Dont show reviews without a creator and ref
+                        if (r.creatorOth && r.isPartOf) {
+                          return (
+                            <a
+                              className="tag tags tag-medium review"
+                              key={r.pid}
+                              target={'blank'}
+                              href={r.identifierURI ? r.identifierURI : ''}
+                            >
+                              <div className="review-creator">
+                                {r.creatorOth}
+                              </div>
+                              <div className="review-partOf">{r.isPartOf}</div>
+                            </a>
+                          );
+                        }
+                      }
+                    })
+                  ) : (
+                    <p>Der er endnu ingen anmeldelser til dette værk.</p>
+                  )}
+                </div>
+              </div>
 
               <SocialShareButton
                 className={'ssb-fb'}
+                styles={{fontWeight: 'bold'}}
+                facebook={true}
                 href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
                 icon={'fb-icon'}
                 hex={'#3b5998'}
@@ -240,7 +348,8 @@ export const mapDispatchToProps = dispatch => ({
       type: BOOKS_REQUEST,
       pids: [pid],
       includeTags: true,
-      force: true
+      includeReviews: true,
+      includeCollection: true
     }),
   fetchRecommendations: tags =>
     dispatch({

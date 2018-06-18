@@ -169,6 +169,7 @@ export class SimpleList extends React.Component {
             />
             <SocialShareButton
               className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-fb'}
+              facebook={true}
               href={
                 list.public
                   ? 'https://content-first.demo.dbc.dk/lister/' + list.id
