@@ -1,6 +1,7 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
+import './Slider.css';
 
 const params = {
   pagination: {
@@ -8,13 +9,12 @@ const params = {
     clickable: true
   },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev'
+    // nextEl: '.swiper-button-next',
+    // prevEl: '.swiper-button-prev'
   },
   slidesPerView: 'auto',
   slidesPerGroup: 3,
-  spaceBetween: 30,
-  rebuildOnUpdate: true
+  rebuildOnUpdate: false
 };
 
 const MobileSlider = props => {
@@ -32,15 +32,72 @@ const MobileSlider = props => {
   );
 };
 
-const DesktopSlider = props => {
-  return (
-    <Swiper {...params}>
-      {props.children.map(el => {
-        return el;
-      })}
-    </Swiper>
-  );
-};
+class DesktopSlider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isBeginning: null, isEnd: null};
+  }
+  init = swiper => {
+    if (swiper !== this.swiper) {
+      this.swiper = swiper;
+      swiper.on('slideChangeTransitionEnd', this.onSwipeEnd);
+      this.onSwipeEnd();
+    }
+  };
+  onSwipeEnd = () => {
+    this.setState({
+      isBeginning: this.swiper.isBeginning,
+      isEnd: this.swiper.isEnd
+    });
+  };
+  componentDidUpdate(prevProps) {
+    if (prevProps.children !== this.props.children) {
+      if (this.swiper) {
+        this.swiper.update();
+        this.onSwipeEnd();
+      }
+    }
+  }
+  render() {
+    const props = this.props;
+    return (
+      <div className="desktop-slider">
+        <Swiper
+          {...params}
+          ref={node => {
+            if (node) {
+              this.init(node.swiper);
+            }
+          }}
+        >
+          {props.children.map(el => {
+            return el;
+          })}
+        </Swiper>
+        {!this.state.isEnd && (
+          <span
+            onClick={() => {
+              if (this.swiper) {
+                this.swiper.slideNext();
+              }
+            }}
+            className="swiper-button-next"
+          />
+        )}
+        {!this.state.isBeginning && (
+          <span
+            onClick={() => {
+              if (this.swiper) {
+                this.swiper.slidePrev();
+              }
+            }}
+            className="swiper-button-prev"
+          />
+        )}
+      </div>
+    );
+  }
+}
 
 export default class Slider extends React.Component {
   render() {
