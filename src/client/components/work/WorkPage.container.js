@@ -47,7 +47,10 @@ class WorkPage extends React.Component {
   }
 
   render() {
+    const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
+
+    console.log('wwwork', this.props.work);
 
     if (!book) {
       return null;
@@ -75,6 +78,20 @@ class WorkPage extends React.Component {
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
     const tax_description = book.taxonomy_description || book.description;
+
+    // check if reviews contain one or more external urls and they point to litteratursiden
+    let reviewHasContent = false;
+    if (work.reviewsHasLoaded) {
+      book.reviews.data.filter(review => {
+        if (
+          review.identifierURI &&
+          review.identifierURI[0].includes('litteratursiden.dk')
+        ) {
+          reviewHasContent = true;
+        }
+      });
+    }
+
     return (
       <div className="work-page">
         <div className="row work-details">
@@ -129,7 +146,8 @@ class WorkPage extends React.Component {
                     book={book}
                     style={{marginLeft: 10, border: 'none'}}
                   />
-                  {book.collection && book.collection.isLoading ? (
+                  {(work && work.refsIsLoading) ||
+                  (work && work.collectionIsLoading) ? (
                     <Spinner
                       style={{
                         width: 20,
@@ -137,11 +155,14 @@ class WorkPage extends React.Component {
                         margin: '10px 30px 0px 30px'
                       }}
                     />
-                  ) : book.collection &&
-                  book.collection.data &&
+                  ) : work.collectionHasLoaded &&
                   book.collection.data.length > 0 ? (
                     book.collection.data.map(r => {
-                      if (r.type && r.type[0] === 'Ebog') {
+                      if (
+                        r.identifierURI &&
+                        r.identifierURI[0].includes('ereolen.dk') &&
+                        r.type[0] === 'Ebog'
+                      ) {
                         return (
                           <SocialShareButton
                             className={'ssb-ereolen'}
@@ -159,8 +180,6 @@ class WorkPage extends React.Component {
                         );
                       }
                     })
-                  ) : book.collection && !book.collection.isLoading ? (
-                    ''
                   ) : (
                     ''
                   )}
@@ -170,12 +189,13 @@ class WorkPage extends React.Component {
                   <div className="col-xs-12 reviews-heading">
                     Anmeldelser fra litteratursiden:
                   </div>
-                  {book.reviews && book.reviews.isLoading ? (
+                  {(work && work.refsIsLoading) ||
+                  (work && work.reviewsIsLoading) ? (
                     <Spinner style={{width: 50, height: 50}} />
-                  ) : book.reviews &&
-                  book.reviews.data &&
-                  book.reviews.data.length > 0 ? (
-                    book.reviews.data.map(r => {
+                  ) : work.reviewsHasLoaded &&
+                  book.reviews.data.length > 0 &&
+                  reviewHasContent ? (
+                    book.reviews.data.map((r, i) => {
                       // Select only obj in reviews
                       if (
                         r.identifierURI &&
@@ -199,10 +219,8 @@ class WorkPage extends React.Component {
                         }
                       }
                     })
-                  ) : book.reviews && !book.reviews.isLoading ? (
-                    <p>Der er ingen anmeldelser til dette værk.</p>
                   ) : (
-                    ''
+                    <p>Der er endnu ingen anmeldelser til dette værk.</p>
                   )}
                 </div>
               </div>
