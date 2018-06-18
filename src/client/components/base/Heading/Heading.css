@@ -1,0 +1,13 @@
+.Heading__lead {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 4.5vw;
+  line-height: 60px;
+}
+
+.Heading__section {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1.8em;
+  line-height: 36px;
+}

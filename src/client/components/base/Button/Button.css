@@ -1,0 +1,60 @@
+.Button {
+  padding: 9px 20px;
+  border-radius: 4px;
+  color: var(--petrolium);
+  background-color: var(--graa); 
+  font-size: 1em;
+  line-height: 1em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 200ms;
+}
+
+/* Variants */
+.Button__primary {
+  text-transform: uppercase;
+  background-color: var(--fersken);
+}
+.Button__primary:hover {
+  background-color: var(--lys-fersken);
+}
+
+.Button__secondary {
+  text-transform: uppercase;
+  background-color: var(--lys-due); 
+}
+.Button__secondary:hover {
+  background-color: var(--due); 
+}
+
+.Button__tertiary {
+  text-transform: none;
+  background-color: var(--mellemlys-graa); 
+}
+
+.Button__tertiary:hover {
+  background-color: var(--pistache); 
+}
+
+.Button__term {
+  font-size: 0.9em;
+  text-transform: none;
+  background-color: var(--graa); 
+}
+
+.Button__term:hover {
+  background-color: var(--pistache); 
+}
+
+/* Sizes */
+.Button__medium {
+  text-transform: none;
+  padding: 7px 10px;
+  font-size: 0.9em;
+}
+
+.Button__small {
+  text-transform: none;
+  padding: 5px 10px;
+  font-size: 0.75em;
+}

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,800');
+
+/* Global Settings for new design */
+:root {
+  --petrolium: #00414b;
+  --korn: #edb347;
+  --lys-fersken: #f38f81;
+  --fersken: #f37362;
+  --pistache: #a8c7b0;
+  --kobber: #b17642;
+  --due: #74a9ff;
+  --lys-due: #bdd5fd;
+  --graa: #f3f3f3;
+  --lys-graa: #f8f8f8;
+  --mellemlys-graa: #e9eaeb;
+  --primary-font: 'Montserrat', sans-serif;
+}
