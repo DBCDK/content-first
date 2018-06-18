@@ -147,6 +147,7 @@ export const SimpleList = ({
               ? 'https://content-first.demo.dbc.dk/lister/' + list.id
               : null
           }
+          facebook={true}
           icon={'fb-icon'}
           hex={'#3b5998'}
           status={!list.public ? 'passive' : 'active'}

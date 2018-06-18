@@ -1,9 +1,5 @@
 import request from 'superagent';
-import {
-  BOOKS_REQUEST,
-  BOOKS_RESPONSE,
-  BOOKS_PARTIAL_UPDATE
-} from './books.reducer';
+import {BOOKS_REQUEST, BOOKS_PARTIAL_UPDATE} from './books.reducer';
 import {
   fetchBooks,
   fetchBooksRefs,

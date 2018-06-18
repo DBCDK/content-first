@@ -50,8 +50,6 @@ class WorkPage extends React.Component {
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
 
-    console.log('wwwork', this.props.work);
-
     if (!book) {
       return null;
     }
@@ -137,52 +135,54 @@ class WorkPage extends React.Component {
                     </a>
                   </div>
 
-                  <CheckmarkConnected
-                    book={{book}}
-                    origin="Fra egen værkside"
-                  />
-
-                  <OrderButton
-                    book={book}
-                    style={{marginLeft: 10, border: 'none'}}
-                  />
-                  {(work && work.refsIsLoading) ||
-                  (work && work.collectionIsLoading) ? (
-                    <Spinner
-                      style={{
-                        width: 20,
-                        height: 20,
-                        margin: '10px 30px 0px 30px'
-                      }}
+                  <div className="buttonContainer">
+                    <CheckmarkConnected
+                      book={{book}}
+                      origin="Fra egen værkside"
                     />
-                  ) : work.collectionHasLoaded &&
-                  book.collection.data.length > 0 ? (
-                    book.collection.data.map(r => {
-                      if (
-                        r.identifierURI &&
-                        r.identifierURI[0].includes('ereolen.dk') &&
-                        r.type[0] === 'Ebog'
-                      ) {
-                        return (
-                          <SocialShareButton
-                            className={'ssb-ereolen'}
-                            styles={{
-                              display: 'inlineBlock',
-                              marginLeft: '10px'
-                            }}
-                            href={r.identifierURI}
-                            icon={null}
-                            hex={'#337ab7'}
-                            size={32}
-                            shape="square"
-                            txt="Bestil på eReolen"
-                          />
-                        );
-                      }
-                    })
-                  ) : (
-                    ''
-                  )}
+
+                    <OrderButton
+                      book={book}
+                      style={{marginLeft: 10, border: 'none'}}
+                    />
+                    {(work && work.refsIsLoading) ||
+                    (work && work.collectionIsLoading) ? (
+                      <Spinner
+                        style={{
+                          width: 20,
+                          height: 20,
+                          margin: '0px 0px 0px 30px'
+                        }}
+                      />
+                    ) : work.collectionHasLoaded &&
+                    book.collection.data.length > 0 ? (
+                      book.collection.data.map(r => {
+                        if (
+                          r.identifierURI &&
+                          r.identifierURI[0].includes('ereolen.dk') &&
+                          r.type[0] === 'Ebog'
+                        ) {
+                          return (
+                            <SocialShareButton
+                              className={'ssb-ereolen'}
+                              styles={{
+                                display: 'inlineBlock',
+                                marginLeft: '10px'
+                              }}
+                              href={r.identifierURI}
+                              icon={null}
+                              hex={'#337ab7'}
+                              size={32}
+                              shape="square"
+                              txt="Bestil på eReolen"
+                            />
+                          );
+                        }
+                      })
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 </div>
 
                 <div className="col-xs-4 reviews">
@@ -195,14 +195,14 @@ class WorkPage extends React.Component {
                   ) : work.reviewsHasLoaded &&
                   book.reviews.data.length > 0 &&
                   reviewHasContent ? (
-                    book.reviews.data.map((r, i) => {
+                    book.reviews.data.map(r => {
                       // Select only obj in reviews
                       if (
                         r.identifierURI &&
                         r.identifierURI[0].includes('litteratursiden.dk')
                       ) {
                         // Dont show reviews without a creator and ref
-                        if (r.creatorOth !== '' && r.isPartOf !== '') {
+                        if (r.creatorOth && r.isPartOf) {
                           return (
                             <a
                               className="tag tags tag-medium review"

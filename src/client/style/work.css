@@ -233,7 +233,18 @@
   width: 100%;
 }
 
-.work-page .work-details .ssb-ereolen {
+.work-page .work-details .buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.work-page .work-details .buttonContainer .ssb-ereolen {
   font-size: 14px !important;
   line-height: normal !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .work-page .work-details .buttonContainer .ssb-ereolen {
+    margin: 10px 0 0 0 !important;
+  }
 }

@@ -2,7 +2,7 @@
 
 exports[`SocialShareButton renders initial component 1`] = `
 <a
-  href="https://www.facebook.com/sharer/sharer.php?display=page&u=https://content-first.demo.dbc.dk/lister/1234?123456789"
+  href="https://content-first.demo.dbc.dk/lister/1234"
   onClick={null}
   target="_blank"
 >
@@ -25,7 +25,6 @@ exports[`SocialShareButton renders initial component 1`] = `
     <span
       style={
         Object {
-          "fontWeight": "bold",
           "marginRight": "0px",
         }
       }
