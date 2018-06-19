@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {TAGID_REQUEST} from '../../redux/tagId';
 import BooksBelt from './BooksBelt.container';
 
-
 export class RecommendationsBelt extends React.Component {
   constructor() {
     super();
@@ -23,8 +22,9 @@ export class RecommendationsBelt extends React.Component {
         <div>
           <BooksBelt
             title={'Bedste forslag'}
-            subtext={'især for '+ this.props.username}
-            tags={this.props.tagIds} />
+            subtext={'især for ' + this.props.username}
+            tags={this.props.tagIds}
+          />
         </div>
       );
     } else {
