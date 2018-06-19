@@ -2,15 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import SelectedFilters from './SelectedFilters.component';
 import EditFilters from './EditFilters.component';
-import WorkItem from '../work/WorkItemConnected.component';
+import WorkCard from '../work/WorkCard.container';
 import Spinner from '../general/Spinner.component';
 import {
   ON_EDIT_FILTER_TOGGLE,
   ON_EXPAND_FILTERS_TOGGLE
 } from '../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../redux/middleware';
-import {RECOMMEND_REQUEST} from '../../redux/recommend';
-import {getRecommendedBooks} from '../../redux/selectors';
+import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import {isEqual} from 'lodash';
 
@@ -48,8 +47,8 @@ class FilterPage extends React.Component {
   render() {
     let warningMessage = null;
     if (
-      this.props.recommendations.books.length === 0 &&
-      !this.props.recommendations.isLoading
+      this.props.recommendedPids.pids.length === 0 &&
+      !this.props.recommendedPids.isLoading
     ) {
       warningMessage = 'De valgte filtre giver tomt resultat';
     }
@@ -87,18 +86,19 @@ class FilterPage extends React.Component {
           <div className="warning row text-center">{warningMessage}</div>
         )}
         <div className="filter-page-works row text-left">
-          {this.props.recommendations.books &&
-            this.props.recommendations.books.map(work => (
-              <WorkItem
-                work={work}
-                key={work.book.pid}
+          {this.props.recommendedPids.pids.length > 0 &&
+            this.props.recommendedPids.pids.map(pid => (
+              <WorkCard
+                pid={pid}
+                key={pid}
+                allowFetch={true}
                 origin={`Fra din søgning på ${this.props.selectedTags
                   .map(t => t.title)
                   .join(', ')}`}
               />
             ))}
         </div>
-        {this.props.recommendations.isLoading && (
+        {this.props.recommendedPids.isLoading && (
           <Spinner style={{width: 50, height: 50}} />
         )}
       </div>
@@ -112,7 +112,9 @@ const mapStateToProps = state => {
         .filter(id => filtersMapAll[id])
     : [];
   return {
-    recommendations: getRecommendedBooks(state, selectedTagIds, 40),
+    recommendedPids: getRecommendedPids(state.recommendReducer, {
+      tags: selectedTagIds
+    }),
     selectedTagIds,
     selectedTags: selectedTagIds.map(tag => filtersMapAll[tag.id || tag]),
     filters: state.filterReducer.filters,

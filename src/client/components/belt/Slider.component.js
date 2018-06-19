@@ -21,11 +21,15 @@ class MobileSlider extends React.Component {
   constructor(props) {
     super(props);
     this.index = 0;
-    this.props.onSwipe(this.index);
+    if (this.props.onSwipe) {
+      this.props.onSwipe(this.index);
+    }
   }
   componentDidUpdate(prevProps) {
     if (prevProps.children !== this.props.children) {
-      this.props.onSwipe(this.index);
+      if (this.props.onSwipe) {
+        this.props.onSwipe(this.index);
+      }
     }
   }
   render() {
@@ -39,7 +43,9 @@ class MobileSlider extends React.Component {
           );
           if (this.index !== index) {
             this.index = index;
-            this.props.onSwipe(this.index);
+            if (this.props.onSwipe) {
+              this.props.onSwipe(this.index);
+            }
           }
         }}
       >
@@ -67,7 +73,9 @@ class DesktopSlider extends React.Component {
       isEnd: this.swiper.isEnd,
       index: this.swiper.realIndex
     });
-    this.props.onSwipe(this.swiper.realIndex);
+    if (this.props.onSwipe) {
+      this.props.onSwipe(this.swiper.realIndex);
+    }
   };
   componentDidUpdate(prevProps) {
     if (prevProps.children !== this.props.children) {
