@@ -1,4 +1,5 @@
 import request from 'superagent';
+import {debounce} from 'lodash';
 import {BOOKS_REQUEST, BOOKS_PARTIAL_UPDATE} from './books.reducer';
 import {
   fetchBooks,
@@ -119,12 +120,25 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
     }))
   });
 };
+
+const debouncedDetailsRequest = (() => {
+  let pidQueue = [];
+  let debounced = debounce((name, requestFunction, store) => {
+    partialUpdateRequest('details', pidQueue, requestFunction, store);
+    pidQueue = [];
+  }, 20);
+  return (name, pids, requestFunction, store) => {
+    pidQueue = [...pidQueue, ...pids];
+    debounced(name, requestFunction, store);
+  };
+})();
+
 export const requestMiddleware = store => next => action => {
   switch (action.type) {
     case BOOKS_REQUEST:
       (async () => {
         const {includeTags, includeReviews, includeCollection} = action;
-        partialUpdateRequest('details', action.pids, fetchBooks, store);
+        debouncedDetailsRequest('details', action.pids, fetchBooks, store);
         partialUpdateRequest('cover', action.pids, fetchCoverRefs, store);
         if (includeTags) {
           partialUpdateRequest('tags', action.pids, fetchBooksTags, store);
