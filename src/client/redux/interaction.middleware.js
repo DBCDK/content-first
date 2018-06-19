@@ -73,7 +73,7 @@ export const interactionMiddleware = store => next => action => {
       if (pidPath.startsWith('/værk/')) {
         pid = pidPath.slice(6, pidPath.length);
       }
-      if(!pid.startsWith('/')){
+      if (!pid.startsWith('/')) {
         store.dispatch({
           type: INTERACTION,
           pid: pid,

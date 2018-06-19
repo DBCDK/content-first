@@ -1,45 +1,46 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {TAGID_REQUEST} from "../../redux/tagId";
-import BooksBelt from "./BooksBelt.container";
+import {TAGID_REQUEST} from '../../redux/tagId';
+import BooksBelt from './BooksBelt.container';
+
 
 export class RecommendationsBelt extends React.Component {
   constructor() {
     super();
-    this.state = {loadTags:true};
+    this.state = {loadTags: true};
   }
 
   componentWillReceiveProps(nextProps) {
-
-    if(nextProps.recoPids.length>0 && this.state.loadTags){
-      this.props.getTags(nextProps.recoPids)
-      this.setState({loadTags:false})
+    if (nextProps.recoPids.length > 0 && this.state.loadTags) {
+      this.props.getTags(nextProps.recoPids);
+      this.setState({loadTags: false});
     }
   }
 
   render() {
-
-    if(this.props.tagIds.length>0){
+    if (this.props.tagIds.length > 0) {
       return (
-        <div>  (
+        <div>
           <BooksBelt
-            tags={this.props.tagIds}
-            />)
+            title={'Bedste forslag'}
+            subtext={'især for '+ this.props.username}
+            tags={this.props.tagIds} />
         </div>
-        );
-      }else{
-        return  <div></div>
+      );
+    } else {
+      return <div />;
     }
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    recoPids:state.interactionReducer.interactions.map(o=>{
+    recoPids: state.interactionReducer.interactions.map(o => {
       return o.pid;
     }),
-    tagIds:state.tagIdReducer.tags
-  }
+    tagIds: state.tagIdReducer.tags,
+    username: state.userReducer.name
+  };
 };
 
 export const mapDispatchToProps = dispatch => ({
@@ -50,29 +51,6 @@ export const mapDispatchToProps = dispatch => ({
     })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecommendationsBelt);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(
+  RecommendationsBelt
+);

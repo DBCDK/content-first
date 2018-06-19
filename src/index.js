@@ -21,7 +21,6 @@ import {commentMiddleware} from './client/redux/comment.middleware';
 import {replayMiddleware} from './client/redux/replay';
 import {interactionMiddleware} from './client/redux/interaction.middleware';
 
-
 const store = createStore([
   userMiddleware,
   usersMiddleware,
