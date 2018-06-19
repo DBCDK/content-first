@@ -69,14 +69,17 @@ export const interactionMiddleware = store => next => action => {
     case ON_LOCATION_CHANGE: {
       let pidPath = action.path;
       let pid = pidPath;
+
       if (pidPath.startsWith('/værk/')) {
         pid = pidPath.slice(6, pidPath.length);
       }
-      store.dispatch({
-        type: INTERACTION,
-        pid: pid,
-        interaction: 'NEW_LOCATION'
-      });
+      if(!pid.startsWith('/')){
+        store.dispatch({
+          type: INTERACTION,
+          pid: pid,
+          interaction: 'NEW_LOCATION'
+        });
+      }
       return next(action);
     }
 

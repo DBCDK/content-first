@@ -14,6 +14,7 @@ import commentReducer from './comment.reducer';
 import bookcaseReducer from './bookcase.reducer';
 import booksReducer from './books.reducer';
 import recommendReducer from './recommend';
+import tagIdReducer from './tagId';
 import {replayReducer} from './replay';
 import interactionReducer from './interaction.reducer';
 
@@ -33,6 +34,7 @@ const combined = combineReducers({
   tasteReducer,
   booksReducer,
   recommendReducer,
+  tagIdReducer,
   replay: replayReducer,
   interactionReducer
 });

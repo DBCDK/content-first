@@ -18,6 +18,30 @@ const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;
 
+
+
+export const fetchTagIds = async (pids = []) => {
+  let result = [];
+  let requests = [];
+
+  for (let i = 0; i < pids.length; i++) {
+    const pid = pids[i];
+    requests.push({pid: pid, request: request.get(`/v1/tags/${pid}`)});
+  }
+
+  for (let x = 0; x < requests.length; x++) {
+    const req = requests[x];
+    const response = await req.request;
+    const tags = response.body.data.tags
+    result= result.concat(tags);
+  }
+
+  result = unique(result);
+
+  return result;
+};
+
+
 export const fetchTags = async (pids = []) => {
   /*
     accepts:
