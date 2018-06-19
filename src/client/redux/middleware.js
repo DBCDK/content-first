@@ -121,15 +121,16 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
   });
 };
 
-const debouncedDetailsRequest = (() => {
+const debouncedRequest = (() => {
   let pidQueue = [];
-  let debounced = debounce((name, requestFunction, store) => {
-    partialUpdateRequest('details', pidQueue, requestFunction, store);
+  let debounced = debounce(store => {
+    partialUpdateRequest('details', pidQueue, fetchBooks, store);
+    partialUpdateRequest('cover', pidQueue, fetchCoverRefs, store);
     pidQueue = [];
   }, 20);
-  return (name, pids, requestFunction, store) => {
+  return (pids, store) => {
     pidQueue = [...pidQueue, ...pids];
-    debounced(name, requestFunction, store);
+    debounced(store);
   };
 })();
 
@@ -138,8 +139,8 @@ export const requestMiddleware = store => next => action => {
     case BOOKS_REQUEST:
       (async () => {
         const {includeTags, includeReviews, includeCollection} = action;
-        debouncedDetailsRequest('details', action.pids, fetchBooks, store);
-        partialUpdateRequest('cover', action.pids, fetchCoverRefs, store);
+        debouncedRequest(action.pids, store);
+        // partialUpdateRequest('cover', action.pids, fetchCoverRefs, store);
         if (includeTags) {
           partialUpdateRequest('tags', action.pids, fetchBooksTags, store);
         }
