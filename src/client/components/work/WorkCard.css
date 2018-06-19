@@ -5,6 +5,10 @@
   margin: 10px;
   vertical-align: top;
 }
+.WorkCard::before {
+  z-index: -1;
+  will-change: transform;
+}
 .WorkCard .cover-wrapper {
   height: 70%;
   padding: 20px;

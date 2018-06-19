@@ -17,3 +17,14 @@
 .swiper-pagination-bullet-active {
   background: #00303b;
 }
+
+.mobile-slider-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.mobile-slider {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+}

@@ -17,20 +17,37 @@ const params = {
   rebuildOnUpdate: false
 };
 
-const MobileSlider = props => {
-  return (
-    <div
-      style={{
-        overflowX: 'scroll',
-        overflowY: 'hidden',
-        whiteSpace: 'nowrap',
-        WebkitOverflowScrolling: 'touch'
-      }}
-    >
-      {props.children}
-    </div>
-  );
-};
+class MobileSlider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.index = 0;
+    this.props.onSwipe(this.index);
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.children !== this.props.children) {
+      this.props.onSwipe(this.index);
+    }
+  }
+  render() {
+    return (
+      <div
+        className="mobile-slider-wrapper"
+        onScroll={e => {
+          const index = Math.floor(
+            e.target.scrollLeft /
+              (e.target.scrollWidth / this.props.children.length)
+          );
+          if (this.index !== index) {
+            this.index = index;
+            this.props.onSwipe(this.index);
+          }
+        }}
+      >
+        <div className="mobile-slider">{this.props.children}</div>
+      </div>
+    );
+  }
+}
 
 class DesktopSlider extends React.Component {
   constructor(props) {
@@ -40,24 +57,27 @@ class DesktopSlider extends React.Component {
   init = swiper => {
     if (swiper !== this.swiper) {
       this.swiper = swiper;
-      swiper.on('slideChangeTransitionEnd', this.onSwipeEnd);
-      this.onSwipeEnd();
+      swiper.on('slideChangeTransitionStart', this.onSwipe);
+      this.onSwipe();
     }
   };
-  onSwipeEnd = () => {
+  onSwipe = () => {
     this.setState({
       isBeginning: this.swiper.isBeginning,
-      isEnd: this.swiper.isEnd
+      isEnd: this.swiper.isEnd,
+      index: this.swiper.realIndex
     });
+    this.props.onSwipe(this.swiper.realIndex);
   };
   componentDidUpdate(prevProps) {
     if (prevProps.children !== this.props.children) {
       if (this.swiper) {
         this.swiper.update();
-        this.onSwipeEnd();
+        this.onSwipe();
       }
     }
   }
+
   render() {
     const props = this.props;
     return (
@@ -70,9 +90,7 @@ class DesktopSlider extends React.Component {
             }
           }}
         >
-          {props.children.map(el => {
-            return el;
-          })}
+          {props.children}
         </Swiper>
         {!this.state.isEnd && (
           <span
@@ -102,88 +120,18 @@ class DesktopSlider extends React.Component {
 export default class Slider extends React.Component {
   render() {
     if (isMobile) {
-      return <MobileSlider children={this.props.children} />;
+      return (
+        <MobileSlider
+          children={this.props.children}
+          onSwipe={this.props.onSwipe}
+        />
+      );
     }
-    return <DesktopSlider children={this.props.children} />;
+    return (
+      <DesktopSlider
+        children={this.props.children}
+        onSwipe={this.props.onSwipe}
+      />
+    );
   }
 }
-// export default class Slider extends React.Component {
-//   constructor() {
-//     super();
-//     this.state = {isLoadedIndex: 0};
-//   }
-//   componentWillReceiveProps() {
-//     // A fix for initial wrong width calculation
-//     // https://github.com/akiran/react-slick/issues/809#issuecomment-317277508
-//     this.refs.slick.innerSlider.onWindowResized();
-//   }
-//
-//   render() {
-//     const settings = {
-//       dots: true,
-//       arrows: true,
-//       infinite: false,
-//       speed: 500,
-//       slidesToScroll: 4,
-//       slidesToShow: 4,
-//       initialSlide: 0,
-//       rows: 1,
-//       variableWidth: true,
-//       prevArrow: <PrevArrow />,
-//       nextArrow: <NextArrow />,
-//       responsive: [
-//         {
-//           breakpoint: 1450,
-//           settings: {
-//             slidesToScroll: 3,
-//             slidesToShow: 3
-//           }
-//         },
-//         {
-//           breakpoint: 1200,
-//           settings: {
-//             slidesToScroll: 2,
-//             slidesToShow: 2
-//           }
-//         },
-//         {
-//           breakpoint: 769,
-//           settings: {
-//             // slidesToShow: 2,
-//             // slidesToScroll: 2
-//           }
-//         },
-//         {
-//           breakpoint: 480,
-//           settings: {
-//             slidesToShow: 1,
-//             slidesToScroll: 1
-//           }
-//         }
-//       ],
-//       afterChange: idx => {
-//         if (idx > this.state.isLoadedIndex) {
-//           this.setState({
-//             isLoadedIndex: idx
-//           });
-//         }
-//       }
-//     };
-//     return (
-//       <SlickSlider ref="slick" {...settings}>
-//         {this.props.children &&
-//           this.props.children.map((l, idx) => {
-//             return (
-//               <Slide key={l.key}>
-//                 {React.cloneElement(l, {
-//                   visibleInSlider:
-//                     idx <
-//                     this.state.isLoadedIndex + (this.props.loadAheadCount || 7)
-//                 })}
-//               </Slide>
-//             );
-//           })}
-//       </SlickSlider>
-//     );
-//   }
-// }
