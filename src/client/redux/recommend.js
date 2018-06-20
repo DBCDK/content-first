@@ -1,5 +1,4 @@
 import librarianRecommends from '../../data/librarian-recommends.json';
-import {BOOKS_REQUEST} from './books.reducer';
 import request from 'superagent';
 import {uniq} from 'lodash';
 import {filtersMapAll} from './filter.reducer';
