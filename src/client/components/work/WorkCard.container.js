@@ -3,16 +3,31 @@ import {connect} from 'react-redux';
 import BookCover from '../general/BookCover.component';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import Link from '../general/Link.component';
+import Paragraph from '../base/Paragraph';
 import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
 import './WorkCard.css';
 
 export const SkeletonWorkCard = props => {
   return (
     <div className={'WorkCard' + ' ' + props.className}>
-      <div className="cover-wrapper">
-        <BookCover book={{book: {}}} />
-      </div>
-      <div className="taxonomy-description">nææ</div>
+      <BookCover className="book-cover" book={{book: {}}} />
+      <div
+        className="skelet-taxonomy-description d-xs-none d-sm-block"
+        style={{height: 12, width: '80%', background: '#f8f8f8', marginTop: 10}}
+      />
+      <div
+        className="skelet-taxonomy-description d-xs-none d-sm-block"
+        style={{
+          height: 12,
+          width: '100%',
+          background: '#f8f8f8',
+          marginTop: 10
+        }}
+      />
+      <div
+        className="skelet-taxonomy-description d-xs-none d-sm-block"
+        style={{height: 12, width: '60%', background: '#f8f8f8', marginTop: 10}}
+      />
     </div>
   );
 };
@@ -40,7 +55,7 @@ class WorkCard extends React.Component {
     );
   }
   render() {
-    if (!this.props.work || !this.props.work.book) {
+    if (!this.props.work || !this.props.work.detailsHasLoaded) {
       return <SkeletonWorkCard {...this.props} />;
     }
     const tax_description =
@@ -50,13 +65,14 @@ class WorkCard extends React.Component {
     return (
       <div className={'WorkCard' + ' ' + this.props.className}>
         <Link href={`/værk/${this.props.work.book.pid}`}>
-          <div className="cover-wrapper">
-            <BookCover
-              book={this.props.skeleton ? {book: {}} : this.props.work.book}
-            />
-          </div>
+          <BookCover
+            className="book-cover"
+            book={this.props.skeleton ? {book: {}} : this.props.work.book}
+          />
         </Link>
-        <div className="taxonomy-description">{tax_description}</div>
+        <Paragraph className="mt1 d-xs-none d-sm-block">
+          {tax_description}
+        </Paragraph>
       </div>
     );
   }

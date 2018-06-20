@@ -140,7 +140,6 @@ export const requestMiddleware = store => next => action => {
       (async () => {
         const {includeTags, includeReviews, includeCollection} = action;
         debouncedRequest(action.pids, store);
-        // partialUpdateRequest('cover', action.pids, fetchCoverRefs, store);
         if (includeTags) {
           partialUpdateRequest('tags', action.pids, fetchBooksTags, store);
         }

@@ -1,6 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import TruncateMarkup from 'react-truncate-markup';
 import WorkCard from '../work/WorkCard.container';
+import Heading from '../base/Heading';
+import Term from '../base/Term';
 import Slider from '../belt/Slider.component';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
 import {filtersMapAll} from '../../redux/filter.reducer';
@@ -36,38 +39,64 @@ export class BooksBelt extends React.Component {
         : skeletonElements;
 
     return (
-      <div className="row belt text-left">
-        <div className="col-xs-12 header">
+      <div className="row belt text-left mt4">
+        <div className="header row">
           <Link
             href="/find"
             params={{tag: this.props.tagObjects.map(t => t.id)}}
           >
-            <span className="belt-title">{this.props.title}</span>
+            <Heading
+              className="inline border-right-xs-0 border-right-sm-1 pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr2 mb0"
+              tag="h1"
+              type="section"
+            >
+              {this.props.title.split(' ').map((word, idx) => {
+                if (idx === 0) {
+                  return <strong>{word}</strong>;
+                }
+                return ' ' + word;
+              })}
+            </Heading>
           </Link>
-          <div className={'belt-subtext'}> {this.props.subtext}</div>
+          <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
+            {this.props.tagObjects.map((t, idx) => {
+              const isLast = idx === this.props.tagObjects.length - 1;
+              return (
+                <Term
+                  className={'ml1 mt1' + (isLast ? ' mr1' : '')}
+                  size="medium"
+                  style={{verticalAlign: 'baseline'}}
+                >
+                  {t.title}
+                </Term>
+              );
+            })}
+          </div>
+          <Heading tag="h3" type="lead" className="ml1 mt1 mb0">
+            {this.props.subtext}
+          </Heading>
         </div>
 
-        <div className="row mb4">
-          <div className="col-xs-12">
-            <Slider
-              onSwipe={index => {
-                if (index > 0 && !this.state.didSwipe) {
-                  this.setState({didSwipe: true});
-                }
-              }}
-            >
-              {pids.map((pid, idx) => {
-                return (
-                  <WorkCard
-                    allowFetch={this.state.didSwipe || idx < fetchInitial}
-                    pid={pid}
-                    key={pid}
-                    origin={`Fra "${this.props.title}"`}
-                  />
-                );
-              })}
-            </Slider>
-          </div>
+        <div className="row mt2">
+          <Slider
+            onSwipe={index => {
+              if (index > 0 && !this.state.didSwipe) {
+                this.setState({didSwipe: true});
+              }
+            }}
+          >
+            {pids.map((pid, idx) => {
+              return (
+                <WorkCard
+                  className="ml1 mr1"
+                  allowFetch={this.state.didSwipe || idx < fetchInitial}
+                  pid={pid}
+                  key={pid}
+                  origin={`Fra "${this.props.title}"`}
+                />
+              );
+            })}
+          </Slider>
         </div>
       </div>
     );

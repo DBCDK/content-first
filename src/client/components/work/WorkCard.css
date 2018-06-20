@@ -2,27 +2,19 @@
   display: inline-block;
   height: 430px;
   width: 215px;
-  margin: 10px;
   vertical-align: top;
 }
-.WorkCard::before {
-  z-index: -1;
-  will-change: transform;
-}
-.WorkCard .cover-wrapper {
+.WorkCard .book-cover {
   height: 70%;
+  width: 100%;
   padding: 20px;
   background: #f8f8f8;
-}
-.WorkCard .cover-wrapper img {
-  height: 100%;
-  width: 100%;
   object-fit: contain;
 }
+
 .WorkCard .taxonomy-description {
-  font-size: 1.5rem;
-  line-height: 2.4rem;
-  font-family: Montserrat, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.4rem;
   color: #00414b;
   white-space: normal;
   margin-top: 1em;
@@ -30,7 +22,18 @@
 
 @media only screen and (max-width: 768px) {
   .WorkCard {
-    height: 270px;
-    width: 135px;
+    height: 320px;
+    width: 160px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .WorkCard {
+    height: 180px;
+    width: 140px;
+  }
+  .WorkCard .book-cover {
+    height: 100%;
+    padding: 5px;
   }
 }

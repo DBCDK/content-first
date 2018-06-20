@@ -24,6 +24,9 @@
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
 }
+.mobile-slider-wrapper::-webkit-scrollbar {
+  display: none;
+}
 .mobile-slider {
   -webkit-backface-visibility: hidden;
   -webkit-transform: translate3d(0, 0, 0);

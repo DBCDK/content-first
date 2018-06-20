@@ -4,6 +4,7 @@
   --blue: rgb(109, 193, 236);
   --orange: #e67107;
   --green: #6da262;
+  --pistache: #a8c7b0;
   --greybrown: #897571;
   --lightgrey: #d9d9d9;
   --mediumgrey: #545454;
@@ -141,11 +142,11 @@ body {
 }
 
 .belt {
-  min-height: 400px;
-  margin-top: 20px;
+  /* min-height: 400px; */
+  /* margin-top: 20px; */
   /*border: 1px solid lightgray;*/
   /*border-radius: 8px;*/
-  position: relative;
+  /* position: relative; */
   /*box-shadow: 1px 1px 3px #999999;*/
 }
 .belt .header {
