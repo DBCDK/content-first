@@ -45,7 +45,7 @@ export class BooksBelt extends React.Component {
             params={{tag: this.props.tagObjects.map(t => t.id)}}
           >
             <Heading
-              className="inline border-right-xs-0 border-right-sm-1 pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr2 mb0"
+              className="inline border-right-xs-0 border-right-sm-1 pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0"
               tag="h1"
               type="section"
             >
