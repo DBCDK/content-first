@@ -22,7 +22,7 @@ const Button = ({
 };
 
 Button.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   type: PropTypes.oneOf(['primary', 'secondary', 'tertiary'])
 };
 

@@ -2,7 +2,7 @@
   padding: 9px 20px;
   border-radius: 4px;
   color: var(--petrolium);
-  background-color: var(--graa); 
+  background-color: var(--graa);
   font-size: 1em;
   line-height: 1em;
   font-weight: 600;
@@ -21,32 +21,39 @@
 
 .Button__secondary {
   text-transform: uppercase;
-  background-color: var(--lys-due); 
+  background-color: var(--lys-due);
 }
 .Button__secondary:hover {
-  background-color: var(--due); 
+  background-color: var(--due);
 }
 
 .Button__tertiary {
   text-transform: none;
-  background-color: var(--mellemlys-graa); 
+  background-color: var(--mellemlys-graa);
 }
 
 .Button__tertiary:hover {
-  background-color: var(--pistache); 
+  background-color: var(--pistache);
 }
 
 .Button__term {
-  font-size: 0.9em;
+  font-weight: 400;
   text-transform: none;
-  background-color: var(--graa); 
+  background-color: var(--graa);
 }
 
 .Button__term:hover {
-  background-color: var(--pistache); 
+  background-color: var(--pistache);
 }
 
 /* Sizes */
+.Button__large {
+  text-transform: none;
+
+  padding: 10px 15px;
+  font-size: 1.3em;
+}
+
 .Button__medium {
   text-transform: none;
   padding: 7px 10px;
