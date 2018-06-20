@@ -86,7 +86,7 @@ class App extends Component {
         {topbar ? (
           <div>
             <TopBar dispatch={this.props.dispatch} user={this.props.user} />
-            <div style={{height: '50px'}} />
+            <div style={{height: '80px'}} />
           </div>
         ) : (
           ''

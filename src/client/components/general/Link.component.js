@@ -4,22 +4,18 @@ import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 
 const Link = ({
   href,
+  type = HISTORY_PUSH,
   className = 'list-card-nohover',
   children = '',
   dispatch,
-  replace = false,
   params = {}
 }) => (
   <a
     className={className}
     href={href}
     onClick={e => {
-      if (replace) {
-        dispatch({type: HISTORY_REPLACE, path: href, params});
-      } else {
-        dispatch({type: HISTORY_PUSH, path: href, params});
-      }
       e.preventDefault();
+      dispatch({type: type, path: href, params});
     }}
   >
     {children}

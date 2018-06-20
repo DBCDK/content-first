@@ -1,10 +1,9 @@
-.container.topbar {
+/*.container.topbar {
   position: fixed;
   z-index: 3000;
   background: white;
   padding-top: 5px;
   padding-bottom: 5px;
-  /*border-bottom: gray solid 1px;*/
   box-shadow: 0 6px 6px -4px rgba(0, 0, 0, 0.175);
 }
 .topbar .login {
@@ -26,13 +25,14 @@
 }
 .topbar h1 {
   font-size: 26px;
-  font-weight: 400;
-  font-style: italic;
+  font-weight: bold;
   margin: 0;
   margin-top: -4px;
 }
 .topbar .header {
   cursor: pointer;
+  height: 70px;
+  line-height: 70px;
 }
 .topbar .header img {
   height: 40px;
@@ -54,3 +54,4 @@
 .topbar .inline {
   display: flex;
 }
+*/

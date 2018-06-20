@@ -419,7 +419,7 @@ export class ListCreator extends React.Component {
                   |{' '}
                 </span>
               )}
-              <Link href="/profile" replace={true}>
+              <Link href="/profile" replace={HISTORY_REPLACE}>
                 {isNew
                   ? 'Fortryd oprettelse af liste'
                   : 'Fortryd redigering af liste'}

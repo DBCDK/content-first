@@ -1,0 +1,23 @@
+span.Skeleton__user {
+  display: inline-block;
+  background-color: var(--mellemlys-graa);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  animation: pulse 2s infinite 0s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
