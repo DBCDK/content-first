@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import TruncateMarkup from 'react-truncate-markup';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
 import Term from '../base/Term';

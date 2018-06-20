@@ -89,6 +89,7 @@ class FilterPage extends React.Component {
           {this.props.recommendedPids.pids.length > 0 &&
             this.props.recommendedPids.pids.map(pid => (
               <WorkCard
+                className="ml1 mr1"
                 pid={pid}
                 key={pid}
                 allowFetch={true}

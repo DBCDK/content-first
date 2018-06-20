@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import WorkCard from './WorkCard.container';
 import Spinner from '../general/Spinner.component';
+import Heading from '../base/Heading';
 import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
@@ -294,9 +295,9 @@ class WorkPage extends React.Component {
           <div className="row belt text-left">
             <div className="col-xs-11 col-centered">
               <div className="col-xs-12 header">
-                <span className="belt-title">
+                <Heading tag="h1" type="section">
                   Bøger der giver lignende oplevelser
-                </span>
+                </Heading>
               </div>
               <div className="row mb4">
                 <div className="col-xs-12">
@@ -304,6 +305,7 @@ class WorkPage extends React.Component {
                     {this.props.recommendedPids.map(pid => {
                       return (
                         <WorkCard
+                          className="ml1 mr1"
                           pid={pid}
                           allowFetch={true}
                           key={pid}
