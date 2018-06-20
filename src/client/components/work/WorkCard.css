@@ -30,10 +30,10 @@
 @media only screen and (max-width: 480px) {
   .WorkCard {
     height: 180px;
-    width: 140px;
+    width: 130px;
   }
   .WorkCard .book-cover {
     height: 100%;
-    padding: 5px;
+    padding: 10px;
   }
 }
