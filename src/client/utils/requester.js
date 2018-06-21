@@ -38,9 +38,8 @@ export const fetchTagIds = async (pids = []) => {
   return weightedResults(result);
 };
 
-export const weightedResults = (arr) => {
-
-  let weightedArray=[];
+export const weightedResults = arr => {
+  let weightedArray = [];
   let array_elements = arr;
 
   array_elements.sort();
@@ -49,8 +48,8 @@ export const weightedResults = (arr) => {
   let cnt = 0;
   for (let i = 0; i < array_elements.length; i++) {
     if (array_elements[i] !== current) {
-      if (cnt > 0 && current>0) {
-        weightedArray.push({id:current, weight:cnt})
+      if (cnt > 0 && current > 0) {
+        weightedArray.push({id: current, weight: cnt});
       }
       current = array_elements[i];
       cnt = 1;
@@ -58,16 +57,16 @@ export const weightedResults = (arr) => {
       cnt++;
     }
   }
-  if (cnt > 0 && current>0) {
-    weightedArray.push({id:current, weight:cnt})
+  if (cnt > 0 && current > 0) {
+    weightedArray.push({id: current, weight: cnt});
   }
 
   // sorting the array by heaviest weight
-  let sortedArray=sortByKey(weightedArray, "weight").reverse()
+  let sortedArray = sortByKey(weightedArray, 'weight').reverse();
 
   // keeping only the top 10 tags
-  while (sortedArray.length>10){
-    sortedArray.pop()
+  while (sortedArray.length > 10) {
+    sortedArray.pop();
   }
 
   return sortedArray;
@@ -77,7 +76,7 @@ function sortByKey(array, key) {
   return array.sort(function(a, b) {
     let x = a[key];
     let y = b[key];
-    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    return x < y ? -1 : x > y ? 1 : 0;
   });
 }
 
