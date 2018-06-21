@@ -17,7 +17,6 @@ export class RecommendationsBelt extends React.Component {
   }
 
   render() {
-
     if (this.props.tagIds.length > 0 && this.props.username) {
       return (
         <div>
