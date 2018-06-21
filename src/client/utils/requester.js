@@ -34,7 +34,7 @@ export const fetchTagIds = async (pids = []) => {
     const tags = response.body.data.tags;
     result = result.concat(tags);
   }
-  //creating weighted objects of each repeated tag
+  // creating weighted objects of each repeated tag
   return weightedResults(result);
 };
 
