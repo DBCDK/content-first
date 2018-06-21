@@ -11,7 +11,6 @@ export const tagIdMiddleware = store => next => action => {
   switch (action.type) {
     case TAGID_REQUEST: {
       const pids = action.pids;
-
       if (pids.length > 0) {
         (async () => {
           try {
@@ -48,7 +47,7 @@ const tagIdReducer = (state = defaultState, action) => {
     case TAGID_RESPONSE:
       return {
         ...state,
-        tags: action.tags.filter(tag => tag > 0)
+        tags: action.tags.filter(tag => tag.id > 0)
       };
     default:
       return state;

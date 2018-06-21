@@ -40,7 +40,8 @@ export const interactionMiddleware = store => next => action => {
       return (async () => {
         next(action);
         try {
-          const dbInteractionData = (await fetchObjects('', 'INTERACTION', 20))
+          const openplatformId = store.getState().userReducer.openplatformId;
+          const dbInteractionData = (await fetchObjects('', 'INTERACTION',openplatformId, 20))
             .data;
           let interactions = [];
           dbInteractionData.forEach(
