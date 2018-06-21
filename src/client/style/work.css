@@ -91,7 +91,7 @@
 }
 .cover-image {
   padding: 3px;
-  box-shadow: 1px 1px 20px #666666;
+  /* box-shadow: 1px 1px 20px #666666; */
   height: 100%;
 }
 .cover-image img {

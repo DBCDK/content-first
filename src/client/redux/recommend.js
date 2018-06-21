@@ -1,5 +1,4 @@
 import librarianRecommends from '../../data/librarian-recommends.json';
-import {BOOKS_REQUEST} from './books.reducer';
 import request from 'superagent';
 import {uniq} from 'lodash';
 import {filtersMapAll} from './filter.reducer';
@@ -161,9 +160,6 @@ export const recommendMiddleware = store => next => action => {
         (async () => {
           try {
             const pids = await fetchRecommendations(action);
-            if (pids.length > 0) {
-              store.dispatch({type: BOOKS_REQUEST, pids});
-            }
             store.dispatch({
               ...action,
               type: RECOMMEND_RESPONSE,

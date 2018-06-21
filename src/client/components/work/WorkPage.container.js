@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import WorkItem from './WorkItemConnected.component';
+import WorkCard from './WorkCard.container';
 import Spinner from '../general/Spinner.component';
+import Heading from '../base/Heading';
 import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
@@ -11,7 +12,7 @@ import SocialShareButton from '../general/SocialShareButton.component';
 import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
-import {getRecommendedBooks} from '../../redux/selectors';
+import {getRecommendedPids} from '../../redux/recommend';
 import {get} from 'lodash';
 
 let selectedTagIds = [];
@@ -290,22 +291,24 @@ class WorkPage extends React.Component {
             </div>
           </div>
         </div>
-        {this.props.recommendations.books && (
+        {this.props.recommendedPids && (
           <div className="row belt text-left">
             <div className="col-xs-11 col-centered">
               <div className="col-xs-12 header">
-                <span className="belt-title">
+                <Heading tag="h1" type="section">
                   Bøger der giver lignende oplevelser
-                </span>
+                </Heading>
               </div>
               <div className="row mb4">
                 <div className="col-xs-12">
                   <Slider>
-                    {this.props.recommendations.books.map(w => {
+                    {this.props.recommendedPids.map(pid => {
                       return (
-                        <WorkItem
-                          work={w}
-                          key={w.book.pid}
+                        <WorkCard
+                          className="ml1 mr1"
+                          pid={pid}
+                          allowFetch={true}
+                          key={pid}
                           origin={`Minder om "${book.title}"`}
                         />
                       );
@@ -322,14 +325,13 @@ class WorkPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const recommendations = getRecommendedBooks(state, selectedTagIds, 21);
-
-  recommendations.books = recommendations.books.filter(
-    r => r.book.pid !== ownProps.pid
-  );
-
   return {
     work: state.booksReducer.books[ownProps.pid],
+    recommendedPids: getRecommendedPids(state.recommendReducer, {
+      tags: selectedTagIds
+    })
+      .pids.filter(pid => pid !== ownProps.pid)
+      .slice(0, 20),
     filterState: state.filterReducer,
     shortListState: state.shortListReducer,
     systemLists: getListsForOwner(state.listReducer, {
@@ -337,7 +339,6 @@ const mapStateToProps = (state, ownProps) => {
       owner: state.userReducer.openplatformId,
       sort: true
     }),
-    recommendations: recommendations,
     isLoggedIn: state.userReducer.isLoggedIn
   };
 };
