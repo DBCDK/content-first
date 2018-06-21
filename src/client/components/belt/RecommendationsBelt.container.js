@@ -17,19 +17,18 @@ export class RecommendationsBelt extends React.Component {
   }
 
   render() {
-    if (this.props.tagIds.length > 0) {
+
+    if (this.props.tagIds.length > 0 && this.props.username) {
       return (
         <div>
           <BooksBelt
-            title={'Bedste forslag'}
-            subtext={'især for ' + this.props.username}
+            title={'Bedste forslag til ' + this.props.username}
             tags={this.props.tagIds}
           />
         </div>
       );
-    } else {
-      return <div />;
     }
+    return null;
   }
 }
 
