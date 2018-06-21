@@ -1,9 +1,11 @@
 import React from 'react';
 import './User.css';
 
-const User = ({className, children}) => {
+const User = ({className, styles, children}) => {
   return (
-    <span className={`Skeleton__user ${className || ''}`}>{children}</span>
+    <span className={`Skeleton__user ${className || ''}`} style={styles}>
+      {children}
+    </span>
   );
 };
 

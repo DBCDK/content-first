@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import BookCover from '../general/BookCover.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Kryds from '../svg/Kryds.svg';
-import Huskeliste from '../svg/Huskeliste.svg';
 import LineBehindText from '../general/LineBehindText.component';
 import Link from '../general/Link.component';
 import {

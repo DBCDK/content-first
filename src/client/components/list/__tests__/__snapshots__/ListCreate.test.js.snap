@@ -248,7 +248,7 @@ exports[`ListCreate list details is shown 1`] = `
         </span>
         <Link
           href="/profile"
-          replace={true}
+          replace="HISTORY_REPLACE"
         >
           Fortryd redigering af liste
         </Link>
@@ -713,7 +713,7 @@ exports[`ListCreate renders a list with multiple books 1`] = `
         </span>
         <Link
           href="/profile"
-          replace={true}
+          replace="HISTORY_REPLACE"
         >
           Fortryd redigering af liste
         </Link>
@@ -1045,7 +1045,7 @@ exports[`ListCreate renders a list with one book 1`] = `
         </span>
         <Link
           href="/profile"
-          replace={true}
+          replace="HISTORY_REPLACE"
         >
           Fortryd redigering af liste
         </Link>

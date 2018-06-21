@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
+import {HISTORY_PUSH} from '../../redux/middleware';
 
 const Link = ({
   href,
@@ -8,6 +8,7 @@ const Link = ({
   className = 'list-card-nohover',
   children = '',
   dispatch,
+  onClick,
   params = {}
 }) => (
   <a
@@ -16,6 +17,9 @@ const Link = ({
     onClick={e => {
       e.preventDefault();
       dispatch({type: type, path: href, params});
+      if (onClick) {
+        onClick();
+      }
     }}
   >
     {children}
