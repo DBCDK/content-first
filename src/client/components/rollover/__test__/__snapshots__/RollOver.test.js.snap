@@ -18,7 +18,7 @@ exports[`RollOver renders initial component 1`] = `
     >
       <img
         alt="test"
-        className="high-contrast "
+        className=""
         onLoad={undefined}
         src="/default-book-cover.png"
         style={undefined}

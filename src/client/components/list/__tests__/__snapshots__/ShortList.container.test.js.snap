@@ -139,7 +139,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                         >
                                           <img
                                             alt="some title2"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -325,7 +325,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                         >
                                           <img
                                             alt="some title1"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -608,7 +608,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                         >
                                           <img
                                             alt="some title1"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -915,7 +915,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                         >
                                           <img
                                             alt="some title1"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -1222,7 +1222,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                         >
                                           <img
                                             alt="some title1"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -1529,7 +1529,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                         >
                                           <img
                                             alt="some title1"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -1869,7 +1869,7 @@ exports[`ShortList.container remove element 1`] = `
                                         >
                                           <img
                                             alt="some title3"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -2055,7 +2055,7 @@ exports[`ShortList.container remove element 1`] = `
                                         >
                                           <img
                                             alt="some title2"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -2241,7 +2241,7 @@ exports[`ShortList.container remove element 1`] = `
                                         >
                                           <img
                                             alt="some title1"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -2584,7 +2584,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                         >
                                           <img
                                             alt="some title3"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -2770,7 +2770,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                         >
                                           <img
                                             alt="some title2"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>
@@ -2956,7 +2956,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                         >
                                           <img
                                             alt="some title1"
-                                            className="high-contrast "
+                                            className=""
                                             src="/default-book-cover.png"
                                           />
                                         </BookCover>

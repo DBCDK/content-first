@@ -4,13 +4,16 @@
   --blue: rgb(109, 193, 236);
   --orange: #e67107;
   --green: #6da262;
+  --pistache: #a8c7b0;
   --greybrown: #897571;
   --lightgrey: #d9d9d9;
   --mediumgrey: #545454;
   --darkgrey: #333333;
-  --primary-font: 'Lora', serif;
   --secondary-font: 'Raleway', sans-serif;
 }
+
+/*imports for new design*/
+@import './global.css';
 
 /* Import fonts */
 @import url('https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i');
@@ -55,12 +58,14 @@
 @import './components/circletemplate.css';
 @import './components/bookcaseTemplate.css';
 @import './components/socialShareButton.css';
+@import './components/follow.css';
 
 /* Import slick carousel - https://github.com/akiran/react-slick */
 @import '~slick-carousel/slick/slick.css';
 @import '~slick-carousel/slick/slick-theme.css';
 
 html {
+  font-size: 14px;
   /* Avoid content from jumping when modal is opened/closed */
   overflow-y: scroll;
 }
@@ -68,11 +73,13 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
   background: #fdfdfd;
-  font-family: 'Lora', serif;
+  font-family: var(--primary-font);
 }
 
+.scrolling-wrapper .card {
+  display: inline-block;
+}
 /*body.modal-open {
   position: fixed;
   overflow-y: hidden;
@@ -83,7 +90,7 @@ body {
 }*/
 
 .container {
-  background: #fafafa;
+  background: white;
 }
 
 @media (min-width: 1450px) {
@@ -91,15 +98,8 @@ body {
     width: 1400px;
   }
 }
-.btn,
 .raleway {
   font-family: 'Raleway', sans-serif;
-}
-
-h1,
-h2,
-h3 {
-  font-family: 'Lora', serif;
 }
 
 .col-centered {
@@ -142,12 +142,11 @@ h3 {
 }
 
 .belt {
-  min-height: 400px;
-  margin-top: 20px;
+  /* min-height: 400px; */
+  /* margin-top: 20px; */
   /*border: 1px solid lightgray;*/
   /*border-radius: 8px;*/
-  background: #fcfcfc;
-  position: relative;
+  /* position: relative; */
   /*box-shadow: 1px 1px 3px #999999;*/
 }
 .belt .header {

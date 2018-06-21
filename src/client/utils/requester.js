@@ -13,6 +13,7 @@ import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
+import {get} from 'lodash';
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
@@ -40,12 +41,6 @@ export const fetchTagIds = async (pids = []) => {
 };
 
 export const fetchTags = async (pids = []) => {
-  /*
-    accepts:
-      pids = ["pid1","pid2","..."]
-    returns:
-      [{tag},{tag},{...}]
-  */
   let result = {};
   let requests = [];
 
@@ -66,54 +61,13 @@ export const fetchTags = async (pids = []) => {
   return result;
 };
 
-export const fetchBooks = (pids = [], includeTags, dispatch) => {
-  /*
-    accepts:
-      pids = ["pid1","pid2","..."]
-    returns:
-      [{book},{book},{...}]
-  */
+export const fetchBooks = (pids = [], dispatch) => {
   pids = unique(pids);
   const getBooks = request.get('/v1/books/').query({pids});
 
-  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
-  Promise.all(
-    pids.map(async pid => {
-      try {
-        const [{coverUrlFull}] = await openplatform.work({
-          pids: [pid],
-          fields: ['coverUrlFull']
-        });
-        return coverUrlFull && coverUrlFull[0];
-      } catch (e) {
-        // ignore errors/missing on fetching covers
-        return;
-      }
-    })
-  ).then(coversResult =>
-    dispatch({
-      type: BOOKS_RESPONSE,
-      response: pids.map((pid, i) => ({
-        book: {
-          pid: pid,
-          coverUrl: coversResult[i]
-        }
-      }))
-    })
-  );
-
   return Promise.all([getBooks])
     .then(async responses => {
-      const books = JSON.parse(responses[0].text).data;
-      if (includeTags) {
-        const tags = await fetchTags(pids);
-
-        books.forEach(b => {
-          b.book.tags = tags[b.book.pid];
-        });
-      }
-
-      dispatch({type: BOOKS_RESPONSE, response: books});
+      let books = JSON.parse(responses[0].text).data;
       return books;
     })
     .catch(error => {
@@ -125,6 +79,158 @@ export const fetchBooks = (pids = [], includeTags, dispatch) => {
       });
       throw error;
     });
+};
+
+export const fetchCoverRefs = (pids = []) => {
+  pids = unique(pids);
+
+  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
+  return Promise.all(
+    pids.map(async pid => {
+      try {
+        const [{coverUrlFull}] = await openplatform.work({
+          pids: [pid],
+          fields: ['coverUrlFull']
+        });
+        return {
+          coverUrlFull: coverUrlFull && coverUrlFull[0]
+        };
+      } catch (e) {
+        // ignore errors/missing on fetching covers
+        return;
+      }
+    })
+  ).then(result => {
+    return pids
+      .map((pid, i) => {
+        if (result && result[i]) {
+          return {
+            book: {
+              pid: pid,
+              coverUrl: result[i].coverUrlFull || ''
+            }
+          };
+        }
+      })
+      .filter(b => b);
+  });
+};
+
+export const fetchBooksRefs = (pids = []) => {
+  pids = unique(pids);
+
+  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
+  return Promise.all(
+    pids.map(async pid => {
+      try {
+        const [{hasReview, collection}] = await openplatform.work({
+          pids: [pid],
+          fields: ['hasReview', 'collection']
+        });
+        return {
+          hasReview,
+          collection
+        };
+      } catch (e) {
+        // ignore errors/missing on fetching covers
+        return;
+      }
+    })
+  ).then(result => {
+    return pids
+      .map((pid, i) => {
+        if (result && result[i]) {
+          return {
+            book: {
+              pid: pid,
+              reviews: {data: result[i].hasReview || []},
+              collection: {data: result[i].collection || []}
+            }
+          };
+        }
+      })
+      .filter(b => b);
+  });
+};
+
+export const fetchBooksTags = async (pids = []) => {
+  pids = unique(pids);
+  const tags = await fetchTags(pids);
+  let books = pids.map(pid => {
+    return {
+      book: {
+        pid: pid,
+        tags: tags[pid]
+      }
+    };
+  });
+  return books;
+};
+
+export const fetchReviews = (pids, store) => {
+  const books = store.getState().booksReducer.books;
+  const booksToBeFetched = pids
+    .map(pid => books[pid])
+    .filter(work => get(work, 'book.reviews.data.length') > 0);
+  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
+  return Promise.all(
+    booksToBeFetched.map(async ref => {
+      try {
+        const result = await openplatform.work({
+          pids: ref.book.reviews.data,
+          fields: ['identifierURI', 'creatorOth', 'isPartOf', 'date']
+        });
+
+        return {
+          book: {
+            pid: ref.book.pid,
+            reviews: {
+              data: result,
+              isLoading: false
+            }
+          }
+        };
+      } catch (e) {
+        // ignore errors/missing on fetching covers
+        return;
+      }
+    })
+  ).then(result => {
+    return result;
+  });
+};
+
+export const fetchCollection = (pids, store) => {
+  const books = store.getState().booksReducer.books;
+  const booksToBeFetched = pids
+    .map(pid => books[pid])
+    .filter(work => get(work, 'book.collection.data.length') > 0);
+  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
+  return Promise.all(
+    booksToBeFetched.map(async ref => {
+      try {
+        const result = await openplatform.work({
+          pids: ref.book.collection.data,
+          fields: ['type', 'identifierURI']
+        });
+
+        return {
+          book: {
+            pid: ref.book.pid,
+            collection: {
+              data: result,
+              isLoading: false
+            }
+          }
+        };
+      } catch (e) {
+        // ignore errors/missing on fetching covers
+        return;
+      }
+    })
+  ).then(result => {
+    return result;
+  });
 };
 
 export const fetchProfileRecommendations = (profileState, dispatch) => {
@@ -182,11 +288,11 @@ export const saveUser = user => {
   });
 };
 
-export const fetchObjects = (key, type, limit = 100) => {
+export const fetchObjects = (key, type, owner = null, limit = 100) => {
   return new Promise((resolve, reject) => {
     request
       .get('/v1/object/find')
-      .query({key, type, limit})
+      .query({key, type, owner, limit})
       .end((error, res) => {
         if (error) {
           reject(res.body && res.body.errors ? res.body.errors[0] : error);

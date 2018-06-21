@@ -4,6 +4,7 @@ import React from 'react';
 <SocialShareButton
   className="ssb-fb" (Not req)
   href={'https://myurltoshare.dk/lister/1234567 || null} (Not req)
+  facebook={true} (Not req)
   icon={'glyphicon || icon from media folder'} (Not req)
   hex={'#3b5998'}
   size={40}
@@ -19,6 +20,7 @@ import React from 'react';
 export default class SocialShareButton extends React.Component {
   render() {
     const buttonStyles = {
+      ...this.props.styles,
       backgroundColor: this.props.hex,
       height: this.props.size + 'px',
       lineHeight: this.props.size + 'px',
@@ -26,8 +28,8 @@ export default class SocialShareButton extends React.Component {
     };
 
     const spanStyles = {
-      fontWeight: 'bold',
-      marginRight: this.props.txt ? this.props.size / 3 + 'px' : '0px'
+      marginRight:
+        this.props.txt && this.props.icon ? this.props.size / 3 + 'px' : '0px'
     };
 
     buttonStyles.borderRadius = this.props.shape === 'round' ? '50%' : '5px';
@@ -51,12 +53,12 @@ export default class SocialShareButton extends React.Component {
     return (
       <a
         href={
-          this.props.href
+          this.props.facebook
             ? 'https://www.facebook.com/sharer/sharer.php?display=page&u=' +
               this.props.href +
               '?' +
               ts
-            : null
+            : this.props.href ? this.props.href : null
         }
         target="_blank"
         onClick={this.props.href ? null : this.props.onClick}

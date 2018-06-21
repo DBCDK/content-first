@@ -1,0 +1,37 @@
+.Heading__hero {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 4.5vw;
+  line-height: 60px;
+}
+
+.Heading__lead {
+  font-weight: 400;
+  font-size: 1.6em;
+  line-height: 24px;
+}
+
+.Heading__section {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1.8em;
+  line-height: 36px;
+}
+
+@media only screen and (max-width: 600px) {
+  .Heading__lead {
+    font-weight: 400;
+    font-size: 1.1em;
+    line-height: 20px;
+  }
+
+  .Heading__section {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.2em;
+    line-height: 1.4em;
+  }
+  .Heading__section strong {
+    font-weight: 600;
+  }
+}

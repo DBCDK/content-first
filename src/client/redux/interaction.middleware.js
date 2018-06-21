@@ -24,8 +24,7 @@ export const interactionMiddleware = store => next => action => {
           .send({
             _type: INTERACTION,
             interaction: action.interaction,
-            pid: action.pid,
-            _public: true
+            pid: action.pid
           })
           .end();
       } catch (e) {

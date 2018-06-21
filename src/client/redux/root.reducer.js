@@ -6,6 +6,7 @@ import userReducer from './user.reducer';
 import {usersReducer} from './users';
 import tasteReducer from './taste.reducer';
 import listReducer from './list.reducer';
+import followReducer from './follow.reducer';
 import shortListReducer from './shortlist.reducer';
 import modalReducer from './modal.reducer';
 import searchReducer from './search.reducer';
@@ -22,6 +23,7 @@ const combined = combineReducers({
   beltsReducer,
   filterReducer,
   listReducer,
+  followReducer,
   userReducer: userReducer,
   users: usersReducer,
   routerReducer,

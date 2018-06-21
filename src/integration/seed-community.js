@@ -36,11 +36,13 @@ async function seedingCommunity() {
   await knex(cookieTable).insert({
     cookie: 'a-valid-login-token',
     community_profile_id: profileId,
+    openplatform_id: '123openplatformId456',
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
   await knex(cookieTable).insert({
     cookie: 'another-valid-login-token',
     community_profile_id: profileId + 1,
+    openplatform_id: '123openplatformId456-another',
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
 
@@ -55,13 +57,14 @@ async function seedingCommunity() {
   const profileId2 = data2.id;
   await community.updatingProfileWithShortlistAndTastes(profileId2, {
     attributes: {
-      openplatform_id: '123openplatform-id-for-user-2',
+      openplatform_id: '123openplatformId456-other-user',
       openplatform_token: 'someToken2'
     }
   });
   await knex(cookieTable).insert({
     cookie: 'a-valid-login-token-for-other-user',
     community_profile_id: profileId2,
+    openplatform_id: '123openplatformId456-other-valid-user',
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
 }
@@ -97,7 +100,7 @@ function reservedListUuid() {
 }
 
 function knownUserId() {
-  return 'u9YaYSg6MlduZVnCkhv4N0wnt8g7Oa+f';
+  return '123openplatformId456';
 }
 
 async function cachingOneList(profileId, entityId) {

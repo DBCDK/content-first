@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`followReducer follow a list 1`] = `
+Object {
+  "some-id-1": Object {
+    "cat": "list",
+    "id": "some-id-1",
+    "type": "follows",
+  },
+}
+`;
+
+exports[`followReducer unfollow a list 1`] = `
+Object {
+  "some-id-1": Object {
+    "cat": "list",
+    "id": "some-id-1",
+    "type": "follows",
+  },
+  "some-id-2": Object {
+    "cat": "list",
+    "id": "some-id-2",
+    "type": "follows",
+  },
+}
+`;
+
+exports[`followReducer unfollow a list 2`] = `
+Object {
+  "some-id-2": Object {
+    "cat": "list",
+    "id": "some-id-2",
+    "type": "follows",
+  },
+}
+`;

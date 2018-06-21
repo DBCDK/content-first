@@ -3,10 +3,17 @@
   position: relative;
 }
 
-.list-wrapper .b-dark .ssb-fb {
+.list-wrapper .b-dark .list-media-icons {
   position: absolute;
   right: 4em;
   top: 4em;
+}
+
+.list-wrapper .b-dark .ssb-fb {
+}
+
+.list-wrapper .b-dark .ssb-follow {
+  margin-right: 1em;
 }
 
 .simplelist-item {

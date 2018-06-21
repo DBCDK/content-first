@@ -15,7 +15,7 @@ class ListCard extends React.PureComponent {
       if (img) {
         cardCover = (
           <div>
-            <img src={'v1/image/' + img + '/220/120'} />
+            <img alt="" src={'v1/image/' + img + '/220/120'} />
           </div>
         );
       } else {
@@ -39,8 +39,8 @@ class ListCard extends React.PureComponent {
     }
 
     return (
-      <div className="list-card" style={style}>
-        <Link href={`/lister/${list.id}`}>
+      <Link href={`/lister/${list.id}`}>
+        <div className="list-card" style={style}>
           <div className="list-card-covers">{renderBookCover(list.image)}</div>
           <div className="list-card-summary">
             <TruncateMarkup
@@ -70,8 +70,8 @@ class ListCard extends React.PureComponent {
               />
             </div>
           </div>
-        </Link>
-      </div>
+        </div>
+      </Link>
     );
   }
 }

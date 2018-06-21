@@ -133,7 +133,7 @@ async function enrichList({list, dispatch}) {
   list.list = list.list.filter(o => o.pid);
   const pids = list.list.map(o => o.pid);
   if (pids.length > 0) {
-    const works = await fetchBooks(pids, false, dispatch);
+    const works = await fetchBooks(pids, dispatch);
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;
       return map;

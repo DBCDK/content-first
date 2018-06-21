@@ -1,5 +1,4 @@
 import librarianRecommends from '../../data/librarian-recommends.json';
-import {BOOKS_REQUEST} from './books.reducer';
 import request from 'superagent';
 import {uniq} from 'lodash';
 import {filtersMapAll} from './filter.reducer';
@@ -150,18 +149,17 @@ const fetchRecommendations = async ({tags = [], creators, max}) => {
 export const recommendMiddleware = store => next => action => {
   switch (action.type) {
     case RECOMMEND_REQUEST: {
-      if (
-        !getRecommendedPids(store.getState().recommendReducer, {
+      const recommendations = getRecommendedPids(
+        store.getState().recommendReducer,
+        {
           tags: action.tags,
           creators: action.creators
-        }).isLoading
-      ) {
+        }
+      );
+      if (!recommendations.isLoading && recommendations.pids.length === 0) {
         (async () => {
           try {
             const pids = await fetchRecommendations(action);
-            if (pids.length > 0) {
-              store.dispatch({type: BOOKS_REQUEST, pids});
-            }
             store.dispatch({
               ...action,
               type: RECOMMEND_RESPONSE,
@@ -175,8 +173,9 @@ export const recommendMiddleware = store => next => action => {
             });
           }
         })();
+        return next(action);
       }
-      return next(action);
+      return;
     }
     default:
       return next(action);

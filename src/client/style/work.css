@@ -91,7 +91,7 @@
 }
 .cover-image {
   padding: 3px;
-  box-shadow: 1px 1px 20px #666666;
+  /* box-shadow: 1px 1px 20px #666666; */
   height: 100%;
 }
 .cover-image img {
@@ -189,4 +189,62 @@
   position: absolute;
   right: 15px;
   top: 0;
+}
+
+.work-page .reviews {
+  position: relative;
+  text-align: left;
+  min-height: 200px;
+}
+
+.work-page .reviews .reviews-heading {
+  font-size: 12px;
+  padding: 0 0 5px 0;
+}
+
+.work-page .reviews .spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -25px;
+}
+
+.work-page .reviews p {
+  font-size: 16px;
+}
+
+.work-page .reviews .review {
+  width: 100%;
+  text-align: left;
+}
+
+.work-page .reviews .review .review-creator,
+.work-page .reviews .review .review-partOf {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.work-page .reviews .review .review-creator {
+  font-weight: bold;
+}
+
+.work-page .reviews .review .review-partOf {
+  width: 100%;
+}
+
+.work-page .work-details .buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.work-page .work-details .buttonContainer .ssb-ereolen {
+  font-size: 14px !important;
+  line-height: normal !important;
+}
+
+@media only screen and (max-width: 1200px) {
+  .work-page .work-details .buttonContainer .ssb-ereolen {
+    margin: 10px 0 0 0 !important;
+  }
 }

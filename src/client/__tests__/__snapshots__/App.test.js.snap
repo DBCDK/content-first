@@ -104,7 +104,7 @@ exports[`renders without crashing 1`] = `
   >
     <Bookcase />
     <div
-      className="belts col-xs-11 col-centered"
+      className="belts col-xs-12 col-sm-12 col-centered"
     >
       <BooksBelt
         subtext={undefined}

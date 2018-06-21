@@ -24,7 +24,7 @@ class FrontPage extends React.Component {
 
   renderBelts() {
     return (
-      <div className="belts col-xs-11 col-centered">
+      <div className="belts col-xs-12 col-sm-12 col-centered">
         <RecommendationsBelt />
 
         {this.props.belts.filter(belt => belt.onFrontPage).map((belt, idx) => {
