@@ -7,8 +7,6 @@
   border-top-right-radius: 0%;
   box-shadow: -1px 1px 8px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
-
-  font-family: Icomoon, sans-serif;
   transition: 0.2s background;
   text-align: center;
   color: var(--petroleum);
