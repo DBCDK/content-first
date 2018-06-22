@@ -51,7 +51,7 @@ export class BooksBelt extends React.Component {
             >
               {this.props.title.split(' ').map((word, idx) => {
                 if (idx === 0) {
-                  return <strong>{word}</strong>;
+                  return <strong key={idx}>{word}</strong>;
                 }
                 return ' ' + word;
               })}
@@ -62,6 +62,7 @@ export class BooksBelt extends React.Component {
               const isLast = idx === this.props.tagObjects.length - 1;
               return (
                 <Term
+                  key={t.id}
                   className={'ml1 mt1' + (isLast ? ' mr1' : '')}
                   size="medium"
                   style={{verticalAlign: 'baseline'}}

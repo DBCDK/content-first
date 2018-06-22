@@ -137,10 +137,15 @@ exports[`ShortList.container Clearing list 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title2"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -323,10 +328,15 @@ exports[`ShortList.container Clearing list 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title1"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -606,10 +616,15 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title1"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -913,10 +928,15 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title1"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -1220,10 +1240,15 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title1"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -1527,10 +1552,15 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title1"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -1867,10 +1897,15 @@ exports[`ShortList.container remove element 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title3"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -2053,10 +2088,15 @@ exports[`ShortList.container remove element 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title2"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -2239,10 +2279,15 @@ exports[`ShortList.container remove element 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title1"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -2582,10 +2627,15 @@ exports[`ShortList.container short list contains elements 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title3"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -2768,10 +2818,15 @@ exports[`ShortList.container short list contains elements 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title2"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>
@@ -2954,10 +3009,15 @@ exports[`ShortList.container short list contains elements 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
+                                          <div
                                             alt="some title1"
                                             className=""
-                                            src="/default-book-cover.png"
+                                            style={
+                                              Object {
+                                                "paddingTop": 50,
+                                                "textAlign": "center",
+                                              }
+                                            }
                                           />
                                         </BookCover>
                                       </Connect(BookCover)>

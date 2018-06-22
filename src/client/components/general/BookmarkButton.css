@@ -1,0 +1,22 @@
+.BookmarkButton {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  background: #fff;
+  border-radius: 100%;
+  border-top-right-radius: 0%;
+  box-shadow: -1px 1px 8px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  transition: 0.2s background;
+  text-align: center;
+  color: var(--petroleum);
+}
+.BookmarkButton i {
+  vertical-align: middle;
+}
+.BookmarkButton:hover {
+  background: var(--pistache);
+}
+.BookmarkButton.marked {
+  background: var(--korn);
+}
