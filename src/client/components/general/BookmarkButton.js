@@ -20,7 +20,7 @@ export class BookmarkButton extends React.Component {
         style={this.props.style}
         onClick={() => this.props.toggle(this.props.origin, this.props.work)}
       >
-        <span className="glyphicon glyphicon-bookmark" />
+        <i className="material-icons md-18">bookmark_border</i>
       </div>
     );
   }

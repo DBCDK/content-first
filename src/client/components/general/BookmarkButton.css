@@ -11,12 +11,12 @@
   text-align: center;
   color: var(--petroleum);
 }
-.BookmarkButton .span {
+.BookmarkButton i {
   vertical-align: middle;
 }
 .BookmarkButton:hover {
   background: var(--pistache);
 }
 .BookmarkButton.marked {
-  background: var(--orange);
+  background: var(--korn);
 }
