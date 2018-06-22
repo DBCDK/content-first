@@ -1,4 +1,5 @@
 .WorkCard {
+  position: relative;
   display: inline-block;
   height: 430px;
   width: 215px;
@@ -15,7 +16,7 @@
 .WorkCard .taxonomy-description {
   font-size: 0.9rem;
   line-height: 1.4rem;
-  color: #00414b;
+  color: var(--petroleum);
   white-space: normal;
   margin-top: 1em;
 }

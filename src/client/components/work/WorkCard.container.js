@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import BookCover from '../general/BookCover.component';
+import BookmarkButton from '../general/BookmarkButton';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import Link from '../general/Link.component';
 import Paragraph from '../base/Paragraph';
@@ -73,6 +74,11 @@ class WorkCard extends React.Component {
         <Paragraph className="mt1 d-xs-none d-sm-block">
           {tax_description}
         </Paragraph>
+        <BookmarkButton
+          origin={this.props.origin}
+          work={this.props.work}
+          style={{position: 'absolute', right: 0, top: 0}}
+        />
       </div>
     );
   }
