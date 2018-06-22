@@ -188,24 +188,23 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .Topbar .Topbar__navigation .Topbar__navigation__btn i.Topbar__burger {
+    padding: 0;
+  }
   .Topbar__dropdown {
     width: 100%;
     right: 0;
     top: 80px;
+    opacity: 1;
   }
 
   .Topbar__dropdown .Topbar__dropdown__caret {
     display: none;
   }
 
-  /* .Topbar__dropdown {
-    width: 100%;
-    right: 0;
+  .Topbar__dropdown__hidden {
+    top: -150%;
   }
-
-  .Topbar__dropdown .Topbar__dropdown__caret {
-    right: 37px;
-  } */
 
   .Topbar__dropdown li span,
   .Topbar__dropdown li a span {
