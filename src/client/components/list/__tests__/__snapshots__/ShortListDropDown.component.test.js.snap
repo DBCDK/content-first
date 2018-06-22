@@ -2,23 +2,14 @@
 
 exports[`ShortListDropDown modal is visible when merge is required 1`] = `
 <div
-  className="short-list"
+  className="undefined short-list"
+  onClick={[Function]}
 >
-  <div
-    className="short-list--btn"
-    onClick={[Function]}
+  <span
+    className="short-badge"
   >
-    <img
-      alt=""
-      src="Huskeliste.svg"
-      title="Huskeliste"
-    />
-    <span
-      className="short-list--btn-badge badge"
-    >
-      2
-    </span>
-  </div>
+    (2)
+  </span>
   <div
     className="short-list--content text-left slide-out"
   >
@@ -166,23 +157,14 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
 
 exports[`ShortListDropDown short list contains more than 3 elements, elements are added to top of list 1`] = `
 <div
-  className="short-list"
+  className="undefined short-list"
+  onClick={[Function]}
 >
-  <div
-    className="short-list--btn"
-    onClick={[Function]}
+  <span
+    className="short-badge"
   >
-    <img
-      alt=""
-      src="Huskeliste.svg"
-      title="Huskeliste"
-    />
-    <span
-      className="short-list--btn-badge badge"
-    >
-      4
-    </span>
-  </div>
+    (4)
+  </span>
   <div
     className="short-list--content text-left slide-out"
   >
@@ -405,23 +387,14 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
 
 exports[`ShortListDropDown short list contains single element 1`] = `
 <div
-  className="short-list"
+  className="undefined short-list"
+  onClick={[Function]}
 >
-  <div
-    className="short-list--btn"
-    onClick={[Function]}
+  <span
+    className="short-badge"
   >
-    <img
-      alt=""
-      src="Huskeliste.svg"
-      title="Huskeliste"
-    />
-    <span
-      className="short-list--btn-badge badge"
-    >
-      1
-    </span>
-  </div>
+    (1)
+  </span>
   <div
     className="short-list--content text-left slide-out"
   >
@@ -515,18 +488,14 @@ exports[`ShortListDropDown short list contains single element 1`] = `
 
 exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
 <div
-  className="short-list"
+  className="undefined short-list"
+  onClick={[Function]}
 >
-  <div
-    className="short-list--btn"
-    onClick={[Function]}
+  <span
+    className="short-badge"
   >
-    <img
-      alt=""
-      src="Huskeliste.svg"
-      title="Huskeliste"
-    />
-  </div>
+    (0)
+  </span>
   <div
     className="short-list--content text-left slide-out"
   >

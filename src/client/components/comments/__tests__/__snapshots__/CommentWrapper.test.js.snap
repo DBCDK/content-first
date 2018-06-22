@@ -39,7 +39,7 @@ exports[`CommentContainer Cancel button 1`] = `
         }
       }
     >
-      <Component
+      <ProfileImage
         style={
           Object {
             "marginRight": "20px",
@@ -66,19 +66,30 @@ exports[`CommentContainer Cancel button 1`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-user"
+            <Icon
+              name="glyphicon glyphicon-user"
               style={
                 Object {
                   "color": "#897571",
                   "display": "inline-block",
-                  "fontSize": "29.75px",
+                  "fontSize": "22.75px",
                 }
               }
-            />
+            >
+              <i
+                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                style={
+                  Object {
+                    "color": "#897571",
+                    "display": "inline-block",
+                    "fontSize": "22.75px",
+                  }
+                }
+              />
+            </Icon>
           </span>
         </div>
-      </Component>
+      </ProfileImage>
       <div
         style={
           Object {
@@ -149,7 +160,7 @@ exports[`CommentContainer Cancel button 2`] = `
         }
       }
     >
-      <Component
+      <ProfileImage
         style={
           Object {
             "marginRight": "20px",
@@ -176,19 +187,30 @@ exports[`CommentContainer Cancel button 2`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-user"
+            <Icon
+              name="glyphicon glyphicon-user"
               style={
                 Object {
                   "color": "#897571",
                   "display": "inline-block",
-                  "fontSize": "29.75px",
+                  "fontSize": "22.75px",
                 }
               }
-            />
+            >
+              <i
+                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                style={
+                  Object {
+                    "color": "#897571",
+                    "display": "inline-block",
+                    "fontSize": "22.75px",
+                  }
+                }
+              />
+            </Icon>
           </span>
         </div>
-      </Component>
+      </ProfileImage>
       <div
         style={
           Object {
@@ -260,7 +282,7 @@ exports[`CommentContainer Delete button 1`] = `
         }
       }
     >
-      <Component
+      <ProfileImage
         style={
           Object {
             "marginRight": "20px",
@@ -287,19 +309,30 @@ exports[`CommentContainer Delete button 1`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-user"
+            <Icon
+              name="glyphicon glyphicon-user"
               style={
                 Object {
                   "color": "#897571",
                   "display": "inline-block",
-                  "fontSize": "29.75px",
+                  "fontSize": "22.75px",
                 }
               }
-            />
+            >
+              <i
+                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                style={
+                  Object {
+                    "color": "#897571",
+                    "display": "inline-block",
+                    "fontSize": "22.75px",
+                  }
+                }
+              />
+            </Icon>
           </span>
         </div>
-      </Component>
+      </ProfileImage>
       <div
         style={
           Object {
@@ -370,7 +403,7 @@ exports[`CommentContainer Edit button 1`] = `
         }
       }
     >
-      <Component
+      <ProfileImage
         style={
           Object {
             "marginRight": "20px",
@@ -397,19 +430,30 @@ exports[`CommentContainer Edit button 1`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-user"
+            <Icon
+              name="glyphicon glyphicon-user"
               style={
                 Object {
                   "color": "#897571",
                   "display": "inline-block",
-                  "fontSize": "29.75px",
+                  "fontSize": "22.75px",
                 }
               }
-            />
+            >
+              <i
+                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                style={
+                  Object {
+                    "color": "#897571",
+                    "display": "inline-block",
+                    "fontSize": "22.75px",
+                  }
+                }
+              />
+            </Icon>
           </span>
         </div>
-      </Component>
+      </ProfileImage>
       <div
         style={
           Object {
@@ -480,7 +524,7 @@ exports[`CommentContainer Edit button 2`] = `
         }
       }
     >
-      <Component
+      <ProfileImage
         style={
           Object {
             "marginRight": "20px",
@@ -507,19 +551,30 @@ exports[`CommentContainer Edit button 2`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-user"
+            <Icon
+              name="glyphicon glyphicon-user"
               style={
                 Object {
                   "color": "#897571",
                   "display": "inline-block",
-                  "fontSize": "29.75px",
+                  "fontSize": "22.75px",
                 }
               }
-            />
+            >
+              <i
+                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                style={
+                  Object {
+                    "color": "#897571",
+                    "display": "inline-block",
+                    "fontSize": "22.75px",
+                  }
+                }
+              />
+            </Icon>
           </span>
         </div>
-      </Component>
+      </ProfileImage>
       <div
         style={
           Object {
@@ -646,13 +701,13 @@ exports[`CommentContainer Render comment 1`] = `
           }
         }
       >
-        <span
-          className="glyphicon glyphicon-user"
+        <i
+          className=" glyphicon glyphicon-glyphicon glyphicon-user"
           style={
             Object {
               "color": "#897571",
               "display": "inline-block",
-              "fontSize": "29.75px",
+              "fontSize": "22.75px",
             }
           }
         />
@@ -724,13 +779,13 @@ exports[`CommentContainer Render edit form 1`] = `
           }
         }
       >
-        <span
-          className="glyphicon glyphicon-user"
+        <i
+          className=" glyphicon glyphicon-glyphicon glyphicon-user"
           style={
             Object {
               "color": "#897571",
               "display": "inline-block",
-              "fontSize": "29.75px",
+              "fontSize": "22.75px",
             }
           }
         />
@@ -816,13 +871,13 @@ exports[`CommentContainer Render save form 1`] = `
           }
         }
       >
-        <span
-          className="glyphicon glyphicon-user"
+        <i
+          className=" glyphicon glyphicon-glyphicon glyphicon-user"
           style={
             Object {
               "color": "#897571",
               "display": "inline-block",
-              "fontSize": "29.75px",
+              "fontSize": "22.75px",
             }
           }
         />
@@ -900,7 +955,7 @@ exports[`CommentContainer Save button 1`] = `
         }
       }
     >
-      <Component
+      <ProfileImage
         style={
           Object {
             "marginRight": "20px",
@@ -927,19 +982,30 @@ exports[`CommentContainer Save button 1`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-user"
+            <Icon
+              name="glyphicon glyphicon-user"
               style={
                 Object {
                   "color": "#897571",
                   "display": "inline-block",
-                  "fontSize": "29.75px",
+                  "fontSize": "22.75px",
                 }
               }
-            />
+            >
+              <i
+                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                style={
+                  Object {
+                    "color": "#897571",
+                    "display": "inline-block",
+                    "fontSize": "22.75px",
+                  }
+                }
+              />
+            </Icon>
           </span>
         </div>
-      </Component>
+      </ProfileImage>
       <div
         style={
           Object {

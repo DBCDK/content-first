@@ -3,8 +3,8 @@
   border-radius: 4px;
   color: var(--petrolium);
   background-color: var(--graa);
-  font-size: 1em;
-  line-height: 1em;
+  font-size: 1rem;
+  line-height: 1rem;
   font-weight: 600;
   text-decoration: none;
   transition: background-color 200ms;
@@ -38,6 +38,7 @@
 
 .Button__term {
   font-weight: 400;
+  font-size: 0.9rem;
   text-transform: none;
   background-color: var(--graa);
 }
@@ -57,11 +58,11 @@
 .Button__medium {
   text-transform: none;
   padding: 7px 10px;
-  font-size: 0.9em;
+  font-size: 0.9rem;
 }
 
 .Button__small {
   text-transform: none;
   padding: 5px 10px;
-  font-size: 0.75em;
+  font-size: 0.75rem;
 }

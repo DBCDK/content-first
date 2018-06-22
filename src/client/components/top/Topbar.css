@@ -1,0 +1,235 @@
+.Topbar.row {
+  padding: 0;
+  margin: 0;
+}
+
+.Topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3000;
+  width: 100%;
+  height: 80px;
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.175);
+  border-bottom: 1px solid var(--pistache);
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Topbar .Topbar__logo {
+  position: relative;
+  z-index: 3;
+  background-color: white;
+  color: var(--petrolium);
+}
+
+.Topbar .Topbar__logo h1 {
+  height: 100%;
+  display: inline-block;
+  line-height: 80px;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+  cursor: pointer;
+  padding: 0 20px 0 20px;
+}
+
+.Topbar .Topbar__logo img {
+  display: none;
+}
+
+.Topbar .Topbar__navigation {
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.Topbar .Topbar__navigation .Topbar__navigation__btn {
+  display: inline-block;
+  min-width: 80px;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+  border-left: 1px solid var(--pistache);
+  padding: 0 15px 0 15px;
+  cursor: pointer;
+  position: relative;
+  z-index: 3;
+}
+
+.Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top,
+.Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top img {
+  width: 35px;
+  height: 35px;
+}
+
+.Topbar .Topbar__navigation .Topbar__navigation__btn i {
+  padding: 0 10px 0 0;
+}
+
+.Topbar .Topbar__navigation .Topbar__navigation__btn span,
+.Topbar .Topbar__navigation .Topbar__navigation__btn i {
+  color: var(--petrolium);
+  pointer-events: none;
+}
+
+/*
+// Topbar nav btn hover effect
+*/
+
+.Topbar .Topbar__navigation .Topbar__navigation__btn > span,
+.Topbar .Topbar__navigation .Topbar__navigation__btn > i,
+.Topbar .Topbar__navigation .Topbar__navigation__btn > .badge {
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+}
+
+.Topbar__logo h1:hover,
+.Topbar__navigation__btn:hover > span,
+.Topbar__navigation__btn:hover > i,
+.Topbar__navigation__btn:hover > .badge {
+  color: var(--dark-cyan) !important;
+  transition-timing-function: ease-out;
+}
+
+/*
+// Topbar Dropdown
+*/
+
+.Topbar__overlay {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  position: absolute;
+  z-index: 2;
+}
+
+.Topbar__dropdown {
+  position: absolute;
+  display: block;
+  top: 90px;
+  right: 10px;
+  width: 300px;
+  background-color: white;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.175);
+  padding: 0;
+  margin: 0;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in;
+  z-index: 1;
+}
+
+.Topbar__dropdown .Topbar__dropdown__caret {
+  position: absolute;
+  top: -7px;
+  right: 22px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+}
+
+.Topbar__dropdown li {
+  list-style: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.Topbar__dropdown li span,
+.Topbar__dropdown li a span {
+  padding: 15px 15px 0 15px;
+  display: block;
+  color: var(--petrolium);
+}
+
+.Topbar__dropdown li:nth-last-child(3) span,
+.Topbar__dropdown li:nth-last-child(3) a span,
+.Topbar__dropdown li:last-child span,
+.Topbar__dropdown li:last-child a span {
+  padding: 15px;
+}
+
+.Topbar__dropdown li.divider {
+  height: 1px;
+  padding: 0;
+  background-color: var(--mellemlys-graa);
+}
+
+/*
+// Topbar dropdown hover effect
+*/
+
+.Topbar__dropdown li:hover span,
+.Topbar__dropdown li:hover a span {
+  color: var(--dark-cyan);
+}
+
+/*
+//  Topbar dropdown hidden
+*/
+
+.Topbar__dropdown__hidden {
+  top: -50px;
+  right: 10px;
+  width: 100px;
+  opacity: 0;
+  pointer-events: none;
+  transition-timing-function: ease-out;
+}
+
+.show-on-s-and-down {
+  display: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .Topbar .Topbar__navigation .Topbar__navigation__btn i.Topbar__burger {
+    padding: 0;
+  }
+  .Topbar__dropdown {
+    width: 100%;
+    right: 0;
+    top: 80px;
+    opacity: 1;
+  }
+
+  .Topbar__dropdown .Topbar__dropdown__caret {
+    display: none;
+  }
+
+  .Topbar__dropdown__hidden {
+    top: -150%;
+  }
+
+  .Topbar__dropdown li span,
+  .Topbar__dropdown li a span {
+    padding: 25px 25px 0 25px;
+    display: block;
+    color: var(--petrolium);
+  }
+
+  .Topbar__dropdown li:nth-last-child(3) span,
+  .Topbar__dropdown li:nth-last-child(3) a span,
+  .Topbar__dropdown li:last-child span,
+  .Topbar__dropdown li:last-child a span {
+    padding: 25px;
+  }
+
+  .Topbar .Topbar__logo img {
+    width: 80px;
+    height: 100%;
+    padding: 20px;
+  }
+
+  .hide-on-s-and-down {
+    display: none !important;
+  }
+  .show-on-s-and-down {
+    display: inherit !important;
+  }
+}

@@ -5,54 +5,52 @@ exports[`renders without crashing 1`] = `
   className="App container"
 >
   <div>
-    <div
-      className="row topbar container"
+    <header
+      className="Topbar row"
     >
-      <div
-        className="col-xs-6 text-left header"
+      <a
+        className="Topbar__logo"
+        href="/"
         onClick={[Function]}
       >
-        <div>
-          <img
-            alt="logo"
-            src="logo.svg"
-          />
-        </div>
-        <div>
-          <h1>
-            Læsekompasset
-          </h1>
-        </div>
-      </div>
-      <div
-        className="col-xs-6 text-right login"
+        <h1
+          className="hide-on-s-and-down"
+        >
+          Læsekompasset
+        </h1>
+        <img
+          alt="Læsekompasset"
+          className="show-on-s-and-down"
+          src="logo.svg"
+        />
+      </a>
+      <nav
+        className="col-xs-12 col-m-8 Topbar__navigation"
       >
-        <div
-          className="inline"
+        <a
+          className="Topbar__navigation__btn"
+          href="/find"
+          onClick={[Function]}
         >
-          <a
-            className="list-card-nohover"
-            href="/find"
-            onClick={[Function]}
-          >
-            <i
-              className="glyphicon glyphicon-search icon"
-            />
-          </a>
-        </div>
+          <i
+            className=" glyphicon glyphicon-search"
+          />
+          <span>
+            Søg
+          </span>
+        </a>
         <div
-          className="short-list"
+          className="Topbar__navigation__btn short-list"
+          onClick={[Function]}
         >
-          <div
-            className="short-list--btn"
-            onClick={[Function]}
+          <i
+            className=" glyphicon glyphicon-bookmark"
+          />
+          <span
+            className="short-badge"
           >
-            <img
-              alt=""
-              src="Huskeliste.svg"
-              title="Huskeliste"
-            />
-          </div>
+            (0)
+          </span>
           <div
             className="short-list--content text-left slide-out"
           >
@@ -84,17 +82,63 @@ exports[`renders without crashing 1`] = `
             </div>
           </div>
         </div>
-        <span
+        <a
+          className="Topbar__navigation__btn"
+          href="/v1/login"
           onClick={[Function]}
         >
-          Log ind
-        </span>
-      </div>
-    </div>
+          <span>
+            Log ind
+          </span>
+        </a>
+        <div
+          className="Topbar__overlay"
+        />
+      </nav>
+      <ul
+        className="Topbar__dropdown abort-closeDopdown Topbar__dropdown__hidden"
+      >
+        <div
+          className="Topbar__dropdown__caret"
+        />
+        <li>
+          <a
+            className="list-card-nohover"
+            href="/profile"
+            onClick={[Function]}
+          >
+            <span>
+              Min profil
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            className="list-card-nohover"
+            href="/profile"
+            onClick={[Function]}
+          >
+            <span>
+              Lister
+            </span>
+          </a>
+        </li>
+        <li
+          className="divider"
+        />
+        <li
+          onClick={[Function]}
+        >
+          <span>
+            Log ud
+          </span>
+        </li>
+      </ul>
+    </header>
     <div
       style={
         Object {
-          "height": "50px",
+          "height": "80px",
         }
       }
     />

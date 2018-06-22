@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import BookCover from '../general/BookCover.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Kryds from '../svg/Kryds.svg';
-import Huskeliste from '../svg/Huskeliste.svg';
 import LineBehindText from '../general/LineBehindText.component';
 import Link from '../general/Link.component';
 import {
@@ -105,22 +104,17 @@ class ShortListDropdown extends React.Component {
     const {expanded, elements = []} = this.props.shortListState;
 
     return (
-      <div className="short-list">
-        <div
-          className="short-list--btn"
-          onClick={() => {
-            this.props.dispatch({
-              type: expanded ? ON_SHORTLIST_COLLAPSE : ON_SHORTLIST_EXPAND
-            });
-          }}
-        >
-          <img src={Huskeliste} alt="" title="Huskeliste" />
-          {elements.length > 0 && (
-            <span className="short-list--btn-badge badge">
-              {elements.length}
-            </span>
-          )}
-        </div>
+      <div
+        className={this.props.className + ' short-list'}
+        onClick={() => {
+          this.props.dispatch({
+            type: expanded ? ON_SHORTLIST_COLLAPSE : ON_SHORTLIST_EXPAND
+          });
+        }}
+      >
+        {this.props.children}
+        <span className="short-badge">{'(' + elements.length + ')'}</span>
+
         <ShortListContent
           expanded={expanded}
           elements={elements}

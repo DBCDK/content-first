@@ -1,8 +1,4 @@
 .short-list {
-  position: relative;
-  display: inline-block;
-  margin-right: 25px;
-  background-color: white;
 }
 .short-list--btn {
   cursor: pointer;
@@ -11,13 +7,8 @@
 .short-list--btn img {
   width: 24px;
 }
-.short-list--btn-badge {
-  position: absolute;
-  font-family: var(--secondary-font);
-  background: black;
-  left: 12px;
-  top: -4px;
-  padding-bottom: 4px;
+.short-badge {
+  letter-spacing: 2px;
 }
 .short-list--close-btn {
   position: absolute;
