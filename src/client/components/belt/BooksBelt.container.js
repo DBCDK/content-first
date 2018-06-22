@@ -51,7 +51,7 @@ export class BooksBelt extends React.Component {
             >
               {this.props.title.split(' ').map((word, idx) => {
                 if (idx === 0) {
-                  return <strong>{word}</strong>;
+                  return <strong key={idx}>{word}</strong>;
                 }
                 return ' ' + word;
               })}
