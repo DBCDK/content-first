@@ -13,12 +13,15 @@ exports[`CarouselItem renders initial component 1`] = `
       <Link
         href="/værk/870970-basis:51642899"
       >
-        <img
+        <div
           alt=""
           className=""
-          onLoad={undefined}
-          src="/default-book-cover.png"
-          style={undefined}
+          style={
+            Object {
+              "paddingTop": 50,
+              "textAlign": "center",
+            }
+          }
         />
       </Link>
     </div>

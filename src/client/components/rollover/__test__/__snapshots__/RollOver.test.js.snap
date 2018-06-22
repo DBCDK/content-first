@@ -16,12 +16,15 @@ exports[`RollOver renders initial component 1`] = `
     <div
       className="col-xs-4 rollover-img"
     >
-      <img
+      <div
         alt="test"
         className=""
-        onLoad={undefined}
-        src="/default-book-cover.png"
-        style={undefined}
+        style={
+          Object {
+            "paddingTop": 50,
+            "textAlign": "center",
+          }
+        }
       />
     </div>
     <div
