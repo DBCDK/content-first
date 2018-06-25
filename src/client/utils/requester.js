@@ -19,66 +19,8 @@ const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;
 
-export const fetchTagIds = async (pids = []) => {
-  let result = [];
-  let requests = [];
 
-  for (let i = 0; i < pids.length; i++) {
-    const pid = pids[i];
-    requests.push({pid: pid, request: request.get(`/v1/tags/${pid}`)});
-  }
 
-  for (let x = 0; x < requests.length; x++) {
-    const req = requests[x];
-    const response = await req.request;
-    const tags = response.body.data.tags;
-    result = result.concat(tags);
-  }
-  // creating weighted objects of each repeated tag
-  return weightedResults(result);
-};
-
-export const weightedResults = arr => {
-  let weightedArray = [];
-  let array_elements = arr;
-
-  array_elements.sort();
-
-  let current = null;
-  let cnt = 0;
-  for (let i = 0; i < array_elements.length; i++) {
-    if (array_elements[i] !== current) {
-      if (cnt > 0 && current > 0) {
-        weightedArray.push({id: current, weight: cnt});
-      }
-      current = array_elements[i];
-      cnt = 1;
-    } else {
-      cnt++;
-    }
-  }
-  if (cnt > 0 && current > 0) {
-    weightedArray.push({id: current, weight: cnt});
-  }
-
-  // sorting the array by heaviest weight
-  let sortedArray = sortByKey(weightedArray, 'weight').reverse();
-
-  // keeping only the top 10 tags
-  while (sortedArray.length > 10) {
-    sortedArray.pop();
-  }
-
-  return sortedArray;
-};
-
-function sortByKey(array, key) {
-  return array.sort(function(a, b) {
-    let x = a[key];
-    let y = b[key];
-    return x < y ? -1 : x > y ? 1 : 0;
-  });
-}
 
 export const fetchTags = async (pids = []) => {
   let result = {};
