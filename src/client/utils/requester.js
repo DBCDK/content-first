@@ -19,9 +19,6 @@ const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;
 
-
-
-
 export const fetchTags = async (pids = []) => {
   let result = {};
   let requests = [];

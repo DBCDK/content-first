@@ -12,11 +12,11 @@ const interactionReducer = (state = defaultState, action) => {
     case INTERACTION: {
       const newState = Object.assign({}, state);
       //if (state.interactions.length > 0) {
-        newState.interactions.push({
-          type: 'INTERACTION',
-          interaction: action.interaction,
-          pid: action.pid
-        });
+      newState.interactions.push({
+        type: 'INTERACTION',
+        interaction: action.interaction,
+        pid: action.pid
+      });
       //}
       return newState;
     }

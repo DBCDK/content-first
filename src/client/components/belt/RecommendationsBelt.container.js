@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import BooksBelt from './BooksBelt.container';
-import {BOOKS_REQUEST} from "../../redux/books.reducer";
+import {BOOKS_REQUEST} from '../../redux/books.reducer';
 
 export class RecommendationsBelt extends React.Component {
   constructor() {
@@ -71,19 +71,21 @@ const sortByKey = (array, key) => {
     let y = b[key];
     return x < y ? -1 : x > y ? 1 : 0;
   });
-}
+};
 
 const mapStateToProps = state => {
-  const recoPids= state.interactionReducer.interactions.map(o => {
+  const recoPids = state.interactionReducer.interactions.map(o => {
     return o.pid;
   });
-  const books=recoPids.map(pid=>(state.booksReducer.books[pid])).filter(work=>(work && work.book && work.book.tags))
-  const tags=[]
-  books.forEach(work=>{
-    work.book.tags.forEach(tag=>(tags.push(tag.id)))
-  })
+  const books = recoPids
+    .map(pid => state.booksReducer.books[pid])
+    .filter(work => work && work.book && work.book.tags);
+  const tags = [];
+  books.forEach(work => {
+    work.book.tags.forEach(tag => tags.push(tag.id));
+  });
 
-  const weightedTags=weightedResults(tags)
+  const weightedTags = weightedResults(tags);
 
   return {
     recoPids,
@@ -98,9 +100,8 @@ export const mapDispatchToProps = dispatch => ({
       type: BOOKS_REQUEST,
       pids: pids,
       includeTags: true
-    }),
+    })
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   RecommendationsBelt
