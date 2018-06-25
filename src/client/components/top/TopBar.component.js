@@ -23,7 +23,7 @@ class TopBarDropdown extends React.Component {
             <span>Min profil</span>
           </Link>
         </li>
-        <li>
+        <li className="hide-on-m-and-up">
           <Link href="/profile" onClick={this.props.onClick}>
             <span>Lister</span>
           </Link>

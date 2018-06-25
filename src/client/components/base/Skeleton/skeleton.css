@@ -1,0 +1,18 @@
+/*
+    animation: pulse 2s infinite 0s ease-out;
+*/
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.9);
+  }
+}

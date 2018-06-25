@@ -45,7 +45,7 @@ class ProfileImage extends React.Component {
         >
           {user && user.image ? (
             this.state.imageIsLoading ? (
-              <User>
+              <User pulse={true}>
                 <img
                   className="hidden"
                   src={'/v1/image/' + user.image + '/' + size + '/' + size}

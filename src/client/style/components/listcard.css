@@ -1,51 +1,62 @@
 .list-card {
   display: inline-block;
-  width: 220px;
-  background: white;
-  box-shadow: 1px 1px 20px #666666;
-  /*padding: 20px;*/
-  color: black;
+  width: 250px;
+  background: var(--lys-graa);
   text-decoration: none;
+  padding: 15px;
+  color: var(--petrolium);
 }
 .list-card-cover {
-  height: 120px;
+  height: 175px;
   margin: 0 2px;
 }
-.list-card:first {
-  /*margin-left: 0px;*/
+.list-card-cover img {
+  width: 100%;
+  height: auto;
+}
+
+.list-card-coverTemplate {
+  padding: 30px 45px 30px 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.list-card-coverTemplate .list-card-brick {
+  background-color: #fff;
+  width: 80%;
+  height: 25px;
+  border-radius: 5px;
+  align-self: flex-start;
+}
+.list-card-coverTemplate .list-card-brick:nth-child(2) {
+  align-self: flex-end;
 }
 .list-card-summary {
-  padding: 10px;
-  height: 140px;
+  height: 65px;
+  border-bottom: 1px solid var(--pistache);
+  margin-bottom: 5px;
 }
-.list-card-title {
-  font-size: 20px;
-  font-weight: bold;
-  color: black;
+.list-card-title,
+.list-card-about strong {
+  font-weight: 600;
+  line-height: 1.3rem;
 }
 a.list-card-nohover {
   color: black;
   text-decoration: none;
 }
 .list-card-description {
-  font-family: var(--secondary-font);
-  color: black;
+  font-family: var(--primary-font);
+  line-height: 1.3rem;
+  font-size: 1rem;
+  font-weight: 400;
 }
-.list-card-covers {
-  height: 120px;
-  background: #d5d5d5;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.list-card-covers-wrapper {
-  margin-left: -100%;
-  margin-right: -100%;
-  text-align: center;
-}
+
 .list-card-bottom {
-  padding: 10px;
-  font-family: var(--secondary-font);
-  font-size: 10px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
 }
 .list-card-bottom p {
   font-size: 12px !important;
@@ -57,5 +68,28 @@ a.list-card-nohover {
 }
 .list-card-bottom .profile-name {
   margin-left: 0.5rem;
-  color: black;
+}
+
+.list-card-bottom .list-card-interactions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.list-card-bottom .list-card-interactions .list-card-interaction {
+  padding: 5px 0 0 0;
+}
+
+.ListCard__skeleton {
+  display: inline-block;
+  width: 250px;
+  height: auto;
+  background: var(--lys-graa);
+  padding: 15px;
+}
+
+.ListCard__skeleton .ListCard__skeleton__cover {
+  height: 175px;
+  background-color: var(--mellemlys-graa);
+  margin-bottom: 15px;
 }
