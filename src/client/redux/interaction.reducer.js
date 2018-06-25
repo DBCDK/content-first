@@ -17,7 +17,7 @@ const interactionReducer = (state = defaultState, action) => {
         interaction: action.interaction,
         pid: action.pid
       });
-   
+
       return newState;
     }
 
