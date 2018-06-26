@@ -354,7 +354,7 @@ export const loadShortList = async ({isLoggedIn, dispatch}) => {
       return {localStorageElements, databaseElements: []};
     }
     const pids = databaseElements.map(e => e.pid);
-    const works = await fetchBooks(pids, false, dispatch);
+    const works = await fetchBooks(pids, dispatch);
 
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;
