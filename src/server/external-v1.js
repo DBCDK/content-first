@@ -14,14 +14,11 @@ router.use(
   require('server/external-v1-complete-taxonomy')
 );
 router.use('/image', require('server/external-v1-image'));
-router.use('/lists', require('server/external-v1-lists'));
 router.use('/log', require('server/external-v1-log'));
 router.use('/login', require('server/external-v1-login'));
 router.use('/logout', require('server/external-v1-logout'));
 router.use('/object', require('server/external-v1-object'));
 router.use('/openplatform', require('server/external-v1-openplatform'));
-router.use('/profiles', require('server/external-v1-profiles'));
-router.use('/public-lists', require('server/external-v1-public-lists'));
 router.use('/recommendations', require('server/external-v1-recommendations'));
 router.use('/search', require('server/external-v1-search'));
 router.use('/shortlist', require('server/external-v1-shortlist'));
