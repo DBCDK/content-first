@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import BooksBelt from './BooksBelt.container';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
+import _ from 'lodash';
 
 export class RecommendationsBelt extends React.Component {
   constructor() {
@@ -31,47 +32,24 @@ export class RecommendationsBelt extends React.Component {
   }
 }
 
-const weightedResults = arr => {
-  let weightedArray = [];
-  let array_elements = arr;
-
-  array_elements.sort();
-
-  let current = null;
-  let cnt = 0;
-  for (let i = 0; i < array_elements.length; i++) {
-    if (array_elements[i] !== current) {
-      if (cnt > 0 && current > 0) {
-        weightedArray.push({id: current, weight: cnt});
-      }
-      current = array_elements[i];
-      cnt = 1;
-    } else {
-      cnt++;
+const weightedAndSorted = arr => {
+  let arrayOfObjects= arr.map(item => {
+    return {
+      'id': item,
+      'weight': 1
     }
-  }
-  if (cnt > 0 && current > 0) {
-    weightedArray.push({id: current, weight: cnt});
-  }
+  })
 
-  // sorting the array by heaviest weight
-  let sortedArray = sortByKey(weightedArray, 'weight').reverse();
-
-  // keeping only the top 10 tags
-  while (sortedArray.length > 10) {
-    sortedArray.pop();
-  }
-
-  return sortedArray;
+  return _(arrayOfObjects)
+    .groupBy('id')
+    .map((objs, key) => ({
+      'id': key,
+      'weight': _.sumBy(objs, 'weight') }))
+    .orderBy(['weight'],['desc'])
+    .value()
+    .slice(0,9)
 };
 
-const sortByKey = (array, key) => {
-  return array.sort(function(a, b) {
-    let x = a[key];
-    let y = b[key];
-    return x < y ? -1 : x > y ? 1 : 0;
-  });
-};
 
 const mapStateToProps = state => {
   const recoPids = state.interactionReducer.interactions.map(o => {
@@ -85,7 +63,7 @@ const mapStateToProps = state => {
     work.book.tags.forEach(tag => tags.push(tag.id));
   });
 
-  const weightedTags = weightedResults(tags);
+  const weightedTags = weightedAndSorted(tags);
 
   return {
     recoPids,
