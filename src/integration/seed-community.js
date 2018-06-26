@@ -37,12 +37,14 @@ async function seedingCommunity() {
     cookie: 'a-valid-login-token',
     community_profile_id: profileId,
     openplatform_id: '123openplatformId456',
+    openplatform_token: '123openplatformToken456',
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
   await knex(cookieTable).insert({
     cookie: 'another-valid-login-token',
     community_profile_id: profileId + 1,
     openplatform_id: '123openplatformId456-another',
+    openplatform_token: '123openplatformToken456-another',
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
 
@@ -65,6 +67,7 @@ async function seedingCommunity() {
     cookie: 'a-valid-login-token-for-other-user',
     community_profile_id: profileId2,
     openplatform_id: '123openplatformId456-other-valid-user',
+    openplatform_token: '123openplatformToken456-other-valid-user',
     expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
   });
 }
