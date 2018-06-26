@@ -30,9 +30,13 @@ async function putObject(req, res) {
 async function findObject(req, res) {
   send(res, await objectStore.find(req.query, await getUser(req)));
 }
+async function deleteObject(req, res) {
+  send(res, await objectStore.del(req.params.id, await getUser(req)));
+}
 
 router.route('/find').get(asyncMiddleware(findObject));
 router.route('/:id').get(asyncMiddleware(getObject));
 router.route('/:id').put(asyncMiddleware(putObject));
 router.route('/').post(asyncMiddleware(putObject));
+router.route('/:id').delete(asyncMiddleware(deleteObject));
 module.exports = router;
