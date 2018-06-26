@@ -67,7 +67,7 @@ exports[`CommentContainer Cancel button 1`] = `
             }
           >
             <Icon
-              name="glyphicon glyphicon-user"
+              name="face"
               style={
                 Object {
                   "color": "#897571",
@@ -77,7 +77,7 @@ exports[`CommentContainer Cancel button 1`] = `
               }
             >
               <i
-                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                className="material-icons "
                 style={
                   Object {
                     "color": "#897571",
@@ -85,7 +85,9 @@ exports[`CommentContainer Cancel button 1`] = `
                     "fontSize": "22.75px",
                   }
                 }
-              />
+              >
+                face
+              </i>
             </Icon>
           </span>
         </div>
@@ -188,7 +190,7 @@ exports[`CommentContainer Cancel button 2`] = `
             }
           >
             <Icon
-              name="glyphicon glyphicon-user"
+              name="face"
               style={
                 Object {
                   "color": "#897571",
@@ -198,7 +200,7 @@ exports[`CommentContainer Cancel button 2`] = `
               }
             >
               <i
-                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                className="material-icons "
                 style={
                   Object {
                     "color": "#897571",
@@ -206,7 +208,9 @@ exports[`CommentContainer Cancel button 2`] = `
                     "fontSize": "22.75px",
                   }
                 }
-              />
+              >
+                face
+              </i>
             </Icon>
           </span>
         </div>
@@ -310,7 +314,7 @@ exports[`CommentContainer Delete button 1`] = `
             }
           >
             <Icon
-              name="glyphicon glyphicon-user"
+              name="face"
               style={
                 Object {
                   "color": "#897571",
@@ -320,7 +324,7 @@ exports[`CommentContainer Delete button 1`] = `
               }
             >
               <i
-                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                className="material-icons "
                 style={
                   Object {
                     "color": "#897571",
@@ -328,7 +332,9 @@ exports[`CommentContainer Delete button 1`] = `
                     "fontSize": "22.75px",
                   }
                 }
-              />
+              >
+                face
+              </i>
             </Icon>
           </span>
         </div>
@@ -431,7 +437,7 @@ exports[`CommentContainer Edit button 1`] = `
             }
           >
             <Icon
-              name="glyphicon glyphicon-user"
+              name="face"
               style={
                 Object {
                   "color": "#897571",
@@ -441,7 +447,7 @@ exports[`CommentContainer Edit button 1`] = `
               }
             >
               <i
-                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                className="material-icons "
                 style={
                   Object {
                     "color": "#897571",
@@ -449,7 +455,9 @@ exports[`CommentContainer Edit button 1`] = `
                     "fontSize": "22.75px",
                   }
                 }
-              />
+              >
+                face
+              </i>
             </Icon>
           </span>
         </div>
@@ -552,7 +560,7 @@ exports[`CommentContainer Edit button 2`] = `
             }
           >
             <Icon
-              name="glyphicon glyphicon-user"
+              name="face"
               style={
                 Object {
                   "color": "#897571",
@@ -562,7 +570,7 @@ exports[`CommentContainer Edit button 2`] = `
               }
             >
               <i
-                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                className="material-icons "
                 style={
                   Object {
                     "color": "#897571",
@@ -570,7 +578,9 @@ exports[`CommentContainer Edit button 2`] = `
                     "fontSize": "22.75px",
                   }
                 }
-              />
+              >
+                face
+              </i>
             </Icon>
           </span>
         </div>
@@ -702,7 +712,7 @@ exports[`CommentContainer Render comment 1`] = `
         }
       >
         <i
-          className=" glyphicon glyphicon-glyphicon glyphicon-user"
+          className="material-icons "
           style={
             Object {
               "color": "#897571",
@@ -710,7 +720,9 @@ exports[`CommentContainer Render comment 1`] = `
               "fontSize": "22.75px",
             }
           }
-        />
+        >
+          face
+        </i>
       </span>
       
     </div>
@@ -780,7 +792,7 @@ exports[`CommentContainer Render edit form 1`] = `
         }
       >
         <i
-          className=" glyphicon glyphicon-glyphicon glyphicon-user"
+          className="material-icons "
           style={
             Object {
               "color": "#897571",
@@ -788,7 +800,9 @@ exports[`CommentContainer Render edit form 1`] = `
               "fontSize": "22.75px",
             }
           }
-        />
+        >
+          face
+        </i>
       </span>
       
     </div>
@@ -872,7 +886,7 @@ exports[`CommentContainer Render save form 1`] = `
         }
       >
         <i
-          className=" glyphicon glyphicon-glyphicon glyphicon-user"
+          className="material-icons "
           style={
             Object {
               "color": "#897571",
@@ -880,7 +894,9 @@ exports[`CommentContainer Render save form 1`] = `
               "fontSize": "22.75px",
             }
           }
-        />
+        >
+          face
+        </i>
       </span>
       
     </div>
@@ -983,7 +999,7 @@ exports[`CommentContainer Save button 1`] = `
             }
           >
             <Icon
-              name="glyphicon glyphicon-user"
+              name="face"
               style={
                 Object {
                   "color": "#897571",
@@ -993,7 +1009,7 @@ exports[`CommentContainer Save button 1`] = `
               }
             >
               <i
-                className=" glyphicon glyphicon-glyphicon glyphicon-user"
+                className="material-icons "
                 style={
                   Object {
                     "color": "#897571",
@@ -1001,7 +1017,9 @@ exports[`CommentContainer Save button 1`] = `
                     "fontSize": "22.75px",
                   }
                 }
-              />
+              >
+                face
+              </i>
             </Icon>
           </span>
         </div>

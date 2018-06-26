@@ -6,11 +6,31 @@ import Slider from './Slider.component';
 import {getPublicLists} from '../../redux/list.reducer';
 
 export class RecentListsBelt extends React.Component {
+  constructor() {
+    super();
+    this.state = {didSwipe: false};
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.recent.length !== this.props.recent.length ||
+      nextState.didSwipe !== this.state.didSwipe
+    );
+  }
+
   render() {
+    const startIndex = 8;
     let skeletons = [];
     if (this.props.recent && this.props.recent.length === 0) {
       for (let i = 0; i < 20; i++) {
-        skeletons.push(<ListCard style={{width: '250px'}} key={i} list={{}} />);
+        skeletons.push(
+          <ListCard
+            skeleton={true}
+            style={{width: '250px'}}
+            key={i}
+            list={{id: i}}
+          />
+        );
       }
     }
 
@@ -33,11 +53,22 @@ export class RecentListsBelt extends React.Component {
           )}
         {this.props.recent && (
           <div className="row mb4 mt2">
-            <Slider>
-              {this.props.recent.map(l => {
+            <Slider
+              onSwipe={index => {
+                if (index > 0 && !this.state.didSwipe) {
+                  this.setState({didSwipe: true});
+                }
+              }}
+            >
+              {this.props.recent.map((l, i) => {
+                let skeleton = false;
+                if (i > startIndex - 1 && !this.state.didSwipe) {
+                  skeleton = true;
+                }
                 return (
                   <ListCard
-                    key={l.id}
+                    key={i}
+                    skeleton={skeleton}
                     list={l}
                     profile={this.props.profiles[l.owner]}
                   />
