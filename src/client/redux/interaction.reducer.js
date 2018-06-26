@@ -10,14 +10,16 @@ const defaultState = {
 const interactionReducer = (state = defaultState, action) => {
   switch (action.type) {
     case INTERACTION: {
-
       return Object.assign({}, ...state, {
-        interactions: [...state.interactions, {
-          type: 'INTERACTION',
-          interaction: action.interaction,
-          pid: action.pid
-        }]
-      })
+        interactions: [
+          ...state.interactions,
+          {
+            type: 'INTERACTION',
+            interaction: action.interaction,
+            pid: action.pid
+          }
+        ]
+      });
     }
 
     case FETCH_INTERACTIONS: {

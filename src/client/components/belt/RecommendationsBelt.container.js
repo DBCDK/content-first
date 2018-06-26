@@ -33,23 +33,23 @@ export class RecommendationsBelt extends React.Component {
 }
 
 const weightedAndSorted = arr => {
-  let arrayOfObjects= arr.map(item => {
+  let arrayOfObjects = arr.map(item => {
     return {
-      'id': item,
-      'weight': 1
-    }
-  })
+      id: item,
+      weight: 1
+    };
+  });
 
   return _(arrayOfObjects)
     .groupBy('id')
     .map((objs, key) => ({
-      'id': key,
-      'weight': _.sumBy(objs, 'weight') }))
-    .orderBy(['weight'],['desc'])
+      id: key,
+      weight: _.sumBy(objs, 'weight')
+    }))
+    .orderBy(['weight'], ['desc'])
     .value()
-    .slice(0,9)
+    .slice(0, 9);
 };
-
 
 const mapStateToProps = state => {
   const recoPids = state.interactionReducer.interactions.map(o => {
