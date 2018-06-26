@@ -23,7 +23,11 @@
   font-size: 1rem;
   line-height: 16px;
 }
-
+.Heading__subtitle {
+  font-weight: 500;
+  font-size: 0.9rem;
+  line-height: 14px;
+}
 @media only screen and (max-width: 600px) {
   .Heading__lead {
     font-weight: 400;
@@ -40,8 +44,7 @@
   .Heading__section strong {
     font-weight: 600;
   }
-
-  .Heading__title {
+  <<<<<<< head =======>>>>>>>added hover overlay for WorkCard .Heading__title {
     font-weight: 600;
     font-size: 0.8rem;
     line-height: 12px;

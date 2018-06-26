@@ -25,6 +25,24 @@
   margin-top: 1em;
 }
 
+.WorkCard .hover-details {
+  opacity: 0;
+  transition: opacity 0.25s;
+  background: linear-gradient(transparent, white 40%);
+  cursor: pointer;
+}
+.WorkCard:hover .hover-details {
+  opacity: 1;
+}
+
+.WorkCard .expand-more {
+  margin-top: 0px;
+  transition: margin 0.2s;
+}
+.WorkCard .expand-more-wrapper:hover .expand-more {
+  margin-top: 10px;
+}
+
 @media only screen and (max-width: 768px) {
   .WorkCard {
     height: 320px;
