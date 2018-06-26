@@ -33,7 +33,7 @@ class FrontPage extends React.Component {
               key={idx}
               title={belt.name}
               subtext={belt.subtext}
-              tags={this.props.getBeltTagIdList(belt)}
+              tags={belt.tags}
             />
           );
         })}
