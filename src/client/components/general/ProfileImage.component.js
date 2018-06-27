@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '../base/Icon';
-import User from '../base/Skeleton/User';
+import SkeletonUser from '../base/Skeleton/User';
 
 /*
 <ProfileImage user={user} />
@@ -45,13 +45,13 @@ class ProfileImage extends React.Component {
         >
           {user && user.image ? (
             this.state.imageIsLoading ? (
-              <User>
+              <SkeletonUser pulse={true}>
                 <img
                   className="hidden"
                   src={'/v1/image/' + user.image + '/' + size + '/' + size}
                   onLoad={() => this.imageIsLoaded()}
                 />
-              </User>
+              </SkeletonUser>
             ) : (
               <img
                 className="cover"
@@ -61,7 +61,7 @@ class ProfileImage extends React.Component {
             )
           ) : (
             <Icon
-              name="glyphicon glyphicon-user"
+              name="face"
               style={{
                 fontSize: size * 0.65 + 'px',
                 display: 'inline-block',

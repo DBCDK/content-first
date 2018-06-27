@@ -1,23 +1,27 @@
-span.Skeleton__user {
+.Skeleton__user__wrap {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.Skeleton__pulse__active > div,
+.Skeleton__pulse__active > span {
+  animation: pulse 2s infinite 0s ease-out;
+}
+
+.Skeleton__user__wrap span.Skeleton__user {
   display: inline-block;
   background-color: var(--mellemlys-graa);
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  animation: pulse 2s infinite 0s ease-out;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(0.8);
-  }
-  50% {
-    transform: scale(1);
-  }
-  75% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.8);
-  }
+.Skeleton__user__wrap .Skeleton__user__name {
+  display: inline;
+  align-self: center;
+}
+
+.Skeleton__user__wrap .Skeleton__user__name .Skeleton__text__line {
+  width: 75px;
+  margin-left: 10px;
 }

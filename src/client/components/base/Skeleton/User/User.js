@@ -1,11 +1,21 @@
 import React from 'react';
+import SkeletonText from '../Text';
 import './User.css';
+import '../skeleton.css';
 
-const User = ({className, styles, children}) => {
+const User = ({className, name = false, pulse = false, styles, children}) => {
+  const animation = pulse ? 'Skeleton__pulse__active' : '';
   return (
-    <span className={`Skeleton__user ${className || ''}`} style={styles}>
-      {children}
-    </span>
+    <div className={'Skeleton__user__wrap ' + animation} style={styles}>
+      <span className={`Skeleton__user ${className || ''}`}>{children}</span>
+      {name && (
+        <SkeletonText
+          lines={1}
+          color="#e9eaeb"
+          className="Skeleton__user__name"
+        />
+      )}
+    </div>
   );
 };
 

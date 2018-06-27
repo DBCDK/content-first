@@ -18,6 +18,12 @@
   line-height: 36px;
 }
 
+.Heading__title {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 16px;
+}
+
 @media only screen and (max-width: 600px) {
   .Heading__lead {
     font-weight: 400;
@@ -33,5 +39,11 @@
   }
   .Heading__section strong {
     font-weight: 600;
+  }
+
+  .Heading__title {
+    font-weight: 600;
+    font-size: 0.8rem;
+    line-height: 12px;
   }
 }

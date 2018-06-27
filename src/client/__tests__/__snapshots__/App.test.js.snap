@@ -33,8 +33,10 @@ exports[`renders without crashing 1`] = `
           onClick={[Function]}
         >
           <i
-            className=" glyphicon glyphicon-search"
-          />
+            className="material-icons "
+          >
+            search
+          </i>
           <span>
             Søg
           </span>
@@ -44,42 +46,45 @@ exports[`renders without crashing 1`] = `
           onClick={[Function]}
         >
           <i
-            className=" glyphicon glyphicon-bookmark"
-          />
+            className="material-icons "
+          >
+            bookmark_border
+          </i>
           <span
             className="short-badge"
           >
             (0)
           </span>
+        </div>
+        ,
+        <div
+          className="short-list--content text-left slide-out"
+        >
+          <img
+            alt="luk"
+            className="short-list--close-btn"
+            onClick={[Function]}
+            src="Kryds.svg"
+          />
           <div
-            className="short-list--content text-left slide-out"
+            className="short-list--header"
           >
-            <img
-              alt="luk"
-              className="short-list--close-btn"
+            HUSKELISTE
+          </div>
+          <div
+            className="short-list--empty-text text-center"
+          >
+            Din huskeliste er tom
+          </div>
+          <div
+            className="short-list--more-btn text-center"
+          >
+            <span
+              className="btn btn-default text-center"
               onClick={[Function]}
-              src="Kryds.svg"
-            />
-            <div
-              className="short-list--header"
             >
-              HUSKELISTE
-            </div>
-            <div
-              className="short-list--empty-text text-center"
-            >
-              Din huskeliste er tom
-            </div>
-            <div
-              className="short-list--more-btn text-center"
-            >
-              <span
-                className="btn btn-default text-center"
-                onClick={[Function]}
-              >
-                SE HELE LISTEN
-              </span>
-            </div>
+              SE HELE LISTEN
+            </span>
           </div>
         </div>
         <a
@@ -112,7 +117,9 @@ exports[`renders without crashing 1`] = `
             </span>
           </a>
         </li>
-        <li>
+        <li
+          className="hide-on-m-and-up"
+        >
           <a
             className="list-card-nohover"
             href="/profile"
@@ -389,22 +396,1249 @@ exports[`renders without crashing 1`] = `
         className="row belt text-left"
       >
         <div
-          className="col-xs-12 header"
+          className="row header"
         >
-          <span
-            className="belt-title-latest"
+          <h1
+            className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0 Heading Heading__section"
           >
-            Seneste lister fra brugerne
-          </span>
+            <strong>
+              Ugens
+            </strong>
+             Lister
+          </h1>
         </div>
         <div
-          className="row mb4"
+          className="row mb4 mt2"
         >
-          <div
-            className="col-xs-12"
-          >
-            <slider />
-          </div>
+          <slider>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+            >
+              <div
+                className="ListCard__skeleton__cover"
+              />
+              <div
+                className="Skeleton__text "
+                style={undefined}
+              >
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+                <div
+                  className="Skeleton__text__line"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="Skeleton__user__wrap "
+                style={
+                  Object {
+                    "marginTop": "20px",
+                  }
+                }
+              >
+                <span
+                  className="Skeleton__user "
+                />
+                <div
+                  className="Skeleton__text Skeleton__user__name"
+                  style={undefined}
+                >
+                  <div
+                    className="Skeleton__text__line"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                      }
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+          </slider>
+        </div>
+        <div
+          className="row mb4 mt2"
+        >
+          <slider
+            onSwipe={[Function]}
+          />
         </div>
       </div>
     </div>

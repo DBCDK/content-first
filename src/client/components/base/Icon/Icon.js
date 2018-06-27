@@ -1,12 +1,14 @@
 import React from 'react';
 import './Icon.css';
 
+// icons from:
+// https://material.io/tools/icons/?icon=local_library&style=round
+
 const Icon = ({name, className, ...props}) => {
   return (
-    <i
-      className={`${className || ''} glyphicon glyphicon-${name}`}
-      {...props}
-    />
+    <i className={`material-icons ${className || ''}`} {...props}>
+      {name}
+    </i>
   );
 };
 

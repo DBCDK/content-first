@@ -23,7 +23,7 @@ class TopBarDropdown extends React.Component {
             <span>Min profil</span>
           </Link>
         </li>
-        <li>
+        <li className="hide-on-m-and-up">
           <Link href="/profile" onClick={this.props.onClick}>
             <span>Lister</span>
           </Link>
@@ -89,7 +89,7 @@ export class TopBar extends React.Component {
           </Link>
 
           <ShortListDropDown className="Topbar__navigation__btn">
-            <Icon name="bookmark" />
+            <Icon name="bookmark_border" />
           </ShortListDropDown>
 
           {!this.props.user.isLoggedIn && (
@@ -119,7 +119,7 @@ export class TopBar extends React.Component {
               className="Topbar__navigation__btn abort-closeDopdown show-on-s-and-down"
               onClick={() => this.toggleDropdown()}
             >
-              <Icon name="menu-hamburger" className="Topbar__burger" />
+              <Icon name="menu" className="Topbar__burger" />
             </span>
           ]}
           <div className="Topbar__overlay" />

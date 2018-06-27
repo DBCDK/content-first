@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './BookmarkButton.css';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
+import Icon from '../base/Icon';
 
 export class BookmarkButton extends React.Component {
   shouldComponentUpdate(nextProps) {
@@ -20,7 +21,7 @@ export class BookmarkButton extends React.Component {
         style={this.props.style}
         onClick={() => this.props.toggle(this.props.origin, this.props.work)}
       >
-        <i className="material-icons md-18">bookmark_border</i>
+        <Icon name="bookmark_border" className="md-18" />
       </div>
     );
   }

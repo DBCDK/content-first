@@ -1,0 +1,13 @@
+.Skeleton__text {
+}
+.Skeleton__text .Skeleton__text__line {
+  width: 100%;
+  height: 1rem;
+  display: inline-block;
+}
+.Skeleton__text .Skeleton__text__line:first-child {
+  width: 85%;
+}
+.Skeleton__text .Skeleton__text__line:last-child {
+  width: 50%;
+}
