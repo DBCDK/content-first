@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import TruncateMarkup from 'react-truncate-markup';
 import ProfileImage from '../general/ProfileImage.component';
 import Link from '../general/Link.component';
+import toColor from '../../utils/toColor';
 import Heading from '../base/Heading';
 import Icon from '../base/Icon';
 import SkeletonText from '../base/Skeleton/Text';
@@ -39,7 +40,7 @@ class ListCard extends React.Component {
     ) : (
       <div
         className="list-card-coverTemplate"
-        style={{background: id.toColor(), height: '100%'}}
+        style={{background: toColor(id), height: '100%'}}
       >
         <div className="list-card-brick" />
         <div className="list-card-brick" />
