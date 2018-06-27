@@ -56,7 +56,9 @@ export class TopBar extends React.Component {
   closeDropdown = event => {
     // Dont dubble close on 'dropdown' click
     let abortCloseDropdown = false;
-    event.path.forEach(el => {
+    const path = event.path || (event.composedPath && event.composedPath());
+
+    path.forEach(el => {
       if (el.className && el.className.includes('abort-closeDopdown')) {
         abortCloseDropdown = true;
       }
