@@ -104,17 +104,18 @@ class ShortListDropdown extends React.Component {
     const {expanded, elements = []} = this.props.shortListState;
 
     return (
-      <div
-        className={this.props.className + ' short-list'}
-        onClick={() => {
-          this.props.dispatch({
-            type: expanded ? ON_SHORTLIST_COLLAPSE : ON_SHORTLIST_EXPAND
-          });
-        }}
-      >
-        {this.props.children}
-        <span className="short-badge">{'(' + elements.length + ')'}</span>
-
+      <React.Fragment>
+        <div
+          className={this.props.className + ' short-list'}
+          onClick={() => {
+            this.props.dispatch({
+              type: expanded ? ON_SHORTLIST_COLLAPSE : ON_SHORTLIST_EXPAND
+            });
+          }}
+        >
+          {this.props.children}
+          <span className="short-badge">{'(' + elements.length + ')'}</span>
+        </div>,
         <ShortListContent
           expanded={expanded}
           elements={elements}
@@ -140,7 +141,7 @@ class ShortListDropdown extends React.Component {
               );
             })}
         </ShortListContent>
-      </div>
+      </React.Fragment>
     );
   }
 }
