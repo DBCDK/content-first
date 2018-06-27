@@ -48,6 +48,7 @@ router
           cookie: loginToken,
           community_profile_id: userId,
           openplatform_id: remoteUser.openplatformId,
+          openplatform_token: remoteUser.openplatformToken,
           expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
         });
 
