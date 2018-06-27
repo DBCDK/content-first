@@ -188,16 +188,20 @@ export const fetchCollection = (pids, store) => {
   return Promise.all(
     booksToBeFetched.map(async ref => {
       try {
-        const result = await openplatform.work({
-          pids: ref.book.collection.data,
-          fields: ['type', 'identifierURI']
-        });
-
+        const pidsInCollection = ref.book.collection.data;
+        const collectionRes = (await Promise.all(
+          pidsInCollection.map(pid => {
+            return openplatform.work({
+              pids: [pid],
+              fields: ['type', 'identifierURI']
+            });
+          })
+        )).map(r => r[0]);
         return {
           book: {
             pid: ref.book.pid,
             collection: {
-              data: result,
+              data: collectionRes,
               isLoading: false
             }
           }
