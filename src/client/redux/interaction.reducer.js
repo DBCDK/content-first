@@ -10,7 +10,7 @@ const defaultState = {
 const interactionReducer = (state = defaultState, action) => {
   switch (action.type) {
     case INTERACTION: {
-      return Object.assign({}, ...state, {
+      return { ...state,
         interactions: [
           ...state.interactions,
           {
@@ -19,24 +19,24 @@ const interactionReducer = (state = defaultState, action) => {
             pid: action.pid
           }
         ]
-      });
+      }
     }
 
     case FETCH_INTERACTIONS: {
-      return Object.assign({}, state, {...state.interactions, isLoading: true});
+      return {...state, interactions: [...state.interactions], isLoading: true};
     }
 
     case FETCH_INTERACTIONS_SUCCESS: {
-      return Object.assign({}, state, {
+      return {...state,
         interactions: action.interactions,
         isLoading: false
-      });
+      }
     }
 
     case FETCH_INTERACTIONS_ERROR: {
-      return Object.assign({}, state, {
+      return {...state,
         error: action.error
-      });
+      };
     }
 
     default:

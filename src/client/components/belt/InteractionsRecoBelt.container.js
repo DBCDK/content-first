@@ -4,26 +4,54 @@ import BooksBelt from './BooksBelt.container';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import _ from 'lodash';
 
-export class RecommendationsBelt extends React.Component {
+const maxNumberOfTags = 10;
+
+export class InteractionsRecoBelt extends React.Component {
   constructor() {
     super();
     this.state = {loadTags: true};
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.recoPids.length > 0 && this.state.loadTags) {
-      this.props.fetchWorks(nextProps.recoPids);
+  componentDidUpdate() {
+    const recoPids = this.getRecoPids()
+
+    if (recoPids.length > 0 && this.state.loadTags) {
+      this.props.fetchWorks(recoPids);
       this.setState({loadTags: false});
     }
   }
 
+  getRecoPids(){
+    return this.props.interactions.map(o => {
+      return o.pid;
+    });
+  }
+
+  getWeightedTags(){
+    const recoPids = this.getRecoPids()
+
+    const books = recoPids
+      .map(pid => this.props.books[pid])
+      .filter(work => work && work.book && work.book.tags);
+
+    const tags = [];
+    books.forEach(work => {
+      work.book.tags.forEach(tag => tags.push(tag.id));
+    });
+
+    return weightedAndSorted(tags);
+
+  }
+
   render() {
-    if (this.props.tagIds.length > 0 && this.props.username) {
+    const weightedTags=this.getWeightedTags()
+
+    if (weightedTags.length > 0 && this.props.username) {
       return (
         <div>
           <BooksBelt
             title={'Bedste forslag til ' + this.props.username}
-            tags={this.props.tagIds}
+            tags={weightedTags}
           />
         </div>
       );
@@ -48,26 +76,14 @@ const weightedAndSorted = arr => {
     }))
     .orderBy(['weight'], ['desc'])
     .value()
-    .slice(0, 9);
+    .slice(0, maxNumberOfTags);
 };
 
+
 const mapStateToProps = state => {
-  const recoPids = state.interactionReducer.interactions.map(o => {
-    return o.pid;
-  });
-  const books = recoPids
-    .map(pid => state.booksReducer.books[pid])
-    .filter(work => work && work.book && work.book.tags);
-  const tags = [];
-  books.forEach(work => {
-    work.book.tags.forEach(tag => tags.push(tag.id));
-  });
-
-  const weightedTags = weightedAndSorted(tags);
-
   return {
-    recoPids,
-    tagIds: weightedTags,
+    books: state.booksReducer.books,
+    interactions: state.interactionReducer.interactions,
     username: state.userReducer.name
   };
 };
@@ -82,5 +98,5 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  RecommendationsBelt
+  InteractionsRecoBelt
 );
