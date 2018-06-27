@@ -10,32 +10,36 @@ const defaultState = {
 const interactionReducer = (state = defaultState, action) => {
   switch (action.type) {
     case INTERACTION: {
-      const newState = Object.assign({}, state);
-      if (state.interactions.length > 0) {
-        newState.interactions.push({
-          type: 'INTERACTION',
-          interaction: action.interaction,
-          pid: action.pid
-        });
-      }
-      return newState;
+      return {
+        ...state,
+        interactions: [
+          ...state.interactions,
+          {
+            type: 'INTERACTION',
+            interaction: action.interaction,
+            pid: action.pid
+          }
+        ]
+      };
     }
 
     case FETCH_INTERACTIONS: {
-      return Object.assign({}, state, {...state.interactions, isLoading: true});
+      return {...state, interactions: [...state.interactions], isLoading: true};
     }
 
     case FETCH_INTERACTIONS_SUCCESS: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         interactions: action.interactions,
         isLoading: false
-      });
+      };
     }
 
     case FETCH_INTERACTIONS_ERROR: {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         error: action.error
-      });
+      };
     }
 
     default:

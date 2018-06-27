@@ -40,8 +40,13 @@ export const interactionMiddleware = store => next => action => {
       return (async () => {
         next(action);
         try {
-          const dbInteractionData = (await fetchObjects('', 'INTERACTION', 20))
-            .data;
+          const openplatformId = store.getState().userReducer.openplatformId;
+          const dbInteractionData = (await fetchObjects(
+            '',
+            'INTERACTION',
+            openplatformId,
+            20
+          )).data;
           let interactions = [];
           dbInteractionData.forEach(
             (interactionObj, key) =>
@@ -68,14 +73,17 @@ export const interactionMiddleware = store => next => action => {
     case ON_LOCATION_CHANGE: {
       let pidPath = action.path;
       let pid = pidPath;
+
       if (pidPath.startsWith('/værk/')) {
         pid = pidPath.slice(6, pidPath.length);
       }
-      store.dispatch({
-        type: INTERACTION,
-        pid: pid,
-        interaction: 'NEW_LOCATION'
-      });
+      if (!pid.startsWith('/')) {
+        store.dispatch({
+          type: INTERACTION,
+          pid: pid,
+          interaction: 'NEW_LOCATION'
+        });
+      }
       return next(action);
     }
 

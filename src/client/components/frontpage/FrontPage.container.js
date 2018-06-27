@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import RecentListsBelt from '../belt/RecentListsBelt.container';
 import BooksBelt from '../belt/BooksBelt.container';
 import Bookcase from '../bookcase/Bookcase.component';
+import InteractionsRecoBelt from '../belt/InteractionsRecoBelt.container';
 
 class FrontPage extends React.Component {
   componentDidMount() {
@@ -10,11 +11,13 @@ class FrontPage extends React.Component {
       window.$('[data-toggle="tooltip"]').tooltip();
     }
   }
+
   componentDidUpdate() {
     if (window.$) {
       window.$('[data-toggle="tooltip"]').tooltip();
     }
   }
+
   shouldComponentUpdate(nextProps) {
     return nextProps.belts !== this.props.belts;
   }
@@ -22,6 +25,8 @@ class FrontPage extends React.Component {
   renderBelts() {
     return (
       <div className="belts col-xs-12 col-sm-12 col-centered">
+        <InteractionsRecoBelt />
+
         {this.props.belts.filter(belt => belt.onFrontPage).map((belt, idx) => {
           return (
             <BooksBelt
@@ -32,6 +37,7 @@ class FrontPage extends React.Component {
             />
           );
         })}
+
         <RecentListsBelt />
       </div>
     );
