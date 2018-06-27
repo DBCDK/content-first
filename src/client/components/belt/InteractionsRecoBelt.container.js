@@ -13,7 +13,7 @@ export class InteractionsRecoBelt extends React.Component {
   }
 
   componentDidUpdate() {
-    const recoPids = this.getRecoPids()
+    const recoPids = this.getRecoPids();
 
     if (recoPids.length > 0 && this.state.loadTags) {
       this.props.fetchWorks(recoPids);
@@ -21,14 +21,14 @@ export class InteractionsRecoBelt extends React.Component {
     }
   }
 
-  getRecoPids(){
+  getRecoPids() {
     return this.props.interactions.map(o => {
       return o.pid;
     });
   }
 
-  getWeightedTags(){
-    const recoPids = this.getRecoPids()
+  getWeightedTags() {
+    const recoPids = this.getRecoPids();
 
     const books = recoPids
       .map(pid => this.props.books[pid])
@@ -40,11 +40,10 @@ export class InteractionsRecoBelt extends React.Component {
     });
 
     return weightedAndSorted(tags);
-
   }
 
   render() {
-    const weightedTags=this.getWeightedTags()
+    const weightedTags = this.getWeightedTags();
 
     if (weightedTags.length > 0 && this.props.username) {
       return (
@@ -78,7 +77,6 @@ const weightedAndSorted = arr => {
     .value()
     .slice(0, maxNumberOfTags);
 };
-
 
 const mapStateToProps = state => {
   return {

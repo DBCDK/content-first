@@ -10,7 +10,8 @@ const defaultState = {
 const interactionReducer = (state = defaultState, action) => {
   switch (action.type) {
     case INTERACTION: {
-      return { ...state,
+      return {
+        ...state,
         interactions: [
           ...state.interactions,
           {
@@ -19,7 +20,7 @@ const interactionReducer = (state = defaultState, action) => {
             pid: action.pid
           }
         ]
-      }
+      };
     }
 
     case FETCH_INTERACTIONS: {
@@ -27,14 +28,16 @@ const interactionReducer = (state = defaultState, action) => {
     }
 
     case FETCH_INTERACTIONS_SUCCESS: {
-      return {...state,
+      return {
+        ...state,
         interactions: action.interactions,
         isLoading: false
-      }
+      };
     }
 
     case FETCH_INTERACTIONS_ERROR: {
-      return {...state,
+      return {
+        ...state,
         error: action.error
       };
     }
