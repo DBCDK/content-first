@@ -10,6 +10,10 @@ module.exports = {
       user: process.env.DB_USER || 'contentfirst',
       password: process.env.DB_USER_PASSWORD
     },
+    pool: {
+      min: process.env.DB_CONNECTIONS_POOL_MIN || 2,
+      max: process.env.DB_CONNECTIONS_POOL_MAX || 10
+    },
     migrations: {
       directory: 'src/migrations'
     },
@@ -25,6 +29,10 @@ module.exports = {
       database: process.env.DB_NAME || 'contentfirst',
       user: process.env.DB_USER || 'contentfirst',
       password: process.env.DB_USER_PASSWORD
+    },
+    pool: {
+      min: process.env.DB_CONNECTIONS_POOL_MIN || 2,
+      max: process.env.DB_CONNECTIONS_POOL_MAX || 10
     },
     migrations: {
       directory: 'src/migrations'
