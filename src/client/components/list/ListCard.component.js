@@ -13,18 +13,24 @@ import {FETCH_COMMENTS} from '../../redux/comment.reducer';
 class ListCard extends React.Component {
   componentWillMount() {
     if (!this.props.skeleton) {
-      this.props.fetchComments(this.props.list.id);
-
-      if (this.props.list.list && this.props.list.list.length > 0) {
-        this.props.list.list.forEach(el => {
-          this.props.fetchComments(el._key + '-' + el.book.pid);
-        });
-      }
+      this.updateComments();
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    return !nextProps.skeleton && this.props.skeleton !== nextProps.skeleton;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.skeleton !== this.props.skeleton) {
+      this.updateComments();
+    }
+  }
+
+  updateComments() {
+    this.props.fetchComments(this.props.list.id);
+
+    if (this.props.list.list && this.props.list.list.length > 0) {
+      this.props.list.list.forEach(el => {
+        this.props.fetchComments(el._key + '-' + el.book.pid);
+      });
+    }
   }
 
   renderBookCover(id, img) {

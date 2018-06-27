@@ -14,7 +14,8 @@ export class RecentListsBelt extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.recent.length !== this.props.recent.length ||
-      nextState.didSwipe !== this.state.didSwipe
+      nextState.didSwipe !== this.state.didSwipe ||
+      nextProps.profiles !== this.props.profiles
     );
   }
 
