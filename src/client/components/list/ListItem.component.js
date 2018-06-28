@@ -6,7 +6,11 @@ import Link from '../general/Link.component';
 const Cover = ({pid, title, coverUrl, width, height}) => (
   <BookCover
     book={{pid, title, coverUrl}}
-    style={{width: width, height: height, objectFit: 'cover'}}
+    style={{
+      width: width,
+      height: height,
+      objectFit: 'cover'
+    }}
   />
 );
 
@@ -49,7 +53,7 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
             </span>
           );
         })}
-        <Link href={`/lister/${id}`} className="small ml1 link-subtle">
+        <Link href={`/lister/${id}`} className="ml1 link-subtle inline">
           {list.length === 6
             ? '+ 1 bog mere'
             : list.length > 6 ? `+ ${list.length - 5} bøger mere` : 'Se listen'}

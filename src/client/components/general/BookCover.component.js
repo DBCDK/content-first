@@ -3,11 +3,15 @@ import {connect} from 'react-redux';
 import Paragraph from '../base/Paragraph';
 
 const BookCover = props => {
-  const hasNoCover = !props.coverUrl && props.coverUrlHasLoaded;
-  if (!props.coverUrl) {
+  const hasNoCover = !props.book.coverUrl;
+  if (!props.book.coverUrl) {
     return (
       <div
-        style={{...props.style, textAlign: 'center', paddingTop: 50}}
+        style={{
+          ...props.style,
+          display: 'inline-block',
+          textAlign: 'center'
+        }}
         alt={props.book.title || ''}
         className={props.className || ''}
       >
@@ -21,8 +25,8 @@ const BookCover = props => {
       style={props.style}
       alt={props.book.title || ''}
       className={props.className || ''}
-      src={props.coverUrl}
-      onLoad={props.onLoad}
+      src={props.book.coverUrl}
+      onLoad={props.book.onLoad}
     />
   );
 };

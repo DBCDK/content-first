@@ -23,7 +23,7 @@ const addEmphasisToString = (string, pattern) => {
 const renderSuggestion = (suggestion, suggestionString) => {
   return (
     <div className="suggestion-row flex">
-      <div className="image">
+      <div className="image small">
         <BookCover book={suggestion.book} />
       </div>
       <div>

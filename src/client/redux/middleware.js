@@ -218,7 +218,7 @@ export const listMiddleware = store => next => async action => {
         throw new Error(`list with id ${action.id} not found`);
       }
       if (store.getState().userReducer.isLoggedIn) {
-        const updatedList = await saveList(list, openplatformId);
+        const updatedList = await saveList(list, openplatformId, store);
         store.dispatch({
           type: ADD_LIST,
           id: updatedList.id,
@@ -229,7 +229,7 @@ export const listMiddleware = store => next => async action => {
     }
     case ADD_LIST: {
       if (!action.list.id) {
-        action.list = await saveList(action.list);
+        action.list = await saveList(action.list, null, store);
       }
       if (!action.list.owner) {
         action.list.owner = store.getState().userReducer.openplatformId;
@@ -257,8 +257,8 @@ export const listMiddleware = store => next => async action => {
     case LIST_LOAD_REQUEST: {
       const res = next(action);
       const {openplatformId} = store.getState().userReducer;
-      const lists = await loadLists({openplatformId, dispatch: store.dispatch});
-      const recentLists = await loadRecentPublic({dispatch: store.dispatch});
+      const lists = await loadLists({openplatformId, store});
+      const recentLists = await loadRecentPublic({store});
       store.dispatch({
         type: LIST_LOAD_RESPONSE,
         lists: [...lists, ...recentLists]

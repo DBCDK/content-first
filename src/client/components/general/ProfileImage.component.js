@@ -63,9 +63,13 @@ class ProfileImage extends React.Component {
             <Icon
               name="face"
               style={{
+                width: size + 'px',
+                height: size + 'px',
+                lineHeight: size + 'px',
                 fontSize: size * 0.65 + 'px',
-                display: 'inline-block',
-                color: '#897571'
+                display: 'block',
+                backgroundColor: '#e9eaeb',
+                borderRadius: '50%'
               }}
             />
           )}

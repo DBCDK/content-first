@@ -18,11 +18,20 @@ exports[`CarouselItem renders initial component 1`] = `
           className=""
           style={
             Object {
-              "paddingTop": 50,
+              "display": "inline-block",
               "textAlign": "center",
             }
           }
-        />
+        >
+          <p
+            className=" Paragraph Paragraph__whattocall"
+          />
+          <p
+            className=" Paragraph Paragraph__whattocall"
+          >
+            Anthony Doerr
+          </p>
+        </div>
       </Link>
     </div>
     <div

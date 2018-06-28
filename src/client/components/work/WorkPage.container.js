@@ -175,7 +175,7 @@ class WorkPage extends React.Component {
                               hex={'#337ab7'}
                               size={32}
                               shape="square"
-                              txt="Bestil på eReolen"
+                              txt="Læs på eReolen"
                             />
                           );
                         }

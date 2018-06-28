@@ -70,9 +70,13 @@ exports[`CommentContainer Cancel button 1`] = `
               name="face"
               style={
                 Object {
-                  "color": "#897571",
-                  "display": "inline-block",
+                  "backgroundColor": "#e9eaeb",
+                  "borderRadius": "50%",
+                  "display": "block",
                   "fontSize": "22.75px",
+                  "height": "35px",
+                  "lineHeight": "35px",
+                  "width": "35px",
                 }
               }
             >
@@ -80,9 +84,13 @@ exports[`CommentContainer Cancel button 1`] = `
                 className="material-icons "
                 style={
                   Object {
-                    "color": "#897571",
-                    "display": "inline-block",
+                    "backgroundColor": "#e9eaeb",
+                    "borderRadius": "50%",
+                    "display": "block",
                     "fontSize": "22.75px",
+                    "height": "35px",
+                    "lineHeight": "35px",
+                    "width": "35px",
                   }
                 }
               >
@@ -193,9 +201,13 @@ exports[`CommentContainer Cancel button 2`] = `
               name="face"
               style={
                 Object {
-                  "color": "#897571",
-                  "display": "inline-block",
+                  "backgroundColor": "#e9eaeb",
+                  "borderRadius": "50%",
+                  "display": "block",
                   "fontSize": "22.75px",
+                  "height": "35px",
+                  "lineHeight": "35px",
+                  "width": "35px",
                 }
               }
             >
@@ -203,9 +215,13 @@ exports[`CommentContainer Cancel button 2`] = `
                 className="material-icons "
                 style={
                   Object {
-                    "color": "#897571",
-                    "display": "inline-block",
+                    "backgroundColor": "#e9eaeb",
+                    "borderRadius": "50%",
+                    "display": "block",
                     "fontSize": "22.75px",
+                    "height": "35px",
+                    "lineHeight": "35px",
+                    "width": "35px",
                   }
                 }
               >
@@ -317,9 +333,13 @@ exports[`CommentContainer Delete button 1`] = `
               name="face"
               style={
                 Object {
-                  "color": "#897571",
-                  "display": "inline-block",
+                  "backgroundColor": "#e9eaeb",
+                  "borderRadius": "50%",
+                  "display": "block",
                   "fontSize": "22.75px",
+                  "height": "35px",
+                  "lineHeight": "35px",
+                  "width": "35px",
                 }
               }
             >
@@ -327,9 +347,13 @@ exports[`CommentContainer Delete button 1`] = `
                 className="material-icons "
                 style={
                   Object {
-                    "color": "#897571",
-                    "display": "inline-block",
+                    "backgroundColor": "#e9eaeb",
+                    "borderRadius": "50%",
+                    "display": "block",
                     "fontSize": "22.75px",
+                    "height": "35px",
+                    "lineHeight": "35px",
+                    "width": "35px",
                   }
                 }
               >
@@ -440,9 +464,13 @@ exports[`CommentContainer Edit button 1`] = `
               name="face"
               style={
                 Object {
-                  "color": "#897571",
-                  "display": "inline-block",
+                  "backgroundColor": "#e9eaeb",
+                  "borderRadius": "50%",
+                  "display": "block",
                   "fontSize": "22.75px",
+                  "height": "35px",
+                  "lineHeight": "35px",
+                  "width": "35px",
                 }
               }
             >
@@ -450,9 +478,13 @@ exports[`CommentContainer Edit button 1`] = `
                 className="material-icons "
                 style={
                   Object {
-                    "color": "#897571",
-                    "display": "inline-block",
+                    "backgroundColor": "#e9eaeb",
+                    "borderRadius": "50%",
+                    "display": "block",
                     "fontSize": "22.75px",
+                    "height": "35px",
+                    "lineHeight": "35px",
+                    "width": "35px",
                   }
                 }
               >
@@ -563,9 +595,13 @@ exports[`CommentContainer Edit button 2`] = `
               name="face"
               style={
                 Object {
-                  "color": "#897571",
-                  "display": "inline-block",
+                  "backgroundColor": "#e9eaeb",
+                  "borderRadius": "50%",
+                  "display": "block",
                   "fontSize": "22.75px",
+                  "height": "35px",
+                  "lineHeight": "35px",
+                  "width": "35px",
                 }
               }
             >
@@ -573,9 +609,13 @@ exports[`CommentContainer Edit button 2`] = `
                 className="material-icons "
                 style={
                   Object {
-                    "color": "#897571",
-                    "display": "inline-block",
+                    "backgroundColor": "#e9eaeb",
+                    "borderRadius": "50%",
+                    "display": "block",
                     "fontSize": "22.75px",
+                    "height": "35px",
+                    "lineHeight": "35px",
+                    "width": "35px",
                   }
                 }
               >
@@ -715,9 +755,13 @@ exports[`CommentContainer Render comment 1`] = `
           className="material-icons "
           style={
             Object {
-              "color": "#897571",
-              "display": "inline-block",
+              "backgroundColor": "#e9eaeb",
+              "borderRadius": "50%",
+              "display": "block",
               "fontSize": "22.75px",
+              "height": "35px",
+              "lineHeight": "35px",
+              "width": "35px",
             }
           }
         >
@@ -795,9 +839,13 @@ exports[`CommentContainer Render edit form 1`] = `
           className="material-icons "
           style={
             Object {
-              "color": "#897571",
-              "display": "inline-block",
+              "backgroundColor": "#e9eaeb",
+              "borderRadius": "50%",
+              "display": "block",
               "fontSize": "22.75px",
+              "height": "35px",
+              "lineHeight": "35px",
+              "width": "35px",
             }
           }
         >
@@ -889,9 +937,13 @@ exports[`CommentContainer Render save form 1`] = `
           className="material-icons "
           style={
             Object {
-              "color": "#897571",
-              "display": "inline-block",
+              "backgroundColor": "#e9eaeb",
+              "borderRadius": "50%",
+              "display": "block",
               "fontSize": "22.75px",
+              "height": "35px",
+              "lineHeight": "35px",
+              "width": "35px",
             }
           }
         >
@@ -1002,9 +1054,13 @@ exports[`CommentContainer Save button 1`] = `
               name="face"
               style={
                 Object {
-                  "color": "#897571",
-                  "display": "inline-block",
+                  "backgroundColor": "#e9eaeb",
+                  "borderRadius": "50%",
+                  "display": "block",
                   "fontSize": "22.75px",
+                  "height": "35px",
+                  "lineHeight": "35px",
+                  "width": "35px",
                 }
               }
             >
@@ -1012,9 +1068,13 @@ exports[`CommentContainer Save button 1`] = `
                 className="material-icons "
                 style={
                   Object {
-                    "color": "#897571",
-                    "display": "inline-block",
+                    "backgroundColor": "#e9eaeb",
+                    "borderRadius": "50%",
+                    "display": "block",
                     "fontSize": "22.75px",
+                    "height": "35px",
+                    "lineHeight": "35px",
+                    "width": "35px",
                   }
                 }
               >
