@@ -62,12 +62,6 @@
   z-index: 3;
 }
 
-.Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top,
-.Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top img {
-  width: 35px;
-  height: 35px;
-}
-
 .Topbar .Topbar__navigation .Topbar__navigation__btn i {
   padding: 0 10px 0 0;
 }
@@ -95,6 +89,25 @@
 .Topbar__navigation__btn:hover > .badge {
   color: var(--dark-cyan) !important;
   transition-timing-function: ease-out;
+}
+
+/*
+// Topbar user image and default icon
+*/
+
+.Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top,
+.Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top img {
+  width: 35px;
+  height: 35px;
+}
+
+.Topbar
+  .Topbar__navigation
+  .Topbar__navigation__btn
+  .profile-top
+  .profile-image
+  i {
+  padding: 0;
 }
 
 /*

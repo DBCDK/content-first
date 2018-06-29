@@ -40,7 +40,7 @@ export const fetchTags = async (pids = []) => {
   return result;
 };
 
-export const fetchBooks = (pids = [], dispatch) => {
+export const fetchBooks = (pids = [], store) => {
   pids = unique(pids);
   const getBooks = request.get('/v1/books/').query({pids});
 
@@ -50,7 +50,7 @@ export const fetchBooks = (pids = [], dispatch) => {
       return books;
     })
     .catch(error => {
-      dispatch({
+      store.dispatch({
         type: 'LOG_ERROR',
         actionType: BOOKS_RESPONSE,
         pids,
@@ -346,7 +346,7 @@ export const saveShortList = (elements, isLoggedIn) => {
   }
 };
 
-export const loadShortList = async ({isLoggedIn, dispatch}) => {
+export const loadShortList = async ({isLoggedIn, store}) => {
   const localStorageElements = getItem(SHORT_LIST_KEY, SHORT_LIST_VERSION, []);
   if (!isLoggedIn) {
     return {localStorageElements};
@@ -358,7 +358,7 @@ export const loadShortList = async ({isLoggedIn, dispatch}) => {
       return {localStorageElements, databaseElements: []};
     }
     const pids = databaseElements.map(e => e.pid);
-    const works = await fetchBooks(pids, false, dispatch);
+    const works = await fetchBooks(pids, store);
 
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;

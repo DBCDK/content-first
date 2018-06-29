@@ -1,5 +1,6 @@
 import request from 'superagent';
-import {debounce} from 'lodash';
+import {debounce, get} from 'lodash';
+import unique from '../utils/unique';
 import {BOOKS_REQUEST, BOOKS_PARTIAL_UPDATE} from './books.reducer';
 import {
   fetchBooks,
@@ -42,7 +43,6 @@ import {
 } from './list.reducer';
 import {SEARCH_QUERY} from './search.reducer';
 import {saveList, loadLists, loadRecentPublic} from '../utils/requestLists';
-import {get} from 'lodash';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -91,6 +91,7 @@ export const historyMiddleware = history => store => next => action => {
 };
 
 const partialUpdateRequest = async (name, pids, requestFunction, store) => {
+  pids = unique(pids);
   const books = store.getState().booksReducer.books;
   const pidsToFetch = pids.filter(
     pid =>
@@ -229,7 +230,7 @@ export const listMiddleware = store => next => async action => {
     }
     case ADD_LIST: {
       if (!action.list.id) {
-        action.list = await saveList(action.list);
+        action.list = await saveList(action.list, null);
       }
       if (!action.list.owner) {
         action.list.owner = store.getState().userReducer.openplatformId;
@@ -257,12 +258,23 @@ export const listMiddleware = store => next => async action => {
     case LIST_LOAD_REQUEST: {
       const res = next(action);
       const {openplatformId} = store.getState().userReducer;
-      const lists = await loadLists({openplatformId, dispatch: store.dispatch});
-      const recentLists = await loadRecentPublic({dispatch: store.dispatch});
+      const lists = await loadLists({openplatformId, store});
+      const recentLists = await loadRecentPublic({store});
+
+      const allLists = {lists: [...lists, ...recentLists]};
       store.dispatch({
         type: LIST_LOAD_RESPONSE,
-        lists: [...lists, ...recentLists]
+        lists: allLists.lists
       });
+
+      let pids = [];
+      allLists.lists.forEach(list => {
+        list.list.forEach(book => {
+          pids.push(book.pid);
+        });
+      });
+
+      store.dispatch({type: BOOKS_REQUEST, pids});
 
       for (const list of [...lists, ...recentLists]) {
         store.dispatch({type: REQUEST_USER, id: list.owner});

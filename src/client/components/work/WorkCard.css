@@ -13,6 +13,10 @@
   object-fit: contain;
 }
 
+.WorkCard .book-cover p:first-child {
+  padding-top: 50px;
+}
+
 .WorkCard .taxonomy-description {
   font-size: 0.9rem;
   line-height: 1.4rem;

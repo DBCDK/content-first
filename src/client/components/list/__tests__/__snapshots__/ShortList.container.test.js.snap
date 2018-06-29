@@ -138,15 +138,28 @@ exports[`ShortList.container Clearing list 1`] = `
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title2"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -329,15 +342,28 @@ exports[`ShortList.container Clearing list 1`] = `
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title1"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -617,15 +643,28 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title1"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -929,15 +968,28 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title1"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -1241,15 +1293,28 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title1"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -1553,15 +1618,28 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title1"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -1898,15 +1976,28 @@ exports[`ShortList.container remove element 1`] = `
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title3"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2089,15 +2180,28 @@ exports[`ShortList.container remove element 1`] = `
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title2"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2280,15 +2384,28 @@ exports[`ShortList.container remove element 1`] = `
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title1"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2628,15 +2745,28 @@ exports[`ShortList.container short list contains elements 1`] = `
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title3"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2819,15 +2949,28 @@ exports[`ShortList.container short list contains elements 1`] = `
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title2"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -3010,15 +3153,28 @@ exports[`ShortList.container short list contains elements 1`] = `
                                           dispatch={[Function]}
                                         >
                                           <div
-                                            alt="some title1"
+                                            alt=""
                                             className=""
                                             style={
                                               Object {
-                                                "paddingTop": 50,
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
                                                 "textAlign": "center",
+                                                "verticalAlign": "middle",
                                               }
                                             }
-                                          />
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
