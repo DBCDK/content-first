@@ -137,11 +137,29 @@ exports[`ShortList.container Clearing list 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title2"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url2"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -323,11 +341,29 @@ exports[`ShortList.container Clearing list 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title1"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url1"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -606,11 +642,29 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title1"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url1"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -913,11 +967,29 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title1"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url1"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -1220,11 +1292,29 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title1"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url1"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -1527,11 +1617,29 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title1"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url1"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -1867,11 +1975,29 @@ exports[`ShortList.container remove element 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title3"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url3"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2053,11 +2179,29 @@ exports[`ShortList.container remove element 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title2"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url2"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2239,11 +2383,29 @@ exports[`ShortList.container remove element 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title1"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url1"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2582,11 +2744,29 @@ exports[`ShortList.container short list contains elements 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title3"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url3"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2768,11 +2948,29 @@ exports[`ShortList.container short list contains elements 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title2"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url2"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2954,11 +3152,29 @@ exports[`ShortList.container short list contains elements 1`] = `
                                           }
                                           dispatch={[Function]}
                                         >
-                                          <img
-                                            alt="some title1"
+                                          <div
+                                            alt=""
                                             className=""
-                                            src="https://some/cover/url1"
-                                          />
+                                            style={
+                                              Object {
+                                                "backgroundColor": "#f8f8f8",
+                                                "display": "inline-block",
+                                                "textAlign": "center",
+                                                "verticalAlign": "middle",
+                                              }
+                                            }
+                                          >
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                            <Paragraph>
+                                              <p
+                                                className=" Paragraph Paragraph__whattocall"
+                                              />
+                                            </Paragraph>
+                                          </div>
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>

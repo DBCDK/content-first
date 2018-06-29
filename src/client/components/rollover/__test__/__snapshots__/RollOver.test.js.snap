@@ -17,25 +17,23 @@ exports[`RollOver renders initial component 1`] = `
       className="col-xs-4 rollover-img"
     >
       <div
-        alt="test"
+        alt=""
         className=""
         style={
           Object {
+            "backgroundColor": "#f8f8f8",
             "display": "inline-block",
             "textAlign": "center",
+            "verticalAlign": "middle",
           }
         }
       >
         <p
           className=" Paragraph Paragraph__whattocall"
-        >
-          test
-        </p>
+        />
         <p
           className=" Paragraph Paragraph__whattocall"
-        >
-          Nicole Boyle Rødtnes
-        </p>
+        />
       </div>
     </div>
     <div

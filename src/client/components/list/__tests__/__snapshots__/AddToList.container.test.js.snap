@@ -13,7 +13,7 @@ exports[`AddToList render when allowAdd is true 1`] = `
   >
     Tilføj bøger til listen
   </h2>
-  <BookSearchSuggester
+  <Connect(BookSearchSuggester)
     list={
       Object {
         "description": "some description",
@@ -70,7 +70,7 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
   >
     Tilføj bøger til listen
   </h2>
-  <BookSearchSuggester
+  <Connect(BookSearchSuggester)
     list={
       Object {
         "description": "some description",
@@ -164,7 +164,7 @@ exports[`AddToList show error msg when selected books is already in list 1`] = `
   >
     Tilføj bøger til listen
   </h2>
-  <BookSearchSuggester
+  <Connect(BookSearchSuggester)
     list={
       Object {
         "description": "some description",

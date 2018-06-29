@@ -1,7 +1,6 @@
 import request from 'superagent';
 import {SYSTEM_LIST} from '../redux/list.reducer';
-import {deleteObject, fetchBooks, fetchCoverRefs} from './requester';
-import {merge} from 'lodash';
+import {deleteObject, fetchBooks} from './requester';
 
 // Note: only used exports are:
 //
