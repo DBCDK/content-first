@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import RecentListsBelt from '../belt/RecentListsBelt.container';
 import BooksBelt from '../belt/BooksBelt.container';
+import SimilarBooksBelt from '../belt/SimilarBooksBelt.container';
 import Bookcase from '../bookcase/Bookcase.component';
 import InteractionsRecoBelt from '../belt/InteractionsRecoBelt.container';
 
@@ -17,25 +18,38 @@ class FrontPage extends React.Component {
       window.$('[data-toggle="tooltip"]').tooltip();
     }
   }
-
-  shouldComponentUpdate(nextProps) {
-    return nextProps.belts !== this.props.belts;
-  }
-
   renderBelts() {
+    const beltsMap = this.props.beltsMap;
+
+    const flatten = [];
+    Object.values(beltsMap).forEach(belt => {
+      let path = '';
+      let currentParent = belt;
+      while (currentParent) {
+        path += belt.name;
+        flatten.push({belt: currentParent, path});
+        currentParent = currentParent.child;
+      }
+    });
+
     return (
       <div className="belts col-xs-12 col-sm-12 col-centered">
         <InteractionsRecoBelt />
 
-        {this.props.belts.filter(belt => belt.onFrontPage).map((belt, idx) => {
-          return (
-            <BooksBelt
-              key={idx}
-              title={belt.name}
-              subtext={belt.subtext}
-              tags={belt.tags}
-            />
-          );
+        {flatten.filter(entry => entry.belt.onFrontPage).map(entry => {
+          const {belt, path} = entry;
+          if (belt.pid) {
+            return (
+              <SimilarBooksBelt
+                key={path}
+                title={belt.name}
+                subtext={belt.subtext}
+                pid={belt.pid}
+                belt={belt}
+              />
+            );
+          }
+          return <BooksBelt key={path} belt={belt} tags={belt.tags} />;
         })}
 
         <RecentListsBelt />
@@ -55,8 +69,7 @@ class FrontPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    belts: state.beltsReducer.belts,
-    getBeltTagIdList: belt => state.filterReducer.beltFilters[belt.name]
+    beltsMap: state.beltsReducer.belts
   };
 };
 

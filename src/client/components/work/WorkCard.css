@@ -30,6 +30,10 @@
   transition: opacity 0.25s;
   background: linear-gradient(transparent, white 40%);
   cursor: pointer;
+  padding: 10px;
+}
+.WorkCard.highlight .hover-details {
+  opacity: 1;
 }
 .WorkCard:hover .hover-details {
   opacity: 1;

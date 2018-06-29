@@ -1,10 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {difference} from 'lodash';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
 import Term from '../base/Term';
 import Slider from '../belt/Slider.component';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
+import {ADD_CHILD_BELT} from '../../redux/belts.reducer';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import Link from '../general/Link.component';
 
@@ -23,33 +25,43 @@ export class BooksBelt extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.tags.length !== this.props.tags.length) {
+      this.props.fetchRecommendations(nextProps.tags);
+    }
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return (
+      nextProps.belt !== this.props.belt ||
+      nextProps.tags.length !== this.props.tags.length ||
       nextProps.recommendedPids.length !== this.props.recommendedPids.length ||
       nextState.didSwipe !== this.state.didSwipe
     );
   }
 
   render() {
-    const {fetchInitial = 8} = this.props;
+    const {
+      fetchInitial = 8,
+      showTags = true,
+      belt,
+      tagObjects,
+      recommendedPids,
+      addChildBelt
+    } = this.props;
+    const {name, subtext, child} = belt;
     const pids =
-      this.props.recommendedPids.length > 0
-        ? this.props.recommendedPids
-        : skeletonElements;
-
+      recommendedPids.length > 0 ? recommendedPids : skeletonElements;
     return (
       <div className="row belt text-left mt4">
         <div className="header row">
-          <Link
-            href="/find"
-            params={{tag: this.props.tagObjects.map(t => t.id)}}
-          >
+          <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
             <Heading
               className="inline border-right-xs-0 border-right-sm-1 pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0"
               tag="h1"
               type="section"
             >
-              {this.props.title.split(' ').map((word, idx) => {
+              {name.split(' ').map((word, idx) => {
                 if (idx === 0) {
                   return <strong key={idx}>{word}</strong>;
                 }
@@ -57,23 +69,25 @@ export class BooksBelt extends React.Component {
               })}
             </Heading>
           </Link>
-          <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
-            {this.props.tagObjects.map((t, idx) => {
-              const isLast = idx === this.props.tagObjects.length - 1;
-              return (
-                <Term
-                  key={t.id}
-                  className={'ml1 mt1' + (isLast ? ' mr1' : '')}
-                  size="medium"
-                  style={{verticalAlign: 'baseline'}}
-                >
-                  {t.title}
-                </Term>
-              );
-            })}
-          </div>
+          {showTags && (
+            <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
+              {tagObjects.map((t, idx) => {
+                const isLast = idx === tagObjects.length - 1;
+                return (
+                  <Term
+                    key={t.id}
+                    className={'ml1 mt1' + (isLast ? ' mr1' : '')}
+                    size="medium"
+                    style={{verticalAlign: 'baseline'}}
+                  >
+                    {t.title}
+                  </Term>
+                );
+              })}
+            </div>
+          )}
           <Heading tag="h3" type="lead" className="ml1 mt1 mb0">
-            {this.props.subtext}
+            {subtext}
           </Heading>
         </div>
 
@@ -89,10 +103,21 @@ export class BooksBelt extends React.Component {
               return (
                 <WorkCard
                   className="ml1 mr1"
+                  highlight={child && child.pid === pid}
                   allowFetch={this.state.didSwipe || idx < fetchInitial}
                   pid={pid}
                   key={pid}
-                  origin={`Fra "${this.props.title}"`}
+                  origin={`Fra "${name}"`}
+                  onMoreLikeThisClick={work => {
+                    addChildBelt(belt, {
+                      name: 'Minder om ' + work.book.title,
+                      details: 'Detaljer mhmm',
+                      isLoading: false,
+                      onFrontPage: true,
+                      tags: [5672],
+                      pid
+                    });
+                  }}
                 />
               );
             })}
@@ -104,10 +129,14 @@ export class BooksBelt extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const excluded = ownProps.excluded || [];
   return {
-    recommendedPids: getRecommendedPids(state.recommendReducer, {
-      tags: ownProps.tags
-    }).pids.slice(0, 20),
+    recommendedPids: difference(
+      getRecommendedPids(state.recommendReducer, {
+        tags: ownProps.tags
+      }).pids,
+      excluded
+    ).slice(0, 20),
     tagObjects: ownProps.tags.map(tag => {
       return filtersMapAll[tag.id || tag];
     })
@@ -121,7 +150,14 @@ export const mapDispatchToProps = dispatch => ({
       fetchWorks: false,
       tags,
       max: 50 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
-    })
+    }),
+  addChildBelt: (parentBelt, childBelt) => {
+    dispatch({
+      type: ADD_CHILD_BELT,
+      parentBelt,
+      childBelt
+    });
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BooksBelt);

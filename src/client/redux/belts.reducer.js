@@ -1,6 +1,6 @@
 const defaultState = {
-  belts: [
-    {
+  belts: {
+    'En god bog': {
       name: 'En god bog',
       details: 'Detaljer for en god bog',
       isLoading: false,
@@ -9,21 +9,21 @@ const defaultState = {
       works: [],
       tags: [100001, 100003, {id: 5672, weight: 10}, 100005]
     },
-    {
+    'En spændende bog': {
       name: 'En spændende bog',
       isLoading: false,
       onFrontPage: false,
       links: [],
       tags: [5676, 5632]
     },
-    {
+    'En anderledes bog': {
       name: 'En anderledes bog',
       isLoading: false,
       onFrontPage: false,
       links: [],
       tags: [5702]
     },
-    {
+    'Passer med min smag': {
       name: 'Passer med min smag',
       isLoading: false,
       onFrontPage: false,
@@ -31,7 +31,7 @@ const defaultState = {
       works: [],
       tags: []
     },
-    {
+    'Mennesket og Naturen': {
       name: 'Mennesket og Naturen',
       subtext:
         'Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen.',
@@ -49,7 +49,7 @@ const defaultState = {
         2278
       ]
     },
-    {
+    'Familiens skyggesider': {
       name: 'Familiens skyggesider',
       subtext:
         'Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge.',
@@ -67,7 +67,7 @@ const defaultState = {
         {id: 5691, weight: 10}
       ]
     },
-    {
+    'Tankevækkende Sci-fi': {
       name: 'Tankevækkende Sci-fi',
       subtext:
         'Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.',
@@ -76,7 +76,7 @@ const defaultState = {
       links: [],
       tags: [{id: 4927, weight: 10}, 5714, 5713]
     },
-    {
+    'Bibliotekarens ugentlige anbefalinger': {
       name: 'Bibliotekarens ugentlige anbefalinger',
       details: 'Detaljer for ugentlige anbefalinger',
       isLoading: false,
@@ -85,7 +85,7 @@ const defaultState = {
       works: [],
       tags: [-2]
     },
-    {
+    'Krøllede fortællinger': {
       name: 'Krøllede fortællinger',
       subtext:
         'Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt.',
@@ -102,7 +102,7 @@ const defaultState = {
         5717
       ]
     },
-    {
+    Sofahygge: {
       name: 'Sofahygge',
       subtext:
         'Hent teen, tænd stearinlyset og så op med fødderne og på med plaiden.',
@@ -111,7 +111,7 @@ const defaultState = {
       links: [],
       tags: [{id: 5637, weight: 10}, 5654, 5636, 5731, {id: 5611, weight: 10}]
     },
-    {
+    Tolkiensque: {
       name: 'Tolkiensque',
       subtext:
         'De store eventyr og udfordringer venter i en anden verden, hvor magiske kræfter og overnaturlige væsner prøver hinanden af.',
@@ -128,7 +128,7 @@ const defaultState = {
         5708
       ]
     },
-    {
+    'Gotisk uhygge': {
       name: 'Gotisk uhygge',
       subtext:
         'Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt.',
@@ -145,7 +145,7 @@ const defaultState = {
         5676
       ]
     },
-    {
+    Lokalkrimi: {
       name: 'Lokalkrimi',
       subtext:
         'Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.',
@@ -163,7 +163,7 @@ const defaultState = {
         5691
       ]
     },
-    {
+    'Historisk romantik': {
       name: 'Historisk romantik',
       subtext:
         'Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.',
@@ -184,7 +184,7 @@ const defaultState = {
         5671
       ]
     },
-    {
+    'Vemodige nordmænd': {
       name: 'Vemodige nordmænd',
       subtext:
         'Når du har lyst til at tænke over livet - også det svære og sårbare.',
@@ -200,12 +200,14 @@ const defaultState = {
         5630
       ]
     }
-  ]
+  }
 };
 
 export const ON_BELT_REQUEST = 'ON_BELT_REQUEST';
 export const ON_BELT_RESPONSE = 'ON_BELT_RESPONSE';
 export const ON_TAG_TOGGLE = 'ON_TAG_TOGGLE';
+export const INSERT_BELT = 'INSERT_BELT';
+export const ADD_CHILD_BELT = 'ADD_CHILD_BELT';
 
 const beltsReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -246,9 +248,37 @@ const beltsReducer = (state = defaultState, action) => {
       return Object.assign({}, {belts});
     }
 
+    case INSERT_BELT: {
+      const {insertAfterTitle, belt} = action;
+      const belts = [...state.belts].filter(b => b.name !== belt.name);
+      const position = belts.map(b => b.name).indexOf(insertAfterTitle) + 1;
+      belts.splice(position, 0, belt);
+      return {belts};
+    }
+
+    case ADD_CHILD_BELT: {
+      const {parentBelt, childBelt} = action;
+      // depth first searching for parent belt
+      const processBelt = b => {
+        const belt = {...b};
+        if (b === parentBelt) {
+          belt.child = childBelt;
+        } else if (belt.child) {
+          belt.child = processBelt(belt.child);
+        }
+        return belt;
+      };
+      const belts = Object.values(state.belts).map(b => processBelt(b));
+      return {belts};
+    }
+
     default:
       return state;
   }
+};
+
+export const getBelts = beltState => {
+  return Object.values(beltState.belts);
 };
 
 export default beltsReducer;

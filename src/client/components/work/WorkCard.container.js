@@ -53,6 +53,7 @@ class WorkCard extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     return (
+      nextProps.highlight !== this.props.highlight ||
       nextProps.work !== this.props.work ||
       nextProps.allowFetch !== this.props.allowFetch
     );
@@ -66,7 +67,14 @@ class WorkCard extends React.Component {
       this.props.work.book.description;
 
     return (
-      <div className={'WorkCard' + ' ' + this.props.className}>
+      <div
+        className={
+          'WorkCard' +
+          (this.props.highlight ? ' highlight' : '') +
+          ' ' +
+          this.props.className
+        }
+      >
         <Link href={`/værk/${this.props.work.book.pid}`}>
           <BookCover
             className="book-cover"
@@ -100,6 +108,7 @@ class WorkCard extends React.Component {
             size="small"
             onClick={event => {
               event.stopPropagation();
+              this.props.onMoreLikeThisClick(this.props.work);
             }}
           >
             Mere som denne
@@ -121,15 +130,7 @@ class WorkCard extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    work: state.booksReducer.books[ownProps.pid],
-    shortListState: state.shortListReducer,
-    systemLists: getListsForOwner(state.listReducer, {
-      type: SYSTEM_LIST,
-      owner: state.userReducer.openplatformId,
-      sort: true
-    }),
-    changeMap: state.listReducer.changeMap,
-    user: state.userReducer
+    work: state.booksReducer.books[ownProps.pid]
   };
 };
 export const mapDispatchToProps = dispatch => ({
