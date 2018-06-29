@@ -2,12 +2,12 @@ const defaultState = {
   belts: {
     'En god bog': {
       name: 'En god bog',
-      details: 'Detaljer for en god bog',
       isLoading: false,
       onFrontPage: true,
       links: ['En spændende bog', 'En anderledes bog'],
       works: [],
-      tags: [100001, 100003, {id: 5672, weight: 10}, 100005]
+      tags: [100001, 100003, {id: 5672, weight: 10}, 100005],
+      scrollPos: 6
     },
     'En spændende bog': {
       name: 'En spændende bog',
@@ -78,7 +78,6 @@ const defaultState = {
     },
     'Bibliotekarens ugentlige anbefalinger': {
       name: 'Bibliotekarens ugentlige anbefalinger',
-      details: 'Detaljer for ugentlige anbefalinger',
       isLoading: false,
       onFrontPage: true,
       links: [],
@@ -206,8 +205,8 @@ const defaultState = {
 export const ON_BELT_REQUEST = 'ON_BELT_REQUEST';
 export const ON_BELT_RESPONSE = 'ON_BELT_RESPONSE';
 export const ON_TAG_TOGGLE = 'ON_TAG_TOGGLE';
-export const INSERT_BELT = 'INSERT_BELT';
 export const ADD_CHILD_BELT = 'ADD_CHILD_BELT';
+export const BELT_SCROLL = 'BELT_SCROLL';
 
 const beltsReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -248,14 +247,6 @@ const beltsReducer = (state = defaultState, action) => {
       return Object.assign({}, {belts});
     }
 
-    case INSERT_BELT: {
-      const {insertAfterTitle, belt} = action;
-      const belts = [...state.belts].filter(b => b.name !== belt.name);
-      const position = belts.map(b => b.name).indexOf(insertAfterTitle) + 1;
-      belts.splice(position, 0, belt);
-      return {belts};
-    }
-
     case ADD_CHILD_BELT: {
       const {parentBelt, childBelt} = action;
       // depth first searching for parent belt
@@ -268,10 +259,20 @@ const beltsReducer = (state = defaultState, action) => {
         }
         return belt;
       };
-      const belts = Object.values(state.belts).map(b => processBelt(b));
+      const belts = {};
+      Object.values(state.belts)
+        .map(b => processBelt(b))
+        .forEach(b => {
+          belts[b.name] = b;
+        });
       return {belts};
     }
 
+    // case BELT_SCROLL {
+    //   const pos = action.pos;
+    //
+    //
+    // }
     default:
       return state;
   }
