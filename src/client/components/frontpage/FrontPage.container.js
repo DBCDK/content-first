@@ -39,15 +39,7 @@ class FrontPage extends React.Component {
         {flatten.filter(entry => entry.belt.onFrontPage).map(entry => {
           const {belt, path} = entry;
           if (belt.pid) {
-            return (
-              <SimilarBooksBelt
-                key={path}
-                title={belt.name}
-                subtext={belt.subtext}
-                pid={belt.pid}
-                belt={belt}
-              />
-            );
+            return <SimilarBooksBelt key={path} belt={belt} />;
           }
           return <BooksBelt key={path} belt={belt} tags={belt.tags} />;
         })}

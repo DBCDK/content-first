@@ -20,21 +20,21 @@ const params = {
 class MobileSlider extends React.Component {
   constructor(props) {
     super(props);
-    this.index = 0;
-    if (this.props.onSwipe) {
-      this.props.onSwipe(this.index);
-    }
+    this.index = props.initialScrollPos || 0;
   }
-  componentDidUpdate(prevProps) {
-    if (prevProps.children !== this.props.children) {
-      if (this.props.onSwipe) {
-        this.props.onSwipe(this.index);
-      }
-    }
+  componentDidMount() {
+    this.slider.scrollLeft =
+      this.slider.scrollWidth / this.props.children.length * this.index;
   }
+
   render() {
     return (
       <div
+        ref={node => {
+          if (node) {
+            this.slider = node;
+          }
+        }}
         className="mobile-slider-wrapper"
         onScroll={e => {
           const index = Math.floor(
@@ -58,13 +58,13 @@ class MobileSlider extends React.Component {
 class DesktopSlider extends React.Component {
   constructor(props) {
     super(props);
+    this.initialScrollPos = props.initialScrollPos || 0;
     this.state = {isBeginning: null, isEnd: null};
   }
   init = swiper => {
     if (swiper !== this.swiper) {
       this.swiper = swiper;
-      swiper.on('slideChangeTransitionStart', this.onSwipe);
-      this.onSwipe();
+      swiper.on('transitionStart', this.onSwipe);
     }
   };
   onSwipe = () => {
@@ -74,14 +74,17 @@ class DesktopSlider extends React.Component {
       index: this.swiper.realIndex
     });
     if (this.props.onSwipe) {
-      this.props.onSwipe(this.swiper.realIndex);
+      this.props.onSwipe(
+        this.swiper.isEnd
+          ? this.props.children.length - 1
+          : this.swiper.realIndex
+      );
     }
   };
   componentDidUpdate(prevProps) {
     if (prevProps.children !== this.props.children) {
       if (this.swiper) {
         this.swiper.update();
-        this.onSwipe();
       }
     }
   }
@@ -92,6 +95,7 @@ class DesktopSlider extends React.Component {
       <div className="desktop-slider">
         <Swiper
           {...params}
+          initialSlide={this.initialScrollPos}
           ref={node => {
             if (node) {
               this.init(node.swiper);
@@ -130,6 +134,7 @@ export default class Slider extends React.Component {
     if (isMobile) {
       return (
         <MobileSlider
+          initialScrollPos={this.props.initialScrollPos}
           children={this.props.children}
           onSwipe={this.props.onSwipe}
         />
@@ -137,6 +142,7 @@ export default class Slider extends React.Component {
     }
     return (
       <DesktopSlider
+        initialScrollPos={this.props.initialScrollPos}
         children={this.props.children}
         onSwipe={this.props.onSwipe}
       />

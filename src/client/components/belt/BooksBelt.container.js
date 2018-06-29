@@ -6,7 +6,7 @@ import Heading from '../base/Heading';
 import Term from '../base/Term';
 import Slider from '../belt/Slider.component';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
-import {ADD_CHILD_BELT} from '../../redux/belts.reducer';
+import {ADD_CHILD_BELT, BELT_SCROLL} from '../../redux/belts.reducer';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import Link from '../general/Link.component';
 
@@ -49,7 +49,7 @@ export class BooksBelt extends React.Component {
       recommendedPids,
       addChildBelt
     } = this.props;
-    const {name, subtext, child} = belt;
+    const {name, subtext, child, scrollPos} = belt;
     const pids =
       recommendedPids.length > 0 ? recommendedPids : skeletonElements;
     return (
@@ -93,10 +93,13 @@ export class BooksBelt extends React.Component {
 
         <div className="row mt2">
           <Slider
+            initialScrollPos={scrollPos}
             onSwipe={index => {
               if (index > 0 && !this.state.didSwipe) {
                 this.setState({didSwipe: true});
               }
+              console.log(index);
+              this.props.beltScroll(belt, index);
             }}
           >
             {pids.map((pid, idx) => {
@@ -154,6 +157,13 @@ export const mapDispatchToProps = dispatch => ({
       type: ADD_CHILD_BELT,
       parentBelt,
       childBelt
+    });
+  },
+  beltScroll: (belt, scrollPos) => {
+    dispatch({
+      type: BELT_SCROLL,
+      belt,
+      scrollPos
     });
   }
 });

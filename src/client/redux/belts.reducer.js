@@ -249,33 +249,48 @@ const beltsReducer = (state = defaultState, action) => {
 
     case ADD_CHILD_BELT: {
       const {parentBelt, childBelt} = action;
-      // depth first searching for parent belt
-      const processBelt = b => {
+      const belts = traverseBelts(state.belts, b => {
         const belt = {...b};
         if (b === parentBelt) {
           belt.child = childBelt;
-        } else if (belt.child) {
-          belt.child = processBelt(belt.child);
         }
         return belt;
-      };
-      const belts = {};
-      Object.values(state.belts)
-        .map(b => processBelt(b))
-        .forEach(b => {
-          belts[b.name] = b;
-        });
+      });
+
       return {belts};
     }
 
-    // case BELT_SCROLL {
-    //   const pos = action.pos;
-    //
-    //
-    // }
+    case BELT_SCROLL: {
+      const {belt, scrollPos} = action;
+      const belts = traverseBelts(state.belts, b => {
+        const copy = {...b};
+        if (b === belt) {
+          copy.scrollPos = scrollPos;
+        }
+        return copy;
+      });
+      return {belts};
+    }
     default:
       return state;
   }
+};
+
+const traverseBelts = (belts, func) => {
+  // depth first traversal of belts
+  const processBelt = b => {
+    if (b.child) {
+      b.child = processBelt(b.child);
+    }
+    return func(b);
+  };
+  const newBelts = {};
+  Object.values(belts)
+    .map(b => processBelt(b))
+    .forEach(b => {
+      newBelts[b.name] = b;
+    });
+  return newBelts;
 };
 
 export const getBelts = beltState => {
