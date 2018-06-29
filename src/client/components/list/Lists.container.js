@@ -6,11 +6,14 @@ import {
   SYSTEM_LIST
 } from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
+import {BOOKS_REQUEST} from '../../redux/books.reducer';
 
 import ListItem from '../list/ListItem.component.js';
 
 export class Lists extends React.Component {
   render() {
+    console.log(this.props.lists);
+
     return (
       <div className="lists-page">
         <div className="mb3">

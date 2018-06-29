@@ -6,6 +6,7 @@ import Link from '../general/Link.component';
 const Cover = ({pid, title, coverUrl, width, height}) => (
   <BookCover
     book={{pid, title, coverUrl}}
+    hideCoverText={true}
     style={{
       width: width,
       height: height,
@@ -45,8 +46,7 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
             <span className="ml1" key={el.book.pid}>
               <Cover
                 pid={el.book.pid}
-                title={el.book.title}
-                coverUrl={el.book.coverUrl}
+                book={el.book}
                 width="30px"
                 height="45px"
               />

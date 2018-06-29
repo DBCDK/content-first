@@ -135,9 +135,6 @@ async function enrichList({list, store}) {
   const pids = list.list.map(o => o.pid);
   if (pids.length > 0) {
     let works = await fetchBooks(pids, store);
-    const workCovers = await fetchCoverRefs(pids);
-
-    works = merge([], works, workCovers);
 
     const worksMap = works.reduce((map, w) => {
       map[w.book.pid] = w;

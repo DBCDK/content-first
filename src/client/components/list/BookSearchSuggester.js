@@ -1,7 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import request from 'superagent';
 import Autosuggest from 'react-autosuggest';
 import BookCover from '../general/BookCover.component';
+
+import {BOOKS_REQUEST} from '../../redux/books.reducer';
 
 const addEmphasisToString = (string, pattern) => {
   const index = string.toLowerCase().indexOf(pattern.toLowerCase());
@@ -66,7 +69,13 @@ class BookSearchSuggester extends React.Component {
               .join(' & ') + ':*'
           )
       )).text
-    ).data.map(book => ({links: {}, book}));
+    )
+      .data.map(book => ({links: {}, book}))
+      .slice(0, 5);
+
+    const pids = results.map(work => work.book.pid);
+    this.props.fetchWorks(pids);
+
     if (this.currentRequest === value) {
       this.setState({suggestions: results});
     }
@@ -112,4 +121,18 @@ class BookSearchSuggester extends React.Component {
   }
 }
 
-export default BookSearchSuggester;
+const mapStateToProps = state => {
+  return {};
+};
+
+export const mapDispatchToProps = dispatch => ({
+  fetchWorks: pids =>
+    dispatch({
+      type: BOOKS_REQUEST,
+      pids: pids
+    })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  BookSearchSuggester
+);
