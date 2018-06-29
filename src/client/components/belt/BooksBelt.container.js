@@ -112,10 +112,7 @@ export class BooksBelt extends React.Component {
                   onMoreLikeThisClick={work => {
                     addChildBelt(belt, {
                       name: 'Minder om ' + work.book.title,
-                      details: 'Detaljer mhmm',
-                      isLoading: false,
                       onFrontPage: true,
-                      tags: [5672],
                       pid
                     });
                   }}

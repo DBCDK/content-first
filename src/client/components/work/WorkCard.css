@@ -27,7 +27,7 @@
 
 .WorkCard .hover-details {
   opacity: 0;
-  transition: opacity 0.25s;
+  transition: all 0.25s;
   background: linear-gradient(transparent, white 40%);
   cursor: pointer;
   padding: 10px;

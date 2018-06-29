@@ -26,7 +26,7 @@ class FrontPage extends React.Component {
       let path = '';
       let currentParent = belt;
       while (currentParent) {
-        path += belt.name;
+        path += currentParent.name;
         flatten.push({belt: currentParent, path});
         currentParent = currentParent.child;
       }

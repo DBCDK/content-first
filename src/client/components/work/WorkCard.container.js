@@ -119,7 +119,7 @@ class WorkCard extends React.Component {
               <div className="expand-more-wrapper text-center">
                 <i
                   className="expand-more material-icons"
-                  style={{fontSize: 36}}
+                  style={{fontSize: this.props.highlight ? 66 : 36}}
                 >
                   expand_more
                 </i>
