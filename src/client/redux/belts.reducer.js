@@ -6,8 +6,7 @@ const defaultState = {
       onFrontPage: true,
       links: ['En spændende bog', 'En anderledes bog'],
       works: [],
-      tags: [100001, 100003, {id: 5672, weight: 10}, 100005],
-      scrollPos: 6
+      tags: [100001, 100003, {id: 5672, weight: 10}, 100005]
     },
     'En spændende bog': {
       name: 'En spændende bog',

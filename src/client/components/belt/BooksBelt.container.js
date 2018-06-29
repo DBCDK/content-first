@@ -49,6 +49,9 @@ export class BooksBelt extends React.Component {
       recommendedPids,
       addChildBelt
     } = this.props;
+    if (!belt) {
+      return null;
+    }
     const {name, subtext, child, scrollPos} = belt;
     const pids =
       recommendedPids.length > 0 ? recommendedPids : skeletonElements;
