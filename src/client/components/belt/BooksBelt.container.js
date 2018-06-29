@@ -101,7 +101,6 @@ export class BooksBelt extends React.Component {
               if (index > 0 && !this.state.didSwipe) {
                 this.setState({didSwipe: true});
               }
-              console.log(index);
               this.props.beltScroll(belt, index);
             }}
           >
