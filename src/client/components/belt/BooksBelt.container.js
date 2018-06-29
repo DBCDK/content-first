@@ -103,6 +103,7 @@ export class BooksBelt extends React.Component {
               return (
                 <WorkCard
                   className="ml1 mr1"
+                  enableHover={true}
                   highlight={child && child.pid === pid}
                   allowFetch={this.state.didSwipe || idx < fetchInitial}
                   pid={pid}
