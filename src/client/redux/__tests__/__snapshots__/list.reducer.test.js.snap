@@ -5,8 +5,21 @@ Array [
   Object {
     "_created": "1234",
     "description": "",
-    "id": "some-id-1",
-    "list": Array [],
+    "id": "list2",
+    "list": Array [
+      Object {
+        "book": Object {
+          "description": "lorem ipsum...",
+          "pid": "pid1",
+          "title": "title1",
+        },
+        "pid": "pid1",
+        "position": Object {
+          "x": 0,
+          "y": 0,
+        },
+      },
+    ],
     "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -20,7 +33,21 @@ Array [
     "_created": "1234",
     "description": "",
     "id": "some-id-1",
-    "list": Array [],
+    "list": Array [
+      Object {
+        "book": Object {
+          "description": "lorem ipsum...",
+          "pid": "pid1",
+          "title": "title1",
+        },
+        "description": "some-description-1",
+        "pid": "pid1",
+        "position": Object {
+          "x": 0,
+          "y": 0,
+        },
+      },
+    ],
     "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -105,7 +132,37 @@ Array [
     "_created": "1234",
     "description": "",
     "id": "some-id-1",
-    "list": Array [],
+    "list": Array [
+      Object {
+        "book": Object {
+          "description": "lorem ipsum...",
+          "pid": "pid1",
+          "title": "title1",
+        },
+        "pid": "pid1",
+        "position": Object {
+          "x": 0,
+          "y": 0,
+        },
+      },
+      Object {
+        "book": Object {
+          "pid": "pid3",
+        },
+      },
+      Object {
+        "book": Object {
+          "description": "lorem ipsum...",
+          "pid": "pid2",
+          "title": "title2",
+        },
+        "pid": "pid2",
+        "position": Object {
+          "x": 0,
+          "y": 0,
+        },
+      },
+    ],
     "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -122,7 +179,21 @@ Array [
     },
     "description": "",
     "id": "some-id-1",
-    "list": Array [],
+    "list": Array [
+      Object {
+        "_id": "456",
+        "book": Object {
+          "description": "lorem ipsum...",
+          "pid": "pid2",
+          "title": "title2",
+        },
+        "pid": "pid2",
+        "position": Object {
+          "x": 0,
+          "y": 0,
+        },
+      },
+    ],
     "owner": null,
     "pending": Array [
       Object {
@@ -171,8 +242,11 @@ Array [
     "list": Array [
       Object {
         "book": Object {
+          "description": "lorem ipsum...",
           "pid": "pid1",
+          "title": "title1",
         },
+        "pid": "pid1",
       },
     ],
     "owner": null,

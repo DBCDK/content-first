@@ -216,7 +216,7 @@ export const listMiddleware = store => next => async action => {
   switch (action.type) {
     case STORE_LIST: {
       const {openplatformId} = store.getState().userReducer;
-      const list = getListById(store.getState().listReducer, action.id);
+      const list = getListById(store.getState(), action.id);
       if (!list) {
         throw new Error(`list with id ${action.id} not found`);
       }

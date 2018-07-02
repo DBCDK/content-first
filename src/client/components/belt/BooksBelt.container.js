@@ -32,6 +32,7 @@ export class BooksBelt extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    // console.log('BooksBelt', this.props.work, nextProps.work);
     return (
       nextProps.belt !== this.props.belt ||
       nextProps.tags.length !== this.props.tags.length ||

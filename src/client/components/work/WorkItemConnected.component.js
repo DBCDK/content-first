@@ -36,7 +36,7 @@ class WorkItemConnected extends React.PureComponent {
 const mapStateToProps = state => {
   return {
     shortListState: state.shortListReducer,
-    systemLists: getListsForOwner(state.listReducer, {
+    systemLists: getListsForOwner(state, {
       type: SYSTEM_LIST,
       owner: state.userReducer.openplatformId,
       sort: true

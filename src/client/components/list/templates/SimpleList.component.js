@@ -39,9 +39,10 @@ export class Item extends React.Component {
       onDescriptionChange,
       onSubmit
     } = this.props;
-    if (!profile || !element) {
+    if (!profile || !element || !element.book) {
       return null;
     }
+
     return (
       <div className="row simplelist-item mb4">
         <div className="meta col-xs-3 tc">
@@ -101,7 +102,7 @@ export class Item extends React.Component {
                 className="t-body"
                 dangerouslySetInnerHTML={{
                   __html: textParser(
-                    element.description || element.book.description
+                    element.description || element.book.description || ''
                   )
                 }}
               />
@@ -216,7 +217,7 @@ export class SimpleList extends React.Component {
                 <Item
                   allowComments={list.social}
                   list={list}
-                  key={element.book.pid}
+                  key={element.pid}
                   element={element}
                   book={element.book}
                   description={element.description}

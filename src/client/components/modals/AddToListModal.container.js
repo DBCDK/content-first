@@ -218,7 +218,7 @@ export class AddToListModal extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  const customLists = getListsForOwner(state.listReducer, {
+  const customLists = getListsForOwner(state, {
     type: CUSTOM_LIST,
     owner: state.userReducer.openplatformId
   }).sort(function(a, b) {
@@ -226,7 +226,7 @@ const mapStateToProps = state => {
   });
   return {
     customLists: customLists,
-    systemLists: getListsForOwner(state.listReducer, {
+    systemLists: getListsForOwner(state, {
       type: SYSTEM_LIST,
       owner: state.userReducer.openplatformId,
       sort: true

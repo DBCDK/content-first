@@ -58,12 +58,12 @@ export class Lists extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    lists: getListsForOwner(state.listReducer, {
+    lists: getListsForOwner(state, {
       type: CUSTOM_LIST,
       owner: state.userReducer.openplatformId,
       sort: true
     }),
-    systemLists: getListsForOwner(state.listReducer, {
+    systemLists: getListsForOwner(state, {
       type: SYSTEM_LIST,
       owner: state.userReducer.openplatformId,
       sort: true
