@@ -27,14 +27,7 @@ exports[`RollOver renders initial component 1`] = `
             "verticalAlign": "middle",
           }
         }
-      >
-        <p
-          className=" Paragraph Paragraph__whattocall"
-        />
-        <p
-          className=" Paragraph Paragraph__whattocall"
-        />
-      </div>
+      />
     </div>
     <div
       className="col-xs-8 text-left rollover-text"

@@ -148,18 +148,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -352,18 +341,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -653,18 +631,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -978,18 +945,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -1303,18 +1259,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -1628,18 +1573,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -1986,18 +1920,7 @@ exports[`ShortList.container remove element 1`] = `
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2190,18 +2113,7 @@ exports[`ShortList.container remove element 1`] = `
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2394,18 +2306,7 @@ exports[`ShortList.container remove element 1`] = `
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2755,18 +2656,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -2959,18 +2849,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>
@@ -3163,18 +3042,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                                 "verticalAlign": "middle",
                                               }
                                             }
-                                          >
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                            <Paragraph>
-                                              <p
-                                                className=" Paragraph Paragraph__whattocall"
-                                              />
-                                            </Paragraph>
-                                          </div>
+                                          />
                                         </BookCover>
                                       </Connect(BookCover)>
                                     </a>

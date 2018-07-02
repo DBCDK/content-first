@@ -23,14 +23,17 @@
   font-size: 1rem;
   line-height: 16px;
 }
-
+.Heading__subtitle {
+  font-weight: 500;
+  font-size: 0.9rem;
+  line-height: 14px;
+}
 @media only screen and (max-width: 600px) {
   .Heading__lead {
     font-weight: 400;
     font-size: 1.1em;
     line-height: 20px;
   }
-
   .Heading__section {
     text-transform: uppercase;
     font-weight: 400;
@@ -40,7 +43,6 @@
   .Heading__section strong {
     font-weight: 600;
   }
-
   .Heading__title {
     font-weight: 600;
     font-size: 0.8rem;
