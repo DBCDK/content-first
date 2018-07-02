@@ -34,7 +34,6 @@
     font-size: 1.1em;
     line-height: 20px;
   }
-
   .Heading__section {
     text-transform: uppercase;
     font-weight: 400;
@@ -44,7 +43,7 @@
   .Heading__section strong {
     font-weight: 600;
   }
-  <<<<<<< head =======>>>>>>>added hover overlay for WorkCard .Heading__title {
+  .Heading__title {
     font-weight: 600;
     font-size: 0.8rem;
     line-height: 12px;
