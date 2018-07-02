@@ -31,11 +31,13 @@ export const fetchTags = async (pids = []) => {
   for (var x = 0; x < requests.length; x++) {
     const req = requests[x];
     const response = await req.request;
-    if (req.request.body) {
+    if (response.body) {
       const tags = response.body.data.tags
         .map(t => taxonomyMap[t])
         .filter(t => t);
       result[req.pid] = tags;
+    } else {
+      result[req.pid] = [];
     }
   }
 
