@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Paragraph from '../base/Paragraph';
 
 const BookCover = props => {
-  const hasNoCover = !props.coverUrl;
+  const hasNoCover = !props.coverUrl && props.coverUrlHasLoaded;
 
   if (!props.coverUrl) {
     return (
