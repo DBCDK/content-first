@@ -89,23 +89,27 @@ const listReducer = (state = defaultState, action) => {
       if (!action.element) {
         throw new Error("'element' is missing from action");
       }
+
+      action.element.pid = action.element.book.pid;
+
       const changeMap = Object.assign({}, state.changeMap, {
         [action.element.book.pid]: {}
       });
+
       const list = {
         ...state.lists[action.id]
       };
+
       if (
-        list.list.filter(e => e.book.pid === action.element.book.pid).length ===
-        0
+        list.list.filter(e => e.pid === action.element.book.pid).length === 0
       ) {
         if (!action.element.position) {
           action.element.position = {
             x: Math.floor(Math.random() * Math.floor(100)),
             y: Math.floor(Math.random() * Math.floor(100))
           };
-          list.list = [...list.list, action.element];
         }
+        list.list = [...list.list, action.element];
       }
       return Object.assign({}, state, {
         lists: {...state.lists, [action.id]: list},
@@ -133,7 +137,7 @@ const listReducer = (state = defaultState, action) => {
       list.pending = list.pending || [];
       list.pending = [...list.pending, action.element];
       list.list = list.list.filter(
-        element => element.book.pid !== action.element.book.pid
+        element => element.pid !== action.element.book.pid
       );
       return Object.assign({}, state, {
         lists: {...state.lists, [action.id]: list},
@@ -190,12 +194,11 @@ const listReducer = (state = defaultState, action) => {
       const list = {
         ...state.lists[action.id]
       };
-      const removed = list.list.filter(
-        e => e.book.pid !== action.element.book.pid
-      );
+      const removed = list.list.filter(e => e.pid !== action.element.book.pid);
       if (removed.length < list.list.length) {
         list.list = removed;
       } else {
+        action.element.pid = action.element.book.pid;
         list.list = [...list.list, action.element];
       }
       return Object.assign({}, state, {
@@ -218,7 +221,7 @@ const listReducer = (state = defaultState, action) => {
     case LIST_LOAD_RESPONSE: {
       let lists = action.lists;
       const changeMap = lists.reduce((map, list) => {
-        list.list.forEach(element => (map[element.book.pid] = {}));
+        list.list.forEach(element => (map[element.pid] = {}));
         return map;
       }, {});
       const listMap = {};
@@ -391,7 +394,10 @@ export const getListsForOwner = (state, params = {}) => {
 };
 
 export const getLists = (state, {type, sort} = {}) => {
-  const lists = Object.values(state.lists)
+  const listState = state.listReducer;
+  const booksState = state.booksReducer;
+
+  const lists = Object.values(listState.lists)
     .filter(l => {
       if (type && l.type !== type) {
         return false;
@@ -412,11 +418,17 @@ export const getLists = (state, {type, sort} = {}) => {
 
         /* eslint-enable */
       }
+
+      l.list = l.list.map(el => {
+        return {...el, ...booksState.books[el.pid]};
+      });
+
       return l;
     });
   if (sort) {
     lists.sort((item1, item2) => item1.title.localeCompare(item2.title));
   }
+
   return lists;
 };
 
@@ -429,7 +441,28 @@ export const getPublicLists = state => {
 };
 
 export const getListById = (state, id) => {
-  return state.lists[id];
+  const listState = state.listReducer;
+  const booksState = state.booksReducer;
+
+  let list = listState.lists[id];
+  if (!list) {
+    return;
+  }
+
+  // creating copy of list
+  list = {...list};
+
+  if (list && list.list) {
+    list.list = list.list
+      .filter(el => {
+        return booksState.books[el.pid] && booksState.books[el.pid].book;
+      })
+      .map(el => {
+        return {...el, book: booksState.books[el.pid].book};
+      });
+  }
+
+  return list;
 };
 
 const validateId = (state, action) => {

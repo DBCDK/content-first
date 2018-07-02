@@ -435,7 +435,7 @@ export class ListCreator extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    currentList: getListById(state.listReducer, ownProps.id),
+    currentList: getListById(state, ownProps.id),
     profiles: state.users.toJS()
   };
 };

@@ -334,7 +334,7 @@ const mapStateToProps = (state, ownProps) => {
       .slice(0, 20),
     filterState: state.filterReducer,
     shortListState: state.shortListReducer,
-    systemLists: getListsForOwner(state.listReducer, {
+    systemLists: getListsForOwner(state, {
       type: SYSTEM_LIST,
       owner: state.userReducer.openplatformId,
       sort: true

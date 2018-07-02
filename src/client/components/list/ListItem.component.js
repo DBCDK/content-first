@@ -43,13 +43,8 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
       <Link href={`/lister/${id}`} className="ml2">
         {list.slice(0, 5).map(el => {
           return (
-            <span className="ml1" key={el.book.pid}>
-              <Cover
-                pid={el.book.pid}
-                book={el.book}
-                width="30px"
-                height="45px"
-              />
+            <span className="ml1" key={el.pid}>
+              <Cover pid={el.pid} book={el.book} width="30px" height="45px" />
             </span>
           );
         })}

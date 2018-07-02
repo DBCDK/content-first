@@ -1,6 +1,6 @@
 import request from 'superagent';
 import {SYSTEM_LIST} from '../redux/list.reducer';
-import {deleteObject, fetchBooks} from './requester';
+import {deleteObject} from './requester';
 
 // Note: only used exports are:
 //
@@ -95,7 +95,7 @@ export const loadRecentPublic = async ({store}) => {
   return lists;
 };
 
-async function enrichList({list, store}) {
+async function enrichList({list}) {
   list.id = list.id || list._id;
   list.owner = list._owner;
 
@@ -129,20 +129,9 @@ async function enrichList({list, store}) {
     list.list = list.list.concat(othersListEntries);
   }
 
-  // Load books into list
-  list.list = list.list.filter(o => o.pid);
-  const pids = list.list.map(o => o.pid);
-  if (pids.length > 0) {
-    let works = await fetchBooks(pids, store);
-
-    const worksMap = works.reduce((map, w) => {
-      map[w.book.pid] = w;
-      return map;
-    }, {});
-    list.list = list.list.filter(obj => worksMap[obj.pid]).map(obj => {
-      return Object.assign(obj, {book: {pid: obj.pid}}, worksMap[obj.pid]);
-    });
-  }
+  list.list.forEach(el => {
+    delete el.book;
+  });
 }
 
 // done

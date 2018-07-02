@@ -27,7 +27,6 @@ export class ListPage extends React.Component {
     }
 
     const profile = this.props.profiles[this.props.list.owner];
-
     const Template = this.getTemplate(list);
 
     let editButton = '';
@@ -54,7 +53,7 @@ export class ListPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const list = getListById(state.listReducer, ownProps.id);
+  const list = getListById(state, ownProps.id);
   return {
     list,
     isOwner: list && list._owner === state.userReducer.openplatformId,
