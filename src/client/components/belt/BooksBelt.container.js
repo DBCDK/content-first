@@ -52,7 +52,8 @@ export class BooksBelt extends React.Component {
     if (!belt) {
       return null;
     }
-    const {name, subtext, child, scrollPos} = belt;
+    const {subtext, child, scrollPos} = belt;
+    const name = this.props.name || this.props.belt.name;
     const pids =
       recommendedPids.length > 0 ? recommendedPids : skeletonElements;
     return (
@@ -101,7 +102,10 @@ export class BooksBelt extends React.Component {
               if (index > 0 && !this.state.didSwipe) {
                 this.setState({didSwipe: true});
               }
-              this.props.beltScroll(belt, index);
+
+              if (scrollPos !== index) {
+                this.props.beltScroll(belt, index);
+              }
             }}
           >
             {pids.map((pid, idx) => {

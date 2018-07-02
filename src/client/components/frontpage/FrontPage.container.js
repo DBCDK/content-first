@@ -34,10 +34,11 @@ class FrontPage extends React.Component {
 
     return (
       <div className="belts col-xs-12 col-sm-12 col-centered">
-        <InteractionsRecoBelt />
-
         {flatten.filter(entry => entry.belt.onFrontPage).map(entry => {
           const {belt, path} = entry;
+          if (belt.name === 'Bedste forslag') {
+            return <InteractionsRecoBelt key={path} belt={belt} />;
+          }
           if (belt.pid) {
             return <SimilarBooksBelt key={path} pid={belt.pid} belt={belt} />;
           }

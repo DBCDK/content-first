@@ -1,10 +1,13 @@
 const defaultState = {
   belts: {
+    'Bedste forslag': {
+      name: 'Bedste forslag',
+      onFrontPage: true
+    },
     'En god bog': {
       name: 'En god bog',
       isLoading: false,
       onFrontPage: true,
-      links: ['En spændende bog', 'En anderledes bog'],
       works: [],
       tags: [100001, 100003, {id: 5672, weight: 10}, 100005]
     },

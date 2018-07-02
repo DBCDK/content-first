@@ -67,6 +67,7 @@ class DesktopSlider extends React.Component {
       swiper.on('transitionStart', this.onSwipe);
     }
   };
+
   onSwipe = () => {
     this.setState({
       isBeginning: this.swiper.isBeginning,
