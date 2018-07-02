@@ -24,14 +24,7 @@ exports[`CarouselItem renders initial component 1`] = `
               "verticalAlign": "middle",
             }
           }
-        >
-          <p
-            className=" Paragraph Paragraph__whattocall"
-          />
-          <p
-            className=" Paragraph Paragraph__whattocall"
-          />
-        </div>
+        />
       </Link>
     </div>
     <div
