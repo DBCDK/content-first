@@ -138,12 +138,15 @@ export class BooksBelt extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const excluded = ownProps.excluded || [];
   return {
-    recommendedPids: difference(
-      getRecommendedPids(state.recommendReducer, {
-        tags: ownProps.tags
-      }).pids,
-      excluded
-    ).slice(0, 20),
+    recommendedPids:
+      ownProps.tags.length > 0
+        ? difference(
+            getRecommendedPids(state.recommendReducer, {
+              tags: ownProps.tags
+            }).pids,
+            excluded
+          ).slice(0, 20)
+        : [],
     tagObjects: ownProps.tags.map(tag => {
       return filtersMapAll[tag.id || tag];
     })
