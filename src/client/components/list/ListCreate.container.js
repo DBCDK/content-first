@@ -398,7 +398,9 @@ export class ListCreator extends React.Component {
                 className="text-danger"
                 style={{cursor: 'pointer'}}
                 onClick={() =>
-                  this.props.confirmDeleteModal(this.props.currentList.id)
+                  this.props.confirmDeleteModal(
+                    this.props.currentList.id || this.props.currentList._id
+                  )
                 }
               >
                 {isNew ? (

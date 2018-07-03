@@ -166,7 +166,7 @@ export class SimpleList extends React.Component {
               status={
                 this.props.follows[this.props.list.id] ? 'active' : 'passive'
               }
-              onClick={() => this.toggleFollow(list.id, 'list')}
+              onClick={() => this.toggleFollow(list.id || list._id, 'list')}
             />
             <SocialShareButton
               className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-fb'}
