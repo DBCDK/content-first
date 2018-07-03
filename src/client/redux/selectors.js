@@ -32,7 +32,7 @@ export const getFollowedLists = state => {
 
   const result = Object.values(follows)
     .filter(follow => follow.cat === 'list')
-    .map(follow => getListById(listReducer, follow.id))
+    .map(follow => getListById(state, follow.id))
     .filter(list => list);
 
   return result;
