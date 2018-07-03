@@ -27,12 +27,11 @@ export const getRecommendedBooks = (state, tags, max) => {
 };
 
 export const getFollowedLists = state => {
-  const {listReducer} = state;
   const follows = state.followReducer;
 
   const result = Object.values(follows)
     .filter(follow => follow.cat === 'list')
-    .map(follow => getListById(listReducer, follow.id))
+    .map(follow => getListById(state, follow.id))
     .filter(list => list);
 
   return result;
