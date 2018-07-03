@@ -27,7 +27,6 @@ export const getRecommendedBooks = (state, tags, max) => {
 };
 
 export const getFollowedLists = state => {
-  const {listReducer} = state;
   const follows = state.followReducer;
 
   const result = Object.values(follows)
