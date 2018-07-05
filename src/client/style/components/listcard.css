@@ -57,6 +57,7 @@
 a.list-card-nohover {
   color: black;
   text-decoration: none;
+
 }
 .list-card-description {
   font-family: var(--primary-font);

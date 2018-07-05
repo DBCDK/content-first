@@ -2,8 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import BookCover from '../general/BookCover.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Kryds from '../svg/Kryds.svg';
-import LineBehindText from '../general/LineBehindText.component';
+import Kryds from '../svg/KrydsGrey.svg';
+import Button from '../base/Button/Button';
+import Heading from '../base/Heading/Heading';
 import Link from '../general/Link.component';
 import {
   ON_SHORTLIST_EXPAND,
@@ -11,8 +12,7 @@ import {
   ON_SHORTLIST_REMOVE_ELEMENT
 } from '../../redux/shortlist.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
-
-const SHORT_LIST_MAX_LENGTH = 3;
+import {ORDER} from '../../redux/order.reducer';
 
 const ShortListElement = props => {
   const url = `/værk/${props.element.book.pid}`;
@@ -33,40 +33,26 @@ const ShortListElement = props => {
         </div>
         <div className="short-list-element--origin">{props.element.origin}</div>
       </div>
-      <img
+     { <img
         src={Kryds}
         alt="luk"
         className="short-list-element--close-btn"
         onClick={props.onClose}
-      />
+      />}
     </div>
   );
 };
 
 const ShortListContent = props => {
-  const moreCount = props.elements.length - SHORT_LIST_MAX_LENGTH;
-  let moreLabel = null;
-  if (moreCount > 0) {
-    if (moreCount === 1) {
-      moreLabel = '1 bog mere på listen';
-    } else {
-      moreLabel = `${moreCount} bøger mere på listen`;
-    }
-  }
   return (
     <div
       className={`short-list--content text-left${
         props.expanded ? '' : ' slide-out'
       }`}
     >
-      <img
-        src={Kryds}
-        alt="luk"
-        className="short-list--close-btn"
-        onClick={props.onClose}
-      />
-      <div className="short-list--header">HUSKELISTE</div>
-      <div className="short-list--empty-text text-center">
+      <Heading type="peach-subtitle">HUSKELISTE ({props.elements&& props.elements.length})</Heading>
+
+     <div className={"short-list--empty-text text-center "+(props.elements.length===0 ? "": "hidden")}>
         {props.elements.length === 0 && 'Din huskeliste er tom'}
       </div>
       {props.children &&
@@ -81,19 +67,13 @@ const ShortListContent = props => {
             </ReactCSSTransitionGroup>
           </div>
         )}
-      {moreLabel && (
-        <div className="short-list--more-elements">
-          <LineBehindText label={moreLabel} backgroundColor="white" />
+      <div className="short-list--footer">
+        <div onClick={props.onViewShortList}>
+          <Button size="medium" type="tertiary">Gå til huskeliste</Button>
         </div>
-      )}
-
-      <div className="short-list--more-btn text-center">
-        <span
-          className="btn btn-default text-center"
-          onClick={props.onViewShortList}
-        >
-          SE HELE LISTEN
-        </span>
+        <div onClick={() => props.elements.length > 0 && (props - props.orderAll())}>
+          <Button size="medium" type="tertiary">Bestil hele listen</Button>
+        </div>
       </div>
     </div>
   );
@@ -102,7 +82,6 @@ const ShortListContent = props => {
 class ShortListDropdown extends React.Component {
   render() {
     const {expanded, elements = []} = this.props.shortListState;
-
     return (
       <React.Fragment>
         <div
@@ -115,7 +94,7 @@ class ShortListDropdown extends React.Component {
         >
           {this.props.children}
           <span className="short-badge">{'(' + elements.length + ')'}</span>
-        </div>,
+        </div>
         <ShortListContent
           expanded={expanded}
           elements={elements}
@@ -124,9 +103,10 @@ class ShortListDropdown extends React.Component {
             this.props.dispatch({type: HISTORY_PUSH, path: '/huskeliste'});
             this.props.dispatch({type: ON_SHORTLIST_COLLAPSE});
           }}
+          orderAll={()=>elements.forEach(book => {this.props.dispatch({type: ORDER, book});})}
         >
           {elements &&
-            elements.slice(0, SHORT_LIST_MAX_LENGTH).map(element => {
+            elements.map(element => {
               return (
                 <ShortListElement
                   key={element.book.pid}

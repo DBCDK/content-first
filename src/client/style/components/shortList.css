@@ -1,12 +1,4 @@
-.short-list {
-}
-.short-list--btn {
-  cursor: pointer;
-  width: 24px;
-}
-.short-list--btn img {
-  width: 24px;
-}
+
 .short-badge {
   letter-spacing: 2px;
 }
@@ -18,10 +10,10 @@
 }
 .short-list--content {
   position: fixed;
-  background: white;
+  background: var(--lys-graa);
   width: 350px;
   right: 10px;
-  top: 60px;
+  top: 80px;
   z-index: 1100;
   border: 1px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.175);
@@ -29,6 +21,7 @@
   opacity: 1;
   visibility: visible;
   transition: all 0.15s ease-in-out;
+  padding-top: 21px;
 }
 .slide-out {
   visibility: hidden;
@@ -36,22 +29,16 @@
   opacity: 0;
   right: -10px;
 }
-.short-list--header {
-  font-family: 'Raleway', sans-serif;
-  font-weight: bold;
-  text-align: center;
-  margin: 1em;
-}
 .short-list--empty-text {
   margin: 50px;
 }
 .short-list--elements {
-  height: 300px;
-  margin-bottom: 20px;
-  overflow: hidden;
+  height: 450px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 3px 0px;
 }
 .short-list-element {
-  border-bottom: 1px solid lightgray;
   margin: 10px;
   margin: 10px 10px 0 10px;
   padding-left: 10px;
@@ -65,20 +52,20 @@
 .short-list-element:last-child {
   border-bottom: 0;
 }
-.short-list-element--header {
+.short-list-element--header a{
   font-family: var(--primary-font);
-  color: black;
-  font-weight: 700;
-  font-style: italic;
+  color: var(--petrolium); 
+  font-weight: 600; 
+  font-size: 1.1em;
+
 }
 .short-list-element--cover-image {
   display: inline-block;
   float: left;
   padding: 2px;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.175);
 }
 .short-list-element--cover-image img {
-  max-width: 50px;
+  max-width: 40px;
 }
 .short-list-element--text {
   display: inline-block;
@@ -96,16 +83,17 @@
   position: absolute;
   right: 5px;
   cursor: pointer;
-  width: 10px;
+  width: 15px;
 }
 .short-list-element--taxonomy-description {
-  color: var(--blue);
+  color: var(--petrolium); 
   white-space: nowrap;
   overflow: hidden !important;
   text-overflow: ellipsis;
 }
 .short-list-element--origin {
   color: gray;
+  font-size: 0.8em;
 }
 .short-list--more-elements {
   margin: 10px;
@@ -121,8 +109,20 @@
   font-size: 12px;
   color: gray;
 }
+.short-list--footer{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  border-top: 1px solid lightgray;
+  margin: auto;
+  padding: 35px 0 23px 0;
+  margin-top: 3px;
+}
 .short-list--more-btn {
-  margin: 50px 0 30px 0;
+  margin: auto;
+  background: var(--graa);
+  color: var(--petrolium);
 }
 .short-list--merge-modal .work-list {
   margin-top: 20px;
@@ -198,8 +198,7 @@
   opacity: 0;
   max-height: 0px;
 }
-.shortlist-enter {
-}
+
 .shortlist-enter.shortlist-enter-active {
   opacity: 1;
   transition: all 0.2s;
@@ -222,4 +221,17 @@
   opacity: 0;
   max-height: 0px;
   transition: all 0.2s;
+}
+/* scrollbar in shortlist*/
+.short-list--elements::-webkit-scrollbar {
+    width: 8px;
+}
+.short-list--elements::-webkit-scrollbar-track {
+  background: var(--lightgrey);; 
+}
+ .short-list--elements::-webkit-scrollbar-thumb {
+  background: var(--mellemmork-graa); 
+}
+.short-list--elements::-webkit-scrollbar-thumb:hover {
+  background: var(--mork-graa);
 }

@@ -18,7 +18,7 @@ const Heading = ({
 
 Heading.propTypes = {
   Tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
-  type: PropTypes.oneOf(['section', 'subtitle', 'title', 'lead'])
+  type: PropTypes.oneOf(['section', 'subtitle', 'peach-subtitle', 'title', 'lead'])
 };
 
 export default Heading;

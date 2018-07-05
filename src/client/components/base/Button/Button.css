@@ -30,6 +30,8 @@
 .Button__tertiary {
   text-transform: none;
   background-color: var(--mellemlys-graa);
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .Button__tertiary:hover {

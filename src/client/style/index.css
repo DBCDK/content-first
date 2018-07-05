@@ -38,7 +38,6 @@
 @import './components/listCreate.css';
 @import './components/listDrag.css';
 @import './components/listSuggest.css';
-@import './components/shortList.css';
 @import './components/checkmarkButton.css';
 @import './components/topbar.css';
 @import './components/modal.css';
@@ -49,6 +48,7 @@
 @import './components/linebehindtext.css';
 @import './components/bookcover.css';
 @import './components/listcard.css';
+@import './components/shortList.css';
 @import './components/bookcase.css';
 @import './components/pulse.css';
 @import './components/carousel.css';
