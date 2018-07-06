@@ -6,6 +6,7 @@ import Kryds from '../svg/KrydsGrey.svg';
 import Button from '../base/Button/Button';
 import Heading from '../base/Heading/Heading';
 import Link from '../general/Link.component';
+import './shortList.css';
 import {
   ON_SHORTLIST_EXPAND,
   ON_SHORTLIST_COLLAPSE,
