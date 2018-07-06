@@ -77,27 +77,26 @@ export class TopBar extends React.Component {
     document.removeEventListener('mousedown', this.closeDropdown);
   }
 
-  renderShortListBtn(){
+  renderShortListBtn() {
     const {expanded} = this.props.shortListState;
 
-    if (isMobile) {
-      return (<Link href="/huskeliste" className="Topbar__navigation__btn">
-        <Icon name="bookmark_border" />
-      </Link>)
-    }
-    else {
-      return (<ShortListDropDown
-        className={
-          'Topbar__navigation__btn ' +
-          (expanded ? 'Topbar__shortlist_expanded' : '')}>
-        <Icon name="bookmark_border" />
-      </ShortListDropDown>)
-    }
+    return isMobile ?
+      (
+        <Link href="/huskeliste" className="Topbar__navigation__btn">
+          <Icon name="bookmark_border" />
+        </Link>
+      )
+      :
+      (
+        <ShortListDropDown
+          className={'Topbar__navigation__btn ' +(expanded ? 'Topbar__shortlist_expanded' : '')}>
+          <Icon name="bookmark_border" />
+        </ShortListDropDown>
+      );
   }
   render() {
+  const shortlist = this.renderShortListBtn();
 
-    const shortlist = this.renderShortListBtn();
-    
     return (
       <header className="Topbar row">
         <Link href="/" className="Topbar__logo">
@@ -109,7 +108,7 @@ export class TopBar extends React.Component {
             <Icon name="search" />
             <span>Søg</span>
           </Link>
-        
+
           {shortlist}
 
           {!this.props.user.isLoggedIn && (
