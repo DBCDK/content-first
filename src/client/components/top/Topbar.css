@@ -61,6 +61,10 @@
   position: relative;
   z-index: 3;
 }
+.Topbar__shortlist_expanded{
+background: var(--elm);
+color: white;
+}
 
 .Topbar .Topbar__navigation .Topbar__navigation__btn i {
   padding: 0 10px 0 0;
@@ -71,6 +75,9 @@
   color: var(--petrolium);
   pointer-events: none;
 }
+.Topbar__shortlist_expanded{
+  background: var(--grey-nurse);
+}
 
 /*
 // Topbar nav btn hover effect
@@ -79,7 +86,6 @@
 .Topbar .Topbar__navigation .Topbar__navigation__btn > span,
 .Topbar .Topbar__navigation .Topbar__navigation__btn > i,
 .Topbar .Topbar__navigation .Topbar__navigation__btn > .badge {
-  transition-duration: 0.2s;
   transition-timing-function: ease-in;
 }
 
@@ -87,7 +93,7 @@
 .Topbar__navigation__btn:hover > span,
 .Topbar__navigation__btn:hover > i,
 .Topbar__navigation__btn:hover > .badge {
-  color: var(--dark-cyan) !important;
+  color: var(--elm) !important;
   transition-timing-function: ease-out;
 }
 
@@ -171,7 +177,7 @@
 .Topbar__dropdown li.divider {
   height: 1px;
   padding: 0;
-  background-color: var(--mellemlys-graa);
+  background-color: var(--porcelain);
 }
 
 /*
@@ -180,7 +186,7 @@
 
 .Topbar__dropdown li:hover span,
 .Topbar__dropdown li:hover a span {
-  color: var(--dark-cyan);
+  color: var(--elm);
 }
 
 /*

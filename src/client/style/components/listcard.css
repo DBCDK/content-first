@@ -57,6 +57,7 @@
 a.list-card-nohover {
   color: black;
   text-decoration: none;
+
 }
 .list-card-description {
   font-family: var(--primary-font);
@@ -108,6 +109,6 @@ a.list-card-nohover {
 
 .ListCard__skeleton .ListCard__skeleton__cover {
   height: 175px;
-  background-color: var(--mellemlys-graa);
+  background-color: var(--porcelain);
   margin-bottom: 15px;
 }

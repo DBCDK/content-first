@@ -12,23 +12,18 @@ Array [
         (2)
     </span>
 </div>,
-  ",",
   <div
     className="short-list--content text-left slide-out"
 >
-    <img
-        alt="luk"
-        className="short-list--close-btn"
-        onClick={[Function]}
-        src="Kryds.svg"
-    />
-    <div
-        className="short-list--header"
+    <h1
+        className=" Heading Heading__peach-subtitle"
     >
-        HUSKELISTE
-    </div>
+        HUSKELISTE (
+        2
+        )
+    </h1>
     <div
-        className="short-list--empty-text text-center"
+        className="short-list--empty-text text-center hidden"
     />
     <div
         className="short-list--elements"
@@ -85,7 +80,7 @@ Array [
                     alt="luk"
                     className="short-list-element--close-btn"
                     onClick={[Function]}
-                    src="Kryds.svg"
+                    src="KrydsGrey.svg"
                 />
             </div>
             <div
@@ -139,20 +134,32 @@ Array [
                     alt="luk"
                     className="short-list-element--close-btn"
                     onClick={[Function]}
-                    src="Kryds.svg"
+                    src="KrydsGrey.svg"
                 />
             </div>
         </span>
     </div>
     <div
-        className="short-list--more-btn text-center"
+        className="short-list--footer"
     >
-        <span
-            className="btn btn-default text-center"
+        <div
             onClick={[Function]}
         >
-            SE HELE LISTEN
-        </span>
+            <button
+                className=" btn Button Button__tertiary Button__medium"
+            >
+                Gå til huskeliste
+            </button>
+        </div>
+        <div
+            onClick={[Function]}
+        >
+            <button
+                className=" btn Button Button__tertiary Button__medium"
+            >
+                Bestil hele listen
+            </button>
+        </div>
     </div>
 </div>,
 ]
@@ -170,23 +177,18 @@ Array [
         (4)
     </span>
 </div>,
-  ",",
   <div
     className="short-list--content text-left slide-out"
 >
-    <img
-        alt="luk"
-        className="short-list--close-btn"
-        onClick={[Function]}
-        src="Kryds.svg"
-    />
-    <div
-        className="short-list--header"
+    <h1
+        className=" Heading Heading__peach-subtitle"
     >
-        HUSKELISTE
-    </div>
+        HUSKELISTE (
+        4
+        )
+    </h1>
     <div
-        className="short-list--empty-text text-center"
+        className="short-list--empty-text text-center hidden"
     />
     <div
         className="short-list--elements"
@@ -243,7 +245,7 @@ Array [
                     alt="luk"
                     className="short-list-element--close-btn"
                     onClick={[Function]}
-                    src="Kryds.svg"
+                    src="KrydsGrey.svg"
                 />
             </div>
             <div
@@ -297,7 +299,7 @@ Array [
                     alt="luk"
                     className="short-list-element--close-btn"
                     onClick={[Function]}
-                    src="Kryds.svg"
+                    src="KrydsGrey.svg"
                 />
             </div>
             <div
@@ -351,41 +353,86 @@ Array [
                     alt="luk"
                     className="short-list-element--close-btn"
                     onClick={[Function]}
-                    src="Kryds.svg"
+                    src="KrydsGrey.svg"
+                />
+            </div>
+            <div
+                className="short-list-element"
+            >
+                <div
+                    className="short-list-element--cover-image"
+                >
+                    <a
+                        className="list-card-nohover"
+                        href="/værk/pid1"
+                        onClick={[Function]}
+                    >
+                        <BookCover
+                            book={
+                                Object {
+                                    "pid": "pid1",
+                                    "taxonomy_description": "some description1",
+                                    "title": "some title1",
+                                  }
+                            }
+                        />
+                    </a>
+                </div>
+                <div
+                    className="short-list-element--text"
+                >
+                    <div
+                        className="short-list-element--header"
+                    >
+                        <a
+                            className="list-card-nohover"
+                            href="/værk/pid1"
+                            onClick={[Function]}
+                        >
+                            some title1
+                        </a>
+                    </div>
+                    <div
+                        className="short-list-element--taxonomy-description"
+                    >
+                        some description1
+                    </div>
+                    <div
+                        className="short-list-element--origin"
+                    >
+                        Minder om noget1
+                    </div>
+                </div>
+                <img
+                    alt="luk"
+                    className="short-list-element--close-btn"
+                    onClick={[Function]}
+                    src="KrydsGrey.svg"
                 />
             </div>
         </span>
     </div>
     <div
-        className="short-list--more-elements"
+        className="short-list--footer"
     >
         <div
-            className="line-behind-text text-center"
-        >
-            <span
-                className="line-behind-text--label"
-                style={
-                    Object {
-                        "backgroundColor": "white",
-                      }
-                }
-            >
-                1 bog mere på listen
-            </span>
-            <div
-                className="line-behind-text--line"
-            />
-        </div>
-    </div>
-    <div
-        className="short-list--more-btn text-center"
-    >
-        <span
-            className="btn btn-default text-center"
             onClick={[Function]}
         >
-            SE HELE LISTEN
-        </span>
+            <button
+                className=" btn Button Button__tertiary Button__medium"
+            >
+                Gå til huskeliste
+            </button>
+        </div>
+        <div
+            onClick={[Function]}
+        >
+            <button
+                className=" btn Button Button__tertiary Button__medium"
+            >
+                Bestil hele listen
+            </button>
+        </div>
     </div>
 </div>,
 ]
@@ -403,23 +450,18 @@ Array [
         (1)
     </span>
 </div>,
-  ",",
   <div
     className="short-list--content text-left slide-out"
 >
-    <img
-        alt="luk"
-        className="short-list--close-btn"
-        onClick={[Function]}
-        src="Kryds.svg"
-    />
-    <div
-        className="short-list--header"
+    <h1
+        className=" Heading Heading__peach-subtitle"
     >
-        HUSKELISTE
-    </div>
+        HUSKELISTE (
+        1
+        )
+    </h1>
     <div
-        className="short-list--empty-text text-center"
+        className="short-list--empty-text text-center hidden"
     />
     <div
         className="short-list--elements"
@@ -476,20 +518,32 @@ Array [
                     alt="luk"
                     className="short-list-element--close-btn"
                     onClick={[Function]}
-                    src="Kryds.svg"
+                    src="KrydsGrey.svg"
                 />
             </div>
         </span>
     </div>
     <div
-        className="short-list--more-btn text-center"
+        className="short-list--footer"
     >
-        <span
-            className="btn btn-default text-center"
+        <div
             onClick={[Function]}
         >
-            SE HELE LISTEN
-        </span>
+            <button
+                className=" btn Button Button__tertiary Button__medium"
+            >
+                Gå til huskeliste
+            </button>
+        </div>
+        <div
+            onClick={[Function]}
+        >
+            <button
+                className=" btn Button Button__tertiary Button__medium"
+            >
+                Bestil hele listen
+            </button>
+        </div>
     </div>
 </div>,
 ]
@@ -507,35 +561,42 @@ Array [
         (0)
     </span>
 </div>,
-  ",",
   <div
     className="short-list--content text-left slide-out"
 >
-    <img
-        alt="luk"
-        className="short-list--close-btn"
-        onClick={[Function]}
-        src="Kryds.svg"
-    />
-    <div
-        className="short-list--header"
+    <h1
+        className=" Heading Heading__peach-subtitle"
     >
-        HUSKELISTE
-    </div>
+        HUSKELISTE (
+        0
+        )
+    </h1>
     <div
-        className="short-list--empty-text text-center"
+        className="short-list--empty-text text-center "
     >
         Din huskeliste er tom
     </div>
     <div
-        className="short-list--more-btn text-center"
+        className="short-list--footer"
     >
-        <span
-            className="btn btn-default text-center"
+        <div
             onClick={[Function]}
         >
-            SE HELE LISTEN
-        </span>
+            <button
+                className=" btn Button Button__tertiary Button__medium"
+            >
+                Gå til huskeliste
+            </button>
+        </div>
+        <div
+            onClick={[Function]}
+        >
+            <button
+                className=" btn Button Button__tertiary Button__medium"
+            >
+                Bestil hele listen
+            </button>
+        </div>
     </div>
 </div>,
 ]

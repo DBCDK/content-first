@@ -6,7 +6,7 @@ import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import logo from '../../logo.svg';
 import ShortListDropDown from '../list/ShortListDropDown.container';
 import ProfileImage from '../general/ProfileImage.component';
-
+import {isMobile} from 'react-device-detect';
 import Icon from '../base/Icon';
 
 import './Topbar.css';
@@ -77,7 +77,27 @@ export class TopBar extends React.Component {
     document.removeEventListener('mousedown', this.closeDropdown);
   }
 
+  renderShortListBtn() {
+    const {expanded} = this.props.shortListState;
+
+    return isMobile ? (
+      <Link href="/huskeliste" className="Topbar__navigation__btn">
+        <Icon name="bookmark_border" />
+      </Link>
+    ) : (
+      <ShortListDropDown
+        className={
+          'Topbar__navigation__btn ' +
+          (expanded ? 'Topbar__shortlist_expanded' : '')
+        }
+      >
+        <Icon name="bookmark_border" />
+      </ShortListDropDown>
+    );
+  }
   render() {
+    const shortlist = this.renderShortListBtn();
+
     return (
       <header className="Topbar row">
         <Link href="/" className="Topbar__logo">
@@ -90,9 +110,7 @@ export class TopBar extends React.Component {
             <span>Søg</span>
           </Link>
 
-          <ShortListDropDown className="Topbar__navigation__btn">
-            <Icon name="bookmark_border" />
-          </ShortListDropDown>
+          {shortlist}
 
           {!this.props.user.isLoggedIn && (
             <Link
@@ -136,8 +154,8 @@ export class TopBar extends React.Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = state => {
+  return {shortListState: state.shortListReducer};
 };
 export const mapDispatchToProps = dispatch => ({
   historyPush: (type, path) => dispatch({type, path}),
