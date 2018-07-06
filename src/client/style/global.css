@@ -2,20 +2,23 @@
 
 /* Global Settings for new design */
 :root {
+
   --petrolium: #00414b;
-  --dark-cyan: #1d7b8a;
-  --korn: #edb347;
-  --lys-fersken: #f38f81;
+  --elm: #1d768a;
   --fersken: #f37362;
-  --pistache: #a8c7b0;
-  --kobber: #b17642;
+  --lys-fersken: #f38f81;
   --due: #74a9ff;
-  --lys-due: #bdd5fd;
-  --mork-graa: #5a5757b6;
-  --mellemmork-graa: #ababab;
-  --graa: #f3f3f3;
+  --malibu: #74a9ff;
+  --french-pass: #bdd5fd;
+  --korn: #edb347;
+  --pistache: #a8c7b0;
+  --sea-mist: #c9ddcf;
+  --grey-nurse: #DEE7E0;
+  --de-york: #81c793;
   --lys-graa: #f8f8f8;
-  --mellemlys-graa: #e9eaeb;
-  --aqua-squeeze: #DEE7E0;
+  --concrete: #f3f3f3;
+  --porcelain: #e9eaeb;
+  --alto: #d8d8d8;
+  --kobber: #b17642;
   --primary-font: 'Montserrat', sans-serif;
 }

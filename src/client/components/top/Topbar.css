@@ -62,7 +62,7 @@
   z-index: 3;
 }
 .Topbar__shortlist_expanded{
-background: var(--dark-cyan);
+background: var(--elm);
 color: white;
 }
 
@@ -76,7 +76,7 @@ color: white;
   pointer-events: none;
 }
 .Topbar__shortlist_expanded{
-  background: var(--aqua-squeeze);
+  background: var(--grey-nurse);
 }
 
 /*
@@ -93,7 +93,7 @@ color: white;
 .Topbar__navigation__btn:hover > span,
 .Topbar__navigation__btn:hover > i,
 .Topbar__navigation__btn:hover > .badge {
-  color: var(--dark-cyan) !important;
+  color: var(--elm) !important;
   transition-timing-function: ease-out;
 }
 
@@ -177,7 +177,7 @@ color: white;
 .Topbar__dropdown li.divider {
   height: 1px;
   padding: 0;
-  background-color: var(--mellemlys-graa);
+  background-color: var(--porcelain);
 }
 
 /*
@@ -186,7 +186,7 @@ color: white;
 
 .Topbar__dropdown li:hover span,
 .Topbar__dropdown li:hover a span {
-  color: var(--dark-cyan);
+  color: var(--elm);
 }
 
 /*

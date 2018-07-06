@@ -121,7 +121,7 @@
 }
 .short-list--more-btn {
   margin: auto;
-  background: var(--graa);
+  background: var(--concrete);
   color: var(--petrolium);
 }
 .short-list--merge-modal .work-list {
@@ -227,11 +227,11 @@
     width: 8px;
 }
 .short-list--elements::-webkit-scrollbar-track {
-  background: var(--lightgrey);; 
+  background: var(--concrete);
 }
  .short-list--elements::-webkit-scrollbar-thumb {
-  background: var(--mellemmork-graa); 
+  background: var(--porcelain);
 }
 .short-list--elements::-webkit-scrollbar-thumb:hover {
-  background: var(--mork-graa);
+  background: var(--alto); 
 }

@@ -2,7 +2,7 @@
   padding: 9px 20px;
   border-radius: 4px;
   color: var(--petrolium);
-  background-color: var(--graa);
+  background-color: var(--concrete);
   font-size: 1rem;
   line-height: 1rem;
   font-weight: 600;
@@ -21,7 +21,7 @@
 
 .Button__secondary {
   text-transform: uppercase;
-  background-color: var(--lys-due);
+  background-color: var(--french-pass);
 }
 .Button__secondary:hover {
   background-color: var(--due);
@@ -29,7 +29,7 @@
 
 .Button__tertiary {
   text-transform: none;
-  background-color: var(--mellemlys-graa);
+  background-color: var(--porcelain);
   cursor: pointer;
   text-decoration: underline;
 }
@@ -42,7 +42,7 @@
   font-weight: 400;
   font-size: 0.9rem;
   text-transform: none;
-  background-color: var(--graa);
+  background-color: var(--concrete);
 }
 
 .Button__term:hover {

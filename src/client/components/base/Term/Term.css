@@ -3,7 +3,7 @@
   color: var(--petrolium);
   font-weight: 400;
   text-transform: none;
-  background-color: var(--graa);
+  background-color: var(--concrete);
   transition: background-color 200ms;
   line-height: 1em;
 }
