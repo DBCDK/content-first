@@ -80,22 +80,23 @@ export class TopBar extends React.Component {
   renderShortListBtn() {
     const {expanded} = this.props.shortListState;
 
-    return isMobile ?
-      (
-        <Link href="/huskeliste" className="Topbar__navigation__btn">
-          <Icon name="bookmark_border" />
-        </Link>
-      )
-      :
-      (
-        <ShortListDropDown
-          className={'Topbar__navigation__btn ' +(expanded ? 'Topbar__shortlist_expanded' : '')}>
-          <Icon name="bookmark_border" />
-        </ShortListDropDown>
-      );
+    return isMobile ? (
+      <Link href="/huskeliste" className="Topbar__navigation__btn">
+        <Icon name="bookmark_border" />
+      </Link>
+    ) : (
+      <ShortListDropDown
+        className={
+          'Topbar__navigation__btn ' +
+          (expanded ? 'Topbar__shortlist_expanded' : '')
+        }
+      >
+        <Icon name="bookmark_border" />
+      </ShortListDropDown>
+    );
   }
   render() {
-  const shortlist = this.renderShortListBtn();
+    const shortlist = this.renderShortListBtn();
 
     return (
       <header className="Topbar row">
