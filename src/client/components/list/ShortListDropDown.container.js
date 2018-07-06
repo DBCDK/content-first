@@ -33,12 +33,14 @@ const ShortListElement = props => {
         </div>
         <div className="short-list-element--origin">{props.element.origin}</div>
       </div>
-     { <img
-        src={Kryds}
-        alt="luk"
-        className="short-list-element--close-btn"
-        onClick={props.onClose}
-      />}
+      {
+        <img
+          src={Kryds}
+          alt="luk"
+          className="short-list-element--close-btn"
+          onClick={props.onClose}
+        />
+      }
     </div>
   );
 };
@@ -50,9 +52,16 @@ const ShortListContent = props => {
         props.expanded ? '' : ' slide-out'
       }`}
     >
-      <Heading type="peach-subtitle">HUSKELISTE ({props.elements&& props.elements.length})</Heading>
+      <Heading type="peach-subtitle">
+        HUSKELISTE ({props.elements && props.elements.length})
+      </Heading>
 
-     <div className={"short-list--empty-text text-center "+(props.elements.length===0 ? "": "hidden")}>
+      <div
+        className={
+          'short-list--empty-text text-center ' +
+          (props.elements.length === 0 ? '' : 'hidden')
+        }
+      >
         {props.elements.length === 0 && 'Din huskeliste er tom'}
       </div>
       {props.children &&
@@ -69,10 +78,16 @@ const ShortListContent = props => {
         )}
       <div className="short-list--footer">
         <div onClick={props.onViewShortList}>
-          <Button size="medium" type="tertiary">Gå til huskeliste</Button>
+          <Button size="medium" type="tertiary">
+            Gå til huskeliste
+          </Button>
         </div>
-        <div onClick={() => props.elements.length > 0 && (props - props.orderAll())}>
-          <Button size="medium" type="tertiary">Bestil hele listen</Button>
+        <div
+          onClick={() => props.elements.length > 0 && props - props.orderAll()}
+        >
+          <Button size="medium" type="tertiary">
+            Bestil hele listen
+          </Button>
         </div>
       </div>
     </div>
@@ -103,7 +118,11 @@ class ShortListDropdown extends React.Component {
             this.props.dispatch({type: HISTORY_PUSH, path: '/huskeliste'});
             this.props.dispatch({type: ON_SHORTLIST_COLLAPSE});
           }}
-          orderAll={()=>elements.forEach(book => {this.props.dispatch({type: ORDER, book});})}
+          orderAll={() =>
+            elements.forEach(book => {
+              this.props.dispatch({type: ORDER, book});
+            })
+          }
         >
           {elements &&
             elements.map(element => {
