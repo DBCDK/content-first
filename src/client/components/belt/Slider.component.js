@@ -1,6 +1,7 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
+import Icon from '../base/Icon';
 import './Slider.css';
 
 const params = {
@@ -106,23 +107,25 @@ class DesktopSlider extends React.Component {
           {props.children}
         </Swiper>
         {!this.state.isEnd && (
-          <span
+          <Icon
+            name="chevron_right"
+            className="swiper-button-next material-icons"
             onClick={() => {
               if (this.swiper) {
                 this.swiper.slideNext();
               }
             }}
-            className="swiper-button-next"
           />
         )}
         {!this.state.isBeginning && (
-          <span
+          <Icon
+            name="chevron_left"
+            className="swiper-button-prev material-icons"
             onClick={() => {
               if (this.swiper) {
                 this.swiper.slidePrev();
               }
             }}
-            className="swiper-button-prev"
           />
         )}
       </div>

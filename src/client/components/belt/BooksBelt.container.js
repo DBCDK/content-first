@@ -1,14 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {isMobile} from 'react-device-detect';
 import {difference} from 'lodash';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
 import Term from '../base/Term';
 import Slider from '../belt/Slider.component';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
-import {ADD_CHILD_BELT, BELT_SCROLL} from '../../redux/belts.reducer';
+import {HISTORY_PUSH} from '../../redux/middleware';
+import {
+  ADD_CHILD_BELT,
+  REMOVE_CHILD_BELT,
+  BELT_SCROLL,
+  WORK_PREVIEW
+} from '../../redux/belts.reducer';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import Link from '../general/Link.component';
+import WorkPreview from '../work/WorkPreview.component';
 
 const skeletonElements = [];
 for (let i = 0; i < 20; i++) {
@@ -17,7 +25,10 @@ for (let i = 0; i < 20; i++) {
 export class BooksBelt extends React.Component {
   constructor() {
     super();
-    this.state = {showDetails: false, didSwipe: false};
+    this.state = {
+      showDetails: false,
+      didSwipe: false
+    };
   }
   componentDidMount() {
     if (this.props.recommendedPids.length === 0) {
@@ -32,13 +43,21 @@ export class BooksBelt extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // console.log('BooksBelt', this.props.work, nextProps.work);
     return (
       nextProps.belt !== this.props.belt ||
       nextProps.tags.length !== this.props.tags.length ||
       nextProps.recommendedPids.length !== this.props.recommendedPids.length ||
       nextState.didSwipe !== this.state.didSwipe
     );
+  }
+
+  toggleWorkPreview(pid, belt) {
+    if (isMobile) {
+      this.props.historyPush(pid);
+      return;
+    }
+    let status = pid === belt.pidPreview ? false : pid;
+    this.props.changePidPreview(status, belt);
   }
 
   render() {
@@ -53,17 +72,19 @@ export class BooksBelt extends React.Component {
     if (!belt) {
       return null;
     }
-    const {subtext, child, scrollPos} = belt;
+
+    const {subtext, child, scrollPos, pidPreview = false} = belt;
+
     const name = this.props.name || this.props.belt.name;
     const pids =
       recommendedPids.length > 0 ? recommendedPids : skeletonElements;
     return (
-      <div className="row belt text-left mt4">
+      <div className="row belt text-left mt3">
         <div className="header row">
           <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
             <Heading
               className="inline border-right-xs-0 border-right-sm-1 pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0"
-              tag="h1"
+              Tag="h1"
               type="section"
             >
               {name.split(' ').map((word, idx) => {
@@ -91,7 +112,7 @@ export class BooksBelt extends React.Component {
               })}
             </div>
           )}
-          <Heading tag="h3" type="lead" className="ml1 mt1 mb0">
+          <Heading Tag="h3" type="lead" className="ml1 mt1 mb0">
             {subtext}
           </Heading>
         </div>
@@ -103,7 +124,6 @@ export class BooksBelt extends React.Component {
               if (index > 0 && !this.state.didSwipe) {
                 this.setState({didSwipe: true});
               }
-
               if (scrollPos !== index) {
                 this.props.beltScroll(belt, index);
               }
@@ -114,7 +134,7 @@ export class BooksBelt extends React.Component {
                 <WorkCard
                   className="ml1 mr1"
                   enableHover={true}
-                  highlight={child && child.pid === pid}
+                  highlight={(child && child.pid === pid) || pid === pidPreview}
                   allowFetch={this.state.didSwipe || idx < fetchInitial}
                   pid={pid}
                   key={pid}
@@ -123,14 +143,31 @@ export class BooksBelt extends React.Component {
                     addChildBelt(belt, {
                       name: 'Minder om ' + work.book.title,
                       onFrontPage: true,
+                      pidPreview: false,
                       pid
                     });
+                  }}
+                  onWorkPreviewClick={() => {
+                    this.toggleWorkPreview(pid, belt);
                   }}
                 />
               );
             })}
           </Slider>
         </div>
+        {pidPreview && (
+          <WorkPreview
+            pid={pidPreview}
+            onMoreLikeThisClick={work => {
+              addChildBelt(belt, {
+                name: 'Minder om ' + work.book.title,
+                onFrontPage: true,
+                pidPreview: false,
+                pid: work.book.pid
+              });
+            }}
+          />
+        )}
       </div>
     );
   }
@@ -169,12 +206,28 @@ export const mapDispatchToProps = dispatch => ({
       childBelt
     });
   },
+  removeChildBelt: parentBelt => {
+    dispatch({
+      type: REMOVE_CHILD_BELT,
+      parentBelt
+    });
+  },
   beltScroll: (belt, scrollPos) => {
     dispatch({
       type: BELT_SCROLL,
       belt,
       scrollPos
     });
+  },
+  changePidPreview: (pid, belt) => {
+    dispatch({
+      type: WORK_PREVIEW,
+      pid,
+      belt
+    });
+  },
+  historyPush: pid => {
+    dispatch({type: HISTORY_PUSH, path: '/værk/' + pid});
   }
 });
 

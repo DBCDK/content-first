@@ -1,14 +1,8 @@
 .Heading__hero {
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 800;
   font-size: 4.5vw;
   line-height: 60px;
-}
-
-.Heading__lead {
-  font-weight: 400;
-  font-size: 1.6em;
-  line-height: 24px;
 }
 
 .Heading__section {
@@ -16,6 +10,18 @@
   font-weight: 400;
   font-size: 1.8rem;
   line-height: 36px;
+}
+
+.Heading__lead {
+  font-weight: 600;
+  font-size: 1.6em;
+  line-height: 24px;
+}
+
+.Heading__heading {
+  font-weight: 400;
+  font-size: 1.4em;
+  line-height: 24px;
 }
 
 .Heading__title {
@@ -36,17 +42,25 @@
   color: var(--fersken);
 }
 @media only screen and (max-width: 600px) {
-  .Heading__lead {
-    font-weight: 400;
-    font-size: 1.1em;
-    line-height: 20px;
-  }
   .Heading__section {
     text-transform: uppercase;
     font-weight: 400;
     font-size: 1.2em;
     line-height: 1.4em;
   }
+
+  .Heading__lead {
+    font-weight: 600;
+    font-size: 1.1em;
+    line-height: 20px;
+  }
+
+  .Heading__heading {
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 24px;
+  }
+
   .Heading__section strong {
     font-weight: 600;
   }

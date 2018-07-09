@@ -1,8 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import './BookmarkButton.css';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
 import Icon from '../base/Icon';
+import Button from '../base/Button';
+
+import './BookmarkButton.css';
 
 export class BookmarkButton extends React.Component {
   shouldComponentUpdate(nextProps) {
@@ -15,14 +17,25 @@ export class BookmarkButton extends React.Component {
       return map;
     }, {});
     const marked = remembered[this.props.work.book.pid];
+    const layout = this.props.layout === 'circle' ? 'Circle' : '';
+
     return (
-      <div
-        className={'BookmarkButton' + (marked ? ' marked' : '')}
+      <Button
+        className={
+          'BookmarkButton' +
+          layout +
+          (marked ? ' marked' : '') +
+          ' ' +
+          this.props.className
+        }
         style={this.props.style}
         onClick={() => this.props.toggle(this.props.origin, this.props.work)}
+        type="tertiary"
+        size="medium"
       >
         <Icon name="bookmark_border" className="md-18" />
-      </div>
+        {layout !== 'Circle' ? 'Husk' : ''}
+      </Button>
     );
   }
 }

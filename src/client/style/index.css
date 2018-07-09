@@ -93,11 +93,18 @@ body {
   background: white;
 }
 
-@media (min-width: 1450px) {
+@media (min-width: 2000px) {
   .container {
-    width: 1400px;
+    width: 2000px;
   }
 }
+
+@media (min-width: 1450px) {
+  .container {
+    width: calc(100% - 100px);
+  }
+}
+
 .raleway {
   font-family: 'Raleway', sans-serif;
 }

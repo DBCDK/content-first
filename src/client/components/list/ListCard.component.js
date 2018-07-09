@@ -77,9 +77,7 @@ class ListCard extends React.Component {
     // if no elements detected, show skeleton cards
     if (skeleton) {
       return (
-        <div
-          className={'ListCard__skeleton col-xs-12 pt1 mr1 ml1 ' + className}
-        >
+        <div className={'ListCard__skeleton pt1 mr1 ml1 ' + className}>
           <div className="ListCard__skeleton__cover" />
           <SkeletonText lines={3} color="#e9eaeb" />
           <SkeletonUser
@@ -92,7 +90,7 @@ class ListCard extends React.Component {
     }
 
     return (
-      <div className={'list-card col-xs-12 mr1 ml1 ' + className} style={style}>
+      <div className={'list-card mr1 ml1 ' + className} style={style}>
         <Link href={`/lister/${list.id}`}>
           <div className="list-card-wrap">
             <div className="list-card-cover">

@@ -84,7 +84,13 @@ export class ShortListItem extends React.Component {
             </span>
           </div>
           <div className="order-book col-xs-3">
-            <OrderButton book={this.props.element.book} />
+            <OrderButton
+              book={this.props.element.book}
+              size="medium"
+              type="tertiary"
+              label="Bestil"
+              className="ml1"
+            />
           </div>
           <img
             src={Kryds}

@@ -22,3 +22,20 @@
   --kobber: #b17642;
   --primary-font: 'Montserrat', sans-serif;
 }
+
+/* utils */
+
+.korn {
+  background-color: var(--korn);
+  background: var(--korn);
+}
+.korn-txt {
+  color: var(--korn);
+}
+
+.kobber {
+  background-color: var(--kobber);
+}
+.kobber-txt {
+  color: var(--kobber);
+}

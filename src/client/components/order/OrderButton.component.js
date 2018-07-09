@@ -1,10 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Button from '../base/Button';
+import Icon from '../base/Icon';
 import {ORDER} from '../../redux/order.reducer.js';
 
 export function OrderButton(props) {
   const [buttonClass, buttonLabel] = {
-    'not ordered': ['btn-primary', 'Bestil'],
+    'not ordered': [
+      '',
+      <React.Fragment>
+        <Icon name={props.icon} />
+        {props.label}
+      </React.Fragment>
+    ],
     ordered: ['btn-success', 'Bestilt'],
     ordering: [
       'btn-info',
@@ -24,13 +32,14 @@ export function OrderButton(props) {
     error: ['btn-danger', 'Fejl ved bestilling']
   }[props.orderState];
   return (
-    <button
-      className={`btn ${buttonClass} ${props.className}`}
-      style={props.style}
+    <Button
+      className={`${buttonClass} ${props.className}`}
+      type={props.type}
+      size={props.size}
       onClick={props.order}
     >
       {buttonLabel}
-    </button>
+    </Button>
   );
 }
 
