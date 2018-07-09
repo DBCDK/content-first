@@ -79,7 +79,7 @@
   text-align: center;
   display: inline-block;
   border-radius: 50%;
-  background-color: var(--mellemlys-graa);
+  background-color: var(--porcelain);
 }
 
 .WorkPage__reviews .WorkPage__review .WorkPage__review__details {

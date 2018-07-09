@@ -47,6 +47,10 @@
   text-decoration: none;
 }
 
+.workPreview__work .workPreview__info .workPreview__media button i {
+  margin-right: 0.5rem;
+}
+
 .workPreview__work .workPreview__info .workPreview__media button,
 .workPreview__work .workPreview__info .workPreview__media button i,
 .workPreview__work .workPreview__info .workPreview__media a,
@@ -79,7 +83,7 @@
   text-align: center;
   display: inline-block;
   border-radius: 50%;
-  background-color: var(--mellemlys-graa);
+  background-color: var(--porcelain);
 }
 
 .workPreview__reviews .workPreview__review .workPreview__review__details {
