@@ -32,7 +32,6 @@
   text-transform: none;
   background-color: var(--porcelain);
   cursor: pointer;
-  text-decoration: underline;
 }
 
 .Button__tertiary:hover {
@@ -44,7 +43,7 @@
 }
 
 .Button__quaternary:hover {
-  /* ??? */
+  /* hovercolor ??? */
   background-color: var(--korn);
 }
 
