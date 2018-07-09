@@ -162,7 +162,7 @@ exports[`renders without crashing 1`] = `
   >
     <Bookcase />
     <div
-      className="belts col-xs-12 col-sm-12 col-centered"
+      className="belts col-xs-12 col-sm-12"
     >
       <BooksBelt
         belt={
@@ -611,6 +611,7 @@ exports[`renders without crashing 1`] = `
             "links": Array [],
             "name": "Vemodige nordmænd",
             "onFrontPage": true,
+            "pidPreview": false,
             "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
             "tags": Array [
               Object {
@@ -665,7 +666,7 @@ exports[`renders without crashing 1`] = `
         >
           <slider>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -726,7 +727,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -787,7 +788,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -848,7 +849,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -909,7 +910,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -970,7 +971,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1031,7 +1032,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1092,7 +1093,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1153,7 +1154,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1214,7 +1215,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1275,7 +1276,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1336,7 +1337,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1397,7 +1398,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1458,7 +1459,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1519,7 +1520,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1580,7 +1581,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1641,7 +1642,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1702,7 +1703,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1763,7 +1764,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"
@@ -1824,7 +1825,7 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
-              className="ListCard__skeleton col-xs-12 pt1 mr1 ml1 "
+              className="ListCard__skeleton pt1 mr1 ml1 "
             >
               <div
                 className="ListCard__skeleton__cover"

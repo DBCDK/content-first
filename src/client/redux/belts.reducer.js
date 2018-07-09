@@ -191,6 +191,7 @@ const defaultState = {
         'Når du har lyst til at tænke over livet - også det svære og sårbare.',
       isLoading: false,
       onFrontPage: true,
+      pidPreview: false,
       links: [],
       tags: [
         {id: 4466, weight: 10},
@@ -208,7 +209,9 @@ export const ON_BELT_REQUEST = 'ON_BELT_REQUEST';
 export const ON_BELT_RESPONSE = 'ON_BELT_RESPONSE';
 export const ON_TAG_TOGGLE = 'ON_TAG_TOGGLE';
 export const ADD_CHILD_BELT = 'ADD_CHILD_BELT';
+export const REMOVE_CHILD_BELT = 'REMOVE_CHILD_BELT';
 export const BELT_SCROLL = 'BELT_SCROLL';
+export const WORK_PREVIEW = 'WORK_PREVIEW';
 
 const beltsReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -255,12 +258,29 @@ const beltsReducer = (state = defaultState, action) => {
         const belt = {...b};
         if (b === parentBelt) {
           belt.child = childBelt;
+          if (parentBelt.pidPreview !== b.pidPreview) {
+            belt.pidPreview = false;
+          }
         }
         return belt;
       });
-
       return {belts};
     }
+
+    /* ikke i brug */
+    case REMOVE_CHILD_BELT: {
+      const {parentBelt} = action;
+      const belts = traverseBelts(state.belts, b => {
+        const copy = {...b};
+        if (b.child && b.child.name === parentBelt.child.name) {
+          delete copy.child;
+          parentBelt.pidPreview = false;
+        }
+        return copy;
+      });
+      return {belts};
+    }
+    /* ikke i brug SLUT */
 
     case BELT_SCROLL: {
       const {belt, scrollPos} = action;
@@ -273,6 +293,21 @@ const beltsReducer = (state = defaultState, action) => {
       });
       return {belts};
     }
+
+    case WORK_PREVIEW: {
+      const {pid, belt} = action;
+
+      const belts = traverseBelts(state.belts, b => {
+        const copy = {...b};
+        if (b === belt) {
+          copy.pidPreview = pid;
+          delete copy.child;
+        }
+        return copy;
+      });
+      return {belts};
+    }
+
     default:
       return state;
   }

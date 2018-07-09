@@ -23,7 +23,8 @@ Heading.propTypes = {
     'subtitle',
     'peach-subtitle',
     'title',
-    'lead'
+    'lead',
+    'heading'
   ])
 };
 

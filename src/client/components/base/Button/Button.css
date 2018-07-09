@@ -8,6 +8,7 @@
   font-weight: 600;
   text-decoration: none;
   transition: background-color 200ms;
+  border: none;
 }
 
 /* Variants */
@@ -36,6 +37,15 @@
 
 .Button__tertiary:hover {
   background-color: var(--pistache);
+}
+
+.Button__quaternary {
+  background-color: var(--korn);
+}
+
+.Button__quaternary:hover {
+  /* ??? */
+  background-color: var(--korn);
 }
 
 .Button__term {

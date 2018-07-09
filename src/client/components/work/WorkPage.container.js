@@ -144,7 +144,10 @@ class WorkPage extends React.Component {
 
                     <OrderButton
                       book={book}
-                      style={{marginLeft: 10, border: 'none'}}
+                      size="medium"
+                      type="tertiary"
+                      label="Bestil"
+                      className="ml1"
                     />
                     {(work && work.refsIsLoading) ||
                     (work && work.collectionIsLoading) ? (
