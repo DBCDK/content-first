@@ -5,7 +5,6 @@ import BookmarkButton from '../general/BookmarkButton';
 import Heading from '../base/Heading';
 import Button from '../base/Button';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
-import Link from '../general/Link.component';
 import Paragraph from '../base/Paragraph';
 import './WorkCard.css';
 

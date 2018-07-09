@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import TruncateMarkup from 'react-truncate-markup';
-import ProfileImage from '../general/ProfileImage.component';
 import BookCover from '../general/BookCover.component';
 import Heading from '../base/Heading';
 import Button from '../base/Button';
@@ -113,8 +111,6 @@ class WorkPreview extends React.Component {
   }
 
   render() {
-    console.log(this.props.work);
-
     const {work} = this.props;
     const {book} = work;
 

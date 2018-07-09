@@ -220,6 +220,10 @@ exports[`ShortList.container Clearing list 1`] = `
                                 "title": "some title2",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -230,16 +234,31 @@ exports[`ShortList.container Clearing list 1`] = `
                                   "title": "some title2",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -413,6 +432,10 @@ exports[`ShortList.container Clearing list 1`] = `
                                 "title": "some title1",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -423,16 +446,31 @@ exports[`ShortList.container Clearing list 1`] = `
                                   "title": "some title1",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -703,6 +741,10 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                 "title": "some title1",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -713,16 +755,31 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                   "title": "some title1",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -1017,6 +1074,10 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                 "title": "some title1",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -1027,16 +1088,31 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   "title": "some title1",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -1331,6 +1407,10 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                 "title": "some title1",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -1341,16 +1421,31 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   "title": "some title1",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -1660,6 +1755,10 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                 "title": "some title1",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -1670,16 +1769,31 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                   "title": "some title1",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -1992,6 +2106,10 @@ exports[`ShortList.container remove element 1`] = `
                                 "title": "some title3",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -2002,16 +2120,31 @@ exports[`ShortList.container remove element 1`] = `
                                   "title": "some title3",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -2185,6 +2318,10 @@ exports[`ShortList.container remove element 1`] = `
                                 "title": "some title2",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -2195,16 +2332,31 @@ exports[`ShortList.container remove element 1`] = `
                                   "title": "some title2",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -2378,6 +2530,10 @@ exports[`ShortList.container remove element 1`] = `
                                 "title": "some title1",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -2388,16 +2544,31 @@ exports[`ShortList.container remove element 1`] = `
                                   "title": "some title1",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -2728,6 +2899,10 @@ exports[`ShortList.container short list contains elements 1`] = `
                                 "title": "some title3",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -2738,16 +2913,31 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   "title": "some title3",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -2921,6 +3111,10 @@ exports[`ShortList.container short list contains elements 1`] = `
                                 "title": "some title2",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -2931,16 +3125,31 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   "title": "some title2",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>
@@ -3114,6 +3323,10 @@ exports[`ShortList.container short list contains elements 1`] = `
                                 "title": "some title1",
                               }
                             }
+                            className="ml1"
+                            label="Bestil"
+                            size="medium"
+                            type="tertiary"
                           >
                             <OrderButton
                               book={
@@ -3124,16 +3337,31 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   "title": "some title1",
                                 }
                               }
-                              className=""
+                              className="ml1"
+                              label="Bestil"
                               order={[Function]}
                               orderState="not ordered"
+                              size="medium"
+                              type="tertiary"
                             >
-                              <button
-                                className="btn btn-primary "
+                              <Button
+                                className=" ml1"
                                 onClick={[Function]}
+                                size="medium"
+                                type="tertiary"
                               >
-                                Bestil
-                              </button>
+                                <button
+                                  className=" ml1 btn Button Button__tertiary Button__medium"
+                                  onClick={[Function]}
+                                >
+                                  <Icon>
+                                    <i
+                                      className="material-icons "
+                                    />
+                                  </Icon>
+                                  Bestil
+                                </button>
+                              </Button>
                             </OrderButton>
                           </Connect(OrderButton)>
                         </div>

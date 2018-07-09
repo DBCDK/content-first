@@ -26,7 +26,7 @@ export class AddToListButton extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = () => {
   return {};
 };
 
