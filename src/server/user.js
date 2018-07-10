@@ -5,31 +5,144 @@
  * between the community and the frontend.
  */
 
-module.exports = {
-  creatingUserByOpenplatformId,
-  findingUserIdByOpenplatformId,
-  findingUserIdTroughLoginToken,
-  gettingUser,
-  gettingUserFromToken,
-  gettingUserIdFromLoginToken,
-  gettingUserWithLists,
-  gettingUserWithListsByOpenplatformId,
-  removingLoginToken,
-  updatingUser
-};
-
 const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const cookieTable = constants.cookies.table;
 const community = require('server/community');
-const transform = require('__/services/elvis/transformers');
 const logger = require('server/logger');
 const {
   gettingListsForProfileId,
   omitCommunityInfoFromList
 } = require('server/lists');
 const _ = require('lodash');
+const objectStore = require('server/objectStore');
+
+module.exports = {
+  putUserData,
+  getUserData,
+  getUser: objectStore.getUser,
+  removingLoginToken
+};
+
+function throwUnlessOpenplatformId({openplatformId, reqUser, req}) {
+  if (!openplatformId) {
+    if (JSON.stringify(reqUser) === '{}') {
+      throw {
+        status: 403,
+        title: 'user not logged in',
+        detail: `User not logged in or session expired`,
+        meta: {resource: req && req.baseUrl}
+      };
+    } else {
+      throw {status: 500, error: 'missing openplatformId'};
+    }
+  }
+}
+
+async function getUserData({openplatformId, req}) {
+  try {
+    const reqUser = (await objectStore.getUser(req)) || {};
+    openplatformId = openplatformId || reqUser.openplatformId;
+    throwUnlessOpenplatformId({openplatformId, reqUser, req});
+
+    let userData = (await objectStore.find(
+      {type: 'USER_PROFILE', owner: openplatformId},
+      reqUser
+    )).data[0];
+    let shortlist = (await objectStore.find(
+      {type: 'USER_SHORTLIST', owner: openplatformId},
+      reqUser
+    )).data[0];
+
+    // TODO remove migration code
+    if (!userData) {
+      try {
+        userData = await community.gettingUserByOpenplatformId(openplatformId);
+        userData = {...userData, ...(await gettingUserWithLists(userData.id))};
+        shortlist = {shortlist: userData.shortlist, _type: 'USER_SHORTLIST'};
+        userData = {
+          ..._.omit(userData, ['openplatformToken', 'shortlist']),
+          _type: 'USER_PROFILE',
+          _public: true
+        };
+
+        await objectStore.put(userData, {openplatformId});
+        await objectStore.put(shortlist, {openplatformId});
+
+        userData = (await objectStore.find(
+          {type: 'USER_PROFILE', owner: openplatformId},
+          reqUser
+        )).data[0];
+        shortlist = (await objectStore.find(
+          {type: 'USER_SHORTLIST', owner: openplatformId},
+          reqUser
+        )).data[0];
+      } catch (e) {
+        // do nothing
+      }
+    }
+    // end migration code
+
+    if (!userData) {
+      throw {
+        status: 404,
+        title: 'user not found',
+        detail: `User ${openplatformId} does not exist or is deleted`,
+        meta: {resource: req && req.baseUrl}
+      };
+    }
+
+    return _.omitBy({...userData, ...shortlist, ...{openplatformId}}, (v, k) =>
+      k.startsWith('_')
+    );
+  } catch (error) {
+    logger.log.error(error);
+    throw error;
+  }
+}
+
+async function putUserData(newUserData, req) {
+  try {
+    const reqUser = (await objectStore.getUser(req)) || {};
+    const openplatformId = reqUser.openplatformId;
+    throwUnlessOpenplatformId({openplatformId, reqUser, req});
+
+    let userData = (await objectStore.find(
+      {type: 'USER_PROFILE', owner: openplatformId},
+      reqUser
+    )).data[0];
+    let shortlist = (await objectStore.find(
+      {type: 'USER_SHORTLIST', owner: openplatformId},
+      reqUser
+    )).data[0];
+
+    await objectStore.put(
+      _.omit(
+        {
+          ...(userData || {}),
+          ...newUserData,
+          _type: 'USER_PROFILE',
+          _public: true
+        },
+        ['openplatformToken', 'shortlist']
+      ),
+      {openplatformId}
+    );
+    await objectStore.put(
+      {
+        ...(shortlist || {}),
+        ..._.pick(newUserData, ['shortlist']),
+        _type: 'USER_SHORTLIST',
+        _public: false
+      },
+      {openplatformId}
+    );
+  } catch (error) {
+    logger.log.error(error);
+    throw error;
+  }
+}
 
 async function gettingUserWithLists(userId) {
   try {
@@ -43,232 +156,8 @@ async function gettingUserWithLists(userId) {
   }
 }
 
-function gettingUser(userId) {
-  return community
-    .gettingUserByProfileId(userId) // force break
-    .catch(error => {
-      logger.log.debug(error);
-      return Promise.reject(error);
-    });
-}
-
-function gettingUserWithListsByOpenplatformId(openplatformId) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const user = await community.gettingUserByOpenplatformId(openplatformId);
-      const listsPlusCommunityInfo = await gettingListsForProfileId(user.id);
-      const publicLists = _.filter(listsPlusCommunityInfo, 'data.public');
-      user.lists = _.map(publicLists, omitCommunityInfoFromList);
-      return resolve(user);
-    } catch (error) {
-      logger.log.debug(error);
-      if (error.status === 404) {
-        return reject(error);
-      }
-      let meta = error;
-      if (meta.response) {
-        meta = meta.response;
-      }
-      if (meta.error) {
-        meta = meta.error;
-      }
-      return reject({
-        status: 503,
-        title: 'Community-service connection problem',
-        detail: 'Community service is not reponding properly',
-        meta
-      });
-    }
-  });
-}
-
-function findingUserIdByOpenplatformId(openplatformId) {
-  return community
-    .gettingProfileIdByOpenplatformId(openplatformId) // force break
-    .catch(error => {
-      if (error.status === 404) {
-        // UserId not found.
-        return null;
-      }
-      let meta = error;
-      if (meta.response) {
-        meta = meta.response;
-      }
-      if (meta.error) {
-        meta = meta.error;
-      }
-      return Promise.reject({
-        status: 503,
-        title: 'Community-service connection problem',
-        detail: 'Community service is not reponding properly',
-        meta
-      });
-    });
-}
-
-function creatingUserByOpenplatformId(openplatformId) {
-  return community
-    .creatingUserProfile({
-      name: '',
-      attributes: {
-        openplatform_id: openplatformId,
-        shortlist: [],
-        tastes: []
-      }
-    })
-    .then(profile => {
-      return profile.id;
-    });
-}
-
 function removingLoginToken(token) {
   return knex(cookieTable)
     .where('cookie', token)
     .del();
-}
-
-function gettingUserFromToken(req) {
-  return new Promise(async (resolve, reject) => {
-    let userId;
-    try {
-      userId = await findingUserIdTroughLoginToken(req);
-    } catch (error) {
-      return reject(error);
-    }
-    try {
-      const user = await gettingUserWithLists(userId);
-      return resolve(user);
-    } catch (error) {
-      let meta = error;
-      if (meta.response) {
-        meta = meta.response;
-      }
-      if (meta.error) {
-        meta = meta.error;
-      }
-      return reject({
-        status: 503,
-        title: 'Community-service connection problem',
-        detail: 'Community service is not reponding properly',
-        meta
-      });
-    }
-  });
-}
-
-/**
- * Promise of looking up userId from login token in HTTP request.
- * @param  {Request} req       HTTP Request object.
- * @param  {string}  location  Defaults to req.baseUrl
- * @return {Promise} Resolves to Community Profile ID, or rejects with status, title, etc
- */
-function findingUserIdTroughLoginToken(req, location = null) {
-  const url = location || req.baseUrl;
-  return new Promise(async (resolve, reject) => {
-    const loginToken = req.cookies['login-token'];
-    if (!loginToken) {
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: 'Missing login-token cookie',
-        meta: {resource: url}
-      });
-    }
-    let userId;
-    try {
-      userId = await gettingUserIdFromLoginToken(loginToken);
-    } catch (error) {
-      if (error.status === 404) {
-        return reject({
-          status: 403,
-          title: 'User not logged in',
-          detail: `Unknown login token ${loginToken}`,
-          meta: {resource: url}
-        });
-      }
-      return reject({
-        status: 403,
-        title: 'User not logged in',
-        detail: `Login token ${loginToken} has expired`,
-        meta: {resource: url}
-      });
-    }
-    return resolve(userId);
-  });
-}
-
-function updatingUser(userId, partialData) {
-  const {
-    profile,
-    lists
-  } = transform.contentFirstUserToCommunityProfileAndEntities(partialData);
-  if (lists) {
-    // Rest of obsolete functionality.
-    return Promise.reject({
-      status: 500,
-      title: 'Lists not expected',
-      meta: lists
-    });
-  }
-  if (profile.name || !_.isEmpty(profile.attributes)) {
-    return community
-      .updatingProfileWithShortlistAndTastes(userId, profile)
-      .catch(error => {
-        if (error.status === 400) {
-          return Promise.reject(error);
-        }
-        let meta = error;
-        if (meta.response) {
-          meta = meta.response;
-        }
-        if (meta.error) {
-          meta = meta.error;
-        }
-        return Promise.reject({
-          status: 503,
-          title: 'Community-service connection problem',
-          detail: 'Community service is not reponding properly',
-          meta
-        });
-      });
-  }
-  return Promise.reject({
-    status: 400,
-    title: 'No user data to update',
-    meta: partialData
-  });
-}
-
-function gettingUserIdFromLoginToken(token) {
-  return new Promise((resolve, reject) => {
-    return knex(cookieTable)
-      .where('cookie', token)
-      .select('community_profile_id', 'expires_epoch_s')
-      .then(existing => {
-        if (existing.length === 0) {
-          return reject({
-            status: 404,
-            title: 'Unknown login token',
-            detail: `Token ${token} does not exist`
-          });
-        }
-        const expires_s = existing[0].expires_epoch_s;
-        const now_s = Math.ceil(Date.now() / 1000);
-        if (now_s >= expires_s) {
-          return reject({
-            status: 403,
-            title: 'Login token has expired',
-            detail: `Token ${token} has expired`
-          });
-        }
-        return resolve(existing[0].community_profile_id);
-      })
-      .catch(error => {
-        reject({
-          status: 500,
-          title: 'Database operation failed',
-          detail: error
-        });
-      });
-  });
 }

@@ -4,10 +4,7 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const config = require('server/config');
-const {
-  gettingUserIdFromLoginToken,
-  gettingUserWithLists
-} = require('server/user');
+const {getUserData, getUser} = require('server/user');
 const authenticator = require('server/authenticator');
 
 router
@@ -17,14 +14,13 @@ router
   //
   .get(
     asyncMiddleware(async (req, res, next) => {
-      const loginToken = req.cookies['login-token'];
-      if (loginToken) {
+      const user = await getUser(req);
+      if (user) {
         try {
-          const userId = await gettingUserIdFromLoginToken(loginToken);
-          return gettingUserWithLists(userId)
-            .then(user => {
+          return getUserData({req})
+            .then(userData => {
               res.status(200).json({
-                data: user,
+                data: {openplatformToken: user.openplatformToken, ...userData},
                 links: {self: '/v1/user'}
               });
             })

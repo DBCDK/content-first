@@ -18,9 +18,23 @@ async function getUser(req) {
       .where('cookie', loginToken)
       .select();
     if (result.length === 1) {
+      const [
+        {
+          community_profile_id,
+          expires_epoch_s,
+          openplatform_id,
+          openplatform_token
+        }
+      ] = result;
+
+      if (expires_epoch_s < Date.now() / 1000) {
+        return;
+      }
+
       return {
-        id: result[0].community_profile_id,
-        openplatformId: result[0].openplatform_id,
+        id: community_profile_id,
+        openplatformToken: openplatform_token,
+        openplatformId: openplatform_id,
         admin: false
       };
     }
@@ -71,12 +85,14 @@ async function get(id, user = {}) {
   }
 
   // TODO: remove this when old data is migrated
-  const communityResult = await community.getObjectById(id, user);
-  if (!communityResult.errors) {
-    await writeObject(communityResult.data);
-  }
-  if (communityResult) {
-    return communityResult;
+  if (user.id !== -1) {
+    const communityResult = await community.getObjectById(id, user);
+    if (!communityResult.errors) {
+      await writeObject(communityResult.data);
+    }
+    if (communityResult) {
+      return communityResult;
+    }
   }
   // end migrate old data
 
