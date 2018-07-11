@@ -188,6 +188,13 @@ class WorkPreview extends React.Component {
           </div>
         </div>
         <div className="col-md-0 col-lg-5 workPreview__reviews pt1 pb1">
+          <div className="row">
+            <div className="col-md-12">
+              <Heading Tag="h3" type="title" className="mt0 mb2">
+                Anmeldelser:
+              </Heading>
+            </div>
+          </div>
           {work.reviewsHasLoaded &&
             reviews.map(rev => {
               return (

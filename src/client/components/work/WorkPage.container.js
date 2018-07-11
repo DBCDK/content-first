@@ -50,6 +50,14 @@ class WorkPage extends React.Component {
     this.props.addBelt(belt);
   }
 
+  scrollToPosition = pos => {
+    window.scroll({
+      top: pos,
+      left: 0,
+      behavior: 'smooth'
+    });
+  };
+
   render() {
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
@@ -211,7 +219,17 @@ class WorkPage extends React.Component {
             </div>
             <div className="row">
               <div className="col-xs-12 pt2">
-                <Button type="tertiary" size="small" className="underline">
+                <Button
+                  type="tertiary"
+                  size="small"
+                  className="underline"
+                  onClick={() => {
+                    const pos = this.booksBeltPosition
+                      ? this.booksBeltPosition.offsetTop - 50
+                      : 0;
+                    this.scrollToPosition(pos);
+                  }}
+                >
                   Mere som denne
                 </Button>
               </div>
@@ -274,6 +292,14 @@ class WorkPage extends React.Component {
           </div>
         </div>
         <div className="col-md-12 col-lg-4 WorkPage__reviews pt1 pb1">
+          <div className="row">
+            <div className="col-md-12">
+              <Heading Tag="h3" type="title" className="mt0 mb2">
+                Anmeldelser:
+              </Heading>
+            </div>
+          </div>
+
           {work.reviewsHasLoaded &&
             reviews.map(rev => {
               return (
@@ -325,7 +351,10 @@ class WorkPage extends React.Component {
 
         {work.detailsHasLoaded &&
           work.tagsHasLoaded && (
-            <div className="WorkPage__beltContainer col-xs-12 mt4">
+            <div
+              className="WorkPage__beltContainer col-xs-12 mt4"
+              ref={e => (this.booksBeltPosition = e)}
+            >
               <BooksBelt belt={belt} />
             </div>
           )}
@@ -358,6 +387,19 @@ class WorkPage extends React.Component {
                       );
                     }
                   })}
+                {!work.collectionHasLoaded && (
+                  <React.Fragment>
+                    <span className="WorkPage__formats__skeleton Skeleton__Pulse">
+                      <Icon name={'local_library'} /> Bog
+                    </span>
+                    <span className="WorkPage__formats__skeleton Skeleton__Pulse">
+                      <Icon name={'alternate_email'} /> EBog
+                    </span>
+                    <span className="WorkPage__formats__skeleton Skeleton__Pulse">
+                      <Icon name={'voicemail'} /> Lydbog
+                    </span>
+                  </React.Fragment>
+                )}
               </div>
             </div>
           </div>

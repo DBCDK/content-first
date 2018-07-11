@@ -154,9 +154,17 @@
   height: 40px;
 }
 
+.WorkPage__formats__skeleton,
+.WorkPage__formats__skeleton i {
+  color: transparent !important;
+  background-color: var(--porcelain);
+  display: inline-block;
+}
+
 /* Media Q */
 
 @media only screen and (max-width: 1200px) {
+  /* work */
   .WorkPage__container .WorkPage__reviews {
     margin-top: 1rem;
     padding: 3rem;
@@ -166,11 +174,21 @@
     border-right: none;
     padding-right: 0;
   }
+
+  /* belt */
+  .WorkPage__beltContainer,
+  .WorkPage__beltContainer .belt {
+    margin-top: 0;
+  }
 }
 
 @media only screen and (max-width: 825px) {
+  /* work */
   .WorkPage__work .WorkPage__image {
     height: 250px;
+  }
+  .WorkPage__work .WorkPage__info {
+    padding-bottom: 2rem;
   }
 }
 
@@ -191,12 +209,12 @@
   .WorkPage__work .WorkPage__image .BookmarkButtonCircle {
     display: block;
   }
-  .WorkPage__work .WorkPage__info {
-    padding: 2rem 1rem 2rem 1rem;
-  }
   .WorkPage__work .WorkPage__info .ssb {
     top: 2rem;
     right: 2rem;
+  }
+  .WorkPage__work .WorkPage__info {
+    padding: 2rem 1rem 2rem 1rem;
   }
   .WorkPage__work .WorkPage__info .BookmarkButton {
     display: none;
@@ -207,18 +225,12 @@
   .WorkPage__detailsMobile {
     display: block;
   }
-
   /* reviews */
   .WorkPage__container .WorkPage__reviews {
     padding: 2rem 1rem 1.2rem 1rem;
+    margin-bottom: 1rem;
   }
-
   /* belt */
-
-  .WorkPage__beltContainer,
-  .WorkPage__beltContainer .belt {
-    margin-top: 0;
-  }
   .WorkPage__beltContainer .belt {
     padding: 0 1rem 1rem 1rem;
   }
