@@ -15,6 +15,8 @@ import OrderButton from '../order/OrderButton.component';
 
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 
+import {filterCollection, filterReviews} from './workFunctions';
+
 import './WorkPreview.css';
 
 class WorkPreview extends React.Component {
@@ -32,84 +34,6 @@ class WorkPreview extends React.Component {
     this.props.fetchWork(pid);
   }
 
-  filterCollection(work) {
-    if (work.collectionHasLoaded) {
-      if (work.book.collection.data.length > 0) {
-        // remove all refs not containing ereolen
-        let collection = work.book.collection.data.filter(col => {
-          if (
-            col.identifierURI &&
-            col.identifierURI[0].includes('ereolen.dk')
-          ) {
-            return col;
-          }
-        });
-        // if collection contains references
-        if (collection.length > 0) {
-          let count1 = 0;
-          let count2 = 0;
-          collection = collection.map(col => {
-            // default obj for Lydbog
-            if (col.type[0].includes('Lydbog (net)')) {
-              count1++;
-              return {
-                type: 'Lydbog',
-                icon: 'voicemail',
-                url: col.identifierURI[0],
-                count: count1
-              };
-            }
-            // default obj for Ebog
-            if (col.type[0].includes('Ebog')) {
-              count2++;
-              return {
-                type: 'Ebog',
-                icon: 'alternate_email',
-                url: col.identifierURI[0],
-                count: count2
-              };
-            }
-          });
-        }
-        return collection;
-      }
-    }
-    return [];
-  }
-
-  filterReviews(work) {
-    if (work.reviewsHasLoaded) {
-      if (work.book.reviews.data.length > 0) {
-        // remove all refs not containing litteratursiden
-        let reviews = work.book.reviews.data.filter(rev => {
-          if (
-            rev.identifierURI &&
-            rev.identifierURI[0].includes('litteratursiden.dk')
-          ) {
-            return rev;
-          }
-        });
-        // if reviews contains references
-        if (reviews.length > 0) {
-          reviews = reviews.map(rev => {
-            // default obj for a review
-            return {
-              creator:
-                (rev.creator0th && rev.creator0th[0]) ||
-                (rev.isPartOf && rev.isPartOf[0]) ||
-                'Anmelder, Literatursiden.dk',
-              media: (rev.isPartOf && rev.isPartOf[0]) || 'anmeldelse',
-              date: (rev.date && rev.date[0]) || '',
-              url: rev.identifierURI[0]
-            };
-          });
-        }
-        return reviews;
-      }
-    }
-    return [];
-  }
-
   render() {
     const {work} = this.props;
     const {book} = work;
@@ -119,9 +43,9 @@ class WorkPreview extends React.Component {
       this.props.work.book.description;
 
     // get collections including ereolen
-    const collection = this.filterCollection(work);
+    const collection = filterCollection(work);
     // get reviews from litteratursiden
-    const reviews = this.filterReviews(work);
+    const reviews = filterReviews(work);
 
     return (
       <div className="row WorkPreview__container">
@@ -160,7 +84,7 @@ class WorkPreview extends React.Component {
 
             <div className="workPreview__details">
               <span>Sideantal: {book.pages}</span>
-              <span>Sprog: {book.pages}</span>
+              <span>Sprog: {book.language}</span>
               <span>Udgivet: {book.first_edition_year}</span>
             </div>
 
