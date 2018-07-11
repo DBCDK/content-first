@@ -1,8 +1,6 @@
 'use strict';
 
 const assert = require('assert');
-const community = require('server/community');
-
 const _ = require('lodash');
 const config = require('server/config');
 const knex = require('knex')(config.db);
@@ -83,18 +81,6 @@ async function get(id, user = {}) {
     }
     return {data: object};
   }
-
-  // TODO: remove this when old data is migrated
-  if (user.id !== -1) {
-    const communityResult = await community.getObjectById(id, user);
-    if (!communityResult.errors) {
-      await writeObject(communityResult.data);
-    }
-    if (communityResult) {
-      return communityResult;
-    }
-  }
-  // end migrate old data
 
   return {
     data: {error: 'not found'},
@@ -195,24 +181,6 @@ async function find(query, user = {}) {
     .orderBy('modified', 'desc')
     .select();
   result = result.map(rowToObject);
-
-  // TODO: remove this when old data is migrated
-  let oldResult = (await community.findObjects(query, user)).data;
-  const resultIds = result.map(o => o.id);
-  oldResult = oldResult.filter(o => !resultIds.includes(o._id));
-  for (const object of oldResult) {
-    if (
-      (await knex(objectTable)
-        .where('id', object._id)
-        .select()).length === 0
-    ) {
-      await writeObject(object);
-    }
-  }
-  result = result.concat(oldResult);
-  result.sort((a, b) => (a.modified < b.modified ? 1 : -1));
-  result = result.slice(0, query.limit);
-  // end migrate old data
 
   return {data: result};
 }

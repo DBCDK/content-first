@@ -18,7 +18,6 @@ const loginService = require('server/login');
 const uuidv4 = require('uuid/v4');
 const {putUserData} = require('server/user');
 const objectStore = require('server/objectStore');
-const community = require('server/community');
 
 router
   .route('/')
@@ -39,13 +38,6 @@ router
         logger.log.debug('Got remote user data');
         // TODO remove legacy code when users migrated BEGIN
         let userId = -1;
-        try {
-          userId = await community.gettingProfileIdByOpenplatformId(
-            openplatformId
-          );
-        } catch (e) {
-          // do nothing;
-        }
         // TODO remove legacy code END
 
         logger.log.debug(

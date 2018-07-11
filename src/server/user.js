@@ -9,12 +9,7 @@ const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const cookieTable = constants.cookies.table;
-const community = require('server/community');
 const logger = require('server/logger');
-const {
-  gettingListsForProfileId,
-  omitCommunityInfoFromList
-} = require('server/lists');
 const _ = require('lodash');
 const objectStore = require('server/objectStore');
 
@@ -54,35 +49,6 @@ async function getUserData({openplatformId, req}) {
       {type: 'USER_SHORTLIST', owner: openplatformId},
       reqUser
     )).data[0];
-
-    // TODO remove migration code
-    if (!userData) {
-      try {
-        userData = await community.gettingUserByOpenplatformId(openplatformId);
-        userData = {...userData, ...(await gettingUserWithLists(userData.id))};
-        shortlist = {shortlist: userData.shortlist, _type: 'USER_SHORTLIST'};
-        userData = {
-          ..._.omit(userData, ['openplatformToken', 'shortlist']),
-          _type: 'USER_PROFILE',
-          _public: true
-        };
-
-        await objectStore.put(userData, {openplatformId});
-        await objectStore.put(shortlist, {openplatformId});
-
-        userData = (await objectStore.find(
-          {type: 'USER_PROFILE', owner: openplatformId},
-          reqUser
-        )).data[0];
-        shortlist = (await objectStore.find(
-          {type: 'USER_SHORTLIST', owner: openplatformId},
-          reqUser
-        )).data[0];
-      } catch (e) {
-        // do nothing
-      }
-    }
-    // end migration code
 
     if (!userData) {
       throw {
@@ -141,18 +107,6 @@ async function putUserData(newUserData, req) {
   } catch (error) {
     logger.log.error(error);
     throw error;
-  }
-}
-
-async function gettingUserWithLists(userId) {
-  try {
-    const user = await community.gettingUserByProfileId(userId);
-    const listsPlusCommunityInfo = await gettingListsForProfileId(userId);
-    user.lists = _.map(listsPlusCommunityInfo, omitCommunityInfoFromList);
-    return user;
-  } catch (error) {
-    logger.log.debug(error);
-    return Promise.reject(error);
   }
 }
 
