@@ -79,21 +79,29 @@
 
 /* tags */
 
+.WorkPage__work .WorkPage__tagHeading__Mobile {
+  display: none;
+}
+
 .WorkPage__work .WorkPage__tagContainer {
   transition: all 0.2s ease-in-out;
   width: 100%;
 }
 
-.WorkPage__work .WorkPage__tagGroup {
-  overflow: auto;
+.WorkPage__tagContainer .WorkPage__tagHeading {
+  padding-top: 1rem;
+  width: 100%;
+  display: block;
+  clear: both;
 }
 
-.WorkPage__work .WorkPage__tagHeading {
-  margin-bottom: 0.5rem;
-  margin-top: 1.2rem;
+.WorkPage__tagContainer .WorkPage__tag {
+  margin-top: 0.5rem;
+  display: block;
+  float: left;
 }
 
-.WorkPage__work .WorkPage__tagGroup h4::first-letter,
+.WorkPage__work .WorkPage__tagHeading::first-letter,
 .WorkPage__work .WorkPage__tag::first-letter {
   text-transform: uppercase;
 }
@@ -210,8 +218,8 @@
     display: block;
   }
   .WorkPage__work .WorkPage__info .ssb {
-    top: 2rem;
-    right: 2rem;
+    top: 10px;
+    right: 10px;
   }
   .WorkPage__work .WorkPage__info {
     padding: 2rem 1rem 2rem 1rem;
@@ -230,6 +238,23 @@
     padding: 2rem 1rem 1.2rem 1rem;
     margin-bottom: 1rem;
   }
+
+  /* tags */
+  .WorkPage__work .WorkPage__tagHeading__Mobile {
+    display: block;
+  }
+  .WorkPage__work .WorkPage__tagContainer {
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+  }
+  .WorkPage__tagContainer .WorkPage__tagHeading {
+    display: none;
+  }
+  .WorkPage__tagContainer .WorkPage__tag {
+    display: block;
+    float: left;
+  }
+
   /* belt */
   .WorkPage__beltContainer .belt {
     padding: 0 1rem 1rem 1rem;

@@ -174,7 +174,8 @@ class WorkPreview extends React.Component {
               <div className="col-xs-12 pt2">
                 <Button
                   type="tertiary"
-                  size="small"
+                  size="medium"
+                  className="underline"
                   onClick={event => {
                     event.stopPropagation();
                     event.preventDefault();

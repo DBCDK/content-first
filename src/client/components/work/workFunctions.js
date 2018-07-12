@@ -60,7 +60,7 @@ export function filterReviews(work) {
             creator:
               (rev.creator0th && rev.creator0th[0]) ||
               (rev.isPartOf && rev.isPartOf[0]) ||
-              'Anmelder, Literatursiden.dk',
+              'Literatursiden.dk',
             media: (rev.isPartOf && rev.isPartOf[0]) || 'anmeldelse',
             date: (rev.date && rev.date[0]) || '',
             url: rev.identifierURI[0]

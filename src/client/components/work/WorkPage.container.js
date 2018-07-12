@@ -12,6 +12,7 @@ import BooksBelt from '../belt/BooksBelt.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Link from '../general/Link.component';
+import scroll from '../../utils/scroll';
 import SocialShareButton from '../general/SocialShareButton.component';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {ADD_BELT} from '../../redux/belts.reducer';
@@ -50,13 +51,13 @@ class WorkPage extends React.Component {
     this.props.addBelt(belt);
   }
 
-  scrollToPosition = pos => {
-    window.scroll({
-      top: pos,
-      left: 0,
-      behavior: 'smooth'
-    });
-  };
+  // scrollToPosition = (top, left = 0, behavior = 'smooth') => {
+  //   window.scroll({
+  //     top: top,
+  //     left: left,
+  //     behavior: behavior
+  //   });
+  // };
 
   render() {
     const work = get(this.props, 'work');
@@ -221,61 +222,70 @@ class WorkPage extends React.Component {
               <div className="col-xs-12 pt2">
                 <Button
                   type="tertiary"
-                  size="small"
+                  size="medium"
                   className="underline"
                   onClick={() => {
                     const pos = this.booksBeltPosition
                       ? this.booksBeltPosition.offsetTop - 50
                       : 0;
-                    this.scrollToPosition(pos);
+                    scroll(pos);
                   }}
                 >
                   Mere som denne
                 </Button>
               </div>
             </div>
+
+            <div className="row WorkPage__tagHeading__Mobile">
+              <div className="col-md-12">
+                <Heading Tag="h3" type="title" className="mt3 mb0">
+                  Tags:
+                </Heading>
+              </div>
+            </div>
+
             <div
               id="collapsable-tags"
               style={{
                 transition: this.state.transition ? null : 'none',
-                height: this.state.tagsCollapsed ? '60px' : height + 'px',
+                height: this.state.tagsCollapsed ? '65px' : height + 'px',
                 overflowY: 'hidden'
               }}
-              className="row mt1 WorkPage__tagContainer text-left"
+              className="row col-xs-12 mt1 WorkPage__tagContainer text-left"
             >
               {tags.map(group => {
                 return (
-                  <div key={group.title} className="WorkPage__tagGroup">
+                  <React.Fragment>
                     <Heading
                       Tag="h4"
+                      key={group.title}
                       type="subtitle"
-                      className="WorkPage__tagHeading col-xs-12"
+                      className="WorkPage__tagHeading mb0 mt0"
                     >
                       {group.title + ':'}
                     </Heading>
-                    <div className="col-xs-12">
-                      {group.data.map(t => {
-                        return (
-                          <Link key={t.id} href="/find" params={{tag: t.id}}>
-                            <Button
-                              type="tertiary"
-                              size="small"
-                              className="WorkPage__tag mr1"
-                            >
-                              {t.title}
-                            </Button>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
+                    {group.data.map(t => {
+                      return (
+                        <Link key={t.id} href="/find" params={{tag: t.id}}>
+                          <Button
+                            key={t.title}
+                            type="tertiary"
+                            size="small"
+                            className="WorkPage__tag mr1"
+                          >
+                            {t.title}
+                          </Button>
+                        </Link>
+                      );
+                    })}
+                  </React.Fragment>
                 );
               })}
             </div>
             <div className="row">
               <div className="mt1 col-xs-12">
                 <Button
-                  size="small"
+                  size="medium"
                   type="tertiary"
                   className="underline"
                   onClick={() => {
