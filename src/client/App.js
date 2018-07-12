@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import './style/App.css';
 import './style/index.css';
 import './style/filterpage.css';
-import './style/work.css';
 import Modal from './components/modals/Modal.container';
 import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';

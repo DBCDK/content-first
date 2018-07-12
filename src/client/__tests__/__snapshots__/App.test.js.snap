@@ -167,6 +167,14 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "name": "Bedste forslag",
+            "onFrontPage": true,
+          }
+        }
+      />
+      <BooksBelt
+        belt={
+          Object {
             "isLoading": false,
             "name": "En god bog",
             "onFrontPage": true,
@@ -181,17 +189,6 @@ exports[`renders without crashing 1`] = `
             ],
             "works": Array [],
           }
-        }
-        tags={
-          Array [
-            100001,
-            100003,
-            Object {
-              "id": 5672,
-              "weight": 10,
-            },
-            100005,
-          ]
         }
       />
       <BooksBelt
@@ -219,24 +216,6 @@ exports[`renders without crashing 1`] = `
               2278,
             ],
           }
-        }
-        tags={
-          Array [
-            Object {
-              "id": 5329,
-              "weight": 10,
-            },
-            Object {
-              "id": 3510,
-              "weight": 10,
-            },
-            5734,
-            5731,
-            5280,
-            5277,
-            2183,
-            2278,
-          ]
         }
       />
       <BooksBelt
@@ -268,27 +247,6 @@ exports[`renders without crashing 1`] = `
             ],
           }
         }
-        tags={
-          Array [
-            Object {
-              "id": 1672,
-              "weight": 10,
-            },
-            5734,
-            Object {
-              "id": 5731,
-              "weight": 10,
-            },
-            5699,
-            5721,
-            5696,
-            5680,
-            Object {
-              "id": 5691,
-              "weight": 10,
-            },
-          ]
-        }
       />
       <BooksBelt
         belt={
@@ -308,16 +266,6 @@ exports[`renders without crashing 1`] = `
             ],
           }
         }
-        tags={
-          Array [
-            Object {
-              "id": 4927,
-              "weight": 10,
-            },
-            5714,
-            5713,
-          ]
-        }
       />
       <BooksBelt
         belt={
@@ -331,11 +279,6 @@ exports[`renders without crashing 1`] = `
             ],
             "works": Array [],
           }
-        }
-        tags={
-          Array [
-            -2,
-          ]
         }
       />
       <BooksBelt
@@ -361,21 +304,6 @@ exports[`renders without crashing 1`] = `
             ],
           }
         }
-        tags={
-          Array [
-            Object {
-              "id": 2683,
-              "weight": 10,
-            },
-            Object {
-              "id": 5614,
-              "weight": 10,
-            },
-            5624,
-            5652,
-            5717,
-          ]
-        }
       />
       <BooksBelt
         belt={
@@ -399,21 +327,6 @@ exports[`renders without crashing 1`] = `
               },
             ],
           }
-        }
-        tags={
-          Array [
-            Object {
-              "id": 5637,
-              "weight": 10,
-            },
-            5654,
-            5636,
-            5731,
-            Object {
-              "id": 5611,
-              "weight": 10,
-            },
-          ]
         }
       />
       <BooksBelt
@@ -441,23 +354,6 @@ exports[`renders without crashing 1`] = `
             ],
           }
         }
-        tags={
-          Array [
-            Object {
-              "id": 6131,
-              "weight": 10,
-            },
-            5726,
-            5730,
-            5704,
-            5705,
-            Object {
-              "id": 5707,
-              "weight": 10,
-            },
-            5708,
-          ]
-        }
       />
       <BooksBelt
         belt={
@@ -483,23 +379,6 @@ exports[`renders without crashing 1`] = `
               5676,
             ],
           }
-        }
-        tags={
-          Array [
-            4044,
-            Object {
-              "id": 4895,
-              "weight": 10,
-            },
-            5149,
-            5680,
-            Object {
-              "id": 5700,
-              "weight": 10,
-            },
-            5670,
-            5676,
-          ]
         }
       />
       <BooksBelt
@@ -527,24 +406,6 @@ exports[`renders without crashing 1`] = `
               5691,
             ],
           }
-        }
-        tags={
-          Array [
-            2683,
-            Object {
-              "id": 4907,
-              "weight": 10,
-            },
-            Object {
-              "id": 5368,
-              "weight": 10,
-            },
-            5734,
-            5731,
-            5670,
-            5676,
-            5691,
-          ]
         }
       />
       <BooksBelt
@@ -579,30 +440,6 @@ exports[`renders without crashing 1`] = `
             ],
           }
         }
-        tags={
-          Array [
-            Object {
-              "id": 5028,
-              "weight": 10,
-            },
-            5016,
-            Object {
-              "id": 5149,
-              "weight": 10,
-            },
-            4044,
-            4074,
-            5275,
-            5282,
-            189,
-            Object {
-              "id": 5660,
-              "weight": 10,
-            },
-            5661,
-            5671,
-          ]
-        }
       />
       <BooksBelt
         belt={
@@ -628,22 +465,6 @@ exports[`renders without crashing 1`] = `
               5630,
             ],
           }
-        }
-        tags={
-          Array [
-            Object {
-              "id": 4466,
-              "weight": 10,
-            },
-            5731,
-            3510,
-            5626,
-            Object {
-              "id": 5683,
-              "weight": 10,
-            },
-            5630,
-          ]
         }
       />
       <div

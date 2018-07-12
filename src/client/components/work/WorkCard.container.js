@@ -48,7 +48,6 @@ class WorkCard extends React.Component {
   componentDidUpdate() {
     this.fetch();
   }
-
   shouldComponentUpdate(nextProps) {
     return (
       nextProps.highlight !== this.props.highlight ||

@@ -121,7 +121,7 @@ class ListCard extends React.Component {
               />
               <div className="list-card-interactions">
                 <span className="list-card-interaction">
-                  <Icon className="md-18" name="chat_bubble_outline" /> ({
+                  <Icon className="md-small" name="chat_bubble_outline" /> ({
                     commentCount
                   })
                 </span>

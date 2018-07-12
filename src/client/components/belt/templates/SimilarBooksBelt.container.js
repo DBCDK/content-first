@@ -1,12 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import BooksBelt from './BooksBelt.container';
-import {BOOKS_REQUEST} from '../../redux/books.reducer';
+import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 import {get} from 'lodash';
 
 export class SimilarBooksBelt extends React.Component {
   componentDidMount() {
     this.props.fetchWork(this.props.pid);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.pid !== this.props.pid) {
+      this.props.fetchWork(this.props.pid);
+    }
   }
 
   render() {

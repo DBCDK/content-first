@@ -28,6 +28,11 @@
   font-weight: 700;
 }
 
+/* text decorations */
+.underline {
+  text-decoration: underline !important;
+}
+
 /* typography */
 .t-body {
   font-family: var(--secondary-font);

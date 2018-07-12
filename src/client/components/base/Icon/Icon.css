@@ -1,3 +1,10 @@
 i {
   font-size: 1rem;
 }
+
+.material-icons.md-small {
+  font-size: 18px;
+}
+.material-icons.md-medium {
+  font-size: 24px;
+}

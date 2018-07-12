@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import BooksBelt from './BooksBelt.container';
-import {BOOKS_REQUEST} from '../../redux/books.reducer';
+import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 import _ from 'lodash';
 
 const maxNumberOfTags = 10;
@@ -47,7 +47,7 @@ export class InteractionsRecoBelt extends React.Component {
     if (weightedTags.length > 0 && this.props.username) {
       return (
         <BooksBelt
-          belt={this.props.belt}
+          {...this.props}
           name={'Bedste forslag til ' + this.props.username}
           tags={weightedTags}
         />

@@ -1,21 +1,30 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import WorkCard from './WorkCard.container';
-import Spinner from '../general/Spinner.component';
 import Heading from '../base/Heading';
-import CheckmarkConnected from '../general/CheckmarkConnected.component';
+import Button from '../base/Button';
+import Paragraph from '../base/Paragraph';
+import Icon from '../base/Icon';
+import BookmarkButton from '../general/BookmarkButton';
+import AddToListButton from '../general/AddToListButton.component';
+import SkeletonText from '../base/Skeleton/Text';
+import SkeletonUser from '../base/Skeleton/User';
+import BooksBelt from '../belt/BooksBelt.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
-import Slider from '../belt/Slider.component';
 import Link from '../general/Link.component';
+import scroll from '../../utils/scroll';
 import SocialShareButton from '../general/SocialShareButton.component';
-import {getListsForOwner, SYSTEM_LIST} from '../../redux/list.reducer';
-import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
-import {getRecommendedPids} from '../../redux/recommend';
+import {ADD_BELT} from '../../redux/belts.reducer';
 import {get} from 'lodash';
+import {
+  filterCollection,
+  filterReviews,
+  sortTags,
+  buildSimilarBooksBelt
+} from './workFunctions';
 
-let selectedTagIds = [];
+import './WorkPage.css';
 
 class WorkPage extends React.Component {
   constructor(props) {
@@ -36,16 +45,19 @@ class WorkPage extends React.Component {
     if (this.props.pid !== nextProps.pid) {
       this.fetchWork(nextProps.pid);
     }
-    const nextTags = get(nextProps, 'work.book.tags');
-
-    if (
-      nextTags &&
-      get(this.props, 'work.book.tags.length') !== nextTags.length
-    ) {
-      selectedTagIds = nextTags.map(t => t.id);
-      this.props.fetchRecommendations(selectedTagIds);
-    }
   }
+
+  addNewBelt(belt) {
+    this.props.addBelt(belt);
+  }
+
+  // scrollToPosition = (top, left = 0, behavior = 'smooth') => {
+  //   window.scroll({
+  //     top: top,
+  //     left: left,
+  //     behavior: behavior
+  //   });
+  // };
 
   render() {
     const work = get(this.props, 'work');
@@ -55,273 +67,353 @@ class WorkPage extends React.Component {
       return null;
     }
 
-    // we need to massage the data
-    // stemnings tags, we use the taxonomy first level title
-    // for all other teags we use the second level title
-    let tagGroups = {};
-    if (book.tags) {
-      book.tags.forEach(t => {
-        let groupName =
-          t.parents[0] === 'stemning' ? t.parents[0] : t.parents[1];
-        if (!tagGroups[groupName]) {
-          tagGroups[groupName] = [];
-        }
-        tagGroups[groupName].push(t);
-      });
-    }
-    tagGroups = Object.keys(tagGroups).map(key => {
-      return {title: key, data: tagGroups[key]};
-    });
-    tagGroups.sort((group1, group2) => (group1.title < group2.title ? -1 : 1));
+    // get collections including ereolen
+    const collection = filterCollection(work);
+    // get reviews from litteratursiden
+    const reviews = filterReviews(work);
+    // sort tags by group
+    const tags = sortTags(work);
+    // build belt for "mere som denne" button
+    const belts = this.props.beltsState;
+    const belt = belts['Minder om ' + book.title];
 
+    if (book.title && !belts['Minder om ' + book.title]) {
+      this.addNewBelt(buildSimilarBooksBelt(work));
+    }
+
+    // tags collapsable variables
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
-    const tax_description = book.taxonomy_description || book.description;
-
-    // check if reviews contain one or more external urls and they point to litteratursiden
-    let reviewHasContent = false;
-    if (work.reviewsHasLoaded) {
-      book.reviews.data.filter(review => {
-        if (
-          review.identifierURI &&
-          review.identifierURI[0].includes('litteratursiden.dk')
-        ) {
-          reviewHasContent = true;
-        }
-      });
-    }
 
     return (
-      <div className="work-page">
-        <div className="row work-details">
-          <div className="col-xs-11 col-centered text-left">
-            <div className="col-xs-4 col-lg-3 cover-image-wrapper">
-              <BookCover book={book} />
+      <div className="row WorkPage__container">
+        <div className="col-md-12 col-lg-8 WorkPage__work">
+          <div className="WorkPage__image">
+            <BookCover className="book-cover" book={book} />
+            <BookmarkButton
+              className="mr1"
+              origin={'Fra egen værkside'}
+              work={work}
+              layout="circle"
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                right: 0,
+                borderRadius: '50%'
+              }}
+            />
+          </div>
+          <div className="WorkPage__info">
+            <SocialShareButton
+              className={'ssb-fb'}
+              styles={{fontWeight: 'bold'}}
+              facebook={true}
+              href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
+              icon={'fb-icon'}
+              hex={'#3b5998'}
+              size={40}
+              shape="round"
+              hoverTitle="Del på facebook"
+            />
+
+            <Heading Tag="h1" type="lead" className="mt0">
+              {book.title}
+            </Heading>
+
+            <Heading Tag="h2" type="heading" className="mt1">
+              {book.creator}
+            </Heading>
+
+            <Paragraph className="mt1">
+              <strong>{book.taxonomy_description || book.description}</strong>
+            </Paragraph>
+
+            <Paragraph className="mt1">{book.description}</Paragraph>
+
+            <div className="WorkPage__details .WorkPage__detailsDesktop">
+              <span>Sideantal: {book.pages}</span>
+              <span>Sprog: {book.language}</span>
+              <span>Udgivet: {book.first_edition_year}</span>
             </div>
-            <div className="col-xs-8 col-lg-9 info">
-              <div className="title">{book.title}</div>
-              <div className="creator">{book.creator}</div>
-              <div className="meta-description">
-                {tax_description &&
-                  tax_description
-                    .split('\n')
-                    .map((line, idx) => <p key={idx}>{line}</p>)}
+
+            <div className="row">
+              <div className="col-xs-12 pt1">
+                <Heading
+                  Tag="h4"
+                  type="subtitle"
+                  className="mt1 mb0 kobber-txt"
+                >
+                  Lån som:
+                </Heading>
               </div>
-              <div className="line" />
-              <div className="row">
-                <div className="col-xs-8">
-                  <div className="description">{book.description}</div>
-                  <div className="extra">
-                    <div className="subjects">{book.subject}</div>
-                    {book.pages && (
-                      <div className="page-count">{`${book.pages} sider`}</div>
-                    )}
-                    <div className="year">
-                      {book.literary_form}
-                      {book.literary_form && book.first_edition_year
-                        ? ', '
-                        : ''}
-                      {book.first_edition_year ? book.first_edition_year : ''}
-                    </div>
-                    {book.genre && <div className="genre">{book.genre}</div>}
-                  </div>
-                  <div className="bibliotek-dk-link">
-                    <a
-                      target="_blank"
-                      href={`https://bibliotek.dk/linkme.php?rec.id=${encodeURIComponent(
-                        book.pid
-                      )}`}
-                    >
-                      Se mere på bibliotek.dk
-                    </a>
-                  </div>
+            </div>
 
-                  <div className="buttonContainer">
-                    <CheckmarkConnected
-                      book={{book}}
-                      origin="Fra egen værkside"
-                    />
-
-                    <OrderButton
-                      book={book}
-                      size="medium"
+            <div className="WorkPage__media">
+              {work.collectionHasLoaded && (
+                <OrderButton
+                  book={book}
+                  size="medium"
+                  type="quaternary"
+                  label="Bog"
+                  icon="local_library"
+                  className="mr1 mt1"
+                />
+              )}
+              {work.collectionHasLoaded &&
+                collection.map(col => {
+                  if (col.count === 1) {
+                    return (
+                      <a href={col.url} target="_blank">
+                        <Button
+                          type="quaternary"
+                          size="medium"
+                          className="mr1 mt1"
+                        >
+                          <Icon name={col.icon} />
+                          {col.type}
+                        </Button>
+                      </a>
+                    );
+                  }
+                })}
+              {!work.collectionHasLoaded && (
+                <React.Fragment>
+                  <a>
+                    <Button
                       type="tertiary"
-                      label="Bestil"
-                      className="ml1"
-                    />
-                    {(work && work.refsIsLoading) ||
-                    (work && work.collectionIsLoading) ? (
-                      <Spinner
-                        style={{
-                          width: 20,
-                          height: 20,
-                          margin: '0px 0px 0px 30px'
-                        }}
-                      />
-                    ) : work.collectionHasLoaded &&
-                    book.collection.data.length > 0 ? (
-                      book.collection.data.map(r => {
-                        if (
-                          r.identifierURI &&
-                          r.identifierURI[0].includes('ereolen.dk') &&
-                          r.type[0] === 'Ebog'
-                        ) {
-                          return (
-                            <SocialShareButton
-                              className={'ssb-ereolen'}
-                              styles={{
-                                display: 'inlineBlock',
-                                marginLeft: '10px'
-                              }}
-                              href={r.identifierURI}
-                              icon={null}
-                              hex={'#337ab7'}
-                              size={32}
-                              shape="square"
-                              txt="Læs på eReolen"
-                            />
-                          );
-                        }
-                      })
-                    ) : (
-                      ''
-                    )}
-                  </div>
-                </div>
-
-                <div className="col-xs-4 reviews">
-                  <div className="col-xs-12 reviews-heading">
-                    Anmeldelser fra litteratursiden:
-                  </div>
-                  {(work && work.refsIsLoading) ||
-                  (work && work.reviewsIsLoading) ? (
-                    <Spinner style={{width: 50, height: 50}} />
-                  ) : work.reviewsHasLoaded &&
-                  book.reviews.data.length > 0 &&
-                  reviewHasContent ? (
-                    book.reviews.data.map(r => {
-                      // Select only obj in reviews
-                      if (
-                        r.identifierURI &&
-                        r.identifierURI[0].includes('litteratursiden.dk')
-                      ) {
-                        // Dont show reviews without a creator and ref
-                        if (r.creatorOth && r.isPartOf) {
-                          return (
-                            <a
-                              className="tag tags tag-medium review"
-                              key={r.pid}
-                              target={'blank'}
-                              href={r.identifierURI ? r.identifierURI : ''}
-                            >
-                              <div className="review-creator">
-                                {r.creatorOth}
-                              </div>
-                              <div className="review-partOf">{r.isPartOf}</div>
-                            </a>
-                          );
-                        }
-                      }
-                    })
-                  ) : (
-                    <p>Der er endnu ingen anmeldelser til dette værk.</p>
-                  )}
-                </div>
-              </div>
-
-              <SocialShareButton
-                className={'ssb-fb'}
-                styles={{fontWeight: 'bold'}}
-                facebook={true}
-                href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
-                icon={'fb-icon'}
-                hex={'#3b5998'}
-                size={30}
-                shape="square"
-                txt="Del"
-                hoverTitle="Del på facebook"
-              />
+                      size="medium"
+                      className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
+                    >
+                      <Icon name={'local_library'} />Bog
+                    </Button>
+                  </a>
+                  <a>
+                    <Button
+                      type="tertiary"
+                      size="medium"
+                      className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
+                    >
+                      <Icon name={'alternate_email'} />Ebog
+                    </Button>
+                  </a>
+                  <a>
+                    <Button
+                      type="tertiary"
+                      size="medium"
+                      className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
+                    >
+                      <Icon name={'voicemail'} />Lydbog
+                    </Button>
+                  </a>
+                </React.Fragment>
+              )}
             </div>
+            <div className="row">
+              <div className="col-xs-12 pt1">
+                <BookmarkButton
+                  className="mr1"
+                  origin={'Fra egen værkside'}
+                  work={work}
+                />
+                <AddToListButton className="mr1" work={work} />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xs-12 pt2">
+                <Button
+                  type="tertiary"
+                  size="medium"
+                  className="underline"
+                  onClick={() => {
+                    const pos = this.booksBeltPosition
+                      ? this.booksBeltPosition.offsetTop - 50
+                      : 0;
+                    scroll(pos);
+                  }}
+                >
+                  Mere som denne
+                </Button>
+              </div>
+            </div>
+
+            <div className="row WorkPage__tagHeading__Mobile">
+              <div className="col-md-12">
+                <Heading Tag="h3" type="title" className="mt3 mb0">
+                  Tags:
+                </Heading>
+              </div>
+            </div>
+
             <div
               id="collapsable-tags"
               style={{
                 transition: this.state.transition ? null : 'none',
-                height: this.state.tagsCollapsed ? '100px' : height + 'px',
+                height: this.state.tagsCollapsed ? '65px' : height + 'px',
                 overflowY: 'hidden'
               }}
-              className="tags-container text-left"
+              className="row col-xs-12 mt1 WorkPage__tagContainer text-left"
             >
-              {tagGroups.map(group => {
+              {tags.map(group => {
                 return (
-                  <div key={group.title} className="tag-group">
-                    <div className="tag-group-title col-xs-3 col-lg-2">
-                      {group.title}
-                    </div>
-                    <div className="col-xs-9 col-lg-10">
-                      {group.data.map(t => {
-                        return (
-                          <Link
-                            className="tag tags tag-medium"
-                            key={t.id}
-                            href="/find"
-                            params={{tag: t.id}}
+                  <React.Fragment>
+                    <Heading
+                      Tag="h4"
+                      key={group.title}
+                      type="subtitle"
+                      className="WorkPage__tagHeading mb0 mt0"
+                    >
+                      {group.title + ':'}
+                    </Heading>
+                    {group.data.map(t => {
+                      return (
+                        <Link key={t.id} href="/find" params={{tag: t.id}}>
+                          <Button
+                            key={t.title}
+                            type="tertiary"
+                            size="small"
+                            className="WorkPage__tag mr1"
                           >
                             {t.title}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
+                          </Button>
+                        </Link>
+                      );
+                    })}
+                  </React.Fragment>
                 );
               })}
             </div>
-            <div className="col-xs-9 col-xs-offset-3 col-lg-10 col-lg-offset-2">
-              <button
-                className={
-                  this.state.tagsCollapsed
-                    ? 'expand-btn btn btn-primary'
-                    : 'expand-btn btn btn-success'
-                }
-                onClick={() => {
-                  this.setState({
-                    tagsCollapsed: !this.state.tagsCollapsed,
-                    transition: true
-                  });
-                }}
-              >
-                {this.state.tagsCollapsed ? 'Flere' : 'Færre'}
-              </button>
+            <div className="row">
+              <div className="mt1 col-xs-12">
+                <Button
+                  size="medium"
+                  type="tertiary"
+                  className="underline"
+                  onClick={() => {
+                    this.setState({
+                      tagsCollapsed: !this.state.tagsCollapsed,
+                      transition: true
+                    });
+                  }}
+                >
+                  {this.state.tagsCollapsed ? 'Se alle tags' : 'Se færre tags'}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-        {this.props.recommendedPids && (
-          <div className="row belt text-left">
-            <div className="col-xs-11 col-centered">
-              <div className="col-xs-12 header">
-                <Heading tag="h1" type="section">
-                  Bøger der giver lignende oplevelser
-                </Heading>
-              </div>
-              <div className="row mb4">
-                <div className="col-xs-12">
-                  <Slider>
-                    {this.props.recommendedPids.map(pid => {
+        <div className="col-md-12 col-lg-4 WorkPage__reviews pt1 pb1">
+          <div className="row">
+            <div className="col-md-12">
+              <Heading Tag="h3" type="title" className="mt0 mb2">
+                Anmeldelser:
+              </Heading>
+            </div>
+          </div>
+
+          {work.reviewsHasLoaded &&
+            reviews.map(rev => {
+              return (
+                <a
+                  href={rev.url}
+                  target="_blank"
+                  className="WorkPage__review mb1"
+                >
+                  <Icon name="face" />
+                  <span className="WorkPage__review__details ml2">
+                    <Heading Tag="h5" type="subtitle">
+                      <strong>{rev.creator}</strong>
+                      <br />
+                      {rev.date}
+                    </Heading>
+                  </span>
+                </a>
+              );
+            })}
+          {!work.reviewsHasLoaded && (
+            <React.Fragment>
+              <a className="WorkPage__review mb1">
+                <SkeletonUser pulse={true} className="mr1" />
+                <SkeletonText
+                  lines={2}
+                  color="#e9eaeb"
+                  className="Skeleton__Pulse"
+                />
+              </a>
+              <a className="WorkPage__review mb1">
+                <SkeletonUser pulse={true} className="mr1" />
+                <SkeletonText
+                  lines={2}
+                  color="#e9eaeb"
+                  className="Skeleton__Pulse"
+                />
+              </a>
+              <a className="WorkPage__review">
+                <SkeletonUser pulse={true} className="mr1" />
+                <SkeletonText
+                  lines={2}
+                  color="#e9eaeb"
+                  className="Skeleton__Pulse"
+                />
+              </a>
+            </React.Fragment>
+          )}
+        </div>
+
+        {work.detailsHasLoaded &&
+          work.tagsHasLoaded && (
+            <div
+              className="WorkPage__beltContainer col-xs-12 mt4"
+              ref={e => (this.booksBeltPosition = e)}
+            >
+              <BooksBelt belt={belt} />
+            </div>
+          )}
+
+        <div className="row col-xs-12 mb2 WorkPage__detailsMobile">
+          <div className="col-xs-12">
+            <Heading Tag="h4" type="subtitle" className="mt1">
+              Mere info:
+            </Heading>
+          </div>
+          <div className="col-xs-12">
+            <div className="WorkPage__details">
+              <span>Sideantal: {book.pages}</span>
+              <span>Sprog: {book.language}</span>
+              <span>Udgivet: {book.first_edition_year}</span>
+            </div>
+          </div>
+          <div className="col-xs-12">
+            <div className="WorkPage__formats mt1">
+              <span>Formater: </span>
+              <div className="row col-xs-12">
+                {work.collectionHasLoaded &&
+                  collection.map(col => {
+                    if (col.count === 1) {
                       return (
-                        <WorkCard
-                          className="ml1 mr1"
-                          pid={pid}
-                          allowFetch={true}
-                          key={pid}
-                          origin={`Minder om "${book.title}"`}
-                        />
+                        <span>
+                          <Icon name={col.icon} />
+                          {' ' + col.type}
+                        </span>
                       );
-                    })}
-                  </Slider>
-                </div>
+                    }
+                  })}
+                {!work.collectionHasLoaded && (
+                  <React.Fragment>
+                    <span className="WorkPage__formats__skeleton Skeleton__Pulse">
+                      <Icon name={'local_library'} /> Bog
+                    </span>
+                    <span className="WorkPage__formats__skeleton Skeleton__Pulse">
+                      <Icon name={'alternate_email'} /> EBog
+                    </span>
+                    <span className="WorkPage__formats__skeleton Skeleton__Pulse">
+                      <Icon name={'voicemail'} /> Lydbog
+                    </span>
+                  </React.Fragment>
+                )}
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     );
   }
@@ -330,19 +422,7 @@ class WorkPage extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     work: state.booksReducer.books[ownProps.pid],
-    recommendedPids: getRecommendedPids(state.recommendReducer, {
-      tags: selectedTagIds
-    })
-      .pids.filter(pid => pid !== ownProps.pid)
-      .slice(0, 20),
-    filterState: state.filterReducer,
-    shortListState: state.shortListReducer,
-    systemLists: getListsForOwner(state, {
-      type: SYSTEM_LIST,
-      owner: state.userReducer.openplatformId,
-      sort: true
-    }),
-    isLoggedIn: state.userReducer.isLoggedIn
+    beltsState: state.beltsReducer.belts
   };
 };
 
@@ -355,12 +435,12 @@ export const mapDispatchToProps = dispatch => ({
       includeReviews: true,
       includeCollection: true
     }),
-  fetchRecommendations: tags =>
+  addBelt: belt => {
     dispatch({
-      type: RECOMMEND_REQUEST,
-      tags,
-      max: 21
-    })
+      type: ADD_BELT,
+      belt
+    });
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WorkPage);
