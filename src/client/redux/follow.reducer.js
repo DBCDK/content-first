@@ -23,11 +23,10 @@ const followReducer = (state = defaultState, action) => {
       if (!action.cat) {
         throw new Error('Cant follow when no follow category ´cat´ is set');
       }
-
       let obj = state;
       obj[action.id] = action;
       obj[action.id].type = 'follows';
-
+      obj[action.id]._created = Math.round((new Date()).getTime() / 1000);
       return Object.assign({}, state, obj);
     }
 
