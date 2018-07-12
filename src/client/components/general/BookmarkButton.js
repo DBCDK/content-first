@@ -33,7 +33,7 @@ export class BookmarkButton extends React.Component {
         type="tertiary"
         size="medium"
       >
-        <Icon name="bookmark_border" className="md-18" />
+        <Icon name="bookmark_border" className="md-small" />
         {layout !== 'Circle' ? 'Husk' : ''}
       </Button>
     );
