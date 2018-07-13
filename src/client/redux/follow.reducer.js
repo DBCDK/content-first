@@ -26,7 +26,7 @@ const followReducer = (state = defaultState, action) => {
       let obj = state;
       obj[action.id] = action;
       obj[action.id].type = 'follows';
-      obj[action.id]._created = Math.round((new Date()).getTime() / 1000);
+      obj[action.id]._created = Math.round(new Date().getTime() / 1000);
       return Object.assign({}, state, obj);
     }
 

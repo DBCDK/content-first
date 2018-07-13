@@ -2,13 +2,13 @@
 .short-badge {
   letter-spacing: 2px;
 }
-.short-list--close-btn {
+.top-bar-dropdown-list--close-btn {
   position: absolute;
   margin: 1em;
   cursor: pointer;
   width: 10px;
 }
-.short-list--content {
+.top-bar-dropdown-list--content {
   position: fixed;
   background: var(--lys-graa);
   width: 350px;
@@ -29,87 +29,87 @@
   opacity: 0;
   right: -10px;
 }
-.short-list--empty-text {
+.top-bar-dropdown-list--empty-text {
   margin: 50px;
 }
-.short-list--elements {
+.top-bar-dropdown-list--elements {
   height: 450px;
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 3px 0px;
 }
-.short-list-element {
+.top-bar-dropdown-list-element {
   margin: 10px;
   margin: 10px 10px 0 10px;
   padding-left: 10px;
   padding-bottom: 10px;
 }
-.short-list-element:after {
+.top-bar-dropdown-list-element:after {
   content: ' ';
   display: block;
   clear: both;
 }
-.short-list-element:last-child {
+.top-bar-dropdown-list-element:last-child {
   border-bottom: 0;
 }
-.short-list-element--header a{
+.top-bar-dropdown-list-element--header a{
   font-family: var(--primary-font);
   color: var(--petrolium); 
   font-weight: 600; 
   font-size: 1.1em;
 
 }
-.short-list-element--cover-image {
+.top-bar-dropdown-list-element--cover-image {
   display: inline-block;
   float: left;
   padding: 2px;
 }
-.short-list-element--cover-image img {
+.top-bar-dropdown-list-element--cover-image img {
   max-width: 40px;
 }
-.short-list-element--text {
+.top-bar-dropdown-list-element--text {
   display: inline-block;
   float: left;
   width: 200px;
   margin-left: 1.5em;
   margin-top: -4px;
 }
-.short-list-element {
+.top-bar-dropdown-list-element {
   position: relative;
   clear: both;
   overflow: hidden;
 }
-.short-list-element--close-btn {
+.top-bar-dropdown-list-element--close-btn {
   position: absolute;
   right: 5px;
   cursor: pointer;
   width: 15px;
 }
-.short-list-element--taxonomy-description {
+.top-bar-dropdown-list-element--taxonomy-description {
   color: var(--petrolium); 
   white-space: nowrap;
   overflow: hidden !important;
   text-overflow: ellipsis;
 }
-.short-list-element--origin {
+.top-bar-dropdown-list-element--origin {
   color: gray;
   font-size: 0.8em;
 }
-.short-list--more-elements {
+.top-bar-dropdown-list--more-elements {
   margin: 10px;
 }
-.short-list--more-elements-line {
+.top-bar-dropdown-list--more-elements-line {
   border-bottom: 1px solid lightgray;
   margin-top: -9px;
 }
-.short-list--more-elements-text {
+.top-bar-dropdown-list--more-elements-text {
   background: #fff;
   padding: 0 10px;
   font-weight: 600;
   font-size: 12px;
   color: gray;
 }
-.short-list--footer{
+.top-bar-dropdown-list--footer{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -119,97 +119,97 @@
   padding: 35px 0 23px 0;
   margin-top: 3px;
 }
-.short-list--more-btn {
+.top-bar-dropdown-list--more-btn {
   margin: auto;
   background: var(--concrete);
   color: var(--petrolium);
 }
-.short-list--merge-modal .work-list {
+.top-bar-dropdown-list--merge-modal .work-list {
   margin-top: 20px;
 }
-.short-list--merge-modal .work-item-small {
+.top-bar-dropdown-list--merge-modal .work-item-small {
   padding-bottom: 10px;
   padding-top: 10px;
   border-top: 1px solid var(--lightgrey);
 }
-.short-list--merge-modal .more-btn {
+.top-bar-dropdown-list--merge-modal .more-btn {
   margin-top: 30px;
 }
-.short-list-page .items {
+.top-bar-dropdown-list-page .items {
   margin-top: 40px;
 }
-.short-list-page .items .item {
+.top-bar-dropdown-list-page .items .item {
   border-bottom: 1px solid lightgray;
   padding: 10px;
   overflow: hidden;
 }
-.short-list-page .items .item:first-child {
+.top-bar-dropdown-list-page .items .item:first-child {
   border-top: 1px solid lightgray;
 }
-.short-list-page .remove-btn {
+.top-bar-dropdown-list-page .remove-btn {
   position: absolute;
   right: 0px;
   /*top: 10px;*/
   cursor: pointer;
   width: 10px;
 }
-.short-list-page .book-cover {
+.top-bar-dropdown-list-page .book-cover {
   height: 60px;
   float: left;
 }
-.short-list-page .item {
+.top-bar-dropdown-list-page .item {
   font-family: var(--secondary-font);
 }
-.short-list-page .title {
+.top-bar-dropdown-list-page .title {
   font-family: var(--primary-font);
   font-style: italic;
   font-weight: bold;
 }
-.short-list-page .creator {
+.top-bar-dropdown-list-page .creator {
   font-family: var(--primary-font);
   color: grey;
 }
-.short-list-page textarea {
+.top-bar-dropdown-list-page textarea {
   resize: none;
   width: 200px;
   margin-top: 10px;
 }
-.short-list-page .item form {
+.top-bar-dropdown-list-page .item form {
   width: 200px;
   margin-top: 10px;
 }
-.short-list-page textarea {
+.top-bar-dropdown-list-page textarea {
   resize: none;
 }
-.short-list-page .glyphicon {
+.top-bar-dropdown-list-page .glyphicon {
   font-size: 11px;
 }
-.short-list-page .add-to-list > span,
-.short-list-page .order-book > span {
+.top-bar-dropdown-list-page .add-to-list > span,
+.top-bar-dropdown-list-page .order-book > span {
   cursor: pointer;
 }
-.short-list-page .empty-list-text {
+.top-bar-dropdown-list-page .empty-list-text {
   font-family: var(--secondary-font);
   font-size: 24px;
   margin-top: 200px;
 }
 
-.shortlist-enter {
+.dropdownlist-enter {
   opacity: 0;
   max-height: 0px;
 }
 
-.shortlist-enter.shortlist-enter-active {
+.dropdownlist-enter.dropdownlist-enter-active {
   opacity: 1;
   transition: all 0.2s;
   max-height: 200px;
 }
-.shortlist-leave {
+.dropdownlist-leave {
   opacity: 1;
   max-height: 200px;
 }
-.shortlist-leave.shortlist-leave-active,
-.shortlist-leave.shortlist-leave-active * {
+.dropdownlist-leave.dropdownlist-leave-active,
+.dropdownlist-leave.dropdownlist-leave-active * {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-top: 0 !important;
@@ -217,21 +217,21 @@
   border: 0;
   overflow: hidden;
 }
-.shortlist-leave.shortlist-leave-active {
+.dropdownlist-leave.dropdownlist-leave-active {
   opacity: 0;
   max-height: 0px;
   transition: all 0.2s;
 }
-/* scrollbar in shortlist*/
-.short-list--elements::-webkit-scrollbar {
+/* scrollbar in dropdownlist*/
+.top-bar-dropdown-list--elements::-webkit-scrollbar {
     width: 8px;
 }
-.short-list--elements::-webkit-scrollbar-track {
+.top-bar-dropdown-list--elements::-webkit-scrollbar-track {
   background: var(--concrete);
 }
- .short-list--elements::-webkit-scrollbar-thumb {
+ .top-bar-dropdown-list--elements::-webkit-scrollbar-thumb {
   background: var(--porcelain);
 }
-.short-list--elements::-webkit-scrollbar-thumb:hover {
+.top-bar-dropdown-list--elements::-webkit-scrollbar-thumb:hover {
   background: var(--alto); 
 }

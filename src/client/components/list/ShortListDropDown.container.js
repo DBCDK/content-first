@@ -6,7 +6,7 @@ import Kryds from '../svg/KrydsGrey.svg';
 import Button from '../base/Button/Button';
 import Heading from '../base/Heading/Heading';
 import Link from '../general/Link.component';
-import './shortList.css';
+import './dropdownList.css';
 import {
   ON_SHORTLIST_EXPAND,
   ON_SHORTLIST_COLLAPSE,
@@ -20,26 +20,26 @@ const ShortListElement = props => {
   const url = `/værk/${props.element.book.pid}`;
 
   return (
-    <div className="short-list-element">
-      <div className="short-list-element--cover-image">
+    <div className="top-bar-dropdown-list-element">
+      <div className="top-bar-dropdown-list-element--cover-image">
         <Link href={url}>
           <BookCover book={props.element.book} />
         </Link>
       </div>
-      <div className="short-list-element--text">
-        <div className="short-list-element--header">
+      <div className="top-bar-dropdown-list-element--text">
+        <div className="top-bar-dropdown-list-element--header">
           <Link href={url}>{props.element.book.title}</Link>
         </div>
-        <div className="short-list-element--taxonomy-description">
+        <div className="top-bar-dropdown-list-element--taxonomy-description">
           {props.element.book.taxonomy_description}
         </div>
-        <div className="short-list-element--origin">{props.element.origin}</div>
+        <div className="top-bar-dropdown-list-element--origin">{props.element.origin}</div>
       </div>
       {
         <img
           src={Kryds}
           alt="luk"
-          className="short-list-element--close-btn"
+          className="top-bar-dropdown-list-element--close-btn"
           onClick={props.onClose}
         />
       }
@@ -50,7 +50,7 @@ const ShortListElement = props => {
 const ShortListContent = props => {
   return (
     <div
-      className={`short-list--content text-left${
+      className={`top-bar-dropdown-list--content text-left${
         props.expanded ? '' : ' slide-out'
       }`}
     >
@@ -60,7 +60,7 @@ const ShortListContent = props => {
 
       <div
         className={
-          'short-list--empty-text text-center ' +
+          'top-bar-dropdown-list--empty-text text-center ' +
           (props.elements.length === 0 ? '' : 'hidden')
         }
       >
@@ -68,7 +68,7 @@ const ShortListContent = props => {
       </div>
       {props.children &&
         props.children.length > 0 && (
-          <div className="short-list--elements">
+          <div className="top-bar-dropdown-list--elements">
             <ReactCSSTransitionGroup
               transitionName="shortlist"
               transitionEnterTimeout={200}
@@ -78,7 +78,7 @@ const ShortListContent = props => {
             </ReactCSSTransitionGroup>
           </div>
         )}
-      <div className="short-list--footer">
+      <div className="top-bar-dropdown-list--footer">
         <div onClick={props.onViewShortList}>
           <Button size="medium" type="tertiary">
             Gå til huskeliste
@@ -102,16 +102,17 @@ class ShortListDropdown extends React.Component {
     return (
       <React.Fragment>
         <div
-          className={this.props.className + ' short-list'}
+          className={this.props.className + ' top-bar-dropdown-list'}
           onClick={() => {
             this.props.dispatch({
               type: expanded ? ON_SHORTLIST_COLLAPSE : ON_SHORTLIST_EXPAND
             });
-            if (this.props.listsOverviewExpanded) {// collapse listOverview if expanded
+            if (this.props.listsOverviewExpanded) {
+              // collapse listOverview if expanded
               this.props.dispatch({
-                  type: ON_USERLISTS_COLLAPSE
+                type: ON_USERLISTS_COLLAPSE
               });
-          }
+            }
           }}
         >
           {this.props.children}

@@ -9,7 +9,6 @@ const defaultState = {
   changeMap: {},
   latestUsedId: false,
   expanded: false
-
 };
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
@@ -314,9 +313,9 @@ const listReducer = (state = defaultState, action) => {
       });
     }
     case ON_USERLISTS_EXPAND:
-    return Object.assign({}, state, {expanded: true});
+      return Object.assign({}, state, {expanded: true});
     case ON_USERLISTS_COLLAPSE:
-    return Object.assign({}, state, {expanded: false});
+      return Object.assign({}, state, {expanded: false});
 
     default:
       return state;

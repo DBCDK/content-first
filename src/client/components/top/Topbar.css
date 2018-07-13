@@ -61,7 +61,7 @@
   position: relative;
   z-index: 3;
 }
-.Topbar__shortlist_expanded{
+.Topbar__dropdown_expanded{
 background: var(--elm);
 color: white;
 }
@@ -75,7 +75,7 @@ color: white;
   color: var(--petrolium);
   pointer-events: none;
 }
-.Topbar__shortlist_expanded{
+.Topbar__dropdown_expanded{
   background: var(--grey-nurse);
 }
 

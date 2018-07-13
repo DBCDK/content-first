@@ -107,11 +107,11 @@ class ShortList extends React.Component {
   render() {
     const {elements} = this.props.shortListState;
     return (
-      <div className="short-list-page col-xs-11 col-centered">
+      <div className="top-bar-dropdown-list-page col-xs-11 col-centered">
         <div className="page-header-1">Huskeliste</div>
         <div className="items mb2">
           <ReactCSSTransitionGroup
-            transitionName="shortlist"
+            transitionName="dropdownlist"
             transitionEnterTimeout={200}
             transitionLeaveTimeout={200}
           >

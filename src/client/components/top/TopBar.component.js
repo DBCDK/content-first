@@ -89,7 +89,7 @@ export class TopBar extends React.Component {
       <ShortListDropDown
         className={
           'Topbar__navigation__btn ' +
-          (expanded ? 'Topbar__shortlist_expanded' : '')
+          (expanded ? 'Topbar__dropdown_expanded' : '')
         }
       >
         <Icon name="bookmark_border" />
@@ -106,7 +106,7 @@ export class TopBar extends React.Component {
       <ListOverviewDropDown
         className={
           'Topbar__navigation__btn ' +
-          (expanded ? 'Topbar__shortlist_expanded' : '')
+          (expanded ? 'Topbar__dropdown_expanded' : '')
         }
       >
         <Icon name="list" />
@@ -142,7 +142,7 @@ export class TopBar extends React.Component {
           )}
 
           {this.props.user.isLoggedIn && [
-          userLists,
+            userLists,
             <span
               className="Topbar__navigation__btn abort-closeDopdown hide-on-s-and-down"
               onClick={() => this.toggleDropdown()}
