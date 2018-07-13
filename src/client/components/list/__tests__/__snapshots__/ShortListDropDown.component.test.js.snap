@@ -3,7 +3,7 @@
 exports[`ShortListDropDown modal is visible when merge is required 1`] = `
 Array [
   <div
-    className="undefined short-list"
+    className="undefined top-bar-dropdown-list"
     onClick={[Function]}
 >
     <span
@@ -13,7 +13,7 @@ Array [
     </span>
 </div>,
   <div
-    className="short-list--content text-left slide-out"
+    className="top-bar-dropdown-list--content text-left slide-out"
 >
     <h1
         className=" Heading Heading__peach-subtitle"
@@ -23,17 +23,17 @@ Array [
         )
     </h1>
     <div
-        className="short-list--empty-text text-center hidden"
+        className="top-bar-dropdown-list--empty-text text-center hidden"
     />
     <div
-        className="short-list--elements"
+        className="top-bar-dropdown-list--elements"
     >
         <span>
             <div
-                className="short-list-element"
+                className="top-bar-dropdown-list-element"
             >
                 <div
-                    className="short-list-element--cover-image"
+                    className="top-bar-dropdown-list-element--cover-image"
                 >
                     <a
                         className="list-card-nohover"
@@ -52,10 +52,10 @@ Array [
                     </a>
                 </div>
                 <div
-                    className="short-list-element--text"
+                    className="top-bar-dropdown-list-element--text"
                 >
                     <div
-                        className="short-list-element--header"
+                        className="top-bar-dropdown-list-element--header"
                     >
                         <a
                             className="list-card-nohover"
@@ -66,28 +66,28 @@ Array [
                         </a>
                     </div>
                     <div
-                        className="short-list-element--taxonomy-description"
+                        className="top-bar-dropdown-list-element--taxonomy-description"
                     >
                         some description1
                     </div>
                     <div
-                        className="short-list-element--origin"
+                        className="top-bar-dropdown-list-element--origin"
                     >
                         Minder om noget1
                     </div>
                 </div>
                 <img
                     alt="luk"
-                    className="short-list-element--close-btn"
+                    className="top-bar-dropdown-list-element--close-btn"
                     onClick={[Function]}
                     src="KrydsGrey.svg"
                 />
             </div>
             <div
-                className="short-list-element"
+                className="top-bar-dropdown-list-element"
             >
                 <div
-                    className="short-list-element--cover-image"
+                    className="top-bar-dropdown-list-element--cover-image"
                 >
                     <a
                         className="list-card-nohover"
@@ -106,10 +106,10 @@ Array [
                     </a>
                 </div>
                 <div
-                    className="short-list-element--text"
+                    className="top-bar-dropdown-list-element--text"
                 >
                     <div
-                        className="short-list-element--header"
+                        className="top-bar-dropdown-list-element--header"
                     >
                         <a
                             className="list-card-nohover"
@@ -120,19 +120,19 @@ Array [
                         </a>
                     </div>
                     <div
-                        className="short-list-element--taxonomy-description"
+                        className="top-bar-dropdown-list-element--taxonomy-description"
                     >
                         some description2
                     </div>
                     <div
-                        className="short-list-element--origin"
+                        className="top-bar-dropdown-list-element--origin"
                     >
                         Minder om noget2
                     </div>
                 </div>
                 <img
                     alt="luk"
-                    className="short-list-element--close-btn"
+                    className="top-bar-dropdown-list-element--close-btn"
                     onClick={[Function]}
                     src="KrydsGrey.svg"
                 />
@@ -140,7 +140,7 @@ Array [
         </span>
     </div>
     <div
-        className="short-list--footer"
+        className="top-bar-dropdown-list--footer"
     >
         <div
             onClick={[Function]}
@@ -168,7 +168,7 @@ Array [
 exports[`ShortListDropDown short list contains more than 3 elements, elements are added to top of list 1`] = `
 Array [
   <div
-    className="undefined short-list"
+    className="undefined top-bar-dropdown-list"
     onClick={[Function]}
 >
     <span
@@ -178,7 +178,7 @@ Array [
     </span>
 </div>,
   <div
-    className="short-list--content text-left slide-out"
+    className="top-bar-dropdown-list--content text-left slide-out"
 >
     <h1
         className=" Heading Heading__peach-subtitle"
@@ -188,17 +188,17 @@ Array [
         )
     </h1>
     <div
-        className="short-list--empty-text text-center hidden"
+        className="top-bar-dropdown-list--empty-text text-center hidden"
     />
     <div
-        className="short-list--elements"
+        className="top-bar-dropdown-list--elements"
     >
         <span>
             <div
-                className="short-list-element"
+                className="top-bar-dropdown-list-element"
             >
                 <div
-                    className="short-list-element--cover-image"
+                    className="top-bar-dropdown-list-element--cover-image"
                 >
                     <a
                         className="list-card-nohover"
@@ -217,10 +217,10 @@ Array [
                     </a>
                 </div>
                 <div
-                    className="short-list-element--text"
+                    className="top-bar-dropdown-list-element--text"
                 >
                     <div
-                        className="short-list-element--header"
+                        className="top-bar-dropdown-list-element--header"
                     >
                         <a
                             className="list-card-nohover"
@@ -231,28 +231,28 @@ Array [
                         </a>
                     </div>
                     <div
-                        className="short-list-element--taxonomy-description"
+                        className="top-bar-dropdown-list-element--taxonomy-description"
                     >
                         some description4
                     </div>
                     <div
-                        className="short-list-element--origin"
+                        className="top-bar-dropdown-list-element--origin"
                     >
                         Minder om noget4
                     </div>
                 </div>
                 <img
                     alt="luk"
-                    className="short-list-element--close-btn"
+                    className="top-bar-dropdown-list-element--close-btn"
                     onClick={[Function]}
                     src="KrydsGrey.svg"
                 />
             </div>
             <div
-                className="short-list-element"
+                className="top-bar-dropdown-list-element"
             >
                 <div
-                    className="short-list-element--cover-image"
+                    className="top-bar-dropdown-list-element--cover-image"
                 >
                     <a
                         className="list-card-nohover"
@@ -271,10 +271,10 @@ Array [
                     </a>
                 </div>
                 <div
-                    className="short-list-element--text"
+                    className="top-bar-dropdown-list-element--text"
                 >
                     <div
-                        className="short-list-element--header"
+                        className="top-bar-dropdown-list-element--header"
                     >
                         <a
                             className="list-card-nohover"
@@ -285,28 +285,28 @@ Array [
                         </a>
                     </div>
                     <div
-                        className="short-list-element--taxonomy-description"
+                        className="top-bar-dropdown-list-element--taxonomy-description"
                     >
                         some description3
                     </div>
                     <div
-                        className="short-list-element--origin"
+                        className="top-bar-dropdown-list-element--origin"
                     >
                         Minder om noget3
                     </div>
                 </div>
                 <img
                     alt="luk"
-                    className="short-list-element--close-btn"
+                    className="top-bar-dropdown-list-element--close-btn"
                     onClick={[Function]}
                     src="KrydsGrey.svg"
                 />
             </div>
             <div
-                className="short-list-element"
+                className="top-bar-dropdown-list-element"
             >
                 <div
-                    className="short-list-element--cover-image"
+                    className="top-bar-dropdown-list-element--cover-image"
                 >
                     <a
                         className="list-card-nohover"
@@ -325,10 +325,10 @@ Array [
                     </a>
                 </div>
                 <div
-                    className="short-list-element--text"
+                    className="top-bar-dropdown-list-element--text"
                 >
                     <div
-                        className="short-list-element--header"
+                        className="top-bar-dropdown-list-element--header"
                     >
                         <a
                             className="list-card-nohover"
@@ -339,28 +339,28 @@ Array [
                         </a>
                     </div>
                     <div
-                        className="short-list-element--taxonomy-description"
+                        className="top-bar-dropdown-list-element--taxonomy-description"
                     >
                         some description2
                     </div>
                     <div
-                        className="short-list-element--origin"
+                        className="top-bar-dropdown-list-element--origin"
                     >
                         Minder om noget2
                     </div>
                 </div>
                 <img
                     alt="luk"
-                    className="short-list-element--close-btn"
+                    className="top-bar-dropdown-list-element--close-btn"
                     onClick={[Function]}
                     src="KrydsGrey.svg"
                 />
             </div>
             <div
-                className="short-list-element"
+                className="top-bar-dropdown-list-element"
             >
                 <div
-                    className="short-list-element--cover-image"
+                    className="top-bar-dropdown-list-element--cover-image"
                 >
                     <a
                         className="list-card-nohover"
@@ -379,10 +379,10 @@ Array [
                     </a>
                 </div>
                 <div
-                    className="short-list-element--text"
+                    className="top-bar-dropdown-list-element--text"
                 >
                     <div
-                        className="short-list-element--header"
+                        className="top-bar-dropdown-list-element--header"
                     >
                         <a
                             className="list-card-nohover"
@@ -393,19 +393,19 @@ Array [
                         </a>
                     </div>
                     <div
-                        className="short-list-element--taxonomy-description"
+                        className="top-bar-dropdown-list-element--taxonomy-description"
                     >
                         some description1
                     </div>
                     <div
-                        className="short-list-element--origin"
+                        className="top-bar-dropdown-list-element--origin"
                     >
                         Minder om noget1
                     </div>
                 </div>
                 <img
                     alt="luk"
-                    className="short-list-element--close-btn"
+                    className="top-bar-dropdown-list-element--close-btn"
                     onClick={[Function]}
                     src="KrydsGrey.svg"
                 />
@@ -413,7 +413,7 @@ Array [
         </span>
     </div>
     <div
-        className="short-list--footer"
+        className="top-bar-dropdown-list--footer"
     >
         <div
             onClick={[Function]}
@@ -441,7 +441,7 @@ Array [
 exports[`ShortListDropDown short list contains single element 1`] = `
 Array [
   <div
-    className="undefined short-list"
+    className="undefined top-bar-dropdown-list"
     onClick={[Function]}
 >
     <span
@@ -451,7 +451,7 @@ Array [
     </span>
 </div>,
   <div
-    className="short-list--content text-left slide-out"
+    className="top-bar-dropdown-list--content text-left slide-out"
 >
     <h1
         className=" Heading Heading__peach-subtitle"
@@ -461,17 +461,17 @@ Array [
         )
     </h1>
     <div
-        className="short-list--empty-text text-center hidden"
+        className="top-bar-dropdown-list--empty-text text-center hidden"
     />
     <div
-        className="short-list--elements"
+        className="top-bar-dropdown-list--elements"
     >
         <span>
             <div
-                className="short-list-element"
+                className="top-bar-dropdown-list-element"
             >
                 <div
-                    className="short-list-element--cover-image"
+                    className="top-bar-dropdown-list-element--cover-image"
                 >
                     <a
                         className="list-card-nohover"
@@ -490,10 +490,10 @@ Array [
                     </a>
                 </div>
                 <div
-                    className="short-list-element--text"
+                    className="top-bar-dropdown-list-element--text"
                 >
                     <div
-                        className="short-list-element--header"
+                        className="top-bar-dropdown-list-element--header"
                     >
                         <a
                             className="list-card-nohover"
@@ -504,19 +504,19 @@ Array [
                         </a>
                     </div>
                     <div
-                        className="short-list-element--taxonomy-description"
+                        className="top-bar-dropdown-list-element--taxonomy-description"
                     >
                         some description1
                     </div>
                     <div
-                        className="short-list-element--origin"
+                        className="top-bar-dropdown-list-element--origin"
                     >
                         Minder om noget1
                     </div>
                 </div>
                 <img
                     alt="luk"
-                    className="short-list-element--close-btn"
+                    className="top-bar-dropdown-list-element--close-btn"
                     onClick={[Function]}
                     src="KrydsGrey.svg"
                 />
@@ -524,7 +524,7 @@ Array [
         </span>
     </div>
     <div
-        className="short-list--footer"
+        className="top-bar-dropdown-list--footer"
     >
         <div
             onClick={[Function]}
@@ -552,7 +552,7 @@ Array [
 exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
 Array [
   <div
-    className="undefined short-list"
+    className="undefined top-bar-dropdown-list"
     onClick={[Function]}
 >
     <span
@@ -562,7 +562,7 @@ Array [
     </span>
 </div>,
   <div
-    className="short-list--content text-left slide-out"
+    className="top-bar-dropdown-list--content text-left slide-out"
 >
     <h1
         className=" Heading Heading__peach-subtitle"
@@ -572,12 +572,12 @@ Array [
         )
     </h1>
     <div
-        className="short-list--empty-text text-center "
+        className="top-bar-dropdown-list--empty-text text-center "
     >
         Din huskeliste er tom
     </div>
     <div
-        className="short-list--footer"
+        className="top-bar-dropdown-list--footer"
     >
         <div
             onClick={[Function]}

@@ -26,7 +26,6 @@ const followReducer = (state = defaultState, action) => {
       let obj = state;
       obj[action.id] = action;
       obj[action.id].type = 'follows';
-      obj[action.id]._created = Math.round(new Date().getTime() / 1000);
       return Object.assign({}, state, obj);
     }
 
@@ -46,11 +45,12 @@ const followReducer = (state = defaultState, action) => {
 };
 
 // ACTION CREATORS
-export const follow = (id, cat) => {
+export const follow = (id, cat, _created = Math.round(new Date().getTime() / 1000)) => {
   return {
     type: FOLLOW,
     id,
-    cat
+    cat,
+    _created
   };
 };
 export const unfollow = id => {

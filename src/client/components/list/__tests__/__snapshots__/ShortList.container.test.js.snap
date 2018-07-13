@@ -31,7 +31,7 @@ exports[`ShortList.container Clearing list 1`] = `
       }
     >
       <div
-        className="short-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-xs-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -47,7 +47,7 @@ exports[`ShortList.container Clearing list 1`] = `
             transitionEnterTimeout={200}
             transitionLeave={true}
             transitionLeaveTimeout={200}
-            transitionName="shortlist"
+            transitionName="dropdownlist"
           >
             <TransitionGroup
               childFactory={[Function]}
@@ -57,7 +57,7 @@ exports[`ShortList.container Clearing list 1`] = `
               transitionEnterTimeout={200}
               transitionLeave={true}
               transitionLeaveTimeout={200}
-              transitionName="shortlist"
+              transitionName="dropdownlist"
             >
               <span>
                 <CSSTransitionGroupChild
@@ -67,7 +67,7 @@ exports[`ShortList.container Clearing list 1`] = `
                   key=".$pid2"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -279,7 +279,7 @@ exports[`ShortList.container Clearing list 1`] = `
                   key=".$pid1"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -552,7 +552,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
       }
     >
       <div
-        className="short-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-xs-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -568,7 +568,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
             transitionEnterTimeout={200}
             transitionLeave={true}
             transitionLeaveTimeout={200}
-            transitionName="shortlist"
+            transitionName="dropdownlist"
           >
             <TransitionGroup
               childFactory={[Function]}
@@ -578,7 +578,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
               transitionEnterTimeout={200}
               transitionLeave={true}
               transitionLeaveTimeout={200}
-              transitionName="shortlist"
+              transitionName="dropdownlist"
             >
               <span>
                 <CSSTransitionGroupChild
@@ -588,7 +588,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                   key=".$pid1"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -885,7 +885,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
       }
     >
       <div
-        className="short-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-xs-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -901,7 +901,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
             transitionEnterTimeout={200}
             transitionLeave={true}
             transitionLeaveTimeout={200}
-            transitionName="shortlist"
+            transitionName="dropdownlist"
           >
             <TransitionGroup
               childFactory={[Function]}
@@ -911,7 +911,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
               transitionEnterTimeout={200}
               transitionLeave={true}
               transitionLeaveTimeout={200}
-              transitionName="shortlist"
+              transitionName="dropdownlist"
             >
               <span>
                 <CSSTransitionGroupChild
@@ -921,7 +921,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                   key=".$pid1"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -1218,7 +1218,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
       }
     >
       <div
-        className="short-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-xs-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -1234,7 +1234,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
             transitionEnterTimeout={200}
             transitionLeave={true}
             transitionLeaveTimeout={200}
-            transitionName="shortlist"
+            transitionName="dropdownlist"
           >
             <TransitionGroup
               childFactory={[Function]}
@@ -1244,7 +1244,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
               transitionEnterTimeout={200}
               transitionLeave={true}
               transitionLeaveTimeout={200}
-              transitionName="shortlist"
+              transitionName="dropdownlist"
             >
               <span>
                 <CSSTransitionGroupChild
@@ -1254,7 +1254,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                   key=".$pid1"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -1551,7 +1551,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
       }
     >
       <div
-        className="short-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-xs-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -1567,7 +1567,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
             transitionEnterTimeout={200}
             transitionLeave={true}
             transitionLeaveTimeout={200}
-            transitionName="shortlist"
+            transitionName="dropdownlist"
           >
             <TransitionGroup
               childFactory={[Function]}
@@ -1577,7 +1577,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
               transitionEnterTimeout={200}
               transitionLeave={true}
               transitionLeaveTimeout={200}
-              transitionName="shortlist"
+              transitionName="dropdownlist"
             >
               <span>
                 <CSSTransitionGroupChild
@@ -1587,7 +1587,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                   key=".$pid1"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -1917,7 +1917,7 @@ exports[`ShortList.container remove element 1`] = `
       }
     >
       <div
-        className="short-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-xs-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -1933,7 +1933,7 @@ exports[`ShortList.container remove element 1`] = `
             transitionEnterTimeout={200}
             transitionLeave={true}
             transitionLeaveTimeout={200}
-            transitionName="shortlist"
+            transitionName="dropdownlist"
           >
             <TransitionGroup
               childFactory={[Function]}
@@ -1943,7 +1943,7 @@ exports[`ShortList.container remove element 1`] = `
               transitionEnterTimeout={200}
               transitionLeave={true}
               transitionLeaveTimeout={200}
-              transitionName="shortlist"
+              transitionName="dropdownlist"
             >
               <span>
                 <CSSTransitionGroupChild
@@ -1953,7 +1953,7 @@ exports[`ShortList.container remove element 1`] = `
                   key=".$pid3"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -2165,7 +2165,7 @@ exports[`ShortList.container remove element 1`] = `
                   key=".$pid2"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -2377,7 +2377,7 @@ exports[`ShortList.container remove element 1`] = `
                   key=".$pid1"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -2710,7 +2710,7 @@ exports[`ShortList.container short list contains elements 1`] = `
       }
     >
       <div
-        className="short-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-xs-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -2726,7 +2726,7 @@ exports[`ShortList.container short list contains elements 1`] = `
             transitionEnterTimeout={200}
             transitionLeave={true}
             transitionLeaveTimeout={200}
-            transitionName="shortlist"
+            transitionName="dropdownlist"
           >
             <TransitionGroup
               childFactory={[Function]}
@@ -2736,7 +2736,7 @@ exports[`ShortList.container short list contains elements 1`] = `
               transitionEnterTimeout={200}
               transitionLeave={true}
               transitionLeaveTimeout={200}
-              transitionName="shortlist"
+              transitionName="dropdownlist"
             >
               <span>
                 <CSSTransitionGroupChild
@@ -2746,7 +2746,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                   key=".$pid3"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -2958,7 +2958,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                   key=".$pid2"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -3170,7 +3170,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                   key=".$pid1"
                   leave={true}
                   leaveTimeout={200}
-                  name="shortlist"
+                  name="dropdownlist"
                 >
                   <ShortListItem
                     element={
@@ -3445,7 +3445,7 @@ exports[`ShortList.container short list is empty 1`] = `
       }
     >
       <div
-        className="short-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-xs-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -3461,7 +3461,7 @@ exports[`ShortList.container short list is empty 1`] = `
             transitionEnterTimeout={200}
             transitionLeave={true}
             transitionLeaveTimeout={200}
-            transitionName="shortlist"
+            transitionName="dropdownlist"
           >
             <TransitionGroup
               childFactory={[Function]}
@@ -3471,7 +3471,7 @@ exports[`ShortList.container short list is empty 1`] = `
               transitionEnterTimeout={200}
               transitionLeave={true}
               transitionLeaveTimeout={200}
-              transitionName="shortlist"
+              transitionName="dropdownlist"
             >
               <span />
             </TransitionGroup>

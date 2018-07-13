@@ -3,6 +3,7 @@
 exports[`followReducer follow a list 1`] = `
 Object {
   "some-id-1": Object {
+    "_created": 0,
     "cat": "list",
     "id": "some-id-1",
     "type": "follows",
@@ -13,11 +14,13 @@ Object {
 exports[`followReducer unfollow a list 1`] = `
 Object {
   "some-id-1": Object {
+    "_created": 0,
     "cat": "list",
     "id": "some-id-1",
     "type": "follows",
   },
   "some-id-2": Object {
+    "_created": 0,
     "cat": "list",
     "id": "some-id-2",
     "type": "follows",
@@ -28,6 +31,7 @@ Object {
 exports[`followReducer unfollow a list 2`] = `
 Object {
   "some-id-2": Object {
+    "_created": 0,
     "cat": "list",
     "id": "some-id-2",
     "type": "follows",
