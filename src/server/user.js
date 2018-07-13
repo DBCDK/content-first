@@ -22,8 +22,21 @@ module.exports = {
   putUserData,
   getUserData,
   getUser: objectStore.getUser,
-  removingLoginToken
+  removingLoginToken,
+  deleteUser
 };
+
+async function deleteUser(openplatformId) {
+  await knex(constants.objects.table)
+    .where('owner', openplatformId)
+    .del();
+  await knex(constants.cookies.table)
+    .where('openplatform_id', openplatformId)
+    .del();
+  await knex(constants.covers.table)
+    .where('owner', openplatformId)
+    .del();
+}
 
 function throwUnlessOpenplatformId({openplatformId, reqUser, req}) {
   if (!openplatformId) {
