@@ -45,7 +45,11 @@ const followReducer = (state = defaultState, action) => {
 };
 
 // ACTION CREATORS
-export const follow = (id, cat, _created = Math.round(new Date().getTime() / 1000)) => {
+export const follow = (
+  id,
+  cat,
+  _created = Math.round(new Date().getTime() / 1000)
+) => {
   return {
     type: FOLLOW,
     id,
