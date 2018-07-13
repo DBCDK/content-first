@@ -92,11 +92,11 @@ export class TopBar extends React.Component {
           (expanded ? 'Topbar__shortlist_expanded' : '')
         }
       >
-        <Icon name="bookmark_border" />     
+        <Icon name="bookmark_border" />
       </ShortListDropDown>
     );
   }
-  renderListsOverviewDropdown(){
+  renderListsOverviewDropdown() {
     const {expanded} = this.props.listsState;
     return isMobile ? (
       <Link href="/profile" className="Topbar__navigation__btn">

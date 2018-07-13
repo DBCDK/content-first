@@ -12,9 +12,7 @@ import {
   ON_SHORTLIST_COLLAPSE,
   ON_SHORTLIST_REMOVE_ELEMENT
 } from '../../redux/shortlist.reducer';
-import {
-  ON_USERLISTS_COLLAPSE,
-} from '../../redux/list.reducer';
+import {ON_USERLISTS_COLLAPSE} from '../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
 import {ORDER} from '../../redux/order.reducer';
 
@@ -109,12 +107,11 @@ class ShortListDropdown extends React.Component {
             this.props.dispatch({
               type: expanded ? ON_SHORTLIST_COLLAPSE : ON_SHORTLIST_EXPAND
             });
-            if (this.props.listsOverviewExpanded) {//collapse listOverview if expanded
+            if (this.props.listsOverviewExpanded) {// collapse listOverview if expanded
               this.props.dispatch({
                   type: ON_USERLISTS_COLLAPSE
               });
           }
-          
           }}
         >
           {this.props.children}
@@ -159,8 +156,7 @@ export default connect(
   state => {
     return {
       shortListState: state.shortListReducer,
-      listsOverviewExpanded: state.listReducer.expanded,
-
+      listsOverviewExpanded: state.listReducer.expanded
     };
   }
 )(ShortListDropdown);
