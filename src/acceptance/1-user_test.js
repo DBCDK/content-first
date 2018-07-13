@@ -307,4 +307,47 @@ describe('User data', () => {
       });
     });
   });
+  describe('DELETE /v1/user', () => {
+    const existingUserUri = `/v1/user/${encodeURIComponent(
+      '123openplatformId456'
+    )}`;
+    it('should fail with wrong user', async () => {
+      const result = await webapp
+        .delete(existingUserUri)
+        .set(
+          'cookie',
+          'login-token=valid-login-token-for-user2-seeded-on-test-start'
+        );
+      expect(result.status).to.equal(403);
+      expect(result.body).to.deep.equal({
+        errors: [
+          {
+            status: 403,
+            code: '403',
+            title: 'Forbidden',
+            detail: 'Not allowed to try to delete that user'
+          }
+        ]
+      });
+
+      const userData = await webapp.get(existingUserUri);
+      expect(userData.status).to.equal(200);
+    });
+    it('should delete user', async () => {
+      const result = await webapp
+        .delete(existingUserUri)
+        .set(
+          'cookie',
+          'login-token=valid-login-token-for-user-seeded-on-test-start'
+        );
+      expect(result.status).to.equal(200);
+      expect(result.body).to.deep.equal({
+        data: {success: true},
+        links: {self: existingUserUri}
+      });
+
+      const userData = await webapp.get(existingUserUri);
+      expect(userData.status).to.equal(404);
+    });
+  });
 });

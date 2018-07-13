@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const {getUserData, putUserData} = require('server/user');
+const {getUser, deleteUser, getUserData, putUserData} = require('server/user');
 const objectStore = require('server/objectStore');
 const _ = require('lodash');
 
@@ -82,6 +82,25 @@ router
       } catch (error) {
         return next(error);
       }
+    })
+  )
+  .delete(
+    asyncMiddleware(async (req, res, next) => {
+      const openplatformId = req.params.id;
+      const user = await getUser(req);
+      const location = `/v1/user/${encodeURIComponent(openplatformId)}`;
+      if (!openplatformId || !user || user.openplatformId !== openplatformId) {
+        return next({
+          status: 403,
+          title: 'Forbidden',
+          detail: 'Not allowed to try to delete that user'
+        });
+      }
+      await deleteUser(openplatformId);
+      res.status(200).json({
+        data: {success: true},
+        links: {self: location}
+      });
     })
   );
 
