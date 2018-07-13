@@ -5,9 +5,9 @@ const express = require('express');
 const request = require('superagent');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const community = require('server/community');
 const config = require('./config');
 const template = require('./meta-response-template');
+const objectStore = require('./objectStore');
 
 const showTitles = 3;
 const hostUrl = 'http://' + config.server.hostname;
@@ -24,7 +24,10 @@ router
       }
 
       const listId = req.params.id;
-      const list = await community.getObjectById(listId, {});
+      const list = await objectStore.get(
+        listId,
+        (await objectStore.getUser(req)) || {}
+      );
       const host = req.get('host');
 
       if (list.data.description) {
