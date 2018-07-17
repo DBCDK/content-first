@@ -52,6 +52,9 @@
 .AddToListButton__Dropdown li:hover {
   background-color: var(--french-pass);
 }
+.AddToListButton__Dropdown li:active {
+  background-color: var(--due);
+}
 .AddToListButton__Dropdown li.divider {
   padding: 0;
   margin: 0;
