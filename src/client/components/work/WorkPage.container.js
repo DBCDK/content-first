@@ -51,14 +51,6 @@ class WorkPage extends React.Component {
     this.props.addBelt(belt);
   }
 
-  // scrollToPosition = (top, left = 0, behavior = 'smooth') => {
-  //   window.scroll({
-  //     top: top,
-  //     left: left,
-  //     behavior: behavior
-  //   });
-  // };
-
   render() {
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
@@ -155,7 +147,7 @@ class WorkPage extends React.Component {
                   size="medium"
                   type="quaternary"
                   label="Bog"
-                  icon="local_library"
+                  icon="book"
                   className="mr1 mt1"
                 />
               )}
@@ -184,7 +176,7 @@ class WorkPage extends React.Component {
                       size="medium"
                       className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'local_library'} />Bog
+                      <Icon name={'book'} />Bog
                     </Button>
                   </a>
                   <a>
@@ -400,7 +392,7 @@ class WorkPage extends React.Component {
                 {!work.collectionHasLoaded && (
                   <React.Fragment>
                     <span className="WorkPage__formats__skeleton Skeleton__Pulse">
-                      <Icon name={'local_library'} /> Bog
+                      <Icon name={'book'} /> Bog
                     </span>
                     <span className="WorkPage__formats__skeleton Skeleton__Pulse">
                       <Icon name={'alternate_email'} /> EBog
