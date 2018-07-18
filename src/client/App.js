@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './style/App.css';
 import './style/index.css';
+import './style/work.css';
 import './style/filterpage.css';
 import Modal from './components/modals/Modal.container';
 import FrontPage from './components/frontpage/FrontPage.container';

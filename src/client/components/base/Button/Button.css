@@ -42,9 +42,12 @@
   background-color: var(--korn);
 }
 
-.Button__quaternary:hover {
-  /* hovercolor ??? */
-  background-color: var(--korn);
+.Button__quinary {
+  background-color: var(--porcelain);
+}
+
+.Button__quinary:hover {
+  background-color: var(--french-pass);
 }
 
 .Button__term {

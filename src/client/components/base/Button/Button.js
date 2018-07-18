@@ -24,7 +24,13 @@ const Button = ({
 
 Button.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  type: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'quaternary'])
+  type: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'tertiary',
+    'quaternary',
+    'quinary'
+  ])
 };
 
 export default Button;
