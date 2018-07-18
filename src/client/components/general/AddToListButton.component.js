@@ -241,7 +241,7 @@ const mapStateToProps = state => {
       type: CUSTOM_LIST,
       owner: state.userReducer.openplatformId
     }).sort(function(a, b) {
-      if (!(b._modified && b._owner)) {
+      if (!b._modified) {
         return 1;
       }
       return b._modified - a._modified;
