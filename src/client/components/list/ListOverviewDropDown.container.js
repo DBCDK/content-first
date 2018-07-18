@@ -6,6 +6,8 @@ import Button from '../base/Button/Button';
 import Heading from '../base/Heading/Heading';
 import Link from '../general/Link.component';
 import './dropdownList.css';
+import toReadListIcon from '../images/toReadListIcon.png';
+import readListIcon from '../images/readListIcon.png';
 import {
   ON_USERLISTS_COLLAPSE,
   ON_USERLISTS_EXPAND
@@ -15,15 +17,19 @@ import {HISTORY_PUSH} from '../../redux/middleware';
 
 const ListElement = props => {
   const url = `/lister/${props.list.id}`;
-  const renderListsCover = (id, img, type) => {
-    return img ? (
-      type === 'SYSTEM_LIST' ? (
-        <img alt="" src={img} />
-      ) : (
-        <img alt="" src={'v1/image/' + img + '/50/50'} />
+  const renderListsCover = (list) => {
+    return list.type === 'SYSTEM_LIST' ?
+    (
+      <img alt="" src={list.title==='Vil læse'? toReadListIcon: readListIcon} />
+    ) :
+    (
+      list.image ?
+      (
+        <img alt="" src={'v1/image/' + list.image + '/50/50'} />
+      ):
+      (
+          <div style={{background: toColor(list.id), height: '40px', width: '40px'}} />
       )
-    ) : (
-      <div style={{background: toColor(id), height: '40px', width: '40px'}} />
     );
   };
   const isOwner = props.list && props.list._owner === props.userID;
@@ -31,7 +37,7 @@ const ListElement = props => {
     <div className="top-bar-dropdown-list-element">
       <div className="top-bar-dropdown-list-element--cover-image">
         <Link href={url}>
-          {renderListsCover(props.list.id, props.list.image, props.list.type)}
+          {renderListsCover(props.list)}
         </Link>
       </div>
       <div className="top-bar-dropdown-list-element--text">

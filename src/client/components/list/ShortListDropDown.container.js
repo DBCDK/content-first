@@ -56,11 +56,11 @@ const ShortListContent = props => {
         props.expanded ? '' : ' slide-out'
       }`}
     >
-    <Link href="/huskeliste">
-      <Heading type="peach-subtitle">
-        HUSKELISTE ({props.elements && props.elements.length})
-      </Heading>
-    </Link>
+      <Link href="/huskeliste">
+        <Heading type="peach-subtitle">
+          HUSKELISTE ({props.elements && props.elements.length})
+        </Heading>
+      </Link>
       <div
         className={
           'top-bar-dropdown-list--empty-text text-center ' +

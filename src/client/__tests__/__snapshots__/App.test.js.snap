@@ -59,13 +59,19 @@ exports[`renders without crashing 1`] = `
         <div
           className="top-bar-dropdown-list--content text-left slide-out"
         >
-          <h1
-            className=" Heading Heading__peach-subtitle"
+          <a
+            className="list-card-nohover"
+            href="/huskeliste"
+            onClick={[Function]}
           >
-            HUSKELISTE (
-            0
-            )
-          </h1>
+            <h1
+              className=" Heading Heading__peach-subtitle"
+            >
+              HUSKELISTE (
+              0
+              )
+            </h1>
+          </a>
           <div
             className="top-bar-dropdown-list--empty-text text-center "
           >
