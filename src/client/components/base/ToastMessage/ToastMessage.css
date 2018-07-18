@@ -1,3 +1,7 @@
+.Toastify__toast-container {
+  top: 90px;
+}
+
 .Toastify__toast {
   background-color: var(--lys-graa);
 }
