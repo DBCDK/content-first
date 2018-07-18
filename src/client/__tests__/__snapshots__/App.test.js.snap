@@ -1719,5 +1719,8 @@ exports[`renders without crashing 1`] = `
     </div>
   </div>
   <span />
+  <div
+    className="Toastify"
+  />
 </div>
 `;

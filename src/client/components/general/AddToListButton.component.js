@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {isMobile} from 'react-device-detect';
+import {toast} from 'react-toastify';
 import Icon from '../base/Icon';
+import ToastMessage from '../base/ToastMessage';
 import Button from '../base/Button';
-
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {
   CUSTOM_LIST,
@@ -14,6 +15,7 @@ import {
   toggleElementInList,
   storeList
 } from '../../redux/list.reducer';
+
 import './AddToListButton.css';
 
 export class AddToListButton extends React.Component {
@@ -97,6 +99,12 @@ export class AddToListButton extends React.Component {
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="true"
+          onClick={e => {
+            if (!this.props.isLoggedIn) {
+              e.stopPropagation();
+              this.props.openModal('', 'login');
+            }
+          }}
         >
           <Icon className="md-small" name="more_vert" />
           <span>
@@ -106,90 +114,122 @@ export class AddToListButton extends React.Component {
           </span>
         </Button>
 
-        <ul className="AddToListButton__Dropdown AddToListButton__Dropdown__Top dropdown-menu">
-          <li className="AddToListButton__Mobile__Back">
-            <Icon name="chevron_left" className="md-medium" />
-            Tilbage
-          </li>
-        </ul>
-
-        <ul
-          className="AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists dropdown-menu"
-          aria-labelledby="addtolist"
-        >
-          <li className="AddToListButton__Mobile__Heading">Tilføj til liste</li>
-          {this.props.customLists.map((list, i) => {
-            const ny = list._owner && list._modified ? false : true;
-
-            let status = this.pidInList(book.pid, list.list);
-            const statusClass = status ? 'Radio__Active' : '';
-
-            if (i < customListsToShow) {
-              return (
-                <li
-                  key={list.title}
-                  onClick={() => this.props.toggleInList(work, list.id)}
-                >
-                  <span className={'AddToListButton__Radio ' + statusClass} />
-                  <span>{list.title}</span>
-                  {ny && <span className="AddToListButton__New"> Ny</span>}
-                </li>
-              );
-            }
-          })}
-
-          {this.props.customLists.length > 0 && (
-            <li role="separator" className="divider" />
-          )}
-
-          {this.props.systemLists.map(list => {
-            let status = this.pidInList(book.pid, list.list);
-            const statusClass = status ? 'Radio__Active' : '';
-
-            return (
-              <li
-                key={list.title}
-                onClick={() => this.props.toggleInList(work, list.id)}
-              >
-                <span className={'AddToListButton__Radio ' + statusClass} />
-                <span>{list.title}</span>
+        {this.props.isLoggedIn && (
+          <React.Fragment>
+            <ul className="AddToListButton__Dropdown AddToListButton__Dropdown__Top dropdown-menu">
+              <li className="AddToListButton__Mobile__Back">
+                <Icon name="chevron_left" className="md-medium" />
+                Tilbage
               </li>
-            );
-          })}
+            </ul>
 
-          <li className="AddToListButton__Mobile__Heading">
-            Eller opret en ny Liste
-          </li>
-          <li className="AddToListButton__Mobile__Input">
-            <input
-              placeholder="Giv din liste et navn"
-              value={this.state.listTitle}
-              onChange={e => this.setState({listTitle: e.target.value})}
-            />
-            <Button
-              size="large"
-              type="tertiary"
-              className="mb1"
-              onClick={() => this.createNewList()}
+            <ul
+              className="AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists dropdown-menu"
+              aria-labelledby="addtolist"
             >
-              Tilføj liste
-            </Button>
-          </li>
+              <li className="AddToListButton__Mobile__Heading">
+                Tilføj til liste
+              </li>
+              {this.props.customLists.map((list, i) => {
+                const ny = list._owner ? false : true;
 
-          <li role="separator" className="divider" />
+                let status = this.pidInList(book.pid, list.list);
+                const statusClass = status ? 'Radio__Active' : '';
+                const ToastMessageLabel = status
+                  ? 'Fjernet fra: '
+                  : 'Tilføjet til: ';
 
-          <li onClick={() => this.props.openModal(work)}>
-            <span className="AddToListButton__Radio" />
-            <span>Læg på anden liste</span>
-            <Icon className="md-small" name="chevron_right" />
-          </li>
+                if (i < customListsToShow) {
+                  return (
+                    <li
+                      key={list.title}
+                      onClick={() => {
+                        this.props.toggleInList(work, list.id);
+                        toast(
+                          <ToastMessage
+                            type="success"
+                            icon="check_circle"
+                            lines={[ToastMessageLabel, list.title]}
+                          />
+                        );
+                      }}
+                    >
+                      <span
+                        className={'AddToListButton__Radio ' + statusClass}
+                      />
+                      <span>{list.title}</span>
+                      {ny && <span className="AddToListButton__New"> Ny</span>}
+                    </li>
+                  );
+                }
+              })}
 
-          <li onClick={() => this.props.openModal(work)}>
-            <span className="AddToListButton__Radio" />
-            <span>Opret ny liste</span>
-            <Icon className="md-small" name="chevron_right" />
-          </li>
-        </ul>
+              {this.props.customLists.length > 0 && (
+                <li role="separator" className="divider" />
+              )}
+
+              {this.props.systemLists.map(list => {
+                let status = this.pidInList(book.pid, list.list);
+                const statusClass = status ? 'Radio__Active' : '';
+                const ToastMessageLabel = status
+                  ? 'Fjernet fra: '
+                  : 'Tilføjet til: ';
+
+                return (
+                  <li
+                    key={list.title}
+                    onClick={() => {
+                      this.props.toggleInList(work, list.id);
+                      toast(
+                        <ToastMessage
+                          type="success"
+                          icon="check_circle"
+                          lines={[ToastMessageLabel, list.title]}
+                        />
+                      );
+                    }}
+                  >
+                    <span className={'AddToListButton__Radio ' + statusClass} />
+                    <span>{list.title}</span>
+                  </li>
+                );
+              })}
+
+              <li className="AddToListButton__Mobile__Heading">
+                Eller opret en ny Liste
+              </li>
+              <li className="AddToListButton__Mobile__Input">
+                <input
+                  placeholder="Giv din liste et navn"
+                  value={this.state.listTitle}
+                  onChange={e => this.setState({listTitle: e.target.value})}
+                />
+                <Button
+                  size="large"
+                  type="tertiary"
+                  className="mb1"
+                  onClick={() => this.createNewList()}
+                >
+                  Tilføj liste
+                </Button>
+              </li>
+
+              <li role="separator" className="divider" />
+
+              <li onClick={() => this.props.openModal(work, 'addToList')}>
+                <span className="AddToListButton__Radio" />
+                <span>Læg på anden liste</span>
+                <Icon className="md-small" name="chevron_right" />
+              </li>
+
+              <li onClick={() => this.props.openModal(work, 'addToList')}>
+                <span className="AddToListButton__Radio" />
+                <span>Opret ny liste</span>
+                <Icon className="md-small" name="chevron_right" />
+              </li>
+            </ul>
+          </React.Fragment>
+        )}
       </div>
     );
   }
@@ -201,7 +241,7 @@ const mapStateToProps = state => {
       type: CUSTOM_LIST,
       owner: state.userReducer.openplatformId
     }).sort(function(a, b) {
-      if (!b._modified) {
+      if (!(b._modified && b._owner)) {
         return 1;
       }
       return b._modified - a._modified;
@@ -210,7 +250,8 @@ const mapStateToProps = state => {
       type: SYSTEM_LIST,
       owner: state.userReducer.openplatformId,
       sort: true
-    })
+    }),
+    isLoggedIn: state.userReducer.isLoggedIn
   };
 };
 
@@ -222,10 +263,10 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(storeList(listId));
   },
   saveList: listId => dispatch(storeList(listId)),
-  openModal: work => {
+  openModal: (work, modal) => {
     dispatch({
       type: OPEN_MODAL,
-      modal: 'addToList',
+      modal: modal,
       context: work
     });
   }

@@ -304,6 +304,7 @@ const listReducer = (state = defaultState, action) => {
         ...state.lists[action.id],
         pending: []
       };
+      list._modified = null;
       return Object.assign({}, state, {
         lists: {...state.lists, [action.id]: list},
         latestUsedId: action.id
