@@ -80,6 +80,7 @@ class WorkCard extends React.Component {
           style={{position: 'absolute', right: 0, top: 0, zIndex: 99}}
         />
         <div
+          style={{height: '100%'}}
           onClick={event => {
             if (isMobile) {
               event.stopPropagation();
