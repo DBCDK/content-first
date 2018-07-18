@@ -1,0 +1,33 @@
+.Toastify__toast-container {
+  top: 90px;
+}
+
+.Toastify__toast {
+  background-color: var(--lys-graa);
+}
+
+.ToastMessage {
+  text-align: left;
+  color: var(--petrolium);
+  display: flex;
+  align-items: center;
+}
+
+.ToastMessage .ToastMessage__Icon {
+  vertical-align: middle;
+}
+
+.ToastMessage.success .ToastMessage__Icon {
+  color: var(--de-york);
+}
+
+.ToastMessage .ToastMessage__Lines {
+  display: flex;
+  flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+  .Toastify__toast-container {
+    top: 80px;
+  }
+}

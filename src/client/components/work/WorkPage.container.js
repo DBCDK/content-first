@@ -155,7 +155,7 @@ class WorkPage extends React.Component {
                 collection.map(col => {
                   if (col.count === 1) {
                     return (
-                      <a href={col.url} target="_blank">
+                      <a key={col.url} href={col.url} target="_blank">
                         <Button
                           type="quaternary"
                           size="medium"
