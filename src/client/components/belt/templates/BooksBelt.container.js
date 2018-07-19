@@ -17,6 +17,7 @@ import {
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import Link from '../../general/Link.component';
 import WorkPreview from '../../work/WorkPreview.component';
+import scrollToComponent from 'react-scroll-to-component';
 
 const skeletonElements = [];
 for (let i = 0; i < 20; i++) {
@@ -59,7 +60,11 @@ export class BooksBelt extends React.Component {
     let status = pid === belt.pidPreview ? false : pid;
     this.props.changePidPreview(status, belt);
   }
-
+  scrollToChildBelt(belt) {
+    if (belt.child && this.props.childTemplate) {
+      scrollToComponent(this.refs.childBelt);
+    }
+  }
   render() {
     const {
       fetchInitial = 8,
@@ -80,6 +85,7 @@ export class BooksBelt extends React.Component {
     const pids =
       recommendedPids.length > 0 ? recommendedPids : skeletonElements;
 
+    this.scrollToChildBelt(belt);
     return (
       <React.Fragment>
         <div className="row belt text-left mt3">
@@ -179,10 +185,12 @@ export class BooksBelt extends React.Component {
             />
           )}
         </div>
-        {belt.child &&
-          this.props.childTemplate && (
-            <this.props.childTemplate belt={belt.child} />
-          )}
+        <div ref={(childBelt) => {this.refs = {...this.refs, childBelt};}}>
+          {belt.child &&
+            this.props.childTemplate && (
+              <this.props.childTemplate belt={belt.child} />
+            )}
+        </div>
       </React.Fragment>
     );
   }
