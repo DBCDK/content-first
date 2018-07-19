@@ -185,7 +185,11 @@ export class BooksBelt extends React.Component {
             />
           )}
         </div>
-        <div ref={(childBelt) => {this.refs = {...this.refs, childBelt};}}>
+        <div
+          ref={childBelt => {
+            this.refs = {...this.refs, childBelt};
+          }}
+        >
           {belt.child &&
             this.props.childTemplate && (
               <this.props.childTemplate belt={belt.child} />
