@@ -42,7 +42,7 @@ exports[`renders without crashing 1`] = `
           </span>
         </a>
         <div
-          className="Topbar__navigation__btn  short-list"
+          className="Topbar__navigation__btn  top-bar-dropdown-list"
           onClick={[Function]}
         >
           <i
@@ -57,22 +57,28 @@ exports[`renders without crashing 1`] = `
           </span>
         </div>
         <div
-          className="short-list--content text-left slide-out"
+          className="top-bar-dropdown-list--content text-left slide-out"
         >
-          <h1
-            className=" Heading Heading__peach-subtitle"
+          <a
+            className="list-card-nohover"
+            href="/huskeliste"
+            onClick={[Function]}
           >
-            HUSKELISTE (
-            0
-            )
-          </h1>
+            <h1
+              className=" Heading Heading__peach-subtitle"
+            >
+              HUSKELISTE (
+              0
+              )
+            </h1>
+          </a>
           <div
-            className="short-list--empty-text text-center "
+            className="top-bar-dropdown-list--empty-text text-center "
           >
             Din huskeliste er tom
           </div>
           <div
-            className="short-list--footer"
+            className="top-bar-dropdown-list--footer"
           >
             <div
               onClick={[Function]}

@@ -5,6 +5,7 @@ import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import logo from '../../logo.svg';
 import ShortListDropDown from '../list/ShortListDropDown.container';
+import ListOverviewDropDown from '../list/ListOverviewDropDown.container';
 import ProfileImage from '../general/ProfileImage.component';
 import {isMobile} from 'react-device-detect';
 import Icon from '../base/Icon';
@@ -88,16 +89,34 @@ export class TopBar extends React.Component {
       <ShortListDropDown
         className={
           'Topbar__navigation__btn ' +
-          (expanded ? 'Topbar__shortlist_expanded' : '')
+          (expanded ? 'Topbar__dropdown_expanded' : '')
         }
       >
         <Icon name="bookmark_border" />
       </ShortListDropDown>
     );
   }
+  renderListsOverviewDropdown() {
+    const {expanded} = this.props.listsState;
+    return isMobile ? (
+      <Link href="/profile" className="Topbar__navigation__btn">
+        <Icon name="list" />
+      </Link>
+    ) : (
+      <ListOverviewDropDown
+        className={
+          'Topbar__navigation__btn ' +
+          (expanded ? 'Topbar__dropdown_expanded' : '')
+        }
+      >
+        <Icon name="list" />
+        Lister
+      </ListOverviewDropDown>
+    );
+  }
   render() {
     const shortlist = this.renderShortListBtn();
-
+    const userLists = this.renderListsOverviewDropdown();
     return (
       <header className="Topbar row">
         <Link href="/" className="Topbar__logo">
@@ -121,14 +140,9 @@ export class TopBar extends React.Component {
               <span>Log ind</span>
             </Link>
           )}
+
           {this.props.user.isLoggedIn && [
-            <Link
-              href="/profile"
-              className="Topbar__navigation__btn hide-on-s-and-down"
-            >
-              <Icon name="list" />
-              <span>Lister</span>
-            </Link>,
+            userLists,
             <span
               className="Topbar__navigation__btn abort-closeDopdown hide-on-s-and-down"
               onClick={() => this.toggleDropdown()}
@@ -155,7 +169,10 @@ export class TopBar extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {shortListState: state.shortListReducer};
+  return {
+    shortListState: state.shortListReducer,
+    listsState: state.listReducer
+  };
 };
 export const mapDispatchToProps = dispatch => ({
   historyPush: (type, path) => dispatch({type, path}),

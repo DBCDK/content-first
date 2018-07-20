@@ -7,7 +7,8 @@ export const CUSTOM_LIST = 'CUSTOM_LIST';
 const defaultState = {
   lists: {},
   changeMap: {},
-  latestUsedId: false
+  latestUsedId: false,
+  expanded: false
 };
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
@@ -27,6 +28,8 @@ export const ADD_LIST_IMAGE = 'ADD_LIST_IMAGE';
 export const ADD_LIST_IMAGE_SUCCESS = 'ADD_LIST_IMAGE_SUCCESS';
 export const ADD_LIST_IMAGE_ERROR = 'ADD_LIST_IMAGE_ERROR';
 
+export const ON_USERLISTS_EXPAND = 'ON_USERLISTS_EXPAND';
+export const ON_USERLISTS_COLLAPSE = 'ON_USERLISTS_COLLAPSE';
 // eslint-disable-next-line
 const listReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -310,6 +313,11 @@ const listReducer = (state = defaultState, action) => {
         latestUsedId: action.id
       });
     }
+    case ON_USERLISTS_EXPAND:
+      return Object.assign({}, state, {expanded: true});
+    case ON_USERLISTS_COLLAPSE:
+      return Object.assign({}, state, {expanded: false});
+
     default:
       return state;
   }
