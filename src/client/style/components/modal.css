@@ -113,3 +113,38 @@
   background-color: var(--korn);
   margin-bottom: 35px;
 }
+.login-modal .modal-window--header {
+  border-bottom: 1px var(--grey-nurse) solid;
+
+}
+  @media only screen and (max-width: 600px) {
+    .login-modal{
+      width: 100% !important;
+      height: 100%;
+    }
+    .login-modal-container{
+      padding: 0;
+    }
+    .login-modal-small-screen-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    cursor: pointer;
+
+    
+    }
+    .login-modal-small-screen-header p{
+      margin: 0;    
+      font-weight: 600;
+    
+    }
+
+    .login-modal-small-screen-header img{
+      
+      width: 15px;
+    }
+}
+

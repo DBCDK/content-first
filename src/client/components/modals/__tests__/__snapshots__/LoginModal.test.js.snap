@@ -1,25 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoginModal renders function 1`] = `
-<Modal
-  className="modal-narrow"
-  doneText="LOG IND"
-  header="abc"
-  onClose={undefined}
-  onDone={undefined}
+<div
+  className="modal-container login-modal-container"
 >
-  <p>
-    <strong>
-      def
-    </strong>
-  </p>
-  <small>
-    <p>
-      Har du ikke en profil? Du kan nemt oprette en profil med det login, du bruger på biblioteket.
-    </p>
-    <p>
-      Klik på login for at oprette en profil.
-    </p>
-  </small>
-</Modal>
+  <div
+    className="modal-backdrop"
+    onClick={undefined}
+  />
+  <div
+    className="modal-window text-left modal-narrow login-modal"
+  >
+    <div
+      className="modal-window--header text-center"
+    >
+      <img
+        alt="luk"
+        className="modal-window--close-btn"
+        onClick={undefined}
+        src="KrydsElm.svg"
+      />
+    </div>
+    <div
+      className="modal-window--content"
+    >
+      <h3>
+        abc
+      </h3>
+      <p>
+        <strong>
+          def
+        </strong>
+      </p>
+      <div
+        className="modal-window--buttons text-center"
+      >
+        <span
+          className="btn  modal-window-login-btn"
+          onClick={undefined}
+        >
+          LOG IND
+        </span>
+      </div>
+      <small>
+        <p>
+          Har du ikke en profil? Du kan nemt oprette en profil med det login, du bruger på biblioteket.
+           
+          <a
+            href="/v1/login"
+          >
+            Opret en profil
+          </a>
+        </p>
+      </small>
+    </div>
+  </div>
+</div>
 `;
