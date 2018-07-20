@@ -102,10 +102,13 @@ export class AddToListButton extends React.Component {
           onClick={e => {
             if (!this.props.isLoggedIn) {
               e.stopPropagation();
-              this.props.openModal({
-                title: 'BESTIL',
-                reason: 'Du skal logge ind for at bestille bøger'
-              }, 'login');
+              this.props.openModal(
+                {
+                  title: 'BESTIL',
+                  reason: 'Du skal logge ind for at bestille bøger'
+                },
+                'login'
+              );
             }
           }}
         >

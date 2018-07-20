@@ -129,7 +129,6 @@ export class Item extends React.Component {
 }
 
 export class SimpleList extends React.Component {
- 
   toggleFollow(id, cat) {
     if (!this.props.isLoggedIn) {
       if (this.props.follows[id]) {
@@ -137,15 +136,15 @@ export class SimpleList extends React.Component {
       } else {
         this.props.follow(id, cat);
       }
+    } else {
+      this.props.openModal(
+        {
+          title: 'Følg liste',
+          reason: 'Du skal logge ind for at følge en liste'
+        },
+        'login'
+      );
     }
-    else {
-      this.props.openModal({
-        title: 'Følg liste',
-        reason: 'Du skal logge ind for at følge en liste'
-      }, 'login');
-
-    }
-
   }
 
   render() {
@@ -260,9 +259,9 @@ const mapStateToProps = (state, ownProps) => {
     loggedInUserId: state.userReducer.openplatformId,
     follows: state.followReducer,
     isOwner:
-      ownProps.list && ownProps.list._owner === state.userReducer.openplatformId,
+      ownProps.list &&
+      ownProps.list._owner === state.userReducer.openplatformId,
     isLoggedIn: state.userReducer.isLoggedIn
-  
   };
 };
 export const mapDispatchToProps = dispatch => ({
