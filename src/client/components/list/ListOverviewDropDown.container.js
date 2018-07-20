@@ -97,7 +97,6 @@ const UserListsContent = props => {
 class ListOverviewDropDown extends React.Component {
   constructor(props) {
     super(props);
-    this.sortLists = this.sortLists.bind(this);
   }
   sortLists(lists) {
     lists = Object.values(lists);
@@ -122,32 +121,16 @@ class ListOverviewDropDown extends React.Component {
       <React.Fragment>
         <div
           className={this.props.className + ' top-bar-dropdown-list'}
-          onClick={() => {
-            this.props.dispatch({
-              type: expanded ? ON_USERLISTS_COLLAPSE : ON_USERLISTS_EXPAND
-            });
-            if (this.props.shortListExpanded) {
-              // collapse shortlist if expanded
-              this.props.dispatch({
-                type: ON_SHORTLIST_COLLAPSE
-              });
-            }
-          }}
+          onClick={() => {this.props.onListsIconClick(expanded, this.props.shortListExpanded);}}
         >
           {this.props.children}
         </div>
         <UserListsContent
           expanded={expanded}
           lists={sortedLists}
-          onClose={() => this.props.dispatch({type: ON_USERLISTS_COLLAPSE})}
-          onEditLists={() => {
-            this.props.dispatch({type: HISTORY_PUSH, path: '/profile'});
-            this.props.dispatch({type: ON_USERLISTS_COLLAPSE});
-          }}
-          onCreateNewList={() => {
-            this.props.dispatch({type: HISTORY_PUSH, path: '/lister/opret'});
-            this.props.dispatch({type: ON_USERLISTS_COLLAPSE});
-          }}
+          onClose={() => this.props.onUserListsClose()}
+          onEditLists={() => this.props.onEditLists()}
+          onCreateNewList={() => this.props.onCreateNewList()}
         >
           {sortedLists.length > 0 &&
             sortedLists.map(list => {
@@ -165,7 +148,8 @@ class ListOverviewDropDown extends React.Component {
     );
   }
 }
-export default connect(state => {
+
+const mapStateToProps = state => {
   return {
     listsState: state.listReducer,
     profiles: state.users.toJS(),
@@ -173,4 +157,23 @@ export default connect(state => {
     userID: state.userReducer.openplatformId,
     followedLists: state.followReducer
   };
-})(ListOverviewDropDown);
+};
+export const mapDispatchToProps = dispatch => ({
+  onEditLists: ()=>{
+    dispatch({type: HISTORY_PUSH, path: '/profile'});
+    dispatch({type: ON_USERLISTS_COLLAPSE});
+  },
+  onCreateNewList: ()=>{
+    dispatch({type: HISTORY_PUSH, path: '/lister/opret'});
+    dispatch({type: ON_USERLISTS_COLLAPSE});
+  },
+  onListsIconClick: (userListsexpanded, shortListExpanded)=>{
+    dispatch({
+      type: userListsexpanded ? ON_USERLISTS_COLLAPSE : ON_USERLISTS_EXPAND
+    });
+    // collapse shortlist if expanded
+    if (shortListExpanded) {dispatch({type: ON_SHORTLIST_COLLAPSE});}
+  },
+  onUserListsClose: ()=> dispatch({type: ON_USERLISTS_COLLAPSE})
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ListOverviewDropDown);
