@@ -61,9 +61,8 @@ export class BooksBelt extends React.Component {
     this.props.changePidPreview(status, belt);
   }
   scrollToChildBelt(belt) {
-    if (belt.child && this.props.childTemplate) {
-      scrollToComponent(this.refs.childBelt);
-    }
+    let offset = belt.pidPreview ? 220 : 0;
+      scrollToComponent(this.refs.childBelt, {offset});
   }
   render() {
     const {
@@ -85,7 +84,6 @@ export class BooksBelt extends React.Component {
     const pids =
       recommendedPids.length > 0 ? recommendedPids : skeletonElements;
 
-    this.scrollToChildBelt(belt);
     return (
       <React.Fragment>
         <div className="row belt text-left mt3">
@@ -166,11 +164,19 @@ export class BooksBelt extends React.Component {
                     onWorkPreviewClick={() => {
                       this.toggleWorkPreview(pid, belt);
                     }}
+                    scrollToChildBelt={()=>{
+                      this.scrollToChildBelt(belt);
+                    }}
                   />
                 );
               })}
             </Slider>
           </div>
+          <div
+          ref={childBelt => {
+            this.refs = {...this.refs, childBelt};
+          }}
+        >
           {pidPreview && (
             <WorkPreview
               pid={pidPreview}
@@ -182,14 +188,13 @@ export class BooksBelt extends React.Component {
                   pid: work.book.pid
                 });
               }}
+              scrollToChildBelt={()=>{
+                this.scrollToChildBelt(belt);
+               }}
             />
           )}
         </div>
-        <div
-          ref={childBelt => {
-            this.refs = {...this.refs, childBelt};
-          }}
-        >
+
           {belt.child &&
             this.props.childTemplate && (
               <this.props.childTemplate belt={belt.child} />

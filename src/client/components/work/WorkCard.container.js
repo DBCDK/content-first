@@ -114,6 +114,8 @@ class WorkCard extends React.Component {
                   event.stopPropagation();
                   event.preventDefault();
                   this.props.onWorkPreviewClick(this.props.work);
+                  this.props.scrollToChildBelt();
+
                 }
               }}
             >
@@ -130,6 +132,7 @@ class WorkCard extends React.Component {
                   event.stopPropagation();
                   event.preventDefault();
                   this.props.onMoreLikeThisClick(this.props.work);
+                  this.props.scrollToChildBelt();
                 }}
               >
                 Mere som denne
