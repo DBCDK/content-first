@@ -17,6 +17,7 @@ import {
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import Link from '../../general/Link.component';
 import WorkPreview from '../../work/WorkPreview.component';
+import scrollToComponent from 'react-scroll-to-component';
 
 const skeletonElements = [];
 for (let i = 0; i < 20; i++) {
@@ -59,7 +60,10 @@ export class BooksBelt extends React.Component {
     let status = pid === belt.pidPreview ? false : pid;
     this.props.changePidPreview(status, belt);
   }
-
+  scrollToChildBelt(belt) {
+    let offset = belt.pidPreview ? 220 : 0;
+    scrollToComponent(this.refs.childBelt, {offset});
+  }
   render() {
     const {
       fetchInitial = 8,
@@ -160,29 +164,42 @@ export class BooksBelt extends React.Component {
                     onWorkPreviewClick={() => {
                       this.toggleWorkPreview(pid, belt);
                     }}
+                    scrollToChildBelt={() => {
+                      this.scrollToChildBelt(belt);
+                    }}
                   />
                 );
               })}
             </Slider>
           </div>
-          {pidPreview && (
-            <WorkPreview
-              pid={pidPreview}
-              onMoreLikeThisClick={work => {
-                addChildBelt(belt, {
-                  name: 'Minder om ' + work.book.title,
-                  onFrontPage: true,
-                  pidPreview: false,
-                  pid: work.book.pid
-                });
-              }}
-            />
-          )}
+          <div
+            ref={childBelt => {
+              this.refs = {...this.refs, childBelt};
+            }}
+          >
+            {pidPreview && (
+              <WorkPreview
+                pid={pidPreview}
+                onMoreLikeThisClick={work => {
+                  addChildBelt(belt, {
+                    name: 'Minder om ' + work.book.title,
+                    onFrontPage: true,
+                    pidPreview: false,
+                    pid: work.book.pid
+                  });
+                }}
+                scrollToChildBelt={() => {
+                  this.scrollToChildBelt(belt);
+                }}
+              />
+            )}
+          </div>
+
+          {belt.child &&
+            this.props.childTemplate && (
+              <this.props.childTemplate belt={belt.child} />
+            )}
         </div>
-        {belt.child &&
-          this.props.childTemplate && (
-            <this.props.childTemplate belt={belt.child} />
-          )}
       </React.Fragment>
     );
   }

@@ -180,6 +180,7 @@ class WorkPreview extends React.Component {
                     event.stopPropagation();
                     event.preventDefault();
                     this.props.onMoreLikeThisClick(this.props.work);
+                    this.props.scrollToChildBelt();
                   }}
                 >
                   Mere som denne
