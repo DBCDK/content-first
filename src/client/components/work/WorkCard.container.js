@@ -115,7 +115,6 @@ class WorkCard extends React.Component {
                   event.preventDefault();
                   this.props.onWorkPreviewClick(this.props.work);
                   this.props.scrollToChildBelt();
-
                 }
               }}
             >

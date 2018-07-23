@@ -62,7 +62,7 @@ export class BooksBelt extends React.Component {
   }
   scrollToChildBelt(belt) {
     let offset = belt.pidPreview ? 220 : 0;
-      scrollToComponent(this.refs.childBelt, {offset});
+    scrollToComponent(this.refs.childBelt, {offset});
   }
   render() {
     const {
@@ -164,7 +164,7 @@ export class BooksBelt extends React.Component {
                     onWorkPreviewClick={() => {
                       this.toggleWorkPreview(pid, belt);
                     }}
-                    scrollToChildBelt={()=>{
+                    scrollToChildBelt={() => {
                       this.scrollToChildBelt(belt);
                     }}
                   />
@@ -173,27 +173,27 @@ export class BooksBelt extends React.Component {
             </Slider>
           </div>
           <div
-          ref={childBelt => {
-            this.refs = {...this.refs, childBelt};
-          }}
-        >
-          {pidPreview && (
-            <WorkPreview
-              pid={pidPreview}
-              onMoreLikeThisClick={work => {
-                addChildBelt(belt, {
-                  name: 'Minder om ' + work.book.title,
-                  onFrontPage: true,
-                  pidPreview: false,
-                  pid: work.book.pid
-                });
-              }}
-              scrollToChildBelt={()=>{
-                this.scrollToChildBelt(belt);
-               }}
-            />
-          )}
-        </div>
+            ref={childBelt => {
+              this.refs = {...this.refs, childBelt};
+            }}
+          >
+            {pidPreview && (
+              <WorkPreview
+                pid={pidPreview}
+                onMoreLikeThisClick={work => {
+                  addChildBelt(belt, {
+                    name: 'Minder om ' + work.book.title,
+                    onFrontPage: true,
+                    pidPreview: false,
+                    pid: work.book.pid
+                  });
+                }}
+                scrollToChildBelt={() => {
+                  this.scrollToChildBelt(belt);
+                }}
+              />
+            )}
+          </div>
 
           {belt.child &&
             this.props.childTemplate && (
