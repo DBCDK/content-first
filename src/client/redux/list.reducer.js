@@ -12,7 +12,6 @@ const defaultState = {
   latestUsedId: false,
   expanded: false
 };
-uniqBy;
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
 export const LIST_LOAD_RESPONSE = 'LIST_LOAD_RESPONSE';
