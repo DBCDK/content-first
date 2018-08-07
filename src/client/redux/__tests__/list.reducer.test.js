@@ -240,6 +240,20 @@ describe('listReducer', () => {
         'some-id-1'
       )
     );
+    listState = listReducer(
+      listState,
+      addElementToList(
+        {_id: 2, book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
+    );
+    listState = listReducer(
+      listState,
+      addElementToList(
+        {_id: 2, book: {pid: 'pid3'}, position: {x: 0, y: 0}},
+        'some-id-1'
+      )
+    );
     const state = {listReducer: listState, booksReducer: booksState};
     expect(getLists(state)).toMatchSnapshot();
   });
@@ -315,27 +329,27 @@ describe('listReducer', () => {
     listState = listReducer(
       listState,
       addElementToList(
-        {book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        {_id: 1, book: {pid: 'pid1'}, position: {x: 0, y: 0}},
         'some-id-1'
       )
     );
     listState = listReducer(
       listState,
       addElementToList(
-        {book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        {_id: 2, book: {pid: 'pid2'}, position: {x: 0, y: 0}},
         'some-id-1'
       )
     );
     listState = listReducer(
       listState,
       addElementToList(
-        {book: {pid: 'pid3'}, position: {x: 0, y: 0}},
+        {_id: 3, book: {pid: 'pid3'}, position: {x: 0, y: 0}},
         'some-id-1'
       )
     );
     listState = listReducer(
       listState,
-      insertElement({book: {pid: 'pid3'}}, 1, 'some-id-1')
+      insertElement({_id: 3, book: {pid: 'pid3'}}, 1, 'some-id-1')
     );
 
     const state = {listReducer: listState, booksReducer: booksState};

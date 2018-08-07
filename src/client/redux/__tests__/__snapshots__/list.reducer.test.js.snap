@@ -47,6 +47,19 @@ Array [
           "y": 0,
         },
       },
+      Object {
+        "_id": 2,
+        "book": Object {
+          "description": "lorem ipsum...",
+          "pid": "pid2",
+          "title": "title2",
+        },
+        "pid": "pid2",
+        "position": Object {
+          "x": 0,
+          "y": 0,
+        },
+      },
     ],
     "owner": null,
     "title": "some list 1",
@@ -134,6 +147,7 @@ Array [
     "id": "some-id-1",
     "list": Array [
       Object {
+        "_id": 1,
         "book": Object {
           "description": "lorem ipsum...",
           "pid": "pid1",
@@ -146,11 +160,13 @@ Array [
         },
       },
       Object {
+        "_id": 3,
         "book": Object {
           "pid": "pid3",
         },
       },
       Object {
+        "_id": 2,
         "book": Object {
           "description": "lorem ipsum...",
           "pid": "pid2",
