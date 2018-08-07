@@ -1,3 +1,5 @@
+import {uniqBy} from 'lodash';
+
 export const SYSTEM_LIST = 'SYSTEM_LIST';
 export const SHORT_LIST = 'SHORT_LIST';
 export const CUSTOM_LIST = 'CUSTOM_LIST';
@@ -432,6 +434,10 @@ export const getLists = (state, {type, sort} = {}) => {
         return {...el, ...booksState.books[el.pid]};
       });
 
+      // ensure uniqueness of elements
+      // duplicates may exist, due to a previous bug #548
+      l.list = uniqBy(l.list, '_id');
+
       return l;
     });
   if (sort) {
@@ -469,6 +475,10 @@ export const getListById = (state, id) => {
       .map(el => {
         return {...el, book: booksState.books[el.pid].book};
       });
+
+    // ensure uniqueness of elements
+    // duplicates may exist, due to a previous bug #548
+    list.list = uniqBy(list.list, '_id');
   }
 
   return list;

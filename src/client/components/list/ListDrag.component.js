@@ -82,7 +82,7 @@ class DragableList extends React.Component {
       return;
     }
     const list = this.props.list.filter(
-      listItem => listItem !== this.state.selectedItem
+      listItem => listItem._id !== this.state.selectedItem._id
     );
     const index = this.props.list.indexOf(item);
     list.splice(index, 0, this.state.selectedItem);
