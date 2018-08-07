@@ -72,7 +72,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: #fdfdfd;
   font-family: var(--primary-font);
   color: var(--petrolium);
 }
@@ -99,9 +98,9 @@ body {
   }
 }
 
-@media (min-width: 1450px) {
+@media (min-width: 600px) {
   .container {
-    width: calc(100% - 100px);
+    width: 100% !important;
   }
 }
 

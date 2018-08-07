@@ -1,17 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {isMobile} from 'react-device-detect';
 import SelectedFilters from './SelectedFilters.component';
-import EditFilters from './EditFilters.component';
+import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
+import Heading from '../base/Heading';
 import Spinner from '../general/Spinner.component';
 import {
   ON_EDIT_FILTER_TOGGLE,
   ON_EXPAND_FILTERS_TOGGLE
 } from '../../redux/filter.reducer';
-import {HISTORY_REPLACE} from '../../redux/middleware';
+import {HISTORY_REPLACE, HISTORY_PUSH} from '../../redux/middleware';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import {isEqual} from 'lodash';
+import SearchBar from './SearchBar.component';
 
 class FilterPage extends React.Component {
   constructor() {
@@ -23,7 +26,7 @@ class FilterPage extends React.Component {
     const tags = selectedTagIds.includes(filterId)
       ? selectedTagIds.filter(id => filterId !== id)
       : [...selectedTagIds, filterId];
-    this.props.historyReplace('/find', {tag: tags});
+    this.props.history(HISTORY_REPLACE, '/find', {tag: tags});
   }
 
   componentDidMount() {
@@ -46,6 +49,10 @@ class FilterPage extends React.Component {
 
   render() {
     let warningMessage = null;
+    const resultCount = this.props.recommendedPids.pids.length;
+    const resultCountPrefixText =
+      resultCount === 100 ? 'Mere end ' + resultCount : resultCount;
+
     if (
       this.props.recommendedPids.pids.length === 0 &&
       !this.props.recommendedPids.isLoading
@@ -55,44 +62,43 @@ class FilterPage extends React.Component {
     return (
       <div className="filter-page">
         <div className="filters row">
-          <div className="filter-page-top col-xs-12">
-            <SelectedFilters
-              selectedFilters={this.props.selectedTags}
-              filters={this.props.filters}
-              edit={this.state.expanded}
-              onEditFilterToggle={this.props.editFilterToggle}
-              query={this.state.query}
-              onQueryChange={e => this.setState({query: e.target.value})}
-              onFilterToggle={filter => {
-                this.toggleFilter(filter.id);
-              }}
-              onFocus={() => this.setState({expanded: true})}
-            />
-          </div>
-          <EditFilters
-            showTags={!this.state.query}
-            edit={this.state.expanded}
-            filters={this.props.filters}
-            selectedFilters={this.props.selectedTags}
-            expandedFilters={this.props.expandedFilters}
-            onFilterToggle={filter => {
-              this.toggleFilter(filter.id);
-            }}
-            onEditFilterToggle={() => this.setState({expanded: false})}
-            onExpandFiltersToggle={this.props.expandFiltersToggle}
-          />
+          {isMobile && (
+            <div className="filter-page-top col-xs-12">
+              <div className="filter-page-searchbar">
+                <SearchBar />
+              </div>
+            </div>
+          )}
         </div>
+        <Filters
+          filters={this.props.filters}
+          selectedFilters={this.props.selectedTags}
+          onFilterToggle={filter => {
+            this.toggleFilter(filter.id);
+          }}
+        />
         {warningMessage && (
           <div className="warning row text-center">{warningMessage}</div>
         )}
-        <div className="filter-page-works row text-left">
+
+        <div className="filter-page-resultCount text-left pt4">
+          <Heading Tag="h4" type="lead">
+            {resultCountPrefixText} bøger
+          </Heading>
+        </div>
+
+        <div className="filter-page-works">
           {this.props.recommendedPids.pids.length > 0 &&
             this.props.recommendedPids.pids.map(pid => (
               <WorkCard
                 className="ml1 mr1"
                 pid={pid}
                 key={pid}
+                enableHover={true}
                 allowFetch={true}
+                onWorkPreviewClick={work =>
+                  this.props.history(HISTORY_PUSH, '/værk/' + work.book.pid)
+                }
                 origin={`Fra din søgning på ${this.props.selectedTags
                   .map(t => t.title)
                   .join(', ')}`}
@@ -126,12 +132,9 @@ const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch => ({
   editFilterToggle: () => dispatch({type: ON_EDIT_FILTER_TOGGLE}),
   expandFiltersToggle: id => dispatch({type: ON_EXPAND_FILTERS_TOGGLE, id}),
-  historyReplace: (path, params) => {
-    dispatch({
-      type: HISTORY_REPLACE,
-      path,
-      params
-    });
+
+  history: (type, path, params = {}) => {
+    dispatch({type, path, params});
   },
   fetchRecommendations: tags =>
     dispatch({

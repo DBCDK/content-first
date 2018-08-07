@@ -61,6 +61,26 @@
   background-color: var(--pistache);
 }
 
+.Button__tag {
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-transform: none;
+  background-color: var(--porcelain);
+  cursor: pointer;
+}
+
+.Button__tag:hover {
+  background-color: var(--alto);
+}
+
+.Button__tag i {
+  color: var(--fersken) !important;
+}
+
+.Button__tag::first-letter {
+  text-transform: uppercase;
+}
+
 /* Sizes */
 .Button__large {
   text-transform: none;

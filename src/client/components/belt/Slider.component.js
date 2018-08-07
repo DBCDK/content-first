@@ -135,7 +135,7 @@ class DesktopSlider extends React.Component {
 
 export default class Slider extends React.Component {
   render() {
-    if (isMobile) {
+    if (this.props.forceMobile || isMobile) {
       return (
         <MobileSlider
           initialScrollPos={this.props.initialScrollPos}

@@ -10,22 +10,23 @@
 }
 
 .filter-page-top {
-  background: white;
-  padding-top: 30px;
-  padding-bottom: 10px;
+  background: var(--lys-graa);
+  padding: 10px;
 }
-.filter-page-top input {
-  font-family: var(--secondary-font);
+
+.filter-page-searchbar {
+  background-color: white;
+  border: 1px solid var(--de-york);
+  border-radius: 4px;
+  z-index: 999;
+  position: relative;
 }
-.filters {
-  /* box-shadow: 0px 5px 10px -4px #888888; */
+
+.filter-page-editFilters {
+  position: relative;
+  background-color: #f00;
 }
-.selected-filters hr {
-  border-color: black;
-  border-width: 2px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
+
 .add-filter {
   display: inline-block;
   font-size: 14px;
@@ -76,17 +77,18 @@
   padding-bottom: 4px;
   cursor: pointer;
 }
-.selected-filter {
-  cursor: default;
-}
 
 .filter-page-works {
-  margin-top: 80px;
-  padding-left: 60px;
+  margin: 1rem -1rem 0 -1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
-.contains-selected {
-  color: #fc492d;
+
+.filter-page-works .WorkCard {
+  margin-bottom: 1rem;
 }
+
 .warning {
   font-size: 26px;
   margin-bottom: 150px;
@@ -111,12 +113,6 @@
 }
 .tags-suggestion-list:hover {
   border: 0;
-}
-.tags-suggestion-list .react-autosuggest__suggestions-container {
-  margin-top: 15px;
-  border: 0;
-  color: black;
-  font-family: var(--secondary-font);
 }
 .tags-suggestion-list .react-autosuggest__suggestion {
   margin-bottom: 5px;

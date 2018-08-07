@@ -6,7 +6,7 @@
 .Topbar {
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 3000;
   width: 100%;
   height: 80px;
@@ -15,6 +15,7 @@
   border-bottom: 1px solid var(--pistache);
   text-align: left;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 
@@ -47,6 +48,19 @@
   position: relative;
 }
 
+.Topbar .Topbar__navigation .Topbar__SearchBarWrapper {
+  width: 0px;
+  height: 40px;
+  padding: 0 !important;
+  transition-duration: 0.2s;
+  display: inline-block;
+}
+
+.Topbar .Topbar__navigation .Topbar__SearchBarWrapper input {
+  min-width: 300px;
+  border: 0;
+}
+
 .Topbar .Topbar__navigation .Topbar__navigation__btn {
   display: inline-block;
   min-width: 80px;
@@ -56,26 +70,25 @@
   align-items: center;
   text-decoration: none;
   border-left: 1px solid var(--pistache);
-  padding: 0 15px 0 15px;
   cursor: pointer;
   position: relative;
   z-index: 3;
 }
-.Topbar__dropdown_expanded{
-background: var(--elm);
-color: white;
+.Topbar__dropdown_expanded {
+  background: var(--elm);
+  color: white;
 }
 
 .Topbar .Topbar__navigation .Topbar__navigation__btn i {
-  padding: 0 10px 0 0;
-}
-
-.Topbar .Topbar__navigation .Topbar__navigation__btn span,
-.Topbar .Topbar__navigation .Topbar__navigation__btn i {
+  padding: 15px 5px 15px 15px;
   color: var(--petrolium);
-  pointer-events: none;
 }
-.Topbar__dropdown_expanded{
+
+.Topbar .Topbar__navigation .Topbar__navigation__btn span {
+  padding: 15px 15px 15px 5px;
+  color: var(--petrolium);
+}
+.Topbar__dropdown_expanded {
   background: var(--grey-nurse);
 }
 
@@ -211,13 +224,41 @@ color: white;
 }
 
 @media only screen and (max-width: 600px) {
-  .Topbar .Topbar__navigation .Topbar__navigation__btn i.Topbar__burger {
+  .Topbar {
+    height: 60px;
+  }
+
+  .Topbar__mobile__overlay {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    background-color: white;
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem 0 0.5rem;
+  }
+
+  .Topbar__mobile__overlay span {
+    line-height: 60px;
+    font-weight: 600;
+  }
+
+  .Topbar__mobile__overlay span i {
+    vertical-align: middle;
+  }
+
+  .Topbar .Topbar__navigation .Topbar__navigation__btn {
+    min-width: 60px;
+  }
+
+  .Topbar .Topbar__navigation .Topbar__navigation__btn i {
     padding: 0;
   }
   .Topbar__dropdown {
     width: 100%;
     right: 0;
-    top: 80px;
+    top: 60px;
     opacity: 1;
   }
 
@@ -226,12 +267,12 @@ color: white;
   }
 
   .Topbar__dropdown__hidden {
-    top: -150%;
+    top: -300px;
   }
 
   .Topbar__dropdown li span,
   .Topbar__dropdown li a span {
-    padding: 0px 25px 25px 25px;
+    padding: 0px 15px 15px 15px;
     display: block;
     color: var(--petrolium);
   }
@@ -240,13 +281,13 @@ color: white;
   .Topbar__dropdown li:last-child a span,
   .Topbar__dropdown li:nth-child(2) span,
   .Topbar__dropdown li:nth-child(2) a span {
-    padding: 25px;
+    padding: 15px;
   }
 
   .Topbar .Topbar__logo img {
-    width: 80px;
+    width: 60px;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
   }
 
   .hide-on-s-and-down {

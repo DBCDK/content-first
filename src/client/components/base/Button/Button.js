@@ -29,7 +29,8 @@ Button.propTypes = {
     'secondary',
     'tertiary',
     'quaternary',
-    'quinary'
+    'quinary',
+    'tag'
   ])
 };
 
