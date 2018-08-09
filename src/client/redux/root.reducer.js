@@ -19,7 +19,6 @@ import {replayReducer} from './replay';
 import interactionReducer from './interaction.reducer';
 import spotsReducer from './spots.reducer';
 
-
 const combined = combineReducers({
   beltsReducer,
   filterReducer,

@@ -16,10 +16,9 @@ export class SpotsBelt extends React.Component {
     return (
       <div className="spots-container">
         {this.props.spots.map((spot, index) => {
-          return (<SpotItem
-            spotData={spot}
-            className={index === 0 ? 'ml-0' : ''}
-          />);
+          return (
+            <SpotItem spotData={spot} className={index === 0 ? 'ml-0' : ''} />
+          );
         })}
       </div>
     );
@@ -28,7 +27,7 @@ export class SpotsBelt extends React.Component {
 SpotsBelt.propTypes = {
   spots: PropTypes.array
 };
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     spots: state.spotsReducer.spots
   };
