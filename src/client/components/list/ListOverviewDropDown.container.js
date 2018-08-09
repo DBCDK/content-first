@@ -17,28 +17,25 @@ import {HISTORY_PUSH} from '../../redux/middleware';
 
 const ListElement = props => {
   const url = `/lister/${props.list.id}`;
-  const renderListsCover = (list) => {
-    return list.type === 'SYSTEM_LIST' ?
-    (
-      <img alt="" src={list.title==='Vil læse'? toReadListIcon: readListIcon} />
-    ) :
-    (
-      list.image ?
-      (
-        <img alt="" src={'v1/image/' + list.image + '/50/50'} />
-      ):
-      (
-          <div style={{background: toColor(list.id), height: '40px', width: '40px'}} />
-      )
+  const renderListsCover = list => {
+    return list.type === 'SYSTEM_LIST' ? (
+      <img
+        alt=""
+        src={list.title === 'Vil læse' ? toReadListIcon : readListIcon}
+      />
+    ) : list.image ? (
+      <img alt="" src={'v1/image/' + list.image + '/50/50'} />
+    ) : (
+      <div
+        style={{background: toColor(list.id), height: '40px', width: '40px'}}
+      />
     );
   };
   const isOwner = props.list && props.list._owner === props.userID;
   return (
     <div className="top-bar-dropdown-list-element">
       <div className="top-bar-dropdown-list-element--cover-image">
-        <Link href={url}>
-          {renderListsCover(props.list)}
-        </Link>
+        <Link href={url}>{renderListsCover(props.list)}</Link>
       </div>
       <div className="top-bar-dropdown-list-element--text">
         <div className="top-bar-dropdown-list-element--header">
@@ -121,7 +118,9 @@ class ListOverviewDropDown extends React.Component {
       <React.Fragment>
         <div
           className={this.props.className + ' top-bar-dropdown-list'}
-          onClick={() => {this.props.onListsIconClick(expanded, this.props.shortListExpanded);}}
+          onClick={() => {
+            this.props.onListsIconClick(expanded, this.props.shortListExpanded);
+          }}
         >
           {this.props.children}
         </div>
@@ -159,21 +158,25 @@ const mapStateToProps = state => {
   };
 };
 export const mapDispatchToProps = dispatch => ({
-  onEditLists: ()=>{
+  onEditLists: () => {
     dispatch({type: HISTORY_PUSH, path: '/profile'});
     dispatch({type: ON_USERLISTS_COLLAPSE});
   },
-  onCreateNewList: ()=>{
+  onCreateNewList: () => {
     dispatch({type: HISTORY_PUSH, path: '/lister/opret'});
     dispatch({type: ON_USERLISTS_COLLAPSE});
   },
-  onListsIconClick: (userListsexpanded, shortListExpanded)=>{
+  onListsIconClick: (userListsexpanded, shortListExpanded) => {
     dispatch({
       type: userListsexpanded ? ON_USERLISTS_COLLAPSE : ON_USERLISTS_EXPAND
     });
     // collapse shortlist if expanded
-    if (shortListExpanded) {dispatch({type: ON_SHORTLIST_COLLAPSE});}
+    if (shortListExpanded) {
+      dispatch({type: ON_SHORTLIST_COLLAPSE});
+    }
   },
-  onUserListsClose: ()=> dispatch({type: ON_USERLISTS_COLLAPSE})
+  onUserListsClose: () => dispatch({type: ON_USERLISTS_COLLAPSE})
 });
-export default connect(mapStateToProps, mapDispatchToProps)(ListOverviewDropDown);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  ListOverviewDropDown
+);
