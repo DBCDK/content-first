@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import Link from '../general/Link.component';
 import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
+import {ON_USERLISTS_COLLAPSE} from '../../redux/list.reducer';
+import {ON_SHORTLIST_COLLAPSE} from '../../redux/shortlist.reducer';
 import logo from '../../logo.svg';
 import ShortListDropDown from '../list/ShortListDropDown.container';
 import ListOverviewDropDown from '../list/ListOverviewDropDown.container';
@@ -52,6 +54,12 @@ export class TopBar extends React.Component {
   toggleDropdown() {
     let newState = this.state.dropdownActive ? false : true;
     this.setState({dropdownActive: newState});
+    if (this.props.shortListState.expanded) {
+      this.props.onShortlistClose();
+    }
+    if (this.props.listsState.expanded) {
+      this.props.onUserListsClose();
+    }
   }
 
   closeDropdown = event => {
@@ -176,7 +184,9 @@ const mapStateToProps = state => {
 };
 export const mapDispatchToProps = dispatch => ({
   historyPush: (type, path) => dispatch({type, path}),
-  logout: () => dispatch({type: ON_LOGOUT_REQUEST})
+  logout: () => dispatch({type: ON_LOGOUT_REQUEST}),
+  onUserListsClose: () => dispatch({type: ON_USERLISTS_COLLAPSE}),
+  onShortlistClose: () => dispatch({type: ON_SHORTLIST_COLLAPSE})
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopBar);

@@ -235,3 +235,19 @@
 .top-bar-dropdown-list--elements::-webkit-scrollbar-thumb:hover {
   background: var(--alto); 
 }
+.list-card-brick-small{
+  background-color: #fff;
+  width: 70%;
+  height: 5px;
+  border-radius: 1px;
+  align-self: flex-start;
+}
+.list-card-coverTemplate-small{
+  padding: 7px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+ .list-card-brick-small:nth-child(2) {
+  align-self: flex-end;
+}
