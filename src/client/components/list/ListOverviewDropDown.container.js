@@ -28,8 +28,13 @@ const ListElement = props => {
       <img alt="" src={'v1/image/' + list.image + '/50/50'} />
     ) : (
       <div
+        className="list-card-coverTemplate-small"
         style={{background: toColor(list.id), height: '40px', width: '40px'}}
-      />
+      >
+        <div className="list-card-brick-small" />
+        <div className="list-card-brick-small" />
+        <div className="list-card-brick-small" />
+      </div>
     );
   };
   const isOwner = props.list && props.list._owner === props.userID;
