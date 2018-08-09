@@ -10,6 +10,7 @@ jest.mock('../../data/exportTaxonomy.json', () => {
 jest.mock('../components/belt/Slider.component', () => 'slider');
 jest.mock('../components/bookcase/Bookcase.component', () => 'Bookcase');
 jest.mock('../components/belt/BooksBelt.component', () => 'BooksBelt');
+jest.mock('../components/spots/Spots.container.js', () => 'SpotsContainer');
 
 it('renders without crashing', () => {
   window.$ = () => ({tooltip: () => {}}); // mock jquery tooltip
