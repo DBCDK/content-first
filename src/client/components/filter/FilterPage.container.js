@@ -49,17 +49,13 @@ class FilterPage extends React.Component {
   }
 
   render() {
-    let warningMessage = null;
     const resultCount = this.props.recommendedPids.pids.length;
     const resultCountPrefixText =
       resultCount === 100 ? 'Mere end ' + resultCount : resultCount;
+    const resultCountPostFix = resultCount === 1 ? 'bog' : 'bøger';
+    const noResultsMessage =
+      'Vi fandt desværre ingen bøger som matchede din søgning';
 
-    if (
-      this.props.recommendedPids.pids.length === 0 &&
-      !this.props.recommendedPids.isLoading
-    ) {
-      warningMessage = 'De valgte filtre giver tomt resultat';
-    }
     return (
       <div className="filter-page">
         <div className="filters row">
@@ -81,13 +77,11 @@ class FilterPage extends React.Component {
           }}
         />
 
-        {warningMessage && (
-          <div className="warning row text-center">{warningMessage}</div>
-        )}
-
         <div className="filter-page-resultCount text-left pt4">
           <Heading Tag="h4" type="lead">
-            {resultCountPrefixText} bøger
+            {resultCount === 0
+              ? noResultsMessage
+              : resultCountPrefixText + ' ' + resultCountPostFix}
           </Heading>
         </div>
 
@@ -95,7 +89,6 @@ class FilterPage extends React.Component {
           {this.props.recommendedPids.pids.length > 0 &&
             this.props.recommendedPids.pids.map(pid => (
               <WorkCard
-                className="ml1 mr1"
                 pid={pid}
                 key={pid}
                 enableHover={true}

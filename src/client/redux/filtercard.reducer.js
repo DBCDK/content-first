@@ -6,7 +6,7 @@ const defaultState = {
     image: 'img/filters/mood.jpg',
     template: 'CardList',
     icon: false,
-    closeOnSelect: true,
+    closeOnSelect: false,
     expanded: false,
     show: true
   },
@@ -25,7 +25,7 @@ const defaultState = {
     template: 'CardRange',
     icon: 'signal_cellular_4_bar',
     range: [5629, 5630, 5631, 5632, 5633],
-    closeOnSelect: true,
+    closeOnSelect: false,
     expanded: false,
     show: true
   },

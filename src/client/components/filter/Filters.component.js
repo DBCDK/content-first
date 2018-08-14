@@ -14,7 +14,7 @@ import './Filters.css';
 const params = {
   containerClass: 'Filters__swiper-container',
   wrapperClass: 'Filters__swiper-wrapper',
-  mousewheel: !isMobile,
+  mousewheel: false,
   navigation: {
     nextEl: '.Filters__next',
     prevEl: '.Filters__prev'
@@ -73,11 +73,14 @@ class FilterCard extends React.Component {
       <div className={`FilterCard__container ${className} ${expandedClass}`}>
         <div className={`FilterCard`}>
           <div
+            onClick={e => this.props.onCardClick(e)}
             className="FilterCard__cover"
-            onClick={() => this.props.onCardClick()}
             style={{backgroundImage: `url(${filter.image})`}}
           />
-          <div className="FilterCard__content">
+          <div
+            className="FilterCard__content"
+            onClick={e => this.props.onCardClick(e)}
+          >
             <Heading type="title" className="FilterCard__heading mb0 mt0">
               {filter.title}
             </Heading>
@@ -98,17 +101,24 @@ class Filters extends React.Component {
     };
   }
 
-  toggleCardExpanded(title) {
+  toggleCardExpanded(e, title) {
     let oFilters = this.state.oFilters;
     const closeOnSelect = oFilters[title].closeOnSelect;
+    const coverClick =
+      e.target.className === 'FilterCard__cover' ? true : false;
 
     if (isMobile) {
       oFilters = this.changeExpandedProp(false, title);
     }
 
-    oFilters[title].expanded = closeOnSelect
-      ? !this.state.oFilters[title].expanded
-      : true;
+    if (coverClick) {
+      /* force close on cover click */
+      oFilters[title].expanded = !this.state.oFilters[title].expanded;
+    } else {
+      oFilters[title].expanded = closeOnSelect
+        ? !this.state.oFilters[title].expanded
+        : true;
+    }
 
     this.setState({oFilters});
   }
@@ -158,7 +168,7 @@ class Filters extends React.Component {
               return (
                 <FilterCard
                   expanded={filter.expanded}
-                  onCardClick={() => this.toggleCardExpanded(filter.title)}
+                  onCardClick={e => this.toggleCardExpanded(e, filter.title)}
                   filter={filter}
                   {...this.props}
                 />

@@ -3,7 +3,6 @@
   padding: 0;
   color: var(--alto);
   white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
   transition-duration: 0.2s;
 }
@@ -11,6 +10,15 @@
 .FilterCard__content ul.FilterCard__list li.FilterCard__listItem {
   display: inline-block;
   line-height: 1.6rem;
+}
+
+.FilterCard__content ul.FilterCard__list li.FilterCard__listItem-heading {
+  font-weight: 600;
+  padding-top: 1rem;
+}
+
+.FilterCard__content ul.FilterCard__list li.FilterCard__listItem-heading:hover {
+  color: var(--petrolium) !important;
 }
 
 .FilterCard__content ul.FilterCard__list li.FilterCard__listItem::first-letter {
@@ -37,6 +45,9 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .FilterCard__listItem-more {
+    display: none;
+  }
   .FilterCard__content ul.FilterCard__list {
     height: 1.7rem;
     overflow: hidden;

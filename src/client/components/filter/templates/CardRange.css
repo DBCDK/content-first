@@ -1,3 +1,7 @@
+.FilterCard__range .rc-slider {
+  pointer-events: none;
+}
+
 .FilterCard__range .rc-slider-track {
   background-color: var(--korn);
 }
@@ -69,6 +73,13 @@
 .FilterCard__container.FilterCard-expanded
   .FilterCard__content
   .FilterCard__range
+  .rc-slider {
+  pointer-events: auto;
+}
+
+.FilterCard__container.FilterCard-expanded
+  .FilterCard__content
+  .FilterCard__range
   .FilterCard__rangeItems {
   font-size: 1rem;
   display: block;
@@ -107,5 +118,14 @@
     .FilterCard__range
     .FilterCard__rangeItems {
     padding: 0.5rem;
+  }
+
+  .FilterCard__container.FilterCard-expanded
+    .FilterCard__range
+    .rc-slider-handle {
+    width: 24px;
+    height: 24px;
+    margin-top: -11px;
+    margin-left: -12px;
   }
 }
