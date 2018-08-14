@@ -4,44 +4,17 @@ import {isMobile} from 'react-device-detect';
 import Button from '../base/Button';
 import Heading from '../base/Heading';
 import Icon from '../base/Icon';
-import Slider from '../belt/Slider.component';
+
+import CardList from './templates/CardList.component.js';
+import CardSlider from './templates/CardSlider.component.js';
+import CardRange from './templates/CardRange.component.js';
 
 import './Filters.css';
-
-const oFilters = {
-  Stemning: {title: 'Stemning', image: 'img/filters/mood.jpg', expanded: false},
-  Længde: {title: 'Længde', image: 'img/filters/length.jpg', expanded: false},
-  Tempo: {title: 'Tempo', image: 'img/filters/speed.jpg', expanded: false},
-  'Handlingens tid': {
-    title: 'Handlingens tid',
-    image: 'img/filters/universe.jpg',
-    expanded: false
-  },
-  'På biblioteket': {
-    title: 'På biblioteket',
-    image: 'img/filters/length.jpg',
-    expanded: false
-  },
-  Struktur: {
-    title: 'Struktur',
-    image: 'img/filters/length.jpg',
-    expanded: false
-  },
-  Skrivestil: {
-    title: 'Skrivestil',
-    image: 'img/filters/length.jpg',
-    expanded: false
-  }
-};
-
-// const oFilters = {};
-// aFilters.forEach(filter => (oFilters[filter.title] = filter));
 
 const params = {
   containerClass: 'Filters__swiper-container',
   wrapperClass: 'Filters__swiper-wrapper',
   mousewheel: !isMobile,
-  pagination: false,
   navigation: {
     nextEl: '.Filters__next',
     prevEl: '.Filters__prev'
@@ -64,18 +37,21 @@ const params = {
   ),
   slidesPerView: 'auto',
   slidesPerGroup: 1,
-  slideToClickedSlide: isMobile,
-  loopFillGroupWithBlank: isMobile
+  slideToClickedSlide: isMobile
 };
 
 class FilterCard extends React.Component {
-  constructor() {
-    super();
-    // this.state = {expanded: false};
-  }
-
-  toggleCollapsible(callback = false) {
-    // this.setState({expanded: !this.state.expanded});
+  getTemplate(template) {
+    switch (template) {
+      case 'CardList':
+        return CardList;
+      case 'CardRange':
+        return CardRange;
+      case 'CardSlider':
+        return CardSlider;
+      default:
+        return CardList;
+    }
   }
 
   render() {
@@ -89,75 +65,23 @@ class FilterCard extends React.Component {
       expanded
     } = this.props;
 
-    //const expanded = this.state.expanded;
     const expandedClass = expanded ? 'FilterCard-expanded' : '';
+    const Template = this.getTemplate(filter.template);
     const ignore = [];
 
     return (
-      <div
-        className={`FilterCard__container ${className} ${expandedClass}`}
-        onClick={() => {
-          this.toggleCollapsible();
-          setTimeout(() => {
-            this.props.onCardClick();
-          }, 0);
-        }}
-      >
+      <div className={`FilterCard__container ${className} ${expandedClass}`}>
         <div className={`FilterCard`}>
           <div
             className="FilterCard__cover"
+            onClick={() => this.props.onCardClick()}
             style={{backgroundImage: `url(${filter.image})`}}
           />
-
           <div className="FilterCard__content">
             <Heading type="title" className="FilterCard__heading mb0 mt0">
               {filter.title}
             </Heading>
-            <ul className={`FilterCard__list `}>
-              {!expanded &&
-                filters[filter.title].map(f => {
-                  if (
-                    selectedFilters
-                      .map(selected => selected.id)
-                      .indexOf(f.id) >= 0
-                  ) {
-                    ignore.push(f.id);
-                    return (
-                      <React.Fragment>
-                        <ListItem
-                          key={f.id}
-                          filter={f}
-                          selected={
-                            selectedFilters
-                              .map(selected => selected.id)
-                              .indexOf(f.id) >= 0
-                          }
-                        />
-                        {!expanded && <span>{', '}</span>}
-                      </React.Fragment>
-                    );
-                  }
-                })}
-              {filters[filter.title].map(f => {
-                if (!ignore.includes(f.id)) {
-                  return (
-                    <React.Fragment>
-                      <ListItem
-                        key={f.id}
-                        filter={f}
-                        selected={
-                          selectedFilters
-                            .map(selected => selected.id)
-                            .indexOf(f.id) >= 0
-                        }
-                        onFilterToggle={onFilterToggle}
-                      />
-                      {!expanded && <span>{', '}</span>}
-                    </React.Fragment>
-                  );
-                }
-              })}
-            </ul>
+            {<Template {...this.props} />}
           </div>
         </div>
       </div>
@@ -165,75 +89,27 @@ class FilterCard extends React.Component {
   }
 }
 
-const ListItem = props => {
-  const tagState = props.selected ? 'listItem-active' : 'listItem-inactive';
-  return (
-    <li
-      type="tag"
-      size="small"
-      className={'FilterCard__listItem ' + tagState}
-      onClick={() => {
-        if (props.onFilterToggle) {
-          props.onFilterToggle(props.filter);
-        }
-      }}
-    >
-      {props.filter.title}
-    </li>
-  );
-};
-
 class Filters extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       showDimmer: false,
-      oFilters: {
-        Stemning: {
-          title: 'Stemning',
-          image: 'img/filters/mood.jpg',
-          expanded: false
-        },
-        Længde: {
-          title: 'Længde',
-          image: 'img/filters/length.jpg',
-          expanded: false
-        },
-        Tempo: {
-          title: 'Tempo',
-          image: 'img/filters/speed.jpg',
-          expanded: false
-        },
-        'Handlingens tid': {
-          title: 'Handlingens tid',
-          image: 'img/filters/universe.jpg',
-          expanded: false
-        },
-        'På biblioteket': {
-          title: 'På biblioteket',
-          image: 'img/filters/length.jpg',
-          expanded: false
-        },
-        Struktur: {
-          title: 'Struktur',
-          image: 'img/filters/length.jpg',
-          expanded: false
-        },
-        Skrivestil: {
-          title: 'Skrivestil',
-          image: 'img/filters/length.jpg',
-          expanded: false
-        }
-      }
+      oFilters: props.cards
     };
   }
 
   toggleCardExpanded(title) {
     let oFilters = this.state.oFilters;
+    const closeOnSelect = oFilters[title].closeOnSelect;
+
     if (isMobile) {
       oFilters = this.changeExpandedProp(false, title);
     }
-    oFilters[title].expanded = !this.state.oFilters[title].expanded;
+
+    oFilters[title].expanded = closeOnSelect
+      ? !this.state.oFilters[title].expanded
+      : true;
+
     this.setState({oFilters});
   }
 
@@ -277,14 +153,18 @@ class Filters extends React.Component {
             }
           }}
         >
-          {aFilters.map(filter => (
-            <FilterCard
-              expanded={filter.expanded}
-              onCardClick={() => this.toggleCardExpanded(filter.title)}
-              filter={filter}
-              {...this.props}
-            />
-          ))}
+          {aFilters.map(filter => {
+            if (filter.show) {
+              return (
+                <FilterCard
+                  expanded={filter.expanded}
+                  onCardClick={() => this.toggleCardExpanded(filter.title)}
+                  filter={filter}
+                  {...this.props}
+                />
+              );
+            }
+          })}
           <div className="FilterCard__space" />
         </Swiper>
         <div

@@ -19,7 +19,6 @@
   border: 1px solid var(--de-york);
   border-radius: 4px;
   z-index: 999;
-  position: relative;
 }
 
 .filter-page-editFilters {

@@ -125,6 +125,7 @@
   #react-autowhatever-1 .suggestion-title {
     padding: 0.5rem 1rem 0.5rem 1rem;
   }
+
   .suggestion-list.input-visible {
     min-width: calc(100% - 75px);
   }

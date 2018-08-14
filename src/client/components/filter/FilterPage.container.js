@@ -21,11 +21,13 @@ class FilterPage extends React.Component {
     super();
     this.state = {query: '', expanded: false};
   }
+
   toggleFilter(filterId) {
     const {selectedTagIds} = this.props;
     const tags = selectedTagIds.includes(filterId)
       ? selectedTagIds.filter(id => filterId !== id)
       : [...selectedTagIds, filterId];
+
     this.props.history(HISTORY_REPLACE, '/find', {tag: tags});
   }
 
@@ -42,8 +44,7 @@ class FilterPage extends React.Component {
       !prevProps ||
       !isEqual(prevProps.selectedTagIds, this.props.selectedTagIds)
     ) {
-      this.props.fetchRecommendations(this.props.selectedTagIds);
-      // console.log('fetching');
+      this.props.fetchRecommendations(this.props.plainSelectedTagIds);
     }
   }
 
@@ -70,13 +71,16 @@ class FilterPage extends React.Component {
             </div>
           )}
         </div>
+
         <Filters
           filters={this.props.filters}
+          cards={this.props.filterCards}
           selectedFilters={this.props.selectedTags}
           onFilterToggle={filter => {
-            this.toggleFilter(filter.id);
+            this.toggleFilter(filter.id || filter);
           }}
         />
+
         {warningMessage && (
           <div className="warning row text-center">{warningMessage}</div>
         )}
@@ -113,17 +117,55 @@ class FilterPage extends React.Component {
   }
 }
 const mapStateToProps = state => {
+  const filterCards = state.filtercardReducer;
   const selectedTagIds = state.routerReducer.params.tag
     ? state.routerReducer.params.tag
-        .map(id => parseInt(id, 10))
-        .filter(id => filtersMapAll[id])
+        .map(id => {
+          if (id instanceof Array) {
+            return id.map(id => parseInt(id, 10));
+          }
+          return parseInt(id, 10);
+        })
+        .filter(id => {
+          if (id instanceof Array) {
+            return id.map(id => filtersMapAll[id]);
+          }
+          return filtersMapAll[id];
+        })
     : [];
+
+  let plainSelectedTagIds = [];
+  selectedTagIds.forEach(id => {
+    if (id instanceof Array) {
+      const parent = filtersMapAll[id[0]].parents[0];
+      const range = filterCards[parent].range;
+
+      const min = range.indexOf(id[0]);
+      const max = range.indexOf(id[1]);
+
+      range.forEach((id, idx) => {
+        if (idx >= min && idx <= max) {
+          plainSelectedTagIds.push(id);
+        }
+      });
+    } else {
+      plainSelectedTagIds.push(id);
+    }
+  });
+
   return {
     recommendedPids: getRecommendedPids(state.recommendReducer, {
-      tags: selectedTagIds
+      tags: plainSelectedTagIds
     }),
+    filterCards,
     selectedTagIds,
-    selectedTags: selectedTagIds.map(tag => filtersMapAll[tag.id || tag]),
+    plainSelectedTagIds,
+    selectedTags: selectedTagIds.map(tag => {
+      if (tag instanceof Array) {
+        return tag.map(tag => filtersMapAll[tag]);
+      }
+      return filtersMapAll[tag.id || tag];
+    }),
     filters: state.filterReducer.filters,
     editFilters: state.filterReducer.editFilters,
     expandedFilters: state.filterReducer.expandedFilters

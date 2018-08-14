@@ -34,13 +34,11 @@ const addEmphasisToString = (string, pattern) => {
     const end = string.slice(index + pattern.length);
     const match = string.slice(index, index + pattern.length);
     return (
-      <React.Fragment>
-        <span>
-          {start}
-          <u>{match}</u>
-          {end}
-        </span>
-      </React.Fragment>
+      <span>
+        {start}
+        <u>{match}</u>
+        {end}
+      </span>
     );
   }
   return string;

@@ -1,0 +1,111 @@
+.FilterCard__range .rc-slider-track {
+  background-color: var(--korn);
+}
+
+.FilterCard__range .rc-slider-handle {
+  border: 2px solid var(--korn);
+  background-color: var(--porcelain);
+}
+
+.FilterCard__range .FilterCard__rangeItems span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.FilterCard__range .FilterCard__rangeItems {
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 0.5rem 0 0 0;
+  color: var(--due);
+}
+
+.FilterCard__range .FilterCard__rangeItems .FilterCard__rangeItem {
+  max-width: 45%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.FilterCard__range
+  .FilterCard__rangeItems
+  .FilterCard__rangeItem::first-letter {
+  text-transform: uppercase;
+}
+
+/* if card is inActive */
+
+.FilterCard__range.FilterCard__rangeItem-inActive .rc-slider-track {
+  background-color: var(--porcelain);
+}
+
+.FilterCard__range.FilterCard__rangeItem-inActive .rc-slider-handle {
+  border: 1px solid var(--alto);
+  background-color: var(--porcelain);
+}
+
+.FilterCard__range.FilterCard__rangeItem-inActive .FilterCard__rangeItems {
+  color: var(--alto) !important;
+}
+
+/* if card values is equal */
+
+.FilterCard__range.FilterCard__rangeItems-equal .FilterCard__rangeIconWrap {
+  margin-top: 0rem;
+}
+
+.FilterCard__range.FilterCard__rangeItems-equal .FilterCard__rangeItems {
+  font-size: 0.85rem;
+  color: var(--due);
+}
+
+.FilterCard__range.FilterCard__rangeItems-equal
+  .FilterCard__rangeItems
+  .FilterCard__rangeItem {
+  max-width: 100%;
+}
+
+/* if card is expanded */
+
+.FilterCard__container.FilterCard-expanded
+  .FilterCard__content
+  .FilterCard__range
+  .FilterCard__rangeItems {
+  font-size: 1rem;
+  display: block;
+  color: var(--petrolium);
+  padding: 1rem 0 0 0;
+}
+
+.FilterCard__container.FilterCard-expanded
+  .FilterCard__range
+  .FilterCard__rangeIconWrap {
+  margin-top: 0rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .FilterCard__range .FilterCard__rangeIconWrap {
+    display: none;
+  }
+
+  .FilterCard__range {
+    padding-top: 0.3rem;
+  }
+
+  .FilterCard__range .FilterCard__rangeItems {
+    padding: 0;
+  }
+
+  /* if card is expanded */
+
+  .FilterCard__container.FilterCard-expanded
+    .FilterCard__range
+    .FilterCard__rangeIconWrap {
+    display: block;
+  }
+
+  .FilterCard__container.FilterCard-expanded
+    .FilterCard__range
+    .FilterCard__rangeItems {
+    padding: 0.5rem;
+  }
+}

@@ -5,14 +5,26 @@ import Icon from '../base/Icon';
 import Button from '../base/Button';
 
 const SelectedFilter = props => {
+  let title = props.filter.title;
+  let id = props.filter;
+
+  if (props.filter instanceof Array) {
+    /* Capitalize first letter for each in range */
+    const first = props.filter[0].title.replace(/^\w/, c => c.toUpperCase());
+    const last = props.filter[1].title.replace(/^\w/, c => c.toUpperCase());
+
+    title = first === last ? first : first + ' - ' + last;
+    id = [props.filter[0].id, props.filter[1].id];
+  }
+
   return (
     <Button size="medium" type="tag" className="selected-filter">
-      {props.filter.title}
+      {title}
       <Icon
         className="md-small"
         name="close"
         onClick={() => {
-          props.onDisableFilter(props.filter);
+          props.onDisableFilter(id);
         }}
       />
     </Button>
@@ -20,14 +32,6 @@ const SelectedFilter = props => {
 };
 
 class SelectedFilters extends React.Component {
-  componentDidMount() {
-    if (this.props.selectedFilters.length === 0) {
-    }
-    // if (this.autosuggestRef.input) {
-    //   this.autosuggestRef.input.focus();
-    // }
-  }
-
   render() {
     return (
       <React.Fragment>
