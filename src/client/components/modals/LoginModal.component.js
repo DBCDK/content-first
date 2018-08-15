@@ -32,9 +32,7 @@ export function LoginModal({context, closeModal, login}) {
         <div className="modal-window--header text-center">{renderHeder()}</div>
         <div className="modal-window--content">
           <h3>{context.title || context}</h3>
-          <p>
-            {context.reason || 'Du skal logge ind.'}
-          </p>
+          <p>{context.reason || 'Du skal logge ind.'}</p>
           <div className="modal-window--buttons text-center">
             <span className={`btn  modal-window-login-btn`} onClick={login}>
               LOG IND
