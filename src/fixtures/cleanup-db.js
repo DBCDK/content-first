@@ -15,7 +15,6 @@ const constants = require('server/constants')();
 const bookTable = constants.books.table;
 const cookieTable = constants.cookies.table;
 const coverTable = constants.covers.table;
-const listTable = constants.lists.table;
 const tagTable = constants.tags.table;
 const taxonomyBottomTable = constants.taxonomy.bottomTable;
 const taxonomyMiddleTable = constants.taxonomy.middleTable;
@@ -30,7 +29,6 @@ module.exports = knex => {
       bookTable,
       cookieTable,
       coverTable,
-      listTable,
       tagTable,
       taxonomyBottomTable,
       taxonomyMiddleTable,

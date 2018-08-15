@@ -10,7 +10,6 @@ const {toLoggableString} = require('__/json');
 const database = require('server/database');
 const authenticator = require('server/authenticator');
 const login = require('server/login');
-const community = require('server/community');
 const recompas = require('server/recompas');
 const generatingServiceStatus = require('__/services/service-status');
 
@@ -63,7 +62,7 @@ external.get('/howru', async (req, res) => {
     'auth.secret',
     'login.salt'
   ]);
-  const services = [authenticator, community, database, login, recompas];
+  const services = [authenticator, database, login, recompas];
   const status = await generatingServiceStatus(services);
   Object.assign(status, {
     version: require('../../package').version,

@@ -29,7 +29,7 @@ describe('Admin API on running database', () => {
     describe('/howru', () => {
       it('should answer that everything is fine and give additional information', () => {
         // Arrange.
-        arrangeSubserviceResponse('ALC');
+        arrangeSubserviceResponse('AL');
         // Act.
         return (
           webapp
@@ -80,24 +80,6 @@ describe('Admin API on running database', () => {
             .expect(503)
             .expect(res => {
               expectStatusError(/login.* communication failed/i, res.body);
-              expectNoSecretsRevealed(res.body);
-            })
-        );
-      });
-
-      it('should detect community problems', () => {
-        // Arrange.
-        arrangeSubserviceResponse('AL_');
-        // Act.
-        return (
-          webapp
-            .get('/howru')
-            .set('Accept', 'application/json')
-            // Assert.
-            .expect('Content-Type', /json/)
-            .expect(503)
-            .expect(res => {
-              expectStatusError(/community.* communication failed/i, res.body);
               expectNoSecretsRevealed(res.body);
             })
         );
@@ -161,13 +143,11 @@ function expectNoSecretsRevealed(document) {
 
 const authConst = require('__/services/smaug/authentication-constants')();
 const loginConst = require('__/services/hejmdal/login-constants')();
-const communityConst = require('__/services/elvis/community-constants')();
 const nock = require('nock');
 
 function arrangeSubserviceResponse(authLoginCommunity) {
   const auth = authLoginCommunity[0];
   const login = authLoginCommunity[1];
-  const community = authLoginCommunity[2];
   if (auth === 'A') {
     nock(config.auth.url)
       .get(authConst.apiHealth)
@@ -184,15 +164,6 @@ function arrangeSubserviceResponse(authLoginCommunity) {
   } else {
     nock(config.login.url)
       .get(loginConst.apiHealth)
-      .reply(500);
-  }
-  if (community === 'C') {
-    nock(config.community.url)
-      .get(communityConst.apiHealth)
-      .reply(200, communityConst.healthyResponse);
-  } else {
-    nock(config.community.url)
-      .get(communityConst.apiHealth)
       .reply(500);
   }
   nock(config.recompass.url)
