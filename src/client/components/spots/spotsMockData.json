@@ -2,7 +2,8 @@
     {
         "type":"small",
         "tags":["Famillie","Tragisk","Skæv"],
-        "listLink":{"url":"/","title":"Se familier"}
+        "listLink":{"url":"/","title":"Se familier"},
+        "show": true
     },
     {
         "type":"wide",
@@ -10,20 +11,26 @@
         "highlight":"B.S' BUKET LIST?",
         "image":"https://cdn.suwalls.com/wallpapers/photography/wooden-disintegrating-boat-44780-2560x1600.jpg",
         "tags":["Optimistisk","Ro","Drama"],
-        "listLink":{"url":"/","title":"Se B.S's bogliste"}
+        "listLink":{"url":"/","title":"Se B.S's bogliste"},
+        "show": true
+
     },
     {
         "type":"small",
         "color":"#F4B51B",
         "tags":["Optimistisk","Forførende","Vred"],
-        "listLink":{"url":"/","title":"Se parforholdet"}
+        "listLink":{"url":"/","title":"Se parforholdet"},
+        "show": true
+
     },    
     {
         "type":"small",
         "title":"HVILKEN KRIMI ER DIN NÆSTE?",
         "highlight":"HVILKEN",
-         "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92Etcvnv4b9PdnQow-_q8P75kTM33ysk8GGuRZ6ck9VFHkVz9",
-        "listLink":{"url":"/","title":"Se alle nye krimier"}
+        "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92Etcvnv4b9PdnQow-_q8P75kTM33ysk8GGuRZ6ck9VFHkVz9",
+        "listLink":{"url":"/","title":"Se alle nye krimier"},
+        "show": true
+
     }
 
 ]

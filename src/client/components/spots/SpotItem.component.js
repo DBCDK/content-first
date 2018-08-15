@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './Spots.css';
 import toColor from '../../utils/toColor';
 import Link from '../general/Link.component';
-import circle from '../svg/circle-shape-outline.svg';
 
 export class SpotItem extends React.Component {
   constructor(props) {
@@ -58,7 +57,7 @@ export class SpotItem extends React.Component {
         <div className="spot-item-content">
           {this.props.spotData.title && this.renderTitle(this.props.spotData)}
 
-          {!this.props.spotData.image && <img src={circle} />}
+          {!this.props.spotData.image && <div className="spot-item-circle" />}
           <div className="tags">
             {this.props.spotData.tags &&
               this.props.spotData.tags.map(tag => <span>{tag}</span>)}

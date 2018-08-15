@@ -61,6 +61,7 @@
     display: flex;
     justify-content: space-between;
     width: fit-content;
+    margin-bottom: 10px;
 }
 .spot-item-content{
     float: left;
@@ -97,11 +98,17 @@ width: 60px;
 .spot-item-link-image-background{
     color: white;
 }
+.spot-item-circle{
+    width: 80px;
+    height: 80px;
+    margin-left: 0px;
+    border: 24px solid #fff;
+    border-radius: 100%;
+    background-image: none;
+}
 @media only screen and (max-width: 600px) {
 .spots-container {
-    width: 100%;
     display: flex;
-    margin: 20px 0px;
     overflow: scroll;
     justify-content: start;
 }
@@ -113,7 +120,7 @@ width: 60px;
 }
 .spot-item-wide-container,
 .spot-item-small-container{
-    min-height: 25vh;
+    height: 30vh;
 }
 .spots-container h1 {
         font-size: 1.2em;     
@@ -125,5 +132,13 @@ width: 60px;
 }
 .spot-item-content .tags span {
     font-size: 0.9em;
+}
+.spot-item-circle{
+    width: 70px;
+    height: 70px;
+    margin-left: 0px;
+    border: 20px solid #fff;
+    border-radius: 100%;
+    background-image: none;
 }
 }
