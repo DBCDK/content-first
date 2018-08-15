@@ -19,7 +19,8 @@ export class SpotsBelt extends React.Component {
           if (spot.show) {
             return (
               <SpotItem spotData={spot} className={index === 0 ? 'ml-0' : ''} />
-            );}
+            );
+          }
         })}
       </div>
     );
