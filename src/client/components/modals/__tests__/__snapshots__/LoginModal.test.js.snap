@@ -18,7 +18,7 @@ exports[`LoginModal renders function 1`] = `
         alt="luk"
         className="modal-window--close-btn"
         onClick={undefined}
-        src="KrydsElm.svg"
+        src="KrydsPetrolium.svg"
       />
     </div>
     <div
@@ -28,9 +28,7 @@ exports[`LoginModal renders function 1`] = `
         abc
       </h3>
       <p>
-        <strong>
-          def
-        </strong>
+        def
       </p>
       <div
         className="modal-window--buttons text-center"
@@ -42,7 +40,9 @@ exports[`LoginModal renders function 1`] = `
           LOG IND
         </span>
       </div>
-      <small>
+      <div
+        className="loginmodal-create-profile-text"
+      >
         <p>
           Har du ikke en profil? Du kan nemt oprette en profil med det login, du bruger på biblioteket.
            
@@ -52,7 +52,7 @@ exports[`LoginModal renders function 1`] = `
             Opret en profil
           </a>
         </p>
-      </small>
+      </div>
     </div>
   </div>
 </div>
