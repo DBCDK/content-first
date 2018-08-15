@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import Kryds from '../svg/KrydsElm.svg';
+import Kryds from '../svg/KrydsPetrolium.svg';
 import ArrowBack from '../svg/ArrowBack.svg';
 import {isMobile} from 'react-device-detect';
 
@@ -33,20 +33,20 @@ export function LoginModal({context, closeModal, login}) {
         <div className="modal-window--content">
           <h3>{context.title || context}</h3>
           <p>
-            <strong>{context.reason || 'Du skal logge ind.'}</strong>
+            {context.reason || 'Du skal logge ind.'}
           </p>
           <div className="modal-window--buttons text-center">
             <span className={`btn  modal-window-login-btn`} onClick={login}>
               LOG IND
             </span>
           </div>
-          <small>
+          <div className="loginmodal-create-profile-text">
             <p>
               Har du ikke en profil? Du kan nemt oprette en profil med det
               login, du bruger på biblioteket.{' '}
               <a href={'/v1/login'}>Opret en profil</a>
             </p>
-          </small>
+          </div>
         </div>
       </div>
     </div>

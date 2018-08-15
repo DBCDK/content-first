@@ -29,7 +29,7 @@
 }
 
 .modal-narrow {
-  width: 300px !important;
+  width: 310px !important;
 }
 
 
@@ -49,16 +49,21 @@
 
 .login-modal p,
 .login-modal a{
-  color: var(--elm);
+  color: var(--petrolium);
+  font-weight: 700;
+  font-size: 1em;
+
 }
 
 .login-modal a{
   text-decoration: underline;
 }
 .login-modal h3{
-  font-size: 1.3rem;
-  color: var(--elm);
-  font-weight: bold;
+  font-size: 1.1em;
+  color: var(--petrolium);
+  font-family: var(--primary-font);
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .modal-backdrop {
@@ -78,7 +83,7 @@
   position: absolute;
   top: 10px;
   right: 15px;
-  width: 15px;
+  width: 12px;
   cursor: pointer;
 }
 .modal-window--header h3 {
@@ -96,7 +101,7 @@
 .modal-window--content {
   margin-top: 20px;
   min-height: 100px;
-  padding: 0px 20px;
+  padding: 0px 13px;
   padding-bottom: 40px;
 }
 .modal-window--buttons {
@@ -104,6 +109,7 @@
 }
 .modal-window--buttons .btn {
   min-width: 80px;
+  
 }
 
 .modal-window--buttons .btn.disabled {
@@ -117,6 +123,17 @@
   border-bottom: 1px var(--grey-nurse) solid;
 
 }
+.login-modal .btn {
+  font-family: var(--primary-font);
+  font-weight: 600;
+}
+.loginmodal-create-profile-text p,
+.loginmodal-create-profile-text a{
+font-size: 0.9em;
+font-weight: 100;
+
+}
+
   @media only screen and (max-width: 600px) {
     .login-modal{
       width: 100% !important;
@@ -138,13 +155,22 @@
     }
     .login-modal-small-screen-header p{
       margin: 0;    
-      font-weight: 600;
-    
+      font-weight: 700;
     }
 
     .login-modal-small-screen-header img{
-      
       width: 15px;
     }
+    .modal-window--content {
+      padding: 0px 15px;
+    }
+    .login-modal h3{
+      font-size: 1.2em;
+    }
+    .loginmodal-create-profile-text p,
+    .loginmodal-create-profile-text a{
+    font-size: 1em;
+    } 
+ 
 }
 

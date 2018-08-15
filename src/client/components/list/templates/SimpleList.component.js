@@ -130,7 +130,7 @@ export class Item extends React.Component {
 
 export class SimpleList extends React.Component {
   toggleFollow(id, cat) {
-    if (!this.props.isLoggedIn) {
+    if (this.props.isLoggedIn) {
       if (this.props.follows[id]) {
         this.props.unfollow(id);
       } else {
@@ -140,7 +140,7 @@ export class SimpleList extends React.Component {
       this.props.openModal(
         {
           title: 'Følg liste',
-          reason: 'Du skal logge ind for at følge en liste'
+          reason: 'Du skal logge ind for at følge en liste.'
         },
         'login'
       );
@@ -165,7 +165,7 @@ export class SimpleList extends React.Component {
         <div className="row b-dark">
           <div className="list-media-icons">
             <SocialShareButton
-              className={this.props.isOwner ? '' : 'ssb-follow'}
+              className={this.props.isOwner ? 'hidden' : 'ssb-follow'}
               href={null}
               icon={'glyphicon-pushpin'}
               hex={'#6dc1ec'}
