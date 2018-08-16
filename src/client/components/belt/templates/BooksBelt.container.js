@@ -86,7 +86,7 @@ export class BooksBelt extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="row belt text-left mt3">
+        <div className="belt text-left mt3">
           <div className="header row">
             <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
               <Heading
@@ -167,6 +167,7 @@ export class BooksBelt extends React.Component {
                     scrollToChildBelt={() => {
                       this.scrollToChildBelt(belt);
                     }}
+                    pidPreview={pidPreview}
                   />
                 );
               })}
