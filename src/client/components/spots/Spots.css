@@ -142,3 +142,9 @@ width: 60px;
     background-image: none;
 }
 }
+@media only screen and (max-height: 650px) and (max-width: 400px) {
+    .spot-item-wide-container,
+    .spot-item-small-container{
+        height: 35vh;
+    }
+}

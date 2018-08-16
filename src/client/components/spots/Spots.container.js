@@ -18,7 +18,11 @@ export class SpotsBelt extends React.Component {
         {this.props.spots.map((spot, index) => {
           if (spot.show) {
             return (
-              <SpotItem spotData={spot} className={index === 0 ? 'ml-0' : ''} />
+              <SpotItem
+                key={index}
+                spotData={spot}
+                className={index === 0 ? 'ml-0' : ''}
+              />
             );
           }
         })}

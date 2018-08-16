@@ -8,20 +8,17 @@ export class SpotItem extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    this.handleBackground();
-  }
-  handleBackground() {
+  componentDidMount() {}
+  getStyle() {
+    let style = '';
     if (this.props.spotData.image) {
-      this.spot.style.backgroundImage = `url(${this.props.spotData.image})`;
-      this.spot.classList.add('image-spot');
+      style = {backgroundImage: `url(${this.props.spotData.image})`};
     } else if (this.props.spotData.color) {
-      this.spot.style.backgroundColor = this.props.spotData.color;
+      style = {backgroundColor: this.props.spotData.color};
     } else {
-      this.spot.style.backgroundColor = toColor(
-        Math.floor(Math.random() * 100 + 1)
-      ); // change to spot_id
+      style = {backgroundColor: toColor(Math.floor(Math.random() * 100 + 1))};
     }
+    return style;
   }
   renderTitle(spot) {
     if (spot.title.includes(spot.highlight)) {
@@ -29,9 +26,8 @@ export class SpotItem extends React.Component {
       const titleSplitAfterHighligt = spot.title.split(spot.highlight)[1];
       return (
         <h1>
-          {' '}
-          {titleSplitBeforeHighligt}{' '}
-          <span className="title-highlighted">{spot.highlight}</span>{' '}
+          {titleSplitBeforeHighligt}
+          <span className="title-highlighted">{spot.highlight}</span>
           {titleSplitAfterHighligt}
         </h1>
       );
@@ -46,21 +42,23 @@ export class SpotItem extends React.Component {
           (this.props.spotData.type === 'wide'
             ? 'wide-container '
             : 'small-container ') +
-          (this.props.className ? this.props.className : '')
+          (this.props.className ? this.props.className : '') +
+          (this.props.spotData.image ? 'image-spot' : '')
         }
-        ref={node => {
-          if (node) {
-            this.spot = node;
-          }
-        }}
+        style={this.getStyle()}
       >
         <div className="spot-item-content">
           {this.props.spotData.title && this.renderTitle(this.props.spotData)}
-
           {!this.props.spotData.image && <div className="spot-item-circle" />}
           <div className="tags">
             {this.props.spotData.tags &&
-              this.props.spotData.tags.map(tag => <span>{tag}</span>)}
+              this.props.spotData.tags.map(tag => {
+                return (
+                  <Link key={tag.id} href="/find" params={{tag: tag.id}}>
+                    <span>{tag.title}</span>
+                  </Link>
+                );
+              })}
           </div>
           <Link
             href={this.props.spotData.listLink.url}
