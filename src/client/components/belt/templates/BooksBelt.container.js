@@ -167,6 +167,7 @@ export class BooksBelt extends React.Component {
                     scrollToChildBelt={() => {
                       this.scrollToChildBelt(belt);
                     }}
+                    pidPreview={pidPreview}
                   />
                 );
               })}
@@ -194,12 +195,11 @@ export class BooksBelt extends React.Component {
               />
             )}
           </div>
-
-          {belt.child &&
-            this.props.childTemplate && (
-              <this.props.childTemplate belt={belt.child} />
-            )}
         </div>
+        {belt.child &&
+          this.props.childTemplate && (
+            <this.props.childTemplate belt={belt.child} />
+          )}
       </React.Fragment>
     );
   }
