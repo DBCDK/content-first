@@ -86,7 +86,7 @@ export class BooksBelt extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="belt text-left mt3">
+        <div className="row belt text-left mt3">
           <div className="header row">
             <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
               <Heading
@@ -195,12 +195,11 @@ export class BooksBelt extends React.Component {
               />
             )}
           </div>
-
-          {belt.child &&
-            this.props.childTemplate && (
-              <this.props.childTemplate belt={belt.child} />
-            )}
         </div>
+        {belt.child &&
+          this.props.childTemplate && (
+            <this.props.childTemplate belt={belt.child} />
+          )}
       </React.Fragment>
     );
   }
