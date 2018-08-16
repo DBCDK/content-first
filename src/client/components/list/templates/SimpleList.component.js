@@ -15,7 +15,7 @@ import {
 import CommentInput from '../../comments/CommentInput.component';
 import timeToString from '../../../utils/timeToString';
 import textParser from '../../../utils/textParser';
-
+import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {FOLLOW, UNFOLLOW} from '../../../redux/follow.reducer';
 
 export class Item extends React.Component {
@@ -130,10 +130,20 @@ export class Item extends React.Component {
 
 export class SimpleList extends React.Component {
   toggleFollow(id, cat) {
-    if (this.props.follows[id]) {
-      this.props.unfollow(id);
+    if (this.props.isLoggedIn) {
+      if (this.props.follows[id]) {
+        this.props.unfollow(id);
+      } else {
+        this.props.follow(id, cat);
+      }
     } else {
-      this.props.follow(id, cat);
+      this.props.openModal(
+        {
+          title: 'Følg liste',
+          reason: 'Du skal logge ind for at følge en liste.'
+        },
+        'login'
+      );
     }
   }
 
@@ -249,7 +259,9 @@ const mapStateToProps = (state, ownProps) => {
     loggedInUserId: state.userReducer.openplatformId,
     follows: state.followReducer,
     isOwner:
-      ownProps.list && ownProps.list._owner === state.userReducer.openplatformId
+      ownProps.list &&
+      ownProps.list._owner === state.userReducer.openplatformId,
+    isLoggedIn: state.userReducer.isLoggedIn
   };
 };
 export const mapDispatchToProps = dispatch => ({
@@ -302,6 +314,13 @@ export const mapDispatchToProps = dispatch => ({
           });
         }
       }
+    });
+  },
+  openModal: (work, modal) => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: modal,
+      context: work
     });
   }
 });
