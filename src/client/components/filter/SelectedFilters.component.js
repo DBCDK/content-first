@@ -1,6 +1,5 @@
 import React from 'react';
 import TagsSuggester from './TagsSuggester.component';
-import Slider from '../belt/Slider.component';
 import Icon from '../base/Icon';
 import Button from '../base/Button';
 
@@ -18,8 +17,8 @@ const SelectedFilter = props => {
   }
 
   return (
-    <Button size="medium" type="tag" className="selected-filter">
-      {title}
+    <Button Tag="div" size="medium" type="tag" className="selected-filter">
+      <span>{title}</span>
       <Icon
         className="md-small"
         name="close"

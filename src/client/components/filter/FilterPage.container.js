@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {isMobile} from 'react-device-detect';
-import SelectedFilters from './SelectedFilters.component';
 import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
@@ -12,7 +11,11 @@ import {
 } from '../../redux/filter.reducer';
 import {HISTORY_REPLACE, HISTORY_PUSH} from '../../redux/middleware';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
-import {filtersMapAll} from '../../redux/filter.reducer';
+import {
+  getTagsFromUrl,
+  getIdsFromRange,
+  getTagsbyIds
+} from '../../redux/selectors';
 import {isEqual} from 'lodash';
 import SearchBar from './SearchBar.component';
 
@@ -109,42 +112,11 @@ class FilterPage extends React.Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   const filterCards = state.filtercardReducer;
-  const selectedTagIds = state.routerReducer.params.tag
-    ? state.routerReducer.params.tag
-        .map(id => {
-          if (id instanceof Array) {
-            return id.map(id => parseInt(id, 10));
-          }
-          return parseInt(id, 10);
-        })
-        .filter(id => {
-          if (id instanceof Array) {
-            return id.map(id => filtersMapAll[id]);
-          }
-          return filtersMapAll[id];
-        })
-    : [];
-
-  let plainSelectedTagIds = [];
-  selectedTagIds.forEach(id => {
-    if (id instanceof Array) {
-      const parent = filtersMapAll[id[0]].parents[0];
-      const range = filterCards[parent].range;
-
-      const min = range.indexOf(id[0]);
-      const max = range.indexOf(id[1]);
-
-      range.forEach((id, idx) => {
-        if (idx >= min && idx <= max) {
-          plainSelectedTagIds.push(id);
-        }
-      });
-    } else {
-      plainSelectedTagIds.push(id);
-    }
-  });
+  const selectedTagIds = getTagsFromUrl(state);
+  const plainSelectedTagIds = getIdsFromRange(state, selectedTagIds);
 
   return {
     recommendedPids: getRecommendedPids(state.recommendReducer, {
@@ -153,12 +125,7 @@ const mapStateToProps = state => {
     filterCards,
     selectedTagIds,
     plainSelectedTagIds,
-    selectedTags: selectedTagIds.map(tag => {
-      if (tag instanceof Array) {
-        return tag.map(tag => filtersMapAll[tag]);
-      }
-      return filtersMapAll[tag.id || tag];
-    }),
+    selectedTags: getTagsbyIds(state, selectedTagIds),
     filters: state.filterReducer.filters,
     editFilters: state.filterReducer.editFilters,
     expandedFilters: state.filterReducer.expandedFilters

@@ -69,14 +69,8 @@ const defaultState = {
 
 /* eslint-enable */
 
-export const ON_CARD_REQUEST = 'ON_CARD_REQUEST';
-
 const filtercardReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case ON_CARD_REQUEST: {
-      return Object.assign({}, {state});
-    }
-
     default:
       return state;
   }

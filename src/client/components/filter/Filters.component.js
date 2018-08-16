@@ -1,12 +1,10 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
-import Button from '../base/Button';
 import Heading from '../base/Heading';
 import Icon from '../base/Icon';
 
 import CardList from './templates/CardList.component.js';
-import CardSlider from './templates/CardSlider.component.js';
 import CardRange from './templates/CardRange.component.js';
 
 import './Filters.css';
@@ -47,27 +45,16 @@ class FilterCard extends React.Component {
         return CardList;
       case 'CardRange':
         return CardRange;
-      case 'CardSlider':
-        return CardSlider;
       default:
         return CardList;
     }
   }
 
   render() {
-    const {
-      filter,
-      className,
-      filters,
-      selectedFilters,
-      onFilterToggle,
-      onCardClick,
-      expanded
-    } = this.props;
+    const {filter, className, expanded} = this.props;
 
     const expandedClass = expanded ? 'FilterCard-expanded' : '';
     const Template = this.getTemplate(filter.template);
-    const ignore = [];
 
     return (
       <div className={`FilterCard__container ${className} ${expandedClass}`}>
@@ -141,13 +128,6 @@ class Filters extends React.Component {
   }
 
   render() {
-    const {
-      selectedFilters,
-      onFilterToggle,
-      filters,
-      className = ''
-    } = this.props;
-
     const aFilters = Object.values(this.state.oFilters);
     const expandedCards = aFilters.filter(card => card.expanded);
 

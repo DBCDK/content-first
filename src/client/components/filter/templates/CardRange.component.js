@@ -37,7 +37,7 @@ class CardRange extends React.Component {
     let max = this.props.filter.range.length - 1;
 
     /* if value in selected filter is a range and exist in current range array */
-    selectedFilters.forEach((filter, idx) => {
+    selectedFilters.forEach(filter => {
       if (filter instanceof Array) {
         if (range.includes(filter[0].id) && range.includes(filter[1].id)) {
           min = range.indexOf(filter[0].id);
@@ -158,13 +158,13 @@ const mapStateToProps = state => {
     ? state.routerReducer.params.tag
         .map(id => {
           if (id instanceof Array) {
-            return id.map(id => parseInt(id, 10));
+            return id.map(aId => parseInt(aId, 10));
           }
           return parseInt(id, 10);
         })
         .filter(id => {
           if (id instanceof Array) {
-            return id.map(id => filtersMapAll[id]);
+            return id.map(aId => filtersMapAll[aId]);
           }
           return filtersMapAll[id];
         })
@@ -173,7 +173,7 @@ const mapStateToProps = state => {
     selectedTagIds,
     selectedFilters: selectedTagIds.map(tag => {
       if (tag instanceof Array) {
-        return tag.map(tag => filtersMapAll[tag]);
+        return tag.map(aTag => filtersMapAll[aTag]);
       }
       return filtersMapAll[tag.id || tag];
     })

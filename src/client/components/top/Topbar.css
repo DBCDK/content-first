@@ -21,7 +21,7 @@
 
 .Topbar .Topbar__logo {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   background-color: white;
   color: var(--petrolium);
 }
@@ -54,6 +54,9 @@
   padding: 0 !important;
   transition-duration: 0.2s;
   display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 5px;
+  z-index: ;
 }
 
 .Topbar .Topbar__navigation .Topbar__SearchBarWrapper input {

@@ -22,12 +22,6 @@ const ListItem = props => {
 };
 
 class FilterCardList extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    if (this.props.filters !== nextProps.filters) {
-      console.log('not same');
-    }
-  }
-
   render() {
     const {
       filter,
@@ -36,9 +30,6 @@ class FilterCardList extends React.Component {
       onFilterToggle,
       expanded
     } = this.props;
-
-    console.log('render . . . ');
-    console.log(selectedFilters);
 
     const ignore = [];
 
@@ -51,32 +42,31 @@ class FilterCardList extends React.Component {
         {!expanded &&
           aFilters.map(f => {
             if (f instanceof Array) {
-              return f.map(f => {
+              return f.map(aF => {
                 if (
-                  selectedFilters.map(selected => selected.id).indexOf(f.id) >=
+                  selectedFilters.map(selected => selected.id).indexOf(aF.id) >=
                   0
                 ) {
-                  ignore.push(f.id);
+                  ignore.push(aF.id);
                   return (
                     <React.Fragment>
-                      <ListItem key={f.id} filter={f} selected={true} />
+                      <ListItem key={aF.id} filter={aF} selected={true} />
                       {!expanded && <span>{', '}</span>}
                     </React.Fragment>
                   );
                 }
               });
-            } else {
-              if (
-                selectedFilters.map(selected => selected.id).indexOf(f.id) >= 0
-              ) {
-                ignore.push(f.id);
-                return (
-                  <React.Fragment>
-                    <ListItem key={f.id} filter={f} selected={true} />
-                    {!expanded && <span>{', '}</span>}
-                  </React.Fragment>
-                );
-              }
+            }
+            if (
+              selectedFilters.map(selected => selected.id).indexOf(f.id) >= 0
+            ) {
+              ignore.push(f.id);
+              return (
+                <React.Fragment>
+                  <ListItem key={f.id} filter={f} selected={true} />
+                  {!expanded && <span>{', '}</span>}
+                </React.Fragment>
+              );
             }
           })}
 
@@ -95,17 +85,17 @@ class FilterCardList extends React.Component {
                     {aKeys[idx]}
                   </li>
                 )}
-                {f.map(f => {
-                  if (!ignore.includes(f.id)) {
+                {f.map(aF => {
+                  if (!ignore.includes(aF.id)) {
                     return (
                       <React.Fragment>
                         <ListItem
-                          key={f.id}
-                          filter={f}
+                          key={aF.id}
+                          filter={aF}
                           selected={
                             selectedFilters
                               .map(selected => selected.id)
-                              .indexOf(f.id) >= 0
+                              .indexOf(aF.id) >= 0
                           }
                           onFilterToggle={expanded && onFilterToggle}
                         />
@@ -116,24 +106,23 @@ class FilterCardList extends React.Component {
                 })}
               </React.Fragment>
             );
-          } else {
-            if (!ignore.includes(f.id)) {
-              return (
-                <React.Fragment>
-                  <ListItem
-                    key={f.id}
-                    filter={f}
-                    selected={
-                      selectedFilters
-                        .map(selected => selected.id)
-                        .indexOf(f.id) >= 0
-                    }
-                    onFilterToggle={expanded && onFilterToggle}
-                  />
-                  {!expanded && <span>{', '}</span>}
-                </React.Fragment>
-              );
-            }
+          }
+          if (!ignore.includes(f.id)) {
+            return (
+              <React.Fragment>
+                <ListItem
+                  key={f.id}
+                  filter={f}
+                  selected={
+                    selectedFilters
+                      .map(selected => selected.id)
+                      .indexOf(f.id) >= 0
+                  }
+                  onFilterToggle={expanded && onFilterToggle}
+                />
+                {!expanded && <span>{', '}</span>}
+              </React.Fragment>
+            );
           }
         })}
         {!expanded && (

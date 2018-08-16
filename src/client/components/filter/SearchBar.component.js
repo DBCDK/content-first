@@ -4,6 +4,12 @@ import SelectedFilters from './SelectedFilters.component';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../redux/middleware';
 import {getRecommendedPids} from '../../redux/recommend';
+import {
+  getTagsFromUrl,
+  getIdsFromRange,
+  getTagsbyIds
+} from '../../redux/selectors';
+
 import './SearchBar.css';
 
 class SearchBar extends React.Component {
@@ -33,46 +39,60 @@ class SearchBar extends React.Component {
     if (range) {
       /* id is part of a range */
       if (selectedTagIds.length === 0) {
-        /* Add new range if non in curent url */
+        /* Add new range if non tags in curent url */
         tags = [...selectedTagIds, filterId + ',' + filterId];
-      }
-      selectedTagIds.forEach((id, idx) => {
-        let existInUrl = range.includes(id[0]) || range.includes(id);
+      } else if (selectedTagIds.filter(t => t instanceof Array).length === 0) {
+        /* if non existing arrays in URL - add*/
+        tags = [...selectedTagIds, filterId + ',' + filterId];
+      } else {
+        /* if tag exist in url and there is an existing range */
+        selectedTagIds.forEach((id, idx) => {
+          let existInUrl = range.includes(id[0]) || range.includes(id);
 
-        if (existInUrl) {
-          posInSelectedTagIds = idx;
-          urlRange = selectedTagIds[idx];
+          if (existInUrl) {
+            /* if exist in url grab position in selectedTagIds array */
+            posInSelectedTagIds = idx;
+            urlRange = selectedTagIds[idx];
 
-          if (JSON.stringify(filterId) === JSON.stringify(urlRange)) {
-            /* If exactly same range - trigger toggle (remove tag) */
-            selectedTagIds.splice(posInSelectedTagIds, 1);
-          } else {
-            const rangeMin = 0;
-            const rangeMax = range.length - 1;
-
-            const urlRangeMin = range.indexOf(urlRange[0] || urlRange);
-            const urlRangeMax = range.indexOf(urlRange[1] || urlRange);
-            const idRangeMin = range.indexOf(filterId[0] || filterId);
-            const idRangeMax = range.indexOf(filterId[1] || filterId);
-
-            const urlDiffMin = Math.abs(urlRangeMin - rangeMin);
-            const urlDiffMax = Math.abs(rangeMax - urlRangeMax);
-
-            const idDiffMin = Math.abs(idRangeMin - rangeMin);
-            const idDiffMax = Math.abs(rangeMax - idRangeMax);
-
-            const diffMax = Math.abs(urlDiffMax - idDiffMax);
-            const diffMin = Math.abs(urlDiffMin - idDiffMin);
-
-            let newRange = urlRange;
-            const newRangeValue = filterId[0] || filterId;
-
-            if (diffMin === 0 || diffMax === 0) {
-              /* adjust upper & lower range to same tag */
-              newRange[0] = newRangeValue;
-              newRange[1] = newRangeValue;
+            if (JSON.stringify(filterId) === JSON.stringify(urlRange)) {
+              /* If exactly same range - trigger toggle (remove tag) */
+              selectedTagIds.splice(posInSelectedTagIds, 1);
             } else {
-              if (diffMin < diffMax) {
+              /* if new range and existing range is different check if the
+                lower or uppper range cursor should be moved by calculating
+                the difference between the positions (Which range cursor is
+                closest) */
+
+              /* MAX lower and upper range */
+              const rangeMin = 0;
+              const rangeMax = range.length - 1;
+
+              /* existing range in URL */
+              const urlRangeMin = range.indexOf(urlRange[0] || urlRange);
+              const urlRangeMax = range.indexOf(urlRange[1] || urlRange);
+
+              /* new range from id*/
+              const idRangeMin = range.indexOf(filterId[0] || filterId);
+              const idRangeMax = range.indexOf(filterId[1] || filterId);
+
+              /* Diff calcualtion */
+              const urlDiffMin = Math.abs(urlRangeMin - rangeMin);
+              const urlDiffMax = Math.abs(rangeMax - urlRangeMax);
+
+              const idDiffMin = Math.abs(idRangeMin - rangeMin);
+              const idDiffMax = Math.abs(rangeMax - idRangeMax);
+
+              const diffMax = Math.abs(urlDiffMax - idDiffMax);
+              const diffMin = Math.abs(urlDiffMin - idDiffMin);
+
+              let newRange = urlRange;
+              const newRangeValue = filterId[0] || filterId;
+
+              if (diffMin === 0 || diffMax === 0) {
+                /* adjust upper & lower range to same tag */
+                newRange[0] = newRangeValue;
+                newRange[1] = newRangeValue;
+              } else if (diffMin < diffMax) {
                 /* adjust lower range */
                 newRange[0] = newRangeValue;
               } else if (diffMin === diffMax) {
@@ -87,28 +107,29 @@ class SearchBar extends React.Component {
                 /* adjust upper range */
                 newRange[1] = newRangeValue;
               }
+
+              const newRangeMin = range.indexOf(newRange[0]);
+              const newRangeMax = range.indexOf(newRange[1]);
+
+              if (!(newRangeMin === rangeMin && newRangeMax === rangeMax)) {
+                selectedTagIds[posInSelectedTagIds] = newRange;
+              } else {
+                selectedTagIds.splice(posInSelectedTagIds, 1);
+              }
             }
 
-            const newRangeMin = range.indexOf(newRange[0]);
-            const newRangeMax = range.indexOf(newRange[1]);
-
-            if (!(newRangeMin === rangeMin && newRangeMax === rangeMax)) {
-              selectedTagIds[posInSelectedTagIds] = newRange;
-            } else {
-              selectedTagIds.splice(posInSelectedTagIds, 1);
-            }
-          }
-
-          tags = [...selectedTagIds];
-        } else {
-          if (!selectedTagIds.includes(filterId) && !range.includes(filterId)) {
+            tags = [...selectedTagIds];
+          } else if (
+            !selectedTagIds.includes(filterId) &&
+            !range.includes(filterId)
+          ) {
             const newTag = filterId + ',' + filterId;
             tags = [...selectedTagIds, newTag];
           } else {
             tags = [...selectedTagIds];
           }
-        }
-      });
+        });
+      }
     } else {
       tags = selectedTagIds.includes(filterId)
         ? selectedTagIds.filter(id => filterId !== id)
@@ -120,14 +141,21 @@ class SearchBar extends React.Component {
 
   onFiltersMouseWheelScrool(e) {
     e.preventDefault();
-    const scrollSpeed = 40;
+    let scrollSpeed = 40;
+
+    /* eslint-disable no-unused-expressions */
+
     e.deltaY > 0
       ? (this.filtersRef.scrollLeft += scrollSpeed)
       : (this.filtersRef.scrollLeft -= scrollSpeed);
+
+    /* eslint-enable no-unused-expressions */
   }
 
   initFilterPosition() {
-    this.filtersRef.scrollLeft = 99999999;
+    if (this.filtersRef) {
+      this.filtersRef.scrollLeft = 99999999;
+    }
   }
 
   render() {
@@ -157,45 +185,8 @@ class SearchBar extends React.Component {
 
 const mapStateToProps = state => {
   const filterCards = state.filtercardReducer;
-  const selectedTagIds = state.routerReducer.params.tag
-    ? state.routerReducer.params.tag
-        .map(id => {
-          if (id instanceof Array) {
-            return id.map(id => parseInt(id, 10));
-          }
-          return parseInt(id, 10);
-        })
-        .filter(id => {
-          if (id instanceof Array) {
-            return id.map(id => filtersMapAll[id]);
-          }
-          return filtersMapAll[id];
-        })
-    : [];
-
-  let plainSelectedTagIds = [];
-  selectedTagIds.forEach(id => {
-    if (id instanceof Array) {
-      const parent = filtersMapAll[id[0]].parents[0];
-      const range = filterCards[parent].range;
-
-      const min = range.indexOf(id[0]);
-      const max = range.indexOf(id[1]);
-
-      range.forEach((id, idx) => {
-        if (idx >= min && idx <= max) {
-          plainSelectedTagIds.push(id);
-        }
-      });
-    } else {
-      plainSelectedTagIds.push(id);
-    }
-  });
-
-  let tags = [];
-  selectedTagIds.forEach(id => {
-    id instanceof Array ? id.forEach(id => tags.push(id)) : tags.push(id);
-  });
+  const selectedTagIds = getTagsFromUrl(state);
+  const plainSelectedTagIds = getIdsFromRange(state, selectedTagIds);
 
   return {
     recommendedPids: getRecommendedPids(state.recommendReducer, {
@@ -204,13 +195,10 @@ const mapStateToProps = state => {
     filterCards,
     selectedTagIds,
     plainSelectedTagIds,
-    selectedTags: selectedTagIds.map(tag => {
-      if (tag instanceof Array) {
-        return tag.map(tag => filtersMapAll[tag]);
-      }
-      return filtersMapAll[tag.id || tag];
-    }),
-    filters: state.filterReducer.filters
+    selectedTags: getTagsbyIds(state, selectedTagIds),
+    filters: state.filterReducer.filters,
+    editFilters: state.filterReducer.editFilters,
+    expandedFilters: state.filterReducer.expandedFilters
   };
 };
 export const mapDispatchToProps = dispatch => ({

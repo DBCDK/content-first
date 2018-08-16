@@ -37,8 +37,9 @@
   margin-right: 1rem;
 }
 
-.selected-filters .selected-filter:focus {
-  outline: none;
+.selected-filters .selected-filter span {
+  vertical-align: middle;
+  padding: 0 !important;
 }
 
 .selected-filter i {

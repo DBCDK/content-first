@@ -65,6 +65,7 @@
   font-weight: 400;
   font-size: 0.9rem;
   text-transform: none;
+  background-color: #ccc;
   background-color: var(--porcelain);
   cursor: pointer;
 }

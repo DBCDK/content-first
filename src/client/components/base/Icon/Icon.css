@@ -1,5 +1,6 @@
 i {
-  font-size: 1rem;
+  /* must be 0px to prevent material icon names to show up on loading*/
+  font-size: 0px;
 }
 
 .material-icons.md-small {

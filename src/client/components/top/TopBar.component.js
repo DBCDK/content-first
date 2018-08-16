@@ -94,13 +94,26 @@ export class TopBar extends React.Component {
   closeDropdown = event => {
     // Dont dubble close on 'dropdown' click
     let abortCloseDropdown = false;
-    const path = event.path || (event.composedPath && event.composedPath());
+    const path =
+      event.path ||
+      (event.composedPath && event.composedPath()) ||
+      event.target.parentNode;
 
-    path.forEach(el => {
-      if (el.className && el.className.includes('abort-closeDopdown')) {
+    /* IE11 & Edge support*/
+    for (var i = 0; i < path.length; i++) {
+      if (
+        path[i].className &&
+        path[i].className.includes('abort-closeDopdown')
+      ) {
         abortCloseDropdown = true;
       }
-    });
+    }
+
+    // path.forEach(el => {
+    //   if (el.className && el.className.includes('abort-closeDopdown')) {
+    //     abortCloseDropdown = true;
+    //   }
+    // });
 
     // close dropdown on click on every other element than 'dropdown' or 'wrapperRef'
     if (!abortCloseDropdown) {
@@ -120,9 +133,11 @@ export class TopBar extends React.Component {
   calcWidth() {
     const btns = document.getElementsByClassName('widthCalc');
     const topbar = this.Topbar ? this.Topbar.offsetWidth : 0;
+
     const searchbarwrapper = this.SearchBarWrapper
       ? this.SearchBarWrapper.offsetWidth
       : 0;
+
     let width = 0;
     for (var i = 0; i < btns.length; i++) {
       width += btns[i].offsetWidth;
@@ -264,7 +279,7 @@ export class TopBar extends React.Component {
           )}
           <div className="Topbar__overlay" />
         </nav>
-        <Link href="/" className={'Topbar__logo '}>
+        <Link href="/" className={'Topbar__logo'}>
           <h1 className="hide-on-s-and-down">Læsekompasset</h1>
           <img src={logo} className="show-on-s-and-down" alt="Læsekompasset" />
         </Link>

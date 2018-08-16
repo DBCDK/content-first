@@ -96,7 +96,6 @@ class TagsSuggester extends React.Component {
 
   render() {
     const {suggestions} = this.state;
-    //const fieldWidth = this.calcWidth();
 
     const inputVisibel = this.state.inputVisibel;
     const tagsInField = this.props.selectedFilters.length === 0 ? false : true;
