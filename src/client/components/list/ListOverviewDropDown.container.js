@@ -52,7 +52,7 @@ const ListElement = props => {
         </div>
         <div className="top-bar-dropdown-list-element--origin">
           {props.profiles[props.list._owner] && !isOwner
-            ? props.profiles[props.list._owner].name
+            ? 'Af '+props.profiles[props.list._owner].name
             : ''}
         </div>
       </div>
