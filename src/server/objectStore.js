@@ -195,7 +195,9 @@ async function del(id, user) {
     };
   }
 
-  const {data: {_owner}} = result;
+  const {
+    data: {_owner}
+  } = result;
   if (_owner !== user.openplatformId) {
     return {
       data: {error: 'forbidden'},

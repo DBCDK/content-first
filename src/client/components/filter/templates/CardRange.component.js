@@ -184,4 +184,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({type, path, params});
   }
 });
-export default connect(mapStateToProps, mapDispatchToProps)(CardRange);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CardRange);

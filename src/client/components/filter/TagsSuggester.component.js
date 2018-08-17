@@ -135,13 +135,9 @@ class TagsSuggester extends React.Component {
             'suggestion-list tags-suggestion-list suggestion-list ' +
             suggestionlistClass
           }
-          ref={r => {
-            this.suggestionListRef = r;
-          }}
           onClick={() => this.toggleInputvisibility(true)}
         >
           <Autosuggest
-            ref={this.props.autosuggestRef}
             suggestions={suggestions}
             multiSection={true}
             onSuggestionsFetchRequested={e =>

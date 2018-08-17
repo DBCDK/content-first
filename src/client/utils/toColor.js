@@ -11,7 +11,7 @@ export default function toColor(
     hash = id.charCodeAt(i) + ((hash << 5) - hash);
     hash = hash & hash;
   }
-  hash = (hash % colors.length + colors.length) % colors.length;
+  hash = ((hash % colors.length) + colors.length) % colors.length;
   return colors[hash];
 }
 /* eslint-enable operator-assignment */

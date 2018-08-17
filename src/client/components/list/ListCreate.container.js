@@ -185,14 +185,14 @@ export class ListCreator extends React.Component {
   }
 
   percentageObjToPixel(e, pos) {
-    const x = Number(pos.x) * this.state.dotHandlerWidth / 100;
-    const y = Number(pos.y) * this.state.dotHandlerHeight / 100;
+    const x = (Number(pos.x) * this.state.dotHandlerWidth) / 100;
+    const y = (Number(pos.y) * this.state.dotHandlerHeight) / 100;
     return {x, y};
   }
 
   pixelObjToPercentage(e, pos) {
-    const x = Number(pos.x) / this.state.dotHandlerWidth * 100;
-    const y = Number(pos.y) / this.state.dotHandlerHeight * 100;
+    const x = (Number(pos.x) / this.state.dotHandlerWidth) * 100;
+    const y = (Number(pos.y) / this.state.dotHandlerHeight) * 100;
     return {x, y};
   }
 
@@ -487,4 +487,7 @@ export const mapDispatchToProps = dispatch => ({
     });
   }
 });
-export default connect(mapStateToProps, mapDispatchToProps)(ListCreator);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListCreator);

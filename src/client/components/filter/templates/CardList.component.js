@@ -7,7 +7,7 @@ const ListItem = props => {
   const tagState = props.selected ? 'listItem-active' : 'listItem-inactive';
   return (
     <li
-      type="tag"
+      type="term"
       size="small"
       className={'FilterCard__listItem ' + tagState}
       onClick={() => {
@@ -76,7 +76,7 @@ class FilterCardList extends React.Component {
               <React.Fragment>
                 {expanded && (
                   <li
-                    type="tag"
+                    type="term"
                     size="small"
                     className={
                       'FilterCard__listItem FilterCard__listItem-heading'

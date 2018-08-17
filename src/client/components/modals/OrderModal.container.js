@@ -42,7 +42,9 @@ export function OrderState({book}) {
   if (book.getIn(['availability', 'holdingStatus', 'willLend']) === false) {
     return (
       <span style={{color: 'red'}}>
-        Kan ikke bestilles<br />til dit bibliotek.
+        Kan ikke bestilles
+        <br />
+        til dit bibliotek.
       </span>
     );
   }
@@ -199,19 +201,20 @@ export function OrderModal(props) {
       <div>
         <div className="form-group">
           <strong>
-            Du er ved at bestille{props.orders.count() > 1 &&
-              ` ${props.orders.count()} bøger`}:
+            Du er ved at bestille
+            {props.orders.count() > 1 && ` ${props.orders.count()} bøger`}:
           </strong>
           {props.orders.count() >= 10 && (
             <small>
-              <br />Du kan højest bestille 10 bøger ad gangen. Klik på "Bestil
-              hele listen" igen for at bestille flere bøger.
+              <br />
+              Du kan højest bestille 10 bøger ad gangen. Klik på "Bestil hele
+              listen" igen for at bestille flere bøger.
             </small>
           )}
           {unavailableCount > 0 && (
             <small style={{color: 'red'}}>
-              <br />Bemærk: Der er problemer med bestillingen af mindst en af
-              bøgerne.
+              <br />
+              Bemærk: Der er problemer med bestillingen af mindst en af bøgerne.
             </small>
           )}
           <div
@@ -314,4 +317,7 @@ export function mapDispatchToProps(dispatch) {
     }
   };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(OrderModal);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(OrderModal);

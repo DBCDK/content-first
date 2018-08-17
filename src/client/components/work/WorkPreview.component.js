@@ -136,7 +136,8 @@ class WorkPreview extends React.Component {
                       size="medium"
                       className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'local_library'} />Bog
+                      <Icon name={'local_library'} />
+                      Bog
                     </Button>
                   </a>
                   <a>
@@ -145,7 +146,8 @@ class WorkPreview extends React.Component {
                       size="medium"
                       className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'alternate_email'} />Ebog
+                      <Icon name={'alternate_email'} />
+                      Ebog
                     </Button>
                   </a>
                   <a>
@@ -154,7 +156,8 @@ class WorkPreview extends React.Component {
                       size="medium"
                       className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'voicemail'} />Lydbog
+                      <Icon name={'voicemail'} />
+                      Lydbog
                     </Button>
                   </a>
                 </React.Fragment>
@@ -265,4 +268,7 @@ export const mapDispatchToProps = dispatch => ({
     })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkPreview);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WorkPreview);

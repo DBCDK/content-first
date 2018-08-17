@@ -304,4 +304,7 @@ export const mapDispatchToProps = dispatch => ({
   onShortlistClose: () => dispatch({type: ON_SHORTLIST_COLLAPSE})
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopBar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TopBar);

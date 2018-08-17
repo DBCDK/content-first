@@ -87,4 +87,7 @@ export const mapDispatchToProps = dispatch => ({
   addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
   saveUser: user => dispatch({type: SAVE_USER_PROFILE, user})
 });
-export default connect(mapStateToProps, mapDispatchToProps)(CreateProfilePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateProfilePage);

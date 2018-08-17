@@ -133,6 +133,7 @@ export const mapDispatchToProps = dispatch => ({
     })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  BookSearchSuggester
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BookSearchSuggester);

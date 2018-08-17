@@ -17,7 +17,7 @@ const SelectedFilter = props => {
   }
 
   return (
-    <Button Tag="div" size="medium" type="tag" className="selected-filter">
+    <Button Tag="div" size="medium" type="term" className="selected-filter">
       <span>{title}</span>
       <Icon
         className="md-small"
@@ -40,9 +40,6 @@ class SelectedFilters extends React.Component {
           onWheel={this.props.onFiltersScroll}
         >
           <TagsSuggester
-            autosuggestRef={r => {
-              this.autosuggestRef = r;
-            }}
             selectedFilters={this.props.selectedFilters}
             value={this.props.query}
             onFocus={this.props.onFocus}

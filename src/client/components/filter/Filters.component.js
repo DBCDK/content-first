@@ -20,7 +20,9 @@ const params = {
   renderNextButton: () => (
     <div className="Filters__next">
       <span>
-        Flere<br />valg
+        Flere
+        <br />
+        valg
       </span>
       <Icon name="chevron_right" />
     </div>
@@ -29,7 +31,9 @@ const params = {
     <div className="Filters__prev hidden">
       <Icon name="chevron_left" />
       <span>
-        Forrige<br />valg
+        Forrige
+        <br />
+        valg
       </span>
     </div>
   ),
