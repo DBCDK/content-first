@@ -1,0 +1,115 @@
+[
+    {
+        "type":"small",
+        "tags":[    {
+            "id": 5683,
+            "title": "melankolsk",
+            "sort": 6,
+            "parents": [
+                "stemning",
+                "trist"
+            ]
+        },
+        {
+            "id": 5672,
+            "title": "gribende",
+            "sort": 5,
+            "parents": [
+                "stemning",
+                "dramatisk"
+            ]
+        },
+        {
+            "id": 5712,
+            "title": "skæv",
+            "sort": 12,
+            "parents": [
+                "stemning",
+                "fantasifuld"
+            ]
+        }],
+        "listLink":{"url":"/lister/7588e52f-cd0d-4163-aeef-6def8c3d3e10","title":"Se familier"},
+        "show": true
+    },
+    {
+        "type":"wide",
+        "title":"HVAD ER DER PÅ B.S' BUKET LIST?",
+        "highlight":"B.S' BUKET LIST?",
+        "image":"https://cdn.suwalls.com/wallpapers/photography/wooden-disintegrating-boat-44780-2560x1600.jpg",
+        "tags":[    {
+            "id": 5649,
+            "title": "satirisk",
+            "sort": 8,
+            "parents": [
+                "stemning",
+                "humoristisk"
+            ]
+        },
+        {
+            "id": 5650,
+            "title": "skælmsk",
+            "sort": 9,
+            "parents": [
+                "stemning",
+                "humoristisk"
+            ]
+        },
+        {
+            "id": 5654,
+            "title": "charmerende",
+            "sort": 1,
+            "parents": [
+                "stemning",
+                "romantisk"
+            ]
+        }],
+        "listLink":{"url":"/lister/7588e52f-cd0d-4163-aeef-6def8c3d3e10","title":"Se B.S's bogliste"},
+        "show": true
+
+    },
+    {
+        "type":"small",
+        "color":"#F4B51B",
+        "tags":[    {
+            "id": 5644,
+            "title": "ironisk",
+            "sort": 3,
+            "parents": [
+                "stemning",
+                "humoristisk"
+            ]
+        },
+        {
+            "id": 5648,
+            "title": "sarkastisk",
+            "sort": 7,
+            "parents": [
+                "stemning",
+                "humoristisk"
+            ]
+        },
+        {
+            "id": 5654,
+            "title": "charmerende",
+            "sort": 1,
+            "parents": [
+                "stemning",
+                "romantisk"
+            ]
+        }
+    ],
+        "listLink":{"url":"/","title":"Se parforholdet"},
+        "show": true
+
+    },    
+    {
+        "type":"small",
+        "title":"HVILKEN KRIMI ER DIN NÆSTE?",
+        "highlight":"HVILKEN",
+        "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92Etcvnv4b9PdnQow-_q8P75kTM33ysk8GGuRZ6ck9VFHkVz9",
+        "listLink":{"url":"/","title":"Se alle nye krimier"},
+        "show": true
+
+    }
+
+]

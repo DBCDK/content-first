@@ -3,18 +3,21 @@ import {connect} from 'react-redux';
 import RecentListsBelt from '../belt/RecentListsBelt.container';
 import Bookcase from '../bookcase/Bookcase.component';
 import BooksBelt from '../belt/BooksBelt.component';
-
+import SpotsContainer from '../spots/Spots.container';
 class FrontPage extends React.Component {
   renderBelts() {
     const beltsMap = this.props.beltsMap;
 
     return (
-      <div className="belts col-xs-12 col-sm-12">
-        {Object.values(beltsMap)
-          .filter(belt => belt.onFrontPage)
-          .map(belt => <BooksBelt key={belt.name} belt={belt} />)}
-        <RecentListsBelt />
-      </div>
+      <React.Fragment>
+        <SpotsContainer />
+        <div className="belts col-xs-12 col-sm-12">
+          {Object.values(beltsMap)
+            .filter(belt => belt.onFrontPage)
+            .map(belt => <BooksBelt key={belt.name} belt={belt} />)}
+          <RecentListsBelt />
+        </div>
+      </React.Fragment>
     );
   }
 

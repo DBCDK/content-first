@@ -167,6 +167,7 @@ exports[`renders without crashing 1`] = `
     className="frontpage"
   >
     <Bookcase />
+    <SpotsContainer />
     <div
       className="belts col-xs-12 col-sm-12"
     >

@@ -17,6 +17,7 @@ import booksReducer from './books.reducer';
 import recommendReducer from './recommend';
 import {replayReducer} from './replay';
 import interactionReducer from './interaction.reducer';
+import spotsReducer from './spots.reducer';
 
 const combined = combineReducers({
   beltsReducer,
@@ -36,7 +37,8 @@ const combined = combineReducers({
   booksReducer,
   recommendReducer,
   replay: replayReducer,
-  interactionReducer
+  interactionReducer,
+  spotsReducer
 });
 
 const rootReducer = (state = {}, action) => {
