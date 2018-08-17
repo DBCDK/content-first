@@ -51,7 +51,9 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
         <Link href={`/lister/${id}`} className="ml1 link-subtle inline">
           {list.length === 6
             ? '+ 1 bog mere'
-            : list.length > 6 ? `+ ${list.length - 5} bøger mere` : 'Se listen'}
+            : list.length > 6
+              ? `+ ${list.length - 5} bøger mere`
+              : 'Se listen'}
         </Link>
       </Link>
     </div>

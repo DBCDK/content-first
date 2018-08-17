@@ -6,7 +6,10 @@ import './Icon.css';
 
 const Icon = ({name, className, ...props}) => {
   return (
-    <i className={`material-icons ${className || ''}`} {...props}>
+    <i
+      className={`material-icons material-icons-${name} ${className || ''}`}
+      {...props}
+    >
       {name}
     </i>
   );

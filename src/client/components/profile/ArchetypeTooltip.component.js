@@ -4,7 +4,9 @@ const ArchetypeTooltip = archetype => (
   <div>
     <h4>Følger:</h4>
     <div className="flex-grid tight authors">
-      {archetype.authors.map(author => <span key={author}>{author}</span>)}
+      {archetype.authors.map(author => (
+        <span key={author}>{author}</span>
+      ))}
     </div>
     <h4>læser:</h4>
     <div className="flex-grid tight">

@@ -39,4 +39,7 @@ export const mapDispatchToProps = dispatch => ({
     })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SimilarBooksBelt);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SimilarBooksBelt);

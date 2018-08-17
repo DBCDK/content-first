@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {isMobile} from 'react-device-detect';
 import {difference} from 'lodash';
+import scrollToComponent from 'react-scroll-to-component';
 import WorkCard from '../../work/WorkCard.container';
 import Heading from '../../base/Heading';
 import Term from '../../base/Term';
@@ -17,7 +18,6 @@ import {
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import Link from '../../general/Link.component';
 import WorkPreview from '../../work/WorkPreview.component';
-import scrollToComponent from 'react-scroll-to-component';
 
 const skeletonElements = [];
 for (let i = 0; i < 20; i++) {
@@ -263,4 +263,7 @@ export const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BooksBelt);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BooksBelt);

@@ -25,7 +25,7 @@ class MobileSlider extends React.Component {
   }
   componentDidMount() {
     this.slider.scrollLeft =
-      this.slider.scrollWidth / this.props.children.length * this.index;
+      (this.slider.scrollWidth / this.props.children.length) * this.index;
   }
 
   render() {
@@ -135,7 +135,7 @@ class DesktopSlider extends React.Component {
 
 export default class Slider extends React.Component {
   render() {
-    if (isMobile) {
+    if (this.props.forceMobile || isMobile) {
       return (
         <MobileSlider
           initialScrollPos={this.props.initialScrollPos}

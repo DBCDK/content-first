@@ -61,10 +61,17 @@
   background-color: var(--pistache);
 }
 
+.Button__term i {
+  color: var(--fersken) !important;
+}
+
+.Button__term::first-letter {
+  text-transform: uppercase;
+}
+
 /* Sizes */
 .Button__large {
   text-transform: none;
-
   padding: 10px 15px;
   font-size: 1.3em;
 }

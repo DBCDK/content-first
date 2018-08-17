@@ -2,7 +2,6 @@
 
 /* Global Settings for new design */
 :root {
-
   --petrolium: #00414b;
   --elm: #1d768a;
   --fersken: #f37362;
@@ -13,7 +12,7 @@
   --korn: #edb347;
   --pistache: #a8c7b0;
   --sea-mist: #c9ddcf;
-  --grey-nurse: #DEE7E0;
+  --grey-nurse: #dee7e0;
   --de-york: #81c793;
   --lys-graa: #f8f8f8;
   --concrete: #f3f3f3;
@@ -26,16 +25,23 @@
 /* utils */
 
 .korn {
-  background-color: var(--korn);
-  background: var(--korn);
+  background-color: var(--korn) !important;
+  background: var(--korn) !important;
 }
 .korn-txt {
-  color: var(--korn);
+  color: var(--korn) !important;
 }
 
 .kobber {
-  background-color: var(--kobber);
+  background-color: var(--kobber) !important;
 }
 .kobber-txt {
-  color: var(--kobber);
+  color: var(--kobber) !important;
+}
+
+.fersken {
+  background-color: var(--fersken) !important;
+}
+.fersken-txt {
+  color: var(--alto) !important;
 }

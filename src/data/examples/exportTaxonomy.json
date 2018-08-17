@@ -1,4 +1,20 @@
 {
+  "ramme": {
+    "Handlingens tid": [
+      {
+        "id": 6000,
+        "title": "hej",
+        "score": 0
+      }
+    ],
+    "Univers": [
+      {
+        "id": 6001,
+        "title": "hej1",
+        "score": 0
+      }
+    ]
+  },
   "fortælleteknik": {
     "tempo": [
       {

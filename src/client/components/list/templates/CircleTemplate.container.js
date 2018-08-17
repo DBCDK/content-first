@@ -19,7 +19,7 @@ export default class CircleTemplate extends React.Component {
     this.state = {clientWidth: 0, popOverPid: null};
   }
   calcCoords(degree, elementWidth, elementHeight, circleWidth, circleHeight) {
-    degree = Math.PI * degree / 180; // convert to radians.
+    degree = (Math.PI * degree) / 180; // convert to radians.
     const radiusX = circleWidth / 2 - elementWidth / 2;
     const radiusY = circleHeight / 2 - elementHeight / 2;
     return {

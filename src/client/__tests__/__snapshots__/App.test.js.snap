@@ -8,45 +8,85 @@ exports[`renders without crashing 1`] = `
     <header
       className="Topbar row"
     >
-      <a
-        className="Topbar__logo"
-        href="/"
-        onClick={[Function]}
-      >
-        <h1
-          className="hide-on-s-and-down"
-        >
-          Læsekompasset
-        </h1>
-        <img
-          alt="Læsekompasset"
-          className="show-on-s-and-down"
-          src="logo.svg"
-        />
-      </a>
       <nav
         className="col-xs-12 col-m-8 Topbar__navigation"
       >
-        <a
-          className="Topbar__navigation__btn"
-          href="/find"
-          onClick={[Function]}
+        <span
+          className="Topbar__navigation__btn widthCalc"
+          style={Object {}}
         >
           <i
-            className="material-icons "
+            className="material-icons material-icons-search "
+            onClick={[Function]}
           >
             search
           </i>
-          <span>
+          <span
+            className="relative--container"
+          >
+            <span
+              className="Topbar__SearchBarWrapper"
+              style={
+                Object {
+                  "width": 0,
+                }
+              }
+            >
+              <div
+                className="selected-filters-wrap text-left"
+                onWheel={[Function]}
+              >
+                <div
+                  className="suggestion-list tags-suggestion-list suggestion-list input-visible"
+                  onClick={[Function]}
+                >
+                  <div
+                    aria-expanded={false}
+                    aria-haspopup="listbox"
+                    aria-owns="react-autowhatever-1"
+                    className="react-autosuggest__container"
+                    role="combobox"
+                  >
+                    <input
+                      aria-activedescendant={null}
+                      aria-autocomplete="list"
+                      aria-controls="react-autowhatever-1"
+                      autoComplete="off"
+                      className="form-control suggestion-list__search "
+                      id="Searchbar__inputfield"
+                      onBlur={[Function]}
+                      onChange={[Function]}
+                      onFocus={[Function]}
+                      onKeyDown={[Function]}
+                      placeholder="Søg på tittel, forfatter, stemning..."
+                      type="search"
+                      value=""
+                    />
+                    <div
+                      className="react-autosuggest__suggestions-container"
+                      id="react-autowhatever-1"
+                      role="listbox"
+                    />
+                  </div>
+                </div>
+                <div
+                  className="selected-filters"
+                />
+              </div>
+            </span>
+          </span>
+          <span
+            onClick={[Function]}
+          >
             Søg
           </span>
-        </a>
+        </span>
         <div
-          className="Topbar__navigation__btn  top-bar-dropdown-list"
+          className="Topbar__navigation__btn widthCalc  top-bar-dropdown-list"
           onClick={[Function]}
         >
           <i
-            className="material-icons "
+            className="material-icons material-icons-bookmark_border "
           >
             bookmark_border
           </i>
@@ -101,7 +141,7 @@ exports[`renders without crashing 1`] = `
           </div>
         </div>
         <a
-          className="Topbar__navigation__btn"
+          className="Topbar__navigation__btn widthCalc"
           href="/v1/login"
           onClick={[Function]}
         >
@@ -113,6 +153,22 @@ exports[`renders without crashing 1`] = `
           className="Topbar__overlay"
         />
       </nav>
+      <a
+        className="Topbar__logo "
+        href="/"
+        onClick={[Function]}
+      >
+        <h1
+          className="hide-on-s-and-down"
+        >
+          Læsekompasset
+        </h1>
+        <img
+          alt="Læsekompasset"
+          className="show-on-s-and-down"
+          src="logo.svg"
+        />
+      </a>
       <ul
         className="Topbar__dropdown abort-closeDopdown Topbar__dropdown__hidden"
       >
@@ -158,7 +214,7 @@ exports[`renders without crashing 1`] = `
     <div
       style={
         Object {
-          "height": "80px",
+          "height": 80,
         }
       }
     />

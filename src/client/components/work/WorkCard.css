@@ -4,6 +4,7 @@
   height: 430px;
   width: 215px;
   vertical-align: top;
+  text-align: left;
 }
 .WorkCard .book-cover {
   height: 70%;

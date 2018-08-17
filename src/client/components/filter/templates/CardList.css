@@ -1,0 +1,68 @@
+.FilterCard__content ul.FilterCard__list {
+  list-style: none;
+  padding: 0;
+  color: var(--alto);
+  white-space: nowrap;
+  overflow: hidden;
+  transition-duration: 0.2s;
+}
+
+.FilterCard__content ul.FilterCard__list li.FilterCard__listItem {
+  display: inline-block;
+  line-height: 1.6rem;
+}
+
+.FilterCard__content ul.FilterCard__list li.FilterCard__listItem-heading {
+  font-weight: 600;
+  padding-top: 1rem;
+}
+
+.FilterCard__content ul.FilterCard__list li.FilterCard__listItem-heading:hover {
+  color: var(--petrolium) !important;
+}
+
+.FilterCard__content ul.FilterCard__list li.FilterCard__listItem::first-letter {
+  text-transform: uppercase;
+}
+
+.FilterCard__list .FilterCard__listItem.listItem-active {
+  color: var(--due);
+}
+
+/* if card is expanded */
+
+.FilterCard__container.FilterCard-expanded
+  .FilterCard__list
+  .FilterCard__listItem {
+  display: list-item;
+}
+
+.FilterCard__container.FilterCard-expanded
+  .FilterCard__list
+  .FilterCard__listItem:hover {
+  color: var(--due);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .FilterCard__listItem-more {
+    display: none;
+  }
+  .FilterCard__content ul.FilterCard__list {
+    height: 1.7rem;
+    overflow: hidden;
+  }
+
+  .FilterCard__content ul.FilterCard__list li.FilterCard__listItem {
+    line-height: 2rem;
+  }
+
+  /* if card is expanded */
+
+  .FilterCard__container.FilterCard-expanded
+    .FilterCard__content
+    ul.FilterCard__list {
+    height: auto;
+    overflow: visible;
+  }
+}
