@@ -31,6 +31,15 @@ const defaultState = {
   },
   'Handlingens tid': {
     title: 'Handlingens tid',
+    image: 'img/filters/time.jpg',
+    template: 'CardList',
+    icon: false,
+    closeOnSelect: true,
+    expandeds: false,
+    show: true
+  },
+  Univers: {
+    title: 'Univers',
     image: 'img/filters/universe.jpg',
     template: 'CardList',
     icon: false,

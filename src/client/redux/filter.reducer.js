@@ -50,6 +50,7 @@ export const filters = {
   //   leavesMap[5016],
   //   leavesMap[4961]
   // ],
+  Univers: taxonomy.ramme.univers,
   Struktur: [
     leavesMap[5621],
     leavesMap[5623],

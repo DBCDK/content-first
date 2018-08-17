@@ -68,6 +68,7 @@ class FilterCard extends React.Component {
             className="FilterCard__content"
             onClick={e => this.props.onCardClick(e)}
           >
+            <Icon name="close" className="FilterCard__close" />
             <Heading type="title" className="FilterCard__heading mb0 mt0">
               {filter.title}
             </Heading>
@@ -91,15 +92,15 @@ class Filters extends React.Component {
   toggleCardExpanded(e, title) {
     let oFilters = this.state.oFilters;
     const closeOnSelect = oFilters[title].closeOnSelect;
-    const coverClick =
-      e.target.className === 'FilterCard__cover' ? true : false;
+    const coverClick = e.target.classList.contains('FilterCard__cover');
+    const closeClick = e.target.classList.contains('FilterCard__close');
 
     if (isMobile) {
       oFilters = this.changeExpandedProp(false, title);
     }
 
-    if (coverClick) {
-      /* force close on cover click */
+    if (coverClick || closeClick) {
+      /* force close on cover or close click */
       oFilters[title].expanded = !this.state.oFilters[title].expanded;
     } else {
       oFilters[title].expanded = closeOnSelect

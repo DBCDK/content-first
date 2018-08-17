@@ -117,7 +117,6 @@ class SearchBar extends React.Component {
                 selectedTagIds.splice(posInSelectedTagIds, 1);
               }
             }
-
             tags = [...selectedTagIds];
           } else if (
             !selectedTagIds.includes(filterId) &&
@@ -131,6 +130,7 @@ class SearchBar extends React.Component {
         });
       }
     } else {
+      /* id is not included in a range - normal toggle behavior */
       tags = selectedTagIds.includes(filterId)
         ? selectedTagIds.filter(id => filterId !== id)
         : [...selectedTagIds, filterId];
@@ -142,13 +142,10 @@ class SearchBar extends React.Component {
   onFiltersMouseWheelScrool(e) {
     e.preventDefault();
     let scrollSpeed = 40;
-
     /* eslint-disable no-unused-expressions */
-
     e.deltaY > 0
       ? (this.filtersRef.scrollLeft += scrollSpeed)
       : (this.filtersRef.scrollLeft -= scrollSpeed);
-
     /* eslint-enable no-unused-expressions */
   }
 

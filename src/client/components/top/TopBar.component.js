@@ -191,6 +191,9 @@ export class TopBar extends React.Component {
     const searchFieldWidth = searchExpanded ? this.state.width : 0;
     const border = searchExpanded ? {borderColor: 'transparent'} : {};
 
+    const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+    const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
+
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
         {isMobile &&
@@ -279,7 +282,7 @@ export class TopBar extends React.Component {
           )}
           <div className="Topbar__overlay" />
         </nav>
-        <Link href="/" className={'Topbar__logo'}>
+        <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
           <h1 className="hide-on-s-and-down">Læsekompasset</h1>
           <img src={logo} className="show-on-s-and-down" alt="Læsekompasset" />
         </Link>

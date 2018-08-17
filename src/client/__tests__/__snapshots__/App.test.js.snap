@@ -151,7 +151,7 @@ exports[`renders without crashing 1`] = `
         />
       </nav>
       <a
-        className="Topbar__logo"
+        className="Topbar__logo "
         href="/"
         onClick={[Function]}
       >
