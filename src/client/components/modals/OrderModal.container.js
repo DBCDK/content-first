@@ -39,14 +39,14 @@ export function OrderState({book}) {
       </span>
     );
   }
-  if (book.getIn(['availability', 'holdingStatus', 'willLend']) === false) {
+  if (book.getIn(['availability', 'orderPossible']) === false) {
     return (
       <span style={{color: 'red'}}>
         Kan ikke bestilles<br />til dit bibliotek.
       </span>
     );
   }
-  if (book.getIn(['availability', 'holdingStatus', 'willLend']) === true) {
+  if (book.getIn(['availability', 'orderPossible']) === true) {
     return (
       <div style={{color: '#666', textAlign: 'center'}}>
         Kan <br /> bestilles.
@@ -68,8 +68,7 @@ function orderInfo({orders, onStart, currentBranch, branches}) {
 
   for (const o of orders) {
     const state = o.get('orderState');
-    const unavailable =
-      o.getIn(['availability', 'holdingStatus', 'willLend']) === false;
+    const unavailable = o.getIn(['availability', 'orderPossible']) === false;
     if (unavailable) {
       ++unavailableCount;
     }
