@@ -28,7 +28,7 @@ const params = {
     </div>
   ),
   renderPrevButton: () => (
-    <div className="Filters__prev hidden">
+    <div className="Filters__prev">
       <Icon name="chevron_left" />
       <span>
         Forrige

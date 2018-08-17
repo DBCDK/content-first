@@ -102,11 +102,12 @@
 #react-autowhatever-1 .suggestion-title span {
   padding: 0;
   vertical-align: middle;
+  font-family: var(--primary-font);
 }
 
 #react-autowhatever-1 .suggestion-title span u {
   text-decoration: none;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 #react-autowhatever-1 .suggestion-title .suggestion-subject {

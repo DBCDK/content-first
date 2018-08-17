@@ -109,12 +109,6 @@ export class TopBar extends React.Component {
       }
     }
 
-    // path.forEach(el => {
-    //   if (el.className && el.className.includes('abort-closeDopdown')) {
-    //     abortCloseDropdown = true;
-    //   }
-    // });
-
     // close dropdown on click on every other element than 'dropdown' or 'wrapperRef'
     if (!abortCloseDropdown) {
       this.setState({dropdownActive: false});
@@ -165,27 +159,10 @@ export class TopBar extends React.Component {
       </ShortListDropDown>
     );
   }
-  renderListsOverviewDropdown() {
-    const {expanded} = this.props.listsState;
-    return isMobile ? (
-      <Link href="/profile" className="Topbar__navigation__btn widthCalc">
-        <Icon name="list" />
-      </Link>
-    ) : (
-      <ListOverviewDropDown
-        className={
-          'Topbar__navigation__btn widthCalc ' +
-          (expanded ? 'Topbar__dropdown_expanded' : '')
-        }
-      >
-        <Icon name="list" />
-        <span>Lister</span>
-      </ListOverviewDropDown>
-    );
-  }
+
   render() {
     const shortlist = this.renderShortListBtn();
-    const userLists = this.renderListsOverviewDropdown();
+    const {expanded} = this.props.listsState;
     const searchExpanded = searchPage && this.state.searchExpanded;
     const searchIconText = searchExpanded ? 'Luk' : 'Søg';
     const searchFieldWidth = searchExpanded ? this.state.width : 0;
@@ -254,8 +231,17 @@ export class TopBar extends React.Component {
           )}
           {this.props.user.isLoggedIn && (
             <React.Fragment>
-              {userLists}
-
+              {!isMobile && (
+                <ListOverviewDropDown
+                  className={
+                    'Topbar__navigation__btn widthCalc ' +
+                    (expanded ? 'Topbar__dropdown_expanded' : '')
+                  }
+                >
+                  <Icon name="list" />
+                  <span>Lister</span>
+                </ListOverviewDropDown>
+              )}
               <span
                 className="Topbar__navigation__btn widthCalc abort-closeDopdown hide-on-s-and-down"
                 onClick={() => this.toggleDropdown()}

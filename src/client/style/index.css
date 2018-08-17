@@ -98,9 +98,9 @@ body {
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 1450px) {
   .container {
-    width: 100% !important;
+    width: calc(100% - 100px);
   }
 }
 
