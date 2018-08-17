@@ -168,18 +168,18 @@ export class TopBar extends React.Component {
   renderListsOverviewDropdown() {
     const {expanded} = this.props.listsState;
     return isMobile ? (
-      <Link href="/profile" className="Topbar__navigation__btn">
+      <Link href="/profile" className="Topbar__navigation__btn widthCalc">
         <Icon name="list" />
       </Link>
     ) : (
       <ListOverviewDropDown
         className={
-          'Topbar__navigation__btn ' +
+          'Topbar__navigation__btn widthCalc ' +
           (expanded ? 'Topbar__dropdown_expanded' : '')
         }
       >
         <Icon name="list" />
-        Lister
+        <span>Lister</span>
       </ListOverviewDropDown>
     );
   }
@@ -255,13 +255,7 @@ export class TopBar extends React.Component {
           {this.props.user.isLoggedIn && (
             <React.Fragment>
               {userLists}
-              <Link
-                href="/profile"
-                className="Topbar__navigation__btn widthCalc hide-on-s-and-down"
-              >
-                <Icon name="list" />
-                <span>Lister</span>
-              </Link>
+
               <span
                 className="Topbar__navigation__btn widthCalc abort-closeDopdown hide-on-s-and-down"
                 onClick={() => this.toggleDropdown()}
