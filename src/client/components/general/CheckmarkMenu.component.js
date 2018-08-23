@@ -45,7 +45,10 @@ export default class CheckmarkMenu extends React.Component {
                 e.stopPropagation();
               }}
             >
-              <span className="glyphicon glyphicon-option-vertical" />
+             <i className="material-icons"
+                style={{fontSize: 18, verticalAlign: 'middle'}}>
+                more_vert
+            </i>
             </span>
           </span>
         </div>

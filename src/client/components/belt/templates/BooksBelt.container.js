@@ -86,13 +86,15 @@ export class BooksBelt extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="row belt text-left mt3">
+        <div className="belt text-left mt3 row">
+        <div className="p-0 col-12">
+
           <div className="header row">
             <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
               <Heading
                 className={
                   border +
-                  'inline border-right-xs-0 pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0'
+                  'inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0 '
                 }
                 Tag="h1"
                 type="section"
@@ -129,7 +131,7 @@ export class BooksBelt extends React.Component {
             )}
           </div>
 
-          <div className="row mt2">
+          <div className="mt2 row">
             <Slider
               initialScrollPos={scrollPos}
               onSwipe={index => {
@@ -195,6 +197,7 @@ export class BooksBelt extends React.Component {
               />
             )}
           </div>
+        </div>
         </div>
         {belt.child &&
           this.props.childTemplate && (

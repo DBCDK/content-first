@@ -9,7 +9,7 @@ exports[`AddToList render when allowAdd is true 1`] = `
   className="addbook"
 >
   <h2
-    className="list-creator__headline"
+    className="list-creator__headline mt2"
   >
     Tilføj bøger til listen
   </h2>
@@ -66,7 +66,7 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
   className="addbook"
 >
   <h2
-    className="list-creator__headline"
+    className="list-creator__headline mt2"
   >
     Tilføj bøger til listen
   </h2>
@@ -160,7 +160,7 @@ exports[`AddToList show error msg when selected books is already in list 1`] = `
   className="addbook"
 >
   <h2
-    className="list-creator__headline"
+    className="list-creator__headline mt2"
   >
     Tilføj bøger til listen
   </h2>

@@ -16,6 +16,7 @@
 }
 .filter-page-top input {
   font-family: var(--secondary-font);
+  height: 34px;
 }
 .filters {
   /* box-shadow: 0px 5px 10px -4px #888888; */
@@ -54,6 +55,8 @@
 .edit-filters .tags-container {
   transition: all 0.2s ease-in-out;
   opacity: 1;
+  margin-left: 0;
+  margin-right: 0;
 }
 .edit-filters .hide-tags-container {
   opacity: 0;
@@ -100,6 +103,7 @@
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .tags-suggestion-list {

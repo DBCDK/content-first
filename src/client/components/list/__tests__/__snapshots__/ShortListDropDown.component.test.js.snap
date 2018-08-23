@@ -29,7 +29,7 @@ Array [
         </h1>
     </a>
     <div
-        className="top-bar-dropdown-list--empty-text text-center hidden"
+        className="top-bar-dropdown-list--empty-text text-center d-none"
     />
     <div
         className="top-bar-dropdown-list--elements"
@@ -200,7 +200,7 @@ Array [
         </h1>
     </a>
     <div
-        className="top-bar-dropdown-list--empty-text text-center hidden"
+        className="top-bar-dropdown-list--empty-text text-center d-none"
     />
     <div
         className="top-bar-dropdown-list--elements"
@@ -479,7 +479,7 @@ Array [
         </h1>
     </a>
     <div
-        className="top-bar-dropdown-list--empty-text text-center hidden"
+        className="top-bar-dropdown-list--empty-text text-center d-none"
     />
     <div
         className="top-bar-dropdown-list--elements"

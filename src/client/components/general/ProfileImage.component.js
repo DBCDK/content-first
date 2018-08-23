@@ -47,7 +47,7 @@ class ProfileImage extends React.Component {
             this.state.imageIsLoading ? (
               <SkeletonUser pulse={true}>
                 <img
-                  className="hidden"
+                  className="d-none"
                   src={'/v1/image/' + user.image + '/' + size + '/' + size}
                   onLoad={() => this.imageIsLoaded()}
                 />

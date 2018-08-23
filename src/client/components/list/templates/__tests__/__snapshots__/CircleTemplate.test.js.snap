@@ -6,7 +6,7 @@ Array [
     className="circle-template row b-dark"
 >
     <div
-        className="list col-xs-12"
+        className="list col-12"
         style={
             Object {
                 "height": 800,

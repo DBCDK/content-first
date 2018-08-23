@@ -45,6 +45,7 @@
   display: flex;
   justify-content: flex-end;
   position: relative;
+  flex: auto;
 }
 
 .Topbar .Topbar__navigation .Topbar__navigation__btn {

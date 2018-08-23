@@ -26,7 +26,7 @@ class SelectedFilters extends React.Component {
 
   render() {
     return (
-      <div className="selected-filters text-left col-xs-12">
+      <div className="selected-filters text-left col-12">
         {this.props.selectedFilters.map((filter, idx) => {
           return (
             <SelectedFilter

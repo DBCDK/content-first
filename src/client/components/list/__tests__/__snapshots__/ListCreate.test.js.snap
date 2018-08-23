@@ -5,7 +5,7 @@ exports[`ListCreate list details is shown 1`] = `
   className="list-creator"
 >
   <h1
-    className="list-creator__headline"
+    className="list-creator__headline mt2"
   >
     Redigér liste
   </h1>
@@ -13,7 +13,7 @@ exports[`ListCreate list details is shown 1`] = `
     className="row"
   >
     <div
-      className="col-xs-8"
+      className="col-8"
     >
       <form
         className="mb4"
@@ -96,10 +96,19 @@ exports[`ListCreate list details is shown 1`] = `
                     }
                   }
                 >
-                  <div>
-                    <span
-                      className="background-icon glyphicon glyphicon-picture"
-                    />
+                  <div
+                    className="d-flex align-items-center justify-content-center h-100 "
+                  >
+                    <i
+                      className="material-icons"
+                      style={
+                        Object {
+                          "fontSize": 100,
+                        }
+                      }
+                    >
+                      image
+                    </i>
                   </div>
                   <div
                     className="droppable-image-overlay"
@@ -255,7 +264,7 @@ exports[`ListCreate list details is shown 1`] = `
       </form>
     </div>
     <div
-      className="col-xs-4"
+      className="col-4"
     />
   </div>
 </div>
@@ -266,7 +275,7 @@ exports[`ListCreate renders a list with multiple books 1`] = `
   className="list-creator"
 >
   <h1
-    className="list-creator__headline"
+    className="list-creator__headline mt2"
   >
     Redigér liste
   </h1>
@@ -274,7 +283,7 @@ exports[`ListCreate renders a list with multiple books 1`] = `
     className="row"
   >
     <div
-      className="col-xs-8"
+      className="col-8"
     >
       <form
         className="mb4"
@@ -357,10 +366,19 @@ exports[`ListCreate renders a list with multiple books 1`] = `
                     }
                   }
                 >
-                  <div>
-                    <span
-                      className="background-icon glyphicon glyphicon-picture"
-                    />
+                  <div
+                    className="d-flex align-items-center justify-content-center h-100 "
+                  >
+                    <i
+                      className="material-icons"
+                      style={
+                        Object {
+                          "fontSize": 100,
+                        }
+                      }
+                    >
+                      image
+                    </i>
                   </div>
                   <div
                     className="droppable-image-overlay"
@@ -720,7 +738,7 @@ exports[`ListCreate renders a list with multiple books 1`] = `
       </form>
     </div>
     <div
-      className="col-xs-4"
+      className="col-4"
     />
   </div>
 </div>
@@ -731,7 +749,7 @@ exports[`ListCreate renders a list with one book 1`] = `
   className="list-creator"
 >
   <h1
-    className="list-creator__headline"
+    className="list-creator__headline mt2"
   >
     Redigér liste
   </h1>
@@ -739,7 +757,7 @@ exports[`ListCreate renders a list with one book 1`] = `
     className="row"
   >
     <div
-      className="col-xs-8"
+      className="col-8"
     >
       <form
         className="mb4"
@@ -822,10 +840,19 @@ exports[`ListCreate renders a list with one book 1`] = `
                     }
                   }
                 >
-                  <div>
-                    <span
-                      className="background-icon glyphicon glyphicon-picture"
-                    />
+                  <div
+                    className="d-flex align-items-center justify-content-center h-100 "
+                  >
+                    <i
+                      className="material-icons"
+                      style={
+                        Object {
+                          "fontSize": 100,
+                        }
+                      }
+                    >
+                      image
+                    </i>
                   </div>
                   <div
                     className="droppable-image-overlay"
@@ -1052,7 +1079,7 @@ exports[`ListCreate renders a list with one book 1`] = `
       </form>
     </div>
     <div
-      className="col-xs-4"
+      className="col-4"
     />
   </div>
 </div>

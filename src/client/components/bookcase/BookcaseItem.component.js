@@ -71,7 +71,7 @@ export class BookcaseItem extends React.Component {
         />
         <div className="row">
           <div
-            className={`col-xs-4 celeb ${
+            className={`col-4 celeb ${
               this.props.list.descriptionImage ? '' : 'no-description-img'
             }`}
           >
@@ -83,9 +83,9 @@ export class BookcaseItem extends React.Component {
                 this.hideCarousel();
               }}
             />
-            <div className="col-xs-12 celeb-top">
+            <div className="col-12 celeb-top">
               {this.props.list.descriptionImage ? (
-                <div className="col-xs-12 celeb-img">
+                <div className="col-12 celeb-img">
                   <img
                     src={'/v1/image/' + this.props.profile.image + '/150/150'}
                     alt={this.props.profile.name}
@@ -94,10 +94,10 @@ export class BookcaseItem extends React.Component {
               ) : (
                 <div className="celeb-img-placeholder" />
               )}
-              <div className="col-xs-12 celeb-title">
+              <div className="col-12 celeb-title">
                 <h1>{this.props.profile.name}</h1>
               </div>
-              <div className="col-xs-12 celeb-description">
+              <div className="col-12 celeb-description">
                 <TruncateMarkup lines={8}>
                   <p>{this.props.list.description}</p>
                 </TruncateMarkup>
@@ -116,7 +116,7 @@ export class BookcaseItem extends React.Component {
                 )}
               </div>
             </div>
-            <div className="col-xs-12 celeb-bottom">
+            <div className="col-12 celeb-bottom">
               <CarouselSlider
                 slideIndex={this.state.slideIndex}
                 onNextBook={this.nextBook}
@@ -135,7 +135,7 @@ export class BookcaseItem extends React.Component {
             </div>
           </div>
 
-          <div className="col-xs-8 bookswrap">
+          <div className="col-8 bookswrap">
             {this.props.list.list.map((p, i) => {
               return (
                 <Pulse

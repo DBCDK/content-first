@@ -33,7 +33,7 @@ exports[`OrderModal render function renders initial request 1`] = `
           className="row short-list-page"
         >
           <div
-            className="col-xs-12"
+            className="col-12"
             style={
               Object {
                 "borderTop": "1px solid #ccc",
@@ -112,7 +112,7 @@ exports[`OrderModal render function renders initial request 1`] = `
           className="row short-list-page"
         >
           <div
-            className="col-xs-12"
+            className="col-12"
             style={
               Object {
                 "borderTop": "1px solid #ccc",
@@ -191,7 +191,7 @@ exports[`OrderModal render function renders initial request 1`] = `
           className="row short-list-page"
         >
           <div
-            className="col-xs-12"
+            className="col-12"
             style={
               Object {
                 "borderTop": "1px solid #ccc",

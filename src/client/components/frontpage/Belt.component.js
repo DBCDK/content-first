@@ -22,7 +22,7 @@ export default class Belt extends React.Component {
 
     return (
       <div className="row belt text-left">
-        <div className="col-xs-12 header">
+        <div className="col-12 header">
           <span
             onClick={() => this.props.onMoreClick(this.props.belt.name)}
             className="belt-title"
@@ -33,7 +33,7 @@ export default class Belt extends React.Component {
             {this.props.belt.name}
           </span>
         </div>
-        <div className="col-xs-12 belt-links">
+        <div className="col-12 belt-links">
           {this.props.links.length > 0 && <span>Se også:</span>}
           {this.props.links.map(link => {
             return (

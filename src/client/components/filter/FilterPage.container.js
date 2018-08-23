@@ -55,7 +55,7 @@ class FilterPage extends React.Component {
     return (
       <div className="filter-page">
         <div className="filters row">
-          <div className="filter-page-top col-xs-12">
+          <div className="filter-page-top col-12">
             <SelectedFilters
               selectedFilters={this.props.selectedTags}
               filters={this.props.filters}

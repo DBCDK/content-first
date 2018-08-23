@@ -14,7 +14,7 @@ export class Bookcase extends React.Component {
       return null;
     }
     return (
-      <div className="bookcase row">
+      <div className="bookcase row d-block">
         <BookcaseSlider profiles={this.props.profiles}>
           {this.props.lists.map((l, i) => {
             return (

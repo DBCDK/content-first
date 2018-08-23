@@ -165,10 +165,19 @@ exports[`Image Upload render function renders an image upload form 1`] = `
       }
     }
   >
-    <div>
-      <span
-        className="background-icon glyphicon glyphicon-user"
-      />
+    <div
+      className="d-flex align-items-center justify-content-center h-100 "
+    >
+      <i
+        className="material-icons"
+        style={
+          Object {
+            "fontSize": 100,
+          }
+        }
+      >
+        image
+      </i>
     </div>
     <div
       className="droppable-image-overlay"

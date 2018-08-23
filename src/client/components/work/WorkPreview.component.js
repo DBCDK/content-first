@@ -89,7 +89,7 @@ class WorkPreview extends React.Component {
             </div>
 
             <div className="row">
-              <div className="col-xs-12 pt1">
+              <div className="col-12 pt1">
                 <Heading
                   Tag="h4"
                   type="subtitle"
@@ -161,7 +161,7 @@ class WorkPreview extends React.Component {
               )}
             </div>
             <div className="row">
-              <div className="col-xs-12 pt1">
+              <div className="col-12 pt1">
                 <BookmarkButton
                   className="mr1"
                   origin={'Fra egen værkside'}
@@ -171,7 +171,7 @@ class WorkPreview extends React.Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-xs-12 pt2">
+              <div className="col-12 pt2">
                 <Button
                   type="tertiary"
                   size="medium"

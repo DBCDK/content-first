@@ -36,7 +36,8 @@ export class RecentListsBelt extends React.Component {
     }
 
     return (
-      <div className="row belt text-left">
+      <div className=" belt text-left row">
+        <div className="p-0 col-12">
         <div className="row header">
           <Heading
             className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0"
@@ -48,7 +49,7 @@ export class RecentListsBelt extends React.Component {
         </div>
         {this.props.recent &&
           this.props.recent.length === 0 && (
-            <div className="row mb4 mt2">
+            <div className=" mb4 mt2">
               <Slider>{skeletons}</Slider>
             </div>
           )}
@@ -78,6 +79,7 @@ export class RecentListsBelt extends React.Component {
             </Slider>
           </div>
         )}
+        </div>
       </div>
     );
   }

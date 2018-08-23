@@ -4,7 +4,6 @@ import Paragraph from '../base/Paragraph';
 
 const BookCover = props => {
   const hasNoCover = !props.coverUrl && props.coverUrlHasLoaded;
-
   if (!props.coverUrl) {
     return (
       <div

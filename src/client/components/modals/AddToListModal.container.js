@@ -105,10 +105,10 @@ export class AddToListModal extends React.Component {
         doneDisabled={this.state.list || this.state.listName ? false : true}
       >
         <div className="row">
-          <strong className="col-xs-12">Hvilken liste vil du gemme i?</strong>
+          <strong className="col-12">Hvilken liste vil du gemme i?</strong>
         </div>
         <div className="row">
-          <div className="col-xs-6">
+          <div className="col-6">
             <div className="list-overview" ref={e => (this.listsContainer = e)}>
               {this.props.customLists.map((l, i) => {
                 return (
@@ -185,7 +185,7 @@ export class AddToListModal extends React.Component {
                 <input
                   className="add-list--btn text-center"
                   value="×"
-                  type={`${!this.state.listName ? 'hidden' : 'button'}`}
+                  type={`${!this.state.listName ? 'd-none' : 'button'}`}
                   onClick={() => {
                     this.setState({listName: ''});
                   }}
@@ -193,7 +193,7 @@ export class AddToListModal extends React.Component {
               </form>
             </div>
           </div>
-          <div className="col-xs-6">
+          <div className="col-6">
             {this.props.works && (
               <p className="mt2">{`Du er ved at gemme ${
                 this.props.works.length

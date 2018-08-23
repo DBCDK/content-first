@@ -228,7 +228,7 @@ export function OrderModal(props) {
               return (
                 <div className="row short-list-page" key={book.get('pid')}>
                   <div
-                    className="col-xs-12"
+                    className="col-12"
                     style={{
                       paddingBottom: 5,
                       paddingTop: 5,

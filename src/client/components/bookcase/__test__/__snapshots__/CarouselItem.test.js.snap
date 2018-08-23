@@ -8,7 +8,7 @@ exports[`CarouselItem renders initial component 1`] = `
     className="carousel"
   >
     <div
-      className="col-xs-4 carousel-img"
+      className="col-4 carousel-img"
     >
       <Link
         href="/værk/870970-basis:51642899"
@@ -28,15 +28,15 @@ exports[`CarouselItem renders initial component 1`] = `
       </Link>
     </div>
     <div
-      className="col-xs-8 text-left carousel-text"
+      className="col-8 text-left carousel-text"
     >
       <div
-        className="col-xs-12 carousel-title"
+        className="col-12 carousel-title"
       >
         <h1 />
       </div>
       <div
-        className="col-xs-12 carousel-creator"
+        className="col-12 carousel-creator"
       >
         <Link
           href="/værk/870970-basis:51642899"
@@ -47,7 +47,7 @@ exports[`CarouselItem renders initial component 1`] = `
         </Link>
       </div>
       <div
-        className="col-xs-12 carousel-description"
+        className="col-12 carousel-description"
       >
         <react-truncate-markup
           lines={6}
@@ -58,7 +58,7 @@ exports[`CarouselItem renders initial component 1`] = `
         </react-truncate-markup>
       </div>
       <div
-        className="col-xs-12"
+        className="col-12"
       >
         <CheckmarkConnected
           book={

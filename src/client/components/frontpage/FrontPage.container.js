@@ -9,7 +9,7 @@ class FrontPage extends React.Component {
     const beltsMap = this.props.beltsMap;
 
     return (
-      <div className="belts col-xs-12 col-sm-12">
+      <div className="belts col-12 ">
         {Object.values(beltsMap)
           .filter(belt => belt.onFrontPage)
           .map(belt => <BooksBelt key={belt.name} belt={belt} />)}

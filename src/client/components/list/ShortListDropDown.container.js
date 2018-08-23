@@ -64,7 +64,7 @@ const ShortListContent = props => {
       <div
         className={
           'top-bar-dropdown-list--empty-text text-center ' +
-          (props.elements.length === 0 ? '' : 'hidden')
+          (props.elements.length === 0 ? '' : 'd-none')
         }
       >
         {props.elements.length === 0 && 'Din huskeliste er tom'}

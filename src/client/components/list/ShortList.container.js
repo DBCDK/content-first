@@ -25,18 +25,18 @@ export class ShortListItem extends React.Component {
   render() {
     const url = `/værk/${this.props.element.book.pid}`;
     return (
-      <div className="item col-xs-12 col-lg-10 text-left">
+      <div className="item col-12 col-lg-10 text-left">
         <div className="row">
-          <div className="book col-xs-6">
+          <div className="book col-6">
             <div className="row">
-              <div className="col-xs-2">
+              <div className="col-2">
                 <div className="book-cover">
                   <Link href={url}>
                     <BookCover book={this.props.element.book} />
                   </Link>
                 </div>
               </div>
-              <div className="col-xs-10 book-description">
+              <div className="col-10 book-description">
                 <div className="title">
                   <Link href={url}>{this.props.element.book.title}</Link>
                 </div>
@@ -78,12 +78,19 @@ export class ShortListItem extends React.Component {
               </div>
             </div>
           </div>
-          <div className="add-to-list col-xs-3">
-            <span onClick={this.props.onAddToList}>
-              Tilføj til liste<span className="glyphicon glyphicon-menu-right" />
+          <div className="add-to-list col-3">
+            <span
+            className="d-flex align-items-center"
+            onClick={this.props.onAddToList}>
+              Tilføj til liste
+              <i className="material-icons"
+              style={{fontSize: 11}}
+              >
+                arrow_forward_ios
+              </i>
             </span>
           </div>
-          <div className="order-book col-xs-3">
+          <div className="order-book col-3">
             <OrderButton
               book={this.props.element.book}
               size="medium"
@@ -107,7 +114,7 @@ class ShortList extends React.Component {
   render() {
     const {elements} = this.props.shortListState;
     return (
-      <div className="top-bar-dropdown-list-page col-xs-11 col-centered">
+      <div className="top-bar-dropdown-list-page col-11 col-centered">
         <div className="page-header-1">Huskeliste</div>
         <div className="items mb2">
           <ReactCSSTransitionGroup
@@ -136,8 +143,8 @@ class ShortList extends React.Component {
           <div className="empty-list-text">Din huskeliste er tom</div>
         )}
         {elements.length > 0 && (
-          <div className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4">
-            <div className="row">
+          <div className="list-actions col-12 col-lg-10 text-right mt4 mb4">
+            <div className="row d-block">
               <span
                 className="btn btn-success"
                 onClick={() => {
