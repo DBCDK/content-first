@@ -116,4 +116,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({type: TOGGLE_EDIT_COMMENT, comment, editing})
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentWrapper);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CommentWrapper);

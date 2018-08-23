@@ -25,7 +25,9 @@ const Dropdown = props => {
         props.onChange(e.target.value);
       }}
     >
-      {props.options.map((option, idx) => <option key={idx}>{option}</option>)}
+      {props.options.map((option, idx) => (
+        <option key={idx}>{option}</option>
+      ))}
     </select>
   );
 };

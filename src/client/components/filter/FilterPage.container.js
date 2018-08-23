@@ -140,4 +140,7 @@ export const mapDispatchToProps = dispatch => ({
       max: 100 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     })
 });
-export default connect(mapStateToProps, mapDispatchToProps)(FilterPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilterPage);

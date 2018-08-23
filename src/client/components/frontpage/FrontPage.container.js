@@ -12,7 +12,9 @@ class FrontPage extends React.Component {
       <div className="belts col-12 ">
         {Object.values(beltsMap)
           .filter(belt => belt.onFrontPage)
-          .map(belt => <BooksBelt key={belt.name} belt={belt} />)}
+          .map(belt => (
+            <BooksBelt key={belt.name} belt={belt} />
+          ))}
         <RecentListsBelt />
       </div>
     );

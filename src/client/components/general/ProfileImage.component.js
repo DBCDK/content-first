@@ -38,7 +38,9 @@ class ProfileImage extends React.Component {
             lineHeight: user && user.image ? 'inherit' : size * 1.85 + 'px',
             marginRight:
               namePosition === 'right'
-                ? style.marginRight ? style.marginRight : '5px'
+                ? style.marginRight
+                  ? style.marginRight
+                  : '5px'
                 : '',
             ...style
           }}

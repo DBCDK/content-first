@@ -69,12 +69,9 @@ export default class ImageUpload extends React.Component {
               </div>
             )) || (
               <div className="d-flex align-items-center justify-content-center h-100 ">
-              <i className="material-icons"
-              style={{fontSize: 100}}
-              >
-                image
-              </i>
-
+                <i className="material-icons" style={{fontSize: 100}}>
+                  image
+                </i>
               </div>
             )}
           <div className="droppable-image-overlay">

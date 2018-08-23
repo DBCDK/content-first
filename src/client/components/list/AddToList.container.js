@@ -100,4 +100,7 @@ export const mapDispatchToProps = dispatch => ({
     });
   }
 });
-export default connect(mapStateToProps, mapDispatchToProps)(AddToList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddToList);

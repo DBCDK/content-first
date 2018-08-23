@@ -54,21 +54,15 @@ const EditFilters = props => {
       style={props.style}
     >
       <div
-        className={'tags-container row '+
-          (props.showTags
-            ? ''
-            : 'hide-tags-container')
+        className={
+          'tags-container row ' + (props.showTags ? '' : 'hide-tags-container')
         }
       >
         <FilterGroup className="col-4" title="Stemning" {...props} />
         <div className="col-8">
           <div className="row">
             <FilterGroup className="col-6" title="Længde" {...props} />
-            <FilterGroup
-              className="col-6"
-              title="På biblioteket"
-              {...props}
-            />
+            <FilterGroup className="col-6" title="På biblioteket" {...props} />
           </div>
           <div className="row">
             <FilterGroup

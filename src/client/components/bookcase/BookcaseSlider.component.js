@@ -28,7 +28,7 @@ export default class BookcaseSlider extends React.Component {
       speed: 500,
       variableWidth: false,
       dotsClass: 'slick-dots slick-dots-bookcase',
-      className: "col-12 p-0",
+      className: 'col-12 p-0',
       customPaging: function(i) {
         return (
           <a className="face-dots">

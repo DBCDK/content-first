@@ -11,7 +11,7 @@ String.prototype.toColor = function(
     hash = this.charCodeAt(i) + ((hash << 5) - hash);
     hash = hash & hash;
   }
-  hash = (hash % colors.length + colors.length) % colors.length;
+  hash = ((hash % colors.length) + colors.length) % colors.length;
   return colors[hash];
 };
 /* eslint-enable no-extend-native, operator-assignment */

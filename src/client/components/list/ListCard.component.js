@@ -121,9 +121,8 @@ class ListCard extends React.Component {
               />
               <div className="list-card-interactions">
                 <span className="list-card-interaction">
-                  <Icon className="md-small" name="chat_bubble_outline" /> ({
-                    commentCount
-                  })
+                  <Icon className="md-small" name="chat_bubble_outline" /> (
+                  {commentCount})
                 </span>
               </div>
             </div>
@@ -142,4 +141,7 @@ export const mapDispatchToProps = dispatch => ({
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListCard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListCard);

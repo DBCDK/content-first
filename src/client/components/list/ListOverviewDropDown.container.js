@@ -52,7 +52,7 @@ const ListElement = props => {
         </div>
         <div className="top-bar-dropdown-list-element--origin">
           {props.profiles[props.list._owner] && !isOwner
-            ? 'Af '+props.profiles[props.list._owner].name
+            ? 'Af ' + props.profiles[props.list._owner].name
             : ''}
         </div>
       </div>
@@ -188,6 +188,7 @@ export const mapDispatchToProps = dispatch => ({
   },
   onUserListsClose: () => dispatch({type: ON_USERLISTS_COLLAPSE})
 });
-export default connect(mapStateToProps, mapDispatchToProps)(
-  ListOverviewDropDown
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListOverviewDropDown);

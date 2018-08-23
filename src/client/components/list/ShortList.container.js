@@ -80,12 +80,11 @@ export class ShortListItem extends React.Component {
           </div>
           <div className="add-to-list col-3">
             <span
-            className="d-flex align-items-center"
-            onClick={this.props.onAddToList}>
+              className="d-flex align-items-center"
+              onClick={this.props.onAddToList}
+            >
               Tilføj til liste
-              <i className="material-icons"
-              style={{fontSize: 11}}
-              >
+              <i className="material-icons" style={{fontSize: 11}}>
                 arrow_forward_ios
               </i>
             </span>
@@ -170,7 +169,8 @@ class ShortList extends React.Component {
                 className="clear-all-btn btn btn-success ml2"
                 onClick={() => this.props.clearList()}
               >
-                RYD LISTEN<span className="glyphicon glyphicon-trash ml1" />
+                RYD LISTEN
+                <span className="glyphicon glyphicon-trash ml1" />
               </span>
             </div>
           </div>
@@ -221,4 +221,7 @@ export const mapDispatchToProps = dispatch => ({
     })
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShortList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShortList);

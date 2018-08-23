@@ -55,4 +55,7 @@ export const mapStateToProps = (state, ownProps) => ({
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   order: () => dispatch({type: ORDER, book: ownProps.book})
 });
-export default connect(mapStateToProps, mapDispatchToProps)(OrderButton);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(OrderButton);

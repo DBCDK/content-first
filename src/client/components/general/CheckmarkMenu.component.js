@@ -45,10 +45,12 @@ export default class CheckmarkMenu extends React.Component {
                 e.stopPropagation();
               }}
             >
-             <i className="material-icons"
-                style={{fontSize: 18, verticalAlign: 'middle'}}>
+              <i
+                className="material-icons"
+                style={{fontSize: 18, verticalAlign: 'middle'}}
+              >
                 more_vert
-            </i>
+              </i>
             </span>
           </span>
         </div>

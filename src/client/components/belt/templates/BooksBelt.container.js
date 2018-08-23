@@ -87,117 +87,115 @@ export class BooksBelt extends React.Component {
     return (
       <React.Fragment>
         <div className="belt text-left mt3 row">
-        <div className="p-0 col-12">
-
-          <div className="header row">
-            <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
-              <Heading
-                className={
-                  border +
-                  'inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0 '
-                }
-                Tag="h1"
-                type="section"
-              >
-                {name.split(' ').map((word, idx) => {
-                  if (idx === 0) {
-                    return <strong key={idx}>{word}</strong>;
+          <div className="p-0 col-12">
+            <div className="header row">
+              <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
+                <Heading
+                  className={
+                    border + 'inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0 '
                   }
-                  return ' ' + word;
-                })}
-              </Heading>
-            </Link>
-            {showTags && (
-              <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
-                {tagObjects.map((t, idx) => {
-                  const isLast = idx === tagObjects.length - 1;
+                  Tag="h1"
+                  type="section"
+                >
+                  {name.split(' ').map((word, idx) => {
+                    if (idx === 0) {
+                      return <strong key={idx}>{word}</strong>;
+                    }
+                    return ' ' + word;
+                  })}
+                </Heading>
+              </Link>
+              {showTags && (
+                <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
+                  {tagObjects.map((t, idx) => {
+                    const isLast = idx === tagObjects.length - 1;
+                    return (
+                      <Term
+                        key={t.id}
+                        className={'ml1 mt1' + (isLast ? ' mr1' : '')}
+                        size="medium"
+                        style={{verticalAlign: 'baseline'}}
+                      >
+                        {t.title}
+                      </Term>
+                    );
+                  })}
+                </div>
+              )}
+              {subtext && (
+                <Heading Tag="h3" type="lead" className="ml1 mt1 mb0">
+                  {subtext}
+                </Heading>
+              )}
+            </div>
+
+            <div className="mt2 row">
+              <Slider
+                initialScrollPos={scrollPos}
+                onSwipe={index => {
+                  if (index > 0 && !this.state.didSwipe) {
+                    this.setState({didSwipe: true});
+                  }
+                  if (scrollPos !== index) {
+                    this.props.beltScroll(belt, index);
+                  }
+                }}
+              >
+                {pids.map((pid, idx) => {
                   return (
-                    <Term
-                      key={t.id}
-                      className={'ml1 mt1' + (isLast ? ' mr1' : '')}
-                      size="medium"
-                      style={{verticalAlign: 'baseline'}}
-                    >
-                      {t.title}
-                    </Term>
+                    <WorkCard
+                      className="ml1 mr1"
+                      enableHover={true}
+                      highlight={
+                        (child && child.pid === pid) || pid === pidPreview
+                      }
+                      allowFetch={this.state.didSwipe || idx < fetchInitial}
+                      pid={pid}
+                      key={pid}
+                      origin={`Fra "${name}"`}
+                      onMoreLikeThisClick={work => {
+                        addChildBelt(belt, {
+                          name: 'Minder om ' + work.book.title,
+                          onFrontPage: true,
+                          pidPreview: false,
+                          pid
+                        });
+                      }}
+                      onWorkPreviewClick={() => {
+                        this.toggleWorkPreview(pid, belt);
+                      }}
+                      scrollToChildBelt={() => {
+                        this.scrollToChildBelt(belt);
+                      }}
+                      pidPreview={pidPreview}
+                    />
                   );
                 })}
-              </div>
-            )}
-            {subtext && (
-              <Heading Tag="h3" type="lead" className="ml1 mt1 mb0">
-                {subtext}
-              </Heading>
-            )}
-          </div>
-
-          <div className="mt2 row">
-            <Slider
-              initialScrollPos={scrollPos}
-              onSwipe={index => {
-                if (index > 0 && !this.state.didSwipe) {
-                  this.setState({didSwipe: true});
-                }
-                if (scrollPos !== index) {
-                  this.props.beltScroll(belt, index);
-                }
+              </Slider>
+            </div>
+            <div
+              ref={childBelt => {
+                this.refs = {...this.refs, childBelt};
               }}
             >
-              {pids.map((pid, idx) => {
-                return (
-                  <WorkCard
-                    className="ml1 mr1"
-                    enableHover={true}
-                    highlight={
-                      (child && child.pid === pid) || pid === pidPreview
-                    }
-                    allowFetch={this.state.didSwipe || idx < fetchInitial}
-                    pid={pid}
-                    key={pid}
-                    origin={`Fra "${name}"`}
-                    onMoreLikeThisClick={work => {
-                      addChildBelt(belt, {
-                        name: 'Minder om ' + work.book.title,
-                        onFrontPage: true,
-                        pidPreview: false,
-                        pid
-                      });
-                    }}
-                    onWorkPreviewClick={() => {
-                      this.toggleWorkPreview(pid, belt);
-                    }}
-                    scrollToChildBelt={() => {
-                      this.scrollToChildBelt(belt);
-                    }}
-                    pidPreview={pidPreview}
-                  />
-                );
-              })}
-            </Slider>
+              {pidPreview && (
+                <WorkPreview
+                  pid={pidPreview}
+                  onMoreLikeThisClick={work => {
+                    addChildBelt(belt, {
+                      name: 'Minder om ' + work.book.title,
+                      onFrontPage: true,
+                      pidPreview: false,
+                      pid: work.book.pid
+                    });
+                  }}
+                  scrollToChildBelt={() => {
+                    this.scrollToChildBelt(belt);
+                  }}
+                />
+              )}
+            </div>
           </div>
-          <div
-            ref={childBelt => {
-              this.refs = {...this.refs, childBelt};
-            }}
-          >
-            {pidPreview && (
-              <WorkPreview
-                pid={pidPreview}
-                onMoreLikeThisClick={work => {
-                  addChildBelt(belt, {
-                    name: 'Minder om ' + work.book.title,
-                    onFrontPage: true,
-                    pidPreview: false,
-                    pid: work.book.pid
-                  });
-                }}
-                scrollToChildBelt={() => {
-                  this.scrollToChildBelt(belt);
-                }}
-              />
-            )}
-          </div>
-        </div>
         </div>
         {belt.child &&
           this.props.childTemplate && (
@@ -266,4 +264,7 @@ export const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BooksBelt);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BooksBelt);

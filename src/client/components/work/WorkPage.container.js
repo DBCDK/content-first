@@ -176,7 +176,8 @@ class WorkPage extends React.Component {
                       size="medium"
                       className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'book'} />Bog
+                      <Icon name={'book'} />
+                      Bog
                     </Button>
                   </a>
                   <a>
@@ -185,7 +186,8 @@ class WorkPage extends React.Component {
                       size="medium"
                       className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'alternate_email'} />Ebog
+                      <Icon name={'alternate_email'} />
+                      Ebog
                     </Button>
                   </a>
                   <a>
@@ -194,7 +196,8 @@ class WorkPage extends React.Component {
                       size="medium"
                       className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'voicemail'} />Lydbog
+                      <Icon name={'voicemail'} />
+                      Lydbog
                     </Button>
                   </a>
                 </React.Fragment>
@@ -435,4 +438,7 @@ export const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WorkPage);

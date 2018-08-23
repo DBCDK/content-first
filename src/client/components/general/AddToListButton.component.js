@@ -278,4 +278,7 @@ export const mapDispatchToProps = dispatch => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddToListButton);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddToListButton);

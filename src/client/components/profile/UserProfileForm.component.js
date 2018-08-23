@@ -53,33 +53,23 @@ export default class UserProfileForm extends React.Component {
             ((this.state.name.length === 0 && ' ') ||
               'invalid-feedback')} has-feedback`}
         >
-        <input
+          <input
             className={`form-control mb3 ${(this.state.name.length > 3 &&
               'is-valid') ||
-                 ((this.state.name.length === 0 && ' ') ||
-                   'is-invalid')} has-feedback`
-            }
+              ((this.state.name.length === 0 && ' ') ||
+                'is-invalid')} has-feedback`}
             type="text"
             name="name"
             placeholder="Vælg brugernavn"
             value={this.state.name}
             onChange={e => this.setState({[e.target.name]: e.target.value})}
           />
-          <span
-            className={'form-control-feedback '}
-            aria-hidden="true"
-          >
-            <i className="material-icons"
-              style={{fontSize: 18}}>
-              {
-                (this.state.name.length > 3 && 'check_circle') ||
-                ((this.state.name.length === 0 && ' ') || 'clear')
-
-              }
+          <span className={'form-control-feedback '} aria-hidden="true">
+            <i className="material-icons" style={{fontSize: 18}}>
+              {(this.state.name.length > 3 && 'check_circle') ||
+                ((this.state.name.length === 0 && ' ') || 'clear')}
             </i>
           </span>
-
-
         </div>
         <p className="mb6">Du er logget på via {this.props.library}</p>
         {!this.props.editMode ? (
