@@ -210,7 +210,7 @@ export class TopBar extends React.Component {
               </span>
             </div>
           )}
-        <nav className="col-xs-12 col-m-8 Topbar__navigation">
+        <nav className="col-12 col-m-8 Topbar__navigation">
           {!isMobile && (
             <span className="Topbar__navigation__btn widthCalc" style={border}>
               <Icon

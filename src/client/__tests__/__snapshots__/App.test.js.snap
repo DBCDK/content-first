@@ -9,7 +9,7 @@ exports[`renders without crashing 1`] = `
       className="Topbar row"
     >
       <nav
-        className="col-xs-12 col-m-8 Topbar__navigation"
+        className="col-12 col-m-8 Topbar__navigation"
       >
         <span
           className="Topbar__navigation__btn widthCalc"
@@ -225,7 +225,7 @@ exports[`renders without crashing 1`] = `
     <Bookcase />
     <SpotsContainer />
     <div
-      className="belts col-12 "
+      className="belts col-12"
     >
       <BooksBelt
         belt={

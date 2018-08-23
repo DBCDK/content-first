@@ -55,7 +55,7 @@
 .AddToListButton__Dropdown li:active {
   background-color: var(--due);
 }
-.AddToListButton__Dropdown li.divider {
+.AddToListButton__Dropdown li.dropdown-divider {
   padding: 0;
   margin: 0;
 }

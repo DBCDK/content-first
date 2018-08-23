@@ -67,7 +67,7 @@ export default class UserProfileForm extends React.Component {
           <span className={'form-control-feedback '} aria-hidden="true">
             <i className="material-icons" style={{fontSize: 18}}>
               {(this.state.name.length > 3 && 'check_circle') ||
-                ((this.state.name.length === 0 && ' ') || 'clear')}
+                ((this.state.name.length === 0 && ' ') || 'not_interested')}
             </i>
           </span>
         </div>
