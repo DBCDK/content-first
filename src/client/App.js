@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
+import {isMobile} from 'react-device-detect';
 import 'react-toastify/dist/ReactToastify.css';
 import './style/App.css';
 import './style/index.css';
@@ -83,12 +84,14 @@ class App extends Component {
       currentPage = <div>PAGE NOT FOUND</div>;
     }
 
+    const topbarHeight = isMobile ? 60 : 80;
+
     return (
       <div className="App container">
         {topbar ? (
           <div>
             <TopBar dispatch={this.props.dispatch} user={this.props.user} />
-            <div style={{height: '80px'}} />
+            <div style={{height: topbarHeight}} />
           </div>
         ) : (
           ''

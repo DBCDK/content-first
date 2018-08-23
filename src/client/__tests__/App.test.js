@@ -4,12 +4,13 @@ import {Provider} from 'react-redux';
 import createStore from '../redux/Store';
 import renderer from 'react-test-renderer';
 
-jest.mock('../../data/exportTaxonomy.json', () => {
-  return require('./__mocks__/mockedTaxonomy.json');
-});
+// jest.mock('../../data/exportTaxonomy.json', () => {
+//   return require('./__mocks__/mockedTaxonomy.json');
+// });
 jest.mock('../components/belt/Slider.component', () => 'slider');
 jest.mock('../components/bookcase/Bookcase.component', () => 'Bookcase');
 jest.mock('../components/belt/BooksBelt.component', () => 'BooksBelt');
+jest.mock('../components/spots/Spots.container.js', () => 'SpotsContainer');
 
 it('renders without crashing', () => {
   window.$ = () => ({tooltip: () => {}}); // mock jquery tooltip

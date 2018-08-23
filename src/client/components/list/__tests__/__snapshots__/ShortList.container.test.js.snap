@@ -261,7 +261,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -481,7 +481,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -798,7 +798,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -1139,7 +1139,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -1480,7 +1480,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -1836,7 +1836,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -2195,7 +2195,7 @@ exports[`ShortList.container remove element 1`] = `
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -2415,7 +2415,7 @@ exports[`ShortList.container remove element 1`] = `
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -2635,7 +2635,7 @@ exports[`ShortList.container remove element 1`] = `
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -3012,7 +3012,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -3232,7 +3232,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil
@@ -3452,7 +3452,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                 >
                                   <Icon>
                                     <i
-                                      className="material-icons "
+                                      className="material-icons material-icons-undefined "
                                     />
                                   </Icon>
                                   Bestil

@@ -69,13 +69,15 @@ function fetchAvailability({store, pid}) {
       for (let i = 1; i <= 20; ++i) {
         try {
           const pids = await getCollectionPids(pid);
-          availability = await Promise.all(
-            pids.map(p => openplatform.availability({pid: p}))
-          );
+          availability = await openplatform.availability({pids});
           availability =
-            availability.filter(
-              o => o.holdingstatus && o.holdingstatus.willLend
-            )[0] || availability[0];
+            availability.filter(o => o && o.orderPossible)[0] ||
+            availability[0];
+
+          // ensure that orderPossible is set to either true or false
+          availability.orderPossible = availability.orderPossible
+            ? true
+            : false;
           break;
         } catch (e) {
           store.dispatch({

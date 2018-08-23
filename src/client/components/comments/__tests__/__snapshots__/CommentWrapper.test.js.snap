@@ -81,7 +81,7 @@ exports[`CommentContainer Cancel button 1`] = `
               }
             >
               <i
-                className="material-icons "
+                className="material-icons material-icons-face "
                 style={
                   Object {
                     "backgroundColor": "#e9eaeb",
@@ -212,7 +212,7 @@ exports[`CommentContainer Cancel button 2`] = `
               }
             >
               <i
-                className="material-icons "
+                className="material-icons material-icons-face "
                 style={
                   Object {
                     "backgroundColor": "#e9eaeb",
@@ -344,7 +344,7 @@ exports[`CommentContainer Delete button 1`] = `
               }
             >
               <i
-                className="material-icons "
+                className="material-icons material-icons-face "
                 style={
                   Object {
                     "backgroundColor": "#e9eaeb",
@@ -475,7 +475,7 @@ exports[`CommentContainer Edit button 1`] = `
               }
             >
               <i
-                className="material-icons "
+                className="material-icons material-icons-face "
                 style={
                   Object {
                     "backgroundColor": "#e9eaeb",
@@ -606,7 +606,7 @@ exports[`CommentContainer Edit button 2`] = `
               }
             >
               <i
-                className="material-icons "
+                className="material-icons material-icons-face "
                 style={
                   Object {
                     "backgroundColor": "#e9eaeb",
@@ -752,7 +752,7 @@ exports[`CommentContainer Render comment 1`] = `
         }
       >
         <i
-          className="material-icons "
+          className="material-icons material-icons-face "
           style={
             Object {
               "backgroundColor": "#e9eaeb",
@@ -836,7 +836,7 @@ exports[`CommentContainer Render edit form 1`] = `
         }
       >
         <i
-          className="material-icons "
+          className="material-icons material-icons-face "
           style={
             Object {
               "backgroundColor": "#e9eaeb",
@@ -934,7 +934,7 @@ exports[`CommentContainer Render save form 1`] = `
         }
       >
         <i
-          className="material-icons "
+          className="material-icons material-icons-face "
           style={
             Object {
               "backgroundColor": "#e9eaeb",
@@ -1065,7 +1065,7 @@ exports[`CommentContainer Save button 1`] = `
               }
             >
               <i
-                className="material-icons "
+                className="material-icons material-icons-face "
                 style={
                   Object {
                     "backgroundColor": "#e9eaeb",

@@ -77,7 +77,7 @@ class WorkCard extends React.Component {
           origin={this.props.origin}
           work={this.props.work}
           layout="circle"
-          style={{position: 'absolute', right: 0, top: 0, zIndex: 99}}
+          style={{position: 'absolute', right: 0, top: 0}}
         />
         <div
           style={{height: '100%'}}

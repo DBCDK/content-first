@@ -1,54 +1,66 @@
 import React from 'react';
 import TagsSuggester from './TagsSuggester.component';
-import Kryds from '../svg/KrydsWhite.svg';
+import Icon from '../base/Icon';
+import Button from '../base/Button';
 
 const SelectedFilter = props => {
+  let title = props.filter.title;
+  let id = props.filter;
+
+  if (props.filter instanceof Array) {
+    /* Capitalize first letter for each in range */
+    const first = props.filter[0].title.replace(/^\w/, c => c.toUpperCase());
+    const last = props.filter[1].title.replace(/^\w/, c => c.toUpperCase());
+
+    title = first === last ? first : first + ' - ' + last;
+    id = [props.filter[0].id, props.filter[1].id];
+  }
+
   return (
-    <div className="selected-filter tag tags tag-large tag-orange">
-      {props.filter.title}
-      <span
+    <Button Tag="div" size="medium" type="term" className="selected-filter">
+      <span>{title}</span>
+      <Icon
+        className="md-small"
+        name="close"
         onClick={() => {
-          props.onDisableFilter(props.filter);
+          props.onDisableFilter(id);
         }}
-      >
-        <img style={{width: 10}} src={Kryds} alt="remove" />
-      </span>
-    </div>
+      />
+    </Button>
   );
 };
 
 class SelectedFilters extends React.Component {
-  componentDidMount() {
-    if (this.props.selectedFilters.length === 0) {
-      this.autosuggestRef.input.focus();
-    }
-  }
-
   render() {
     return (
-      <div className="selected-filters text-left col-12">
-        {this.props.selectedFilters.map((filter, idx) => {
-          return (
-            <SelectedFilter
-              key={idx}
-              filter={filter}
-              onDisableFilter={this.props.onFilterToggle}
-            />
-          );
-        })}
-        <TagsSuggester
-          autosuggestRef={r => {
-            this.autosuggestRef = r;
-          }}
-          value={this.props.query}
-          onFocus={this.props.onFocus}
-          onChange={this.props.onQueryChange}
-          onSuggestionSelected={(e, {suggestion}) => {
-            this.props.onFilterToggle(suggestion);
-          }}
-        />
-        <hr />
-      </div>
+      <React.Fragment>
+        <div
+          className="selected-filters-wrap text-left"
+          ref={this.props.filtersRef}
+          onWheel={this.props.onFiltersScroll}
+        >
+          <TagsSuggester
+            selectedFilters={this.props.selectedFilters}
+            value={this.props.query}
+            onFocus={this.props.onFocus}
+            onChange={this.props.onQueryChange}
+            onSuggestionSelected={(e, {suggestion}) =>
+              this.props.onFilterToggle(suggestion)
+            }
+          />
+          <div className="selected-filters">
+            {this.props.selectedFilters.map((filter, idx) => {
+              return (
+                <SelectedFilter
+                  key={idx}
+                  filter={filter}
+                  onDisableFilter={this.props.onFilterToggle}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
