@@ -3,7 +3,7 @@
 exports[`UserProfileForm render function It adds validation error 1`] = `
 <UserProfileForm>
   <form
-    className="profile-form"
+    className="profile-form needs-validation"
     onSubmit={[Function]}
     style={
       Object {
@@ -15,7 +15,7 @@ exports[`UserProfileForm render function It adds validation error 1`] = `
       className="input-group mb2   has-feedback"
     >
       <input
-        className="form-control mb3"
+        className="form-control mb3   has-feedback"
         name="name"
         onChange={[Function]}
         placeholder="Vælg brugernavn"
@@ -24,8 +24,19 @@ exports[`UserProfileForm render function It adds validation error 1`] = `
       />
       <span
         aria-hidden="true"
-        className="form-control-feedback glyphicon  "
-      />
+        className="form-control-feedback "
+      >
+        <i
+          className="material-icons"
+          style={
+            Object {
+              "fontSize": 18,
+            }
+          }
+        >
+           
+        </i>
+      </span>
     </div>
     <p
       className="mb6"
@@ -72,7 +83,7 @@ exports[`UserProfileForm render function It adds validation error 2`] = `
   acceptedTerms={true}
 >
   <form
-    className="profile-form"
+    className="profile-form needs-validation"
     onSubmit={[Function]}
     style={
       Object {
@@ -84,7 +95,7 @@ exports[`UserProfileForm render function It adds validation error 2`] = `
       className="input-group mb2   has-feedback"
     >
       <input
-        className="form-control mb3"
+        className="form-control mb3   has-feedback"
         name="name"
         onChange={[Function]}
         placeholder="Vælg brugernavn"
@@ -93,8 +104,19 @@ exports[`UserProfileForm render function It adds validation error 2`] = `
       />
       <span
         aria-hidden="true"
-        className="form-control-feedback glyphicon  "
-      />
+        className="form-control-feedback "
+      >
+        <i
+          className="material-icons"
+          style={
+            Object {
+              "fontSize": 18,
+            }
+          }
+        >
+           
+        </i>
+      </span>
     </div>
     <p
       className="mb6"
@@ -138,7 +160,7 @@ exports[`UserProfileForm render function It adds validation error 2`] = `
 
 exports[`UserProfileForm render function renders an user profile form 1`] = `
 <form
-  className="profile-form"
+  className="profile-form needs-validation"
   onSubmit={[Function]}
   style={
     Object {
@@ -150,7 +172,7 @@ exports[`UserProfileForm render function renders an user profile form 1`] = `
     className="input-group mb2   has-feedback"
   >
     <input
-      className="form-control mb3"
+      className="form-control mb3   has-feedback"
       name="name"
       onChange={[Function]}
       placeholder="Vælg brugernavn"
@@ -159,8 +181,19 @@ exports[`UserProfileForm render function renders an user profile form 1`] = `
     />
     <span
       aria-hidden="true"
-      className="form-control-feedback glyphicon  "
-    />
+      className="form-control-feedback "
+    >
+      <i
+        className="material-icons"
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+         
+      </i>
+    </span>
   </div>
   <p
     className="mb6"

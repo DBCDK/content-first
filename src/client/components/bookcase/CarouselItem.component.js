@@ -25,27 +25,27 @@ export default class CarouselItem extends React.Component {
         }`}
       >
         <div className="carousel">
-          <div className="col-xs-4 carousel-img">
+          <div className="col-4 carousel-img">
             <Link href={url}>
               <BookCover book={book} />
             </Link>
           </div>
 
-          <div className="col-xs-8 text-left carousel-text">
-            <div className="col-xs-12 carousel-title">
+          <div className="col-8 text-left carousel-text">
+            <div className="col-12 carousel-title">
               <h1>{book.title}</h1>
             </div>
-            <div className="col-xs-12 carousel-creator">
+            <div className="col-12 carousel-creator">
               <Link href={url}>
                 <h2>{book.creator}</h2>
               </Link>
             </div>
-            <div className="col-xs-12 carousel-description">
+            <div className="col-12 carousel-description">
               <TruncateMarkup lines={6}>
                 <p>{this.props.description}</p>
               </TruncateMarkup>
             </div>
-            <div className="col-xs-12">
+            <div className="col-12">
               <CheckmarkConnected book={{book}} origin="Fra bogreol" />
             </div>
           </div>

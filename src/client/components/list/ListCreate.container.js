@@ -224,11 +224,11 @@ export class ListCreator extends React.Component {
 
     return (
       <div className="list-creator">
-        <h1 className="list-creator__headline">
+        <h1 className="list-creator__headline mt2">
           {isNew ? 'Opret liste' : 'Redigér liste'}
         </h1>
         <div className="row">
-          <div className="col-xs-8">
+          <div className="col-8">
             <form className="mb4" onSubmit={e => this.onSubmit(e)}>
               <div className="list-details">
                 <div className="form-group">
@@ -301,14 +301,14 @@ export class ListCreator extends React.Component {
                     >
                       {currentList.template === 'bookcase' ? (
                         <div className="dotHandler-wrap">
-                          <div className="col-xs-4 bookcase-profile">
+                          <div className="col-4 bookcase-profile">
                             <img
                               src={'/v1/image/' + profile.image + '/100/100'}
                               alt={profile.name + ' bogreol'}
                             />
                             <h4>{profile.name}</h4>
                           </div>
-                          <div className="col-xs-8 dotHandler" ref="dotHandler">
+                          <div className="col-8 dotHandler" ref="dotHandler">
                             {currentList.list.map(p => {
                               const position = this.percentageObjToPixel(
                                 this.refs.dotHandler,
@@ -428,7 +428,7 @@ export class ListCreator extends React.Component {
               </Link>
             </form>
           </div>
-          <div className="col-xs-4" />
+          <div className="col-4" />
         </div>
       </div>
     );

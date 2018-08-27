@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import SearchField from './SearchField.component';
 
 export const SearchPage = props => (
-  <div className="col-xs-11 col-centered text-left">
+  <div className="col-11 col-centered text-left">
     <SearchField
       style={{marginTop: 40, marginBottom: 30}}
       searching={props.searching}

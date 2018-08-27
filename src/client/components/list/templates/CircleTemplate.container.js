@@ -70,7 +70,7 @@ export default class CircleTemplate extends React.Component {
       <div key="circle-template" className="circle-template row b-dark">
         <div
           ref="wrapper"
-          className="list col-xs-12"
+          className="list col-12"
           style={{height: backgroundImageHeight}}
         >
           <img

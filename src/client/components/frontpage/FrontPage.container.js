@@ -11,7 +11,7 @@ class FrontPage extends React.Component {
     return (
       <React.Fragment>
         <SpotsContainer />
-        <div className="belts col-xs-12 col-sm-12">
+        <div className="belts col-12">
           {Object.values(beltsMap)
             .filter(belt => belt.onFrontPage)
             .map(belt => (

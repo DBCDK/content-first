@@ -48,37 +48,31 @@ const EditFilters = props => {
     <div
       className={
         props.edit
-          ? 'edit-filters col-xs-12 text-left'
-          : 'edit-filters col-xs-12 text-left hidden'
+          ? 'edit-filters col-12 text-left'
+          : 'edit-filters col-12 text-left d-none'
       }
       style={props.style}
     >
       <div
         className={
-          props.showTags
-            ? 'tags-container'
-            : 'tags-container hide-tags-container'
+          'tags-container row ' + (props.showTags ? '' : 'hide-tags-container')
         }
       >
-        <FilterGroup className="col-xs-4" title="Stemning" {...props} />
-        <div className="col-xs-8">
+        <FilterGroup className="col-4" title="Stemning" {...props} />
+        <div className="col-8">
           <div className="row">
-            <FilterGroup className="col-xs-6" title="Længde" {...props} />
-            <FilterGroup
-              className="col-xs-6"
-              title="På biblioteket"
-              {...props}
-            />
+            <FilterGroup className="col-6" title="Længde" {...props} />
+            <FilterGroup className="col-6" title="På biblioteket" {...props} />
           </div>
           <div className="row">
             <FilterGroup
-              className="col-xs-6"
+              className="col-6"
               title="Tempo"
               showDelimiter={true}
               {...props}
             />
             <FilterGroup
-              className="col-xs-6"
+              className="col-6"
               title="Handlingens tid"
               showDelimiter={true}
               {...props}
@@ -86,13 +80,13 @@ const EditFilters = props => {
           </div>
           <div className="row">
             <FilterGroup
-              className="col-xs-6"
+              className="col-6"
               title="Struktur"
               showDelimiter={true}
               {...props}
             />
             <FilterGroup
-              className="col-xs-6"
+              className="col-6"
               title="Skrivestil"
               showDelimiter={true}
               {...props}

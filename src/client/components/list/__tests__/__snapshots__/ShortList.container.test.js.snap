@@ -31,7 +31,7 @@ exports[`ShortList.container Clearing list 1`] = `
       }
     >
       <div
-        className="top-bar-dropdown-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -87,19 +87,19 @@ exports[`ShortList.container Clearing list 1`] = `
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -157,7 +157,7 @@ exports[`ShortList.container Clearing list 1`] = `
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -197,19 +197,27 @@ exports[`ShortList.container Clearing list 1`] = `
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -299,19 +307,19 @@ exports[`ShortList.container Clearing list 1`] = `
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -369,7 +377,7 @@ exports[`ShortList.container Clearing list 1`] = `
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -409,19 +417,27 @@ exports[`ShortList.container Clearing list 1`] = `
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -552,7 +568,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
       }
     >
       <div
-        className="top-bar-dropdown-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -608,19 +624,19 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -678,7 +694,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -718,19 +734,27 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -798,10 +822,10 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
           </CSSTransitionGroup>
         </div>
         <div
-          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+          className="list-actions col-12 col-lg-10 text-right mt4 mb4"
         >
           <div
-            className="row"
+            className="row d-block"
           >
             <span
               className="btn btn-success"
@@ -885,7 +909,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
       }
     >
       <div
-        className="top-bar-dropdown-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -941,19 +965,19 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -1011,7 +1035,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -1051,19 +1075,27 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -1131,10 +1163,10 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
           </CSSTransitionGroup>
         </div>
         <div
-          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+          className="list-actions col-12 col-lg-10 text-right mt4 mb4"
         >
           <div
-            className="row"
+            className="row d-block"
           >
             <span
               className="btn btn-success"
@@ -1218,7 +1250,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
       }
     >
       <div
-        className="top-bar-dropdown-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -1274,19 +1306,19 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -1344,7 +1376,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -1384,19 +1416,27 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -1464,10 +1504,10 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
           </CSSTransitionGroup>
         </div>
         <div
-          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+          className="list-actions col-12 col-lg-10 text-right mt4 mb4"
         >
           <div
-            className="row"
+            className="row d-block"
           >
             <span
               className="btn btn-success"
@@ -1551,7 +1591,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
       }
     >
       <div
-        className="top-bar-dropdown-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -1607,19 +1647,19 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -1677,7 +1717,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -1732,19 +1772,27 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -1812,10 +1860,10 @@ exports[`ShortList.container change description reveal cancel and submit buttons
           </CSSTransitionGroup>
         </div>
         <div
-          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+          className="list-actions col-12 col-lg-10 text-right mt4 mb4"
         >
           <div
-            className="row"
+            className="row d-block"
           >
             <span
               className="btn btn-success"
@@ -1917,7 +1965,7 @@ exports[`ShortList.container remove element 1`] = `
       }
     >
       <div
-        className="top-bar-dropdown-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -1973,19 +2021,19 @@ exports[`ShortList.container remove element 1`] = `
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -2043,7 +2091,7 @@ exports[`ShortList.container remove element 1`] = `
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -2083,19 +2131,27 @@ exports[`ShortList.container remove element 1`] = `
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -2185,19 +2241,19 @@ exports[`ShortList.container remove element 1`] = `
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -2255,7 +2311,7 @@ exports[`ShortList.container remove element 1`] = `
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -2295,19 +2351,27 @@ exports[`ShortList.container remove element 1`] = `
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -2397,19 +2461,19 @@ exports[`ShortList.container remove element 1`] = `
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -2467,7 +2531,7 @@ exports[`ShortList.container remove element 1`] = `
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -2507,19 +2571,27 @@ exports[`ShortList.container remove element 1`] = `
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -2587,10 +2659,10 @@ exports[`ShortList.container remove element 1`] = `
           </CSSTransitionGroup>
         </div>
         <div
-          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+          className="list-actions col-12 col-lg-10 text-right mt4 mb4"
         >
           <div
-            className="row"
+            className="row d-block"
           >
             <span
               className="btn btn-success"
@@ -2710,7 +2782,7 @@ exports[`ShortList.container short list contains elements 1`] = `
       }
     >
       <div
-        className="top-bar-dropdown-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-11 col-centered"
       >
         <div
           className="page-header-1"
@@ -2766,19 +2838,19 @@ exports[`ShortList.container short list contains elements 1`] = `
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -2836,7 +2908,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -2876,19 +2948,27 @@ exports[`ShortList.container short list contains elements 1`] = `
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -2978,19 +3058,19 @@ exports[`ShortList.container short list contains elements 1`] = `
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -3048,7 +3128,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -3088,19 +3168,27 @@ exports[`ShortList.container short list contains elements 1`] = `
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -3190,19 +3278,19 @@ exports[`ShortList.container short list contains elements 1`] = `
                     onRemove={[Function]}
                   >
                     <div
-                      className="item col-xs-12 col-lg-10 text-left"
+                      className="item col-12 col-lg-10 text-left"
                     >
                       <div
                         className="row"
                       >
                         <div
-                          className="book col-xs-6"
+                          className="book col-6"
                         >
                           <div
                             className="row"
                           >
                             <div
-                              className="col-xs-2"
+                              className="col-2"
                             >
                               <div
                                 className="book-cover"
@@ -3260,7 +3348,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                               </div>
                             </div>
                             <div
-                              className="col-xs-10 book-description"
+                              className="col-10 book-description"
                             >
                               <div
                                 className="title"
@@ -3300,19 +3388,27 @@ exports[`ShortList.container short list contains elements 1`] = `
                           </div>
                         </div>
                         <div
-                          className="add-to-list col-xs-3"
+                          className="add-to-list col-3"
                         >
                           <span
+                            className="d-flex align-items-center"
                             onClick={[Function]}
                           >
                             Tilføj til liste
-                            <span
-                              className="glyphicon glyphicon-menu-right"
-                            />
+                            <i
+                              className="material-icons"
+                              style={
+                                Object {
+                                  "fontSize": 11,
+                                }
+                              }
+                            >
+                              arrow_forward_ios
+                            </i>
                           </span>
                         </div>
                         <div
-                          className="order-book col-xs-3"
+                          className="order-book col-3"
                         >
                           <Connect(OrderButton)
                             book={
@@ -3380,10 +3476,10 @@ exports[`ShortList.container short list contains elements 1`] = `
           </CSSTransitionGroup>
         </div>
         <div
-          className="list-actions col-xs-12 col-lg-10 text-right mt4 mb4"
+          className="list-actions col-12 col-lg-10 text-right mt4 mb4"
         >
           <div
-            className="row"
+            className="row d-block"
           >
             <span
               className="btn btn-success"
@@ -3445,7 +3541,7 @@ exports[`ShortList.container short list is empty 1`] = `
       }
     >
       <div
-        className="top-bar-dropdown-list-page col-xs-11 col-centered"
+        className="top-bar-dropdown-list-page col-11 col-centered"
       >
         <div
           className="page-header-1"

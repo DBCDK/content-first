@@ -11,15 +11,15 @@ export class CreateProfilePage extends React.Component {
   render() {
     return (
       <div className="profile-page tl raleway">
-        <h1 className="headline mb2">{this.props.title}</h1>
+        <h1 className="headline mt2">{this.props.title}</h1>
         <div className="profile-form mb3">
           {this.props.isLoading ? (
             <div className="mb2 tc">
               <Spinner size="36px" />
             </div>
           ) : (
-            <div className="rows clearfix">
-              <div className="col-xs-3">
+            <div className="row clearfix m-0">
+              <div className="col-3">
                 <ImageUpload
                   error={this.props.imageError}
                   style={{borderRadius: '50%'}}
@@ -37,7 +37,7 @@ export class CreateProfilePage extends React.Component {
                   onFile={this.props.addImage}
                 />
               </div>
-              <div className="col-xs-9 mb2">
+              <div className="col-9 mb2">
                 <p className="mb2">
                   <b>Indtast dine personlige oplysninger:</b>
                 </p>

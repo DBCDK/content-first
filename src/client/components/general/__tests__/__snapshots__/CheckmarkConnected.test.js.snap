@@ -49,9 +49,17 @@ exports[`CheckmarkConnected renders initial component with loggedIn user 1`] = `
         className="btn btn-default"
         onClick={[Function]}
       >
-        <span
-          className="glyphicon glyphicon-option-vertical"
-        />
+        <i
+          className="material-icons"
+          style={
+            Object {
+              "fontSize": 18,
+              "verticalAlign": "middle",
+            }
+          }
+        >
+          more_vert
+        </i>
       </span>
     </span>
   </div>

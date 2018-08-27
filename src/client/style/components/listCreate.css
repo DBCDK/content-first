@@ -11,6 +11,9 @@
   font-weight: 700;
   margin-bottom: 4rem;
 }
+.list-creator input {
+  height: 34px;
+}
 .list-creator textarea {
   resize: none;
 }

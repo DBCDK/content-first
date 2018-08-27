@@ -43,31 +43,33 @@ export default class UserProfileForm extends React.Component {
   render() {
     return (
       <form
-        className="profile-form"
+        className="profile-form needs-validation"
         style={{maxWidth: '400px'}}
         onSubmit={this.onSubmit}
       >
         <div
           className={`input-group mb2 ${(this.state.name.length > 3 &&
-            'has-success') ||
+            'valid-feedback') ||
             ((this.state.name.length === 0 && ' ') ||
-              'has-error')} has-feedback`}
+              'invalid-feedback')} has-feedback`}
         >
           <input
-            className="form-control mb3"
+            className={`form-control mb3 ${(this.state.name.length > 3 &&
+              'is-valid') ||
+              ((this.state.name.length === 0 && ' ') ||
+                'is-invalid')} has-feedback`}
             type="text"
             name="name"
             placeholder="Vælg brugernavn"
             value={this.state.name}
             onChange={e => this.setState({[e.target.name]: e.target.value})}
           />
-          <span
-            className={`form-control-feedback glyphicon ${(this.state.name
-              .length > 3 &&
-              'glyphicon-ok') ||
-              ((this.state.name.length === 0 && ' ') || 'glyphicon-remove')}`}
-            aria-hidden="true"
-          />
+          <span className={'form-control-feedback '} aria-hidden="true">
+            <i className="material-icons" style={{fontSize: 18}}>
+              {(this.state.name.length > 3 && 'check_circle') ||
+                ((this.state.name.length === 0 && ' ') || 'not_interested')}
+            </i>
+          </span>
         </div>
         <p className="mb6">Du er logget på via {this.props.library}</p>
         {!this.props.editMode ? (

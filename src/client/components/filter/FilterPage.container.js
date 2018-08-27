@@ -63,7 +63,7 @@ class FilterPage extends React.Component {
       <div className="filter-page">
         <div className="filters row">
           {isMobile && (
-            <div className="filter-page-top col-xs-12">
+            <div className="filter-page-top col-12">
               <div className="filter-page-searchbar">
                 <SearchBar />
               </div>

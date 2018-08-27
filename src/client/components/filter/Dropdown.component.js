@@ -5,7 +5,7 @@ const getWidth = (text, className) => {
   var tmp = document.createElement('div');
   tmp.className = className;
   tmp.innerHTML = text;
-  tmp.style.visibility = 'hidden';
+  tmp.style.visibility = 'd-none';
   tmp.style.display = 'inline-block';
   tmp.style.position = 'absolute';
   document.body.appendChild(tmp);

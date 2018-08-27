@@ -23,7 +23,8 @@ export class AddToList extends React.Component {
       : false;
     return (
       <div className="addbook">
-        <h2 className="list-creator__headline">Tilføj bøger til listen</h2>
+        <h2 className="list-creator__headline mt2">Tilføj bøger til listen</h2>
+
         <BookSearchSuggester
           list={list}
           onSubmit={book => this.setState({elementToAdd: book})}

@@ -129,7 +129,7 @@ class WorkPage extends React.Component {
             </div>
 
             <div className="row">
-              <div className="col-xs-12 pt1">
+              <div className="col-12 pt1">
                 <Heading
                   Tag="h4"
                   type="subtitle"
@@ -204,7 +204,7 @@ class WorkPage extends React.Component {
               )}
             </div>
             <div className="row">
-              <div className="col-xs-12 pt1">
+              <div className="col-12 pt1">
                 <BookmarkButton
                   className="mr1"
                   origin={'Fra egen værkside'}
@@ -214,7 +214,7 @@ class WorkPage extends React.Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-xs-12 pt2">
+              <div className="col-12 pt2">
                 <Button
                   type="tertiary"
                   size="medium"
@@ -246,7 +246,7 @@ class WorkPage extends React.Component {
                 height: this.state.tagsCollapsed ? '65px' : height + 'px',
                 overflowY: 'hidden'
               }}
-              className="row col-xs-12 mt1 WorkPage__tagContainer text-left"
+              className="row col-12 mt1 WorkPage__tagContainer text-left"
             >
               {tags.map(group => {
                 return (
@@ -278,7 +278,7 @@ class WorkPage extends React.Component {
               })}
             </div>
             <div className="row">
-              <div className="mt1 col-xs-12">
+              <div className="mt1 col-12">
                 <Button
                   size="medium"
                   type="tertiary"
@@ -357,30 +357,30 @@ class WorkPage extends React.Component {
         {work.detailsHasLoaded &&
           work.tagsHasLoaded && (
             <div
-              className="WorkPage__beltContainer col-xs-12 mt4"
+              className="WorkPage__beltContainer col-12 mt4"
               ref={e => (this.booksBeltPosition = e)}
             >
               <BooksBelt belt={belt} />
             </div>
           )}
 
-        <div className="row col-xs-12 mb2 WorkPage__detailsMobile">
-          <div className="col-xs-12">
+        <div className="row col-12 mb2 WorkPage__detailsMobile">
+          <div className="col-12">
             <Heading Tag="h4" type="subtitle" className="mt1">
               Mere info:
             </Heading>
           </div>
-          <div className="col-xs-12">
+          <div className="col-12">
             <div className="WorkPage__details">
               <span>Sideantal: {book.pages}</span>
               <span>Sprog: {book.language}</span>
               <span>Udgivet: {book.first_edition_year}</span>
             </div>
           </div>
-          <div className="col-xs-12">
+          <div className="col-12">
             <div className="WorkPage__formats mt1">
               <span>Formater: </span>
-              <div className="row col-xs-12">
+              <div className="row col-12">
                 {work.collectionHasLoaded &&
                   collection.map(col => {
                     if (col.count === 1) {

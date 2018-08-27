@@ -100,7 +100,7 @@ body {
 
 @media (min-width: 600px) {
   .container {
-    width: 100% !important;
+    min-width: calc(100% - 100px);
   }
 }
 

@@ -94,7 +94,7 @@ class DesktopSlider extends React.Component {
   render() {
     const props = this.props;
     return (
-      <div className="desktop-slider">
+      <div className="col-12 p-0 desktop-slider">
         <Swiper
           {...params}
           initialSlide={this.initialScrollPos}

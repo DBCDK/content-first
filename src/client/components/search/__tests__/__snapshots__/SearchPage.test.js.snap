@@ -2,7 +2,7 @@
 
 exports[`SearchPage render function displays search results 1`] = `
 <div
-  className="col-xs-11 col-centered text-left"
+  className="col-11 col-centered text-left"
 >
   <SearchField
     onSearch={[Function]}
@@ -40,7 +40,7 @@ exports[`SearchPage render function displays search results 1`] = `
 
 exports[`SearchPage render function gives a message, when no search results are present 1`] = `
 <div
-  className="col-xs-11 col-centered text-left"
+  className="col-11 col-centered text-left"
 >
   <SearchField
     onSearch={[Function]}

@@ -45,14 +45,14 @@ export class Item extends React.Component {
 
     return (
       <div className="row simplelist-item mb4">
-        <div className="meta col-xs-3 tc">
+        <div className="meta col-3 tc">
           <WorkItem
             work={element}
             showTaxonomy={false}
             workClass="work simplelist"
           />
         </div>
-        <div className="meta col-xs-9">
+        <div className="meta col-9">
           <h4 className="w-title h-tight">{element.book.title}</h4>
           <h5 className="w-creator h-tight mb2">{element.book.creator}</h5>
           <div className="profile-description mb2">
@@ -165,7 +165,7 @@ export class SimpleList extends React.Component {
         <div className="row b-dark">
           <div className="list-media-icons">
             <SocialShareButton
-              className={this.props.isOwner ? 'hidden' : 'ssb-follow'}
+              className={this.props.isOwner ? 'd-none' : 'ssb-follow'}
               href={null}
               icon={'glyphicon-pushpin'}
               hex={'#6dc1ec'}
@@ -179,7 +179,7 @@ export class SimpleList extends React.Component {
               onClick={() => this.toggleFollow(list.id || list._id, 'list')}
             />
             <SocialShareButton
-              className={list.type === 'SYSTEM_LIST' ? 'hidden' : 'ssb-fb'}
+              className={list.type === 'SYSTEM_LIST' ? 'd-none' : 'ssb-fb'}
               facebook={true}
               href={
                 list.public
@@ -198,7 +198,7 @@ export class SimpleList extends React.Component {
               }}
             />
           </div>
-          <div className="list-header mb4 mt5 col-xs-offset-0 col-md-offset-1">
+          <div className="list-header mb4 mt5   offset-lg-1 offset-sm-0 ">
             <h1 className="t-title h-tight h-underline inline-block align-middle">
               {list.title}
             </h1>
@@ -207,21 +207,21 @@ export class SimpleList extends React.Component {
         </div>
         <div className="simplelist">
           <div className="row mb4 b-dark">
-            <div className="col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1 mb4">
-              <div className="col-xs-3 tc">
+            <div className="col-12 col-md-10 col-lg-8   offset-lg-1 offset-sm-0  mb4 row">
+              <div className="col-3 tc">
                 <ProfileImage
                   user={profile}
                   size={'50'}
                   namePosition={'bottom'}
                 />
               </div>
-              <div className="col-xs-9">
+              <div className="col-9">
                 <p className="t-body">{list.description}</p>
                 {list.social ? <Comments id={list.id} /> : ''}
               </div>
             </div>
           </div>
-          <div className="list col-xs-12 col-md-10 col-lg-8 col-xs-offset-0 col-md-offset-1">
+          <div className="list col-12 col-md-10 col-lg-8  offset-lg-1 offset-sm-0 ">
             <div>
               {list.list.map(element => (
                 <Item

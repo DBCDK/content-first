@@ -122,13 +122,6 @@ export class AddToListButton extends React.Component {
 
         {this.props.isLoggedIn && (
           <React.Fragment>
-            <ul className="AddToListButton__Dropdown AddToListButton__Dropdown__Top dropdown-menu">
-              <li className="AddToListButton__Mobile__Back">
-                <Icon name="chevron_left" className="md-medium" />
-                Tilbage
-              </li>
-            </ul>
-
             <ul
               className="AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists dropdown-menu"
               aria-labelledby="addtolist"
@@ -171,7 +164,7 @@ export class AddToListButton extends React.Component {
               })}
 
               {this.props.customLists.length > 0 && (
-                <li role="separator" className="divider" />
+                <li role="separator" className="dropdown-divider" />
               )}
 
               {this.props.systemLists.map(list => {
@@ -220,7 +213,7 @@ export class AddToListButton extends React.Component {
                 </Button>
               </li>
 
-              <li role="separator" className="divider" />
+              <li role="separator" className="dropdown-divider" />
 
               <li onClick={() => this.props.openModal(work, 'addToList')}>
                 <span className="AddToListButton__Radio" />
@@ -232,6 +225,12 @@ export class AddToListButton extends React.Component {
                 <span className="AddToListButton__Radio" />
                 <span>Opret ny liste</span>
                 <Icon className="md-small" name="chevron_right" />
+              </li>
+            </ul>
+            <ul className="AddToListButton__Dropdown AddToListButton__Dropdown__Top dropdown-menu">
+              <li className="AddToListButton__Mobile__Back">
+                <Icon name="chevron_left" className="md-medium" />
+                Tilbage
               </li>
             </ul>
           </React.Fragment>

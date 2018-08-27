@@ -8,8 +8,8 @@ import Follow from '../follow/Follow.component';
 export class ProfilePage extends React.Component {
   render() {
     return (
-      <div className="rows tl raleway">
-        <div className="col-xs-3">
+      <div className="row tl raleway m-0">
+        <div className="col-3">
           {this.props.user.isLoggedIn ? (
             <div className="tc mt3">
               <ProfileImage
@@ -25,8 +25,8 @@ export class ProfilePage extends React.Component {
             ''
           )}
         </div>
-        <div className="col-xs-9">
-          <h1 className="headline mb5">Dine Lister</h1>
+        <div className="col-9">
+          <h1 className="headline">Dine Lister</h1>
           <div className="profile-lists">
             <Lists />
           </div>
