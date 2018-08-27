@@ -275,7 +275,7 @@ export const saveUser = user => {
   });
 };
 
-export const fetchObjects = (key, type, owner = null, limit = 100) => {
+export const fetchObjects = (key, type, owner, limit = 100) => {
   return new Promise((resolve, reject) => {
     request
       .get('/v1/object/find')
