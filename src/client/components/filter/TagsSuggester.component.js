@@ -107,7 +107,7 @@ class TagsSuggester extends React.Component {
     const inputProps = {
       id: 'Searchbar__inputfield',
       type: 'search',
-      placeholder: 'Søg på tittel, forfatter, stemning...',
+      placeholder: 'Søg på titel, forfatter, stemning...',
       className: 'form-control suggestion-list__search ' + inputVisibelClass,
       value: this.props.value || '',
       onChange: this.props.onChange,

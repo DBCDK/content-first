@@ -2,7 +2,7 @@
 
 exports[`renders without crashing 1`] = `
 <div
-  className="App container"
+  className="App"
 >
   <div>
     <header
@@ -12,7 +12,7 @@ exports[`renders without crashing 1`] = `
         className="col-12 col-m-8 Topbar__navigation"
       >
         <span
-          className="Topbar__navigation__btn widthCalc"
+          className="Topbar__navigation__btn widthCalc d-none d-md-flex"
           style={Object {}}
         >
           <i
@@ -58,7 +58,7 @@ exports[`renders without crashing 1`] = `
                       onChange={[Function]}
                       onFocus={[Function]}
                       onKeyDown={[Function]}
-                      placeholder="Søg på tittel, forfatter, stemning..."
+                      placeholder="Søg på titel, forfatter, stemning..."
                       type="search"
                       value=""
                     />
@@ -81,8 +81,31 @@ exports[`renders without crashing 1`] = `
             Søg
           </span>
         </span>
+        <a
+          className="Topbar__navigation__btn d-i-block d-md-none"
+          href="/find"
+          onClick={[Function]}
+        >
+          <i
+            className="material-icons material-icons-search "
+            onClick={[Function]}
+          >
+            search
+          </i>
+        </a>
+        <a
+          className="Topbar__navigation__btn d-flex d-md-none widthCalc"
+          href="/huskeliste"
+          onClick={[Function]}
+        >
+          <i
+            className="material-icons material-icons-bookmark_border "
+          >
+            bookmark_border
+          </i>
+        </a>
         <div
-          className="Topbar__navigation__btn widthCalc  top-bar-dropdown-list"
+          className="Topbar__navigation__btn d-none d-md-flex widthCalc  top-bar-dropdown-list"
           onClick={[Function]}
         >
           <i
@@ -159,13 +182,13 @@ exports[`renders without crashing 1`] = `
         onClick={[Function]}
       >
         <h1
-          className="hide-on-s-and-down"
+          className="d-none d-sm-inline"
         >
           Læsekompasset
         </h1>
         <img
           alt="Læsekompasset"
-          className="show-on-s-and-down"
+          className="d-block d-sm-none"
           src="logo.svg"
         />
       </a>
@@ -187,7 +210,7 @@ exports[`renders without crashing 1`] = `
           </a>
         </li>
         <li
-          className="hide-on-m-and-up"
+          className="d-block d-sm-none"
         >
           <a
             className="list-card-nohover"
@@ -212,15 +235,11 @@ exports[`renders without crashing 1`] = `
       </ul>
     </header>
     <div
-      style={
-        Object {
-          "height": 80,
-        }
-      }
+      className="App__TopbarPlaceholder"
     />
   </div>
   <div
-    className="frontpage"
+    className="frontpage container"
   >
     <Bookcase />
     <SpotsContainer />

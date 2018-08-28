@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
-import {isMobile} from 'react-device-detect';
 import 'react-toastify/dist/ReactToastify.css';
 import './style/App.css';
 import './style/index.css';

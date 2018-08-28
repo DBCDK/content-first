@@ -51,7 +51,7 @@
   vertical-align: middle;
 }
 
-.suggestion-list {
+.selected-filters-wrap .suggestion-list {
   display: inline-block;
   margin-bottom: 0;
   position: static;
@@ -59,18 +59,18 @@
   margin-left: auto;
 }
 
-.suggestion-list input {
+.selected-filters-wrap .suggestion-list input {
   padding: 0 0.5rem 0 1rem;
   width: 100%;
   height: 30px;
   background-color: transparent;
 }
 
-.suggestion-list::before {
+.selected-filters-wrap .suggestion-list::before {
   display: none;
 }
 
-#react-autowhatever-1 {
+.selected-filters-wrap #react-autowhatever-1 {
   position: fixed;
   width: 100%;
   left: 0;
@@ -83,14 +83,14 @@
   z-index: 999;
 }
 
-#react-autowhatever-1 li {
+.selected-filters-wrap #react-autowhatever-1 li {
   margin-bottom: 0;
   font-family: var(--primary-font);
 }
-#react-autowhatever-1 .suggestion-title {
+.selected-filters-wrap #react-autowhatever-1 .suggestion-title {
   padding: 0.5rem 4rem 0.5rem 4rem;
 }
-#react-autowhatever-1 .suggestion-title i {
+.selected-filters-wrap #react-autowhatever-1 .suggestion-title i {
   padding: 0 1rem 0 0;
   /* vertical-align: middle; */
   transform: rotate(-20deg);
@@ -98,52 +98,57 @@
   float: left;
 }
 
-#react-autowhatever-1 .section-title {
+.selected-filters-wrap #react-autowhatever-1 .section-title {
   display: none;
 }
 
-#react-autowhatever-1 .suggestion-title span {
+.selected-filters-wrap #react-autowhatever-1 .suggestion-title span {
   padding: 0;
   vertical-align: middle;
 }
 
-#react-autowhatever-1 .suggestion-title span u {
+.selected-filters-wrap #react-autowhatever-1 .suggestion-title span u {
   text-decoration: none;
   font-weight: 600;
 }
 
-#react-autowhatever-1 .suggestion-title .suggestion-subject {
+.selected-filters-wrap
+  #react-autowhatever-1
+  .suggestion-title
+  .suggestion-subject {
   color: #bbb;
 }
 
-.suggestion-list input[type='search']::-webkit-search-cancel-button {
+.selected-filters-wrap
+  .suggestion-list
+  input[type='search']::-webkit-search-cancel-button {
   -webkit-appearance: searchfield-cancel-button;
 }
 
 @media only screen and (max-width: 600px) {
-  .suggestion-list input {
+  .selected-filters-wrap .suggestion-list input {
     height: 20px;
     padding-left: 0.5rem;
   }
-  .suggestion-list {
+  .selected-filters-wrap .suggestion-list {
     transition-duration: 0.2s;
     padding: 0.5rem;
   }
 
-  #react-autowhatever-1 {
+  .selected-filters-wrap #react-autowhatever-1 {
     top: 125px;
     padding: 0.6rem;
     border: 0;
     height: 100%;
   }
-  #react-autowhatever-1 .suggestion-title {
+  .selected-filters-wrap #react-autowhatever-1 .suggestion-title {
     padding: 0.5rem 1rem 0.5rem 1rem;
   }
 
-  .suggestion-list.input-visible {
+  .selected-filters-wrap .suggestion-list.input-visible {
     min-width: calc(100% - 75px);
   }
-  .suggestion-list.input-hidden {
+  .selected-filters-wrap .suggestion-list.input-hidden {
     min-width: 0px;
     width: 0;
   }

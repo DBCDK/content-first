@@ -2,1085 +2,1091 @@
 
 exports[`ListCreate list details is shown 1`] = `
 <div
-  className="list-creator"
+  className="container"
 >
-  <h1
-    className="list-creator__headline mt2"
-  >
-    Redigér liste
-  </h1>
   <div
-    className="row"
+    className="list-creator"
   >
-    <div
-      className="col-8"
+    <h1
+      className="list-creator__headline mt2"
     >
-      <form
-        className="mb4"
-        onSubmit={[Function]}
+      Redigér liste
+    </h1>
+    <div
+      className="row"
+    >
+      <div
+        className="col-8"
       >
-        <div
-          className="list-details"
+        <form
+          className="mb4"
+          onSubmit={[Function]}
         >
           <div
-            className="form-group"
+            className="list-details"
           >
-            <span
-              className="required "
+            <div
+              className="form-group"
             >
-              <input
-                className="form-control"
-                name="list-title"
-                onChange={[Function]}
-                placeholder="Giv din liste en titel"
-                type="text"
-                value="some title"
-              />
-              
-            </span>
-            <textarea
-              className="form-control list-details__description"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv lidt om din liste"
-              value="some description"
-            />
-            <div>
               <span
-                className="ml1"
+                className="required "
               >
-                Skal vises som
+                <input
+                  className="form-control"
+                  name="list-title"
+                  onChange={[Function]}
+                  placeholder="Giv din liste en titel"
+                  type="text"
+                  value="some title"
+                />
+                
               </span>
-              <select
-                className="form-control ml1"
+              <textarea
+                className="form-control list-details__description"
+                name="list-description"
                 onChange={[Function]}
-                style={
-                  Object {
-                    "display": "inline-block",
-                    "width": "auto",
+                placeholder="Skriv lidt om din liste"
+                value="some description"
+              />
+              <div>
+                <span
+                  className="ml1"
+                >
+                  Skal vises som
+                </span>
+                <select
+                  className="form-control ml1"
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "width": "auto",
+                    }
                   }
-                }
-                value="simple"
-              >
-                <option
                   value="simple"
                 >
-                  Simpel liste
-                </option>
-                <option
-                  value="circle"
-                >
-                  Visuel liste
-                </option>
-                <option
-                  value="bookcase"
-                >
-                  Bogreol
-                </option>
-              </select>
-            </div>
-            <div
-              className="mt1 text-left"
-            >
+                  <option
+                    value="simple"
+                  >
+                    Simpel liste
+                  </option>
+                  <option
+                    value="circle"
+                  >
+                    Visuel liste
+                  </option>
+                  <option
+                    value="bookcase"
+                  >
+                    Bogreol
+                  </option>
+                </select>
+              </div>
               <div
-                className="image-upload mt1 "
+                className="mt1 text-left"
               >
                 <div
-                  className="image-upload--zone"
-                  style={
-                    Object {
-                      "borderRadius": "5px",
-                      "height": "150px",
-                      "overflow": "hidden",
-                      "width": "150px",
-                    }
-                  }
+                  className="image-upload mt1 "
                 >
                   <div
-                    className="d-flex align-items-center justify-content-center h-100 "
-                  >
-                    <i
-                      className="material-icons"
-                      style={
-                        Object {
-                          "fontSize": 100,
-                        }
+                    className="image-upload--zone"
+                    style={
+                      Object {
+                        "borderRadius": "5px",
+                        "height": "150px",
+                        "overflow": "hidden",
+                        "width": "150px",
                       }
+                    }
+                  >
+                    <div
+                      className="d-flex align-items-center justify-content-center h-100 "
                     >
-                      image
-                    </i>
+                      <i
+                        className="material-icons"
+                        style={
+                          Object {
+                            "fontSize": 100,
+                          }
+                        }
+                      >
+                        image
+                      </i>
+                    </div>
+                    <div
+                      className="droppable-image-overlay"
+                    >
+                      
+                    </div>
                   </div>
                   <div
-                    className="droppable-image-overlay"
-                  >
-                    
-                  </div>
-                </div>
-                <div
-                  style={
-                    Object {
-                      "clear": "both",
+                    style={
+                      Object {
+                        "clear": "both",
+                      }
                     }
-                  }
-                />
-                <label>
-                  <span
-                    className="btn btn-primary mt1"
-                  >
-                    Upload billede
-                  </span>
-                  <input
-                    accept="image/png, image/jpeg"
-                    className="droppable-image-field--file-input"
-                    name={undefined}
-                    onChange={[Function]}
-                    type="file"
                   />
-                </label>
+                  <label>
+                    <span
+                      className="btn btn-primary mt1"
+                    >
+                      Upload billede
+                    </span>
+                    <input
+                      accept="image/png, image/jpeg"
+                      className="droppable-image-field--file-input"
+                      name={undefined}
+                      onChange={[Function]}
+                      type="file"
+                    />
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <h2
-          className="list-creator__headline"
-        >
-          Tilføj bøger til listen
-        </h2>
-        <div
-          className="list-drag"
-        >
-          <BookSearchSuggester
-            list={
+          <h2
+            className="list-creator__headline"
+          >
+            Tilføj bøger til listen
+          </h2>
+          <div
+            className="list-drag"
+          >
+            <BookSearchSuggester
+              list={
+                Object {
+                  "description": "some description",
+                  "id": "current-list-id",
+                  "list": Array [],
+                  "open": true,
+                  "public": true,
+                  "social": true,
+                  "title": "some title",
+                }
+              }
+              onSubmit={[Function]}
+            />
+            <div
+              className="drag-list "
+            />
+          </div>
+          <div
+            className="mt3 mb3"
+          >
+            <div
+              className="list-creator__checkbox"
+            >
+              <label
+                htmlFor="public"
+              >
+                <input
+                  checked={true}
+                  id="public"
+                  name="public"
+                  onClick={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                Skal listen være offentlig?
+              </label>
+            </div>
+            <div
+              className="list-creator__checkbox"
+            >
+              <label
+                htmlFor="social"
+              >
+                <input
+                  checked={true}
+                  id="social"
+                  name="social"
+                  onClick={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                Skal andre kunne kommentere på listen?
+              </label>
+            </div>
+            <div
+              className="list-creator__checkbox"
+            >
+              <label
+                htmlFor="open"
+              >
+                <input
+                  checked={true}
+                  id="open"
+                  name="open"
+                  onClick={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                Skal andre kunne føje til listen?
+              </label>
+            </div>
+          </div>
+          <div
+            className="list-creator__submit text-right"
+          >
+            <button
+              className="btn btn-primary"
+              type="submit"
+            >
+              Gem liste
+            </button>
+          </div>
+          <span
+            className="text-danger"
+            onClick={[Function]}
+            style={
               Object {
-                "description": "some description",
-                "id": "current-list-id",
-                "list": Array [],
-                "open": true,
-                "public": true,
-                "social": true,
-                "title": "some title",
+                "cursor": "pointer",
               }
             }
-            onSubmit={[Function]}
-          />
-          <div
-            className="drag-list "
-          />
-        </div>
-        <div
-          className="mt3 mb3"
-        >
-          <div
-            className="list-creator__checkbox"
           >
-            <label
-              htmlFor="public"
-            >
-              <input
-                checked={true}
-                id="public"
-                name="public"
-                onClick={[Function]}
-                type="checkbox"
-              />
-              <span />
-              Skal listen være offentlig?
-            </label>
-          </div>
-          <div
-            className="list-creator__checkbox"
-          >
-            <label
-              htmlFor="social"
-            >
-              <input
-                checked={true}
-                id="social"
-                name="social"
-                onClick={[Function]}
-                type="checkbox"
-              />
-              <span />
-              Skal andre kunne kommentere på listen?
-            </label>
-          </div>
-          <div
-            className="list-creator__checkbox"
-          >
-            <label
-              htmlFor="open"
-            >
-              <input
-                checked={true}
-                id="open"
-                name="open"
-                onClick={[Function]}
-                type="checkbox"
-              />
-              <span />
-              Skal andre kunne føje til listen?
-            </label>
-          </div>
-        </div>
-        <div
-          className="list-creator__submit text-right"
-        >
-          <button
-            className="btn btn-primary"
-            type="submit"
-          >
-            Gem liste
-          </button>
-        </div>
-        <span
-          className="text-danger"
-          onClick={[Function]}
-          style={
-            Object {
-              "cursor": "pointer",
+            Slet liste
+          </span>
+          <span
+            className="text-danger"
+            style={
+              Object {
+                "cursor": "default",
+              }
             }
-          }
-        >
-          Slet liste
-        </span>
-        <span
-          className="text-danger"
-          style={
-            Object {
-              "cursor": "default",
-            }
-          }
-        >
-           
-          |
-           
-        </span>
-        <Link
-          href="/profile"
-          replace="HISTORY_REPLACE"
-        >
-          Fortryd redigering af liste
-        </Link>
-      </form>
+          >
+             | 
+          </span>
+          <Link
+            href="/profile"
+            replace="HISTORY_REPLACE"
+          >
+            Fortryd redigering af liste
+          </Link>
+        </form>
+      </div>
+      <div
+        className="col-4"
+      />
     </div>
-    <div
-      className="col-4"
-    />
   </div>
 </div>
 `;
 
 exports[`ListCreate renders a list with multiple books 1`] = `
 <div
-  className="list-creator"
+  className="container"
 >
-  <h1
-    className="list-creator__headline mt2"
-  >
-    Redigér liste
-  </h1>
   <div
-    className="row"
+    className="list-creator"
   >
-    <div
-      className="col-8"
+    <h1
+      className="list-creator__headline mt2"
     >
-      <form
-        className="mb4"
-        onSubmit={[Function]}
+      Redigér liste
+    </h1>
+    <div
+      className="row"
+    >
+      <div
+        className="col-8"
       >
-        <div
-          className="list-details"
+        <form
+          className="mb4"
+          onSubmit={[Function]}
         >
           <div
-            className="form-group"
+            className="list-details"
           >
-            <span
-              className="required "
+            <div
+              className="form-group"
             >
-              <input
-                className="form-control"
-                name="list-title"
-                onChange={[Function]}
-                placeholder="Giv din liste en titel"
-                type="text"
-                value="some title"
-              />
-              
-            </span>
-            <textarea
-              className="form-control list-details__description"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv lidt om din liste"
-              value="some description"
-            />
-            <div>
               <span
-                className="ml1"
+                className="required "
               >
-                Skal vises som
+                <input
+                  className="form-control"
+                  name="list-title"
+                  onChange={[Function]}
+                  placeholder="Giv din liste en titel"
+                  type="text"
+                  value="some title"
+                />
+                
               </span>
-              <select
-                className="form-control ml1"
+              <textarea
+                className="form-control list-details__description"
+                name="list-description"
                 onChange={[Function]}
-                style={
-                  Object {
-                    "display": "inline-block",
-                    "width": "auto",
+                placeholder="Skriv lidt om din liste"
+                value="some description"
+              />
+              <div>
+                <span
+                  className="ml1"
+                >
+                  Skal vises som
+                </span>
+                <select
+                  className="form-control ml1"
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "width": "auto",
+                    }
                   }
-                }
-                value="simple"
-              >
-                <option
                   value="simple"
                 >
-                  Simpel liste
-                </option>
-                <option
-                  value="circle"
-                >
-                  Visuel liste
-                </option>
-                <option
-                  value="bookcase"
-                >
-                  Bogreol
-                </option>
-              </select>
-            </div>
-            <div
-              className="mt1 text-left"
-            >
+                  <option
+                    value="simple"
+                  >
+                    Simpel liste
+                  </option>
+                  <option
+                    value="circle"
+                  >
+                    Visuel liste
+                  </option>
+                  <option
+                    value="bookcase"
+                  >
+                    Bogreol
+                  </option>
+                </select>
+              </div>
               <div
-                className="image-upload mt1 "
+                className="mt1 text-left"
               >
                 <div
-                  className="image-upload--zone"
-                  style={
-                    Object {
-                      "borderRadius": "5px",
-                      "height": "150px",
-                      "overflow": "hidden",
-                      "width": "150px",
-                    }
-                  }
+                  className="image-upload mt1 "
                 >
                   <div
-                    className="d-flex align-items-center justify-content-center h-100 "
-                  >
-                    <i
-                      className="material-icons"
-                      style={
-                        Object {
-                          "fontSize": 100,
-                        }
+                    className="image-upload--zone"
+                    style={
+                      Object {
+                        "borderRadius": "5px",
+                        "height": "150px",
+                        "overflow": "hidden",
+                        "width": "150px",
                       }
+                    }
+                  >
+                    <div
+                      className="d-flex align-items-center justify-content-center h-100 "
                     >
-                      image
-                    </i>
+                      <i
+                        className="material-icons"
+                        style={
+                          Object {
+                            "fontSize": 100,
+                          }
+                        }
+                      >
+                        image
+                      </i>
+                    </div>
+                    <div
+                      className="droppable-image-overlay"
+                    >
+                      
+                    </div>
                   </div>
                   <div
-                    className="droppable-image-overlay"
+                    style={
+                      Object {
+                        "clear": "both",
+                      }
+                    }
+                  />
+                  <label>
+                    <span
+                      className="btn btn-primary mt1"
+                    >
+                      Upload billede
+                    </span>
+                    <input
+                      accept="image/png, image/jpeg"
+                      className="droppable-image-field--file-input"
+                      name={undefined}
+                      onChange={[Function]}
+                      type="file"
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h2
+            className="list-creator__headline"
+          >
+            Tilføj bøger til listen
+          </h2>
+          <div
+            className="list-drag"
+          >
+            <BookSearchSuggester
+              list={
+                Object {
+                  "description": "some description",
+                  "id": "current-list-id",
+                  "list": Array [
+                    Object {
+                      "book": Object {
+                        "creator": "some creator3",
+                        "pid": "pid3",
+                        "title": "some title3",
+                      },
+                      "description": "some description3",
+                      "links": Object {
+                        "cover": "/cover3",
+                      },
+                    },
+                    Object {
+                      "book": Object {
+                        "creator": "some creator2",
+                        "pid": "pid2",
+                        "title": "some title2",
+                      },
+                      "description": "some description2",
+                      "links": Object {
+                        "cover": "/cover2",
+                      },
+                    },
+                    Object {
+                      "book": Object {
+                        "creator": "some creator1",
+                        "pid": "pid1",
+                        "title": "some title1",
+                      },
+                      "description": "some description1",
+                      "links": Object {
+                        "cover": "/cover1",
+                      },
+                    },
+                  ],
+                  "public": false,
+                  "title": "some title",
+                }
+              }
+              onSubmit={[Function]}
+            />
+            <div
+              className="drag-list "
+            >
+              <div
+                className="drag-item flex"
+                onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <img
+                  alt="drag book"
+                  className="drag-item__dragger"
+                  onMouseDown={[Function]}
+                  src="drag.svg"
+                />
+                <div
+                  className="flex list-item"
+                >
+                  <BookCover
+                    book={
+                      Object {
+                        "creator": "some creator3",
+                        "pid": "pid3",
+                        "title": "some title3",
+                      }
+                    }
+                    className="list-item__img"
+                  />
+                  <div
+                    className="list-item__details"
                   >
-                    
+                    <div
+                      className="list-item__title"
+                    >
+                      some title3
+                    </div>
+                    <div
+                      className="list-item__author"
+                    >
+                      some creator3
+                    </div>
+                    <textarea
+                      className="form-control"
+                      name="list-description"
+                      onChange={[Function]}
+                      placeholder="Skriv en kommentar til bogen"
+                      value="some description3"
+                    />
                   </div>
                 </div>
-                <div
-                  style={
-                    Object {
-                      "clear": "both",
-                    }
-                  }
-                />
-                <label>
+                <div>
                   <span
-                    className="btn btn-primary mt1"
-                  >
-                    Upload billede
-                  </span>
-                  <input
-                    accept="image/png, image/jpeg"
-                    className="droppable-image-field--file-input"
-                    name={undefined}
-                    onChange={[Function]}
-                    type="file"
+                    className="list-item__close"
+                    onClick={[Function]}
                   />
-                </label>
+                </div>
+              </div>
+              <div
+                className="drag-item flex"
+                onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <img
+                  alt="drag book"
+                  className="drag-item__dragger"
+                  onMouseDown={[Function]}
+                  src="drag.svg"
+                />
+                <div
+                  className="flex list-item"
+                >
+                  <BookCover
+                    book={
+                      Object {
+                        "creator": "some creator2",
+                        "pid": "pid2",
+                        "title": "some title2",
+                      }
+                    }
+                    className="list-item__img"
+                  />
+                  <div
+                    className="list-item__details"
+                  >
+                    <div
+                      className="list-item__title"
+                    >
+                      some title2
+                    </div>
+                    <div
+                      className="list-item__author"
+                    >
+                      some creator2
+                    </div>
+                    <textarea
+                      className="form-control"
+                      name="list-description"
+                      onChange={[Function]}
+                      placeholder="Skriv en kommentar til bogen"
+                      value="some description2"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <span
+                    className="list-item__close"
+                    onClick={[Function]}
+                  />
+                </div>
+              </div>
+              <div
+                className="drag-item flex"
+                onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <img
+                  alt="drag book"
+                  className="drag-item__dragger"
+                  onMouseDown={[Function]}
+                  src="drag.svg"
+                />
+                <div
+                  className="flex list-item"
+                >
+                  <BookCover
+                    book={
+                      Object {
+                        "creator": "some creator1",
+                        "pid": "pid1",
+                        "title": "some title1",
+                      }
+                    }
+                    className="list-item__img"
+                  />
+                  <div
+                    className="list-item__details"
+                  >
+                    <div
+                      className="list-item__title"
+                    >
+                      some title1
+                    </div>
+                    <div
+                      className="list-item__author"
+                    >
+                      some creator1
+                    </div>
+                    <textarea
+                      className="form-control"
+                      name="list-description"
+                      onChange={[Function]}
+                      placeholder="Skriv en kommentar til bogen"
+                      value="some description1"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <span
+                    className="list-item__close"
+                    onClick={[Function]}
+                  />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <h2
-          className="list-creator__headline"
-        >
-          Tilføj bøger til listen
-        </h2>
-        <div
-          className="list-drag"
-        >
-          <BookSearchSuggester
-            list={
+          <div
+            className="mt3 mb3"
+          >
+            <div
+              className="list-creator__checkbox"
+            >
+              <label
+                htmlFor="public"
+              >
+                <input
+                  checked={false}
+                  id="public"
+                  name="public"
+                  onClick={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                Skal listen være offentlig?
+              </label>
+            </div>
+            <div
+              className="list-creator__checkbox"
+            >
+              <label
+                htmlFor="social"
+              >
+                <input
+                  checked={false}
+                  id="social"
+                  name="social"
+                  onClick={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                Skal andre kunne kommentere på listen?
+              </label>
+            </div>
+            <div
+              className="list-creator__checkbox"
+            >
+              <label
+                htmlFor="open"
+              >
+                <input
+                  checked={false}
+                  id="open"
+                  name="open"
+                  onClick={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                Skal andre kunne føje til listen?
+              </label>
+            </div>
+          </div>
+          <div
+            className="list-creator__submit text-right"
+          >
+            <button
+              className="btn btn-primary"
+              type="submit"
+            >
+              Gem liste
+            </button>
+          </div>
+          <span
+            className="text-danger"
+            onClick={[Function]}
+            style={
               Object {
-                "description": "some description",
-                "id": "current-list-id",
-                "list": Array [
-                  Object {
-                    "book": Object {
-                      "creator": "some creator3",
-                      "pid": "pid3",
-                      "title": "some title3",
-                    },
-                    "description": "some description3",
-                    "links": Object {
-                      "cover": "/cover3",
-                    },
-                  },
-                  Object {
-                    "book": Object {
-                      "creator": "some creator2",
-                      "pid": "pid2",
-                      "title": "some title2",
-                    },
-                    "description": "some description2",
-                    "links": Object {
-                      "cover": "/cover2",
-                    },
-                  },
-                  Object {
-                    "book": Object {
-                      "creator": "some creator1",
-                      "pid": "pid1",
-                      "title": "some title1",
-                    },
-                    "description": "some description1",
-                    "links": Object {
-                      "cover": "/cover1",
-                    },
-                  },
-                ],
-                "public": false,
-                "title": "some title",
+                "cursor": "pointer",
               }
             }
-            onSubmit={[Function]}
-          />
-          <div
-            className="drag-list "
           >
-            <div
-              className="drag-item flex"
-              onMouseEnter={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
+            Slet liste
+          </span>
+          <span
+            className="text-danger"
+            style={
+              Object {
+                "cursor": "default",
               }
-            >
-              <img
-                alt="drag book"
-                className="drag-item__dragger"
-                onMouseDown={[Function]}
-                src="drag.svg"
-              />
-              <div
-                className="flex list-item"
-              >
-                <BookCover
-                  book={
-                    Object {
-                      "creator": "some creator3",
-                      "pid": "pid3",
-                      "title": "some title3",
-                    }
-                  }
-                  className="list-item__img"
-                />
-                <div
-                  className="list-item__details"
-                >
-                  <div
-                    className="list-item__title"
-                  >
-                    some title3
-                  </div>
-                  <div
-                    className="list-item__author"
-                  >
-                    some creator3
-                  </div>
-                  <textarea
-                    className="form-control"
-                    name="list-description"
-                    onChange={[Function]}
-                    placeholder="Skriv en kommentar til bogen"
-                    value="some description3"
-                  />
-                </div>
-              </div>
-              <div>
-                <span
-                  className="list-item__close"
-                  onClick={[Function]}
-                />
-              </div>
-            </div>
-            <div
-              className="drag-item flex"
-              onMouseEnter={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-            >
-              <img
-                alt="drag book"
-                className="drag-item__dragger"
-                onMouseDown={[Function]}
-                src="drag.svg"
-              />
-              <div
-                className="flex list-item"
-              >
-                <BookCover
-                  book={
-                    Object {
-                      "creator": "some creator2",
-                      "pid": "pid2",
-                      "title": "some title2",
-                    }
-                  }
-                  className="list-item__img"
-                />
-                <div
-                  className="list-item__details"
-                >
-                  <div
-                    className="list-item__title"
-                  >
-                    some title2
-                  </div>
-                  <div
-                    className="list-item__author"
-                  >
-                    some creator2
-                  </div>
-                  <textarea
-                    className="form-control"
-                    name="list-description"
-                    onChange={[Function]}
-                    placeholder="Skriv en kommentar til bogen"
-                    value="some description2"
-                  />
-                </div>
-              </div>
-              <div>
-                <span
-                  className="list-item__close"
-                  onClick={[Function]}
-                />
-              </div>
-            </div>
-            <div
-              className="drag-item flex"
-              onMouseEnter={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-            >
-              <img
-                alt="drag book"
-                className="drag-item__dragger"
-                onMouseDown={[Function]}
-                src="drag.svg"
-              />
-              <div
-                className="flex list-item"
-              >
-                <BookCover
-                  book={
-                    Object {
-                      "creator": "some creator1",
-                      "pid": "pid1",
-                      "title": "some title1",
-                    }
-                  }
-                  className="list-item__img"
-                />
-                <div
-                  className="list-item__details"
-                >
-                  <div
-                    className="list-item__title"
-                  >
-                    some title1
-                  </div>
-                  <div
-                    className="list-item__author"
-                  >
-                    some creator1
-                  </div>
-                  <textarea
-                    className="form-control"
-                    name="list-description"
-                    onChange={[Function]}
-                    placeholder="Skriv en kommentar til bogen"
-                    value="some description1"
-                  />
-                </div>
-              </div>
-              <div>
-                <span
-                  className="list-item__close"
-                  onClick={[Function]}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          className="mt3 mb3"
-        >
-          <div
-            className="list-creator__checkbox"
-          >
-            <label
-              htmlFor="public"
-            >
-              <input
-                checked={false}
-                id="public"
-                name="public"
-                onClick={[Function]}
-                type="checkbox"
-              />
-              <span />
-              Skal listen være offentlig?
-            </label>
-          </div>
-          <div
-            className="list-creator__checkbox"
-          >
-            <label
-              htmlFor="social"
-            >
-              <input
-                checked={false}
-                id="social"
-                name="social"
-                onClick={[Function]}
-                type="checkbox"
-              />
-              <span />
-              Skal andre kunne kommentere på listen?
-            </label>
-          </div>
-          <div
-            className="list-creator__checkbox"
-          >
-            <label
-              htmlFor="open"
-            >
-              <input
-                checked={false}
-                id="open"
-                name="open"
-                onClick={[Function]}
-                type="checkbox"
-              />
-              <span />
-              Skal andre kunne føje til listen?
-            </label>
-          </div>
-        </div>
-        <div
-          className="list-creator__submit text-right"
-        >
-          <button
-            className="btn btn-primary"
-            type="submit"
-          >
-            Gem liste
-          </button>
-        </div>
-        <span
-          className="text-danger"
-          onClick={[Function]}
-          style={
-            Object {
-              "cursor": "pointer",
             }
-          }
-        >
-          Slet liste
-        </span>
-        <span
-          className="text-danger"
-          style={
-            Object {
-              "cursor": "default",
-            }
-          }
-        >
-           
-          |
-           
-        </span>
-        <Link
-          href="/profile"
-          replace="HISTORY_REPLACE"
-        >
-          Fortryd redigering af liste
-        </Link>
-      </form>
+          >
+             | 
+          </span>
+          <Link
+            href="/profile"
+            replace="HISTORY_REPLACE"
+          >
+            Fortryd redigering af liste
+          </Link>
+        </form>
+      </div>
+      <div
+        className="col-4"
+      />
     </div>
-    <div
-      className="col-4"
-    />
   </div>
 </div>
 `;
 
 exports[`ListCreate renders a list with one book 1`] = `
 <div
-  className="list-creator"
+  className="container"
 >
-  <h1
-    className="list-creator__headline mt2"
-  >
-    Redigér liste
-  </h1>
   <div
-    className="row"
+    className="list-creator"
   >
-    <div
-      className="col-8"
+    <h1
+      className="list-creator__headline mt2"
     >
-      <form
-        className="mb4"
-        onSubmit={[Function]}
+      Redigér liste
+    </h1>
+    <div
+      className="row"
+    >
+      <div
+        className="col-8"
       >
-        <div
-          className="list-details"
+        <form
+          className="mb4"
+          onSubmit={[Function]}
         >
           <div
-            className="form-group"
+            className="list-details"
           >
-            <span
-              className="required "
+            <div
+              className="form-group"
             >
-              <input
-                className="form-control"
-                name="list-title"
-                onChange={[Function]}
-                placeholder="Giv din liste en titel"
-                type="text"
-                value="some title"
-              />
-              
-            </span>
-            <textarea
-              className="form-control list-details__description"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv lidt om din liste"
-              value="some description"
-            />
-            <div>
               <span
-                className="ml1"
+                className="required "
               >
-                Skal vises som
+                <input
+                  className="form-control"
+                  name="list-title"
+                  onChange={[Function]}
+                  placeholder="Giv din liste en titel"
+                  type="text"
+                  value="some title"
+                />
+                
               </span>
-              <select
-                className="form-control ml1"
+              <textarea
+                className="form-control list-details__description"
+                name="list-description"
                 onChange={[Function]}
-                style={
-                  Object {
-                    "display": "inline-block",
-                    "width": "auto",
-                  }
-                }
-                value="simple"
-              >
-                <option
-                  value="simple"
-                >
-                  Simpel liste
-                </option>
-                <option
-                  value="circle"
-                >
-                  Visuel liste
-                </option>
-                <option
-                  value="bookcase"
-                >
-                  Bogreol
-                </option>
-              </select>
-            </div>
-            <div
-              className="mt1 text-left"
-            >
-              <div
-                className="image-upload mt1 "
-              >
-                <div
-                  className="image-upload--zone"
-                  style={
-                    Object {
-                      "borderRadius": "5px",
-                      "height": "150px",
-                      "overflow": "hidden",
-                      "width": "150px",
-                    }
-                  }
-                >
-                  <div
-                    className="d-flex align-items-center justify-content-center h-100 "
-                  >
-                    <i
-                      className="material-icons"
-                      style={
-                        Object {
-                          "fontSize": 100,
-                        }
-                      }
-                    >
-                      image
-                    </i>
-                  </div>
-                  <div
-                    className="droppable-image-overlay"
-                  >
-                    
-                  </div>
-                </div>
-                <div
-                  style={
-                    Object {
-                      "clear": "both",
-                    }
-                  }
-                />
-                <label>
-                  <span
-                    className="btn btn-primary mt1"
-                  >
-                    Upload billede
-                  </span>
-                  <input
-                    accept="image/png, image/jpeg"
-                    className="droppable-image-field--file-input"
-                    name={undefined}
-                    onChange={[Function]}
-                    type="file"
-                  />
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <h2
-          className="list-creator__headline"
-        >
-          Tilføj bøger til listen
-        </h2>
-        <div
-          className="list-drag"
-        >
-          <BookSearchSuggester
-            list={
-              Object {
-                "description": "some description",
-                "id": "current-list-id",
-                "list": Array [
-                  Object {
-                    "book": Object {
-                      "creator": "some creator1",
-                      "pid": "pid1",
-                      "title": "some title1",
-                    },
-                    "description": "some description1",
-                    "links": Object {
-                      "cover": "/cover1",
-                    },
-                  },
-                ],
-                "open": false,
-                "owner": 1,
-                "public": false,
-                "social": false,
-                "title": "some title",
-              }
-            }
-            onSubmit={[Function]}
-          />
-          <div
-            className="drag-list "
-          >
-            <div
-              className="drag-item flex"
-              onMouseEnter={[Function]}
-              style={
-                Object {
-                  "opacity": 1,
-                }
-              }
-            >
-              <img
-                alt="drag book"
-                className="drag-item__dragger"
-                onMouseDown={[Function]}
-                src="drag.svg"
+                placeholder="Skriv lidt om din liste"
+                value="some description"
               />
-              <div
-                className="flex list-item"
-              >
-                <BookCover
-                  book={
-                    Object {
-                      "creator": "some creator1",
-                      "pid": "pid1",
-                      "title": "some title1",
-                    }
-                  }
-                  className="list-item__img"
-                />
-                <div
-                  className="list-item__details"
-                >
-                  <div
-                    className="list-item__title"
-                  >
-                    some title1
-                  </div>
-                  <div
-                    className="list-item__author"
-                  >
-                    some creator1
-                  </div>
-                  <textarea
-                    className="form-control"
-                    name="list-description"
-                    onChange={[Function]}
-                    placeholder="Skriv en kommentar til bogen"
-                    value="some description1"
-                  />
-                </div>
-              </div>
               <div>
                 <span
-                  className="list-item__close"
-                  onClick={[Function]}
-                />
+                  className="ml1"
+                >
+                  Skal vises som
+                </span>
+                <select
+                  className="form-control ml1"
+                  onChange={[Function]}
+                  style={
+                    Object {
+                      "display": "inline-block",
+                      "width": "auto",
+                    }
+                  }
+                  value="simple"
+                >
+                  <option
+                    value="simple"
+                  >
+                    Simpel liste
+                  </option>
+                  <option
+                    value="circle"
+                  >
+                    Visuel liste
+                  </option>
+                  <option
+                    value="bookcase"
+                  >
+                    Bogreol
+                  </option>
+                </select>
+              </div>
+              <div
+                className="mt1 text-left"
+              >
+                <div
+                  className="image-upload mt1 "
+                >
+                  <div
+                    className="image-upload--zone"
+                    style={
+                      Object {
+                        "borderRadius": "5px",
+                        "height": "150px",
+                        "overflow": "hidden",
+                        "width": "150px",
+                      }
+                    }
+                  >
+                    <div
+                      className="d-flex align-items-center justify-content-center h-100 "
+                    >
+                      <i
+                        className="material-icons"
+                        style={
+                          Object {
+                            "fontSize": 100,
+                          }
+                        }
+                      >
+                        image
+                      </i>
+                    </div>
+                    <div
+                      className="droppable-image-overlay"
+                    >
+                      
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      Object {
+                        "clear": "both",
+                      }
+                    }
+                  />
+                  <label>
+                    <span
+                      className="btn btn-primary mt1"
+                    >
+                      Upload billede
+                    </span>
+                    <input
+                      accept="image/png, image/jpeg"
+                      className="droppable-image-field--file-input"
+                      name={undefined}
+                      onChange={[Function]}
+                      type="file"
+                    />
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          className="mt3 mb3"
-        >
-          <div
-            className="list-creator__checkbox"
+          <h2
+            className="list-creator__headline"
           >
-            <label
-              htmlFor="public"
+            Tilføj bøger til listen
+          </h2>
+          <div
+            className="list-drag"
+          >
+            <BookSearchSuggester
+              list={
+                Object {
+                  "description": "some description",
+                  "id": "current-list-id",
+                  "list": Array [
+                    Object {
+                      "book": Object {
+                        "creator": "some creator1",
+                        "pid": "pid1",
+                        "title": "some title1",
+                      },
+                      "description": "some description1",
+                      "links": Object {
+                        "cover": "/cover1",
+                      },
+                    },
+                  ],
+                  "open": false,
+                  "owner": 1,
+                  "public": false,
+                  "social": false,
+                  "title": "some title",
+                }
+              }
+              onSubmit={[Function]}
+            />
+            <div
+              className="drag-list "
             >
-              <input
-                checked={false}
-                id="public"
-                name="public"
-                onClick={[Function]}
-                type="checkbox"
-              />
-              <span />
-              Skal listen være offentlig?
-            </label>
+              <div
+                className="drag-item flex"
+                onMouseEnter={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <img
+                  alt="drag book"
+                  className="drag-item__dragger"
+                  onMouseDown={[Function]}
+                  src="drag.svg"
+                />
+                <div
+                  className="flex list-item"
+                >
+                  <BookCover
+                    book={
+                      Object {
+                        "creator": "some creator1",
+                        "pid": "pid1",
+                        "title": "some title1",
+                      }
+                    }
+                    className="list-item__img"
+                  />
+                  <div
+                    className="list-item__details"
+                  >
+                    <div
+                      className="list-item__title"
+                    >
+                      some title1
+                    </div>
+                    <div
+                      className="list-item__author"
+                    >
+                      some creator1
+                    </div>
+                    <textarea
+                      className="form-control"
+                      name="list-description"
+                      onChange={[Function]}
+                      placeholder="Skriv en kommentar til bogen"
+                      value="some description1"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <span
+                    className="list-item__close"
+                    onClick={[Function]}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
           <div
-            className="list-creator__checkbox"
+            className="mt3 mb3"
           >
-            <label
-              htmlFor="social"
+            <div
+              className="list-creator__checkbox"
             >
-              <input
-                checked={false}
-                id="social"
-                name="social"
-                onClick={[Function]}
-                type="checkbox"
-              />
-              <span />
-              Skal andre kunne kommentere på listen?
-            </label>
+              <label
+                htmlFor="public"
+              >
+                <input
+                  checked={false}
+                  id="public"
+                  name="public"
+                  onClick={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                Skal listen være offentlig?
+              </label>
+            </div>
+            <div
+              className="list-creator__checkbox"
+            >
+              <label
+                htmlFor="social"
+              >
+                <input
+                  checked={false}
+                  id="social"
+                  name="social"
+                  onClick={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                Skal andre kunne kommentere på listen?
+              </label>
+            </div>
+            <div
+              className="list-creator__checkbox"
+            >
+              <label
+                htmlFor="open"
+              >
+                <input
+                  checked={false}
+                  id="open"
+                  name="open"
+                  onClick={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                Skal andre kunne føje til listen?
+              </label>
+            </div>
           </div>
           <div
-            className="list-creator__checkbox"
+            className="list-creator__submit text-right"
           >
-            <label
-              htmlFor="open"
+            <button
+              className="btn btn-primary"
+              type="submit"
             >
-              <input
-                checked={false}
-                id="open"
-                name="open"
-                onClick={[Function]}
-                type="checkbox"
-              />
-              <span />
-              Skal andre kunne føje til listen?
-            </label>
+              Gem liste
+            </button>
           </div>
-        </div>
-        <div
-          className="list-creator__submit text-right"
-        >
-          <button
-            className="btn btn-primary"
-            type="submit"
-          >
-            Gem liste
-          </button>
-        </div>
-        <span
-          className="text-danger"
-          onClick={[Function]}
-          style={
-            Object {
-              "cursor": "pointer",
+          <span
+            className="text-danger"
+            onClick={[Function]}
+            style={
+              Object {
+                "cursor": "pointer",
+              }
             }
-          }
-        >
-          Slet liste
-        </span>
-        <span
-          className="text-danger"
-          style={
-            Object {
-              "cursor": "default",
+          >
+            Slet liste
+          </span>
+          <span
+            className="text-danger"
+            style={
+              Object {
+                "cursor": "default",
+              }
             }
-          }
-        >
-           
-          |
-           
-        </span>
-        <Link
-          href="/profile"
-          replace="HISTORY_REPLACE"
-        >
-          Fortryd redigering af liste
-        </Link>
-      </form>
+          >
+             | 
+          </span>
+          <Link
+            href="/profile"
+            replace="HISTORY_REPLACE"
+          >
+            Fortryd redigering af liste
+          </Link>
+        </form>
+      </div>
+      <div
+        className="col-4"
+      />
     </div>
-    <div
-      className="col-4"
-    />
   </div>
 </div>
 `;
