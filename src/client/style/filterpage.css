@@ -93,7 +93,7 @@
 }
 
 .filter-page-works .WorkCard {
-  margin-bottom: 1rem;
+  margin: 0rem 1rem 1rem 0;
 }
 
 .warning {
