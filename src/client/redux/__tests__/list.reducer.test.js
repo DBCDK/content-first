@@ -250,7 +250,7 @@ describe('listReducer', () => {
     listState = listReducer(
       listState,
       addElementToList(
-        {_id: 2, book: {pid: 'pid3'}, position: {x: 0, y: 0}},
+        {_id: 2, book: {pid: 'pid2'}, position: {x: 0, y: 0}},
         'some-id-1'
       )
     );
