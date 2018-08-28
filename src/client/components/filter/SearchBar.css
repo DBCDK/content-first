@@ -62,6 +62,7 @@
 .suggestion-list input {
   padding: 0 0.5rem 0 1rem;
   width: 100%;
+  height: 30px;
   background-color: transparent;
 }
 
@@ -74,6 +75,7 @@
   width: 100%;
   left: 0;
   top: 80px;
+  border: none;
   border-bottom: 1px solid #ccc;
   background-color: var(--lys-graa);
   border-bottom-left-radius: 0;
@@ -83,6 +85,7 @@
 
 #react-autowhatever-1 li {
   margin-bottom: 0;
+  font-family: var(--primary-font);
 }
 #react-autowhatever-1 .suggestion-title {
   padding: 0.5rem 4rem 0.5rem 4rem;
@@ -106,7 +109,7 @@
 
 #react-autowhatever-1 .suggestion-title span u {
   text-decoration: none;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 #react-autowhatever-1 .suggestion-title .suggestion-subject {
@@ -118,12 +121,17 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .suggestion-list input {
+    height: 20px;
+    padding-left: 0.5rem;
+  }
   .suggestion-list {
     transition-duration: 0.2s;
+    padding: 0.5rem;
   }
 
   #react-autowhatever-1 {
-    top: 120px;
+    top: 125px;
     padding: 0.6rem;
     border: 0;
     height: 100%;

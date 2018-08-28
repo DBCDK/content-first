@@ -25,7 +25,7 @@ class FrontPage extends React.Component {
 
   render() {
     return (
-      <div className="frontpage">
+      <div className="frontpage container">
         <Bookcase />
         {this.renderBelts()}
       </div>

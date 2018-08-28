@@ -56,7 +56,6 @@ class FilterCard extends React.Component {
 
   render() {
     const {filter, className, expanded} = this.props;
-
     const expandedClass = expanded ? 'FilterCard-expanded' : '';
     const Template = this.getTemplate(filter.template);
 
@@ -67,12 +66,13 @@ class FilterCard extends React.Component {
             onClick={e => this.props.onCardClick(e)}
             className="FilterCard__cover"
             style={{backgroundImage: `url(${filter.image})`}}
-          />
+          >
+            <Icon name="close" className="FilterCard__close" />
+          </div>
           <div
             className="FilterCard__content"
             onClick={e => this.props.onCardClick(e)}
           >
-            <Icon name="close" className="FilterCard__close" />
             <Heading type="title" className="FilterCard__heading mb0 mt0">
               {filter.title}
             </Heading>

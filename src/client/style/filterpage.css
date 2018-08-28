@@ -11,7 +11,7 @@
 
 .filter-page-top {
   background: var(--lys-graa);
-  padding: 10px;
+  padding: 1rem;
 }
 
 .filter-page-searchbar {
@@ -19,6 +19,8 @@
   border: 1px solid var(--de-york);
   border-radius: 4px;
   z-index: 999;
+  margin: auto;
+  width: calc(100% - 2rem);
 }
 
 .filter-page-editFilters {
@@ -77,6 +79,10 @@
   vertical-align: bottom;
   padding-bottom: 4px;
   cursor: pointer;
+}
+
+.filter-page-resultCount {
+  padding-top: 3rem;
 }
 
 .filter-page-works {
@@ -138,4 +144,10 @@
   .react-autosuggest__section-container:first-child
   .section-title {
   border-top: 0;
+}
+
+@media only screen and (max-width: 575px) {
+  .filter-page-resultCount {
+    padding-top: 1rem;
+  }
 }
