@@ -25,7 +25,7 @@ const ListElement = props => {
         src={list.title === 'Vil læse' ? toReadListIcon : readListIcon}
       />
     ) : list.image ? (
-      <img alt="" src={'v1/image/' + list.image + '/50/50'} />
+      <img alt="" src={'/v1/image/' + list.image + '/50/50'} />
     ) : (
       <div
         className="list-card-coverTemplate-small"
