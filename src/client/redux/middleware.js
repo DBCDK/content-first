@@ -35,6 +35,7 @@ import {
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
+  LIST_TOGGLE_ELEMENT,
   getListById,
   ADD_LIST_IMAGE,
   ADD_LIST_IMAGE_SUCCESS,
@@ -205,6 +206,10 @@ export const shortListMiddleware = store => next => async action => {
       if (store.getState().shortListReducer.pendingMerge) {
         store.dispatch({type: SHORTLIST_APPROVE_MERGE});
       }
+      store.dispatch({
+        type: BOOKS_REQUEST,
+        pids: store.getState().shortListReducer.elements.map(e => e.pid)
+      });
       return res;
     }
     default:
@@ -252,6 +257,7 @@ export const listMiddleware = store => next => async action => {
       })();
       return next(action);
     }
+    case LIST_TOGGLE_ELEMENT:
     case ADD_ELEMENT_TO_LIST: {
       const {openplatformId} = store.getState().userReducer;
       action.element._owner = openplatformId;

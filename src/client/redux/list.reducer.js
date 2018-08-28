@@ -436,7 +436,7 @@ export const getLists = (state, {type, sort} = {}) => {
 
       // ensure uniqueness of elements
       // duplicates may exist, due to a previous bug #548
-      l.list = uniqBy(l.list, '_id');
+      l.list = uniqBy(l.list, 'pid');
 
       return l;
     });
@@ -478,9 +478,8 @@ export const getListById = (state, id) => {
 
     // ensure uniqueness of elements
     // duplicates may exist, due to a previous bug #548
-    list.list = uniqBy(list.list, '_id');
+    list.list = uniqBy(list.list, 'pid');
   }
-
   return list;
 };
 

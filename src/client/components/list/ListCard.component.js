@@ -64,10 +64,10 @@ class ListCard extends React.Component {
         commentCount = this.props.comments[list.id].comments.length;
         if (this.props.list.list && this.props.list.list.length > 0) {
           this.props.list.list.forEach(el => {
-            if (this.props.comments[el._key + '-' + el.pid].comments) {
+            const elementComments = this.props.comments[el._key + '-' + el.pid];
+            if (elementComments && elementComments.comments) {
               // count comments for books in list
-              commentCount += this.props.comments[el._key + '-' + el.pid]
-                .comments.length;
+              commentCount += elementComments.comments.length;
             }
           });
         }
