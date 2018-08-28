@@ -112,6 +112,7 @@ class TagsSuggester extends React.Component {
       value: this.props.value || '',
       onChange: this.props.onChange,
       onFocus: this.props.onFocus,
+      onKeyDown: this.props.onKeyDown,
       onBlur: () => {
         if (isMobile) {
           this.toggleInputvisibility(false);

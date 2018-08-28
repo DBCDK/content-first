@@ -42,6 +42,7 @@ class SelectedFilters extends React.Component {
           <TagsSuggester
             selectedFilters={this.props.selectedFilters}
             value={this.props.query}
+            onKeyDown={this.props.onKeyDown}
             onFocus={this.props.onFocus}
             onChange={this.props.onQueryChange}
             onSuggestionSelected={(e, {suggestion}) =>

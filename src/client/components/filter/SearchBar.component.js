@@ -155,6 +155,22 @@ class SearchBar extends React.Component {
     }
   }
 
+  handleOnKeyDown(e) {
+    const tags = this.props.selectedTagIds;
+    /* Hvis der er tags i url */
+    if (tags.length > 0) {
+      /* Hvis brugeren trykker backspace */
+      if (e.keyCode === 8) {
+        /* Hvis brugeren ikke er igang med at skrive et ord */
+        if (this.state.query === '') {
+          tags.splice(-1, 1);
+          this.props.historyReplace('/find', {tag: tags});
+          this.initFilterPosition();
+        }
+      }
+    }
+  }
+
   render() {
     return (
       <SelectedFilters
@@ -171,6 +187,7 @@ class SearchBar extends React.Component {
         onFilterToggle={filter => {
           this.toggleFilter(filter.id || filter);
         }}
+        onKeyDown={e => this.handleOnKeyDown(e)}
         onFocus={() => {
           this.setState({expanded: true});
           this.initFilterPosition();
