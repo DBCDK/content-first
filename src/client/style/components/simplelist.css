@@ -31,6 +31,22 @@
   margin-bottom: 400px;
 }
 
+.suggestion-list {
+  height: auto;
+}
+
+.suggestion-list input {
+  height: 50px;
+}
+
+.suggestion-list::before {
+  margin-top: 5px;
+}
+
+.suggestion-list #react-autowhatever-1 {
+  top: 100%;
+}
+
 .simplelist .remove-btn {
   position: absolute;
   right: 0px;

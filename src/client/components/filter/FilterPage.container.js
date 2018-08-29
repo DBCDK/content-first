@@ -80,34 +80,36 @@ class FilterPage extends React.Component {
           }}
         />
 
-        <div className="filter-page-resultCount text-left pt4">
-          <Heading Tag="h4" type="lead">
-            {resultCount === 0
-              ? noResultsMessage
-              : resultCountPrefixText + ' ' + resultCountPostFix}
-          </Heading>
-        </div>
+        <div className="container">
+          <div className="filter-page-resultCount text-left">
+            <Heading Tag="h4" type="lead">
+              {resultCount === 0
+                ? noResultsMessage
+                : resultCountPrefixText + ' ' + resultCountPostFix}
+            </Heading>
+          </div>
 
-        <div className="filter-page-works">
-          {this.props.recommendedPids.pids.length > 0 &&
-            this.props.recommendedPids.pids.map(pid => (
-              <WorkCard
-                pid={pid}
-                key={pid}
-                enableHover={true}
-                allowFetch={true}
-                onWorkPreviewClick={work =>
-                  this.props.history(HISTORY_PUSH, '/værk/' + work.book.pid)
-                }
-                origin={`Fra din søgning på ${this.props.selectedTags
-                  .map(t => t.title)
-                  .join(', ')}`}
-              />
-            ))}
+          <div className="filter-page-works">
+            {this.props.recommendedPids.pids.length > 0 &&
+              this.props.recommendedPids.pids.map(pid => (
+                <WorkCard
+                  pid={pid}
+                  key={pid}
+                  enableHover={true}
+                  allowFetch={true}
+                  onWorkPreviewClick={work =>
+                    this.props.history(HISTORY_PUSH, '/værk/' + work.book.pid)
+                  }
+                  origin={`Fra din søgning på ${this.props.selectedTags
+                    .map(t => t.title)
+                    .join(', ')}`}
+                />
+              ))}
+          </div>
+          {this.props.recommendedPids.isLoading && (
+            <Spinner style={{width: 50, height: 50}} />
+          )}
         </div>
-        {this.props.recommendedPids.isLoading && (
-          <Spinner style={{width: 50, height: 50}} />
-        )}
       </div>
     );
   }

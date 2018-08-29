@@ -114,7 +114,7 @@ class WorkCard extends React.Component {
                   event.stopPropagation();
                   event.preventDefault();
                   this.props.onWorkPreviewClick(this.props.work);
-                  if (!this.props.pidPreview) {
+                  if (!this.props.pidPreview && this.props.scrollToChildBelt) {
                     this.props.scrollToChildBelt();
                   }
                 }

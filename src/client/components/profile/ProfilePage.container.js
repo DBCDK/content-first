@@ -8,30 +8,32 @@ import Follow from '../follow/Follow.component';
 export class ProfilePage extends React.Component {
   render() {
     return (
-      <div className="row tl raleway m-0">
-        <div className="col-3">
-          {this.props.user.isLoggedIn ? (
-            <div className="tc mt3">
-              <ProfileImage
-                user={this.props.user}
-                size={'60'}
-                namePosition={'bottom'}
-              />
-              <Link className="small link-subtle" href="/profile/rediger">
-                Redigér
-              </Link>
-            </div>
-          ) : (
-            ''
-          )}
-        </div>
-        <div className="col-9">
-          <h1 className="headline">Dine Lister</h1>
-          <div className="profile-lists">
-            <Lists />
+      <div className="container">
+        <div className="row tl m-0">
+          <div className="col-3">
+            {this.props.user.isLoggedIn ? (
+              <div className="tc mt3">
+                <ProfileImage
+                  user={this.props.user}
+                  size={'60'}
+                  namePosition={'bottom'}
+                />
+                <Link className="small link-subtle" href="/profile/rediger">
+                  Redigér
+                </Link>
+              </div>
+            ) : (
+              ''
+            )}
           </div>
-          <div className="profile-follow">
-            <Follow />
+          <div className="col-9">
+            <h1 className="headline">Dine Lister</h1>
+            <div className="profile-lists">
+              <Lists />
+            </div>
+            <div className="profile-follow">
+              <Follow />
+            </div>
           </div>
         </div>
       </div>

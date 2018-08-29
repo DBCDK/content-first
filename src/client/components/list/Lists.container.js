@@ -12,7 +12,7 @@ import ListItem from '../list/ListItem.component.js';
 export class Lists extends React.Component {
   render() {
     return (
-      <div className="lists-page">
+      <div className="lists-page ">
         <div className="mb3">
           {this.props.systemLists.map(data => (
             <ListItem

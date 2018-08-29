@@ -113,70 +113,76 @@ class ShortList extends React.Component {
   render() {
     const {elements} = this.props.shortListState;
     return (
-      <div className="top-bar-dropdown-list-page col-11 col-centered">
-        <div className="page-header-1">Huskeliste</div>
-        <div className="items mb2">
-          <ReactCSSTransitionGroup
-            transitionName="dropdownlist"
-            transitionEnterTimeout={200}
-            transitionLeaveTimeout={200}
-          >
-            {elements.map(e => (
-              <ShortListItem
-                key={e.book.pid}
-                element={e}
-                onRemove={() => {
-                  this.props.remove(e.book.pid);
-                }}
-                onOriginUpdate={origin => {
-                  this.props.originUpdate(origin, e.book.pid);
-                }}
-                onAddToList={() => {
-                  this.props.addToList(e, this.props.isLoggedIn);
-                }}
-              />
-            ))}
-          </ReactCSSTransitionGroup>
-        </div>
-        {elements.length === 0 && (
-          <div className="empty-list-text">Din huskeliste er tom</div>
-        )}
-        {elements.length > 0 && (
-          <div className="list-actions col-12 col-lg-10 text-right mt4 mb4">
-            <div className="row d-block">
-              <span
-                className="btn btn-success"
-                onClick={() => {
-                  this.props.addToList(elements, this.props.isLoggedIn);
-                }}
-              >
-                TILFØJ ALLE TIL LISTE
-              </span>
-              <span
-                className={
-                  'btn ml2 ' +
-                  (this.props.orderList.length > 0 ? 'btn-success' : 'disabled')
-                }
-                onClick={
-                  this.props.orderList.length > 0 &&
-                  (() =>
-                    this.props.orderAll(this.props.orderList.map(e => e.book)))
-                }
-              >
-                BESTIL HELE LISTEN
-              </span>
-              <span
-                className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
-                onClick={() => this.props.clearList()}
-              >
-                RYD LISTEN
-                <i className="material-icons ml1" style={{fontSize: '18px'}}>
-                  delete
-                </i>
-              </span>
-            </div>
+      <div className="container">
+        <div className="top-bar-dropdown-list-page col-11 col-centered">
+          <div className="page-header-1">Huskeliste</div>
+          <div className="items mb2">
+            <ReactCSSTransitionGroup
+              transitionName="dropdownlist"
+              transitionEnterTimeout={200}
+              transitionLeaveTimeout={200}
+            >
+              {elements.map(e => (
+                <ShortListItem
+                  key={e.book.pid}
+                  element={e}
+                  onRemove={() => {
+                    this.props.remove(e.book.pid);
+                  }}
+                  onOriginUpdate={origin => {
+                    this.props.originUpdate(origin, e.book.pid);
+                  }}
+                  onAddToList={() => {
+                    this.props.addToList(e, this.props.isLoggedIn);
+                  }}
+                />
+              ))}
+            </ReactCSSTransitionGroup>
           </div>
-        )}
+          {elements.length === 0 && (
+            <div className="empty-list-text">Din huskeliste er tom</div>
+          )}
+          {elements.length > 0 && (
+            <div className="list-actions col-12 col-lg-10 text-right mt4 mb4">
+              <div className="row d-block">
+                <span
+                  className="btn btn-success"
+                  onClick={() => {
+                    this.props.addToList(elements, this.props.isLoggedIn);
+                  }}
+                >
+                  TILFØJ ALLE TIL LISTE
+                </span>
+                <span
+                  className={
+                    'btn ml2 ' +
+                    (this.props.orderList.length > 0
+                      ? 'btn-success'
+                      : 'disabled')
+                  }
+                  onClick={
+                    this.props.orderList.length > 0 &&
+                    (() =>
+                      this.props.orderAll(
+                        this.props.orderList.map(e => e.book)
+                      ))
+                  }
+                >
+                  BESTIL HELE LISTEN
+                </span>
+                <span
+                  className="clear-all-btn btn btn-success ml2"
+                  onClick={() => this.props.clearList()}
+                >
+                  RYD LISTEN
+                  <i className="material-icons ml1" style={{fontSize: '18px'}}>
+                  delete
+                </i>               
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
