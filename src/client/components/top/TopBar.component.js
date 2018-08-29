@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobile} from 'react-device-detect';
 import Link from '../general/Link.component';
 import ShortListDropDown from '../list/ShortListDropDown.container';
 import ListOverviewDropDown from '../list/ListOverviewDropDown.container';
@@ -30,7 +29,7 @@ class TopBarDropdown extends React.Component {
             <span>Min profil</span>
           </Link>
         </li>
-        <li className="hide-on-m-and-up">
+        <li className="d-block d-sm-none">
           <Link href="/profile" onClick={this.props.onClick}>
             <span>Lister</span>
           </Link>
@@ -99,7 +98,7 @@ export class TopBar extends React.Component {
       (event.composedPath && event.composedPath()) ||
       event.target.parentNode;
 
-    /* IE11 & Edge support*/
+    /* IE11 & Edge support (no forEach())*/
     for (var i = 0; i < path.length; i++) {
       if (
         path[i].className &&
@@ -108,12 +107,6 @@ export class TopBar extends React.Component {
         abortCloseDropdown = true;
       }
     }
-
-    // path.forEach(el => {
-    //   if (el.className && el.className.includes('abort-closeDopdown')) {
-    //     abortCloseDropdown = true;
-    //   }
-    // });
 
     // close dropdown on click on every other element than 'dropdown' or 'wrapperRef'
     if (!abortCloseDropdown) {
@@ -131,50 +124,52 @@ export class TopBar extends React.Component {
   }
 
   calcWidth() {
-    const btns = document.getElementsByClassName('widthCalc');
-    const topbar = this.Topbar ? this.Topbar.offsetWidth : 0;
+    setTimeout(() => {
+      const btns = document.getElementsByClassName('widthCalc');
+      const topbar = this.Topbar ? this.Topbar.offsetWidth : 0;
 
-    const searchbarwrapper = this.SearchBarWrapper
-      ? this.SearchBarWrapper.offsetWidth
-      : 0;
+      const searchbarwrapper = this.SearchBarWrapper
+        ? this.SearchBarWrapper.offsetWidth
+        : 0;
 
-    let width = 0;
-    for (var i = 0; i < btns.length; i++) {
-      width += btns[i].offsetWidth;
-    }
+      let width = 0;
+      for (var i = 0; i < btns.length; i++) {
+        width += btns[i].offsetWidth;
+      }
 
-    const res = topbar - (width - searchbarwrapper);
-    this.setState({width: res});
+      const res = topbar - (width - searchbarwrapper);
+      this.setState({width: res});
+    }, 200);
   }
 
   renderShortListBtn() {
     const {expanded} = this.props.shortListState;
 
-    return isMobile ? (
-      <Link href="/huskeliste" className="Topbar__navigation__btn widthCalc">
-        <Icon name="bookmark_border" />
-      </Link>
-    ) : (
-      <ShortListDropDown
-        className={
-          'Topbar__navigation__btn widthCalc ' +
-          (expanded ? 'Topbar__dropdown_expanded' : '')
-        }
-      >
-        <Icon name="bookmark_border" />
-      </ShortListDropDown>
+    return (
+      <React.Fragment>
+        <Link
+          href="/huskeliste"
+          className="Topbar__navigation__btn d-flex d-md-none widthCalc"
+        >
+          <Icon name="bookmark_border" />
+        </Link>
+        <ShortListDropDown
+          className={
+            'Topbar__navigation__btn d-none d-md-flex widthCalc ' +
+            (expanded ? 'Topbar__dropdown_expanded' : '')
+          }
+        >
+          <Icon name="bookmark_border" />
+        </ShortListDropDown>
+      </React.Fragment>
     );
   }
   renderListsOverviewDropdown() {
     const {expanded} = this.props.listsState;
-    return isMobile ? (
-      <Link href="/profile" className="Topbar__navigation__btn widthCalc">
-        <Icon name="list" />
-      </Link>
-    ) : (
+    return (
       <ListOverviewDropDown
         className={
-          'Topbar__navigation__btn widthCalc ' +
+          'Topbar__navigation__btn d-none d-sm-flex widthCalc ' +
           (expanded ? 'Topbar__dropdown_expanded' : '')
         }
       >
@@ -196,10 +191,9 @@ export class TopBar extends React.Component {
 
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
-        {isMobile &&
-          searchPage &&
+        {searchPage &&
           searchExpanded && (
-            <div className="Topbar__mobile__overlay">
+            <div className="Topbar__mobile__overlay d-block d-sm-none">
               <span onClick={() => this.toggleSearchBar('close')}>
                 <Icon name="chevron_left" /> Tilbage
               </span>
@@ -211,35 +205,29 @@ export class TopBar extends React.Component {
             </div>
           )}
         <nav className="col-12 col-m-8 Topbar__navigation">
-          {!isMobile && (
-            <span className="Topbar__navigation__btn widthCalc" style={border}>
-              <Icon
-                name="search"
-                onClick={() => this.toggleSearchBar('open')}
-              />
-              <span className="relative--container">
-                <span
-                  className="Topbar__SearchBarWrapper"
-                  style={{width: searchFieldWidth}}
-                  ref={e => (this.SearchBarWrapper = e)}
-                >
-                  <SearchBar />
-                </span>
-              </span>
-              <span onClick={() => this.toggleSearchBar()}>
-                {searchIconText}
+          <span
+            className="Topbar__navigation__btn widthCalc d-none d-md-flex"
+            style={border}
+          >
+            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
+            <span className="relative--container">
+              <span
+                className="Topbar__SearchBarWrapper"
+                style={{width: searchFieldWidth}}
+                ref={e => (this.SearchBarWrapper = e)}
+              >
+                <SearchBar />
               </span>
             </span>
-          )}
+            <span onClick={() => this.toggleSearchBar()}>{searchIconText}</span>
+          </span>
 
-          {isMobile && (
-            <Link href="/find" className="Topbar__navigation__btn">
-              <Icon
-                name="search"
-                onClick={() => this.toggleSearchBar('open')}
-              />
-            </Link>
-          )}
+          <Link
+            href="/find"
+            className="Topbar__navigation__btn d-i-block d-md-none"
+          >
+            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
+          </Link>
 
           {shortlist}
 
@@ -257,7 +245,7 @@ export class TopBar extends React.Component {
               {userLists}
 
               <span
-                className="Topbar__navigation__btn widthCalc abort-closeDopdown hide-on-s-and-down"
+                className="Topbar__navigation__btn widthCalc abort-closeDopdown d-none d-sm-flex"
                 onClick={() => this.toggleDropdown()}
               >
                 <ProfileImage
@@ -267,7 +255,7 @@ export class TopBar extends React.Component {
                 />
               </span>
               <span
-                className="Topbar__navigation__btn abort-closeDopdown show-on-s-and-down"
+                className="Topbar__navigation__btn abort-closeDopdown d-flex d-sm-none"
                 onClick={() => this.toggleDropdown()}
               >
                 <Icon name="menu" className="Topbar__burger" />
@@ -277,8 +265,8 @@ export class TopBar extends React.Component {
           <div className="Topbar__overlay" />
         </nav>
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
-          <h1 className="hide-on-s-and-down">Læsekompasset</h1>
-          <img src={logo} className="show-on-s-and-down" alt="Læsekompasset" />
+          <h1 className="d-none d-sm-inline">Læsekompasset</h1>
+          <img src={logo} className="d-block d-sm-none" alt="Læsekompasset" />
         </Link>
         <TopBarDropdown
           logout={this.props.logout}

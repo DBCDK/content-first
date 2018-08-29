@@ -88,17 +88,20 @@ body {
   right: 0;
 }*/
 
-.container {
+.App {
   background: white;
 }
 
 @media (min-width: 2000px) {
-  .container {
-    width: 2000px;
+  .App {
+    min-width: 2000px;
   }
 }
 
 @media (min-width: 600px) {
+  .App {
+    min-width: 100%;
+  }
   .container {
     min-width: calc(100% - 100px);
   }
