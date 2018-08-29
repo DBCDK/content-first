@@ -834,32 +834,6 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
             <div
               className="row d-block"
             >
-<<<<<<< HEAD
-              TILFØJ ALLE TIL LISTE
-            </span>
-            <span
-              className="btn ml2 btn-success"
-              onClick={[Function]}
-            >
-              BESTIL HELE LISTEN
-            </span>
-            <span
-              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
-              onClick={[Function]}
-            >
-              RYD LISTEN
-              <i
-                className="material-icons ml1"
-                style={
-                  Object {
-                    "fontSize": "18px",
-                  }
-                }
-              >
-                delete
-              </i>
-            </span>
-=======
               <span
                 className="btn btn-success"
                 onClick={[Function]}
@@ -877,12 +851,18 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
->>>>>>> e12ecc1c797c7ca3484c91fd4bffb5cccf406e7c
           </div>
         </div>
       </div>
@@ -1203,36 +1183,6 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
           <div
             className="list-actions col-12 col-lg-10 text-right mt4 mb4"
           >
-<<<<<<< HEAD
-            <span
-              className="btn btn-success"
-              onClick={[Function]}
-            >
-              TILFØJ ALLE TIL LISTE
-            </span>
-            <span
-              className="btn ml2 btn-success"
-              onClick={[Function]}
-            >
-              BESTIL HELE LISTEN
-            </span>
-            <span
-              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
-              onClick={[Function]}
-            >
-              RYD LISTEN
-              <i
-                className="material-icons ml1"
-                style={
-                  Object {
-                    "fontSize": "18px",
-                  }
-                }
-              >
-                delete
-              </i>
-            </span>
-=======
             <div
               className="row d-block"
             >
@@ -1253,12 +1203,18 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
->>>>>>> e12ecc1c797c7ca3484c91fd4bffb5cccf406e7c
           </div>
         </div>
       </div>
@@ -1579,36 +1535,6 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
           <div
             className="list-actions col-12 col-lg-10 text-right mt4 mb4"
           >
-<<<<<<< HEAD
-            <span
-              className="btn btn-success"
-              onClick={[Function]}
-            >
-              TILFØJ ALLE TIL LISTE
-            </span>
-            <span
-              className="btn ml2 btn-success"
-              onClick={[Function]}
-            >
-              BESTIL HELE LISTEN
-            </span>
-            <span
-              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
-              onClick={[Function]}
-            >
-              RYD LISTEN
-              <i
-                className="material-icons ml1"
-                style={
-                  Object {
-                    "fontSize": "18px",
-                  }
-                }
-              >
-                delete
-              </i>
-            </span>
-=======
             <div
               className="row d-block"
             >
@@ -1629,12 +1555,18 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
->>>>>>> e12ecc1c797c7ca3484c91fd4bffb5cccf406e7c
           </div>
         </div>
       </div>
@@ -1970,36 +1902,6 @@ exports[`ShortList.container change description reveal cancel and submit buttons
           <div
             className="list-actions col-12 col-lg-10 text-right mt4 mb4"
           >
-<<<<<<< HEAD
-            <span
-              className="btn btn-success"
-              onClick={[Function]}
-            >
-              TILFØJ ALLE TIL LISTE
-            </span>
-            <span
-              className="btn ml2 btn-success"
-              onClick={[Function]}
-            >
-              BESTIL HELE LISTEN
-            </span>
-            <span
-              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
-              onClick={[Function]}
-            >
-              RYD LISTEN
-              <i
-                className="material-icons ml1"
-                style={
-                  Object {
-                    "fontSize": "18px",
-                  }
-                }
-              >
-                delete
-              </i>
-            </span>
-=======
             <div
               className="row d-block"
             >
@@ -2020,12 +1922,18 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
->>>>>>> e12ecc1c797c7ca3484c91fd4bffb5cccf406e7c
           </div>
         </div>
       </div>
@@ -2807,26 +2715,6 @@ exports[`ShortList.container remove element 1`] = `
             <div
               className="row d-block"
             >
-<<<<<<< HEAD
-              BESTIL HELE LISTEN
-            </span>
-            <span
-              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
-              onClick={[Function]}
-            >
-              RYD LISTEN
-              <i
-                className="material-icons ml1"
-                style={
-                  Object {
-                    "fontSize": "18px",
-                  }
-                }
-              >
-                delete
-              </i>
-            </span>
-=======
               <span
                 className="btn btn-success"
                 onClick={[Function]}
@@ -2844,12 +2732,18 @@ exports[`ShortList.container remove element 1`] = `
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
->>>>>>> e12ecc1c797c7ca3484c91fd4bffb5cccf406e7c
           </div>
         </div>
       </div>
@@ -3649,32 +3543,6 @@ exports[`ShortList.container short list contains elements 1`] = `
             <div
               className="row d-block"
             >
-<<<<<<< HEAD
-              TILFØJ ALLE TIL LISTE
-            </span>
-            <span
-              className="btn ml2 btn-success"
-              onClick={[Function]}
-            >
-              BESTIL HELE LISTEN
-            </span>
-            <span
-              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
-              onClick={[Function]}
-            >
-              RYD LISTEN
-              <i
-                className="material-icons ml1"
-                style={
-                  Object {
-                    "fontSize": "18px",
-                  }
-                }
-              >
-                delete
-              </i>
-            </span>
-=======
               <span
                 className="btn btn-success"
                 onClick={[Function]}
@@ -3692,12 +3560,18 @@ exports[`ShortList.container short list contains elements 1`] = `
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
->>>>>>> e12ecc1c797c7ca3484c91fd4bffb5cccf406e7c
           </div>
         </div>
       </div>

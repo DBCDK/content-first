@@ -176,8 +176,8 @@ class ShortList extends React.Component {
                 >
                   RYD LISTEN
                   <i className="material-icons ml1" style={{fontSize: '18px'}}>
-                  delete
-                </i>               
+                    delete
+                  </i>
                 </span>
               </div>
             </div>

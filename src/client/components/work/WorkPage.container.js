@@ -106,7 +106,6 @@ class WorkPage extends React.Component {
                 shape="round"
                 hoverTitle="Del på facebook"
               />
-              
 
               <Heading Tag="h1" type="lead" className="mt0">
                 {book.title}
