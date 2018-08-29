@@ -61,7 +61,9 @@ export class Item extends React.Component {
                 className="comment-edit-button btn btn-link link-subtle mr2"
                 onClick={() => this.setState({editing: !this.state.editing})}
               >
-                <span className="glyphicon glyphicon-pencil" />
+                <i class="material-icons" style={{fontSize: '18px'}}>
+                  edit
+                </i>
               </button>
             ) : null}
             <div className="flex" style={{width: '100%'}}>
@@ -167,9 +169,10 @@ export class SimpleList extends React.Component {
             <SocialShareButton
               className={this.props.isOwner ? 'd-none' : 'ssb-follow'}
               href={null}
-              icon={'glyphicon-pushpin'}
+              icon={'remove_red_eye'}
               hex={'#6dc1ec'}
               size={30}
+              logoSize={12}
               shape="square"
               txt="Følg"
               hoverTitle={'Følg ' + list.title}
@@ -178,6 +181,7 @@ export class SimpleList extends React.Component {
               }
               onClick={() => this.toggleFollow(list.id || list._id, 'list')}
             />
+
             <SocialShareButton
               className={list.type === 'SYSTEM_LIST' ? 'd-none' : 'ssb-fb'}
               facebook={true}
@@ -186,12 +190,11 @@ export class SimpleList extends React.Component {
                   ? 'https://content-first.demo.dbc.dk/lister/' + list.id
                   : null
               }
-              icon={'fb-icon'}
               hex={'#3b5998'}
-              status={!list.public ? 'passive' : 'active'}
               size={30}
-              shape="square"
               txt="Del"
+              shape="square"
+              status={!list.public ? 'passive' : 'active'}
               hoverTitle="Del på facebook"
               onClick={() => {
                 confirmShareModal(list.id);

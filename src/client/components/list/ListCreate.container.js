@@ -285,7 +285,6 @@ export class ListCreator extends React.Component {
                   <div className="mt1 text-left">
                     <ImageUpload
                       className={'mt1 ' + bookcaseBoxClass}
-                      icon="glyphicon-picture"
                       error={currentList.imageError}
                       style={{borderRadius: '5px', ...imgUploadStyles}}
                       loading={currentList.imageIsLoading}

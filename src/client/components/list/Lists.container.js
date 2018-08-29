@@ -42,14 +42,14 @@ export class Lists extends React.Component {
         <div>
           <a
             href="/lister/opret"
-            className="btn btn-primary"
+            className="btn btn-primary d-inline-flex align-items-center"
             onClick={e => {
               this.props.dispatch({type: HISTORY_PUSH, path: '/lister/opret'});
               e.preventDefault();
             }}
           >
             Ny liste
-            <span className="glyphicon glyphicon-plus ml4" />
+            <span className="material-icons ml4">add</span>
           </a>
         </div>
       </div>

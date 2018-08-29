@@ -166,11 +166,13 @@ class ShortList extends React.Component {
                 BESTIL HELE LISTEN
               </span>
               <span
-                className="clear-all-btn btn btn-success ml2"
+                className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
                 onClick={() => this.props.clearList()}
               >
                 RYD LISTEN
-                <span className="glyphicon glyphicon-trash ml1" />
+                <i className="material-icons ml1" style={{fontSize: '18px'}}>
+                  delete
+                </i>
               </span>
             </div>
           </div>

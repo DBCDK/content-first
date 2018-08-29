@@ -22,13 +22,16 @@ export const Comments = props => {
       }}
       className={props.className}
     >
-      <span
+      <i
         style={{
           fontSize: 24,
           verticalAlign: 'middle'
         }}
-        className="glyphicon glyphicon-comment"
-      />
+        className="material-icons"
+      >
+        chat_bubble
+      </i>
+
       <span
         style={{
           position: 'absolute',

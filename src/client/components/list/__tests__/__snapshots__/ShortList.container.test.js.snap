@@ -840,13 +840,20 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
               BESTIL HELE LISTEN
             </span>
             <span
-              className="clear-all-btn btn btn-success ml2"
+              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
               onClick={[Function]}
             >
               RYD LISTEN
-              <span
-                className="glyphicon glyphicon-trash ml1"
-              />
+              <i
+                className="material-icons ml1"
+                style={
+                  Object {
+                    "fontSize": "18px",
+                  }
+                }
+              >
+                delete
+              </i>
             </span>
           </div>
         </div>
@@ -1181,13 +1188,20 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
               BESTIL HELE LISTEN
             </span>
             <span
-              className="clear-all-btn btn btn-success ml2"
+              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
               onClick={[Function]}
             >
               RYD LISTEN
-              <span
-                className="glyphicon glyphicon-trash ml1"
-              />
+              <i
+                className="material-icons ml1"
+                style={
+                  Object {
+                    "fontSize": "18px",
+                  }
+                }
+              >
+                delete
+              </i>
             </span>
           </div>
         </div>
@@ -1522,13 +1536,20 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
               BESTIL HELE LISTEN
             </span>
             <span
-              className="clear-all-btn btn btn-success ml2"
+              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
               onClick={[Function]}
             >
               RYD LISTEN
-              <span
-                className="glyphicon glyphicon-trash ml1"
-              />
+              <i
+                className="material-icons ml1"
+                style={
+                  Object {
+                    "fontSize": "18px",
+                  }
+                }
+              >
+                delete
+              </i>
             </span>
           </div>
         </div>
@@ -1878,13 +1899,20 @@ exports[`ShortList.container change description reveal cancel and submit buttons
               BESTIL HELE LISTEN
             </span>
             <span
-              className="clear-all-btn btn btn-success ml2"
+              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
               onClick={[Function]}
             >
               RYD LISTEN
-              <span
-                className="glyphicon glyphicon-trash ml1"
-              />
+              <i
+                className="material-icons ml1"
+                style={
+                  Object {
+                    "fontSize": "18px",
+                  }
+                }
+              >
+                delete
+              </i>
             </span>
           </div>
         </div>
@@ -2677,13 +2705,20 @@ exports[`ShortList.container remove element 1`] = `
               BESTIL HELE LISTEN
             </span>
             <span
-              className="clear-all-btn btn btn-success ml2"
+              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
               onClick={[Function]}
             >
               RYD LISTEN
-              <span
-                className="glyphicon glyphicon-trash ml1"
-              />
+              <i
+                className="material-icons ml1"
+                style={
+                  Object {
+                    "fontSize": "18px",
+                  }
+                }
+              >
+                delete
+              </i>
             </span>
           </div>
         </div>
@@ -3494,13 +3529,20 @@ exports[`ShortList.container short list contains elements 1`] = `
               BESTIL HELE LISTEN
             </span>
             <span
-              className="clear-all-btn btn btn-success ml2"
+              className="clear-all-btn btn btn-success ml2  d-inline-flex align-items-center"
               onClick={[Function]}
             >
               RYD LISTEN
-              <span
-                className="glyphicon glyphicon-trash ml1"
-              />
+              <i
+                className="material-icons ml1"
+                style={
+                  Object {
+                    "fontSize": "18px",
+                  }
+                }
+              >
+                delete
+              </i>
             </span>
           </div>
         </div>

@@ -12,14 +12,16 @@ exports[`Lists Container List is rendered 1`] = `
   />
   <div>
     <a
-      className="btn btn-primary"
+      className="btn btn-primary d-inline-flex align-items-center"
       href="/lister/opret"
       onClick={[Function]}
     >
       Ny liste
       <span
-        className="glyphicon glyphicon-plus ml4"
-      />
+        className="material-icons ml4"
+      >
+        add
+      </span>
     </a>
   </div>
 </div>
@@ -121,14 +123,16 @@ exports[`Lists Container List is rendered 2`] = `
   />
   <div>
     <a
-      className="btn btn-primary"
+      className="btn btn-primary d-inline-flex align-items-center"
       href="/lister/opret"
       onClick={[Function]}
     >
       Ny liste
       <span
-        className="glyphicon glyphicon-plus ml4"
-      />
+        className="material-icons ml4"
+      >
+        add
+      </span>
     </a>
   </div>
 </div>

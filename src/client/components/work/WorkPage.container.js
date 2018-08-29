@@ -101,7 +101,6 @@ class WorkPage extends React.Component {
               styles={{fontWeight: 'bold'}}
               facebook={true}
               href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
-              icon={'fb-icon'}
               hex={'#3b5998'}
               size={40}
               shape="round"

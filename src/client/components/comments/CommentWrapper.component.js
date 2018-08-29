@@ -67,7 +67,9 @@ export class CommentWrapper extends React.Component {
             className="comment-edit-button btn btn-link link-subtle"
             onClick={() => this.toggleEdit(!this.state.editing)}
           >
-            <span className="glyphicon glyphicon-pencil" />
+            <i className="material-icons" style={{fontSize: '18px'}}>
+              edit
+            </i>
           </button>
         ) : null}
         <div className="flex mb2" style={{width: '100%'}}>
