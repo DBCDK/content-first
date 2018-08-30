@@ -1,33 +1,7 @@
-.bookcase {
-}
 
-.bookcase .bookcase-others {
-  height: 100px;
-  padding-top: 15px;
-}
-
-.bookcase .bookcase-others span {
-  float: right;
-  font-family: var(--secondary-font);
-  color: var(--darkgrey);
-  font-size: 16px;
-  text-align: left;
-}
-
-.bookcase .slick-dots-bookcase {
-  width: auto;
-  bottom: -100px;
-  right: 150px;
-}
+  /********* SLICK - dots **********/
 
 .bookcase .slick-dots-bookcase li,
-.bookcase .slick-dots-bookcase li a {
-  width: auto;
-  height: auto;
-  float: left;
-  margin: 0 5px 0 0 0;
-}
-
 .bookcase .slick-dots-bookcase .face-dots img {
   width: 60px;
   border-radius: 50%;
@@ -35,51 +9,26 @@
   box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.25);
 }
 
-.section-active .row .celeb {
-  background: rgba(255, 255, 255, 1);
-}
-
-.bookcase .slick-active .face-dots img {
-  opacity: 1;
-}
-
-.section-active .row .celeb .carousel-close {
-  top: 0px;
-}
-
-.section-active .row .celeb .celeb-description {
-  opacity: 0;
-  pointer-events: none;
-}
+/****************SECTION**************/
 
 section {
   position: relative;
+  background: var(--lys-graa);
+  width: 100%;
 }
 
 section .bookswrap {
   position: relative;
   height: 100%;
-}
 
-section img {
-  width: 100%;
-  height: auto;
 }
 
 section div.row {
   position: absolute;
   width: 100%;
   height: 100%;
-  left: 15px;
+  margin-left: 0px;
   top: 0;
-}
-
-section .row .celeb {
-  height: 100%;
-  position: relative;
-  background: rgba(255, 255, 255, 0.85);
-  transition: all 0.3s ease-in;
-  overflow: hidden;
 }
 
 section .row .celeb .carousel-close {
@@ -87,218 +36,183 @@ section .row .celeb .carousel-close {
   margin: 1em;
   cursor: pointer;
   width: 10px;
-  right: 0;
+  right: 3%;
   cursor: pointer;
-  z-index: 2;
+  z-index: 1;
   top: -50px;
   transition: all 0.3s ease-in;
 }
 
 section .row .celeb .celeb-top {
+  transition: all 0.3s ease-in;
   height: 100%;
-  transition: all 0.3s ease-in;
-}
-
-section .row .celeb .celeb-img {
-  transition: all 0.3s ease-in;
-  padding-top: 10%;
-}
-
-section .row .celeb .celeb-img img {
-  width: 150px;
-  height: auto;
-  border-radius: 50%;
-  transition: all 0.3s ease-in;
+  margin-top: 2%;
 }
 
 section .row .celeb .celeb-title {
-  float: right;
   transition: all 0.3s ease-in;
 }
 
-section .row .celeb .celeb-title h1 {
-  font-family: var(--secondary-font);
-  color: var(--darkgrey);
-  font-size: 20px;
-  font-weight: 700;
-  padding: 20px 0 0 0;
-  margin: 0;
+section .row .celeb {
+  height: 100%;
+  position: relative;
+  background: var(--lys-graa);
+  transition: all 0.3s ease-in;
+  overflow: hidden;
 }
 
-section .row .celeb .celeb-description {
-  transition: all 0.2s ease-in;
+.section-active .row .celeb .celeb-top {
+  height: 0px;
+  width: 100%;
+  opacity: 0;
 }
 
-section .row .celeb .celeb-description p {
-  max-width: 300px;
-  margin: 5px auto 0 auto;
-  font-family: var(--secondary-font);
-  color: var(--darkgrey);
-  font-size: 14px;
-  display: block;
+img.imgcontainer {
+  height: 600px;
+  width: 50%;
+  object-fit: cover;
 }
 
-section .row .celeb .celeb-description .celeb-books-btn {
-  margin-top: 15px;
-  background-color: var(--greybrown);
-  color: white;
-}
+/********** BOTTOM *********/
 
 section .row .celeb .celeb-bottom {
-  padding: 0;
-  height: calc(100% - 140px);
-}
-
-/* If no description image */
-
-section .row .celeb .celeb-img-placeholder {
-  height: 150px;
-  transition: all 0.3s ease-in;
+  height: 85%;
+  width: 100%;
+  opacity: 1;
+  background-color: var(--lys-graa);
   margin-top: 10%;
+  opacity: 1;
 }
 
-section .row .celeb.no-description-img .celeb-bottom {
-  height: calc(100% - 100px);
+.section-active .row .celeb .carousel-close {
+  top: 0px;
 }
 
-/* !NOTIZE: All screensizes above 992px */
+/***********NEW***********/
 
-@media only screen and (min-width: 992px) {
-  .section-active .row .celeb .celeb-top {
-    padding: 30px 0 30px 15px;
-    border-bottom: 1px solid lightgrey;
-    height: 140px;
+.scrolltext {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.innerscrollbox {
+  margin-top: 20%;
+  width: 92%;
+}
+
+.profile {
+  color: var(--petroleum);
+  font-size: 28px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 300;
+}
+
+.profile-name {
+  font-style: Montserrat;
+}
+
+.profile-quote {
+  font-weight: 600;
+  font-style: Montserrat;
+}
+
+.pagetag {
+  font-size: 14px;
+  color: var(--fersken);
+  font-style: Montserrat;
+}
+
+.subtag {
+  color: var(--petroleum);
+  font-size: 16px;
+  font-style: Montserrat;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+.celeb-link-btn {
+  color: var(--petroleum);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.linktext {
+  color: var(--petroleum);
+  border-color: var(--petroleum);
+  margin-top: 10px;
+  border-style: solid;
+  border-width: 0 0 2px 0;
+}
+
+/*!**************** IPAD PRO ****************!*/
+@media only screen and (max-width: 1025px) {
+  img.imgcontainer {
+    height: 470px;
   }
 
-  .section-active .row .celeb .celeb-img {
-    width: 33.3%;
-    padding: 0;
-  }
-
-  .section-active .row .celeb .celeb-img img {
-    width: 75px;
-    margin: auto;
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-  }
-
-  .section-active .row .celeb .celeb-title {
-    width: 66.6%;
-    text-align: left;
-    transition: all 0s ease-in;
-  }
-
-  /* If no description image */
-
-  .section-active .row .celeb .celeb-img-placeholder {
-    height: 0;
-    margin-top: 0;
-  }
-
-  .section-active .row .celeb.no-description-img .celeb-top {
-    padding-left: 0;
-    height: 100px;
-  }
-  .section-active .row .celeb.no-description-img .celeb-top .celeb-title {
+  .scrolltext {
+    max-height: calc(100% - 80px);
+    overflow: auto;
     width: 100%;
-    text-align: center;
   }
-  .section-active .row .celeb.no-description-img .celeb-top .celeb-title h1 {
-    padding-top: 10px;
-    text-align: center;
+
+  .innerscrollbox {
+    margin-top: 60px;
+    width: 100%
+  }
+
+  .section-active .row .celeb .carousel-close {
+    top: 0px;
   }
 }
 
-/* !NOTIZE: All screensizes below 1200px */
+/*!**************** IPAD  ****************!*/
+@media only screen and (max-width: 768px) {
 
-@media only screen and (max-width: 1200px) {
-  .section-active .row .celeb .celeb-img img {
-    width: 50px;
-  }
-
-  .section-active .row .celeb .celeb-title h1 {
-    font-size: 16px;
-    padding: 0px 0 0 0;
-    text-align: left;
+  img.imgcontainer {
+    height: 360px;
   }
 
-  .section-active .row .celeb .celeb-top {
-    height: 110px;
+  .scrolltext {
+    max-height: calc(100% - 80px);
+    overflow: auto;
+    width: 100%;
   }
 
-  .section-active .row .celeb .celeb-bottom {
-    height: calc(100% - 110px);
+  .innerscrollbox {
+    margin-top: 40px;
+    width: 100%
   }
 
-  /* If no description image */
-
-  section .row .celeb .celeb-img-placeholder {
-    height: 15%;
+  .section-active .row .celeb .carousel-close {
+    top: 0px;
   }
 
-  .section-active .row .celeb .celeb-img-placeholder {
-    height: 0;
-  }
-  .section-active .row .celeb.no-description-img .celeb-top {
-    height: 90px;
-  }
-  .section-active .row .celeb.no-description-img .celeb-bottom {
-    height: calc(100% - 90px);
-  }
-}
-
-/* !NOTIZE: All screensizes below 992px */
-
-@media only screen and (max-width: 992px) {
-  section .row .celeb .celeb-top,
-  section .row .celeb .celeb-title,
-  section .row .celeb .celeb-description {
-    padding: 0;
+  .profile {
+    margin-top: 3px;
+    font-size: 20px;
   }
 
-  section .row .celeb .celeb-img img {
-    width: 75px;
-  }
-  section .row .celeb .celeb-title h1 {
-    font-size: 16px;
-  }
-  section .row .celeb .celeb-description p {
-    margin: 0 auto 0 auto;
-  }
-  .section-active .row .celeb .celeb-top {
-    margin-top: -110px;
-  }
-  .section-active .row .celeb .celeb-bottom {
-    height: 100%;
-  }
-  .section-active .row .celeb .celeb-title h1 {
-    text-align: center;
-  }
-  .bookcase .bookcase-others {
-    height: 60px;
-  }
-  .bookcase .bookcase-others span {
-    display: none;
-  }
-  .bookcase .slick-dots-bookcase {
-    right: 0px;
-    bottom: -70px;
+  .pagetag {
+    font-size: 12px;
   }
 
-  /* If no description image */
-
-  section .row .celeb .celeb-img-placeholder {
-    height: 5%;
+  .subtag {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 14px;
   }
 
-  .section .row .celeb .celeb-img-placeholder {
-    display: none;
+  .celeb-descript {
+    font-size: 12px;
   }
 
-  .section-active .row .celeb.no-description-img .celeb-top {
-    margin-top: -60px;
-  }
-
-  .section-active .row .celeb.no-description-img .celeb-bottom {
-    height: calc(100% - 30px);
+  .celeb-link-btn {
+    font-size: 12px;
+    margin-top: 5px;
   }
 }
