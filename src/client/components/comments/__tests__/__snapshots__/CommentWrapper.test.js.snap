@@ -892,7 +892,7 @@ exports[`CommentContainer Render save form 1`] = `
     className="comment-saving"
   >
     <span
-      className="spinner"
+      className="spinner undefined"
       style={
         Object {
           "borderTopColor": null,

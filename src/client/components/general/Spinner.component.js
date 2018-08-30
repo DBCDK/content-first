@@ -3,7 +3,7 @@ import React from 'react';
 function Spinner(props) {
   return (
     <span
-      className={'spinner ' + props.className}
+      className={'spinner ' + props.className || ''}
       style={Object.assign(
         {
           borderTopColor: props.color || null,

@@ -120,9 +120,9 @@ export const mapDispatchToProps = dispatch => {
         type: 'OPEN_MODAL',
         modal: 'confirm',
         context: {
-          title: 'Er du sikker på du vil slette din profil?',
+          title: 'Er du sikker på at du vil slette din profil?',
           reason:
-            'Du er ved at slette din profil og alt data som er tilknyttet den, Er du sikke rpå du vil fortsætte?.',
+            'Du er ved at slette din profil og alt data som er tilknyttet den, Er du sikker på at du vil fortsætte?.',
           confirmText: 'Slet min profil',
           onConfirm: () => {
             closeModal('CLOSE_MODAL', 'confirm');
