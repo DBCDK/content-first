@@ -4,7 +4,11 @@
 }
 .book-cover {
   display: inline-block;
+  width: auto;
+  height: 100%;
 }
 .book-cover img {
-  height: 100%;
+  max-height: 100% !important;
+  object-fit: contain;
+  width: 100% ;
 }

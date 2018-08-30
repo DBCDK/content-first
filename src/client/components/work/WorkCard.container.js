@@ -12,7 +12,7 @@ import './WorkCard.css';
 export const SkeletonWorkCard = props => {
   return (
     <div className={'WorkCard' + ' ' + props.className}>
-      <BookCover className="book-cover" book={{book: {}}} />
+      <BookCover book={{book: {}}} />
       <div
         className="skelet-taxonomy-description d-xs-none d-sm-block"
         style={{height: 12, width: '80%', background: '#f8f8f8', marginTop: 10}}

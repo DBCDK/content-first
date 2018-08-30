@@ -237,11 +237,8 @@ export function OrderModal(props) {
                       borderTop: '1px solid #ccc'
                     }}
                   >
-                    <span
-                      className="book-cover"
-                      style={{height: 60, float: 'left', marginRight: 10}}
-                    >
-                      <BookCover book={book.toJS()} />
+                    <span style={{height: 60, float: 'left', marginRight: 10}}>
+                      <BookCover book={book.toJS()} style={{width: 'unset'}} />
                     </span>
                     <div
                       style={{

@@ -18,7 +18,7 @@ exports[`RollOver renders initial component 1`] = `
     >
       <div
         alt=""
-        className=""
+        className="book-cover undefined"
         style={
           Object {
             "backgroundColor": "#f8f8f8",

@@ -82,7 +82,7 @@ class WorkPage extends React.Component {
         <div className="row WorkPage__container">
           <div className="col-md-12 col-lg-8 WorkPage__work">
             <div className="WorkPage__image">
-              <BookCover className="book-cover" book={book} />
+              <BookCover book={book} />
               <BookmarkButton
                 className="mr1"
                 origin={'Fra egen værkside'}
