@@ -66,10 +66,12 @@ export class BookcaseItem extends React.Component {
     // new
     let subtag = 'Anbefalinger fra ' + this.props.profile.name + ', journalist';
 
-
     let image = this.props.profile.image;
     console.log('image ', image);
-    console.log(' this.props.list.descriptionImage ', this.props.list.descriptionImage);
+    console.log(
+      ' this.props.list.descriptionImage ',
+      this.props.list.descriptionImage
+    );
     return (
       <section
         className={`${this.state.carousel ? 'section-active' : ''}`}
@@ -114,7 +116,6 @@ export class BookcaseItem extends React.Component {
             />
 
             <div className="col-xs-12 celeb-top">
-
               <div className="scrolltext">
                 <div className="innerscrollbox">
                   <div className="col-xs-12 pagetag">{pagetag}</div>
@@ -139,10 +140,13 @@ export class BookcaseItem extends React.Component {
                       this.carouselTrigger(this.props.list.list[0].book.pid, 0);
                     }}
                   >
-                    <span className="linktext">Se {firstname}'s bogliste</span>
+                    <span className="linktext">
+                      Se {firstname}
+                      's bogliste
+                    </span>
                   </div>
                 ) : (
-                  <div></div>
+                  <div />
                 )}
               </div>
             </div>
