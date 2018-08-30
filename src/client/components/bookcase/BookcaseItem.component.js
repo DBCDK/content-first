@@ -53,9 +53,8 @@ export class BookcaseItem extends React.Component {
       return null;
     }
 
-    // replacing description - this.props.list.description
     let description = this.props.list.description;
-    /*"'For mig er læsning som guldet for enden af regnbuen. Det giver ro oven i hovedet i en hektisk børnefamiliehverdag. Jeg læser hurtigt og meget, så på den måde kan man sige, at jeg læser som en mejetærsker. Det er ikke så vigtigt for mig at huske detaljer for handlingen, mere den dejlige følelse læsningen giver mig. Jeg læser hver aften i min seng, inden jeg skal sove. Det er mere afslappende end at se TV, og jeg kan godt lide at komme ind i et andet univers.' Nynne Bjerre Christensen er kendt fra sin mangeårige rolle som vært i Deadline på DR2. I dag er Nynne selvstændig og arbejder bl.a. som radiovært på P1 og som moderator ved store konferencer rundt om i landet."*/
+
     // replacing -this.props.profile.name
     let firstname = this.props.profile.name.split(' ')[0];
 
@@ -65,8 +64,6 @@ export class BookcaseItem extends React.Component {
     let nameQuote = 'Læsning giver ro oveni hovedet';
     // new
     let subtag = 'Anbefalinger fra ' + this.props.profile.name + ', journalist';
-
-    let image = this.props.profile.image;
 
     return (
       <section
@@ -140,7 +137,7 @@ export class BookcaseItem extends React.Component {
                     </span>
                   </div>
                 ) : (
-                  <div />
+                  <div/>
                 )}
               </div>
             </div>

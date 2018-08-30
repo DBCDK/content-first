@@ -27,6 +27,7 @@ export class Bookcase extends React.Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     lists: state.bookcaseReducer.lists,

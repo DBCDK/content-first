@@ -10,14 +10,14 @@
 
 /****************SECTION**************/
 
-.App{
-text-align:left;
+.App {
+    text-align: left;
 }
+
 section {
     position: relative;
     background: var(--lys-graa);
     width: 100%;
-
 }
 
 section div.row {
@@ -25,27 +25,24 @@ section div.row {
     width: 100%;
     height: 100%;
     top: 0;
-
-
 }
 
 section .row .bookswrap {
     position: relative;
     height: 100%;
-    width:50%;
-
+    width: 50%;
 
 }
 
 section .row .celeb {
     height: 100%;
-    width:40%;
+    width: 40%;
     position: relative;
     background: var(--lys-graa);
     transition: all 0.3s ease-in;
     overflow: hidden;
     margin-left: 6%;
-    margin-right:4%;
+    margin-right: 4%;
 
 }
 
@@ -87,7 +84,7 @@ img.imgcontainer {
 /********** BOTTOM *********/
 
 section .row .celeb .celeb-bottom {
-    height:98%;
+    height: 98%;
     width: 100%;
     opacity: 1;
     background-color: var(--lys-graa);
