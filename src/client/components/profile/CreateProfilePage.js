@@ -1,14 +1,25 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import ImageUpload from '../general/ImageUpload.component';
 import UserProfileForm from './UserProfileForm.component';
 import Spinner from '../general/Spinner.component';
 import Link from '../general/Link.component';
 import LogoutLink from '../general/Logout.component';
-import {connect} from 'react-redux';
-import {ADD_PROFILE_IMAGE, SAVE_USER_PROFILE} from '../../redux/user.reducer';
+import {
+  ADD_PROFILE_IMAGE,
+  SAVE_USER_PROFILE,
+  DELETE_USER_PROFILE
+} from '../../redux/user.reducer';
 
 export class CreateProfilePage extends React.Component {
   render() {
+    const isDeleting = this.props.isDeleting || false;
+
+    if (isDeleting) {
+      return <Spinner className="spinner-deleteProfile" size="36px" />;
+    }
+
     return (
       <div className="container">
         <div className="profile-page tl">
@@ -55,10 +66,20 @@ export class CreateProfilePage extends React.Component {
                     />
                   </div>
                   {this.props.editMode ? (
-                    <Link href="/profile">Fortryd redigéring</Link>
+                    <React.Fragment>
+                      <Link
+                        href="#!"
+                        className="text-danger profile-delete"
+                        onClick={() => this.props.confirmDeleteModal()}
+                      >
+                        Slet profil
+                      </Link>
+                      {' | '}
+                      <Link href="/profile">Fortryd redigéring</Link>
+                    </React.Fragment>
                   ) : (
                     <LogoutLink>
-                      Jeg ønsker alligevel ikke oprette en profil
+                      Jeg ønsker alligevel ikke at oprette en profil
                     </LogoutLink>
                   )}
                 </div>
@@ -79,16 +100,40 @@ export const mapStateToProps = state => ({
   acceptedTerms: state.userReducer.acceptedTerms,
   isLoading: state.userReducer.isLoading,
   isSaving: state.userReducer.isSaving,
+  isDeleting: state.userReducer.isDeleting,
   profileImageId: state.userReducer.tempImageId || state.userReducer.image,
   imageIsLoading: state.userReducer.profileImageIsLoading,
   error: state.userReducer.saveUserError,
   imageError: state.userReducer.imageError,
   agencyName: state.userReducer.agencyName
 });
-export const mapDispatchToProps = dispatch => ({
-  addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
-  saveUser: user => dispatch({type: SAVE_USER_PROFILE, user})
-});
+export const mapDispatchToProps = dispatch => {
+  const closeModal = (type, modal) => dispatch({type, modal});
+  const deleteUser = type => dispatch({type});
+
+  return {
+    addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
+    saveUser: user => dispatch({type: SAVE_USER_PROFILE, user}),
+    closeModal,
+    confirmDeleteModal: () => {
+      dispatch({
+        type: 'OPEN_MODAL',
+        modal: 'confirm',
+        context: {
+          title: 'Er du sikker på du vil slette din profil?',
+          reason:
+            'Du er ved at slette din profil og alt data som er tilknyttet den, Er du sikke rpå du vil fortsætte?.',
+          confirmText: 'Slet min profil',
+          onConfirm: () => {
+            closeModal('CLOSE_MODAL', 'confirm');
+            deleteUser(DELETE_USER_PROFILE);
+          },
+          onCancel: () => closeModal('CLOSE_MODAL', 'confirm')
+        }
+      });
+    }
+  };
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps

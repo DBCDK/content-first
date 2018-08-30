@@ -1,4 +1,10 @@
-import {fetchUser, logout, addImage, saveUser} from '../utils/requester';
+import {
+  fetchUser,
+  logout,
+  addImage,
+  saveUser,
+  deleteUser
+} from '../utils/requester';
 import request from 'superagent';
 import {
   ON_USER_DETAILS_REQUEST,
@@ -11,14 +17,17 @@ import {
   ON_USER_DETAILS_RESPONSE,
   SAVE_USER_PROFILE_ERROR,
   ADD_USER_AGENCY,
-  SAVE_USER_PROFILE_SUCCESS
+  SAVE_USER_PROFILE_SUCCESS,
+  DELETE_USER_PROFILE,
+  DELETE_USER_PROFILE_SUCCESS,
+  DELETE_USER_PROFILE_ERROR
 } from './user.reducer';
 import {RECEIVE_USER} from './users';
 import {SHORTLIST_LOAD_REQUEST} from './shortlist.reducer';
 import {LIST_LOAD_REQUEST} from './list.reducer';
 import {FOLLOW_LOAD_REQUEST} from './follow.reducer';
 import openplatform from 'openplatform';
-import {HISTORY_PUSH} from './router.reducer';
+import {HISTORY_PUSH, HISTORY_PUSH_FORCE_REFRESH} from './router.reducer';
 import {FETCH_INTERACTIONS} from './interaction.reducer';
 
 async function openplatformLogin(state) {
@@ -99,6 +108,22 @@ export const userMiddleware = store => next => action => {
           store.dispatch({type: SAVE_USER_PROFILE_ERROR, error});
         }
       })();
+
+    case DELETE_USER_PROFILE:
+      next(action);
+
+      return (async () => {
+        const user = await openplatform.user();
+
+        try {
+          await deleteUser(user.id);
+          store.dispatch({type: DELETE_USER_PROFILE_SUCCESS});
+          store.dispatch({type: HISTORY_PUSH_FORCE_REFRESH, path: '/'});
+        } catch (error) {
+          store.dispatch({type: DELETE_USER_PROFILE_ERROR, error});
+        }
+      })();
+
     case ON_LOGOUT_REQUEST:
       logout(store.dispatch);
       return next(action);

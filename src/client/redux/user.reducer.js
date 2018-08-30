@@ -18,6 +18,9 @@ export const ADD_USER_AGENCY = 'ADD_USER_AGENCY';
 export const SAVE_USER_PROFILE = 'SAVE_USER_PROFILE';
 export const SAVE_USER_PROFILE_ERROR = 'SAVE_USER_PROFILE_ERROR';
 export const SAVE_USER_PROFILE_SUCCESS = 'SAVE_USER_PROFILE_SUCCESS';
+export const DELETE_USER_PROFILE = 'DELETE_USER_PROFILE';
+export const DELETE_USER_PROFILE_SUCCESS = 'DELETE_USER_PROFILE_SUCCESS';
+export const DELETE_USER_PROFILE_ERROR = 'DELETE_USER_PROFILE_ERROR';
 
 const userReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -72,6 +75,15 @@ const userReducer = (state = defaultState, action) => {
     }
     case SAVE_USER_PROFILE_SUCCESS: {
       return Object.assign({}, state, action.user, {isSaving: false});
+    }
+    case DELETE_USER_PROFILE: {
+      return Object.assign({}, state, {isDeleting: true});
+    }
+    case DELETE_USER_PROFILE_SUCCESS: {
+      return Object.assign({}, state, {isDeleting: true});
+    }
+    case DELETE_USER_PROFILE_ERROR: {
+      return Object.assign({}, state, {isDeleting: false});
     }
     case ADD_USER_AGENCY: {
       return Object.assign({}, state, {agencyName: action.agencyName});
