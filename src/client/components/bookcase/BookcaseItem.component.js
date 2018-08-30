@@ -67,11 +67,7 @@ export class BookcaseItem extends React.Component {
     let subtag = 'Anbefalinger fra ' + this.props.profile.name + ', journalist';
 
     let image = this.props.profile.image;
-    console.log('image ', image);
-    console.log(
-      ' this.props.list.descriptionImage ',
-      this.props.list.descriptionImage
-    );
+
     return (
       <section
         className={`${this.state.carousel ? 'section-active' : ''}`}

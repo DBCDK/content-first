@@ -78,7 +78,7 @@ section .row .celeb .carousel-close {
 }
 
 img.imgcontainer {
-  
+
     height: 600px;
     width: 50%;
     object-fit: cover;
@@ -87,11 +87,11 @@ img.imgcontainer {
 /********** BOTTOM *********/
 
 section .row .celeb .celeb-bottom {
-    height: 88%;
+    height:98%;
     width: 100%;
     opacity: 1;
     background-color: var(--lys-graa);
-    margin-top: 10%;
+    margin-bottom: 2%;
     opacity: 1;
 }
 

@@ -13,7 +13,7 @@ export class Bookcase extends React.Component {
     }
 
     // TODO: the idea is that only one celeb will show at a time for a set period and then it will be switched out with a new one.
-    // TODO:     // TODO: should be passed in here should be passed in here
+    // TODO: when changed, the array position of that celeb could be passed in here, currently hardcoded to point to Nynne.
 
     const celebnum = 0;
     return (
