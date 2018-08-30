@@ -5,6 +5,11 @@
   font-family: var(--secondary-font);
   z-index: 1;
   outline: none;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;  
+  font-size: 12px;
+  cursor: pointer; 
 }
 
 .ssb a {

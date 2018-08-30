@@ -851,9 +851,16 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
           </div>
@@ -1196,9 +1203,16 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
           </div>
@@ -1541,9 +1555,16 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
           </div>
@@ -1901,9 +1922,16 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
           </div>
@@ -2704,9 +2732,16 @@ exports[`ShortList.container remove element 1`] = `
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
           </div>
@@ -3525,9 +3560,16 @@ exports[`ShortList.container short list contains elements 1`] = `
                 onClick={[Function]}
               >
                 RYD LISTEN
-                <span
-                  className="glyphicon glyphicon-trash ml1"
-                />
+                <i
+                  className="material-icons ml1"
+                  style={
+                    Object {
+                      "fontSize": "18px",
+                    }
+                  }
+                >
+                  delete
+                </i>
               </span>
             </div>
           </div>

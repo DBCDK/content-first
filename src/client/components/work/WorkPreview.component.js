@@ -12,7 +12,6 @@ import SocialShareButton from '../general/SocialShareButton.component';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import OrderButton from '../order/OrderButton.component';
-
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 
 import {filterCollection, filterReviews} from './workFunctions';
@@ -61,7 +60,6 @@ class WorkPreview extends React.Component {
               styles={{fontWeight: 'bold'}}
               facebook={true}
               href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
-              icon={'fb-icon'}
               hex={'#3b5998'}
               size={30}
               shape="round"

@@ -175,7 +175,9 @@ class ShortList extends React.Component {
                   onClick={() => this.props.clearList()}
                 >
                   RYD LISTEN
-                  <span className="glyphicon glyphicon-trash ml1" />
+                  <i className="material-icons ml1" style={{fontSize: '18px'}}>
+                    delete
+                  </i>
                 </span>
               </div>
             </div>
