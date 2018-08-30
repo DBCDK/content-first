@@ -137,7 +137,7 @@ export class BookcaseItem extends React.Component {
                     </span>
                   </div>
                 ) : (
-                  <div/>
+                  <div />
                 )}
               </div>
             </div>
