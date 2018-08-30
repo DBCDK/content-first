@@ -15,6 +15,12 @@ Array [
   <div
     className="top-bar-dropdown-list--content text-left slide-out"
 >
+    <img
+        alt="luk"
+        className="top-bar-dropdown-list--close-btn"
+        onClick={[Function]}
+        src="KrydsPetrolium.svg"
+    />
     <a
         className="list-card-nohover"
         href="/huskeliste"
@@ -186,6 +192,12 @@ Array [
   <div
     className="top-bar-dropdown-list--content text-left slide-out"
 >
+    <img
+        alt="luk"
+        className="top-bar-dropdown-list--close-btn"
+        onClick={[Function]}
+        src="KrydsPetrolium.svg"
+    />
     <a
         className="list-card-nohover"
         href="/huskeliste"
@@ -465,6 +477,12 @@ Array [
   <div
     className="top-bar-dropdown-list--content text-left slide-out"
 >
+    <img
+        alt="luk"
+        className="top-bar-dropdown-list--close-btn"
+        onClick={[Function]}
+        src="KrydsPetrolium.svg"
+    />
     <a
         className="list-card-nohover"
         href="/huskeliste"
@@ -582,6 +600,12 @@ Array [
   <div
     className="top-bar-dropdown-list--content text-left slide-out"
 >
+    <img
+        alt="luk"
+        className="top-bar-dropdown-list--close-btn"
+        onClick={[Function]}
+        src="KrydsPetrolium.svg"
+    />
     <a
         className="list-card-nohover"
         href="/huskeliste"
