@@ -54,6 +54,7 @@ Array [
                                     "title": "some title1",
                                   }
                             }
+                            hideCoverText={true}
                         />
                     </a>
                 </div>
@@ -68,7 +69,13 @@ Array [
                             href="/værk/pid1"
                             onClick={[Function]}
                         >
-                            some title1
+                            <react-truncate-markup
+                                lines={1}
+                            >
+                                <span>
+                                    some title1
+                                </span>
+                            </react-truncate-markup>
                         </a>
                     </div>
                     <div
@@ -108,6 +115,7 @@ Array [
                                     "title": "some title2",
                                   }
                             }
+                            hideCoverText={true}
                         />
                     </a>
                 </div>
@@ -122,7 +130,13 @@ Array [
                             href="/værk/pid2"
                             onClick={[Function]}
                         >
-                            some title2
+                            <react-truncate-markup
+                                lines={1}
+                            >
+                                <span>
+                                    some title2
+                                </span>
+                            </react-truncate-markup>
                         </a>
                     </div>
                     <div
@@ -225,6 +239,7 @@ Array [
                                     "title": "some title4",
                                   }
                             }
+                            hideCoverText={true}
                         />
                     </a>
                 </div>
@@ -239,7 +254,13 @@ Array [
                             href="/værk/pid4"
                             onClick={[Function]}
                         >
-                            some title4
+                            <react-truncate-markup
+                                lines={1}
+                            >
+                                <span>
+                                    some title4
+                                </span>
+                            </react-truncate-markup>
                         </a>
                     </div>
                     <div
@@ -279,6 +300,7 @@ Array [
                                     "title": "some title3",
                                   }
                             }
+                            hideCoverText={true}
                         />
                     </a>
                 </div>
@@ -293,7 +315,13 @@ Array [
                             href="/værk/pid3"
                             onClick={[Function]}
                         >
-                            some title3
+                            <react-truncate-markup
+                                lines={1}
+                            >
+                                <span>
+                                    some title3
+                                </span>
+                            </react-truncate-markup>
                         </a>
                     </div>
                     <div
@@ -333,6 +361,7 @@ Array [
                                     "title": "some title2",
                                   }
                             }
+                            hideCoverText={true}
                         />
                     </a>
                 </div>
@@ -347,7 +376,13 @@ Array [
                             href="/værk/pid2"
                             onClick={[Function]}
                         >
-                            some title2
+                            <react-truncate-markup
+                                lines={1}
+                            >
+                                <span>
+                                    some title2
+                                </span>
+                            </react-truncate-markup>
                         </a>
                     </div>
                     <div
@@ -387,6 +422,7 @@ Array [
                                     "title": "some title1",
                                   }
                             }
+                            hideCoverText={true}
                         />
                     </a>
                 </div>
@@ -401,7 +437,13 @@ Array [
                             href="/værk/pid1"
                             onClick={[Function]}
                         >
-                            some title1
+                            <react-truncate-markup
+                                lines={1}
+                            >
+                                <span>
+                                    some title1
+                                </span>
+                            </react-truncate-markup>
                         </a>
                     </div>
                     <div
@@ -504,6 +546,7 @@ Array [
                                     "title": "some title1",
                                   }
                             }
+                            hideCoverText={true}
                         />
                     </a>
                 </div>
@@ -518,7 +561,13 @@ Array [
                             href="/værk/pid1"
                             onClick={[Function]}
                         >
-                            some title1
+                            <react-truncate-markup
+                                lines={1}
+                            >
+                                <span>
+                                    some title1
+                                </span>
+                            </react-truncate-markup>
                         </a>
                     </div>
                     <div
