@@ -104,35 +104,36 @@ exports[`ShortList.container Clearing list 1`] = `
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid2"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid2"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid2"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid2"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url2",
-                                              "pid": "pid2",
-                                              "taxonomy_description": "some description2",
-                                              "title": "some title2",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url2",
+                                            "pid": "pid2",
+                                            "taxonomy_description": "some description2",
+                                            "title": "some title2",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -299,35 +300,36 @@ exports[`ShortList.container Clearing list 1`] = `
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid1"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid1"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid1"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url1",
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -595,35 +597,36 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid1"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid1"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid1"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url1",
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -922,35 +925,36 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid1"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid1"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid1"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url1",
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -1249,35 +1253,36 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid1"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid1"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid1"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url1",
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -1576,35 +1581,36 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid1"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid1"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid1"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url1",
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -1936,35 +1942,36 @@ exports[`ShortList.container remove element 1`] = `
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid3"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid3"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid3"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid3"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url3",
-                                              "pid": "pid3",
-                                              "taxonomy_description": "some description3",
-                                              "title": "some title3",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url3",
+                                            "pid": "pid3",
+                                            "taxonomy_description": "some description3",
+                                            "title": "some title3",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -2131,35 +2138,36 @@ exports[`ShortList.container remove element 1`] = `
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid2"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid2"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid2"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid2"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url2",
-                                              "pid": "pid2",
-                                              "taxonomy_description": "some description2",
-                                              "title": "some title2",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url2",
+                                            "pid": "pid2",
+                                            "taxonomy_description": "some description2",
+                                            "title": "some title2",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -2326,35 +2334,36 @@ exports[`ShortList.container remove element 1`] = `
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid1"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid1"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid1"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url1",
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -2689,35 +2698,36 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid3"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid3"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid3"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid3"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url3",
-                                              "pid": "pid3",
-                                              "taxonomy_description": "some description3",
-                                              "title": "some title3",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url3",
+                                            "pid": "pid3",
+                                            "taxonomy_description": "some description3",
+                                            "title": "some title3",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -2884,35 +2894,36 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid2"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid2"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid2"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid2"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url2",
-                                              "pid": "pid2",
-                                              "taxonomy_description": "some description2",
-                                              "title": "some title2",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url2",
+                                            "pid": "pid2",
+                                            "taxonomy_description": "some description2",
+                                            "title": "some title2",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"
@@ -3079,35 +3090,36 @@ exports[`ShortList.container short list contains elements 1`] = `
                               <div
                                 className="col-2"
                               >
-                                <div
-                                  className="book-cover"
+                                <Connect(Link)
+                                  href="/værk/pid1"
                                 >
-                                  <Connect(Link)
+                                  <Link
+                                    dispatch={[Function]}
                                     href="/værk/pid1"
                                   >
-                                    <Link
-                                      dispatch={[Function]}
+                                    <a
+                                      className="list-card-nohover"
                                       href="/værk/pid1"
+                                      onClick={[Function]}
                                     >
-                                      <a
-                                        className="list-card-nohover"
-                                        href="/værk/pid1"
-                                        onClick={[Function]}
-                                      >
-                                        <bookcover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
+                                      <bookcover
+                                        book={
+                                          Object {
+                                            "coverUrl": "https://some/cover/url1",
+                                            "pid": "pid1",
+                                            "taxonomy_description": "some description1",
+                                            "title": "some title1",
                                           }
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Connect(Link)>
-                                </div>
+                                        }
+                                        style={
+                                          Object {
+                                            "width": "unset",
+                                          }
+                                        }
+                                      />
+                                    </a>
+                                  </Link>
+                                </Connect(Link)>
                               </div>
                               <div
                                 className="col-10 book-description"

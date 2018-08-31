@@ -43,7 +43,6 @@ exports[`OrderModal render function renders initial request 1`] = `
             }
           >
             <span
-              className="book-cover"
               style={
                 Object {
                   "float": "left",
@@ -58,6 +57,11 @@ exports[`OrderModal render function renders initial request 1`] = `
                     "creator": "creator1",
                     "pid": "pid1",
                     "title": "title1",
+                  }
+                }
+                style={
+                  Object {
+                    "width": "unset",
                   }
                 }
               />
@@ -122,7 +126,6 @@ exports[`OrderModal render function renders initial request 1`] = `
             }
           >
             <span
-              className="book-cover"
               style={
                 Object {
                   "float": "left",
@@ -137,6 +140,11 @@ exports[`OrderModal render function renders initial request 1`] = `
                     "creator": "creator2",
                     "pid": "pid2",
                     "title": "title2",
+                  }
+                }
+                style={
+                  Object {
+                    "width": "unset",
                   }
                 }
               />
@@ -201,7 +209,6 @@ exports[`OrderModal render function renders initial request 1`] = `
             }
           >
             <span
-              className="book-cover"
               style={
                 Object {
                   "float": "left",
@@ -216,6 +223,11 @@ exports[`OrderModal render function renders initial request 1`] = `
                     "creator": "creator3",
                     "pid": "pid3",
                     "title": "title3",
+                  }
+                }
+                style={
+                  Object {
+                    "width": "unset",
                   }
                 }
               />

@@ -31,6 +31,7 @@ const generateSvg = (backgroundColor, title, creator) => {
 
 const BookCover = props => {
   const hasNoCover = !props.coverUrl && props.coverUrlHasLoaded;
+  console.log(props);
   if (!props.coverUrl) {
     return (
       <img
@@ -46,18 +47,31 @@ const BookCover = props => {
           )
         }
         alt={props.title || ''}
-        className={props.className || ''}
+        className={'book-cover ' + props.className || ''}
       />
     );
   }
   return (
-    <img
-      style={props.style}
+    <div
+      style={{
+        ...props.style,
+        display: 'inline-block',
+        textAlign: 'center',
+        backgroundColor: '#f8f8f8',
+        verticalAlign: 'middle'
+      }}
       alt={props.title || ''}
-      className={props.className || ''}
-      src={props.coverUrl}
-      onLoad={props.onLoad}
-    />
+      className={
+        'd-inline-flex align-items-end book-cover ' + props.className || ''
+      }
+    >
+      <img
+        style={props.style}
+        alt={props.title || ''}
+        src={props.coverUrl}
+        onLoad={props.onLoad}
+      />
+    </div>
   );
 };
 

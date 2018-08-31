@@ -30,11 +30,12 @@ export class ShortListItem extends React.Component {
           <div className="book col-6">
             <div className="row">
               <div className="col-2">
-                <div className="book-cover">
-                  <Link href={url}>
-                    <BookCover book={this.props.element.book} />
-                  </Link>
-                </div>
+                <Link href={url}>
+                  <BookCover
+                    book={this.props.element.book}
+                    style={{width: 'unset'}}
+                  />
+                </Link>
               </div>
               <div className="col-10 book-description">
                 <div className="title">
