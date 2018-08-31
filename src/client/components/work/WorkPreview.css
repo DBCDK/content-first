@@ -25,6 +25,7 @@
 
 .workPreview__work .workPreview__info {
   position: relative;
+  width: 100%;
 }
 
 .workPreview__work .workPreview__info .ssb{
