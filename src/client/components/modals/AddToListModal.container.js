@@ -10,7 +10,11 @@ import {
   addElementToList,
   storeList
 } from '../../redux/list.reducer';
+import {SHORTLIST_CLEAR} from '../../redux/shortlist.reducer';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
+import ToastMessage from '../base/ToastMessage';
+import {toast} from 'react-toastify';
+
 const defaultState = {
   comment: '',
   list: '',
@@ -79,15 +83,31 @@ export class AddToListModal extends React.Component {
     this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
   };
   onDone = () => {
+
     // If the "create-new-list" field is NOT empty - auto-create new list
+    let listName = '';
+    let count = this.props.works.length || 0;
+
     if (this.state.listName) {
+      listName = this.state.listName;
       this.onAddList(this.state.listName);
       this.setState({
         loadingList: true
       });
     } else {
+      listName = this.state.list.title;
       this.addElementsToList(this.state.latestUsedId);
     }
+    this.props.dispatch({
+      type: SHORTLIST_CLEAR
+    });
+    toast(
+      <ToastMessage
+        type="success"
+        icon="check_circle"
+        lines={[count + ' bøger tilføjet til listen ' + listName]}
+      />
+    );
   };
 
   onAddList = title => {
