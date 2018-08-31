@@ -71,7 +71,7 @@ export class BookcaseItem extends React.Component {
         onClick={this.test}
       >
         <img
-          className={'imgcontainer'}
+          className="imgcontainer"
           src={
             this.props.list.image
               ? '/v1/image/' + this.props.list.image + '/1200/600'
@@ -131,9 +131,8 @@ export class BookcaseItem extends React.Component {
                       this.carouselTrigger(this.props.list.list[0].book.pid, 0);
                     }}
                   >
-                    <span className={'linktext'}>
-                      Se {firstname}
-                      's bogliste
+                    <span className="linktext">
+                      Se {firstname+"'s"} bogliste
                     </span>
                   </div>
                 ) : (
