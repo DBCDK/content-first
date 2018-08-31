@@ -275,6 +275,18 @@ export const saveUser = user => {
   });
 };
 
+export const deleteUser = id => {
+  return new Promise((resolve, reject) => {
+    request.delete('/v1/user/' + id).end((error, res) => {
+      if (error) {
+        reject(res.body && res.body.errors ? res.body.errors[0] : error);
+      } else {
+        resolve(res.body.data);
+      }
+    });
+  });
+};
+
 export const fetchObjects = (key, type, owner, limit = 100) => {
   return new Promise((resolve, reject) => {
     request
