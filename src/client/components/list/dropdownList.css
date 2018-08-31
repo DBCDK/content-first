@@ -3,9 +3,10 @@
 }
 .top-bar-dropdown-list--close-btn {
   position: absolute;
-  margin: 1em;
   cursor: pointer;
-  width: 10px;
+  width: 12px;
+  top: 15x;
+  left: 15px;
 }
 .top-bar-dropdown-list--content {
   position: fixed;
@@ -81,7 +82,7 @@
   position: absolute;
   right: 5px;
   cursor: pointer;
-  width: 15px;
+  width: 11px;
 }
 .top-bar-dropdown-list-element--taxonomy-description {
   color: var(--petrolium);

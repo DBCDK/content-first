@@ -4,6 +4,7 @@ import TruncateMarkup from 'react-truncate-markup';
 import BookCover from '../general/BookCover.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Kryds from '../svg/KrydsGrey.svg';
+import KrydsPetrolium from '../svg/KrydsPetrolium.svg';
 import Button from '../base/Button/Button';
 import Heading from '../base/Heading/Heading';
 import Link from '../general/Link.component';
@@ -61,6 +62,13 @@ const ShortListContent = props => {
         props.expanded ? '' : ' slide-out'
       }`}
     >
+      <img
+        src={KrydsPetrolium}
+        alt="luk"
+        className="top-bar-dropdown-list--close-btn"
+        onClick={props.onClose}
+      />
+
       <Link href="/huskeliste">
         <Heading type="peach-subtitle">
           HUSKELISTE ({props.elements && props.elements.length})
