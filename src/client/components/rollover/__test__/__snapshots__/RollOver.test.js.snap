@@ -16,15 +16,14 @@ exports[`RollOver renders initial component 1`] = `
     <div
       className="col-4 rollover-img"
     >
-      <div
-        alt=""
-        className=""
-        style={
+      <bookcover
+        book={
           Object {
-            "backgroundColor": "#f8f8f8",
-            "display": "inline-block",
-            "textAlign": "center",
-            "verticalAlign": "middle",
+            "cover": "img/cover.png",
+            "creator": "Nicole Boyle Rødtnes",
+            "description": "lorem ipsum . . .",
+            "pid": "870970-basis:52038014",
+            "title": "test",
           }
         }
       />

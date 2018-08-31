@@ -13,15 +13,13 @@ exports[`CarouselItem renders initial component 1`] = `
       <Link
         href="/værk/870970-basis:51642899"
       >
-        <div
-          alt=""
-          className=""
-          style={
+        <bookcover
+          book={
             Object {
-              "backgroundColor": "#f8f8f8",
-              "display": "inline-block",
-              "textAlign": "center",
-              "verticalAlign": "middle",
+              "creator": "Anthony Doerr",
+              "description": "Roman nder 2. verdenskrig",
+              "pid": "870970-basis:51642899",
+              "titel": "Alt det lys vi ikke ser",
             }
           }
         />
