@@ -116,7 +116,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       href="/værk/pid2"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url2",
@@ -130,38 +130,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url2",
-                                              "pid": "pid2",
-                                              "taxonomy_description": "some description2",
-                                              "title": "some title2",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -343,7 +312,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url1",
@@ -357,38 +326,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -671,7 +609,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url1",
@@ -685,38 +623,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -1030,7 +937,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url1",
@@ -1044,38 +951,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -1389,7 +1265,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url1",
@@ -1403,38 +1279,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -1748,7 +1593,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url1",
@@ -1762,38 +1607,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -2140,7 +1954,7 @@ exports[`ShortList.container remove element 1`] = `
                                       href="/værk/pid3"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url3",
@@ -2154,38 +1968,7 @@ exports[`ShortList.container remove element 1`] = `
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url3",
-                                              "pid": "pid3",
-                                              "taxonomy_description": "some description3",
-                                              "title": "some title3",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -2367,7 +2150,7 @@ exports[`ShortList.container remove element 1`] = `
                                       href="/værk/pid2"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url2",
@@ -2381,38 +2164,7 @@ exports[`ShortList.container remove element 1`] = `
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url2",
-                                              "pid": "pid2",
-                                              "taxonomy_description": "some description2",
-                                              "title": "some title2",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -2594,7 +2346,7 @@ exports[`ShortList.container remove element 1`] = `
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url1",
@@ -2608,38 +2360,7 @@ exports[`ShortList.container remove element 1`] = `
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -2989,7 +2710,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       href="/værk/pid3"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url3",
@@ -3003,38 +2724,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url3",
-                                              "pid": "pid3",
-                                              "taxonomy_description": "some description3",
-                                              "title": "some title3",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -3216,7 +2906,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       href="/værk/pid2"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url2",
@@ -3230,38 +2920,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url2",
-                                              "pid": "pid2",
-                                              "taxonomy_description": "some description2",
-                                              "title": "some title2",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
@@ -3443,7 +3102,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
-                                      <Connect(BookCover)
+                                      <bookcover
                                         book={
                                           Object {
                                             "coverUrl": "https://some/cover/url1",
@@ -3457,38 +3116,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                             "width": "unset",
                                           }
                                         }
-                                      >
-                                        <BookCover
-                                          book={
-                                            Object {
-                                              "coverUrl": "https://some/cover/url1",
-                                              "pid": "pid1",
-                                              "taxonomy_description": "some description1",
-                                              "title": "some title1",
-                                            }
-                                          }
-                                          dispatch={[Function]}
-                                          style={
-                                            Object {
-                                              "width": "unset",
-                                            }
-                                          }
-                                        >
-                                          <div
-                                            alt=""
-                                            className="book-cover undefined"
-                                            style={
-                                              Object {
-                                                "backgroundColor": "#f8f8f8",
-                                                "display": "inline-block",
-                                                "textAlign": "center",
-                                                "verticalAlign": "middle",
-                                                "width": "unset",
-                                              }
-                                            }
-                                          />
-                                        </BookCover>
-                                      </Connect(BookCover)>
+                                      />
                                     </a>
                                   </Link>
                                 </Connect(Link)>
