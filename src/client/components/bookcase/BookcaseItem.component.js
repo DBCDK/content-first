@@ -1,9 +1,6 @@
 import React from 'react';
 import Pulse from '../pulse/Pulse.component';
 import CarouselItem from './CarouselItem.component';
-
-import TruncateMarkup from 'react-truncate-markup';
-
 import CarouselSlider from './CarouselSlider.component';
 
 /*
@@ -56,12 +53,25 @@ export class BookcaseItem extends React.Component {
       return null;
     }
 
+    let description = this.props.list.description;
+
+    // replacing -this.props.profile.name
+    let firstname = this.props.profile.name.split(' ')[0];
+
+    // new
+    let pagetag = "Bøger jeg kan li'";
+    // new
+    let nameQuote = 'Læsning giver ro oveni hovedet';
+    // new
+    let subtag = 'Anbefalinger fra ' + this.props.profile.name + ', journalist';
+
     return (
       <section
-        className={`${this.state.carousel ? ' section-active' : ''}`}
+        className={`${this.state.carousel ? 'section-active' : ''}`}
         onClick={this.test}
       >
         <img
+          className="imgcontainer"
           src={
             this.props.list.image
               ? '/v1/image/' + this.props.list.image + '/1200/600'
@@ -69,12 +79,25 @@ export class BookcaseItem extends React.Component {
           }
           alt={this.props.name + '´s bogreol'}
         />
+
         <div className="row">
-          <div
-            className={`col-4 celeb ${
-              this.props.list.descriptionImage ? '' : 'no-description-img'
-            }`}
-          >
+          <div className="bookswrap">
+            {this.props.list.list.map((p, i) => {
+              return (
+                <Pulse
+                  active={this.state.pulse}
+                  pid={p.book.pid}
+                  key={'pulse-' + p.book.pid}
+                  onClick={() => {
+                    this.carouselTrigger(p.book.pid, i);
+                  }}
+                  position={p.position}
+                />
+              );
+            })}
+          </div>
+
+          <div className="celeb">
             <img
               className="carousel-close"
               src="/static/media/Kryds.e69a54ef.svg"
@@ -83,40 +106,42 @@ export class BookcaseItem extends React.Component {
                 this.hideCarousel();
               }}
             />
-            <div className="col-12 celeb-top">
-              {this.props.list.descriptionImage ? (
-                <div className="col-12 celeb-img">
-                  <img
-                    src={'/v1/image/' + this.props.profile.image + '/150/150'}
-                    alt={this.props.profile.name}
-                  />
+
+            <div className="col-xs-12 celeb-top">
+              <div className="scrolltext">
+                <div className="innerscrollbox">
+                  <div className="col-xs-12 pagetag">{pagetag}</div>
+                  <div className="col-xs-12 profile">
+                    <span className="profile-name">{firstname}: </span>
+                    <span className="profile-quote"> “{nameQuote}”</span>
+                  </div>
+                  <div className="col-xs-12 subtag">{subtag}</div>
+
+                  <div className="col-xs-12 celeb-descript">
+                    <p>{description}</p>
+                  </div>
                 </div>
-              ) : (
-                <div className="celeb-img-placeholder" />
-              )}
-              <div className="col-12 celeb-title">
-                <h1>{this.props.profile.name}</h1>
               </div>
-              <div className="col-12 celeb-description">
-                <TruncateMarkup lines={8}>
-                  <p>{this.props.list.description}</p>
-                </TruncateMarkup>
+
+              <div className="col-xs-12">
                 {this.props.list.list.length !== 0 ? (
-                  <button
-                    type="button"
-                    className="celeb-books-btn btn"
+                  <div
+                    className="celeb-link-btn"
                     onClick={() => {
                       this.carouselTrigger(this.props.list.list[0].book.pid, 0);
                     }}
                   >
-                    Se bøger
-                  </button>
+                    <span className="linktext">
+                      Se {firstname+"'s"} bogliste
+                    </span>
+                  </div>
                 ) : (
-                  ''
+                  <div />
                 )}
               </div>
             </div>
-            <div className="col-12 celeb-bottom">
+
+            <div className="col-xs-12 celeb-bottom">
               <CarouselSlider
                 slideIndex={this.state.slideIndex}
                 onNextBook={this.nextBook}
@@ -133,22 +158,6 @@ export class BookcaseItem extends React.Component {
                 })}
               </CarouselSlider>
             </div>
-          </div>
-
-          <div className="col-8 bookswrap">
-            {this.props.list.list.map((p, i) => {
-              return (
-                <Pulse
-                  active={this.state.pulse}
-                  pid={p.book.pid}
-                  key={'pulse-' + p.book.pid}
-                  onClick={() => {
-                    this.carouselTrigger(p.book.pid, i);
-                  }}
-                  position={p.position}
-                />
-              );
-            })}
           </div>
         </div>
       </section>

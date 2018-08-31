@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
-import BookcaseSlider from './BookcaseSlider.component';
 import BookcaseItem from './BookcaseItem.component';
 
 /*
@@ -13,28 +11,23 @@ export class Bookcase extends React.Component {
     if (!this.props.lists) {
       return null;
     }
+
+    // TODO: the idea is that only one celeb will show at a time for a set period and then it will be switched out with a new one.
+    // TODO: when changed, the array position of that celeb could be passed in here, currently hardcoded to point to Nynne.
+
+    const celebnum = 0;
     return (
-      <div className="bookcase row d-block">
-        <BookcaseSlider profiles={this.props.profiles}>
-          {this.props.lists.map((l, i) => {
-            return (
-              <BookcaseItem
-                profile={this.props.profiles[i]}
-                list={l}
-                key={'bookcase-' + i}
-              />
-            );
-          })}
-        </BookcaseSlider>
-        <div className="bookcase-others">
-          <span style={{width: this.props.profiles.length * 65 + 160 + 'px'}}>
-            Se andre bogreoler
-          </span>
-        </div>
+      <div className="row">
+        <BookcaseItem
+          profile={this.props.profiles[celebnum]}
+          list={this.props.lists[celebnum]}
+          key={'bookcase-' + celebnum}
+        />
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   return {
     lists: state.bookcaseReducer.lists,
