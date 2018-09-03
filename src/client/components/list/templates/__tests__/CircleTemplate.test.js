@@ -34,7 +34,7 @@ const profile = {
 describe('CircleTemplate', () => {
   test('circle of list items is shown', () => {
     const list = {
-      id: 'current-list-id',
+      _id: 'current-list-id',
       title: 'some title',
       description: 'some description',
       public: true,

@@ -33,8 +33,8 @@ exports[`Lists Container List is rendered 2`] = `
   lists={
     Array [
       Object {
+        "_id": 1,
         "description": "some description",
-        "id": 1,
         "list": Array [
           Object {
             "book": Object {
@@ -73,8 +73,8 @@ exports[`Lists Container List is rendered 2`] = `
         "title": "some list",
       },
       Object {
+        "_id": 2,
         "description": "some description",
-        "id": 2,
         "list": Array [
           Object {
             "book": Object {

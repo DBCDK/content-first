@@ -29,7 +29,7 @@ const createTestElement = id => {
 describe('ListCreate', () => {
   test('list details is shown', () => {
     const currentList = {
-      id: 'current-list-id',
+      _id: 'current-list-id',
       title: 'some title',
       description: 'some description',
       public: true,
@@ -52,7 +52,7 @@ describe('ListCreate', () => {
 
   test('renders a list with one book', () => {
     const currentList = {
-      id: 'current-list-id',
+      _id: 'current-list-id',
       title: 'some title',
       description: 'some description',
       public: false,
@@ -75,7 +75,7 @@ describe('ListCreate', () => {
 
   test('renders a list with multiple books', () => {
     const currentList = {
-      id: 'current-list-id',
+      _id: 'current-list-id',
       title: 'some title',
       description: 'some description',
       public: false,

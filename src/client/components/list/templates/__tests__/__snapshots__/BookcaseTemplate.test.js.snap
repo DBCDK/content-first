@@ -7,9 +7,9 @@ exports[`BookcaseTemplate circle of list items is shown 1`] = `
   <BookcaseItem
     list={
       Object {
+        "_id": "current-list-id",
         "description": "some description",
         "descriptionImage": true,
-        "id": "current-list-id",
         "list": Array [
           Object {
             "book": Object {
@@ -118,9 +118,9 @@ exports[`BookcaseTemplate circle of list items is shown 1`] = `
     editButton={undefined}
     list={
       Object {
+        "_id": "current-list-id",
         "description": "some description",
         "descriptionImage": true,
-        "id": "current-list-id",
         "list": Array [
           Object {
             "book": Object {

@@ -5,8 +5,8 @@ exports[`ListView List is rendered 1`] = `
   editButton=""
   list={
     Object {
+      "_id": "list1",
       "description": "some description",
-      "id": "list1",
       "list": Array [
         Object {
           "book": Object {
@@ -66,8 +66,8 @@ exports[`ListView edit button enabled, when isOwner true 1`] = `
   editButton=""
   list={
     Object {
+      "_id": "list1",
       "description": "some description",
-      "id": "list1",
       "list": Array [
         Object {
           "book": Object {

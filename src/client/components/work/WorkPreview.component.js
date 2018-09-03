@@ -113,7 +113,7 @@ class WorkPreview extends React.Component {
                 collection.map(col => {
                   if (col.count === 1) {
                     return (
-                      <a href={col.url} target="_blank">
+                      <a href={col.url} target="_blank" key={col.url}>
                         <Button
                           type="quaternary"
                           size="medium"

@@ -25,7 +25,7 @@ class ListCard extends React.Component {
   }
 
   updateComments() {
-    this.props.fetchComments(this.props.list.id);
+    this.props.fetchComments(this.props.list._id);
 
     if (this.props.list.list && this.props.list.list.length > 0) {
       this.props.list.list.forEach(el => {
@@ -57,11 +57,11 @@ class ListCard extends React.Component {
     if (!this.props.skeleton) {
       if (
         this.props.comments &&
-        this.props.comments[list.id] &&
-        this.props.comments[list.id].comments
+        this.props.comments[list._id] &&
+        this.props.comments[list._id].comments
       ) {
         // count comments for list
-        commentCount = this.props.comments[list.id].comments.length;
+        commentCount = this.props.comments[list._id].comments.length;
         if (this.props.list.list && this.props.list.list.length > 0) {
           this.props.list.list.forEach(el => {
             const elementComments = this.props.comments[el._key + '-' + el.pid];
@@ -91,10 +91,10 @@ class ListCard extends React.Component {
 
     return (
       <div className={'list-card mr1 ml1 ' + className} style={style}>
-        <Link href={`/lister/${list.id}`}>
+        <Link href={`/lister/${list._id}`}>
           <div className="list-card-wrap">
             <div className="list-card-cover">
-              {this.renderBookCover(list.id, list.image)}
+              {this.renderBookCover(list._id, list.image)}
             </div>
             <div className="list-card-summary">
               <Heading
@@ -114,7 +114,7 @@ class ListCard extends React.Component {
             </div>
             <div className="list-card-bottom">
               <ProfileImage
-                key={'profile-img-' + list.id}
+                key={'profile-img-' + list._id}
                 user={this.props.profile}
                 namePosition={'right'}
                 type="list"

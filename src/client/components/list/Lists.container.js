@@ -18,8 +18,8 @@ export class Lists extends React.Component {
             <ListItem
               list={data.list}
               title={data.title}
-              id={data.id}
-              key={data.id}
+              _id={data._id}
+              key={data._id}
               type={data.type}
               image={data.image}
               hideIfEmpty={false}
@@ -31,8 +31,8 @@ export class Lists extends React.Component {
             <ListItem
               list={data.list}
               title={data.title}
-              id={data.id}
-              key={data.id}
+              _id={data._id}
+              key={data._id}
               type={data.type}
               image={data.image ? `/v1/image/${data.image}/50/50` : null}
               hideIfEmpty={false}

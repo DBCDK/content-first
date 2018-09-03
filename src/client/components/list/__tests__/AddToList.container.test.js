@@ -16,9 +16,9 @@ const createTestElement = id => {
   };
 };
 
-const createList = id => {
+const createList = _id => {
   return {
-    id: id,
+    _id,
     title: 'some list',
     description: 'some description',
     list: [createTestElement(1), createTestElement(2), createTestElement(3)]
