@@ -136,7 +136,6 @@ const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch => ({
   editFilterToggle: () => dispatch({type: ON_EDIT_FILTER_TOGGLE}),
   expandFiltersToggle: id => dispatch({type: ON_EXPAND_FILTERS_TOGGLE, id}),
-
   history: (type, path, params = {}) => {
     dispatch({type, path, params});
   },

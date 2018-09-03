@@ -4,6 +4,7 @@ import SelectedFilters from './SelectedFilters.component';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../redux/middleware';
 import {getRecommendedPids} from '../../redux/recommend';
+import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {
   getTagsFromUrl,
   getIdsFromRange,
@@ -222,7 +223,12 @@ export const mapDispatchToProps = dispatch => ({
       path,
       params
     });
-  }
+  },
+  fetchWorks: pids =>
+    dispatch({
+      type: BOOKS_REQUEST,
+      pids: pids
+    })
 });
 
 export default connect(

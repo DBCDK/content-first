@@ -76,6 +76,8 @@ class BookSearchSuggester extends React.Component {
     const pids = results.map(work => work.book.pid);
     this.props.fetchWorks(pids);
 
+    console.log('ddd', results);
+
     if (this.currentRequest === value) {
       this.setState({suggestions: results});
     }
@@ -93,6 +95,8 @@ class BookSearchSuggester extends React.Component {
   }
   render() {
     const {value, suggestions} = this.state;
+
+    console.log('suggestions!!!', suggestions);
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
