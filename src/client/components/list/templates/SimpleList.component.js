@@ -61,7 +61,7 @@ export class Item extends React.Component {
                 className="comment-edit-button btn btn-link link-subtle mr2"
                 onClick={() => this.setState({editing: !this.state.editing})}
               >
-                <i class="material-icons" style={{fontSize: '18px'}}>
+                <i className="material-icons" style={{fontSize: '18px'}}>
                   edit
                 </i>
               </button>
@@ -131,12 +131,12 @@ export class Item extends React.Component {
 }
 
 export class SimpleList extends React.Component {
-  toggleFollow(id, cat) {
+  toggleFollow(_id, cat) {
     if (this.props.isLoggedIn) {
-      if (this.props.follows[id]) {
-        this.props.unfollow(id);
+      if (this.props.follows[_id]) {
+        this.props.unfollow(_id);
       } else {
-        this.props.follow(id, cat);
+        this.props.follow(_id, cat);
       }
     } else {
       this.props.openModal(
@@ -177,9 +177,9 @@ export class SimpleList extends React.Component {
               txt="Følg"
               hoverTitle={'Følg ' + list.title}
               status={
-                this.props.follows[this.props.list.id] ? 'active' : 'passive'
+                this.props.follows[this.props.list._id] ? 'active' : 'passive'
               }
-              onClick={() => this.toggleFollow(list.id || list._id, 'list')}
+              onClick={() => this.toggleFollow(list._id, 'list')}
             />
 
             <SocialShareButton
@@ -187,7 +187,7 @@ export class SimpleList extends React.Component {
               facebook={true}
               href={
                 list.public
-                  ? 'https://content-first.demo.dbc.dk/lister/' + list.id
+                  ? 'https://content-first.demo.dbc.dk/lister/' + list._id
                   : null
               }
               hex={'#3b5998'}
@@ -197,7 +197,7 @@ export class SimpleList extends React.Component {
               status={!list.public ? 'passive' : 'active'}
               hoverTitle="Del på facebook"
               onClick={() => {
-                confirmShareModal(list.id);
+                confirmShareModal(list._id);
               }}
             />
           </div>
@@ -220,7 +220,7 @@ export class SimpleList extends React.Component {
               </div>
               <div className="col-9">
                 <p className="t-body">{list.description}</p>
-                {list.social ? <Comments id={list.id} /> : ''}
+                {list.social ? <Comments id={list._id} /> : ''}
               </div>
             </div>
           </div>
@@ -269,26 +269,26 @@ const mapStateToProps = (state, ownProps) => {
 };
 export const mapDispatchToProps = dispatch => ({
   removeElement: async (element, list) => {
-    await dispatch(removeElementFromList(element, list.id));
-    dispatch(storeList(list.id));
+    await dispatch(removeElementFromList(element, list._id));
+    dispatch(storeList(list._id));
   },
   updateElement: (element, list) => {
-    dispatch({type: UPDATE_LIST_ELEMENT, id: list.id, element});
+    dispatch({type: UPDATE_LIST_ELEMENT, _id: list._id, element});
   },
-  submit: list => dispatch(storeList(list.id)),
-  follow: (id, cat) =>
+  submit: list => dispatch(storeList(list._id)),
+  follow: (_id, cat) =>
     dispatch({
       type: FOLLOW,
-      id,
+      _id,
       cat
     }),
-  unfollow: id => {
+  unfollow: _id => {
     dispatch({
       type: UNFOLLOW,
-      id
+      _id
     });
   },
-  confirmShareModal: id => {
+  confirmShareModal: _id => {
     dispatch({
       type: 'OPEN_MODAL',
       modal: 'confirm',
@@ -300,7 +300,7 @@ export const mapDispatchToProps = dispatch => ({
         onConfirm: () => {
           dispatch(
             updateList({
-              id: id,
+              _id,
               public: true
             }),
             dispatch({
@@ -308,7 +308,7 @@ export const mapDispatchToProps = dispatch => ({
               modal: 'confirm'
             })
           );
-          dispatch(storeList(id));
+          dispatch(storeList(_id));
         },
         onCancel: () => {
           dispatch({

@@ -86,8 +86,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 export const mapDispatchToProps = dispatch => ({
   addElement: async (book, list) => {
-    await dispatch(addElementToList(book, list.id));
-    dispatch(storeList(list.id));
+    await dispatch(addElementToList(book, list._id));
+    dispatch(storeList(list._id));
   },
   requireLogin: () => {
     dispatch({

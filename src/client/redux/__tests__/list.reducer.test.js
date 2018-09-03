@@ -45,7 +45,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         type: CUSTOM_LIST,
-        id: 'list1',
+        _id: 'list1',
         _created: '1234'
       })
     );
@@ -82,7 +82,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         description: 'a description 1',
-        id: 'some-id-1',
+        _id: 'some-id-1',
         _created: '1234'
       })
     );
@@ -91,7 +91,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 2',
         description: 'a description 2',
-        id: 'some-id-2',
+        _id: 'some-id-2',
         _created: '1234'
       })
     );
@@ -105,7 +105,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         type: CUSTOM_LIST,
-        id: 'some-id-1',
+        _id: 'some-id-1',
         _created: '1234'
       })
     );
@@ -114,7 +114,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 2',
         type: CUSTOM_LIST,
-        id: 'some-id-2',
+        _id: 'some-id-2',
         _created: '1234'
       })
     );
@@ -130,7 +130,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         type: CUSTOM_LIST,
-        id: 'some-id-1',
+        _id: 'some-id-1',
         _created: '1234'
       })
     );
@@ -139,7 +139,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 2',
         type: SYSTEM_LIST,
-        id: 'some-id-2',
+        _id: 'some-id-2',
         _created: '1234'
       })
     );
@@ -148,7 +148,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 3',
         type: CUSTOM_LIST,
-        id: 'some-id-3',
+        _id: 'some-id-3',
         _created: '1234'
       })
     );
@@ -163,7 +163,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         type: CUSTOM_LIST,
-        id: 'some-id-1',
+        _id: 'some-id-1',
         owner: 'some-owner',
         _created: '1234'
       })
@@ -173,7 +173,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 2',
         type: SYSTEM_LIST,
-        id: 'some-id-2',
+        _id: 'some-id-2',
         owner: 'some-owner-2',
         _created: '1234'
       })
@@ -183,7 +183,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 3',
         type: CUSTOM_LIST,
-        id: 'some-id-3',
+        _id: 'some-id-3',
         owner: 'some-owner',
         _created: '1234'
       })
@@ -200,7 +200,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         type: CUSTOM_LIST,
-        id: 'list2',
+        _id: 'list2',
         _created: '1234'
       })
     );
@@ -218,7 +218,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         type: CUSTOM_LIST,
-        id: 'some-id-1',
+        _id: 'some-id-1',
         _created: '1234'
       })
     );
@@ -263,7 +263,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         type: CUSTOM_LIST,
-        id: 'some-id-1',
+        _id: 'some-id-1',
         _created: '1234'
       })
     );
@@ -294,7 +294,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         type: CUSTOM_LIST,
-        id: 'some-id-1',
+        _id: 'some-id-1',
         _created: '1234'
       })
     );
@@ -322,7 +322,7 @@ describe('listReducer', () => {
       addList({
         title: 'some list 1',
         type: CUSTOM_LIST,
-        id: 'some-id-1',
+        _id: 'some-id-1',
         _created: '1234'
       })
     );

@@ -17,7 +17,7 @@ import {HISTORY_PUSH} from '../../redux/middleware';
 import {getFollowedLists} from '../../redux/selectors';
 import {getListsForOwner} from '../../redux/list.reducer';
 const ListElement = props => {
-  const url = `/lister/${props.list.id}`;
+  const url = `/lister/${props.list._id}`;
   const renderListsCover = list => {
     return list.type === 'SYSTEM_LIST' ? (
       <img
@@ -29,7 +29,7 @@ const ListElement = props => {
     ) : (
       <div
         className="list-card-coverTemplate-small"
-        style={{background: toColor(list.id), height: '40px', width: '40px'}}
+        style={{background: toColor(list._id), height: '40px', width: '40px'}}
       >
         <div className="list-card-brick-small" />
         <div className="list-card-brick-small" />
@@ -104,12 +104,12 @@ class ListOverviewDropDown extends React.Component {
   sortLists(lists) {
     return lists.sort((a, b) => {
       let aDate =
-        !a._owner === this.props.userID && this.props.followReducer[a.id]
-          ? this.props.followReducer[a.id]._created
+        !a._owner === this.props.userID && this.props.followReducer[a._id]
+          ? this.props.followReducer[a._id]._created
           : a._created;
       let bDate =
-        !b._owner === this.props.userID && this.props.followReducer[a.id]
-          ? this.props.followReducer[b.id]._created
+        !b._owner === this.props.userID && this.props.followReducer[a._id]
+          ? this.props.followReducer[b._id]._created
           : b._created;
       aDate = a.type === 'SYSTEM_LIST' ? bDate + 1 : aDate;
       bDate = b.type === 'SYSTEM_LIST' ? aDate + 1 : bDate;
@@ -141,7 +141,7 @@ class ListOverviewDropDown extends React.Component {
             sortedLists.map(list => {
               return (
                 <ListElement
-                  key={list.id}
+                  key={list._id}
                   list={list}
                   profiles={this.props.profiles}
                   userID={this.props.userID ? this.props.userID : ''}

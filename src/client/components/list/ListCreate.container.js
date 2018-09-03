@@ -44,7 +44,7 @@ const ListBooks = props => (
   <div className="list-drag">
     <BookSearchSuggester
       list={props.list}
-      onSubmit={book => props.addElementToList(book, props.list.id)}
+      onSubmit={book => props.addElementToList(book, props.list._id)}
     />
     <DragableList
       list={props.list.list}
@@ -52,7 +52,7 @@ const ListBooks = props => (
       onUpdate={updatedList => {
         props.updateList({...props.list, list: updatedList});
       }}
-      onRemove={book => props.removeElementFromList(book, props.list.id)}
+      onRemove={book => props.removeElementFromList(book, props.list._id)}
     />
   </div>
 );
@@ -160,7 +160,7 @@ export class ListCreator extends React.Component {
     const currentList = this.props.currentList;
 
     this.props.updateList({
-      id: currentList.id,
+      _id: currentList._id,
       [selector]: !currentList[selector]
     });
 
@@ -168,17 +168,17 @@ export class ListCreator extends React.Component {
     // if public gets unchecked, uncheck both social and open
     if (selector === 'public' && currentList.public) {
       this.props.updateList({
-        id: currentList.id,
+        _id: currentList._id,
         social: false
       });
       this.props.updateList({
-        id: currentList.id,
+        _id: currentList._id,
         open: false
       });
       // if open or social gets checked, public is forced checked
     } else if (!currentList.social || !currentList.open) {
       this.props.updateList({
-        id: currentList.id,
+        _id: currentList._id,
         public: true
       });
     }
@@ -296,7 +296,7 @@ export class ListCreator extends React.Component {
                             : null
                         }
                         onFile={img => {
-                          this.props.addImage(currentList.id, img);
+                          this.props.addImage(currentList._id, img);
                         }}
                       >
                         {currentList.template === 'bookcase' ? (
@@ -400,9 +400,7 @@ export class ListCreator extends React.Component {
                   className="text-danger"
                   style={{cursor: 'pointer'}}
                   onClick={() =>
-                    this.props.confirmDeleteModal(
-                      this.props.currentList.id || this.props.currentList._id
-                    )
+                    this.props.confirmDeleteModal(this.props.currentList._id)
                   }
                 >
                   {isNew ? (
@@ -447,23 +445,23 @@ export const mapDispatchToProps = dispatch => ({
   addImage: (id, image) => dispatch({type: ADD_LIST_IMAGE, image, id}),
   updateList: data => dispatch(updateList(data)),
   storeList: async list => {
-    await dispatch(storeList(list.id));
+    await dispatch(storeList(list._id));
     dispatch({type: HISTORY_REPLACE, path: '/profile'});
   },
   exitList: path => dispatch({type: HISTORY_REPLACE, path: path}),
-  addElementToList: (book, id) => dispatch(addElementToList(book, id)),
-  removeElementFromList: (book, id) =>
-    dispatch(removeElementFromList(book, id)),
+  addElementToList: (book, _id) => dispatch(addElementToList(book, _id)),
+  removeElementFromList: (book, _id) =>
+    dispatch(removeElementFromList(book, _id)),
   loadLists: () => dispatch({type: LIST_LOAD_REQUEST}),
   createList: async () => {
-    const {id} = await saveList({});
-    dispatch(addList({id}));
+    const {_id} = await saveList({});
+    dispatch(addList({_id}));
     dispatch({
       type: HISTORY_REPLACE,
-      path: `/lister/${id}/rediger`
+      path: `/lister/${_id}/rediger`
     });
   },
-  confirmDeleteModal: id => {
+  confirmDeleteModal: _id => {
     dispatch({
       type: 'OPEN_MODAL',
       modal: 'confirm',
@@ -473,7 +471,7 @@ export const mapDispatchToProps = dispatch => ({
         confirmText: 'Slet liste',
         onConfirm: () =>
           dispatch(
-            removeList(id),
+            removeList(_id),
             dispatch({
               type: 'CLOSE_MODAL',
               modal: 'confirm'

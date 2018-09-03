@@ -37,59 +37,59 @@ const listReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ADD_LIST: {
       const {list} = action;
-      if (!list.id) {
-        throw new Error('Cant add list when list.data.id is not set');
+      if (!list._id) {
+        throw new Error('Cant add list when list.data._id is not set');
       }
       return Object.assign({}, state, {
-        lists: {...state.lists, [list.id]: list}
+        lists: {...state.lists, [list._id]: list}
       });
     }
     case REMOVE_LIST: {
-      if (!action.id) {
+      if (!action._id) {
         throw new Error("'id' is missing from action");
       }
 
       const list = {
-        ...state.lists[action.id],
+        ...state.lists[action._id],
         deletingIsLoading: true
       };
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list}
+        lists: {...state.lists, [action._id]: list}
       });
     }
     case REMOVE_LIST_SUCCESS: {
-      if (!action.id) {
+      if (!action._id) {
         throw new Error("'id' is missing from action");
       }
 
       const lists = {...state.lists};
 
-      delete lists[action.id];
+      delete lists[action._id];
 
       return Object.assign({}, state, {lists});
     }
     case REMOVE_LIST_ERROR: {
-      if (!action.id) {
+      if (!action._id) {
         throw new Error("'id' is missing from action");
       }
 
       const list = {
-        ...state.lists[action.id],
+        ...state.lists[action._id],
         error: action.error,
         deletingIsLoading: false
       };
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list}
+        lists: {...state.lists, [action._id]: list}
       });
     }
     case ADD_ELEMENT_TO_LIST: {
-      if (!action.id) {
+      if (!action._id) {
         throw new Error("'id' is missing from action");
       }
-      if (!state.lists[action.id]) {
-        throw new Error(`Could not find list with id ${action.id}`);
+      if (!state.lists[action._id]) {
+        throw new Error(`Could not find list with _id ${action._id}`);
       }
       if (!action.element) {
         throw new Error("'element' is missing from action");
@@ -102,7 +102,7 @@ const listReducer = (state = defaultState, action) => {
       });
 
       const list = {
-        ...state.lists[action.id]
+        ...state.lists[action._id]
       };
 
       if (
@@ -117,16 +117,16 @@ const listReducer = (state = defaultState, action) => {
         list.list = [...list.list, action.element];
       }
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list},
+        lists: {...state.lists, [action._id]: list},
         changeMap
       });
     }
     case REMOVE_ELEMENT_FROM_LIST: {
-      if (!action.id) {
+      if (!action._id) {
         throw new Error("'id' is missing from action");
       }
-      if (!state.lists[action.id]) {
-        throw new Error(`Could not find list with id ${action.id}`);
+      if (!state.lists[action._id]) {
+        throw new Error(`Could not find list with _id ${action._id}`);
       }
       if (!action.element) {
         throw new Error("'element' is missing from action");
@@ -135,7 +135,7 @@ const listReducer = (state = defaultState, action) => {
         [action.element.book.pid]: {}
       });
       const list = {
-        ...state.lists[action.id]
+        ...state.lists[action._id]
       };
       list.deleted = list.deleted || {};
       list.deleted[action.element._id] = true;
@@ -145,16 +145,16 @@ const listReducer = (state = defaultState, action) => {
         element => element.pid !== action.element.book.pid
       );
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list},
+        lists: {...state.lists, [action._id]: list},
         changeMap
       });
     }
     case LIST_INSERT_ELEMENT: {
-      if (!action.id) {
+      if (!action._id) {
         throw new Error("'id' is missing from action");
       }
-      if (!state.lists[action.id]) {
-        throw new Error(`Could not find list with id ${action.id}`);
+      if (!state.lists[action._id]) {
+        throw new Error(`Could not find list with _id ${action._id}`);
       }
       if (!action.element) {
         throw new Error("'element' is missing from action");
@@ -166,7 +166,7 @@ const listReducer = (state = defaultState, action) => {
         [action.element.book.pid]: {}
       });
       const list = {
-        ...state.lists[action.id]
+        ...state.lists[action._id]
       };
       const listElements = [...list.list];
       listElements.splice(
@@ -179,16 +179,16 @@ const listReducer = (state = defaultState, action) => {
           !(element.book.pid === action.element.book.pid && idx !== action.pos)
       );
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list},
+        lists: {...state.lists, [action._id]: list},
         changeMap
       });
     }
     case LIST_TOGGLE_ELEMENT: {
-      if (!action.id) {
+      if (!action._id) {
         throw new Error("'id' is missing from action");
       }
-      if (!state.lists[action.id]) {
-        throw new Error(`Could not find list with id ${action.id}`);
+      if (!state.lists[action._id]) {
+        throw new Error(`Could not find list with _id ${action._id}`);
       }
       if (!action.element) {
         throw new Error("'element' is missing from action");
@@ -197,7 +197,7 @@ const listReducer = (state = defaultState, action) => {
         [action.element.book.pid]: {}
       });
       const list = {
-        ...state.lists[action.id]
+        ...state.lists[action._id]
       };
       const removed = list.list.filter(e => e.pid !== action.element.book.pid);
       if (removed.length < list.list.length) {
@@ -207,7 +207,7 @@ const listReducer = (state = defaultState, action) => {
         list.list = [...list.list, action.element];
       }
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list},
+        lists: {...state.lists, [action._id]: list},
         changeMap
       });
     }
@@ -215,12 +215,12 @@ const listReducer = (state = defaultState, action) => {
       if (!action.data) {
         throw new Error("'data' is missing from action");
       }
-      if (!state.lists[action.data.id]) {
-        throw new Error(`Could not find list with id ${action.data.id}`);
+      if (!state.lists[action.data._id]) {
+        throw new Error(`Could not find list with _id ${action.data._id}`);
       }
-      const list = {...state.lists[action.data.id], ...action.data};
+      const list = {...state.lists[action.data._id], ...action.data};
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.data.id]: list}
+        lists: {...state.lists, [action.data._id]: list}
       });
     }
     case LIST_LOAD_RESPONSE: {
@@ -240,7 +240,7 @@ const listReducer = (state = defaultState, action) => {
             };
           }
         });
-        return (listMap[l.id] = l);
+        return (listMap[l._id] = l);
       });
 
       return Object.assign({}, state, {
@@ -251,13 +251,13 @@ const listReducer = (state = defaultState, action) => {
     case ADD_LIST_IMAGE: {
       validateId(state, action);
       const list = {
-        ...state.lists[action.id],
+        ...state.lists[action._id],
         imageIsLoading: true,
         image: null,
         imageError: null
       };
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list}
+        lists: {...state.lists, [action._id]: list}
       });
     }
     case UPDATE_LIST_ELEMENT: {
@@ -266,7 +266,7 @@ const listReducer = (state = defaultState, action) => {
         throw new Error("'element' is missing from action");
       }
       const list = {
-        ...state.lists[action.id]
+        ...state.lists[action._id]
       };
       list.list = list.list.map(element => {
         if (action.element._id === element._id) {
@@ -276,43 +276,43 @@ const listReducer = (state = defaultState, action) => {
       });
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list}
+        lists: {...state.lists, [action._id]: list}
       });
     }
     case ADD_LIST_IMAGE_SUCCESS: {
       validateId(state, action);
       const list = {
-        ...state.lists[action.id],
+        ...state.lists[action._id],
         imageIsLoading: false,
-        image: action.image.id,
+        image: action.image._id,
         imageError: null
       };
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list}
+        lists: {...state.lists, [action._id]: list}
       });
     }
     case ADD_LIST_IMAGE_ERROR: {
       validateId(state, action);
       const list = {
-        ...state.lists[action.id],
+        ...state.lists[action._id],
         imageIsLoading: true,
         image: null,
         imageError: action.error
       };
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list}
+        lists: {...state.lists, [action._id]: list}
       });
     }
     case STORE_LIST: {
       const list = {
-        ...state.lists[action.id],
+        ...state.lists[action._id],
         pending: []
       };
       list._modified = null;
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.id]: list},
-        latestUsedId: action.id
+        lists: {...state.lists, [action._id]: list},
+        latestUsedId: action._id
       });
     }
     case ON_USERLISTS_EXPAND:
@@ -331,14 +331,14 @@ export const addList = ({
   title = '',
   description = '',
   list = [],
-  id = null,
+  _id = null,
   owner = null,
   _created = Date.now()
 }) => {
   return {
     type: ADD_LIST,
     list: {
-      id,
+      _id,
       type,
       title,
       description,
@@ -354,45 +354,45 @@ export const updateList = data => {
     data
   };
 };
-export const removeList = id => {
+export const removeList = _id => {
   return {
     type: REMOVE_LIST,
-    id
+    _id
   };
 };
-export const addElementToList = (element, id) => {
+export const addElementToList = (element, _id) => {
   return {
     type: ADD_ELEMENT_TO_LIST,
     element,
-    id
+    _id
   };
 };
-export const removeElementFromList = (element, id) => {
+export const removeElementFromList = (element, _id) => {
   return {
     type: REMOVE_ELEMENT_FROM_LIST,
     element,
-    id
+    _id
   };
 };
-export const toggleElementInList = (element, id) => {
+export const toggleElementInList = (element, _id) => {
   return {
     type: LIST_TOGGLE_ELEMENT,
     element,
-    id
+    _id
   };
 };
-export const insertElement = (element, pos, id) => {
+export const insertElement = (element, pos, _id) => {
   return {
     type: LIST_INSERT_ELEMENT,
     element,
     pos,
-    id
+    _id
   };
 };
-export const storeList = id => {
+export const storeList = _id => {
   return {
     type: STORE_LIST,
-    id
+    _id
   };
 };
 
@@ -411,6 +411,9 @@ export const getLists = (state, {type, sort} = {}) => {
   const lists = Object.values(listState.lists)
     .filter(l => {
       if (type && l.type !== type) {
+        return false;
+      }
+      if (!l.title) {
         return false;
       }
       return true;
@@ -455,11 +458,11 @@ export const getPublicLists = state => {
     });
 };
 
-export const getListById = (state, id) => {
+export const getListById = (state, _id) => {
   const listState = state.listReducer;
   const booksState = state.booksReducer;
 
-  let list = listState.lists[id];
+  let list = listState.lists[_id];
   if (!list) {
     return;
   }
@@ -484,11 +487,11 @@ export const getListById = (state, id) => {
 };
 
 const validateId = (state, action) => {
-  if (!action.id) {
-    throw new Error("'id' is not defined");
+  if (!action._id) {
+    throw new Error("'_id' is not defined");
   }
-  if (!state.lists[action.id]) {
-    throw new Error(`Could not find list with id ${action.id}`);
+  if (!state.lists[action._id]) {
+    throw new Error(`Could not find list with _id ${action._id}`);
   }
 };
 

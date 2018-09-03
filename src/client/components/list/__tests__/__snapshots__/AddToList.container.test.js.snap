@@ -16,8 +16,8 @@ exports[`AddToList render when allowAdd is true 1`] = `
   <Connect(BookSearchSuggester)
     list={
       Object {
+        "_id": 1,
         "description": "some description",
-        "id": 1,
         "list": Array [
           Object {
             "book": Object {
@@ -73,8 +73,8 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
   <Connect(BookSearchSuggester)
     list={
       Object {
+        "_id": 1,
         "description": "some description",
-        "id": 1,
         "list": Array [
           Object {
             "book": Object {
@@ -167,8 +167,8 @@ exports[`AddToList show error msg when selected books is already in list 1`] = `
   <Connect(BookSearchSuggester)
     list={
       Object {
+        "_id": 1,
         "description": "some description",
-        "id": 1,
         "list": Array [
           Object {
             "book": Object {

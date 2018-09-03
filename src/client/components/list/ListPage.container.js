@@ -34,7 +34,7 @@ export class ListPage extends React.Component {
       editButton = (
         <Link
           className="small link-subtle align-middle ml2"
-          href={`/lister/${list.id}/rediger`}
+          href={`/lister/${list._id}/rediger`}
         >
           Redigér liste
         </Link>

@@ -15,7 +15,7 @@ const Cover = ({pid, title, coverUrl, width, height}) => (
   />
 );
 
-const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
+const ListItem = ({list, title, _id, image, type, hideIfEmpty = true}) => {
   if (list.length === 0 && hideIfEmpty === true) {
     return null;
   }
@@ -23,7 +23,7 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
   let editButton = '';
   if (type === CUSTOM_LIST) {
     editButton = (
-      <Link href={`/lister/${id}/rediger`} className="small ml1 link-subtle">
+      <Link href={`/lister/${_id}/rediger`} className="small ml1 link-subtle">
         Redigér
       </Link>
     );
@@ -31,16 +31,16 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
 
   return (
     <div className="list-item tl mb1">
-      <Link href={`/lister/${id}`} className="list-image">
+      <Link href={`/lister/${_id}`} className="list-image">
         {image ? <img src={image} alt={title} /> : ''}
       </Link>
       <div className="ml2" style={{flexGrow: 1}}>
-        <Link href={`/lister/${id}`} className="link-dark">
+        <Link href={`/lister/${_id}`} className="link-dark">
           {title}
         </Link>
         {editButton}
       </div>
-      <Link href={`/lister/${id}`} className="ml2">
+      <Link href={`/lister/${_id}`} className="ml2">
         {list.slice(0, 5).map(el => {
           return (
             <span className="ml1" key={el.pid}>
@@ -48,7 +48,7 @@ const ListItem = ({list, title, id, image, type, hideIfEmpty = true}) => {
             </span>
           );
         })}
-        <Link href={`/lister/${id}`} className="ml1 link-subtle inline">
+        <Link href={`/lister/${_id}`} className="ml1 link-subtle inline">
           {list.length === 6
             ? '+ 1 bog mere'
             : list.length > 6

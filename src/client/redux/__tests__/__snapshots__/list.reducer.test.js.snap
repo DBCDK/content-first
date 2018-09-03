@@ -4,8 +4,8 @@ exports[`listReducer add element to list 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "list2",
     "description": "",
-    "id": "list2",
     "list": Array [
       Object {
         "book": Object {
@@ -31,8 +31,8 @@ exports[`listReducer add element to list twice - no duplicates allowed 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "some-id-1",
     "description": "",
-    "id": "some-id-1",
     "list": Array [
       Object {
         "book": Object {
@@ -72,8 +72,8 @@ exports[`listReducer add lists 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "some-id-1",
     "description": "a description 1",
-    "id": "some-id-1",
     "list": Array [],
     "owner": null,
     "title": "some list 1",
@@ -81,8 +81,8 @@ Array [
   },
   Object {
     "_created": "1234",
+    "_id": "some-id-2",
     "description": "a description 2",
-    "id": "some-id-2",
     "list": Array [],
     "owner": null,
     "title": "some list 2",
@@ -95,8 +95,8 @@ exports[`listReducer get lists by type 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "some-id-1",
     "description": "",
-    "id": "some-id-1",
     "list": Array [],
     "owner": null,
     "title": "some list 1",
@@ -104,8 +104,8 @@ Array [
   },
   Object {
     "_created": "1234",
+    "_id": "some-id-3",
     "description": "",
-    "id": "some-id-3",
     "list": Array [],
     "owner": null,
     "title": "some list 3",
@@ -118,8 +118,8 @@ exports[`listReducer get lists for owner 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "some-id-1",
     "description": "",
-    "id": "some-id-1",
     "list": Array [],
     "owner": "some-owner",
     "title": "some list 1",
@@ -127,8 +127,8 @@ Array [
   },
   Object {
     "_created": "1234",
+    "_id": "some-id-3",
     "description": "",
-    "id": "some-id-3",
     "list": Array [],
     "owner": "some-owner",
     "title": "some list 3",
@@ -143,8 +143,8 @@ exports[`listReducer insert element at specific pos in list 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "some-id-1",
     "description": "",
-    "id": "some-id-1",
     "list": Array [
       Object {
         "_id": 1,
@@ -190,11 +190,11 @@ exports[`listReducer remove element from list 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "some-id-1",
     "deleted": Object {
       "123": true,
     },
     "description": "",
-    "id": "some-id-1",
     "list": Array [
       Object {
         "_id": "456",
@@ -229,9 +229,9 @@ exports[`listReducer remove list 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "some-id-1",
     "deletingIsLoading": true,
     "description": "",
-    "id": "some-id-1",
     "list": Array [],
     "owner": null,
     "title": "some list 1",
@@ -239,8 +239,8 @@ Array [
   },
   Object {
     "_created": "1234",
+    "_id": "some-id-2",
     "description": "",
-    "id": "some-id-2",
     "list": Array [],
     "owner": null,
     "title": "some list 2",
@@ -253,8 +253,8 @@ exports[`listReducer toggle element in list 1`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "some-id-1",
     "description": "",
-    "id": "some-id-1",
     "list": Array [
       Object {
         "book": Object {
@@ -276,8 +276,8 @@ exports[`listReducer toggle element in list 2`] = `
 Array [
   Object {
     "_created": "1234",
+    "_id": "some-id-1",
     "description": "",
-    "id": "some-id-1",
     "list": Array [],
     "owner": null,
     "title": "some list 1",

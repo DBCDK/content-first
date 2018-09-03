@@ -155,8 +155,8 @@ exports[`ListCreate list details is shown 1`] = `
             <BookSearchSuggester
               list={
                 Object {
+                  "_id": "current-list-id",
                   "description": "some description",
-                  "id": "current-list-id",
                   "list": Array [],
                   "open": true,
                   "public": true,
@@ -427,8 +427,8 @@ exports[`ListCreate renders a list with multiple books 1`] = `
             <BookSearchSuggester
               list={
                 Object {
+                  "_id": "current-list-id",
                   "description": "some description",
-                  "id": "current-list-id",
                   "list": Array [
                     Object {
                       "book": Object {
@@ -903,8 +903,8 @@ exports[`ListCreate renders a list with one book 1`] = `
             <BookSearchSuggester
               list={
                 Object {
+                  "_id": "current-list-id",
                   "description": "some description",
-                  "id": "current-list-id",
                   "list": Array [
                     Object {
                       "book": Object {

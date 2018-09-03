@@ -114,7 +114,7 @@ export const interactionMiddleware = store => next => action => {
 
     case LIST_TOGGLE_ELEMENT: {
       const notChecked = isNotChecked(
-        store.getState().listReducer.lists[action.id].list,
+        store.getState().listReducer.lists[action._id].list,
         action.element.book.pid
       );
       if (notChecked) {
