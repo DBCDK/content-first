@@ -284,7 +284,7 @@ const listReducer = (state = defaultState, action) => {
       const list = {
         ...state.lists[action._id],
         imageIsLoading: false,
-        image: action.image._id,
+        image: action.image.id,
         imageError: null
       };
 

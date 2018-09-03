@@ -201,13 +201,15 @@ export class ListCreator extends React.Component {
       return null;
     }
 
+    const template = 'simple';
+
     let size = '/150/150';
     let bookcaseBoxClass = '';
     let imgUploadStyles = {};
 
     if (
       this.props.currentList &&
-      this.props.currentList.template === 'bookcase' &&
+      template === 'bookcase' &&
       this.props.currentList.image &&
       !this.props.currentList.imageIsLoading
     ) {
@@ -267,22 +269,6 @@ export class ListCreator extends React.Component {
                       }
                       value={currentList.description}
                     />
-                    <div>
-                      <span className="ml1">Skal vises som</span>
-                      <select
-                        value={currentList.template || 'simple'}
-                        onChange={e =>
-                          this.onChange({template: e.currentTarget.value})
-                        }
-                        className="form-control ml1"
-                        style={{width: 'auto', display: 'inline-block'}}
-                      >
-                        <option value="simple">Simpel liste</option>
-                        <option value="circle">Visuel liste</option>
-                        <option value="bookcase">Bogreol</option>
-                      </select>
-                    </div>
-
                     <div className="mt1 text-left">
                       <ImageUpload
                         className={'mt1 ' + bookcaseBoxClass}
@@ -299,7 +285,7 @@ export class ListCreator extends React.Component {
                           this.props.addImage(currentList._id, img);
                         }}
                       >
-                        {currentList.template === 'bookcase' ? (
+                        {template === 'bookcase' ? (
                           <div className="dotHandler-wrap">
                             <div className="col-4 bookcase-profile">
                               <img
@@ -442,7 +428,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 export const mapDispatchToProps = dispatch => ({
-  addImage: (id, image) => dispatch({type: ADD_LIST_IMAGE, image, id}),
+  addImage: (_id, image) => dispatch({type: ADD_LIST_IMAGE, image, _id}),
   updateList: data => dispatch(updateList(data)),
   storeList: async list => {
     await dispatch(storeList(list._id));
