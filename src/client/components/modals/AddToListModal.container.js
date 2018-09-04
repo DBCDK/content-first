@@ -83,7 +83,6 @@ export class AddToListModal extends React.Component {
     this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
   };
   onDone = () => {
-
     // If the "create-new-list" field is NOT empty - auto-create new list
     let listName = '';
     let count = this.props.works.length || 0;

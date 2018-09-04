@@ -1,5 +1,6 @@
 import React from 'react';
 import request from 'superagent';
+import {uniqBy} from 'lodash';
 import Autosuggest from 'react-autosuggest';
 import {isMobile} from 'react-device-detect';
 
@@ -46,10 +47,13 @@ const addEmphasisToString = (string, pattern) => {
 };
 
 const renderSuggestion = (suggestion, suggestionString) => {
+  const icon = suggestion.icon ? suggestion.icon : 'label';
+  const text = suggestion.text ? suggestion.text : suggestion.title;
+
   return (
     <div className="suggestion-title">
-      {addEmphasisToString(suggestion.title, suggestionString)}
-      <Icon name="label" className="md-small" />
+      {addEmphasisToString(text, suggestionString)}
+      <Icon name={icon} className="md-small" />
       <span className="ml1 suggestion-subject">{suggestion.parents[1]}</span>
     </div>
   );
@@ -63,8 +67,9 @@ class TagsSuggester extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tagsSuggestions: [],
-      authorTitelSuggestions: [],
+      tagsSuggestions: {suggestions: []},
+      authorSuggestions: [],
+      titleSuggestions: [],
       inputVisibel: true
     };
   }
@@ -75,7 +80,7 @@ class TagsSuggester extends React.Component {
     this.setState({tagsSuggestions: result});
   }
 
-  async onAuthorTitelSuggestionsFetchRequested({value}) {
+  async onAuthorTitleSuggestionsFetchRequested({value}) {
     value = value.toLowerCase();
     this.currentRequest = value;
     const results = JSON.parse(
@@ -92,45 +97,52 @@ class TagsSuggester extends React.Component {
       title: book.title,
       suggestions: [
         {
-          pid: book.pid,
           title: book.title,
-          creator: book.creator,
-          parents: ['', 'Forfatter el. titel']
+          creator: book.creator
         }
       ]
     }));
 
-    console.log('results: ', results);
+    let authorResults = results
+      .filter(a => {
+        if (!a.suggestions[0].creator.toLowerCase().includes(value)) {
+          return a.suggestions[0].title.toLowerCase().includes(value);
+        }
+        return a.suggestions[0].creator.toLowerCase().includes(value);
+      })
+      .map(a => {
+        return {
+          suggestions: [
+            {
+              text: a.suggestions[0].creator,
+              type: 'creator',
+              parents: ['', 'Forfatter'],
+              icon: 'account_circle'
+            }
+          ]
+        };
+      });
+    authorResults = uniqBy(authorResults, 'creator');
 
-    const authorResults = results.filter(match => {
-      if (match.suggestions[0].creator) {
-        console.log(
-          'creator index of?',
-          match.suggestions[0].creator.includes(value)
-        );
-      }
-
-      return (
-        match.suggestions[0].creator &&
-        match.suggestions[0].creator.includes(value)
-      );
-    });
-
-    console.log('results2', results);
-
-    const titelResults = results.filter(match => {
-      if (match.suggestions[0].titel) {
-        console.log(
-          'titel index of?',
-          match.suggestions[0].titel.includes(value)
-        );
-      }
-      return (
-        match.suggestions[0].titel && match.suggestions[0].titel.includes(value)
-      );
-    });
-
-    console.log('author, titel: ', authorResults, titelResults);
+    const titleResults = results
+      .filter(t => {
+        if (!t.suggestions[0].title.toLowerCase().includes(value)) {
+          return t.suggestions[0].creator.toLowerCase().includes(value);
+        }
+        return t.suggestions[0].title.toLowerCase().includes(value);
+      })
+      .map(t => {
+        return {
+          suggestions: [
+            {
+              text: t.suggestions[0].title,
+              type: 'title',
+              parents: ['', 'Bog'],
+              icon: 'book'
+            }
+          ]
+        };
+      });
 
     //const pids = results.map(work => work.book.pid);
     //this.props.fetchWorks(pids);
@@ -138,13 +150,13 @@ class TagsSuggester extends React.Component {
     if (this.currentRequest === value) {
       this.setState({
         authorSuggestions: authorResults,
-        titelSuggestions: titelResults
+        titleSuggestions: titleResults
       });
     }
   }
 
   onSuggestionsClearRequested() {
-    this.setState({tagsSuggestions: [], authorTitelSuggestions: []});
+    this.setState({tagsSuggestions: [], authorTitleSuggestions: []});
     delete this.currentRequest;
   }
 
@@ -166,16 +178,28 @@ class TagsSuggester extends React.Component {
 
   render() {
     const output = 10;
-    const {tagsSuggestions, authorTitelSuggestions} = this.state;
+    let {tagsSuggestions, authorSuggestions, titleSuggestions} = this.state;
 
-    console.log(tagsSuggestions, authorTitelSuggestions);
+    //authorSuggestions = authorSuggestions.splice(0, 2);
+    //titleSuggestions = titleSuggestions.splice(0, 2);
+    //tagsSuggestions = tagsSuggestions.splice(0, 10);
 
-    //tagsSuggestions.splice(0, output - authorTitelSuggestions.length);
+    // console.log(
+    //   'suggestion groups: ',
+    //   tagsSuggestions,
+    //   authorSuggestions,
+    //   titleSuggestions
+    // );
 
-    const suggestions = authorTitelSuggestions.concat(tagsSuggestions);
+    let suggestions = [];
 
-    console.log(tagsSuggestions, authorTitelSuggestions);
-    console.log('vvv', suggestions);
+    suggestions = suggestions.concat(
+      tagsSuggestions,
+      authorSuggestions,
+      titleSuggestions
+    );
+
+    //console.log('suggestions: ', suggestions);
 
     const inputVisibel = this.state.inputVisibel;
     const tagsInField = this.props.selectedFilters.length === 0 ? false : true;
@@ -223,7 +247,7 @@ class TagsSuggester extends React.Component {
             multiSection={true}
             onSuggestionsFetchRequested={e => {
               this.onTagsSuggestionsFetchRequested(e);
-              this.onAuthorTitelSuggestionsFetchRequested(e);
+              this.onAuthorTitleSuggestionsFetchRequested(e);
             }}
             onSuggestionsClearRequested={() => {
               this.onSuggestionsClearRequested();

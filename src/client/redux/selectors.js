@@ -55,6 +55,18 @@ export const getTagsFromUrl = state => {
     : [];
 };
 
+export const getCreatorsFromUrl = state => {
+  return state.routerReducer.params.creator
+    ? state.routerReducer.params.creator
+    : [];
+};
+
+export const getTitlesFromUrl = state => {
+  return state.routerReducer.params.title
+    ? state.routerReducer.params.title
+    : [];
+};
+
 export const getIdsFromRange = (state, aIds) => {
   const filterCards = state.filtercardReducer;
 

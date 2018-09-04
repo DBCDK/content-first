@@ -13,6 +13,8 @@ import {HISTORY_REPLACE, HISTORY_PUSH} from '../../redux/middleware';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
 import {
   getTagsFromUrl,
+  getCreatorsFromUrl,
+  getTitlesFromUrl,
   getIdsFromRange,
   getTagsbyIds
 } from '../../redux/selectors';
@@ -48,6 +50,16 @@ class FilterPage extends React.Component {
       !isEqual(prevProps.selectedTagIds, this.props.selectedTagIds)
     ) {
       this.props.fetchRecommendations(this.props.plainSelectedTagIds);
+
+      /* if a creator or title is set search for books on mount*/
+      if (
+        this.props.selectedCreators.length > 0 ||
+        this.props.selectedTitles.length > 0
+      ) {
+        this.props.onSearch(
+          this.props.selectedCreators[0] || this.props.selectedTitles[0]
+        );
+      }
     }
   }
 
@@ -118,16 +130,34 @@ class FilterPage extends React.Component {
 const mapStateToProps = state => {
   const filterCards = state.filtercardReducer;
   const selectedTagIds = getTagsFromUrl(state);
+  const selectedCreators = getCreatorsFromUrl(state);
+  const selectedTitles = getTitlesFromUrl(state);
   const plainSelectedTagIds = getIdsFromRange(state, selectedTagIds);
+  const selectedTags = getTagsbyIds(state, selectedTagIds);
+  const mergedSelectedTags = [].concat(
+    selectedTagIds,
+    selectedCreators,
+    selectedTitles
+  );
+
+  const results =
+    state.searchReducer.results && state.searchReducer.results.length > 0
+      ? {pids: state.searchReducer.results.map(work => work.pid)}
+      : null;
+
+  const recommendedPids = getRecommendedPids(state.recommendReducer, {
+    tags: plainSelectedTagIds
+  });
 
   return {
-    recommendedPids: getRecommendedPids(state.recommendReducer, {
-      tags: plainSelectedTagIds
-    }),
+    recommendedPids: results || recommendedPids,
     filterCards,
-    selectedTagIds,
+    selectedCreators,
+    selectedTitles,
+    selectedTagIds: mergedSelectedTags,
     plainSelectedTagIds,
-    selectedTags: getTagsbyIds(state, selectedTagIds),
+    selectedTags: selectedTags.length > 0 ? selectedTags : mergedSelectedTags,
+    results: results || [],
     filters: state.filterReducer.filters,
     editFilters: state.filterReducer.editFilters,
     expandedFilters: state.filterReducer.expandedFilters
@@ -139,6 +169,8 @@ export const mapDispatchToProps = dispatch => ({
   history: (type, path, params = {}) => {
     dispatch({type, path, params});
   },
+  onSearch: query =>
+    dispatch({type: 'SEARCH_QUERY', query: query.toLowerCase()}),
   fetchRecommendations: tags =>
     dispatch({
       type: RECOMMEND_REQUEST,
