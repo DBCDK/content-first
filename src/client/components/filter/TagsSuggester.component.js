@@ -144,9 +144,6 @@ class TagsSuggester extends React.Component {
         };
       });
 
-    //const pids = results.map(work => work.book.pid);
-    //this.props.fetchWorks(pids);
-
     if (this.currentRequest === value) {
       this.setState({
         authorSuggestions: authorResults,

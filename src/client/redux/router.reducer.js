@@ -32,10 +32,7 @@ const getQueryStringParams = query => {
 const routerReducer = (state = {}, action) => {
   switch (action.type) {
     case ON_LOCATION_CHANGE: {
-      let regexResult;
-
       const params = getQueryStringParams(action.location.search);
-
       return {path: action.path, params};
     }
     default:

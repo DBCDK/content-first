@@ -2,6 +2,10 @@
   top: 90px;
 }
 
+.Toastify__progress-bar {
+  background: var(--alto);
+}
+
 .Toastify__toast {
   background-color: var(--lys-graa);
 }
@@ -21,9 +25,22 @@
   color: var(--de-york);
 }
 
+.ToastMessage.info .ToastMessage__Icon {
+  color: var(--due);
+}
+
 .ToastMessage .ToastMessage__Lines {
   display: flex;
   flex-direction: column;
+}
+
+.ToastMessage .ToastMessage__Line a {
+  font-size: 0.8rem;
+  color: var(--due);
+}
+
+.ToastMessage .ToastMessage__Line a:hover {
+  color: var(--due);
 }
 
 @media only screen and (max-width: 600px) {

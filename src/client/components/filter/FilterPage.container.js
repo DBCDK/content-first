@@ -28,7 +28,13 @@ class FilterPage extends React.Component {
   }
 
   toggleFilter(filterId) {
-    const {selectedTagIds} = this.props;
+    let {selectedTagIds} = this.props;
+
+    /* remove title/creator if any*/
+    selectedTagIds = selectedTagIds.filter(tag => {
+      return !(typeof tag === 'string' || tag instanceof String);
+    });
+
     const tags = selectedTagIds.includes(filterId)
       ? selectedTagIds.filter(id => filterId !== id)
       : [...selectedTagIds, filterId];
@@ -50,16 +56,9 @@ class FilterPage extends React.Component {
       !isEqual(prevProps.selectedTagIds, this.props.selectedTagIds)
     ) {
       this.props.fetchRecommendations(this.props.plainSelectedTagIds);
-
-      /* if a creator or title is set search for books on mount*/
-      if (
-        this.props.selectedCreators.length > 0 ||
-        this.props.selectedTitles.length > 0
-      ) {
-        this.props.onSearch(
-          this.props.selectedCreators[0] || this.props.selectedTitles[0]
-        );
-      }
+      this.props.onSearch(
+        this.props.selectedCreators[0] || this.props.selectedTitles[0] || ''
+      );
     }
   }
 

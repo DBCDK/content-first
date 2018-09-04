@@ -1,5 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+
+import {toast} from 'react-toastify';
+import ToastMessage from '../base/ToastMessage';
+import Button from '../base/Button';
+
 import SelectedFilters from './SelectedFilters.component';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../redux/middleware';
@@ -34,6 +39,10 @@ class SearchBar extends React.Component {
     const filterCards = this.props.filterCards;
     let selectedTagIds = this.props.selectedTagIds;
     let tags = [...selectedTagIds];
+
+    /* history for toast 'goBack' functionality */
+    const historyPath = this.props.router.path;
+    const historyParams = this.props.router.params;
 
     const isTitelorCreator =
       (filterId.parents && filterId.parents[1] === 'Forfatter') ||
@@ -151,12 +160,11 @@ class SearchBar extends React.Component {
         tags = selectedTagIds.includes(filterId)
           ? selectedTagIds.filter(id => filterId !== id)
           : [...selectedTagIds, filterId];
-
-        urlObj['tag'] = tags;
       }
+      /* add as tag key*/
+      urlObj['tag'] = tags;
     } else {
       /* If selected tag is a Creator or Book Title */
-
       if (selectedTagIds.includes(filterId.text)) {
         /* if creator/title already exist - remove*/
         tags = [];
@@ -165,18 +173,43 @@ class SearchBar extends React.Component {
         /* if creator/title dont exist - add it*/
         tags = [encodeURIComponent(filterId.text)];
         this.props.onSearch(filterId.text);
-      }
 
+        if (selectedTagIds.length > 0) {
+          /* if selectedTagIds contains tags which will be deleted - show a 'getMeBack' toast*/
+          this.triggerCancelToast(historyPath, historyParams);
+        }
+      }
       /* if no type is set its a remove tag action and the type value is not important */
       if (!filterId.type) {
         filterId.type = 'creator'; // or Title
       }
-
+      /* add as title or creator key */
       urlObj[filterId.type] = tags;
     }
 
+    /* trigger */
     this.props.historyReplace('/find', urlObj);
     this.initFilterPosition();
+  }
+
+  triggerCancelToast(historyPath, historyParams) {
+    toast(
+      <ToastMessage
+        type="info"
+        icon="history"
+        lines={[
+          'Du startede en ny søgning',
+          <a
+            onClick={() =>
+              this.props.historyReplace(historyPath, historyParams)
+            }
+          >
+            Gå tilbage til forrige søgning
+          </a>
+        ]}
+      />,
+      {hideProgressBar: false, pauseOnHover: true}
+    );
   }
 
   onFiltersMouseWheelScrool(e) {
@@ -255,6 +288,7 @@ const mapStateToProps = state => {
       tags: plainSelectedTagIds
     }),
     filterCards,
+    router: state.routerReducer,
     selectedTagIds: mergedSelectedTags,
     plainSelectedTagIds,
     selectedTags: selectedTags.length > 0 ? selectedTags : mergedSelectedTags,
