@@ -167,7 +167,7 @@ export class SimpleList extends React.Component {
         <div className="row b-dark">
           <div className="list-media-icons">
             <SocialShareButton
-              className={!this.props.isOwner ? 'd-none' : 'ssb-follow'}
+              className={this.props.isOwner ? 'd-none' : 'ssb-follow'}
               href={null}
               icon={'remove_red_eye'}
               hex={'#6dc1ec'}
