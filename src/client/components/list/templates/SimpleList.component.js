@@ -276,16 +276,16 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({type: UPDATE_LIST_ELEMENT, _id: list._id, element});
   },
   submit: list => dispatch(storeList(list._id)),
-  follow: (_id, cat) =>
+  follow: (id, cat) =>
     dispatch({
       type: FOLLOW,
-      _id,
+      id,
       cat
     }),
-  unfollow: _id => {
+  unfollow: id => {
     dispatch({
       type: UNFOLLOW,
-      _id
+      id
     });
   },
   confirmShareModal: _id => {
