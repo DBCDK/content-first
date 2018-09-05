@@ -167,7 +167,7 @@ export class SimpleList extends React.Component {
         <div className="row b-dark">
           <div className="list-media-icons">
             <SocialShareButton
-              className={this.props.isOwner ? 'd-none' : 'ssb-follow'}
+              className={!this.props.isOwner ? 'd-none' : 'ssb-follow'}
               href={null}
               icon={'remove_red_eye'}
               hex={'#6dc1ec'}
@@ -276,16 +276,16 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({type: UPDATE_LIST_ELEMENT, _id: list._id, element});
   },
   submit: list => dispatch(storeList(list._id)),
-  follow: (_id, cat) =>
+  follow: (id, cat) =>
     dispatch({
       type: FOLLOW,
-      _id,
+      id,
       cat
     }),
-  unfollow: _id => {
+  unfollow: id => {
     dispatch({
       type: UNFOLLOW,
-      _id
+      id
     });
   },
   confirmShareModal: _id => {
