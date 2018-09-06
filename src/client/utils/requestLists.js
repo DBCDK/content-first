@@ -18,7 +18,6 @@ export const saveList = async (list, loggedInUserId) => {
 
   if (!list._id && list.list.length > 0) {
     Object.assign(list, (await request.post('/v1/object').send({})).body.data);
-    list.id = list._key || list._id;
   }
 
   // update all elements owned by logged in user
@@ -34,7 +33,7 @@ export const saveList = async (list, loggedInUserId) => {
           _type: 'list-entry',
           book: null,
           pid: book.pid,
-          _key: list.id,
+          _key: list._id,
           _rev: null,
           _public: list._public
         });
@@ -79,8 +78,6 @@ export const saveList = async (list, loggedInUserId) => {
     );
     Object.assign(list, result.body.data);
   }
-  // old-endpoint compat, refactor to just _id later
-  list.id = list._key || list._id;
 
   return list;
 };
@@ -96,7 +93,6 @@ export const loadRecentPublic = async ({store}) => {
 };
 
 async function enrichList({list}) {
-  list.id = list.id || list._id;
   list.owner = list._owner;
 
   // Load list elements
@@ -115,7 +111,7 @@ async function enrichList({list}) {
   // Add elements for open lists
   if (list.open) {
     let othersListEntries = (await request.get(
-      `/v1/object/find?type=list-entry&key=${list.id}&limit=100000`
+      `/v1/object/find?type=list-entry&key=${list._id}&limit=100000`
     )).body.data;
 
     list.deleted = list.deleted || {};

@@ -12,9 +12,7 @@ exports[`SocialShareButton renders initial component 1`] = `
       Object {
         "backgroundColor": "#3b5998",
         "borderRadius": "50%",
-        "fontSize": "16px",
         "height": "40px",
-        "lineHeight": "40px",
         "paddingLeft": "0px",
         "paddingRight": "0px",
         "width": "40px",
@@ -31,8 +29,9 @@ exports[`SocialShareButton renders initial component 1`] = `
     >
       
     </span>
-    <span
-      className="glyphicon undefined"
+    
+    <i
+      className="material-icons"
     />
   </button>
 </a>

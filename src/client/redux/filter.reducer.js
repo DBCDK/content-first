@@ -41,7 +41,7 @@ export const filters = {
     {id: -2, title: 'Bibliotekaren anbefaler', custom: true}
   ],
   Tempo: taxonomy.fortælleteknik.tempo,
-  'Handlingens tid': taxonomy.ramme['Handlingens tid'],
+  'Handlingens tid': taxonomy.ramme['Handlingens tid i ord'],
   // 'Handlingens tid': [
   //   leavesMap[5734],
   //   leavesMap[4995],

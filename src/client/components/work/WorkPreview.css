@@ -20,17 +20,23 @@
 .workPreview__work .workPreview__image img {
   width: auto;
   height: 100%;
+  max-width: none;
 }
 
 .workPreview__work .workPreview__info {
   position: relative;
+  width: 100%;
 }
 
-.workPreview__work .workPreview__info .ssb-fb {
+.workPreview__work .workPreview__info .ssb{
   position: absolute;
   right: 0;
   top: 0;
 }
+.workPreview__work .workPreview__info .ssb img{
+width: 60%;
+}
+
 
 .workPreview__work .workPreview__info .workPreview__details {
   display: flex;

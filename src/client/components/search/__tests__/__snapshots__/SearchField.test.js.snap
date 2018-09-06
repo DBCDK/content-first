@@ -19,7 +19,7 @@ exports[`SearchField displays spinner when searching 1`] = `
       type="button"
     >
       <span
-        className="spinner"
+        className="spinner "
         style={
           Object {
             "borderTopColor": null,

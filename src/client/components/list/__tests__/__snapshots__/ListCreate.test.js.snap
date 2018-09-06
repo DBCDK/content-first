@@ -48,40 +48,6 @@ exports[`ListCreate list details is shown 1`] = `
                 placeholder="Skriv lidt om din liste"
                 value="some description"
               />
-              <div>
-                <span
-                  className="ml1"
-                >
-                  Skal vises som
-                </span>
-                <select
-                  className="form-control ml1"
-                  onChange={[Function]}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "width": "auto",
-                    }
-                  }
-                  value="simple"
-                >
-                  <option
-                    value="simple"
-                  >
-                    Simpel liste
-                  </option>
-                  <option
-                    value="circle"
-                  >
-                    Visuel liste
-                  </option>
-                  <option
-                    value="bookcase"
-                  >
-                    Bogreol
-                  </option>
-                </select>
-              </div>
               <div
                 className="mt1 text-left"
               >
@@ -155,8 +121,8 @@ exports[`ListCreate list details is shown 1`] = `
             <BookSearchSuggester
               list={
                 Object {
+                  "_id": "current-list-id",
                   "description": "some description",
-                  "id": "current-list-id",
                   "list": Array [],
                   "open": true,
                   "public": true,
@@ -320,40 +286,6 @@ exports[`ListCreate renders a list with multiple books 1`] = `
                 placeholder="Skriv lidt om din liste"
                 value="some description"
               />
-              <div>
-                <span
-                  className="ml1"
-                >
-                  Skal vises som
-                </span>
-                <select
-                  className="form-control ml1"
-                  onChange={[Function]}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "width": "auto",
-                    }
-                  }
-                  value="simple"
-                >
-                  <option
-                    value="simple"
-                  >
-                    Simpel liste
-                  </option>
-                  <option
-                    value="circle"
-                  >
-                    Visuel liste
-                  </option>
-                  <option
-                    value="bookcase"
-                  >
-                    Bogreol
-                  </option>
-                </select>
-              </div>
               <div
                 className="mt1 text-left"
               >
@@ -427,8 +359,8 @@ exports[`ListCreate renders a list with multiple books 1`] = `
             <BookSearchSuggester
               list={
                 Object {
+                  "_id": "current-list-id",
                   "description": "some description",
-                  "id": "current-list-id",
                   "list": Array [
                     Object {
                       "book": Object {
@@ -796,40 +728,6 @@ exports[`ListCreate renders a list with one book 1`] = `
                 placeholder="Skriv lidt om din liste"
                 value="some description"
               />
-              <div>
-                <span
-                  className="ml1"
-                >
-                  Skal vises som
-                </span>
-                <select
-                  className="form-control ml1"
-                  onChange={[Function]}
-                  style={
-                    Object {
-                      "display": "inline-block",
-                      "width": "auto",
-                    }
-                  }
-                  value="simple"
-                >
-                  <option
-                    value="simple"
-                  >
-                    Simpel liste
-                  </option>
-                  <option
-                    value="circle"
-                  >
-                    Visuel liste
-                  </option>
-                  <option
-                    value="bookcase"
-                  >
-                    Bogreol
-                  </option>
-                </select>
-              </div>
               <div
                 className="mt1 text-left"
               >
@@ -903,8 +801,8 @@ exports[`ListCreate renders a list with one book 1`] = `
             <BookSearchSuggester
               list={
                 Object {
+                  "_id": "current-list-id",
                   "description": "some description",
-                  "id": "current-list-id",
                   "list": Array [
                     Object {
                       "book": Object {

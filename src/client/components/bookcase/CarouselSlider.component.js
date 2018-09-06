@@ -9,10 +9,12 @@ const PrevArrow = function(props) {
       style={props.style}
       onClick={props.onClick}
     >
-      <span
+      <i
+        className="material-icons"
         style={{color: '#757575', fontSize: 20, lineHeight: 0}}
-        className="glyphicon glyphicon-chevron-left"
-      />
+      >
+        arrow_back_ios
+      </i>
     </div>
   );
 };
@@ -24,10 +26,12 @@ const NextArrow = function(props) {
       style={props.style}
       onClick={props.onClick}
     >
-      <span
+      <i
+        className="material-icons"
         style={{color: '#757575', fontSize: 20, lineHeight: 0}}
-        className="glyphicon glyphicon-chevron-right"
-      />
+      >
+        arrow_forward_ios
+      </i>
     </div>
   );
 };

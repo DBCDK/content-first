@@ -53,9 +53,8 @@ export class BookcaseItem extends React.Component {
       return null;
     }
 
-    // replacing description - this.props.list.description
     let description = this.props.list.description;
-    /*"'For mig er læsning som guldet for enden af regnbuen. Det giver ro oven i hovedet i en hektisk børnefamiliehverdag. Jeg læser hurtigt og meget, så på den måde kan man sige, at jeg læser som en mejetærsker. Det er ikke så vigtigt for mig at huske detaljer for handlingen, mere den dejlige følelse læsningen giver mig. Jeg læser hver aften i min seng, inden jeg skal sove. Det er mere afslappende end at se TV, og jeg kan godt lide at komme ind i et andet univers.' Nynne Bjerre Christensen er kendt fra sin mangeårige rolle som vært i Deadline på DR2. I dag er Nynne selvstændig og arbejder bl.a. som radiovært på P1 og som moderator ved store konferencer rundt om i landet."*/
+
     // replacing -this.props.profile.name
     let firstname = this.props.profile.name.split(' ')[0];
 
@@ -66,30 +65,23 @@ export class BookcaseItem extends React.Component {
     // new
     let subtag = 'Anbefalinger fra ' + this.props.profile.name + ', journalist';
 
-    let image = this.props.profile.image;
-    console.log('image ', image);
-    console.log(
-      ' this.props.list.descriptionImage ',
-      this.props.list.descriptionImage
-    );
     return (
       <section
         className={`${this.state.carousel ? 'section-active' : ''}`}
         onClick={this.test}
       >
-        <div className="outerImg">
-          <img
-            className="imgcontainer"
-            src={
-              this.props.list.image
-                ? '/v1/image/' + this.props.list.image + '/1200/600'
-                : this.props.list.bookcase
-            }
-            alt={this.props.name + '´s bogreol'}
-          />
-        </div>
+        <img
+          className="imgcontainer"
+          src={
+            this.props.list.image
+              ? '/v1/image/' + this.props.list.image + '/1200/600'
+              : this.props.list.bookcase
+          }
+          alt={this.props.name + '´s bogreol'}
+        />
+
         <div className="row">
-          <div className="col-xs-6 bookswrap">
+          <div className="bookswrap">
             {this.props.list.list.map((p, i) => {
               return (
                 <Pulse
@@ -105,7 +97,7 @@ export class BookcaseItem extends React.Component {
             })}
           </div>
 
-          <div className="col-xs-6 celeb">
+          <div className="celeb">
             <img
               className="carousel-close"
               src="/static/media/Kryds.e69a54ef.svg"
@@ -134,15 +126,13 @@ export class BookcaseItem extends React.Component {
               <div className="col-xs-12">
                 {this.props.list.list.length !== 0 ? (
                   <div
-                    type="button"
                     className="celeb-link-btn"
                     onClick={() => {
                       this.carouselTrigger(this.props.list.list[0].book.pid, 0);
                     }}
                   >
                     <span className="linktext">
-                      Se {firstname}
-                      's bogliste
+                      Se {firstname+"'s"} bogliste
                     </span>
                   </div>
                 ) : (

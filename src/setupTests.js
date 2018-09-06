@@ -23,3 +23,5 @@ require('jest-localstorage-mock');
   jest.mock('react-slick', () => 'react-slick');
   jest.mock('react-truncate-markup', () => 'react-truncate-markup');
 });
+
+jest.mock('./client/components/general/BookCover.component', () => 'bookcover');

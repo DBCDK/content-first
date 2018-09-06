@@ -59,15 +59,17 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           }
         }
       >
-        <span
-          className="glyphicon glyphicon-comment"
+        <i
+          className="material-icons"
           style={
             Object {
               "fontSize": 24,
               "verticalAlign": "middle",
             }
           }
-        />
+        >
+          chat_bubble
+        </i>
         <span
           className="number"
           style={
@@ -301,15 +303,17 @@ exports[`CommentContainer Component renders all comments 1`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-comment"
+            <i
+              className="material-icons"
               style={
                 Object {
                   "fontSize": 24,
                   "verticalAlign": "middle",
                 }
               }
-            />
+            >
+              chat_bubble
+            </i>
             <span
               className="number"
               style={
@@ -506,15 +510,17 @@ exports[`CommentContainer Component renders error 1`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-comment"
+            <i
+              className="material-icons"
               style={
                 Object {
                   "fontSize": 24,
                   "verticalAlign": "middle",
                 }
               }
-            />
+            >
+              chat_bubble
+            </i>
             <span
               className="number"
               style={
@@ -690,15 +696,17 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-comment"
+            <i
+              className="material-icons"
               style={
                 Object {
                   "fontSize": 24,
                   "verticalAlign": "middle",
                 }
               }
-            />
+            >
+              chat_bubble
+            </i>
             <span
               className="number"
               style={
@@ -894,15 +902,17 @@ exports[`CommentContainer Toggle all comments 1`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-comment"
+            <i
+              className="material-icons"
               style={
                 Object {
                   "fontSize": 24,
                   "verticalAlign": "middle",
                 }
               }
-            />
+            >
+              chat_bubble
+            </i>
             <span
               className="number"
               style={
@@ -1150,15 +1160,17 @@ exports[`CommentContainer Toggle all comments 2`] = `
               }
             }
           >
-            <span
-              className="glyphicon glyphicon-comment"
+            <i
+              className="material-icons"
               style={
                 Object {
                   "fontSize": 24,
                   "verticalAlign": "middle",
                 }
               }
-            />
+            >
+              chat_bubble
+            </i>
             <span
               className="number"
               style={

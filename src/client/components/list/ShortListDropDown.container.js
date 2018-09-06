@@ -1,8 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import TruncateMarkup from 'react-truncate-markup';
 import BookCover from '../general/BookCover.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Kryds from '../svg/KrydsGrey.svg';
+import KrydsPetrolium from '../svg/KrydsPetrolium.svg';
 import Button from '../base/Button/Button';
 import Heading from '../base/Heading/Heading';
 import Link from '../general/Link.component';
@@ -23,12 +25,16 @@ const ShortListElement = props => {
     <div className="top-bar-dropdown-list-element">
       <div className="top-bar-dropdown-list-element--cover-image">
         <Link href={url}>
-          <BookCover book={props.element.book} />
+          <BookCover book={props.element.book} hideCoverText={true} />
         </Link>
       </div>
       <div className="top-bar-dropdown-list-element--text">
         <div className="top-bar-dropdown-list-element--header">
-          <Link href={url}>{props.element.book.title}</Link>
+          <Link href={url}>
+            <TruncateMarkup lines={1}>
+              <span>{props.element.book.title}</span>
+            </TruncateMarkup>
+          </Link>
         </div>
         <div className="top-bar-dropdown-list-element--taxonomy-description">
           {props.element.book.taxonomy_description}
@@ -56,6 +62,13 @@ const ShortListContent = props => {
         props.expanded ? '' : ' slide-out'
       }`}
     >
+      <img
+        src={KrydsPetrolium}
+        alt="luk"
+        className="top-bar-dropdown-list--close-btn"
+        onClick={props.onClose}
+      />
+
       <Link href="/huskeliste">
         <Heading type="peach-subtitle">
           HUSKELISTE ({props.elements && props.elements.length})

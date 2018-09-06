@@ -221,22 +221,22 @@ export const listMiddleware = store => next => async action => {
   switch (action.type) {
     case STORE_LIST: {
       const {openplatformId} = store.getState().userReducer;
-      const list = getListById(store.getState(), action.id);
+      const list = getListById(store.getState(), action._id);
       if (!list) {
-        throw new Error(`list with id ${action.id} not found`);
+        throw new Error(`list with _id ${action._id} not found`);
       }
       if (store.getState().userReducer.isLoggedIn) {
         const updatedList = await saveList(list, openplatformId);
         store.dispatch({
           type: ADD_LIST,
-          id: updatedList.id,
+          _id: updatedList._id,
           list: updatedList
         });
       }
       return next(action);
     }
     case ADD_LIST: {
-      if (!action.list.id) {
+      if (!action.list._id) {
         action.list = await saveList(action.list, null);
       }
       if (!action.list.owner) {
@@ -245,14 +245,14 @@ export const listMiddleware = store => next => async action => {
       return next(action);
     }
     case REMOVE_LIST: {
-      const id = action.id;
+      const _id = action._id;
 
       (async () => {
         try {
-          await deleteObject({_id: id});
-          store.dispatch({type: REMOVE_LIST_SUCCESS, id: id});
+          await deleteObject({_id});
+          store.dispatch({type: REMOVE_LIST_SUCCESS, _id});
         } catch (error) {
-          store.dispatch({type: REMOVE_LIST_ERROR, error, id: id});
+          store.dispatch({type: REMOVE_LIST_ERROR, error, _id});
         }
       })();
       return next(action);
@@ -295,9 +295,13 @@ export const listMiddleware = store => next => async action => {
       return (async () => {
         try {
           const image = await addImage(action.image);
-          store.dispatch({type: ADD_LIST_IMAGE_SUCCESS, image, id: action.id});
+          store.dispatch({
+            type: ADD_LIST_IMAGE_SUCCESS,
+            image,
+            _id: action._id
+          });
         } catch (error) {
-          store.dispatch({type: ADD_LIST_IMAGE_ERROR, error, id: action.id});
+          store.dispatch({type: ADD_LIST_IMAGE_ERROR, error, _id: action._id});
         }
       })();
     default:
@@ -322,10 +326,10 @@ const logged = {
     pid: element.book.pid,
     origin
   }),
-  LIST_TOGGLE_ELEMENT: ({type, element, id}) => ({
+  LIST_TOGGLE_ELEMENT: ({type, element, _id}) => ({
     type,
     pid: element.book.pid,
-    id
+    _id
   }),
   ORDER: ({type, book}) => ({type, pid: book.pid}),
   ORDER_SUCCESS: o => o,

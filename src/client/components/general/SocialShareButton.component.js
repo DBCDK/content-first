@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FacebookIcon from '../svg/Facebook.svg';
 /*
 <SocialShareButton
   className="ssb-fb" (Not req)
@@ -19,17 +19,26 @@ import React from 'react';
 
 export default class SocialShareButton extends React.Component {
   render() {
+    const iconStyle =
+      this.props.shape === 'round'
+        ? {}
+        : {
+            lineHeight: this.props.size + 'px',
+            fontSize: this.props.size / 2.5 + 'px'
+          };
     const buttonStyles = {
       ...this.props.styles,
       backgroundColor: this.props.hex,
       height: this.props.size + 'px',
-      lineHeight: this.props.size + 'px',
-      fontSize: this.props.size / 2.5 + 'px'
+      ...iconStyle
     };
 
     const spanStyles = {
       marginRight:
-        this.props.txt && this.props.icon ? this.props.size / 3 + 'px' : '0px'
+        (this.props.txt && this.props.icon) ||
+        (this.props.txt && this.props.facebook)
+          ? this.props.size / 3 + 'px'
+          : '0px'
     };
 
     buttonStyles.borderRadius = this.props.shape === 'round' ? '50%' : '5px';
@@ -75,7 +84,12 @@ export default class SocialShareButton extends React.Component {
               ? this.props.txt
               : ''}
           </span>
-          <span className={'glyphicon ' + this.props.icon} />
+          {this.props.facebook && !this.props.icon ? (
+            <img src={FacebookIcon} />
+          ) : (
+            ''
+          )}
+          <i className="material-icons">{this.props.icon && this.props.icon}</i>
         </button>
       </a>
     );

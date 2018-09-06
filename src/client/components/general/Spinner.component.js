@@ -1,9 +1,11 @@
 import React from 'react';
 
 function Spinner(props) {
+  const spinnerClass = props.className ? props.className : '';
+
   return (
     <span
-      className="spinner"
+      className={'spinner ' + spinnerClass}
       style={Object.assign(
         {
           borderTopColor: props.color || null,

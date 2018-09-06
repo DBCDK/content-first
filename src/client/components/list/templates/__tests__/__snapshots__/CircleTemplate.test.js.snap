@@ -503,8 +503,8 @@ Array [
     editButton={undefined}
     list={
         Object {
+            "_id": "current-list-id",
             "description": "some description",
-            "id": "current-list-id",
             "list": Array [
               Object {
                 "book": Object {

@@ -12,7 +12,7 @@ describe('ListItem', () => {
         <ListItem
           list={[]}
           title={'some-title'}
-          id={'some-id'}
+          _id={'some-id'}
           key={'some-id'}
           type={'some-type'}
           image={null}

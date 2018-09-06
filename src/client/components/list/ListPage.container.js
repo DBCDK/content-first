@@ -2,22 +2,28 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getListById} from '../../redux/list.reducer';
 import SimpleList from './templates/SimpleList.component';
-import CircleTemplate from './templates/CircleTemplate.container';
-import BookcaseTemplate from './templates/BookcaseTemplate.component';
+// import CircleTemplate from './templates/CircleTemplate.container';
+// import BookcaseTemplate from './templates/BookcaseTemplate.component';
 import Link from '../general/Link.component';
 
 export class ListPage extends React.Component {
+  // eslint-disable-next-line no-unused-vars
   getTemplate(list) {
-    switch (list.template) {
-      case 'simple':
-        return SimpleList;
-      case 'circle':
-        return CircleTemplate;
-      case 'bookcase':
-        return BookcaseTemplate;
-      default:
-        return SimpleList;
-    }
+    // currently support simplelist only
+    // BookcaseTemplate and CircleTemplate
+    // are not ready for production
+    return SimpleList;
+
+    // switch (list.template) {
+    //   case 'simple':
+    //     return SimpleList;
+    //   case 'circle':
+    //     return CircleTemplate;
+    //   case 'bookcase':
+    //     return BookcaseTemplate;
+    //   default:
+    //     return SimpleList;
+    // }
   }
   render() {
     const {list, isOwner} = this.props;
@@ -34,7 +40,7 @@ export class ListPage extends React.Component {
       editButton = (
         <Link
           className="small link-subtle align-middle ml2"
-          href={`/lister/${list.id}/rediger`}
+          href={`/lister/${list._id}/rediger`}
         >
           Redigér liste
         </Link>

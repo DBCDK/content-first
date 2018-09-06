@@ -143,7 +143,7 @@ export class AddToListButton extends React.Component {
                     <li
                       key={list.title}
                       onClick={() => {
-                        this.props.toggleInList(work, list.id);
+                        this.props.toggleInList(work, list._id);
                         toast(
                           <ToastMessage
                             type="success"
@@ -178,7 +178,7 @@ export class AddToListButton extends React.Component {
                   <li
                     key={list.title}
                     onClick={() => {
-                      this.props.toggleInList(work, list.id);
+                      this.props.toggleInList(work, list._id);
                       toast(
                         <ToastMessage
                           type="success"

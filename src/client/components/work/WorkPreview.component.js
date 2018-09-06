@@ -12,7 +12,6 @@ import SocialShareButton from '../general/SocialShareButton.component';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import OrderButton from '../order/OrderButton.component';
-
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 
 import {filterCollection, filterReviews} from './workFunctions';
@@ -52,7 +51,7 @@ class WorkPreview extends React.Component {
         <div className="col-md-12 col-lg-7 workPreview__work">
           <div className="workPreview__image">
             <Link href={'/værk/' + book.pid}>
-              <BookCover className="book-cover" book={book} />
+              <BookCover book={book} />
             </Link>
           </div>
           <div className="workPreview__info">
@@ -61,7 +60,6 @@ class WorkPreview extends React.Component {
               styles={{fontWeight: 'bold'}}
               facebook={true}
               href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
-              icon={'fb-icon'}
               hex={'#3b5998'}
               size={30}
               shape="round"
@@ -115,7 +113,7 @@ class WorkPreview extends React.Component {
                 collection.map(col => {
                   if (col.count === 1) {
                     return (
-                      <a href={col.url} target="_blank">
+                      <a href={col.url} target="_blank" key={col.url}>
                         <Button
                           type="quaternary"
                           size="medium"

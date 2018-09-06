@@ -30,11 +30,12 @@ export class ShortListItem extends React.Component {
           <div className="book col-6">
             <div className="row">
               <div className="col-2">
-                <div className="book-cover">
-                  <Link href={url}>
-                    <BookCover book={this.props.element.book} />
-                  </Link>
-                </div>
+                <Link href={url}>
+                  <BookCover
+                    book={this.props.element.book}
+                    style={{width: 'unset'}}
+                  />
+                </Link>
               </div>
               <div className="col-10 book-description">
                 <div className="title">
@@ -175,7 +176,9 @@ class ShortList extends React.Component {
                   onClick={() => this.props.clearList()}
                 >
                   RYD LISTEN
-                  <span className="glyphicon glyphicon-trash ml1" />
+                  <i className="material-icons ml1" style={{fontSize: '18px'}}>
+                    delete
+                  </i>
                 </span>
               </div>
             </div>
