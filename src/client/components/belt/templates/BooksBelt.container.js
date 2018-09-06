@@ -218,9 +218,11 @@ const mapStateToProps = (state, ownProps) => {
             excluded
           ).slice(0, 20)
         : [],
-    tagObjects: ownProps.tags.map(tag => {
-      return filtersMapAll[tag.id || tag];
-    })
+    tagObjects: ownProps.tags
+      .map(tag => {
+        return filtersMapAll[tag.id || tag];
+      })
+      .filter(tag => tag)
   };
 };
 
