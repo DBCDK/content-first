@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../base/Button';
 import Heading from '../base/Heading';
+import ContextMenu, {ContextMenuAction} from '../base/ContextMenu';
 
 export default () => (
   <div className="tl mt4">
@@ -30,6 +31,17 @@ export default () => (
       <Heading tag="h1" type="section">
         H1 section heading
       </Heading>
+    </div>
+    <div className="dropdowns flex justify-content-center">
+      <ContextMenu>
+        <ContextMenuAction title="hest1" />
+        <ContextMenuAction title="hest2" />
+      </ContextMenu>
+      <ContextMenu title="Redigér liste" className="ml-4">
+        <ContextMenuAction title="Redigér tekst og billede" icon="edit" />
+        <ContextMenuAction title="Skift rækkefølge" icon="swap_vert" />
+        <ContextMenuAction title="Redigér indstillinger" icon="settings" />
+      </ContextMenu>
     </div>
   </div>
 );
