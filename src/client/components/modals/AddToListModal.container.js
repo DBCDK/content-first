@@ -83,7 +83,6 @@ export class AddToListModal extends React.Component {
     this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
   };
   onDone = () => {
-
     // If the "create-new-list" field is NOT empty - auto-create new list
     let listName = '';
     let count = this.props.works.length || 0;
@@ -117,7 +116,7 @@ export class AddToListModal extends React.Component {
   render() {
     return (
       <Modal
-        className="add-to-list--modal"
+        className="add-to-list--modal p-4"
         header={'GEM I LISTE'}
         onClose={this.close}
         onDone={this.onDone}

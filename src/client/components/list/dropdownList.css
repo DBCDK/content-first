@@ -2,10 +2,11 @@
   letter-spacing: 2px;
 }
 .top-bar-dropdown-list--close-btn {
-  position: absolute;
+  font-size: 20px;
   cursor: pointer;
-  width: 12px;
-  top: 15x;
+  color: var(--petrolium);
+  position: absolute;
+  top: 15px;
   left: 15px;
 }
 .top-bar-dropdown-list--content {
@@ -43,6 +44,9 @@
   margin: 10px 10px 0 10px;
   padding-left: 10px;
   padding-bottom: 10px;
+  position: relative;
+  clear: both;
+  overflow: hidden;
 }
 .top-bar-dropdown-list-element:after {
   content: ' ';
@@ -73,16 +77,12 @@
   margin-left: 1.5em;
   margin-top: -4px;
 }
-.top-bar-dropdown-list-element {
-  position: relative;
-  clear: both;
-  overflow: hidden;
-}
-.top-bar-dropdown-list-element--close-btn {
+.top-bar-dropdown-list-element .remove-btn {
   position: absolute;
-  right: 5px;
+  right: 0px;
+  font-size: 18px;
   cursor: pointer;
-  width: 11px;
+  color: var(--silver-chalice)
 }
 .top-bar-dropdown-list-element--taxonomy-description {
   color: var(--petrolium);
@@ -146,11 +146,10 @@
   border-top: 1px solid lightgray;
 }
 .top-bar-dropdown-list-page .remove-btn {
-  position: absolute;
-  right: 0px;
-  /*top: 10px;*/
-  cursor: pointer;
-  width: 10px;
+    position: absolute;
+    right: 0px;
+    font-size: 18px;
+    cursor: pointer;
 }
 .top-bar-dropdown-list-page .book-cover {
   height: 60px;

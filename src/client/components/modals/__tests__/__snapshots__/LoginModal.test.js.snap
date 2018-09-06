@@ -14,12 +14,12 @@ exports[`LoginModal renders function 1`] = `
     <div
       className="modal-window--header text-center"
     >
-      <img
-        alt="luk"
-        className="modal-window--close-btn"
+      <i
+        className="material-icons modal-window--close-btn"
         onClick={undefined}
-        src="KrydsPetrolium.svg"
-      />
+      >
+        clear
+      </i>
     </div>
     <div
       className="modal-window--content"

@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import Kryds from '../svg/KrydsPetrolium.svg';
 import ArrowBack from '../svg/ArrowBack.svg';
 import {isMobile} from 'react-device-detect';
 
@@ -17,12 +16,12 @@ export function LoginModal({context, closeModal, login}) {
       );
     }
     return (
-      <img
-        src={Kryds}
-        alt="luk"
-        className="modal-window--close-btn"
+      <i
         onClick={closeModal}
-      />
+        className="material-icons modal-window--close-btn"
+      >
+        clear
+      </i>
     );
   }
   return (
