@@ -296,7 +296,6 @@ exports[`renders without crashing 1`] = `
                 "id": 3510,
                 "weight": 10,
               },
-              5734,
               5731,
               5280,
               5277,
@@ -319,7 +318,6 @@ exports[`renders without crashing 1`] = `
                 "id": 1672,
                 "weight": 10,
               },
-              5734,
               Object {
                 "id": 5731,
                 "weight": 10,
@@ -487,7 +485,6 @@ exports[`renders without crashing 1`] = `
                 "id": 5368,
                 "weight": 10,
               },
-              5734,
               5731,
               5670,
               5676,
