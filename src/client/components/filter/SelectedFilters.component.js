@@ -40,6 +40,7 @@ class SelectedFilters extends React.Component {
       <React.Fragment>
         <div
           className="selected-filters-wrap text-left"
+          id="selected-filters-wrap"
           ref={this.props.filtersRef}
           onWheel={this.props.onFiltersScroll}
         >

@@ -32,15 +32,17 @@
 .ToastMessage .ToastMessage__Lines {
   display: flex;
   flex-direction: column;
+  font-family: var(--primary-font);
 }
 
 .ToastMessage .ToastMessage__Line a {
-  font-size: 0.8rem;
-  color: var(--due);
+  font-size: 1rem;
+  text-decoration: underline;
 }
 
 .ToastMessage .ToastMessage__Line a:hover {
   color: var(--due);
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 600px) {

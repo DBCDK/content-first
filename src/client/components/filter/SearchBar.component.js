@@ -1,10 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
 import {toast} from 'react-toastify';
 import ToastMessage from '../base/ToastMessage';
-import Button from '../base/Button';
-
 import SelectedFilters from './SelectedFilters.component';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../redux/middleware';
@@ -22,10 +19,6 @@ import './SearchBar.css';
 
 class SearchBar extends React.Component {
   componentDidMount() {
-    this.initFilterPosition();
-  }
-
-  componentDidUpdate() {
     this.initFilterPosition();
   }
 
@@ -50,9 +43,16 @@ class SearchBar extends React.Component {
 
     if (!isTitelorCreator) {
       /* Remove creator and title before toggling regular tags*/
-      selectedTagIds = selectedTagIds.filter(tag => {
-        return !(typeof tag === 'string' || tag instanceof String);
-      });
+      const selectedTagIdsTrimmed = selectedTagIds.filter(
+        tag => !(typeof tag === 'string' || tag instanceof String)
+      );
+
+      /* If a creator or title was removed - trigger cancel toast */
+      if (selectedTagIdsTrimmed.length !== selectedTagIds.length) {
+        this.triggerCancelToast(historyPath, historyParams);
+      }
+
+      selectedTagIds = selectedTagIdsTrimmed;
 
       const filter = filtersMapAll[filterId] || filtersMapAll[filterId[0]];
       const parent = filtersMapAll[filter.id].parents[0];
@@ -162,7 +162,7 @@ class SearchBar extends React.Component {
           : [...selectedTagIds, filterId];
       }
       /* add as tag key*/
-      urlObj['tag'] = tags;
+      urlObj.tag = tags;
     } else {
       /* If selected tag is a Creator or Book Title */
       if (selectedTagIds.includes(filterId.text)) {
@@ -189,7 +189,6 @@ class SearchBar extends React.Component {
 
     /* trigger */
     this.props.historyReplace('/find', urlObj);
-    this.initFilterPosition();
   }
 
   triggerCancelToast(historyPath, historyParams) {
@@ -204,7 +203,7 @@ class SearchBar extends React.Component {
               this.props.historyReplace(historyPath, historyParams)
             }
           >
-            Gå tilbage til forrige søgning
+            Tilbage
           </a>
         ]}
       />,

@@ -27,6 +27,15 @@ class FilterPage extends React.Component {
     this.state = {query: '', expanded: false};
   }
 
+  componentDidMount() {
+    this.fetch();
+    this.initFilterPosition();
+  }
+
+  componentDidUpdate(prevProps) {
+    this.fetch(prevProps);
+  }
+
   toggleFilter(filterId) {
     let {selectedTagIds} = this.props;
 
@@ -40,14 +49,11 @@ class FilterPage extends React.Component {
       : [...selectedTagIds, filterId];
 
     this.props.history(HISTORY_REPLACE, '/find', {tag: tags});
+    this.initFilterPosition();
   }
 
-  componentDidMount() {
-    this.fetch();
-  }
-
-  componentDidUpdate(prevProps) {
-    this.fetch(prevProps);
+  initFilterPosition() {
+    document.getElementById('selected-filters-wrap').scrollLeft = 99999999;
   }
 
   fetch(prevProps) {
