@@ -43,7 +43,6 @@ const defaultState = {
       tags: [
         {id: 5329, weight: 10},
         {id: 3510, weight: 10},
-        5734,
         5731,
         5280,
         5277,
@@ -60,7 +59,6 @@ const defaultState = {
       links: [],
       tags: [
         {id: 1672, weight: 10},
-        5734,
         {id: 5731, weight: 10},
         5699,
         5721,
@@ -157,7 +155,6 @@ const defaultState = {
         2683,
         {id: 4907, weight: 10},
         {id: 5368, weight: 10},
-        5734,
         5731,
         5670,
         5676,
