@@ -67,9 +67,9 @@ class TagsSuggester extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tagsSuggestions: {suggestions: []},
-      authorSuggestions: {suggestions: []},
-      titleSuggestions: {suggestions: []},
+      tagsSuggestions: {title: 'Tags', suggestions: []},
+      authorSuggestions: {title: 'Forfatterer', suggestions: []},
+      titleSuggestions: {title: 'Bøger', suggestions: []},
       inputVisibel: true
     };
   }
@@ -78,7 +78,7 @@ class TagsSuggester extends React.Component {
     const response = await request.get('/v1/tags/suggest').query({q: value});
     let result = parseSearchRes(value, response.body.data.tags);
     const merged = [].concat.apply([], result.map(res => res.suggestions));
-    this.setState({tagsSuggestions: {suggestions: merged}});
+    this.setState({tagsSuggestions: {title: 'Tags', suggestions: merged}});
   }
 
   async onAuthorTitleSuggestionsFetchRequested({value}) {
@@ -116,7 +116,8 @@ class TagsSuggester extends React.Component {
           text: a.suggestions[0].creator,
           type: 'creator',
           parents: ['', 'Forfatter'],
-          icon: 'account_circle'
+          icon: 'account_circle',
+          title: a.suggestions[0].creator
         };
       });
 
@@ -134,20 +135,25 @@ class TagsSuggester extends React.Component {
           text: t.suggestions[0].title,
           type: 'title',
           parents: ['', 'Bog'],
-          icon: 'book'
+          icon: 'book',
+          title: t.suggestions[0].title
         };
       });
 
     if (this.currentRequest === value) {
       this.setState({
-        authorSuggestions: {suggestions: authorResults},
-        titleSuggestions: {suggestions: titleResults}
+        authorSuggestions: {title: 'Forfatterer', suggestions: authorResults},
+        titleSuggestions: {title: 'Bøger', suggestions: titleResults}
       });
     }
   }
 
   onSuggestionsClearRequested() {
-    this.setState({tagsSuggestions: [], authorTitleSuggestions: []});
+    this.state = {
+      tagsSuggestions: {title: 'Tags', suggestions: []},
+      authorSuggestions: {title: 'Forfatterer', suggestions: []},
+      titleSuggestions: {title: 'Bøger', suggestions: []}
+    };
     delete this.currentRequest;
   }
 
@@ -169,6 +175,7 @@ class TagsSuggester extends React.Component {
 
   renderSuggestions() {
     let {tagsSuggestions, authorSuggestions, titleSuggestions} = this.state;
+
     // Fill suggestions with authors (Maximum 2)
     if (authorSuggestions.suggestions) {
       authorSuggestions.suggestions = authorSuggestions.suggestions.slice(0, 2);
@@ -196,7 +203,22 @@ class TagsSuggester extends React.Component {
         6 - titleSuggestions.suggestions.length
       );
     }
-    return [].concat(tagsSuggestions, authorSuggestions, titleSuggestions);
+
+    const suggestions = [];
+    // push tags if not empty
+    if (tagsSuggestions.suggestions.length > 0) {
+      suggestions.push(tagsSuggestions);
+    }
+    // push authors if not empty
+    if (authorSuggestions.suggestions.length > 0) {
+      suggestions.push(authorSuggestions);
+    }
+    // push titles if not empty
+    if (titleSuggestions.suggestions.length > 0) {
+      suggestions.push(titleSuggestions);
+    }
+
+    return suggestions;
   }
 
   render() {
@@ -254,10 +276,8 @@ class TagsSuggester extends React.Component {
               this.props.onChange({target: {value: ''}});
             }}
             onSuggestionSelected={this.props.onSuggestionSelected}
-            getSuggestionValue={({title}) => title}
-            getSectionSuggestions={section => {
-              return section.suggestions;
-            }}
+            getSuggestionValue={obj => obj}
+            getSectionSuggestions={section => section.suggestions}
             renderSuggestion={suggestion =>
               renderSuggestion(suggestion, this.props.value)
             }
