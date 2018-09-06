@@ -1,0 +1,28 @@
+.ContextMenu {
+  font-size: 14px;
+  font-weight: 600;
+}
+.ContextMenu .dropdown-toggle {
+  cursor: pointer;
+}
+.ContextMenu .dropdown-toggle::after {
+  display: none;
+}
+.ContextMenu .dropdown-menu {
+  background: #f8f8f8;
+  border: 1px solid #c9ddcf;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  padding: 0;
+}
+.ContextMenu .dropdown-item {
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 40px;
+  padding: 0 10px 0 10px;
+}
+.ContextMenu .dropdown-item:hover {
+  background: var(--french-pass);
+}
+.ContextMenu .dropdown-item i {
+  font-size: 16px;
+}
