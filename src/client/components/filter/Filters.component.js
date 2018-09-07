@@ -3,7 +3,6 @@ import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
 import Heading from '../base/Heading';
 import Icon from '../base/Icon';
-
 import CardList from './templates/CardList.component.js';
 import CardRange from './templates/CardRange.component.js';
 

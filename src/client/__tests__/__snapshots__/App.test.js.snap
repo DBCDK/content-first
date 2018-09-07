@@ -34,6 +34,7 @@ exports[`renders without crashing 1`] = `
             >
               <div
                 className="selected-filters-wrap text-left"
+                id="selected-filters-wrap"
                 onWheel={[Function]}
               >
                 <div

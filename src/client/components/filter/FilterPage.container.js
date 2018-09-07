@@ -13,6 +13,8 @@ import {HISTORY_REPLACE, HISTORY_PUSH} from '../../redux/middleware';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
 import {
   getTagsFromUrl,
+  getCreatorsFromUrl,
+  getTitlesFromUrl,
   getIdsFromRange,
   getTagsbyIds
 } from '../../redux/selectors';
@@ -25,21 +27,33 @@ class FilterPage extends React.Component {
     this.state = {query: '', expanded: false};
   }
 
+  componentDidMount() {
+    this.fetch();
+    this.initFilterPosition();
+  }
+
+  componentDidUpdate(prevProps) {
+    this.fetch(prevProps);
+  }
+
   toggleFilter(filterId) {
-    const {selectedTagIds} = this.props;
+    let {selectedTagIds} = this.props;
+
+    /* remove title/creator if any*/
+    selectedTagIds = selectedTagIds.filter(tag => {
+      return !(typeof tag === 'string' || tag instanceof String);
+    });
+
     const tags = selectedTagIds.includes(filterId)
       ? selectedTagIds.filter(id => filterId !== id)
       : [...selectedTagIds, filterId];
 
     this.props.history(HISTORY_REPLACE, '/find', {tag: tags});
+    this.initFilterPosition();
   }
 
-  componentDidMount() {
-    this.fetch();
-  }
-
-  componentDidUpdate(prevProps) {
-    this.fetch(prevProps);
+  initFilterPosition() {
+    document.getElementById('selected-filters-wrap').scrollLeft = 99999999;
   }
 
   fetch(prevProps) {
@@ -48,6 +62,9 @@ class FilterPage extends React.Component {
       !isEqual(prevProps.selectedTagIds, this.props.selectedTagIds)
     ) {
       this.props.fetchRecommendations(this.props.plainSelectedTagIds);
+      this.props.onSearch(
+        this.props.selectedCreators[0] || this.props.selectedTitles[0] || ''
+      );
     }
   }
 
@@ -118,16 +135,34 @@ class FilterPage extends React.Component {
 const mapStateToProps = state => {
   const filterCards = state.filtercardReducer;
   const selectedTagIds = getTagsFromUrl(state);
+  const selectedCreators = getCreatorsFromUrl(state);
+  const selectedTitles = getTitlesFromUrl(state);
   const plainSelectedTagIds = getIdsFromRange(state, selectedTagIds);
+  const selectedTags = getTagsbyIds(state, selectedTagIds);
+  const mergedSelectedTags = [].concat(
+    selectedTagIds,
+    selectedCreators,
+    selectedTitles
+  );
+
+  const results =
+    state.searchReducer.results && state.searchReducer.results.length > 0
+      ? {pids: state.searchReducer.results.map(work => work.pid)}
+      : null;
+
+  const recommendedPids = getRecommendedPids(state.recommendReducer, {
+    tags: plainSelectedTagIds
+  });
 
   return {
-    recommendedPids: getRecommendedPids(state.recommendReducer, {
-      tags: plainSelectedTagIds
-    }),
+    recommendedPids: results || recommendedPids,
     filterCards,
-    selectedTagIds,
+    selectedCreators,
+    selectedTitles,
+    selectedTagIds: mergedSelectedTags,
     plainSelectedTagIds,
-    selectedTags: getTagsbyIds(state, selectedTagIds),
+    selectedTags: selectedTags.length > 0 ? selectedTags : mergedSelectedTags,
+    results: results || [],
     filters: state.filterReducer.filters,
     editFilters: state.filterReducer.editFilters,
     expandedFilters: state.filterReducer.expandedFilters
@@ -136,10 +171,11 @@ const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch => ({
   editFilterToggle: () => dispatch({type: ON_EDIT_FILTER_TOGGLE}),
   expandFiltersToggle: id => dispatch({type: ON_EXPAND_FILTERS_TOGGLE, id}),
-
   history: (type, path, params = {}) => {
     dispatch({type, path, params});
   },
+  onSearch: query =>
+    dispatch({type: 'SEARCH_QUERY', query: query.toLowerCase()}),
   fetchRecommendations: tags =>
     dispatch({
       type: RECOMMEND_REQUEST,

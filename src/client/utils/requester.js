@@ -390,6 +390,10 @@ export const loadShortList = async ({isLoggedIn, store}) => {
 };
 
 export async function fetchSearchResults({query, dispatch}) {
+  // Remove parenthesis and everything between from query string + leading/ending spaces
+  query = query.replace(/\(.*\)/, '').trim();
+  // add & to spaces between words in query
+  query = query.split(' ').join(' & ');
   try {
     const result = await request.get(
       '/v1/search?q=' + encodeURIComponent(query)

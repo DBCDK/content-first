@@ -4,7 +4,7 @@ import Icon from '../base/Icon';
 import Button from '../base/Button';
 
 const SelectedFilter = props => {
-  let title = props.filter.title;
+  let title = props.filter.title || props.filter;
   let id = props.filter;
 
   if (props.filter instanceof Array) {
@@ -14,6 +14,10 @@ const SelectedFilter = props => {
 
     title = first === last ? first : first + ' - ' + last;
     id = [props.filter[0].id, props.filter[1].id];
+  }
+
+  if (typeof props.filter === 'string' || props.filter instanceof String) {
+    id = {text: props.filter, parents: ['', 'Forfatter']};
   }
 
   return (
@@ -36,6 +40,7 @@ class SelectedFilters extends React.Component {
       <React.Fragment>
         <div
           className="selected-filters-wrap text-left"
+          id="selected-filters-wrap"
           ref={this.props.filtersRef}
           onWheel={this.props.onFiltersScroll}
         >

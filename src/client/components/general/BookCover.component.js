@@ -31,7 +31,6 @@ const generateSvg = (backgroundColor, title, creator) => {
 
 const BookCover = props => {
   const hasNoCover = !props.coverUrl && props.coverUrlHasLoaded;
-  console.log(props);
   if (!props.coverUrl) {
     return (
       <img

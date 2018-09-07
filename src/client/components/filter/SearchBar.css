@@ -92,10 +92,15 @@
 }
 .selected-filters-wrap #react-autowhatever-1 .suggestion-title i {
   padding: 0 1rem 0 0;
-  /* vertical-align: middle; */
-  transform: rotate(-20deg);
   color: var(--due);
   float: left;
+}
+
+.selected-filters-wrap
+  #react-autowhatever-1
+  .suggestion-title
+  i.material-icons-label {
+  transform: rotate(-25deg);
 }
 
 .selected-filters-wrap #react-autowhatever-1 .section-title {
@@ -117,6 +122,8 @@
   .suggestion-title
   .suggestion-subject {
   color: #bbb;
+  text-transform: uppercase;
+  font-size: 0.75rem;
 }
 
 .selected-filters-wrap
