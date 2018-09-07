@@ -121,7 +121,8 @@ class TagsSuggester extends React.Component {
         };
       });
 
-    authorResults = uniqBy(authorResults, 'creator');
+    // move duplicated creators
+    authorResults = uniqBy(authorResults, 'text');
 
     const titleResults = results
       .filter(t => {
@@ -177,30 +178,33 @@ class TagsSuggester extends React.Component {
     let {tagsSuggestions, authorSuggestions, titleSuggestions} = this.state;
 
     // Fill suggestions with authors (Maximum 2)
-    if (authorSuggestions.suggestions) {
-      authorSuggestions.suggestions = authorSuggestions.suggestions.slice(0, 2);
-    }
+    authorSuggestions = {
+      suggestions: authorSuggestions.suggestions.slice(0, 2)
+    };
+
     // Fill suggestions with book titles (maximum 4)
-    if (titleSuggestions.suggestions) {
-      titleSuggestions.suggestions = titleSuggestions.suggestions.slice(
+    titleSuggestions = {
+      suggestions: titleSuggestions.suggestions.slice(
         0,
         4 - authorSuggestions.suggestions.length
-      );
-    }
+      )
+    };
+
     // Fill suggestions with tags (Maximum 6)
-    if (tagsSuggestions.suggestions) {
-      tagsSuggestions.suggestions = tagsSuggestions.suggestions.slice(
+    tagsSuggestions = {
+      suggestions: tagsSuggestions.suggestions.slice(
         0,
         10 -
           (titleSuggestions.suggestions.length +
             authorSuggestions.suggestions.length)
-      );
-    }
+      )
+    };
+
     // Backfill suggestions with booktitles if any
-    if (tagsSuggestions.suggestions && tagsSuggestions.suggestions.length < 6) {
+    if (tagsSuggestions.suggestions.length < 6) {
       titleSuggestions.suggestions = this.state.titleSuggestions.suggestions.slice(
         0,
-        6 - titleSuggestions.suggestions.length
+        6 - tagsSuggestions.suggestions.length
       );
     }
 
