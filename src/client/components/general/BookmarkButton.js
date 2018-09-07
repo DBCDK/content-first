@@ -17,13 +17,18 @@ export class BookmarkButton extends React.Component {
       return map;
     }, {});
     const marked = remembered[this.props.work.book.pid];
-    const layout = this.props.layout === 'circle' ? 'Circle' : '';
+    let layout = this.props.layout;
+    if (layout === 'teardrop') {
+      layout = 'BookmarkButtonCircle BookmarkButtonTeardrop';
+    } else if (layout === 'circle') {
+      layout = 'BookmarkButtonCircle';
+    }
 
     const huskText = this.props.texttransform === 'uppercase' ? 'HUSK' : 'Husk';
     return (
       <Button
         className={
-          'BookmarkButton' +
+          'BookmarkButton ' +
           layout +
           (marked ? ' marked' : '') +
           ' ' +
@@ -35,7 +40,7 @@ export class BookmarkButton extends React.Component {
         size="medium"
       >
         <Icon name="bookmark_border" className="md-small" />
-        {layout !== 'Circle' ? huskText : ''}
+        {!layout ? 'Husk' : ''}
       </Button>
     );
   }

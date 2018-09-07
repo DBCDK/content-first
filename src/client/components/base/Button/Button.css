@@ -69,6 +69,17 @@
   text-transform: uppercase;
 }
 
+.Button__link {
+  background-color: transparent;
+  font-size: 14px;
+  color: var(--petrolium);
+  font-weight: 400;
+  text-decoration: underline;
+}
+.Button__link:hover {
+  text-decoration: underline;
+}
+
 /* Sizes */
 .Button__large {
   text-transform: none;

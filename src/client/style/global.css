@@ -49,3 +49,52 @@
 .fersken-txt {
   color: var(--alto) !important;
 }
+.lys-graa {
+  background-color: var(--lys-graa) !important;
+}
+.porcelain {
+  background-color: var(--porcelain) !important;
+}
+.pistache {
+  background-color: var(--pistache) !important;
+}
+.due-txt {
+  color: var(--due) !important;
+}
+
+.fixed-width-col-md {
+  width: 780px;
+}
+.fixed-width-col-sm {
+  width: 200px;
+}
+.width-70 {
+  width: 70px !important;
+}
+.width-120 {
+  width: 120px !important;
+}
+
+.border-bottom-petrolium {
+  border-bottom: 1px solid var(--petrolium);
+}
+.border-top-petrolium {
+  border-top: 1px solid var(--petrolium);
+}
+
+.box-shadow {
+  box-shadow: 0px 5px 5px -5px #333;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .width-md-70 {
+    width: 70px !important;
+  }
+  .width-md-120 {
+    width: 120px !important;
+  }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}

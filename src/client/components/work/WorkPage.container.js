@@ -87,7 +87,7 @@ class WorkPage extends React.Component {
                 className="mr1"
                 origin={'Fra egen værkside'}
                 work={work}
-                layout="circle"
+                layout="Circle"
                 style={{
                   position: 'absolute',
                   top: '1rem',

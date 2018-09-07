@@ -8,7 +8,6 @@
   height: 40px;
   background: #fff;
   border-radius: 100%;
-  border-top-right-radius: 0%;
   box-shadow: -1px 1px 8px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
   transition: 0.2s background;
@@ -16,8 +15,10 @@
   color: var(--petroleum);
   z-index: 1;
 }
+.BookmarkButtonTeardrop {
+  border-top-right-radius: 0%;
+}
 
-.BookmarkButtonCircle i,
 .BookmarkButton i {
   vertical-align: middle;
 }
