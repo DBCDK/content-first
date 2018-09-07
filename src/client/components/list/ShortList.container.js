@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Kryds from '../svg/Kryds.svg';
 import BookCover from '../general/BookCover.component';
 import Textarea from 'react-textarea-autosize';
 import OrderButton from '../order/OrderButton.component';
@@ -99,12 +98,13 @@ export class ShortListItem extends React.Component {
               className="ml1"
             />
           </div>
-          <img
-            src={Kryds}
-            alt="remove"
-            className="remove-btn"
+
+          <i
+            className="material-icons remove-btn"
             onClick={this.props.onRemove}
-          />
+          >
+            clear
+          </i>
         </div>
       </div>
     );

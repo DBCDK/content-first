@@ -1,22 +1,20 @@
 import React from 'react';
-import Kryds from '../svg/Kryds.svg';
-
 export default class Modal extends React.Component {
   render() {
     return (
       <div className="modal-container">
         <div className="modal-backdrop" onClick={this.props.onClose} />
         <div
-          className={`modal-window text-left ${
+          className={`modal-window text-left p-4 ${
             this.props.className ? this.props.className : ''
           }`}
         >
-          <img
-            src={Kryds}
-            alt="luk"
-            className="modal-window--close-btn"
+          <i
+            className="material-icons modal-window--close-btn"
             onClick={this.props.context.onCancel}
-          />
+          >
+            clear
+          </i>
           <div className="modal-window--header text-left">
             <h3>{this.props.context.title}</h3>
           </div>
