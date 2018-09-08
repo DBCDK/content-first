@@ -1,7 +1,10 @@
 import React from 'react';
 import Pulse from '../pulse/Pulse.component';
-import CarouselItem from './CarouselItem.component';
+
 import CarouselSlider from './CarouselSlider.component';
+import CarouselWork from "./CarouselWork.component";
+import ConciseWork from "../work/ConciseWork.container";
+import TruncateMarkup from 'react-truncate-markup';
 
 /*
   <BookcaseItem list={obj} profile={obj}/>
@@ -67,7 +70,7 @@ export class BookcaseItem extends React.Component {
 
     return (
       <section
-        className={`${this.state.carousel ? 'section-active' : ''}`}
+        className={`${this.state.carousel ? 'section-active' : ''} `}
         onClick={this.test}
       >
         <img
@@ -79,8 +82,7 @@ export class BookcaseItem extends React.Component {
           }
           alt={this.props.name + '´s bogreol'}
         />
-
-        <div className="row">
+        <div className={"caroContainer"}>
           <div className="bookswrap">
             {this.props.list.list.map((p, i) => {
               return (
@@ -96,7 +98,6 @@ export class BookcaseItem extends React.Component {
               );
             })}
           </div>
-
           <div className="celeb">
             <i
               className="material-icons carousel-close"
@@ -107,10 +108,11 @@ export class BookcaseItem extends React.Component {
               clear
             </i>
 
+
             <div className="col-xs-12 celeb-top">
               <div className="scrolltext">
                 <div className="innerscrollbox">
-                  <div className="col-xs-12 pagetag">{pagetag}</div>
+                  <div className="col-xs-12 pagetag">{pagetag.toUpperCase()}</div>
                   <div className="col-xs-12 profile">
                     <span className="profile-name">{firstname}: </span>
                     <span className="profile-quote"> “{nameQuote}”</span>
@@ -136,7 +138,7 @@ export class BookcaseItem extends React.Component {
                     </span>
                   </div>
                 ) : (
-                  <div />
+                  <div/>
                 )}
               </div>
             </div>
@@ -148,21 +150,37 @@ export class BookcaseItem extends React.Component {
               >
                 {this.props.list.list.map(b => {
                   return (
-                    <CarouselItem
-                      active={this.state.carousel}
-                      key={'carousel-' + b.book.pid}
-                      description={b.description || b.book.description}
-                      book={b.book}
-                    />
-                  );
+
+                    <div
+                      className={`carousel-container ${
+                        this.props.active ? ' carousel-display' : ''
+                        }`}
+                    >
+
+                        <div className="carousel-header">
+                          <TruncateMarkup lines={100}>
+                            <p>{description}</p>
+                          </TruncateMarkup>
+                        </div>
+
+
+
+                      <ConciseWork pid={b.book.pid}/>
+                    </div>
+
+
+                  )
                 })}
               </CarouselSlider>
             </div>
           </div>
         </div>
+
+
       </section>
     );
   }
 }
 
 export default BookcaseItem;
+

@@ -1,0 +1,70 @@
+.concise-work-container {
+
+}
+
+.concise-work-info {
+
+
+
+}
+
+.concise-work-img {
+
+}
+
+.concise-work-title {
+    color: var(--petroleum);
+    font-size: 24px;
+    font-weight: 600;
+
+
+
+}
+
+.concise-work-author {
+    color: var(--petroleum);
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: -5px;
+
+}
+
+.concise-work-details {
+    font-size: 11px;
+    color: var(--fersken);
+    font-style: Montserrat;
+    font-weight: 400;
+    margin-top: 5px;
+    text-transform:uppercase;
+}
+
+.work-subtitle{
+    font-size: 14px;
+    color: var(--petroleum);
+    font-style: Montserrat;
+    font-weight: 600;
+}
+
+.WorkPage__media button i {
+    margin-right: 0.5rem;
+
+
+}
+
+.WorkPage__media button, .WorkPage__media button i,
+.WorkPage__media a, .WorkPage__media a i {
+    font-size: 1rem;
+    color: var(--petrolium);
+    font-weight:400;
+
+}
+
+.WorkPage__media button i .material-icons {
+    text-transform:uppercase;
+
+}
+
+
+@media only screen and (max-width: 1275px) {
+
+}

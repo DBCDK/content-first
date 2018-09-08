@@ -17,7 +17,7 @@ export class Bookcase extends React.Component {
 
     const celebnum = 0;
     return (
-      <div className="row">
+      <div className={"bookcase-container"}>
         <BookcaseItem
           profile={this.props.profiles[celebnum]}
           list={this.props.lists[celebnum]}
