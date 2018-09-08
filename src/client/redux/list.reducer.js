@@ -253,7 +253,6 @@ const listReducer = (state = defaultState, action) => {
       const list = {
         ...state.lists[action._id],
         imageIsLoading: true,
-        image: null,
         imageError: null
       };
       return Object.assign({}, state, {

@@ -2,6 +2,9 @@
   font-size: 14px;
   font-weight: 600;
 }
+.ContextMenu label {
+  cursor: pointer;
+}
 .ContextMenu .dropdown-toggle {
   cursor: pointer;
 }

@@ -9,7 +9,8 @@ import {
   UPDATE_LIST_ELEMENT,
   removeElementFromList,
   updateList,
-  storeList
+  storeList,
+  ADD_LIST_IMAGE
 } from '../../../redux/list.reducer';
 import CommentInput from '../../comments/CommentInput.component';
 import timeToString from '../../../utils/timeToString';
@@ -24,6 +25,7 @@ import Icon from '../../base/Icon';
 import Link from '../../general/Link.component';
 import BookmarkButton from '../../general/BookmarkButton';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
+import ImageUpload from '../../general/ImageUpload.component';
 import Textarea from 'react-textarea-autosize';
 
 const StickySettings = props => {
@@ -82,11 +84,10 @@ const ElementContextMenu = ({onDelete, onEdit}) => (
 const ListContextMenu = ({onEdit, title, className, style}) => (
   <ContextMenu title={title} className={className} style={style}>
     <ContextMenuAction
-      title="Redigér titel og beskrivelse"
+      title="Redigér tekst og billede"
       icon="edit"
       onClick={onEdit}
     />
-    <ContextMenuAction title="Skift billede" icon="photo" onClick={onEdit} />
     <ContextMenuAction title="Skift rækkefølge" icon="swap_vert" />
     <ContextMenuAction title="Redigér indstillinger" icon="settings" />
   </ContextMenu>
@@ -98,16 +99,32 @@ const ListTop = ({
   editing,
   onDescriptionChange,
   onTitleChange,
-  contextMenu
+  contextMenu,
+  addImage
 }) => {
   return (
     <div className="box-shadow">
       <div className="list-cover-image-wrapper p-4 lys-graa">
-        <img
-          className="list-cover-image w-100"
-          alt=""
-          src={`/v1/image/${list.image}/719/400`}
-        />
+        {editing ? (
+          <ImageUpload
+            error={list.imageError}
+            style={{borderRadius: 0, border: 0, width: '100%', height: '100%'}}
+            loading={list.imageIsLoading}
+            handleLoaded={this.onResize}
+            previewImage={list.image ? `/v1/image/${list.image}/719/400` : null}
+            buttonText="Skift billede"
+            buttonPosition="inside"
+            onFile={img => {
+              addImage(list._id, img);
+            }}
+          />
+        ) : (
+          <img
+            className="list-cover-image w-100"
+            alt=""
+            src={`/v1/image/${list.image}/719/400`}
+          />
+        )}
       </div>
       <div className="pl-4 pr-4 pb-4 lys-graa pt-2 position-relative">
         {contextMenu}
@@ -123,15 +140,13 @@ const ListTop = ({
           </Heading>
         </div>
         {editing ? (
-          <React.Fragment>
-            <Textarea
-              className={`mt-3 form-control Heading Heading__section`}
-              name="list-description"
-              placeholder="Din beskrivelse"
-              onChange={onTitleChange}
-              value={list.title}
-            />
-          </React.Fragment>
+          <Textarea
+            className={`mt-3 form-control Heading Heading__section`}
+            name="list-description"
+            placeholder="Din beskrivelse"
+            onChange={onTitleChange}
+            value={list.title}
+          />
         ) : (
           <Heading Tag="h1" type="section" className="mt-3">
             {list.title}
@@ -277,7 +292,8 @@ export class SimpleList extends React.Component {
     this.state = {
       editing: false,
       originalDescription: props.list.description,
-      originalTitle: props.list.title
+      originalTitle: props.list.title,
+      originalImage: props.list.image
     };
   }
   toggleFollow(_id, cat) {
@@ -307,7 +323,8 @@ export class SimpleList extends React.Component {
       removeElement,
       updateElement,
       updateListData,
-      submit
+      submit,
+      addImage
     } = this.props;
 
     return (
@@ -319,18 +336,17 @@ export class SimpleList extends React.Component {
               this.setState({
                 editing: false,
                 originalTitle: list.title,
-                originalDescription: list.description
+                originalDescription: list.description,
+                originalImage: list.image
               });
             }}
             onCancel={() => {
               this.setState({editing: false});
               updateListData({
                 _id: list._id,
-                title: this.state.originalTitle
-              });
-              updateListData({
-                _id: list._id,
-                description: this.state.originalDescription
+                title: this.state.originalTitle,
+                description: this.state.originalDescription,
+                image: this.state.originalImage
               });
             }}
           />
@@ -374,6 +390,7 @@ export class SimpleList extends React.Component {
                   onEdit={() => this.setState({editing: true})}
                 />
               }
+              addImage={addImage}
             />
             <div className="position-relative">
               {list.list.map(element => {
@@ -412,98 +429,6 @@ export class SimpleList extends React.Component {
         </div>
       </React.Fragment>
     );
-    // return (
-    //   <div className="list-wrapper tl">
-    //     <div className="row b-dark">
-    //       <div className="list-media-icons">
-    //         <SocialShareButton
-    //           className={this.props.isOwner ? 'd-none' : 'ssb-follow'}
-    //           href={null}
-    //           icon={'remove_red_eye'}
-    //           hex={'#6dc1ec'}
-    //           size={30}
-    //           logoSize={12}
-    //           shape="square"
-    //           txt="Følg"
-    //           hoverTitle={'Følg ' + list.title}
-    //           status={
-    //             this.props.follows[this.props.list._id] ? 'active' : 'passive'
-    //           }
-    //           onClick={() => this.toggleFollow(list._id, 'list')}
-    //         />
-    //
-    //         <SocialShareButton
-    //           className={list.type === 'SYSTEM_LIST' ? 'd-none' : 'ssb-fb'}
-    //           facebook={true}
-    //           href={
-    //             list.public
-    //               ? 'https://content-first.demo.dbc.dk/lister/' + list._id
-    //               : null
-    //           }
-    //           hex={'#3b5998'}
-    //           size={30}
-    //           txt="Del"
-    //           shape="square"
-    //           status={!list.public ? 'passive' : 'active'}
-    //           hoverTitle="Del på facebook"
-    //           onClick={() => {
-    //             confirmShareModal(list._id);
-    //           }}
-    //         />
-    //       </div>
-    //       <div className="list-header mb4 mt5   offset-lg-1 offset-sm-0 ">
-    //         <h1 className="t-title h-tight h-underline inline-block align-middle">
-    //           {list.title}
-    //         </h1>
-    //         {editButton}
-    //       </div>
-    //     </div>
-    //     <div className="simplelist">
-    //       <div className="row mb4 b-dark">
-    //         <div className="col-12 col-md-10 col-lg-8   offset-lg-1 offset-sm-0  mb4 row">
-    //           <div className="col-3 tc">
-    //             <ProfileImage
-    //               user={profile}
-    //               size={'50'}
-    //               namePosition={'bottom'}
-    //             />
-    //           </div>
-    //           <div className="col-9">
-    //             <p className="t-body">{list.description}</p>
-    //             {list.social ? <Comments id={list._id} /> : ''}
-    //           </div>
-    //         </div>
-    //       </div>
-    //       <div className="list col-12 col-md-10 col-lg-8  offset-lg-1 offset-sm-0 ">
-    //         <div>
-    //           {list.list.map(element => (
-    //             <Item
-    //               allowComments={list.social}
-    //               list={list}
-    //               key={element.pid}
-    //               element={element}
-    //               book={element.book}
-    //               description={element.description}
-    //               profile={profiles[element._owner]}
-    //               allowDelete={
-    //                 element._owner === loggedInUserId ||
-    //                 list._owner === loggedInUserId
-    //               }
-    //               allowModify={element._owner === loggedInUserId}
-    //               _created={list._created}
-    //               onRemove={() => removeElement(element, list)}
-    //               onDescriptionChange={description =>
-    //                 updateElement({...element, description}, list)
-    //               }
-    //               onSubmit={() => submit(list)}
-    //             />
-    //           ))}
-    //         </div>
-    //         <AddToList list={list} />
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
   }
 }
 
@@ -518,6 +443,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 export const mapDispatchToProps = dispatch => ({
+  addImage: (_id, image) => dispatch({type: ADD_LIST_IMAGE, image, _id}),
   removeElement: async (element, list) => {
     await dispatch(removeElementFromList(element, list._id));
     dispatch(storeList(list._id));

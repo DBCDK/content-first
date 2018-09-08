@@ -1,1 +1,5 @@
-export {default, ContextMenuAction} from './ContextMenu';
+export {
+  default,
+  ContextMenuAction,
+  ContextMenuUploadAction
+} from './ContextMenu';
