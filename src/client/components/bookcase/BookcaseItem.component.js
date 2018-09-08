@@ -2,8 +2,8 @@ import React from 'react';
 import Pulse from '../pulse/Pulse.component';
 
 import CarouselSlider from './CarouselSlider.component';
-import CarouselWork from "./CarouselWork.component";
-import ConciseWork from "../work/ConciseWork.container";
+import CarouselWork from './CarouselWork.component';
+import ConciseWork from '../work/ConciseWork.container';
 import TruncateMarkup from 'react-truncate-markup';
 
 /*
@@ -82,7 +82,7 @@ export class BookcaseItem extends React.Component {
           }
           alt={this.props.name + '´s bogreol'}
         />
-        <div className={"caroContainer"}>
+        <div className={'caroContainer'}>
           <div className="bookswrap">
             {this.props.list.list.map((p, i) => {
               return (
@@ -108,11 +108,12 @@ export class BookcaseItem extends React.Component {
               clear
             </i>
 
-
             <div className="col-xs-12 celeb-top">
               <div className="scrolltext">
                 <div className="innerscrollbox">
-                  <div className="col-xs-12 pagetag">{pagetag.toUpperCase()}</div>
+                  <div className="col-xs-12 pagetag">
+                    {pagetag.toUpperCase()}
+                  </div>
                   <div className="col-xs-12 profile">
                     <span className="profile-name">{firstname}: </span>
                     <span className="profile-quote"> “{nameQuote}”</span>
@@ -138,7 +139,7 @@ export class BookcaseItem extends React.Component {
                     </span>
                   </div>
                 ) : (
-                  <div/>
+                  <div />
                 )}
               </div>
             </div>
@@ -150,37 +151,28 @@ export class BookcaseItem extends React.Component {
               >
                 {this.props.list.list.map(b => {
                   return (
-
                     <div
                       className={`carousel-container ${
                         this.props.active ? ' carousel-display' : ''
-                        }`}
+                      }`}
                     >
+                      <div className="carousel-header">
+                        <TruncateMarkup lines={100}>
+                          <p>{description}</p>
+                        </TruncateMarkup>
+                      </div>
 
-                        <div className="carousel-header">
-                          <TruncateMarkup lines={100}>
-                            <p>{description}</p>
-                          </TruncateMarkup>
-                        </div>
-
-
-
-                      <ConciseWork pid={b.book.pid}/>
+                      <ConciseWork pid={b.book.pid} />
                     </div>
-
-
-                  )
+                  );
                 })}
               </CarouselSlider>
             </div>
           </div>
         </div>
-
-
       </section>
     );
   }
 }
 
 export default BookcaseItem;
-

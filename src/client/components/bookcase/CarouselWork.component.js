@@ -3,16 +3,15 @@ import React from 'react';
 import BookCover from '../general/BookCover.component';
 import TruncateMarkup from 'react-truncate-markup';
 import Link from '../general/Link.component';
-import {ADD_BELT} from "../../redux/belts.reducer";
-import {connect} from "react-redux";
-import {BOOKS_REQUEST} from "../../redux/books.reducer";
-import {get} from "lodash";
+import {ADD_BELT} from '../../redux/belts.reducer';
+import {connect} from 'react-redux';
+import {BOOKS_REQUEST} from '../../redux/books.reducer';
+import {get} from 'lodash';
 
 import OrderButton from '../order/OrderButton.component';
-import {filterCollection, filterReviews, sortTags} from "../work/workFunctions";
+import {filterCollection, filterReviews, sortTags} from '../work/workFunctions';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
-
 
 /*
   <Carousel
@@ -24,7 +23,7 @@ import Icon from '../base/Icon';
 */
 
 export default class CarouselWork extends React.Component {
-/*
+  /*
   constructor(props) {
     super(props);
     this.state = {tagsCollapsed: true, transition: true, addToList: null};
@@ -45,12 +44,11 @@ export default class CarouselWork extends React.Component {
     }
   }*/
 
-
   render() {
-    console.log("pid ", this.props.book.pid);
+    console.log('pid ', this.props.book.pid);
     const book = this.props.book;
     const url = `/værk/${book.pid}`;
-/*
+    /*
 
     const work = get(this.props, 'work');
 
@@ -69,27 +67,25 @@ export default class CarouselWork extends React.Component {
       <div
         className={`carousel-container ${
           this.props.active ? ' carousel-display' : ''
-          }`}
+        }`}
       >
-        <div className={"carousel-header"}>
+        <div className={'carousel-header'}>
           <div className="col-12 carousel-description">
             <TruncateMarkup lines={100}>
               <p>{this.props.description}</p>
             </TruncateMarkup>
           </div>
-
         </div>
         <div className="carousel">
           <div className="carousel-img">
             <Link href={url}>
-              <BookCover book={book}/>
+              <BookCover book={book} />
             </Link>
           </div>
 
           <div className="text-left carousel-info-area">
-
-           {/* <WorkPage pid={book.pid}/>*/}
-{/*
+            {/* <WorkPage pid={book.pid}/>*/}
+            {/*
             <div className="carousel-title">
               {book.titel}
             </div>
@@ -99,7 +95,7 @@ export default class CarouselWork extends React.Component {
               </Link>
             </div>*/}
 
-{/*
+            {/*
 
             <div className="WorkPage__media">
               {work.collectionHasLoaded && (
@@ -166,12 +162,11 @@ export default class CarouselWork extends React.Component {
             </div>
 */}
 
-
             {/* <div className="col-12">
               <CheckmarkConnected book={{book}} origin="Fra bogreol" />
             </div>*/}
           </div>
-          <div className="clear"/>
+          <div className="clear" />
         </div>
       </div>
     );

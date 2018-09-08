@@ -19,7 +19,7 @@ export class BookmarkButton extends React.Component {
     const marked = remembered[this.props.work.book.pid];
     const layout = this.props.layout === 'circle' ? 'Circle' : '';
 
-    const huskText= this.props.texttransform==="uppercase"? "HUSK":"Husk";
+    const huskText = this.props.texttransform === 'uppercase' ? 'HUSK' : 'Husk';
     return (
       <Button
         className={
