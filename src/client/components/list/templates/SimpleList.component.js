@@ -27,6 +27,7 @@ import BookmarkButton from '../../general/BookmarkButton';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import ImageUpload from '../../general/ImageUpload.component';
 import Textarea from 'react-textarea-autosize';
+import ListElement from './ListElement';
 
 const StickySettings = props => {
   return (
@@ -39,12 +40,12 @@ const StickySettings = props => {
     </div>
   );
 };
-const StickyEditBar = ({onSubmit, onCancel}) => {
+const StickyEditPanel = ({onSubmit, onCancel}) => {
   return (
     <div className="fixed-bottom d-flex justify-content-center lys-graa">
       <div className="fixed-width-col-sm d-xs-none d-xl-block" />
       <div className="list-container fixed-width-col-md m4">
-        <div className="EditBar d-flex flex-column flex-sm-row justify-content-end">
+        <div className="EditPanel d-flex flex-column flex-sm-row justify-content-end">
           <Button
             type="link"
             size="medium"
@@ -72,15 +73,7 @@ const StickyEditBar = ({onSubmit, onCancel}) => {
     </div>
   );
 };
-const ElementContextMenu = ({onDelete, onEdit}) => (
-  <ContextMenu
-    className="mr-1 mt-2 position-absolute"
-    style={{right: 0, top: 0}}
-  >
-    <ContextMenuAction title="Redigér indlæg" icon="edit" onClick={onEdit} />
-    <ContextMenuAction title="Slet indlæg" icon="clear" onClick={onDelete} />
-  </ContextMenu>
-);
+
 const ListContextMenu = ({onEdit, title, className, style}) => (
   <ContextMenu title={title} className={className} style={style}>
     <ContextMenuAction
@@ -92,7 +85,6 @@ const ListContextMenu = ({onEdit, title, className, style}) => (
     <ContextMenuAction title="Redigér indstillinger" icon="settings" />
   </ContextMenu>
 );
-
 const ListTop = ({
   list,
   profile,
@@ -175,116 +167,6 @@ const ListTop = ({
     </div>
   );
 };
-export class ListElement extends React.Component {
-  constructor(props) {
-    super();
-    this.state = {
-      editing: false,
-      originalDescription: props.element.description
-    };
-  }
-  render() {
-    const {
-      element,
-      owner,
-      list,
-      isOwner,
-      removeElement,
-      onDescriptionChange,
-      onSubmit
-    } = this.props;
-    return (
-      <div className="mt-2 mt-md-4 lys-graa box-shadow position-relative">
-        {isOwner && (
-          <ElementContextMenu
-            onDelete={() => removeElement(element, list)}
-            onEdit={() => this.setState({editing: true})}
-          />
-        )}
-        <div className="p-4">
-          <div className="d-flex flex-row">
-            <ProfileImage user={owner} size={'40'} namePosition={'right'} />
-            <Heading
-              tag="h5"
-              type="title"
-              className="ml-4 due-txt"
-              style={{fontWeight: 400}}
-            >
-              {timeToString(element._created)}
-            </Heading>
-          </div>
-          {this.state.editing ? (
-            <CommentInput
-              hideProfile={true}
-              autoFocus={true}
-              user={owner}
-              value={element.description}
-              onSubmit={() => {
-                this.setState({
-                  editing: false,
-                  originalDescription: element.description
-                });
-                onSubmit();
-              }}
-              onCancel={() => {
-                this.setState({editing: false});
-                onDescriptionChange(this.state.originalDescription);
-              }}
-              onChange={onDescriptionChange}
-              disabled={false}
-              error={null}
-            />
-          ) : (
-            <Paragraph className="mt-3">{element.description}</Paragraph>
-          )}
-          <WorkRow
-            work={element}
-            origin={`Fra "${list.title}"`}
-            className="mt-4"
-          />
-        </div>
-        {list.social && (
-          <div className="pl-4 pr-4 pt-4 pb-0 porcelain">
-            <Comments id={element._id} />
-          </div>
-        )}
-      </div>
-    );
-  }
-}
-const WorkRow = ({work, className, origin}) => {
-  const book = work.book;
-  return (
-    <div className={'d-flex flex-row ' + className}>
-      <div style={{position: 'relative'}}>
-        <Link href={'/værk/' + book.pid}>
-          <BookCover book={book} className="width-70 width-md-120" />
-        </Link>
-        <BookmarkButton
-          origin={origin}
-          work={work}
-          layout="circle"
-          style={{position: 'absolute', right: -8, top: -8}}
-        />
-      </div>
-
-      <div className="ml-3">
-        <Heading tag="h3" type="title">
-          {book.title}
-        </Heading>
-        <Heading tag="h3" type="subtitle">
-          {book.creator}
-        </Heading>
-        {book.taxonomy_description &&
-          book.taxonomy_description.split('\n').map(line => (
-            <div key={line} style={{fontWeight: 600}}>
-              {line}.
-            </div>
-          ))}
-      </div>
-    </div>
-  );
-};
 
 export class SimpleList extends React.Component {
   constructor(props) {
@@ -315,22 +197,12 @@ export class SimpleList extends React.Component {
   }
 
   render() {
-    const {
-      list,
-      profile,
-      profiles,
-      loggedInUserId,
-      removeElement,
-      updateElement,
-      updateListData,
-      submit,
-      addImage
-    } = this.props;
-
+    const {list, updateListData, submit, addImage, isOwner} = this.props;
+    const {added} = this.state;
     return (
       <React.Fragment>
         {this.state.editing && (
-          <StickyEditBar
+          <StickyEditPanel
             onSubmit={() => {
               submit(list);
               this.setState({
@@ -364,11 +236,13 @@ export class SimpleList extends React.Component {
             <Icon name="add" className="align-middle" onClick={() => {}} />
             <span className="align-middle ml-2">Tilføj en bog til listen</span>
           </div>
-          <ListContextMenu
-            className="mt-3"
-            onEdit={() => this.setState({editing: true})}
-            title="Redigér liste"
-          />
+          {isOwner && (
+            <ListContextMenu
+              className="mt-3"
+              onEdit={() => this.setState({editing: true})}
+              title="Redigér liste"
+            />
+          )}
         </StickySettings>
         <div className="d-flex justify-content-center mt-5 mb-5">
           <div className="fixed-width-col-sm d-xs-none d-xl-block" />
@@ -383,30 +257,25 @@ export class SimpleList extends React.Component {
                 updateListData({_id: list._id, title: e.target.value});
               }}
               contextMenu={
-                <ListContextMenu
-                  className="position-absolute mr-2 d-lg-none"
-                  style={{right: 0, top: 0}}
-                  title=""
-                  onEdit={() => this.setState({editing: true})}
-                />
+                isOwner && (
+                  <ListContextMenu
+                    className="position-absolute mr-2 d-lg-none"
+                    style={{right: 0, top: 0}}
+                    title=""
+                    onEdit={() => this.setState({editing: true})}
+                  />
+                )
               }
               addImage={addImage}
             />
             <div className="position-relative">
               {list.list.map(element => {
-                const isElementOwner = loggedInUserId === element._owner;
                 return (
                   <ListElement
                     key={element.pid}
                     element={element}
-                    owner={profiles[element._owner]}
-                    isOwner={isElementOwner}
                     list={list}
-                    removeElement={removeElement}
-                    onDescriptionChange={description =>
-                      updateElement({...element, description}, list)
-                    }
-                    onSubmit={() => submit(list)}
+                    editing={added === element.pid ? true : false}
                   />
                 );
               })}
@@ -424,6 +293,12 @@ export class SimpleList extends React.Component {
                 />
               )}
             </div>
+            <AddToList
+              className="pt-5"
+              style={{minHeight: 500, background: 'white'}}
+              list={list}
+              onAdd={pid => this.setState({added: pid})}
+            />
           </div>
           <div className="fixed-width-col-sm d-xs-none d-lg-block mt-4 ml-4" />
         </div>

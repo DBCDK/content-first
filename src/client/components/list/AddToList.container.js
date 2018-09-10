@@ -3,73 +3,64 @@ import {connect} from 'react-redux';
 import {addElementToList, storeList} from '../../redux/list.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import BookSearchSuggester from './BookSearchSuggester';
-import {ListItem} from './ListCreate.container';
+import ListElement from './templates/ListElement';
+import Heading from '../base/Heading';
+import ProfileImage from '../general/ProfileImage.component';
+import Button from '../base/Button';
 
 export class AddToList extends React.Component {
   constructor() {
     super();
-    this.state = {elementToAdd: null};
+    this.state = {exists: false};
   }
   render() {
-    const {list, allowAdd, addElement, requireLogin} = this.props;
+    const {
+      list,
+      allowAdd,
+      addElement,
+      requireLogin,
+      openplatformId,
+      profile,
+      className,
+      style,
+      onAdd
+    } = this.props;
     if (!allowAdd || !list) {
       return null;
     }
-
-    const elementToAdd = this.state.elementToAdd;
-    const alreadyInList = elementToAdd
-      ? list.list.filter(item => item.book.pid === elementToAdd.book.pid)
-          .length > 0
-      : false;
     return (
-      <div className="addbook">
-        <h2 className="list-creator__headline mt2">Tilføj bøger til listen</h2>
+      <div className={'addbook ' + className} style={style}>
+        <Heading tag="h2" type="section">
+          Vil du tilføje bøger til listen?
+        </Heading>
 
-        <BookSearchSuggester
-          list={list}
-          onSubmit={book => this.setState({elementToAdd: book})}
-        />
-        {elementToAdd &&
-          !alreadyInList && (
-            <div className="item mt4">
-              <ListItem
-                key={elementToAdd.book.pid}
-                item={elementToAdd}
-                onChange={(item, description) => {
-                  item.description = description;
-                  this.setState({elementToAdd: item});
-                }}
-              />
-              <div className="text-right mt1">
-                <span
-                  className="btn btn-default"
-                  onClick={() => {
-                    this.setState({elementToAdd: null});
-                  }}
-                >
-                  Fortryd
-                </span>
-                <span
-                  className="btn btn-success ml1"
-                  onClick={() => {
-                    if (this.props.isLoggedIn) {
-                      addElement(elementToAdd, list);
-                      this.setState({elementToAdd: null});
-                    } else {
-                      requireLogin();
-                    }
-                  }}
-                >
-                  Tilføj
-                </span>
-              </div>
-            </div>
-          )}
-        {alreadyInList && (
-          <h4 className="mt2 mb2 text-center">
-            <strong>{this.state.elementToAdd.book.title}</strong> kan ikke
-            tilføjes, da den allerede er i listen
-          </h4>
+        <div className="d-flex flex-row french-pass pt-4">
+          <ProfileImage className="ml-4" user={profile} size={'40'} />
+          <BookSearchSuggester
+            className="ml-4 mr-4"
+            list={list}
+            onSubmit={book => {
+              if (
+                list.list.filter(item => item.book.pid === book.book.pid)
+                  .length > 0
+              ) {
+                this.setState({exists: true, selected: book});
+              } else {
+                addElement(book, list);
+                this.setState({exists: false});
+                if (onAdd) {
+                  onAdd(book.book.pid);
+                }
+              }
+            }}
+          />
+        </div>
+
+        {this.state.exists && (
+          <Heading Tag="h3" type="peach-subtitle" className="mt-2 mb-0">
+            <strong>{this.state.selected.book.title}</strong>
+            <span> eksisterer allerede i listen</span>
+          </Heading>
         )}
       </div>
     );
@@ -78,6 +69,8 @@ export class AddToList extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    openplatformId: state.userReducer.openplatformId,
+    profile: state.users.toJS()[state.userReducer.openplatformId],
     allowAdd:
       ownProps.list.open ||
       ownProps.list.owner === state.userReducer.openplatformId,

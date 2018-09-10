@@ -27,7 +27,9 @@
 }
 
 /* utils */
-
+.french-pass {
+  background: var(--french-pass) !important;
+}
 .korn {
   background-color: var(--korn) !important;
   background: var(--korn) !important;

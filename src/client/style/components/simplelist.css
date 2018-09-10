@@ -27,16 +27,8 @@
   position: relative;
 }
 
-.simplelist .addbook {
-  margin-bottom: 400px;
-}
-
 .suggestion-list {
   height: auto;
-}
-
-.suggestion-list input {
-  height: 50px;
 }
 
 .suggestion-list::before {

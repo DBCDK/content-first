@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import request from 'superagent';
 import Autosuggest from 'react-autosuggest';
 import BookCover from '../general/BookCover.component';
+import Heading from '../base/Heading';
 
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 
@@ -25,17 +26,15 @@ const addEmphasisToString = (string, pattern) => {
 
 const renderSuggestion = (suggestion, suggestionString) => {
   return (
-    <div className="suggestion-row flex">
-      <div className="image small">
-        <BookCover book={suggestion.book} />
-      </div>
-      <div>
-        <div className="suggestion-row__title">
+    <div className="suggestion-row d-flex p-2">
+      <BookCover book={suggestion.book} style={{width: 25}} />
+      <div className="ml-3">
+        <Heading Tag="h4" type="title">
           {addEmphasisToString(suggestion.book.title, suggestionString)}
-        </div>
-        <div className="suggestion-row__creator">
+        </Heading>
+        <Heading Tag="h4" type="subtitle">
           {addEmphasisToString(suggestion.book.creator, suggestionString)}
-        </div>
+        </Heading>
       </div>
     </div>
   );
@@ -93,6 +92,7 @@ class BookSearchSuggester extends React.Component {
   }
   render() {
     const {value, suggestions} = this.state;
+    const {className, style} = this.props;
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
@@ -104,7 +104,7 @@ class BookSearchSuggester extends React.Component {
 
     // Finally, render it!
     return (
-      <div className="suggestion-list">
+      <div className={'suggestion-list ' + className} style={style}>
         <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={e => this.onSuggestionsFetchRequested(e)}
@@ -115,6 +115,7 @@ class BookSearchSuggester extends React.Component {
           getSuggestionValue={({book}) => book.title}
           renderSuggestion={suggestion => renderSuggestion(suggestion, value)}
           inputProps={inputProps}
+          highlightFirstSuggestion={true}
         />
       </div>
     );
