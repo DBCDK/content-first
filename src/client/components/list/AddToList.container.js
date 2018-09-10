@@ -19,7 +19,7 @@ export class AddToList extends React.Component {
       allowAdd,
       addElement,
       requireLogin,
-      openplatformId,
+      isLoggedIn,
       profile,
       className,
       style,
@@ -40,6 +40,9 @@ export class AddToList extends React.Component {
             className="ml-4 mr-4"
             list={list}
             onSubmit={book => {
+              if (!isLoggedIn) {
+                return requireLogin();
+              }
               if (
                 list.list.filter(item => item.book.pid === book.book.pid)
                   .length > 0

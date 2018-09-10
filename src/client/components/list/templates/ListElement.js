@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import ProfileImage from '../../general/ProfileImage.component';
+import textParser from '../../../utils/textParser';
 import Comments from '../../comments/Comment.container';
 import CommentInput from '../../comments/CommentInput.component';
 import timeToString from '../../../utils/timeToString';
@@ -67,8 +68,14 @@ export class ListElement extends React.Component {
               {timeToString(element._created)}
             </Heading>
           </div>
+          <WorkRow
+            work={element}
+            origin={`Fra "${list.title}"`}
+            className="mt-4"
+          />
           {this.state.editing ? (
             <CommentInput
+              className="mt-3"
               hideProfile={true}
               autoFocus={true}
               user={owner}
@@ -92,21 +99,27 @@ export class ListElement extends React.Component {
               }}
               disabled={false}
               error={null}
+              placeholder="Fortæl om bogen"
             />
           ) : (
-            <Paragraph className="mt-3">{element.description}</Paragraph>
+            <Paragraph className="mt-3">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: textParser(
+                    element.description || element.book.description || ''
+                  )
+                }}
+              />
+            </Paragraph>
           )}
-          <WorkRow
-            work={element}
-            origin={`Fra "${list.title}"`}
-            className="mt-4"
-          />
         </div>
         {list.social &&
           showComments && (
-            <div className="pl-4 pr-4 pt-4 pb-0 porcelain">
-              <Comments id={element._id} />
-            </div>
+            <Comments
+              className="pl-4 pr-4 pt-4 pb-0 porcelain"
+              id={element._id}
+              disabled={this.state.editing}
+            />
           )}
         {children}
       </div>

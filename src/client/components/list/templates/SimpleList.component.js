@@ -10,6 +10,7 @@ import {
   removeElementFromList,
   updateList,
   storeList,
+  removeList,
   ADD_LIST_IMAGE
 } from '../../../redux/list.reducer';
 import CommentInput from '../../comments/CommentInput.component';
@@ -25,16 +26,21 @@ import Icon from '../../base/Icon';
 import Link from '../../general/Link.component';
 import BookmarkButton from '../../general/BookmarkButton';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
+import {HISTORY_REPLACE} from '../../../redux/middleware';
 import ImageUpload from '../../general/ImageUpload.component';
 import Textarea from 'react-textarea-autosize';
 import ListElement from './ListElement';
+import scrollToComponent from 'react-scroll-to-component';
 
 const StickySettings = props => {
   return (
-    <div className="fixed-top d-flex justify-content-center" style={{top: 140}}>
+    <div
+      className="fixed-top d-flex justify-content-center pointer-events-none"
+      style={{top: 140}}
+    >
       <div className="fixed-width-col-sm d-xs-none d-xl-block" />
       <div className="list-container fixed-width-col-md" />
-      <div className="fixed-width-col-sm d-xs-none d-lg-block ml-4">
+      <div className="fixed-width-col-sm d-xs-none d-lg-block ml-4 pointer-events-initial">
         {props.children}
       </div>
     </div>
@@ -42,27 +48,27 @@ const StickySettings = props => {
 };
 const StickyEditPanel = ({onSubmit, onCancel}) => {
   return (
-    <div className="fixed-bottom d-flex justify-content-center lys-graa">
-      <div className="fixed-width-col-sm d-xs-none d-xl-block" />
+    <div
+      className="fixed-bottom d-flex justify-content-center porcelain box-shadow-top"
+      style={{}}
+    >
+      <div
+        className="fixed-width-col-sm d-xs-none d-xl-block"
+        style={{display: 'none'}}
+      />
       <div className="list-container fixed-width-col-md m4">
-        <div className="EditPanel d-flex flex-column flex-sm-row justify-content-end">
+        <div className="EditPanel d-flex flex-row justify-content-end">
           <Button
             type="link"
             size="medium"
             className="mr-2 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
             onClick={onCancel}
           >
-            Fortryd ændringer
-          </Button>
-          <Button
-            type="quinary"
-            className="mr-2 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
-          >
-            Slet liste
+            Fortryd
           </Button>
           <Button
             type="quaternary"
-            className="mr-2 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
+            className="mr-4 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
             onClick={onSubmit}
           >
             Gem ændringer
@@ -74,7 +80,7 @@ const StickyEditPanel = ({onSubmit, onCancel}) => {
   );
 };
 
-const ListContextMenu = ({onEdit, title, className, style}) => (
+const ListContextMenu = ({onEdit, onDelete, title, className, style}) => (
   <ContextMenu title={title} className={className} style={style}>
     <ContextMenuAction
       title="Redigér tekst og billede"
@@ -83,6 +89,7 @@ const ListContextMenu = ({onEdit, title, className, style}) => (
     />
     <ContextMenuAction title="Skift rækkefølge" icon="swap_vert" />
     <ContextMenuAction title="Redigér indstillinger" icon="settings" />
+    <ContextMenuAction title="Slet liste" icon="clear" onClick={onDelete} />
   </ContextMenu>
 );
 const ListTop = ({
@@ -156,13 +163,22 @@ const ListTop = ({
             />
           </React.Fragment>
         ) : (
-          <Paragraph>{list.description}</Paragraph>
+          <Paragraph>
+            {' '}
+            <span
+              dangerouslySetInnerHTML={{
+                __html: textParser(list.description)
+              }}
+            />
+          </Paragraph>
         )}
       </div>
       {list.social && (
-        <div className="pl-4 pr-4 pt-4 pb-0 porcelain">
-          <Comments id={list._id} />
-        </div>
+        <Comments
+          className="m-0 pl-4 pr-4 pt-4 pb-0 porcelain"
+          id={list._id}
+          disabled={editing}
+        />
       )}
     </div>
   );
@@ -195,9 +211,24 @@ export class SimpleList extends React.Component {
       );
     }
   }
+  onEdit = () => {
+    this.setState({editing: true});
+    scrollToComponent(this.refs.cover, {
+      align: 'top',
+      offset: -100,
+      duration: 500
+    });
+  };
 
   render() {
-    const {list, updateListData, submit, addImage, isOwner} = this.props;
+    const {
+      list,
+      updateListData,
+      submit,
+      addImage,
+      isOwner,
+      confirmDeleteModal
+    } = this.props;
     const {added} = this.state;
     return (
       <React.Fragment>
@@ -239,14 +270,22 @@ export class SimpleList extends React.Component {
           {isOwner && (
             <ListContextMenu
               className="mt-3"
-              onEdit={() => this.setState({editing: true})}
+              onEdit={this.onEdit}
+              onDelete={() => {
+                confirmDeleteModal(list._id);
+              }}
               title="Redigér liste"
             />
           )}
         </StickySettings>
         <div className="d-flex justify-content-center mt-5 mb-5">
           <div className="fixed-width-col-sm d-xs-none d-xl-block" />
-          <div className="list-container pistache fixed-width-col-md">
+          <div
+            className="list-container pistache fixed-width-col-md"
+            ref={cover => {
+              this.refs = {...this.refs, cover};
+            }}
+          >
             <ListTop
               {...this.props}
               editing={this.state.editing}
@@ -262,7 +301,7 @@ export class SimpleList extends React.Component {
                     className="position-absolute mr-2 d-lg-none"
                     style={{right: 0, top: 0}}
                     title=""
-                    onEdit={() => this.setState({editing: true})}
+                    onEdit={this.onEdit}
                   />
                 )
               }
@@ -361,6 +400,33 @@ export const mapDispatchToProps = dispatch => ({
             })
           );
           dispatch(storeList(_id));
+        },
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        }
+      }
+    });
+  },
+  confirmDeleteModal: _id => {
+    dispatch({
+      type: 'OPEN_MODAL',
+      modal: 'confirm',
+      context: {
+        title: 'Skal denne liste slettes?',
+        reason: 'Er du sikker på du vil slette den valgte liste.',
+        confirmText: 'Slet liste',
+        onConfirm: () => {
+          dispatch(
+            removeList(_id),
+            dispatch({
+              type: 'CLOSE_MODAL',
+              modal: 'confirm'
+            })
+          );
+          dispatch({type: HISTORY_REPLACE, path: '/profile'});
         },
         onCancel: () => {
           dispatch({

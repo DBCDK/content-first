@@ -56,48 +56,65 @@ export class CommentContainer extends React.Component {
     const commentsCount =
       (this.props.comments && this.props.comments.length) || 0;
     return (
-      <div className="comments">
-        {commentsCount ? (
-          <div className="mb3">
-            <CommentList
-              user={this.props.user}
-              comments={this.props.comments}
-              showCount={
-                this.state.showAll
-                  ? this.props.comments.length
-                  : this.state.showCount
-              }
-            />
-            {commentsCount > this.state.showCount ? (
-              <button
-                id="comment-toggle"
-                onClick={() => this.setState({showAll: !this.state.showAll})}
-                style={{marginLeft: 55, position: 'relative', paddingLeft: 0}}
-                className="btn btn-link mt1 mb1 link-subtle"
-              >
-                <CommentsIcon
-                  value={this.props.comments ? this.props.comments.length : ''}
-                />
-                <span className="ml1">
-                  {!this.state.showAll
-                    ? 'Vis alle kommentarer'
-                    : 'Vis færre kommentarer'}
-                </span>
-              </button>
-            ) : (
-              ''
-            )}
-          </div>
-        ) : null}
-        <CommentInput
-          user={this.props.user}
-          value={this.state.newCommentValue}
-          onSubmit={this.onSubmit}
-          onCancel={() => this.setState({newCommentValue: ''})}
-          onChange={value => this.setState({newCommentValue: value})}
-          disabled={this.props.saving}
-          error={this.props.error || null}
-        />
+      <div style={{position: 'relative'}}>
+        <div className={'comments ' + this.props.className}>
+          {commentsCount ? (
+            <div className="mb3">
+              <CommentList
+                user={this.props.user}
+                comments={this.props.comments}
+                showCount={
+                  this.state.showAll
+                    ? this.props.comments.length
+                    : this.state.showCount
+                }
+              />
+              {commentsCount > this.state.showCount ? (
+                <button
+                  id="comment-toggle"
+                  onClick={() => this.setState({showAll: !this.state.showAll})}
+                  style={{marginLeft: 55, position: 'relative', paddingLeft: 0}}
+                  className="btn btn-link mt1 mb1 link-subtle"
+                >
+                  <CommentsIcon
+                    value={
+                      this.props.comments ? this.props.comments.length : ''
+                    }
+                  />
+                  <span className="ml1">
+                    {!this.state.showAll
+                      ? 'Vis alle kommentarer'
+                      : 'Vis færre kommentarer'}
+                  </span>
+                </button>
+              ) : (
+                ''
+              )}
+            </div>
+          ) : null}
+          <CommentInput
+            user={this.props.user}
+            value={this.state.newCommentValue}
+            onSubmit={this.onSubmit}
+            onCancel={() => this.setState({newCommentValue: ''})}
+            onChange={value => this.setState({newCommentValue: value})}
+            disabled={this.props.saving}
+            error={this.props.error || null}
+          />
+        </div>
+        {this.props.disabled && (
+          <div
+            className="position-absolute"
+            style={{
+              width: '100%',
+              height: '100%',
+              top: 0,
+              background: 'white',
+              opacity: 0.7,
+              zIndex: 1000
+            }}
+          />
+        )}
       </div>
     );
   }

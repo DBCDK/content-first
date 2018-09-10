@@ -4,7 +4,7 @@ import Button from '../base/Button';
 import Icon from '../base/Icon';
 
 const UploadButton = ({buttonText, fieldName, readFiles, style, className}) => (
-  <label style={style} clasName={className}>
+  <label style={style} className={className}>
     <Button type="tertiary" size="medium" Tag="span">
       <Icon name="photo" className="align-middle" />
       <span className="align-middle ml-2">

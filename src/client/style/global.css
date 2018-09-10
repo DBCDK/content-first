@@ -87,6 +87,16 @@
 .box-shadow {
   box-shadow: 0px 5px 5px -5px #333;
 }
+.box-shadow-top {
+  box-shadow: 0 -5px 5px -5px #333;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+.pointer-events-initial {
+  pointer-events: initial;
+}
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {

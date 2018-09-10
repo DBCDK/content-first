@@ -1,6 +1,7 @@
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
 import ProfileImage from '../general/ProfileImage.component';
+import Button from '../base/Button';
 
 export default class CommentInput extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ export default class CommentInput extends React.Component {
     }
     return (
       <div
+        className={this.props.className}
         style={{
           display: 'flex'
         }}
@@ -45,10 +47,10 @@ export default class CommentInput extends React.Component {
             disabled={this.props.disabled}
             className={`form-control mb1 comment-textarea`}
             name="list-description"
-            placeholder="Skriv kommentar"
+            placeholder={this.props.placeholder || 'Skriv kommentar'}
             onChange={e => this.props.onChange(e.target.value)}
             onBlur={() => {
-              this.setState({focus: false});
+              // this.setState({focus: false});
             }}
             value={this.props.value}
           />
@@ -63,7 +65,7 @@ export default class CommentInput extends React.Component {
               height: this.state.focus || this.state.value ? '50px' : '0px',
               opacity: this.state.focus || this.state.value ? 1 : 0,
               overflow: 'hidden',
-              transition: 'opacity 200ms'
+              transition: 'all 200ms'
             }}
           >
             {this.props.onDelete ? (
@@ -74,20 +76,22 @@ export default class CommentInput extends React.Component {
                 Slet
               </button>
             ) : null}
-            <button
-              className="comment-cancel btn btn-link link-subtle"
+            <Button
+              type="link"
+              size="medium"
+              className="mr-2 ml-2"
               onClick={this.onCancel}
             >
               Fortryd
-            </button>
-            <button
-              id="comment-submit"
-              className="btn btn-success"
+            </Button>
+            <Button
+              type="quaternary"
+              className="mr-2 ml-2"
               onClick={this.onSubmit}
               disabled={this.props.disabled || !this.props.value}
             >
               Gem
-            </button>
+            </Button>
           </div>
         </div>
       </div>
