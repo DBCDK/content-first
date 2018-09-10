@@ -158,14 +158,6 @@ class TagsSuggester extends React.Component {
     delete this.currentRequest;
   }
 
-  // onSuggestionSelected(e, props) {
-  //   console.log('ddd');
-  //
-  //   e.preventDefault();
-  //   this.props.onSubmit(props.suggestion);
-  //   this.setState({value: ''});
-  // }
-
   toggleInputvisibility(status) {
     this.setState({inputVisibel: status});
 
