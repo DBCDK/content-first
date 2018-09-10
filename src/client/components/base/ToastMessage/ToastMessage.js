@@ -18,9 +18,9 @@ const ToastMessage = ({
       )}
       <span className="ToastMessage__Lines">
         {lines.map(line => (
-          <React.Fragment>
-            <span className="ToastMessage__Line">{line}</span>
-          </React.Fragment>
+          <span key={line} className="ToastMessage__Line">
+            {line}
+          </span>
         ))}
       </span>
     </div>

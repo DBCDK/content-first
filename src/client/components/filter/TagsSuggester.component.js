@@ -70,6 +70,7 @@ class TagsSuggester extends React.Component {
       tagsSuggestions: {title: 'Tags', suggestions: []},
       authorSuggestions: {title: 'Forfatterer', suggestions: []},
       titleSuggestions: {title: 'Bøger', suggestions: []},
+      suggestions: [],
       inputVisibel: true
     };
   }
@@ -95,7 +96,6 @@ class TagsSuggester extends React.Component {
           )
       )).text
     ).data.map(book => ({
-      title: book.title,
       suggestions: [
         {
           title: book.title,
@@ -158,11 +158,13 @@ class TagsSuggester extends React.Component {
     delete this.currentRequest;
   }
 
-  onSuggestionSelected(e, props) {
-    e.preventDefault();
-    this.props.onSubmit(props.suggestion);
-    this.setState({value: ''});
-  }
+  // onSuggestionSelected(e, props) {
+  //   console.log('ddd');
+  //
+  //   e.preventDefault();
+  //   this.props.onSubmit(props.suggestion);
+  //   this.setState({value: ''});
+  // }
 
   toggleInputvisibility(status) {
     this.setState({inputVisibel: status});
@@ -179,7 +181,8 @@ class TagsSuggester extends React.Component {
 
     // Fill suggestions with authors (Maximum 2)
     authorSuggestions = {
-      suggestions: authorSuggestions.suggestions.slice(0, 2)
+      suggestions: authorSuggestions.suggestions.slice(0, 2),
+      title: authorSuggestions.title
     };
 
     // Fill suggestions with book titles (maximum 4)
@@ -187,7 +190,8 @@ class TagsSuggester extends React.Component {
       suggestions: titleSuggestions.suggestions.slice(
         0,
         4 - authorSuggestions.suggestions.length
-      )
+      ),
+      title: titleSuggestions.title
     };
 
     // Fill suggestions with tags (Maximum 6)
@@ -197,15 +201,19 @@ class TagsSuggester extends React.Component {
         10 -
           (titleSuggestions.suggestions.length +
             authorSuggestions.suggestions.length)
-      )
+      ),
+      title: tagsSuggestions.title
     };
 
     // Backfill suggestions with booktitles if any
     if (tagsSuggestions.suggestions.length < 6) {
-      titleSuggestions.suggestions = this.state.titleSuggestions.suggestions.slice(
-        0,
-        6 - tagsSuggestions.suggestions.length
-      );
+      titleSuggestions = {
+        suggestions: this.state.titleSuggestions.suggestions.slice(
+          0,
+          6 - tagsSuggestions.suggestions.length
+        ),
+        title: titleSuggestions.title
+      };
     }
 
     const suggestions = [];
@@ -226,7 +234,6 @@ class TagsSuggester extends React.Component {
   }
 
   render() {
-    const suggestions = this.renderSuggestions();
     const inputVisibel = this.state.inputVisibel;
     const tagsInField = this.props.selectedFilters.length === 0 ? false : true;
     const inputVisibelClass = inputVisibel || !tagsInField ? '' : '';
@@ -269,24 +276,25 @@ class TagsSuggester extends React.Component {
           onClick={() => this.toggleInputvisibility(true)}
         >
           <Autosuggest
-            suggestions={suggestions}
+            suggestions={this.state.suggestions}
             multiSection={true}
-            onSuggestionsFetchRequested={e => {
-              this.onTagsSuggestionsFetchRequested(e);
-              this.onAuthorTitleSuggestionsFetchRequested(e);
+            highlightFirstSuggestion={true}
+            onSuggestionsFetchRequested={async e => {
+              await this.onTagsSuggestionsFetchRequested(e);
+              await this.onAuthorTitleSuggestionsFetchRequested(e);
+              this.setState({suggestions: this.renderSuggestions()});
             }}
             onSuggestionsClearRequested={() => {
               this.onSuggestionsClearRequested();
               this.props.onChange({target: {value: ''}});
             }}
             onSuggestionSelected={this.props.onSuggestionSelected}
-            getSuggestionValue={obj => obj}
+            getSuggestionValue={obj => obj.text || obj.title}
             getSectionSuggestions={section => section.suggestions}
             renderSuggestion={suggestion =>
               renderSuggestion(suggestion, this.props.value)
             }
             renderSectionTitle={section => renderSectionTitle(section)}
-            highlightFirstSuggestion={true}
             focusInputOnSuggestionClick={true}
             inputProps={inputProps}
           />
