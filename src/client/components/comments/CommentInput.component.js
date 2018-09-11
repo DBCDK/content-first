@@ -21,9 +21,6 @@ export default class CommentInput extends React.Component {
   };
 
   render() {
-    if (!this.props.user.openplatformId) {
-      return null;
-    }
     return (
       <div
         className={this.props.className}
@@ -38,6 +35,12 @@ export default class CommentInput extends React.Component {
           style={{width: '100%'}}
           className={`form-group ${this.props.error ? 'has-error' : ''}`}
           onFocus={() => {
+            if (!this.props.user.openplatformId) {
+              if (this.props.requireLogin) {
+                this.props.requireLogin();
+              }
+              return;
+            }
             this.setState({focus: true});
           }}
         >

@@ -5,6 +5,7 @@ import {
   FETCH_COMMENTS,
   getCommentsForId
 } from '../../redux/comment.reducer';
+import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {Comments as CommentsIcon} from '../general/Icons';
 import CommentList from './CommentList.component';
 import CommentInput from './CommentInput.component';
@@ -100,6 +101,7 @@ export class CommentContainer extends React.Component {
             onChange={value => this.setState({newCommentValue: value})}
             disabled={this.props.saving}
             error={this.props.error || null}
+            requireLogin={this.props.requireLogin}
           />
         </div>
         {this.props.disabled && (
@@ -128,7 +130,17 @@ const mapStateToProps = (state, ownProps) => ({
 export const mapDispatchToProps = dispatch => ({
   addComment: ({id, comment, owner}) =>
     dispatch({type: ADD_COMMENT, comment, id, owner}),
-  fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
+  fetchComments: id => dispatch({type: FETCH_COMMENTS, id}),
+  requireLogin: () => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'login',
+      context: {
+        title: 'Skriv kommentar',
+        reason: 'Du skal logge ind for at skrive en kommentar.'
+      }
+    });
+  }
 });
 
 export default connect(

@@ -162,13 +162,20 @@ const ListTop = ({
           </Heading>
         </div>
         {editing ? (
-          <Textarea
-            className={`mt-3 form-control Heading Heading__section`}
-            name="list-description"
-            placeholder="Listens titel"
-            onChange={onTitleChange}
-            value={list.title}
-          />
+          <React.Fragment>
+            <Textarea
+              className={`mt-3 form-control Heading Heading__section`}
+              name="list-description"
+              placeholder="Listens titel"
+              onChange={onTitleChange}
+              value={list.title}
+            />
+            {!list.title.trim() && (
+              <Paragraph className="mt-2" style={{color: 'red'}}>
+                Listen skal have en titel
+              </Paragraph>
+            )}
+          </React.Fragment>
         ) : (
           <Heading Tag="h1" type="section" className="mt-3">
             {list.title}
@@ -296,6 +303,9 @@ export class SimpleList extends React.Component {
           <StickyEditPanel
             isNew={isNew}
             onSubmit={() => {
+              if (!list.title.trim()) {
+                return;
+              }
               submit(list);
               this.setState({
                 isNew: false,
@@ -511,11 +521,11 @@ export const mapDispatchToProps = dispatch => ({
       }
     });
   },
-  openModal: (work, modal) => {
+  openModal: (context, modal) => {
     dispatch({
       type: OPEN_MODAL,
       modal: modal,
-      context: work
+      context
     });
   },
   exitList: () => dispatch({type: HISTORY_REPLACE, path: '/profile'})
