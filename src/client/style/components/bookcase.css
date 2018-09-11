@@ -8,8 +8,6 @@
     box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.25);
 }
 
-
-
 /****************SECTION**************/
 .bookcase-container {
     margin-left: -15px;
@@ -21,7 +19,6 @@ section {
     position: relative;
     background: var(--lys-graa);
     width: 100%;
-
 }
 
 section .caroContainer {
@@ -30,7 +27,6 @@ section .caroContainer {
     max-height: 600px;
     top: 0px;
 }
-
 
 section .caroContainer .bookswrap {
     height:600px;
@@ -41,30 +37,17 @@ section .caroContainer .bookswrap {
     background-position: center center;
 }
 
-
-
 section .caroContainer .celeb {
     text-align: left;
     width:50%;
     top: 0px;
     max-height: 600px;
-
     background: var(--lys-graa);
     transition: all 0.3s ease-in;
     overflow: hidden;
     float: right;
     z-index: 3;
-
 }
-
-/*section img.imgcontainer {
-    position: absolute;
-    height: 100%;
-    width: 50%;
-    object-fit: cover;
-    z-index: 1;
-
-}*/
 
 section .celeb .carousel-close {
     position: absolute;

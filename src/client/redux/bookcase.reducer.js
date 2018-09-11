@@ -26,7 +26,6 @@ const defaultState = {
       descriptionImage: false,
       bookcase: 'img/bookcase/NB-bogreol.jpg',
       list: [
-
         {
           book: {
             pid: '870970-basis:51238362',
@@ -70,7 +69,7 @@ const defaultState = {
             creator: 'Thomas Mann',
             description: ''
           },
-          position: {x:31, y: 12},
+          position: {x: 31, y: 12},
           description:
             'En slægtsfabel. En roman om et familiedynasti af købmænd, som langsomt går undergangen i møde. På Thomas Manns tid tog faldet 30-40 år, hvorimod det i dag kan ske fra den ene dag til den anden. Romanen kredser om spørgsmålet ”hvordan er man et ordentligt menneske, en samfundsstøtte?”.'
         }

@@ -1,8 +1,7 @@
 import React from 'react';
 import Pulse from '../pulse/Pulse.component';
 import CarouselSlider from './CarouselSlider.component';
-import ConciseWork from "../work/ConciseWork.container";
-
+import ConciseWork from '../work/ConciseWork.container';
 
 export class BookcaseItem extends React.Component {
   constructor(props) {
@@ -15,7 +14,6 @@ export class BookcaseItem extends React.Component {
     };
     this.updateDimensions = this.updateDimensions.bind(this);
     this.gotoListPage = this.gotoListPage.bind(this);
-
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -30,11 +28,11 @@ export class BookcaseItem extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener("resize", this.updateDimensions);
+    window.addEventListener('resize', this.updateDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions);
+    window.removeEventListener('resize', this.updateDimensions);
   }
 
   getWindowWidth() {
@@ -52,7 +50,6 @@ export class BookcaseItem extends React.Component {
     if (this.getWindowWidth() <= 500) {
       this.hideCarousel();
     }
-
   }
 
   hideCarousel() {
@@ -79,7 +76,8 @@ export class BookcaseItem extends React.Component {
   };
 
   gotoListPage() {
-    const listurl = 'https://content-first.demo.dbc.dk/lister/af12d710-b5ac-11e8-9ee1-1b9b68a1acb2';
+    const listurl =
+      'https://content-first.demo.dbc.dk/lister/af12d710-b5ac-11e8-9ee1-1b9b68a1acb2';
     if (this.getWindowWidth() <= 500) {
       window.open(listurl, '_blank');
     }
@@ -102,22 +100,15 @@ export class BookcaseItem extends React.Component {
     // new
     let subtag = 'Anbefalinger fra ' + this.props.profile.name + ', journalist';
 
-
     const imageStyle = {
-      backgroundImage: "url(" + this.props.list.bookcase + ")"
-
+      backgroundImage: 'url(' + this.props.list.bookcase + ')'
     };
 
     return (
-      <section
-        className={`${this.state.carousel ? 'section-active' : ''} `}
-
-      >
-
+      <section className={`${this.state.carousel ? 'section-active' : ''} `}>
         <div className="caroContainer" onClick={this.gotoListPage}>
           <div className="bookswrap" style={imageStyle}>
             {this.props.list.list.map((p, i) => {
-
               return (
                 <Pulse
                   active={this.state.pulse}
@@ -126,7 +117,7 @@ export class BookcaseItem extends React.Component {
                   onClick={() => {
                     this.carouselTrigger(p.book.pid, i);
                   }}
-                  position={(p.position)}
+                  position={p.position}
                 />
               );
             })}
@@ -142,11 +133,12 @@ export class BookcaseItem extends React.Component {
               clear
             </i>
 
-
             <div className="col-xs-12 celeb-top">
               <div className="scrolltext">
                 <div className="innerscrollbox">
-                  <div className="col-xs-12 pagetag">{pagetag.toUpperCase()}</div>
+                  <div className="col-xs-12 pagetag">
+                    {pagetag.toUpperCase()}
+                  </div>
                   <div className="col-xs-12 profile">
                     <span className="profile-name">{firstname}: </span>
                     <span className="profile-quote"> “{nameQuote}”</span>
@@ -172,7 +164,7 @@ export class BookcaseItem extends React.Component {
                     </span>
                   </div>
                 ) : (
-                  <div/>
+                  <div />
                 )}
               </div>
             </div>
@@ -184,13 +176,12 @@ export class BookcaseItem extends React.Component {
               >
                 {this.props.list.list.map(b => {
                   return (
-
                     <div
                       className={`carousel-container ${
                         this.props.active ? ' carousel-display' : ''
-                        }`}
+                      }`}
                     >
-                      <ConciseWork pid={b.book.pid}/>
+                      <ConciseWork pid={b.book.pid} />
                     </div>
                   );
                 })}
@@ -198,7 +189,6 @@ export class BookcaseItem extends React.Component {
             </div>
           </div>
         </div>
-
       </section>
     );
   }

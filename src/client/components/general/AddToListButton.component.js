@@ -96,7 +96,6 @@ export class AddToListButton extends React.Component {
           type="quinary"
           size="medium"
           id="addtolist"
-
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="true"
