@@ -13,6 +13,10 @@ export class AddToList extends React.Component {
     super();
     this.state = {exists: false};
   }
+  focus = () => {
+    this.refs.suggester.focus();
+  };
+
   render() {
     const {
       list,
@@ -23,7 +27,8 @@ export class AddToList extends React.Component {
       profile,
       className,
       style,
-      onAdd
+      onAdd,
+      suggesterRef
     } = this.props;
     if (!allowAdd || !list) {
       return null;
@@ -37,6 +42,7 @@ export class AddToList extends React.Component {
         <div className="d-flex flex-row french-pass pt-4">
           <ProfileImage className="ml-4" user={profile} size={'40'} />
           <BookSearchSuggester
+            suggesterRef={suggesterRef}
             className="ml-4 mr-4"
             list={list}
             onSubmit={book => {

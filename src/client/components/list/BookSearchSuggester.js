@@ -54,6 +54,9 @@ class BookSearchSuggester extends React.Component {
       value: newValue
     });
   }
+  focus = () => {
+    this.refs.autosuggest.input.focus();
+  };
 
   async onSuggestionsFetchRequested({value}) {
     value = value.toLowerCase();
@@ -92,7 +95,7 @@ class BookSearchSuggester extends React.Component {
   }
   render() {
     const {value, suggestions} = this.state;
-    const {className, style} = this.props;
+    const {className, style, suggesterRef} = this.props;
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
@@ -106,6 +109,7 @@ class BookSearchSuggester extends React.Component {
     return (
       <div className={'suggestion-list ' + className} style={style}>
         <Autosuggest
+          ref={suggesterRef}
           suggestions={suggestions}
           onSuggestionsFetchRequested={e => this.onSuggestionsFetchRequested(e)}
           onSuggestionsClearRequested={() => this.onSuggestionsClearRequested()}

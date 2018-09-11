@@ -25,7 +25,7 @@ export const ContextMenuUploadAction = ({title, onClick = () => {}}) => (
 export default ({title = '', className, children, style}) => (
   <div className={'ContextMenu dropdown ' + className || ''} style={style}>
     <div className="dropdown-toggle" data-toggle="dropdown">
-      <Icon name="more_vert" className="align-middle" />
+      <Icon name="more_vert" className="align-middle mr-2" />
       <span className="align-middle">{title}</span>
     </div>
     <div className="dropdown-menu dropdown-menu-right">{children}</div>

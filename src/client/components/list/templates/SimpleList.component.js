@@ -99,7 +99,8 @@ const ListTop = ({
   onDescriptionChange,
   onTitleChange,
   contextMenu,
-  addImage
+  addImage,
+  confirmShareModal
 }) => {
   return (
     <div className="box-shadow">
@@ -126,7 +127,31 @@ const ListTop = ({
         )}
       </div>
       <div className="pl-4 pr-4 pb-4 lys-graa pt-2 position-relative">
-        {contextMenu}
+        <div
+          className="d-flex flex-row position-absolute pr-4"
+          style={{right: 0, top: 0}}
+        >
+          <SocialShareButton
+            className={list.type === 'SYSTEM_LIST' ? 'd-none' : 'ssb-fb'}
+            facebook={true}
+            href={
+              list.public
+                ? 'https://content-first.demo.dbc.dk/lister/' + list._id
+                : null
+            }
+            hex={'#3b5998'}
+            size={30}
+            txt="Del"
+            shape="round"
+            status={!list.public || editing ? 'passive' : 'active'}
+            hoverTitle="Del på facebook"
+            onClick={() => {
+              confirmShareModal(list._id);
+            }}
+          />
+          {contextMenu}
+        </div>
+
         <div className="d-flex flex-row">
           <ProfileImage user={profile} size={'40'} namePosition="right" />
           <Heading
@@ -255,18 +280,25 @@ export class SimpleList extends React.Component {
           />
         )}
         <StickySettings>
-          <div>
-            <Icon
-              name="visibility"
-              className="align-middle"
-              onClick={() => {}}
-            />
+          <Button type="link2">
+            <Icon name="visibility" className="align-middle" />
             <span className="align-middle ml-2">Følg liste</span>
-          </div>
-          <div className="mt-3">
-            <Icon name="add" className="align-middle" onClick={() => {}} />
+          </Button>
+          <Button
+            type="link2"
+            className="mt-3"
+            onClick={() => {
+              scrollToComponent(this.refs.suggester, {
+                align: 'top',
+                offset: -100,
+                duration: 500
+              });
+              this.refs.suggester.input.focus();
+            }}
+          >
+            <Icon name="add" className="align-middle" />
             <span className="align-middle ml-2">Tilføj en bog til listen</span>
-          </div>
+          </Button>
           {isOwner && (
             <ListContextMenu
               className="mt-3"
@@ -298,7 +330,7 @@ export class SimpleList extends React.Component {
               contextMenu={
                 isOwner && (
                   <ListContextMenu
-                    className="position-absolute mr-2 d-lg-none"
+                    className="ml-3 d-lg-none"
                     style={{right: 0, top: 0}}
                     title=""
                     onEdit={this.onEdit}
@@ -333,6 +365,9 @@ export class SimpleList extends React.Component {
               )}
             </div>
             <AddToList
+              suggesterRef={suggester => {
+                this.refs = {...this.refs, suggester};
+              }}
               className="pt-5"
               style={{minHeight: 500, background: 'white'}}
               list={list}
