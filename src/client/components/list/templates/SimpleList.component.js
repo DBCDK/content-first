@@ -227,13 +227,21 @@ const ListTop = ({
 export class SimpleList extends React.Component {
   constructor(props) {
     super();
-    this.state = {
+    this.state = this.getInitialState(props);
+  }
+  getInitialState(props) {
+    return {
       editing: props.list.title ? false : true,
       originalDescription: props.list.description,
       originalTitle: props.list.title,
       originalImage: props.list.image,
       isNew: !props.list.title
     };
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.list._id !== this.props.list._id) {
+      this.setState(this.getInitialState(this.props));
+    }
   }
   toggleFollow = _id => {
     if (this.props.isLoggedIn) {
