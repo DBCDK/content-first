@@ -10,7 +10,6 @@ import {
   addElementToList,
   storeList
 } from '../../redux/list.reducer';
-import {SHORTLIST_CLEAR} from '../../redux/shortlist.reducer';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import ToastMessage from '../base/ToastMessage';
 import {toast} from 'react-toastify';
@@ -89,7 +88,10 @@ export class AddToListModal extends React.Component {
       this.addElementsToList(this.state.latestUsedId);
     }
 
-    this.props.clearShortlist();
+    // clear if any callback given
+    if (this.props.clearShortList) {
+      this.props.clearShortList();
+    }
 
     toast(
       <ToastMessage
@@ -197,9 +199,11 @@ export class AddToListModal extends React.Component {
                   onChange={e => this.setState({listName: e.target.value})}
                 />
                 <input
-                  className="add-list--btn text-center"
+                  className={`add-list--btn text-center ${
+                    !this.state.listName ? 'd-none' : 'button'
+                  }`}
                   value="×"
-                  type={`${!this.state.listName ? 'd-none' : 'button'}`}
+                  type={'button'}
                   onClick={() => {
                     this.setState({listName: ''});
                   }}
@@ -241,6 +245,7 @@ const mapStateToProps = state => {
   });
   return {
     customLists: customLists,
+    clearShortList: state.modalReducer.addToList.callback || null,
     systemLists: getListsForOwner(state, {
       type: SYSTEM_LIST,
       owner: state.userReducer.openplatformId,
@@ -256,7 +261,6 @@ const mapStateToProps = state => {
 
 export const mapDispatchToProps = dispatch => ({
   addElementToList: (book, listId) => dispatch(addElementToList(book, listId)),
-  clearShortlist: type => dispatch({type: SHORTLIST_CLEAR}),
   storeList: listId => dispatch(storeList(listId)),
   modal: (type, modal) => dispatch({type, modal}),
   addList: title => dispatch(addList({title}))

@@ -141,7 +141,8 @@ class ShortList extends React.Component {
                           description: e.origin || 'Tilføjet fra huskelisten'
                         }
                       ],
-                      this.props.isLoggedIn
+                      this.props.isLoggedIn,
+                      () => this.props.remove(e.book.pid)
                     );
                   }}
                 />
@@ -156,9 +157,13 @@ class ShortList extends React.Component {
               <div className="row d-block">
                 <span
                   className="btn btn-success"
-                  onClick={() => {
-                    this.props.addToList(elements, this.props.isLoggedIn);
-                  }}
+                  onClick={() =>
+                    this.props.addToList(
+                      elements,
+                      this.props.isLoggedIn,
+                      this.props.clearList
+                    )
+                  }
                 >
                   TILFØJ ALLE TIL LISTE
                 </span>
@@ -226,11 +231,12 @@ export const mapDispatchToProps = dispatch => ({
       pid,
       origin
     }),
-  addToList: (works, isLoggedIn) =>
+  addToList: (works, isLoggedIn, callback = null) =>
     dispatch({
       type: OPEN_MODAL,
       modal: isLoggedIn ? 'addToList' : 'login',
-      context: works
+      context: works,
+      callback
     }),
   clearList: () =>
     dispatch({
