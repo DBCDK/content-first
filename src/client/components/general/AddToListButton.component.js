@@ -216,7 +216,7 @@ export class AddToListButton extends React.Component {
               size="large"
               type="tertiary"
               className="mb1"
-              onClick={e => this.createNewList()}
+              onClick={() => this.createNewList()}
             >
               Tilføj liste
             </Button>
