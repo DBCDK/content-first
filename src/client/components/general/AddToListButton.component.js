@@ -268,11 +268,11 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(storeList(listId));
   },
   saveList: listId => dispatch(storeList(listId)),
-  openModal: (works, modal) => {
+  openModal: (work, modal) => {
     dispatch({
       type: OPEN_MODAL,
       modal: modal,
-      context: [works]
+      context: [work]
     });
   }
 });
