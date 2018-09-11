@@ -100,7 +100,10 @@ const ListTop = ({
   onTitleChange,
   contextMenu,
   addImage,
-  confirmShareModal
+  confirmShareModal,
+  isFollowing,
+  toggleFollow,
+  scrollToAdd
 }) => {
   return (
     <div className="box-shadow">
@@ -198,6 +201,23 @@ const ListTop = ({
           </Paragraph>
         )}
       </div>
+      <div className="d-flex flex-row lys-graa justify-content-between d-lg-none pb-3">
+        <Button
+          type="link2"
+          className="ml-4"
+          style={{color: isFollowing ? 'var(--de-york)' : 'var(--petrolium)'}}
+          onClick={() => {
+            toggleFollow(list._id);
+          }}
+        >
+          <Icon name="visibility" className="align-middle" />
+          <span className="align-middle ml-2">Følg liste</span>
+        </Button>
+        <Button type="link2" className="mr-4" onClick={scrollToAdd}>
+          <Icon name="add" className="align-middle" />
+          <span className="align-middle ml-2">Tilføj en bog</span>
+        </Button>
+      </div>
       {list.social && (
         <Comments
           className="m-0 pl-4 pr-4 pt-4 pb-0 porcelain"
@@ -219,12 +239,12 @@ export class SimpleList extends React.Component {
       originalImage: props.list.image
     };
   }
-  toggleFollow(_id, cat) {
+  toggleFollow = _id => {
     if (this.props.isLoggedIn) {
-      if (this.props.follows[_id]) {
+      if (this.props.isFollowing) {
         this.props.unfollow(_id);
       } else {
-        this.props.follow(_id, cat);
+        this.props.follow(_id, 'list');
       }
     } else {
       this.props.openModal(
@@ -235,7 +255,7 @@ export class SimpleList extends React.Component {
         'login'
       );
     }
-  }
+  };
   onEdit = () => {
     this.setState({editing: true});
     scrollToComponent(this.refs.cover, {
@@ -245,6 +265,15 @@ export class SimpleList extends React.Component {
     });
   };
 
+  scrollToAdd = () => {
+    scrollToComponent(this.refs.suggester, {
+      align: 'top',
+      offset: -100,
+      duration: 500
+    });
+    this.refs.suggester.input.focus();
+  };
+
   render() {
     const {
       list,
@@ -252,7 +281,8 @@ export class SimpleList extends React.Component {
       submit,
       addImage,
       isOwner,
-      confirmDeleteModal
+      confirmDeleteModal,
+      isFollowing
     } = this.props;
     const {added} = this.state;
     return (
@@ -280,22 +310,17 @@ export class SimpleList extends React.Component {
           />
         )}
         <StickySettings>
-          <Button type="link2">
+          <Button
+            type="link2"
+            style={{color: isFollowing ? 'var(--de-york)' : 'var(--petrolium)'}}
+            onClick={() => {
+              this.toggleFollow(list._id);
+            }}
+          >
             <Icon name="visibility" className="align-middle" />
             <span className="align-middle ml-2">Følg liste</span>
           </Button>
-          <Button
-            type="link2"
-            className="mt-3"
-            onClick={() => {
-              scrollToComponent(this.refs.suggester, {
-                align: 'top',
-                offset: -100,
-                duration: 500
-              });
-              this.refs.suggester.input.focus();
-            }}
-          >
+          <Button type="link2" className="mt-3" onClick={this.scrollToAdd}>
             <Icon name="add" className="align-middle" />
             <span className="align-middle ml-2">Tilføj en bog til listen</span>
           </Button>
@@ -320,6 +345,8 @@ export class SimpleList extends React.Component {
           >
             <ListTop
               {...this.props}
+              scrollToAdd={this.scrollToAdd}
+              toggleFollow={this.toggleFollow}
               editing={this.state.editing}
               onDescriptionChange={e => {
                 updateListData({_id: list._id, description: e.target.value});
@@ -384,7 +411,7 @@ export class SimpleList extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     loggedInUserId: state.userReducer.openplatformId,
-    follows: state.followReducer,
+    isFollowing: state.followReducer[ownProps.list._id],
     isOwner:
       ownProps.list &&
       ownProps.list._owner === state.userReducer.openplatformId,
