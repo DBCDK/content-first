@@ -66,12 +66,12 @@ section .row .celeb .carousel-close {
     position: absolute;
     margin: 1em;
     cursor: pointer;
-    width: 10px;
     right: 0%;
     cursor: pointer;
     z-index: 1;
     top: -60px;
     transition: all 0.3s ease-in;
+    font-size: 20px;
 }
 
 img.imgcontainer {

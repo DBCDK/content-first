@@ -2,21 +2,21 @@
 
 exports[`AddToListModal multiple works as input 1`] = `
 <div
-  className="modal-container"
+  className="modal-container "
 >
   <div
     className="modal-backdrop"
     onClick={[Function]}
   />
   <div
-    className="modal-window text-left add-to-list--modal"
+    className="modal-window text-left p-4 add-to-list--modal p-4"
   >
-    <img
-      alt="luk"
-      className="modal-window--close-btn"
+    <i
+      className="material-icons modal-window--close-btn mt-1"
       onClick={[Function]}
-      src="Kryds.svg"
-    />
+    >
+      clear
+    </i>
     <div
       className="modal-window--header text-center"
     >
@@ -132,9 +132,9 @@ exports[`AddToListModal multiple works as input 1`] = `
                 value=""
               />
               <input
-                className="add-list--btn text-center"
+                className="add-list--btn text-center d-none"
                 onClick={[Function]}
-                type="d-none"
+                type="button"
                 value="×"
               />
             </form>
@@ -167,21 +167,21 @@ exports[`AddToListModal multiple works as input 1`] = `
 
 exports[`AddToListModal newly added list is selected 1`] = `
 <div
-  className="modal-container"
+  className="modal-container "
 >
   <div
     className="modal-backdrop"
     onClick={[Function]}
   />
   <div
-    className="modal-window text-left add-to-list--modal"
+    className="modal-window text-left p-4 add-to-list--modal p-4"
   >
-    <img
-      alt="luk"
-      className="modal-window--close-btn"
+    <i
+      className="material-icons modal-window--close-btn mt-1"
       onClick={[Function]}
-      src="Kryds.svg"
-    />
+    >
+      clear
+    </i>
     <div
       className="modal-window--header text-center"
     >
@@ -311,9 +311,9 @@ exports[`AddToListModal newly added list is selected 1`] = `
                 value=""
               />
               <input
-                className="add-list--btn text-center"
+                className="add-list--btn text-center d-none"
                 onClick={[Function]}
-                type="d-none"
+                type="button"
                 value="×"
               />
             </form>
@@ -363,21 +363,21 @@ exports[`AddToListModal newly added list is selected 1`] = `
 
 exports[`AddToListModal renders lists from store, first is selected 1`] = `
 <div
-  className="modal-container"
+  className="modal-container "
 >
   <div
     className="modal-backdrop"
     onClick={[Function]}
   />
   <div
-    className="modal-window text-left add-to-list--modal"
+    className="modal-window text-left p-4 add-to-list--modal p-4"
   >
-    <img
-      alt="luk"
-      className="modal-window--close-btn"
+    <i
+      className="material-icons modal-window--close-btn mt-1"
       onClick={[Function]}
-      src="Kryds.svg"
-    />
+    >
+      clear
+    </i>
     <div
       className="modal-window--header text-center"
     >
@@ -493,9 +493,9 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
                 value=""
               />
               <input
-                className="add-list--btn text-center"
+                className="add-list--btn text-center d-none"
                 onClick={[Function]}
-                type="d-none"
+                type="button"
                 value="×"
               />
             </form>

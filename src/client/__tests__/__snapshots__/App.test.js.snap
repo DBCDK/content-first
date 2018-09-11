@@ -34,6 +34,7 @@ exports[`renders without crashing 1`] = `
             >
               <div
                 className="selected-filters-wrap text-left"
+                id="selected-filters-wrap"
                 onWheel={[Function]}
               >
                 <div
@@ -122,12 +123,12 @@ exports[`renders without crashing 1`] = `
         <div
           className="top-bar-dropdown-list--content text-left slide-out"
         >
-          <img
-            alt="luk"
-            className="top-bar-dropdown-list--close-btn"
+          <i
+            className="material-icons top-bar-dropdown-list--close-btn"
             onClick={[Function]}
-            src="KrydsPetrolium.svg"
-          />
+          >
+            clear
+          </i>
           <a
             className="list-card-nohover"
             href="/huskeliste"

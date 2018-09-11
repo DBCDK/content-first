@@ -5,7 +5,6 @@ import ProfileImage from '../../general/ProfileImage.component';
 import SocialShareButton from '../../general/SocialShareButton.component';
 import Comments from '../../comments/Comment.container';
 import AddToList from '../AddToList.container';
-import Kryds from '../../svg/Kryds.svg';
 import {
   UPDATE_LIST_ELEMENT,
   removeElementFromList,
@@ -117,13 +116,9 @@ export class Item extends React.Component {
           )}
         </div>
         {allowDelete && (
-          <img
-            style={{right: 30, top: 5, color: 'gray'}}
-            src={Kryds}
-            alt="remove"
-            className="remove-btn"
-            onClick={onRemove}
-          />
+          <i className="material-icons remove-btn" onClick={onRemove}>
+            clear
+          </i>
         )}
       </div>
     );

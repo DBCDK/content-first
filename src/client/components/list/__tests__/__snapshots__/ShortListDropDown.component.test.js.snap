@@ -15,12 +15,12 @@ Array [
   <div
     className="top-bar-dropdown-list--content text-left slide-out"
 >
-    <img
-        alt="luk"
-        className="top-bar-dropdown-list--close-btn"
+    <i
+        className="material-icons top-bar-dropdown-list--close-btn"
         onClick={[Function]}
-        src="KrydsPetrolium.svg"
-    />
+    >
+        clear
+    </i>
     <a
         className="list-card-nohover"
         href="/huskeliste"
@@ -95,12 +95,12 @@ Array [
                         Minder om noget1
                     </div>
                 </div>
-                <img
-                    alt="luk"
-                    className="top-bar-dropdown-list-element--close-btn"
+                <i
+                    className="material-icons remove-btn"
                     onClick={[Function]}
-                    src="KrydsGrey.svg"
-                />
+                >
+                    clear
+                </i>
             </div>
             <div
                 className="top-bar-dropdown-list-element"
@@ -156,12 +156,12 @@ Array [
                         Minder om noget2
                     </div>
                 </div>
-                <img
-                    alt="luk"
-                    className="top-bar-dropdown-list-element--close-btn"
+                <i
+                    className="material-icons remove-btn"
                     onClick={[Function]}
-                    src="KrydsGrey.svg"
-                />
+                >
+                    clear
+                </i>
             </div>
         </span>
     </div>
@@ -206,12 +206,12 @@ Array [
   <div
     className="top-bar-dropdown-list--content text-left slide-out"
 >
-    <img
-        alt="luk"
-        className="top-bar-dropdown-list--close-btn"
+    <i
+        className="material-icons top-bar-dropdown-list--close-btn"
         onClick={[Function]}
-        src="KrydsPetrolium.svg"
-    />
+    >
+        clear
+    </i>
     <a
         className="list-card-nohover"
         href="/huskeliste"
@@ -286,12 +286,12 @@ Array [
                         Minder om noget4
                     </div>
                 </div>
-                <img
-                    alt="luk"
-                    className="top-bar-dropdown-list-element--close-btn"
+                <i
+                    className="material-icons remove-btn"
                     onClick={[Function]}
-                    src="KrydsGrey.svg"
-                />
+                >
+                    clear
+                </i>
             </div>
             <div
                 className="top-bar-dropdown-list-element"
@@ -347,12 +347,12 @@ Array [
                         Minder om noget3
                     </div>
                 </div>
-                <img
-                    alt="luk"
-                    className="top-bar-dropdown-list-element--close-btn"
+                <i
+                    className="material-icons remove-btn"
                     onClick={[Function]}
-                    src="KrydsGrey.svg"
-                />
+                >
+                    clear
+                </i>
             </div>
             <div
                 className="top-bar-dropdown-list-element"
@@ -408,12 +408,12 @@ Array [
                         Minder om noget2
                     </div>
                 </div>
-                <img
-                    alt="luk"
-                    className="top-bar-dropdown-list-element--close-btn"
+                <i
+                    className="material-icons remove-btn"
                     onClick={[Function]}
-                    src="KrydsGrey.svg"
-                />
+                >
+                    clear
+                </i>
             </div>
             <div
                 className="top-bar-dropdown-list-element"
@@ -469,12 +469,12 @@ Array [
                         Minder om noget1
                     </div>
                 </div>
-                <img
-                    alt="luk"
-                    className="top-bar-dropdown-list-element--close-btn"
+                <i
+                    className="material-icons remove-btn"
                     onClick={[Function]}
-                    src="KrydsGrey.svg"
-                />
+                >
+                    clear
+                </i>
             </div>
         </span>
     </div>
@@ -519,12 +519,12 @@ Array [
   <div
     className="top-bar-dropdown-list--content text-left slide-out"
 >
-    <img
-        alt="luk"
-        className="top-bar-dropdown-list--close-btn"
+    <i
+        className="material-icons top-bar-dropdown-list--close-btn"
         onClick={[Function]}
-        src="KrydsPetrolium.svg"
-    />
+    >
+        clear
+    </i>
     <a
         className="list-card-nohover"
         href="/huskeliste"
@@ -599,12 +599,12 @@ Array [
                         Minder om noget1
                     </div>
                 </div>
-                <img
-                    alt="luk"
-                    className="top-bar-dropdown-list-element--close-btn"
+                <i
+                    className="material-icons remove-btn"
                     onClick={[Function]}
-                    src="KrydsGrey.svg"
-                />
+                >
+                    clear
+                </i>
             </div>
         </span>
     </div>
@@ -649,12 +649,12 @@ Array [
   <div
     className="top-bar-dropdown-list--content text-left slide-out"
 >
-    <img
-        alt="luk"
-        className="top-bar-dropdown-list--close-btn"
+    <i
+        className="material-icons top-bar-dropdown-list--close-btn"
         onClick={[Function]}
-        src="KrydsPetrolium.svg"
-    />
+    >
+        clear
+    </i>
     <a
         className="list-card-nohover"
         href="/huskeliste"

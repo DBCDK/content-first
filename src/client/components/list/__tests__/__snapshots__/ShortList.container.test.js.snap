@@ -249,12 +249,12 @@ exports[`ShortList.container Clearing list 1`] = `
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -445,12 +445,12 @@ exports[`ShortList.container Clearing list 1`] = `
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -742,12 +742,12 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -1070,12 +1070,12 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -1398,12 +1398,12 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -1741,12 +1741,12 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -2087,12 +2087,12 @@ exports[`ShortList.container remove element 1`] = `
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -2283,12 +2283,12 @@ exports[`ShortList.container remove element 1`] = `
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -2479,12 +2479,12 @@ exports[`ShortList.container remove element 1`] = `
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -2843,12 +2843,12 @@ exports[`ShortList.container short list contains elements 1`] = `
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -3039,12 +3039,12 @@ exports[`ShortList.container short list contains elements 1`] = `
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>
@@ -3235,12 +3235,12 @@ exports[`ShortList.container short list contains elements 1`] = `
                               </OrderButton>
                             </Connect(OrderButton)>
                           </div>
-                          <img
-                            alt="remove"
-                            className="remove-btn"
+                          <i
+                            className="material-icons remove-btn"
                             onClick={[Function]}
-                            src="Kryds.svg"
-                          />
+                          >
+                            clear
+                          </i>
                         </div>
                       </div>
                     </ShortListItem>

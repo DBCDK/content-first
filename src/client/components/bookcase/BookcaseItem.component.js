@@ -98,14 +98,14 @@ export class BookcaseItem extends React.Component {
           </div>
 
           <div className="celeb">
-            <img
-              className="carousel-close"
-              src="/static/media/Kryds.e69a54ef.svg"
-              alt="luk"
+            <i
+              className="material-icons carousel-close"
               onClick={() => {
                 this.hideCarousel();
               }}
-            />
+            >
+              clear
+            </i>
 
             <div className="col-xs-12 celeb-top">
               <div className="scrolltext">
@@ -132,7 +132,7 @@ export class BookcaseItem extends React.Component {
                     }}
                   >
                     <span className="linktext">
-                      Se {firstname+"'s"} bogliste
+                      Se {firstname + "'s"} bogliste
                     </span>
                   </div>
                 ) : (

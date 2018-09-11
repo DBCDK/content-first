@@ -18,10 +18,10 @@ exports[`SearchPage render function displays search results 1`] = `
     <p>
       Søgning efter "
       søgeforespørgsel
-      " returnerede 
-      1
+      " returnerede
        
-      resultater.
+      1
+       resultater.
     </p>
     <ul>
       <li>

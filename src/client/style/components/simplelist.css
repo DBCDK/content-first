@@ -50,9 +50,8 @@
 .simplelist .remove-btn {
   position: absolute;
   right: 0px;
-  /*top: 10px;*/
+  font-size: 18px;
   cursor: pointer;
-  width: 10px;
 }
 
 .simplelist .ssb-fb {

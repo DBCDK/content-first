@@ -15,8 +15,8 @@ export const SearchPage = props => (
     ) : (
       <div>
         <p>
-          Søgning efter "{props.query}" returnerede {props.results.length}{' '}
-          resultater.
+          Søgning efter "{props.query.split(' & ').join(' ')}" returnerede{' '}
+          {props.results.length} resultater.
         </p>
         <ul>
           {props.results.map(o => (

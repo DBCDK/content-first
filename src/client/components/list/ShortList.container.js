@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Kryds from '../svg/Kryds.svg';
 import BookCover from '../general/BookCover.component';
 import Textarea from 'react-textarea-autosize';
 import OrderButton from '../order/OrderButton.component';
@@ -99,12 +98,13 @@ export class ShortListItem extends React.Component {
               className="ml1"
             />
           </div>
-          <img
-            src={Kryds}
-            alt="remove"
-            className="remove-btn"
+
+          <i
+            className="material-icons remove-btn"
             onClick={this.props.onRemove}
-          />
+          >
+            clear
+          </i>
         </div>
       </div>
     );
@@ -134,7 +134,16 @@ class ShortList extends React.Component {
                     this.props.originUpdate(origin, e.book.pid);
                   }}
                   onAddToList={() => {
-                    this.props.addToList(e, this.props.isLoggedIn);
+                    this.props.addToList(
+                      [
+                        {
+                          book: e.book,
+                          description: e.origin || 'Tilføjet fra huskelisten'
+                        }
+                      ],
+                      this.props.isLoggedIn,
+                      () => this.props.remove(e.book.pid)
+                    );
                   }}
                 />
               ))}
@@ -148,9 +157,13 @@ class ShortList extends React.Component {
               <div className="row d-block">
                 <span
                   className="btn btn-success"
-                  onClick={() => {
-                    this.props.addToList(elements, this.props.isLoggedIn);
-                  }}
+                  onClick={() =>
+                    this.props.addToList(
+                      elements,
+                      this.props.isLoggedIn,
+                      this.props.clearList
+                    )
+                  }
                 >
                   TILFØJ ALLE TIL LISTE
                 </span>
@@ -218,11 +231,12 @@ export const mapDispatchToProps = dispatch => ({
       pid,
       origin
     }),
-  addToList: (element, isLoggedIn) =>
+  addToList: (works, isLoggedIn, callback = null) =>
     dispatch({
       type: OPEN_MODAL,
       modal: isLoggedIn ? 'addToList' : 'login',
-      context: element
+      context: works,
+      callback
     }),
   clearList: () =>
     dispatch({

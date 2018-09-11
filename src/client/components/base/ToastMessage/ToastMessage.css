@@ -2,6 +2,10 @@
   top: 90px;
 }
 
+.Toastify__progress-bar {
+  background: var(--alto);
+}
+
 .Toastify__toast {
   background-color: var(--lys-graa);
 }
@@ -21,9 +25,24 @@
   color: var(--de-york);
 }
 
+.ToastMessage.info .ToastMessage__Icon {
+  color: var(--due);
+}
+
 .ToastMessage .ToastMessage__Lines {
   display: flex;
   flex-direction: column;
+  font-family: var(--primary-font);
+}
+
+.ToastMessage .ToastMessage__Line a {
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.ToastMessage .ToastMessage__Line a:hover {
+  color: var(--due);
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 600px) {
