@@ -80,6 +80,11 @@ export class ListElement extends React.Component {
               autoFocus={true}
               user={owner}
               value={element.description}
+              cancelText={
+                this.state.originalDescription
+                  ? 'Fortryd'
+                  : 'Brug bogens beskrivelse'
+              }
               onSubmit={() => {
                 this.setState({
                   editing: false,

@@ -82,7 +82,7 @@ export default class CommentInput extends React.Component {
               className="mr-2 ml-2"
               onClick={this.onCancel}
             >
-              Fortryd
+              {this.props.cancelText || 'Fortryd'}
             </Button>
             <Button
               type="quaternary"

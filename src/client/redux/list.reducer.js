@@ -331,7 +331,7 @@ export const addList = ({
   description = '',
   list = [],
   _id = null,
-  owner = null,
+  _owner = null,
   _created = Date.now()
 }) => {
   return {
@@ -342,7 +342,7 @@ export const addList = ({
       title,
       description,
       list,
-      owner,
+      _owner,
       _created
     }
   };

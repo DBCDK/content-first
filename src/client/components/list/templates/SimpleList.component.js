@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import WorkItem from '../../work/WorkItemConnected.component';
 import ProfileImage from '../../general/ProfileImage.component';
 import SocialShareButton from '../../general/SocialShareButton.component';
 import Comments from '../../comments/Comment.container';
@@ -13,7 +12,6 @@ import {
   removeList,
   ADD_LIST_IMAGE
 } from '../../../redux/list.reducer';
-import CommentInput from '../../comments/CommentInput.component';
 import timeToString from '../../../utils/timeToString';
 import textParser from '../../../utils/textParser';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
@@ -21,10 +19,7 @@ import {FOLLOW, UNFOLLOW} from '../../../redux/follow.reducer';
 import Heading from '../../base/Heading';
 import Paragraph from '../../base/Paragraph';
 import Button from '../../base/Button';
-import BookCover from '../../general/BookCover.component';
 import Icon from '../../base/Icon';
-import Link from '../../general/Link.component';
-import BookmarkButton from '../../general/BookmarkButton';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
 import ImageUpload from '../../general/ImageUpload.component';
@@ -46,7 +41,7 @@ const StickySettings = props => {
     </div>
   );
 };
-const StickyEditPanel = ({onSubmit, onCancel}) => {
+const StickyEditPanel = ({onSubmit, onCancel, isNew}) => {
   return (
     <div
       className="fixed-bottom d-flex justify-content-center porcelain box-shadow-top"
@@ -64,14 +59,14 @@ const StickyEditPanel = ({onSubmit, onCancel}) => {
             className="mr-2 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
             onClick={onCancel}
           >
-            Fortryd
+            {isNew ? 'Fortryd oprettelse af liste' : 'Fortryd'}
           </Button>
           <Button
             type="quaternary"
             className="mr-4 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
             onClick={onSubmit}
           >
-            Gem ændringer
+            {isNew ? 'Gem liste' : 'Gem ændringer'}
           </Button>
         </div>
       </div>
@@ -170,7 +165,7 @@ const ListTop = ({
           <Textarea
             className={`mt-3 form-control Heading Heading__section`}
             name="list-description"
-            placeholder="Din beskrivelse"
+            placeholder="Listens titel"
             onChange={onTitleChange}
             value={list.title}
           />
@@ -185,7 +180,7 @@ const ListTop = ({
             <Textarea
               className={`form-control mt-4 comment-textarea`}
               name="list-description"
-              placeholder="Din beskrivelse"
+              placeholder="Fortæl om listen"
               onChange={onDescriptionChange}
               value={list.description}
             />
@@ -195,7 +190,7 @@ const ListTop = ({
             {' '}
             <span
               dangerouslySetInnerHTML={{
-                __html: textParser(list.description)
+                __html: textParser(list.description || '')
               }}
             />
           </Paragraph>
@@ -233,10 +228,11 @@ export class SimpleList extends React.Component {
   constructor(props) {
     super();
     this.state = {
-      editing: false,
+      editing: props.list.title ? false : true,
       originalDescription: props.list.description,
       originalTitle: props.list.title,
-      originalImage: props.list.image
+      originalImage: props.list.image,
+      isNew: !props.list.title
     };
   }
   toggleFollow = _id => {
@@ -282,23 +278,31 @@ export class SimpleList extends React.Component {
       addImage,
       isOwner,
       confirmDeleteModal,
-      isFollowing
+      isFollowing,
+      exitList
     } = this.props;
-    const {added} = this.state;
+    const {added, isNew} = this.state;
     return (
       <React.Fragment>
         {this.state.editing && (
           <StickyEditPanel
+            isNew={isNew}
             onSubmit={() => {
               submit(list);
               this.setState({
+                isNew: false,
                 editing: false,
                 originalTitle: list.title,
                 originalDescription: list.description,
                 originalImage: list.image
               });
             }}
+            cancelText={this.state.originalTitle}
             onCancel={() => {
+              if (isNew) {
+                // cancel creation of new list, redirect
+                return exitList();
+              }
               this.setState({editing: false});
               updateListData({
                 _id: list._id,
@@ -505,7 +509,8 @@ export const mapDispatchToProps = dispatch => ({
       modal: modal,
       context: work
     });
-  }
+  },
+  exitList: () => dispatch({type: HISTORY_REPLACE, path: '/profile'})
 });
 export default connect(
   mapStateToProps,
