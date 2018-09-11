@@ -134,7 +134,15 @@ class ShortList extends React.Component {
                     this.props.originUpdate(origin, e.book.pid);
                   }}
                   onAddToList={() => {
-                    this.props.addToList(e, this.props.isLoggedIn);
+                    this.props.addToList(
+                      [
+                        {
+                          book: e.book,
+                          description: e.origin || 'Tilføjet fra huskelisten'
+                        }
+                      ],
+                      this.props.isLoggedIn
+                    );
                   }}
                 />
               ))}
@@ -218,11 +226,11 @@ export const mapDispatchToProps = dispatch => ({
       pid,
       origin
     }),
-  addToList: (element, isLoggedIn) =>
+  addToList: (works, isLoggedIn) =>
     dispatch({
       type: OPEN_MODAL,
       modal: isLoggedIn ? 'addToList' : 'login',
-      context: element
+      context: works
     }),
   clearList: () =>
     dispatch({
