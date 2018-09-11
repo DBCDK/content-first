@@ -58,10 +58,10 @@
 
 .carousel-header{
   color: var(--petroleum);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   max-height:50%;
-  margin-bottom:0px;
+  margin-bottom:3%;
   overflow: hidden;
 }
 
@@ -162,5 +162,20 @@
   }
   .celeb .slick-next {
     right: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .carousel .carousel-info-area {
+
+  }
+  .carousel .carousel-img {
+
+  }
+  .celeb .slick-prev {
+
+  }
+  .celeb .slick-next {
+
   }
 }

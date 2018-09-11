@@ -29,7 +29,6 @@
 
 .AddToListButton__Container .AddToListButton span {
   display: inline-block;
-  width: calc(100% - 25px);
   width: calc(100% - (14px + 0.5rem));
   white-space: nowrap;
   overflow: hidden;
@@ -39,7 +38,7 @@
 .AddToListButton__Dropdown {
   min-width: 225px;
   max-width: 250px;
-  border: 1px solid var(--graa);
+  border: 1px solid var(--porcelain);
 }
 
 .AddToListButton__Dropdown li {

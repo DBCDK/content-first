@@ -1,14 +1,8 @@
 import React from 'react';
 import Pulse from '../pulse/Pulse.component';
-
 import CarouselSlider from './CarouselSlider.component';
-import CarouselWork from './CarouselWork.component';
-import ConciseWork from '../work/ConciseWork.container';
-import TruncateMarkup from 'react-truncate-markup';
+import ConciseWork from "../work/ConciseWork.container";
 
-/*
-  <BookcaseItem list={obj} profile={obj}/>
-*/
 
 export class BookcaseItem extends React.Component {
   constructor(props) {
@@ -19,6 +13,9 @@ export class BookcaseItem extends React.Component {
       carousel: false,
       pulse: ''
     };
+    this.updateDimensions = this.updateDimensions.bind(this);
+    this.gotoListPage = this.gotoListPage.bind(this);
+
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -26,6 +23,36 @@ export class BookcaseItem extends React.Component {
       this.props.list.list.length !== nextProps.list.list.length ||
       this.state !== nextState
     );
+  }
+
+  componentWillMount() {
+    this.updateDimensions();
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
+
+  getWindowWidth() {
+    let w = window,
+      d = document,
+      documentElement = d.documentElement,
+      body = d.getElementsByTagName('body')[0],
+      width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
+    return width;
+  }
+
+  updateDimensions() {
+    this.getWindowWidth();
+
+    if (this.getWindowWidth() <= 500) {
+      this.hideCarousel();
+    }
+
   }
 
   hideCarousel() {
@@ -51,6 +78,13 @@ export class BookcaseItem extends React.Component {
     });
   };
 
+  gotoListPage() {
+    const listurl = 'https://content-first.demo.dbc.dk/lister/af12d710-b5ac-11e8-9ee1-1b9b68a1acb2';
+    if (this.getWindowWidth() <= 500) {
+      window.open(listurl, '_blank');
+    }
+  }
+
   render() {
     if (!this.props.list || !this.props.profile) {
       return null;
@@ -68,23 +102,22 @@ export class BookcaseItem extends React.Component {
     // new
     let subtag = 'Anbefalinger fra ' + this.props.profile.name + ', journalist';
 
+
+    const imageStyle = {
+      backgroundImage: "url(" + this.props.list.bookcase + ")"
+
+    };
+
     return (
       <section
         className={`${this.state.carousel ? 'section-active' : ''} `}
-        onClick={this.test}
+
       >
-        <img
-          className="imgcontainer"
-          src={
-            this.props.list.image
-              ? '/v1/image/' + this.props.list.image + '/1200/600'
-              : this.props.list.bookcase
-          }
-          alt={this.props.name + '´s bogreol'}
-        />
-        <div className={'caroContainer'}>
-          <div className="bookswrap">
+
+        <div className="caroContainer" onClick={this.gotoListPage}>
+          <div className="bookswrap" style={imageStyle}>
             {this.props.list.list.map((p, i) => {
+
               return (
                 <Pulse
                   active={this.state.pulse}
@@ -93,11 +126,12 @@ export class BookcaseItem extends React.Component {
                   onClick={() => {
                     this.carouselTrigger(p.book.pid, i);
                   }}
-                  position={p.position}
+                  position={(p.position)}
                 />
               );
             })}
           </div>
+
           <div className="celeb">
             <i
               className="material-icons carousel-close"
@@ -108,12 +142,11 @@ export class BookcaseItem extends React.Component {
               clear
             </i>
 
+
             <div className="col-xs-12 celeb-top">
               <div className="scrolltext">
                 <div className="innerscrollbox">
-                  <div className="col-xs-12 pagetag">
-                    {pagetag.toUpperCase()}
-                  </div>
+                  <div className="col-xs-12 pagetag">{pagetag.toUpperCase()}</div>
                   <div className="col-xs-12 profile">
                     <span className="profile-name">{firstname}: </span>
                     <span className="profile-quote"> “{nameQuote}”</span>
@@ -139,7 +172,7 @@ export class BookcaseItem extends React.Component {
                     </span>
                   </div>
                 ) : (
-                  <div />
+                  <div/>
                 )}
               </div>
             </div>
@@ -151,18 +184,13 @@ export class BookcaseItem extends React.Component {
               >
                 {this.props.list.list.map(b => {
                   return (
+
                     <div
                       className={`carousel-container ${
                         this.props.active ? ' carousel-display' : ''
-                      }`}
+                        }`}
                     >
-                      <div className="carousel-header">
-                        <TruncateMarkup lines={100}>
-                          <p>{description}</p>
-                        </TruncateMarkup>
-                      </div>
-
-                      <ConciseWork pid={b.book.pid} />
+                      <ConciseWork pid={b.book.pid}/>
                     </div>
                   );
                 })}
@@ -170,6 +198,7 @@ export class BookcaseItem extends React.Component {
             </div>
           </div>
         </div>
+
       </section>
     );
   }

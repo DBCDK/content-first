@@ -1,24 +1,19 @@
-.concise-work-container {
 
+.AddToListButton__Dropdown {
+/****to make it dropdown from the top of the button****/
+    /*top:auto !important;
+    bottom:65px !important;*/
 }
 
-.concise-work-info {
-
-
-
-}
-
-.concise-work-img {
-
+.concise-work-img img {
+    height: 225px;
+    width: 100%;
 }
 
 .concise-work-title {
     color: var(--petroleum);
     font-size: 24px;
     font-weight: 600;
-
-
-
 }
 
 .concise-work-author {
@@ -26,7 +21,6 @@
     font-size: 16px;
     font-weight: 400;
     margin-top: -5px;
-
 }
 
 .concise-work-details {
@@ -35,10 +29,15 @@
     font-style: Montserrat;
     font-weight: 400;
     margin-top: 5px;
-    text-transform:uppercase;
+
+    text-transform: uppercase;
 }
 
-.work-subtitle{
+.concise-work-details span {
+    padding-right: 6px;
+}
+
+.work-subtitle {
     font-size: 14px;
     color: var(--petroleum);
     font-style: Montserrat;
@@ -47,24 +46,125 @@
 
 .WorkPage__media button i {
     margin-right: 0.5rem;
-
-
 }
 
 .WorkPage__media button, .WorkPage__media button i,
 .WorkPage__media a, .WorkPage__media a i {
-    font-size: 1rem;
+    font-size: .9rem;
     color: var(--petrolium);
-    font-weight:400;
+    font-weight: 600;
 
 }
 
 .WorkPage__media button i .material-icons {
-    text-transform:uppercase;
+    text-transform: uppercase;
 
 }
 
+/*1024-1200px width*/
+@media only screen and (max-width: 1200px) {
+    .concise-work-container {
 
-@media only screen and (max-width: 1275px) {
+        margin-left: 5%;
+    }
+
+    .concise-work-info {
+        margin-top: 6px;
+    }
+
+    .concise-work-img {
+
+        height: 150px;
+
+    }
+
+    .col-sm-4, .col-sm-8 {
+        padding-left: 0px;
+    }
+
+    .concise-work-title {
+        font-size: 18px;
+    }
+
+    .concise-work-author {
+        font-size: 14px;
+        margin-top: -6px;
+    }
+
+    .concise-work-details {
+        font-size: 9px;
+    }
+
+    .work-subtitle {
+        display: none;
+    }
+
+    div.WorkPage__media {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .carousel-header {
+        font-size: 14px;
+    }
+
+    .col-sm-4, .col-sm-8 {
+        padding-left: 15px;
+    }
+
+    .concise-work-img {
+    }
+
+    .concise-work-title {
+        font-size: 18px;
+    }
+
+    .concise-work-author {
+        font-size: 14px;
+        margin-top: -6px;
+    }
+
+    .concise-work-details {
+        font-size: 9px;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    .concise-work-img {
+        display: none;
+    }
+
+    .concise-work-title {
+
+    }
+
+    .concise-work-author {
+        font-size: 12px;
+        margin-top: -3px;
+
+    }
+
+    .concise-work-details {
+        font-size: 9px;
+    }
+
+    .WorkPage__media button, .WorkPage__media button i,
+    .WorkPage__media a, .WorkPage__media a i {
+        font-size: .7rem;
+        font-weight: 400;
+
+    }
+
+    div.AddToListButton__Container{
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
 
 }

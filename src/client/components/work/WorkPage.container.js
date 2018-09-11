@@ -76,7 +76,6 @@ class WorkPage extends React.Component {
     // tags collapsable variables
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
-    console.log('book', book);
 
     return (
       <div className="container">
