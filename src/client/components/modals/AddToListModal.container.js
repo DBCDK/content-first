@@ -10,7 +10,6 @@ import {
   addElementToList,
   storeList
 } from '../../redux/list.reducer';
-import {SHORTLIST_CLEAR} from '../../redux/shortlist.reducer';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import ToastMessage from '../base/ToastMessage';
 import {toast} from 'react-toastify';
@@ -47,7 +46,7 @@ export class AddToListModal extends React.Component {
       });
       // if loadingList is true - add book/books to auto-created list
       if (this.state.loadingList) {
-        this.addElementsToList(this.props.customLists[0].id);
+        this.addElementsToList(this.props.customLists[0]._id);
         this.setState({loadingList: false});
       }
     }
@@ -56,50 +55,44 @@ export class AddToListModal extends React.Component {
   addElementsToList(listId) {
     if (this.props.works) {
       this.props.works.forEach(work =>
-        this.props.dispatch(
-          addElementToList(
-            {book: work.book, description: work.origin || ''},
-            listId
-          )
-        )
-      );
-    } else {
-      this.props.dispatch(
-        addElementToList(
-          {
-            book: this.props.work.book,
-            description: this.state.comment || this.props.work.origin || ''
-          },
+        this.props.addElementToList(
+          {book: work.book, description: work.origin || '...'},
           listId
         )
       );
     }
-    this.props.dispatch(storeList(listId));
+    this.props.storeList(listId);
     this.close();
   }
 
   close = () => {
     this.setState(Object.assign({}, defaultState));
-    this.props.dispatch({type: CLOSE_MODAL, modal: 'addToList'});
+    this.props.modal(CLOSE_MODAL, 'addToList');
   };
+
   onDone = () => {
-    // If the "create-new-list" field is NOT empty - auto-create new list
     let listName = '';
     let count = this.props.works.length || 0;
 
+    // List does not exist - create it before adding
     if (this.state.listName) {
       listName = this.state.listName;
       this.onAddList(this.state.listName);
       this.setState({
         loadingList: true
       });
+
+      // List exist - add to existing list
     } else {
       listName = this.state.list.title;
       this.addElementsToList(this.state.latestUsedId);
     }
-    this.props.dispatch({
-      type: SHORTLIST_CLEAR
-    });
+
+    // clear if any callback given
+    if (this.props.clearShortList) {
+      this.props.clearShortList();
+    }
+
     toast(
       <ToastMessage
         type="success"
@@ -110,7 +103,7 @@ export class AddToListModal extends React.Component {
   };
 
   onAddList = title => {
-    this.props.dispatch(addList({title}));
+    this.props.addList(title);
   };
 
   render() {
@@ -131,21 +124,23 @@ export class AddToListModal extends React.Component {
             <div className="list-overview" ref={e => (this.listsContainer = e)}>
               {this.props.customLists.map((l, i) => {
                 return (
-                  <div key={l.id}>
+                  <div key={l._id}>
                     <input
                       id={'radio' + '-' + l.title + '-' + i}
                       ref={
-                        this.state.latestUsedId === l.id && !this.state.listName
+                        this.state.latestUsedId === l._id &&
+                        !this.state.listName
                           ? e => (this.checked = e)
                           : ''
                       }
                       type="radio"
                       name="list"
                       checked={
-                        this.state.latestUsedId === l.id && !this.state.listName
+                        this.state.latestUsedId === l._id &&
+                        !this.state.listName
                       }
                       onChange={() =>
-                        this.setState({list: l, latestUsedId: l.id})
+                        this.setState({list: l, latestUsedId: l._id})
                       }
                     />
                     <label htmlFor={'radio' + '-' + l.title + '-' + i}>
@@ -159,21 +154,23 @@ export class AddToListModal extends React.Component {
 
               {this.props.systemLists.map((l, i) => {
                 return (
-                  <div key={l.id}>
+                  <div key={l._id}>
                     <input
                       id={'radio' + '-' + l.title + '-' + i}
                       ref={
-                        this.state.latestUsedId === l.id && !this.state.listName
+                        this.state.latestUsedId === l._id &&
+                        !this.state.listName
                           ? e => (this.checked = e)
                           : ''
                       }
                       type="radio"
                       name="list"
                       checked={
-                        this.state.latestUsedId === l.id && !this.state.listName
+                        this.state.latestUsedId === l._id &&
+                        !this.state.listName
                       }
                       onChange={() =>
-                        this.setState({list: l, latestUsedId: l.id})
+                        this.setState({list: l, latestUsedId: l._id})
                       }
                     />
                     <label htmlFor={'radio' + '-' + l.title + '-' + i}>
@@ -202,9 +199,11 @@ export class AddToListModal extends React.Component {
                   onChange={e => this.setState({listName: e.target.value})}
                 />
                 <input
-                  className="add-list--btn text-center"
+                  className={`add-list--btn text-center ${
+                    !this.state.listName ? 'd-none' : 'button'
+                  }`}
                   value="×"
-                  type={`${!this.state.listName ? 'd-none' : 'button'}`}
+                  type={'button'}
                   onClick={() => {
                     this.setState({listName: ''});
                   }}
@@ -236,6 +235,7 @@ export class AddToListModal extends React.Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   const customLists = getListsForOwner(state, {
     type: CUSTOM_LIST,
@@ -245,6 +245,7 @@ const mapStateToProps = state => {
   });
   return {
     customLists: customLists,
+    clearShortList: state.modalReducer.addToList.callback || null,
     systemLists: getListsForOwner(state, {
       type: SYSTEM_LIST,
       owner: state.userReducer.openplatformId,
@@ -253,9 +254,19 @@ const mapStateToProps = state => {
     latestUsedId: state.listReducer.latestUsedId
       ? state.listReducer.latestUsedId
       : customLists[0]
-        ? customLists[0].id
+        ? customLists[0]._id
         : ''
   };
 };
 
-export default connect(mapStateToProps)(AddToListModal);
+export const mapDispatchToProps = dispatch => ({
+  addElementToList: (book, listId) => dispatch(addElementToList(book, listId)),
+  storeList: listId => dispatch(storeList(listId)),
+  modal: (type, modal) => dispatch({type, modal}),
+  addList: title => dispatch(addList({title}))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddToListModal);

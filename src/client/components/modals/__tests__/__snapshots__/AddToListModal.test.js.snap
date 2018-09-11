@@ -132,9 +132,9 @@ exports[`AddToListModal multiple works as input 1`] = `
                 value=""
               />
               <input
-                className="add-list--btn text-center"
+                className="add-list--btn text-center d-none"
                 onClick={[Function]}
-                type="d-none"
+                type="button"
                 value="×"
               />
             </form>
@@ -311,9 +311,9 @@ exports[`AddToListModal newly added list is selected 1`] = `
                 value=""
               />
               <input
-                className="add-list--btn text-center"
+                className="add-list--btn text-center d-none"
                 onClick={[Function]}
-                type="d-none"
+                type="button"
                 value="×"
               />
             </form>
@@ -493,9 +493,9 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
                 value=""
               />
               <input
-                className="add-list--btn text-center"
+                className="add-list--btn text-center d-none"
                 onClick={[Function]}
-                type="d-none"
+                type="button"
                 value="×"
               />
             </form>

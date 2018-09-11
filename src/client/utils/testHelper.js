@@ -1,7 +1,7 @@
 export const createTestList = id => {
   return {
     type: 'CUSTOM_LIST',
-    id,
+    _id: id,
     title: 'title' + id,
     list: []
   };

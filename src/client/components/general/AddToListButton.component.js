@@ -272,7 +272,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: OPEN_MODAL,
       modal: modal,
-      context: work
+      context: [work]
     });
   }
 });
