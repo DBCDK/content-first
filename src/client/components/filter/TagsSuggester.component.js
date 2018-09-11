@@ -202,7 +202,9 @@ class TagsSuggester extends React.Component {
       titleSuggestions = {
         suggestions: this.state.titleSuggestions.suggestions.slice(
           0,
-          6 - tagsSuggestions.suggestions.length
+          10 -
+            (tagsSuggestions.suggestions.length +
+              authorSuggestions.suggestions.length)
         ),
         title: titleSuggestions.title
       };
