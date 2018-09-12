@@ -25,7 +25,7 @@ const defaultState = {
     image: 'img/filters/length.jpg',
     template: 'CardList',
     icon: false,
-    closeOnSelect: true,
+    closeOnSelect: false,
     expanded: false,
     show: true
   },
@@ -34,7 +34,7 @@ const defaultState = {
     image: 'img/filters/universe.jpg',
     template: 'CardList',
     icon: false,
-    closeOnSelect: true,
+    closeOnSelect: false,
     expandeds: false,
     show: true
   },
@@ -43,7 +43,7 @@ const defaultState = {
     image: 'img/filters/voice.jpg',
     template: 'CardList',
     icon: false,
-    closeOnSelect: true,
+    closeOnSelect: false,
     expandeds: false,
     show: true
   },
@@ -52,7 +52,7 @@ const defaultState = {
     image: 'img/filters/language.jpg',
     template: 'CardList',
     icon: false,
-    closeOnSelect: true,
+    closeOnSelect: false,
     expanded: false,
     show: true
   },
@@ -61,7 +61,7 @@ const defaultState = {
     image: 'img/filters/style.jpg',
     template: 'CardList',
     icon: false,
-    closeOnSelect: true,
+    closeOnSelect: false,
     expanded: false,
     show: true
   },
@@ -70,7 +70,7 @@ const defaultState = {
     image: 'img/filters/time.jpg',
     template: 'CardList',
     icon: false,
-    closeOnSelect: true,
+    closeOnSelect: false,
     expandeds: false,
     show: true
   },
@@ -79,7 +79,7 @@ const defaultState = {
     image: 'img/filters/length.jpg',
     template: 'CardList',
     icon: false,
-    closeOnSelect: true,
+    closeOnSelect: false,
     expanded: false,
     show: false
   }
