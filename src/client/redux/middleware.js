@@ -35,6 +35,7 @@ import {
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
+  LISTS_LOAD_REQUEST,
   LIST_TOGGLE_ELEMENT,
   getListById,
   ADD_LIST_IMAGE,
@@ -43,7 +44,12 @@ import {
   ADD_ELEMENT_TO_LIST
 } from './list.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {saveList, loadLists, loadRecentPublic} from '../utils/requestLists';
+import {
+  saveList,
+  loadList,
+  loadLists,
+  loadRecentPublic
+} from '../utils/requestLists';
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -269,18 +275,38 @@ export const listMiddleware = store => next => async action => {
     }
     case LIST_LOAD_REQUEST: {
       const res = next(action);
+      const list = await loadList(action.id, store);
+      store.dispatch({
+        type: LIST_LOAD_RESPONSE,
+        list
+      });
+
+      const pids = [];
+      list.list.forEach(book => {
+        pids.push(book.pid);
+      });
+
+      store.dispatch({type: BOOKS_REQUEST, pids});
+      store.dispatch({type: REQUEST_USER, id: list.owner});
+
+      return res;
+    }
+    case LISTS_LOAD_REQUEST: {
+      const res = next(action);
       const {openplatformId} = store.getState().userReducer;
       const lists = await loadLists({openplatformId, store});
       const recentLists = await loadRecentPublic({store});
 
-      const allLists = {lists: [...lists, ...recentLists]};
-      store.dispatch({
-        type: LIST_LOAD_RESPONSE,
-        lists: allLists.lists
+      const allLists = [...lists, ...recentLists];
+      allLists.forEach(list => {
+        store.dispatch({
+          type: LIST_LOAD_RESPONSE,
+          list
+        });
       });
 
       let pids = [];
-      allLists.lists.forEach(list => {
+      allLists.forEach(list => {
         list.list.forEach(book => {
           pids.push(book.pid);
         });

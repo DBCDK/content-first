@@ -24,7 +24,7 @@ import {
 } from './user.reducer';
 import {RECEIVE_USER} from './users';
 import {SHORTLIST_LOAD_REQUEST} from './shortlist.reducer';
-import {LIST_LOAD_REQUEST} from './list.reducer';
+import {LISTS_LOAD_REQUEST} from './list.reducer';
 import {FOLLOW_LOAD_REQUEST} from './follow.reducer';
 import openplatform from 'openplatform';
 import {HISTORY_PUSH, HISTORY_PUSH_FORCE_REFRESH} from './router.reducer';
@@ -45,7 +45,7 @@ export const userMiddleware = store => next => action => {
     case ON_USER_DETAILS_REQUEST:
       fetchUser(store.dispatch, () => {
         store.dispatch({type: SHORTLIST_LOAD_REQUEST});
-        store.dispatch({type: LIST_LOAD_REQUEST});
+        store.dispatch({type: LISTS_LOAD_REQUEST});
         store.dispatch({type: FOLLOW_LOAD_REQUEST});
         store.dispatch({type: FETCH_INTERACTIONS});
       });

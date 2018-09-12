@@ -15,6 +15,7 @@ const defaultState = {
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
 export const LIST_LOAD_RESPONSE = 'LIST_LOAD_RESPONSE';
+export const LISTS_LOAD_REQUEST = 'LISTS_LOAD_REQUEST';
 export const ADD_LIST = 'ADD_LIST';
 export const UPDATE_LIST_DATA = 'UPDATE_LIST_DATA';
 export const REMOVE_LIST = 'REMOVE_LIST';
@@ -224,28 +225,20 @@ const listReducer = (state = defaultState, action) => {
       });
     }
     case LIST_LOAD_RESPONSE: {
-      let lists = action.lists;
-      const changeMap = lists.reduce((map, list) => {
-        list.list.forEach(element => (map[element.pid] = {}));
-        return map;
-      }, {});
-      const listMap = {};
-
-      lists.forEach(l => {
-        l.list.map(element => {
-          if (!element.position) {
-            element.position = {
-              x: Math.floor(Math.random() * Math.floor(100)),
-              y: Math.floor(Math.random() * Math.floor(100))
-            };
-          }
-        });
-        return (listMap[l._id] = l);
+      if (!action.list || !action.list._id) {
+        throw new Error("'list' is missing from action");
+      }
+      const list = action.list;
+      list.list.map(element => {
+        if (!element.position) {
+          element.position = {
+            x: Math.floor(Math.random() * Math.floor(100)),
+            y: Math.floor(Math.random() * Math.floor(100))
+          };
+        }
       });
-
       return Object.assign({}, state, {
-        lists: listMap,
-        changeMap
+        lists: {...state.lists, [action.list._id]: list}
       });
     }
     case ADD_LIST_IMAGE: {

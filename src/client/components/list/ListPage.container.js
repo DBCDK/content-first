@@ -2,11 +2,20 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getListById} from '../../redux/list.reducer';
 import SimpleList from './templates/SimpleList.component';
+import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
 // import CircleTemplate from './templates/CircleTemplate.container';
 // import BookcaseTemplate from './templates/BookcaseTemplate.component';
 import Link from '../general/Link.component';
 
 export class ListPage extends React.Component {
+  componentDidMount() {
+    this.props.loadList(this.props.id);
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.id !== this.props.id) {
+      this.props.loadList(this.props.id);
+    }
+  }
   // eslint-disable-next-line no-unused-vars
   getTemplate(list) {
     // currently support simplelist only
@@ -67,4 +76,11 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(ListPage);
+export const mapDispatchToProps = dispatch => ({
+  loadList: id => dispatch({type: LIST_LOAD_REQUEST, id})
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListPage);

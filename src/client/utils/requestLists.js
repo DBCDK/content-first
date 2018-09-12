@@ -134,6 +134,12 @@ async function enrichList({list}) {
   });
 }
 
+export const loadList = async (id, store) => {
+  const list = (await request.get(`/v1/object/${id}`)).body.data;
+  await enrichList({list, store});
+  return list;
+};
+
 // done
 export const loadLists = async ({openplatformId, store}) => {
   if (!openplatformId) {
