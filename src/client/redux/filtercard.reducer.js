@@ -10,15 +10,6 @@ const defaultState = {
     expanded: false,
     show: true
   },
-  Længde: {
-    title: 'Længde',
-    image: 'img/filters/length.jpg',
-    template: 'CardList',
-    icon: false,
-    closeOnSelect: true,
-    expanded: false,
-    show: true
-  },
   Tempo: {
     title: 'Tempo',
     image: 'img/filters/speed.jpg',
@@ -29,13 +20,13 @@ const defaultState = {
     expanded: false,
     show: true
   },
-  'Handlingens tid': {
-    title: 'Handlingens tid',
-    image: 'img/filters/time.jpg',
+  Længde: {
+    title: 'Længde',
+    image: 'img/filters/length.jpg',
     template: 'CardList',
     icon: false,
     closeOnSelect: true,
-    expandeds: false,
+    expanded: false,
     show: true
   },
   Univers: {
@@ -47,18 +38,18 @@ const defaultState = {
     expandeds: false,
     show: true
   },
-  'På biblioteket': {
-    title: 'På biblioteket',
-    image: 'img/filters/length.jpg',
+  Fortællerstemme: {
+    title: 'Fortællerstemme',
+    image: 'img/filters/voice.jpg',
     template: 'CardList',
     icon: false,
     closeOnSelect: true,
-    expanded: false,
-    show: false
+    expandeds: false,
+    show: true
   },
-  Struktur: {
-    title: 'Struktur',
-    image: 'img/filters/structure.jpg',
+  Sprog: {
+    title: 'Sprog',
+    image: 'img/filters/language.jpg',
     template: 'CardList',
     icon: false,
     closeOnSelect: true,
@@ -73,6 +64,24 @@ const defaultState = {
     closeOnSelect: true,
     expanded: false,
     show: true
+  },
+  'Handlingens tid': {
+    title: 'Handlingens tid',
+    image: 'img/filters/time.jpg',
+    template: 'CardList',
+    icon: false,
+    closeOnSelect: true,
+    expandeds: false,
+    show: true
+  },
+  'På biblioteket': {
+    title: 'På biblioteket',
+    image: 'img/filters/length.jpg',
+    template: 'CardList',
+    icon: false,
+    closeOnSelect: true,
+    expanded: false,
+    show: false
   }
 };
 
