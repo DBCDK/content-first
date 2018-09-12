@@ -34,9 +34,6 @@ export class BooksBelt extends React.Component {
     this.getOnMoreLikeThisClickFunc = this.getOnMoreLikeThisClickFunc.bind(
       this
     );
-    // TODO: 2 things need to happen. 1. create minder om belt 2. close any WorkPreview
-    // TODO: the first one called is the only one that works. the other is ignored
-    // TODO: idea- listen for the first function to finish before calling the second
   }
 
   componentDidMount() {
@@ -96,8 +93,7 @@ export class BooksBelt extends React.Component {
       showTags = true,
       belt,
       tagObjects,
-      recommendedPids,
-      addChildBelt
+      recommendedPids
     } = this.props;
     if (!belt) {
       return null;
