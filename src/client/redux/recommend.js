@@ -2,6 +2,7 @@ import librarianRecommends from '../../data/librarian-recommends.json';
 import request from 'superagent';
 import {uniq} from 'lodash';
 import {filtersMapAll} from './filter.reducer';
+import {BOOKS_REQUEST} from './books.reducer';
 
 const librarianRecommendsMap = librarianRecommends.reduce((map, pid) => {
   map[pid] = true;
@@ -163,6 +164,10 @@ export const recommendMiddleware = store => next => action => {
             store.dispatch({
               ...action,
               type: RECOMMEND_RESPONSE,
+              pids
+            });
+            store.dispatch({
+              type: BOOKS_REQUEST,
               pids
             });
           } catch (error) {

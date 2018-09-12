@@ -5,9 +5,9 @@ import ToastMessage from '../base/ToastMessage';
 import SelectedFilters from './SelectedFilters.component';
 import {filtersMapAll} from '../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../redux/middleware';
-import {getRecommendedPids} from '../../redux/recommend';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {
+  getRecommendedBooks,
   getTagsFromUrl,
   getCreatorsFromUrl,
   getTitlesFromUrl,
@@ -283,9 +283,7 @@ const mapStateToProps = state => {
   );
 
   return {
-    recommendedPids: getRecommendedPids(state.recommendReducer, {
-      tags: plainSelectedTagIds
-    }),
+    recommendedPids: getRecommendedBooks(state, plainSelectedTagIds, 300),
     filterCards,
     router: state.routerReducer,
     selectedTagIds: mergedSelectedTags,

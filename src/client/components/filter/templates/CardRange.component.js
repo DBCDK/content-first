@@ -82,8 +82,12 @@ class CardRange extends React.Component {
     selectedTagIds.forEach((id, idx) => {
       if (id instanceof Array) {
         if (range.includes(id[0]) && range.includes(id[1])) {
-          tags[idx] = filterId[0] + ',' + filterId[1];
-          allowAdd = false;
+          if (!widest) {
+            tags[idx] = filterId[0] + ',' + filterId[1];
+            allowAdd = false;
+          } else {
+            tags.splice(idx, 1);
+          }
         }
       }
     });
