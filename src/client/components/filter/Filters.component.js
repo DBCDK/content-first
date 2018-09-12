@@ -92,15 +92,18 @@ class Filters extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    this.closeCards();
+  }
+
   toggleCardExpanded(e, title) {
     let oFilters = this.state.oFilters;
     const closeOnSelect = oFilters[title].closeOnSelect;
     const coverClick = e.target.classList.contains('FilterCard__cover');
     const closeClick = e.target.classList.contains('FilterCard__close');
 
-    if (isMobile) {
-      oFilters = this.changeExpandedProp(false, title);
-    }
+    // Close other expanded
+    oFilters = this.changeExpandedProp(false, title);
 
     if (coverClick || closeClick) {
       /* force close on cover or close click */
