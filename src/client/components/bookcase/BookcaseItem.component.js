@@ -1,11 +1,7 @@
 import React from 'react';
 import Pulse from '../pulse/Pulse.component';
-import CarouselItem from './CarouselItem.component';
 import CarouselSlider from './CarouselSlider.component';
-
-/*
-  <BookcaseItem list={obj} profile={obj}/>
-*/
+import ConciseWork from '../work/ConciseWork.container';
 
 export class BookcaseItem extends React.Component {
   constructor(props) {
@@ -16,6 +12,8 @@ export class BookcaseItem extends React.Component {
       carousel: false,
       pulse: ''
     };
+    this.updateDimensions = this.updateDimensions.bind(this);
+    this.gotoListPage = this.gotoListPage.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -23,6 +21,38 @@ export class BookcaseItem extends React.Component {
       this.props.list.list.length !== nextProps.list.list.length ||
       this.state !== nextState
     );
+  }
+
+  componentWillMount() {
+    this.updateDimensions();
+  }
+
+  //
+  // TODO: find a way to get rid of resize listener by using css media query instead.
+  //
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+
+  getWindowWidth() {
+    let w = window,
+      d = document,
+      documentElement = d.documentElement,
+      body = d.getElementsByTagName('body')[0],
+      width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
+    return width;
+  }
+
+  updateDimensions() {
+    this.getWindowWidth();
+
+    if (this.getWindowWidth() <= 500) {
+      this.hideCarousel();
+    }
   }
 
   hideCarousel() {
@@ -48,6 +78,13 @@ export class BookcaseItem extends React.Component {
     });
   };
 
+  gotoListPage() {
+    const listurl = '/lister/af12d710-b5ac-11e8-9ee1-1b9b68a1acb2';
+    if (this.getWindowWidth() <= 500) {
+      window.open(listurl, '_blank');
+    }
+  }
+
   render() {
     if (!this.props.list || !this.props.profile) {
       return null;
@@ -65,23 +102,14 @@ export class BookcaseItem extends React.Component {
     // new
     let subtag = 'Anbefalinger fra ' + this.props.profile.name + ', journalist';
 
-    return (
-      <section
-        className={`${this.state.carousel ? 'section-active' : ''}`}
-        onClick={this.test}
-      >
-        <img
-          className="imgcontainer"
-          src={
-            this.props.list.image
-              ? '/v1/image/' + this.props.list.image + '/1200/600'
-              : this.props.list.bookcase
-          }
-          alt={this.props.name + '´s bogreol'}
-        />
+    const imageStyle = {
+      backgroundImage: 'url(' + this.props.list.bookcase + ')'
+    };
 
-        <div className="row">
-          <div className="bookswrap">
+    return (
+      <section className={`${this.state.carousel ? 'section-active' : ''}  `}>
+        <div className="caroContainer" onClick={this.gotoListPage}>
+          <div className="bookswrap" style={imageStyle}>
             {this.props.list.list.map((p, i) => {
               return (
                 <Pulse
@@ -110,7 +138,9 @@ export class BookcaseItem extends React.Component {
             <div className="col-xs-12 celeb-top">
               <div className="scrolltext">
                 <div className="innerscrollbox">
-                  <div className="col-xs-12 pagetag">{pagetag}</div>
+                  <div className="col-xs-12 pagetag">
+                    {pagetag.toUpperCase()}
+                  </div>
                   <div className="col-xs-12 profile">
                     <span className="profile-name">{firstname}: </span>
                     <span className="profile-quote"> “{nameQuote}”</span>
@@ -148,12 +178,13 @@ export class BookcaseItem extends React.Component {
               >
                 {this.props.list.list.map(b => {
                   return (
-                    <CarouselItem
-                      active={this.state.carousel}
-                      key={'carousel-' + b.book.pid}
-                      description={b.description || b.book.description}
-                      book={b.book}
-                    />
+                    <div
+                      className={`carousel-container ${
+                        this.props.active ? ' carousel-display' : ''
+                      }`}
+                    >
+                      <ConciseWork pid={b.book.pid} />
+                    </div>
                   );
                 })}
               </CarouselSlider>

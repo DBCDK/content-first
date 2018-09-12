@@ -109,7 +109,12 @@ export class AddToListButton extends React.Component {
     }
 
     return (
-      <div className={'AddToListButton__Container dropdown'}>
+      <div
+        className={
+          'AddToListButton__Container dropdown' + this.props.className || ''
+        }
+        ref={e => (this.listContainer = e)}
+      >
         <Button
           className={'AddToListButton ' + buttonActive}
           type="quinary"

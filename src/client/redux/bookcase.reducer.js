@@ -28,25 +28,13 @@ const defaultState = {
       list: [
         {
           book: {
-            pid: '870970-basis:51642899',
-            titel: 'Alt det lys vi ikke ser',
-            creator: 'Anthony Doerr',
-            description:
-              'Roman om den tyske soldat Werner, som er ekspert i at opspore radiotransmission, den blinde franske pige Marie-Laure, og eftersøgningen af en uvurderlig juvel under 2. verdenskrig'
-          },
-          position: {x: 61, y: 15},
-          description:
-            '”Den er bare fed, læs den!” siger Nynne og fortsætter med at fortælle hvordan 2. Verdenskrig altid er et godt bagtæppe for en roman. Romanen er malerisk og velskrevet. Den giver en beskrivelse af, hvordan det er at være blind.'
-        },
-        {
-          book: {
             pid: '870970-basis:51238362',
             titel: 'Vi ses deroppe',
             creator: 'Pierre Lemaitre (f. 1951)',
             description:
               'Alfred og Édouard har overlevet 1. verdenskrig, men absolut ikke uden mén. Édouard har mistet sit underansigt, sin stemme og sin fremtid. Alfred sin forlovede, sit job og sin stolthed. Tilværelsen synes mere og mere dyster, indtil Édouard får ideen til et helt fantastisk svindelnummer, et fupnummer, som vil ændre alt'
           },
-          position: {x: 63.5, y: 15},
+          position: {x: 35.5, y: 12},
           description:
             '”Romanen beskriver slagmarken helt eminent”, fortæller Nynne og fortsætter med at ridse handlingen op. Romanen foregår under 1. Verdenskrig og i årene efter i Paris. Vi følger i to parallelle spor to unge krigsvetaraners liv. Lemaitre ”skriver røven ud af bukserne” og beskriver Paris, slagmarken, ødelæggelserne m.v. meget malende. En roman der viser, hvad krig gør ved unge mænd.'
         },
@@ -58,9 +46,21 @@ const defaultState = {
             description:
               'Skildring fra Skt. Petersborg af epileptikeren fyrst Mysjkin, der har Kristi egenskaber, godhed og renhed, som ideal. Han vælger mellem to kvinder, og da hans udkårne myrdes, bliver han sindssyg'
           },
-          position: {x: 69, y: 15},
+          position: {x: 39, y: 12},
           description:
             'Nynne læser meget varieret og står ikke af vejen for hverken tunge eller lange bøger. ”Idioten” har et stort persongalleri og kræver lidt længere læsestræk. Den fortæller om borgerskabet i Rusland i anden halvdel af 1800tallet. Det er et sofistikeret borgerskab med et højt intellektuelt niveau. Romanen er en god påmindelse om Ruslands rige kulturarv og står i kontrast til det Rusland vi ser i dag.'
+        },
+        {
+          book: {
+            pid: '870970-basis:51642899',
+            titel: 'Alt det lys vi ikke ser',
+            creator: 'Anthony Doerr',
+            description:
+              'Roman om den tyske soldat Werner, som er ekspert i at opspore radiotransmission, den blinde franske pige Marie-Laure, og eftersøgningen af en uvurderlig juvel under 2. verdenskrig'
+          },
+          position: {x: 33.5, y: 12},
+          description:
+            '”Den er bare fed, læs den!” siger Nynne og fortsætter med at fortælle hvordan 2. Verdenskrig altid er et godt bagtæppe for en roman. Romanen er malerisk og velskrevet. Den giver en beskrivelse af, hvordan det er at være blind.'
         },
         {
           book: {
@@ -69,7 +69,7 @@ const defaultState = {
             creator: 'Thomas Mann',
             description: ''
           },
-          position: {x: 63.5, y: 50},
+          position: {x: 31, y: 12},
           description:
             'En slægtsfabel. En roman om et familiedynasti af købmænd, som langsomt går undergangen i møde. På Thomas Manns tid tog faldet 30-40 år, hvorimod det i dag kan ske fra den ene dag til den anden. Romanen kredser om spørgsmålet ”hvordan er man et ordentligt menneske, en samfundsstøtte?”.'
         }
