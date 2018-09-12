@@ -80,7 +80,7 @@ export class BookcaseItem extends React.Component {
 
   gotoListPage() {
     const listurl =
-      'https://content-first.demo.dbc.dk/lister/af12d710-b5ac-11e8-9ee1-1b9b68a1acb2';
+      '/lister/af12d710-b5ac-11e8-9ee1-1b9b68a1acb2';
     if (this.getWindowWidth() <= 500) {
       window.open(listurl, '_blank');
     }
