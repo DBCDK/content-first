@@ -1,4 +1,4 @@
-import spots from '../../client/components/spots/spotsMockData.json';
+import spots from '../../client/components/spots/spotsData.json';
 
 const defaultState = {
   spots: spots ? spots : []

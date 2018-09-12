@@ -1,0 +1,36 @@
+[
+    {
+        "type":"small",
+        "tags":[5683,5672,5712],
+        "listLink":{"url":"/lister/7588e52f-cd0d-4163-aeef-6def8c3d3e10","title":"Se familier"},
+        "show": true
+    },
+    {
+        "type":"wide",
+        "title":"HVAD ER DER PÅ B.S' BUKET LIST?",
+        "highlight":"B.S' BUKET LIST?",
+        "image":"https://cdn.suwalls.com/wallpapers/photography/wooden-disintegrating-boat-44780-2560x1600.jpg",
+        "tags":[ 5649,5650,5654],
+        "listLink":{"url":"/lister/7588e52f-cd0d-4163-aeef-6def8c3d3e10","title":"Se B.S's bogliste"},
+        "show": true
+
+    },
+    {
+        "type":"small",
+        "color":"#F4B51B",
+        "tags":[5644,5648,5654],
+        "listLink":{"url":"/","title":"Se parforholdet"},
+        "show": true
+
+    },    
+    {
+        "type":"small",
+        "title":"HVILKEN KRIMI ER DIN NÆSTE?",
+        "highlight":"HVILKEN",
+        "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92Etcvnv4b9PdnQow-_q8P75kTM33ysk8GGuRZ6ck9VFHkVz9",
+        "listLink":{"url":"/","title":"Se alle nye krimier"},
+        "show": true
+
+    }
+
+]
