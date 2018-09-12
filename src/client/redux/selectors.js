@@ -7,28 +7,28 @@ import {getRecommendedPids, applyClientSideFilters} from './recommend';
 import {filtersMapAll} from './filter.reducer';
 import {getListById} from './list.reducer';
 
-export const getRecommendedBooks = (state, tags, max) => {
+export const getRecommendedBooks = (state, tags, max = 100) => {
   const {recommendReducer, booksReducer} = state;
-  const result = {tags};
-  const r = getRecommendedPids(recommendReducer, {tags});
-  const books = getBooks(booksReducer, r.pids);
-  let booksAreLoading = false;
+  const recommendedPids = getRecommendedPids(recommendReducer, {tags});
+  const books = getBooks(booksReducer, recommendedPids.pids);
 
+  let booksAreLoading = false;
   books.forEach(b => {
     if (b.isLoading) {
       booksAreLoading = true;
     }
   });
 
-  result.isLoading = r.isLoading || booksAreLoading || false;
-  result.books = result.isLoading ? [] : applyClientSideFilters(books, tags);
-  result.books = result.books.slice(0, max);
+  const result = {};
+  result.isLoading = booksAreLoading;
+  result.pids = booksAreLoading ? [] : applyClientSideFilters(books, tags);
+  result.pids = result.pids.map(b => b.book.pid).slice(0, max);
+
   return result;
 };
 
 export const getFollowedLists = state => {
   const follows = state.followReducer;
-
   const result = Object.values(follows)
     .filter(follow => follow.cat === 'list')
     .map(follow => getListById(state, follow.id))

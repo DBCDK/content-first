@@ -10,8 +10,9 @@ import {
   ON_EXPAND_FILTERS_TOGGLE
 } from '../../redux/filter.reducer';
 import {HISTORY_REPLACE, HISTORY_PUSH} from '../../redux/middleware';
-import {RECOMMEND_REQUEST, getRecommendedPids} from '../../redux/recommend';
+import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {
+  getRecommendedBooks,
   getTagsFromUrl,
   getCreatorsFromUrl,
   getTitlesFromUrl,
@@ -71,7 +72,7 @@ class FilterPage extends React.Component {
   render() {
     const resultCount = this.props.recommendedPids.pids.length;
     const resultCountPrefixText =
-      resultCount === 100 ? 'Mere end ' + resultCount : resultCount;
+      resultCount === 300 ? 'Mere end ' + resultCount : resultCount;
     const resultCountPostFix = resultCount === 1 ? 'bog' : 'bøger';
     const noResultsMessage =
       'Vi fandt desværre ingen bøger som matchede din søgning';
@@ -150,9 +151,7 @@ const mapStateToProps = state => {
       ? {pids: state.searchReducer.results.map(work => work.pid)}
       : null;
 
-  const recommendedPids = getRecommendedPids(state.recommendReducer, {
-    tags: plainSelectedTagIds
-  });
+  const recommendedPids = getRecommendedBooks(state, plainSelectedTagIds, 300);
 
   return {
     recommendedPids: results || recommendedPids,
@@ -180,7 +179,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: RECOMMEND_REQUEST,
       tags,
-      max: 100 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
+      max: 300 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     })
 });
 export default connect(
