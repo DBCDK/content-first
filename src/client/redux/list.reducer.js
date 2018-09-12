@@ -1,4 +1,5 @@
 import {uniqBy} from 'lodash';
+import {createSelector} from 'reselect';
 
 export const SYSTEM_LIST = 'SYSTEM_LIST';
 export const SHORT_LIST = 'SHORT_LIST';
@@ -228,8 +229,9 @@ const listReducer = (state = defaultState, action) => {
       if (!action.list || !action.list._id) {
         throw new Error("'list' is missing from action");
       }
+
       const list = action.list;
-      list.list.map(element => {
+      list.list.forEach(element => {
         if (!element.position) {
           element.position = {
             x: Math.floor(Math.random() * Math.floor(100)),
@@ -237,6 +239,7 @@ const listReducer = (state = defaultState, action) => {
           };
         }
       });
+
       return Object.assign({}, state, {
         lists: {...state.lists, [action.list._id]: list}
       });
@@ -450,33 +453,37 @@ export const getPublicLists = state => {
     });
 };
 
-export const getListById = (state, _id) => {
-  const listState = state.listReducer;
-  const booksState = state.booksReducer;
+export const getListByIdSelector = () =>
+  createSelector(
+    [
+      (state, {_id}) => {
+        return state.listReducer.lists[_id];
+      },
+      state => state.booksReducer
+    ],
+    (list, booksState) => {
+      if (!list) {
+        return;
+      }
 
-  let list = listState.lists[_id];
-  if (!list) {
-    return;
-  }
+      list = {...list};
 
-  // creating copy of list
-  list = {...list};
+      if (list && list.list) {
+        list.list = list.list
+          .filter(el => {
+            return booksState.books[el.pid] && booksState.books[el.pid].book;
+          })
+          .map(el => {
+            return {...el, book: booksState.books[el.pid].book};
+          });
 
-  if (list && list.list) {
-    list.list = list.list
-      .filter(el => {
-        return booksState.books[el.pid] && booksState.books[el.pid].book;
-      })
-      .map(el => {
-        return {...el, book: booksState.books[el.pid].book};
-      });
-
-    // ensure uniqueness of elements
-    // duplicates may exist, due to a previous bug #548
-    list.list = uniqBy(list.list, 'pid');
-  }
-  return list;
-};
+        // ensure uniqueness of elements
+        // duplicates may exist, due to a previous bug #548
+        list.list = uniqBy(list.list, 'pid');
+      }
+      return list;
+    }
+  );
 
 const validateId = (state, action) => {
   if (!action._id) {

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {
   ADD_COMMENT,
   FETCH_COMMENTS,
-  getCommentsForId
+  getCommentsForIdSelector
 } from '../../redux/comment.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {Comments as CommentsIcon} from '../general/Icons';
@@ -25,7 +25,7 @@ export class CommentContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.intervalId = setInterval(this.updateComments, 10000);
+    this.intervalId = setInterval(this.updateComments, 30000);
   }
 
   componentWillUnmount() {
@@ -122,10 +122,14 @@ export class CommentContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  user: state.userReducer,
-  ...getCommentsForId(state, ownProps.id)
-});
+const makeMapStateToProps = () => {
+  const getCommentsForId = getCommentsForIdSelector();
+  const mapStateToProps = (state, ownProps) => ({
+    user: state.userReducer,
+    ...getCommentsForId(state, {id: ownProps.id})
+  });
+  return mapStateToProps;
+};
 
 export const mapDispatchToProps = dispatch => ({
   addComment: ({id, comment, owner}) =>
@@ -144,6 +148,6 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  makeMapStateToProps,
   mapDispatchToProps
 )(CommentContainer);

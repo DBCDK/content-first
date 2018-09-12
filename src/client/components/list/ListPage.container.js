@@ -1,11 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getListById} from '../../redux/list.reducer';
+import {getListByIdSelector} from '../../redux/list.reducer';
+import {getUser} from '../../redux/users';
 import SimpleList from './templates/SimpleList.component';
 import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
 // import CircleTemplate from './templates/CircleTemplate.container';
 // import BookcaseTemplate from './templates/BookcaseTemplate.component';
 import Link from '../general/Link.component';
+
+const getListById = getListByIdSelector();
 
 export class ListPage extends React.Component {
   componentDidMount() {
@@ -16,6 +19,7 @@ export class ListPage extends React.Component {
       this.props.loadList(this.props.id);
     }
   }
+
   // eslint-disable-next-line no-unused-vars
   getTemplate(list) {
     // currently support simplelist only
@@ -41,7 +45,6 @@ export class ListPage extends React.Component {
       return <div>Listen findes ikke</div>;
     }
 
-    const profile = this.props.profiles[this.props.list.owner];
     const Template = this.getTemplate(list);
 
     let editButton = '';
@@ -59,7 +62,7 @@ export class ListPage extends React.Component {
     return (
       <Template
         list={list}
-        profile={profile}
+        profile={this.props.profile}
         editButton={editButton}
         profiles={this.props.profiles}
       />
@@ -68,11 +71,11 @@ export class ListPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const list = getListById(state, ownProps.id);
+  const list = getListById(state, {_id: ownProps.id});
   return {
     list,
     isOwner: list && list._owner === state.userReducer.openplatformId,
-    profiles: state.users.toJS()
+    profile: getUser(state, {id: list && list._owner})
   };
 };
 

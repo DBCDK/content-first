@@ -5,7 +5,9 @@ Selectors working on the global state object
 import {getBooks} from './books.reducer';
 import {getRecommendedPids, applyClientSideFilters} from './recommend';
 import {filtersMapAll} from './filter.reducer';
-import {getListById} from './list.reducer';
+import {getListByIdSelector} from './list.reducer';
+
+const getListById = getListByIdSelector();
 
 export const getRecommendedBooks = (state, tags, max = 100) => {
   const {recommendReducer, booksReducer} = state;
@@ -31,7 +33,7 @@ export const getFollowedLists = state => {
   const follows = state.followReducer;
   const result = Object.values(follows)
     .filter(follow => follow.cat === 'list')
-    .map(follow => getListById(state, follow.id))
+    .map(follow => getListById(state, {_id: follow.id}))
     .filter(list => list);
 
   return result;

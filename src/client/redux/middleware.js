@@ -37,7 +37,7 @@ import {
   LIST_LOAD_REQUEST,
   LISTS_LOAD_REQUEST,
   LIST_TOGGLE_ELEMENT,
-  getListById,
+  getListByIdSelector,
   ADD_LIST_IMAGE,
   ADD_LIST_IMAGE_SUCCESS,
   ADD_LIST_IMAGE_ERROR,
@@ -50,6 +50,8 @@ import {
   loadLists,
   loadRecentPublic
 } from '../utils/requestLists';
+
+const getListById = getListByIdSelector();
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -231,7 +233,7 @@ export const listMiddleware = store => next => async action => {
   switch (action.type) {
     case STORE_LIST: {
       const {openplatformId} = store.getState().userReducer;
-      const list = getListById(store.getState(), action._id);
+      const list = getListById(store.getState(), {_id: action._id});
       if (!list) {
         throw new Error(`list with _id ${action._id} not found`);
       }
