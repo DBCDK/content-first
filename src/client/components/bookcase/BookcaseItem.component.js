@@ -27,6 +27,9 @@ export class BookcaseItem extends React.Component {
     this.updateDimensions();
   }
 
+  //
+  // TODO: find a way to get rid of resize listener by using css media query instead.
+  //
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions);
   }
@@ -105,7 +108,7 @@ export class BookcaseItem extends React.Component {
     };
 
     return (
-      <section className={`${this.state.carousel ? 'section-active' : ''} `}>
+      <section className={`${this.state.carousel ? 'section-active' : ''}  `}>
         <div className="caroContainer" onClick={this.gotoListPage}>
           <div className="bookswrap" style={imageStyle}>
             {this.props.list.list.map((p, i) => {

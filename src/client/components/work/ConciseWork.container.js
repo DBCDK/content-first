@@ -34,7 +34,9 @@ class ConciseWork extends React.Component {
     }
   }
 
+
   render() {
+
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
 
@@ -45,34 +47,49 @@ class ConciseWork extends React.Component {
     // get collections including ereolen
     const collection = filterCollection(work);
 
+
     return (
+
       <div className="concise-work-container">
         <TruncateMarkup lines={6}>
-          <div className="carousel-header">{book.description}</div>
+          <div className="carousel-header">
+
+            {book.description}
+
+          </div>
         </TruncateMarkup>
         <div className="row">
           <div className="col-sm-4 concise-work-img">
             <Link href={'/værk/' + book.pid}>
-              <BookCover book={book} />
+              <BookCover book={book}/>
             </Link>
           </div>
           <div className="col-sm-8 concise-work-info">
             <div className="mt0 concise-work-title">
-              <Link href={'/værk/' + book.pid}>{book.title}</Link>
+              <Link href={'/værk/' + book.pid}>
+                {book.title}
+              </Link>
             </div>
 
-            <div className="concise-work-author">{book.creator}</div>
+            <div className="concise-work-author">
+              {book.creator}
+            </div>
 
             <div className="concise-work-details">
               <span>{book.language} </span>
               <span> {book.first_edition_year} </span>
-              <span> {book.pages + ' SIDER'}</span>
+              <span> {book.pages + " SIDER"}</span>
               {/*  <span> | </span>*/}
             </div>
 
             <div className="row">
               <div className="col-12">
-                <div className="mt1 work-subtitle">Lån som:</div>
+                <div
+
+                  className="mt1 work-subtitle"
+                >
+                  Lån som:
+                </div>
               </div>
             </div>
 
@@ -88,22 +105,22 @@ class ConciseWork extends React.Component {
                 />
               )}
               {work.collectionHasLoaded &&
-                collection.map(col => {
-                  if (col.count === 1) {
-                    return (
-                      <a key={col.url} href={col.url} target="_blank">
-                        <Button
-                          type="quaternary"
-                          size="medium"
-                          className="mr1 mt1"
-                        >
-                          <Icon name={col.icon} />
-                          {String(col.type).toUpperCase()}
-                        </Button>
-                      </a>
-                    );
-                  }
-                })}
+              collection.map(col => {
+                if (col.count === 1) {
+                  return (
+                    <a key={col.url} href={col.url} target="_blank">
+                      <Button
+                        type="quaternary"
+                        size="medium"
+                        className="mr1 mt1"
+                      >
+                        <Icon name={col.icon}/>
+                        {String(col.type).toUpperCase()}
+                      </Button>
+                    </a>
+                  );
+                }
+              })}
               {!work.collectionHasLoaded && (
                 <React.Fragment>
                   <a>
@@ -112,7 +129,7 @@ class ConciseWork extends React.Component {
                       size="medium"
                       className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'book'} />
+                      <Icon name={'book'}/>
                       BOG
                     </Button>
                   </a>
@@ -122,7 +139,7 @@ class ConciseWork extends React.Component {
                       size="medium"
                       className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'alternate_email'} />
+                      <Icon name={'alternate_email'}/>
                       E-BOG
                     </Button>
                   </a>
@@ -132,7 +149,7 @@ class ConciseWork extends React.Component {
                       size="medium"
                       className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                     >
-                      <Icon name={'voicemail'} />
+                      <Icon name={'voicemail'}/>
                       LYDBOG
                     </Button>
                   </a>
@@ -145,19 +162,22 @@ class ConciseWork extends React.Component {
                   className="mr1"
                   origin={'Fra egen værkside'}
                   work={work}
-                  texttransform={'uppercase'}
+                  texttransform={"uppercase"}
                 />
-                <AddToListButton className="mr1" work={work} />
+                <AddToListButton className="mr1 dropup" work={work}/>
               </div>
             </div>
+
           </div>
         </div>
       </div>
+
     );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
+
   return {
     work: state.booksReducer.books[ownProps.pid]
   };
