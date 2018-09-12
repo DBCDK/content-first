@@ -1,5 +1,5 @@
 .book-cover {
-  padding: 2px;
+  /* padding: 2px; */
   /* box-shadow: 0 1px 6px rgba(0,0,0,.275); */
 }
 .book-cover {
@@ -10,5 +10,5 @@
 .book-cover img {
   max-height: 100% !important;
   object-fit: contain;
-  width: 100% ;
+  width: 100%;
 }

@@ -121,6 +121,7 @@ export default class ImageUpload extends React.Component {
         <div style={{clear: 'both'}} />
         {this.props.buttonPosition !== 'inside' && (
           <UploadButton
+            className="mt-2"
             buttonText={this.props.buttonText}
             fieldName={this.props.fieldName}
             readFiles={this.readFiles}
