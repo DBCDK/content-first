@@ -13,7 +13,6 @@ import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
-import {get} from 'lodash';
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
@@ -73,7 +72,8 @@ export const fetchCoverRefs = (pids = []) => {
       try {
         const [{coverUrlFull}] = await openplatform.work({
           pids: [pid],
-          fields: ['coverUrlFull']
+          fields: ['coverUrlFull'],
+          access_token: await fetchAnonymousToken()
         });
         return {
           coverUrlFull: coverUrlFull && coverUrlFull[0]
@@ -99,7 +99,7 @@ export const fetchCoverRefs = (pids = []) => {
   });
 };
 
-export const fetchBooksRefs = (pids = []) => {
+export const fetchBooksRefs = async (pids = []) => {
   pids = unique(pids);
 
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
@@ -108,7 +108,8 @@ export const fetchBooksRefs = (pids = []) => {
       try {
         const [{hasReview, collection}] = await openplatform.work({
           pids: [pid],
-          fields: ['hasReview', 'collection']
+          fields: ['hasReview', 'collection'],
+          access_token: await fetchAnonymousToken()
         });
         return {
           hasReview,
@@ -120,19 +121,17 @@ export const fetchBooksRefs = (pids = []) => {
       }
     })
   ).then(result => {
-    return pids
-      .map((pid, i) => {
-        if (result && result[i]) {
-          return {
-            book: {
-              pid: pid,
-              reviews: {data: result[i].hasReview || []},
-              collection: {data: result[i].collection || []}
-            }
-          };
-        }
-      })
-      .filter(b => b);
+    return pids.map((pid, i) => {
+      if (result && result[i]) {
+        return {
+          book: {
+            pid: pid,
+            reviews: {data: result[i].hasReview || []},
+            collection: {data: result[i].collection || []}
+          }
+        };
+      }
+    });
   });
 };
 
@@ -152,16 +151,15 @@ export const fetchBooksTags = async (pids = []) => {
 
 export const fetchReviews = (pids, store) => {
   const books = store.getState().booksReducer.books;
-  const booksToBeFetched = pids
-    .map(pid => books[pid])
-    .filter(work => get(work, 'book.reviews.data.length') > 0);
+  const booksToBeFetched = pids.map(pid => books[pid]);
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
     booksToBeFetched.map(async ref => {
       try {
         const result = await openplatform.work({
           pids: ref.book.reviews.data,
-          fields: ['identifierURI', 'creatorOth', 'isPartOf', 'date']
+          fields: ['identifierURI', 'creatorOth', 'isPartOf', 'date'],
+          access_token: await fetchAnonymousToken()
         });
 
         return {
@@ -174,8 +172,15 @@ export const fetchReviews = (pids, store) => {
           }
         };
       } catch (e) {
-        // ignore errors/missing on fetching covers
-        return;
+        return {
+          book: {
+            pid: ref.book.pid,
+            reviews: {
+              data: [],
+              isLoading: false
+            }
+          }
+        };
       }
     })
   ).then(result => {
@@ -185,19 +190,19 @@ export const fetchReviews = (pids, store) => {
 
 export const fetchCollection = (pids, store) => {
   const books = store.getState().booksReducer.books;
-  const booksToBeFetched = pids
-    .map(pid => books[pid])
-    .filter(work => get(work, 'book.collection.data.length') > 0);
+  const booksToBeFetched = pids.map(pid => books[pid]);
+
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
     booksToBeFetched.map(async ref => {
       try {
         const pidsInCollection = ref.book.collection.data;
         const collectionRes = (await Promise.all(
-          pidsInCollection.map(pid => {
+          pidsInCollection.map(async pid => {
             return openplatform.work({
               pids: [pid],
-              fields: ['type', 'identifierURI']
+              fields: ['type', 'identifierURI'],
+              access_token: await fetchAnonymousToken()
             });
           })
         )).map(r => r[0]);
@@ -211,8 +216,15 @@ export const fetchCollection = (pids, store) => {
           }
         };
       } catch (e) {
-        // ignore errors/missing on fetching covers
-        return;
+        return {
+          book: {
+            pid: ref.book.pid,
+            collection: {
+              data: [],
+              isLoading: false
+            }
+          }
+        };
       }
     })
   ).then(result => {
@@ -407,3 +419,14 @@ export async function fetchSearchResults({query, dispatch}) {
     dispatch({type: SEARCH_RESULTS, query, results: null});
   }
 }
+
+let accessToken;
+export const fetchAnonymousToken = async () => {
+  if (accessToken) {
+    return accessToken;
+  }
+  accessToken = (await request.get('/v1/openplatform/anonymous_token')).body
+    .access_token;
+
+  return accessToken;
+};
