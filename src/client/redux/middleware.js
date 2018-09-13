@@ -100,7 +100,7 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
       !get(books[pid], `${name}IsLoading`)
   );
   if (pidsToFetch.length === 0) {
-    return;
+    return pidsToFetch;
   }
   store.dispatch({
     type: BOOKS_PARTIAL_UPDATE,
@@ -121,6 +121,7 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
       [`${name}HasLoaded`]: true
     }))
   });
+  return pidsToFetch;
 };
 
 const debouncedRequest = (() => {
@@ -150,19 +151,22 @@ export const requestMiddleware = store => next => action => {
 
         if (includeReviews || includeCollection) {
           // we await the refs request, since the following requests depends on it to be complete
-          await partialUpdateRequest(
+          const fetchedPids = await partialUpdateRequest(
             'refs',
             action.pids,
             fetchBooksRefs,
             store
           );
+          // we continue with the actual fetched pids to avoid
+          // multiple simultanous requests messing up
+          // and trying to fetch reviews before collection is loaded
           if (includeReviews) {
-            partialUpdateRequest('reviews', action.pids, fetchReviews, store);
+            partialUpdateRequest('reviews', fetchedPids, fetchReviews, store);
           }
           if (includeCollection) {
             partialUpdateRequest(
               'collection',
-              action.pids,
+              fetchedPids,
               fetchCollection,
               store
             );
