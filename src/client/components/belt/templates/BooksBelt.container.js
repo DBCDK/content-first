@@ -31,9 +31,6 @@ export class BooksBelt extends React.Component {
       showDetails: false,
       didSwipe: false
     };
-    this.getOnMoreLikeThisClickFunc = this.getOnMoreLikeThisClickFunc.bind(
-      this
-    );
   }
 
   componentDidMount() {
