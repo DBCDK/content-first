@@ -13,7 +13,6 @@ import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
-import {get} from 'lodash';
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
