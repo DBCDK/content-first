@@ -56,12 +56,14 @@ class WorkCard extends React.Component {
       nextProps.allowFetch !== this.props.allowFetch
     );
   }
+
   render() {
     if (!this.props.work || !this.props.work.detailsHasLoaded) {
       return <SkeletonWorkCard {...this.props} />;
     }
+
     const tax_description =
-      this.props.work.book.taxonomy_description ||
+      this.props.work.book.taxonomy_description.replace('\n', '\n') ||
       this.props.work.book.description;
 
     return (
@@ -95,7 +97,14 @@ class WorkCard extends React.Component {
           />
 
           <Paragraph className="mt1 d-xs-none d-sm-block">
-            {tax_description}
+            {tax_description.split('\n').map((line, i) => {
+              return (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              );
+            })}
           </Paragraph>
 
           {this.props.enableHover && (
@@ -138,7 +147,16 @@ class WorkCard extends React.Component {
               >
                 Mere som denne
               </Button>
-              <Paragraph className="mt1">{tax_description}</Paragraph>
+              <Paragraph className="mt1">
+                {tax_description.split('\n').map((line, i) => {
+                  return (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  );
+                })}
+              </Paragraph>
               <div className="expand-more-wrapper text-center">
                 <i
                   className="expand-more material-icons"
