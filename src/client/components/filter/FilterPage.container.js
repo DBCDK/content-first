@@ -179,7 +179,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: RECOMMEND_REQUEST,
       tags,
-      max: 300 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
+      max: 100 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     })
 });
 export default connect(
