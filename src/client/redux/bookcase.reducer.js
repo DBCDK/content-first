@@ -22,7 +22,7 @@ const defaultState = {
     {
       owner: '1',
       description:
-        '”Læsning giver ro oveni hovedet” Nynne Bjerre Christensen er kendt fra sin mangeårige rolle som vært i Deadline på DR2. I dag er Nynne selvstændig og arbejder bl.a. som radiovært på P1 og som moderator ved store konferencer rundt om i landet.',
+        'Nynne Bjerre Christensen er kendt fra sin mangeårige rolle som vært i Deadline på DR2. I dag er Nynne selvstændig og arbejder bl.a. som radiovært på P1 og som moderator ved store konferencer rundt om i landet. Nynne er en “mejetærsker” når det kommer til læsning. Hun læser hurtigt og meget. Både skøn- og faglitteratur fylder de mange reoler, hjemmet er fuld af.',
       descriptionImage: false,
       bookcase: 'img/bookcase/NB-bogreol.jpg',
       list: [

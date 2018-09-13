@@ -176,14 +176,17 @@ export class BookcaseItem extends React.Component {
                 slideIndex={this.state.slideIndex}
                 onNextBook={this.nextBook}
               >
-                {this.props.list.list.map(b => {
+                {this.props.list.list.map(element => {
                   return (
                     <div
                       className={`carousel-container ${
                         this.props.active ? ' carousel-display' : ''
                       }`}
                     >
-                      <ConciseWork pid={b.book.pid} />
+                      <ConciseWork
+                        pid={element.book.pid}
+                        description={element.description}
+                      />
                     </div>
                   );
                 })}
