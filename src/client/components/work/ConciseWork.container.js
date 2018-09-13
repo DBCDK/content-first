@@ -48,7 +48,7 @@ class ConciseWork extends React.Component {
     return (
       <div className="concise-work-container">
         <TruncateMarkup lines={6}>
-          <div className="carousel-header">{book.description}</div>
+          <div className="carousel-header">{this.props.description}</div>
         </TruncateMarkup>
         <div className="row">
           <div className="col-sm-4 concise-work-img">
