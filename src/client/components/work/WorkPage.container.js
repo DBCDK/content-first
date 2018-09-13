@@ -41,8 +41,8 @@ class WorkPage extends React.Component {
     this.fetchWork(this.props.pid);
   }
 
-  componentDidUpdate(nextProps) {
-    if (this.props.pid !== nextProps.pid) {
+  componentDidUpdate(prevProps) {
+    if (this.props.pid !== prevProps.pid) {
       this.fetchWork(this.props.pid);
     }
   }
