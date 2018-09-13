@@ -248,7 +248,7 @@ export const mapDispatchToProps = dispatch => ({
       tags,
       max: 50 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     }),
-  addChildBelt: (parentBelt, childBelt, clearPreview) => {
+  addChildBelt: (parentBelt, childBelt, clearPreview = true) => {
     dispatch({
       type: ADD_CHILD_BELT,
       parentBelt,
