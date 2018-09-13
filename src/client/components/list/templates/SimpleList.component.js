@@ -75,7 +75,14 @@ const StickyEditPanel = ({onSubmit, onCancel, isNew}) => {
   );
 };
 
-const ListContextMenu = ({onEdit, onDelete, title, className, style}) => (
+const ListContextMenu = ({
+  onEdit,
+  onDelete,
+  onEditSettings,
+  title,
+  className,
+  style
+}) => (
   <ContextMenu title={title} className={className} style={style}>
     <ContextMenuAction
       title="Redigér tekst og billede"
@@ -83,7 +90,11 @@ const ListContextMenu = ({onEdit, onDelete, title, className, style}) => (
       onClick={onEdit}
     />
     <ContextMenuAction title="Skift rækkefølge" icon="swap_vert" />
-    <ContextMenuAction title="Redigér indstillinger" icon="settings" />
+    <ContextMenuAction
+      title="Redigér indstillinger"
+      icon="settings"
+      onClick={onEditSettings}
+    />
     <ContextMenuAction title="Slet liste" icon="clear" onClick={onDelete} />
   </ContextMenu>
 );
@@ -170,7 +181,7 @@ const ListTop = ({
               onChange={onTitleChange}
               value={list.title}
             />
-            {!list.title.trim() && (
+            {!(list.title && list.title.trim()) && (
               <Paragraph className="mt-2" style={{color: 'red'}}>
                 Listen skal have en titel
               </Paragraph>
@@ -294,7 +305,8 @@ export class SimpleList extends React.Component {
       isOwner,
       confirmDeleteModal,
       isFollowing,
-      exitList
+      exitList,
+      openListSettingsModal
     } = this.props;
     const {added, isNew} = this.state;
     return (
@@ -353,6 +365,7 @@ export class SimpleList extends React.Component {
               onDelete={() => {
                 confirmDeleteModal(list._id);
               }}
+              onEditSettings={() => openListSettingsModal({_id: list._id})}
               title="Redigér liste"
             />
           )}
@@ -383,6 +396,9 @@ export class SimpleList extends React.Component {
                     style={{right: 0, top: 0}}
                     title=""
                     onEdit={this.onEdit}
+                    onEditSettings={() =>
+                      openListSettingsModal({_id: list._id})
+                    }
                   />
                 )
               }
@@ -525,6 +541,13 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: OPEN_MODAL,
       modal: modal,
+      context
+    });
+  },
+  openListSettingsModal: context => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'listSettings',
       context
     });
   },

@@ -53,7 +53,7 @@ export default class CommentInput extends React.Component {
             placeholder={this.props.placeholder || 'Skriv kommentar'}
             onChange={e => this.props.onChange(e.target.value)}
             onBlur={() => {
-              // this.setState({focus: false});
+              this.setState({focus: false});
             }}
             value={this.props.value}
           />

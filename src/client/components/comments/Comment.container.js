@@ -20,11 +20,8 @@ export class CommentContainer extends React.Component {
     };
   }
 
-  componentWillMount() {
-    this.updateComments();
-  }
-
   componentDidMount() {
+    this.updateComments();
     this.intervalId = setInterval(this.updateComments, 30000);
   }
 
@@ -45,11 +42,11 @@ export class CommentContainer extends React.Component {
     this.setState({showCount: ++this.state.showCount, newCommentValue: ''});
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.error && this.props.error !== nextProps.error) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.error && this.props.error !== prevProps.error) {
       this.setState({
         showCount: this.state.showCount - 1,
-        newCommentValue: nextProps.error.comment
+        newCommentValue: this.props.error.comment
       });
     }
   }
