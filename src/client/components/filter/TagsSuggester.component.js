@@ -70,9 +70,28 @@ class TagsSuggester extends React.Component {
       tagsSuggestions: {title: 'Tags', suggestions: []},
       authorSuggestions: {title: 'Forfatterer', suggestions: []},
       titleSuggestions: {title: 'Bøger', suggestions: []},
+      clientSuggestions: {title: 'Tags', suggestions: []},
       suggestions: [],
       inputVisibel: true
     };
+  }
+
+  clientsideFilters({value}) {
+    const filters = this.props.filters;
+    const length = filters.Længde.filter(l =>
+      l.title.toLowerCase().includes(value)
+    ).map(l => {
+      return {
+        id: l.id,
+        title: l.title,
+        text: l.title,
+        parents: ['', 'Længde']
+      };
+    });
+
+    this.setState({
+      clientSuggestions: {title: 'Tags', suggestions: length}
+    });
   }
 
   async onTagsSuggestionsFetchRequested({value}) {
@@ -169,7 +188,18 @@ class TagsSuggester extends React.Component {
   }
 
   renderSuggestions() {
-    let {tagsSuggestions, authorSuggestions, titleSuggestions} = this.state;
+    let {
+      tagsSuggestions,
+      clientSuggestions,
+      authorSuggestions,
+      titleSuggestions
+    } = this.state;
+
+    // Add client tags to suggestion tags
+    tagsSuggestions.suggestions = [
+      ...tagsSuggestions.suggestions,
+      ...clientSuggestions.suggestions
+    ];
 
     // Fill suggestions with authors (Maximum 2)
     authorSuggestions = {
@@ -276,6 +306,7 @@ class TagsSuggester extends React.Component {
             onSuggestionsFetchRequested={async e => {
               await this.onTagsSuggestionsFetchRequested(e);
               await this.onAuthorTitleSuggestionsFetchRequested(e);
+              this.clientsideFilters(e);
               this.setState({suggestions: this.renderSuggestions()});
             }}
             onSuggestionsClearRequested={() => {

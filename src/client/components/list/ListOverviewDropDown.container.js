@@ -67,7 +67,7 @@ const UserListsContent = props => {
         props.expanded ? '' : ' slide-out'
       }`}
     >
-       <i
+      <i
         onClick={props.onClose}
         className="material-icons top-bar-dropdown-list--close-btn"
       >
