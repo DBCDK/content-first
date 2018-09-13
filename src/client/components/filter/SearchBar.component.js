@@ -54,6 +54,8 @@ class SearchBar extends React.Component {
 
       selectedTagIds = selectedTagIdsTrimmed;
 
+      console.log('filterId', filterId);
+
       const filter = filtersMapAll[filterId] || filtersMapAll[filterId[0]];
       const parent = filtersMapAll[filter.id].parents[0];
       const range = (filterCards[parent] && filterCards[parent].range) || false;
