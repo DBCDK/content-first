@@ -1,36 +1,44 @@
 [
-    {
-        "type":"small",
-        "tags":[5683,5672,5712],
-        "listLink":{"url":"/lister/7588e52f-cd0d-4163-aeef-6def8c3d3e10","title":"Se familier"},
-        "show": true
+  {
+    "type": "small",
+    "tags": [5654, 5640, 3207],
+    "listLink": {
+      "url": "/find?tag=5654&tag=5640&tag=3207",
+      "title": "Se bøger til sofahygge"
     },
-    {
-        "type":"wide",
-        "title":"HVAD ER DER PÅ B.S' BUKET LIST?",
-        "highlight":"B.S' BUKET LIST?",
-        "image":"https://cdn.suwalls.com/wallpapers/photography/wooden-disintegrating-boat-44780-2560x1600.jpg",
-        "tags":[ 5649,5650,5654],
-        "listLink":{"url":"/lister/7588e52f-cd0d-4163-aeef-6def8c3d3e10","title":"Se B.S's bogliste"},
-        "show": true
-
+    "show": true
+  },
+  {
+    "type": "wide",
+    "title": "HVAD LÆSER CECILIE FRØKJÆR?",
+    "highlight": "CECILIE FRØKJÆR",
+    "image": "/img/spots/bryce-barker-73651-unsplash_cropped.jpg",
+    "tags": [5638, 5632, 5642],
+    "listLink": {
+      "url": "/lister/d5205150-a5ec-11e8-bc7e-f12e3c5c9eaa",
+      "title": "Se Cecilies bogliste"
     },
-    {
-        "type":"small",
-        "color":"#F4B51B",
-        "tags":[5644,5648,5654],
-        "listLink":{"url":"/","title":"Se parforholdet"},
-        "show": true
-
-    },    
-    {
-        "type":"small",
-        "title":"HVILKEN KRIMI ER DIN NÆSTE?",
-        "highlight":"HVILKEN",
-        "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ92Etcvnv4b9PdnQow-_q8P75kTM33ysk8GGuRZ6ck9VFHkVz9",
-        "listLink":{"url":"/","title":"Se alle nye krimier"},
-        "show": true
-
-    }
-
+    "show": true
+  },
+  {
+    "type": "small",
+    "color": "#F4B51B",
+    "tags": [5329, 5731, 5638],
+    "listLink": {
+      "url": "/find?tag=5329&tag=5731&tag=5638",
+      "title": "Læs om mennesket og naturen"
+    },
+    "show": true
+  },
+  {
+    "type": "small",
+    "title": "ER DU TIL UHYGGE OG KRIMI?",
+    "highlight": "UHYGGE OG KRIMI",
+    "image": "/img/spots/jakub-kriz-418618-unsplash_cropped.jpg",
+    "listLink": {
+      "url": "/find?tag=5690&tag=5694&tag=5700&tag=4907",
+      "title": "Se blodige og hårrejsende bøger"
+    },
+    "show": true
+  }
 ]
