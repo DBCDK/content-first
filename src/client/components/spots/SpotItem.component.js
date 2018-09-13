@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import './Spots.css';
 import toColor from '../../utils/toColor';
 import Link from '../general/Link.component';
+import {getLeavesMap} from '../../utils/taxonomy';
+
+const leavesMap = getLeavesMap();
 
 export class SpotItem extends React.Component {
   constructor(props) {
@@ -34,7 +37,15 @@ export class SpotItem extends React.Component {
     }
     return <h1> {spot.title}</h1>;
   }
+
+  getTags(tagIDs) {
+    if (tagIDs) {
+      return tagIDs.map(tagID => leavesMap[tagID]);
+    }
+    return;
+  }
   render() {
+    const tags = this.getTags(this.props.spotData.tags);
     return (
       <div
         className={
@@ -51,8 +62,8 @@ export class SpotItem extends React.Component {
           {this.props.spotData.title && this.renderTitle(this.props.spotData)}
           {!this.props.spotData.image && <div className="spot-item-circle" />}
           <div className="tags">
-            {this.props.spotData.tags &&
-              this.props.spotData.tags.map(tag => {
+            {tags &&
+              tags.map(tag => {
                 return (
                   <Link key={tag.id} href="/find" params={{tag: tag.id}}>
                     <span>{tag.title}</span>
