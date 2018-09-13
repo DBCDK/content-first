@@ -45,7 +45,7 @@ export const fetchTags = async (pids = []) => {
 
 export const fetchBooks = (pids = [], store) => {
   pids = unique(pids);
-  const getBooks = request.get('/v1/books/').query({pids});
+  const getBooks = request.post('/v1/books/').send({pids});
 
   return Promise.all([getBooks])
     .then(async responses => {

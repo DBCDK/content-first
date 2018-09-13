@@ -36,6 +36,29 @@ router
         links: {self: link}
       });
     })
+  )
+  .post(
+    asyncMiddleware(async (req, res, next) => {
+      // console.log(req.body.pids);
+      const pids = parameters.parseList(req.body.pids);
+      if (!pids || pids.length === 0) {
+        return next({
+          status: 400,
+          title: 'PIDs expected',
+          detail: 'You must supply at least one PID.'
+        });
+      }
+      const link = `${req.baseUrl}?pids=${req.query.pids}`;
+      const books = await knex(bookTable)
+        .whereIn('pid', pids)
+        .select();
+      const failed = _.difference(pids, books.map(b => b.pid));
+      res.status(200).json({
+        data: _.map(books, bookToSelfSufficientDataElement),
+        failed: failed.length > 0 ? failed : void 0,
+        links: {self: link}
+      });
+    })
   );
 
 function bookToSelfSufficientDataElement(bookFromDb) {
