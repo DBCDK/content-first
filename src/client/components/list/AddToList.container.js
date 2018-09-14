@@ -45,7 +45,7 @@ export class AddToList extends React.Component {
     }
     return (
       <div className={'addbook ' + className} style={style}>
-        <Heading tag="h2" type="section">
+        <Heading className="ml-2 ml-sm-0" tag="h2" type="section">
           Vil du tilføje bøger til listen?
         </Heading>
 

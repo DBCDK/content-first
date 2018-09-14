@@ -9,6 +9,7 @@ exports[`AddToList render when allowAdd is true 1`] = `
   className="addbook undefined"
 >
   <Heading
+    className="ml-2 ml-sm-0"
     tag="h2"
     type="section"
   >
@@ -76,6 +77,7 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
   className="addbook undefined"
 >
   <Heading
+    className="ml-2 ml-sm-0"
     tag="h2"
     type="section"
   >
@@ -143,6 +145,7 @@ exports[`AddToList show error msg when selected books is already in list 1`] = `
   className="addbook undefined"
 >
   <Heading
+    className="ml-2 ml-sm-0"
     tag="h2"
     type="section"
   >

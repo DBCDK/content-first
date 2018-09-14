@@ -18,7 +18,7 @@ import {
 
 const ElementContextMenu = ({onDelete, onEdit}) => (
   <ContextMenu
-    className="mr-1 mt-2 position-absolute"
+    className="mr-0 mt-2 position-absolute"
     style={{right: 0, top: 0}}
   >
     <ContextMenuAction title="Redigér indlæg" icon="edit" onClick={onEdit} />

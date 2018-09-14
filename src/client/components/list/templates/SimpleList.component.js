@@ -115,7 +115,7 @@ const ListTop = ({
 }) => {
   return (
     <div className="box-shadow">
-      <div className="list-cover-image-wrapper p-4 lys-graa">
+      <div className="list-cover-image-wrapper pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4 lys-graa">
         {editing ? (
           <ImageUpload
             error={list.imageError}
@@ -139,23 +139,18 @@ const ListTop = ({
       </div>
       <div className="pl-4 pr-4 pb-4 lys-graa pt-2 position-relative">
         <div
-          className="d-flex flex-row position-absolute pr-4"
+          className="d-flex flex-row position-absolute pr-0 pr-lg-4"
           style={{right: 0, top: 0}}
         >
           <SocialShareButton
-            className={list.type === 'SYSTEM_LIST' ? 'd-none' : 'ssb-fb'}
+            className={'ssb-fb align-middle'}
             facebook={true}
-            href={
-              list.public
-                ? 'https://content-first.demo.dbc.dk/lister/' + list._id
-                : null
-            }
+            href={'https://content-first.demo.dbc.dk/lister/' + list._id}
             hex={'#3b5998'}
-            size={30}
-            txt="Del"
+            size={40}
             shape="round"
-            status={!list.public || editing ? 'passive' : 'active'}
             hoverTitle="Del på facebook"
+            status={!list.public || editing ? 'passive' : 'active'}
             onClick={() => {
               confirmShareModal(list._id);
             }}
@@ -372,7 +367,7 @@ export class SimpleList extends React.Component {
             />
           )}
         </StickySettings>
-        <div className="d-flex justify-content-center mt-5 mb-5">
+        <div className="d-flex justify-content-center mt-0 mt-md-5 mb-5">
           <div className="fixed-width-col-sm d-xs-none d-xl-block" />
           <div
             className="list-container pistache fixed-width-col-md"
@@ -394,7 +389,7 @@ export class SimpleList extends React.Component {
               contextMenu={
                 isOwner && (
                   <ListContextMenu
-                    className="ml-3 d-lg-none"
+                    className="ml-3 d-lg-none align-middle"
                     style={{right: 0, top: 0}}
                     title=""
                     onEdit={this.onEdit}
