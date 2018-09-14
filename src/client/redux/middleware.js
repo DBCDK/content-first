@@ -277,20 +277,26 @@ export const listMiddleware = store => next => async action => {
     }
     case LIST_LOAD_REQUEST: {
       const res = next(action);
-      const list = await loadList(action.id, store);
-      store.dispatch({
-        type: LIST_LOAD_RESPONSE,
-        list
-      });
+      try {
+        const list = await loadList(action._id, store);
+        store.dispatch({
+          type: LIST_LOAD_RESPONSE,
+          list
+        });
 
-      const pids = [];
-      list.list.forEach(book => {
-        pids.push(book.pid);
-      });
+        const pids = [];
+        list.list.forEach(book => {
+          pids.push(book.pid);
+        });
 
-      store.dispatch({type: BOOKS_REQUEST, pids});
-      store.dispatch({type: REQUEST_USER, id: list.owner});
-
+        store.dispatch({type: BOOKS_REQUEST, pids});
+        store.dispatch({type: REQUEST_USER, id: list.owner});
+      } catch (error) {
+        store.dispatch({
+          type: LIST_LOAD_RESPONSE,
+          list: {_id: action._id, error}
+        });
+      }
       return res;
     }
     case LISTS_LOAD_REQUEST: {

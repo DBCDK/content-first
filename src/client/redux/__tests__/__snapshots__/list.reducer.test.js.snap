@@ -5,6 +5,7 @@ Array [
   Object {
     "_created": "1234",
     "_id": "list2",
+    "_owner": null,
     "description": "",
     "list": Array [
       Object {
@@ -20,7 +21,6 @@ Array [
         },
       },
     ],
-    "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },
@@ -32,6 +32,7 @@ Array [
   Object {
     "_created": "1234",
     "_id": "some-id-1",
+    "_owner": null,
     "description": "",
     "list": Array [
       Object {
@@ -61,7 +62,6 @@ Array [
         },
       },
     ],
-    "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },
@@ -73,18 +73,18 @@ Array [
   Object {
     "_created": "1234",
     "_id": "some-id-1",
+    "_owner": null,
     "description": "a description 1",
     "list": Array [],
-    "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },
   Object {
     "_created": "1234",
     "_id": "some-id-2",
+    "_owner": null,
     "description": "a description 2",
     "list": Array [],
-    "owner": null,
     "title": "some list 2",
     "type": "CUSTOM_LIST",
   },
@@ -96,18 +96,18 @@ Array [
   Object {
     "_created": "1234",
     "_id": "some-id-1",
+    "_owner": null,
     "description": "",
     "list": Array [],
-    "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },
   Object {
     "_created": "1234",
     "_id": "some-id-3",
+    "_owner": null,
     "description": "",
     "list": Array [],
-    "owner": null,
     "title": "some list 3",
     "type": "CUSTOM_LIST",
   },
@@ -119,18 +119,18 @@ Array [
   Object {
     "_created": "1234",
     "_id": "some-id-1",
+    "_owner": "some-owner",
     "description": "",
     "list": Array [],
-    "owner": "some-owner",
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },
   Object {
     "_created": "1234",
     "_id": "some-id-3",
+    "_owner": "some-owner",
     "description": "",
     "list": Array [],
-    "owner": "some-owner",
     "title": "some list 3",
     "type": "CUSTOM_LIST",
   },
@@ -144,6 +144,7 @@ Array [
   Object {
     "_created": "1234",
     "_id": "some-id-1",
+    "_owner": null,
     "description": "",
     "list": Array [
       Object {
@@ -179,7 +180,6 @@ Array [
         },
       },
     ],
-    "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },
@@ -191,6 +191,7 @@ Array [
   Object {
     "_created": "1234",
     "_id": "some-id-1",
+    "_owner": null,
     "deleted": Object {
       "123": true,
     },
@@ -210,7 +211,6 @@ Array [
         },
       },
     ],
-    "owner": null,
     "pending": Array [
       Object {
         "_id": "123",
@@ -230,19 +230,19 @@ Array [
   Object {
     "_created": "1234",
     "_id": "some-id-1",
+    "_owner": null,
     "deletingIsLoading": true,
     "description": "",
     "list": Array [],
-    "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },
   Object {
     "_created": "1234",
     "_id": "some-id-2",
+    "_owner": null,
     "description": "",
     "list": Array [],
-    "owner": null,
     "title": "some list 2",
     "type": "CUSTOM_LIST",
   },
@@ -254,6 +254,7 @@ Array [
   Object {
     "_created": "1234",
     "_id": "some-id-1",
+    "_owner": null,
     "description": "",
     "list": Array [
       Object {
@@ -265,7 +266,6 @@ Array [
         "pid": "pid1",
       },
     ],
-    "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },
@@ -277,9 +277,9 @@ Array [
   Object {
     "_created": "1234",
     "_id": "some-id-1",
+    "_owner": null,
     "description": "",
     "list": Array [],
-    "owner": null,
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },

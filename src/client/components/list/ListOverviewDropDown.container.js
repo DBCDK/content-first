@@ -169,7 +169,7 @@ const mapStateToProps = state => {
     followReducer: state.followReducer,
     followedLists: getFollowedLists(state),
     userLists: getListsForOwner(state, {
-      owner: state.userReducer.openplatformId,
+      _owner: state.userReducer.openplatformId,
       sort: false
     })
   };

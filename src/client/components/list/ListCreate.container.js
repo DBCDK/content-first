@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {addList} from '../../redux/list.reducer';
 import {saveList} from '../../utils/requestLists';
 import {HISTORY_REPLACE} from '../../redux/middleware';
+import Spinner from '../general/Spinner.component';
 
 /*
 * Will create a new list object and redirect to listpage
@@ -13,7 +14,11 @@ export class ListCreator extends React.Component {
   }
 
   render() {
-    return <div>Opretter liste</div>;
+    return (
+      <div className="d-flex justify-content-center">
+        <Spinner size="30px" className="mt-5" />
+      </div>
+    );
   }
 }
 

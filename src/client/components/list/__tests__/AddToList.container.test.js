@@ -52,6 +52,7 @@ describe('AddToList', () => {
   });
   test('invoke requireLogin, when add button is clicked when not logged in', () => {
     const list = createList(1);
+    const element = createTestElement(10);
     let requireLoginInvoked = false;
     let addElementInvoked = false;
     const tree = shallow(
@@ -63,13 +64,13 @@ describe('AddToList', () => {
         addElement={() => (addElementInvoked = true)}
       />
     );
-    tree.setState({elementToAdd: createTestElement(10)});
-    tree.find('.btn-success').simulate('click');
+    tree.instance().submit(element);
     expect(requireLoginInvoked).toBe(true);
     expect(addElementInvoked).toBe(false);
   });
   test('invoke addElement, when add button is clicked when logged in', () => {
     const list = createList(1);
+    const element = createTestElement(10);
     let requireLoginInvoked = false;
     let addElementInvoked = false;
     const tree = shallow(
@@ -81,8 +82,7 @@ describe('AddToList', () => {
         addElement={() => (addElementInvoked = true)}
       />
     );
-    tree.setState({elementToAdd: createTestElement(10)});
-    tree.find('.btn-success').simulate('click');
+    tree.instance().submit(element);
     expect(requireLoginInvoked).toBe(false);
     expect(addElementInvoked).toBe(true);
   });

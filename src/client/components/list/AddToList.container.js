@@ -3,10 +3,8 @@ import {connect} from 'react-redux';
 import {addElementToList, storeList} from '../../redux/list.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import BookSearchSuggester from './BookSearchSuggester';
-import ListElement from './templates/ListElement';
 import Heading from '../base/Heading';
 import ProfileImage from '../general/ProfileImage.component';
-import Button from '../base/Button';
 
 export class AddToList extends React.Component {
   constructor() {
@@ -17,17 +15,29 @@ export class AddToList extends React.Component {
     this.refs.suggester.focus();
   };
 
+  submit = book => {
+    const {addElement, requireLogin, list, isLoggedIn, onAdd} = this.props;
+    if (!isLoggedIn) {
+      return requireLogin();
+    }
+    if (list.list.filter(item => item.book.pid === book.book.pid).length > 0) {
+      this.setState({exists: true, selected: book});
+    } else {
+      addElement(book, list);
+      this.setState({exists: false});
+      if (onAdd) {
+        onAdd(book.book.pid);
+      }
+    }
+  };
+
   render() {
     const {
       list,
       allowAdd,
-      addElement,
-      requireLogin,
-      isLoggedIn,
       profile,
       className,
       style,
-      onAdd,
       suggesterRef
     } = this.props;
     if (!allowAdd || !list) {
@@ -45,23 +55,7 @@ export class AddToList extends React.Component {
             suggesterRef={suggesterRef}
             className="ml-4 mr-4"
             list={list}
-            onSubmit={book => {
-              if (!isLoggedIn) {
-                return requireLogin();
-              }
-              if (
-                list.list.filter(item => item.book.pid === book.book.pid)
-                  .length > 0
-              ) {
-                this.setState({exists: true, selected: book});
-              } else {
-                addElement(book, list);
-                this.setState({exists: false});
-                if (onAdd) {
-                  onAdd(book.book.pid);
-                }
-              }
-            }}
+            onSubmit={this.submit}
           />
         </div>
 

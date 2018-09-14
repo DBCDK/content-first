@@ -120,7 +120,7 @@ export default connect(
       shortListState: state.shortListReducer,
       systemLists: getListsForOwner(state, {
         type: SYSTEM_LIST,
-        owner: state.userReducer.openplatformId,
+        _owner: state.userReducer.openplatformId,
         sort: true
       }),
       isLoggedIn: state.userReducer.isLoggedIn

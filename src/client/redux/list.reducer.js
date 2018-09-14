@@ -37,6 +37,13 @@ export const ON_USERLISTS_COLLAPSE = 'ON_USERLISTS_COLLAPSE';
 // eslint-disable-next-line
 const listReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case LIST_LOAD_REQUEST: {
+      const {_id} = action;
+      const old = state.lists[_id] || {};
+      return Object.assign({}, state, {
+        lists: {...state.lists, [_id]: {...old, isLoading: true, _id}}
+      });
+    }
     case ADD_LIST: {
       const {list} = action;
       if (!list._id) {
@@ -231,14 +238,17 @@ const listReducer = (state = defaultState, action) => {
       }
 
       const list = action.list;
-      list.list.forEach(element => {
-        if (!element.position) {
-          element.position = {
-            x: Math.floor(Math.random() * Math.floor(100)),
-            y: Math.floor(Math.random() * Math.floor(100))
-          };
-        }
-      });
+      if (list.list) {
+        list.list.forEach(element => {
+          if (!element.position) {
+            element.position = {
+              x: Math.floor(Math.random() * Math.floor(100)),
+              y: Math.floor(Math.random() * Math.floor(100))
+            };
+          }
+        });
+      }
+      list.isLoading = false;
 
       return Object.assign({}, state, {
         lists: {...state.lists, [action.list._id]: list}
@@ -393,10 +403,10 @@ export const storeList = _id => {
 
 // SELECTORS
 export const getListsForOwner = (state, params = {}) => {
-  if (!params.owner) {
+  if (!params._owner) {
     return [];
   }
-  return getLists(state, params).filter(l => params.owner === l.owner);
+  return getLists(state, params).filter(l => params._owner === l._owner);
 };
 
 export const getLists = (state, {type, sort} = {}) => {

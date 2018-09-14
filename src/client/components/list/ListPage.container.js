@@ -1,12 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getListByIdSelector} from '../../redux/list.reducer';
-import {getUser} from '../../redux/users';
 import SimpleList from './templates/SimpleList.component';
 import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
-// import CircleTemplate from './templates/CircleTemplate.container';
-// import BookcaseTemplate from './templates/BookcaseTemplate.component';
-import Link from '../general/Link.component';
+import Spinner from '../general/Spinner.component';
 
 const getListById = getListByIdSelector();
 
@@ -39,48 +36,34 @@ export class ListPage extends React.Component {
     // }
   }
   render() {
-    const {list, isOwner} = this.props;
+    const {list} = this.props;
+    if (!list || list.isLoading) {
+      // TODO make a skeleton view of list
+      return (
+        <div className="d-flex justify-content-center">
+          <Spinner size="30px" className="mt-5" />
+        </div>
+      );
+    }
 
-    if (!list) {
-      return <div>Listen findes ikke</div>;
+    if (list.error) {
+      return <div>Listen kunne ikke hentes</div>;
     }
 
     const Template = this.getTemplate(list);
 
-    let editButton = '';
-    if (list.type === 'CUSTOM_LIST' && isOwner) {
-      editButton = (
-        <Link
-          className="small link-subtle align-middle ml2"
-          href={`/lister/${list._id}/rediger`}
-        >
-          Redigér liste
-        </Link>
-      );
-    }
-
-    return (
-      <Template
-        list={list}
-        profile={this.props.profile}
-        editButton={editButton}
-        profiles={this.props.profiles}
-      />
-    );
+    return <Template _id={list._id} />;
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const list = getListById(state, {_id: ownProps.id});
   return {
-    list,
-    isOwner: list && list._owner === state.userReducer.openplatformId,
-    profile: getUser(state, {id: list && list._owner})
+    list: getListById(state, {_id: ownProps.id})
   };
 };
 
 export const mapDispatchToProps = dispatch => ({
-  loadList: id => dispatch({type: LIST_LOAD_REQUEST, id})
+  loadList: _id => dispatch({type: LIST_LOAD_REQUEST, _id})
 });
 
 export default connect(

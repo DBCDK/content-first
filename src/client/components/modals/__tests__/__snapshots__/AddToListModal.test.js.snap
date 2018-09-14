@@ -9,24 +9,51 @@ exports[`AddToListModal multiple works as input 1`] = `
     onClick={[Function]}
   />
   <div
-    className="modal-window text-left p-4 add-to-list--modal p-4"
+    className="modal-window add-to-list--modal p-4"
   >
-    <i
-      className="material-icons modal-window--close-btn mt-1"
-      onClick={[Function]}
-    >
-      clear
-    </i>
     <div
-      className="modal-window--header text-center"
+      className="top d-flex flex-row justify-content-start justify-content-sm-end"
+      style={
+        Object {
+          "borderBottom": "1px solid var(--pistache)",
+        }
+      }
     >
-      <h3>
-        GEM I LISTE
-      </h3>
+      <i
+        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        clear
+      </i>
+      <button
+        className="m-3 d-inline-block d-sm-none btn Button Button__link2 Button__medium"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons material-icons-chevron_left align-middle"
+        >
+          chevron_left
+        </i>
+        <span
+          className="align-middle"
+        >
+          tilbage
+        </span>
+      </button>
     </div>
     <div
-      className="modal-window--content"
+      className="content p-4"
     >
+      <h2
+        className=" Heading Heading__lead"
+      >
+        GEM I LISTE
+      </h2>
       <div
         className="row"
       >
@@ -150,16 +177,16 @@ exports[`AddToListModal multiple works as input 1`] = `
           </p>
         </div>
       </div>
-    </div>
-    <div
-      className="modal-window--buttons text-center"
-    >
-      <span
-        className="btn btn-success "
-        onClick={[Function]}
+      <div
+        className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
       >
-        JA TAK, GEM NU
-      </span>
+        <button
+          className="mr-4 false btn Button Button__quaternary Button__large"
+          onClick={[Function]}
+        >
+          JA TAK, GEM NU
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -174,24 +201,51 @@ exports[`AddToListModal newly added list is selected 1`] = `
     onClick={[Function]}
   />
   <div
-    className="modal-window text-left p-4 add-to-list--modal p-4"
+    className="modal-window add-to-list--modal p-4"
   >
-    <i
-      className="material-icons modal-window--close-btn mt-1"
-      onClick={[Function]}
-    >
-      clear
-    </i>
     <div
-      className="modal-window--header text-center"
+      className="top d-flex flex-row justify-content-start justify-content-sm-end"
+      style={
+        Object {
+          "borderBottom": "1px solid var(--pistache)",
+        }
+      }
     >
-      <h3>
-        GEM I LISTE
-      </h3>
+      <i
+        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        clear
+      </i>
+      <button
+        className="m-3 d-inline-block d-sm-none btn Button Button__link2 Button__medium"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons material-icons-chevron_left align-middle"
+        >
+          chevron_left
+        </i>
+        <span
+          className="align-middle"
+        >
+          tilbage
+        </span>
+      </button>
     </div>
     <div
-      className="modal-window--content"
+      className="content p-4"
     >
+      <h2
+        className=" Heading Heading__lead"
+      >
+        GEM I LISTE
+      </h2>
       <div
         className="row"
       >
@@ -346,16 +400,16 @@ exports[`AddToListModal newly added list is selected 1`] = `
           />
         </div>
       </div>
-    </div>
-    <div
-      className="modal-window--buttons text-center"
-    >
-      <span
-        className="btn btn-success "
-        onClick={[Function]}
+      <div
+        className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
       >
-        JA TAK, GEM NU
-      </span>
+        <button
+          className="mr-4 false btn Button Button__quaternary Button__large"
+          onClick={[Function]}
+        >
+          JA TAK, GEM NU
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -370,24 +424,51 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
     onClick={[Function]}
   />
   <div
-    className="modal-window text-left p-4 add-to-list--modal p-4"
+    className="modal-window add-to-list--modal p-4"
   >
-    <i
-      className="material-icons modal-window--close-btn mt-1"
-      onClick={[Function]}
-    >
-      clear
-    </i>
     <div
-      className="modal-window--header text-center"
+      className="top d-flex flex-row justify-content-start justify-content-sm-end"
+      style={
+        Object {
+          "borderBottom": "1px solid var(--pistache)",
+        }
+      }
     >
-      <h3>
-        GEM I LISTE
-      </h3>
+      <i
+        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block"
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        clear
+      </i>
+      <button
+        className="m-3 d-inline-block d-sm-none btn Button Button__link2 Button__medium"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons material-icons-chevron_left align-middle"
+        >
+          chevron_left
+        </i>
+        <span
+          className="align-middle"
+        >
+          tilbage
+        </span>
+      </button>
     </div>
     <div
-      className="modal-window--content"
+      className="content p-4"
     >
+      <h2
+        className=" Heading Heading__lead"
+      >
+        GEM I LISTE
+      </h2>
       <div
         className="row"
       >
@@ -528,16 +609,16 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
           />
         </div>
       </div>
-    </div>
-    <div
-      className="modal-window--buttons text-center"
-    >
-      <span
-        className="btn btn-success "
-        onClick={[Function]}
+      <div
+        className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
       >
-        JA TAK, GEM NU
-      </span>
+        <button
+          className="mr-4 false btn Button Button__quaternary Button__large"
+          onClick={[Function]}
+        >
+          JA TAK, GEM NU
+        </button>
+      </div>
     </div>
   </div>
 </div>

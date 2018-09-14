@@ -60,12 +60,12 @@ const mapStateToProps = state => {
   return {
     lists: getListsForOwner(state, {
       type: CUSTOM_LIST,
-      owner: state.userReducer.openplatformId,
+      _owner: state.userReducer.openplatformId,
       sort: true
     }),
     systemLists: getListsForOwner(state, {
       type: SYSTEM_LIST,
-      owner: state.userReducer.openplatformId,
+      _owner: state.userReducer.openplatformId,
       sort: true
     })
   };

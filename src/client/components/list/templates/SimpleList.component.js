@@ -10,7 +10,8 @@ import {
   updateList,
   storeList,
   removeList,
-  ADD_LIST_IMAGE
+  ADD_LIST_IMAGE,
+  getListByIdSelector
 } from '../../../redux/list.reducer';
 import timeToString from '../../../utils/timeToString';
 import textParser from '../../../utils/textParser';
@@ -26,6 +27,7 @@ import ImageUpload from '../../general/ImageUpload.component';
 import Textarea from 'react-textarea-autosize';
 import ListElement from './ListElement';
 import scrollToComponent from 'react-scroll-to-component';
+const getListById = getListByIdSelector();
 
 const StickySettings = props => {
   return (
@@ -447,13 +449,13 @@ export class SimpleList extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const list = getListById(state, {_id: ownProps._id});
   return {
     loggedInUserId: state.userReducer.openplatformId,
-    isFollowing: state.followReducer[ownProps.list._id],
-    isOwner:
-      ownProps.list &&
-      ownProps.list._owner === state.userReducer.openplatformId,
-    isLoggedIn: state.userReducer.isLoggedIn
+    isFollowing: state.followReducer[ownProps._id],
+    isOwner: ownProps._id && list._owner === state.userReducer.openplatformId,
+    isLoggedIn: state.userReducer.isLoggedIn,
+    list
   };
 };
 export const mapDispatchToProps = dispatch => ({

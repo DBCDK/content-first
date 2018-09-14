@@ -6,216 +6,201 @@ exports[`AddToList is empty when list is undefined 1`] = `""`;
 
 exports[`AddToList render when allowAdd is true 1`] = `
 <div
-  className="addbook"
+  className="addbook undefined"
 >
-  <h2
-    className="list-creator__headline mt2"
+  <Heading
+    tag="h2"
+    type="section"
   >
-    Tilføj bøger til listen
-  </h2>
-  <Connect(BookSearchSuggester)
-    list={
-      Object {
-        "_id": 1,
-        "description": "some description",
-        "list": Array [
-          Object {
-            "book": Object {
-              "creator": "some creator1",
-              "pid": "pid1",
-              "title": "some title 1",
+    Vil du tilføje bøger til listen?
+  </Heading>
+  <div
+    className="d-flex flex-row french-pass pt-4"
+  >
+    <ProfileImage
+      className="ml-4"
+      size="40"
+    />
+    <Connect(BookSearchSuggester)
+      className="ml-4 mr-4"
+      list={
+        Object {
+          "_id": 1,
+          "description": "some description",
+          "list": Array [
+            Object {
+              "book": Object {
+                "creator": "some creator1",
+                "pid": "pid1",
+                "title": "some title 1",
+              },
+              "description": "some description1",
+              "links": Object {
+                "cover": "/cover1",
+              },
             },
-            "description": "some description1",
-            "links": Object {
-              "cover": "/cover1",
+            Object {
+              "book": Object {
+                "creator": "some creator2",
+                "pid": "pid2",
+                "title": "some title 2",
+              },
+              "description": "some description2",
+              "links": Object {
+                "cover": "/cover2",
+              },
             },
-          },
-          Object {
-            "book": Object {
-              "creator": "some creator2",
-              "pid": "pid2",
-              "title": "some title 2",
+            Object {
+              "book": Object {
+                "creator": "some creator3",
+                "pid": "pid3",
+                "title": "some title 3",
+              },
+              "description": "some description3",
+              "links": Object {
+                "cover": "/cover3",
+              },
             },
-            "description": "some description2",
-            "links": Object {
-              "cover": "/cover2",
-            },
-          },
-          Object {
-            "book": Object {
-              "creator": "some creator3",
-              "pid": "pid3",
-              "title": "some title 3",
-            },
-            "description": "some description3",
-            "links": Object {
-              "cover": "/cover3",
-            },
-          },
-        ],
-        "title": "some list",
+          ],
+          "title": "some list",
+        }
       }
-    }
-    onSubmit={[Function]}
-  />
+      onSubmit={[Function]}
+    />
+  </div>
 </div>
 `;
 
 exports[`AddToList show add and cancel buttons when selected book is not in list 1`] = `
 <div
-  className="addbook"
+  className="addbook undefined"
 >
-  <h2
-    className="list-creator__headline mt2"
+  <Heading
+    tag="h2"
+    type="section"
   >
-    Tilføj bøger til listen
-  </h2>
-  <Connect(BookSearchSuggester)
-    list={
-      Object {
-        "_id": 1,
-        "description": "some description",
-        "list": Array [
-          Object {
-            "book": Object {
-              "creator": "some creator1",
-              "pid": "pid1",
-              "title": "some title 1",
-            },
-            "description": "some description1",
-            "links": Object {
-              "cover": "/cover1",
-            },
-          },
-          Object {
-            "book": Object {
-              "creator": "some creator2",
-              "pid": "pid2",
-              "title": "some title 2",
-            },
-            "description": "some description2",
-            "links": Object {
-              "cover": "/cover2",
-            },
-          },
-          Object {
-            "book": Object {
-              "creator": "some creator3",
-              "pid": "pid3",
-              "title": "some title 3",
-            },
-            "description": "some description3",
-            "links": Object {
-              "cover": "/cover3",
-            },
-          },
-        ],
-        "title": "some list",
-      }
-    }
-    onSubmit={[Function]}
-  />
+    Vil du tilføje bøger til listen?
+  </Heading>
   <div
-    className="item mt4"
+    className="d-flex flex-row french-pass pt-4"
   >
-    <Component
-      item={
+    <ProfileImage
+      className="ml-4"
+      size="40"
+    />
+    <Connect(BookSearchSuggester)
+      className="ml-4 mr-4"
+      list={
         Object {
-          "book": Object {
-            "creator": "some creator10",
-            "pid": "pid10",
-            "title": "some title 10",
-          },
-          "description": "some description10",
-          "links": Object {
-            "cover": "/cover10",
-          },
+          "_id": 1,
+          "description": "some description",
+          "list": Array [
+            Object {
+              "book": Object {
+                "creator": "some creator1",
+                "pid": "pid1",
+                "title": "some title 1",
+              },
+              "description": "some description1",
+              "links": Object {
+                "cover": "/cover1",
+              },
+            },
+            Object {
+              "book": Object {
+                "creator": "some creator2",
+                "pid": "pid2",
+                "title": "some title 2",
+              },
+              "description": "some description2",
+              "links": Object {
+                "cover": "/cover2",
+              },
+            },
+            Object {
+              "book": Object {
+                "creator": "some creator3",
+                "pid": "pid3",
+                "title": "some title 3",
+              },
+              "description": "some description3",
+              "links": Object {
+                "cover": "/cover3",
+              },
+            },
+          ],
+          "title": "some list",
         }
       }
-      key="pid10"
-      onChange={[Function]}
+      onSubmit={[Function]}
     />
-    <div
-      className="text-right mt1"
-    >
-      <span
-        className="btn btn-default"
-        onClick={[Function]}
-      >
-        Fortryd
-      </span>
-      <span
-        className="btn btn-success ml1"
-        onClick={[Function]}
-      >
-        Tilføj
-      </span>
-    </div>
   </div>
 </div>
 `;
 
 exports[`AddToList show error msg when selected books is already in list 1`] = `
 <div
-  className="addbook"
+  className="addbook undefined"
 >
-  <h2
-    className="list-creator__headline mt2"
+  <Heading
+    tag="h2"
+    type="section"
   >
-    Tilføj bøger til listen
-  </h2>
-  <Connect(BookSearchSuggester)
-    list={
-      Object {
-        "_id": 1,
-        "description": "some description",
-        "list": Array [
-          Object {
-            "book": Object {
-              "creator": "some creator1",
-              "pid": "pid1",
-              "title": "some title 1",
+    Vil du tilføje bøger til listen?
+  </Heading>
+  <div
+    className="d-flex flex-row french-pass pt-4"
+  >
+    <ProfileImage
+      className="ml-4"
+      size="40"
+    />
+    <Connect(BookSearchSuggester)
+      className="ml-4 mr-4"
+      list={
+        Object {
+          "_id": 1,
+          "description": "some description",
+          "list": Array [
+            Object {
+              "book": Object {
+                "creator": "some creator1",
+                "pid": "pid1",
+                "title": "some title 1",
+              },
+              "description": "some description1",
+              "links": Object {
+                "cover": "/cover1",
+              },
             },
-            "description": "some description1",
-            "links": Object {
-              "cover": "/cover1",
+            Object {
+              "book": Object {
+                "creator": "some creator2",
+                "pid": "pid2",
+                "title": "some title 2",
+              },
+              "description": "some description2",
+              "links": Object {
+                "cover": "/cover2",
+              },
             },
-          },
-          Object {
-            "book": Object {
-              "creator": "some creator2",
-              "pid": "pid2",
-              "title": "some title 2",
+            Object {
+              "book": Object {
+                "creator": "some creator3",
+                "pid": "pid3",
+                "title": "some title 3",
+              },
+              "description": "some description3",
+              "links": Object {
+                "cover": "/cover3",
+              },
             },
-            "description": "some description2",
-            "links": Object {
-              "cover": "/cover2",
-            },
-          },
-          Object {
-            "book": Object {
-              "creator": "some creator3",
-              "pid": "pid3",
-              "title": "some title 3",
-            },
-            "description": "some description3",
-            "links": Object {
-              "cover": "/cover3",
-            },
-          },
-        ],
-        "title": "some list",
+          ],
+          "title": "some list",
+        }
       }
-    }
-    onSubmit={[Function]}
-  />
-  <h4
-    className="mt2 mb2 text-center"
-  >
-    <strong>
-      some title 1
-    </strong>
-     kan ikke tilføjes, da den allerede er i listen
-  </h4>
+      onSubmit={[Function]}
+    />
+  </div>
 </div>
 `;

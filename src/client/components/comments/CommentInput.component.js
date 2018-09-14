@@ -82,12 +82,13 @@ export default class CommentInput extends React.Component {
             <Button
               type="link"
               size="medium"
-              className="mr-2 ml-2"
+              className="comment-cancel mr-2 ml-2"
               onClick={this.onCancel}
             >
               {this.props.cancelText || 'Fortryd'}
             </Button>
             <Button
+              id="comment-submit"
               type="quaternary"
               className="mr-2 ml-2"
               onClick={this.onSubmit}
