@@ -24,7 +24,6 @@ export class BookmarkButton extends React.Component {
       layout = 'BookmarkButtonCircle';
     }
 
-    const huskText = this.props.texttransform === 'uppercase' ? 'HUSK' : 'Husk';
     return (
       <Button
         className={
@@ -40,7 +39,7 @@ export class BookmarkButton extends React.Component {
         size="medium"
       >
         <Icon name="bookmark_border" className="md-small" />
-        {!layout ? 'Husk' : ''}
+        {!layout ? 'HUSK' : ''}
       </Button>
     );
   }
