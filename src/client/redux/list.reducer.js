@@ -331,15 +331,18 @@ const listReducer = (state = defaultState, action) => {
 };
 
 // ACTION CREATORS
-export const addList = ({
-  type = CUSTOM_LIST,
-  title = '',
-  description = '',
-  list = [],
-  _id = null,
-  _owner = null,
-  _created = Date.now()
-}) => {
+export const addList = (
+  {
+    type = CUSTOM_LIST,
+    title = '',
+    description = '',
+    list = [],
+    _id = null,
+    _owner = null,
+    _created = Date.now()
+  },
+  afterSave
+) => {
   return {
     type: ADD_LIST,
     list: {
@@ -350,7 +353,8 @@ export const addList = ({
       list,
       _owner,
       _created
-    }
+    },
+    afterSave
   };
 };
 export const updateList = data => {

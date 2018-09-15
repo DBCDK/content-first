@@ -82,7 +82,6 @@ export default connect(
   // Map redux state to props
   state => {
     return {
-      listState: state.listReducer,
       modalState: state.modalReducer
     };
   }

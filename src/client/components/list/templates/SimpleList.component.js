@@ -137,13 +137,13 @@ const ListTop = ({
           />
         )}
       </div>
-      <div className="pl-4 pr-4 pb-4 lys-graa pt-2 position-relative">
+      <div className="pl-3 pr-3 pl-sm-4 pr-sm-4 pb-4 lys-graa pt-2 position-relative">
         <div
-          className="d-flex flex-row position-absolute pr-0 pr-lg-4"
+          className="d-flex flex-row position-absolute pr-0"
           style={{right: 0, top: 0}}
         >
           <SocialShareButton
-            className={'ssb-fb align-middle'}
+            className={'ssb-fb align-middle mr-4'}
             facebook={true}
             href={'https://content-first.demo.dbc.dk/lister/' + list._id}
             hex={'#3b5998'}
@@ -210,27 +210,35 @@ const ListTop = ({
             />
           </Paragraph>
         )}
+        <div className="d-flex flex-row lys-graa justify-content-between d-lg-none mt-4">
+          <div>
+            {list.type === 'CUSTOM_LIST' && (
+              <Button
+                type="link2"
+                style={{
+                  color: isFollowing ? 'var(--de-york)' : 'var(--petrolium)'
+                }}
+                onClick={() => {
+                  toggleFollow(list._id);
+                }}
+              >
+                <Icon name="visibility" className="align-middle" />
+                <span className="align-middle ml-2">Følg liste</span>
+              </Button>
+            )}
+          </div>
+          <div>
+            <Button type="link2" onClick={scrollToAdd}>
+              <Icon name="add" className="align-middle" />
+              <span className="align-middle ml-2">Tilføj en bog</span>
+            </Button>
+          </div>
+        </div>
       </div>
-      <div className="d-flex flex-row lys-graa justify-content-between d-lg-none pb-3">
-        <Button
-          type="link2"
-          className="ml-4"
-          style={{color: isFollowing ? 'var(--de-york)' : 'var(--petrolium)'}}
-          onClick={() => {
-            toggleFollow(list._id);
-          }}
-        >
-          <Icon name="visibility" className="align-middle" />
-          <span className="align-middle ml-2">Følg liste</span>
-        </Button>
-        <Button type="link2" className="mr-4" onClick={scrollToAdd}>
-          <Icon name="add" className="align-middle" />
-          <span className="align-middle ml-2">Tilføj en bog</span>
-        </Button>
-      </div>
+
       {list.social && (
         <Comments
-          className="m-0 pl-4 pr-4 pt-4 pb-0 porcelain"
+          className="m-0 pl-3 pl-sm-4 pr-3 pr-sm-4 pt-4 pb-0 porcelain"
           id={list._id}
           disabled={editing}
         />
@@ -341,31 +349,36 @@ export class SimpleList extends React.Component {
           />
         )}
         <StickySettings>
-          <Button
-            type="link2"
-            style={{color: isFollowing ? 'var(--de-york)' : 'var(--petrolium)'}}
-            onClick={() => {
-              this.toggleFollow(list._id);
-            }}
-          >
-            <Icon name="visibility" className="align-middle" />
-            <span className="align-middle ml-2">Følg liste</span>
-          </Button>
+          {list.type === 'CUSTOM_LIST' && (
+            <Button
+              type="link2"
+              style={{
+                color: isFollowing ? 'var(--de-york)' : 'var(--petrolium)'
+              }}
+              onClick={() => {
+                this.toggleFollow(list._id);
+              }}
+            >
+              <Icon name="visibility" className="align-middle" />
+              <span className="align-middle ml-2">Følg liste</span>
+            </Button>
+          )}
           <Button type="link2" className="mt-3" onClick={this.scrollToAdd}>
             <Icon name="add" className="align-middle" />
             <span className="align-middle ml-2">Tilføj en bog til listen</span>
           </Button>
-          {isOwner && (
-            <ListContextMenu
-              className="mt-3"
-              onEdit={this.onEdit}
-              onDelete={() => {
-                confirmDeleteModal(list._id);
-              }}
-              onEditSettings={() => openListSettingsModal({_id: list._id})}
-              title="Redigér liste"
-            />
-          )}
+          {isOwner &&
+            list.type === 'CUSTOM_LIST' && (
+              <ListContextMenu
+                className="mt-3"
+                onEdit={this.onEdit}
+                onDelete={() => {
+                  confirmDeleteModal(list._id);
+                }}
+                onEditSettings={() => openListSettingsModal({_id: list._id})}
+                title="Redigér liste"
+              />
+            )}
         </StickySettings>
         <div className="d-flex justify-content-center mt-0 mt-md-5 mb-5">
           <div className="fixed-width-col-sm d-xs-none d-xl-block" />
@@ -387,10 +400,10 @@ export class SimpleList extends React.Component {
                 updateListData({_id: list._id, title: e.target.value});
               }}
               contextMenu={
-                isOwner && (
+                isOwner &&
+                list.type === 'CUSTOM_LIST' && (
                   <ListContextMenu
-                    className="ml-3 d-lg-none align-middle"
-                    style={{right: 0, top: 0}}
+                    className="d-lg-none align-middle"
                     title=""
                     onEdit={this.onEdit}
                     onEditSettings={() =>

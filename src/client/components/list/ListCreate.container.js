@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addList} from '../../redux/list.reducer';
-import {saveList} from '../../utils/requestLists';
+import {addList, CUSTOM_LIST} from '../../redux/list.reducer';
 import {HISTORY_REPLACE} from '../../redux/middleware';
 import Spinner from '../general/Spinner.component';
 
@@ -25,12 +24,14 @@ export class ListCreator extends React.Component {
 const mapStateToProps = () => ({});
 export const mapDispatchToProps = dispatch => ({
   createList: async () => {
-    const list = await saveList({}, null);
-    dispatch(addList(list));
-    dispatch({
-      type: HISTORY_REPLACE,
-      path: `/lister/${list._id}`
-    });
+    await dispatch(
+      addList({type: CUSTOM_LIST}, list => {
+        dispatch({
+          type: HISTORY_REPLACE,
+          path: `/lister/${list._id}`
+        });
+      })
+    );
   }
 });
 export default connect(

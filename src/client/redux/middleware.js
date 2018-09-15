@@ -249,11 +249,15 @@ export const listMiddleware = store => next => async action => {
     }
     case ADD_LIST: {
       if (!action.list._id) {
-        action.list = await saveList(action.list, null);
+        const {openplatformId} = store.getState().userReducer;
+        action.list = await saveList(action.list, openplatformId);
+        if (action.afterSave) {
+          action.afterSave(action.list);
+        }
       }
-      if (!action.list.owner) {
-        action.list.owner = store.getState().userReducer.openplatformId;
-      }
+      // if (!action.list.owner) {
+      //   action.list.owner = store.getState().userReducer.openplatformId;
+      // }
       return next(action);
     }
     case REMOVE_LIST: {

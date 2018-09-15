@@ -56,7 +56,7 @@ export class ListElement extends React.Component {
               onEdit={() => this.setState({editing: true})}
             />
           )}
-        <div className="p-4">
+        <div className="pl-3 pr-3 pt-4 pb-4 p-sm-4">
           <div className="d-flex flex-row">
             <ProfileImage user={owner} size={'40'} namePosition={'right'} />
             <Heading
