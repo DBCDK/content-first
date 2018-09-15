@@ -311,7 +311,8 @@ export class SimpleList extends React.Component {
       confirmDeleteModal,
       isFollowing,
       exitList,
-      openListSettingsModal
+      openListSettingsModal,
+      deleteList
     } = this.props;
     const {added, isNew} = this.state;
     return (
@@ -336,6 +337,7 @@ export class SimpleList extends React.Component {
             onCancel={() => {
               if (isNew) {
                 // cancel creation of new list, redirect
+                deleteList(list._id);
                 return exitList();
               }
               this.setState({editing: false});
@@ -520,6 +522,7 @@ export const mapDispatchToProps = dispatch => ({
       }
     });
   },
+  deleteList: _id => dispatch(removeList(_id)),
   confirmDeleteModal: _id => {
     dispatch({
       type: 'OPEN_MODAL',
