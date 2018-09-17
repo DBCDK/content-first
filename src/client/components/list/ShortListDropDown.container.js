@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TruncateMarkup from 'react-truncate-markup';
-import TaxDescription from '../work/TaxDescription.component';
 import BookCover from '../general/BookCover.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Button from '../base/Button/Button';
