@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import ImageUpload from '../general/ImageUpload.component';
 import UserProfileForm from './UserProfileForm.component';
+import Heading from '../base/Heading/';
+import Paragraph from '../base/Paragraph/';
 import Spinner from '../general/Spinner.component';
 import Link from '../general/Link.component';
 import LogoutLink from '../general/Logout.component';
@@ -58,6 +60,7 @@ export class CreateProfilePage extends React.Component {
                       imageId={this.props.profileImageId}
                       name={this.props.name}
                       acceptedTerms={this.props.acceptedTerms}
+                      acceptedAge={this.props.acceptedAge}
                       library={this.props.agencyName || <Spinner size="12px" />}
                       updateProfile={this.props.saveUser}
                       error={this.props.error}
@@ -86,8 +89,76 @@ export class CreateProfilePage extends React.Component {
               </div>
             )}
           </div>
-          <div id="terms" className="terms">
-            Her skal stå regler for anvendelse af læsekompasset...
+          <div className="row">
+            <div id="terms" className="terms col-sm-12 col-md-6 ">
+              <Heading type="lead" Tag="h2" className="mb2">
+                Om læsekompas.dk
+              </Heading>
+
+              <Heading type="title" Tag="h3" className="mb0 mt2">
+                Læsekompas.dk er dit inspirationsværktøj til at finde ny læsning
+              </Heading>
+              <Paragraph>
+                Læsekompas.dk er bibliotekernes inspirationsværktøj til voksne
+                læsere af skønlitteratur. Alle kan anvende Læsekompasset, men
+                det kræver biblioteks-login, hvis du vil bestille bøger direkte
+                i løsningen. Læsekompas.dk indeholder et udvalg af
+                skønlitteratur for voksne, der er tilgængeligt til hjemlån eller
+                som e-lån fra folkebiblioteker. Mængden af værker øges over tid
+                og Læsekompasset sigter mod at tilbyde en bred vifte af
+                litteratur. Alle værker indekseres med oplevelsesord for at gøre
+                det muligt for brugere at navigere i litteratur på en ny måde.
+                Der er mulighed for at fremfinde værker og bestille dem direkte
+                i læsekompas.dk. Læsekompas.dk giver også brugere mulighed for
+                at oprette og dele lister med bøger. Man skal være over 13 år
+                for at oprette sig som bruger.
+              </Paragraph>
+
+              <Heading type="title" Tag="h3" className="mb0 mt2">
+                Beta-version af læsekompas.dk
+              </Heading>
+              <Paragraph>
+                Læsekompas.dk er lanceret som en beta-version. Dette betyder, at
+                vi fortsat tester og justerer. Den version af læsekompas.dk, du
+                oplever er ikke helt færdigudviklet og du vil derfor opleve at
+                løsningen udvikler sig over tid.
+              </Paragraph>
+
+              <Heading type="title" Tag="h3" className="mb0 mt2">
+                Hvem står bag?
+              </Heading>
+              <Paragraph>
+                Læsekompas.dk er skabt og drives af de danske folkebiblioteker i
+                samarbejde med DBC. <br /> <br /> DBC as <br /> Tempovej 7-11{' '}
+                <br /> 2750 Ballerup <br /> dbc@dbc.dk
+              </Paragraph>
+
+              <Heading type="title" Tag="h3" className="mb0 mt2">
+                Brugergeneret indhold
+              </Heading>
+              <Paragraph>
+                Følgende regler gælder for indlæg og indhold, som du og andre
+                brugere selv lægger på læsekompas.dk. Du er ansvarlig for, at
+                dine indlæg er i overensstemmelse med den til enhver tid
+                gældende lovgivning, herunder at dine indlæg ikke krænker
+                tredjemands rettigheder, eksempelvis ophavsret til tekst og
+                billeder. Egne fotos du uploader til Læsekompasset gøres
+                tilgængelige under en creative commons licens, og du giver
+                læsekompas.dk lov til at mangfoldiggøre, gøre tilgængelig for
+                tredjemand og lave afledte værker. For alle informationer og alt
+                materiale, du leverer til læsekompas.dk gælder, at du leverer
+                det vederlagsfrit og til fri brug for læsekompas.dk.
+                Læsekompas.dk kan ikke kontrollere og er ikke ansvarlig for
+                indhold, som brugerne leverer, og for at du som bruger kan
+                risikere at blive udsat for indhold, som du finder anstødeligt,
+                fejlagtigt eller på anden måde kritisabelt. Du anerkender, at vi
+                som udbyder ikke forhåndsgodkender brugernes indhold, men at vi
+                har retten til uden nærmere begrundelse at fjerne enhver form
+                for indhold, som offentliggøres via læsekompas.dk, hvis det er i
+                modstrid med gældende lovgivning eller ordlyden af de her nævnte
+                betingelser.
+              </Paragraph>
+            </div>
           </div>
         </div>
       </div>
