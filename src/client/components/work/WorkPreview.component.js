@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import BookCover from '../general/BookCover.component';
+import TaxDescription from './TaxDescription.component';
 import Heading from '../base/Heading';
 import Button from '../base/Button';
 import Paragraph from '../base/Paragraph';
@@ -75,7 +76,7 @@ class WorkPreview extends React.Component {
             </Heading>
 
             <Paragraph className="mt1">
-              <strong>{tax_description}</strong>
+              <strong>{<TaxDescription text={tax_description} />}</strong>
             </Paragraph>
 
             <Paragraph className="mt1">{book.description}</Paragraph>

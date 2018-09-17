@@ -1,5 +1,6 @@
 import React from 'react';
 import BookCover from '../general/BookCover.component';
+import TaxDescription from './TaxDescription.component';
 import CheckmarkConnected from '../general/CheckmarkConnected.component';
 import TouchHover from '../general/TouchHover.component';
 
@@ -54,11 +55,7 @@ class WorkItem extends React.Component {
           ]}
         </TouchHover>
         <div className="metakompas-description">
-          {this.props.showTaxonomy &&
-            tax_description &&
-            tax_description
-              .split('\n')
-              .map((line, idx) => <p key={idx}>{line}</p>)}
+          {this.props.showTaxonomy && <TaxDescription text={tax_description} />}
         </div>
       </div>
     );
