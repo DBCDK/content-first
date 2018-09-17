@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addElementToList, storeList} from '../../redux/list.reducer';
-import {OPEN_MODAL} from '../../redux/modal.reducer';
+import {addElementToList, storeList} from '../../../redux/list.reducer';
+import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import BookSearchSuggester from './BookSearchSuggester';
-import Heading from '../base/Heading';
-import ProfileImage from '../general/ProfileImage.component';
+import Heading from '../../base/Heading';
+import ProfileImage from '../../general/ProfileImage.component';
 
 export class AddToList extends React.Component {
   constructor() {

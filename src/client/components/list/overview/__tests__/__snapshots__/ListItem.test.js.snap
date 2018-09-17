@@ -24,7 +24,6 @@ exports[`ListItem renders initial component 1`] = `
     >
       some-title
     </Link>
-    
   </div>
   <Link
     className="ml2"

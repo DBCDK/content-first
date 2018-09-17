@@ -1,7 +1,6 @@
 import React from 'react';
-import {CUSTOM_LIST} from '../../redux/list.reducer';
-import BookCover from '../general/BookCover.component';
-import Link from '../general/Link.component';
+import BookCover from '../../general/BookCover.component';
+import Link from '../../general/Link.component';
 
 const Cover = ({pid, title, coverUrl, width, height}) => (
   <BookCover
@@ -15,18 +14,9 @@ const Cover = ({pid, title, coverUrl, width, height}) => (
   />
 );
 
-const ListItem = ({list, title, _id, image, type, hideIfEmpty = true}) => {
+const ListItem = ({list, title, _id, image, hideIfEmpty = true}) => {
   if (list.length === 0 && hideIfEmpty === true) {
     return null;
-  }
-
-  let editButton = '';
-  if (type === CUSTOM_LIST) {
-    editButton = (
-      <Link href={`/lister/${_id}/rediger`} className="small ml1 link-subtle">
-        Redigér
-      </Link>
-    );
   }
 
   return (
@@ -38,7 +28,6 @@ const ListItem = ({list, title, _id, image, type, hideIfEmpty = true}) => {
         <Link href={`/lister/${_id}`} className="link-dark">
           {title}
         </Link>
-        {editButton}
       </div>
       <Link href={`/lister/${_id}`} className="ml2">
         {list.slice(0, 5).map(el => {

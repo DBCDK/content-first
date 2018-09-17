@@ -1,20 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TruncateMarkup from 'react-truncate-markup';
-import BookCover from '../general/BookCover.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Button from '../base/Button/Button';
-import Heading from '../base/Heading/Heading';
-import Link from '../general/Link.component';
-import './dropdownList.css';
 import {
   ON_SHORTLIST_EXPAND,
   ON_SHORTLIST_COLLAPSE,
   ON_SHORTLIST_REMOVE_ELEMENT
-} from '../../redux/shortlist.reducer';
-import {ON_USERLISTS_COLLAPSE} from '../../redux/list.reducer';
-import {HISTORY_PUSH} from '../../redux/middleware';
-import {ORDER} from '../../redux/order.reducer';
+} from '../../../redux/shortlist.reducer';
+import {ON_USERLISTS_COLLAPSE} from '../../../redux/list.reducer';
+import {HISTORY_PUSH} from '../../../redux/middleware';
+import {ORDER} from '../../../redux/order.reducer';
+import BookCover from '../../general/BookCover.component';
+import Button from '../../base/Button/Button';
+import Heading from '../../base/Heading/Heading';
+import Link from '../../general/Link.component';
+import '../overview/dropdownList.css';
 
 const ShortListElement = props => {
   const url = `/værk/${props.element.book.pid}`;

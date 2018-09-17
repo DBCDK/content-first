@@ -1,15 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TruncateMarkup from 'react-truncate-markup';
-import ProfileImage from '../general/ProfileImage.component';
-import Link from '../general/Link.component';
-import toColor from '../../utils/toColor';
-import Heading from '../base/Heading';
-import Icon from '../base/Icon';
-import SkeletonText from '../base/Skeleton/Text';
-import SkeletonUser from '../base/Skeleton/User';
+import ProfileImage from '../../general/ProfileImage.component';
+import Link from '../../general/Link.component';
+import toColor from '../../../utils/toColor';
+import Heading from '../../base/Heading';
+import Icon from '../../base/Icon';
+import SkeletonText from '../../base/Skeleton/Text';
+import SkeletonUser from '../../base/Skeleton/User';
 
-import {FETCH_COMMENTS} from '../../redux/comment.reducer';
+import {FETCH_COMMENTS} from '../../../redux/comment.reducer';
 
 class ListCard extends React.Component {
   componentWillMount() {

@@ -1,17 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import BookCover from '../general/BookCover.component';
 import Textarea from 'react-textarea-autosize';
-import OrderButton from '../order/OrderButton.component';
-import Link from '../general/Link.component';
 import {
   ON_SHORTLIST_REMOVE_ELEMENT,
   SHORTLIST_UPDATE_ORIGIN,
   SHORTLIST_CLEAR
-} from '../../redux/shortlist.reducer';
-import {OPEN_MODAL} from '../../redux/modal.reducer';
-import {ORDER} from '../../redux/order.reducer';
+} from '../../../redux/shortlist.reducer';
+import {OPEN_MODAL} from '../../../redux/modal.reducer';
+import {ORDER} from '../../../redux/order.reducer';
+import BookCover from '../../general/BookCover.component';
+import OrderButton from '../../order/OrderButton.component';
+import Link from '../../general/Link.component';
 
 export class ShortListItem extends React.Component {
   constructor(props) {

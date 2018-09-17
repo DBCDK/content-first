@@ -1,20 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
-import ProfileImage from '../../general/ProfileImage.component';
-import textParser from '../../../utils/textParser';
-import Comments from '../../comments/Comment.container';
-import CommentInput from '../../comments/CommentInput.component';
-import timeToString from '../../../utils/timeToString';
-import Heading from '../../base/Heading';
-import Paragraph from '../../base/Paragraph';
-import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
-import WorkRow from '../../work/WorkRow';
 import {
   UPDATE_LIST_ELEMENT,
   removeElementFromList,
   storeList
-} from '../../../redux/list.reducer';
+} from '../../../../redux/list.reducer';
+import {getUser} from '../../../../redux/users';
+import ProfileImage from '../../../general/ProfileImage.component';
+import textParser from '../../../../utils/textParser';
+import Comments from '../../../comments/Comment.container';
+import CommentInput from '../../../comments/CommentInput.component';
+import timeToString from '../../../../utils/timeToString';
+import Heading from '../../../base/Heading';
+import Paragraph from '../../../base/Paragraph';
+import ContextMenu, {ContextMenuAction} from '../../../base/ContextMenu';
+import WorkRow from '../../../work/WorkRow';
 
 const ElementContextMenu = ({onDelete, onEdit}) => (
   <ContextMenu
@@ -34,15 +34,34 @@ export class ListElement extends React.Component {
       originalDescription: props.element.description
     };
   }
+  submit = () => {
+    const {submit, element} = this.props;
+    this.setState({
+      editing: false,
+      originalDescription: element.description
+    });
+    submit();
+  };
+  cancel = () => {
+    const {element, updateElement} = this.props;
+    this.setState({editing: false});
+    updateElement({...element, description: this.state.originalDescription});
+  };
+  updateDescription = description => {
+    const {element, updateElement} = this.props;
+    updateElement({...element, description});
+  };
+  deleteElement = () => {
+    const {removeElement} = this.props;
+    removeElement();
+  };
+  edit = () => this.setState({editing: true});
   render() {
     const {
       element,
       owner,
       list,
       isOwner,
-      removeElement,
-      updateElement,
-      submit,
       showContextMenu = true,
       showComments = true,
       children
@@ -52,8 +71,8 @@ export class ListElement extends React.Component {
         {isOwner &&
           showContextMenu && (
             <ElementContextMenu
-              onDelete={() => removeElement(element, list)}
-              onEdit={() => this.setState({editing: true})}
+              onDelete={this.deleteElement}
+              onEdit={this.edit}
             />
           )}
         <div className="pl-3 pr-3 pt-4 pb-4 p-sm-4">
@@ -85,23 +104,9 @@ export class ListElement extends React.Component {
                   ? 'Fortryd'
                   : 'Brug bogens beskrivelse'
               }
-              onSubmit={() => {
-                this.setState({
-                  editing: false,
-                  originalDescription: element.description
-                });
-                submit(list);
-              }}
-              onCancel={() => {
-                this.setState({editing: false});
-                updateElement(
-                  {...element, description: this.state.originalDescription},
-                  list
-                );
-              }}
-              onChange={description => {
-                updateElement({...element, description}, list);
-              }}
+              onSubmit={this.submit}
+              onCancel={this.cancel}
+              onChange={this.updateDescription}
               disabled={false}
               error={null}
               placeholder="Fortæl om bogen"
@@ -133,21 +138,25 @@ export class ListElement extends React.Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    owner: state.users.toJS()[ownProps.element._owner],
+    owner: getUser(state, {id: ownProps.element._owner}),
     isOwner: state.userReducer.openplatformId === ownProps.element._owner
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  removeElement: async (element, list) => {
-    await dispatch(removeElementFromList(element, list._id));
-    dispatch(storeList(list._id));
+  removeElement: async () => {
+    await dispatch(removeElementFromList(ownProps.element, ownProps.list._id));
+    dispatch(storeList(ownProps.list._id));
   },
   updateElement:
     ownProps.updateElement ||
-    ((element, list) => {
-      dispatch({type: UPDATE_LIST_ELEMENT, _id: list._id, element});
+    (element => {
+      dispatch({
+        type: UPDATE_LIST_ELEMENT,
+        _id: ownProps.list._id,
+        element
+      });
     }),
-  submit: ownProps.submit || (list => dispatch(storeList(list._id)))
+  submit: ownProps.submit || (() => dispatch(storeList(ownProps.list._id)))
 });
 export default connect(
   mapStateToProps,

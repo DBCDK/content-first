@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getListByIdSelector} from '../../redux/list.reducer';
-import SimpleList from './templates/SimpleList.component';
+import SimpleList from './templates/simple/SimpleList';
 import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
 import Spinner from '../general/Spinner.component';
 

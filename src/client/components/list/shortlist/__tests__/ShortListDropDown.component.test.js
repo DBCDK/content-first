@@ -1,14 +1,14 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import createStore from '../../../redux/Store';
+import createStore from '../../../../redux/Store';
 import ShortListDropDown from '../ShortListDropDown.container';
 import renderer from 'react-test-renderer';
 import {
   ON_SHORTLIST_TOGGLE_ELEMENT,
   SHORTLIST_LOAD_RESPONSE
-} from '../../../redux/shortlist.reducer';
+} from '../../../../redux/shortlist.reducer';
 
-jest.mock('../../general/BookCover.component', () => 'BookCover');
+jest.mock('../../../general/BookCover.component', () => 'BookCover');
 
 const createTestElement = id => {
   return {

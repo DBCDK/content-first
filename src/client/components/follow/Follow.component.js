@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getFollowedLists} from '../../redux/selectors';
 
-import ListItem from '../list/ListItem.component.js';
+import ListItem from '../list/overview/ListItem.component.js';
 
 export class Follow extends React.Component {
   render() {

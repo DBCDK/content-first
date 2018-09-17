@@ -4,10 +4,10 @@ import {
   getListsForOwner,
   CUSTOM_LIST,
   SYSTEM_LIST
-} from '../../redux/list.reducer';
-import {HISTORY_PUSH} from '../../redux/middleware';
+} from '../../../redux/list.reducer';
+import {HISTORY_PUSH} from '../../../redux/middleware';
 
-import ListItem from '../list/ListItem.component.js';
+import ListItem from '../../list/overview/ListItem.component.js';
 
 export class Lists extends React.Component {
   render() {

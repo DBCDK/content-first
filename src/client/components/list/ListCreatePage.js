@@ -25,7 +25,7 @@ const mapStateToProps = () => ({});
 export const mapDispatchToProps = dispatch => ({
   createList: async () => {
     await dispatch(
-      addList({type: CUSTOM_LIST}, list => {
+      addList({type: CUSTOM_LIST, isNew: true}, list => {
         dispatch({
           type: HISTORY_REPLACE,
           path: `/lister/${list._id}`

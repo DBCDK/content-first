@@ -1,9 +1,9 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import createStore from '../../../redux/Store';
+import createStore from '../../../../redux/Store';
 import ShortList from '../ShortList.container';
 import {mount} from 'enzyme';
-import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../../redux/shortlist.reducer';
+import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../../../redux/shortlist.reducer';
 
 const createTestElement = id => {
   return {

@@ -7,6 +7,7 @@ Array [
     "_id": "list2",
     "_owner": null,
     "description": "",
+    "isNew": undefined,
     "list": Array [
       Object {
         "book": Object {
@@ -34,6 +35,7 @@ Array [
     "_id": "some-id-1",
     "_owner": null,
     "description": "",
+    "isNew": undefined,
     "list": Array [
       Object {
         "book": Object {
@@ -75,6 +77,7 @@ Array [
     "_id": "some-id-1",
     "_owner": null,
     "description": "a description 1",
+    "isNew": undefined,
     "list": Array [],
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -84,6 +87,7 @@ Array [
     "_id": "some-id-2",
     "_owner": null,
     "description": "a description 2",
+    "isNew": undefined,
     "list": Array [],
     "title": "some list 2",
     "type": "CUSTOM_LIST",
@@ -98,6 +102,7 @@ Array [
     "_id": "some-id-1",
     "_owner": null,
     "description": "",
+    "isNew": undefined,
     "list": Array [],
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -107,6 +112,7 @@ Array [
     "_id": "some-id-3",
     "_owner": null,
     "description": "",
+    "isNew": undefined,
     "list": Array [],
     "title": "some list 3",
     "type": "CUSTOM_LIST",
@@ -121,6 +127,7 @@ Array [
     "_id": "some-id-1",
     "_owner": "some-owner",
     "description": "",
+    "isNew": undefined,
     "list": Array [],
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -130,6 +137,7 @@ Array [
     "_id": "some-id-3",
     "_owner": "some-owner",
     "description": "",
+    "isNew": undefined,
     "list": Array [],
     "title": "some list 3",
     "type": "CUSTOM_LIST",
@@ -146,6 +154,7 @@ Array [
     "_id": "some-id-1",
     "_owner": null,
     "description": "",
+    "isNew": undefined,
     "list": Array [
       Object {
         "_id": 1,
@@ -196,6 +205,7 @@ Array [
       "123": true,
     },
     "description": "",
+    "isNew": undefined,
     "list": Array [
       Object {
         "_id": "456",
@@ -233,6 +243,7 @@ Array [
     "_owner": null,
     "deletingIsLoading": true,
     "description": "",
+    "isNew": undefined,
     "list": Array [],
     "title": "some list 1",
     "type": "CUSTOM_LIST",
@@ -242,6 +253,7 @@ Array [
     "_id": "some-id-2",
     "_owner": null,
     "description": "",
+    "isNew": undefined,
     "list": Array [],
     "title": "some list 2",
     "type": "CUSTOM_LIST",
@@ -256,6 +268,7 @@ Array [
     "_id": "some-id-1",
     "_owner": null,
     "description": "",
+    "isNew": undefined,
     "list": Array [
       Object {
         "book": Object {
@@ -279,6 +292,7 @@ Array [
     "_id": "some-id-1",
     "_owner": null,
     "description": "",
+    "isNew": undefined,
     "list": Array [],
     "title": "some list 1",
     "type": "CUSTOM_LIST",

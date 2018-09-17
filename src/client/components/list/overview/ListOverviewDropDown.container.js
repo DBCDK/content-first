@@ -1,21 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import toColor from '../../utils/toColor';
-import Button from '../base/Button/Button';
-import Heading from '../base/Heading/Heading';
-import Link from '../general/Link.component';
-import './dropdownList.css';
-import toReadListIcon from '../images/toReadListIcon.png';
-import readListIcon from '../images/readListIcon.png';
 import {
   ON_USERLISTS_COLLAPSE,
   ON_USERLISTS_EXPAND
-} from '../../redux/list.reducer';
-import {ON_SHORTLIST_COLLAPSE} from '../../redux/shortlist.reducer';
-import {HISTORY_PUSH} from '../../redux/middleware';
-import {getFollowedLists} from '../../redux/selectors';
-import {getListsForOwner} from '../../redux/list.reducer';
+} from '../../../redux/list.reducer';
+import {ON_SHORTLIST_COLLAPSE} from '../../../redux/shortlist.reducer';
+import {HISTORY_PUSH} from '../../../redux/middleware';
+import {getFollowedLists} from '../../../redux/selectors';
+import {getListsForOwner} from '../../../redux/list.reducer';
+import toColor from '../../../utils/toColor';
+import Button from '../../base/Button/Button';
+import Heading from '../../base/Heading/Heading';
+import Link from '../../general/Link.component';
+import './dropdownList.css';
+import toReadListIcon from '../../images/toReadListIcon.png';
+import readListIcon from '../../images/readListIcon.png';
+
 const ListElement = props => {
   const url = `/lister/${props.list._id}`;
   const renderListsCover = list => {

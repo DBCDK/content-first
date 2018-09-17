@@ -336,6 +336,7 @@ export const addList = (
     type = CUSTOM_LIST,
     title = '',
     description = '',
+    isNew,
     list = [],
     _id = null,
     _owner = null,
@@ -350,6 +351,7 @@ export const addList = (
       type,
       title,
       description,
+      isNew,
       list,
       _owner,
       _created
