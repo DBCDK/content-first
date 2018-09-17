@@ -95,8 +95,8 @@ export class AddToListButton extends React.Component {
           onClick={() => {
             this.props.openModal(
               {
-                title: 'BESTIL',
-                reason: 'Du skal logge ind for at bestille bøger'
+                title: 'LÆG I LISTE',
+                reason: 'Du skal logge ind for at lægge bøger i en liste.'
               },
               'login'
             );
