@@ -106,15 +106,6 @@ export const ListInfo = ({
                 Listen skal have en titel
               </Paragraph>
             )}
-          </React.Fragment>
-        ) : (
-          <Heading Tag="h1" type="section" className="mt-3">
-            {list.title}
-          </Heading>
-        )}
-
-        {editing ? (
-          <React.Fragment>
             <Textarea
               className={`form-control mt-4 comment-textarea`}
               name="list-description"
@@ -124,14 +115,19 @@ export const ListInfo = ({
             />
           </React.Fragment>
         ) : (
-          <Paragraph>
-            {' '}
-            <span
-              dangerouslySetInnerHTML={{
-                __html: textParser(list.description || '')
-              }}
-            />
-          </Paragraph>
+          <React.Fragment>
+            <Heading Tag="h1" type="section" className="mt-3">
+              {list.title}
+            </Heading>
+            <Paragraph>
+              {' '}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: textParser(list.description || '')
+                }}
+              />
+            </Paragraph>
+          </React.Fragment>
         )}
         <div className="d-flex flex-row lys-graa justify-content-between d-lg-none mt-4">
           <div>

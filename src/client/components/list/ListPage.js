@@ -24,17 +24,6 @@ export class ListPage extends React.Component {
     // BookcaseTemplate and CircleTemplate
     // are not ready for production
     return SimpleList;
-
-    // switch (list.template) {
-    //   case 'simple':
-    //     return SimpleList;
-    //   case 'circle':
-    //     return CircleTemplate;
-    //   case 'bookcase':
-    //     return BookcaseTemplate;
-    //   default:
-    //     return SimpleList;
-    // }
   }
   render() {
     const {list} = this.props;
