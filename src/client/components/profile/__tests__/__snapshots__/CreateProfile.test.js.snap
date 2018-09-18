@@ -154,6 +154,20 @@ exports[`Image Upload render function Add image 1`] = `
                   </p>
                   <label
                     className="checkbox"
+                    htmlFor="acceptedAge"
+                  >
+                    <input
+                      className="checkbox"
+                      id="acceptedAge"
+                      name="acceptedAge"
+                      onChange={[Function]}
+                      type="checkbox"
+                    />
+                    <span />
+                     Jeg er over 13 år
+                  </label>
+                  <label
+                    className="checkbox"
                     htmlFor="acceptedTerms"
                   >
                     <input
@@ -188,10 +202,107 @@ exports[`Image Upload render function Add image 1`] = `
         </div>
       </div>
       <div
-        className="terms"
-        id="terms"
+        className="row"
       >
-        Her skal stå regler for anvendelse af læsekompasset...
+        <div
+          className="terms col-sm-12 col-md-6 "
+          id="terms"
+        >
+          <Heading
+            Tag="h2"
+            className="mb2"
+            type="lead"
+          >
+            <h2
+              className="mb2 Heading Heading__lead"
+            >
+              Om læsekompas.dk
+            </h2>
+          </Heading>
+          <Heading
+            Tag="h3"
+            className="mb0 mt2"
+            type="title"
+          >
+            <h3
+              className="mb0 mt2 Heading Heading__title"
+            >
+              Læsekompas.dk er dit inspirationsværktøj til at finde ny læsning
+            </h3>
+          </Heading>
+          <Paragraph>
+            <p
+              className=" Paragraph Paragraph__whattocall"
+            >
+              Læsekompas.dk er bibliotekernes inspirationsværktøj til voksne læsere af skønlitteratur. Alle kan anvende Læsekompasset, men det kræver biblioteks-login, hvis du vil bestille bøger direkte i løsningen. Læsekompas.dk indeholder et udvalg af skønlitteratur for voksne, der er tilgængeligt til hjemlån eller som e-lån fra folkebiblioteker. Mængden af værker øges over tid og Læsekompasset sigter mod at tilbyde en bred vifte af litteratur. Alle værker indekseres med oplevelsesord for at gøre det muligt for brugere at navigere i litteratur på en ny måde. Der er mulighed for at fremfinde værker og bestille dem direkte i læsekompas.dk. Læsekompas.dk giver også brugere mulighed for at oprette og dele lister med bøger. Man skal være over 13 år for at oprette sig som bruger.
+            </p>
+          </Paragraph>
+          <Heading
+            Tag="h3"
+            className="mb0 mt2"
+            type="title"
+          >
+            <h3
+              className="mb0 mt2 Heading Heading__title"
+            >
+              Beta-version af læsekompas.dk
+            </h3>
+          </Heading>
+          <Paragraph>
+            <p
+              className=" Paragraph Paragraph__whattocall"
+            >
+              Læsekompas.dk er lanceret som en beta-version. Dette betyder, at vi fortsat tester og justerer. Den version af læsekompas.dk, du oplever er ikke helt færdigudviklet og du vil derfor opleve at løsningen udvikler sig over tid.
+            </p>
+          </Paragraph>
+          <Heading
+            Tag="h3"
+            className="mb0 mt2"
+            type="title"
+          >
+            <h3
+              className="mb0 mt2 Heading Heading__title"
+            >
+              Hvem står bag?
+            </h3>
+          </Heading>
+          <Paragraph>
+            <p
+              className=" Paragraph Paragraph__whattocall"
+            >
+              Læsekompas.dk er skabt og drives af de danske folkebiblioteker i samarbejde med DBC. 
+              <br />
+               
+              <br />
+               DBC as 
+              <br />
+               Tempovej 7-11
+               
+              <br />
+               2750 Ballerup 
+              <br />
+               dbc@dbc.dk
+            </p>
+          </Paragraph>
+          <Heading
+            Tag="h3"
+            className="mb0 mt2"
+            type="title"
+          >
+            <h3
+              className="mb0 mt2 Heading Heading__title"
+            >
+              Brugergeneret indhold
+            </h3>
+          </Heading>
+          <Paragraph>
+            <p
+              className=" Paragraph Paragraph__whattocall"
+            >
+              Følgende regler gælder for indlæg og indhold, som du og andre brugere selv lægger på læsekompas.dk. Du er ansvarlig for, at dine indlæg er i overensstemmelse med den til enhver tid gældende lovgivning, herunder at dine indlæg ikke krænker tredjemands rettigheder, eksempelvis ophavsret til tekst og billeder. Egne fotos du uploader til Læsekompasset gøres tilgængelige under en creative commons licens, og du giver læsekompas.dk lov til at mangfoldiggøre, gøre tilgængelig for tredjemand og lave afledte værker. For alle informationer og alt materiale, du leverer til læsekompas.dk gælder, at du leverer det vederlagsfrit og til fri brug for læsekompas.dk. Læsekompas.dk kan ikke kontrollere og er ikke ansvarlig for indhold, som brugerne leverer, og for at du som bruger kan risikere at blive udsat for indhold, som du finder anstødeligt, fejlagtigt eller på anden måde kritisabelt. Du anerkender, at vi som udbyder ikke forhåndsgodkender brugernes indhold, men at vi har retten til uden nærmere begrundelse at fjerne enhver form for indhold, som offentliggøres via læsekompas.dk, hvis det er i modstrid med gældende lovgivning eller ordlyden af de her nævnte betingelser.
+            </p>
+          </Paragraph>
+        </div>
       </div>
     </div>
   </div>
@@ -333,6 +444,22 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               </p>
               <label
                 className="checkbox"
+                htmlFor="acceptedAge"
+              >
+                <input
+                  checked={undefined}
+                  className="checkbox"
+                  disabled={undefined}
+                  id="acceptedAge"
+                  name="acceptedAge"
+                  onChange={[Function]}
+                  type="checkbox"
+                />
+                <span />
+                 Jeg er over 13 år
+              </label>
+              <label
+                className="checkbox"
                 htmlFor="acceptedTerms"
               >
                 <input
@@ -370,10 +497,69 @@ exports[`Image Upload render function renders an image upload form 1`] = `
       </div>
     </div>
     <div
-      className="terms"
-      id="terms"
+      className="row"
     >
-      Her skal stå regler for anvendelse af læsekompasset...
+      <div
+        className="terms col-sm-12 col-md-6 "
+        id="terms"
+      >
+        <h2
+          className="mb2 Heading Heading__lead"
+        >
+          Om læsekompas.dk
+        </h2>
+        <h3
+          className="mb0 mt2 Heading Heading__title"
+        >
+          Læsekompas.dk er dit inspirationsværktøj til at finde ny læsning
+        </h3>
+        <p
+          className=" Paragraph Paragraph__whattocall"
+        >
+          Læsekompas.dk er bibliotekernes inspirationsværktøj til voksne læsere af skønlitteratur. Alle kan anvende Læsekompasset, men det kræver biblioteks-login, hvis du vil bestille bøger direkte i løsningen. Læsekompas.dk indeholder et udvalg af skønlitteratur for voksne, der er tilgængeligt til hjemlån eller som e-lån fra folkebiblioteker. Mængden af værker øges over tid og Læsekompasset sigter mod at tilbyde en bred vifte af litteratur. Alle værker indekseres med oplevelsesord for at gøre det muligt for brugere at navigere i litteratur på en ny måde. Der er mulighed for at fremfinde værker og bestille dem direkte i læsekompas.dk. Læsekompas.dk giver også brugere mulighed for at oprette og dele lister med bøger. Man skal være over 13 år for at oprette sig som bruger.
+        </p>
+        <h3
+          className="mb0 mt2 Heading Heading__title"
+        >
+          Beta-version af læsekompas.dk
+        </h3>
+        <p
+          className=" Paragraph Paragraph__whattocall"
+        >
+          Læsekompas.dk er lanceret som en beta-version. Dette betyder, at vi fortsat tester og justerer. Den version af læsekompas.dk, du oplever er ikke helt færdigudviklet og du vil derfor opleve at løsningen udvikler sig over tid.
+        </p>
+        <h3
+          className="mb0 mt2 Heading Heading__title"
+        >
+          Hvem står bag?
+        </h3>
+        <p
+          className=" Paragraph Paragraph__whattocall"
+        >
+          Læsekompas.dk er skabt og drives af de danske folkebiblioteker i samarbejde med DBC. 
+          <br />
+           
+          <br />
+           DBC as 
+          <br />
+           Tempovej 7-11
+           
+          <br />
+           2750 Ballerup 
+          <br />
+           dbc@dbc.dk
+        </p>
+        <h3
+          className="mb0 mt2 Heading Heading__title"
+        >
+          Brugergeneret indhold
+        </h3>
+        <p
+          className=" Paragraph Paragraph__whattocall"
+        >
+          Følgende regler gælder for indlæg og indhold, som du og andre brugere selv lægger på læsekompas.dk. Du er ansvarlig for, at dine indlæg er i overensstemmelse med den til enhver tid gældende lovgivning, herunder at dine indlæg ikke krænker tredjemands rettigheder, eksempelvis ophavsret til tekst og billeder. Egne fotos du uploader til Læsekompasset gøres tilgængelige under en creative commons licens, og du giver læsekompas.dk lov til at mangfoldiggøre, gøre tilgængelig for tredjemand og lave afledte værker. For alle informationer og alt materiale, du leverer til læsekompas.dk gælder, at du leverer det vederlagsfrit og til fri brug for læsekompas.dk. Læsekompas.dk kan ikke kontrollere og er ikke ansvarlig for indhold, som brugerne leverer, og for at du som bruger kan risikere at blive udsat for indhold, som du finder anstødeligt, fejlagtigt eller på anden måde kritisabelt. Du anerkender, at vi som udbyder ikke forhåndsgodkender brugernes indhold, men at vi har retten til uden nærmere begrundelse at fjerne enhver form for indhold, som offentliggøres via læsekompas.dk, hvis det er i modstrid med gældende lovgivning eller ordlyden af de her nævnte betingelser.
+        </p>
+      </div>
     </div>
   </div>
 </div>

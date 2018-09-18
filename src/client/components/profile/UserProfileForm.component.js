@@ -6,27 +6,38 @@ export default class UserProfileForm extends React.Component {
     super(props);
     this.state = {
       name: props.name || '',
-      acceptedTerms: props.acceptedTerms
+      acceptedTerms: props.acceptedTerms,
+      acceptedAge: props.acceptedAge
     };
   }
 
   onSubmit = e => {
     e.preventDefault();
+    // Check if usernameis more than 4 characters
+    if (this.state.name.length < 4) {
+      return this.setState({
+        validationError: 'Dit brugernavn skal være minimum 4 karakterer langt'
+      });
+    }
+    // Check if user accepted age (above 13)
+    if (!this.state.acceptedAge) {
+      return this.setState({
+        validationError: 'Du skal være over 13 år for at oprette en profil'
+      });
+    }
+    // Check if user accepted Terms
     if (!this.state.acceptedTerms) {
       return this.setState({
         validationError:
           'For at oprette en profil, skal du acceptere reglerne for anvendelse af Læsekompasset.'
       });
     }
-    if (this.state.name.length < 4) {
-      return this.setState({
-        validationError: 'Dit brugernavn skal være minimum 3 karakterer langt'
-      });
-    }
+
     this.setState({validationError: null});
     this.props.updateProfile({
       name: this.state.name,
       acceptedTerms: this.state.acceptedTerms,
+      acceptedAge: this.state.acceptedAge,
       image: this.props.imageId
     });
   };
@@ -73,21 +84,37 @@ export default class UserProfileForm extends React.Component {
         </div>
         <p className="mb6">Du er logget på via {this.props.library}</p>
         {!this.props.editMode ? (
-          <label htmlFor="acceptedTerms" className="checkbox">
-            <input
-              id="acceptedTerms"
-              className="checkbox"
-              name="acceptedTerms"
-              type="checkbox"
-              disabled={this.props.isSaving}
-              checked={this.state.acceptedTerms}
-              onChange={() =>
-                this.setState({acceptedTerms: !this.state.acceptedTerms})
-              }
-            />
-            <span /> Jeg har læst og accepteret{' '}
-            <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
-          </label>
+          <React.Fragment>
+            <label htmlFor="acceptedAge" className="checkbox">
+              <input
+                id="acceptedAge"
+                className="checkbox"
+                name="acceptedAge"
+                type="checkbox"
+                disabled={this.props.isSaving}
+                checked={this.state.acceptedAge}
+                onChange={() =>
+                  this.setState({acceptedAge: !this.state.acceptedAge})
+                }
+              />
+              <span /> Jeg er over 13 år
+            </label>
+            <label htmlFor="acceptedTerms" className="checkbox">
+              <input
+                id="acceptedTerms"
+                className="checkbox"
+                name="acceptedTerms"
+                type="checkbox"
+                disabled={this.props.isSaving}
+                checked={this.state.acceptedTerms}
+                onChange={() =>
+                  this.setState({acceptedTerms: !this.state.acceptedTerms})
+                }
+              />
+              <span /> Jeg har læst og accepteret{' '}
+              <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
+            </label>
+          </React.Fragment>
         ) : (
           ''
         )}
