@@ -123,6 +123,8 @@ async function enrichList({list}) {
       ({_id}) => !listIds.includes(_id)
     );
 
+    othersListEntries.sort((o1, o2) => o1._created - o2._created);
+
     list.list = list.list.concat(othersListEntries);
   }
 
