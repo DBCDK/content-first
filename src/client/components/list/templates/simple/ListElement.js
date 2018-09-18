@@ -16,15 +16,37 @@ import Paragraph from '../../../base/Paragraph';
 import ContextMenu, {ContextMenuAction} from '../../../base/ContextMenu';
 import WorkRow from '../../../work/WorkRow';
 
-const ElementContextMenu = ({onDelete, onEdit}) => (
-  <ContextMenu
-    className="mr-0 mt-2 position-absolute"
-    style={{right: 0, top: 0}}
-  >
-    <ContextMenuAction title="Redigér indlæg" icon="edit" onClick={onEdit} />
-    <ContextMenuAction title="Slet indlæg" icon="clear" onClick={onDelete} />
-  </ContextMenu>
-);
+const ElementContextMenu = ({
+  onDelete,
+  onEdit,
+  isElementOwner,
+  isListOwner
+}) => {
+  if (!isListOwner && !isElementOwner) {
+    return null;
+  }
+  return (
+    <ContextMenu
+      className="mr-0 mt-2 position-absolute"
+      style={{right: 0, top: 0}}
+    >
+      {isElementOwner && (
+        <ContextMenuAction
+          title="Redigér indlæg"
+          icon="edit"
+          onClick={onEdit}
+        />
+      )}
+      {(isElementOwner || isListOwner) && (
+        <ContextMenuAction
+          title="Slet indlæg"
+          icon="clear"
+          onClick={onDelete}
+        />
+      )}
+    </ContextMenu>
+  );
+};
 
 export class ListElement extends React.Component {
   constructor(props) {
@@ -61,20 +83,22 @@ export class ListElement extends React.Component {
       element,
       owner,
       list,
-      isOwner,
+      isListOwner,
+      isElementOwner,
       showContextMenu = true,
       showComments = true,
       children
     } = this.props;
     return (
       <div className="mt-2 mt-md-4 lys-graa box-shadow position-relative">
-        {isOwner &&
-          showContextMenu && (
-            <ElementContextMenu
-              onDelete={this.deleteElement}
-              onEdit={this.edit}
-            />
-          )}
+        {showContextMenu && (
+          <ElementContextMenu
+            onDelete={this.deleteElement}
+            onEdit={this.edit}
+            isElementOwner={isElementOwner}
+            isListOwner={isListOwner}
+          />
+        )}
         <div className="px-3 py-4 p-sm-4">
           <div className="d-flex flex-row">
             <ProfileImage user={owner} size={'40'} namePosition={'right'} />
@@ -139,7 +163,9 @@ export class ListElement extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     owner: getUser(state, {id: ownProps.element._owner}),
-    isOwner: state.userReducer.openplatformId === ownProps.element._owner
+    isElementOwner:
+      state.userReducer.openplatformId === ownProps.element._owner,
+    isListOwner: state.userReducer.openplatformId === ownProps.list._owner
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => ({

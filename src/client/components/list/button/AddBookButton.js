@@ -48,8 +48,8 @@ export const mapDispatchToProps = dispatch => ({
       type: OPEN_MODAL,
       modal: 'login',
       context: {
-        title: 'FØLG LISTE',
-        reason: 'Du skal logge ind for at følge en liste.'
+        title: 'LÆG I LISTE',
+        reason: 'Du skal logge ind for at lægge bøger i en liste.'
       }
     });
   }
