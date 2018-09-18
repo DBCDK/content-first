@@ -3,10 +3,12 @@ import {connect} from 'react-redux';
 import {isMobile} from 'react-device-detect';
 import BookCover from '../general/BookCover.component';
 import BookmarkButton from '../general/BookmarkButton';
+import TaxDescription from './TaxDescription.component';
+import Paragraph from '../base/Paragraph';
 import Heading from '../base/Heading';
 import Button from '../base/Button';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
-import Paragraph from '../base/Paragraph';
+
 import './WorkCard.css';
 
 export const SkeletonWorkCard = props => {
@@ -63,7 +65,7 @@ class WorkCard extends React.Component {
     }
 
     const tax_description =
-      this.props.work.book.taxonomy_description.replace('\n', '\n') ||
+      this.props.work.book.taxonomy_description ||
       this.props.work.book.description;
 
     return (
@@ -97,14 +99,7 @@ class WorkCard extends React.Component {
           />
 
           <Paragraph className="mt1 d-xs-none d-sm-block">
-            {tax_description.split('\n').map((line, i) => {
-              return (
-                <span key={i}>
-                  {line}
-                  <br />
-                </span>
-              );
-            })}
+            {<TaxDescription text={tax_description} />}
           </Paragraph>
 
           {this.props.enableHover && (
@@ -148,14 +143,7 @@ class WorkCard extends React.Component {
                 Mere som denne
               </Button>
               <Paragraph className="mt1">
-                {tax_description.split('\n').map((line, i) => {
-                  return (
-                    <span key={i}>
-                      {line}
-                      <br />
-                    </span>
-                  );
-                })}
+                {<TaxDescription text={tax_description} />}
               </Paragraph>
               <div className="expand-more-wrapper text-center">
                 <i

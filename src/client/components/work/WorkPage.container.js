@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import TaxDescription from './TaxDescription.component';
 import Heading from '../base/Heading';
 import Button from '../base/Button';
 import Paragraph from '../base/Paragraph';
@@ -77,6 +78,8 @@ class WorkPage extends React.Component {
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
 
+    const tax_description = book.taxonomy_description || book.description;
+
     return (
       <div className="container">
         <div className="row WorkPage__container">
@@ -116,7 +119,7 @@ class WorkPage extends React.Component {
               </Heading>
 
               <Paragraph className="mt1">
-                <strong>{book.taxonomy_description || book.description}</strong>
+                <strong>{<TaxDescription text={tax_description} />}</strong>
               </Paragraph>
 
               <Paragraph className="mt1">{book.description}</Paragraph>
