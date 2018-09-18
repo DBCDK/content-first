@@ -7,6 +7,7 @@ import {
   ADD_LIST_IMAGE,
   getListByIdSelector
 } from '../../../../redux/list.reducer';
+import {getUser} from '../../../../redux/users';
 import ProfileImage from '../../../general/ProfileImage.component';
 import SocialShareButton from '../../../general/SocialShareButton.component';
 import Comments from '../../../comments/Comment.container';
@@ -154,7 +155,8 @@ const mapStateToProps = (state, ownProps) => {
   const list = getListById(state, {_id: ownProps._id});
   return {
     list,
-    editing: list.editing || list.isNew
+    editing: list.editing || list.isNew,
+    profile: getUser(state, {id: list._owner})
   };
 };
 export const mapDispatchToProps = (dispatch, ownProps) => ({
