@@ -18,6 +18,11 @@ const defaultState = {
     open: false,
     context: null,
     callback: null
+  },
+  listSettings: {
+    open: false,
+    context: null,
+    callback: null
   }
 };
 

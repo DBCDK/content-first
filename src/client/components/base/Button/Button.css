@@ -69,6 +69,29 @@
   text-transform: uppercase;
 }
 
+.Button__link {
+  background-color: transparent;
+  font-size: 14px;
+  color: var(--petrolium);
+  font-weight: 400;
+  text-decoration: underline;
+}
+.Button__link:hover {
+  text-decoration: underline;
+}
+
+.Button__link2 {
+  padding: 0 !important;
+  background-color: transparent;
+  font-size: 14px !important;
+  color: var(--petrolium);
+  font-weight: 600;
+  border: 0 !important;
+}
+.Button__link2:hover {
+  text-decoration: underline;
+}
+
 /* Sizes */
 .Button__large {
   text-transform: none;

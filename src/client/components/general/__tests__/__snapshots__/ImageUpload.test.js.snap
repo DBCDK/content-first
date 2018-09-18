@@ -9,7 +9,7 @@ exports[`Image Upload render function Add image 1`] = `
     className="image-upload undefined"
   >
     <div
-      className="image-upload--zone"
+      className="image-upload--zone position-relative"
       style={
         Object {
           "height": "150px",
@@ -21,8 +21,13 @@ exports[`Image Upload render function Add image 1`] = `
       <div>
         <img
           alt="User profile"
-          className="preview-img"
+          className="preview-img w-100"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
         />
       </div>
       <div
@@ -36,20 +41,47 @@ exports[`Image Upload render function Add image 1`] = `
         }
       }
     />
-    <label>
-      <span
-        className="btn btn-primary mt1"
+    <UploadButton
+      className="mt-2"
+      readFiles={[Function]}
+    >
+      <label
+        className="mt-2"
       >
-        Upload billede
-      </span>
-      <Error />
-      <input
-        accept="image/png, image/jpeg"
-        className="droppable-image-field--file-input"
-        onChange={[Function]}
-        type="file"
-      />
-    </label>
+        <Button
+          Tag="span"
+          size="medium"
+          type="tertiary"
+        >
+          <span
+            className=" btn Button Button__tertiary Button__medium"
+          >
+            <Icon
+              className="align-middle"
+              name="photo"
+            >
+              <i
+                className="material-icons material-icons-photo align-middle"
+              >
+                photo
+              </i>
+            </Icon>
+            <span
+              className="align-middle ml-2"
+            >
+              Upload billede
+            </span>
+          </span>
+        </Button>
+        <input
+          accept="image/png, image/jpeg"
+          className="droppable-image-field--file-input"
+          onChange={[Function]}
+          type="file"
+        />
+      </label>
+    </UploadButton>
+    <Error />
   </div>
 </ImageUpload>
 `;
@@ -59,7 +91,7 @@ exports[`Image Upload render function Add preview image 1`] = `
   className="image-upload undefined"
 >
   <div
-    className="image-upload--zone"
+    className="image-upload--zone position-relative"
     style={
       Object {
         "height": "150px",
@@ -71,9 +103,14 @@ exports[`Image Upload render function Add preview image 1`] = `
     <div>
       <img
         alt="User profile"
-        className="preview-img"
+        className="preview-img w-100"
         onLoad={undefined}
         src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        style={
+          Object {
+            "opacity": 1,
+          }
+        }
       />
     </div>
     <div
@@ -89,11 +126,23 @@ exports[`Image Upload render function Add preview image 1`] = `
       }
     }
   />
-  <label>
+  <label
+    className="mt-2"
+    style={undefined}
+  >
     <span
-      className="btn btn-primary mt1"
+      className=" btn Button Button__tertiary Button__medium"
     >
-      Upload billede
+      <i
+        className="material-icons material-icons-photo align-middle"
+      >
+        photo
+      </i>
+      <span
+        className="align-middle ml-2"
+      >
+        Upload billede
+      </span>
     </span>
     <input
       accept="image/png, image/jpeg"
@@ -111,7 +160,7 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
   className="image-upload undefined"
 >
   <div
-    className="image-upload--zone"
+    className="image-upload--zone position-relative"
     style={
       Object {
         "height": "150px",
@@ -120,7 +169,33 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
       }
     }
   >
-    <Spinner />
+    <Spinner
+      size="50px"
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "margin": "auto",
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+    <div
+      className="d-flex align-items-center justify-content-center h-100 "
+    >
+      <i
+        className="material-icons"
+        style={
+          Object {
+            "fontSize": 100,
+          }
+        }
+      >
+        image
+      </i>
+    </div>
     <div
       className="droppable-image-overlay"
     >
@@ -134,11 +209,23 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
       }
     }
   />
-  <label>
+  <label
+    className="mt-2"
+    style={undefined}
+  >
     <span
-      className="btn btn-primary mt1"
+      className=" btn Button Button__tertiary Button__medium"
     >
-      Upload billede
+      <i
+        className="material-icons material-icons-photo align-middle"
+      >
+        photo
+      </i>
+      <span
+        className="align-middle ml-2"
+      >
+        Upload billede
+      </span>
     </span>
     <input
       accept="image/png, image/jpeg"
@@ -156,7 +243,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
   className="image-upload undefined"
 >
   <div
-    className="image-upload--zone"
+    className="image-upload--zone position-relative"
     style={
       Object {
         "height": "150px",
@@ -192,11 +279,23 @@ exports[`Image Upload render function renders an image upload form 1`] = `
       }
     }
   />
-  <label>
+  <label
+    className="mt-2"
+    style={undefined}
+  >
     <span
-      className="btn btn-primary mt1"
+      className=" btn Button Button__tertiary Button__medium"
     >
-      Upload billede
+      <i
+        className="material-icons material-icons-photo align-middle"
+      >
+        photo
+      </i>
+      <span
+        className="align-middle ml-2"
+      >
+        Upload billede
+      </span>
     </span>
     <input
       accept="image/png, image/jpeg"

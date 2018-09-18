@@ -4,11 +4,11 @@ import toColor from '../../utils/toColor';
 
 const generateSvg = (backgroundColor, title, creator) => {
   const adjustTitlelength =
-    title.length > 160
+    title.length > 20
       ? 'lengthAdjust="spacingAndGlyphs" textLength="180px" '
       : '';
   const adjustCreatorlength =
-    creator.length > 160
+    creator.length > 20
       ? 'lengthAdjust="spacingAndGlyphs" textLength="180px" '
       : '';
   return `<svg
@@ -20,10 +20,10 @@ const generateSvg = (backgroundColor, title, creator) => {
   preserveAspectRatio = "xMinYMin meet"
   >
   <rect x="0" y="0" width="200" height="300" fill="${backgroundColor}" stroke-width="0" />
-  <text x="50%" y="30%" fill="white" font-weight="bold" font="bold 30px sans-serif" ${adjustTitlelength}class="title" alignment-baseline="middle" text-anchor="middle">
+  <text x="50%" y="30%" fill="white" font-family="Verdana" font-weight="bold" font="bold 30px" ${adjustTitlelength}class="title" alignment-baseline="middle" text-anchor="middle">
     ${title}
   </text>
-  <text x="50%" y="40%" fill="white" ${adjustCreatorlength}class="creator" alignment-baseline="middle" text-anchor="middle">
+  <text x="50%" y="40%" fill="white" font-family="Verdana" ${adjustCreatorlength}class="creator" alignment-baseline="middle" text-anchor="middle">
     ${creator}
   </text>
   </svg>`;

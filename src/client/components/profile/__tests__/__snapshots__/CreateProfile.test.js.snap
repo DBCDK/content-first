@@ -36,7 +36,7 @@ exports[`Image Upload render function Add image 1`] = `
                 className="image-upload undefined"
               >
                 <div
-                  className="image-upload--zone"
+                  className="image-upload--zone position-relative"
                   style={
                     Object {
                       "borderRadius": "50%",
@@ -71,20 +71,48 @@ exports[`Image Upload render function Add image 1`] = `
                     }
                   }
                 />
-                <label>
-                  <span
-                    className="btn btn-primary mt1"
+                <UploadButton
+                  buttonText="Upload profilbillede"
+                  className="mt-2"
+                  readFiles={[Function]}
+                >
+                  <label
+                    className="mt-2"
                   >
-                    Upload profilbillede
-                  </span>
-                  <Error />
-                  <input
-                    accept="image/png, image/jpeg"
-                    className="droppable-image-field--file-input"
-                    onChange={[Function]}
-                    type="file"
-                  />
-                </label>
+                    <Button
+                      Tag="span"
+                      size="medium"
+                      type="tertiary"
+                    >
+                      <span
+                        className=" btn Button Button__tertiary Button__medium"
+                      >
+                        <Icon
+                          className="align-middle"
+                          name="photo"
+                        >
+                          <i
+                            className="material-icons material-icons-photo align-middle"
+                          >
+                            photo
+                          </i>
+                        </Icon>
+                        <span
+                          className="align-middle ml-2"
+                        >
+                          Upload profilbillede
+                        </span>
+                      </span>
+                    </Button>
+                    <input
+                      accept="image/png, image/jpeg"
+                      className="droppable-image-field--file-input"
+                      onChange={[Function]}
+                      type="file"
+                    />
+                  </label>
+                </UploadButton>
+                <Error />
               </div>
             </ImageUpload>
           </div>
@@ -332,7 +360,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
             className="image-upload undefined"
           >
             <div
-              className="image-upload--zone"
+              className="image-upload--zone position-relative"
               style={
                 Object {
                   "borderRadius": "50%",
@@ -369,11 +397,23 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 }
               }
             />
-            <label>
+            <label
+              className="mt-2"
+              style={undefined}
+            >
               <span
-                className="btn btn-primary mt1"
+                className=" btn Button Button__tertiary Button__medium"
               >
-                Upload profilbillede
+                <i
+                  className="material-icons material-icons-photo align-middle"
+                >
+                  photo
+                </i>
+                <span
+                  className="align-middle ml-2"
+                >
+                  Upload profilbillede
+                </span>
               </span>
               <input
                 accept="image/png, image/jpeg"

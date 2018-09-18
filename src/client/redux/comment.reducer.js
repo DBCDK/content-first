@@ -1,3 +1,5 @@
+import {createSelector} from 'reselect';
+
 const defaultState = {};
 
 export const ADD_COMMENT = 'ADD_COMMENT';
@@ -166,22 +168,23 @@ const commentReducer = (state = defaultState, action) => {
 
 export default commentReducer;
 
-export const addUserProfilesToComments = (state, comments) => {
+export const addUserProfilesToComments = (users, comments) => {
   return comments.map(comment => ({
     ...comment,
-    user: state.users.has(comment._owner)
-      ? state.users.get(comment._owner).toJS()
-      : {}
+    user: users.has(comment._owner) ? users.get(comment._owner).toJS() : {}
   }));
 };
 
-export const getCommentsForId = (state, id) => {
-  const {comments = [], loading = true, error, saving} =
-    state.comments[id] || {};
-  return {
-    comments: addUserProfilesToComments(state, comments),
-    loading,
-    saving,
-    error
-  };
-};
+export const getCommentsForIdSelector = () =>
+  createSelector(
+    [(state, {id}) => state.comments[id], state => state.users],
+    (c, users) => {
+      const {comments = [], loading = true, error, saving} = c || {};
+      return {
+        comments: addUserProfilesToComments(users, comments),
+        loading,
+        saving,
+        error
+      };
+    }
+  );

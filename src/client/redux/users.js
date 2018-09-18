@@ -1,6 +1,7 @@
 /* eslint no-undefined:0 */
 import Immutable from 'immutable';
 import request from 'superagent';
+import {createSelector} from 'reselect';
 
 const defaultState = Immutable.fromJS({});
 
@@ -64,3 +65,15 @@ export const usersMiddleware = store => next => action => {
       return next(action);
   }
 };
+
+// -------------SELECTORS-----------------
+export const getUser = createSelector(
+  [state => state.users, (state, {id}) => id],
+  (users, id) => {
+    const user = users.get(id);
+    if (user) {
+      return user.toJS();
+    }
+    return null;
+  }
+);

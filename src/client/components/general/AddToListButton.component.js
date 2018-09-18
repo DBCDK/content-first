@@ -250,7 +250,7 @@ const mapStateToProps = state => {
   return {
     customLists: getListsForOwner(state, {
       type: CUSTOM_LIST,
-      owner: state.userReducer.openplatformId
+      _owner: state.userReducer.openplatformId
     }).sort(function(a, b) {
       if (!b._modified) {
         return 1;
@@ -259,7 +259,7 @@ const mapStateToProps = state => {
     }),
     systemLists: getListsForOwner(state, {
       type: SYSTEM_LIST,
-      owner: state.userReducer.openplatformId,
+      _owner: state.userReducer.openplatformId,
       sort: true
     }),
     isLoggedIn: state.userReducer.isLoggedIn

@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from '../base/Icon';
 import SkeletonUser from '../base/Skeleton/User';
+import Heading from '../base/Heading';
 
 /*
 <ProfileImage user={user} />
@@ -29,19 +30,17 @@ class ProfileImage extends React.Component {
     } = this.props;
 
     return (
-      <div className={`profile-${type} ${className}`}>
+      <div
+        className={`profile-${type} d-flex ${
+          namePosition === 'right' ? 'flex-row' : 'flex-column'
+        } ${className}`}
+      >
         <span
           className="profile-image text-center small round"
           style={{
             width: size + 'px',
             height: size + 'px',
             lineHeight: user && user.image ? 'inherit' : size * 1.85 + 'px',
-            marginRight:
-              namePosition === 'right'
-                ? style.marginRight
-                  ? style.marginRight
-                  : '5px'
-                : '',
             ...style
           }}
         >
@@ -77,7 +76,9 @@ class ProfileImage extends React.Component {
           )}
         </span>
         {user && !namePosition === false ? (
-          <h4 className="profile-name t-body h4 mt0 mb0">{user.name}</h4>
+          <Heading tag="h4" type="title" className="ml-3">
+            {user.name}
+          </Heading>
         ) : (
           ''
         )}

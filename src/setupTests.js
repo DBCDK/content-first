@@ -25,3 +25,9 @@ require('jest-localstorage-mock');
 });
 
 jest.mock('./client/components/general/BookCover.component', () => 'bookcover');
+jest.mock('tween', () => 'tween', {
+  virtual: true
+});
+jest.mock('tween', () => 'tween', {
+  virtual: true
+});

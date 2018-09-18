@@ -1,4 +1,5 @@
 import {uniqBy} from 'lodash';
+import {createSelector} from 'reselect';
 
 export const SYSTEM_LIST = 'SYSTEM_LIST';
 export const SHORT_LIST = 'SHORT_LIST';
@@ -15,6 +16,7 @@ const defaultState = {
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
 export const LIST_LOAD_RESPONSE = 'LIST_LOAD_RESPONSE';
+export const LISTS_LOAD_REQUEST = 'LISTS_LOAD_REQUEST';
 export const ADD_LIST = 'ADD_LIST';
 export const UPDATE_LIST_DATA = 'UPDATE_LIST_DATA';
 export const REMOVE_LIST = 'REMOVE_LIST';
@@ -35,6 +37,13 @@ export const ON_USERLISTS_COLLAPSE = 'ON_USERLISTS_COLLAPSE';
 // eslint-disable-next-line
 const listReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case LIST_LOAD_REQUEST: {
+      const {_id} = action;
+      const old = state.lists[_id] || {};
+      return Object.assign({}, state, {
+        lists: {...state.lists, [_id]: {...old, isLoading: true, _id}}
+      });
+    }
     case ADD_LIST: {
       const {list} = action;
       if (!list._id) {
@@ -224,15 +233,13 @@ const listReducer = (state = defaultState, action) => {
       });
     }
     case LIST_LOAD_RESPONSE: {
-      let lists = action.lists;
-      const changeMap = lists.reduce((map, list) => {
-        list.list.forEach(element => (map[element.pid] = {}));
-        return map;
-      }, {});
-      const listMap = {};
+      if (!action.list || !action.list._id) {
+        throw new Error("'list' is missing from action");
+      }
 
-      lists.forEach(l => {
-        l.list.map(element => {
+      const list = action.list;
+      if (list.list) {
+        list.list.forEach(element => {
           if (!element.position) {
             element.position = {
               x: Math.floor(Math.random() * Math.floor(100)),
@@ -240,12 +247,11 @@ const listReducer = (state = defaultState, action) => {
             };
           }
         });
-        return (listMap[l._id] = l);
-      });
+      }
+      list.isLoading = false;
 
       return Object.assign({}, state, {
-        lists: listMap,
-        changeMap
+        lists: {...state.lists, [action.list._id]: list}
       });
     }
     case ADD_LIST_IMAGE: {
@@ -253,7 +259,6 @@ const listReducer = (state = defaultState, action) => {
       const list = {
         ...state.lists[action._id],
         imageIsLoading: true,
-        image: null,
         imageError: null
       };
       return Object.assign({}, state, {
@@ -326,15 +331,19 @@ const listReducer = (state = defaultState, action) => {
 };
 
 // ACTION CREATORS
-export const addList = ({
-  type = CUSTOM_LIST,
-  title = '',
-  description = '',
-  list = [],
-  _id = null,
-  owner = null,
-  _created = Date.now()
-}) => {
+export const addList = (
+  {
+    type = CUSTOM_LIST,
+    title = '',
+    description = '',
+    isNew,
+    list = [],
+    _id = null,
+    _owner = null,
+    _created = Date.now()
+  },
+  afterSave
+) => {
   return {
     type: ADD_LIST,
     list: {
@@ -342,10 +351,12 @@ export const addList = ({
       type,
       title,
       description,
+      isNew,
       list,
-      owner,
+      _owner,
       _created
-    }
+    },
+    afterSave
   };
 };
 export const updateList = data => {
@@ -398,10 +409,10 @@ export const storeList = _id => {
 
 // SELECTORS
 export const getListsForOwner = (state, params = {}) => {
-  if (!params.owner) {
+  if (!params._owner) {
     return [];
   }
-  return getLists(state, params).filter(l => params.owner === l.owner);
+  return getLists(state, params).filter(l => params._owner === l._owner);
 };
 
 export const getLists = (state, {type, sort} = {}) => {
@@ -458,33 +469,37 @@ export const getPublicLists = state => {
     });
 };
 
-export const getListById = (state, _id) => {
-  const listState = state.listReducer;
-  const booksState = state.booksReducer;
+export const getListByIdSelector = () =>
+  createSelector(
+    [
+      (state, {_id}) => {
+        return state.listReducer.lists[_id];
+      },
+      state => state.booksReducer
+    ],
+    (list, booksState) => {
+      if (!list) {
+        return;
+      }
 
-  let list = listState.lists[_id];
-  if (!list) {
-    return;
-  }
+      list = {...list};
 
-  // creating copy of list
-  list = {...list};
+      if (list && list.list) {
+        list.list = list.list
+          .filter(el => {
+            return booksState.books[el.pid] && booksState.books[el.pid].book;
+          })
+          .map(el => {
+            return {...el, book: booksState.books[el.pid].book};
+          });
 
-  if (list && list.list) {
-    list.list = list.list
-      .filter(el => {
-        return booksState.books[el.pid] && booksState.books[el.pid].book;
-      })
-      .map(el => {
-        return {...el, book: booksState.books[el.pid].book};
-      });
-
-    // ensure uniqueness of elements
-    // duplicates may exist, due to a previous bug #548
-    list.list = uniqBy(list.list, 'pid');
-  }
-  return list;
-};
+        // ensure uniqueness of elements
+        // duplicates may exist, due to a previous bug #548
+        list.list = uniqBy(list.list, 'pid');
+      }
+      return list;
+    }
+  );
 
 const validateId = (state, action) => {
   if (!action._id) {
