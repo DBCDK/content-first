@@ -15,10 +15,10 @@ export const saveList = async (list, loggedInUserId) => {
   list.list = list.list || [];
   list._public = list.public;
   list._id = list._id || list.id;
-  list._owner = loggedInUserId;
 
   if (!list._id) {
     Object.assign(list, (await request.post('/v1/object').send({})).body.data);
+    list._owner = loggedInUserId;
   }
 
   // update all elements owned by logged in user

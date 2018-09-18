@@ -49,11 +49,13 @@ export const ListInfo = ({
             }}
           />
         ) : (
-          <img
-            className="list-cover-image w-100"
-            alt=""
-            src={`/v1/image/${list.image}/719/400`}
-          />
+          list.image && (
+            <img
+              className="list-cover-image w-100"
+              alt=""
+              src={`/v1/image/${list.image}/719/400`}
+            />
+          )
         )}
       </div>
       <div className="pl-3 pr-3 pl-sm-4 pr-sm-4 pb-4 lys-graa pt-2 position-relative">
