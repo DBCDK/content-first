@@ -404,6 +404,7 @@ export const loadShortList = async ({isLoggedIn, store}) => {
 export async function fetchSearchResults({query, dispatch}) {
   // Remove parenthesis and everything between from query string + leading/ending spaces
   query = query.replace(/\(.*\)/, '').trim();
+  query = query.split(' & ').join(' ');
   // add & to spaces between words in query
   query = query.split(' ').join(' & ');
   try {
