@@ -11,11 +11,21 @@ export default () => (
         <Title type="title4">Titles</Title>
       </div>
       <div className="col-8 tl mt2">
-        <Title type="title1">This is a Title1</Title>
-        <Title type="title2">This is a Title2</Title>
-        <Title type="title3">This is a Title3</Title>
-        <Title type="title4">This is a Title4</Title>
-        <Title type="title5">This is a Title5</Title>
+        <Title Tag="h1" type="title1">
+          This is a Title1
+        </Title>
+        <Title Tag="h2" type="title2">
+          This is a Title2
+        </Title>
+        <Title Tag="h3" type="title3">
+          This is a Title3
+        </Title>
+        <Title Tag="h4" type="title4">
+          This is a Title4
+        </Title>
+        <Title Tag="h5" type="title5">
+          This is a Title5
+        </Title>
       </div>
       <div className="col-8 tl mt4">
         <Title type="title4">Text</Title>
