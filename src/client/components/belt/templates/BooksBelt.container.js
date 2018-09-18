@@ -110,14 +110,15 @@ export class BooksBelt extends React.Component {
                   {tagObjects.map((t, idx) => {
                     const isLast = idx === tagObjects.length - 1;
                     return (
-                      <Term
-                        key={t.id}
-                        className={'ml1 mt1' + (isLast ? ' mr1' : '')}
-                        size="medium"
-                        style={{verticalAlign: 'baseline'}}
-                      >
-                        {t.title}
-                      </Term>
+                      <Link key={idx} href="/find" params={{tag: t.id}}>
+                        <Term
+                          className={'ml1 mt1' + (isLast ? ' mr1' : '')}
+                          size="medium"
+                          style={{verticalAlign: 'baseline'}}
+                        >
+                          {t.title}
+                        </Term>
+                      </Link>
                     );
                   })}
                 </div>
