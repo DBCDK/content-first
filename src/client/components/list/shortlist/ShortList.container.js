@@ -235,7 +235,12 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: OPEN_MODAL,
       modal: isLoggedIn ? 'addToList' : 'login',
-      context: works,
+      context: isLoggedIn
+        ? works
+        : {
+            title: 'Tilføj til liste',
+            reason: 'Du skal logge ind for at flytte bøger til en liste.'
+          },
       callback
     }),
   clearList: () =>
