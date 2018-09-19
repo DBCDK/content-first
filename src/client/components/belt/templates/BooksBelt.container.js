@@ -23,6 +23,7 @@ const skeletonElements = [];
 for (let i = 0; i < 20; i++) {
   skeletonElements.push(i);
 }
+
 export class BooksBelt extends React.Component {
   constructor() {
     super();
@@ -31,6 +32,7 @@ export class BooksBelt extends React.Component {
       didSwipe: false
     };
   }
+
   componentDidMount() {
     if (this.props.recommendedPids.length === 0) {
       this.props.fetchRecommendations(this.props.tags);
@@ -52,6 +54,22 @@ export class BooksBelt extends React.Component {
     );
   }
 
+  getOnMoreLikeThisClickFunc(belt, pid, clearPreview) {
+    return work => {
+      this.props.addChildBelt(
+        belt,
+        {
+          name: 'Minder om ' + work.book.title,
+          onFrontPage: true,
+          pidPreview: false,
+          pid
+        },
+        clearPreview
+      );
+      this.toggleWorkPreview(belt.pidPreview, belt);
+    };
+  }
+
   toggleWorkPreview(pid, belt) {
     if (isMobile) {
       this.props.historyPush(pid);
@@ -60,18 +78,19 @@ export class BooksBelt extends React.Component {
     let status = pid === belt.pidPreview ? false : pid;
     this.props.changePidPreview(status, belt);
   }
+
   scrollToChildBelt(belt) {
     let offset = belt.pidPreview ? 220 : 0;
     scrollToComponent(this.refs.childBelt, {offset});
   }
+
   render() {
     const {
       fetchInitial = 8,
       showTags = true,
       belt,
       tagObjects,
-      recommendedPids,
-      addChildBelt
+      recommendedPids
     } = this.props;
     if (!belt) {
       return null;
@@ -154,14 +173,11 @@ export class BooksBelt extends React.Component {
                       pid={pid}
                       key={pid}
                       origin={`Fra "${name}"`}
-                      onMoreLikeThisClick={work => {
-                        addChildBelt(belt, {
-                          name: 'Minder om ' + work.book.title,
-                          onFrontPage: true,
-                          pidPreview: false,
-                          pid
-                        });
-                      }}
+                      onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
+                        belt,
+                        pid,
+                        true
+                      )}
                       onWorkPreviewClick={() => {
                         this.toggleWorkPreview(pid, belt);
                       }}
@@ -182,14 +198,11 @@ export class BooksBelt extends React.Component {
               {pidPreview && (
                 <WorkPreview
                   pid={pidPreview}
-                  onMoreLikeThisClick={work => {
-                    addChildBelt(belt, {
-                      name: 'Minder om ' + work.book.title,
-                      onFrontPage: true,
-                      pidPreview: false,
-                      pid: work.book.pid
-                    });
-                  }}
+                  onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
+                    belt,
+                    pidPreview,
+                    false
+                  )}
                   scrollToChildBelt={() => {
                     this.scrollToChildBelt(belt);
                   }}
@@ -219,11 +232,9 @@ const mapStateToProps = (state, ownProps) => {
             excluded
           ).slice(0, 20)
         : [],
-    tagObjects: ownProps.tags
-      .map(tag => {
-        return filtersMapAll[tag.id || tag];
-      })
-      .filter(tag => tag)
+    tagObjects: ownProps.tags.map(tag => {
+      return filtersMapAll[tag.id || tag];
+    })
   };
 };
 
@@ -235,11 +246,12 @@ export const mapDispatchToProps = dispatch => ({
       tags,
       max: 50 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     }),
-  addChildBelt: (parentBelt, childBelt) => {
+  addChildBelt: (parentBelt, childBelt, clearPreview = true) => {
     dispatch({
       type: ADD_CHILD_BELT,
       parentBelt,
-      childBelt
+      childBelt,
+      clearPreview
     });
   },
   removeChildBelt: parentBelt => {
