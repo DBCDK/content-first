@@ -95,7 +95,6 @@ class App extends Component {
           ''
         )}
         {currentPage}
-        <FeedbackButton />
         <Modal />
         <ToastContainer
           position="top-right"
@@ -108,6 +107,7 @@ class App extends Component {
           draggable
           pauseOnHover
         />
+        <FeedbackButton />
       </div>
     );
   }

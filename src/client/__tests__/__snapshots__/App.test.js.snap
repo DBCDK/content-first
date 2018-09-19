@@ -1811,6 +1811,25 @@ exports[`renders without crashing 1`] = `
   <span />
   <div
     className="Toastify"
-  />
+  />-
+
+  -
+  <div
+    className="feedback-container"
+  >
+    <button
+      className="Button__feedback btn Button Button__secondary Button__medium"
+      onClick={[Function]}
+    >
+      <i
+        className="material-icons material-icons-chat_bubble_outline icon__feedback md-small"
+      >
+        chat_bubble_outline
+      </i>
+      <span>
+        GIV OS FEEDBACK
+      </span>
+    </button>
+  </div>
 </div>
 `;
