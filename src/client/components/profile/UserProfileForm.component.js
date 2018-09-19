@@ -83,41 +83,42 @@ export default class UserProfileForm extends React.Component {
           </span>
         </div>
         <p className="mb6">Du er logget på via {this.props.library}</p>
-        {!this.props.editMode ? (
-          <React.Fragment>
-            <label htmlFor="acceptedAge" className="checkbox">
-              <input
-                id="acceptedAge"
-                className="checkbox"
-                name="acceptedAge"
-                type="checkbox"
-                disabled={this.props.isSaving}
-                checked={this.state.acceptedAge}
-                onChange={() =>
-                  this.setState({acceptedAge: !this.state.acceptedAge})
-                }
-              />
-              <span /> Jeg er over 13 år
-            </label>
-            <label htmlFor="acceptedTerms" className="checkbox">
-              <input
-                id="acceptedTerms"
-                className="checkbox"
-                name="acceptedTerms"
-                type="checkbox"
-                disabled={this.props.isSaving}
-                checked={this.state.acceptedTerms}
-                onChange={() =>
-                  this.setState({acceptedTerms: !this.state.acceptedTerms})
-                }
-              />
-              <span /> Jeg har læst og accepteret{' '}
-              <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
-            </label>
-          </React.Fragment>
-        ) : (
-          ''
+
+        {!this.props.acceptedAge && (
+          <label htmlFor="acceptedAge" className="checkbox">
+            <input
+              id="acceptedAge"
+              className="checkbox"
+              name="acceptedAge"
+              type="checkbox"
+              disabled={this.props.isSaving}
+              checked={this.state.acceptedAge || false}
+              onChange={() =>
+                this.setState({acceptedAge: !this.state.acceptedAge})
+              }
+            />
+            <span /> Jeg er over 13 år
+          </label>
         )}
+
+        {!this.props.acceptedTerms && (
+          <label htmlFor="acceptedTerms" className="checkbox">
+            <input
+              id="acceptedTerms"
+              className="checkbox"
+              name="acceptedTerms"
+              type="checkbox"
+              disabled={this.props.isSaving}
+              checked={this.state.acceptedTerms || false}
+              onChange={() =>
+                this.setState({acceptedTerms: !this.state.acceptedTerms})
+              }
+            />
+            <span /> Jeg har læst og accepteret{' '}
+            <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
+          </label>
+        )}
+
         {this.renderErrors()}
         <button
           className="btn btn-success btn-block"

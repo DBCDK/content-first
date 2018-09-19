@@ -16,6 +16,8 @@ import {
 
 export class CreateProfilePage extends React.Component {
   render() {
+    console.log(this.props.acceptedTerms, this.props.acceptedAge);
+
     const isDeleting = this.props.isDeleting || false;
 
     if (isDeleting) {
@@ -169,6 +171,7 @@ export class CreateProfilePage extends React.Component {
 export const mapStateToProps = state => ({
   name: state.userReducer.name,
   acceptedTerms: state.userReducer.acceptedTerms,
+  acceptedAge: state.userReducer.acceptedAge,
   isLoading: state.userReducer.isLoading,
   isSaving: state.userReducer.isSaving,
   isDeleting: state.userReducer.isDeleting,
