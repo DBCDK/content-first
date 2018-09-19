@@ -86,7 +86,7 @@ class WorkPage extends React.Component {
             <div className="WorkPage__image">
               <BookCover book={book} />
               <BookmarkButton
-                className="mr1"
+                className="d-inline-block d-sm-none mr1"
                 origin={'Fra egen værkside'}
                 work={work}
                 layout="circle"

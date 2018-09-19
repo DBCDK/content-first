@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ListCard from '../list/ListCard.component';
+import ListCard from '../list/card/ListCard.component';
 import Heading from '../base/Heading';
 import Slider from './Slider.component';
 import {getPublicLists} from '../../redux/list.reducer';

@@ -60,7 +60,7 @@ exports[`CommentContainer Cancel button 1`] = `
         }
       >
         <div
-          className="profile-card "
+          className="profile-card d-flex flex-column "
         >
           <span
             className="profile-image text-center small round"
@@ -198,7 +198,7 @@ exports[`CommentContainer Cancel button 2`] = `
         }
       >
         <div
-          className="profile-card "
+          className="profile-card d-flex flex-column "
         >
           <span
             className="profile-image text-center small round"
@@ -337,7 +337,7 @@ exports[`CommentContainer Delete button 1`] = `
         }
       >
         <div
-          className="profile-card "
+          className="profile-card d-flex flex-column "
         >
           <span
             className="profile-image text-center small round"
@@ -475,7 +475,7 @@ exports[`CommentContainer Edit button 1`] = `
         }
       >
         <div
-          className="profile-card "
+          className="profile-card d-flex flex-column "
         >
           <span
             className="profile-image text-center small round"
@@ -613,7 +613,7 @@ exports[`CommentContainer Edit button 2`] = `
         }
       >
         <div
-          className="profile-card "
+          className="profile-card d-flex flex-column "
         >
           <span
             className="profile-image text-center small round"
@@ -725,7 +725,7 @@ exports[`CommentContainer Edit button 2`] = `
                     "height": "0px",
                     "opacity": 0,
                     "overflow": "hidden",
-                    "transition": "opacity 200ms",
+                    "transition": "all 200ms",
                   }
                 }
               >
@@ -735,20 +735,35 @@ exports[`CommentContainer Edit button 2`] = `
                 >
                   Slet
                 </button>
-                <button
-                  className="comment-cancel btn btn-link link-subtle"
+                <Button
+                  className="comment-cancel mr-2 ml-2"
                   onClick={[Function]}
+                  size="medium"
+                  type="link"
                 >
-                  Fortryd
-                </button>
-                <button
-                  className="btn btn-success"
+                  <button
+                    className="comment-cancel mr-2 ml-2 btn Button Button__link Button__medium"
+                    onClick={[Function]}
+                  >
+                    Fortryd
+                  </button>
+                </Button>
+                <Button
+                  className="mr-2 ml-2"
                   disabled={false}
                   id="comment-submit"
                   onClick={[Function]}
+                  type="quaternary"
                 >
-                  Gem
-                </button>
+                  <button
+                    className="mr-2 ml-2 btn Button Button__quaternary Button__large"
+                    disabled={false}
+                    id="comment-submit"
+                    onClick={[Function]}
+                  >
+                    Gem
+                  </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -773,7 +788,7 @@ exports[`CommentContainer Render comment 1`] = `
     }
   >
     <div
-      className="profile-card "
+      className="profile-card d-flex flex-column "
     >
       <span
         className="profile-image text-center small round"
@@ -864,7 +879,7 @@ exports[`CommentContainer Render edit form 1`] = `
     }
   >
     <div
-      className="profile-card "
+      className="profile-card d-flex flex-column "
     >
       <span
         className="profile-image text-center small round"
@@ -969,7 +984,7 @@ exports[`CommentContainer Render save form 1`] = `
     }
   >
     <div
-      className="profile-card "
+      className="profile-card d-flex flex-column "
     >
       <span
         className="profile-image text-center small round"
@@ -1093,7 +1108,7 @@ exports[`CommentContainer Save button 1`] = `
         }
       >
         <div
-          className="profile-card "
+          className="profile-card d-flex flex-column "
         >
           <span
             className="profile-image text-center small round"

@@ -17,10 +17,10 @@ import Bookcase from './components/bookcase/Bookcase.component';
 import CreateProfilePage from './components/profile/CreateProfilePage';
 import TopBar from './components/top/TopBar.component';
 import {ON_USER_DETAILS_REQUEST} from './redux/user.reducer';
-import ListPage from './components/list/ListPage.container';
-import ListCreator from './components/list/ListCreate.container';
-import Lists from './components/list/Lists.container';
-import ShortList from './components/list/ShortList.container';
+import ListPage from './components/list/ListPage';
+import ListCreator from './components/list/ListCreatePage';
+import Lists from './components/list/overview/Lists.container';
+import ShortList from './components/list/shortlist/ShortList.container';
 import Spinner from './components/general/Spinner.component';
 import Styleguide from './components/Styleguide/Styleguide.component';
 

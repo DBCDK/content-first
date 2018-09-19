@@ -35,15 +35,23 @@ import {
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
+  LISTS_LOAD_REQUEST,
   LIST_TOGGLE_ELEMENT,
-  getListById,
+  getListByIdSelector,
   ADD_LIST_IMAGE,
   ADD_LIST_IMAGE_SUCCESS,
   ADD_LIST_IMAGE_ERROR,
   ADD_ELEMENT_TO_LIST
 } from './list.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {saveList, loadLists, loadRecentPublic} from '../utils/requestLists';
+import {
+  saveList,
+  loadList,
+  loadLists,
+  loadRecentPublic
+} from '../utils/requestLists';
+
+const getListById = getListByIdSelector();
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -225,7 +233,7 @@ export const listMiddleware = store => next => async action => {
   switch (action.type) {
     case STORE_LIST: {
       const {openplatformId} = store.getState().userReducer;
-      const list = getListById(store.getState(), action._id);
+      const list = getListById(store.getState(), {_id: action._id});
       if (!list) {
         throw new Error(`list with _id ${action._id} not found`);
       }
@@ -241,11 +249,15 @@ export const listMiddleware = store => next => async action => {
     }
     case ADD_LIST: {
       if (!action.list._id) {
-        action.list = await saveList(action.list, null);
+        const {openplatformId} = store.getState().userReducer;
+        action.list = await saveList(action.list, openplatformId);
+        if (action.afterSave) {
+          action.afterSave(action.list);
+        }
       }
-      if (!action.list.owner) {
-        action.list.owner = store.getState().userReducer.openplatformId;
-      }
+      // if (!action.list.owner) {
+      //   action.list.owner = store.getState().userReducer.openplatformId;
+      // }
       return next(action);
     }
     case REMOVE_LIST: {
@@ -269,18 +281,44 @@ export const listMiddleware = store => next => async action => {
     }
     case LIST_LOAD_REQUEST: {
       const res = next(action);
+      try {
+        const list = await loadList(action._id, store);
+        store.dispatch({
+          type: LIST_LOAD_RESPONSE,
+          list
+        });
+
+        const pids = [];
+        list.list.forEach(book => {
+          pids.push(book.pid);
+        });
+
+        store.dispatch({type: BOOKS_REQUEST, pids});
+        store.dispatch({type: REQUEST_USER, id: list.owner});
+      } catch (error) {
+        store.dispatch({
+          type: LIST_LOAD_RESPONSE,
+          list: {_id: action._id, error}
+        });
+      }
+      return res;
+    }
+    case LISTS_LOAD_REQUEST: {
+      const res = next(action);
       const {openplatformId} = store.getState().userReducer;
       const lists = await loadLists({openplatformId, store});
       const recentLists = await loadRecentPublic({store});
 
-      const allLists = {lists: [...lists, ...recentLists]};
-      store.dispatch({
-        type: LIST_LOAD_RESPONSE,
-        lists: allLists.lists
+      const allLists = [...lists, ...recentLists];
+      allLists.forEach(list => {
+        store.dispatch({
+          type: LIST_LOAD_RESPONSE,
+          list
+        });
       });
 
       let pids = [];
-      allLists.lists.forEach(list => {
+      allLists.forEach(list => {
         list.list.forEach(book => {
           pids.push(book.pid);
         });

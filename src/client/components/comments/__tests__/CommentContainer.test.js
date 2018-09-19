@@ -124,7 +124,11 @@ describe('CommentContainer', () => {
       />
     );
     tree.setState({newCommentValue: 'a new comment'});
-    tree.find('#comment-submit').simulate('click');
+    tree
+      .find('#comment-submit')
+      .hostNodes()
+      .simulate('click');
+
     expect(addComment.mock.calls[0]).toEqual([
       {id: 'some_id', comment: 'a new comment', owner: 'owner_id'}
     ]);

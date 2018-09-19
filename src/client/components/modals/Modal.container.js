@@ -4,6 +4,7 @@ import AddToListModal from './AddToListModal.container';
 import OrderModal from './OrderModal.container';
 import LoginModal from './LoginModal.component';
 import ConfirmModal from './ConfirmModal.component';
+import ListSettingsModal from './ListSettingsModal.container';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Modal extends React.Component {
@@ -58,6 +59,13 @@ class Modal extends React.Component {
     if (this.props.modalState.confirm.open) {
       modal = <ConfirmModal context={this.props.modalState.confirm.context} />;
     }
+    if (this.props.modalState.listSettings.open) {
+      modal = (
+        <ListSettingsModal
+          context={this.props.modalState.listSettings.context}
+        />
+      );
+    }
     return (
       <ReactCSSTransitionGroup
         transitionName="modal"
@@ -74,7 +82,6 @@ export default connect(
   // Map redux state to props
   state => {
     return {
-      listState: state.listReducer,
       modalState: state.modalReducer
     };
   }

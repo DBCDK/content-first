@@ -54,7 +54,10 @@ describe('CommentContainer', () => {
     );
 
     expect(tree).toMatchSnapshot();
-    tree.find('.comment-edit-button').simulate('click');
+    tree
+      .find('.comment-edit-button')
+      .hostNodes()
+      .simulate('click');
     expect(tree).toMatchSnapshot();
   });
   test('Delete button', () => {
@@ -68,8 +71,14 @@ describe('CommentContainer', () => {
       />
     );
     expect(tree).toMatchSnapshot();
-    tree.find('.comment-edit-button').simulate('click');
-    tree.find('.comment-delete').simulate('click');
+    tree
+      .find('.comment-edit-button')
+      .hostNodes()
+      .simulate('click');
+    tree
+      .find('.comment-delete')
+      .hostNodes()
+      .simulate('click');
     expect(deleteComment.mock.calls[0][0]).toEqual(comment);
   });
   test('Cancel button', () => {
@@ -78,8 +87,14 @@ describe('CommentContainer', () => {
       <CommentWrapper comment={comment} user={comment.user} />
     );
     expect(tree).toMatchSnapshot();
-    tree.find('.comment-edit-button').simulate('click');
-    tree.find('.comment-cancel').simulate('click');
+    tree
+      .find('.comment-edit-button')
+      .hostNodes()
+      .simulate('click');
+    tree
+      .find('.comment-cancel')
+      .hostNodes()
+      .simulate('click');
     expect(tree).toMatchSnapshot();
   });
   test('Save button', () => {
@@ -95,11 +110,17 @@ describe('CommentContainer', () => {
       />
     );
     expect(tree).toMatchSnapshot();
-    tree.find('.comment-edit-button').simulate('click');
+    tree
+      .find('.comment-edit-button')
+      .hostNodes()
+      .simulate('click');
     tree
       .find('.comment-textarea')
       .simulate('change', {target: {value: 'some updated comment'}});
-    tree.find('#comment-submit').simulate('click');
+    tree
+      .find('#comment-submit')
+      .hostNodes()
+      .simulate('click');
     expect(editComment.mock.calls[0][0]).toEqual({
       ...comment,
       comment: 'some updated comment'

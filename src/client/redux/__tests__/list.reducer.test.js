@@ -1,7 +1,7 @@
 import listReducer, {
   addList,
   getLists,
-  getListById,
+  getListByIdSelector,
   getListsForOwner,
   removeList,
   addElementToList,
@@ -11,6 +11,7 @@ import listReducer, {
   CUSTOM_LIST,
   SYSTEM_LIST
 } from '../list.reducer';
+const getListById = getListByIdSelector();
 
 const booksState = {
   books: {
@@ -60,9 +61,7 @@ describe('listReducer', () => {
     );
 
     const state = {listReducer: listState, booksReducer: booksState};
-
-    // Expects, if a book dont have a position, a position will be added in LIST_LOAD_RESPONSE
-    expect(getListById(state, 'list1').list[0].position);
+    expect(getListById(state, {_id: 'list1'}).list[0].position);
   });
   test('add list throws when id is missing', () => {
     expect(() => {
@@ -164,7 +163,7 @@ describe('listReducer', () => {
         title: 'some list 1',
         type: CUSTOM_LIST,
         _id: 'some-id-1',
-        owner: 'some-owner',
+        _owner: 'some-owner',
         _created: '1234'
       })
     );
@@ -174,7 +173,7 @@ describe('listReducer', () => {
         title: 'some list 2',
         type: SYSTEM_LIST,
         _id: 'some-id-2',
-        owner: 'some-owner-2',
+        _owner: 'some-owner-2',
         _created: '1234'
       })
     );
@@ -184,14 +183,14 @@ describe('listReducer', () => {
         title: 'some list 3',
         type: CUSTOM_LIST,
         _id: 'some-id-3',
-        owner: 'some-owner',
+        _owner: 'some-owner',
         _created: '1234'
       })
     );
 
     const state = {listReducer: listState, booksReducer: booksState};
 
-    expect(getListsForOwner(state, {owner: 'some-owner'})).toMatchSnapshot(); // owned lists
+    expect(getListsForOwner(state, {_owner: 'some-owner'})).toMatchSnapshot(); // owned lists
     expect(getListsForOwner(state)).toMatchSnapshot(); // no lists
   });
   test('add element to list', () => {

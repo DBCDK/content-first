@@ -16,8 +16,9 @@ export const saveList = async (list, loggedInUserId) => {
   list._public = list.public;
   list._id = list._id || list.id;
 
-  if (!list._id && list.list.length > 0) {
+  if (!list._id) {
     Object.assign(list, (await request.post('/v1/object').send({})).body.data);
+    list._owner = loggedInUserId;
   }
 
   // update all elements owned by logged in user
@@ -122,13 +123,25 @@ async function enrichList({list}) {
       ({_id}) => !listIds.includes(_id)
     );
 
+    othersListEntries.sort((o1, o2) => o1._created - o2._created);
+
     list.list = list.list.concat(othersListEntries);
   }
+
+  // Filter elements which have been removed by other users
+  // Its deleted if element has no pid
+  list.list = list.list.filter(element => element.pid);
 
   list.list.forEach(el => {
     delete el.book;
   });
 }
+
+export const loadList = async (id, store) => {
+  const list = (await request.get(`/v1/object/${id}`)).body.data;
+  await enrichList({list, store});
+  return list;
+};
 
 // done
 export const loadLists = async ({openplatformId, store}) => {

@@ -4,8 +4,9 @@ import commentReducer, {
   FETCH_COMMENTS,
   FETCH_COMMENTS_SUCCESS,
   FETCH_COMMENTS_ERROR,
-  getCommentsForId
+  getCommentsForIdSelector
 } from '../comment.reducer';
+const getCommentsForId = getCommentsForIdSelector();
 
 const createTestState = () => ({
   expanded: false,
@@ -71,10 +72,12 @@ describe('commentReducer', () => {
           owner_1: {name: 'name owner 1'}
         })
       };
-      expect(getCommentsForId(state, 'unknow_id')).toMatchSnapshot();
-      expect(getCommentsForId(state, 'id_with_comments')).toMatchSnapshot();
-      expect(getCommentsForId(state, 'id_loading')).toMatchSnapshot();
-      expect(getCommentsForId(state, 'id_error')).toMatchSnapshot();
+      expect(getCommentsForId(state, {id: 'unknow_id'})).toMatchSnapshot();
+      expect(
+        getCommentsForId(state, {id: 'id_with_comments'})
+      ).toMatchSnapshot();
+      expect(getCommentsForId(state, {id: 'id_loading'})).toMatchSnapshot();
+      expect(getCommentsForId(state, {id: 'id_error'})).toMatchSnapshot();
     });
   });
 });
