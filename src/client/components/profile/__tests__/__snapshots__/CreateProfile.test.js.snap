@@ -185,6 +185,7 @@ exports[`Image Upload render function Add image 1`] = `
                     htmlFor="acceptedAge"
                   >
                     <input
+                      checked={false}
                       className="checkbox"
                       id="acceptedAge"
                       name="acceptedAge"
@@ -199,6 +200,7 @@ exports[`Image Upload render function Add image 1`] = `
                     htmlFor="acceptedTerms"
                   >
                     <input
+                      checked={false}
                       className="checkbox"
                       id="acceptedTerms"
                       name="acceptedTerms"
@@ -487,7 +489,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 htmlFor="acceptedAge"
               >
                 <input
-                  checked={undefined}
+                  checked={false}
                   className="checkbox"
                   disabled={undefined}
                   id="acceptedAge"
@@ -503,7 +505,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 htmlFor="acceptedTerms"
               >
                 <input
-                  checked={undefined}
+                  checked={false}
                   className="checkbox"
                   disabled={undefined}
                   id="acceptedTerms"

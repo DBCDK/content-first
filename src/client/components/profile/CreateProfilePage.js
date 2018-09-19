@@ -169,6 +169,7 @@ export class CreateProfilePage extends React.Component {
 export const mapStateToProps = state => ({
   name: state.userReducer.name,
   acceptedTerms: state.userReducer.acceptedTerms,
+  acceptedAge: state.userReducer.acceptedAge,
   isLoading: state.userReducer.isLoading,
   isSaving: state.userReducer.isSaving,
   isDeleting: state.userReducer.isDeleting,
