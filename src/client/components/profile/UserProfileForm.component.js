@@ -92,7 +92,7 @@ export default class UserProfileForm extends React.Component {
               name="acceptedAge"
               type="checkbox"
               disabled={this.props.isSaving}
-              checked={this.state.acceptedAge}
+              checked={this.state.acceptedAge || false}
               onChange={() =>
                 this.setState({acceptedAge: !this.state.acceptedAge})
               }
@@ -109,7 +109,7 @@ export default class UserProfileForm extends React.Component {
               name="acceptedTerms"
               type="checkbox"
               disabled={this.props.isSaving}
-              checked={this.state.acceptedTerms}
+              checked={this.state.acceptedTerms || false}
               onChange={() =>
                 this.setState({acceptedTerms: !this.state.acceptedTerms})
               }

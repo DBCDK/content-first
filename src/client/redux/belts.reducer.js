@@ -262,12 +262,12 @@ const beltsReducer = (state = defaultState, action) => {
     }
 
     case ADD_CHILD_BELT: {
-      const {parentBelt, childBelt} = action;
+      const {parentBelt, childBelt, clearPreview} = action;
       const belts = traverseBelts(state.belts, b => {
         const belt = {...b};
         if (b === parentBelt) {
           belt.child = childBelt;
-          if (parentBelt.pidPreview !== b.pidPreview) {
+          if (clearPreview) {
             belt.pidPreview = false;
           }
         }
