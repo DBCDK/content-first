@@ -13,12 +13,13 @@ import SocialShareButton from '../../../general/SocialShareButton.component';
 import Comments from '../../../comments/Comment.container';
 import timeToString from '../../../../utils/timeToString';
 import textParser from '../../../../utils/textParser';
-import Heading from '../../../base/Heading';
-import Paragraph from '../../../base/Paragraph';
+import Title from '../../../base/Title';
+import Text from '../../../base/Text';
 import ImageUpload from '../../../general/ImageUpload.component';
 import FollowButton from '../../button/FollowButton';
 import AddBookButton from '../../button/AddBookButton';
 import ListContextMenu from '../../menu/ListContextMenu';
+
 const getListById = getListByIdSelector();
 
 export const ListInfo = ({
@@ -86,28 +87,23 @@ export const ListInfo = ({
 
         <div className="d-flex flex-row">
           <ProfileImage user={profile} size={'40'} namePosition="right" />
-          <Heading
-            tag="h5"
-            type="title"
-            className="ml-4 due-txt"
-            style={{fontWeight: 400}}
-          >
+          <Text type="body" variant="color-due" className="ml-4">
             {timeToString(list._created)}
-          </Heading>
+          </Text>
         </div>
         {editing ? (
           <React.Fragment>
             <Textarea
-              className={`mt-3 form-control Heading Heading__section`}
+              className={`mt-3 form-control Title Title__title3`}
               name="list-description"
               placeholder="Listens titel"
               onChange={onTitleChange}
               value={list.title}
             />
             {!(list.title && list.title.trim()) && (
-              <Paragraph className="mt-2" style={{color: 'red'}}>
+              <Text type="body" variant="color-fersken" className="mt-2">
                 Listen skal have en titel
-              </Paragraph>
+              </Text>
             )}
             <Textarea
               className={`form-control mt-4 comment-textarea`}
@@ -119,17 +115,16 @@ export const ListInfo = ({
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Heading Tag="h1" type="section" className="mt-3">
+            <Title Tag="h1" type="title3" className="mt-3">
               {list.title}
-            </Heading>
-            <Paragraph>
-              {' '}
+            </Title>
+            <Text type="body">
               <span
                 dangerouslySetInnerHTML={{
                   __html: textParser(list.description || '')
                 }}
               />
-            </Paragraph>
+            </Text>
           </React.Fragment>
         )}
         <div className="d-flex flex-row lys-graa justify-content-between d-lg-none mt-4">

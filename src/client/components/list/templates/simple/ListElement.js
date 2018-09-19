@@ -11,8 +11,7 @@ import textParser from '../../../../utils/textParser';
 import Comments from '../../../comments/Comment.container';
 import CommentInput from '../../../comments/CommentInput.component';
 import timeToString from '../../../../utils/timeToString';
-import Heading from '../../../base/Heading';
-import Paragraph from '../../../base/Paragraph';
+import Text from '../../../base/Text';
 import ContextMenu, {ContextMenuAction} from '../../../base/ContextMenu';
 import WorkRow from '../../../work/WorkRow';
 
@@ -102,14 +101,9 @@ export class ListElement extends React.Component {
         <div className="px-3 py-4 p-sm-4">
           <div className="d-flex flex-row">
             <ProfileImage user={owner} size={'40'} namePosition={'right'} />
-            <Heading
-              tag="h5"
-              type="title"
-              className="ml-4 due-txt"
-              style={{fontWeight: 400}}
-            >
+            <Text type="body" variant="color-due" className="ml-4">
               {timeToString(element._created)}
-            </Heading>
+            </Text>
           </div>
           <WorkRow
             work={element}
@@ -136,7 +130,7 @@ export class ListElement extends React.Component {
               placeholder="Fortæl om bogen"
             />
           ) : (
-            <Paragraph className="mt-3">
+            <Text type="body" className="mt-3">
               <span
                 dangerouslySetInnerHTML={{
                   __html: textParser(
@@ -144,7 +138,7 @@ export class ListElement extends React.Component {
                   )
                 }}
               />
-            </Paragraph>
+            </Text>
           )}
         </div>
         {list.social &&

@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {addElementToList, storeList} from '../../../redux/list.reducer';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import BookSearchSuggester from './BookSearchSuggester';
-import Heading from '../../base/Heading';
+import Title from '../../base/Title';
+import Text from '../../base/Text';
 import ProfileImage from '../../general/ProfileImage.component';
 
 export class AddToList extends React.Component {
@@ -45,9 +46,14 @@ export class AddToList extends React.Component {
     }
     return (
       <div className={'addbook ' + className} style={style}>
-        <Heading className="ml-2 ml-sm-0" tag="h2" type="section">
+        <Title
+          tag="h2"
+          type="title4"
+          variant="transform-uppercase"
+          className="ml-2 ml-sm-0"
+        >
           Vil du tilføje bøger til listen?
-        </Heading>
+        </Title>
 
         <div className="d-flex flex-row french-pass pt-4">
           <ProfileImage className="ml-4" user={profile} size={'40'} />
@@ -60,10 +66,22 @@ export class AddToList extends React.Component {
         </div>
 
         {this.state.exists && (
-          <Heading Tag="h3" type="peach-subtitle" className="mt-2 mb-0">
-            <strong>{this.state.selected.book.title}</strong>
-            <span> eksisterer allerede i listen</span>
-          </Heading>
+          <React.Fragment>
+            <Text
+              type="body"
+              variant="color-fersken--weight-semibold"
+              className="mt-2 mb-0 d-inline-block"
+            >
+              {this.state.selected.book.title}
+            </Text>
+            <Text
+              type="body"
+              variant="color-fersken"
+              className="mt-2 mb-0 d-inline-block"
+            >
+              {' eksisterer allerede i listen'}
+            </Text>
+          </React.Fragment>
         )}
       </div>
     );
