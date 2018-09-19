@@ -128,6 +128,10 @@ async function enrichList({list}) {
     list.list = list.list.concat(othersListEntries);
   }
 
+  // Filter elements which have been removed by other users
+  // Its deleted if element has no pid
+  list.list = list.list.filter(element => element.pid);
+
   list.list.forEach(el => {
     delete el.book;
   });
