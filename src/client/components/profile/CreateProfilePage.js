@@ -16,8 +16,6 @@ import {
 
 export class CreateProfilePage extends React.Component {
   render() {
-    console.log(this.props.acceptedTerms, this.props.acceptedAge);
-
     const isDeleting = this.props.isDeleting || false;
 
     if (isDeleting) {

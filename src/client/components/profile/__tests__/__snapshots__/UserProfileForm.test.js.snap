@@ -139,20 +139,6 @@ exports[`UserProfileForm render function It adds validation error for age 2`] = 
     </p>
     <label
       className="checkbox"
-      htmlFor="acceptedAge"
-    >
-      <input
-        className="checkbox"
-        id="acceptedAge"
-        name="acceptedAge"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span />
-       Jeg er over 13 år
-    </label>
-    <label
-      className="checkbox"
       htmlFor="acceptedTerms"
     >
       <input
@@ -336,26 +322,6 @@ exports[`UserProfileForm render function It adds validation error for terms 2`] 
       />
       <span />
        Jeg er over 13 år
-    </label>
-    <label
-      className="checkbox"
-      htmlFor="acceptedTerms"
-    >
-      <input
-        className="checkbox"
-        id="acceptedTerms"
-        name="acceptedTerms"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span />
-       Jeg har læst og accepteret
-       
-      <a
-        href="#terms"
-      >
-        reglerne for anvendelse af Læsekompasset
-      </a>
     </label>
     <div
       className="error mb2"

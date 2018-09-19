@@ -134,13 +134,11 @@ exports[`renders without crashing 1`] = `
             href="/huskeliste"
             onClick={[Function]}
           >
-            <h1
-              className=" Heading Heading__peach-subtitle"
+            <p
+              className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
             >
-              HUSKELISTE (
-              0
-              )
-            </h1>
+              Huskeliste (0)
+            </p>
           </a>
           <div
             className="top-bar-dropdown-list--empty-text text-center "
