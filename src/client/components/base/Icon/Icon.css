@@ -3,6 +3,9 @@ i {
   font-size: 0px;
 }
 
+.material-icons.md-xsmall {
+  font-size: 1rem;
+}
 .material-icons.md-small {
   font-size: 18px;
 }

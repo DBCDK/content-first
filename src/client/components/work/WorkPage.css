@@ -45,20 +45,8 @@
   display: none;
 }
 
-.WorkPage__details span,
-.WorkPage__formats span {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.WorkPage__formats span {
-  margin-right: 1rem;
-}
-
-.WorkPage__formats span i {
-  font-size: 0.8rem;
-  font-weight: 600;
+.WorkPage__formats p i {
+  vertical-align: middle;
 }
 
 .WorkPage__work .WorkPage__info .WorkPage__media a {
@@ -217,7 +205,7 @@
   .WorkPage__work .WorkPage__image .BookmarkButtonCircle {
     display: block;
   }
-  .WorkPage__work .WorkPage__info .ssb{
+  .WorkPage__work .WorkPage__info .ssb {
     top: 10px;
     right: 10px;
   }

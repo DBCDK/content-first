@@ -1,0 +1,70 @@
+/*
+    Base
+*/
+
+.Title {
+  color: var(--petroleum);
+}
+
+/*
+    Types
+*/
+
+.Title__title1 {
+  font-size: 4.5vw;
+  font-weight: 800;
+  line-height: 1.3em;
+}
+
+.Title__title2 {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 3.57rem;
+}
+
+.Title__title3 {
+  font-size: 2.14rem;
+  font-weight: 700;
+  line-height: 2.85rem;
+}
+
+.Title__title4 {
+  font-size: 1.7rem;
+  font-weight: 400;
+  line-height: 2.14rem;
+}
+
+.Title__title5 {
+  font-size: 1.28rem;
+  font-weight: 600;
+  line-height: 1.57rem;
+}
+
+/*
+    Modifiers
+*/
+
+/*
+    MediaQ
+*/
+
+@media only screen and (max-width: 600px) {
+  /*
+      Types
+  */
+
+  .Title__title2 {
+    font-size: 28px;
+    line-height: 35px;
+  }
+
+  .Title__title3 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .Title__title4 {
+    font-size: 21px;
+    line-height: 27px;
+  }
+}

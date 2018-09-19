@@ -30,6 +30,7 @@ Button.propTypes = {
     'tertiary',
     'quaternary',
     'quinary',
+    'term',
     'tag',
     'link',
     'link2'

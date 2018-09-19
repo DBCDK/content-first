@@ -1,0 +1,49 @@
+/*
+    Base
+*/
+
+.Text {
+  color: var(--petroleum);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.42rem;
+}
+
+/*
+    Types
+*/
+
+.Text__large {
+  font-size: 1.14rem;
+  font-weight: 600;
+}
+
+.Text__body {
+}
+
+.Text__small {
+  font-size: 0.85rem;
+  line-height: 1.07rem;
+}
+
+.Text__micro {
+  font-size: 0.78rem;
+  line-height: 1.14rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--fersken);
+}
+
+/*
+    Modifiers
+*/
+
+.Text__body--weight-semibold {
+  font-weight: 600;
+}
+/*
+    MediaQ
+*/
+
+@media only screen and (max-width: 600px) {
+}
