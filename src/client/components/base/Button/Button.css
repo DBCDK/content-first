@@ -110,3 +110,17 @@
   padding: 5px 10px;
   font-size: 0.75rem;
 }
+
+/* Feedback button */
+.Button__feedback{
+  background-color: var(--pistache);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.Button__feedback:hover {
+  background-color: var(--sea-mist);
+}

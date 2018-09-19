@@ -1,0 +1,45 @@
+.feedback-container {
+    bottom: 0;
+    right: 10px;
+    position: fixed;
+    z-index: 4;
+}
+
+.icon__feedback {
+    margin-bottom: -2px;
+    margin-right: 5px;
+    vertical-align: bottom;
+    padding-top: 3px;
+}
+
+.Button__feedback span:before {
+    content: 'GIV OS FEEDBACK';
+}
+
+@media only screen and (max-width: 500px) {
+    .Button__feedback span:before {
+        display: none;
+    }
+
+    .Button__feedback span:after {
+        display: inline-flex;
+        font-size: 0.8rem;
+        content: 'FEEDBACK';
+    }
+    .Button__feedback{
+        padding-top: 5px;
+        padding-bottom: 7px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
+    .icon__feedback {
+        margin-bottom: -1px;
+    }
+
+    .icon__feedback.md-small {
+        font-size: 14px;
+    }
+}
+

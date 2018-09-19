@@ -23,6 +23,7 @@ import Lists from './components/list/overview/Lists.container';
 import ShortList from './components/list/shortlist/ShortList.container';
 import Spinner from './components/general/Spinner.component';
 import Styleguide from './components/Styleguide/Styleguide.component';
+import FeedbackButton from './components/general/FeedbackButton.component';
 
 class App extends Component {
   componentWillMount() {
@@ -106,6 +107,7 @@ class App extends Component {
           draggable
           pauseOnHover
         />
+        <FeedbackButton />
       </div>
     );
   }

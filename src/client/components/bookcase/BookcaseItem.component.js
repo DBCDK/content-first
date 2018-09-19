@@ -179,6 +179,7 @@ export class BookcaseItem extends React.Component {
                 {this.props.list.list.map(element => {
                   return (
                     <div
+                      key={'caro-' + element.book.pid}
                       className={`carousel-container ${
                         this.props.active ? ' carousel-display' : ''
                       }`}
