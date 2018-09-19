@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TaxDescription from './TaxDescription.component';
-import Heading from '../base/Heading';
+import Title from '../base/Title';
+import Text from '../base/Text';
 import Button from '../base/Button';
-import Paragraph from '../base/Paragraph';
 import Icon from '../base/Icon';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
@@ -24,7 +24,6 @@ import {
   sortTags,
   buildSimilarBooksBelt
 } from './workFunctions';
-
 import './WorkPage.css';
 
 class WorkPage extends React.Component {
@@ -110,35 +109,37 @@ class WorkPage extends React.Component {
                 hoverTitle="Del på facebook"
               />
 
-              <Heading Tag="h1" type="lead" className="mt0">
+              <Title Tag="h3" type="title3" className="mt0">
                 {book.title}
-              </Heading>
+              </Title>
 
-              <Heading Tag="h2" type="heading" className="mt1">
+              <Title Tag="h2" type="title5" className="mt1">
                 {book.creator}
-              </Heading>
+              </Title>
 
-              <Paragraph className="mt1">
-                <strong>{<TaxDescription text={tax_description} />}</strong>
-              </Paragraph>
+              <Text type="body" variant="weight-semibold" className="mt1">
+                {<TaxDescription text={tax_description} />}
+              </Text>
 
-              <Paragraph className="mt1">{book.description}</Paragraph>
+              <Text type="body" className="mt1">
+                {book.description}
+              </Text>
 
-              <div className="WorkPage__details .WorkPage__detailsDesktop">
-                <span>Sideantal: {book.pages}</span>
-                <span>Sprog: {book.language}</span>
-                <span>Udgivet: {book.first_edition_year}</span>
+              <div className="WorkPage__details WorkPage__detailsDesktop">
+                <Text type="micro">Sideantal: {book.pages}</Text>
+                <Text type="micro">Sprog: {book.language}</Text>
+                <Text type="micro">Udgivet: {book.first_edition_year}</Text>
               </div>
 
               <div className="row">
                 <div className="col-12 pt1">
-                  <Heading
-                    Tag="h4"
-                    type="subtitle"
-                    className="mt1 mb0 kobber-txt"
+                  <Text
+                    type="body"
+                    variant="weight-semibold"
+                    className="mt1 mb0"
                   >
                     Lån som:
-                  </Heading>
+                  </Text>
                 </div>
               </div>
 
@@ -235,9 +236,13 @@ class WorkPage extends React.Component {
 
               <div className="row WorkPage__tagHeading__Mobile">
                 <div className="col-md-12">
-                  <Heading Tag="h3" type="title" className="mt3 mb0">
-                    Tags:
-                  </Heading>
+                  <Text
+                    type="body"
+                    variant="weight-semibold"
+                    className="mt3 mb0"
+                  >
+                    Om bogen:
+                  </Text>
                 </div>
               </div>
 
@@ -253,14 +258,13 @@ class WorkPage extends React.Component {
                 {tags.map(group => {
                   return (
                     <React.Fragment>
-                      <Heading
-                        Tag="h4"
+                      <Text
                         key={group.title}
-                        type="subtitle"
+                        type="body"
                         className="WorkPage__tagHeading mb0 mt0"
                       >
                         {group.title + ':'}
-                      </Heading>
+                      </Text>
                       {group.data.map(t => {
                         return (
                           <Link key={t.id} href="/find" params={{tag: t.id}}>
@@ -303,9 +307,9 @@ class WorkPage extends React.Component {
           <div className="col-md-12 col-lg-4 WorkPage__reviews pt1 pb1">
             <div className="row">
               <div className="col-md-12">
-                <Heading Tag="h3" type="title" className="mt0 mb2">
+                <Title Tag="h3" type="title4" className="mt0 mb2">
                   Anmeldelser:
-                </Heading>
+                </Title>
               </div>
             </div>
 
@@ -319,11 +323,14 @@ class WorkPage extends React.Component {
                   >
                     <Icon name="face" />
                     <span className="WorkPage__review__details ml2">
-                      <Heading Tag="h5" type="subtitle">
-                        <strong>{rev.creator}</strong>
-                        <br />
-                        {rev.date}
-                      </Heading>
+                      <Text
+                        type="body"
+                        variant="weight-semibold"
+                        className="mb0"
+                      >
+                        {rev.creator}
+                      </Text>
+                      <Text type="body">{rev.date}</Text>
                     </span>
                   </a>
                 );
@@ -370,43 +377,60 @@ class WorkPage extends React.Component {
 
           <div className="row col-12 mb2 WorkPage__detailsMobile">
             <div className="col-12">
-              <Heading Tag="h4" type="subtitle" className="mt1">
+              <Text type="body" variant="weight-semibold" className="mt1">
                 Mere info:
-              </Heading>
+              </Text>
             </div>
             <div className="col-12">
               <div className="WorkPage__details">
-                <span>Sideantal: {book.pages}</span>
-                <span>Sprog: {book.language}</span>
-                <span>Udgivet: {book.first_edition_year}</span>
+                <Text type="micro">Sideantal: {book.pages}</Text>
+                <Text type="micro">Sprog: {book.language}</Text>
+                <Text type="micro">Udgivet: {book.first_edition_year}</Text>
               </div>
             </div>
             <div className="col-12">
               <div className="WorkPage__formats mt1">
-                <span>Formater: </span>
+                <Text type="body" variant="weight-semibold" className="mt1">
+                  Formater:
+                </Text>
                 <div className="row col-12">
+                  {work.collectionHasLoaded && (
+                    <Text type="micro" className="mr1">
+                      <Icon name={'book'} className="md-xsmall" />
+                      {' Bog'}
+                    </Text>
+                  )}
                   {work.collectionHasLoaded &&
                     collection.map(col => {
                       if (col.count === 1) {
                         return (
-                          <span>
-                            <Icon name={col.icon} />
+                          <Text type="micro" className="mr1">
+                            <Icon name={col.icon} className="md-xsmall" />
                             {' ' + col.type}
-                          </span>
+                          </Text>
                         );
                       }
                     })}
                   {!work.collectionHasLoaded && (
                     <React.Fragment>
-                      <span className="WorkPage__formats__skeleton Skeleton__Pulse">
+                      <Text
+                        type="micro"
+                        className="WorkPage__formats__skeleton Skeleton__Pulse mr1"
+                      >
                         <Icon name={'book'} /> Bog
-                      </span>
-                      <span className="WorkPage__formats__skeleton Skeleton__Pulse">
+                      </Text>
+                      <Text
+                        type="micro"
+                        className="WorkPage__formats__skeleton Skeleton__Pulse mr1"
+                      >
                         <Icon name={'alternate_email'} /> EBog
-                      </span>
-                      <span className="WorkPage__formats__skeleton Skeleton__Pulse">
+                      </Text>
+                      <Text
+                        type="micro"
+                        className="WorkPage__formats__skeleton Skeleton__Pulse mr1"
+                      >
                         <Icon name={'voicemail'} /> Lydbog
-                      </span>
+                      </Text>
                     </React.Fragment>
                   )}
                 </div>
