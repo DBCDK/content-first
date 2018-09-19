@@ -294,7 +294,7 @@ export const listMiddleware = store => next => async action => {
         });
 
         store.dispatch({type: BOOKS_REQUEST, pids});
-        store.dispatch({type: REQUEST_USER, id: list.owner});
+        store.dispatch({type: REQUEST_USER, id: list._owner});
         list.list.forEach(element => {
           store.dispatch({type: REQUEST_USER, id: element._owner});
         });
