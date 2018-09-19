@@ -20,7 +20,7 @@ function FeedbackButton() {
         }}
       >
         <Icon className="icon__feedback md-small" name="chat_bubble_outline" />
-        <span>GIV OS FEEDBACK</span>
+        <span />
       </Button>
     </div>
   );

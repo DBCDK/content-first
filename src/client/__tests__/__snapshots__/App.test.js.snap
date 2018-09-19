@@ -1811,9 +1811,7 @@ exports[`renders without crashing 1`] = `
   <span />
   <div
     className="Toastify"
-  />-
-
-  -
+  />
   <div
     className="feedback-container"
   >
@@ -1826,9 +1824,7 @@ exports[`renders without crashing 1`] = `
       >
         chat_bubble_outline
       </i>
-      <span>
-        GIV OS FEEDBACK
-      </span>
+      <span />
     </button>
   </div>
 </div>

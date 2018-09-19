@@ -12,13 +12,34 @@
     padding-top: 3px;
 }
 
+.Button__feedback span:before {
+    content: 'GIV OS FEEDBACK';
+}
+
 @media only screen and (max-width: 500px) {
-    .Button__feedback span {
+    .Button__feedback span:before {
         display: none;
     }
 
+    .Button__feedback span:after {
+        display: inline-flex;
+        font-size: 0.8rem;
+        content: 'FEEDBACK';
+    }
+    .Button__feedback{
+        padding-top: 5px;
+        padding-bottom: 7px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+
     .icon__feedback {
-        margin-right: 0;
+        margin-bottom: -1px;
+    }
+
+    .icon__feedback.md-small {
+        font-size: 14px;
     }
 }
 
