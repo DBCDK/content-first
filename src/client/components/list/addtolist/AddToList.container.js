@@ -77,7 +77,7 @@ export class AddToList extends React.Component {
             <Text
               type="body"
               variant="color-fersken"
-              className="mt-2 mb-0 d-inline-block"
+              className="mt-2 mb-0 d-inline"
             >
               {' eksisterer allerede i listen'}
             </Text>
