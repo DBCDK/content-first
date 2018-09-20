@@ -26,13 +26,11 @@ Array [
         href="/huskeliste"
         onClick={[Function]}
     >
-        <h1
-            className=" Heading Heading__peach-subtitle"
+        <p
+            className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
         >
-            HUSKELISTE (
-            2
-            )
-        </h1>
+            Huskeliste (2)
+        </p>
     </a>
     <div
         className="top-bar-dropdown-list--empty-text text-center d-none"
@@ -217,13 +215,11 @@ Array [
         href="/huskeliste"
         onClick={[Function]}
     >
-        <h1
-            className=" Heading Heading__peach-subtitle"
+        <p
+            className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
         >
-            HUSKELISTE (
-            4
-            )
-        </h1>
+            Huskeliste (4)
+        </p>
     </a>
     <div
         className="top-bar-dropdown-list--empty-text text-center d-none"
@@ -530,13 +526,11 @@ Array [
         href="/huskeliste"
         onClick={[Function]}
     >
-        <h1
-            className=" Heading Heading__peach-subtitle"
+        <p
+            className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
         >
-            HUSKELISTE (
-            1
-            )
-        </h1>
+            Huskeliste (1)
+        </p>
     </a>
     <div
         className="top-bar-dropdown-list--empty-text text-center d-none"
@@ -660,13 +654,11 @@ Array [
         href="/huskeliste"
         onClick={[Function]}
     >
-        <h1
-            className=" Heading Heading__peach-subtitle"
+        <p
+            className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
         >
-            HUSKELISTE (
-            0
-            )
-        </h1>
+            Huskeliste (0)
+        </p>
     </a>
     <div
         className="top-bar-dropdown-list--empty-text text-center "

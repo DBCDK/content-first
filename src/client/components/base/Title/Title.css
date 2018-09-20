@@ -3,6 +3,7 @@
 */
 
 .Title {
+  font-family: var(--primary-font);
   color: var(--petroleum);
 }
 
@@ -43,6 +44,10 @@
 /*
     Modifiers
 */
+
+.Title__title4--transform-uppercase {
+  text-transform: uppercase;
+}
 
 /*
     MediaQ

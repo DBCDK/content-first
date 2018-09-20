@@ -46,7 +46,7 @@
   align-self: flex-end;
 }
 .list-card-summary {
-  height: 65px;
+  height: 75px;
   border-bottom: 1px solid var(--pistache);
 }
 .list-card-title,
@@ -57,7 +57,6 @@
 a.list-card-nohover {
   color: black;
   text-decoration: none;
-
 }
 .list-card-description {
   font-family: var(--primary-font);

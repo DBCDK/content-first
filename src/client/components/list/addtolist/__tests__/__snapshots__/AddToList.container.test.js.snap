@@ -8,13 +8,14 @@ exports[`AddToList render when allowAdd is true 1`] = `
 <div
   className="addbook undefined"
 >
-  <Heading
+  <Title
     className="ml-2 ml-sm-0"
     tag="h2"
-    type="section"
+    type="title4"
+    variant="transform-uppercase"
   >
     Vil du tilføje bøger til listen?
-  </Heading>
+  </Title>
   <div
     className="d-flex flex-row french-pass pt-4"
   >
@@ -76,13 +77,14 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
 <div
   className="addbook undefined"
 >
-  <Heading
+  <Title
     className="ml-2 ml-sm-0"
     tag="h2"
-    type="section"
+    type="title4"
+    variant="transform-uppercase"
   >
     Vil du tilføje bøger til listen?
-  </Heading>
+  </Title>
   <div
     className="d-flex flex-row french-pass pt-4"
   >
@@ -144,13 +146,14 @@ exports[`AddToList show error msg when selected books is already in list 1`] = `
 <div
   className="addbook undefined"
 >
-  <Heading
+  <Title
     className="ml-2 ml-sm-0"
     tag="h2"
-    type="section"
+    type="title4"
+    variant="transform-uppercase"
   >
     Vil du tilføje bøger til listen?
-  </Heading>
+  </Title>
   <div
     className="d-flex flex-row french-pass pt-4"
   >

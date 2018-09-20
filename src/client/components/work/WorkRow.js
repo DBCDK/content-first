@@ -1,5 +1,6 @@
 import React from 'react';
-import Heading from '../base/Heading';
+import Title from '../base/Title';
+import Text from '../base/Text';
 import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
 import BookmarkButton from '../general/BookmarkButton';
@@ -21,12 +22,10 @@ export default ({work, className, origin}) => {
       </div>
 
       <div className="ml-3">
-        <Heading tag="h3" type="title">
+        <Title Tag="h3" type="title5" className="mb0">
           {book.title}
-        </Heading>
-        <Heading tag="h3" type="subtitle">
-          {book.creator}
-        </Heading>
+        </Title>
+        <Text type="body">{book.creator}</Text>
         {book.taxonomy_description &&
           book.taxonomy_description.split('\n').map(line => (
             <div key={line} style={{fontWeight: 600}}>

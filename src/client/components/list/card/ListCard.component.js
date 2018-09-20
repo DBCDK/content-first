@@ -4,7 +4,7 @@ import TruncateMarkup from 'react-truncate-markup';
 import ProfileImage from '../../general/ProfileImage.component';
 import Link from '../../general/Link.component';
 import toColor from '../../../utils/toColor';
-import Heading from '../../base/Heading';
+import Text from '../../base/Text';
 import Icon from '../../base/Icon';
 import SkeletonText from '../../base/Skeleton/Text';
 import SkeletonUser from '../../base/Skeleton/User';
@@ -96,21 +96,17 @@ class ListCard extends React.Component {
             <div className="list-card-cover">
               {this.renderBookCover(list._id, list.image)}
             </div>
-            <div className="list-card-summary">
-              <Heading
-                className="list-card-about mt2 mb1"
-                Tag="h3"
-                type="title"
-              >
-                <TruncateMarkup lines={3}>
-                  <strong>
-                    <div className="list-card-title">{list.title}</div>
-                    <div className="list-card-description">
-                      {list.description}
-                    </div>
-                  </strong>
-                </TruncateMarkup>
-              </Heading>
+            <div className="list-card-summary mt1">
+              <TruncateMarkup lines={3}>
+                <span>
+                  <Text className="list-card-about mt0 mb0" type="large">
+                    {list.title}
+                  </Text>
+                  <Text className="list-card-about mt0 mb0" type="body">
+                    {list.description}
+                  </Text>
+                </span>
+              </TruncateMarkup>
             </div>
             <div className="list-card-bottom">
               <ProfileImage

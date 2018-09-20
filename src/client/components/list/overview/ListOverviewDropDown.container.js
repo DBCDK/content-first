@@ -11,7 +11,7 @@ import {getFollowedLists} from '../../../redux/selectors';
 import {getListsForOwner} from '../../../redux/list.reducer';
 import toColor from '../../../utils/toColor';
 import Button from '../../base/Button/Button';
-import Heading from '../../base/Heading/Heading';
+import Text from '../../base/Text';
 import Link from '../../general/Link.component';
 import './dropdownList.css';
 import toReadListIcon from '../../images/toReadListIcon.png';
@@ -75,7 +75,13 @@ const UserListsContent = props => {
         clear
       </i>
       <Link href="/lister">
-        <Heading type="peach-subtitle">Lister</Heading>
+        <Text
+          type="body"
+          variant="color-fersken--weight-semibold--transform-uppercase"
+          className="tc"
+        >
+          Lister
+        </Text>
       </Link>
       {props.children &&
         props.children.length > 0 && (

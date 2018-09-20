@@ -12,7 +12,7 @@ import {HISTORY_PUSH} from '../../../redux/middleware';
 import {ORDER} from '../../../redux/order.reducer';
 import BookCover from '../../general/BookCover.component';
 import Button from '../../base/Button/Button';
-import Heading from '../../base/Heading/Heading';
+import Text from '../../base/Text';
 import Link from '../../general/Link.component';
 import '../overview/dropdownList.css';
 
@@ -64,9 +64,13 @@ const ShortListContent = props => {
         clear
       </i>
       <Link href="/huskeliste">
-        <Heading type="peach-subtitle">
-          HUSKELISTE ({props.elements && props.elements.length})
-        </Heading>
+        <Text
+          type="body"
+          variant="color-fersken--weight-semibold--transform-uppercase"
+          className="tc"
+        >
+          {`Huskeliste (${props.elements && props.elements.length})`}
+        </Text>
       </Link>
       <div
         className={

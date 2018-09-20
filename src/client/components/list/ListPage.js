@@ -4,7 +4,7 @@ import {getListByIdSelector} from '../../redux/list.reducer';
 import SimpleList from './templates/simple/SimpleList';
 import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
 import Spinner from '../general/Spinner.component';
-import Heading from '../base/Heading';
+import Title from '../base/Title';
 
 const getListById = getListByIdSelector();
 
@@ -38,26 +38,16 @@ export class ListPage extends React.Component {
 
     if (list.error) {
       return (
-        <Heading
-          Tag="h1"
-          type="heading"
-          className="text-center mt-5"
-          style={{color: 'red'}}
-        >
+        <Title Tag="h1" type="title3" className="text-center mt-5">
           Listen kunne ikke hentes
-        </Heading>
+        </Title>
       );
     }
     if (!list._type) {
       return (
-        <Heading
-          Tag="h1"
-          type="heading"
-          className="text-center mt-5"
-          style={{color: 'red'}}
-        >
+        <Title Tag="h1" type="title3" className="text-center mt-5">
           Listen er slettet
-        </Heading>
+        </Title>
       );
     }
 

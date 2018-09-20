@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import request from 'superagent';
 import Autosuggest from 'react-autosuggest';
 import BookCover from '../../general/BookCover.component';
-import Heading from '../../base/Heading';
+import Text from '../../base/Text';
 
 import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 
@@ -29,12 +29,12 @@ const renderSuggestion = (suggestion, suggestionString) => {
     <div className="suggestion-row d-flex p-2">
       <BookCover book={suggestion.book} style={{width: 25}} />
       <div className="ml-3">
-        <Heading Tag="h4" type="title">
+        <Text type="body" variant="weight-semibold" className="mb0">
           {addEmphasisToString(suggestion.book.title, suggestionString)}
-        </Heading>
-        <Heading Tag="h4" type="subtitle">
+        </Text>
+        <Text type="small" className="mb0">
           {addEmphasisToString(suggestion.book.creator, suggestionString)}
-        </Heading>
+        </Text>
       </div>
     </div>
   );
