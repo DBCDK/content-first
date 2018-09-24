@@ -1,0 +1,11 @@
+.list-cover-content-hider {
+  left: 0;
+  top: 0;
+  z-index: 9;
+}
+
+.list-cover-image-wrapper.sticky {
+  position: fixed;
+  z-index: 9;
+  transform: scale(1.015);
+}

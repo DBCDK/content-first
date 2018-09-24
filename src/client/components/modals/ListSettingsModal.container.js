@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Modal from './Modal.component';
 import Heading from '../base/Heading';
+import Title from '../base/Title';
+import Text from '../base/Text';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
@@ -45,14 +47,17 @@ const CheckBoxButton = ({checked, children, onClick, className}) => (
 export class ListSettingsModal extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      public: props.list.public,
-      social: props.list.social,
-      open: props.list.open
+      template: props.list.template || 'list',
+      public: props.list.public || false,
+      social: props.list.social || false,
+      open: props.list.open || false
     };
   }
   render() {
     const {list, updateListData, close, submit} = this.props;
+
     return (
       <Modal
         header="Indstillinger"
@@ -60,6 +65,7 @@ export class ListSettingsModal extends React.Component {
         onDone={() => {
           updateListData({
             _id: list._id,
+            template: this.state.template,
             public: this.state.public,
             social: this.state.social,
             open: this.state.open
@@ -70,9 +76,37 @@ export class ListSettingsModal extends React.Component {
         doneText="Gem indstillinger"
         cancelText="Fortryd"
       >
-        <Heading Tag="h2" type="title" className="mt-4">
+        <Text type="large" className="mt-4">
+          Hvordan skal listen vises?
+        </Text>
+        <div>
+          <CheckBoxButton
+            className="mt-2"
+            checked={this.state.template === 'list'}
+            onClick={() => {
+              this.setState({template: 'list'});
+            }}
+          >
+            Vis som liste
+          </CheckBoxButton>
+        </div>
+        <div>
+          <CheckBoxButton
+            className="mt-2"
+            checked={this.state.template === 'bookcase'}
+            onClick={() => {
+              this.setState({template: 'bookcase'});
+            }}
+          >
+            Vis som bogreol
+          </CheckBoxButton>
+        </div>
+
+        <hr />
+
+        <Text type="large" className="mt-4">
           Hvad må andre brugere på listen?
-        </Heading>
+        </Text>
         <div>
           <CheckBoxButton
             className="mt-2"

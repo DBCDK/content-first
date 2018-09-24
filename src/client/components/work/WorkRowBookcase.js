@@ -6,6 +6,8 @@ import Link from '../general/Link.component';
 import BookmarkButton from '../general/BookmarkButton';
 import TaxDescription from './TaxDescription.component.js';
 
+import AddToListButton from '../general/AddToListButton.component';
+
 export default ({work, className, origin}) => {
   const book = work.book;
 
@@ -28,9 +30,20 @@ export default ({work, className, origin}) => {
           {book.title}
         </Title>
         <Text type="body">{book.creator}</Text>
-        <Text type="body" variant="weight-semibold">
-          <TaxDescription text={book.taxonomy_description} />
-        </Text>
+
+        <div className="d-flex">
+          <Text type="micro" className="mr-3">
+            Sideantal: {book.pages}
+          </Text>
+          <Text type="micro" className="mr-3">
+            Sprog: {book.language}
+          </Text>
+          <Text type="micro" className="mr-3">
+            Udgivet: {book.first_edition_year}
+          </Text>
+        </div>
+
+        <AddToListButton work={work} />
       </div>
     </div>
   );
