@@ -45,7 +45,13 @@ const replayBeginWhen = {
 export const replayReducer = (
   state = getItem(LOCAL_STORAGE_REPLAY_KEY, LOCAL_STORAGE_REPLAY_VERSION, {
     isReplaying: false,
-    actions: [{type:"ON_LOCATION_CHANGE",path:"/",location:{pathname:"/",search:"",hash:""}}]
+    actions: [
+      {
+        type: 'ON_LOCATION_CHANGE',
+        path: '/',
+        location: {pathname: '/', search: '', hash: ''}
+      }
+    ]
   }),
   action
 ) => {
