@@ -260,6 +260,7 @@ section .celeb .celeb-bottom {
     display: block;
     max-height: 100%;
     height: 100%;
+    cursor: pointer;
   }
 
   section .caroContainer .bookswrap {
