@@ -17,7 +17,7 @@ const getListById = getListByIdSelector();
 export class BookcaseList extends React.Component {
   constructor() {
     super();
-    this.state = {added: null, top: 0};
+    this.state = {added: null, sticky: false, expanded: false};
   }
 
   componentDidMount() {
@@ -29,13 +29,38 @@ export class BookcaseList extends React.Component {
   }
 
   handleScroll = () => {
-    this.setState({top: window.pageYOffset});
+    const info = this.getListInfoPositions();
+    // Calculate if coverInfo should be fixed
+    const offsetTop = window.pageYOffset;
+    const headerHeight = document.getElementsByTagName('header')[0]
+      .offsetHeight;
+
+    //const sticky = offsetTop + headerHeight * 1.5 > info.top ? true : false;
+
+    const sticky = offsetTop > info.top + info.height ? true : false;
+
+    if (this.state.sticky !== sticky) {
+      this.setState({sticky});
+    }
+    this.setState({expanded: false});
+  };
+
+  onExpandClick = () => {
+    this.setState({expanded: !this.state.expanded});
+  };
+
+  getListInfoPositions = () => {
+    return {
+      height: this.refs.info ? this.refs.info.offsetHeight : 0,
+      width: this.refs.info ? this.refs.info.offsetWidth : 0,
+      top: this.refs.info ? this.refs.info.offsetTop : 0
+    };
   };
 
   onEdit = () => {
     scrollToComponent(this.refs.cover, {
       align: 'top',
-      offset: -100,
+      offset: -200,
       duration: 500
     });
   };
@@ -53,18 +78,7 @@ export class BookcaseList extends React.Component {
     const {_id, list} = this.props;
     const {added} = this.state;
 
-    const info = {
-      height: this.refs.info ? this.refs.info.offsetHeight : 0,
-      width: this.refs.info ? this.refs.info.offsetWidth : 0,
-      top: this.refs.info ? this.refs.info.offsetTop : 0
-    };
-
-    // Calculate if coverInfo should be fixed
-    const offsetTop = this.state.top;
-    const headerHeight = document.getElementsByTagName('header')[0]
-      .offsetHeight;
-
-    const stickyInfo = offsetTop + headerHeight * 1.5 > info.top ? true : false;
+    const info = this.getListInfoPositions();
 
     return (
       <React.Fragment>
@@ -79,7 +93,6 @@ export class BookcaseList extends React.Component {
         />
         <div className="d-flex justify-content-center mt-0 mt-md-5 mb-5">
           <div className="fixed-width-col-sm d-xs-none d-xl-block" />
-
           <div
             className="list-container pistache fixed-width-col-md"
             ref={cover => {
@@ -90,7 +103,9 @@ export class BookcaseList extends React.Component {
               _id={_id}
               onAddBook={this.onAddBook}
               onEdit={this.onEdit}
-              sticky={stickyInfo}
+              sticky={this.state.sticky}
+              expanded={this.state.expanded}
+              expandClick={this.onExpandClick}
               info={info}
               infoRef={info => {
                 this.refs = {...this.refs, info};

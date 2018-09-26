@@ -1,92 +1,88 @@
 .pulse-toucharea {
-  width: 30px;
-  height: 30px;
-  z-index: 1;
+  width: 40px;
+  height: 40px;
+  z-index: 8;
   border-radius: 50%;
   cursor: pointer;
-
-  transform:translate(-50%, -50%) !important;
-
-
+  transform: translate(-50%, -50%);
+  position: absolute;
 }
 
 .pulse {
-  width: 10px;
-  height: 10px;
-  background-color: rgba(255, 255, 255, 0.85);
+  width: 20px;
+  height: 20px;
+  background-color: var(--korn);
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid white;
   margin: 10px;
   transition: all 0.2s ease-in-out;
   border-radius: 50%;
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-  animation: pulse 3s infinite;
-
+  animation: dots 3s infinite;
 }
 
 .pulse-expand:hover .pulse {
-  transform: scale(3.5);
-  background-color: rgba(255, 255, 255, 1);
-  animation: none;
+  transform: scale(1.25);
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
 }
 
-.pulse-expand:active .pulse {
-  transform: scale(3.5);
-  background-color: rgba(255, 255, 255, 1);
-  animation: none;
-}
-
+.pulse-expand:active .pulse,
 .pulse-active .pulse {
-  transform: scale(3);
-  background-color: rgba(255, 255, 255, 1);
-  animation: none;
+  transform: scale(1.25);
+  -webkit-animation-play-state: paused;
+  -moz-animation-play-state: paused;
+  -o-animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 .pulse-expand-disable .pulse {
-  transform: scale(3.5) !important;
-  background-color: rgba(255, 0, 255, 1) !important;
+  transform: scale(1.25) !important;
   animation: none !important;
 }
 
 .pulse-toucharea .pulse-label {
+  background-color: white;
+  border-radius: 5px;
   position: absolute;
-  top: 25px;
+  top: 40px;
   left: 50%;
   transform: translate(-50%, 0%);
   transition: all 0.2s ease-in-out;
-  color: var(--lightgrey);
-  width: 100px;
   display: block;
+  text-align: center;
   pointer-events: none;
-
+  min-width: 110px;
+  padding: 0.5rem;
+  opacity: 0;
 }
 
-.pulse-expand:hover .pulse-label {
-  top: 35px;
+.pulse-toucharea:hover .pulse-label {
+  opacity: 1;
 }
 
 /* Pulse animation */
 
-@-webkit-keyframes pulse {
+@-webkit-keyframes dots {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+    transform: scale(1);
   }
   30% {
-    -webkit-box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5);
+    transform: scale(1.25);
   }
   100% {
-    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+    transform: scale(1);
   }
 }
-@keyframes pulse {
+@keyframes dots {
   0% {
-    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+    transform: scale(1);
   }
   30% {
-    -moz-box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.5);
+    transform: scale(1.25);
   }
   100% {
-    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    transform: scale(1);
   }
 }

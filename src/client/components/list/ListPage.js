@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getListByIdSelector} from '../../redux/list.reducer';
-import SimpleList from './templates/simple/SimpleList';
-import BookcaseList from './templates/bookcase/BookcaseList';
-import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
 import Spinner from '../general/Spinner.component';
 import Title from '../base/Title';
+import SimpleList from './templates/simple/SimpleList';
+import BookcaseList from './templates/bookcase/BookcaseList';
+import {getListByIdSelector} from '../../redux/list.reducer';
+import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
 
 const getListById = getListByIdSelector();
 

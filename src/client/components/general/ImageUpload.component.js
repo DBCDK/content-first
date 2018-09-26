@@ -96,7 +96,10 @@ export default class ImageUpload extends React.Component {
                 src={this.props.previewImage}
                 alt="User profile"
                 className="preview-img w-100"
-                style={{opacity: this.props.loading ? 0.2 : 1}}
+                style={{
+                  opacity: this.props.loading ? 0.2 : 1,
+                  pointerEvents: 'none'
+                }}
               />
             </div>
           )) || (
