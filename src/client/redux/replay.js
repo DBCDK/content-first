@@ -45,7 +45,7 @@ const replayBeginWhen = {
 export const replayReducer = (
   state = getItem(LOCAL_STORAGE_REPLAY_KEY, LOCAL_STORAGE_REPLAY_VERSION, {
     isReplaying: false,
-    actions: []
+    actions: [{type:"ON_LOCATION_CHANGE",path:"/",location:{pathname:"/",search:"",hash:""}}]
   }),
   action
 ) => {
@@ -84,7 +84,6 @@ export const replayMiddleware = store => next => action => {
   const prevReplay = store.getState().replay;
   const res = next(action);
   const {replay} = store.getState();
-
   if (
     replayBeginWhen[action.type] &&
     replayBeginWhen[action.type](store.getState())
