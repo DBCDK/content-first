@@ -401,12 +401,23 @@ export const loadShortList = async ({isLoggedIn, store}) => {
   }
 };
 
-export async function fetchSearchResults({query, dispatch}) {
+function formatQuery(query) {
   // Remove parenthesis and everything between from query string + leading/ending spaces
   query = query.replace(/\(.*\)/, '').trim();
-  query = query.split(' & ').join(' ');
+  // remove & and ,
+  query = query
+    .split(' & ')
+    .join(' ')
+    .split(',')
+    .join('');
   // add & to spaces between words in query
   query = query.split(' ').join(' & ');
+
+  return query;
+}
+export async function fetchSearchResults({query, dispatch}) {
+  query = formatQuery(query);
+
   try {
     const result = await request.get(
       '/v1/search?q=' + encodeURIComponent(query)

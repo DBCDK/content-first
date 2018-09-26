@@ -102,7 +102,10 @@ class TagsSuggester extends React.Component {
   }
 
   async onAuthorTitleSuggestionsFetchRequested({value}) {
-    value = value.toLowerCase();
+    value = value
+      .toLowerCase()
+      .split(',')
+      .join('');
     this.currentRequest = value;
     const results = JSON.parse(
       (await request.get(
@@ -122,11 +125,14 @@ class TagsSuggester extends React.Component {
         }
       ]
     }));
-
     let authorResults = results
       .filter(a => {
         if (!a.suggestions[0].creator.toLowerCase().includes(value)) {
-          return a.suggestions[0].title.toLowerCase().includes(value);
+          return a.suggestions[0].title
+            .toLowerCase()
+            .split(',')
+            .join('')
+            .includes(value);
         }
         return a.suggestions[0].creator.toLowerCase().includes(value);
       })
@@ -145,10 +151,20 @@ class TagsSuggester extends React.Component {
 
     const titleResults = results
       .filter(t => {
-        if (!t.suggestions[0].title.toLowerCase().includes(value)) {
+        if (
+          !t.suggestions[0].title
+            .toLowerCase()
+            .split(',')
+            .join('')
+            .includes(value)
+        ) {
           return t.suggestions[0].creator.toLowerCase().includes(value);
         }
-        return t.suggestions[0].title.toLowerCase().includes(value);
+        return t.suggestions[0].title
+          .toLowerCase()
+          .split(',')
+          .join('')
+          .includes(value);
       })
       .map(t => {
         return {
