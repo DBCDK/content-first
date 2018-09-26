@@ -6,10 +6,7 @@ import Button from '../base/Button';
 
 import './BookmarkButton.css';
 
-export class BookmarkButton extends React.Component {
-  shouldComponentUpdate(nextProps) {
-    return nextProps.shortListState !== this.props.shortListState;
-  }
+export class BookmarkButton extends React.PureComponent {
   render() {
     // TODO store elements in a map in short list for faster look up
     const remembered = this.props.shortListState.elements.reduce((map, e) => {
