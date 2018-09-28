@@ -2,22 +2,21 @@
   width: 40px;
   height: 40px;
   z-index: 8;
-  border-radius: 50%;
   cursor: pointer;
-  transform: translate(-50%, -50%);
   position: absolute;
+  margin-top: -20px;
+  margin-left: -20px;
 }
 
 .pulse {
   width: 20px;
   height: 20px;
   background-color: var(--korn);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
   border: 1px solid white;
-  margin: 10px;
   transition: all 0.2s ease-in-out;
   border-radius: 50%;
   animation: dots 3s infinite;
+  margin: 10px auto;
 }
 
 .pulse-expand:hover .pulse {
@@ -38,7 +37,7 @@
 }
 
 .pulse-expand-disable .pulse {
-  transform: scale(1.25) !important;
+  transform: scale(1) !important;
   animation: none !important;
 }
 

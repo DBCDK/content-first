@@ -14,9 +14,11 @@ export default class Pulse extends React.Component {
       label = this.props.label.substring(0, 15) + '...';
     }
 
+    const activeClass = this.props.active ? 'pulse-active' : '';
+    const colorClass = this.props.color ? this.props.color : '';
+
     return (
       <Draggable
-        pid={this.props.pid}
         bounds={this.props.dragContainer || false}
         disabled={!this.props.draggable}
         position={this.props.position}
@@ -25,14 +27,13 @@ export default class Pulse extends React.Component {
         onStop={this.props.onStop}
       >
         <div
-          className={`pulse-toucharea pulse-expand ${
-            this.props.active === this.props.pid ? 'pulse-active' : ''
-          }`}
+          className={`pulse-toucharea pulse-expand ${this.props.className ||
+            ''} ${activeClass} `}
           onClick={this.props.onClick}
         >
           {this.props.label && <span className="pulse-label">{label}</span>}
           <div
-            className="pulse delay"
+            className={`pulse delay ${colorClass}`}
             style={{
               animationDelay:
                 (this.props.delay || this.randomDelay(10, 50)) + 'ms'

@@ -1,39 +1,47 @@
-.list-cover-content-hider {
-  left: 0;
-  top: 0;
-  z-index: 9;
-  display: none;
-}
-
 .list-cover-image-wrapper,
 .list-cover-image-wrapper img {
-  transition-duration: 0.3s;
+  z-index: 1;
+}
+
+.list-cover-image-wrapper {
+  animation: slideUp 0.3s;
 }
 
 .list-cover-image-wrapper.sticky {
   position: fixed !important;
-  z-index: 8;
-  padding: 0 !important;
+  z-index: 10;
   top: 0px;
   cursor: pointer;
   -webkit-animation: slideDown 0.3s forwards;
   animation: slideDown 0.3s forwards;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  max-height: 100px;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.3s;
 }
 
 .list-cover-image-wrapper.sticky.expanded {
   cursor: default;
-  max-height: 500px;
-  padding: 2rem !important;
+  max-height: 600px !important;
 }
 
-.list-cover-image-wrapper.sticky.expanded img {
-  max-height: 400px !important;
-  width: auto !important;
+.list-cover-image-wrapper.sticky .list-cover-content-hider {
+  height: 20px;
+  width: 100%;
+  top: -20px;
+  left: 0;
+  position: absolute;
+  z-index: 9;
 }
 
 .list-cover-image-wrapper.sticky img {
-  max-height: 100px !important;
+  height: 100% !important;
   width: auto !important;
+  transition-duration: 0.3s;
+}
+
+.list-cover-image-wrapper.sticky.expanded img {
+  width: 100% !important;
 }
 
 .list-cover-image-wrapper.sticky .pulse {
@@ -54,16 +62,68 @@
   transform: scale(0.85);
 }
 
+.info-color-select .pulse-toucharea {
+  position: static;
+  transform: none;
+  width: auto;
+  height: auto;
+}
+
 @-webkit-keyframes slideDown {
   100% {
     top: 100px;
-    transform: scale(1.015);
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: scale(0.85);
+  }
+  100% {
+    top: auto;
+    transform: scale(1);
   }
 }
 
 @keyframes slideDown {
   100% {
     top: 100px;
-    transform: scale(1.015);
+    transform: scale(1);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .list-cover-content-hider {
+    display: none;
+  }
+  @-webkit-keyframes slideDown {
+    100% {
+      top: 80px;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideDown {
+    100% {
+      top: 80px;
+      transform: scale(1);
+    }
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  @-webkit-keyframes slideDown {
+    100% {
+      top: 60px;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slideDown {
+    100% {
+      top: 60px;
+      transform: scale(1);
+    }
   }
 }

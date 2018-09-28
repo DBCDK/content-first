@@ -30,6 +30,10 @@
 .french-pass {
   background: var(--french-pass) !important;
 }
+.french-pass-txt {
+  color: var(--french-pass) !important;
+}
+
 .korn {
   background-color: var(--korn) !important;
   background: var(--korn) !important;
@@ -51,17 +55,41 @@
 .fersken-txt {
   color: var(--fersken) !important;
 }
+
 .lys-graa {
   background-color: var(--lys-graa) !important;
 }
+
 .porcelain {
   background-color: var(--porcelain) !important;
 }
+
 .pistache {
   background-color: var(--pistache) !important;
 }
+.pistache-txt {
+  color: var(--pistache) !important;
+}
+
+.due {
+  background-color: var(--due) !important;
+}
 .due-txt {
   color: var(--due) !important;
+}
+
+.de-york {
+  background-color: var(--de-york) !important;
+}
+.de-york-txt {
+  color: var(--de-york) !important;
+}
+
+.petrolium {
+  background-color: var(--petrolium) !important;
+}
+.petrolium-txt {
+  color: var(--petrolium) !important;
 }
 
 .fixed-width-col-md {

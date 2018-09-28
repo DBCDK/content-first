@@ -17,43 +17,77 @@ const getListById = getListByIdSelector();
 export class BookcaseList extends React.Component {
   constructor() {
     super();
-    this.state = {added: null, sticky: false, expanded: false};
+    this.state = {added: null, sticky: false, expanded: false, windowWidth: 0};
   }
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('resize', this.handleResize);
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('resize', this.handleResize);
   }
 
   handleScroll = () => {
     const info = this.getListInfoPositions();
-    // Calculate if coverInfo should be fixed
-    const offsetTop = window.pageYOffset;
-    const headerHeight = document.getElementsByTagName('header')[0]
-      .offsetHeight;
-
-    //const sticky = offsetTop + headerHeight * 1.5 > info.top ? true : false;
-
-    const sticky = offsetTop > info.top + info.height ? true : false;
+    const sticky = window.pageYOffset > info.height ? true : false;
 
     if (this.state.sticky !== sticky) {
       this.setState({sticky});
     }
-    this.setState({expanded: false});
+    if (this.state.expanded === true) {
+      this.setState({expanded: false});
+    }
+  };
+
+  handleResize = () => {
+    const windowWidth = window.innerWidth;
+
+    if (this.state.windowWidth !== windowWidth) {
+      this.setState({windowWidth});
+    }
   };
 
   onExpandClick = () => {
     this.setState({expanded: !this.state.expanded});
   };
 
+  onPulseClick = pid => {
+    scrollToComponent(this.refs[pid], {
+      align: 'top',
+      offset: -220,
+      duration: 500
+    });
+  };
+
   getListInfoPositions = () => {
+    const info = this.refs.info;
+
+    const headerHeight =
+      document.getElementsByTagName('header')[0].offsetHeight || 0;
+
+    let padding = 0;
+    let imgHeight = 0;
+    let imgWidth = 0;
+
+    if (info) {
+      imgWidth = info.querySelector('.list-cover-image').offsetWidth;
+      imgHeight = info.querySelector('.list-cover-image').offsetHeight;
+
+      const nodeStyle = window.getComputedStyle(info);
+      padding = nodeStyle.getPropertyValue('padding');
+    }
+
     return {
-      height: this.refs.info ? this.refs.info.offsetHeight : 0,
-      width: this.refs.info ? this.refs.info.offsetWidth : 0,
-      top: this.refs.info ? this.refs.info.offsetTop : 0
+      height: info ? this.refs.info.offsetHeight : 0,
+      width: info ? this.refs.info.offsetWidth : 0,
+      top: info ? this.refs.info.offsetTop : 0,
+      headerHeight,
+      padding,
+      imgWidth,
+      imgHeight
     };
   };
 
@@ -77,7 +111,6 @@ export class BookcaseList extends React.Component {
   render() {
     const {_id, list} = this.props;
     const {added} = this.state;
-
     const info = this.getListInfoPositions();
 
     return (
@@ -106,6 +139,7 @@ export class BookcaseList extends React.Component {
               sticky={this.state.sticky}
               expanded={this.state.expanded}
               expandClick={this.onExpandClick}
+              pulseClick={this.onPulseClick}
               info={info}
               infoRef={info => {
                 this.refs = {...this.refs, info};
@@ -115,6 +149,9 @@ export class BookcaseList extends React.Component {
               {list.list.map(element => {
                 return (
                   <ListElement
+                    elementRef={eRef => {
+                      this.refs[element.pid] = eRef;
+                    }}
                     key={element.pid}
                     element={element}
                     list={list}

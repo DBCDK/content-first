@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Textarea from 'react-textarea-autosize';
+import TruncateMarkup from 'react-truncate-markup';
 import {
   updateList,
   storeList,
@@ -23,15 +24,17 @@ import Pulse from '../../../pulse/Pulse.component';
 
 const getListById = getListByIdSelector();
 
+const dotColors = ['korn', 'due', 'de-york', 'fersken', 'petrolium'];
+
 function percentageObjToPixel(e, pos) {
-  const x = (Number(pos.x) * e.width) / 100;
-  const y = (Number(pos.y) * e.height) / 100;
+  const x = (pos.x * e.imgWidth) / 100;
+  const y = (pos.y * e.imgHeight) / 100;
   return {x, y};
 }
 
 function pixelObjToPercentage(e, pos) {
-  const x = (Number(pos.x) / e.width) * 100;
-  const y = (Number(pos.y) / e.height) * 100;
+  const x = (pos.x / e.imgWidth) * 100;
+  const y = (pos.y / e.imgHeight) * 100;
   return {x, y};
 }
 
@@ -44,6 +47,7 @@ export const ListInfo = ({
   onLeadChange,
   onDescriptionChange,
   onUrlTextChange,
+  onColorChange,
   updatePulsePositions,
   addImage,
   confirmShareModal,
@@ -53,223 +57,265 @@ export const ListInfo = ({
   sticky,
   expanded,
   info,
-  expandClick
+  expandClick,
+  pulseClick
 }) => {
   const height = info.height ? info.height : 'auto';
   const width = info.width ? info.width : '0';
-  const top = info.top ? info.top : 'auto';
 
-  const stickyClass = sticky && !editing ? 'box-shadow scale sticky' : '';
+  const padding = expanded ? info.padding : '0';
+
+  const notSticky = !sticky ? 'pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4' : '';
+  const stickyClass = sticky && !editing ? 'scale sticky' : '';
   const expandedClass = expanded && !editing ? ' expanded' : '';
 
   return (
-    <React.Fragment>
-      <div className={'box-shadow'}>
-        {list.image && (
-          <React.Fragment>
-            <div
-              style={{height: top + 'px'}}
-              className="list-cover-content-hider position-fixed bg-white w-100"
-            />
-            <div
-              style={{width}}
-              onClick={expandClick}
-              className={
-                'list-cover-image-wrapper pl-0 pb-4 position-absolute pt-md-4 pl-md-4 pr-md-4 lys-graa ' +
-                stickyClass +
-                expandedClass
-              }
-            >
-              <div className="position-relative w-100 h-1">
-                {list.list.map(work => {
-                  return (
-                    <Pulse
-                      dragContainer={'parent'}
-                      position={percentageObjToPixel(info, work.position)}
-                      draggable={editing}
-                      pid={work.pid}
-                      label={editing ? work.book.title : false}
-                      key={'pulse-' + work.pid}
-                      onStart={e => {
-                        e.preventDefault();
-                      }}
-                      onStop={(e, ui) => {
-                        const pos = pixelObjToPercentage(info, {
-                          x: ui.x,
-                          y: ui.y
-                        });
-                        const newList = list.list.map(b => {
-                          if (b === work) {
-                            work.position = pos;
-                          }
-                          return b;
-                        });
-                        updatePulsePositions(newList);
-                      }}
-                    />
-                  );
-                })}
-
-                {editing ? (
-                  <ImageUpload
-                    error={list.imageError}
-                    style={{
-                      borderRadius: 0,
-                      border: 0,
-                      width: '100%',
-                      height: '100%'
+    <div className={'box-shadow position-relative'}>
+      {list.image && (
+        <React.Fragment>
+          <div
+            style={{width, height, padding}}
+            onClick={expandClick}
+            className={
+              'list-cover-image-wrapper  position-absolute  lys-graa ' +
+              notSticky +
+              stickyClass +
+              expandedClass
+            }
+          >
+            <div className="list-cover-content-hider bg-white" />
+            <div className="position-relative w-100 h-100 d-flex">
+              {list.list.map(work => {
+                return (
+                  <Pulse
+                    dragContainer={'parent'}
+                    position={percentageObjToPixel(info, work.position)}
+                    draggable={editing}
+                    label={editing ? work.book.title : false}
+                    key={'pulse-' + work.pid}
+                    color={list.dotColor || false}
+                    onClick={() => {
+                      if (!editing) {
+                        return pulseClick(work.pid);
+                      }
                     }}
-                    loading={list.imageIsLoading}
-                    handleLoaded={this.onResize}
-                    previewImage={
-                      list.image ? `/v1/image/${list.image}/719/400` : null
-                    }
-                    buttonText="Skift billede"
-                    buttonPosition="inside"
-                    onFile={img => {
-                      addImage(list._id, img);
+                    onStart={e => {
+                      e.preventDefault();
+                    }}
+                    onStop={(e, ui) => {
+                      const pos = pixelObjToPercentage(info, {
+                        x: ui.x,
+                        y: ui.y
+                      });
+                      const newList = list.list.map(b => {
+                        if (b === work) {
+                          work.position = pos;
+                        }
+                        return b;
+                      });
+                      updatePulsePositions(newList);
                     }}
                   />
-                ) : (
-                  list.image && (
-                    <img
-                      className={'list-cover-image w-100'}
-                      alt=""
-                      src={`/v1/image/${list.image}/719/400`}
-                    />
-                  )
-                )}
-              </div>
-            </div>
-          </React.Fragment>
-        )}
-        <div
-          ref={infoRef}
-          className="list-cover-image-wrapper position-relative pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4 lys-graa "
-        >
-          <img
-            className="list-cover-image w-100"
-            alt=""
-            src={`/v1/image/${list.image}/719/400`}
-          />
-        </div>
-        <div className="info pl-3 pr-3 pl-sm-4 pr-sm-4 pb-4 lys-graa pt-2 position-relative">
-          <div
-            className="d-flex flex-row position-absolute pr-0"
-            style={{right: 0, top: 0}}
-          >
-            {!editing && (
-              <SocialShareButton
-                className={'ssb-fb align-middle mr-4'}
-                facebook={true}
-                href={'https://content-first.demo.dbc.dk/lister/' + list._id}
-                hex={'#3b5998'}
-                size={40}
-                shape="round"
-                hoverTitle="Del på facebook"
-                status={!list.public || editing ? 'passive' : 'active'}
-                onClick={() => {
-                  confirmShareModal(list._id);
-                }}
-              />
-            )}
-            <ListContextMenu
-              _id={list._id}
-              className="d-lg-none align-middle"
-              title=""
-              onEdit={onEdit}
-            />
-          </div>
+                );
+              })}
 
-          {editing ? (
-            <React.Fragment>
-              <Textarea
-                className={`mt-3 form-control fersken-txt Text Text__micro`}
-                name="list-description"
-                placeholder="Listens undertitel"
-                onChange={onSubtitleChange}
-                value={list.subtitle}
-              />
-
-              <Textarea
-                className={`mt-3 form-control d-inline w-100 Title Title__title3`}
-                name="list-description"
-                onChange={onTitleChange}
-                placeholder="Listens titel"
-                value={list.title || ''}
-              />
-
-              {!(list.title && list.title.trim()) && (
-                <Text type="body" variant="color-fersken" className="mt-2">
-                  Listen skal have en titel
-                </Text>
-              )}
-
-              <Textarea
-                className={`mt-3 form-control Text Text__large`}
-                name="list-description"
-                onChange={onLeadChange}
-                placeholder="Hvad handler listen om"
-                value={list.lead || ''}
-              />
-
-              <Textarea
-                className={`form-control mt-4 comment-textarea`}
-                name="list-description"
-                placeholder="Fortæl om listen"
-                onChange={onDescriptionChange}
-                value={list.description}
-              />
-
-              <Textarea
-                className={`mt-3 form-control Text Text__large`}
-                name="list-description"
-                placeholder="Listens link tekst"
-                onChange={onUrlTextChange}
-                value={list.urlText}
-              />
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <Text type="micro" className="mb-0">
-                {list.subtitle}
-              </Text>
-
-              <Title Tag="h1" type="title3" className="d-inline">
-                {list.title}
-              </Title>
-
-              <Text type="large" className="mt-3">
-                {list.lead}
-              </Text>
-
-              <Text type="body">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: textParser(list.description || '')
+              {editing ? (
+                <ImageUpload
+                  error={list.imageError}
+                  style={{
+                    borderRadius: 0,
+                    border: 0,
+                    width: info.imgWidth,
+                    height: info.imgHeight
+                  }}
+                  loading={list.imageIsLoading}
+                  handleLoaded={this.onResize}
+                  previewImage={
+                    list.image ? `/v1/image/${list.image}/719/400` : null
+                  }
+                  buttonText="Skift billede"
+                  buttonPosition="inside"
+                  onFile={img => {
+                    addImage(list._id, img);
                   }}
                 />
-              </Text>
-            </React.Fragment>
-          )}
-          <div className="d-flex flex-row lys-graa justify-content-between d-lg-none mt-4">
-            <div>
-              <FollowButton _id={list._id} />
-            </div>
-            <div>
-              <AddBookButton _id={list._id} onClick={onAddBook} />
+              ) : (
+                list.image && (
+                  <img
+                    className={'list-cover-image w-100'}
+                    alt=""
+                    src={`/v1/image/${list.image}/719/400`}
+                  />
+                )
+              )}
+
+              {sticky &&
+                !expanded && (
+                  <div className="list-cover-text pt-4 pl-4 pr-4">
+                    <Text type="micro" className="mb-0">
+                      <TruncateMarkup lines={1}>
+                        <span>{list.subtitle}</span>
+                      </TruncateMarkup>
+                    </Text>
+                    <Text type="large" className="mb0">
+                      <TruncateMarkup lines={2}>
+                        <span>{list.title}</span>
+                      </TruncateMarkup>
+                    </Text>
+                  </div>
+                )}
             </div>
           </div>
-        </div>
-        {list.social && (
-          <Comments
-            className="m-0 pl-3 pl-sm-4 pr-3 pr-sm-4 pt-4 pb-0 porcelain"
-            id={list._id}
-            disabled={editing}
-          />
-        )}
+        </React.Fragment>
+      )}
+      <div
+        ref={infoRef}
+        className="position-relative pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4 lys-graa "
+      >
+        <img
+          style={{opacity: 0}}
+          className="list-cover-image w-100"
+          alt=""
+          src={`/v1/image/${list.image}/719/400`}
+        />
       </div>
-    </React.Fragment>
+      <div className="info pl-3 pr-3 pl-sm-4 pr-sm-4 pb-4 lys-graa pt-2 position-relative">
+        <div
+          className="d-flex flex-row position-absolute pr-0"
+          style={{right: 0, top: 0}}
+        >
+          {!editing && (
+            <SocialShareButton
+              className={'ssb-fb align-middle mr-4'}
+              facebook={true}
+              href={'https://content-first.demo.dbc.dk/lister/' + list._id}
+              hex={'#3b5998'}
+              size={40}
+              shape="round"
+              hoverTitle="Del på facebook"
+              status={!list.public || editing ? 'passive' : 'active'}
+              onClick={() => {
+                confirmShareModal(list._id);
+              }}
+            />
+          )}
+          <ListContextMenu
+            _id={list._id}
+            className="d-lg-none align-middle"
+            title=""
+            onEdit={onEdit}
+          />
+        </div>
+
+        {editing ? (
+          <React.Fragment>
+            <div className="info-color-select d-flex flex-row-reverse position-relative">
+              {dotColors.map((color, i) => {
+                const active = color === list.dotColor ? true : false;
+                const disableClass = !active ? 'pulse-expand-disable' : '';
+
+                return (
+                  <Pulse
+                    className={'ml-2 ' + disableClass}
+                    dragContainer={'parent'}
+                    draggable={false}
+                    pid={false}
+                    label={false}
+                    color={color}
+                    active={active}
+                    key={'pulse-' + i}
+                    onClick={() => onColorChange(color)}
+                  />
+                );
+              })}
+            </div>
+
+            <Textarea
+              className={`mt-3 form-control fersken-txt Text Text__micro`}
+              name="list-description"
+              placeholder="Listens undertitel"
+              onChange={onSubtitleChange}
+              value={list.subtitle}
+            />
+
+            <Textarea
+              className={`mt-3 form-control d-inline w-100 Title Title__title3`}
+              name="list-description"
+              onChange={onTitleChange}
+              placeholder="Listens titel"
+              value={list.title || ''}
+            />
+
+            {!(list.title && list.title.trim()) && (
+              <Text type="body" variant="color-fersken" className="mt-2">
+                Listen skal have en titel
+              </Text>
+            )}
+
+            <Textarea
+              className={`mt-3 form-control Text Text__large`}
+              name="list-description"
+              onChange={onLeadChange}
+              placeholder="Hvad handler listen om"
+              value={list.lead || ''}
+            />
+
+            <Textarea
+              className={`form-control mt-4 comment-textarea`}
+              name="list-description"
+              placeholder="Fortæl om listen"
+              onChange={onDescriptionChange}
+              value={list.description}
+            />
+
+            <Textarea
+              className={`mt-3 form-control Text Text__large`}
+              name="list-description"
+              placeholder="Listens link tekst"
+              onChange={onUrlTextChange}
+              value={list.urlText}
+            />
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <Text type="micro" className="mb-0">
+              {list.subtitle}
+            </Text>
+
+            <Title Tag="h1" type="title3" className="d-inline">
+              {list.title}
+            </Title>
+
+            <Text type="large" className="mt-3">
+              {list.lead}
+            </Text>
+
+            <Text type="body">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: textParser(list.description || '')
+                }}
+              />
+            </Text>
+          </React.Fragment>
+        )}
+        <div className="d-flex flex-row lys-graa justify-content-between d-lg-none mt-4">
+          <div>
+            <FollowButton _id={list._id} />
+          </div>
+          <div>
+            <AddBookButton _id={list._id} onClick={onAddBook} />
+          </div>
+        </div>
+      </div>
+      {list.social && (
+        <Comments
+          className="m-0 pl-3 pl-sm-4 pr-3 pr-sm-4 pt-4 pb-0 porcelain"
+          id={list._id}
+          disabled={editing}
+        />
+      )}
+    </div>
   );
 };
 
@@ -295,6 +341,8 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(updateList({_id: ownProps._id, description: e.target.value})),
   onUrlTextChange: e =>
     dispatch(updateList({_id: ownProps._id, urlText: e.target.value})),
+  onColorChange: color =>
+    dispatch(updateList({_id: ownProps._id, dotColor: color})),
   updatePulsePositions: list => dispatch(updateList({_id: ownProps._id, list})),
 
   confirmShareModal: _id => {

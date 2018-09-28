@@ -86,10 +86,14 @@ export class ListElement extends React.Component {
       isElementOwner,
       showContextMenu = true,
       showComments = true,
-      children
+      children,
+      elementRef
     } = this.props;
     return (
-      <div className="mt-2 mt-md-4 lys-graa box-shadow position-relative">
+      <div
+        ref={elementRef}
+        className="mt-2 mt-md-4 lys-graa box-shadow position-relative"
+      >
         {showContextMenu && (
           <ElementContextMenu
             onDelete={this.deleteElement}
