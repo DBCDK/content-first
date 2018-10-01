@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import RecentListsBelt from '../belt/RecentListsBelt.container';
-import Bookcase from '../bookcase/Bookcase.component';
+import BookcaseItem from '../bookcase/BookcaseItem.component';
 import BooksBelt from '../belt/BooksBelt.component';
 import SpotsContainer from '../spots/Spots.container';
 class FrontPage extends React.Component {
@@ -26,7 +26,7 @@ class FrontPage extends React.Component {
   render() {
     return (
       <div className="frontpage container">
-        <Bookcase />
+        <BookcaseItem id={'1c3e2840-bc19-11e8-8186-ad1a5179e67a'} />
         {this.renderBelts()}
       </div>
     );

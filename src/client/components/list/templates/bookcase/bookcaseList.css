@@ -3,7 +3,7 @@
   z-index: 1;
 }
 
-.list-cover-image-wrapper {
+.list-cover-image-wrapper.slideUp {
   animation: slideUp 0.3s;
 }
 

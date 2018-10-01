@@ -1,41 +1,41 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import Textarea from 'react-textarea-autosize';
-import TruncateMarkup from 'react-truncate-markup';
+import React from "react";
+import { connect } from "react-redux";
+import Textarea from "react-textarea-autosize";
+import TruncateMarkup from "react-truncate-markup";
 import {
   updateList,
   storeList,
   ADD_LIST_IMAGE,
   getListByIdSelector
-} from '../../../../redux/list.reducer';
-import {getUser} from '../../../../redux/users';
-import ProfileImage from '../../../general/ProfileImage.component';
-import SocialShareButton from '../../../general/SocialShareButton.component';
-import Comments from '../../../comments/Comment.container';
-import timeToString from '../../../../utils/timeToString';
-import textParser from '../../../../utils/textParser';
-import Title from '../../../base/Title';
-import Text from '../../../base/Text';
-import ImageUpload from '../../../general/ImageUpload.component';
-import FollowButton from '../../button/FollowButton';
-import AddBookButton from '../../button/AddBookButton';
-import ListContextMenu from '../../menu/ListContextMenu';
-import Pulse from '../../../pulse/Pulse.component';
+} from "../../../../redux/list.reducer";
+import { getUser } from "../../../../redux/users";
+import ProfileImage from "../../../general/ProfileImage.component";
+import SocialShareButton from "../../../general/SocialShareButton.component";
+import Comments from "../../../comments/Comment.container";
+import timeToString from "../../../../utils/timeToString";
+import textParser from "../../../../utils/textParser";
+import Title from "../../../base/Title";
+import Text from "../../../base/Text";
+import ImageUpload from "../../../general/ImageUpload.component";
+import FollowButton from "../../button/FollowButton";
+import AddBookButton from "../../button/AddBookButton";
+import ListContextMenu from "../../menu/ListContextMenu";
+import Pulse from "../../../pulse/Pulse.component";
 
 const getListById = getListByIdSelector();
 
-const dotColors = ['korn', 'due', 'de-york', 'fersken', 'petrolium'];
+const dotColors = ["korn", "due", "de-york", "fersken", "petrolium"];
 
 function percentageObjToPixel(e, pos) {
   const x = (pos.x * e.imgWidth) / 100;
   const y = (pos.y * e.imgHeight) / 100;
-  return {x, y};
+  return { x, y };
 }
 
 function pixelObjToPercentage(e, pos) {
   const x = (pos.x / e.imgWidth) * 100;
   const y = (pos.y / e.imgHeight) * 100;
-  return {x, y};
+  return { x, y };
 }
 
 export const ListInfo = ({
@@ -60,140 +60,137 @@ export const ListInfo = ({
   expandClick,
   pulseClick
 }) => {
-  const height = info.height ? info.height : 'auto';
-  const width = info.width ? info.width : '0';
+  const height = info.height;
+  const width = info.width;
 
-  const padding = expanded ? info.padding : '0';
+  const padding = expanded ? info.padding : "0";
 
-  const notSticky = !sticky ? 'pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4' : '';
-  const stickyClass = sticky && !editing ? 'scale sticky' : '';
-  const expandedClass = expanded && !editing ? ' expanded' : '';
+  const notSticky = !sticky ? "slideUp pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4" : "";
+  const stickyClass = sticky && !editing ? " scale sticky" : "";
+  const expandedClass = expanded && !editing ? " expanded" : "";
 
   return (
-    <div className={'box-shadow position-relative'}>
+    <div className={"box-shadow position-relative"}>
       {list.image && (
-        <React.Fragment>
-          <div
-            style={{width, height, padding}}
-            onClick={expandClick}
-            className={
-              'list-cover-image-wrapper  position-absolute  lys-graa ' +
-              notSticky +
-              stickyClass +
-              expandedClass
-            }
-          >
-            <div className="list-cover-content-hider bg-white" />
-            <div className="position-relative w-100 h-100 d-flex">
-              {list.list.map(work => {
-                return (
-                  <Pulse
-                    dragContainer={'parent'}
-                    position={percentageObjToPixel(info, work.position)}
-                    draggable={editing}
-                    label={editing ? work.book.title : false}
-                    key={'pulse-' + work.pid}
-                    color={list.dotColor || false}
-                    onClick={() => {
-                      if (!editing) {
-                        return pulseClick(work.pid);
-                      }
-                    }}
-                    onStart={e => {
-                      e.preventDefault();
-                    }}
-                    onStop={(e, ui) => {
-                      const pos = pixelObjToPercentage(info, {
-                        x: ui.x,
-                        y: ui.y
-                      });
-                      const newList = list.list.map(b => {
-                        if (b === work) {
-                          work.position = pos;
-                        }
-                        return b;
-                      });
-                      updatePulsePositions(newList);
-                    }}
-                  />
-                );
-              })}
-
-              {editing ? (
-                <ImageUpload
-                  error={list.imageError}
-                  style={{
-                    borderRadius: 0,
-                    border: 0,
-                    width: info.imgWidth,
-                    height: info.imgHeight
+        <div
+          style={{ width, height, padding }}
+          onClick={expandClick}
+          className={
+            "list-cover-image-wrapper position-absolute lys-graa " +
+            notSticky +
+            stickyClass +
+            expandedClass
+          }
+        >
+          <div className="list-cover-content-hider bg-white" />
+          <div className="position-relative w-100 h-100 d-flex">
+            {list.list.map(work => {
+              return (
+                <Pulse
+                  dragContainer={"parent"}
+                  position={percentageObjToPixel(info, work.position)}
+                  draggable={editing}
+                  label={editing ? work.book.title : false}
+                  key={"pulse-" + work.pid}
+                  color={list.dotColor || false}
+                  onClick={() => {
+                    if (!editing) {
+                      return pulseClick(work.pid);
+                    }
                   }}
-                  loading={list.imageIsLoading}
-                  handleLoaded={this.onResize}
-                  previewImage={
-                    list.image ? `/v1/image/${list.image}/719/400` : null
-                  }
-                  buttonText="Skift billede"
-                  buttonPosition="inside"
-                  onFile={img => {
-                    addImage(list._id, img);
+                  onStart={e => {
+                    e.preventDefault();
+                  }}
+                  onStop={(e, ui) => {
+                    const pos = pixelObjToPercentage(info, {
+                      x: ui.x,
+                      y: ui.y
+                    });
+                    const newList = list.list.map(b => {
+                      if (b === work) {
+                        work.position = pos;
+                      }
+                      return b;
+                    });
+                    updatePulsePositions(newList);
                   }}
                 />
-              ) : (
-                list.image && (
-                  <img
-                    className={'list-cover-image w-100'}
-                    alt=""
-                    src={`/v1/image/${list.image}/719/400`}
-                  />
-                )
-              )}
+              );
+            })}
+            {editing ? (
+              <ImageUpload
+                error={list.imageError}
+                style={{
+                  borderRadius: 0,
+                  border: 0,
+                  width: info.imgWidth,
+                  height: info.imgHeight
+                }}
+                loading={list.imageIsLoading}
+                handleLoaded={this.onResize}
+                previewImage={
+                  list.image ? `/v1/image/${list.image}/719/400` : null
+                }
+                buttonText="Skift billede"
+                buttonPosition="inside"
+                onFile={img => {
+                  addImage(list._id, img);
+                }}
+              />
+            ) : (
+              list.image && (
+                <img
+                  alt=""
+                  className={"list-cover-image w-100"}
+                  src={`/v1/image/${list.image}/719/400`}
+                />
+              )
+            )}
 
-              {sticky &&
-                !expanded && (
-                  <div className="list-cover-text pt-4 pl-4 pr-4">
-                    <Text type="micro" className="mb-0">
-                      <TruncateMarkup lines={1}>
-                        <span>{list.subtitle}</span>
-                      </TruncateMarkup>
-                    </Text>
-                    <Text type="large" className="mb0">
-                      <TruncateMarkup lines={2}>
-                        <span>{list.title}</span>
-                      </TruncateMarkup>
-                    </Text>
-                  </div>
-                )}
-            </div>
+            {sticky &&
+              !expanded && (
+                <div className="list-cover-text pt-4 pl-4 pr-4">
+                  <Text type="micro" className="mb-0">
+                    <TruncateMarkup lines={1}>
+                      <span>{list.subtitle}</span>
+                    </TruncateMarkup>
+                  </Text>
+                  <Text type="large" className="mb0">
+                    <TruncateMarkup lines={2}>
+                      <span>{list.title}</span>
+                    </TruncateMarkup>
+                  </Text>
+                </div>
+              )}
           </div>
-        </React.Fragment>
+        </div>
       )}
       <div
         ref={infoRef}
         className="position-relative pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4 lys-graa "
       >
         <img
-          style={{opacity: 0}}
-          className="list-cover-image w-100"
           alt=""
+          style={{ opacity: 0 }}
+          className="list-cover-image w-100"
           src={`/v1/image/${list.image}/719/400`}
         />
       </div>
       <div className="info pl-3 pr-3 pl-sm-4 pr-sm-4 pb-4 lys-graa pt-2 position-relative">
         <div
           className="d-flex flex-row position-absolute pr-0"
-          style={{right: 0, top: 0}}
+          style={{ right: 0, top: 0 }}
         >
           {!editing && (
             <SocialShareButton
-              className={'ssb-fb align-middle mr-4'}
+              className={"ssb-fb align-middle mr-4"}
               facebook={true}
-              href={'https://content-first.demo.dbc.dk/lister/' + list._id}
-              hex={'#3b5998'}
+              href={"https://content-first.demo.dbc.dk/lister/" + list._id}
+              hex={"#3b5998"}
               size={40}
               shape="round"
               hoverTitle="Del på facebook"
-              status={!list.public || editing ? 'passive' : 'active'}
+              status={!list.public || editing ? "passive" : "active"}
               onClick={() => {
                 confirmShareModal(list._id);
               }}
@@ -212,18 +209,18 @@ export const ListInfo = ({
             <div className="info-color-select d-flex flex-row-reverse position-relative">
               {dotColors.map((color, i) => {
                 const active = color === list.dotColor ? true : false;
-                const disableClass = !active ? 'pulse-expand-disable' : '';
+                const disableClass = !active ? "pulse-expand-disable" : "";
 
                 return (
                   <Pulse
-                    className={'ml-2 ' + disableClass}
-                    dragContainer={'parent'}
+                    className={"ml-2 " + disableClass}
+                    dragContainer={"parent"}
                     draggable={false}
                     pid={false}
                     label={false}
                     color={color}
                     active={active}
-                    key={'pulse-' + i}
+                    key={"pulse-" + i}
                     onClick={() => onColorChange(color)}
                   />
                 );
@@ -243,7 +240,7 @@ export const ListInfo = ({
               name="list-description"
               onChange={onTitleChange}
               placeholder="Listens titel"
-              value={list.title || ''}
+              value={list.title || ""}
             />
 
             {!(list.title && list.title.trim()) && (
@@ -257,7 +254,7 @@ export const ListInfo = ({
               name="list-description"
               onChange={onLeadChange}
               placeholder="Hvad handler listen om"
-              value={list.lead || ''}
+              value={list.lead || ""}
             />
 
             <Textarea
@@ -282,7 +279,7 @@ export const ListInfo = ({
               {list.subtitle}
             </Text>
 
-            <Title Tag="h1" type="title3" className="d-inline">
+            <Title Tag="h1" type="title3">
               {list.title}
             </Title>
 
@@ -293,7 +290,7 @@ export const ListInfo = ({
             <Text type="body">
               <span
                 dangerouslySetInnerHTML={{
-                  __html: textParser(list.description || '')
+                  __html: textParser(list.description || "")
                 }}
               />
             </Text>
@@ -320,40 +317,42 @@ export const ListInfo = ({
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const list = getListById(state, {_id: ownProps._id});
+  const list = getListById(state, { _id: ownProps._id });
+
   return {
     list,
     editing: list.editing || list.isNew,
-    profile: getUser(state, {id: list._owner})
+    profile: getUser(state, { id: list._owner })
   };
 };
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  addImage: (_id, image) => dispatch({type: ADD_LIST_IMAGE, image, _id}),
+  addImage: (_id, image) => dispatch({ type: ADD_LIST_IMAGE, image, _id }),
 
   onSubtitleChange: e =>
-    dispatch(updateList({_id: ownProps._id, subtitle: e.target.value})),
+    dispatch(updateList({ _id: ownProps._id, subtitle: e.target.value })),
   onTitleChange: e =>
-    dispatch(updateList({_id: ownProps._id, title: e.target.value})),
+    dispatch(updateList({ _id: ownProps._id, title: e.target.value })),
   onLeadChange: e =>
-    dispatch(updateList({_id: ownProps._id, lead: e.target.value})),
+    dispatch(updateList({ _id: ownProps._id, lead: e.target.value })),
   onDescriptionChange: e =>
-    dispatch(updateList({_id: ownProps._id, description: e.target.value})),
+    dispatch(updateList({ _id: ownProps._id, description: e.target.value })),
   onUrlTextChange: e =>
-    dispatch(updateList({_id: ownProps._id, urlText: e.target.value})),
+    dispatch(updateList({ _id: ownProps._id, urlText: e.target.value })),
   onColorChange: color =>
-    dispatch(updateList({_id: ownProps._id, dotColor: color})),
-  updatePulsePositions: list => dispatch(updateList({_id: ownProps._id, list})),
+    dispatch(updateList({ _id: ownProps._id, dotColor: color })),
+  updatePulsePositions: list =>
+    dispatch(updateList({ _id: ownProps._id, list })),
 
   confirmShareModal: _id => {
     dispatch({
-      type: 'OPEN_MODAL',
-      modal: 'confirm',
+      type: "OPEN_MODAL",
+      modal: "confirm",
       context: {
-        title: 'Din liste skal være offentlig!',
+        title: "Din liste skal være offentlig!",
         reason:
-          'For at du kan dele din liste, skal listen være offentlig. Vil du ændre din listes status til offentlig?',
-        confirmText: 'Gør min liste offentlig',
+          "For at du kan dele din liste, skal listen være offentlig. Vil du ændre din listes status til offentlig?",
+        confirmText: "Gør min liste offentlig",
         onConfirm: () => {
           dispatch(
             updateList({
@@ -361,16 +360,16 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
               public: true
             }),
             dispatch({
-              type: 'CLOSE_MODAL',
-              modal: 'confirm'
+              type: "CLOSE_MODAL",
+              modal: "confirm"
             })
           );
           dispatch(storeList(_id));
         },
         onCancel: () => {
           dispatch({
-            type: 'CLOSE_MODAL',
-            modal: 'confirm'
+            type: "CLOSE_MODAL",
+            modal: "confirm"
           });
         }
       }

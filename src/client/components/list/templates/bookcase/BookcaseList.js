@@ -1,33 +1,40 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import scrollToComponent from 'react-scroll-to-component';
-import {getListByIdSelector} from '../../../../redux/list.reducer';
-import {getUser} from '../../../../redux/users';
-import AddToList from '../../addtolist/AddToList.container';
-import ListElement from './ListElement';
-import ListInfo from './ListInfo';
-import StickyConfirmPanel from '../../button/StickyConfirmPanel';
-import StickySettingsPanel from '../../menu/StickySettingsPanel';
-import BookcaseItem from '../../../bookcase/BookcaseItem.component';
+import React from "react";
+import { connect } from "react-redux";
+import { isEqual } from "lodash";
+import scrollToComponent from "react-scroll-to-component";
+import { getListByIdSelector } from "../../../../redux/list.reducer";
+import { getUser } from "../../../../redux/users";
+import AddToList from "../../addtolist/AddToList.container";
+import ListElement from "./ListElement";
+import ListInfo from "./ListInfo";
+import StickyConfirmPanel from "../../button/StickyConfirmPanel";
+import StickySettingsPanel from "../../menu/StickySettingsPanel";
 
-import './bookcaseList.css';
+import "./bookcaseList.css";
 
 const getListById = getListByIdSelector();
 
 export class BookcaseList extends React.Component {
   constructor() {
     super();
-    this.state = {added: null, sticky: false, expanded: false, windowWidth: 0};
+    this.state = {
+      added: null,
+      sticky: false,
+      expanded: false,
+      windowWidth: 0,
+      info: null
+    };
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-    window.addEventListener('resize', this.handleResize);
+    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("resize", this.handleResize);
+    this.setState({ info: this.refs.info });
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.handleResize);
   }
 
   handleScroll = () => {
@@ -35,10 +42,10 @@ export class BookcaseList extends React.Component {
     const sticky = window.pageYOffset > info.height ? true : false;
 
     if (this.state.sticky !== sticky) {
-      this.setState({sticky});
+      this.setState({ sticky });
     }
     if (this.state.expanded === true) {
-      this.setState({expanded: false});
+      this.setState({ expanded: false });
     }
   };
 
@@ -46,44 +53,43 @@ export class BookcaseList extends React.Component {
     const windowWidth = window.innerWidth;
 
     if (this.state.windowWidth !== windowWidth) {
-      this.setState({windowWidth});
+      this.setState({ windowWidth });
     }
   };
 
   onExpandClick = () => {
-    this.setState({expanded: !this.state.expanded});
+    this.setState({ expanded: !this.state.expanded });
   };
 
   onPulseClick = pid => {
     scrollToComponent(this.refs[pid], {
-      align: 'top',
+      align: "top",
       offset: -220,
       duration: 500
     });
   };
 
   getListInfoPositions = () => {
-    const info = this.refs.info;
-
+    const info = this.state.info;
     const headerHeight =
-      document.getElementsByTagName('header')[0].offsetHeight || 0;
+      document.getElementsByTagName("header")[0].offsetHeight || 0;
 
     let padding = 0;
     let imgHeight = 0;
     let imgWidth = 0;
 
     if (info) {
-      imgWidth = info.querySelector('.list-cover-image').offsetWidth;
-      imgHeight = info.querySelector('.list-cover-image').offsetHeight;
+      imgWidth = info.querySelector(".list-cover-image").offsetWidth;
+      imgHeight = info.querySelector(".list-cover-image").offsetHeight;
 
       const nodeStyle = window.getComputedStyle(info);
-      padding = nodeStyle.getPropertyValue('padding');
+      padding = nodeStyle.getPropertyValue("padding");
     }
 
     return {
-      height: info ? this.refs.info.offsetHeight : 0,
-      width: info ? this.refs.info.offsetWidth : 0,
-      top: info ? this.refs.info.offsetTop : 0,
+      height: info ? info.offsetHeight : "auto",
+      width: info ? info.offsetWidth : "100%",
+      top: info ? info.offsetTop : 0,
       headerHeight,
       padding,
       imgWidth,
@@ -93,7 +99,7 @@ export class BookcaseList extends React.Component {
 
   onEdit = () => {
     scrollToComponent(this.refs.cover, {
-      align: 'top',
+      align: "top",
       offset: -200,
       duration: 500
     });
@@ -101,7 +107,7 @@ export class BookcaseList extends React.Component {
 
   onAddBook = () => {
     scrollToComponent(this.refs.suggester, {
-      align: 'top',
+      align: "top",
       offset: -100,
       duration: 500
     });
@@ -109,13 +115,12 @@ export class BookcaseList extends React.Component {
   };
 
   render() {
-    const {_id, list} = this.props;
-    const {added} = this.state;
+    const { _id, list } = this.props;
+    const { added } = this.state;
     const info = this.getListInfoPositions();
 
     return (
       <React.Fragment>
-        <BookcaseItem profile={list.user} list={list} />
         <StickyConfirmPanel _id={_id} />
         <StickySettingsPanel
           _id={_id}
@@ -129,7 +134,7 @@ export class BookcaseList extends React.Component {
           <div
             className="list-container pistache fixed-width-col-md"
             ref={cover => {
-              this.refs = {...this.refs, cover};
+              this.refs = { ...this.refs, cover };
             }}
           >
             <ListInfo
@@ -142,7 +147,7 @@ export class BookcaseList extends React.Component {
               pulseClick={this.onPulseClick}
               info={info}
               infoRef={info => {
-                this.refs = {...this.refs, info};
+                this.refs = { ...this.refs, info };
               }}
             />
             <div className="position-relative">
@@ -163,10 +168,10 @@ export class BookcaseList extends React.Component {
                 <div
                   className="position-absolute"
                   style={{
-                    width: '100%',
-                    height: '100%',
+                    width: "100%",
+                    height: "100%",
                     top: 0,
-                    background: 'white',
+                    background: "white",
                     opacity: 0.7,
                     zIndex: 1000
                   }}
@@ -175,12 +180,12 @@ export class BookcaseList extends React.Component {
             </div>
             <AddToList
               suggesterRef={suggester => {
-                this.refs = {...this.refs, suggester};
+                this.refs = { ...this.refs, suggester };
               }}
               className="pt-5"
-              style={{minHeight: 500, background: 'white'}}
+              style={{ minHeight: 500, background: "white" }}
               list={list}
-              onAdd={pid => this.setState({added: pid})}
+              onAdd={pid => this.setState({ added: pid })}
             />
           </div>
           <div className="fixed-width-col-sm d-xs-none d-lg-block mt-4 ml-4" />
@@ -191,10 +196,10 @@ export class BookcaseList extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const list = getListById(state, {_id: ownProps._id});
+  const list = getListById(state, { _id: ownProps._id });
 
   return {
-    owner: getUser(state, {id: list._owner}),
+    owner: getUser(state, { id: list._owner }),
     list
   };
 };

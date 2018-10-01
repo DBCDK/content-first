@@ -78,20 +78,13 @@ section .celeb .celeb-top {
 }
 
 section .caroContainer .celeb .scrolltext {
-  max-height: 400px;
+  max-height: 600px;
   overflow: auto;
 }
 
 section .caroContainer .celeb .innerscrollbox {
   margin-top: 15%;
   width: 92%;
-}
-
-section .caroContainer .celeb .profile {
-  color: var(--petroleum);
-  font-size: 28px;
-  font-family: Montserrat, sans-serif;
-  font-weight: 300;
 }
 
 section .caroContainer .celeb .profile-name {
@@ -101,22 +94,6 @@ section .caroContainer .celeb .profile-name {
 section .caroContainer .celeb .profile-quote {
   font-weight: 600;
   font-style: Montserrat;
-}
-
-section .caroContainer .celeb .pagetag {
-  font-size: 14px;
-  color: var(--fersken);
-  font-style: Montserrat;
-}
-
-section .caroContainer .celeb .subtag {
-  color: var(--petroleum);
-  font-size: 16px;
-  font-style: Montserrat;
-  font-weight: 600;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 20px;
 }
 
 section .caroContainer .celeb .celeb-link-btn {
@@ -216,25 +193,6 @@ section .celeb .celeb-bottom {
     right: 10px;
   }
 
-  section .caroContainer .celeb .profile {
-    margin-top: 3px;
-    font-size: 20px;
-  }
-
-  section .caroContainer .celeb .pagetag {
-    font-size: 12px;
-  }
-
-  section .caroContainer .celeb .subtag {
-    margin-top: 2px;
-    margin-bottom: 2px;
-    font-size: 14px;
-  }
-
-  section .caroContainer .celeb .celeb-descript {
-    font-size: 12px;
-  }
-
   section .caroContainer .celeb .celeb-link-btn {
     font-size: 12px;
     margin-top: 5px;
@@ -295,18 +253,6 @@ section .celeb .celeb-bottom {
 
   section .caroContainer .celeb .innerscrollbox {
     margin-top: 0%;
-  }
-
-  section .caroContainer .celeb .pagetag {
-    font-size: 14px;
-  }
-
-  section .caroContainer .celeb .profile {
-    font-size: 28px;
-  }
-
-  section .caroContainer .celeb .subtag {
-    font-size: 16px;
   }
 
   section .caroContainer .celeb .celeb-descript {

@@ -1,9 +1,9 @@
-import {uniqBy} from 'lodash';
-import {createSelector} from 'reselect';
+import { uniqBy } from "lodash";
+import { createSelector } from "reselect";
 
-export const SYSTEM_LIST = 'SYSTEM_LIST';
-export const SHORT_LIST = 'SHORT_LIST';
-export const CUSTOM_LIST = 'CUSTOM_LIST';
+export const SYSTEM_LIST = "SYSTEM_LIST";
+export const SHORT_LIST = "SHORT_LIST";
+export const CUSTOM_LIST = "CUSTOM_LIST";
 
 // changeMap is a performance optimization used to easily determine
 // if a work has been added/removed to/from list
@@ -14,43 +14,43 @@ const defaultState = {
   expanded: false
 };
 
-export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
-export const LIST_LOAD_RESPONSE = 'LIST_LOAD_RESPONSE';
-export const LISTS_LOAD_REQUEST = 'LISTS_LOAD_REQUEST';
-export const ADD_LIST = 'ADD_LIST';
-export const UPDATE_LIST_DATA = 'UPDATE_LIST_DATA';
-export const REMOVE_LIST = 'REMOVE_LIST';
-export const REMOVE_LIST_SUCCESS = 'REMOVE_LIST_SUCCESS';
-export const REMOVE_LIST_ERROR = 'REMOVE_LIST_ERROR';
-export const ADD_ELEMENT_TO_LIST = 'ADD_ELEMENT_TO_LIST';
-export const REMOVE_ELEMENT_FROM_LIST = 'REMOVE_ELEMENT_FROM_LIST';
-export const UPDATE_LIST_ELEMENT = 'UPDATE_LIST_ELEMENT';
-export const LIST_TOGGLE_ELEMENT = 'LIST_TOGGLE_ELEMENT';
-export const LIST_INSERT_ELEMENT = 'LIST_INSERT_ELEMENT';
-export const STORE_LIST = 'STORE_LIST';
-export const ADD_LIST_IMAGE = 'ADD_LIST_IMAGE';
-export const ADD_LIST_IMAGE_SUCCESS = 'ADD_LIST_IMAGE_SUCCESS';
-export const ADD_LIST_IMAGE_ERROR = 'ADD_LIST_IMAGE_ERROR';
+export const LIST_LOAD_REQUEST = "LIST_LOAD_REQUEST";
+export const LIST_LOAD_RESPONSE = "LIST_LOAD_RESPONSE";
+export const LISTS_LOAD_REQUEST = "LISTS_LOAD_REQUEST";
+export const ADD_LIST = "ADD_LIST";
+export const UPDATE_LIST_DATA = "UPDATE_LIST_DATA";
+export const REMOVE_LIST = "REMOVE_LIST";
+export const REMOVE_LIST_SUCCESS = "REMOVE_LIST_SUCCESS";
+export const REMOVE_LIST_ERROR = "REMOVE_LIST_ERROR";
+export const ADD_ELEMENT_TO_LIST = "ADD_ELEMENT_TO_LIST";
+export const REMOVE_ELEMENT_FROM_LIST = "REMOVE_ELEMENT_FROM_LIST";
+export const UPDATE_LIST_ELEMENT = "UPDATE_LIST_ELEMENT";
+export const LIST_TOGGLE_ELEMENT = "LIST_TOGGLE_ELEMENT";
+export const LIST_INSERT_ELEMENT = "LIST_INSERT_ELEMENT";
+export const STORE_LIST = "STORE_LIST";
+export const ADD_LIST_IMAGE = "ADD_LIST_IMAGE";
+export const ADD_LIST_IMAGE_SUCCESS = "ADD_LIST_IMAGE_SUCCESS";
+export const ADD_LIST_IMAGE_ERROR = "ADD_LIST_IMAGE_ERROR";
 
-export const ON_USERLISTS_EXPAND = 'ON_USERLISTS_EXPAND';
-export const ON_USERLISTS_COLLAPSE = 'ON_USERLISTS_COLLAPSE';
+export const ON_USERLISTS_EXPAND = "ON_USERLISTS_EXPAND";
+export const ON_USERLISTS_COLLAPSE = "ON_USERLISTS_COLLAPSE";
 // eslint-disable-next-line
 const listReducer = (state = defaultState, action) => {
   switch (action.type) {
     case LIST_LOAD_REQUEST: {
-      const {_id} = action;
+      const { _id } = action;
       const old = state.lists[_id] || {};
       return Object.assign({}, state, {
-        lists: {...state.lists, [_id]: {...old, isLoading: true, _id}}
+        lists: { ...state.lists, [_id]: { ...old, isLoading: true, _id } }
       });
     }
     case ADD_LIST: {
-      const {list} = action;
+      const { list } = action;
       if (!list._id) {
-        throw new Error('Cant add list when list.data._id is not set');
+        throw new Error("Cant add list when list.data._id is not set");
       }
       return Object.assign({}, state, {
-        lists: {...state.lists, [list._id]: list}
+        lists: { ...state.lists, [list._id]: list }
       });
     }
     case REMOVE_LIST: {
@@ -64,7 +64,7 @@ const listReducer = (state = defaultState, action) => {
       };
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list}
+        lists: { ...state.lists, [action._id]: list }
       });
     }
     case REMOVE_LIST_SUCCESS: {
@@ -72,11 +72,11 @@ const listReducer = (state = defaultState, action) => {
         throw new Error("'id' is missing from action");
       }
 
-      const lists = {...state.lists};
+      const lists = { ...state.lists };
 
       delete lists[action._id];
 
-      return Object.assign({}, state, {lists});
+      return Object.assign({}, state, { lists });
     }
     case REMOVE_LIST_ERROR: {
       if (!action._id) {
@@ -90,7 +90,7 @@ const listReducer = (state = defaultState, action) => {
       };
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list}
+        lists: { ...state.lists, [action._id]: list }
       });
     }
     case ADD_ELEMENT_TO_LIST: {
@@ -126,7 +126,7 @@ const listReducer = (state = defaultState, action) => {
         list.list = [...list.list, action.element];
       }
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list},
+        lists: { ...state.lists, [action._id]: list },
         changeMap
       });
     }
@@ -154,7 +154,7 @@ const listReducer = (state = defaultState, action) => {
         element => element.pid !== action.element.book.pid
       );
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list},
+        lists: { ...state.lists, [action._id]: list },
         changeMap
       });
     }
@@ -188,7 +188,7 @@ const listReducer = (state = defaultState, action) => {
           !(element.book.pid === action.element.book.pid && idx !== action.pos)
       );
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list},
+        lists: { ...state.lists, [action._id]: list },
         changeMap
       });
     }
@@ -216,7 +216,7 @@ const listReducer = (state = defaultState, action) => {
         list.list = [...list.list, action.element];
       }
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list},
+        lists: { ...state.lists, [action._id]: list },
         changeMap
       });
     }
@@ -227,9 +227,9 @@ const listReducer = (state = defaultState, action) => {
       if (!state.lists[action.data._id]) {
         throw new Error(`Could not find list with _id ${action.data._id}`);
       }
-      const list = {...state.lists[action.data._id], ...action.data};
+      const list = { ...state.lists[action.data._id], ...action.data };
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.data._id]: list}
+        lists: { ...state.lists, [action.data._id]: list }
       });
     }
     case LIST_LOAD_RESPONSE: {
@@ -251,7 +251,7 @@ const listReducer = (state = defaultState, action) => {
       list.isLoading = false;
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action.list._id]: list}
+        lists: { ...state.lists, [action.list._id]: list }
       });
     }
     case ADD_LIST_IMAGE: {
@@ -262,7 +262,7 @@ const listReducer = (state = defaultState, action) => {
         imageError: null
       };
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list}
+        lists: { ...state.lists, [action._id]: list }
       });
     }
     case UPDATE_LIST_ELEMENT: {
@@ -281,7 +281,7 @@ const listReducer = (state = defaultState, action) => {
       });
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list}
+        lists: { ...state.lists, [action._id]: list }
       });
     }
     case ADD_LIST_IMAGE_SUCCESS: {
@@ -294,7 +294,7 @@ const listReducer = (state = defaultState, action) => {
       };
 
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list}
+        lists: { ...state.lists, [action._id]: list }
       });
     }
     case ADD_LIST_IMAGE_ERROR: {
@@ -306,7 +306,7 @@ const listReducer = (state = defaultState, action) => {
         imageError: action.error
       };
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list}
+        lists: { ...state.lists, [action._id]: list }
       });
     }
     case STORE_LIST: {
@@ -316,14 +316,14 @@ const listReducer = (state = defaultState, action) => {
       };
       list._modified = null;
       return Object.assign({}, state, {
-        lists: {...state.lists, [action._id]: list},
+        lists: { ...state.lists, [action._id]: list },
         latestUsedId: action._id
       });
     }
     case ON_USERLISTS_EXPAND:
-      return Object.assign({}, state, {expanded: true});
+      return Object.assign({}, state, { expanded: true });
     case ON_USERLISTS_COLLAPSE:
-      return Object.assign({}, state, {expanded: false});
+      return Object.assign({}, state, { expanded: false });
 
     default:
       return state;
@@ -334,8 +334,8 @@ const listReducer = (state = defaultState, action) => {
 export const addList = (
   {
     type = CUSTOM_LIST,
-    title = '',
-    description = '',
+    title = "",
+    description = "",
     isNew,
     list = [],
     _id = null,
@@ -415,7 +415,7 @@ export const getListsForOwner = (state, params = {}) => {
   return getLists(state, params).filter(l => params._owner === l._owner);
 };
 
-export const getLists = (state, {type, sort} = {}) => {
+export const getLists = (state, { type, sort } = {}) => {
   const listState = state.listReducer;
   const booksState = state.booksReducer;
 
@@ -433,24 +433,24 @@ export const getLists = (state, {type, sort} = {}) => {
       if (l.type === SYSTEM_LIST) {
         /* eslint-disable */
         l.description =
-          l.title === 'Har læst'
+          l.title === "Har læst"
             ? 'Her kan du se listen over de bøger, som du har markeret som "Har læst". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.'
             : 'Her kan du se listen over de bøger, som du har markeret som "Vil læse". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.';
         l.image =
-          l.title === 'Har læst'
-            ? 'img/lists/goal.png'
-            : 'img/lists/checklist.png';
+          l.title === "Har læst"
+            ? "img/lists/goal.png"
+            : "img/lists/checklist.png";
 
         /* eslint-enable */
       }
 
       l.list = l.list.map(el => {
-        return {...el, ...booksState.books[el.pid]};
+        return { ...el, ...booksState.books[el.pid] };
       });
 
       // ensure uniqueness of elements
       // duplicates may exist, due to a previous bug #548
-      l.list = uniqBy(l.list, 'pid');
+      l.list = uniqBy(l.list, "pid");
 
       return l;
     });
@@ -472,7 +472,7 @@ export const getPublicLists = state => {
 export const getListByIdSelector = () =>
   createSelector(
     [
-      (state, {_id}) => {
+      (state, { _id }) => {
         return state.listReducer.lists[_id];
       },
       state => state.booksReducer
@@ -482,7 +482,7 @@ export const getListByIdSelector = () =>
         return;
       }
 
-      list = {...list};
+      list = { ...list };
 
       if (list && list.list) {
         list.list = list.list
@@ -490,12 +490,12 @@ export const getListByIdSelector = () =>
             return booksState.books[el.pid] && booksState.books[el.pid].book;
           })
           .map(el => {
-            return {...el, book: booksState.books[el.pid].book};
+            return { ...el, book: booksState.books[el.pid].book };
           });
 
         // ensure uniqueness of elements
         // duplicates may exist, due to a previous bug #548
-        list.list = uniqBy(list.list, 'pid');
+        list.list = uniqBy(list.list, "pid");
       }
       return list;
     }
