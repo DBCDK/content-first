@@ -1,19 +1,19 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import {connect} from 'react-redux';
 import {
   UPDATE_LIST_ELEMENT,
   removeElementFromList,
   storeList
-} from "../../../../redux/list.reducer";
-import { getUser } from "../../../../redux/users";
-import ProfileImage from "../../../general/ProfileImage.component";
-import textParser from "../../../../utils/textParser";
-import Comments from "../../../comments/Comment.container";
-import CommentInput from "../../../comments/CommentInput.component";
-import timeToString from "../../../../utils/timeToString";
-import Text from "../../../base/Text";
-import ContextMenu, { ContextMenuAction } from "../../../base/ContextMenu";
-import WorkRowBookcase from "../../../work/WorkRowBookcase";
+} from '../../../../redux/list.reducer';
+import {getUser} from '../../../../redux/users';
+import ProfileImage from '../../../general/ProfileImage.component';
+import textParser from '../../../../utils/textParser';
+import Comments from '../../../comments/Comment.container';
+import CommentInput from '../../../comments/CommentInput.component';
+import timeToString from '../../../../utils/timeToString';
+import Text from '../../../base/Text';
+import ContextMenu, {ContextMenuAction} from '../../../base/ContextMenu';
+import WorkRowBookcase from '../../../work/WorkRowBookcase';
 
 const ElementContextMenu = ({
   onDelete,
@@ -27,7 +27,7 @@ const ElementContextMenu = ({
   return (
     <ContextMenu
       className="mr-0 mt-2 position-absolute"
-      style={{ right: 0, top: 0 }}
+      style={{right: 0, top: 0}}
     >
       {isElementOwner && (
         <ContextMenuAction
@@ -56,7 +56,7 @@ export class ListElement extends React.Component {
     };
   }
   submit = () => {
-    const { submit, element } = this.props;
+    const {submit, element} = this.props;
     this.setState({
       editing: false,
       originalDescription: element.description
@@ -64,19 +64,19 @@ export class ListElement extends React.Component {
     submit();
   };
   cancel = () => {
-    const { element, updateElement } = this.props;
-    this.setState({ editing: false });
-    updateElement({ ...element, description: this.state.originalDescription });
+    const {element, updateElement} = this.props;
+    this.setState({editing: false});
+    updateElement({...element, description: this.state.originalDescription});
   };
   updateDescription = description => {
-    const { element, updateElement } = this.props;
-    updateElement({ ...element, description });
+    const {element, updateElement} = this.props;
+    updateElement({...element, description});
   };
   deleteElement = () => {
-    const { removeElement } = this.props;
+    const {removeElement} = this.props;
     removeElement();
   };
-  edit = () => this.setState({ editing: true });
+  edit = () => this.setState({editing: true});
   render() {
     const {
       element,
@@ -117,8 +117,8 @@ export class ListElement extends React.Component {
               value={element.description}
               cancelText={
                 this.state.originalDescription
-                  ? "Fortryd"
-                  : "Brug bogens beskrivelse"
+                  ? 'Fortryd'
+                  : 'Brug bogens beskrivelse'
               }
               onSubmit={this.submit}
               onCancel={this.cancel}
@@ -132,7 +132,7 @@ export class ListElement extends React.Component {
               <span
                 dangerouslySetInnerHTML={{
                   __html: textParser(
-                    element.description || element.book.description || ""
+                    element.description || element.book.description || ''
                   )
                 }}
               />
@@ -154,7 +154,7 @@ export class ListElement extends React.Component {
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    owner: getUser(state, { id: ownProps.element._owner }),
+    owner: getUser(state, {id: ownProps.element._owner}),
     isElementOwner:
       state.userReducer.openplatformId === ownProps.element._owner,
     isListOwner: state.userReducer.openplatformId === ownProps.list._owner
