@@ -1,3 +1,12 @@
+.bookcase-skeleton {
+  height: 600px;
+}
+
+.bookcase-skeleton span {
+  position: absolute;
+  top: 40%;
+}
+
 /********* SLICK - dots **********/
 
 .bookcase .slick-dots-bookcase li,
@@ -128,7 +137,8 @@ section .celeb .celeb-bottom {
 
 /*!**************** IPAD PRO ****************!*/
 @media only screen and (max-width: 1200px) {
-  section .caroContainer {
+  section .caroContainer,
+  .bookcase-skeleton {
     height: 440px;
   }
 
@@ -159,7 +169,8 @@ section .celeb .celeb-bottom {
 
 /*!**************** IPAD  ****************!*/
 @media only screen and (max-width: 1024px) {
-  section .caroContainer {
+  section .caroContainer,
+  .bookcase-skeleton {
     height: 380px;
   }
 
@@ -200,7 +211,8 @@ section .celeb .celeb-bottom {
 }
 
 @media only screen and (max-width: 768px) {
-  section .caroContainer {
+  section .caroContainer,
+  .bookcase-skeleton {
     height: 340px;
   }
 
@@ -214,7 +226,8 @@ section .celeb .celeb-bottom {
 }
 
 @media only screen and (max-width: 500px) {
-  section .caroContainer {
+  section .caroContainer,
+  .bookcase-skeleton {
     display: block;
     max-height: 100%;
     height: 100%;
@@ -269,7 +282,8 @@ section .celeb .celeb-bottom {
 }
 
 @media only screen and (max-width: 360px) {
-  section .caroContainer .bookswrap {
+  section .caroContainer .bookswrap,
+  .bookcase-skeleton {
     height: 240px;
   }
 

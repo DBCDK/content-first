@@ -44,14 +44,14 @@
   width: 100% !important;
 }
 
-.list-cover-image-wrapper.sticky .pulse {
+.list-cover-image-wrapper.sticky .pulse-toucharea {
   opacity: 0;
   pointer-events: none;
   transition-duration: 0s;
-  transition-delay: 0s;
+  transition-delay: 0.085s;
 }
 
-.list-cover-image-wrapper.sticky.expanded .pulse {
+.list-cover-image-wrapper.sticky.expanded .pulse-toucharea {
   opacity: 1;
   pointer-events: auto;
   transition-duration: 0.2;

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Material+Icons');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Material+Icons");
 
 /* Global Settings for new design */
 :root {
@@ -23,7 +23,7 @@
   --kobber: #b17642;
   --mine-shaft: #333333;
 
-  --primary-font: 'Montserrat', sans-serif;
+  --primary-font: "Montserrat", sans-serif;
 }
 
 /* utils */
@@ -128,6 +128,13 @@
 }
 .pointer-events-initial {
   pointer-events: initial;
+}
+
+/* disabled styles */
+
+button:disabled,
+button[disabled] {
+  color: var(--silver-chalice);
 }
 
 /* Medium devices (tablets, 768px and up) */

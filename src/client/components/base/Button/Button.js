@@ -1,21 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './Button.css';
-import '../Skeleton/skeleton.css';
+import React from "react";
+import PropTypes from "prop-types";
+import "./Button.css";
+import "../Skeleton/skeleton.css";
 
 const Button = ({
-  Tag = 'button',
-  size = 'large',
-  type = 'primary',
+  Tag = "button",
+  size = "large",
+  type = "primary",
   children,
   className,
+  disabled = false,
   ...props
 }) => {
   return (
     <Tag
-      className={`${className ||
-        ''} btn Button Button__${type} Button__${size}`}
+      className={`${className || ""} 
+      btn Button Button__${type} Button__${size}`}
       {...props}
+      disabled={disabled}
     >
       {children}
     </Tag>
@@ -23,17 +25,17 @@ const Button = ({
 };
 
 Button.propTypes = {
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(["small", "medium", "large"]),
   type: PropTypes.oneOf([
-    'primary',
-    'secondary',
-    'tertiary',
-    'quaternary',
-    'quinary',
-    'term',
-    'tag',
-    'link',
-    'link2'
+    "primary",
+    "secondary",
+    "tertiary",
+    "quaternary",
+    "quinary",
+    "term",
+    "tag",
+    "link",
+    "link2"
   ])
 };
 
