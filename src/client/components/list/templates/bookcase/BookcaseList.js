@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isEqual} from 'lodash';
 import scrollToComponent from 'react-scroll-to-component';
 import {getListByIdSelector} from '../../../../redux/list.reducer';
 import {getUser} from '../../../../redux/users';
@@ -117,7 +116,6 @@ export class BookcaseList extends React.Component {
   render() {
     const {_id, list} = this.props;
     const {added} = this.state;
-    const info = this.getListInfoPositions();
 
     return (
       <React.Fragment>
@@ -145,7 +143,7 @@ export class BookcaseList extends React.Component {
               expanded={this.state.expanded}
               expandClick={this.onExpandClick}
               pulseClick={this.onPulseClick}
-              info={info}
+              info={this.getListInfoPositions()}
               infoRef={info => {
                 this.refs = {...this.refs, info};
               }}

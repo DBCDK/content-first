@@ -170,7 +170,9 @@ Array [
             onClick={[Function]}
         >
             <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                  btn Button Button__tertiary Button__medium"
+                disabled={false}
             >
                 Gå til huskeliste
             </button>
@@ -179,7 +181,9 @@ Array [
             onClick={[Function]}
         >
             <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                  btn Button Button__tertiary Button__medium"
+                disabled={false}
             >
                 Bestil hele listen
             </button>
@@ -481,7 +485,9 @@ Array [
             onClick={[Function]}
         >
             <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                  btn Button Button__tertiary Button__medium"
+                disabled={false}
             >
                 Gå til huskeliste
             </button>
@@ -490,7 +496,9 @@ Array [
             onClick={[Function]}
         >
             <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                  btn Button Button__tertiary Button__medium"
+                disabled={false}
             >
                 Bestil hele listen
             </button>
@@ -609,7 +617,9 @@ Array [
             onClick={[Function]}
         >
             <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                  btn Button Button__tertiary Button__medium"
+                disabled={false}
             >
                 Gå til huskeliste
             </button>
@@ -618,7 +628,9 @@ Array [
             onClick={[Function]}
         >
             <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                  btn Button Button__tertiary Button__medium"
+                disabled={false}
             >
                 Bestil hele listen
             </button>
@@ -672,7 +684,9 @@ Array [
             onClick={[Function]}
         >
             <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                  btn Button Button__tertiary Button__medium"
+                disabled={false}
             >
                 Gå til huskeliste
             </button>
@@ -681,7 +695,9 @@ Array [
             onClick={[Function]}
         >
             <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                  btn Button Button__tertiary Button__medium"
+                disabled={false}
             >
                 Bestil hele listen
             </button>

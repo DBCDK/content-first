@@ -8,11 +8,8 @@ import {
   ADD_LIST_IMAGE,
   getListByIdSelector
 } from '../../../../redux/list.reducer';
-import {getUser} from '../../../../redux/users';
-import ProfileImage from '../../../general/ProfileImage.component';
 import SocialShareButton from '../../../general/SocialShareButton.component';
 import Comments from '../../../comments/Comment.container';
-import timeToString from '../../../../utils/timeToString';
 import textParser from '../../../../utils/textParser';
 import Title from '../../../base/Title';
 import Text from '../../../base/Text';
@@ -40,7 +37,6 @@ function pixelObjToPercentage(e, pos) {
 
 export const ListInfo = ({
   list,
-  profile,
   editing,
   onSubtitleChange,
   onTitleChange,
@@ -320,8 +316,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     list,
-    editing: list.editing || list.isNew,
-    profile: getUser(state, {id: list._owner})
+    editing: list.editing || list.isNew
   };
 };
 

@@ -6,11 +6,9 @@ import {
   storeList
 } from '../../../../redux/list.reducer';
 import {getUser} from '../../../../redux/users';
-import ProfileImage from '../../../general/ProfileImage.component';
 import textParser from '../../../../utils/textParser';
 import Comments from '../../../comments/Comment.container';
 import CommentInput from '../../../comments/CommentInput.component';
-import timeToString from '../../../../utils/timeToString';
 import Text from '../../../base/Text';
 import ContextMenu, {ContextMenuAction} from '../../../base/ContextMenu';
 import WorkRowBookcase from '../../../work/WorkRowBookcase';

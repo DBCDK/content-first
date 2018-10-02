@@ -33,7 +33,6 @@ export class ListPage extends React.Component {
     }
   }
   render() {
-    console.log('ListPage render');
     const {list} = this.props;
     if (!list || list.isLoading) {
       // TODO make a skeleton view of list

@@ -742,7 +742,9 @@ exports[`CommentContainer Edit button 2`] = `
                   type="link"
                 >
                   <button
-                    className="comment-cancel mr-2 ml-2 btn Button Button__link Button__medium"
+                    className="comment-cancel mr-2 ml-2 
+                        btn Button Button__link Button__medium"
+                    disabled={false}
                     onClick={[Function]}
                   >
                     Fortryd
@@ -756,7 +758,8 @@ exports[`CommentContainer Edit button 2`] = `
                   type="quaternary"
                 >
                   <button
-                    className="mr-2 ml-2 btn Button Button__quaternary Button__large"
+                    className="mr-2 ml-2 
+                        btn Button Button__quaternary Button__large"
                     disabled={false}
                     id="comment-submit"
                     onClick={[Function]}

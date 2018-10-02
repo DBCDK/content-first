@@ -19,7 +19,7 @@ export default function timestampToDateTime(timestamp) {
   const date = a.getDate();
   const hour = a.getHours();
   const min = a.getMinutes();
-  //const sec = a.getSeconds();
+  // const sec = a.getSeconds();
   const time = date + '. ' + month + ' ' + year + ' kl. ' + hour + ':' + min;
   return time;
 }

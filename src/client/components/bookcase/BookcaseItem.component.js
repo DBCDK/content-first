@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isEqual} from 'lodash';
 import Pulse from '../pulse/Pulse.component';
 import CarouselSlider from './CarouselSlider.component';
 import ConciseWork from '../work/ConciseWork.container';
@@ -8,7 +7,6 @@ import Title from '../base/Title';
 import Text from '../base/Text';
 import Spinner from '../general/Spinner.component';
 import textParser from '../../utils/textParser';
-import {getUser} from '../../redux/users';
 import {getListByIdSelector} from '../../redux/list.reducer';
 import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
 
@@ -44,6 +42,12 @@ export class BookcaseItem extends React.Component {
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions);
     this.props.loadList(this.props.id);
+  }
+
+  componentDidUpdate() {
+    if (this.state.bookswrap && this.state.bookswrap !== this.refs.bookswrap) {
+      this.setState({bookswrap: this.refs.bookswrap});
+    }
   }
 
   componentWillUnmount() {
@@ -109,10 +113,6 @@ export class BookcaseItem extends React.Component {
   getBookswrapInfo = () => {
     const bookswrap = this.refs.bookswrap;
 
-    if (bookswrap !== this.state.bookswrap) {
-      this.setState({bookswrap: this.refs.bookswrap});
-    }
-
     return {
       height: bookswrap ? bookswrap.offsetHeight : 0,
       width: bookswrap ? bookswrap.offsetWidth : 0
@@ -135,8 +135,6 @@ export class BookcaseItem extends React.Component {
       backgroundImage: `url(/v1/image/${list.image}/719/400)`
     };
 
-    const bookswrap = this.getBookswrapInfo();
-
     return (
       <section className={`${this.state.carousel ? 'section-active' : ''}  `}>
         <div className="caroContainer" onClick={this.gotoListPage}>
@@ -149,7 +147,10 @@ export class BookcaseItem extends React.Component {
           >
             {list.list.map((work, i) => {
               const active = this.state.pulse === work.book.pid ? true : false;
-              const position = percentageObjToPixel(bookswrap, work.position);
+              const position = percentageObjToPixel(
+                this.getBookswrapInfo(),
+                work.position
+              );
 
               return (
                 <Pulse

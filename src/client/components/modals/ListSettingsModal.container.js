@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Modal from './Modal.component';
-import Heading from '../base/Heading';
-import Title from '../base/Title';
 import Text from '../base/Text';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
@@ -64,8 +62,6 @@ export class ListSettingsModal extends React.Component {
   }
   render() {
     const {list, updateListData, close, submit} = this.props;
-
-    console.log(this.state);
 
     return (
       <Modal

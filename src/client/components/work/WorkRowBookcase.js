@@ -4,7 +4,6 @@ import Text from '../base/Text';
 import BookCover from '../general/BookCover.component';
 import Link from '../general/Link.component';
 import BookmarkButton from '../general/BookmarkButton';
-import TaxDescription from './TaxDescription.component.js';
 
 import AddToListButton from '../general/AddToListButton.component';
 

@@ -235,7 +235,9 @@ exports[`ShortList.container Clearing list 1`] = `
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -431,7 +433,9 @@ exports[`ShortList.container Clearing list 1`] = `
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -728,7 +732,9 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -1056,7 +1062,9 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -1384,7 +1392,9 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -1727,7 +1737,9 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -2073,7 +2085,9 @@ exports[`ShortList.container remove element 1`] = `
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -2269,7 +2283,9 @@ exports[`ShortList.container remove element 1`] = `
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -2465,7 +2481,9 @@ exports[`ShortList.container remove element 1`] = `
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -2829,7 +2847,9 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -3025,7 +3045,9 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>
@@ -3221,7 +3243,9 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   type="tertiary"
                                 >
                                   <button
-                                    className=" ml1 btn Button Button__tertiary Button__medium"
+                                    className=" ml1 
+                                        btn Button Button__tertiary Button__medium"
+                                    disabled={false}
                                     onClick={[Function]}
                                   >
                                     <Icon>

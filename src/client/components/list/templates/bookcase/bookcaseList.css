@@ -48,7 +48,7 @@
   opacity: 0;
   pointer-events: none;
   transition-duration: 0s;
-  transition-delay: 0.085s;
+  transition-delay: 0s;
 }
 
 .list-cover-image-wrapper.sticky.expanded .pulse-toucharea {

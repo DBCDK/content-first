@@ -1,6 +1,5 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import TruncateMarkup from 'react-truncate-markup';
 
 export default class Pulse extends React.Component {
   randomDelay(min, max) {
