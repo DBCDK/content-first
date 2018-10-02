@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Textarea from 'react-textarea-autosize';
-import TruncateMarkup from 'react-truncate-markup';
 import {
   updateList,
   storeList,
@@ -58,7 +57,6 @@ export const ListInfo = ({
 }) => {
   const height = editing ? 'auto' : info.height;
   const width = editing ? '100%' : info.width;
-  const absolute = !editing ? 'position-absolute' : '';
 
   const padding = expanded ? info.padding : '0';
 
@@ -71,7 +69,7 @@ export const ListInfo = ({
       <div
         style={{width, height, padding}}
         onClick={expandClick}
-        className={`list-cover-image-wrapper lys-graa ${absolute} ${notSticky} ${stickyClass} ${expandedClass}`}
+        className={`list-cover-image-wrapper lys-graa position-absolute ${notSticky} ${stickyClass} ${expandedClass}`}
       >
         <div className="list-cover-content-hider bg-white" />
         <div className="position-relative w-100 h-100 d-flex">
@@ -142,16 +140,12 @@ export const ListInfo = ({
 
           {sticky &&
             !expanded && (
-              <div className="list-cover-text pt-4 pl-4 pr-4">
+              <div className="list-cover-text pt-md-4 pl-md-4 pr-md-4 pt-2 pl-3 pr-2">
                 <Text type="micro" className="mb-0">
-                  <TruncateMarkup lines={1}>
-                    <span>{list.subtitle}</span>
-                  </TruncateMarkup>
+                  <span className="display-block w-100">{list.subtitle}</span>
                 </Text>
                 <Text type="large" className="mb0">
-                  <TruncateMarkup lines={2}>
-                    <span>{list.title}</span>
-                  </TruncateMarkup>
+                  <span>{list.title}</span>
                 </Text>
               </div>
             )}
@@ -160,7 +154,7 @@ export const ListInfo = ({
 
       <div
         ref={infoRef}
-        className="position-relative pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4 lys-graa "
+        className="position-relative pl-0 pb-md-4 pt-md-4 pl-md-4 pr-md-4 lys-graa"
       >
         {list.image && (
           <img
