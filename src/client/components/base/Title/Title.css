@@ -45,6 +45,10 @@
     Modifiers
 */
 
+.Title__title3--weight-normal {
+  font-weight: 400;
+}
+
 .Title__title4--transform-uppercase {
   text-transform: uppercase;
 }

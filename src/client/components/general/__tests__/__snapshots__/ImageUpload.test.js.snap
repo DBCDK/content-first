@@ -26,6 +26,7 @@ exports[`Image Upload render function Add image 1`] = `
           style={
             Object {
               "opacity": 1,
+              "pointerEvents": "none",
             }
           }
         />
@@ -54,7 +55,9 @@ exports[`Image Upload render function Add image 1`] = `
           type="tertiary"
         >
           <span
-            className=" btn Button Button__tertiary Button__medium"
+            className=" 
+                btn Button Button__tertiary Button__medium"
+            disabled={false}
           >
             <Icon
               className="align-middle"
@@ -109,6 +112,7 @@ exports[`Image Upload render function Add preview image 1`] = `
         style={
           Object {
             "opacity": 1,
+            "pointerEvents": "none",
           }
         }
       />
@@ -131,7 +135,9 @@ exports[`Image Upload render function Add preview image 1`] = `
     style={undefined}
   >
     <span
-      className=" btn Button Button__tertiary Button__medium"
+      className=" 
+          btn Button Button__tertiary Button__medium"
+      disabled={false}
     >
       <i
         className="material-icons material-icons-photo align-middle"
@@ -214,7 +220,9 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
     style={undefined}
   >
     <span
-      className=" btn Button Button__tertiary Button__medium"
+      className=" 
+          btn Button Button__tertiary Button__medium"
+      disabled={false}
     >
       <i
         className="material-icons material-icons-photo align-middle"
@@ -284,7 +292,9 @@ exports[`Image Upload render function renders an image upload form 1`] = `
     style={undefined}
   >
     <span
-      className=" btn Button Button__tertiary Button__medium"
+      className=" 
+          btn Button Button__tertiary Button__medium"
+      disabled={false}
     >
       <i
         className="material-icons material-icons-photo align-middle"

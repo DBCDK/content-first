@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Material+Icons');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Material+Icons");
 
 /* Global Settings for new design */
 :root {
@@ -23,13 +23,17 @@
   --kobber: #b17642;
   --mine-shaft: #333333;
 
-  --primary-font: 'Montserrat', sans-serif;
+  --primary-font: "Montserrat", sans-serif;
 }
 
 /* utils */
 .french-pass {
   background: var(--french-pass) !important;
 }
+.french-pass-txt {
+  color: var(--french-pass) !important;
+}
+
 .korn {
   background-color: var(--korn) !important;
   background: var(--korn) !important;
@@ -49,19 +53,43 @@
   background-color: var(--fersken) !important;
 }
 .fersken-txt {
-  color: var(--alto) !important;
+  color: var(--fersken) !important;
 }
+
 .lys-graa {
   background-color: var(--lys-graa) !important;
 }
+
 .porcelain {
   background-color: var(--porcelain) !important;
 }
+
 .pistache {
   background-color: var(--pistache) !important;
 }
+.pistache-txt {
+  color: var(--pistache) !important;
+}
+
+.due {
+  background-color: var(--due) !important;
+}
 .due-txt {
   color: var(--due) !important;
+}
+
+.de-york {
+  background-color: var(--de-york) !important;
+}
+.de-york-txt {
+  color: var(--de-york) !important;
+}
+
+.petrolium {
+  background-color: var(--petrolium) !important;
+}
+.petrolium-txt {
+  color: var(--petrolium) !important;
 }
 
 .fixed-width-col-md {
@@ -84,6 +112,10 @@
   border-top: 1px solid var(--petrolium);
 }
 
+.border-pistache {
+  border-color: var(--pistache) !important;
+}
+
 .box-shadow {
   box-shadow: 0px 5px 5px -5px #333;
 }
@@ -96,6 +128,13 @@
 }
 .pointer-events-initial {
   pointer-events: initial;
+}
+
+/* disabled styles */
+
+button:disabled,
+button[disabled] {
+  color: var(--silver-chalice);
 }
 
 /* Medium devices (tablets, 768px and up) */

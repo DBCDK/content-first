@@ -31,7 +31,9 @@ exports[`AddToListModal multiple works as input 1`] = `
         clear
       </i>
       <button
-        className="m-3 d-inline-block d-sm-none btn Button Button__link2 Button__medium"
+        className="m-3 d-inline-block d-sm-none 
+            btn Button Button__link2 Button__medium"
+        disabled={false}
         onClick={[Function]}
       >
         <i
@@ -181,7 +183,9 @@ exports[`AddToListModal multiple works as input 1`] = `
         className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
       >
         <button
-          className="mr-4 false btn Button Button__quaternary Button__large"
+          className="mr-4 false 
+              btn Button Button__quaternary Button__large"
+          disabled={false}
           onClick={[Function]}
         >
           JA TAK, GEM NU
@@ -223,7 +227,9 @@ exports[`AddToListModal newly added list is selected 1`] = `
         clear
       </i>
       <button
-        className="m-3 d-inline-block d-sm-none btn Button Button__link2 Button__medium"
+        className="m-3 d-inline-block d-sm-none 
+            btn Button Button__link2 Button__medium"
+        disabled={false}
         onClick={[Function]}
       >
         <i
@@ -404,7 +410,9 @@ exports[`AddToListModal newly added list is selected 1`] = `
         className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
       >
         <button
-          className="mr-4 false btn Button Button__quaternary Button__large"
+          className="mr-4 false 
+              btn Button Button__quaternary Button__large"
+          disabled={false}
           onClick={[Function]}
         >
           JA TAK, GEM NU
@@ -446,7 +454,9 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
         clear
       </i>
       <button
-        className="m-3 d-inline-block d-sm-none btn Button Button__link2 Button__medium"
+        className="m-3 d-inline-block d-sm-none 
+            btn Button Button__link2 Button__medium"
+        disabled={false}
         onClick={[Function]}
       >
         <i
@@ -613,7 +623,9 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
         className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
       >
         <button
-          className="mr-4 false btn Button Button__quaternary Button__large"
+          className="mr-4 false 
+              btn Button Button__quaternary Button__large"
+          disabled={false}
           onClick={[Function]}
         >
           JA TAK, GEM NU

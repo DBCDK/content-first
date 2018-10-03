@@ -4,16 +4,30 @@ import {
   UPDATE_LIST_ELEMENT,
   removeElementFromList,
   storeList
-} from '../../../../redux/list.reducer';
-import {getUser} from '../../../../redux/users';
-import ProfileImage from '../../../general/ProfileImage.component';
-import textParser from '../../../../utils/textParser';
-import Comments from '../../../comments/Comment.container';
-import CommentInput from '../../../comments/CommentInput.component';
-import timeToString from '../../../../utils/timeToString';
-import Text from '../../../base/Text';
-import ContextMenu, {ContextMenuAction} from '../../../base/ContextMenu';
-import WorkRow from '../../../work/WorkRow';
+} from '../../../redux/list.reducer';
+import {getUser} from '../../../redux/users';
+import textParser from '../../../utils/textParser';
+import Comments from '../../comments/Comment.container';
+import CommentInput from '../../comments/CommentInput.component';
+import Text from '../../base/Text';
+import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
+import ProfileImage from '../../general/ProfileImage.component';
+import timeToString from '../../../utils/timeToString';
+import WorkRow from '../../work/WorkRow';
+
+const UserInfo = ({showUserInfo, owner, time}) => {
+  if (!showUserInfo) {
+    return false;
+  }
+  return (
+    <div className="d-flex flex-row pb-2">
+      <ProfileImage user={owner} size={'40'} namePosition={'right'} />
+      <Text type="body" variant="color-due" className="ml-4">
+        {timeToString(time)}
+      </Text>
+    </div>
+  );
+};
 
 const ElementContextMenu = ({
   onDelete,
@@ -86,10 +100,18 @@ export class ListElement extends React.Component {
       isElementOwner,
       showContextMenu = true,
       showComments = true,
-      children
+      showUserInfo = true,
+      children,
+      elementRef = null
     } = this.props;
+
+    const bookcase = list.template === 'bookcase' ? true : false;
+
     return (
-      <div className="mt-2 mt-md-4 lys-graa box-shadow position-relative">
+      <div
+        ref={elementRef}
+        className="mt-2 mt-md-4 lys-graa box-shadow position-relative"
+      >
         {showContextMenu && (
           <ElementContextMenu
             onDelete={this.deleteElement}
@@ -99,16 +121,18 @@ export class ListElement extends React.Component {
           />
         )}
         <div className="px-3 py-4 p-sm-4">
-          <div className="d-flex flex-row">
-            <ProfileImage user={owner} size={'40'} namePosition={'right'} />
-            <Text type="body" variant="color-due" className="ml-4">
-              {timeToString(element._created)}
-            </Text>
-          </div>
+          <UserInfo
+            showUserInfo={showUserInfo}
+            owner={owner}
+            time={element._created}
+          />
           <WorkRow
+            className="mt-2"
             work={element}
             origin={`Fra "${list.title}"`}
-            className="mt-4"
+            showTaxDescription={!bookcase}
+            showDetails={bookcase}
+            showAddToListButton={bookcase}
           />
           {this.state.editing ? (
             <CommentInput

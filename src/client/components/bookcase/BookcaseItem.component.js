@@ -1,7 +1,22 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Pulse from '../pulse/Pulse.component';
 import CarouselSlider from './CarouselSlider.component';
 import ConciseWork from '../work/ConciseWork.container';
+import Title from '../base/Title';
+import Text from '../base/Text';
+import Spinner from '../general/Spinner.component';
+import textParser from '../../utils/textParser';
+import {getListByIdSelector} from '../../redux/list.reducer';
+import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
+
+const getListById = getListByIdSelector();
+
+function percentageObjToPixel(e, pos) {
+  const x = (pos.x * e.width) / 100;
+  const y = (pos.y * e.height) / 100;
+  return {x, y};
+}
 
 export class BookcaseItem extends React.Component {
   constructor(props) {
@@ -10,17 +25,11 @@ export class BookcaseItem extends React.Component {
       pid: '',
       slideIndex: null,
       carousel: false,
-      pulse: ''
+      pulse: '',
+      bookswrap: null
     };
     this.updateDimensions = this.updateDimensions.bind(this);
     this.gotoListPage = this.gotoListPage.bind(this);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      this.props.list.list.length !== nextProps.list.list.length ||
-      this.state !== nextState
-    );
   }
 
   componentWillMount() {
@@ -32,6 +41,13 @@ export class BookcaseItem extends React.Component {
   //
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions);
+    this.props.loadList(this.props.id);
+  }
+
+  componentDidUpdate() {
+    if (this.state.bookswrap && this.state.bookswrap !== this.refs.bookswrap) {
+      this.setState({bookswrap: this.refs.bookswrap});
+    }
   }
 
   componentWillUnmount() {
@@ -47,8 +63,17 @@ export class BookcaseItem extends React.Component {
     return width;
   }
 
+  handleResize = () => {
+    const windowWidth = window.innerWidth;
+
+    if (this.state.windowWidth !== windowWidth) {
+      this.setState({windowWidth});
+    }
+  };
+
   updateDimensions() {
     this.getWindowWidth();
+    this.handleResize();
 
     if (this.getWindowWidth() <= 500) {
       this.hideCarousel();
@@ -85,41 +110,69 @@ export class BookcaseItem extends React.Component {
     }
   }
 
+  getBookswrapInfo = () => {
+    const bookswrap = this.refs.bookswrap;
+
+    return {
+      height: bookswrap ? bookswrap.offsetHeight : 0,
+      width: bookswrap ? bookswrap.offsetWidth : 0
+    };
+  };
+
   render() {
-    if (!this.props.list || !this.props.profile) {
-      return null;
+    const {list} = this.props;
+
+    // When list is loading
+    if (!list || list.isLoading) {
+      // TODO make a skeleton view of list
+      return (
+        <div className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa">
+          <Spinner size="30px" className="mt-5" />
+        </div>
+      );
     }
 
-    let description = this.props.list.description;
-
-    // replacing -this.props.profile.name
-    let firstname = this.props.profile.name.split(' ')[0];
-
-    // new
-    let pagetag = "Bøger jeg kan li'";
-    // new
-    let nameQuote = 'Læsning giver ro oveni hovedet';
-    // new
-    let subtag = 'Anbefalinger fra ' + this.props.profile.name + ', journalist';
+    // If list is not reachable or list settings is set to private
+    if (!list.list && (!list.isLoading && list.error)) {
+      return (
+        <div className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa">
+          <Text className="bookcase-error" type="body" variant="color-fersken">
+            Listen kunne ikke indlæses
+          </Text>
+        </div>
+      );
+    }
 
     const imageStyle = {
-      backgroundImage: 'url(' + this.props.list.bookcase + ')'
+      backgroundImage: `url(/v1/image/${list.image}/719/400)`
     };
 
     return (
       <section className={`${this.state.carousel ? 'section-active' : ''}  `}>
         <div className="caroContainer" onClick={this.gotoListPage}>
-          <div className="bookswrap" style={imageStyle}>
-            {this.props.list.list.map((p, i) => {
+          <div
+            className="bookswrap position-relative"
+            style={imageStyle}
+            ref={bookswrap => {
+              this.refs = {...this.refs, bookswrap};
+            }}
+          >
+            {list.list.map((work, i) => {
+              const active = this.state.pulse === work.book.pid ? true : false;
+              const position = percentageObjToPixel(
+                this.getBookswrapInfo(),
+                work.position
+              );
+
               return (
                 <Pulse
-                  active={this.state.pulse}
-                  pid={p.book.pid}
-                  key={'pulse-' + p.book.pid}
+                  active={active}
+                  key={'pulse-' + work.book.pid}
+                  color={list.dotColor}
+                  position={position}
                   onClick={() => {
-                    this.carouselTrigger(p.book.pid, i);
+                    this.carouselTrigger(work.book.pid, i);
                   }}
-                  position={p.position}
                 />
               );
             })}
@@ -138,32 +191,43 @@ export class BookcaseItem extends React.Component {
             <div className="col-xs-12 celeb-top">
               <div className="scrolltext">
                 <div className="innerscrollbox">
-                  <div className="col-xs-12 pagetag">
-                    {pagetag.toUpperCase()}
+                  <div className="col-xs-12">
+                    <Text type="micro" className="mb-0">
+                      {list.subtitle}
+                    </Text>
                   </div>
-                  <div className="col-xs-12 profile">
-                    <span className="profile-name">{firstname}: </span>
-                    <span className="profile-quote"> “{nameQuote}”</span>
+                  <div className="col-xs-12">
+                    <Title Tag="h1" type="title3">
+                      {list.title}
+                    </Title>
                   </div>
-                  <div className="col-xs-12 subtag">{subtag}</div>
+                  <div className="col-xs-12">
+                    <Text type="large" className="mt-3">
+                      {list.lead}
+                    </Text>
+                  </div>
 
                   <div className="col-xs-12 celeb-descript">
-                    <p>{description}</p>
+                    <Text type="body">
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: textParser(list.description || '')
+                        }}
+                      />
+                    </Text>
                   </div>
                 </div>
               </div>
 
               <div className="col-xs-12">
-                {this.props.list.list.length !== 0 ? (
+                {list.list.length !== 0 ? (
                   <div
                     className="celeb-link-btn"
                     onClick={() => {
-                      this.carouselTrigger(this.props.list.list[0].book.pid, 0);
+                      this.carouselTrigger(list.list[0].book.pid, 0);
                     }}
                   >
-                    <span className="linktext">
-                      Se {firstname + "'s"} bogliste
-                    </span>
+                    <span className="linktext">{list.urlText}</span>
                   </div>
                 ) : (
                   <div />
@@ -176,7 +240,7 @@ export class BookcaseItem extends React.Component {
                 slideIndex={this.state.slideIndex}
                 onNextBook={this.nextBook}
               >
-                {this.props.list.list.map(element => {
+                {list.list.map(element => {
                   return (
                     <div
                       key={'caro-' + element.book.pid}
@@ -186,7 +250,9 @@ export class BookcaseItem extends React.Component {
                     >
                       <ConciseWork
                         pid={element.book.pid}
-                        description={element.description}
+                        description={
+                          element.description || element.book.description
+                        }
                       />
                     </div>
                   );
@@ -200,4 +266,19 @@ export class BookcaseItem extends React.Component {
   }
 }
 
-export default BookcaseItem;
+const mapStateToProps = (state, ownProps) => {
+  const list = getListById(state, {_id: ownProps.id});
+
+  return {
+    list
+  };
+};
+
+export const mapDispatchToProps = dispatch => ({
+  loadList: _id => dispatch({type: LIST_LOAD_REQUEST, _id})
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BookcaseItem);

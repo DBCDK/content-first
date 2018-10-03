@@ -152,7 +152,9 @@ exports[`renders without crashing 1`] = `
               onClick={[Function]}
             >
               <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                    btn Button Button__tertiary Button__medium"
+                disabled={false}
               >
                 Gå til huskeliste
               </button>
@@ -161,7 +163,9 @@ exports[`renders without crashing 1`] = `
               onClick={[Function]}
             >
               <button
-                className=" btn Button Button__tertiary Button__medium"
+                className=" 
+                    btn Button Button__tertiary Button__medium"
+                disabled={false}
               >
                 Bestil hele listen
               </button>
@@ -246,7 +250,21 @@ exports[`renders without crashing 1`] = `
   <div
     className="frontpage container"
   >
-    <Bookcase />
+    <div
+      className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa"
+    >
+      <span
+        className="spinner mt-5"
+        style={
+          Object {
+            "borderTopColor": null,
+            "display": "inline-block",
+            "height": "30px",
+            "width": "30px",
+          }
+        }
+      />
+    </div>
     <SpotsContainer />
     <div
       className="belts col-12"
@@ -1814,7 +1832,9 @@ exports[`renders without crashing 1`] = `
     className="feedback-container"
   >
     <button
-      className="Button__feedback btn Button Button__secondary Button__medium"
+      className="Button__feedback 
+          btn Button Button__secondary Button__medium"
+      disabled={false}
       onClick={[Function]}
     >
       <i

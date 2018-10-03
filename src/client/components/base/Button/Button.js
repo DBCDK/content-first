@@ -9,13 +9,15 @@ const Button = ({
   type = 'primary',
   children,
   className,
+  disabled = false,
   ...props
 }) => {
   return (
     <Tag
-      className={`${className ||
-        ''} btn Button Button__${type} Button__${size}`}
+      className={`${className || ''} 
+      btn Button Button__${type} Button__${size}`}
       {...props}
+      disabled={disabled}
     >
       {children}
     </Tag>

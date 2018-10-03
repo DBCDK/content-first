@@ -61,6 +61,11 @@
   text-transform: uppercase;
   color: var(--fersken);
 }
+
+.Text__small--color-due {
+  color: var(--due);
+}
+
 /*
     MediaQ
 */
