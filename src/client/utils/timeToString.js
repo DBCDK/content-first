@@ -4,7 +4,7 @@ export const DAY = HOUR * 24;
 export const MONTH = DAY * 30;
 export const YEAR = DAY * 365;
 
-export const months = [
+export const monthsShort = [
   'jan',
   'feb',
   'mar',
@@ -47,7 +47,7 @@ export default function TimeToString(past) {
 export function timestampToDateTime(timestamp) {
   const a = new Date(timestamp * 1000);
   const year = a.getFullYear();
-  const month = months[a.getMonth()];
+  const month = monthsShort[a.getMonth()];
   const date = a.getDate();
   const hour = a.getHours();
   const min = a.getMinutes();
