@@ -12,7 +12,7 @@ import ListContextMenu from './ListContextMenu';
 import FollowButton from '../button/FollowButton';
 import AddBookButton from '../button/AddBookButton';
 import Text from '../../base/Text';
-import timestampToDateTime from '../../../utils/timestampToDateTime';
+import {timestampToDateTime} from '../../../utils/timeToString';
 import ProfileImage from '../../general/ProfileImage.component';
 const getListById = getListByIdSelector();
 

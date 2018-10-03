@@ -4,7 +4,7 @@ import scrollToComponent from 'react-scroll-to-component';
 import {getListByIdSelector} from '../../../../redux/list.reducer';
 import {getUser} from '../../../../redux/users';
 import AddToList from '../../addtolist/AddToList.container';
-import ListElement from './ListElement';
+import ListElement from '../../element/ListElement';
 import ListInfo from './ListInfo';
 import StickyConfirmPanel from '../../button/StickyConfirmPanel';
 import StickySettingsPanel from '../../menu/StickySettingsPanel';
