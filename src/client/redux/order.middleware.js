@@ -123,7 +123,7 @@ export const orderMiddleware = store => next => action => {
           const pids = await getCollectionPids(action.pid);
           await openplatform.order({
             pids,
-            library: action.branch
+            pickUpBranch: action.branch
           });
           store.dispatch({
             type: ORDER_SUCCESS,
