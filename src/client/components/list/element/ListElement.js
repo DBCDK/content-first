@@ -20,7 +20,7 @@ const UserInfo = ({showUserInfo, owner, time}) => {
     return false;
   }
   return (
-    <div className="d-flex flex-row">
+    <div className="d-flex flex-row pb-2">
       <ProfileImage user={owner} size={'40'} namePosition={'right'} />
       <Text type="body" variant="color-due" className="ml-4">
         {timeToString(time)}

@@ -158,6 +158,7 @@ export class BookcaseList extends React.Component {
                     key={element.pid}
                     element={element}
                     list={list}
+                    showUserInfo={false}
                     editing={added === element.pid ? true : false}
                   />
                 );
