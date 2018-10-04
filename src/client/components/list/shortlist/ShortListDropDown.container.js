@@ -51,11 +51,13 @@ const ShortListElement = props => {
 };
 
 const ShortListContent = props => {
+  const emptyList = props.elements.length === 0 ? true : false;
+
   return (
     <div
-      className={`top-bar-dropdown-list--content text-left${
-        props.expanded ? '' : ' slide-out'
-      }`}
+      className={`top-bar-dropdown-list--content text-left
+        ${props.expanded ? '' : ' slide-out'}
+        ${emptyList ? ' empty-list' : ''}`}
     >
       <i
         onClick={props.onClose}
@@ -75,10 +77,10 @@ const ShortListContent = props => {
       <div
         className={
           'top-bar-dropdown-list--empty-text text-center ' +
-          (props.elements.length === 0 ? '' : 'd-none')
+          (emptyList ? '' : 'd-none')
         }
       >
-        {props.elements.length === 0 && 'Din huskeliste er tom'}
+        {emptyList && 'Din huskeliste er tom'}
       </div>
       {props.children &&
         props.children.length > 0 && (
