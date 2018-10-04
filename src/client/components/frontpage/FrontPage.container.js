@@ -26,7 +26,7 @@ class FrontPage extends React.Component {
   render() {
     return (
       <div className="frontpage container">
-        <BookcaseItem id={'1c3e2840-bc19-11e8-8186-ad1a5179e67a'} />
+        <BookcaseItem id={'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018'} />
         {this.renderBelts()}
       </div>
     );
