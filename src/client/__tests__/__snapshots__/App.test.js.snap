@@ -121,7 +121,9 @@ exports[`renders without crashing 1`] = `
           </span>
         </div>
         <div
-          className="top-bar-dropdown-list--content text-left slide-out"
+          className="top-bar-dropdown-list--content text-left
+                 slide-out
+                 empty-list"
         >
           <i
             className="material-icons top-bar-dropdown-list--close-btn"

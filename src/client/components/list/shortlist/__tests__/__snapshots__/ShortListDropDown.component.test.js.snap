@@ -13,7 +13,9 @@ Array [
     </span>
 </div>,
   <div
-    className="top-bar-dropdown-list--content text-left slide-out"
+    className="top-bar-dropdown-list--content text-left
+         slide-out
+        "
 >
     <i
         className="material-icons top-bar-dropdown-list--close-btn"
@@ -206,7 +208,9 @@ Array [
     </span>
 </div>,
   <div
-    className="top-bar-dropdown-list--content text-left slide-out"
+    className="top-bar-dropdown-list--content text-left
+         slide-out
+        "
 >
     <i
         className="material-icons top-bar-dropdown-list--close-btn"
@@ -521,7 +525,9 @@ Array [
     </span>
 </div>,
   <div
-    className="top-bar-dropdown-list--content text-left slide-out"
+    className="top-bar-dropdown-list--content text-left
+         slide-out
+        "
 >
     <i
         className="material-icons top-bar-dropdown-list--close-btn"
@@ -653,7 +659,9 @@ Array [
     </span>
 </div>,
   <div
-    className="top-bar-dropdown-list--content text-left slide-out"
+    className="top-bar-dropdown-list--content text-left
+         slide-out
+         empty-list"
 >
     <i
         className="material-icons top-bar-dropdown-list--close-btn"
