@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobile} from 'react-device-detect';
 import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
@@ -80,13 +79,11 @@ class FilterPage extends React.Component {
     return (
       <div className="filter-page">
         <div className="filters row">
-          {isMobile && (
-            <div className="filter-page-top col-12">
-              <div className="filter-page-searchbar">
-                <SearchBar />
-              </div>
+          <div className="filter-page-top col-12">
+            <div className="filter-page-searchbar">
+              <SearchBar />
             </div>
-          )}
+          </div>
         </div>
 
         <Filters
@@ -115,6 +112,7 @@ class FilterPage extends React.Component {
                   key={pid}
                   enableHover={true}
                   allowFetch={true}
+                  hideMoreLikeThis={true}
                   onWorkPreviewClick={work =>
                     this.props.history(HISTORY_PUSH, '/værk/' + work.book.pid)
                   }

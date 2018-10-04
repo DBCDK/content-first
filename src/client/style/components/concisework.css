@@ -147,7 +147,7 @@
     font-weight: 400;
   }
 
-  div.AddToListButton__Container {
+  .concise-work-container .AddToListButton__Container {
     display: none;
   }
 }

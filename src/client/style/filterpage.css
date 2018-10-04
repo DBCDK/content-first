@@ -12,6 +12,7 @@
 .filter-page-top {
   background: var(--lys-graa);
   padding: 1rem;
+  display: none;
 }
 
 .filter-page-searchbar {
@@ -147,6 +148,9 @@
 }
 
 @media only screen and (max-width: 575px) {
+  .filter-page-top {
+    display: block;
+  }
   .filter-page-resultCount {
     padding-top: 1rem;
   }

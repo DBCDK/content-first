@@ -93,7 +93,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 575px) {
   .dropdown-backdrop {
     background-color: var(--lys-graa);
   }
