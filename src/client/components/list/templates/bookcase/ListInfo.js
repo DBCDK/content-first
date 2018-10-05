@@ -60,7 +60,9 @@ export const ListInfo = ({
 
   const padding = expanded ? info.padding : '0';
 
-  const notSticky = !sticky ? 'slideUp pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4' : '';
+  const notSticky = !sticky
+    ? 'slideUp pl-0 pb-md-4 pt-md-4 pl-md-4 pr-md-4'
+    : '';
   const stickyClass = sticky && !editing ? ' scale sticky' : '';
   const expandedClass = expanded && !editing ? ' expanded' : '';
 
@@ -132,7 +134,7 @@ export const ListInfo = ({
             list.image && (
               <img
                 alt=""
-                className={'list-cover-image w-100'}
+                className={'list-cover-image_ w-100'}
                 src={`/v1/image/${list.image}/719/400`}
               />
             )
@@ -165,14 +167,14 @@ export const ListInfo = ({
           />
         )}
       </div>
-      <div className="info pl-3 pr-3 pl-sm-4 pr-sm-4 pb-4 lys-graa pt-2 position-relative">
+      <div className="info pt-4 pt-md-2 pl-3 pr-3 pl-sm-4 pr-sm-4 pb-4 lys-graa position-relative">
         <div
           className="d-flex flex-row position-absolute pr-0"
           style={{right: 0, top: 0}}
         >
           {!editing && (
             <SocialShareButton
-              className={'ssb-fb align-middle mr-4'}
+              className={'ssb-fb align-middle mr-2 mr-md-4 mt-3 mt-md-2'}
               facebook={true}
               href={'https://content-first.demo.dbc.dk/lister/' + list._id}
               hex={'#3b5998'}
@@ -187,7 +189,7 @@ export const ListInfo = ({
           )}
           <ListContextMenu
             _id={list._id}
-            className="d-lg-none align-middle"
+            className="d-lg-none align-middle mt-3"
             title=""
             onEdit={onEdit}
           />
@@ -195,7 +197,7 @@ export const ListInfo = ({
 
         {editing ? (
           <React.Fragment>
-            <div className="info-color-select d-flex flex-row-reverse position-relative">
+            <div className="info-color-select mr-2 mr-md-0 d-flex flex-row-reverse position-relative">
               {dotColors.map((color, i) => {
                 const active = color === list.dotColor ? true : false;
                 const disableClass = !active ? 'pulse-expand-disable' : '';

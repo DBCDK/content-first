@@ -144,7 +144,7 @@ export class BookcaseItem extends React.Component {
     }
 
     const imageStyle = {
-      backgroundImage: `url(/v1/image/${list.image}/719/400)`
+      backgroundImage: `url(/v1/image/${list.image}/1438/800)`
     };
 
     return (

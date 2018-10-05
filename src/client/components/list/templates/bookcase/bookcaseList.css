@@ -38,10 +38,18 @@
   height: 100% !important;
   width: auto !important;
   transition-duration: 0.3s;
+
+  /* animation hacks */
+  max-width: 300px;
+  max-height: 100px;
 }
 
 .list-cover-image-wrapper.sticky.expanded img {
   width: 100% !important;
+
+  /* animation hacks */
+  max-width: 800px;
+  max-height: 600px;
 }
 
 .list-cover-image-wrapper.sticky .pulse-toucharea {
@@ -62,11 +70,21 @@
   transform: scale(0.85);
 }
 
+.list-cover-image_ {
+  width: 100%;
+  height: auto;
+}
+
 .info-color-select .pulse-toucharea {
   position: static;
   transform: none;
   width: auto;
-  height: auto;
+  margin: 0px;
+  height: 20px;
+}
+
+.info-color-select .pulse-toucharea .pulse {
+  margin: 0;
 }
 
 .list-cover-text {

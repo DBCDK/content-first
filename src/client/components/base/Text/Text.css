@@ -66,6 +66,10 @@
   color: var(--due);
 }
 
+.Text__micro--color-petrolium {
+  color: var(--petrolium);
+}
+
 /*
     MediaQ
 */
