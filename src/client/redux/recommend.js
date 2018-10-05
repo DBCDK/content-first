@@ -63,28 +63,47 @@ export const getRecommendedPids = (state, {tags, creators}) => {
 };
 
 export const applyClientSideFilters = (books, tags) => {
+  let minPages = 0;
+  let maxPages = 500000;
   return books.filter(work => {
     if (!work) {
       return false;
     }
+    // step1: check if short tag is selected
     if (tags.includes(100000)) {
       // short book
-      if (work.book.pages > 150) {
-        return false;
-      }
+      maxPages = 150;
     }
+    // step2: check if medium tag is selected
     if (tags.includes(100001)) {
       // medium length book
-      if (work.book.pages <= 150 || work.book.pages > 350) {
-        return false;
+      maxPages = 350;
+      minPages = 150;
+      if (tags.includes(100000)) {
+        minPages = 0;
       }
     }
+    // step3: check if long tag is selected
     if (tags.includes(100002)) {
-      // long length book
-      if (work.book.pages <= 350) {
-        return false;
+      maxPages = 500000;
+      minPages = 350;
+      if (tags.includes(100001)) {
+        minPages = 150;
+      }
+      if (tags.includes(100000)) {
+        minPages = 0;
       }
     }
+
+    // step4: filter by min and max pages.
+    if (
+      work.book.pages &&
+      work.book.pages !== 0 &&
+      (work.book.pages <= minPages || work.book.pages >= maxPages)
+    ) {
+      return false;
+    }
+
     if (tags.includes(100003)) {
       // availability
       if (work.book.libraries < 50) {
