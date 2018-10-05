@@ -85,7 +85,7 @@ export const applyClientSideFilters = (books, tags) => {
     }
     // step3: check if long tag is selected
     if (tags.includes(100002)) {
-      maxPages = 1000;
+      maxPages = 500000;
       minPages = 350;
       if (tags.includes(100001)) {
         minPages = 150;
