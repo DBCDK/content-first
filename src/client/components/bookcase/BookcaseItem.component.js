@@ -104,7 +104,7 @@ export class BookcaseItem extends React.Component {
   };
 
   gotoListPage() {
-    const listurl = '/lister/5a848260-bfcb-11e8-b3d1-99ddf3478932';
+    const listurl = '/lister/a2d7b450-c7ba-11e8-a4c7-c500cfdf0018';
     if (this.getWindowWidth() <= 500) {
       window.open(listurl, '_self');
     }

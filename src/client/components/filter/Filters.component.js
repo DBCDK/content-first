@@ -1,6 +1,5 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
-import {isMobile} from 'react-device-detect';
 import Heading from '../base/Heading';
 import Icon from '../base/Icon';
 import CardList from './templates/CardList.component.js';
@@ -12,6 +11,9 @@ const params = {
   containerClass: 'Filters__swiper-container',
   wrapperClass: 'Filters__swiper-wrapper',
   mousewheel: false,
+  slidesPerView: 'auto',
+  slidesPerGroup: 1,
+  slideToClickedSlide: window.innerWidth < 576,
   navigation: {
     nextEl: '.Filters__next',
     prevEl: '.Filters__prev'
@@ -35,10 +37,7 @@ const params = {
         valg
       </span>
     </div>
-  ),
-  slidesPerView: 'auto',
-  slidesPerGroup: 1,
-  slideToClickedSlide: isMobile
+  )
 };
 
 class FilterCard extends React.Component {

@@ -70,6 +70,12 @@ exports[`renders without crashing 1`] = `
                     />
                   </div>
                 </div>
+                <i
+                  className="material-icons material-icons-search md-large d-md-none d-sm-inline-block"
+                  onClick={[Function]}
+                >
+                  search
+                </i>
                 <div
                   className="selected-filters"
                 />

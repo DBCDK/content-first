@@ -82,7 +82,7 @@ class WorkPage extends React.Component {
     return (
       <div className="container">
         <div className="row WorkPage__container">
-          <div className="col-md-12 col-lg-8 WorkPage__work">
+          <div className="col-12 col-xl-8 WorkPage__work">
             <div className="WorkPage__image">
               <BookCover book={book} />
               <BookmarkButton
@@ -207,13 +207,13 @@ class WorkPage extends React.Component {
                 )}
               </div>
               <div className="row">
-                <div className="col-12 pt1">
+                <div className="col-12 mt1">
                   <BookmarkButton
                     className="mr1"
                     origin={'Fra egen værkside'}
                     work={work}
                   />
-                  <AddToListButton className="mr1" work={work} />
+                  <AddToListButton className="mr1 pt1" work={work} />
                 </div>
               </div>
               <div className="row">
@@ -304,7 +304,7 @@ class WorkPage extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-md-12 col-lg-4 WorkPage__reviews pt1 pb1">
+          <div className="col-12 col-xl-4 WorkPage__reviews mt-5 mb-5 mt-xl-0 mb-xl-0">
             <div className="row">
               <div className="col-md-12">
                 <Title Tag="h3" type="title4" className="mt0 mb2">

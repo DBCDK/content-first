@@ -2,7 +2,6 @@ import React from 'react';
 import request from 'superagent';
 import {uniqBy} from 'lodash';
 import Autosuggest from 'react-autosuggest';
-import {isMobile} from 'react-device-detect';
 
 import Icon from '../base/Icon';
 
@@ -291,20 +290,17 @@ class TagsSuggester extends React.Component {
       onFocus: this.props.onFocus,
       onKeyDown: this.props.onKeyDown,
       onBlur: () => {
-        if (isMobile) {
-          this.toggleInputvisibility(false);
-        }
+        this.toggleInputvisibility(false);
       }
     };
 
     return (
       <React.Fragment>
-        {isMobile &&
-          tagsInField &&
+        {tagsInField &&
           !inputVisibel && (
             <Icon
               name="search"
-              className="md-large"
+              className="md-large d-md-none d-sm-inline-block"
               onClick={() => this.toggleInputvisibility(true)}
             />
           )}
@@ -340,14 +336,13 @@ class TagsSuggester extends React.Component {
             inputProps={inputProps}
           />
         </div>
-        {isMobile &&
-          !tagsInField && (
-            <Icon
-              name="search"
-              className="md-large"
-              onClick={() => this.toggleInputvisibility(true)}
-            />
-          )}
+        {!tagsInField && (
+          <Icon
+            name="search"
+            className="md-large d-md-none d-sm-inline-block"
+            onClick={() => this.toggleInputvisibility(true)}
+          />
+        )}
       </React.Fragment>
     );
   }

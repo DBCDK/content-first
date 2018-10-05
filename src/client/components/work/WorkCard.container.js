@@ -64,6 +64,9 @@ class WorkCard extends React.Component {
       return <SkeletonWorkCard {...this.props} />;
     }
 
+    // check if more-like-this button is disabled (default: false)
+    const hideMoreLikeThis = this.props.hideMoreLikeThis || false;
+
     const tax_description =
       this.props.work.book.taxonomy_description ||
       this.props.work.book.description;
@@ -130,18 +133,22 @@ class WorkCard extends React.Component {
               <Heading Tag="h3" type="subtitle" className="mt0">
                 {this.props.work.book.creator}
               </Heading>
-              <Button
-                type="tertiary"
-                size="small"
-                onClick={event => {
-                  event.stopPropagation();
-                  event.preventDefault();
-                  this.props.onMoreLikeThisClick(this.props.work);
-                  this.props.scrollToChildBelt();
-                }}
-              >
-                Mere som denne
-              </Button>
+              {hideMoreLikeThis ? (
+                <hr className="w-100" />
+              ) : (
+                <Button
+                  type="tertiary"
+                  size="small"
+                  onClick={event => {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    this.props.onMoreLikeThisClick(this.props.work);
+                    this.props.scrollToChildBelt();
+                  }}
+                >
+                  Mere som denne
+                </Button>
+              )}
               <Paragraph className="mt1">
                 {<TaxDescription text={tax_description} />}
               </Paragraph>
