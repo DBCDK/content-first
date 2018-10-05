@@ -198,8 +198,13 @@ exports[`renders without crashing 1`] = `
         href="/"
         onClick={[Function]}
       >
+        <p
+          className="d-block d-sm-none Text Text__large "
+        >
+          Læsekompas
+        </p>
         <h1
-          className=" Title Title__title4 "
+          className="d-none d-sm-block Title Title__title4 "
         >
           Læsekompas
         </h1>
