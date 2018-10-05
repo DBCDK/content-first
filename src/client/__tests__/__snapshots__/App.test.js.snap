@@ -199,15 +199,15 @@ exports[`renders without crashing 1`] = `
         onClick={[Function]}
       >
         <h1
-          className="d-none d-sm-inline"
+          className=" Title Title__title4 "
         >
-          Læsekompasset
+          Læsekompas
         </h1>
-        <img
-          alt="Læsekompasset"
-          className="d-block d-sm-none"
-          src="logo.svg"
-        />
+        <p
+          className="logo-beta-sign Text Text__micro "
+        >
+          BETA
+        </p>
       </a>
       <ul
         className="Topbar__dropdown abort-closeDopdown Topbar__dropdown__hidden"
