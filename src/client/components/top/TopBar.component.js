@@ -11,8 +11,8 @@ import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import {ON_USERLISTS_COLLAPSE} from '../../redux/list.reducer';
 import {ON_SHORTLIST_COLLAPSE} from '../../redux/shortlist.reducer';
-
-import logo from '../../logo.svg';
+import Title from '../base/Title/index';
+import Text from '../base/Text/index';
 import './Topbar.css';
 
 let searchPage = false;
@@ -265,8 +265,13 @@ export class TopBar extends React.Component {
           <div className="Topbar__overlay" />
         </nav>
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
-          <h1 className="d-none d-sm-inline">Læsekompasset</h1>
-          <img src={logo} className="d-block d-sm-none" alt="Læsekompasset" />
+            <Text className="d-block d-sm-none" type="large">Læsekompas</Text>
+            <Title className="d-none d-sm-block" Tag="h1" type="title4">
+              Læsekompas
+            </Title>
+          <Text className="logo-beta-sign" type="micro">
+            BETA
+          </Text>
         </Link>
         <TopBarDropdown
           logout={this.props.logout}

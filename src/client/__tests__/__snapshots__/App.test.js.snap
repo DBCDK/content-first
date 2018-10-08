@@ -198,16 +198,21 @@ exports[`renders without crashing 1`] = `
         href="/"
         onClick={[Function]}
       >
-        <h1
-          className="d-none d-sm-inline"
+        <p
+          className="d-block d-sm-none Text Text__large "
         >
-          Læsekompasset
+          Læsekompas
+        </p>
+        <h1
+          className="d-none d-sm-block Title Title__title4 "
+        >
+          Læsekompas
         </h1>
-        <img
-          alt="Læsekompasset"
-          className="d-block d-sm-none"
-          src="logo.svg"
-        />
+        <p
+          className="logo-beta-sign Text Text__micro "
+        >
+          BETA
+        </p>
       </a>
       <ul
         className="Topbar__dropdown abort-closeDopdown Topbar__dropdown__hidden"

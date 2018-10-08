@@ -30,18 +30,26 @@
   background-color: white;
   color: var(--petrolium);
   text-decoration: none !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 0 20px 0 20px;
+  cursor: pointer;
+  margin: 0;
+
+
+}
+.Topbar .Topbar__logo .logo-beta-sign{
+margin-top: -13px;
+margin-bottom: 0px;
+}
+@media only screen and (max-width: 575px) {
+  .Topbar .Topbar__logo .logo-beta-sign{
+    margin-top: -19px;
+  }
 }
 
-.Topbar .Topbar__logo h1 {
-  height: 100%;
-  display: inline-block;
-  line-height: 80px;
-  font-weight: 600;
-  font-size: 18px;
-  margin: 0;
-  cursor: pointer;
-  padding: 0 20px 0 20px;
-}
 
 .Topbar .Topbar__logo img {
   display: none;
