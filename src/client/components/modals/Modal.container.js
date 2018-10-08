@@ -5,6 +5,7 @@ import OrderModal from './OrderModal.container';
 import LoginModal from './LoginModal.component';
 import ConfirmModal from './ConfirmModal.component';
 import ListSettingsModal from './ListSettingsModal.container';
+import ReorderListModal from './ReorderListModal.container';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Modal extends React.Component {
@@ -64,6 +65,12 @@ class Modal extends React.Component {
         <ListSettingsModal
           context={this.props.modalState.listSettings.context}
         />
+      );
+    }
+
+    if (this.props.modalState.reorderList.open) {
+      modal = (
+        <ReorderListModal context={this.props.modalState.reorderList.context} />
       );
     }
     return (

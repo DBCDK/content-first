@@ -70,6 +70,7 @@
     "react-scripts": "1.0.12",
     "react-scroll-to-component": "^1.0.2",
     "react-slick": "^0.16.0",
+    "react-sortable-hoc": "^0.8.3",
     "react-toastify": "^4.1.0",
     "react-truncate-markup": "^1.0.1",
     "redux": "^3.7.2",

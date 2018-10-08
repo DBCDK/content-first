@@ -33,3 +33,32 @@
     max-height: inherit;
   }
 }
+
+/*ReorderListModal styles*/
+.order-list-element{
+    display: flex;
+
+    align-items: center;
+    width: 100%;
+    padding: 12px 18px;
+    background-color: #fff;
+    border-bottom: 1px solid #efefef;
+    box-sizing: border-box;
+    user-select: none;
+    color: var(--petrolium);
+    font-weight: 40 s0;
+    z-index: 1000000;
+    margin: 2px 0;
+}
+
+.order-list-element-text {
+height:32px;}
+.order-list-element-text p{
+  margin: 0;
+}
+
+.reorder-list-element-container{
+padding: 0;
+
+
+}
