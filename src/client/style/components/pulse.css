@@ -27,8 +27,24 @@
   animation-play-state: paused;
 }
 
-.pulse-expand:active .pulse,
+.pulse-noAnimation .pulse,
 .pulse-active .pulse {
+  -webkit-animation: none;
+  -webkit-animation: none;
+  -moz-animation: none;
+  -o-animation: none;
+  animation: none;
+}
+
+.pulse-noAnimation .pulse {
+  transform: scale(1);
+}
+
+.pulse-active .pulse {
+  transform: scale(1.25);
+}
+
+.pulse-expand:active .pulse {
   transform: scale(1.25);
   -webkit-animation-play-state: paused;
   -moz-animation-play-state: paused;

@@ -2,7 +2,7 @@
 
 exports[`Pulse renders initial component 1`] = `
 <div
-  className="pulse-toucharea pulse-expand    react-draggable"
+  className="pulse-toucharea text-center pulse-expand    react-draggable"
   onClick={[Function]}
   onMouseDown={[Function]}
   onMouseUp={[Function]}

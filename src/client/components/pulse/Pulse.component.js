@@ -15,6 +15,7 @@ export default class Pulse extends React.Component {
     }
 
     const activeClass = this.props.active ? 'pulse-active' : '';
+    const noAnimationClass = this.props.noAnimation ? 'pulse-noAnimation' : '';
     const colorClass = this.props.color ? this.props.color : '';
 
     return (
@@ -28,7 +29,7 @@ export default class Pulse extends React.Component {
       >
         <div
           className={`pulse-toucharea text-center pulse-expand ${this.props
-            .className || ''} ${activeClass} `}
+            .className || ''} ${activeClass} ${noAnimationClass}`}
           onClick={this.props.onClick}
         >
           <div
