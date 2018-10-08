@@ -50,7 +50,6 @@ export class BookcaseList extends React.Component {
 
   handleResize = () => {
     const windowWidth = window.innerWidth;
-
     if (this.state.windowWidth !== windowWidth) {
       this.setState({windowWidth});
     }
@@ -86,7 +85,7 @@ export class BookcaseList extends React.Component {
     }
 
     return {
-      height: info ? info.offsetHeight : 'auto',
+      height: info ? info.offsetHeight : '100%',
       width: info ? info.offsetWidth : '100%',
       top: info ? info.offsetTop : 0,
       headerHeight,

@@ -49,9 +49,12 @@ export function timestampToDateTime(timestamp) {
   const year = a.getFullYear();
   const month = monthsShort[a.getMonth()];
   const date = a.getDate();
-  const hour = a.getHours();
-  const min = a.getMinutes();
-  // const sec = a.getSeconds();
+
+  // zerofill time (12:1 = 12:01)
+  const hour = ('0' + a.getHours()).slice(-2);
+  const min = ('0' + a.getMinutes()).slice(-2);
+  // const sec = ('0' + a.getSeconds()).slice(-2);
+
   const time = date + '. ' + month + ' ' + year + ' kl. ' + hour + ':' + min;
   return time;
 }

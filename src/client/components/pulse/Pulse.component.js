@@ -1,5 +1,6 @@
 import React from 'react';
 import Draggable from 'react-draggable';
+import Text from '../base/Text';
 
 export default class Pulse extends React.Component {
   randomDelay(min, max) {
@@ -14,6 +15,7 @@ export default class Pulse extends React.Component {
     }
 
     const activeClass = this.props.active ? 'pulse-active' : '';
+    const noAnimationClass = this.props.noAnimation ? 'pulse-noAnimation' : '';
     const colorClass = this.props.color ? this.props.color : '';
 
     return (
@@ -26,11 +28,10 @@ export default class Pulse extends React.Component {
         onStop={this.props.onStop}
       >
         <div
-          className={`pulse-toucharea pulse-expand ${this.props.className ||
-            ''} ${activeClass} `}
+          className={`pulse-toucharea text-center pulse-expand ${this.props
+            .className || ''} ${activeClass} ${noAnimationClass}`}
           onClick={this.props.onClick}
         >
-          {this.props.label && <span className="pulse-label">{label}</span>}
           <div
             className={`pulse delay ${colorClass}`}
             style={{
@@ -38,6 +39,15 @@ export default class Pulse extends React.Component {
                 (this.props.delay || this.randomDelay(10, 50)) + 'ms'
             }}
           />
+          {this.props.label && (
+            <Text
+              className="pulse-label mb-0 p-1 d-inline-block"
+              type="micro"
+              variant="color-petrolium"
+            >
+              {label}
+            </Text>
+          )}
         </div>
       </Draggable>
     );
