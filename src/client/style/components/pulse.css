@@ -27,8 +27,24 @@
   animation-play-state: paused;
 }
 
-.pulse-expand:active .pulse,
+.pulse-noAnimation .pulse,
 .pulse-active .pulse {
+  -webkit-animation: none;
+  -webkit-animation: none;
+  -moz-animation: none;
+  -o-animation: none;
+  animation: none;
+}
+
+.pulse-noAnimation .pulse {
+  transform: scale(1);
+}
+
+.pulse-active .pulse {
+  transform: scale(1.25);
+}
+
+.pulse-expand:active .pulse {
   transform: scale(1.25);
   -webkit-animation-play-state: paused;
   -moz-animation-play-state: paused;
@@ -43,22 +59,23 @@
 
 .pulse-toucharea .pulse-label {
   background-color: white;
-  border-radius: 5px;
   position: absolute;
-  top: 40px;
-  left: 50%;
+  min-width: 75px;
+  max-width: 125px;
+  border-radius: 5px;
   transform: translate(-50%, 0%);
   transition: all 0.2s ease-in-out;
-  display: block;
   text-align: center;
   pointer-events: none;
-  min-width: 110px;
-  padding: 0.5rem;
   opacity: 0;
 }
 
 .pulse-toucharea:hover .pulse-label {
   opacity: 1;
+}
+
+.pulse-toucharea:hover {
+  z-index: 9;
 }
 
 /* Pulse animation */
