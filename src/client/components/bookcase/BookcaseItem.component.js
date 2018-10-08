@@ -167,6 +167,7 @@ export class BookcaseItem extends React.Component {
               return (
                 <Pulse
                   active={active}
+                  label={work.book.title}
                   key={'pulse-' + work.book.pid}
                   color={list.dotColor}
                   position={position}
