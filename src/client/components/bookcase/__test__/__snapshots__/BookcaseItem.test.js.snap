@@ -19,6 +19,7 @@ exports[`BookcaseItem Render list as bookcaseItem 1`] = `
       <Pulse
         active={false}
         color="due"
+        label="Blomstrende syrener"
         onClick={[Function]}
         position={
           Object {
