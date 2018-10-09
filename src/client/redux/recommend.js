@@ -187,7 +187,8 @@ export const recommendMiddleware = store => next => action => {
             });
             store.dispatch({
               type: BOOKS_REQUEST,
-              pids
+              pids,
+              includeCover: false
             });
           } catch (error) {
             store.dispatch({

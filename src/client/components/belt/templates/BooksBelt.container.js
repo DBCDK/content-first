@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {isMobile} from 'react-device-detect';
-import {difference} from 'lodash';
+import VisibilitySensor from 'react-visibility-sensor';
+import {difference, isEqual} from 'lodash';
 import scrollToComponent from 'react-scroll-to-component';
 import WorkCard from '../../work/WorkCard.container';
 import Heading from '../../base/Heading';
@@ -31,26 +32,32 @@ export class BooksBelt extends React.Component {
       showDetails: false,
       didSwipe: false
     };
+    this.fetchedTags = null;
   }
 
   componentDidMount() {
-    if (this.props.recommendedPids.length === 0) {
-      this.props.fetchRecommendations(this.props.tags);
-    }
+    this.fetchRecommendations();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.tags.length !== this.props.tags.length) {
-      this.props.fetchRecommendations(nextProps.tags);
-    }
+  componentDidUpdate() {
+    this.fetchRecommendations();
   }
+
+  fetchRecommendations = () => {
+    if (isEqual(this.fetchedTags, this.props.tags) || !this.state.visible) {
+      return;
+    }
+    this.props.fetchRecommendations(this.props.tags);
+    this.fetchedTags = this.props.tags;
+  };
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.belt !== this.props.belt ||
       nextProps.tags.length !== this.props.tags.length ||
       nextProps.recommendedPids.length !== this.props.recommendedPids.length ||
-      nextState.didSwipe !== this.state.didSwipe
+      nextState.didSwipe !== this.state.didSwipe ||
+      nextState.visible !== this.state.visible
     );
   }
 
@@ -84,6 +91,12 @@ export class BooksBelt extends React.Component {
     scrollToComponent(this.refs.childBelt, {offset});
   }
 
+  onVisibilityChange = visible => {
+    if (visible) {
+      this.setState({visible});
+    }
+  };
+
   render() {
     const {
       fetchInitial = 8,
@@ -101,121 +114,132 @@ export class BooksBelt extends React.Component {
     const name = this.props.name || this.props.belt.name;
     const border = showTags ? 'border-right-sm-1 ' : '';
     const pids =
-      recommendedPids.length > 0 ? recommendedPids : skeletonElements;
+      recommendedPids.length > 0 && this.state.visible
+        ? recommendedPids
+        : skeletonElements;
 
     return (
-      <React.Fragment>
-        <div className="belt text-left mt3 row">
-          <div className="p-0 col-12">
-            <div className="header row">
-              <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
-                <Heading
-                  className={
-                    border + 'inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0 '
-                  }
-                  Tag="h1"
-                  type="section"
-                >
-                  {name.split(' ').map((word, idx) => {
-                    if (idx === 0) {
-                      return <strong key={idx}>{word}</strong>;
+      <VisibilitySensor
+        onChange={this.onVisibilityChange}
+        partialVisibility={true}
+      >
+        <React.Fragment>
+          <div className="belt text-left mt3 row">
+            <div className="p-0 col-12">
+              <div className="header row">
+                <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
+                  <Heading
+                    className={
+                      border +
+                      'inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0 '
                     }
-                    return ' ' + word;
-                  })}
-                </Heading>
-              </Link>
-              {showTags && (
-                <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
-                  {tagObjects.map((t, idx) => {
-                    const isLast = idx === tagObjects.length - 1;
+                    Tag="h1"
+                    type="section"
+                  >
+                    {name.split(' ').map((word, idx) => {
+                      if (idx === 0) {
+                        return <strong key={idx}>{word}</strong>;
+                      }
+                      return ' ' + word;
+                    })}
+                  </Heading>
+                </Link>
+                {showTags && (
+                  <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
+                    {tagObjects.map((t, idx) => {
+                      const isLast = idx === tagObjects.length - 1;
+                      return (
+                        <Link key={idx} href="/find" params={{tag: t.id}}>
+                          <Term
+                            className={'ml1 mt1' + (isLast ? ' mr1' : '')}
+                            size="medium"
+                            style={{verticalAlign: 'baseline'}}
+                          >
+                            {t.title}
+                          </Term>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+                {subtext && (
+                  <Heading Tag="h3" type="lead" className="ml1 mt1 mb0">
+                    {subtext}
+                  </Heading>
+                )}
+              </div>
+
+              <div className="mt2 row">
+                <Slider
+                  initialScrollPos={scrollPos}
+                  onSwipe={index => {
+                    if (index > 0 && !this.state.didSwipe) {
+                      this.setState({didSwipe: true});
+                    }
+                    if (scrollPos !== index) {
+                      this.props.beltScroll(belt, index);
+                    }
+                  }}
+                >
+                  {pids.map((pid, idx) => {
                     return (
-                      <Link key={idx} href="/find" params={{tag: t.id}}>
-                        <Term
-                          className={'ml1 mt1' + (isLast ? ' mr1' : '')}
-                          size="medium"
-                          style={{verticalAlign: 'baseline'}}
-                        >
-                          {t.title}
-                        </Term>
-                      </Link>
+                      <WorkCard
+                        className="ml1 mr1"
+                        enableHover={true}
+                        highlight={
+                          (child && child.pid === pid) || pid === pidPreview
+                        }
+                        allowFetch={
+                          this.state.visible &&
+                          (this.state.didSwipe || idx < fetchInitial)
+                        }
+                        pid={pid}
+                        key={pid}
+                        origin={`Fra "${name}"`}
+                        onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
+                          belt,
+                          pid,
+                          true
+                        )}
+                        onWorkPreviewClick={() => {
+                          this.toggleWorkPreview(pid, belt);
+                        }}
+                        scrollToChildBelt={() => {
+                          this.scrollToChildBelt(belt);
+                        }}
+                        pidPreview={pidPreview}
+                      />
                     );
                   })}
-                </div>
-              )}
-              {subtext && (
-                <Heading Tag="h3" type="lead" className="ml1 mt1 mb0">
-                  {subtext}
-                </Heading>
-              )}
-            </div>
-
-            <div className="mt2 row">
-              <Slider
-                initialScrollPos={scrollPos}
-                onSwipe={index => {
-                  if (index > 0 && !this.state.didSwipe) {
-                    this.setState({didSwipe: true});
-                  }
-                  if (scrollPos !== index) {
-                    this.props.beltScroll(belt, index);
-                  }
+                </Slider>
+              </div>
+              <div
+                ref={childBelt => {
+                  this.refs = {...this.refs, childBelt};
                 }}
               >
-                {pids.map((pid, idx) => {
-                  return (
-                    <WorkCard
-                      className="ml1 mr1"
-                      enableHover={true}
-                      highlight={
-                        (child && child.pid === pid) || pid === pidPreview
-                      }
-                      allowFetch={this.state.didSwipe || idx < fetchInitial}
-                      pid={pid}
-                      key={pid}
-                      origin={`Fra "${name}"`}
-                      onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
-                        belt,
-                        pid,
-                        true
-                      )}
-                      onWorkPreviewClick={() => {
-                        this.toggleWorkPreview(pid, belt);
-                      }}
-                      scrollToChildBelt={() => {
-                        this.scrollToChildBelt(belt);
-                      }}
-                      pidPreview={pidPreview}
-                    />
-                  );
-                })}
-              </Slider>
-            </div>
-            <div
-              ref={childBelt => {
-                this.refs = {...this.refs, childBelt};
-              }}
-            >
-              {pidPreview && (
-                <WorkPreview
-                  pid={pidPreview}
-                  onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
-                    belt,
-                    pidPreview,
-                    false
-                  )}
-                  scrollToChildBelt={() => {
-                    this.scrollToChildBelt(belt);
-                  }}
-                />
-              )}
+                {pidPreview && (
+                  <WorkPreview
+                    pid={pidPreview}
+                    onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
+                      belt,
+                      pidPreview,
+                      false
+                    )}
+                    scrollToChildBelt={() => {
+                      this.scrollToChildBelt(belt);
+                    }}
+                  />
+                )}
+              </div>
             </div>
           </div>
-        </div>
-        {belt.child &&
-          this.props.childTemplate && (
-            <this.props.childTemplate belt={belt.child} />
-          )}
-      </React.Fragment>
+          {belt.child &&
+            this.props.childTemplate && (
+              <this.props.childTemplate belt={belt.child} />
+            )}
+        </React.Fragment>
+      </VisibilitySensor>
     );
   }
 }
