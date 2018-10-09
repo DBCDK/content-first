@@ -46,7 +46,6 @@ class WorkPreview extends React.Component {
     const collection = filterCollection(work);
     // get reviews from litteratursiden
     const reviews = filterReviews(work);
-
     return (
       <div className="row WorkPreview__container">
         <div className="col-md-12 col-lg-7 workPreview__work">
@@ -60,7 +59,7 @@ class WorkPreview extends React.Component {
               className={'ssb-fb'}
               styles={{fontWeight: 'bold'}}
               facebook={true}
-              href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
+              href={'https://laesekompas.dk/værk/' + book.pid}
               hex={'#3b5998'}
               size={30}
               shape="round"
