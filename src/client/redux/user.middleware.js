@@ -6,7 +6,6 @@ import {
   deleteUser,
   fetchAnonymousToken
 } from '../utils/requester';
-import request from 'superagent';
 import {
   ON_USER_DETAILS_REQUEST,
   ON_USER_DETAILS_ERROR,
