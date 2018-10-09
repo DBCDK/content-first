@@ -1,5 +1,4 @@
 import openplatform from 'openplatform';
-import request from 'superagent';
 import {OPEN_MODAL} from './modal.reducer';
 import {
   ORDER,
@@ -9,6 +8,7 @@ import {
   PICKUP_BRANCHES,
   AVAILABILITY
 } from './order.reducer';
+import {fetchAnonymousToken} from '../utils/requester';
 
 async function openplatformLogin(state) {
   if (!openplatform.connected()) {
@@ -20,14 +20,8 @@ async function openplatformLogin(state) {
   }
 }
 
-let anonymousTokenPromise;
 async function getCollectionPids(pid) {
-  if (!anonymousTokenPromise) {
-    anonymousTokenPromise = (async () =>
-      (await request.get('/v1/openplatform/anonymous_token')).body
-        .access_token)();
-  }
-  const access_token = await anonymousTokenPromise;
+  const access_token = await fetchAnonymousToken();
 
   return (await openplatform.work({
     pids: [pid],

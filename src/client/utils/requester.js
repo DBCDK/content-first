@@ -433,12 +433,20 @@ export async function fetchSearchResults({query, dispatch}) {
 }
 
 let accessToken;
+let accessTokenRequest = null;
 export const fetchAnonymousToken = async () => {
   if (accessToken) {
+    // Return already fetched token
     return accessToken;
   }
-  accessToken = (await request.get('/v1/openplatform/anonymous_token')).body
-    .access_token;
+  if (accessTokenRequest) {
+    // A token request is currently running
+    // We wait for that to complete
+    return (await accessTokenRequest).body.access_token;
+  }
 
+  accessTokenRequest = request.get('/v1/openplatform/anonymous_token');
+  accessToken = (await accessTokenRequest).body.access_token;
+  accessTokenRequest = null;
   return accessToken;
 };
