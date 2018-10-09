@@ -3,7 +3,8 @@ import {
   logout,
   addImage,
   saveUser,
-  deleteUser
+  deleteUser,
+  fetchAnonymousToken
 } from '../utils/requester';
 import request from 'superagent';
 import {
@@ -54,9 +55,7 @@ export const userMiddleware = store => next => action => {
       (async () => {
         openplatformLogin({
           userReducer: {
-            openplatformToken: (await request.get(
-              '/v1/openplatform/anonymous_token'
-            )).body.access_token
+            openplatformToken: await fetchAnonymousToken()
           }
         });
       })();
