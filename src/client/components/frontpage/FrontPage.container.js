@@ -9,17 +9,14 @@ class FrontPage extends React.Component {
     const beltsMap = this.props.beltsMap;
 
     return (
-      <React.Fragment>
-        <SpotsContainer />
-        <div className="belts col-12">
-          {Object.values(beltsMap)
-            .filter(belt => belt.onFrontPage)
-            .map(belt => (
-              <BooksBelt key={belt.name} belt={belt} />
-            ))}
-          <RecentListsBelt />
-        </div>
-      </React.Fragment>
+      <div className="belts col-12">
+        {Object.values(beltsMap)
+          .filter(belt => belt.onFrontPage)
+          .map(belt => (
+            <BooksBelt key={belt.name} belt={belt} />
+          ))}
+        <RecentListsBelt />
+      </div>
     );
   }
 
@@ -27,6 +24,7 @@ class FrontPage extends React.Component {
     return (
       <div className="frontpage container">
         <BookcaseItem id={'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018'} />
+        <SpotsContainer />
         {this.renderBelts()}
       </div>
     );

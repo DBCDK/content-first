@@ -131,30 +131,41 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
   });
   return pidsToFetch;
 };
-
-const debouncedRequest = (() => {
+const createDebouncedFunction = (name, requestFunction) => {
   let pidQueue = [];
   let debounced = debounce(store => {
     const pidQueueCopy = [...pidQueue];
-    partialUpdateRequest('details', pidQueueCopy, fetchBooks, store);
-    partialUpdateRequest('cover', pidQueueCopy, fetchCoverRefs, store);
+    partialUpdateRequest(name, pidQueueCopy, requestFunction, store);
     pidQueue = difference(pidQueue, pidQueueCopy);
   }, 20);
   return (pids, store) => {
     pidQueue = [...pidQueue, ...pids];
     debounced(store);
   };
-})();
+};
+const debouncedFunctions = {
+  cover: createDebouncedFunction('cover', fetchCoverRefs),
+  details: createDebouncedFunction('details', fetchBooks),
+  tags: createDebouncedFunction('tags', fetchBooksTags)
+};
 
 export const requestMiddleware = store => next => action => {
   switch (action.type) {
     case BOOKS_REQUEST:
       (async () => {
-        const {includeTags, includeReviews, includeCollection} = action;
+        const {
+          includeTags,
+          includeReviews,
+          includeCollection,
+          includeCover = true
+        } = action;
 
-        debouncedRequest(action.pids, store);
+        debouncedFunctions.details(action.pids, store);
+        if (includeCover) {
+          debouncedFunctions.cover(action.pids, store);
+        }
         if (includeTags) {
-          partialUpdateRequest('tags', action.pids, fetchBooksTags, store);
+          debouncedFunctions.tags(action.pids, store);
         }
 
         if (includeReviews || includeCollection) {

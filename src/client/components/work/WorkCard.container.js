@@ -41,8 +41,10 @@ class WorkCard extends React.Component {
     workClass: 'work'
   };
   fetch = () => {
-    if (this.props.allowFetch && !this.props.work) {
-      this.props.fetchWork(this.props.pid);
+    if (this.props.allowFetch) {
+      if (!this.props.work || !this.props.work.coverHasLoaded) {
+        this.props.fetchWork(this.props.pid);
+      }
     }
   };
   componentDidMount() {
