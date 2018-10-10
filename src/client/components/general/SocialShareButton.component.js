@@ -66,8 +66,7 @@ export default class SocialShareButton extends React.Component {
             ? 'https://www.facebook.com/sharer/sharer.php?display=page&u=' +
               this.props.href +
               '?' +
-              ts +
-              '=1'
+              ts
             : this.props.href
               ? this.props.href
               : null
