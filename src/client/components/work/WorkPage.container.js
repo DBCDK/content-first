@@ -102,7 +102,7 @@ class WorkPage extends React.Component {
               <SocialShareButton
                 className={'ssb-fb'}
                 facebook={true}
-                href={'https://laesekompas.dk/værk/' + book.pid}
+                href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
                 hex={'#3b5998'}
                 size={40}
                 shape="round"

@@ -67,7 +67,7 @@ export const ListInfo = ({
           <SocialShareButton
             className={'ssb-fb align-middle mr-4'}
             facebook={true}
-            href={'https://laesekompas.dk/lister/' + list._id}
+            href={'https://content-first.demo.dbc.dk/lister/' + list._id}
             hex={'#3b5998'}
             size={40}
             shape="round"
