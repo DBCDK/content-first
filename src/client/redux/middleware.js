@@ -319,7 +319,10 @@ export const listMiddleware = store => next => async action => {
       const listIds = Object.values(store.getState().followReducer)
         .filter(follow => follow.cat === 'list')
         .map(f => f.id);
-      listIds.forEach(_id => store.dispatch({type: LIST_LOAD_REQUEST, _id}));
+      const lists = store.getState().listReducer.lists;
+      listIds
+        .filter(_id => !lists[_id])
+        .forEach(_id => store.dispatch({type: LIST_LOAD_REQUEST, _id}));
 
       return res;
     }
