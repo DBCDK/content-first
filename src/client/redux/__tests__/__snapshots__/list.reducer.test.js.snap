@@ -11,9 +11,7 @@ Array [
     "list": Array [
       Object {
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid1",
-          "title": "title1",
         },
         "pid": "pid1",
         "position": Object {
@@ -39,9 +37,7 @@ Array [
     "list": Array [
       Object {
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid1",
-          "title": "title1",
         },
         "description": "some-description-1",
         "pid": "pid1",
@@ -53,9 +49,7 @@ Array [
       Object {
         "_id": 2,
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid2",
-          "title": "title2",
         },
         "pid": "pid2",
         "position": Object {
@@ -159,9 +153,7 @@ Array [
       Object {
         "_id": 1,
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid1",
-          "title": "title1",
         },
         "pid": "pid1",
         "position": Object {
@@ -178,9 +170,7 @@ Array [
       Object {
         "_id": 2,
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid2",
-          "title": "title2",
         },
         "pid": "pid2",
         "position": Object {
@@ -210,9 +200,7 @@ Array [
       Object {
         "_id": "456",
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid2",
-          "title": "title2",
         },
         "pid": "pid2",
         "position": Object {
@@ -272,9 +260,7 @@ Array [
     "list": Array [
       Object {
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid1",
-          "title": "title1",
         },
         "pid": "pid1",
       },
