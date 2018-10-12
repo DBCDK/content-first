@@ -58,35 +58,35 @@ export class AddToListButton extends React.Component {
   }
 
   render() {
-    const {work} = this.props;
+    const {work, isLoggedIn} = this.props;
     const book = work.book;
 
     // Number of customLists to show
     const customListsToShow = isMobile ? 20 : 3;
 
     let defaultTitle = 'Tilføj til liste';
-
-    let customTitle = '';
-    this.props.customLists.forEach(list => {
-      let status = this.pidInList(book.pid, list.list);
-      if (status) {
-        customTitle += list.title + ', ';
-        defaultTitle = '';
-      }
-    });
-
     let systemTitle = '';
-    this.props.systemLists.forEach(list => {
-      let status = this.pidInList(book.pid, list.list);
-      if (status) {
-        systemTitle += list.title + ', ';
-        defaultTitle = '';
-      }
-    });
+    let customTitle = '';
+    if (isLoggedIn) {
+      this.props.customLists.forEach(list => {
+        let status = this.pidInList(book.pid, list.list);
+        if (status) {
+          customTitle += list.title + ', ';
+          defaultTitle = '';
+        }
+      });
+      this.props.systemLists.forEach(list => {
+        let status = this.pidInList(book.pid, list.list);
+        if (status) {
+          systemTitle += list.title + ', ';
+          defaultTitle = '';
+        }
+      });
+    }
 
     const buttonActive = defaultTitle === '' ? 'AddToListButton__Active' : '';
 
-    if (!this.props.isLoggedIn) {
+    if (!isLoggedIn) {
       return (
         <Button
           className={'AddToListButton'}
@@ -252,12 +252,8 @@ const mapStateToProps = state => {
   return {
     customLists: customListSelector(state, {
       type: CUSTOM_LIST,
-      _owner: state.userReducer.openplatformId
-    }).sort(function(a, b) {
-      if (!b._modified) {
-        return 1;
-      }
-      return b._modified - a._modified;
+      _owner: state.userReducer.openplatformId,
+      sort: 'created'
     }),
     systemLists: systemListsSelector(state, {
       type: SYSTEM_LIST,
