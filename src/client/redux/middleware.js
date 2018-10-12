@@ -35,7 +35,9 @@ import {
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
-  LISTS_LOAD_REQUEST,
+  FOLLOWED_LISTS_REQUEST,
+  OWNED_LISTS_REQUEST,
+  OWNED_LISTS_RESPONSE,
   LIST_TOGGLE_ELEMENT,
   getListByIdSelector,
   ADD_LIST_IMAGE,
@@ -44,12 +46,7 @@ import {
   ADD_ELEMENT_TO_LIST
 } from './list.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {
-  saveList,
-  loadList,
-  loadLists,
-  loadRecentPublic
-} from '../utils/requestLists';
+import {saveList, loadList, loadLists} from '../utils/requestLists';
 
 const getListById = getListByIdSelector();
 
@@ -317,13 +314,21 @@ export const listMiddleware = store => next => async action => {
       }
       return res;
     }
-    case LISTS_LOAD_REQUEST: {
+    case FOLLOWED_LISTS_REQUEST: {
+      const res = next(action);
+      const listIds = Object.values(store.getState().followReducer)
+        .filter(follow => follow.cat === 'list')
+        .map(f => f.id);
+      listIds.forEach(_id => store.dispatch({type: LIST_LOAD_REQUEST, _id}));
+
+      return res;
+    }
+    case OWNED_LISTS_REQUEST: {
       const res = next(action);
       const {openplatformId} = store.getState().userReducer;
       const lists = await loadLists({openplatformId, store});
-      const recentLists = await loadRecentPublic({store});
 
-      const allLists = [...lists, ...recentLists];
+      const allLists = [...lists];
       allLists.forEach(list => {
         store.dispatch({
           type: LIST_LOAD_RESPONSE,
@@ -340,12 +345,17 @@ export const listMiddleware = store => next => async action => {
 
       store.dispatch({type: BOOKS_REQUEST, pids});
 
-      for (const list of [...lists, ...recentLists]) {
+      for (const list of [...lists]) {
         store.dispatch({type: REQUEST_USER, id: list._owner});
         list.list.forEach(element => {
           store.dispatch({type: REQUEST_USER, id: element._owner});
         });
       }
+
+      store.dispatch({type: FOLLOWED_LISTS_REQUEST});
+      store.dispatch({
+        type: OWNED_LISTS_RESPONSE
+      });
 
       return res;
     }

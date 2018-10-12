@@ -1,13 +1,10 @@
 /*
 Selectors working on the global state object
 */
-
+import {createSelector} from 'reselect';
 import {getBooks} from './books.reducer';
 import {getRecommendedPids, applyClientSideFilters} from './recommend';
 import {filtersMapAll} from './filter.reducer';
-import {getListByIdSelector} from './list.reducer';
-
-const getListById = getListByIdSelector();
 
 export const getRecommendedBooks = (state, tags, max = 100) => {
   const {recommendReducer, booksReducer} = state;
@@ -29,15 +26,19 @@ export const getRecommendedBooks = (state, tags, max = 100) => {
   return result;
 };
 
-export const getFollowedLists = state => {
-  const follows = state.followReducer;
-  const result = Object.values(follows)
-    .filter(follow => follow.cat === 'list')
-    .map(follow => getListById(state, {_id: follow.id}))
-    .filter(list => list);
-
-  return result;
-};
+export const createGetFollowedLists = () =>
+  createSelector(
+    [state => state.followReducer, state => state.listReducer.lists],
+    (follows, lists) => {
+      const result = Object.values(follows)
+        .filter(follow => follow.cat === 'list')
+        .map(follow => lists[follow.id])
+        // list.error may occur if followed list is deleted or made private
+        // just remove them
+        .filter(list => list && !list.error);
+      return result;
+    }
+  );
 
 export const getTagsFromUrl = state => {
   return state.routerReducer.params.tag
@@ -101,3 +102,19 @@ export const getTagsbyIds = (state, aIds) => {
     return filtersMapAll[tag.id || tag];
   });
 };
+
+export const createCountComments = () =>
+  createSelector(
+    [state => state.comments, (state, {ids = []}) => ids],
+    (comments, ids) => {
+      let commentCount = 0;
+      ids.forEach(id => {
+        commentCount +=
+          (comments[id] &&
+            comments[id].comments &&
+            comments[id].comments.length) ||
+          0;
+      });
+      return commentCount;
+    }
+  );

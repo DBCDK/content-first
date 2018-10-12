@@ -9,7 +9,7 @@ import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {
   CUSTOM_LIST,
   SYSTEM_LIST,
-  getListsForOwner,
+  createGetLists,
   addList,
   addElementToList,
   toggleElementInList,
@@ -246,9 +246,11 @@ export class AddToListButton extends React.Component {
   }
 }
 
+const customListSelector = createGetLists();
+const systemListsSelector = createGetLists();
 const mapStateToProps = state => {
   return {
-    customLists: getListsForOwner(state, {
+    customLists: customListSelector(state, {
       type: CUSTOM_LIST,
       _owner: state.userReducer.openplatformId
     }).sort(function(a, b) {
@@ -257,7 +259,7 @@ const mapStateToProps = state => {
       }
       return b._modified - a._modified;
     }),
-    systemLists: getListsForOwner(state, {
+    systemLists: systemListsSelector(state, {
       type: SYSTEM_LIST,
       _owner: state.userReducer.openplatformId,
       sort: true
