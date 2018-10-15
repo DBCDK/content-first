@@ -306,9 +306,16 @@ const beltsReducer = (state = defaultState, action) => {
     case WORK_PREVIEW: {
       const {pid, belt} = action;
 
+      console.log('reducer', pid, belt);
+
       const belts = traverseBelts(state.belts, b => {
         const copy = {...b};
+
+        //console.log('ggg', b, belt);
+
         if (b === belt) {
+          console.log('match in belts');
+
           copy.pidPreview = pid;
           delete copy.child;
         }

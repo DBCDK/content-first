@@ -13,7 +13,10 @@ import './WorkCard.css';
 
 export const SkeletonWorkCard = props => {
   return (
-    <div className={'WorkCard' + ' ' + props.className}>
+    <div
+      ref={props.cardRef || null}
+      className={'WorkCard' + ' ' + props.className}
+    >
       <BookCover book={{book: {}}} />
       <div
         className="skelet-taxonomy-description d-xs-none d-sm-block"
@@ -73,6 +76,7 @@ class WorkCard extends React.Component {
 
     return (
       <div
+        ref={this.props.cardRef || null}
         className={
           'WorkCard' +
           (this.props.highlight ? ' highlight' : '') +
@@ -143,7 +147,9 @@ class WorkCard extends React.Component {
                     event.stopPropagation();
                     event.preventDefault();
                     this.props.onMoreLikeThisClick(this.props.work);
-                    this.props.scrollToChildBelt();
+                    if (this.props.scrollToChildBelt) {
+                      this.props.scrollToChildBelt();
+                    }
                   }}
                 >
                   Mere som denne

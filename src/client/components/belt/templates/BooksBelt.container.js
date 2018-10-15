@@ -55,6 +55,8 @@ export class BooksBelt extends React.Component {
   }
 
   getOnMoreLikeThisClickFunc(belt, pid, clearPreview) {
+    console.log('getOnMoreLikeThisClickFunc', belt, pid);
+
     return work => {
       this.props.addChildBelt(
         belt,
@@ -76,6 +78,9 @@ export class BooksBelt extends React.Component {
       return;
     }
     let status = pid === belt.pidPreview ? false : pid;
+
+    console.log('toggleWorkPreview', status, belt);
+
     this.props.changePidPreview(status, belt);
   }
 
@@ -100,6 +105,7 @@ export class BooksBelt extends React.Component {
 
     const name = this.props.name || this.props.belt.name;
     const border = showTags ? 'border-right-sm-1 ' : '';
+
     const pids =
       recommendedPids.length > 0 ? recommendedPids : skeletonElements;
 
@@ -173,17 +179,13 @@ export class BooksBelt extends React.Component {
                       pid={pid}
                       key={pid}
                       origin={`Fra "${name}"`}
-                      onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
-                        belt,
-                        pid,
-                        true
-                      )}
-                      onWorkPreviewClick={() => {
-                        this.toggleWorkPreview(pid, belt);
-                      }}
-                      scrollToChildBelt={() => {
-                        this.scrollToChildBelt(belt);
-                      }}
+                      onMoreLikeThisClick={() =>
+                        this.getOnMoreLikeThisClickFunc(belt, pid, true)
+                      }
+                      onWorkPreviewClick={() =>
+                        this.toggleWorkPreview(pid, belt)
+                      }
+                      scrollToChildBelt={() => this.scrollToChildBelt(belt)}
                       pidPreview={pidPreview}
                     />
                   );
@@ -222,16 +224,20 @@ export class BooksBelt extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const excluded = ownProps.excluded || [];
+
+  const recommendedPids = !ownProps.recommendedPids
+    ? ownProps.tags.length > 0
+      ? difference(
+          getRecommendedPids(state.recommendReducer, {
+            tags: ownProps.tags
+          }).pids,
+          excluded
+        ).slice(0, 20)
+      : []
+    : ownProps.recommendedPids;
+
   return {
-    recommendedPids:
-      ownProps.tags.length > 0
-        ? difference(
-            getRecommendedPids(state.recommendReducer, {
-              tags: ownProps.tags
-            }).pids,
-            excluded
-          ).slice(0, 20)
-        : [],
+    recommendedPids,
     tagObjects: ownProps.tags.map(tag => {
       return filtersMapAll[tag.id || tag];
     })
