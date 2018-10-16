@@ -7,15 +7,18 @@ const Button = ({
   Tag = 'button',
   size = 'large',
   type = 'primary',
+  variant = false,
   children,
   className,
   disabled = false,
   ...props
 }) => {
+  const modifier = variant ? `Button__${type}--${variant}` : '';
+
   return (
     <Tag
-      className={`${className || ''} 
-      btn Button Button__${type} Button__${size}`}
+      className={`${className || ''}
+      btn Button Button__${size} Button__${type} ${variant}`}
       {...props}
       disabled={disabled}
     >

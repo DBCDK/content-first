@@ -1,0 +1,34 @@
+.Hero {
+  height: 70vh;
+}
+
+.Hero .swiper-container {
+  padding-top: 0;
+}
+
+.Hero .swiper-container,
+.Hero .swiper-wrapper {
+  height: 100%;
+}
+
+.Hero .swiper-slide {
+  background-position: center center;
+  background-size: cover;
+}
+
+.Hero .swiper-container-horizontal > .swiper-pagination-bullets {
+  top: auto;
+  text-align: center;
+  bottom: 0;
+}
+
+.Hero .swiper-pagination-bullet {
+  background: white;
+}
+.Hero .swiper-pagination-bullet-active {
+  background-color: white;
+}
+
+.Hero .searchbar {
+  height: 60px;
+}

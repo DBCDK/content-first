@@ -94,7 +94,6 @@
 
 /* Sizes */
 .Button__large {
-  text-transform: none;
   padding: 10px 15px;
   font-size: 1.3em;
 }
@@ -111,8 +110,26 @@
   font-size: 0.75rem;
 }
 
+/* Variants */
+
+.Button__primary--bgcolor-fersken {
+  background-color: var(--fersken);
+}
+
+.Button__primary--bgcolor-due {
+  background-color: var(--due);
+}
+
+.Button__primary--bgcolor-korn {
+  background-color: var(--korn);
+}
+
+.Button__primary--bgcolor-petrolium {
+  background-color: var(--petrolium);
+}
+
 /* Feedback button */
-.Button__feedback{
+.Button__feedback {
   background-color: var(--pistache);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;

@@ -15,6 +15,7 @@
   font-size: 4.5vw;
   font-weight: 800;
   line-height: 1.3em;
+  color: white;
 }
 
 .Title__title2 {
@@ -45,12 +46,20 @@
     Modifiers
 */
 
+.Title__title1--color-petrolium {
+  color: var(--petrolium);
+}
+
 .Title__title3--weight-normal {
   font-weight: 400;
 }
 
 .Title__title4--transform-uppercase {
   text-transform: uppercase;
+}
+
+.Title__title3--color-white {
+  color: white;
 }
 
 /*
