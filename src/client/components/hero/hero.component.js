@@ -33,9 +33,20 @@ const params = {
 
 export class Hero extends React.Component {
   buildUrl(tags) {
+    const aCards = this.props.aCards;
     let url = '/find?';
+
     tags.forEach(tag => {
-      url += 'tag=' + tag + '&';
+      let inRange = false;
+
+      aCards.forEach(card => {
+        if (card.range && card.range.includes(tag)) {
+          inRange = true;
+          return;
+        }
+      });
+
+      url += `tag=${inRange ? tag + ',' + tag : tag}&`;
     });
     return url.slice(0, -1);
   }
@@ -48,68 +59,76 @@ export class Hero extends React.Component {
         <Swiper {...params}>
           {!heroesIsLoading &&
             heroes.map(hero => {
-              const styles = {backgroundImage: `url(${hero.img})`};
-              const url = this.buildUrl(hero.tags);
+              if (!hero.disabled) {
+                const styles = {backgroundImage: `url(${hero.img})`};
+                const shadow =
+                  hero.color === 'white' ? 'black-shadow' : 'white-shadow';
+                const url = this.buildUrl(hero.tags);
 
-              return (
-                <div style={styles} className={`text-center`}>
-                  <Title
-                    Tag="h1"
-                    type="title1"
-                    variant={
-                      hero.color !== 'white' ? `color-${hero.color}` : null
-                    }
-                  >
-                    {hero.title}
-                  </Title>
-
-                  <div className="col-12 col-md-8 col-xl-6 mr-auto ml-auto">
+                return (
+                  <div style={styles} className={`text-center`}>
                     <Title
-                      Tag="h3"
-                      type="title3"
+                      Tag="h1"
+                      type="title1"
                       variant={
-                        hero.color !== 'petrolium'
-                          ? `color-${hero.color}`
-                          : null
+                        hero.color !== 'white' ? `color-${hero.color}` : null
                       }
+                      className={`${shadow}`}
                     >
-                      {hero.text}
+                      {hero.title}
                     </Title>
 
-                    <div className="searchbar p-2 bg-white d-flex justify-content-between">
-                      <div className="d-inline h-100">
-                        <Icon
-                          name="search"
-                          className="md-xlarge align-middle mr-3 ml-2"
-                        />
-                        {hero.tags.map(tag => {
-                          return (
-                            <Link href={'/find?tag=' + tag}>
-                              <Button
-                                size="large"
-                                type="term"
-                                className="h-100 mr-3"
-                              >
-                                {leavesMap[tag].title}
-                              </Button>
-                            </Link>
-                          );
-                        })}
+                    <div className="col-12 col-md-8 col-xl-6 text-left mr-auto ml-auto pt-5">
+                      <Title
+                        Tag="h3"
+                        type="title3"
+                        className="mb-4"
+                        variant={
+                          hero.color !== 'petrolium'
+                            ? `color-${hero.color}`
+                            : null
+                        }
+                      >
+                        {hero.text}
+                      </Title>
+
+                      <div className="searchbar p-2 bg-white d-flex justify-content-between">
+                        <div className="d-inline h-100">
+                          <Icon
+                            name="search"
+                            className="md-xlarge align-middle mr-3 ml-2"
+                          />
+                          {hero.tags.map(tag => {
+                            return (
+                              <Link href={'/find?tag=' + tag}>
+                                <Button
+                                  size="large"
+                                  type="term"
+                                  className="h-100 mr-3"
+                                >
+                                  {leavesMap[tag].title}
+                                </Button>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                        <Link href={url}>
+                          <Button
+                            type="primary"
+                            size="large"
+                            className="h-100"
+                            variant={`bgcolor-${hero.btnColor}--color-${
+                              hero.btnTextColor
+                            }`}
+                          >
+                            {hero.btnText}
+                          </Button>
+                        </Link>
                       </div>
-                      <Link href={url}>
-                        <Button
-                          type="primary"
-                          size="large"
-                          className="h-100"
-                          variant={`bgcolor-${hero.btnColor}`}
-                        >
-                          {hero.btnText}
-                        </Button>
-                      </Link>
                     </div>
                   </div>
-                </div>
-              );
+                );
+              }
             })}
         </Swiper>
       </div>
@@ -120,7 +139,8 @@ export class Hero extends React.Component {
 const mapStateToProps = state => {
   return {
     heroes: state.heroReducer.heroes,
-    heroesIsLoading: state.heroReducer.isLoading
+    heroesIsLoading: state.heroReducer.isLoading,
+    aCards: Object.values(state.filtercardReducer)
   };
 };
 

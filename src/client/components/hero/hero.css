@@ -14,12 +14,13 @@
 .Hero .swiper-slide {
   background-position: center center;
   background-size: cover;
+  padding-top: 10vh;
 }
 
 .Hero .swiper-container-horizontal > .swiper-pagination-bullets {
   top: auto;
   text-align: center;
-  bottom: 0;
+  bottom: 10px;
 }
 
 .Hero .swiper-pagination-bullet {
@@ -31,4 +32,8 @@
 
 .Hero .searchbar {
   height: 60px;
+}
+
+.Hero .black-shadow {
+  text-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.25);
 }

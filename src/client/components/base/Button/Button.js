@@ -18,7 +18,7 @@ const Button = ({
   return (
     <Tag
       className={`${className || ''}
-      btn Button Button__${size} Button__${type} ${variant}`}
+      btn Button Button__${size} Button__${type} ${modifier}`}
       {...props}
       disabled={disabled}
     >

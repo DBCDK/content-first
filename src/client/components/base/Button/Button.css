@@ -112,20 +112,46 @@
 
 /* Variants */
 
-.Button__primary--bgcolor-fersken {
+.Button__primary--bgcolor-fersken--color-white,
+.Button__primary--bgcolor-fersken--color-white:hover {
   background-color: var(--fersken);
+  color: white;
 }
 
-.Button__primary--bgcolor-due {
+.Button__primary--bgcolor-due--color-white,
+.Button__primary--bgcolor-due--color-white:hover {
   background-color: var(--due);
+  color: white;
 }
 
-.Button__primary--bgcolor-korn {
+.Button__primary--bgcolor-korn--color-white,
+.Button__primary--bgcolor-korn--color-white:hover {
   background-color: var(--korn);
+  color: white;
 }
 
-.Button__primary--bgcolor-petrolium {
+.Button__primary--bgcolor-petrolium--color-white,
+.Button__primary--bgcolor-petrolium--color-white:hover {
   background-color: var(--petrolium);
+  color: white;
+}
+
+.Button__primary--bgcolor-fersken--color-petrolium,
+.Button__primary--bgcolor-fersken--color-petrolium:hover {
+  background-color: var(--fersken);
+  color: var(--petrolium);
+}
+
+.Button__primary--bgcolor-due--color-petrolium,
+.Button__primary--bgcolor-due--color-petrolium:hover {
+  background-color: var(--due);
+  color: var(--petrolium);
+}
+
+.Button__primary--bgcolor-korn--color-petrolium,
+.Button__primary--bgcolor-korn--color-petrolium:hover {
+  background-color: var(--korn);
+  color: var(--petrolium);
 }
 
 /* Feedback button */
