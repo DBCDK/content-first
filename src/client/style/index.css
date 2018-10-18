@@ -330,3 +330,6 @@ div.belt-subtext {
 .curser-pointer{
   cursor: pointer;
 }
+.curser-move{
+  cursor: move;
+}

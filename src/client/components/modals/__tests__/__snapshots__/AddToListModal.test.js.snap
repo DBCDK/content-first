@@ -44,7 +44,7 @@ exports[`AddToListModal multiple works as input 1`] = `
         <span
           className="align-middle"
         >
-          tilbage
+          Tilbage
         </span>
       </button>
     </div>
@@ -240,7 +240,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
         <span
           className="align-middle"
         >
-          tilbage
+          Tilbage
         </span>
       </button>
     </div>
@@ -467,7 +467,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
         <span
           className="align-middle"
         >
-          tilbage
+          Tilbage
         </span>
       </button>
     </div>

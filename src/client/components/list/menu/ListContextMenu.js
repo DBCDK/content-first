@@ -26,7 +26,6 @@ const ListContextMenu = ({
   if (!isOwner || !isCustomList) {
     return null;
   }
-  //reorderList();
   return (
     <ContextMenu title={title} className={className} style={style}>
       <ContextMenuAction

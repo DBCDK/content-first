@@ -30,7 +30,7 @@ export default class Modal extends React.Component {
               onClick={this.props.onClose}
             >
               <Icon name="chevron_left" className="align-middle" />
-              <span className="align-middle">tilbage</span>
+              <span className="align-middle">Tilbage</span>
             </Button>
           </div>
 
