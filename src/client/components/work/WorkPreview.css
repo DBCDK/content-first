@@ -135,3 +135,6 @@ width: 60%;
     border-right: none;
   }
 }
+.work-preview-book-creator{
+  color: var(--petrolium) !important;
+}

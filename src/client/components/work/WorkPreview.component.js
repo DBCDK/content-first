@@ -70,10 +70,15 @@ class WorkPreview extends React.Component {
             <Heading Tag="h1" type="lead" className="mt0">
               <Link href={'/værk/' + book.pid}>{book.title}</Link>
             </Heading>
-
-            <Heading Tag="h2" type="heading" className="mt1">
-              {book.creator}
-            </Heading>
+            <Link
+              href="/find"
+              params={{creator: book.creator}}
+              className="work-preview-book-creator"
+            >
+              <Heading Tag="h2" type="heading" className="mt1">
+                {book.creator}
+              </Heading>
+            </Link>
 
             <Paragraph className="mt1">
               <strong>{<TaxDescription text={tax_description} />}</strong>
