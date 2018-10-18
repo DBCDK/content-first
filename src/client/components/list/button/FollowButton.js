@@ -39,7 +39,9 @@ export const FollowButton = ({
       }}
     >
       <Icon name="visibility" className="align-middle" />
-      <span className="align-middle ml-2">Følg liste</span>
+      <span className="align-middle ml-2">
+        {isFollowing ? 'Følger liste' : 'Følg liste'}
+      </span>
     </Button>
   );
 };
