@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Swiper from 'react-id-swiper';
+import {Parallax, Background} from 'react-parallax';
 
 import Icon from '../base/Icon';
 import Title from '../base/Title';
@@ -60,73 +61,80 @@ export class Hero extends React.Component {
           {!heroesIsLoading &&
             heroes.map(hero => {
               if (!hero.disabled) {
-                const styles = {backgroundImage: `url(${hero.img})`};
+                const styles = {
+                  backgroundImage: `url(${hero.img})`
+                };
                 const shadow =
                   hero.color === 'white' ? 'black-shadow' : 'white-shadow';
                 const url = this.buildUrl(hero.tags);
 
                 return (
-                  <div style={styles} className={`text-center`}>
-                    <Title
-                      Tag="h1"
-                      type="title1"
-                      variant={
-                        hero.color !== 'white' ? `color-${hero.color}` : null
-                      }
-                      className={`${shadow}`}
-                    >
-                      {hero.title}
-                    </Title>
-
-                    <div className="col-12 col-md-8 col-xl-6 text-left mr-auto ml-auto pt-5">
+                  <Parallax strength={200}>
+                    <Background>
+                      <div style={styles} className={`hero-bg-image`} />
+                    </Background>
+                    <div className={`text-center position-relative`}>
                       <Title
-                        Tag="h3"
-                        type="title3"
-                        className="mb-4"
+                        Tag="h1"
+                        type="title1"
                         variant={
-                          hero.color !== 'petrolium'
-                            ? `color-${hero.color}`
-                            : null
+                          hero.color !== 'white' ? `color-${hero.color}` : null
                         }
+                        className={`${shadow}`}
                       >
-                        {hero.text}
+                        {hero.title}
                       </Title>
 
-                      <div className="searchbar p-2 bg-white d-flex justify-content-between">
-                        <div className="d-inline h-100">
-                          <Icon
-                            name="search"
-                            className="md-xlarge align-middle mr-3 ml-2"
-                          />
-                          {hero.tags.map(tag => {
-                            return (
-                              <Link href={'/find?tag=' + tag}>
-                                <Button
-                                  size="large"
-                                  type="term"
-                                  className="h-100 mr-3"
-                                >
-                                  {leavesMap[tag].title}
-                                </Button>
-                              </Link>
-                            );
-                          })}
+                      <div className="col-12 col-md-8 col-xl-6 text-left mr-auto ml-auto pt-5">
+                        <Title
+                          Tag="h3"
+                          type="title3"
+                          className="mb-4"
+                          variant={
+                            hero.color !== 'petrolium'
+                              ? `color-${hero.color}`
+                              : null
+                          }
+                        >
+                          {hero.text}
+                        </Title>
+
+                        <div className="searchbar p-2 d-flex justify-content-between">
+                          <div className="d-inline h-100">
+                            <Icon
+                              name="search"
+                              className="md-xlarge align-middle mr-3 ml-2"
+                            />
+                            {hero.tags.map(tag => {
+                              return (
+                                <Link href={'/find?tag=' + tag}>
+                                  <Button
+                                    size="large"
+                                    type="term"
+                                    className="h-100 mr-3"
+                                  >
+                                    {leavesMap[tag].title}
+                                  </Button>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                          <Link href={url}>
+                            <Button
+                              type="primary"
+                              size="large"
+                              className="h-100"
+                              variant={`bgcolor-${hero.btnColor}--color-${
+                                hero.btnTextColor
+                              }`}
+                            >
+                              {hero.btnText}
+                            </Button>
+                          </Link>
                         </div>
-                        <Link href={url}>
-                          <Button
-                            type="primary"
-                            size="large"
-                            className="h-100"
-                            variant={`bgcolor-${hero.btnColor}--color-${
-                              hero.btnTextColor
-                            }`}
-                          >
-                            {hero.btnText}
-                          </Button>
-                        </Link>
                       </div>
                     </div>
-                  </div>
+                  </Parallax>
                 );
               }
             })}

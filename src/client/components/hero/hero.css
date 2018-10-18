@@ -11,12 +11,6 @@
   height: 100%;
 }
 
-.Hero .swiper-slide {
-  background-position: center center;
-  background-size: cover;
-  padding-top: 10vh;
-}
-
 .Hero .swiper-container-horizontal > .swiper-pagination-bullets {
   top: auto;
   text-align: center;
@@ -32,8 +26,27 @@
 
 .Hero .searchbar {
   height: 60px;
+  background: rgba(255, 255, 2550, 1);
 }
 
 .Hero .black-shadow {
-  text-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.Hero .white-shadow {
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+}
+
+.Hero .hero-bg-image {
+  background-position: center center;
+  background-size: cover;
+  height: 80vh;
+}
+
+.react-parallax-background-children {
+  width: 100%;
+}
+
+.react-parallax-content {
+  padding-top: 10vh;
 }

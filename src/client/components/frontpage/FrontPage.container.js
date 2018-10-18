@@ -5,6 +5,7 @@ import RecentListsBelt from '../belt/RecentListsBelt.container';
 import BookcaseItem from '../bookcase/BookcaseItem.component';
 import BooksBelt from '../belt/BooksBelt.component';
 import SpotsContainer from '../spots/Spots.container';
+
 class FrontPage extends React.Component {
   renderBelts() {
     const beltsMap = this.props.beltsMap;
