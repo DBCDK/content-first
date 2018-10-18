@@ -8,7 +8,7 @@ describe('SocialShareButton', () => {
     const tree = renderer
       .create(
         <SocialShareButton
-          href={'https://content-first.demo.dbc.dk/lister/1234'}
+          href={'https://laesekompas.dk/lister/1234'}
           hex={'#3b5998'}
           size={40}
           shape="round"

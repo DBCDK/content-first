@@ -177,7 +177,7 @@ export class ListInfo extends React.Component {
               <SocialShareButton
                 className={'ssb-fb align-middle mr-2 mr-md-4 mt-3 mt-md-2'}
                 facebook={true}
-                href={'https://content-first.demo.dbc.dk/lister/' + list._id}
+                href={'https://laesekompas.dk/lister/' + list._id}
                 hex={'#3b5998'}
                 size={40}
                 shape="round"
