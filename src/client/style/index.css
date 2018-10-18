@@ -327,3 +327,9 @@ div.belt-subtext {
 .high-contrast {
   filter: contrast(1.25);
 }
+.curser-pointer{
+  cursor: pointer;
+}
+.curser-move{
+  cursor: move;
+}

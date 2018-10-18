@@ -15,6 +15,7 @@ const getListById = getListByIdSelector();
 const ListContextMenu = ({
   editListInfo,
   editSettings,
+  reorderList,
   isOwner,
   isCustomList,
   title,
@@ -32,7 +33,11 @@ const ListContextMenu = ({
         icon="edit"
         onClick={editListInfo}
       />
-      <ContextMenuAction title="Skift rækkefølge" icon="swap_vert" />
+      <ContextMenuAction
+        title="Skift rækkefølge"
+        icon="swap_vert"
+        onClick={reorderList}
+      />
       <ContextMenuAction
         title="Redigér indstillinger"
         icon="settings"
@@ -60,6 +65,13 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     if (ownProps.onEdit) {
       ownProps.onEdit();
     }
+  },
+  reorderList: () => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'reorderList',
+      context: {_id: ownProps._id}
+    });
   },
   editSettings: () => {
     dispatch({

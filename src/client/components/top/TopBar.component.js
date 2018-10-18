@@ -265,10 +265,12 @@ export class TopBar extends React.Component {
           <div className="Topbar__overlay" />
         </nav>
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
-            <Text className="d-block d-sm-none" type="large">Læsekompas</Text>
-            <Title className="d-none d-sm-block" Tag="h1" type="title4">
-              Læsekompas
-            </Title>
+          <Text className="d-block d-sm-none" type="large">
+            Læsekompas
+          </Text>
+          <Title className="d-none d-sm-block" Tag="h1" type="title4">
+            Læsekompas
+          </Title>
           <Text className="logo-beta-sign" type="micro">
             BETA
           </Text>

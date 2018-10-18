@@ -17,7 +17,6 @@ import FollowButton from '../../button/FollowButton';
 import AddBookButton from '../../button/AddBookButton';
 import ListContextMenu from '../../menu/ListContextMenu';
 import Pulse from '../../../pulse/Pulse.component';
-
 const getListById = getListByIdSelector();
 
 const dotColors = ['korn', 'due', 'de-york', 'fersken', 'petrolium'];

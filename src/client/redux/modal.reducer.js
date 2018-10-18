@@ -23,6 +23,11 @@ const defaultState = {
     open: false,
     context: null,
     callback: null
+  },
+  reorderList: {
+    open: false,
+    context: null,
+    callback: null
   }
 };
 
