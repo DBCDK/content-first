@@ -19,11 +19,10 @@ const params = {
   slidesPerView: 1,
   noSwiping: true,
   // autoplay: {
-  //   delay: 5000,
+  //   delay: 10000,
   //   disableOnInteraction: false
   // },
   slidesPerGroup: 1,
-  navigation: false,
   effect: 'fade',
   pagination: {
     el: '.swiper-pagination',
@@ -33,21 +32,22 @@ const params = {
 };
 
 export class Hero extends React.Component {
-  buildUrl(tags) {
+  inRange(tag) {
     const aCards = this.props.aCards;
+    let inRange = false;
+    aCards.forEach(card => {
+      if (card.range && card.range.includes(tag)) {
+        inRange = true;
+        return;
+      }
+    });
+    return inRange;
+  }
+
+  buildUrl(tags) {
     let url = '/find?';
-
     tags.forEach(tag => {
-      let inRange = false;
-
-      aCards.forEach(card => {
-        if (card.range && card.range.includes(tag)) {
-          inRange = true;
-          return;
-        }
-      });
-
-      url += `tag=${inRange ? tag + ',' + tag : tag}&`;
+      url += `tag=${this.inRange(tag) ? tag + ',' + tag : tag}&`;
     });
     return url.slice(0, -1);
   }
@@ -59,7 +59,7 @@ export class Hero extends React.Component {
       <div className="Hero">
         <Swiper {...params}>
           {!heroesIsLoading &&
-            heroes.map(hero => {
+            heroes.map((hero, idx) => {
               if (!hero.disabled) {
                 const styles = {
                   backgroundImage: `url(${hero.img})`
@@ -69,7 +69,7 @@ export class Hero extends React.Component {
                 const url = this.buildUrl(hero.tags);
 
                 return (
-                  <Parallax strength={200}>
+                  <Parallax key={`${hero.title}-${idx}`} strength={250}>
                     <Background>
                       <div style={styles} className={`hero-bg-image`} />
                     </Background>
@@ -85,11 +85,11 @@ export class Hero extends React.Component {
                         {hero.title}
                       </Title>
 
-                      <div className="col-12 col-md-8 col-xl-6 text-left mr-auto ml-auto pt-5">
+                      <div className="col-10 col-sm-10 col-md-12 col-lg-10 col-xl-8 text-left mr-auto ml-auto pt-3 pt-sm-5">
                         <Title
                           Tag="h3"
                           type="title3"
-                          className="mb-4"
+                          className={`${shadow} mb-4`}
                           variant={
                             hero.color !== 'petrolium'
                               ? `color-${hero.color}`
@@ -99,19 +99,23 @@ export class Hero extends React.Component {
                           {hero.text}
                         </Title>
 
-                        <div className="searchbar p-2 d-flex justify-content-between">
-                          <div className="d-inline h-100">
+                        <div className="searchbar p-0 p-sm-2 d-flex flex-column flex-md-row justify-content-between">
+                          <div className="d-flex flex-column flex-md-row d h-100">
                             <Icon
                               name="search"
-                              className="md-xlarge align-middle mr-3 ml-2"
+                              className="md-xlarge align-self-center d-none d-md-inline-block  mr-3 ml-2"
                             />
                             {hero.tags.map(tag => {
                               return (
-                                <Link href={'/find?tag=' + tag}>
+                                <Link
+                                  href={this.buildUrl([tag])}
+                                  key={tag}
+                                  className="searchbar-tags mt-2 mt-md-0"
+                                >
                                   <Button
                                     size="large"
                                     type="term"
-                                    className="h-100 mr-3"
+                                    className="mr-3 h-100"
                                   >
                                     {leavesMap[tag].title}
                                   </Button>
@@ -123,7 +127,7 @@ export class Hero extends React.Component {
                             <Button
                               type="primary"
                               size="large"
-                              className="h-100"
+                              className="searchbar-tags mt-4 mt-md-0"
                               variant={`bgcolor-${hero.btnColor}--color-${
                                 hero.btnTextColor
                               }`}

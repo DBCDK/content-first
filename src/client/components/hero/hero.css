@@ -25,16 +25,19 @@
 }
 
 .Hero .searchbar {
-  height: 60px;
-  background: rgba(255, 255, 2550, 1);
+  background: rgba(255, 255, 255, 1);
+}
+
+.Hero .searchbar .searchbar-tags {
+  height: 50px;
 }
 
 .Hero .black-shadow {
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 40px rgba(0, 0, 0, 0.75);
 }
 
 .Hero .white-shadow {
-  text-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.75);
 }
 
 .Hero .hero-bg-image {
@@ -49,4 +52,38 @@
 
 .react-parallax-content {
   padding-top: 10vh;
+}
+
+@media (max-width: 768px) {
+  .Hero {
+    height: calc(100vh - 80px);
+  }
+
+  .Hero .hero-bg-image {
+    height: calc(100vh + 80px);
+  }
+
+  .Hero .searchbar {
+    background: transparent;
+  }
+}
+
+@media (max-width: 575px) {
+  .Hero {
+    height: calc(100vh - 60px);
+  }
+
+  .react-parallax-content {
+    padding-top: 2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .Hero .searchbar .searchbar-tags {
+    height: 40px;
+  }
+
+  .Hero .Title__title3 {
+    display: none;
+  }
 }

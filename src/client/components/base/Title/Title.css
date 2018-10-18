@@ -66,10 +66,15 @@
     MediaQ
 */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
   /*
       Types
   */
+
+  .Title__title1 {
+    font-size: 10vw;
+    line-height: 42px;
+  }
 
   .Title__title2 {
     font-size: 28px;

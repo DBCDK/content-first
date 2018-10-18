@@ -4,7 +4,7 @@ const defaultState = {
   heroes: [
     {
       title: 'Hvordan er din næste bog?',
-      text: 'Hvornår har du sidst læst en spændende bog',
+      text: 'Hvornår har du sidst læst en spændende bog?',
       img: 'img/hero/norge.jpg',
       tags: [5676, 5631, 5610],
       color: 'petrolium',
@@ -15,7 +15,7 @@ const defaultState = {
     },
     {
       title: 'Hvordan er din næste bog?',
-      text: 'Hvornår har du sidst læst en uhyggelig krimi',
+      text: 'Hvornår har du sidst læst en uhyggelig krimi?',
       img: 'img/hero/krimi.jpg',
       tags: [5690, 5675, 5700],
       color: 'white',
@@ -26,7 +26,7 @@ const defaultState = {
     },
     {
       title: 'Hvordan er din næste bog?',
-      text: 'Det kunne måske være en dramatisk, historisk roman',
+      text: 'Det kunne måske være en dramatisk, historisk roman?',
       img: 'img/hero/book.jpg',
       tags: [5670, 5665, 5028],
       color: 'white',
