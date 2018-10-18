@@ -248,3 +248,7 @@
     padding: 0 1rem 1rem 1rem;
   }
 }
+
+.work-page-book-creator{
+  color: var(--petrolium) !important;
+}
