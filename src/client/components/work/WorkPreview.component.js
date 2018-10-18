@@ -60,7 +60,7 @@ class WorkPreview extends React.Component {
               className={'ssb-fb'}
               styles={{fontWeight: 'bold'}}
               facebook={true}
-              href={'https://content-first.demo.dbc.dk/værk/' + book.pid}
+              href={'https://laesekompas.dk/værk/' + book.pid}
               hex={'#3b5998'}
               size={30}
               shape="round"
