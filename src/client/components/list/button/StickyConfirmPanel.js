@@ -32,6 +32,9 @@ class StickyConfirmPanel extends React.Component {
     if (this.props.list.title && this.props.list.title.trim()) {
       this.props.submit();
       this.setState({originalList: this.props.list});
+      this.props.onTitleMissing(false);
+    } else {
+      this.props.onTitleMissing(true);
     }
   };
   render() {

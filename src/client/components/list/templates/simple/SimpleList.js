@@ -12,7 +12,7 @@ const getListById = getListByIdSelector();
 export class SimpleList extends React.Component {
   constructor() {
     super();
-    this.state = {added: null};
+    this.state = {added: null, titleMissing: false};
   }
   onEdit = () => {
     scrollToComponent(this.refs.cover, {
@@ -36,7 +36,10 @@ export class SimpleList extends React.Component {
     const {added} = this.state;
     return (
       <React.Fragment>
-        <StickyConfirmPanel _id={_id} />
+        <StickyConfirmPanel
+          _id={_id}
+          onTitleMissing={bool => this.setState({titleMissing: bool})}
+        />
         <StickySettingsPanel
           _id={_id}
           onEdit={this.onEdit}
@@ -54,6 +57,7 @@ export class SimpleList extends React.Component {
               _id={_id}
               onAddBook={this.onAddBook}
               onEdit={this.onEdit}
+              titleMissing={this.state.titleMissing}
             />
             <div className="position-relative">
               {list.list.map(element => {
@@ -88,6 +92,7 @@ export class SimpleList extends React.Component {
               style={{minHeight: 500, background: 'white'}}
               list={list}
               onAdd={pid => this.setState({added: pid})}
+              disabled={list.editing}
             />
           </div>
           <div className="fixed-width-col-sm d-xs-none d-lg-block mt-4 ml-4" />

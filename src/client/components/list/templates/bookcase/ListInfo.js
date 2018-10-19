@@ -72,7 +72,8 @@ export class ListInfo extends React.Component {
       sticky,
       expanded,
       info,
-      expandClick
+      expandClick,
+      titleMissing
     } = this.props;
 
     const height = editing ? 'auto' : info.height;
@@ -235,11 +236,12 @@ export class ListInfo extends React.Component {
                 value={list.title || ''}
               />
 
-              {!(list.title && list.title.trim()) && (
-                <Text type="body" variant="color-fersken" className="mt-2">
-                  Listen skal have en titel
-                </Text>
-              )}
+              {titleMissing &&
+                !list.title.length > 0 && (
+                  <Text type="body" variant="color-fersken" className="mt-2">
+                    Listen skal have en titel
+                  </Text>
+                )}
 
               <Textarea
                 className={`mt-3 form-control Text Text__large`}
