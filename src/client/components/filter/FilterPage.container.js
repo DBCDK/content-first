@@ -30,6 +30,7 @@ class FilterPage extends React.Component {
   componentDidMount() {
     this.fetch();
     this.initFilterPosition();
+    document.getElementById('Searchbar__inputfield').focus();
   }
 
   componentDidUpdate(prevProps) {

@@ -106,44 +106,43 @@ export class Hero extends React.Component {
                         >
                           {hero.text}
                         </Title>
-
-                        <div className="searchbar p-0 p-sm-2 d-inline-flex d-md-flex flex-column flex-md-row justify-content-between">
-                          <div className="d-inline-flex flex-column flex-md-row d h-100">
-                            <Icon
-                              name="search"
-                              className="md-xlarge align-self-center d-none d-md-inline-block mr-3 ml-2"
-                            />
-                            {hero.tags.map(tag => {
-                              return (
-                                <Link
-                                  href={this.buildUrl([tag])}
-                                  key={tag}
-                                  className="searchbar-tags mt-2 mt-md-0 d-inline-block"
-                                >
-                                  <Button
-                                    size="large"
-                                    type="term"
-                                    className="mr-3 h-100"
+                        <Link href={url}>
+                          <div className="searchbar p-0 p-sm-2 d-inline-flex d-md-flex flex-column flex-md-row justify-content-between">
+                            <div className="d-inline-flex flex-column flex-md-row d h-100">
+                              <Icon
+                                name="search"
+                                className="md-xlarge align-self-center d-none d-md-inline-block mr-3 ml-2"
+                              />
+                              {hero.tags.map(tag => {
+                                return (
+                                  <Link
+                                    href={this.buildUrl([tag])}
+                                    key={tag}
+                                    className="searchbar-tags mt-2 mt-md-0 d-inline-block"
                                   >
-                                    {leavesMap[tag].title}
-                                  </Button>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                          <Link href={url} className="d-inline-block">
+                                    <Button
+                                      size="large"
+                                      type="term"
+                                      className="mr-3 h-100"
+                                    >
+                                      {leavesMap[tag].title}
+                                    </Button>
+                                  </Link>
+                                );
+                              })}
+                            </div>
                             <Button
                               type="primary"
                               size="large"
-                              className="searchbar-tags mt-4 mt-md-0"
+                              className="searchbar-tags mt-4 mt-md-0 align-self-start"
                               variant={`bgcolor-${hero.btnColor}--color-${
                                 hero.btnTextColor
                               }`}
                             >
                               {hero.btnText}
                             </Button>
-                          </Link>
-                        </div>
+                          </div>
+                        </Link>
                       </div>
                     </div>
                   </Parallax>
