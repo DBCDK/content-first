@@ -10,7 +10,7 @@ import Link from '../general/Link.component';
 
 import {getLeavesMap} from '../../utils/taxonomy';
 
-import './hero.css';
+import './Hero.css';
 
 const leavesMap = getLeavesMap();
 
@@ -66,10 +66,18 @@ export class Hero extends React.Component {
                 };
                 const shadow =
                   hero.color === 'white' ? 'black-shadow' : 'white-shadow';
+                const filter =
+                  hero.color === 'white' ? 'darkFilter' : 'lightFilter';
                 const url = this.buildUrl(hero.tags);
 
                 return (
-                  <Parallax key={`${hero.title}-${idx}`} strength={250}>
+                  <Parallax
+                    key={`${hero.title}-${idx}`}
+                    strength={250}
+                    renderLayer={percentage => (
+                      <div className={`hero-filter ${filter}`} />
+                    )}
+                  >
                     <Background>
                       <div style={styles} className={`hero-bg-image`} />
                     </Background>
@@ -99,18 +107,18 @@ export class Hero extends React.Component {
                           {hero.text}
                         </Title>
 
-                        <div className="searchbar p-0 p-sm-2 d-flex flex-column flex-md-row justify-content-between">
-                          <div className="d-flex flex-column flex-md-row d h-100">
+                        <div className="searchbar p-0 p-sm-2 d-inline-flex d-md-flex flex-column flex-md-row justify-content-between">
+                          <div className="d-inline-flex flex-column flex-md-row d h-100">
                             <Icon
                               name="search"
-                              className="md-xlarge align-self-center d-none d-md-inline-block  mr-3 ml-2"
+                              className="md-xlarge align-self-center d-none d-md-inline-block mr-3 ml-2"
                             />
                             {hero.tags.map(tag => {
                               return (
                                 <Link
                                   href={this.buildUrl([tag])}
                                   key={tag}
-                                  className="searchbar-tags mt-2 mt-md-0"
+                                  className="searchbar-tags mt-2 mt-md-0 d-inline-block"
                                 >
                                   <Button
                                     size="large"
@@ -123,7 +131,7 @@ export class Hero extends React.Component {
                               );
                             })}
                           </div>
-                          <Link href={url}>
+                          <Link href={url} className="d-inline-block">
                             <Button
                               type="primary"
                               size="large"

@@ -1,0 +1,38 @@
+.Spot {
+  height: 150px;
+}
+
+.Spot .logo {
+  width: 100px;
+  transform: scale(0.6);
+}
+
+.Spot .logo .logo-circle {
+  width: 70px;
+  height: 70px;
+  margin-left: 0px;
+  border: 20px solid var(--petrolium);
+  border-radius: 100%;
+}
+
+.Spot .logo .logo-lines {
+  max-width: 100px;
+}
+
+.Spot .logo .logo-line {
+  height: 20px;
+  background-color: var(--petrolium);
+  border-radius: 5px;
+}
+
+.Spot .logo .logo-line.short {
+  width: 70%;
+}
+
+.Spot .logo .logo-line.regular {
+  width: 85%;
+}
+
+.Spot .logo .logo-line.long {
+  width: 100%;
+}

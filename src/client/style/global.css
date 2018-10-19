@@ -26,6 +26,10 @@
   --primary-font: 'Montserrat', sans-serif;
 }
 
+a {
+  color: var(--petrolium) !important;
+}
+
 /* utils */
 .french-pass {
   background: var(--french-pass) !important;

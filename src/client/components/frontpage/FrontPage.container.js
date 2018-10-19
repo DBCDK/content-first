@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Hero from '../hero/hero.component';
+import Hero from '../hero/Hero.component';
+import Spot from '../hero/Spot.component';
 import RecentListsBelt from '../belt/RecentListsBelt.container';
 import BookcaseItem from '../bookcase/BookcaseItem.component';
 import BooksBelt from '../belt/BooksBelt.component';
@@ -28,6 +29,7 @@ class FrontPage extends React.Component {
     return (
       <div className="frontpage">
         <Hero />
+        <Spot />
         <SpotsContainer />
         <BookcaseItem id={'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018'} />
         {this.renderBelts()}
