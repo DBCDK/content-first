@@ -1,12 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
-import Icon from '../base/Icon';
 import Title from '../base/Title';
 import Text from '../base/Text';
-import Button from '../base/Button';
 import Link from '../general/Link.component';
-
 import './Spot.css';
 
 const Logo = () => (

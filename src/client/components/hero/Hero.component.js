@@ -74,7 +74,7 @@ export class Hero extends React.Component {
                   <Parallax
                     key={`${hero.title}-${idx}`}
                     strength={250}
-                    renderLayer={percentage => (
+                    renderLayer={() => (
                       <div className={`hero-filter ${filter}`} />
                     )}
                   >

@@ -85,8 +85,8 @@ exports[`Image Upload render function Add image 1`] = `
                       type="tertiary"
                     >
                       <span
-                        className=" 
-                            btn Button Button__tertiary Button__medium"
+                        className="
+                            btn Button Button__medium Button__tertiary "
                         disabled={false}
                       >
                         <Icon
@@ -406,8 +406,8 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               style={undefined}
             >
               <span
-                className=" 
-                    btn Button Button__tertiary Button__medium"
+                className="
+                    btn Button Button__medium Button__tertiary "
                 disabled={false}
               >
                 <i

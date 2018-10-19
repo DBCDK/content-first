@@ -19,7 +19,7 @@ const Link = ({
       e.stopPropagation();
       dispatch({type: type, path: href, params});
       if (onClick) {
-        e => onClick();
+        onClick();
       }
     }}
   >
