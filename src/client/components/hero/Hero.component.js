@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Swiper from 'react-id-swiper';
+import {isMobile} from 'react-device-detect';
 import {Parallax, Background} from 'react-parallax';
 
 import Icon from '../base/Icon';
@@ -17,11 +18,11 @@ const leavesMap = getLeavesMap();
 const params = {
   mousewheel: false,
   slidesPerView: 1,
-  noSwiping: true,
-  // autoplay: {
-  //   delay: 10000,
-  //   disableOnInteraction: false
-  // },
+  noSwiping: !isMobile,
+  autoplay: {
+    delay: 10000,
+    disableOnInteraction: false
+  },
   slidesPerGroup: 1,
   effect: 'fade',
   pagination: {
@@ -93,7 +94,7 @@ export class Hero extends React.Component {
                         {hero.title}
                       </Title>
 
-                      <div className="col-10 col-sm-10 col-md-12 col-lg-10 col-xl-8 text-left mr-auto ml-auto pt-3 pt-sm-5">
+                      <div className="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-8 text-left mr-auto ml-auto pt-3 pt-sm-5">
                         <Title
                           Tag="h3"
                           type="title3"
@@ -107,18 +108,18 @@ export class Hero extends React.Component {
                           {hero.text}
                         </Title>
                         <Link href={url}>
-                          <div className="searchbar p-0 p-sm-2 d-inline-flex d-md-flex flex-column flex-md-row justify-content-between">
-                            <div className="d-inline-flex flex-column flex-md-row d h-100">
+                          <div className="searchbar p-0 p-sm-2 d-inline-flex d-lg-flex flex-column flex-lg-row justify-content-between">
+                            <div className="d-inline-flex flex-column flex-lg-row d h-100">
                               <Icon
                                 name="search"
-                                className="md-xlarge align-self-center d-none d-md-inline-block mr-3 ml-2"
+                                className="md-xlarge align-self-center d-none d-lg-inline-block mr-3 ml-2"
                               />
                               {hero.tags.map(tag => {
                                 return (
                                   <Link
                                     href={this.buildUrl([tag])}
                                     key={tag}
-                                    className="searchbar-tags mt-2 mt-md-0 d-inline-block"
+                                    className="searchbar-tags mt-2 mt-lg-0 d-inline-block"
                                   >
                                     <Button
                                       size="large"
@@ -134,7 +135,7 @@ export class Hero extends React.Component {
                             <Button
                               type="primary"
                               size="large"
-                              className="searchbar-tags mt-4 mt-md-0 align-self-start"
+                              className="searchbar-tags mt-4 mt-lg-0 align-self-start"
                               variant={`bgcolor-${hero.btnColor}--color-${
                                 hero.btnTextColor
                               }`}
