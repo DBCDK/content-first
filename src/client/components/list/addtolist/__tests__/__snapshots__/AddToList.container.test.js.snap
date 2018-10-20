@@ -14,7 +14,7 @@ exports[`AddToList render when allowAdd is true 1`] = `
     type="title4"
     variant="transform-uppercase"
   >
-    Vil du tilføje bøger til listen? disabled
+    Vil du tilføje bøger til listen?
   </Title>
   <div
     className="d-flex flex-row french-pass pt-4"
@@ -83,7 +83,7 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
     type="title4"
     variant="transform-uppercase"
   >
-    Vil du tilføje bøger til listen? disabled
+    Vil du tilføje bøger til listen?
   </Title>
   <div
     className="d-flex flex-row french-pass pt-4"
@@ -152,7 +152,7 @@ exports[`AddToList show error msg when selected books is already in list 1`] = `
     type="title4"
     variant="transform-uppercase"
   >
-    Vil du tilføje bøger til listen? disabled
+    Vil du tilføje bøger til listen?
   </Title>
   <div
     className="d-flex flex-row french-pass pt-4"

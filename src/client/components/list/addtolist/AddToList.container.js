@@ -33,8 +33,6 @@ export class AddToList extends React.Component {
   };
 
   render() {
-    console.log('this.props', this.props);
-
     const {
       list,
       allowAdd,
@@ -47,7 +45,10 @@ export class AddToList extends React.Component {
       return null;
     }
     return (
-      <div className={'addbook position-relative ' + className} style={style}>
+      <div
+        className={'addbook position-relative ' + className || ''}
+        style={style}
+      >
         {this.props.disabled && (
           <div
             className="position-absolute"
@@ -67,7 +68,7 @@ export class AddToList extends React.Component {
           variant="transform-uppercase"
           className="ml-2 ml-sm-0"
         >
-          Vil du tilføje bøger til listen? disabled
+          Vil du tilføje bøger til listen?
         </Title>
 
         <div className="d-flex flex-row french-pass pt-4">
