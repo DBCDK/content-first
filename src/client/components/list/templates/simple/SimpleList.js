@@ -92,7 +92,7 @@ export class SimpleList extends React.Component {
               style={{minHeight: 500, background: 'white'}}
               list={list}
               onAdd={pid => this.setState({added: pid})}
-              disabled={list.editing}
+              disabled={list.editing || list.isNew}
             />
           </div>
           <div className="fixed-width-col-sm d-xs-none d-lg-block mt-4 ml-4" />
