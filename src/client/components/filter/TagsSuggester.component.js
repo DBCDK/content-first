@@ -306,9 +306,6 @@ class TagsSuggester extends React.Component {
           onClick={() => this.toggleInputvisibility(true)}
         >
           <Autosuggest
-            ref={searchBar => {
-              this.refs = {...this.refs, searchBar};
-            }}
             suggestions={this.state.suggestions}
             multiSection={true}
             highlightFirstSuggestion={true}
