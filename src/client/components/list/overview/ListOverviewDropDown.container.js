@@ -3,16 +3,22 @@ import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
   ON_USERLISTS_COLLAPSE,
-  ON_USERLISTS_EXPAND
+  ON_USERLISTS_EXPAND,
+  OWNED_LISTS_REQUEST,
+  SYSTEM_LIST,
+  CUSTOM_LIST
 } from '../../../redux/list.reducer';
+
+import {createGetUsersSelector} from '../../../redux/users';
 import {ON_SHORTLIST_COLLAPSE} from '../../../redux/shortlist.reducer';
 import {HISTORY_PUSH} from '../../../redux/middleware';
-import {getFollowedLists} from '../../../redux/selectors';
-import {getListsForOwner} from '../../../redux/list.reducer';
+import {createGetFollowedLists} from '../../../redux/selectors';
+import {createGetLists} from '../../../redux/list.reducer';
 import toColor from '../../../utils/toColor';
 import Button from '../../base/Button/Button';
 import Text from '../../base/Text';
 import Link from '../../general/Link.component';
+import Spinner from '../../general/Spinner.component';
 import './dropdownList.css';
 import toReadListIcon from '../../images/toReadListIcon.png';
 import readListIcon from '../../images/readListIcon.png';
@@ -114,25 +120,35 @@ class ListOverviewDropDown extends React.Component {
   constructor(props) {
     super(props);
   }
-  sortLists(lists) {
-    return lists.sort((a, b) => {
-      let aDate =
-        !a._owner === this.props.userID && this.props.followReducer[a._id]
-          ? this.props.followReducer[a._id]._created
-          : a._created;
-      let bDate =
-        !b._owner === this.props.userID && this.props.followReducer[a._id]
-          ? this.props.followReducer[b._id]._created
-          : b._created;
-      aDate = a.type === 'SYSTEM_LIST' ? bDate + 1 : aDate;
-      bDate = b.type === 'SYSTEM_LIST' ? aDate + 1 : bDate;
-      return bDate - aDate;
-    });
+  loadLists = () => {
+    if (!this.fetched) {
+      this.props.loadLists();
+      this.fetched = true;
+    }
+  };
+  componentDidUpdate() {
+    if (this.props.expanded) {
+      this.loadLists();
+    }
   }
+  renderLists = lists => {
+    return lists.map(list => (
+      <ListElement
+        key={list._id}
+        list={list}
+        profiles={this.props.profiles}
+        userID={this.props.userID ? this.props.userID : ''}
+      />
+    ));
+  };
   render() {
-    const {expanded} = this.props.listsState;
-    const lists = this.props.userLists.concat(this.props.followedLists);
-    const sortedLists = this.sortLists(lists);
+    const {
+      hasFetched,
+      ownedSystemLists,
+      ownedCustomLists,
+      followedLists,
+      expanded
+    } = this.props;
     return (
       <React.Fragment>
         <div
@@ -145,43 +161,54 @@ class ListOverviewDropDown extends React.Component {
         </div>
         <UserListsContent
           expanded={expanded}
-          lists={sortedLists}
           onClose={() => this.props.onUserListsClose()}
           onEditLists={() => this.props.onEditLists()}
           onCreateNewList={() => this.props.onCreateNewList()}
         >
-          {sortedLists.length > 0 &&
-            sortedLists.map(list => {
-              return (
-                <ListElement
-                  key={list._id}
-                  list={list}
-                  profiles={this.props.profiles}
-                  userID={this.props.userID ? this.props.userID : ''}
-                />
-              );
-            })}
+          {!hasFetched && (
+            <div className="text-center">
+              <Spinner size="30px" className="mt-5" />
+            </div>
+          )}
+          {hasFetched && (
+            <React.Fragment>
+              {ownedSystemLists && this.renderLists(ownedSystemLists)}
+              {ownedCustomLists && this.renderLists(ownedCustomLists)}
+              {followedLists && this.renderLists(followedLists)}
+            </React.Fragment>
+          )}
         </UserListsContent>
       </React.Fragment>
     );
   }
 }
 
+const customListSelector = createGetLists();
+const systemListsSelector = createGetLists();
+const usersSelector = createGetUsersSelector();
+const getFollowedLists = createGetFollowedLists();
+
 const mapStateToProps = state => {
   return {
-    listsState: state.listReducer,
-    profiles: state.users.toJS(),
+    expanded: state.listReducer.expanded,
+    profiles: usersSelector(state),
     shortListExpanded: state.shortListReducer.expanded,
     userID: state.userReducer.openplatformId,
     followReducer: state.followReducer,
     followedLists: getFollowedLists(state),
-    userLists: getListsForOwner(state, {
+    ownedSystemLists: systemListsSelector(state, {
       _owner: state.userReducer.openplatformId,
-      sort: false
-    })
+      type: SYSTEM_LIST
+    }),
+    ownedCustomLists: customListSelector(state, {
+      _owner: state.userReducer.openplatformId,
+      type: CUSTOM_LIST
+    }),
+    hasFetched: state.listReducer.hasFetchedOwned
   };
 };
 export const mapDispatchToProps = dispatch => ({
+  loadLists: () => dispatch({type: OWNED_LISTS_REQUEST}),
   onEditLists: () => {
     dispatch({type: HISTORY_PUSH, path: '/profile'});
     dispatch({type: ON_USERLISTS_COLLAPSE});

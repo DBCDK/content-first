@@ -15,7 +15,7 @@ const Cover = ({pid, title, coverUrl, width, height}) => (
 );
 
 const ListItem = ({list, title, _id, image, hideIfEmpty = true}) => {
-  if (list.length === 0 && hideIfEmpty === true) {
+  if (!list || (list.length === 0 && hideIfEmpty === true)) {
     return null;
   }
 

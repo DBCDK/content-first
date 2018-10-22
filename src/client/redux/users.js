@@ -67,13 +67,19 @@ export const usersMiddleware = store => next => action => {
 };
 
 // -------------SELECTORS-----------------
-export const getUser = createSelector(
-  [state => state.users, (state, {id}) => id],
-  (users, id) => {
+export const createGetUserSelector = () =>
+  createSelector([state => state.users, (state, {id}) => id], (users, id) => {
     const user = users.get(id);
     if (user) {
       return user.toJS();
     }
     return null;
-  }
-);
+  });
+export const getUser = createGetUserSelector();
+export const createGetUsersSelector = () =>
+  createSelector(
+    state => state.users,
+    users => {
+      return users.toJS();
+    }
+  );

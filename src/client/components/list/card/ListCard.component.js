@@ -8,29 +8,39 @@ import Text from '../../base/Text';
 import Icon from '../../base/Icon';
 import SkeletonText from '../../base/Skeleton/Text';
 import SkeletonUser from '../../base/Skeleton/User';
+import {createGetUserSelector} from '../../../redux/users';
 
 import {FETCH_COMMENTS} from '../../../redux/comment.reducer';
+import {LIST_LOAD_REQUEST} from '../../../redux/list.reducer';
+import {createCountComments} from '../../../redux/selectors';
 
 class ListCard extends React.Component {
-  componentWillMount() {
-    if (!this.props.skeleton) {
-      this.updateComments();
-    }
+  isSkeleton = props => {
+    return props.skeleton || !props.list;
+  };
+  componentDidMount() {
+    this.fetch();
   }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.skeleton !== this.props.skeleton) {
-      this.updateComments();
-    }
+  componentDidUpdate() {
+    this.fetch();
   }
-
-  updateComments() {
-    this.props.fetchComments(this.props.list._id);
-
-    if (this.props.list.list && this.props.list.list.length > 0) {
-      this.props.list.list.forEach(el => {
-        this.props.fetchComments(el._key + '-' + el.pid);
-      });
+  fetch() {
+    if (this.fetched !== this.props._id && !this.props.skeleton) {
+      this.props.loadList();
+      this.fetched = this.props._id;
+    }
+    if (
+      this.props.list &&
+      !this.props.list.isLoading &&
+      !this.commentsFetched
+    ) {
+      this.props.fetchComments(this.props._id);
+      if (this.props.list.list) {
+        this.props.list.list.forEach(el => {
+          this.props.fetchComments(el._id);
+        });
+      }
+      this.commentsFetched = true;
     }
   }
 
@@ -50,29 +60,8 @@ class ListCard extends React.Component {
   }
 
   render() {
-    const {list, style, skeleton, className = ''} = this.props;
-    let commentCount = 0;
-
-    // if skelleton component is false - count comments
-    if (!this.props.skeleton) {
-      if (
-        this.props.comments &&
-        this.props.comments[list._id] &&
-        this.props.comments[list._id].comments
-      ) {
-        // count comments for list
-        commentCount = this.props.comments[list._id].comments.length;
-        if (this.props.list.list && this.props.list.list.length > 0) {
-          this.props.list.list.forEach(el => {
-            const elementComments = this.props.comments[el._key + '-' + el.pid];
-            if (elementComments && elementComments.comments) {
-              // count comments for books in list
-              commentCount += elementComments.comments.length;
-            }
-          });
-        }
-      }
-    }
+    const {list, style, className = '', commentCount} = this.props;
+    const skeleton = this.props.skeleton || !list || list.isLoading;
 
     // if no elements detected, show skeleton cards
     if (skeleton) {
@@ -128,16 +117,30 @@ class ListCard extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => ({
-  comments: state.comments
-});
-
-export const mapDispatchToProps = dispatch => ({
+const makeMapStateToProps = () => {
+  const getUser = createGetUserSelector();
+  const countComments = createCountComments();
+  return (state, ownProps) => {
+    const list = state.listReducer.lists[ownProps._id]; // selector not used, since the book expanded list is not needed
+    if (!list || !list.list) {
+      return {};
+    }
+    const ids = [list._id, ...list.list.map(e => e._id)];
+    const isLoading = !list || list.isLoading;
+    return {
+      list,
+      commentCount: countComments(state, {ids}),
+      profile: !isLoading ? getUser(state, {id: list._owner}) : null,
+      isLoading
+    };
+  };
+};
+export const mapDispatchToProps = (dispatch, ownProps) => ({
+  loadList: () => dispatch({type: LIST_LOAD_REQUEST, _id: ownProps._id}),
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
 export default connect(
-  mapStateToProps,
+  makeMapStateToProps,
   mapDispatchToProps
 )(ListCard);
