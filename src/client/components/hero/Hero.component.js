@@ -34,7 +34,7 @@ const params = {
 
 export class Hero extends React.Component {
   inRange(tag) {
-    const aCards = this.props.aCards;
+    const aCards = Object.values(this.props.aCards);
     let inRange = false;
     aCards.forEach(card => {
       if (card.range && card.range.includes(tag)) {
@@ -135,7 +135,7 @@ export class Hero extends React.Component {
                             <Button
                               type="primary"
                               size="large"
-                              className="searchbar-tags mt-4 mt-lg-0 align-self-start"
+                              className="searchbar-button mt-4 mt-lg-0 align-self-start"
                               variant={`bgcolor-${hero.btnColor}--color-${
                                 hero.btnTextColor
                               }`}
@@ -160,7 +160,7 @@ const mapStateToProps = state => {
   return {
     heroes: state.heroReducer.heroes,
     heroesIsLoading: state.heroReducer.isLoading,
-    aCards: Object.values(state.filtercardReducer)
+    aCards: state.filtercardReducer
   };
 };
 
