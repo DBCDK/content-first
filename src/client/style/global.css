@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Material+Icons");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Material+Icons');
 
 /* Global Settings for new design */
 :root {
@@ -23,7 +23,11 @@
   --kobber: #b17642;
   --mine-shaft: #333333;
 
-  --primary-font: "Montserrat", sans-serif;
+  --primary-font: 'Montserrat', sans-serif;
+}
+
+a {
+  color: var(--petrolium) !important;
 }
 
 /* utils */
@@ -90,6 +94,10 @@
 }
 .petrolium-txt {
   color: var(--petrolium) !important;
+}
+
+.white-txt {
+  color: #ffffff !important;
 }
 
 .fixed-width-col-md {

@@ -71,7 +71,7 @@ class TagsSuggester extends React.Component {
       titleSuggestions: {title: 'Bøger', suggestions: []},
       clientSuggestions: {title: 'Tags', suggestions: []},
       suggestions: [],
-      inputVisibel: true
+      inputVisibel: false
     };
   }
 
@@ -194,12 +194,6 @@ class TagsSuggester extends React.Component {
 
   toggleInputvisibility(status) {
     this.setState({inputVisibel: status});
-
-    if (status) {
-      setTimeout(() => {
-        document.getElementById('Searchbar__inputfield').focus();
-      }, 0);
-    }
   }
 
   renderSuggestions() {

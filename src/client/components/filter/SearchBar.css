@@ -131,7 +131,7 @@
   -webkit-appearance: searchfield-cancel-button;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
   .selected-filters-wrap .suggestion-list input {
     height: 20px;
     padding-left: 0.5rem;
@@ -142,7 +142,7 @@
   }
 
   .selected-filters-wrap #react-autowhatever-1 {
-    top: 125px;
+    top: 145px;
     padding: 0.6rem;
     border: 0;
     height: 100%;
@@ -157,5 +157,11 @@
   .selected-filters-wrap .suggestion-list.input-hidden {
     min-width: 0px;
     width: 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .selected-filters-wrap #react-autowhatever-1 {
+    top: 125px;
   }
 }

@@ -115,9 +115,13 @@ export class TopBar extends React.Component {
   };
 
   toggleSearchBar(action = false) {
+    const searchBar = document.getElementById('Searchbar__inputfield');
     let status = !this.state.searchExpanded;
     if (action) {
       status = action === 'open' ? true : false;
+    }
+    if (status && searchBar) {
+      searchBar.focus();
     }
     this.props.historyPush(HISTORY_PUSH, '/find');
     this.setState({searchExpanded: status});

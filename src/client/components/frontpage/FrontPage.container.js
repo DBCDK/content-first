@@ -1,31 +1,40 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Hero from '../hero/Hero.component';
+import Spot from '../hero/Spot.component';
 import RecentListsBelt from '../belt/RecentListsBelt.container';
 import BookcaseItem from '../bookcase/BookcaseItem.component';
 import BooksBelt from '../belt/BooksBelt.component';
 import SpotsContainer from '../spots/Spots.container';
-class FrontPage extends React.Component {
-  renderBelts() {
-    const beltsMap = this.props.beltsMap;
 
+class FrontPage extends React.Component {
+  renderBelts(belts) {
     return (
-      <div className="belts col-12">
-        {Object.values(beltsMap)
-          .filter(belt => belt.onFrontPage)
-          .map(belt => (
+      <div className="container">
+        <div className="belts col-12 ">
+          {belts.filter(belt => belt.onFrontPage).map(belt => (
             <BooksBelt key={belt.name} belt={belt} />
           ))}
-        <RecentListsBelt />
+        </div>
       </div>
     );
   }
 
   render() {
+    const beltsMap = this.props.beltsMap;
+    const aBeltsMap = Object.values(beltsMap);
+
     return (
-      <div className="frontpage container">
-        <BookcaseItem id={'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018'} />
+      <div className="frontpage">
+        <Hero />
+        <Spot />
         <SpotsContainer />
-        {this.renderBelts()}
+        {this.renderBelts(aBeltsMap.slice(0, 7))}
+        <BookcaseItem id={'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018'} />
+        {this.renderBelts(aBeltsMap.slice(7, -1))}
+        <div className="container">
+          <RecentListsBelt />
+        </div>
       </div>
     );
   }

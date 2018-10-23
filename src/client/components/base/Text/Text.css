@@ -39,6 +39,10 @@
     Modifiers
 */
 
+.Text__large--decoration-underline {
+  text-decoration: underline;
+}
+
 .Text__body--weight-semibold {
   font-weight: 600;
 }

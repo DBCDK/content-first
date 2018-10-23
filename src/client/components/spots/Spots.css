@@ -1,7 +1,7 @@
 .spots-container {
   display: flex;
   justify-content: space-evenly;
-  margin: 20px -15px;
+  margin: 20px 0;
 }
 .spots-container h1 {
   color: white;

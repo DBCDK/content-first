@@ -19,6 +19,7 @@ import {replayReducer} from './replay';
 import interactionReducer from './interaction.reducer';
 import spotsReducer from './spots.reducer';
 import filtercardReducer from './filtercard.reducer';
+import heroReducer from './hero.reducer';
 
 const combined = combineReducers({
   beltsReducer,
@@ -40,7 +41,8 @@ const combined = combineReducers({
   replay: replayReducer,
   interactionReducer,
   spotsReducer,
-  filtercardReducer
+  filtercardReducer,
+  heroReducer
 });
 
 const rootReducer = (state = {}, action) => {

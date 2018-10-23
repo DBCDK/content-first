@@ -82,16 +82,16 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
           }
         >
           <button
-            className="comment-cancel mr-2 ml-2 
-                btn Button Button__link Button__medium"
+            className="comment-cancel mr-2 ml-2
+                btn Button Button__medium Button__link "
             disabled={false}
             onClick={[Function]}
           >
             Fortryd
           </button>
           <button
-            className="mr-2 ml-2 
-                btn Button Button__quaternary Button__large"
+            className="mr-2 ml-2
+                btn Button Button__large Button__quaternary "
             disabled={true}
             id="comment-submit"
             onClick={[Function]}
@@ -273,16 +273,16 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           }
         >
           <button
-            className="comment-cancel mr-2 ml-2 
-                btn Button Button__link Button__medium"
+            className="comment-cancel mr-2 ml-2
+                btn Button Button__medium Button__link "
             disabled={false}
             onClick={[Function]}
           >
             Fortryd
           </button>
           <button
-            className="mr-2 ml-2 
-                btn Button Button__quaternary Button__large"
+            className="mr-2 ml-2
+                btn Button Button__large Button__quaternary "
             disabled={true}
             id="comment-submit"
             onClick={[Function]}
@@ -645,8 +645,8 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 type="link"
               >
                 <button
-                  className="comment-cancel mr-2 ml-2 
-                      btn Button Button__link Button__medium"
+                  className="comment-cancel mr-2 ml-2
+                      btn Button Button__medium Button__link "
                   disabled={false}
                   onClick={[Function]}
                 >
@@ -661,8 +661,8 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 type="quaternary"
               >
                 <button
-                  className="mr-2 ml-2 
-                      btn Button Button__quaternary Button__large"
+                  className="mr-2 ml-2
+                      btn Button Button__large Button__quaternary "
                   disabled={true}
                   id="comment-submit"
                   onClick={[Function]}
@@ -791,16 +791,16 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
           }
         >
           <button
-            className="comment-cancel mr-2 ml-2 
-                btn Button Button__link Button__medium"
+            className="comment-cancel mr-2 ml-2
+                btn Button Button__medium Button__link "
             disabled={false}
             onClick={[Function]}
           >
             Fortryd
           </button>
           <button
-            className="mr-2 ml-2 
-                btn Button Button__quaternary Button__large"
+            className="mr-2 ml-2
+                btn Button Button__large Button__quaternary "
             disabled={true}
             id="comment-submit"
             onClick={[Function]}
@@ -1085,8 +1085,8 @@ exports[`CommentContainer Component renders error 1`] = `
                 type="link"
               >
                 <button
-                  className="comment-cancel mr-2 ml-2 
-                      btn Button Button__link Button__medium"
+                  className="comment-cancel mr-2 ml-2
+                      btn Button Button__medium Button__link "
                   disabled={false}
                   onClick={[Function]}
                 >
@@ -1101,8 +1101,8 @@ exports[`CommentContainer Component renders error 1`] = `
                 type="quaternary"
               >
                 <button
-                  className="mr-2 ml-2 
-                      btn Button Button__quaternary Button__large"
+                  className="mr-2 ml-2
+                      btn Button Button__large Button__quaternary "
                   disabled={false}
                   id="comment-submit"
                   onClick={[Function]}
@@ -1391,8 +1391,8 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                 type="link"
               >
                 <button
-                  className="comment-cancel mr-2 ml-2 
-                      btn Button Button__link Button__medium"
+                  className="comment-cancel mr-2 ml-2
+                      btn Button Button__medium Button__link "
                   disabled={false}
                   onClick={[Function]}
                 >
@@ -1407,8 +1407,8 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                 type="quaternary"
               >
                 <button
-                  className="mr-2 ml-2 
-                      btn Button Button__quaternary Button__large"
+                  className="mr-2 ml-2
+                      btn Button Button__large Button__quaternary "
                   disabled={true}
                   id="comment-submit"
                   onClick={[Function]}
@@ -1722,8 +1722,8 @@ exports[`CommentContainer Toggle all comments 1`] = `
                 type="link"
               >
                 <button
-                  className="comment-cancel mr-2 ml-2 
-                      btn Button Button__link Button__medium"
+                  className="comment-cancel mr-2 ml-2
+                      btn Button Button__medium Button__link "
                   disabled={false}
                   onClick={[Function]}
                 >
@@ -1738,8 +1738,8 @@ exports[`CommentContainer Toggle all comments 1`] = `
                 type="quaternary"
               >
                 <button
-                  className="mr-2 ml-2 
-                      btn Button Button__quaternary Button__large"
+                  className="mr-2 ml-2
+                      btn Button Button__large Button__quaternary "
                   disabled={true}
                   id="comment-submit"
                   onClick={[Function]}
@@ -2105,8 +2105,8 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 type="link"
               >
                 <button
-                  className="comment-cancel mr-2 ml-2 
-                      btn Button Button__link Button__medium"
+                  className="comment-cancel mr-2 ml-2
+                      btn Button Button__medium Button__link "
                   disabled={false}
                   onClick={[Function]}
                 >
@@ -2121,8 +2121,8 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 type="quaternary"
               >
                 <button
-                  className="mr-2 ml-2 
-                      btn Button Button__quaternary Button__large"
+                  className="mr-2 ml-2
+                      btn Button Button__large Button__quaternary "
                   disabled={true}
                   id="comment-submit"
                   onClick={[Function]}

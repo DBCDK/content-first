@@ -94,7 +94,6 @@
 
 /* Sizes */
 .Button__large {
-  text-transform: none;
   padding: 10px 15px;
   font-size: 1.3em;
 }
@@ -111,8 +110,52 @@
   font-size: 0.75rem;
 }
 
+/* Variants */
+
+.Button__primary--bgcolor-fersken--color-white,
+.Button__primary--bgcolor-fersken--color-white:hover {
+  background-color: var(--fersken);
+  color: white;
+}
+
+.Button__primary--bgcolor-due--color-white,
+.Button__primary--bgcolor-due--color-white:hover {
+  background-color: var(--due);
+  color: white;
+}
+
+.Button__primary--bgcolor-korn--color-white,
+.Button__primary--bgcolor-korn--color-white:hover {
+  background-color: var(--korn);
+  color: white;
+}
+
+.Button__primary--bgcolor-petrolium--color-white,
+.Button__primary--bgcolor-petrolium--color-white:hover {
+  background-color: var(--petrolium);
+  color: white;
+}
+
+.Button__primary--bgcolor-fersken--color-petrolium,
+.Button__primary--bgcolor-fersken--color-petrolium:hover {
+  background-color: var(--fersken);
+  color: var(--petrolium);
+}
+
+.Button__primary--bgcolor-due--color-petrolium,
+.Button__primary--bgcolor-due--color-petrolium:hover {
+  background-color: var(--due);
+  color: var(--petrolium);
+}
+
+.Button__primary--bgcolor-korn--color-petrolium,
+.Button__primary--bgcolor-korn--color-petrolium:hover {
+  background-color: var(--korn);
+  color: var(--petrolium);
+}
+
 /* Feedback button */
-.Button__feedback{
+.Button__feedback {
   background-color: var(--pistache);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
