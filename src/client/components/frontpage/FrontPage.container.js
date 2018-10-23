@@ -29,9 +29,9 @@ class FrontPage extends React.Component {
         <Hero />
         <Spot />
         <SpotsContainer />
-        {this.renderBelts(aBeltsMap.slice(0, 7))}
+        {this.renderBelts(aBeltsMap.slice(0, 8))}
         <BookcaseItem id={'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018'} />
-        {this.renderBelts(aBeltsMap.slice(7, -1))}
+        {this.renderBelts(aBeltsMap.slice(8, aBeltsMap.length))}
         <div className="container">
           <RecentListsBelt />
         </div>
