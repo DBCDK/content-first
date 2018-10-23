@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isEqual} from 'lodash';
 import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
@@ -25,28 +24,49 @@ import {ADD_BELT} from '../../redux/belts.reducer';
 
 import {buildSimilarBooksBelt} from '../work/workFunctions';
 
-const Results = ({rows, pids, belts, addBelt}) => {
-  if (!rows || !pids) {
+import {isEqual} from 'lodash';
+
+const Results = ({rows, pids, ...props}) => {
+  if (!rows || !pids || !props.origin) {
     return null;
   }
 
-  return pids.map((pidsInRow, idx) => {
-    let name = '';
-    pidsInRow.forEach(str => (name += str + ' '));
+  return pids.map((row, idx) => {
+    let belt = false;
+    return (
+      <React.Fragment>
+        <div className="w-100 d-flex justify-content-around">
+          {pids[idx].map(pid => {
+            if (props.works[pid] && props.works[pid].detailsHasLoaded) {
+              if (props.belts['Minder om ' + props.works[pid].book.title]) {
+                console.log('here?');
+                console.log(
+                  '-> ',
+                  props.belts['Minder om ' + props.works[pid].book.title]
+                );
+                belt = props.belts['Minder om ' + props.works[pid].book.title];
+              }
+            }
 
-    const belt = {
-      name,
-      onFrontPage: false,
-      pidPreview: false,
-      links: [],
-      tags: []
-    };
+            console.log('belt in loop', belt);
 
-    if (!belts[name]) {
-      addBelt(belt);
-    }
-
-    return <BooksBelt belt={belt} recommendedPids={pidsInRow} />;
+            return (
+              <WorkCard
+                pid={pid}
+                key={pid}
+                cardRef={workCard => (this.refs = {...this.refs, workCard})}
+                {...props}
+              />
+            );
+          })}
+        </div>
+        <div className="container">
+          <div className="belts col-12">
+            {belt && <BooksBelt belt={belt} />}
+          </div>
+        </div>
+      </React.Fragment>
+    );
   });
 };
 
@@ -57,9 +77,6 @@ class FilterPage extends React.Component {
   }
 
   componentDidMount() {
-    this.workCard = 0;
-    this.container = 0;
-
     this.fetch();
     this.initFilterPosition();
     window.addEventListener('resize', this.handleResize);
@@ -77,7 +94,6 @@ class FilterPage extends React.Component {
   calcResultsPerRow() {
     const workCard = this.workCard;
     const container = this.container;
-
     const result = Math.floor(container / workCard);
 
     if (result === Infinity) {
@@ -144,13 +160,28 @@ class FilterPage extends React.Component {
       let row = [];
       for (let i = 1; i <= resultsPerRow; i++) {
         const pos = r * resultsPerRow - (resultsPerRow - i);
-        if (pids[pos]) {
-          row.push(pids[pos]);
-        }
+        row.push(pids[pos]);
       }
       results.push(row);
     }
     return results;
+  }
+
+  onMoreLikeThisClickFunc(work) {
+    this.work = work;
+    const book = work.book;
+
+    console.log('onMoreLikeThisClickFunc work', work);
+
+    if (book.title && !this.props.belts['Minder om ' + book.title]) {
+      this.addNewBelt(buildSimilarBooksBelt(work));
+    }
+
+    console.log('belts', this.props.belts['Minder om ' + book.title]);
+  }
+
+  addNewBelt(belt) {
+    this.props.addBelt(belt);
   }
 
   render() {
@@ -198,21 +229,28 @@ class FilterPage extends React.Component {
                 : resultCountPrefixText + ' ' + resultCountPostFix}
             </Heading>
           </div>
+
           <div
             className="filter-page-works"
             ref={container => (this.refs = {...this.refs, container})}
           >
-            {this.workCard && resultCount > 0 ? (
+            {resultCount > 0 ? (
               <Results
                 rows={rows}
                 pids={structuredPids}
+                enableHover={true}
+                allowFetch={true}
+                hideMoreLikeThis={false}
+                onMoreLikeThisClick={work => this.onMoreLikeThisClickFunc(work)}
+                works={this.props.works}
                 belts={this.props.belts}
-                addBelt={this.props.addBelt}
+                origin={`Fra din søgning på ${this.props.selectedTags
+                  .map(t => t.title)
+                  .join(', ')}`}
               />
             ) : (
-              Array.from(new Array(100), (v, i) => i + 1).map((skeleton, i) => (
+              Array.from(new Array(100), (v, i) => i + 1).map(skeleton => (
                 <WorkCard
-                  key={i}
                   cardRef={workCard => (this.refs = {...this.refs, workCard})}
                 />
               ))
