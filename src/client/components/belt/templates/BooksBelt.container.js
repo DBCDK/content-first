@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobile} from 'react-device-detect';
 import VisibilitySensor from 'react-visibility-sensor';
 import {difference, isEqual} from 'lodash';
 import scrollToComponent from 'react-scroll-to-component';
@@ -20,6 +19,8 @@ import {filtersMapAll} from '../../../redux/filter.reducer';
 import Link from '../../general/Link.component';
 import WorkPreview from '../../work/WorkPreview.component';
 
+const isSmallWidth = 575;
+
 const skeletonElements = [];
 for (let i = 0; i < 20; i++) {
   skeletonElements.push(i);
@@ -30,18 +31,44 @@ export class BooksBelt extends React.Component {
     super();
     this.state = {
       showDetails: false,
-      didSwipe: false
+      didSwipe: false,
+      isSmall: false
     };
     this.fetchedTags = null;
   }
 
   componentDidMount() {
+    window.addEventListener('resize', this.handleIsSmall);
     this.fetchRecommendations();
+    this.handleIsSmall();
   }
 
   componentDidUpdate() {
     this.fetchRecommendations();
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.belt !== this.props.belt ||
+      nextProps.tags.length !== this.props.tags.length ||
+      nextProps.recommendedPids.length !== this.props.recommendedPids.length ||
+      nextState.didSwipe !== this.state.didSwipe ||
+      nextState.visible !== this.state.visible ||
+      nextState.isSmall !== this.state.isSmall
+    );
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleIsSmall);
+  }
+
+  handleIsSmall = () => {
+    const isSmall = window.innerWidth <= isSmallWidth;
+
+    if (isSmall !== this.state.isSmall) {
+      this.setState({isSmall});
+    }
+  };
 
   fetchRecommendations = () => {
     if (isEqual(this.fetchedTags, this.props.tags) || !this.state.visible) {
@@ -50,16 +77,6 @@ export class BooksBelt extends React.Component {
     this.props.fetchRecommendations(this.props.tags);
     this.fetchedTags = this.props.tags;
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return (
-      nextProps.belt !== this.props.belt ||
-      nextProps.tags.length !== this.props.tags.length ||
-      nextProps.recommendedPids.length !== this.props.recommendedPids.length ||
-      nextState.didSwipe !== this.state.didSwipe ||
-      nextState.visible !== this.state.visible
-    );
-  }
 
   getOnMoreLikeThisClickFunc(belt, pid, clearPreview) {
     return work => {
@@ -78,7 +95,7 @@ export class BooksBelt extends React.Component {
   }
 
   toggleWorkPreview(pid, belt) {
-    if (isMobile) {
+    if (this.state.isSmall) {
       this.props.historyPush(pid);
       return;
     }
@@ -109,6 +126,7 @@ export class BooksBelt extends React.Component {
       return null;
     }
 
+    const isSmall = this.state.isSmall;
     const {subtext, child, scrollPos, pidPreview = false} = belt;
 
     const name = this.props.name || this.props.belt.name;
@@ -185,7 +203,7 @@ export class BooksBelt extends React.Component {
                     return (
                       <WorkCard
                         className="ml1 mr1"
-                        enableHover={true}
+                        enableHover={!isSmall}
                         highlight={
                           (child && child.pid === pid) || pid === pidPreview
                         }

@@ -89,7 +89,7 @@ export class AddToListButton extends React.Component {
     if (!isLoggedIn) {
       return (
         <Button
-          className={'AddToListButton'}
+          className={'AddToListButton ' + this.props.className || ''}
           type="quinary"
           size="medium"
           onClick={() => {

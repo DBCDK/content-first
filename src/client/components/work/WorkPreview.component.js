@@ -48,14 +48,14 @@ class WorkPreview extends React.Component {
     const reviews = filterReviews(work);
 
     return (
-      <div className="row WorkPreview__container">
-        <div className="col-md-12 col-lg-7 workPreview__work">
-          <div className="workPreview__image">
+      <div className="d-none d-sm-block row WorkPreview__container">
+        <div className="col-12 col-xl-7 workPreview__work">
+          <div className="workPreview__image col-4">
             <Link href={'/værk/' + book.pid}>
-              <BookCover book={book} />
+              <BookCover className="d-block" book={book} />
             </Link>
           </div>
-          <div className="workPreview__info">
+          <div className="workPreview__info col-8">
             <SocialShareButton
               className={'ssb-fb'}
               styles={{fontWeight: 'bold'}}
@@ -168,13 +168,13 @@ class WorkPreview extends React.Component {
               )}
             </div>
             <div className="row">
-              <div className="col-12 pt1">
+              <div className="col-12">
                 <BookmarkButton
-                  className="mr1"
+                  className="mr1 mt1"
                   origin={'Fra egen værkside'}
                   work={work}
                 />
-                <AddToListButton className="mr1" work={work} />
+                <AddToListButton className="mr1 mt1" work={work} />
               </div>
             </div>
             <div className="row">
@@ -196,7 +196,7 @@ class WorkPreview extends React.Component {
             </div>
           </div>
         </div>
-        <div className="col-md-0 col-lg-5 workPreview__reviews pt1 pb1">
+        <div className="d-none d-xl-block col-5 workPreview__reviews pt1 pb1">
           <div className="row">
             <div className="col-md-12">
               <Heading Tag="h3" type="title" className="mt0 mb2">

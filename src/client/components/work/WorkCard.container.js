@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobile} from 'react-device-detect';
 import BookCover from '../general/BookCover.component';
 import BookmarkButton from '../general/BookmarkButton';
 import TaxDescription from './TaxDescription.component';
@@ -57,7 +56,8 @@ class WorkCard extends React.Component {
     return (
       nextProps.highlight !== this.props.highlight ||
       nextProps.work !== this.props.work ||
-      nextProps.allowFetch !== this.props.allowFetch
+      nextProps.allowFetch !== this.props.allowFetch ||
+      nextProps.enableHover !== this.props.enableHover
     );
   }
 
@@ -91,11 +91,7 @@ class WorkCard extends React.Component {
         <div
           style={{height: '100%'}}
           onClick={event => {
-            if (isMobile) {
-              event.stopPropagation();
-              event.preventDefault();
-              this.props.onWorkPreviewClick(this.props.work);
-            }
+            this.props.onWorkPreviewClick(this.props.work);
           }}
         >
           <BookCover
@@ -119,13 +115,9 @@ class WorkCard extends React.Component {
                 paddingTop: '80%'
               }}
               onClick={event => {
-                if (!isMobile) {
-                  event.stopPropagation();
-                  event.preventDefault();
-                  this.props.onWorkPreviewClick(this.props.work);
-                  if (!this.props.pidPreview && this.props.scrollToChildBelt) {
-                    this.props.scrollToChildBelt();
-                  }
+                this.props.onWorkPreviewClick(this.props.work);
+                if (!this.props.pidPreview && this.props.scrollToChildBelt) {
+                  this.props.scrollToChildBelt();
                 }
               }}
             >
@@ -142,8 +134,6 @@ class WorkCard extends React.Component {
                   type="tertiary"
                   size="small"
                   onClick={event => {
-                    event.stopPropagation();
-                    event.preventDefault();
                     this.props.onMoreLikeThisClick(this.props.work);
                     this.props.scrollToChildBelt();
                   }}
