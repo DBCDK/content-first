@@ -90,7 +90,7 @@ class WorkCard extends React.Component {
         />
         <div
           style={{height: '100%'}}
-          onClick={event => {
+          onClick={() => {
             this.props.onWorkPreviewClick(this.props.work);
           }}
         >
@@ -114,7 +114,7 @@ class WorkCard extends React.Component {
                 width: '100%',
                 paddingTop: '80%'
               }}
-              onClick={event => {
+              onClick={() => {
                 this.props.onWorkPreviewClick(this.props.work);
                 if (!this.props.pidPreview && this.props.scrollToChildBelt) {
                   this.props.scrollToChildBelt();
@@ -133,7 +133,7 @@ class WorkCard extends React.Component {
                 <Button
                   type="tertiary"
                   size="small"
-                  onClick={event => {
+                  onClick={() => {
                     this.props.onMoreLikeThisClick(this.props.work);
                     this.props.scrollToChildBelt();
                   }}
