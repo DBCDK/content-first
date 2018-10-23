@@ -178,7 +178,7 @@ const defaultState = {
       onFrontPage: true,
       pidPreview: false,
       links: [],
-      tags: [{id: 4466, weight: 99}, 5731, 3510, 5626, 5683, 5630]
+      tags: [{id: 4466, weight: 10}, 5731, 3510, 5626, 5683, 5630]
     }
   }
 };
