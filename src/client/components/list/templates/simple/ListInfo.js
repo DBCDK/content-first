@@ -31,7 +31,8 @@ export const ListInfo = ({
   addImage,
   confirmShareModal,
   onAddBook,
-  onEdit
+  onEdit,
+  titleMissing
 }) => {
   return (
     <div className="box-shadow">
@@ -100,11 +101,12 @@ export const ListInfo = ({
               onChange={onTitleChange}
               value={list.title}
             />
-            {!(list.title && list.title.trim()) && (
-              <Text type="body" variant="color-fersken" className="mt-2">
-                Listen skal have en titel
-              </Text>
-            )}
+            {titleMissing &&
+              !list.title.length > 0 && (
+                <Text type="body" variant="color-fersken" className="mt-2">
+                  Listen skal have en titel
+                </Text>
+              )}
             <Textarea
               className={`form-control mt-4 comment-textarea`}
               name="list-description"
