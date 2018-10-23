@@ -4,7 +4,7 @@ import BooksBelt from './templates/BooksBelt.container';
 import SimilarBooksBelt from './templates/SimilarBooksBelt.container';
 import InteractionsRecoBelt from './templates/InteractionsRecoBelt.container';
 
-const BeltWrapper = ({belt, recommendedPids = null}) => {
+const BeltWrapper = ({belt}) => {
   if (!belt) {
     return null;
   }
@@ -33,7 +33,6 @@ const BeltWrapper = ({belt, recommendedPids = null}) => {
       key={belt.name}
       belt={belt}
       tags={belt.tags}
-      recommendedPids={recommendedPids}
       childTemplate={BeltWrapper}
     />
   );
