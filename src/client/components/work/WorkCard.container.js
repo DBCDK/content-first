@@ -56,8 +56,7 @@ class WorkCard extends React.Component {
     return (
       nextProps.highlight !== this.props.highlight ||
       nextProps.work !== this.props.work ||
-      nextProps.allowFetch !== this.props.allowFetch ||
-      nextProps.enableHover !== this.props.enableHover
+      nextProps.allowFetch !== this.props.allowFetch
     );
   }
 

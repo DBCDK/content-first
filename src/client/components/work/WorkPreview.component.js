@@ -48,7 +48,7 @@ class WorkPreview extends React.Component {
     const reviews = filterReviews(work);
 
     return (
-      <div className="d-none d-sm-block row WorkPreview__container">
+      <div className="row WorkPreview__container">
         <div className="col-12 col-xl-7 workPreview__work">
           <div className="workPreview__image col-4">
             <Link href={'/værk/' + book.pid}>
