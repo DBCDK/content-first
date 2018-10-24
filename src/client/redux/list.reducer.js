@@ -349,6 +349,7 @@ const listReducer = (state = defaultState, action) => {
 // ACTION CREATORS
 export const addList = (
   {
+    _type = 'list',
     type = CUSTOM_LIST,
     title = '',
     description = '',
@@ -370,7 +371,8 @@ export const addList = (
       isNew,
       list,
       _owner,
-      _created
+      _created,
+      _type
     },
     afterSave
   };
@@ -436,10 +438,12 @@ export const createGetLists = () => {
     (listsObj, type, sort, _owner, _public) => {
       const lists = Object.values(listsObj)
         .filter(l => {
-          if (type && l.type !== type) {
+          if (!l || !l._type || l.error || !l.title) {
+            // this list is broken, dont show it
             return false;
           }
-          if (!l.title) {
+
+          if (type && l.type !== type) {
             return false;
           }
           if (_owner && l._owner !== _owner) {
