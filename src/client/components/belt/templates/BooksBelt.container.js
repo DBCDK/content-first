@@ -85,7 +85,7 @@ export class BooksBelt extends React.Component {
     let status = pid === belt.pidPreview ? false : pid;
     this.props.changePidPreview(status, belt);
 
-    if (status) {
+    if (status && !belt.pidPreview) {
       this.scrollToChildBelt(belt);
     }
   }
@@ -205,12 +205,9 @@ export class BooksBelt extends React.Component {
                           pid,
                           true
                         )}
-                        onWorkPreviewClick={() => {
-                          this.toggleWorkPreview(pid, belt);
-                        }}
-                        scrollToChildBelt={() => {
-                          this.scrollToChildBelt(belt);
-                        }}
+                        onWorkPreviewClick={() =>
+                          this.toggleWorkPreview(pid, belt)
+                        }
                         pidPreview={pidPreview}
                       />
                     );

@@ -89,9 +89,7 @@ class WorkCard extends React.Component {
         />
         <div
           style={{height: '100%'}}
-          onClick={() => {
-            this.props.onWorkPreviewClick(this.props.work);
-          }}
+          onClick={() => this.props.onWorkPreviewClick(this.props.work)}
         >
           <BookCover
             className="book-cover"
@@ -113,12 +111,7 @@ class WorkCard extends React.Component {
                 width: '100%',
                 paddingTop: '80%'
               }}
-              onClick={() => {
-                this.props.onWorkPreviewClick(this.props.work);
-                if (!this.props.pidPreview && this.props.scrollToChildBelt) {
-                  this.props.scrollToChildBelt();
-                }
-              }}
+              onClick={() => this.props.onWorkPreviewClick(this.props.work)}
             >
               <Heading Tag="h3" type="title" style={{marginBottom: 4}}>
                 {this.props.work.book.title}
@@ -132,10 +125,9 @@ class WorkCard extends React.Component {
                 <Button
                   type="tertiary"
                   size="small"
-                  onClick={() => {
-                    this.props.onMoreLikeThisClick(this.props.work);
-                    this.props.scrollToChildBelt();
-                  }}
+                  onClick={() =>
+                    this.props.onMoreLikeThisClick(this.props.work)
+                  }
                 >
                   Mere som denne
                 </Button>
