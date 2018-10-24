@@ -52,7 +52,7 @@ class WorkPreview extends React.Component {
         <div className="col-12 col-xl-7 workPreview__work">
           <div className="workPreview__image col-4">
             <Link href={'/værk/' + book.pid}>
-              <BookCover className="d-block" book={book} />
+              <BookCover book={book} />
             </Link>
           </div>
           <div className="workPreview__info col-8">

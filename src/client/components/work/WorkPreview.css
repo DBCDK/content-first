@@ -17,6 +17,10 @@
   padding-right: 3rem;
 }
 
+.workPreview__work .workPreview__image div {
+  display: block !important;
+}
+
 .workPreview__work .workPreview__image img {
   width: 100%;
   height: auto;
