@@ -349,6 +349,7 @@ const listReducer = (state = defaultState, action) => {
 // ACTION CREATORS
 export const addList = (
   {
+    _type = 'list',
     type = CUSTOM_LIST,
     title = '',
     description = '',
@@ -370,7 +371,8 @@ export const addList = (
       isNew,
       list,
       _owner,
-      _created
+      _created,
+      _type
     },
     afterSave
   };
