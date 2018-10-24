@@ -25,7 +25,7 @@ router
       const book = await request.get('http://' + host + '/v1/book/' + pid);
       const bookData = book.body.data;
 
-      const bookCover = 'https://metakompasset.demo.dbc.dk/api/cover/' + pid;
+      const bookCover = 'https://metakompasset.dk/api/cover/' + pid;
 
       // const message = 'hello';
       const html = template.constructHtml(
