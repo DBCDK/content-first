@@ -73,7 +73,7 @@ router
       // Evaluate meta content
       const img = list.data.image
         ? hostUrl + '/v1/image/' + list.data.image + '/1200/600'
-        : hostUrl + '/img/general/læsekompas-logo.png';
+        : hostUrl + '/img/general/laesekompas-logo.png';
 
       // const message = 'hello';
       const html = template.constructHtml(
