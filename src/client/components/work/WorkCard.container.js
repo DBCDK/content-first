@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobile} from 'react-device-detect';
 import BookCover from '../general/BookCover.component';
 import BookmarkButton from '../general/BookmarkButton';
 import TaxDescription from './TaxDescription.component';
@@ -90,13 +89,7 @@ class WorkCard extends React.Component {
         />
         <div
           style={{height: '100%'}}
-          onClick={event => {
-            if (isMobile) {
-              event.stopPropagation();
-              event.preventDefault();
-              this.props.onWorkPreviewClick(this.props.work);
-            }
-          }}
+          onClick={() => this.props.onWorkPreviewClick(this.props.work)}
         >
           <BookCover
             className="book-cover"
@@ -118,16 +111,7 @@ class WorkCard extends React.Component {
                 width: '100%',
                 paddingTop: '80%'
               }}
-              onClick={event => {
-                if (!isMobile) {
-                  event.stopPropagation();
-                  event.preventDefault();
-                  this.props.onWorkPreviewClick(this.props.work);
-                  if (!this.props.pidPreview && this.props.scrollToChildBelt) {
-                    this.props.scrollToChildBelt();
-                  }
-                }
-              }}
+              onClick={() => this.props.onWorkPreviewClick(this.props.work)}
             >
               <Heading Tag="h3" type="title" style={{marginBottom: 4}}>
                 {this.props.work.book.title}
@@ -141,12 +125,9 @@ class WorkCard extends React.Component {
                 <Button
                   type="tertiary"
                   size="small"
-                  onClick={event => {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    this.props.onMoreLikeThisClick(this.props.work);
-                    this.props.scrollToChildBelt();
-                  }}
+                  onClick={() =>
+                    this.props.onMoreLikeThisClick(this.props.work)
+                  }
                 >
                   Mere som denne
                 </Button>

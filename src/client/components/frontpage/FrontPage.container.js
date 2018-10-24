@@ -33,7 +33,9 @@ class FrontPage extends React.Component {
         <BookcaseItem id={'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018'} />
         {this.renderBelts(aBeltsMap.slice(7, -1))}
         <div className="container">
-          <RecentListsBelt />
+          <div className="belts col-12 ">
+            <RecentListsBelt />
+          </div>
         </div>
       </div>
     );

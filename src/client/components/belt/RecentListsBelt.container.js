@@ -54,7 +54,7 @@ export default class RecentListsBelt extends React.Component {
         onChange={this.onVisibilityChange}
         partialVisibility={true}
       >
-        <div className=" belt text-left row">
+        <div className="belt text-left mt3 row">
           <div className="p-0 col-12">
             <div className="row header">
               <Heading

@@ -61,7 +61,7 @@ const BookCover = props => {
       }}
       alt={props.title || ''}
       className={
-        'd-inline-flex align-items-end book-cover ' + props.className || ''
+        props.className || '' + ' d-inline-flex align-items-end book-cover'
       }
     >
       <img

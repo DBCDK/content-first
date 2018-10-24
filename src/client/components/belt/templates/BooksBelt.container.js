@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobile} from 'react-device-detect';
 import VisibilitySensor from 'react-visibility-sensor';
 import {difference, isEqual} from 'lodash';
 import scrollToComponent from 'react-scroll-to-component';
+import {isMobileOnly, isMobile} from 'react-device-detect';
 import WorkCard from '../../work/WorkCard.container';
 import Heading from '../../base/Heading';
 import Term from '../../base/Term';
@@ -43,14 +43,6 @@ export class BooksBelt extends React.Component {
     this.fetchRecommendations();
   }
 
-  fetchRecommendations = () => {
-    if (isEqual(this.fetchedTags, this.props.tags) || !this.state.visible) {
-      return;
-    }
-    this.props.fetchRecommendations(this.props.tags);
-    this.fetchedTags = this.props.tags;
-  };
-
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.belt !== this.props.belt ||
@@ -60,6 +52,14 @@ export class BooksBelt extends React.Component {
       nextState.visible !== this.state.visible
     );
   }
+
+  fetchRecommendations = () => {
+    if (isEqual(this.fetchedTags, this.props.tags) || !this.state.visible) {
+      return;
+    }
+    this.props.fetchRecommendations(this.props.tags);
+    this.fetchedTags = this.props.tags;
+  };
 
   getOnMoreLikeThisClickFunc(belt, pid, clearPreview) {
     return work => {
@@ -78,12 +78,16 @@ export class BooksBelt extends React.Component {
   }
 
   toggleWorkPreview(pid, belt) {
-    if (isMobile) {
+    if (isMobileOnly) {
       this.props.historyPush(pid);
       return;
     }
     let status = pid === belt.pidPreview ? false : pid;
     this.props.changePidPreview(status, belt);
+
+    if (status && !belt.pidPreview) {
+      this.scrollToChildBelt(belt);
+    }
   }
 
   scrollToChildBelt(belt) {
@@ -185,7 +189,7 @@ export class BooksBelt extends React.Component {
                     return (
                       <WorkCard
                         className="ml1 mr1"
-                        enableHover={true}
+                        enableHover={!isMobile}
                         highlight={
                           (child && child.pid === pid) || pid === pidPreview
                         }
@@ -201,12 +205,9 @@ export class BooksBelt extends React.Component {
                           pid,
                           true
                         )}
-                        onWorkPreviewClick={() => {
-                          this.toggleWorkPreview(pid, belt);
-                        }}
-                        scrollToChildBelt={() => {
-                          this.scrollToChildBelt(belt);
-                        }}
+                        onWorkPreviewClick={() =>
+                          this.toggleWorkPreview(pid, belt)
+                        }
                         pidPreview={pidPreview}
                       />
                     );
