@@ -166,6 +166,7 @@ export class ListInfo extends React.Component {
               style={{opacity: 0}}
               className="list-cover-image w-100"
               src={`/v1/image/${list.image}/719/400`}
+              onLoad={this.props.forceUpdate}
             />
           )}
         </div>
