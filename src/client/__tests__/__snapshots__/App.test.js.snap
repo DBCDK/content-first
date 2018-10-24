@@ -284,25 +284,6 @@ exports[`renders without crashing 1`] = `
           belt={
             Object {
               "isLoading": false,
-              "name": "En god bog",
-              "onFrontPage": true,
-              "tags": Array [
-                100001,
-                100003,
-                Object {
-                  "id": 5672,
-                  "weight": 10,
-                },
-                100005,
-              ],
-              "works": Array [],
-            }
-          }
-        />
-        <BooksBelt
-          belt={
-            Object {
-              "isLoading": false,
               "links": Array [],
               "name": "Mennesket og Naturen",
               "onFrontPage": true,
@@ -354,6 +335,26 @@ exports[`renders without crashing 1`] = `
             }
           }
         />
+        <BooksBelt
+          belt={
+            Object {
+              "isLoading": false,
+              "links": Array [],
+              "name": "Tankevækkende fremtidsvisioner",
+              "onFrontPage": true,
+              "subtext": "Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.",
+              "tags": Array [
+                Object {
+                  "id": 4995,
+                  "weight": 10,
+                },
+                4927,
+                5714,
+                5713,
+              ],
+            }
+          }
+        />
       </div>
     </div>
     <div
@@ -377,25 +378,6 @@ exports[`renders without crashing 1`] = `
       <div
         className="belts col-12 "
       >
-        <BooksBelt
-          belt={
-            Object {
-              "isLoading": false,
-              "links": Array [],
-              "name": "Tankevækkende Sci-fi",
-              "onFrontPage": true,
-              "subtext": "Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.",
-              "tags": Array [
-                Object {
-                  "id": 4927,
-                  "weight": 10,
-                },
-                5714,
-                5713,
-              ],
-            }
-          }
-        />
         <BooksBelt
           belt={
             Object {
@@ -463,7 +445,7 @@ exports[`renders without crashing 1`] = `
             Object {
               "isLoading": false,
               "links": Array [],
-              "name": "Tolkiensque",
+              "name": "Tolkienesque",
               "onFrontPage": true,
               "subtext": "De store eventyr og udfordringer venter i en anden verden, hvor magiske kræfter og overnaturlige væsner prøver hinanden af.",
               "tags": Array [
@@ -489,7 +471,7 @@ exports[`renders without crashing 1`] = `
             Object {
               "isLoading": false,
               "links": Array [],
-              "name": "Gotisk uhygge",
+              "name": "Det var en mørk og stormfuld nat",
               "onFrontPage": true,
               "subtext": "Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt.",
               "tags": Array [
@@ -515,7 +497,7 @@ exports[`renders without crashing 1`] = `
             Object {
               "isLoading": false,
               "links": Array [],
-              "name": "Lokalkrimi",
+              "name": "Hvad sker der bag hækken?",
               "onFrontPage": true,
               "subtext": "Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.",
               "tags": Array [
@@ -541,30 +523,40 @@ exports[`renders without crashing 1`] = `
             Object {
               "isLoading": false,
               "links": Array [],
-              "name": "Historisk romantik",
+              "name": "Historiske romaner",
               "onFrontPage": true,
               "subtext": "Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.",
               "tags": Array [
                 Object {
-                  "id": 5028,
+                  "id": 4901,
                   "weight": 10,
                 },
-                5016,
-                Object {
-                  "id": 5149,
-                  "weight": 10,
-                },
-                4044,
-                4074,
-                5275,
-                5282,
+                5660,
+                5658,
                 189,
+              ],
+            }
+          }
+        />
+        <BooksBelt
+          belt={
+            Object {
+              "isLoading": false,
+              "links": Array [],
+              "name": "Vemodige nordmænd",
+              "onFrontPage": true,
+              "pidPreview": false,
+              "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
+              "tags": Array [
                 Object {
-                  "id": 5660,
+                  "id": 4466,
                   "weight": 10,
                 },
-                5661,
-                5671,
+                5731,
+                3510,
+                5626,
+                5683,
+                5630,
               ],
             }
           }
