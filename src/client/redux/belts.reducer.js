@@ -168,7 +168,7 @@ const defaultState = {
       isLoading: false,
       onFrontPage: true,
       links: [],
-      tags: [4901, 5660, 5658, 189]
+      tags: [{id: 4901, weight: 10}, 5660, 5658, 189]
     },
     'Vemodige nordmænd': {
       name: 'Vemodige nordmænd',
