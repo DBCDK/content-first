@@ -28,14 +28,20 @@ export const getRecommendedBooks = (state, tags, max = 100) => {
 
 export const createGetFollowedLists = () =>
   createSelector(
-    [state => state.followReducer, state => state.listReducer.lists],
-    (follows, lists) => {
+    [
+      state => state.followReducer,
+      state => state.listReducer.lists,
+      state => state.userReducer && state.userReducer.openplatformId
+    ],
+    (follows, lists, openplatformId) => {
       const result = Object.values(follows)
         .filter(follow => follow.cat === 'list')
         .map(follow => lists[follow.id])
         // list.error may occur if followed list is deleted or made private
         // just remove them
-        .filter(list => list && !list.error);
+        .filter(list => list && !list.error && list._type)
+        // only show lists owned by others
+        .filter(list => list._owner !== openplatformId);
       return result;
     }
   );

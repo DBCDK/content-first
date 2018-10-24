@@ -291,6 +291,7 @@ export const listMiddleware = store => next => async action => {
       const res = next(action);
       try {
         const list = await loadList(action._id, store);
+
         store.dispatch({
           type: LIST_LOAD_RESPONSE,
           list
@@ -309,7 +310,7 @@ export const listMiddleware = store => next => async action => {
       } catch (error) {
         store.dispatch({
           type: LIST_LOAD_RESPONSE,
-          list: {_id: action._id, error}
+          list: {_id: action._id || 'unknown', error}
         });
       }
       return res;

@@ -436,10 +436,12 @@ export const createGetLists = () => {
     (listsObj, type, sort, _owner, _public) => {
       const lists = Object.values(listsObj)
         .filter(l => {
-          if (type && l.type !== type) {
+          if (!l || !l._type || l.error || !l.title) {
+            // this list is broken, dont show it
             return false;
           }
-          if (!l.title) {
+
+          if (type && l.type !== type) {
             return false;
           }
           if (_owner && l._owner !== _owner) {
