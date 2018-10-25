@@ -104,9 +104,9 @@ async function enrichList({list}) {
     )).body.data;
   } else {
     elements = (await request.get(
-      `/v1/object/find?type=list-entry&key=${list._id}&owner=${
-        list._owner
-      }&limit=100000`
+      `/v1/object/find?type=list-entry&key=${
+        list._id
+      }&owner=${encodeURIComponent(list._owner)}&limit=100000`
     )).body.data;
   }
 
