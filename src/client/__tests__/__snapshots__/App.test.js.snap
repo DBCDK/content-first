@@ -383,20 +383,6 @@ exports[`renders without crashing 1`] = `
             Object {
               "isLoading": false,
               "links": Array [],
-              "name": "Bibliotekarens ugentlige anbefalinger",
-              "onFrontPage": true,
-              "tags": Array [
-                -2,
-              ],
-              "works": Array [],
-            }
-          }
-        />
-        <BooksBelt
-          belt={
-            Object {
-              "isLoading": false,
-              "links": Array [],
               "name": "Krøllede fortællinger",
               "onFrontPage": true,
               "subtext": "Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt.",
@@ -413,6 +399,20 @@ exports[`renders without crashing 1`] = `
                 5652,
                 5717,
               ],
+            }
+          }
+        />
+        <BooksBelt
+          belt={
+            Object {
+              "isLoading": false,
+              "links": Array [],
+              "name": "Bibliotekarens ugentlige anbefalinger",
+              "onFrontPage": true,
+              "tags": Array [
+                -2,
+              ],
+              "works": Array [],
             }
           }
         />

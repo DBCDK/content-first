@@ -2,7 +2,7 @@
 
 exports[`BookcaseItem Render list as bookcaseItem 1`] = `
 <section
-  className="  "
+  className="mt-5 mb-0 mt-md-4 mb-md-4 mb-lg-5   "
 >
   <div
     className="caroContainer"
