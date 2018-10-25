@@ -31,6 +31,7 @@ class ListCard extends React.Component {
     }
     if (
       this.props.list &&
+      this.props._id &&
       !this.props.list.isLoading &&
       !this.commentsFetched
     ) {
