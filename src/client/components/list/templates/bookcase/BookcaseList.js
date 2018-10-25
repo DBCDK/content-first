@@ -116,7 +116,6 @@ export class BookcaseList extends React.Component {
   render() {
     const {_id, list} = this.props;
     const {added} = this.state;
-
     return (
       <React.Fragment>
         <StickyConfirmPanel
@@ -151,6 +150,7 @@ export class BookcaseList extends React.Component {
                 this.refs = {...this.refs, info};
               }}
               titleMissing={this.state.titleMissing}
+              forceUpdate={() => this.forceUpdate()}
             />
             <div className="position-relative">
               {list.list.map(element => {
