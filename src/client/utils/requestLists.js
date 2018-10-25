@@ -127,7 +127,9 @@ async function enrichList({list}) {
 
   // Remove elements which have been removed by other users
   // and hence might still be referenced in original list.list
-  list.list = list.list.filter(element => element.pid && element._id);
+  list.list = list.list
+    .filter(element => element.pid && element._id)
+    .filter(element => !list.deleted[element._id]);
 
   // We don't want to keep books which have been stored at element
   // These are handled in the redux books now
