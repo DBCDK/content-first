@@ -96,7 +96,7 @@
   color: var(--petrolium);
 }
 .spot-item-link-image-background {
-  color: white;
+  color: white !important;
 }
 .spot-item-circle {
   width: 80px;
