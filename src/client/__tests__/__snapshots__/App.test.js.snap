@@ -574,7 +574,7 @@ exports[`renders without crashing 1`] = `
           partialVisibility={true}
         >
           <div
-            className="belt text-left mt3 row"
+            className="belt text-left row mt-5 mt-sm-4"
           >
             <div
               className="p-0 col-12"
@@ -583,7 +583,7 @@ exports[`renders without crashing 1`] = `
                 className="row header"
               >
                 <h1
-                  className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0 Heading Heading__section"
+                  className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0 Title Title__title4 Title__title4--transform-uppercase"
                 >
                   <strong>
                     Ugens
@@ -592,7 +592,7 @@ exports[`renders without crashing 1`] = `
                 </h1>
               </div>
               <div
-                className=" mb4 mt2"
+                className="mb0 mt2"
               >
                 <slider>
                   <div
