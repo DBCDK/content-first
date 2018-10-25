@@ -5,7 +5,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import {difference, isEqual} from 'lodash';
 import scrollToComponent from 'react-scroll-to-component';
 import WorkCard from '../../work/WorkCard.container';
-import Heading from '../../base/Heading';
+import Title from '../../base/Title';
 import Term from '../../base/Term';
 import Slider from '../../belt/Slider.component';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../../redux/recommend';
@@ -124,17 +124,18 @@ export class BooksBelt extends React.Component {
         partialVisibility={true}
       >
         <React.Fragment>
-          <div className="belt text-left mt3 row">
+          <div className="belt text-left mt-5 mt-sm-4 row">
             <div className="p-0 col-12">
               <div className="header row">
                 <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
-                  <Heading
+                  <Title
+                    Tag="h1"
+                    type="title4"
+                    variant="transform-uppercase"
                     className={
                       border +
                       'inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0 '
                     }
-                    Tag="h1"
-                    type="section"
                   >
                     {name.split(' ').map((word, idx) => {
                       if (idx === 0) {
@@ -142,7 +143,7 @@ export class BooksBelt extends React.Component {
                       }
                       return ' ' + word;
                     })}
-                  </Heading>
+                  </Title>
                 </Link>
                 {showTags && (
                   <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
@@ -163,9 +164,9 @@ export class BooksBelt extends React.Component {
                   </div>
                 )}
                 {subtext && (
-                  <Heading Tag="h3" type="lead" className="ml1 mt1 mb0">
+                  <Title Tag="h3" type="title5" className="ml1 mt1 mb0">
                     {subtext}
-                  </Heading>
+                  </Title>
                 )}
               </div>
 

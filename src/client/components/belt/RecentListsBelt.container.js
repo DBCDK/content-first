@@ -1,7 +1,7 @@
 import React from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 import ListCard from '../list/card/ListCard.component';
-import Heading from '../base/Heading';
+import Title from '../base/Title';
 import Slider from './Slider.component';
 import {fetchRecent} from '../../utils/requestLists';
 
@@ -54,24 +54,25 @@ export default class RecentListsBelt extends React.Component {
         onChange={this.onVisibilityChange}
         partialVisibility={true}
       >
-        <div className=" belt text-left row">
+        <div className="belt text-left row mt-5 mt-sm-4">
           <div className="p-0 col-12">
             <div className="row header">
-              <Heading
-                className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0"
+              <Title
                 Tag="h1"
-                type="section"
+                type="title4"
+                variant="transform-uppercase"
+                className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0"
               >
                 <strong>Ugens</strong> Lister
-              </Heading>
+              </Title>
             </div>
             {isSkeletonBelt && (
-              <div className=" mb4 mt2">
+              <div className="mb0 mt2">
                 <Slider>{skeletonCards}</Slider>
               </div>
             )}
             {!isSkeletonBelt && (
-              <div className="row mb4 mt2">
+              <div className="row mb0 mt-3 mt-sm-0 ">
                 <Slider
                   onSwipe={index => {
                     if (index > 0 && !didSwipe) {
