@@ -49,6 +49,7 @@ export default class RecentListsBelt extends React.Component {
         'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018',
         'd5205150-a5ec-11e8-bc7e-f12e3c5c9eaa'
       ]);
+
       this.setState({fetched: true, listIds: filtered});
     }
   };
@@ -80,7 +81,7 @@ export default class RecentListsBelt extends React.Component {
               </div>
             )}
             {!isSkeletonBelt && (
-              <div className="row mb0 mt-3 mt-sm-0 ">
+              <div className="row mb0 mt-3 mt-sm-0">
                 <Slider
                   onSwipe={index => {
                     if (index > 0 && !didSwipe) {
