@@ -148,7 +148,11 @@ export class BookcaseItem extends React.Component {
     };
 
     return (
-      <section className={`${this.state.carousel ? 'section-active' : ''}  `}>
+      <section
+        className={`mt-5 mb-0 mt-md-4 mb-md-4 mb-lg-5 ${
+          this.state.carousel ? 'section-active' : ''
+        }  `}
+      >
         <div className="caroContainer" onClick={this.gotoListPage}>
           <div
             className="bookswrap position-relative"

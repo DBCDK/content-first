@@ -168,9 +168,11 @@ export class BooksBelt extends React.Component {
                   </div>
                 )}
                 {subtext && (
-                  <Title Tag="h3" type="title5" className="ml1 mt1 mb0">
-                    {subtext}
-                  </Title>
+                  <div className="d-block w-100">
+                    <Title Tag="h3" type="title5" className="ml1 mt1 mb0">
+                      {subtext}
+                    </Title>
+                  </div>
                 )}
               </div>
 

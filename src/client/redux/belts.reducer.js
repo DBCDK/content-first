@@ -76,14 +76,6 @@ const defaultState = {
       links: [],
       tags: [{id: 4995, weight: 10}, 4927, 5714, 5713]
     },
-    'Bibliotekarens ugentlige anbefalinger': {
-      name: 'Bibliotekarens ugentlige anbefalinger',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
-      works: [],
-      tags: [-2]
-    },
     'Krøllede fortællinger': {
       name: 'Krøllede fortællinger',
       subtext:
@@ -100,6 +92,14 @@ const defaultState = {
         // 5711, uncomment when a work is mapped to this tag
         5717
       ]
+    },
+    'Bibliotekarens ugentlige anbefalinger': {
+      name: 'Bibliotekarens ugentlige anbefalinger',
+      isLoading: false,
+      onFrontPage: true,
+      links: [],
+      works: [],
+      tags: [-2]
     },
     Sofahygge: {
       name: 'Sofahygge',
