@@ -4,6 +4,7 @@ import ListCard from '../list/card/ListCard.component';
 import Title from '../base/Title';
 import Slider from './Slider.component';
 import {fetchRecent} from '../../utils/requestLists';
+import {difference} from 'lodash';
 
 const skeletonCards = [];
 for (let i = 0; i < 20; i++) {
@@ -41,7 +42,14 @@ export default class RecentListsBelt extends React.Component {
   fetch = async () => {
     if (this.state.visible && !this.state.fetched) {
       const listIds = await fetchRecent();
-      this.setState({fetched: true, listIds});
+
+      // Temporary solution for hiding specific lists
+      // For instance some "book cases"
+      const filtered = difference(listIds, [
+        'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018',
+        'd5205150-a5ec-11e8-bc7e-f12e3c5c9eaa'
+      ]);
+      this.setState({fetched: true, listIds: filtered});
     }
   };
 
