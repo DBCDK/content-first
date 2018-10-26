@@ -11,6 +11,7 @@ import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import {ON_USERLISTS_COLLAPSE} from '../../redux/list.reducer';
 import {ON_SHORTLIST_COLLAPSE} from '../../redux/shortlist.reducer';
+import {OPEN_MODAL} from '../../redux/modal.reducer';
 import Title from '../base/Title/index';
 import Text from '../base/Text/index';
 import './Topbar.css';
@@ -275,9 +276,22 @@ export class TopBar extends React.Component {
           <Title className="d-none d-sm-block" Tag="h1" type="title4">
             Læsekompas
           </Title>
-          <Text className="logo-beta-sign" type="micro">
-            BETA
-          </Text>
+          <div className="d-flex justify-content-between position-relative">
+            <Text className="logo-beta-sign" type="micro">
+              BETA
+            </Text>
+            <Text className="d-none d-sm-block logo-beta-text" type="small">
+              {'Nu 600+ bøger'}
+            </Text>
+            <Text
+              className="d-none d-sm-inline logo-beta-link"
+              type="small"
+              variant="decoration-underline"
+              onClick={this.props.betaModal}
+            >
+              {'Læs mere'}
+            </Text>
+          </div>
         </Link>
         <TopBarDropdown
           logout={this.props.logout}
@@ -300,7 +314,55 @@ export const mapDispatchToProps = dispatch => ({
   historyPush: (type, path) => dispatch({type, path}),
   logout: () => dispatch({type: ON_LOGOUT_REQUEST}),
   onUserListsClose: () => dispatch({type: ON_USERLISTS_COLLAPSE}),
-  onShortlistClose: () => dispatch({type: ON_SHORTLIST_COLLAPSE})
+  onShortlistClose: () => dispatch({type: ON_SHORTLIST_COLLAPSE}),
+  betaModal: () => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'confirm',
+      context: {
+        title: 'Om Læsekompas.dk',
+        reason: (
+          <React.Fragment>
+            <Text type="body" variant="weight-semibold">
+              {
+                'Læsekompasset er skabt for at gøre det nemt for dig at opdage bøger, der passer til dig, og inspirere dig til nye læseoplevelser.'
+              }
+            </Text>
+            <Text type="body">
+              {
+                'Vi arbejder hele tiden på at forbedre Læsekompasset og øge antallet af bøger. Lige nu er vi i '
+              }
+              <Text
+                className="d-inline"
+                type="body"
+                variant="color-fersken--weight-semibold--transform-uppercase"
+              >
+                betatest
+              </Text>
+              {
+                '. Det betyder, at du frit kan bruge webstedet, men at du sagtens kan opleve ting, der ikke fungerer optimalt endnu, og at mængden af bøger lige nu er begrænset. I løbet af de kommende måneder kommer alle de vigtigste nye udgivelser med, og der vil også med tiden komme flere ældre bøger med. Læsekompasset har skønlitteratur til voksne, men fagbøger og børnebøger kan du ikke finde her.\r\n \r\nVi vil blive meget glade for din feedback, som du kan give os via feedback-knappen nederst på siden. Din feedback hjælper os med at gøre Læsekompasset bedre.'
+              }
+            </Text>
+          </React.Fragment>
+        ),
+        confirmText: 'Luk',
+        hideCancel: true,
+        hideConfirm: true,
+        onConfirm: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        },
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        }
+      }
+    });
+  }
 });
 
 export default connect(
