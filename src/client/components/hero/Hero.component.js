@@ -96,7 +96,7 @@ export class Hero extends React.Component {
                         {hero.title}
                       </Title>
 
-                      <div className="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-8 text-left mr-auto ml-auto pt-3 pt-sm-5">
+                      <div className="col-12 col-xs-10 col-sm-12 col-md-10 col-lg-10 col-xl-8 text-left mr-auto ml-auto pt-3 pt-sm-5">
                         <Title
                           Tag="h3"
                           type="title3"
@@ -109,9 +109,9 @@ export class Hero extends React.Component {
                         >
                           {hero.text}
                         </Title>
-                        <Link href={url}>
+                        <Link href={url} className="searchbar-link">
                           <div className="searchbar p-0 p-sm-2 d-inline-flex d-lg-flex flex-column flex-lg-row justify-content-between">
-                            <div className="d-inline-flex flex-column flex-lg-row d h-100">
+                            <div className="searchbar-innerWrap d-inline-flex flex-column flex-lg-row d h-100">
                               <Icon
                                 name="search"
                                 className="md-xlarge align-self-center d-none d-lg-inline-block mr-3 ml-2"
