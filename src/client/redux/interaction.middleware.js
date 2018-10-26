@@ -12,7 +12,7 @@ import {
 } from './interaction.reducer';
 
 let isNotChecked = (list, pid) => {
-  return !list.find(element => element.book.pid === pid);
+  return !list.find(element => element.pid === pid);
 };
 
 export const interactionMiddleware = store => next => action => {
