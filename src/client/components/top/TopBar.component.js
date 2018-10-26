@@ -161,7 +161,6 @@ export class TopBar extends React.Component {
             className="short-badge"
             style={{padding: 0, marginLeft: '-9px'}}
           >
-            {' '}
             {`(${listLength})`}
           </span>
         </Link>
