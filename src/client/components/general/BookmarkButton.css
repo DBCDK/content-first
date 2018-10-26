@@ -22,10 +22,13 @@
 .BookmarkButton i {
   vertical-align: middle;
 }
-.BookmarkButtonCircle:hover {
-  background: var(--pistache);
-}
 .BookmarkButtonCircle.marked,
 .BookmarkButton.marked {
   background: var(--korn);
+}
+@media (hover:none){
+  .BookmarkButton:focus {
+    outline: 0;
+    box-shadow:none !important; 
+   }
 }
