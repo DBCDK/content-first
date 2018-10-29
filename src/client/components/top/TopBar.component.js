@@ -276,21 +276,25 @@ export class TopBar extends React.Component {
           <Title className="d-none d-sm-block" Tag="h1" type="title4">
             Læsekompas
           </Title>
-          <div className="d-flex justify-content-between position-relative">
+          <div className="d-block d-sm-flex justify-content-between position-relative">
             <Text className="logo-beta-sign" type="micro">
               BETA
             </Text>
-            <Text className="d-none d-sm-block logo-beta-text" type="small">
-              {'Nu 600+ bøger'}
-            </Text>
-            <Text
-              className="d-none d-sm-inline logo-beta-link"
-              type="small"
-              variant="decoration-underline"
-              onClick={this.props.betaModal}
-            >
-              {'Læs mere'}
-            </Text>
+            {!searchExpanded && (
+              <div>
+                <Text className="d-inline logo-beta-text" type="small">
+                  {'Nu 600+ bøger'}
+                </Text>
+                <Text
+                  className="d-inline logo-beta-link"
+                  type="small"
+                  variant="decoration-underline"
+                  onClick={this.props.betaModal}
+                >
+                  {'Læs mere'}
+                </Text>
+              </div>
+            )}
           </div>
         </Link>
         <TopBarDropdown

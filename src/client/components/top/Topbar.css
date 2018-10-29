@@ -56,6 +56,16 @@
   .Topbar .Topbar__logo .logo-beta-sign {
     margin-top: -19px;
   }
+
+  .Topbar .Topbar__logo .logo-beta-text {
+    margin-top: 0px;
+  }
+  .Topbar .Topbar__logo .logo-beta-link {
+    position: relative;
+    margin-top: 0px;
+    right: auto;
+    transform: translateX(0);
+  }
 }
 
 .Topbar .Topbar__logo img {
