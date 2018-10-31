@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {isMobileOnly} from 'react-device-detect';
 import Link from '../general/Link.component';
 import ShortListDropDown from '../list/shortlist/ShortListDropDown.container';
 import ListOverviewDropDown from '../list/overview/ListOverviewDropDown.container';
@@ -194,6 +195,8 @@ export class TopBar extends React.Component {
     const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
 
+    const isIndex = this.props.router.path === '/' ? true : false;
+
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
         {searchPage &&
@@ -270,31 +273,35 @@ export class TopBar extends React.Component {
           <div className="Topbar__overlay" />
         </nav>
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
-          <Text className="d-block d-sm-none" type="large">
+          <Text className="d-block d-sm-none m-0" type="large">
             Læsekompas
           </Text>
-          <Title className="d-none d-sm-block" Tag="h1" type="title4">
+          <Title className="d-none d-sm-block mb-0" Tag="h1" type="title4">
             Læsekompas
           </Title>
-          <div className="d-block d-sm-flex justify-content-between position-relative">
-            <Text className="logo-beta-sign" type="micro">
+          <div className="logo-beta-wrap d-flex  justify-content-sm-between position-relative">
+            <Text className="logo-beta-sign mb-0" type="micro">
               BETA
             </Text>
-            {!searchExpanded && (
-              <div>
-                <Text className="d-inline logo-beta-text" type="small">
-                  {'Nu 600+ bøger'}
-                </Text>
-                <Text
-                  className="d-inline logo-beta-link"
-                  type="small"
-                  variant="decoration-underline"
-                  onClick={this.props.betaModal}
-                >
-                  {'Læs mere'}
-                </Text>
-              </div>
-            )}
+            {!searchExpanded &&
+              ((isIndex && isMobileOnly) || !isMobileOnly) && (
+                <div className="d-inline-flex">
+                  <Text
+                    className="d-none d-sm-inline logo-beta-text"
+                    type="small"
+                  >
+                    {'Nu 600+ bøger'}
+                  </Text>
+                  <Text
+                    className="d-inline logo-beta-link mb0"
+                    type="small"
+                    variant="decoration-underline"
+                    onClick={this.props.betaModal}
+                  >
+                    {'Læs mere'}
+                  </Text>
+                </div>
+              )}
           </div>
         </Link>
         <TopBarDropdown
@@ -344,7 +351,9 @@ export const mapDispatchToProps = dispatch => ({
                 betatest
               </Text>
               {
+                /* eslint-disable */
                 '. Det betyder, at du frit kan bruge webstedet, men at du sagtens kan opleve ting, der ikke fungerer optimalt endnu, og at mængden af bøger lige nu er begrænset. I løbet af de kommende måneder kommer alle de vigtigste nye udgivelser med, og der vil også med tiden komme flere ældre bøger med. Læsekompasset har skønlitteratur til voksne, men fagbøger og børnebøger kan du ikke finde her.\r\n \r\nVi vil blive meget glade for din feedback, som du kan give os via feedback-knappen nederst på siden. Din feedback hjælper os med at gøre Læsekompasset bedre.'
+                /* eslint-enable */
               }
             </Text>
           </React.Fragment>

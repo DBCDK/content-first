@@ -51,11 +51,11 @@ exports[`AddToListModal multiple works as input 1`] = `
     <div
       className="content p-4"
     >
-      <h2
-        className=" Heading Heading__lead"
+      <p
+        className=" Text Text__large "
       >
         GEM I LISTE
-      </h2>
+      </p>
       <div
         className="row"
       >
@@ -247,11 +247,11 @@ exports[`AddToListModal newly added list is selected 1`] = `
     <div
       className="content p-4"
     >
-      <h2
-        className=" Heading Heading__lead"
+      <p
+        className=" Text Text__large "
       >
         GEM I LISTE
-      </h2>
+      </p>
       <div
         className="row"
       >
@@ -474,11 +474,11 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
     <div
       className="content p-4"
     >
-      <h2
-        className=" Heading Heading__lead"
+      <p
+        className=" Text Text__large "
       >
         GEM I LISTE
-      </h2>
+      </p>
       <div
         className="row"
       >

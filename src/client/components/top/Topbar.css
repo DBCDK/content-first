@@ -38,32 +38,24 @@
   cursor: pointer;
   margin: 0;
 }
-.Topbar .Topbar__logo .logo-beta-sign {
-  margin-top: -10px;
-  margin-bottom: 0px;
+
+.logo-beta-wrap {
+  margin-top: -5px;
 }
 
-.Topbar .Topbar__logo .logo-beta-text {
-  margin-top: -10px;
-}
 .Topbar .Topbar__logo .logo-beta-link {
   position: absolute;
-  margin-top: -10px;
+  top: 0;
   right: -5px;
   transform: translateX(100%);
 }
 @media only screen and (max-width: 575px) {
-  .Topbar .Topbar__logo .logo-beta-sign {
-    margin-top: -19px;
+  .Topbar .Topbar__logo .logo-beta-text {
+    display: none;
   }
 
-  .Topbar .Topbar__logo .logo-beta-text {
-    margin-top: 0px;
-  }
   .Topbar .Topbar__logo .logo-beta-link {
     position: relative;
-    margin-top: 0px;
-    right: auto;
     transform: translateX(0);
   }
 }
