@@ -148,6 +148,7 @@ export class TopBar extends React.Component {
 
   renderShortListBtn() {
     const {expanded} = this.props.shortListState;
+    const listLength = this.props.shortListState.elements.length || 0;
 
     return (
       <React.Fragment>
@@ -156,6 +157,12 @@ export class TopBar extends React.Component {
           className="Topbar__navigation__btn d-flex d-md-none widthCalc"
         >
           <Icon name="bookmark_border" />
+          <span
+            className="short-badge"
+            style={{padding: 0, marginLeft: '-9px'}}
+          >
+            {`(${listLength})`}
+          </span>
         </Link>
         <ShortListDropDown
           className={

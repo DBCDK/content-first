@@ -110,6 +110,17 @@ exports[`renders without crashing 1`] = `
           >
             bookmark_border
           </i>
+          <span
+            className="short-badge"
+            style={
+              Object {
+                "marginLeft": "-9px",
+                "padding": 0,
+              }
+            }
+          >
+            (0)
+          </span>
         </a>
         <div
           className="Topbar__navigation__btn d-none d-md-flex widthCalc  top-bar-dropdown-list"
