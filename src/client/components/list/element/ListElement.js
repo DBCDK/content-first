@@ -22,7 +22,7 @@ const UserInfo = ({showUserInfo, owner, time}) => {
   return (
     <div className="d-flex flex-row pb-2">
       <ProfileImage user={owner} size={'40'} namePosition={'right'} />
-      <Text type="body" variant="color-due" className="ml-4">
+      <Text type="small" variant="color-due" className="ml-4">
         {timeToString(time)}
       </Text>
     </div>
@@ -106,7 +106,6 @@ export class ListElement extends React.Component {
     } = this.props;
 
     const bookcase = list.template === 'bookcase' ? true : false;
-
     return (
       <div
         ref={elementRef}

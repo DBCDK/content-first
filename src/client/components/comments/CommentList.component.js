@@ -34,7 +34,6 @@ export default class CommentList extends React.Component {
     return (
       <div
         style={{
-          overflow: 'hidden',
           height: this.state.height || 0,
           transition: 'height 500ms'
         }}

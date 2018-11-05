@@ -9,6 +9,38 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
   }
 >
   <div
+    className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
+  >
+    <div
+      className="comment-container-divider col-12"
+    />
+    <div
+      className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
+    >
+      <p
+        className=" Text Text__body "
+      >
+        <span
+          className="d-flex"
+        >
+          <i
+            className="material-icons outline-mode_comment mr-1"
+          >
+            chat_bubble_outline
+          </i>
+          Kommentér
+        </span>
+      </p>
+      <p
+        className=" Text Text__body Text__body--decoration-underline"
+      >
+        <span>
+          0 kommentarer
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
     className="comments undefined"
   >
     <div
@@ -26,10 +58,10 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
           className="profile-image text-center small round"
           style={
             Object {
-              "height": "35px",
+              "height": "40px",
               "lineHeight": "inherit",
-              "marginRight": "20px",
-              "width": "35px",
+              "marginRight": "10px",
+              "width": "40px",
             }
           }
         >
@@ -43,7 +75,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
               <img
                 className="d-none"
                 onLoad={[Function]}
-                src="/v1/image/image_id/35/35"
+                src="/v1/image/image_id/40/40"
               />
             </span>
           </div>
@@ -96,7 +128,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
             id="comment-submit"
             onClick={[Function]}
           >
-            Gem
+            Kommentér
           </button>
         </div>
       </div>
@@ -114,16 +146,66 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
   }
 >
   <div
+    className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
+  >
+    <div
+      className="comment-container-divider col-12"
+    />
+    <div
+      className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
+    >
+      <p
+        className=" Text Text__body "
+      >
+        <span
+          className="d-flex"
+        >
+          <i
+            className="material-icons outline-mode_comment mr-1"
+          >
+            chat_bubble_outline
+          </i>
+          Kommentér
+        </span>
+      </p>
+      <p
+        className=" Text Text__body Text__body--decoration-underline"
+      >
+        <span>
+          2 kommentarer
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
     className="comments undefined"
   >
     <div
-      className="mb3"
+      className="mb2 "
     >
+      <button
+        className="btn btn-link link-subtle"
+        id="comment-toggle"
+        onClick={[Function]}
+        style={
+          Object {
+            "marginLeft": 55,
+            "marginTop": "-2rem",
+            "paddingLeft": 0,
+            "position": "relative",
+          }
+        }
+      >
+        <p
+          className="mb-0 Text Text__body Text__body--decoration-underline"
+        >
+          Vis flere kommentarer
+        </p>
+      </button>
       <div
         style={
           Object {
             "height": 0,
-            "overflow": "hidden",
             "transition": "height 500ms",
           }
         }
@@ -143,64 +225,6 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           />
         </div>
       </div>
-      <button
-        className="btn btn-link mt1 mb1 link-subtle"
-        id="comment-toggle"
-        onClick={[Function]}
-        style={
-          Object {
-            "marginLeft": 55,
-            "paddingLeft": 0,
-            "position": "relative",
-          }
-        }
-      >
-        <span
-          className={undefined}
-          style={
-            Object {
-              "fontFamily": "var(--secondary-font)",
-              "fontSize": 10,
-              "position": "relative",
-            }
-          }
-        >
-          <i
-            className="material-icons"
-            style={
-              Object {
-                "fontSize": 24,
-                "verticalAlign": "middle",
-              }
-            }
-          >
-            chat_bubble
-          </i>
-          <span
-            className="number"
-            style={
-              Object {
-                "color": "white",
-                "fontSize": 11,
-                "fontWeight": "normal",
-                "left": 0,
-                "position": "absolute",
-                "textAlign": "center",
-                "top": "50%",
-                "transform": "translateY(-50%)",
-                "width": "100%",
-              }
-            }
-          >
-            2
-          </span>
-        </span>
-        <span
-          className="ml1"
-        >
-          Vis alle kommentarer
-        </span>
-      </button>
     </div>
     <div
       className={undefined}
@@ -217,10 +241,10 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           className="profile-image text-center small round"
           style={
             Object {
-              "height": "35px",
+              "height": "40px",
               "lineHeight": "inherit",
-              "marginRight": "20px",
-              "width": "35px",
+              "marginRight": "10px",
+              "width": "40px",
             }
           }
         >
@@ -234,7 +258,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
               <img
                 className="d-none"
                 onLoad={[Function]}
-                src="/v1/image/image_id/35/35"
+                src="/v1/image/image_id/40/40"
               />
             </span>
           </div>
@@ -287,7 +311,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
             id="comment-submit"
             onClick={[Function]}
           >
-            Gem
+            Kommentér
           </button>
         </div>
       </div>
@@ -353,11 +377,77 @@ exports[`CommentContainer Component renders all comments 1`] = `
     }
   >
     <div
+      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
+    >
+      <div
+        className="comment-container-divider col-12"
+      />
+      <div
+        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
+      >
+        <Text
+          type="body"
+        >
+          <p
+            className=" Text Text__body "
+          >
+            <span
+              className="d-flex"
+            >
+              <i
+                className="material-icons outline-mode_comment mr-1"
+              >
+                chat_bubble_outline
+              </i>
+              Kommentér
+            </span>
+          </p>
+        </Text>
+        <Text
+          type="body"
+          variant="decoration-underline"
+        >
+          <p
+            className=" Text Text__body Text__body--decoration-underline"
+          >
+            <span>
+              5 kommentarer
+            </span>
+          </p>
+        </Text>
+      </div>
+    </div>
+    <div
       className="comments undefined"
     >
       <div
-        className="mb3"
+        className="mb2 "
       >
+        <button
+          className="btn btn-link link-subtle"
+          id="comment-toggle"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": 55,
+              "marginTop": "-2rem",
+              "paddingLeft": 0,
+              "position": "relative",
+            }
+          }
+        >
+          <Text
+            className="mb-0"
+            type="body"
+            variant="decoration-underline"
+          >
+            <p
+              className="mb-0 Text Text__body Text__body--decoration-underline"
+            >
+              Vis færre kommentarer
+            </p>
+          </Text>
+        </button>
         <CommentList
           comments={
             Array [
@@ -409,7 +499,6 @@ exports[`CommentContainer Component renders all comments 1`] = `
             style={
               Object {
                 "height": 0,
-                "overflow": "hidden",
                 "transition": "height 500ms",
               }
             }
@@ -483,67 +572,6 @@ exports[`CommentContainer Component renders all comments 1`] = `
             </div>
           </div>
         </CommentList>
-        <button
-          className="btn btn-link mt1 mb1 link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
-          style={
-            Object {
-              "marginLeft": 55,
-              "paddingLeft": 0,
-              "position": "relative",
-            }
-          }
-        >
-          <Component
-            value={5}
-          >
-            <span
-              style={
-                Object {
-                  "fontFamily": "var(--secondary-font)",
-                  "fontSize": 10,
-                  "position": "relative",
-                }
-              }
-            >
-              <i
-                className="material-icons"
-                style={
-                  Object {
-                    "fontSize": 24,
-                    "verticalAlign": "middle",
-                  }
-                }
-              >
-                chat_bubble
-              </i>
-              <span
-                className="number"
-                style={
-                  Object {
-                    "color": "white",
-                    "fontSize": 11,
-                    "fontWeight": "normal",
-                    "left": 0,
-                    "position": "absolute",
-                    "textAlign": "center",
-                    "top": "50%",
-                    "transform": "translateY(-50%)",
-                    "width": "100%",
-                  }
-                }
-              >
-                5
-              </span>
-            </span>
-          </Component>
-          <span
-            className="ml1"
-          >
-            Vis færre kommentarer
-          </span>
-        </button>
       </div>
       <CommentInput
         error={null}
@@ -565,9 +593,10 @@ exports[`CommentContainer Component renders all comments 1`] = `
           }
         >
           <ProfileImage
+            size="40"
             style={
               Object {
-                "marginRight": "20px",
+                "marginRight": "10px",
               }
             }
             user={
@@ -583,10 +612,10 @@ exports[`CommentContainer Component renders all comments 1`] = `
                 className="profile-image text-center small round"
                 style={
                   Object {
-                    "height": "35px",
+                    "height": "40px",
                     "lineHeight": "inherit",
-                    "marginRight": "20px",
-                    "width": "35px",
+                    "marginRight": "10px",
+                    "width": "40px",
                   }
                 }
               >
@@ -602,7 +631,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                       <img
                         className="d-none"
                         onLoad={[Function]}
-                        src="/v1/image/image_id/35/35"
+                        src="/v1/image/image_id/40/40"
                       />
                     </span>
                   </div>
@@ -667,7 +696,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Gem
+                  Kommentér
                 </button>
               </Button>
             </div>
@@ -688,16 +717,48 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
   }
 >
   <div
+    className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
+  >
+    <div
+      className="comment-container-divider col-12"
+    />
+    <div
+      className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
+    >
+      <p
+        className=" Text Text__body "
+      >
+        <span
+          className="d-flex"
+        >
+          <i
+            className="material-icons outline-mode_comment mr-1"
+          >
+            chat_bubble_outline
+          </i>
+          Kommentér
+        </span>
+      </p>
+      <p
+        className=" Text Text__body Text__body--decoration-underline"
+      >
+        <span>
+          1 kommentarer
+        </span>
+      </p>
+    </div>
+  </div>
+  <div
     className="comments undefined"
   >
     <div
-      className="mb3"
+      className="mb2 "
     >
+      
       <div
         style={
           Object {
             "height": 0,
-            "overflow": "hidden",
             "transition": "height 500ms",
           }
         }
@@ -718,7 +779,6 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
           />
         </div>
       </div>
-      
     </div>
     <div
       className={undefined}
@@ -735,10 +795,10 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
           className="profile-image text-center small round"
           style={
             Object {
-              "height": "35px",
+              "height": "40px",
               "lineHeight": "inherit",
-              "marginRight": "20px",
-              "width": "35px",
+              "marginRight": "10px",
+              "width": "40px",
             }
           }
         >
@@ -752,7 +812,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
               <img
                 className="d-none"
                 onLoad={[Function]}
-                src="/v1/image/image_id/35/35"
+                src="/v1/image/image_id/40/40"
               />
             </span>
           </div>
@@ -805,7 +865,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
             id="comment-submit"
             onClick={[Function]}
           >
-            Gem
+            Kommentér
           </button>
         </div>
       </div>
@@ -856,11 +916,77 @@ exports[`CommentContainer Component renders error 1`] = `
     }
   >
     <div
+      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
+    >
+      <div
+        className="comment-container-divider col-12"
+      />
+      <div
+        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
+      >
+        <Text
+          type="body"
+        >
+          <p
+            className=" Text Text__body "
+          >
+            <span
+              className="d-flex"
+            >
+              <i
+                className="material-icons outline-mode_comment mr-1"
+              >
+                chat_bubble_outline
+              </i>
+              Kommentér
+            </span>
+          </p>
+        </Text>
+        <Text
+          type="body"
+          variant="decoration-underline"
+        >
+          <p
+            className=" Text Text__body Text__body--decoration-underline"
+          >
+            <span>
+              2 kommentarer
+            </span>
+          </p>
+        </Text>
+      </div>
+    </div>
+    <div
       className="comments undefined"
     >
       <div
-        className="mb3"
+        className="mb2 "
       >
+        <button
+          className="btn btn-link link-subtle"
+          id="comment-toggle"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": 55,
+              "marginTop": "-2rem",
+              "paddingLeft": 0,
+              "position": "relative",
+            }
+          }
+        >
+          <Text
+            className="mb-0"
+            type="body"
+            variant="decoration-underline"
+          >
+            <p
+              className="mb-0 Text Text__body Text__body--decoration-underline"
+            >
+              Vis flere kommentarer
+            </p>
+          </Text>
+        </button>
         <CommentList
           comments={
             Array [
@@ -891,7 +1017,6 @@ exports[`CommentContainer Component renders error 1`] = `
             style={
               Object {
                 "height": 0,
-                "overflow": "hidden",
                 "transition": "height 500ms",
               }
             }
@@ -913,67 +1038,6 @@ exports[`CommentContainer Component renders error 1`] = `
             </div>
           </div>
         </CommentList>
-        <button
-          className="btn btn-link mt1 mb1 link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
-          style={
-            Object {
-              "marginLeft": 55,
-              "paddingLeft": 0,
-              "position": "relative",
-            }
-          }
-        >
-          <Component
-            value={2}
-          >
-            <span
-              style={
-                Object {
-                  "fontFamily": "var(--secondary-font)",
-                  "fontSize": 10,
-                  "position": "relative",
-                }
-              }
-            >
-              <i
-                className="material-icons"
-                style={
-                  Object {
-                    "fontSize": 24,
-                    "verticalAlign": "middle",
-                  }
-                }
-              >
-                chat_bubble
-              </i>
-              <span
-                className="number"
-                style={
-                  Object {
-                    "color": "white",
-                    "fontSize": 11,
-                    "fontWeight": "normal",
-                    "left": 0,
-                    "position": "absolute",
-                    "textAlign": "center",
-                    "top": "50%",
-                    "transform": "translateY(-50%)",
-                    "width": "100%",
-                  }
-                }
-              >
-                2
-              </span>
-            </span>
-          </Component>
-          <span
-            className="ml1"
-          >
-            Vis alle kommentarer
-          </span>
-        </button>
       </div>
       <CommentInput
         error={
@@ -1000,9 +1064,10 @@ exports[`CommentContainer Component renders error 1`] = `
           }
         >
           <ProfileImage
+            size="40"
             style={
               Object {
-                "marginRight": "20px",
+                "marginRight": "10px",
               }
             }
             user={
@@ -1018,10 +1083,10 @@ exports[`CommentContainer Component renders error 1`] = `
                 className="profile-image text-center small round"
                 style={
                   Object {
-                    "height": "35px",
+                    "height": "40px",
                     "lineHeight": "inherit",
-                    "marginRight": "20px",
-                    "width": "35px",
+                    "marginRight": "10px",
+                    "width": "40px",
                   }
                 }
               >
@@ -1037,7 +1102,7 @@ exports[`CommentContainer Component renders error 1`] = `
                       <img
                         className="d-none"
                         onLoad={[Function]}
-                        src="/v1/image/image_id/35/35"
+                        src="/v1/image/image_id/40/40"
                       />
                     </span>
                   </div>
@@ -1107,7 +1172,7 @@ exports[`CommentContainer Component renders error 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Gem
+                  Kommentér
                 </button>
               </Button>
             </div>
@@ -1163,11 +1228,77 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
     }
   >
     <div
+      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
+    >
+      <div
+        className="comment-container-divider col-12"
+      />
+      <div
+        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
+      >
+        <Text
+          type="body"
+        >
+          <p
+            className=" Text Text__body "
+          >
+            <span
+              className="d-flex"
+            >
+              <i
+                className="material-icons outline-mode_comment mr-1"
+              >
+                chat_bubble_outline
+              </i>
+              Kommentér
+            </span>
+          </p>
+        </Text>
+        <Text
+          type="body"
+          variant="decoration-underline"
+        >
+          <p
+            className=" Text Text__body Text__body--decoration-underline"
+          >
+            <span>
+              3 kommentarer
+            </span>
+          </p>
+        </Text>
+      </div>
+    </div>
+    <div
       className="comments undefined"
     >
       <div
-        className="mb3"
+        className="mb2 "
       >
+        <button
+          className="btn btn-link link-subtle"
+          id="comment-toggle"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": 55,
+              "marginTop": "-2rem",
+              "paddingLeft": 0,
+              "position": "relative",
+            }
+          }
+        >
+          <Text
+            className="mb-0"
+            type="body"
+            variant="decoration-underline"
+          >
+            <p
+              className="mb-0 Text Text__body Text__body--decoration-underline"
+            >
+              Vis flere kommentarer
+            </p>
+          </Text>
+        </button>
         <CommentList
           comments={
             Array [
@@ -1206,7 +1337,6 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             style={
               Object {
                 "height": 0,
-                "overflow": "hidden",
                 "transition": "height 500ms",
               }
             }
@@ -1229,67 +1359,6 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             </div>
           </div>
         </CommentList>
-        <button
-          className="btn btn-link mt1 mb1 link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
-          style={
-            Object {
-              "marginLeft": 55,
-              "paddingLeft": 0,
-              "position": "relative",
-            }
-          }
-        >
-          <Component
-            value={3}
-          >
-            <span
-              style={
-                Object {
-                  "fontFamily": "var(--secondary-font)",
-                  "fontSize": 10,
-                  "position": "relative",
-                }
-              }
-            >
-              <i
-                className="material-icons"
-                style={
-                  Object {
-                    "fontSize": 24,
-                    "verticalAlign": "middle",
-                  }
-                }
-              >
-                chat_bubble
-              </i>
-              <span
-                className="number"
-                style={
-                  Object {
-                    "color": "white",
-                    "fontSize": 11,
-                    "fontWeight": "normal",
-                    "left": 0,
-                    "position": "absolute",
-                    "textAlign": "center",
-                    "top": "50%",
-                    "transform": "translateY(-50%)",
-                    "width": "100%",
-                  }
-                }
-              >
-                3
-              </span>
-            </span>
-          </Component>
-          <span
-            className="ml1"
-          >
-            Vis alle kommentarer
-          </span>
-        </button>
       </div>
       <CommentInput
         error={null}
@@ -1311,9 +1380,10 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
           }
         >
           <ProfileImage
+            size="40"
             style={
               Object {
-                "marginRight": "20px",
+                "marginRight": "10px",
               }
             }
             user={
@@ -1329,10 +1399,10 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                 className="profile-image text-center small round"
                 style={
                   Object {
-                    "height": "35px",
+                    "height": "40px",
                     "lineHeight": "inherit",
-                    "marginRight": "20px",
-                    "width": "35px",
+                    "marginRight": "10px",
+                    "width": "40px",
                   }
                 }
               >
@@ -1348,7 +1418,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                       <img
                         className="d-none"
                         onLoad={[Function]}
-                        src="/v1/image/image_id/35/35"
+                        src="/v1/image/image_id/40/40"
                       />
                     </span>
                   </div>
@@ -1413,7 +1483,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Gem
+                  Kommentér
                 </button>
               </Button>
             </div>
@@ -1482,11 +1552,77 @@ exports[`CommentContainer Toggle all comments 1`] = `
     }
   >
     <div
+      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
+    >
+      <div
+        className="comment-container-divider col-12"
+      />
+      <div
+        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
+      >
+        <Text
+          type="body"
+        >
+          <p
+            className=" Text Text__body "
+          >
+            <span
+              className="d-flex"
+            >
+              <i
+                className="material-icons outline-mode_comment mr-1"
+              >
+                chat_bubble_outline
+              </i>
+              Kommentér
+            </span>
+          </p>
+        </Text>
+        <Text
+          type="body"
+          variant="decoration-underline"
+        >
+          <p
+            className=" Text Text__body Text__body--decoration-underline"
+          >
+            <span>
+              5 kommentarer
+            </span>
+          </p>
+        </Text>
+      </div>
+    </div>
+    <div
       className="comments undefined"
     >
       <div
-        className="mb3"
+        className="mb2 "
       >
+        <button
+          className="btn btn-link link-subtle"
+          id="comment-toggle"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": 55,
+              "marginTop": "-2rem",
+              "paddingLeft": 0,
+              "position": "relative",
+            }
+          }
+        >
+          <Text
+            className="mb-0"
+            type="body"
+            variant="decoration-underline"
+          >
+            <p
+              className="mb-0 Text Text__body Text__body--decoration-underline"
+            >
+              Vis flere kommentarer
+            </p>
+          </Text>
+        </button>
         <CommentList
           comments={
             Array [
@@ -1538,7 +1674,6 @@ exports[`CommentContainer Toggle all comments 1`] = `
             style={
               Object {
                 "height": 0,
-                "overflow": "hidden",
                 "transition": "height 500ms",
               }
             }
@@ -1560,67 +1695,6 @@ exports[`CommentContainer Toggle all comments 1`] = `
             </div>
           </div>
         </CommentList>
-        <button
-          className="btn btn-link mt1 mb1 link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
-          style={
-            Object {
-              "marginLeft": 55,
-              "paddingLeft": 0,
-              "position": "relative",
-            }
-          }
-        >
-          <Component
-            value={5}
-          >
-            <span
-              style={
-                Object {
-                  "fontFamily": "var(--secondary-font)",
-                  "fontSize": 10,
-                  "position": "relative",
-                }
-              }
-            >
-              <i
-                className="material-icons"
-                style={
-                  Object {
-                    "fontSize": 24,
-                    "verticalAlign": "middle",
-                  }
-                }
-              >
-                chat_bubble
-              </i>
-              <span
-                className="number"
-                style={
-                  Object {
-                    "color": "white",
-                    "fontSize": 11,
-                    "fontWeight": "normal",
-                    "left": 0,
-                    "position": "absolute",
-                    "textAlign": "center",
-                    "top": "50%",
-                    "transform": "translateY(-50%)",
-                    "width": "100%",
-                  }
-                }
-              >
-                5
-              </span>
-            </span>
-          </Component>
-          <span
-            className="ml1"
-          >
-            Vis alle kommentarer
-          </span>
-        </button>
       </div>
       <CommentInput
         error={null}
@@ -1642,9 +1716,10 @@ exports[`CommentContainer Toggle all comments 1`] = `
           }
         >
           <ProfileImage
+            size="40"
             style={
               Object {
-                "marginRight": "20px",
+                "marginRight": "10px",
               }
             }
             user={
@@ -1660,10 +1735,10 @@ exports[`CommentContainer Toggle all comments 1`] = `
                 className="profile-image text-center small round"
                 style={
                   Object {
-                    "height": "35px",
+                    "height": "40px",
                     "lineHeight": "inherit",
-                    "marginRight": "20px",
-                    "width": "35px",
+                    "marginRight": "10px",
+                    "width": "40px",
                   }
                 }
               >
@@ -1679,7 +1754,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
                       <img
                         className="d-none"
                         onLoad={[Function]}
-                        src="/v1/image/image_id/35/35"
+                        src="/v1/image/image_id/40/40"
                       />
                     </span>
                   </div>
@@ -1744,7 +1819,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Gem
+                  Kommentér
                 </button>
               </Button>
             </div>
@@ -1813,11 +1888,77 @@ exports[`CommentContainer Toggle all comments 2`] = `
     }
   >
     <div
+      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
+    >
+      <div
+        className="comment-container-divider col-12"
+      />
+      <div
+        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
+      >
+        <Text
+          type="body"
+        >
+          <p
+            className=" Text Text__body "
+          >
+            <span
+              className="d-flex"
+            >
+              <i
+                className="material-icons outline-mode_comment mr-1"
+              >
+                chat_bubble_outline
+              </i>
+              Kommentér
+            </span>
+          </p>
+        </Text>
+        <Text
+          type="body"
+          variant="decoration-underline"
+        >
+          <p
+            className=" Text Text__body Text__body--decoration-underline"
+          >
+            <span>
+              5 kommentarer
+            </span>
+          </p>
+        </Text>
+      </div>
+    </div>
+    <div
       className="comments undefined"
     >
       <div
-        className="mb3"
+        className="mb2 "
       >
+        <button
+          className="btn btn-link link-subtle"
+          id="comment-toggle"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginLeft": 55,
+              "marginTop": "-2rem",
+              "paddingLeft": 0,
+              "position": "relative",
+            }
+          }
+        >
+          <Text
+            className="mb-0"
+            type="body"
+            variant="decoration-underline"
+          >
+            <p
+              className="mb-0 Text Text__body Text__body--decoration-underline"
+            >
+              Vis færre kommentarer
+            </p>
+          </Text>
+        </button>
         <CommentList
           comments={
             Array [
@@ -1869,7 +2010,6 @@ exports[`CommentContainer Toggle all comments 2`] = `
             style={
               Object {
                 "height": 0,
-                "overflow": "hidden",
                 "transition": "height 500ms",
               }
             }
@@ -1943,67 +2083,6 @@ exports[`CommentContainer Toggle all comments 2`] = `
             </div>
           </div>
         </CommentList>
-        <button
-          className="btn btn-link mt1 mb1 link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
-          style={
-            Object {
-              "marginLeft": 55,
-              "paddingLeft": 0,
-              "position": "relative",
-            }
-          }
-        >
-          <Component
-            value={5}
-          >
-            <span
-              style={
-                Object {
-                  "fontFamily": "var(--secondary-font)",
-                  "fontSize": 10,
-                  "position": "relative",
-                }
-              }
-            >
-              <i
-                className="material-icons"
-                style={
-                  Object {
-                    "fontSize": 24,
-                    "verticalAlign": "middle",
-                  }
-                }
-              >
-                chat_bubble
-              </i>
-              <span
-                className="number"
-                style={
-                  Object {
-                    "color": "white",
-                    "fontSize": 11,
-                    "fontWeight": "normal",
-                    "left": 0,
-                    "position": "absolute",
-                    "textAlign": "center",
-                    "top": "50%",
-                    "transform": "translateY(-50%)",
-                    "width": "100%",
-                  }
-                }
-              >
-                5
-              </span>
-            </span>
-          </Component>
-          <span
-            className="ml1"
-          >
-            Vis færre kommentarer
-          </span>
-        </button>
       </div>
       <CommentInput
         error={null}
@@ -2025,9 +2104,10 @@ exports[`CommentContainer Toggle all comments 2`] = `
           }
         >
           <ProfileImage
+            size="40"
             style={
               Object {
-                "marginRight": "20px",
+                "marginRight": "10px",
               }
             }
             user={
@@ -2043,10 +2123,10 @@ exports[`CommentContainer Toggle all comments 2`] = `
                 className="profile-image text-center small round"
                 style={
                   Object {
-                    "height": "35px",
+                    "height": "40px",
                     "lineHeight": "inherit",
-                    "marginRight": "20px",
-                    "width": "35px",
+                    "marginRight": "10px",
+                    "width": "40px",
                   }
                 }
               >
@@ -2062,7 +2142,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                       <img
                         className="d-none"
                         onLoad={[Function]}
-                        src="/v1/image/image_id/35/35"
+                        src="/v1/image/image_id/40/40"
                       />
                     </span>
                   </div>
@@ -2127,7 +2207,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Gem
+                  Kommentér
                 </button>
               </Button>
             </div>
