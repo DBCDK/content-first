@@ -291,9 +291,20 @@ Array [
     "_id": "some-id-1",
     "_owner": null,
     "_type": "list",
+    "deleted": Object {
+      "undefined": true,
+    },
     "description": "",
     "isNew": undefined,
     "list": Array [],
+    "pending": Array [
+      Object {
+        "book": Object {
+          "pid": "pid1",
+        },
+        "pid": "pid1",
+      },
+    ],
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },
