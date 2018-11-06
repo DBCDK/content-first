@@ -210,20 +210,39 @@ exports[`renders without crashing 1`] = `
         onClick={[Function]}
       >
         <p
-          className="d-block d-sm-none Text Text__large "
+          className="d-block d-sm-none m-0 Text Text__large "
         >
           Læsekompas
         </p>
         <h1
-          className="d-none d-sm-block Title Title__title4 "
+          className="d-none d-sm-block mb-0 Title Title__title4 "
         >
           Læsekompas
         </h1>
-        <p
-          className="logo-beta-sign Text Text__micro "
+        <div
+          className="logo-beta-wrap d-flex  justify-content-sm-between position-relative"
         >
-          BETA
-        </p>
+          <p
+            className="logo-beta-sign mb-0 Text Text__micro "
+          >
+            BETA
+          </p>
+          <div
+            className="d-inline-flex"
+          >
+            <p
+              className="d-none d-sm-inline logo-beta-text Text Text__small "
+            >
+              Nu 600+ bøger
+            </p>
+            <p
+              className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
+              onClick={[Function]}
+            >
+              Læs mere
+            </p>
+          </div>
+        </div>
       </a>
       <ul
         className="Topbar__dropdown abort-closeDopdown Topbar__dropdown__hidden"
