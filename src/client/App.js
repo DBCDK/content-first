@@ -24,6 +24,7 @@ import ShortList from './components/list/shortlist/ShortList.container';
 import Spinner from './components/general/Spinner.component';
 import Styleguide from './components/Styleguide/Styleguide.component';
 import FeedbackButton from './components/general/FeedbackButton.component';
+import Footer from './components/general/Footer.component';
 
 class App extends Component {
   componentWillMount() {
@@ -86,28 +87,31 @@ class App extends Component {
 
     return (
       <div className="App">
-        {topbar ? (
-          <div>
-            <TopBar dispatch={this.props.dispatch} user={this.props.user} />
-            <div className="App__TopbarPlaceholder" />
-          </div>
-        ) : (
-          ''
-        )}
-        {currentPage}
-        <Modal />
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          pauseOnHover
-        />
-        <FeedbackButton />
+        <div className="main-container">
+          {topbar ? (
+            <div>
+              <TopBar dispatch={this.props.dispatch} user={this.props.user} />
+              <div className="App__TopbarPlaceholder" />
+            </div>
+          ) : (
+            ''
+          )}
+          {currentPage}
+          <Modal />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
+          />
+          <FeedbackButton />
+        </div>
+        <Footer />
       </div>
     );
   }
