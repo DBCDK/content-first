@@ -96,7 +96,7 @@ export class Hero extends React.Component {
                         {hero.title}
                       </Title>
 
-                      <div className="col-12 col-xs-10 col-sm-12 col-md-10 col-lg-10 col-xl-8 text-left mr-auto ml-auto pt-3 pt-sm-5">
+                      <div className="col-12 col-md-10 col-lg-10 col-xl-8 text-left mr-auto ml-auto pt-3 pt-sm-5">
                         <Title
                           Tag="h3"
                           type="title3"
