@@ -144,7 +144,7 @@ describe('CommentContainer', () => {
     );
     const toggleButton = tree.find('#comment-toggle');
     expect(tree).toMatchSnapshot();
-    expect(toggleButton.text()).toContain('Vis alle kommentarer');
+    expect(toggleButton.text()).toContain('Vis flere kommentarer');
     toggleButton.simulate('click');
     expect(toggleButton.text()).toContain('Vis færre kommentarer');
     expect(tree).toMatchSnapshot();
