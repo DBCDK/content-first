@@ -38,6 +38,8 @@ class WorkPreview extends React.Component {
     const {work} = this.props;
     const {book} = work;
 
+    console.log('WorkPreview render . . . ');
+
     const tax_description =
       this.props.work.book.taxonomy_description ||
       this.props.work.book.description;

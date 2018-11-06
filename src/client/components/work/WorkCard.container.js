@@ -96,7 +96,7 @@ class WorkCard extends React.Component {
             if (isMobile) {
               event.stopPropagation();
               event.preventDefault();
-              this.props.onWorkPreviewClick(this.props.work);
+              this.props.onWorkPreviewClick(this.props.work, this.props.rowId);
             }
           }}
         >
@@ -124,7 +124,10 @@ class WorkCard extends React.Component {
                 if (!isMobile) {
                   event.stopPropagation();
                   event.preventDefault();
-                  this.props.onWorkPreviewClick(this.props.work);
+                  this.props.onWorkPreviewClick(
+                    this.props.work,
+                    this.props.rowId
+                  );
                   if (!this.props.pidPreview && this.props.scrollToChildBelt) {
                     this.props.scrollToChildBelt();
                   }

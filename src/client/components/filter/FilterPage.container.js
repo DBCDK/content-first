@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {isMobileOnly} from 'react-device-detect';
 import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
 import SearchBar from './SearchBar.component';
 import Spinner from '../general/Spinner.component';
-import BooksBelt from '../belt/BooksBelt.component';
+import BeltWrapper from '../belt/BooksBelt.component';
 import {
   ON_EDIT_FILTER_TOGGLE,
   ON_EXPAND_FILTERS_TOGGLE
@@ -20,10 +21,8 @@ import {
   getIdsFromRange,
   getTagsbyIds
 } from '../../redux/selectors';
-import {ADD_BELT} from '../../redux/belts.reducer';
-
+import {ADD_BELT, REMOVE_BELT} from '../../redux/belts.reducer';
 import {buildSimilarBooksBelt} from '../work/workFunctions';
-
 import {isEqual} from 'lodash';
 
 const Results = ({rows, pids, ...props}) => {
@@ -37,21 +36,26 @@ const Results = ({rows, pids, ...props}) => {
       <React.Fragment>
         <div className="w-100 d-flex justify-content-around">
           {pids[idx].map(pid => {
-            if (props.works[pid] && props.works[pid].detailsHasLoaded) {
-              if (props.belts['Minder om ' + props.works[pid].book.title]) {
-                console.log('here?');
-                console.log(
-                  '-> ',
-                  props.belts['Minder om ' + props.works[pid].book.title]
-                );
-                belt = props.belts['Minder om ' + props.works[pid].book.title];
+            const work = props.works[pid];
+
+            if (work && work.detailsHasLoaded) {
+              const previewExist = props.belts[`filterpage: ${idx}`];
+              const beltExist =
+                props.belts['Minder om ' + props.works[pid].book.title];
+
+              if (beltExist) {
+                console.log('belt exist');
+                belt = beltExist;
+              }
+
+              if (previewExist) {
+                console.log('preview exist');
+                belt = previewExist;
               }
             }
-
-            console.log('belt in loop', belt);
-
             return (
               <WorkCard
+                rowId={idx}
                 pid={pid}
                 key={pid}
                 cardRef={workCard => (this.refs = {...this.refs, workCard})}
@@ -60,11 +64,14 @@ const Results = ({rows, pids, ...props}) => {
             );
           })}
         </div>
-        <div className="container">
+
+        {console.log('BELT status: ', belt)}
+
+        {belt && (
           <div className="belts col-12">
-            {belt && <BooksBelt belt={belt} />}
+            <BeltWrapper belt={belt} />
           </div>
-        </div>
+        )}
       </React.Fragment>
     );
   });
@@ -170,18 +177,41 @@ class FilterPage extends React.Component {
   onMoreLikeThisClickFunc(work) {
     this.work = work;
     const book = work.book;
+    const belt = this.props.belts['Minder om ' + book.title];
 
-    console.log('onMoreLikeThisClickFunc work', work);
-
-    if (book.title && !this.props.belts['Minder om ' + book.title]) {
+    if (book.title && !belt) {
       this.addNewBelt(buildSimilarBooksBelt(work));
     }
-
-    console.log('belts', this.props.belts['Minder om ' + book.title]);
+    //this.toggleWorkPreview(belt.pidPreview, belt);
   }
 
-  addNewBelt(belt) {
-    this.props.addBelt(belt);
+  toggleWorkPreview(work, row) {
+    const pid = work.book.pid;
+    const belts = this.props.belts;
+    const preview = belts[`filterpage: ${row}`];
+
+    if (isMobileOnly) {
+      this.props.historyPush(pid);
+      return;
+    }
+
+    // trigger close if the same work is clicked
+    if (preview && preview.pid === pid) {
+      console.log('remove belt?');
+      this.props.removeBelt(`filterpage: ${row}`);
+      return;
+    }
+
+    this.props.addBelt(
+      {
+        pid,
+        row,
+        name: `filterpage: ${row}`,
+        type: 'preview',
+        child: []
+      },
+      true
+    );
   }
 
   render() {
@@ -242,6 +272,10 @@ class FilterPage extends React.Component {
                 allowFetch={true}
                 hideMoreLikeThis={false}
                 onMoreLikeThisClick={work => this.onMoreLikeThisClickFunc(work)}
+                onWorkPreviewClick={(work, rowId) => {
+                  console.log('jj', work, rowId);
+                  this.toggleWorkPreview(work, rowId);
+                }}
                 works={this.props.works}
                 belts={this.props.belts}
                 origin={`Fra din søgning på ${this.props.selectedTags
@@ -315,10 +349,17 @@ export const mapDispatchToProps = dispatch => ({
       tags,
       max: 100 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     }),
-  addBelt: belt => {
+  addBelt: (belt, allowReplace) => {
     dispatch({
       type: ADD_BELT,
-      belt
+      belt,
+      allowReplace
+    });
+  },
+  removeBelt: name => {
+    dispatch({
+      type: REMOVE_BELT,
+      name
     });
   }
 });

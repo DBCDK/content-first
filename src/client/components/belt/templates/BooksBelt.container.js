@@ -52,6 +52,7 @@ export class BooksBelt extends React.Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
+    console.log(this.props.recommendedPids.length, this.props.tags.length);
     return (
       nextProps.belt !== this.props.belt ||
       nextProps.tags.length !== this.props.tags.length ||
@@ -109,9 +110,15 @@ export class BooksBelt extends React.Component {
       return null;
     }
 
-    const {subtext, child, scrollPos, pidPreview = false} = belt;
+    console.log('booksbelt render . . . ');
 
+    const {subtext, child, scrollPos, pidPreview = false} = belt;
     const name = this.props.name || this.props.belt.name;
+    const showPreview =
+      this.props.belt && this.props.belt.type === 'preview'
+        ? this.props.belt.pid
+        : false;
+
     const border = showTags ? 'border-right-sm-1 ' : '';
     const pids =
       recommendedPids.length > 0 && this.state.visible
@@ -218,9 +225,9 @@ export class BooksBelt extends React.Component {
                   this.refs = {...this.refs, childBelt};
                 }}
               >
-                {pidPreview && (
+                {showPreview && (
                   <WorkPreview
-                    pid={pidPreview}
+                    pid={showPreview}
                     onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
                       belt,
                       pidPreview,
@@ -246,19 +253,28 @@ export class BooksBelt extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const excluded = ownProps.excluded || [];
+
+  const recommendedPids =
+    ownProps.tags && ownProps.tags.length > 0
+      ? difference(
+          getRecommendedPids(state.recommendReducer, {
+            tags: ownProps.tags
+          }).pids,
+          excluded
+        ).slice(0, 20)
+      : [];
+
+  const tagObjects = ownProps.tags
+    ? ownProps.tags.map(tag => {
+        return filtersMapAll[tag.id || tag];
+      })
+    : [];
+
+  console.log('rec og tag', recommendedPids, tagObjects);
+
   return {
-    recommendedPids:
-      ownProps.tags.length > 0
-        ? difference(
-            getRecommendedPids(state.recommendReducer, {
-              tags: ownProps.tags
-            }).pids,
-            excluded
-          ).slice(0, 20)
-        : [],
-    tagObjects: ownProps.tags.map(tag => {
-      return filtersMapAll[tag.id || tag];
-    })
+    recommendedPids,
+    tagObjects
   };
 };
 

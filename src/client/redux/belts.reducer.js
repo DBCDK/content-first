@@ -33,6 +33,7 @@ const defaultState = {
       works: [],
       tags: []
     },
+    //"filterpage: 547298:moef ": {pid, type: 'belt || workPreview', child: }
     'Mennesket og Naturen': {
       name: 'Mennesket og Naturen',
       subtext:
@@ -205,6 +206,7 @@ const defaultState = {
 export const ON_BELT_REQUEST = 'ON_BELT_REQUEST';
 export const ON_BELT_RESPONSE = 'ON_BELT_RESPONSE';
 export const ADD_BELT = 'ADD_BELT';
+export const REMOVE_BELT = 'REMOVE_BELT';
 export const ON_TAG_TOGGLE = 'ON_TAG_TOGGLE';
 export const ADD_CHILD_BELT = 'ADD_CHILD_BELT';
 export const REMOVE_CHILD_BELT = 'REMOVE_CHILD_BELT';
@@ -240,13 +242,25 @@ const beltsReducer = (state = defaultState, action) => {
 
     case ADD_BELT: {
       const newBelt = action.belt;
+      const allowReplace = action.allowReplace || false;
       const copy = {...state.belts};
 
-      if (!action.belt[newBelt.name]) {
+      if (allowReplace || !action.belt[newBelt.name]) {
         copy[newBelt.name] = newBelt;
         return Object.assign({}, {belts: copy});
       }
       return state;
+    }
+
+    case REMOVE_BELT: {
+      const name = action.name;
+      const copy = {...state.belts};
+
+      if (copy[name]) {
+        delete copy[name];
+      }
+
+      return Object.assign({}, {belts: copy});
     }
 
     case ON_TAG_TOGGLE: {
@@ -305,25 +319,8 @@ const beltsReducer = (state = defaultState, action) => {
 
     case WORK_PREVIEW: {
       const {pid, belt} = action;
-
-      console.log('reducer', pid, belt);
-
-      const belts = traverseBelts(state.belts, b => {
-        const copy = {...b};
-
-        //console.log('ggg', b, belt);
-
-        if (b === belt) {
-          console.log('match in belts');
-
-          copy.pidPreview = pid;
-          delete copy.child;
-        }
-        return copy;
-      });
-      return {belts};
+      return state;
     }
-
     default:
       return state;
   }
