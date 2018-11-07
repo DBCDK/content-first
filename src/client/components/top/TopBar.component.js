@@ -303,7 +303,11 @@ export class TopBar extends React.Component {
                     className="d-inline logo-beta-link mb0"
                     type="small"
                     variant="decoration-underline"
-                    onClick={this.props.betaModal}
+                    onClick={e => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      this.props.betaModal();
+                    }}
                   >
                     {'Læs mere'}
                   </Text>
