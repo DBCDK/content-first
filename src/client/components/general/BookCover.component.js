@@ -69,6 +69,7 @@ const BookCover = props => {
         alt={props.title || ''}
         src={props.coverUrl}
         onLoad={props.onLoad}
+        className={props.imageClassName || ''}
       />
     </div>
   );
