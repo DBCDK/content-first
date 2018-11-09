@@ -1,23 +1,14 @@
-:root {
-  --footer-height: 50px;
-}
-
 html, body {
   height: 100%;
 }
 
 .App {
   min-height: 100vh;
+  position: relative;
 }
 
 .App__TopbarPlaceholder {
   height: 80px;
-}
-
-.main-container {
-  min-height: 100vh;
-  overflow: auto;
-  padding-bottom: var(--footer-height);
 }
 
 @media only screen and (max-width: 575px) {

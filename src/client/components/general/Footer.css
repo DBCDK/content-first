@@ -1,8 +1,7 @@
 .footer-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   background-color: yellowgreen;
-  position: relative;
-  height: var(--footer-height);
-  margin-top: calc(var(--footer-height) * -1);
-  clear: both;
 }
 
