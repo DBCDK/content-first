@@ -2,28 +2,32 @@ const defaultState = {
   belts: {
     'Bedste forslag': {
       name: 'Bedste forslag',
-      onFrontPage: true
+      onFrontPage: true,
+      type: 'belt'
     },
     'En god bog': {
       name: 'En god bog',
       isLoading: false,
       onFrontPage: true,
       works: [],
-      tags: [100001, 100003, {id: 5672, weight: 10}, 100005]
+      tags: [100001, 100003, {id: 5672, weight: 10}, 100005],
+      type: 'belt'
     },
     'En spændende bog': {
       name: 'En spændende bog',
       isLoading: false,
       onFrontPage: false,
       links: [],
-      tags: [5676, 5632]
+      tags: [5676, 5632],
+      type: 'belt'
     },
     'En anderledes bog': {
       name: 'En anderledes bog',
       isLoading: false,
       onFrontPage: false,
       links: [],
-      tags: [5702]
+      tags: [5702],
+      type: 'belt'
     },
     'Passer med min smag': {
       name: 'Passer med min smag',
@@ -31,9 +35,9 @@ const defaultState = {
       onFrontPage: false,
       links: [],
       works: [],
-      tags: []
+      tags: [],
+      type: 'belt'
     },
-    //"filterpage: 547298:moef ": {pid, type: 'belt || workPreview', child: }
     'Mennesket og Naturen': {
       name: 'Mennesket og Naturen',
       subtext:
@@ -49,7 +53,8 @@ const defaultState = {
         5277,
         2183,
         2278
-      ]
+      ],
+      type: 'belt'
     },
     'Familiens skyggesider': {
       name: 'Familiens skyggesider',
@@ -66,7 +71,8 @@ const defaultState = {
         5696,
         5680,
         {id: 5691, weight: 10}
-      ]
+      ],
+      type: 'belt'
     },
     'Tankevækkende Sci-fi': {
       name: 'Tankevækkende Sci-fi',
@@ -75,7 +81,8 @@ const defaultState = {
       isLoading: false,
       onFrontPage: true,
       links: [],
-      tags: [{id: 4927, weight: 10}, 5714, 5713]
+      tags: [{id: 4927, weight: 10}, 5714, 5713],
+      type: 'belt'
     },
     'Bibliotekarens ugentlige anbefalinger': {
       name: 'Bibliotekarens ugentlige anbefalinger',
@@ -83,7 +90,8 @@ const defaultState = {
       onFrontPage: true,
       links: [],
       works: [],
-      tags: [-2]
+      tags: [-2],
+      type: 'belt'
     },
     'Krøllede fortællinger': {
       name: 'Krøllede fortællinger',
@@ -100,7 +108,8 @@ const defaultState = {
         5652,
         // 5711, uncomment when a work is mapped to this tag
         5717
-      ]
+      ],
+      type: 'belt'
     },
     Sofahygge: {
       name: 'Sofahygge',
@@ -109,7 +118,8 @@ const defaultState = {
       isLoading: false,
       onFrontPage: true,
       links: [],
-      tags: [{id: 5637, weight: 10}, 5654, 5636, 5731, {id: 5611, weight: 10}]
+      tags: [{id: 5637, weight: 10}, 5654, 5636, 5731, {id: 5611, weight: 10}],
+      type: 'belt'
     },
     Tolkiensque: {
       name: 'Tolkiensque',
@@ -126,7 +136,8 @@ const defaultState = {
         5705,
         {id: 5707, weight: 10},
         5708
-      ]
+      ],
+      type: 'belt'
     },
     'Gotisk uhygge': {
       name: 'Gotisk uhygge',
@@ -143,7 +154,8 @@ const defaultState = {
         {id: 5700, weight: 10},
         5670,
         5676
-      ]
+      ],
+      type: 'belt'
     },
     Lokalkrimi: {
       name: 'Lokalkrimi',
@@ -160,7 +172,8 @@ const defaultState = {
         5670,
         5676,
         5691
-      ]
+      ],
+      type: 'belt'
     },
     'Historisk romantik': {
       name: 'Historisk romantik',
@@ -181,7 +194,8 @@ const defaultState = {
         {id: 5660, weight: 10},
         5661,
         5671
-      ]
+      ],
+      type: 'belt'
     },
     'Vemodige nordmænd': {
       name: 'Vemodige nordmænd',
@@ -189,7 +203,6 @@ const defaultState = {
         'Når du har lyst til at tænke over livet - også det svære og sårbare.',
       isLoading: false,
       onFrontPage: true,
-      pidPreview: false,
       links: [],
       tags: [
         {id: 4466, weight: 10},
@@ -198,7 +211,8 @@ const defaultState = {
         5626,
         {id: 5683, weight: 10},
         5630
-      ]
+      ],
+      type: 'belt'
     }
   }
 };
@@ -211,7 +225,6 @@ export const ON_TAG_TOGGLE = 'ON_TAG_TOGGLE';
 export const ADD_CHILD_BELT = 'ADD_CHILD_BELT';
 export const REMOVE_CHILD_BELT = 'REMOVE_CHILD_BELT';
 export const BELT_SCROLL = 'BELT_SCROLL';
-export const WORK_PREVIEW = 'WORK_PREVIEW';
 
 const beltsReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -242,22 +255,24 @@ const beltsReducer = (state = defaultState, action) => {
 
     case ADD_BELT: {
       const newBelt = action.belt;
+      const key = action.belt.key || action.belt.name;
       const allowReplace = action.allowReplace || false;
       const copy = {...state.belts};
 
-      if (allowReplace || !action.belt[newBelt.name]) {
-        copy[newBelt.name] = newBelt;
+      if (allowReplace || !action.belt[key]) {
+        copy[key] = newBelt;
         return Object.assign({}, {belts: copy});
       }
       return state;
     }
 
     case REMOVE_BELT: {
-      const name = action.name;
+      const belt = action.belt;
+      const key = belt.key || belt.name;
       const copy = {...state.belts};
 
-      if (copy[name]) {
-        delete copy[name];
+      if (copy[key]) {
+        delete copy[key];
       }
 
       return Object.assign({}, {belts: copy});
@@ -276,14 +291,11 @@ const beltsReducer = (state = defaultState, action) => {
     }
 
     case ADD_CHILD_BELT: {
-      const {parentBelt, childBelt, clearPreview} = action;
+      const {parentBelt, childBelt} = action;
       const belts = traverseBelts(state.belts, b => {
         const belt = {...b};
         if (b === parentBelt) {
           belt.child = childBelt;
-          if (clearPreview) {
-            belt.pidPreview = false;
-          }
         }
         return belt;
       });
@@ -297,7 +309,6 @@ const beltsReducer = (state = defaultState, action) => {
         const copy = {...b};
         if (b.child && b.child.name === parentBelt.child.name) {
           delete copy.child;
-          parentBelt.pidPreview = false;
         }
         return copy;
       });
@@ -316,11 +327,6 @@ const beltsReducer = (state = defaultState, action) => {
       });
       return {belts};
     }
-
-    case WORK_PREVIEW: {
-      const {pid, belt} = action;
-      return state;
-    }
     default:
       return state;
   }
@@ -338,7 +344,7 @@ const traverseBelts = (belts, func) => {
   Object.values(belts)
     .map(b => processBelt(b))
     .forEach(b => {
-      newBelts[b.name] = b;
+      newBelts[b.key] = b;
     });
   return newBelts;
 };

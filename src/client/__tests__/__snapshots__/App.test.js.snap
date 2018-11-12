@@ -287,6 +287,7 @@ exports[`renders without crashing 1`] = `
           Object {
             "name": "Bedste forslag",
             "onFrontPage": true,
+            "type": "belt",
           }
         }
       />
@@ -305,6 +306,7 @@ exports[`renders without crashing 1`] = `
               },
               100005,
             ],
+            "type": "belt",
             "works": Array [],
           }
         }
@@ -332,6 +334,7 @@ exports[`renders without crashing 1`] = `
               2183,
               2278,
             ],
+            "type": "belt",
           }
         }
       />
@@ -361,6 +364,7 @@ exports[`renders without crashing 1`] = `
                 "weight": 10,
               },
             ],
+            "type": "belt",
           }
         }
       />
@@ -380,6 +384,7 @@ exports[`renders without crashing 1`] = `
               5714,
               5713,
             ],
+            "type": "belt",
           }
         }
       />
@@ -393,6 +398,7 @@ exports[`renders without crashing 1`] = `
             "tags": Array [
               -2,
             ],
+            "type": "belt",
             "works": Array [],
           }
         }
@@ -418,6 +424,7 @@ exports[`renders without crashing 1`] = `
               5652,
               5717,
             ],
+            "type": "belt",
           }
         }
       />
@@ -442,6 +449,7 @@ exports[`renders without crashing 1`] = `
                 "weight": 10,
               },
             ],
+            "type": "belt",
           }
         }
       />
@@ -468,6 +476,7 @@ exports[`renders without crashing 1`] = `
               },
               5708,
             ],
+            "type": "belt",
           }
         }
       />
@@ -494,6 +503,7 @@ exports[`renders without crashing 1`] = `
               5670,
               5676,
             ],
+            "type": "belt",
           }
         }
       />
@@ -520,6 +530,7 @@ exports[`renders without crashing 1`] = `
               5676,
               5691,
             ],
+            "type": "belt",
           }
         }
       />
@@ -553,6 +564,7 @@ exports[`renders without crashing 1`] = `
               5661,
               5671,
             ],
+            "type": "belt",
           }
         }
       />
@@ -563,7 +575,6 @@ exports[`renders without crashing 1`] = `
             "links": Array [],
             "name": "Vemodige nordmænd",
             "onFrontPage": true,
-            "pidPreview": false,
             "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
             "tags": Array [
               Object {
@@ -579,6 +590,7 @@ exports[`renders without crashing 1`] = `
               },
               5630,
             ],
+            "type": "belt",
           }
         }
       />

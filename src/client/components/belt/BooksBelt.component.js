@@ -10,49 +10,52 @@ const BeltWrapper = ({belt}) => {
     return null;
   }
 
-  console.log('Belt ???????????????????????', belt);
-
   if (belt.name === 'Bedste forslag') {
-    console.log('Return <InteractionsRecoBelt>');
     return (
       <InteractionsRecoBelt
-        key={belt.name}
+        key={belt.key}
         belt={belt}
         childTemplate={BeltWrapper}
       />
     );
   }
-  if (belt.type === 'preview') {
-    console.log('Return <WorkPreview>');
-    return (
-      <WorkPreview
-        pid={belt.pid}
-        onMoreLikeThisClick={() => alert('more like this')}
-        scrollToChildBelt={() => () => alert('scroll to childbelt')}
-      />
-    );
-  }
-  if (belt.type === 'belt') {
-    console.log('Return <BooksBelt>');
+  if (belt.onFrontPage) {
     return (
       <BooksBelt
-        key={belt.name}
+        key={belt.key}
         belt={belt}
         tags={belt.tags}
         childTemplate={BeltWrapper}
       />
     );
   }
-  if (belt.pid) {
-    console.log('Return <SimilarBooksBelt>');
+  if (belt.type === 'preview') {
     return (
-      <SimilarBooksBelt
-        key={belt.name}
+      <WorkPreview
+        key={belt.key}
         pid={belt.pid}
         belt={belt}
         childTemplate={BeltWrapper}
       />
     );
   }
+  if (belt.type === 'belt') {
+    return (
+      <SimilarBooksBelt
+        key={belt.key}
+        pid={belt.pid}
+        belt={belt}
+        childTemplate={BeltWrapper}
+      />
+    );
+  }
+  return (
+    <BooksBelt
+      key={belt.key}
+      belt={belt}
+      tags={belt.tags}
+      childTemplate={BeltWrapper}
+    />
+  );
 };
 export default BeltWrapper;

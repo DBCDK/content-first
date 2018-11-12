@@ -73,7 +73,7 @@ class FilterCardList extends React.Component {
         {aFilters.map((f, idx) => {
           if (f instanceof Array) {
             return (
-              <React.Fragment>
+              <React.Fragment key={idx}>
                 {expanded && (
                   <li
                     type="term"
@@ -88,7 +88,7 @@ class FilterCardList extends React.Component {
                 {f.map(aF => {
                   if (!ignore.includes(aF.id)) {
                     return (
-                      <React.Fragment>
+                      <React.Fragment key={aF.id}>
                         <ListItem
                           key={aF.id}
                           filter={aF}
@@ -109,7 +109,7 @@ class FilterCardList extends React.Component {
           }
           if (!ignore.includes(f.id)) {
             return (
-              <React.Fragment>
+              <React.Fragment key={f.id}>
                 <ListItem
                   key={f.id}
                   filter={f}

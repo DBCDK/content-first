@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobile} from 'react-device-detect';
+import {isMobileOnly} from 'react-device-detect';
 import VisibilitySensor from 'react-visibility-sensor';
 import {difference, isEqual} from 'lodash';
 import scrollToComponent from 'react-scroll-to-component';
@@ -13,12 +13,11 @@ import {HISTORY_PUSH} from '../../../redux/middleware';
 import {
   ADD_CHILD_BELT,
   REMOVE_CHILD_BELT,
-  BELT_SCROLL,
-  WORK_PREVIEW
+  REMOVE_BELT,
+  BELT_SCROLL
 } from '../../../redux/belts.reducer';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import Link from '../../general/Link.component';
-import WorkPreview from '../../work/WorkPreview.component';
 
 const skeletonElements = [];
 for (let i = 0; i < 20; i++) {
@@ -52,7 +51,6 @@ export class BooksBelt extends React.Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(this.props.recommendedPids.length, this.props.tags.length);
     return (
       nextProps.belt !== this.props.belt ||
       nextProps.tags.length !== this.props.tags.length ||
@@ -62,33 +60,49 @@ export class BooksBelt extends React.Component {
     );
   }
 
-  getOnMoreLikeThisClickFunc(belt, pid, clearPreview) {
-    return work => {
-      this.props.addChildBelt(
-        belt,
-        {
-          name: 'Minder om ' + work.book.title,
-          onFrontPage: true,
-          pidPreview: false,
-          pid
-        },
-        clearPreview
-      );
-      this.toggleWorkPreview(belt.pidPreview, belt);
-    };
+  handleChildBelts(parentBelt, childBelt) {
+    this.props.addChildBelt(parentBelt, childBelt);
+    this.scrollToChildBelt(childBelt, 220);
   }
 
-  toggleWorkPreview(pid, belt) {
-    if (isMobile) {
-      this.props.historyPush(pid);
+  onMoreLikeThisClick(parentBelt, work, row) {
+    const type = 'belt';
+    const book = work.book;
+
+    const newBelt = {
+      row,
+      type,
+      pid: book.pid,
+      name: 'Minder om ' + book.title,
+      key: 'Minder om ' + book.title,
+      onFrontPage: false,
+      child: false
+    };
+
+    this.handleChildBelts(parentBelt, newBelt);
+  }
+
+  onWorkClick(parentBelt, work, row) {
+    const type = 'preview';
+    const book = work.book;
+
+    if (isMobileOnly) {
+      this.props.historyPush(work.book.pid);
       return;
     }
-    let status = pid === belt.pidPreview ? false : pid;
-    this.props.changePidPreview(status, belt);
+
+    const newBelt = {
+      row,
+      type,
+      pid: book.pid,
+      key: 'Preview af ' + book.title,
+      child: false
+    };
+
+    this.handleChildBelts(parentBelt, newBelt);
   }
 
-  scrollToChildBelt(belt) {
-    let offset = belt.pidPreview ? 220 : 0;
+  scrollToChildBelt(belt, offset) {
     scrollToComponent(this.refs.childBelt, {offset});
   }
 
@@ -106,19 +120,13 @@ export class BooksBelt extends React.Component {
       tagObjects,
       recommendedPids
     } = this.props;
+
     if (!belt) {
       return null;
     }
 
-    console.log('booksbelt render . . . ');
-
-    const {subtext, child, scrollPos, pidPreview = false} = belt;
+    const {subtext, child, scrollPos} = belt;
     const name = this.props.name || this.props.belt.name;
-    const showPreview =
-      this.props.belt && this.props.belt.type === 'preview'
-        ? this.props.belt.pid
-        : false;
-
     const border = showTags ? 'border-right-sm-1 ' : '';
     const pids =
       recommendedPids.length > 0 && this.state.visible
@@ -193,9 +201,7 @@ export class BooksBelt extends React.Component {
                       <WorkCard
                         className="ml1 mr1"
                         enableHover={true}
-                        highlight={
-                          (child && child.pid === pid) || pid === pidPreview
-                        }
+                        highlight={child && child.pid === pid}
                         allowFetch={
                           this.state.visible &&
                           (this.state.didSwipe || idx < fetchInitial)
@@ -203,41 +209,19 @@ export class BooksBelt extends React.Component {
                         pid={pid}
                         key={pid}
                         origin={`Fra "${name}"`}
-                        onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
-                          belt,
-                          pid,
-                          true
-                        )}
-                        onWorkPreviewClick={() => {
-                          this.toggleWorkPreview(pid, belt);
+                        onMoreLikeThisClick={(work, row) =>
+                          this.onMoreLikeThisClick(belt, work, row, true)
+                        }
+                        onWorkClick={(work, row) => {
+                          this.onWorkClick(belt, work, row, true);
                         }}
                         scrollToChildBelt={() => {
                           this.scrollToChildBelt(belt);
                         }}
-                        pidPreview={pidPreview}
                       />
                     );
                   })}
                 </Slider>
-              </div>
-              <div
-                ref={childBelt => {
-                  this.refs = {...this.refs, childBelt};
-                }}
-              >
-                {showPreview && (
-                  <WorkPreview
-                    pid={showPreview}
-                    onMoreLikeThisClick={this.getOnMoreLikeThisClickFunc(
-                      belt,
-                      pidPreview,
-                      false
-                    )}
-                    scrollToChildBelt={() => {
-                      this.scrollToChildBelt(belt);
-                    }}
-                  />
-                )}
               </div>
             </div>
           </div>
@@ -270,8 +254,6 @@ const mapStateToProps = (state, ownProps) => {
       })
     : [];
 
-  console.log('rec og tag', recommendedPids, tagObjects);
-
   return {
     recommendedPids,
     tagObjects
@@ -286,12 +268,11 @@ export const mapDispatchToProps = dispatch => ({
       tags,
       max: 50 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     }),
-  addChildBelt: (parentBelt, childBelt, clearPreview = true) => {
+  addChildBelt: (parentBelt, childBelt) => {
     dispatch({
       type: ADD_CHILD_BELT,
       parentBelt,
-      childBelt,
-      clearPreview
+      childBelt
     });
   },
   removeChildBelt: parentBelt => {
@@ -307,10 +288,9 @@ export const mapDispatchToProps = dispatch => ({
       scrollPos
     });
   },
-  changePidPreview: (pid, belt) => {
+  removeBelt: belt => {
     dispatch({
-      type: WORK_PREVIEW,
-      pid,
+      type: REMOVE_BELT,
       belt
     });
   },
