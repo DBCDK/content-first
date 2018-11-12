@@ -73,7 +73,6 @@ export const ListInfo = ({
             size={40}
             shape="round"
             hoverTitle="Del på facebook"
-            status={!list.public || editing ? 'passive' : 'active'}
             onClick={e => {
               if (!list.public) {
                 e.preventDefault();
@@ -168,7 +167,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(updateList({_id: ownProps._id, description: e.target.value})),
   onTitleChange: e =>
     dispatch(updateList({_id: ownProps._id, title: e.target.value})),
-  confirmShareModal: _id => {
+  confirmShareModal: (_id) => {
     dispatch({
       type: 'OPEN_MODAL',
       modal: 'confirm',
@@ -177,7 +176,10 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
         reason:
           'For at du kan dele din liste, skal listen være offentlig. Vil du ændre din listes status til offentlig?',
         confirmText: 'Gør min liste offentlig',
-        onConfirm: async () => {
+        url:
+          'https://www.facebook.com/sharer/sharer.php?display=page&u=https://laesekompas.dk/lister/' +
+          _id,
+        onConfirm: () => {
           dispatch(
             updateList({
               _id,
@@ -188,14 +190,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
               modal: 'confirm'
             })
           );
-          await dispatch(storeList(_id));
-          window
-            .open(
-              'https://www.facebook.com/sharer/sharer.php?display=page&u=https://laesekompas.dk/lister/' +
-                _id,
-              '_blank'
-            )
-            .focus();
+          dispatch(storeList(_id));
         },
         onCancel: () => {
           dispatch({

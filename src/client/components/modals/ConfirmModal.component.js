@@ -12,6 +12,7 @@ export default class ConfirmModal extends React.Component {
         hideConfirm={this.props.context.hideConfirm}
         doneText={this.props.context.confirmText}
         cancelText="Fortryd"
+        url={this.props.context.url}
       >
         <Paragraph>{this.props.context.reason}</Paragraph>
       </Modal>
