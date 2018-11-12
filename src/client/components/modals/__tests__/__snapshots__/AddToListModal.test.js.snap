@@ -182,14 +182,19 @@ exports[`AddToListModal multiple works as input 1`] = `
       <div
         className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
       >
-        <button
-          className="mr-4 false
-              btn Button Button__large Button__quaternary "
-          disabled={false}
-          onClick={[Function]}
+        <a
+          href={null}
+          target="_blank"
         >
-          JA TAK, GEM NU
-        </button>
+          <button
+            className="mr-4 false
+                btn Button Button__large Button__quaternary "
+            disabled={false}
+            onClick={[Function]}
+          >
+            JA TAK, GEM NU
+          </button>
+        </a>
       </div>
     </div>
   </div>
@@ -409,14 +414,19 @@ exports[`AddToListModal newly added list is selected 1`] = `
       <div
         className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
       >
-        <button
-          className="mr-4 false
-              btn Button Button__large Button__quaternary "
-          disabled={false}
-          onClick={[Function]}
+        <a
+          href={null}
+          target="_blank"
         >
-          JA TAK, GEM NU
-        </button>
+          <button
+            className="mr-4 false
+                btn Button Button__large Button__quaternary "
+            disabled={false}
+            onClick={[Function]}
+          >
+            JA TAK, GEM NU
+          </button>
+        </a>
       </div>
     </div>
   </div>
@@ -622,14 +632,19 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
       <div
         className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
       >
-        <button
-          className="mr-4 false
-              btn Button Button__large Button__quaternary "
-          disabled={false}
-          onClick={[Function]}
+        <a
+          href={null}
+          target="_blank"
         >
-          JA TAK, GEM NU
-        </button>
+          <button
+            className="mr-4 false
+                btn Button Button__large Button__quaternary "
+            disabled={false}
+            onClick={[Function]}
+          >
+            JA TAK, GEM NU
+          </button>
+        </a>
       </div>
     </div>
   </div>

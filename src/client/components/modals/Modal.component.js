@@ -58,13 +58,15 @@ export default class Modal extends React.Component {
                       </Button>
                     )}
                   {!hideConfirm && (
-                    <Button
-                      className={'mr-4 ' + (doneDisabled && 'disabled')}
-                      type="quaternary"
-                      onClick={doneDisabled || this.props.onDone}
-                    >
-                      {doneText}
-                    </Button>
+                    <a href={this.props.url || null} target="_blank">
+                      <Button
+                        className={'mr-4 ' + (doneDisabled && 'disabled')}
+                        type="quaternary"
+                        onClick={doneDisabled || this.props.onDone}
+                      >
+                        {doneText}
+                      </Button>
+                    </a>
                   )}
                 </div>
               )}
