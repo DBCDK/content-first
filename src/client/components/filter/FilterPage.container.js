@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {isMobileOnly} from 'react-device-detect';
+import scrollToComponent from 'react-scroll-to-component';
 import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
@@ -21,7 +22,11 @@ import {
   getIdsFromRange,
   getTagsbyIds
 } from '../../redux/selectors';
-import {ADD_BELT, REMOVE_BELT} from '../../redux/belts.reducer';
+import {
+  ADD_BELT,
+  REMOVE_BELT,
+  REORGANIZE_FILTERPAGE_BELTS
+} from '../../redux/belts.reducer';
 import {isEqual} from 'lodash';
 
 const Results = ({rows, pids, ...props}) => {
@@ -33,30 +38,35 @@ const Results = ({rows, pids, ...props}) => {
     let belt = false;
     return (
       <React.Fragment key={idx}>
-        <div className="w-100 d-flex justify-content-around">
+        <div
+          className="w-100 d-flex justify-content-between"
+          ref={e => props.rowRef(e, idx)}
+        >
           {pids[idx].map(pid => {
             const work = props.works[pid];
-
             if (work && work.detailsHasLoaded) {
-              const beltExist = props.belts[`filterpage: ${idx}`];
-
+              const beltExist = props.belts[`filterpage: ${idx}`]
+                ? props.belts[`filterpage: ${idx}`]
+                : false;
               if (beltExist) {
                 belt = beltExist;
               }
+
+              return (
+                <WorkCard
+                  key={'wc-' + pid}
+                  rowId={idx}
+                  pid={pid}
+                  highlight={belt.pid === pid}
+                  {...props}
+                />
+              );
             }
-            return (
-              <WorkCard
-                key={'wc' + pid}
-                rowId={idx}
-                pid={pid}
-                highlight={belt.pid === pid}
-                cardRef={workCard => (this.refs = {...this.refs, workCard})}
-                {...props}
-              />
-            );
+            if (pid === 'ghost') {
+              return <WorkCard className="ghost" />;
+            }
           })}
         </div>
-
         {belt && (
           <div className="belts col-12 mb-5">
             <BeltWrapper belt={belt} />
@@ -75,6 +85,7 @@ class FilterPage extends React.Component {
 
   componentDidMount() {
     this.fetch();
+    this.handleResize();
     this.initFilterPosition();
     window.addEventListener('resize', this.handleResize);
   }
@@ -85,7 +96,18 @@ class FilterPage extends React.Component {
 
   componentDidUpdate(prevProps) {
     this.fetch(prevProps);
-    this.handleResize();
+  }
+
+  fetch(prevProps) {
+    if (
+      !prevProps ||
+      !isEqual(prevProps.selectedTagIds, this.props.selectedTagIds)
+    ) {
+      this.props.fetchRecommendations(this.props.plainSelectedTagIds);
+      this.props.onSearch(
+        this.props.selectedCreators[0] || this.props.selectedTitles[0] || ''
+      );
+    }
   }
 
   calcResultsPerRow() {
@@ -93,7 +115,7 @@ class FilterPage extends React.Component {
     const container = this.container;
     const result = Math.floor(container / workCard);
 
-    if (result === Infinity) {
+    if (isNaN(result)) {
       return 0;
     }
 
@@ -115,6 +137,7 @@ class FilterPage extends React.Component {
     const resultsPerRow = this.calcResultsPerRow();
 
     if (this.state.resultsPerRow !== resultsPerRow) {
+      this.props.reorganizeBelts();
       this.setState({resultsPerRow});
     }
   };
@@ -136,25 +159,17 @@ class FilterPage extends React.Component {
     document.getElementById('selected-filters-wrap').scrollLeft = 99999999;
   }
 
-  fetch(prevProps) {
-    if (
-      !prevProps ||
-      !isEqual(prevProps.selectedTagIds, this.props.selectedTagIds)
-    ) {
-      this.props.fetchRecommendations(this.props.plainSelectedTagIds);
-      this.props.onSearch(
-        this.props.selectedCreators[0] || this.props.selectedTitles[0] || ''
-      );
-    }
-  }
-
   structuredPids(pids, resultsPerRow, rows) {
     let results = [];
     for (let r = 1; r <= rows; r++) {
       let row = [];
-      for (let i = 1; i <= resultsPerRow; i++) {
+      for (let i = 0; i < resultsPerRow; i++) {
         const pos = r * resultsPerRow - (resultsPerRow - i);
-        row.push(pids[pos]);
+        if (pids[pos]) {
+          row.push(pids[pos]);
+        } else {
+          row.push('ghost');
+        }
       }
       results.push(row);
     }
@@ -175,10 +190,11 @@ class FilterPage extends React.Component {
     }
 
     const samePidClicked = belt && belt.pid === book.pid;
-    const beltClicked = belt && belt.type === 'belt';
+    const sameTypeClicked = belt && belt.type === type;
 
-    if (!belt || !samePidClicked || beltClicked) {
+    if (!belt || !samePidClicked || !sameTypeClicked) {
       this.props.addBelt(newBelt);
+      this.scrollToBelt(this.refs[`row-${row}`], 220);
     }
   }
 
@@ -215,11 +231,15 @@ class FilterPage extends React.Component {
     this.handleBelts(work, row, type, newBelt);
   }
 
+  scrollToBelt(element, offset) {
+    scrollToComponent(element, {offset});
+  }
+
   render() {
     const resultsPerRow = this.state.resultsPerRow;
     const recommendedPids = this.props.recommendedPids;
     const resultCount = recommendedPids.pids.length;
-    const rows = resultsPerRow ? resultCount / resultsPerRow : 0;
+    const rows = resultsPerRow ? Math.ceil(resultCount / resultsPerRow) : 0;
 
     const structuredPids = this.structuredPids(
       recommendedPids.pids,
@@ -265,7 +285,7 @@ class FilterPage extends React.Component {
             className="filter-page-works"
             ref={container => (this.refs = {...this.refs, container})}
           >
-            {resultCount > 0 ? (
+            {resultCount > 0 && rows > 0 ? (
               <Results
                 rows={rows}
                 pids={structuredPids}
@@ -278,6 +298,8 @@ class FilterPage extends React.Component {
                 onWorkClick={(work, rowId) => this.onWorkClick(work, rowId)}
                 works={this.props.works}
                 belts={this.props.belts}
+                cardRef={workCard => (this.refs = {...this.refs, workCard})}
+                rowRef={(e, idx) => (this.refs[`row-${idx}`] = e)}
                 origin={`Fra din søgning på ${this.props.selectedTags
                   .map(t => t.title)
                   .join(', ')}`}
@@ -362,6 +384,9 @@ export const mapDispatchToProps = dispatch => ({
       type: REMOVE_BELT,
       belt
     });
+  },
+  reorganizeBelts: () => {
+    dispatch({type: REORGANIZE_FILTERPAGE_BELTS});
   }
 });
 export default connect(

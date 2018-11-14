@@ -58,7 +58,8 @@ class WorkCard extends React.Component {
     return (
       nextProps.highlight !== this.props.highlight ||
       nextProps.work !== this.props.work ||
-      nextProps.allowFetch !== this.props.allowFetch
+      nextProps.allowFetch !== this.props.allowFetch ||
+      nextProps.cardRef !== this.props.cardRef
     );
   }
 
@@ -125,9 +126,6 @@ class WorkCard extends React.Component {
                   event.stopPropagation();
                   event.preventDefault();
                   this.props.onWorkClick(this.props.work, this.props.rowId);
-                  if (!this.props.pidPreview && this.props.scrollToChildBelt) {
-                    this.props.scrollToChildBelt();
-                  }
                 }
               }}
             >
@@ -150,9 +148,6 @@ class WorkCard extends React.Component {
                       this.props.work,
                       this.props.rowId
                     );
-                    if (this.props.scrollToChildBelt) {
-                      this.props.scrollToChildBelt();
-                    }
                   }}
                 >
                   Mere som denne

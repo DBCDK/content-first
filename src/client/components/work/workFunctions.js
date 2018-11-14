@@ -93,12 +93,3 @@ export function sortTags(work) {
 
   return tags;
 }
-
-export function buildSimilarBooksBelt(work) {
-  const book = work.book;
-  return {
-    name: 'Minder om ' + book.title,
-    pid: book.pid,
-    onFrontPage: false
-  };
-}

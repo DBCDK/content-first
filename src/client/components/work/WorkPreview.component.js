@@ -17,7 +17,6 @@ import OrderButton from '../order/OrderButton.component';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {ADD_CHILD_BELT} from '../../redux/belts.reducer';
 import {filterCollection, filterReviews} from './workFunctions';
-
 import './WorkPreview.css';
 
 class WorkPreview extends React.Component {
@@ -37,6 +36,7 @@ class WorkPreview extends React.Component {
 
   handleChildBelts(parentBelt, childBelt, clear) {
     this.props.addChildBelt(parentBelt, childBelt, clear);
+    this.scrollToChildBelt(this.refs.preview, 220);
   }
 
   onMoreLikeThisClick(parentBelt, work, clear) {
@@ -55,9 +55,8 @@ class WorkPreview extends React.Component {
     this.handleChildBelts(parentBelt, childBelt, clear);
   }
 
-  scrollToChildBelt(belt) {
-    let offset = belt.pid ? 220 : 0;
-    scrollToComponent(this.refs.childBelt, {offset});
+  scrollToChildBelt(belt, offset) {
+    scrollToComponent(belt, {offset});
   }
 
   render() {
@@ -72,9 +71,13 @@ class WorkPreview extends React.Component {
     const collection = filterCollection(work);
     // get reviews from litteratursiden
     const reviews = filterReviews(work);
+
     return (
       <React.Fragment>
-        <div className="row WorkPreview__container">
+        <div
+          className="row WorkPreview__container"
+          ref={preview => (this.refs = {...this.refs, preview})}
+        >
           <div className="col-md-12 col-lg-7 workPreview__work">
             <div className="workPreview__image">
               <Link href={'/værk/' + book.pid}>
@@ -208,7 +211,6 @@ class WorkPreview extends React.Component {
                       event.stopPropagation();
                       event.preventDefault();
                       this.onMoreLikeThisClick(belt, work, true);
-                      this.scrollToChildBelt(belt);
                     }}
                   >
                     Mere som denne

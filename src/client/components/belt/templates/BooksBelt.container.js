@@ -13,7 +13,6 @@ import {HISTORY_PUSH} from '../../../redux/middleware';
 import {
   ADD_CHILD_BELT,
   REMOVE_CHILD_BELT,
-  REMOVE_BELT,
   BELT_SCROLL
 } from '../../../redux/belts.reducer';
 import {filtersMapAll} from '../../../redux/filter.reducer';
@@ -61,16 +60,26 @@ export class BooksBelt extends React.Component {
   }
 
   handleChildBelts(parentBelt, childBelt) {
-    this.props.addChildBelt(parentBelt, childBelt);
-    this.scrollToChildBelt(childBelt, 220);
+    let samePidClicked = false;
+    let sameTypeClicked = false;
+
+    if (parentBelt.child) {
+      this.props.removeChildBelt(parentBelt);
+      samePidClicked = parentBelt.child.pid === childBelt.pid;
+      sameTypeClicked = parentBelt.child.type === childBelt.type;
+    }
+
+    if (!parentBelt.child || !samePidClicked || !sameTypeClicked) {
+      this.props.addChildBelt(parentBelt, childBelt);
+      this.scrollToChildBelt(this.refs.beltWrap, 220);
+    }
   }
 
-  onMoreLikeThisClick(parentBelt, work, row) {
+  onMoreLikeThisClick(parentBelt, work) {
     const type = 'belt';
     const book = work.book;
 
     const newBelt = {
-      row,
       type,
       pid: book.pid,
       name: 'Minder om ' + book.title,
@@ -82,7 +91,7 @@ export class BooksBelt extends React.Component {
     this.handleChildBelts(parentBelt, newBelt);
   }
 
-  onWorkClick(parentBelt, work, row) {
+  onWorkClick(parentBelt, work) {
     const type = 'preview';
     const book = work.book;
 
@@ -92,7 +101,6 @@ export class BooksBelt extends React.Component {
     }
 
     const newBelt = {
-      row,
       type,
       pid: book.pid,
       key: 'Preview af ' + book.title,
@@ -103,7 +111,7 @@ export class BooksBelt extends React.Component {
   }
 
   scrollToChildBelt(belt, offset) {
-    scrollToComponent(this.refs.childBelt, {offset});
+    scrollToComponent(belt, {offset});
   }
 
   onVisibilityChange = visible => {
@@ -139,7 +147,12 @@ export class BooksBelt extends React.Component {
         partialVisibility={true}
       >
         <React.Fragment>
-          <div className="belt text-left mt3 row">
+          <div
+            className="belt text-left mt-3"
+            ref={beltWrap => {
+              this.refs = {...this.refs, beltWrap};
+            }}
+          >
             <div className="p-0 col-12">
               <div className="header row">
                 <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
@@ -215,9 +228,6 @@ export class BooksBelt extends React.Component {
                         onWorkClick={(work, row) => {
                           this.onWorkClick(belt, work, row, true);
                         }}
-                        scrollToChildBelt={() => {
-                          this.scrollToChildBelt(belt);
-                        }}
                       />
                     );
                   })}
@@ -286,12 +296,6 @@ export const mapDispatchToProps = dispatch => ({
       type: BELT_SCROLL,
       belt,
       scrollPos
-    });
-  },
-  removeBelt: belt => {
-    dispatch({
-      type: REMOVE_BELT,
-      belt
     });
   },
   historyPush: pid => {

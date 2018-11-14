@@ -285,6 +285,8 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
+            "key": "Bedste forslag",
             "name": "Bedste forslag",
             "onFrontPage": true,
             "type": "belt",
@@ -294,7 +296,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "En god bog",
             "name": "En god bog",
             "onFrontPage": true,
             "tags": Array [
@@ -314,7 +318,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Mennesket og Naturen",
             "links": Array [],
             "name": "Mennesket og Naturen",
             "onFrontPage": true,
@@ -341,7 +347,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Familiens skyggesider",
             "links": Array [],
             "name": "Familiens skyggesider",
             "onFrontPage": true,
@@ -371,7 +379,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Tankevækkende Sci-fi",
             "links": Array [],
             "name": "Tankevækkende Sci-fi",
             "onFrontPage": true,
@@ -391,7 +401,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Bibliotekarens ugentlige anbefalinger",
             "links": Array [],
             "name": "Bibliotekarens ugentlige anbefalinger",
             "onFrontPage": true,
@@ -406,7 +418,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Krøllede fortællinger",
             "links": Array [],
             "name": "Krøllede fortællinger",
             "onFrontPage": true,
@@ -431,7 +445,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Sofahygge",
             "links": Array [],
             "name": "Sofahygge",
             "onFrontPage": true,
@@ -456,7 +472,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Tolkiensque",
             "links": Array [],
             "name": "Tolkiensque",
             "onFrontPage": true,
@@ -483,7 +501,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Gotisk uhygge",
             "links": Array [],
             "name": "Gotisk uhygge",
             "onFrontPage": true,
@@ -510,7 +530,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Lokalkrimi",
             "links": Array [],
             "name": "Lokalkrimi",
             "onFrontPage": true,
@@ -537,7 +559,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Historisk romantik",
             "links": Array [],
             "name": "Historisk romantik",
             "onFrontPage": true,
@@ -571,7 +595,9 @@ exports[`renders without crashing 1`] = `
       <BooksBelt
         belt={
           Object {
+            "child": false,
             "isLoading": false,
+            "key": "Vemodige nordmænd",
             "links": Array [],
             "name": "Vemodige nordmænd",
             "onFrontPage": true,

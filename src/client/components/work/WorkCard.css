@@ -48,6 +48,11 @@
   margin-top: 10px;
 }
 
+.WorkCard.ghost {
+  opacity: 0;
+  pointer-events: none;
+}
+
 @media only screen and (max-width: 768px) {
   .WorkCard {
     height: 320px;
