@@ -12,7 +12,7 @@ import {
   ON_EDIT_FILTER_TOGGLE,
   ON_EXPAND_FILTERS_TOGGLE
 } from '../../redux/filter.reducer';
-import {HISTORY_REPLACE} from '../../redux/middleware';
+import {HISTORY_REPLACE, HISTORY_PUSH} from '../../redux/middleware';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
 import {
   getRecommendedBooks,
@@ -39,7 +39,7 @@ const Results = ({rows, pids, ...props}) => {
     return (
       <React.Fragment key={idx}>
         <div
-          className="w-100 d-flex justify-content-between"
+          className="w-100 d-flex justify-content-around justify-content-md-between"
           ref={e => props.rowRef(e, idx)}
         >
           {pids[idx].map(pid => {
@@ -55,6 +55,7 @@ const Results = ({rows, pids, ...props}) => {
               return (
                 <WorkCard
                   key={'wc-' + pid}
+                  className="p-0 pb-3 pr-sm-3"
                   rowId={idx}
                   pid={pid}
                   highlight={belt.pid === pid}
@@ -181,20 +182,22 @@ class FilterPage extends React.Component {
   }
 
   handleBelts(work, row, type, newBelt) {
+    let samePidClicked = false;
+    let sameTypeClicked = false;
+
     const book = work.book;
     const belt = this.props.belts[`filterpage: ${row}`];
 
     if (isMobileOnly) {
-      this.props.historyPush(book.pid);
+      this.props.history(HISTORY_PUSH, '/værk/' + book.pid);
       return;
     }
 
     if (belt) {
       this.props.removeBelt(belt);
+      samePidClicked = belt.pid === book.pid;
+      sameTypeClicked = belt.type === type;
     }
-
-    const samePidClicked = belt && belt.pid === book.pid;
-    const sameTypeClicked = belt && belt.type === type;
 
     if (!belt || !samePidClicked || !sameTypeClicked) {
       this.props.addBelt(newBelt);

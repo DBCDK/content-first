@@ -34,12 +34,12 @@ class WorkPreview extends React.Component {
     this.props.fetchWork(pid);
   }
 
-  handleChildBelts(parentBelt, childBelt, clear) {
-    this.props.addChildBelt(parentBelt, childBelt, clear);
+  handleChildBelts(parentBelt, childBelt) {
+    this.props.addChildBelt(parentBelt, childBelt);
     this.scrollToChildBelt(this.refs.preview, 220);
   }
 
-  onMoreLikeThisClick(parentBelt, work, clear) {
+  onMoreLikeThisClick(parentBelt, work) {
     const type = 'belt';
     const book = work.book;
 
@@ -52,7 +52,7 @@ class WorkPreview extends React.Component {
       child: false
     };
 
-    this.handleChildBelts(parentBelt, childBelt, clear);
+    this.handleChildBelts(parentBelt, childBelt);
   }
 
   scrollToChildBelt(belt, offset) {
@@ -131,77 +131,90 @@ class WorkPreview extends React.Component {
                   </Heading>
                 </div>
               </div>
-            <div className="workPreview__media">
-              {work.collectionHasLoaded && (
-                <OrderButton
-                  book={book}
-                  size="medium"
-                  type="quaternary"
-                  label="Bog"
-                  icon="local_library"
-                  className="mr1 mt1"
-                />
-              )}
-              {work.collectionHasLoaded &&
-                collection.map(col => {
-                  if (col.count === 1) {
-                    return (
-                      <a href={col.url} target="_blank" key={col.url}>
-                        <Button
-                          type="quaternary"
-                          size="medium"
-                          className="mr1 mt1"
-                        >
-                          <Icon name={col.icon} />
-                          {col.type}
-                        </Button>
-                      </a>
-                    );
-                  }
-                })}
-              {!work.collectionHasLoaded && (
-                <React.Fragment>
-                  <a>
-                    <Button
-                      type="tertiary"
-                      size="medium"
-                      className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
-                    >
-                      <Icon name={'local_library'} />
-                      Bog
-                    </Button>
-                  </a>
-                  <a>
-                    <Button
-                      type="tertiary"
-                      size="medium"
-                      className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
-                    >
-                      <Icon name={'alternate_email'} />
-                      Ebog
-                    </Button>
-                  </a>
-                  <a>
-                    <Button
-                      type="tertiary"
-                      size="medium"
-                      className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
-                    >
-                      <Icon name={'voicemail'} />
-                      Lydbog
-                    </Button>
-                  </a>
-                </React.Fragment>
-              )}
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <BookmarkButton
-                  className="mr1 mt1"
-                  origin={'Fra egen værkside'}
-                  work={work}
-                />
-                <AddToListButton className="mr1 mt1" work={work} />
+              <div className="workPreview__media">
+                {work.collectionHasLoaded && (
+                  <OrderButton
+                    book={book}
+                    size="medium"
+                    type="quaternary"
+                    label="Bog"
+                    icon="local_library"
+                    className="mr1 mt1"
+                  />
+                )}
+                {work.collectionHasLoaded &&
+                  collection.map(col => {
+                    if (col.count === 1) {
+                      return (
+                        <a href={col.url} target="_blank" key={col.url}>
+                          <Button
+                            type="quaternary"
+                            size="medium"
+                            className="mr1 mt1"
+                          >
+                            <Icon name={col.icon} />
+                            {col.type}
+                          </Button>
+                        </a>
+                      );
+                    }
+                  })}
+                {!work.collectionHasLoaded && (
+                  <React.Fragment>
+                    <a>
+                      <Button
+                        type="tertiary"
+                        size="medium"
+                        className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
+                      >
+                        <Icon name={'local_library'} />
+                        Bog
+                      </Button>
+                    </a>
+                    <a>
+                      <Button
+                        type="tertiary"
+                        size="medium"
+                        className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
+                      >
+                        <Icon name={'alternate_email'} />
+                        Ebog
+                      </Button>
+                    </a>
+                    <a>
+                      <Button
+                        type="tertiary"
+                        size="medium"
+                        className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
+                      >
+                        <Icon name={'voicemail'} />
+                        Lydbog
+                      </Button>
+                    </a>
+                  </React.Fragment>
+                )}
+              </div>
+              <div className="row">
+                <div className="col-12">
+                  <BookmarkButton
+                    className="mr1 mt1"
+                    origin={'Fra egen værkside'}
+                    work={work}
+                  />
+                  <AddToListButton className="mr1 mt1" work={work} />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12 pt2">
+                  <Button
+                    type="tertiary"
+                    size="medium"
+                    className="underline"
+                    onClick={() => this.onMoreLikeThisClick(belt, work)}
+                  >
+                    Mere som denne
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

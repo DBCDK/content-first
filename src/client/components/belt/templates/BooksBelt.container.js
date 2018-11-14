@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import VisibilitySensor from 'react-visibility-sensor';
 import {difference, isEqual} from 'lodash';
 import scrollToComponent from 'react-scroll-to-component';
-import {isMobileOnly, isMobile} from 'react-device-detect';
+import {isMobileOnly} from 'react-device-detect';
 import WorkCard from '../../work/WorkCard.container';
 import Title from '../../base/Title';
 import Term from '../../base/Term';
@@ -91,7 +91,6 @@ export class BooksBelt extends React.Component {
     this.handleChildBelts(parentBelt, newBelt);
   }
 
-
   onWorkClick(parentBelt, work) {
     const type = 'preview';
     const book = work.book;
@@ -148,7 +147,6 @@ export class BooksBelt extends React.Component {
         partialVisibility={true}
       >
         <React.Fragment>
-
           <div
             className="belt text-left mt-5 mt-sm-4 row"
             ref={beltWrap => {
@@ -218,7 +216,7 @@ export class BooksBelt extends React.Component {
                     return (
                       <WorkCard
                         className="ml1 mr1"
-                        enableHover={!isMobile}
+                        enableHover={true}
                         highlight={child && child.pid === pid}
                         allowFetch={
                           this.state.visible &&
@@ -227,7 +225,6 @@ export class BooksBelt extends React.Component {
                         pid={pid}
                         key={pid}
                         origin={`Fra "${name}"`}
-
                         onMoreLikeThisClick={(work, row) =>
                           this.onMoreLikeThisClick(belt, work, row, true)
                         }

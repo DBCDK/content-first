@@ -121,14 +121,6 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    'Bibliotekarens ugentlige anbefalinger': {
-      name: 'Bibliotekarens ugentlige anbefalinger',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
-      works: [],
-      tags: [-2]
-    },
     Sofahygge: {
       key: 'Sofahygge',
       name: 'Sofahygge',
@@ -211,7 +203,7 @@ const defaultState = {
       isLoading: false,
       onFrontPage: true,
       links: [],
-     tags: [{id: 4901, weight: 10}, 5660, 5658, 189],
+      tags: [{id: 4901, weight: 10}, 5660, 5658, 189],
       type: 'belt',
       child: false
     },
@@ -340,10 +332,10 @@ const beltsReducer = (state = defaultState, action) => {
 
     // TODO: This is a quick-and-dirty-fix for the current issue. Grooming is needed for a better solution.
     case REORGANIZE_FILTERPAGE_BELTS: {
-      const belts = Object.values(state.belts);
-      belts.forEach(b => {
-        if (b.key.includes('filterpage')) {
-          b.child = false;
+      const belts = {};
+      Object.keys(state.belts).forEach(key => {
+        if (!key.includes('filterpage')) {
+          belts[key] = state.belts[key];
         }
       });
       return Object.assign({}, {belts});
