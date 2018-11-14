@@ -58,7 +58,7 @@ router
               return tagsUtil.parsingTagsInjection(tags).then(meta => {
                 const pid = meta.pid;
                 const rawTable = _.map(meta.tags, tag => {
-                  return {pid, tag};
+                  return {pid, tag: tag.id, score: tag.score};
                 });
                 totalTags += rawTable.length;
                 return transaction.insert(rawTable).into(tagTable);

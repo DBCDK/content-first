@@ -32,8 +32,9 @@ export const fetchTags = async (pids = []) => {
     const response = await req.request;
     if (response.body) {
       const tags = response.body.data.tags
-        .map(t => taxonomyMap[t])
-        .filter(t => t);
+        .filter(t => taxonomyMap[t.id])
+        .map(t => Object.assign({score: t.score}, taxonomyMap[t.id]));
+
       result[req.pid] = tags;
     } else {
       result[req.pid] = [];

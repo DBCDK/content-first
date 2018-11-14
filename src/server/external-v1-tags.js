@@ -69,11 +69,11 @@ router
   .get(async (req, res, next) => {
     const pid = req.params.pid;
     const location = `${req.baseUrl}/${pid}`;
-    let result;
+    let tags;
     try {
-      result = await knex(tagTable)
+      tags = await knex(tagTable)
         .where({pid})
-        .select(knex.raw('array_agg(tag) as tags'));
+        .select(['tag as id', 'score']);
     } catch (error) {
       return next({
         status: 500,
@@ -82,15 +82,21 @@ router
         meta: {resource: location}
       });
     }
-    const tags = result[0].tags;
     if (!tags) {
       return res.status(200).json({
         data: {pid, tags: []},
         links: {self: location}
       });
     }
+
     res.status(200).json({
-      data: {pid, tags},
+      data: {
+        pid,
+        tags: tags.map(tag => {
+          tag.score = parseFloat(tag.score);
+          return tag;
+        })
+      },
       links: {self: location}
     });
   });

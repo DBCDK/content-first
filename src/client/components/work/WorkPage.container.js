@@ -65,6 +65,7 @@ class WorkPage extends React.Component {
     const reviews = filterReviews(work);
     // sort tags by group
     const tags = sortTags(work);
+
     // build belt for "mere som denne" button
     const belts = this.props.beltsState;
     const belt = belts['Minder om ' + book.title];

@@ -15,7 +15,7 @@ function parsingTagsInjection(obj) {
         tags.pid = document.pid;
         tags.tags = [];
         document.selected.forEach(tag => {
-          tags.tags.push(parseInt(tag.id, 10));
+          tags.tags.push({id: parseInt(tag.id, 10), score: tag.score});
         });
         resolve(tags);
       })
