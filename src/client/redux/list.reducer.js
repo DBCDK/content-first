@@ -11,12 +11,17 @@ const defaultState = {
   lists: {},
   changeMap: {},
   latestUsedId: false,
-  expanded: false
+  expanded: false,
+  isFetchingOwned: false,
+  hasFetchedOwned: false
 };
 
 export const LIST_LOAD_REQUEST = 'LIST_LOAD_REQUEST';
+export const PUBLIC_LISTS_REQUEST = 'PUBLIC_LISTS_REQUEST';
+export const FOLLOWED_LISTS_REQUEST = 'FOLLOWED_LISTS_REQUEST';
 export const LIST_LOAD_RESPONSE = 'LIST_LOAD_RESPONSE';
-export const LISTS_LOAD_REQUEST = 'LISTS_LOAD_REQUEST';
+export const OWNED_LISTS_REQUEST = 'OWNED_LISTS_REQUEST';
+export const OWNED_LISTS_RESPONSE = 'OWNED_LISTS_RESPONSE';
 export const ADD_LIST = 'ADD_LIST';
 export const UPDATE_LIST_DATA = 'UPDATE_LIST_DATA';
 export const REMOVE_LIST = 'REMOVE_LIST';
@@ -37,6 +42,17 @@ export const ON_USERLISTS_COLLAPSE = 'ON_USERLISTS_COLLAPSE';
 // eslint-disable-next-line
 const listReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case OWNED_LISTS_REQUEST: {
+      return Object.assign({}, state, {
+        isFetchingOwned: true
+      });
+    }
+    case OWNED_LISTS_RESPONSE: {
+      return Object.assign({}, state, {
+        isFetchingOwned: false,
+        hasFetchedOwned: true
+      });
+    }
     case LIST_LOAD_REQUEST: {
       const {_id} = action;
       const old = state.lists[_id] || {};
@@ -202,15 +218,29 @@ const listReducer = (state = defaultState, action) => {
       if (!action.element) {
         throw new Error("'element' is missing from action");
       }
+
       const changeMap = Object.assign({}, state.changeMap, {
         [action.element.book.pid]: {}
       });
+
       const list = {
         ...state.lists[action._id]
       };
-      const removed = list.list.filter(e => e.pid !== action.element.book.pid);
+
+      const removed = list.list.filter(
+        element => element.pid !== action.element.book.pid
+      );
+
       if (removed.length < list.list.length) {
+        // delete element
+        const elementToDelete = list.list.find(element => {
+          return element.pid === action.element.book.pid;
+        });
         list.list = removed;
+        list.deleted = list.deleted || {};
+        list.deleted[elementToDelete._id] = true;
+        list.pending = list.pending || [];
+        list.pending = [...list.pending, elementToDelete];
       } else {
         action.element.pid = action.element.book.pid;
         list.list = [...list.list, action.element];
@@ -333,6 +363,7 @@ const listReducer = (state = defaultState, action) => {
 // ACTION CREATORS
 export const addList = (
   {
+    _type = 'list',
     type = CUSTOM_LIST,
     title = '',
     description = '',
@@ -354,7 +385,8 @@ export const addList = (
       isNew,
       list,
       _owner,
-      _created
+      _created,
+      _type
     },
     afterSave
   };
@@ -408,65 +440,63 @@ export const storeList = _id => {
 };
 
 // SELECTORS
-export const getListsForOwner = (state, params = {}) => {
-  if (!params._owner) {
-    return [];
-  }
-  return getLists(state, params).filter(l => params._owner === l._owner);
-};
+export const createGetLists = () => {
+  return createSelector(
+    [
+      state => state.listReducer.lists,
+      (state, {type}) => type,
+      (state, {sort = 'created'}) => sort,
+      (state, {_owner}) => _owner,
+      (state, {_public}) => _public
+    ],
+    (listsObj, type, sort, _owner, _public) => {
+      const lists = Object.values(listsObj)
+        .filter(l => {
+          if (!l || !l._type || l.error || !l.title) {
+            // this list is broken, dont show it
+            return false;
+          }
 
-export const getLists = (state, {type, sort} = {}) => {
-  const listState = state.listReducer;
-  const booksState = state.booksReducer;
+          if (type && l.type !== type) {
+            return false;
+          }
+          if (_owner && l._owner !== _owner) {
+            return false;
+          }
+          if (_public && l._public === _public) {
+            return false;
+          }
+          return true;
+        })
+        .map(l => {
+          if (l.type === SYSTEM_LIST) {
+            /* eslint-disable */
+            l.description =
+              l.title === 'Har læst'
+                ? 'Her kan du se listen over de bøger, som du har markeret som "Har læst". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.'
+                : 'Her kan du se listen over de bøger, som du har markeret som "Vil læse". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.';
+            l.image =
+              l.title === 'Har læst'
+                ? 'img/lists/goal.png'
+                : 'img/lists/checklist.png';
 
-  const lists = Object.values(listState.lists)
-    .filter(l => {
-      if (type && l.type !== type) {
-        return false;
+            /* eslint-enable */
+          }
+
+          // ensure uniqueness of elements
+          // duplicates may exist, due to a previous bug #548
+          l.list = uniqBy(l.list, 'pid');
+
+          return l;
+        });
+      if (sort === 'created') {
+        lists.sort((a, b) => b._created - a._created);
+      } else if (sort) {
+        lists.sort((item1, item2) => item1.title.localeCompare(item2.title));
       }
-      if (!l.title) {
-        return false;
-      }
-      return true;
-    })
-    .map(l => {
-      if (l.type === SYSTEM_LIST) {
-        /* eslint-disable */
-        l.description =
-          l.title === 'Har læst'
-            ? 'Her kan du se listen over de bøger, som du har markeret som "Har læst". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.'
-            : 'Her kan du se listen over de bøger, som du har markeret som "Vil læse". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.';
-        l.image =
-          l.title === 'Har læst'
-            ? 'img/lists/goal.png'
-            : 'img/lists/checklist.png';
-
-        /* eslint-enable */
-      }
-
-      l.list = l.list.map(el => {
-        return {...el, ...booksState.books[el.pid]};
-      });
-
-      // ensure uniqueness of elements
-      // duplicates may exist, due to a previous bug #548
-      l.list = uniqBy(l.list, 'pid');
-
-      return l;
-    });
-  if (sort) {
-    lists.sort((item1, item2) => item1.title.localeCompare(item2.title));
-  }
-
-  return lists;
-};
-
-export const getPublicLists = state => {
-  return Object.values(state.lists)
-    .filter(l => l.public)
-    .sort(function(a, b) {
-      return b._created - a._created;
-    });
+      return lists;
+    }
+  );
 };
 
 export const getListByIdSelector = () =>

@@ -29,6 +29,7 @@ section {
   position: relative;
   background: var(--lys-graa);
   width: 100%;
+  overflow: hidden;
 }
 
 section .caroContainer {

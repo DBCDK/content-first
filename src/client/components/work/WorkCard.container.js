@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {isMobile} from 'react-device-detect';
 import BookCover from '../general/BookCover.component';
 import BookmarkButton from '../general/BookmarkButton';
 import TaxDescription from './TaxDescription.component';
@@ -44,8 +43,10 @@ class WorkCard extends React.Component {
     workClass: 'work'
   };
   fetch = () => {
-    if (this.props.allowFetch && !this.props.work) {
-      this.props.fetchWork(this.props.pid);
+    if (this.props.allowFetch) {
+      if (!this.props.work || !this.props.work.coverHasLoaded) {
+        this.props.fetchWork(this.props.pid);
+      }
     }
   };
   componentDidMount() {
@@ -93,13 +94,7 @@ class WorkCard extends React.Component {
         />
         <div
           style={{height: '100%'}}
-          onClick={event => {
-            if (isMobile) {
-              event.stopPropagation();
-              event.preventDefault();
-              this.props.onWorkClick(this.props.work, this.props.rowId);
-            }
-          }}
+          onClick={() => this.props.onWorkClick(this.props.work, this.props.rowId)}
         >
           <BookCover
             className="book-cover"
@@ -121,13 +116,7 @@ class WorkCard extends React.Component {
                 width: '100%',
                 paddingTop: '80%'
               }}
-              onClick={event => {
-                if (!isMobile) {
-                  event.stopPropagation();
-                  event.preventDefault();
-                  this.props.onWorkClick(this.props.work, this.props.rowId);
-                }
-              }}
+              onClick={() => this.props.onWorkClick(this.props.work, this.props.rowId)}
             >
               <Heading Tag="h3" type="title" style={{marginBottom: 4}}>
                 {this.props.work.book.title}
@@ -141,14 +130,9 @@ class WorkCard extends React.Component {
                 <Button
                   type="tertiary"
                   size="small"
-                  onClick={event => {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    this.props.onMoreLikeThisClick(
-                      this.props.work,
-                      this.props.rowId
-                    );
-                  }}
+                  onClick={() =>
+                    this.props.onMoreLikeThisClick(this.props.work, this.props.rowId)
+                  }
                 >
                   Mere som denne
                 </Button>

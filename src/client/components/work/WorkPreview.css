@@ -13,14 +13,18 @@
 }
 
 .workPreview__work .workPreview__image {
-  height: 300px;
+  max-height: 300px;
   padding-right: 3rem;
 }
 
+.workPreview__work .workPreview__image div {
+  display: block !important;
+}
+
 .workPreview__work .workPreview__image img {
-  width: auto;
-  height: 100%;
-  max-width: none;
+  width: 100%;
+  height: auto;
+  display: block !important;
 }
 
 .workPreview__work .workPreview__info {
@@ -28,15 +32,14 @@
   width: 100%;
 }
 
-.workPreview__work .workPreview__info .ssb{
+.workPreview__work .workPreview__info .ssb {
   position: absolute;
   right: 0;
   top: 0;
 }
-.workPreview__work .workPreview__info .ssb img{
-width: 60%;
+.workPreview__work .workPreview__info .ssb img {
+  width: 60%;
 }
-
 
 .workPreview__work .workPreview__info .workPreview__details {
   display: flex;
@@ -134,4 +137,7 @@ width: 60%;
   .WorkPreview__container .workPreview__work {
     border-right: none;
   }
+}
+.work-preview-book-creator {
+  color: var(--petrolium) !important;
 }

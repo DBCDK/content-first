@@ -21,7 +21,8 @@ export class BookcaseList extends React.Component {
       sticky: false,
       expanded: false,
       windowWidth: 0,
-      info: null
+      info: null,
+      titleMissing: false
     };
   }
 
@@ -115,10 +116,12 @@ export class BookcaseList extends React.Component {
   render() {
     const {_id, list} = this.props;
     const {added} = this.state;
-
     return (
       <React.Fragment>
-        <StickyConfirmPanel _id={_id} />
+        <StickyConfirmPanel
+          _id={_id}
+          onTitleMissing={bool => this.setState({titleMissing: bool})}
+        />
         <StickySettingsPanel
           _id={_id}
           showOwner={true}
@@ -146,6 +149,8 @@ export class BookcaseList extends React.Component {
               infoRef={info => {
                 this.refs = {...this.refs, info};
               }}
+              titleMissing={this.state.titleMissing}
+              forceUpdate={() => this.forceUpdate()}
             />
             <div className="position-relative">
               {list.list.map(element => {
@@ -184,6 +189,7 @@ export class BookcaseList extends React.Component {
               style={{minHeight: 500, background: 'white'}}
               list={list}
               onAdd={pid => this.setState({added: pid})}
+              disabled={list.editing}
             />
           </div>
           <div className="fixed-width-col-sm d-xs-none d-lg-block mt-4 ml-4" />

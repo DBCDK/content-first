@@ -1,15 +1,28 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-  getListsForOwner,
   CUSTOM_LIST,
-  SYSTEM_LIST
+  SYSTEM_LIST,
+  OWNED_LISTS_REQUEST,
+  createGetLists
 } from '../../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../../redux/middleware';
 
 import ListItem from '../../list/overview/ListItem.component.js';
 
 export class Lists extends React.Component {
+  componentDidMount() {
+    this.fetch();
+  }
+  componentDidUpdate() {
+    this.fetch();
+  }
+  fetch = () => {
+    if (this.props.openplatformId && !this.fetched) {
+      this.props.loadLists();
+      this.fetched = true;
+    }
+  };
   render() {
     return (
       <div className="lists-page ">
@@ -56,18 +69,27 @@ export class Lists extends React.Component {
     );
   }
 }
+const customListSelector = createGetLists();
+const systemListsSelector = createGetLists();
 const mapStateToProps = state => {
   return {
-    lists: getListsForOwner(state, {
+    lists: customListSelector(state, {
       type: CUSTOM_LIST,
       _owner: state.userReducer.openplatformId,
       sort: true
     }),
-    systemLists: getListsForOwner(state, {
+    systemLists: systemListsSelector(state, {
       type: SYSTEM_LIST,
       _owner: state.userReducer.openplatformId,
       sort: true
-    })
+    }),
+    openplatformId: state.userReducer.openplatformId
   };
 };
-export default connect(mapStateToProps)(Lists);
+export const mapDispatchToProps = dispatch => ({
+  loadLists: () => dispatch({type: OWNED_LISTS_REQUEST})
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Lists);

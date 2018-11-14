@@ -78,13 +78,13 @@ class WorkPreview extends React.Component {
           className="row WorkPreview__container"
           ref={preview => (this.refs = {...this.refs, preview})}
         >
-          <div className="col-md-12 col-lg-7 workPreview__work">
-            <div className="workPreview__image">
+          <div className="col-12 col-xl-7 workPreview__work">
+            <div className="workPreview__image col-4">
               <Link href={'/værk/' + book.pid}>
                 <BookCover book={book} />
               </Link>
             </div>
-            <div className="workPreview__info">
+            <div className="workPreview__info col-8">
               <SocialShareButton
                 className={'ssb-fb'}
                 styles={{fontWeight: 'bold'}}
@@ -95,14 +95,18 @@ class WorkPreview extends React.Component {
                 shape="round"
                 hoverTitle="Del på facebook"
               />
-
               <Heading Tag="h1" type="lead" className="mt0">
                 <Link href={'/værk/' + book.pid}>{book.title}</Link>
               </Heading>
-
-              <Heading Tag="h2" type="heading" className="mt1">
-                {book.creator}
-              </Heading>
+              <Link
+                href="/find"
+                params={{creator: book.creator}}
+                className="work-preview-book-creator"
+              >
+                <Heading Tag="h2" type="heading" className="mt1">
+                  {book.creator}
+                </Heading>
+              </Link>
 
               <Paragraph className="mt1">
                 <strong>{<TaxDescription text={tax_description} />}</strong>
@@ -127,95 +131,77 @@ class WorkPreview extends React.Component {
                   </Heading>
                 </div>
               </div>
-
-              <div className="workPreview__media">
-                {work.collectionHasLoaded && (
-                  <OrderButton
-                    book={book}
-                    size="medium"
-                    type="quaternary"
-                    label="Bog"
-                    icon="local_library"
-                    className="mr1 mt1"
-                  />
-                )}
-                {work.collectionHasLoaded &&
-                  collection.map(col => {
-                    if (col.count === 1) {
-                      return (
-                        <a href={col.url} target="_blank" key={col.url}>
-                          <Button
-                            type="quaternary"
-                            size="medium"
-                            className="mr1 mt1"
-                          >
-                            <Icon name={col.icon} />
-                            {col.type}
-                          </Button>
-                        </a>
-                      );
-                    }
-                  })}
-                {!work.collectionHasLoaded && (
-                  <React.Fragment>
-                    <a>
-                      <Button
-                        type="tertiary"
-                        size="medium"
-                        className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
-                      >
-                        <Icon name={'local_library'} />
-                        Bog
-                      </Button>
-                    </a>
-                    <a>
-                      <Button
-                        type="tertiary"
-                        size="medium"
-                        className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
-                      >
-                        <Icon name={'alternate_email'} />
-                        Ebog
-                      </Button>
-                    </a>
-                    <a>
-                      <Button
-                        type="tertiary"
-                        size="medium"
-                        className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
-                      >
-                        <Icon name={'voicemail'} />
-                        Lydbog
-                      </Button>
-                    </a>
-                  </React.Fragment>
-                )}
-              </div>
-              <div className="row">
-                <div className="col-12 pt1">
-                  <BookmarkButton
-                    className="mr1"
-                    origin={'Fra egen værkside'}
-                    work={work}
-                  />
-                  <AddToListButton className="mr1" work={work} />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-12 pt2">
-                  <Button
-                    type="tertiary"
-                    size="medium"
-                    className="underline"
-                    onClick={event => {
-                      event.stopPropagation();
-                      event.preventDefault();
-                      this.onMoreLikeThisClick(belt, work, true);
-                    }}
-                  >
-                    Mere som denne
-                  </Button>
-                </div>
+            <div className="workPreview__media">
+              {work.collectionHasLoaded && (
+                <OrderButton
+                  book={book}
+                  size="medium"
+                  type="quaternary"
+                  label="Bog"
+                  icon="local_library"
+                  className="mr1 mt1"
+                />
+              )}
+              {work.collectionHasLoaded &&
+                collection.map(col => {
+                  if (col.count === 1) {
+                    return (
+                      <a href={col.url} target="_blank" key={col.url}>
+                        <Button
+                          type="quaternary"
+                          size="medium"
+                          className="mr1 mt1"
+                        >
+                          <Icon name={col.icon} />
+                          {col.type}
+                        </Button>
+                      </a>
+                    );
+                  }
+                })}
+              {!work.collectionHasLoaded && (
+                <React.Fragment>
+                  <a>
+                    <Button
+                      type="tertiary"
+                      size="medium"
+                      className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
+                    >
+                      <Icon name={'local_library'} />
+                      Bog
+                    </Button>
+                  </a>
+                  <a>
+                    <Button
+                      type="tertiary"
+                      size="medium"
+                      className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
+                    >
+                      <Icon name={'alternate_email'} />
+                      Ebog
+                    </Button>
+                  </a>
+                  <a>
+                    <Button
+                      type="tertiary"
+                      size="medium"
+                      className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
+                    >
+                      <Icon name={'voicemail'} />
+                      Lydbog
+                    </Button>
+                  </a>
+                </React.Fragment>
+              )}
+            </div>
+            <div className="row">
+              <div className="col-12">
+                <BookmarkButton
+                  className="mr1 mt1"
+                  origin={'Fra egen værkside'}
+                  work={work}
+                />
+                <AddToListButton className="mr1 mt1" work={work} />
               </div>
             </div>
           </div>

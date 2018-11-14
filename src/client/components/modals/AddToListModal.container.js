@@ -5,7 +5,7 @@ import WorkItemSmall from '../work/WorkItemSmall.component';
 import {
   CUSTOM_LIST,
   SYSTEM_LIST,
-  getListsForOwner,
+  createGetLists,
   addList,
   addElementToList,
   storeList
@@ -238,12 +238,12 @@ export class AddToListModal extends React.Component {
   }
 }
 
+const getListsForOwner = createGetLists();
 const mapStateToProps = state => {
   const customLists = getListsForOwner(state, {
     type: CUSTOM_LIST,
-    _owner: state.userReducer.openplatformId
-  }).sort(function(a, b) {
-    return b._created - a._created;
+    _owner: state.userReducer.openplatformId,
+    sort: 'created'
   });
   return {
     customLists: customLists,

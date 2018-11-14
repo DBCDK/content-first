@@ -66,14 +66,13 @@ export default class SocialShareButton extends React.Component {
             ? 'https://www.facebook.com/sharer/sharer.php?display=page&u=' +
               this.props.href +
               '?' +
-              ts +
-              '=1'
+              ts
             : this.props.href
               ? this.props.href
               : null
         }
         target="_blank"
-        onClick={this.props.href ? null : this.props.onClick}
+        onClick={e => (this.props.onClick ? this.props.onClick(e) : null)}
       >
         <button
           className={'ssb ' + this.props.className}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getFollowedLists} from '../../redux/selectors';
+import {createGetFollowedLists} from '../../redux/selectors';
 
 import ListItem from '../list/overview/ListItem.component.js';
 
@@ -15,8 +15,8 @@ export class Follow extends React.Component {
               <ListItem
                 list={data.list}
                 title={data.title}
-                id={data.id}
-                key={data.id}
+                _id={data._id}
+                key={data._id}
                 type={data.type}
                 image={data.image ? `/v1/image/${data.image}/50/50` : null}
                 hideIfEmpty={false}
@@ -36,6 +36,7 @@ export class Follow extends React.Component {
   }
 }
 
+const getFollowedLists = createGetFollowedLists();
 const mapStateToProps = state => {
   return {
     followedLists: getFollowedLists(state)

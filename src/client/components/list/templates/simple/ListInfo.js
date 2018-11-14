@@ -31,7 +31,8 @@ export const ListInfo = ({
   addImage,
   confirmShareModal,
   onAddBook,
-  onEdit
+  onEdit,
+  titleMissing
 }) => {
   return (
     <div className="box-shadow">
@@ -72,9 +73,12 @@ export const ListInfo = ({
             size={40}
             shape="round"
             hoverTitle="Del på facebook"
-            status={!list.public || editing ? 'passive' : 'active'}
-            onClick={() => {
-              confirmShareModal(list._id);
+            onClick={e => {
+              if (!list.public) {
+                e.preventDefault();
+                confirmShareModal(list._id);
+                return false;
+              }
             }}
           />
           <ListContextMenu
@@ -100,11 +104,12 @@ export const ListInfo = ({
               onChange={onTitleChange}
               value={list.title}
             />
-            {!(list.title && list.title.trim()) && (
-              <Text type="body" variant="color-fersken" className="mt-2">
-                Listen skal have en titel
-              </Text>
-            )}
+            {titleMissing &&
+              !list.title.length > 0 && (
+                <Text type="body" variant="color-fersken" className="mt-2">
+                  Listen skal have en titel
+                </Text>
+              )}
             <Textarea
               className={`form-control mt-4 comment-textarea`}
               name="list-description"
@@ -162,7 +167,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(updateList({_id: ownProps._id, description: e.target.value})),
   onTitleChange: e =>
     dispatch(updateList({_id: ownProps._id, title: e.target.value})),
-  confirmShareModal: _id => {
+  confirmShareModal: (_id) => {
     dispatch({
       type: 'OPEN_MODAL',
       modal: 'confirm',
@@ -171,6 +176,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
         reason:
           'For at du kan dele din liste, skal listen være offentlig. Vil du ændre din listes status til offentlig?',
         confirmText: 'Gør min liste offentlig',
+        url:
+          'https://www.facebook.com/sharer/sharer.php?display=page&u=https://laesekompas.dk/lister/' +
+          _id,
         onConfirm: () => {
           dispatch(
             updateList({

@@ -6,14 +6,13 @@ Array [
     "_created": "1234",
     "_id": "list2",
     "_owner": null,
+    "_type": "list",
     "description": "",
     "isNew": undefined,
     "list": Array [
       Object {
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid1",
-          "title": "title1",
         },
         "pid": "pid1",
         "position": Object {
@@ -34,14 +33,13 @@ Array [
     "_created": "1234",
     "_id": "some-id-1",
     "_owner": null,
+    "_type": "list",
     "description": "",
     "isNew": undefined,
     "list": Array [
       Object {
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid1",
-          "title": "title1",
         },
         "description": "some-description-1",
         "pid": "pid1",
@@ -53,9 +51,7 @@ Array [
       Object {
         "_id": 2,
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid2",
-          "title": "title2",
         },
         "pid": "pid2",
         "position": Object {
@@ -76,6 +72,7 @@ Array [
     "_created": "1234",
     "_id": "some-id-1",
     "_owner": null,
+    "_type": "list",
     "description": "a description 1",
     "isNew": undefined,
     "list": Array [],
@@ -86,6 +83,7 @@ Array [
     "_created": "1234",
     "_id": "some-id-2",
     "_owner": null,
+    "_type": "list",
     "description": "a description 2",
     "isNew": undefined,
     "list": Array [],
@@ -101,6 +99,7 @@ Array [
     "_created": "1234",
     "_id": "some-id-1",
     "_owner": null,
+    "_type": "list",
     "description": "",
     "isNew": undefined,
     "list": Array [],
@@ -111,6 +110,7 @@ Array [
     "_created": "1234",
     "_id": "some-id-3",
     "_owner": null,
+    "_type": "list",
     "description": "",
     "isNew": undefined,
     "list": Array [],
@@ -126,6 +126,7 @@ Array [
     "_created": "1234",
     "_id": "some-id-1",
     "_owner": "some-owner",
+    "_type": "list",
     "description": "",
     "isNew": undefined,
     "list": Array [],
@@ -136,6 +137,7 @@ Array [
     "_created": "1234",
     "_id": "some-id-3",
     "_owner": "some-owner",
+    "_type": "list",
     "description": "",
     "isNew": undefined,
     "list": Array [],
@@ -153,15 +155,14 @@ Array [
     "_created": "1234",
     "_id": "some-id-1",
     "_owner": null,
+    "_type": "list",
     "description": "",
     "isNew": undefined,
     "list": Array [
       Object {
         "_id": 1,
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid1",
-          "title": "title1",
         },
         "pid": "pid1",
         "position": Object {
@@ -178,9 +179,7 @@ Array [
       Object {
         "_id": 2,
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid2",
-          "title": "title2",
         },
         "pid": "pid2",
         "position": Object {
@@ -201,6 +200,7 @@ Array [
     "_created": "1234",
     "_id": "some-id-1",
     "_owner": null,
+    "_type": "list",
     "deleted": Object {
       "123": true,
     },
@@ -210,9 +210,7 @@ Array [
       Object {
         "_id": "456",
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid2",
-          "title": "title2",
         },
         "pid": "pid2",
         "position": Object {
@@ -241,6 +239,7 @@ Array [
     "_created": "1234",
     "_id": "some-id-1",
     "_owner": null,
+    "_type": "list",
     "deletingIsLoading": true,
     "description": "",
     "isNew": undefined,
@@ -252,6 +251,7 @@ Array [
     "_created": "1234",
     "_id": "some-id-2",
     "_owner": null,
+    "_type": "list",
     "description": "",
     "isNew": undefined,
     "list": Array [],
@@ -267,14 +267,13 @@ Array [
     "_created": "1234",
     "_id": "some-id-1",
     "_owner": null,
+    "_type": "list",
     "description": "",
     "isNew": undefined,
     "list": Array [
       Object {
         "book": Object {
-          "description": "lorem ipsum...",
           "pid": "pid1",
-          "title": "title1",
         },
         "pid": "pid1",
       },
@@ -291,9 +290,21 @@ Array [
     "_created": "1234",
     "_id": "some-id-1",
     "_owner": null,
+    "_type": "list",
+    "deleted": Object {
+      "undefined": true,
+    },
     "description": "",
     "isNew": undefined,
     "list": Array [],
+    "pending": Array [
+      Object {
+        "book": Object {
+          "pid": "pid1",
+        },
+        "pid": "pid1",
+      },
+    ],
     "title": "some list 1",
     "type": "CUSTOM_LIST",
   },

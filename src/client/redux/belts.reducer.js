@@ -11,7 +11,7 @@ const defaultState = {
       key: 'En god bog',
       name: 'En god bog',
       isLoading: false,
-      onFrontPage: true,
+      onFrontPage: false,
       works: [],
       tags: [100001, 100003, {id: 5672, weight: 10}, 100005],
       type: 'belt',
@@ -88,26 +88,16 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    'Tankevækkende Sci-fi': {
+
+    'Tankevækkende fremtidsvisioner': {
       key: 'Tankevækkende Sci-fi',
-      name: 'Tankevækkende Sci-fi',
+      name: 'Tankevækkende fremtidsvisioner',
       subtext:
         'Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.',
       isLoading: false,
       onFrontPage: true,
       links: [],
-      tags: [{id: 4927, weight: 10}, 5714, 5713],
-      type: 'belt',
-      child: false
-    },
-    'Bibliotekarens ugentlige anbefalinger': {
-      key: 'Bibliotekarens ugentlige anbefalinger',
-      name: 'Bibliotekarens ugentlige anbefalinger',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
-      works: [],
-      tags: [-2],
+      tags: [{id: 4995, weight: 10}, 4927, 5714, 5713],
       type: 'belt',
       child: false
     },
@@ -131,6 +121,14 @@ const defaultState = {
       type: 'belt',
       child: false
     },
+    'Bibliotekarens ugentlige anbefalinger': {
+      name: 'Bibliotekarens ugentlige anbefalinger',
+      isLoading: false,
+      onFrontPage: true,
+      links: [],
+      works: [],
+      tags: [-2]
+    },
     Sofahygge: {
       key: 'Sofahygge',
       name: 'Sofahygge',
@@ -143,9 +141,10 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    Tolkiensque: {
-      key: 'Tolkiensque',
-      name: 'Tolkiensque',
+
+    Tolkienesque: {
+      key: 'Tolkienesque',
+      name: 'Tolkienesque',
       subtext:
         'De store eventyr og udfordringer venter i en anden verden, hvor magiske kræfter og overnaturlige væsner prøver hinanden af.',
       isLoading: false,
@@ -163,9 +162,9 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    'Gotisk uhygge': {
-      key: 'Gotisk uhygge',
-      name: 'Gotisk uhygge',
+    'Det var en mørk og stormfuld nat': {
+      key: 'Det var en mørk og stormfuld nat',
+      name: 'Det var en mørk og stormfuld nat',
       subtext:
         'Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt.',
       isLoading: false,
@@ -183,9 +182,9 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    Lokalkrimi: {
-      key: 'Lokalkrimi',
-      name: 'Lokalkrimi',
+    'Hvad sker der bag hækken?': {
+      key: 'Hvad sker der bag hækken?',
+      name: 'Hvad sker der bag hækken?',
       subtext:
         'Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.',
       isLoading: false,
@@ -203,27 +202,16 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    'Historisk romantik': {
-      key: 'Historisk romantik',
-      name: 'Historisk romantik',
+
+    'Historiske romaner': {
+      key: 'Historiske romaner',
+      name: 'Historiske romaner',
       subtext:
         'Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.',
       isLoading: false,
       onFrontPage: true,
       links: [],
-      tags: [
-        {id: 5028, weight: 10},
-        5016,
-        {id: 5149, weight: 10},
-        4044,
-        4074,
-        5275,
-        5282,
-        189,
-        {id: 5660, weight: 10},
-        5661,
-        5671
-      ],
+     tags: [{id: 4901, weight: 10}, 5660, 5658, 189],
       type: 'belt',
       child: false
     },
@@ -235,14 +223,7 @@ const defaultState = {
       isLoading: false,
       onFrontPage: true,
       links: [],
-      tags: [
-        {id: 4466, weight: 10},
-        5731,
-        3510,
-        5626,
-        {id: 5683, weight: 10},
-        5630
-      ],
+      tags: [{id: 4466, weight: 10}, 5731, 3510, 5626, 5683, 5630],
       type: 'belt',
       child: false
     }

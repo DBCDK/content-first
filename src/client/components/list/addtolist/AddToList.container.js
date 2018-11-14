@@ -45,7 +45,23 @@ export class AddToList extends React.Component {
       return null;
     }
     return (
-      <div className={'addbook ' + className} style={style}>
+      <div
+        className={'addbook position-relative ' + className || ''}
+        style={style}
+      >
+        {this.props.disabled && (
+          <div
+            className="position-absolute"
+            style={{
+              width: '100%',
+              height: '100%',
+              top: 0,
+              background: 'white',
+              opacity: 0.7,
+              zIndex: 1000
+            }}
+          />
+        )}
         <Title
           tag="h2"
           type="title4"

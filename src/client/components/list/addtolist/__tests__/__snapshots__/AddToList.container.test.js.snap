@@ -6,7 +6,7 @@ exports[`AddToList is empty when list is undefined 1`] = `""`;
 
 exports[`AddToList render when allowAdd is true 1`] = `
 <div
-  className="addbook undefined"
+  className="addbook position-relative undefined"
 >
   <Title
     className="ml-2 ml-sm-0"
@@ -75,7 +75,7 @@ exports[`AddToList render when allowAdd is true 1`] = `
 
 exports[`AddToList show add and cancel buttons when selected book is not in list 1`] = `
 <div
-  className="addbook undefined"
+  className="addbook position-relative undefined"
 >
   <Title
     className="ml-2 ml-sm-0"
@@ -144,7 +144,7 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
 
 exports[`AddToList show error msg when selected books is already in list 1`] = `
 <div
-  className="addbook undefined"
+  className="addbook position-relative undefined"
 >
   <Title
     className="ml-2 ml-sm-0"

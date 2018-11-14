@@ -35,7 +35,9 @@ import {
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
-  LISTS_LOAD_REQUEST,
+  FOLLOWED_LISTS_REQUEST,
+  OWNED_LISTS_REQUEST,
+  OWNED_LISTS_RESPONSE,
   LIST_TOGGLE_ELEMENT,
   getListByIdSelector,
   ADD_LIST_IMAGE,
@@ -44,12 +46,7 @@ import {
   ADD_ELEMENT_TO_LIST
 } from './list.reducer';
 import {SEARCH_QUERY} from './search.reducer';
-import {
-  saveList,
-  loadList,
-  loadLists,
-  loadRecentPublic
-} from '../utils/requestLists';
+import {saveList, loadList, loadLists} from '../utils/requestLists';
 
 const getListById = getListByIdSelector();
 
@@ -131,30 +128,41 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
   });
   return pidsToFetch;
 };
-
-const debouncedRequest = (() => {
+const createDebouncedFunction = (name, requestFunction) => {
   let pidQueue = [];
   let debounced = debounce(store => {
     const pidQueueCopy = [...pidQueue];
-    partialUpdateRequest('details', pidQueueCopy, fetchBooks, store);
-    partialUpdateRequest('cover', pidQueueCopy, fetchCoverRefs, store);
+    partialUpdateRequest(name, pidQueueCopy, requestFunction, store);
     pidQueue = difference(pidQueue, pidQueueCopy);
   }, 20);
   return (pids, store) => {
     pidQueue = [...pidQueue, ...pids];
     debounced(store);
   };
-})();
+};
+const debouncedFunctions = {
+  cover: createDebouncedFunction('cover', fetchCoverRefs),
+  details: createDebouncedFunction('details', fetchBooks),
+  tags: createDebouncedFunction('tags', fetchBooksTags)
+};
 
 export const requestMiddleware = store => next => action => {
   switch (action.type) {
     case BOOKS_REQUEST:
       (async () => {
-        const {includeTags, includeReviews, includeCollection} = action;
+        const {
+          includeTags,
+          includeReviews,
+          includeCollection,
+          includeCover = true
+        } = action;
 
-        debouncedRequest(action.pids, store);
+        debouncedFunctions.details(action.pids, store);
+        if (includeCover) {
+          debouncedFunctions.cover(action.pids, store);
+        }
         if (includeTags) {
-          partialUpdateRequest('tags', action.pids, fetchBooksTags, store);
+          debouncedFunctions.tags(action.pids, store);
         }
 
         if (includeReviews || includeCollection) {
@@ -283,6 +291,7 @@ export const listMiddleware = store => next => async action => {
       const res = next(action);
       try {
         const list = await loadList(action._id, store);
+
         store.dispatch({
           type: LIST_LOAD_RESPONSE,
           list
@@ -301,18 +310,29 @@ export const listMiddleware = store => next => async action => {
       } catch (error) {
         store.dispatch({
           type: LIST_LOAD_RESPONSE,
-          list: {_id: action._id, error}
+          list: {_id: action._id || 'unknown', error}
         });
       }
       return res;
     }
-    case LISTS_LOAD_REQUEST: {
+    case FOLLOWED_LISTS_REQUEST: {
+      const res = next(action);
+      const listIds = Object.values(store.getState().followReducer)
+        .filter(follow => follow.cat === 'list')
+        .map(f => f.id);
+      const lists = store.getState().listReducer.lists;
+      listIds
+        .filter(_id => !lists[_id])
+        .forEach(_id => store.dispatch({type: LIST_LOAD_REQUEST, _id}));
+
+      return res;
+    }
+    case OWNED_LISTS_REQUEST: {
       const res = next(action);
       const {openplatformId} = store.getState().userReducer;
       const lists = await loadLists({openplatformId, store});
-      const recentLists = await loadRecentPublic({store});
 
-      const allLists = [...lists, ...recentLists];
+      const allLists = [...lists];
       allLists.forEach(list => {
         store.dispatch({
           type: LIST_LOAD_RESPONSE,
@@ -329,12 +349,17 @@ export const listMiddleware = store => next => async action => {
 
       store.dispatch({type: BOOKS_REQUEST, pids});
 
-      for (const list of [...lists, ...recentLists]) {
+      for (const list of [...lists]) {
         store.dispatch({type: REQUEST_USER, id: list._owner});
         list.list.forEach(element => {
           store.dispatch({type: REQUEST_USER, id: element._owner});
         });
       }
+
+      store.dispatch({type: FOLLOWED_LISTS_REQUEST});
+      store.dispatch({
+        type: OWNED_LISTS_RESPONSE
+      });
 
       return res;
     }

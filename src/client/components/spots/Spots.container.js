@@ -3,10 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import SpotItem from './SpotItem.component';
 import './Spots.css';
-const skeletonElements = [];
-for (let i = 0; i < 20; i++) {
-  skeletonElements.push(i);
-}
+
 export class SpotsBelt extends React.Component {
   constructor(props) {
     super(props);

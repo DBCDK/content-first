@@ -13,6 +13,7 @@ export default class CommentInput extends React.Component {
 
   onSubmit = () => {
     this.props.onSubmit(this.props.value);
+    this.setState({focus: false});
   };
 
   onCancel = () => {
@@ -29,7 +30,11 @@ export default class CommentInput extends React.Component {
         }}
       >
         {!this.props.hideProfile ? (
-          <ProfileImage user={this.props.user} style={{marginRight: '20px'}} />
+          <ProfileImage
+            user={this.props.user}
+            style={{marginRight: '10px'}}
+            size="40"
+          />
         ) : null}
         <div
           style={{width: '100%'}}
@@ -71,14 +76,6 @@ export default class CommentInput extends React.Component {
               transition: 'all 200ms'
             }}
           >
-            {this.props.onDelete ? (
-              <button
-                className="comment-delete btn btn-link link-subtle"
-                onClick={this.props.onDelete}
-              >
-                Slet
-              </button>
-            ) : null}
             <Button
               type="link"
               size="medium"
@@ -94,7 +91,7 @@ export default class CommentInput extends React.Component {
               onClick={this.onSubmit}
               disabled={this.props.disabled || !this.props.value}
             >
-              Gem
+              Kommentér
             </Button>
           </div>
         </div>

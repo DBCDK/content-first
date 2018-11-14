@@ -1,6 +1,7 @@
 import request from 'superagent';
 import {SYSTEM_LIST} from '../redux/list.reducer';
 import {deleteObject} from './requester';
+import {differenceBy} from 'lodash';
 
 // Note: only used exports are:
 //
@@ -83,62 +84,68 @@ export const saveList = async (list, loggedInUserId) => {
   return list;
 };
 
-export const loadRecentPublic = async ({store}) => {
-  let lists = (await request.get(`/v1/object/find?type=list&limit=30`)).body
-    .data;
-
-  for (const list of lists) {
-    await enrichList({list, store});
-  }
-  return lists;
+export const fetchRecent = async (limit = 20) => {
+  const response = await request.get(
+    `/v1/object/find?type=list&limit=${limit}`
+  );
+  return response.body.data.map(list => list._id);
 };
 
 async function enrichList({list}) {
+  list.list = list.list || [];
+  list.deleted = list.deleted || {};
   list.owner = list._owner;
 
-  // Load list elements
-  list.list = list.list || [];
-  list.list = await Promise.all(
-    list.list.map(async o => {
-      try {
-        return o._id ? (await request.get('/v1/object/' + o._id)).body.data : o;
-      } catch (e) {
-        // might fail if permission denied, i.e. owner of list element changed permission.
-        return o;
-      }
-    })
-  );
-
-  // Add elements for open lists
+  // Fetch all list entries
+  let elements;
   if (list.open) {
-    let othersListEntries = (await request.get(
+    elements = (await request.get(
       `/v1/object/find?type=list-entry&key=${list._id}&limit=100000`
     )).body.data;
-
-    list.deleted = list.deleted || {};
-    othersListEntries = othersListEntries.filter(({_id}) => !list.deleted[_id]);
-
-    const listIds = list.list.map(o => o._id).filter(o => !!o);
-    othersListEntries = othersListEntries.filter(
-      ({_id}) => !listIds.includes(_id)
-    );
-
-    othersListEntries.sort((o1, o2) => o1._created - o2._created);
-
-    list.list = list.list.concat(othersListEntries);
+  } else {
+    elements = (await request.get(
+      `/v1/object/find?type=list-entry&key=${
+        list._id
+      }&owner=${encodeURIComponent(list._owner)}&limit=100000`
+    )).body.data;
   }
 
-  // Filter elements which have been removed by other users
-  // Its deleted if element has no pid
-  list.list = list.list.filter(element => element.pid);
+  const entryMap = elements.reduce((map, element) => {
+    map[element._id] = element;
+    return map;
+  }, {});
 
+  // Enrich elements, preserving order of elements as specified in list.list
+  list.list = list.list.map(element => {
+    return {...element, ...entryMap[element._id]};
+  });
+
+  // Add rest of elements to end of list which are not in original list.list
+  const rest = differenceBy(elements, list.list, '_id');
+  rest.sort((o1, o2) => o1._created - o2._created);
+  list.list = list.list.concat(rest);
+
+  // Remove elements which have been removed by other users
+  // and hence might still be referenced in original list.list
+  list.list = list.list
+    .filter(element => element.pid && element._id)
+    .filter(element => !list.deleted[element._id]);
+
+  // We don't want to keep books which have been stored at element
+  // These are handled in the redux books now
   list.list.forEach(el => {
     delete el.book;
   });
 }
 
 export const loadList = async (id, store) => {
+  if (!id) {
+    throw 'no id given';
+  }
   const list = (await request.get(`/v1/object/${id}`)).body.data;
+  if (!list) {
+    throw 'list is undefined';
+  }
   await enrichList({list, store});
   return list;
 };

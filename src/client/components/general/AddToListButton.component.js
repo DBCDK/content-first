@@ -9,7 +9,7 @@ import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {
   CUSTOM_LIST,
   SYSTEM_LIST,
-  getListsForOwner,
+  createGetLists,
   addList,
   addElementToList,
   toggleElementInList,
@@ -58,38 +58,38 @@ export class AddToListButton extends React.Component {
   }
 
   render() {
-    const {work} = this.props;
+    const {work, isLoggedIn} = this.props;
     const book = work.book;
 
     // Number of customLists to show
     const customListsToShow = isMobile ? 20 : 3;
 
     let defaultTitle = 'Tilføj til liste';
-
-    let customTitle = '';
-    this.props.customLists.forEach(list => {
-      let status = this.pidInList(book.pid, list.list);
-      if (status) {
-        customTitle += list.title + ', ';
-        defaultTitle = '';
-      }
-    });
-
     let systemTitle = '';
-    this.props.systemLists.forEach(list => {
-      let status = this.pidInList(book.pid, list.list);
-      if (status) {
-        systemTitle += list.title + ', ';
-        defaultTitle = '';
-      }
-    });
+    let customTitle = '';
+    if (isLoggedIn) {
+      this.props.customLists.forEach(list => {
+        let status = this.pidInList(book.pid, list.list);
+        if (status) {
+          customTitle += list.title + ', ';
+          defaultTitle = '';
+        }
+      });
+      this.props.systemLists.forEach(list => {
+        let status = this.pidInList(book.pid, list.list);
+        if (status) {
+          systemTitle += list.title + ', ';
+          defaultTitle = '';
+        }
+      });
+    }
 
     const buttonActive = defaultTitle === '' ? 'AddToListButton__Active' : '';
 
-    if (!this.props.isLoggedIn) {
+    if (!isLoggedIn) {
       return (
         <Button
-          className={'AddToListButton'}
+          className={'AddToListButton ' + this.props.className || ''}
           type="quinary"
           size="medium"
           onClick={() => {
@@ -246,18 +246,16 @@ export class AddToListButton extends React.Component {
   }
 }
 
+const customListSelector = createGetLists();
+const systemListsSelector = createGetLists();
 const mapStateToProps = state => {
   return {
-    customLists: getListsForOwner(state, {
+    customLists: customListSelector(state, {
       type: CUSTOM_LIST,
-      _owner: state.userReducer.openplatformId
-    }).sort(function(a, b) {
-      if (!b._modified) {
-        return 1;
-      }
-      return b._modified - a._modified;
+      _owner: state.userReducer.openplatformId,
+      sort: 'created'
     }),
-    systemLists: getListsForOwner(state, {
+    systemLists: systemListsSelector(state, {
       type: SYSTEM_LIST,
       _owner: state.userReducer.openplatformId,
       sort: true
@@ -269,8 +267,8 @@ const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch => ({
   addToList: (work, listId) => dispatch(addElementToList(work, listId)),
   newList: title => dispatch(addList({title})),
-  toggleInList: (work, listId) => {
-    dispatch(toggleElementInList(work, listId));
+  toggleInList: async (work, listId) => {
+    await dispatch(toggleElementInList(work, listId));
     dispatch(storeList(listId));
   },
   saveList: listId => dispatch(storeList(listId)),

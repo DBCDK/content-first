@@ -55,7 +55,7 @@
 
 @media only screen and (max-width: 768px) {
   .WorkCard {
-    height: 320px;
+    height: 350px;
     width: 160px;
   }
 }

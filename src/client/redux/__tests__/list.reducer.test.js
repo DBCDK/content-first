@@ -1,8 +1,7 @@
 import listReducer, {
   addList,
-  getLists,
+  createGetLists,
   getListByIdSelector,
-  getListsForOwner,
   removeList,
   addElementToList,
   removeElementFromList,
@@ -11,6 +10,7 @@ import listReducer, {
   CUSTOM_LIST,
   SYSTEM_LIST
 } from '../list.reducer';
+const getLists = createGetLists();
 const getListById = getListByIdSelector();
 
 const booksState = {
@@ -96,7 +96,7 @@ describe('listReducer', () => {
     );
     const state = {listReducer: listState, booksReducer: booksState};
 
-    expect(getLists(state)).toMatchSnapshot();
+    expect(getLists(state, {})).toMatchSnapshot();
   });
   test('remove list', () => {
     let listState = listReducer(
@@ -121,7 +121,7 @@ describe('listReducer', () => {
 
     const state = {listReducer: listState, booksReducer: booksState};
 
-    expect(getLists(state)).toMatchSnapshot();
+    expect(getLists(state, {})).toMatchSnapshot();
   });
   test('get lists by type', () => {
     let listState = listReducer(
@@ -190,8 +190,8 @@ describe('listReducer', () => {
 
     const state = {listReducer: listState, booksReducer: booksState};
 
-    expect(getListsForOwner(state, {_owner: 'some-owner'})).toMatchSnapshot(); // owned lists
-    expect(getListsForOwner(state)).toMatchSnapshot(); // no lists
+    expect(getLists(state, {_owner: 'some-owner'})).toMatchSnapshot(); // owned lists
+    expect(getLists(state, {_owner: 'unknown'})).toMatchSnapshot(); // no lists
   });
   test('add element to list', () => {
     let listState = listReducer(
@@ -209,7 +209,7 @@ describe('listReducer', () => {
     );
 
     const state = {listReducer: listState, booksReducer: booksState};
-    expect(getLists(state)).toMatchSnapshot();
+    expect(getLists(state, {})).toMatchSnapshot();
   });
   test('add element to list twice - no duplicates allowed', () => {
     let listState = listReducer(
@@ -254,7 +254,7 @@ describe('listReducer', () => {
       )
     );
     const state = {listReducer: listState, booksReducer: booksState};
-    expect(getLists(state)).toMatchSnapshot();
+    expect(getLists(state, {})).toMatchSnapshot();
   });
   test('remove element from list', () => {
     let listState = listReducer(
@@ -285,7 +285,7 @@ describe('listReducer', () => {
       removeElementFromList({_id: '123', book: {pid: 'pid1'}}, 'some-id-1')
     );
     const state = {listReducer: listState, booksReducer: booksState};
-    expect(getLists(state)).toMatchSnapshot();
+    expect(getLists(state, {})).toMatchSnapshot();
   });
   test('toggle element in list', () => {
     let listState = listReducer(
@@ -304,7 +304,7 @@ describe('listReducer', () => {
 
     const state = {listReducer: listState, booksReducer: booksState};
 
-    expect(getLists(state)).toMatchSnapshot();
+    expect(getLists(state, {})).toMatchSnapshot();
 
     listState = listReducer(
       listState,
@@ -313,7 +313,7 @@ describe('listReducer', () => {
 
     state.listReducer = listState;
 
-    expect(getLists(state)).toMatchSnapshot();
+    expect(getLists(state, {})).toMatchSnapshot();
   });
   test('insert element at specific pos in list', () => {
     let listState = listReducer(
@@ -353,6 +353,6 @@ describe('listReducer', () => {
 
     const state = {listReducer: listState, booksReducer: booksState};
 
-    expect(getLists(state)).toMatchSnapshot();
+    expect(getLists(state, {})).toMatchSnapshot();
   });
 });

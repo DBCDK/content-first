@@ -92,6 +92,10 @@ class FilterPage extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize);
+    const searchBar = document.getElementById('Searchbar__inputfield');
+    if (searchBar) {
+      searchBar.focus();
+    }
   }
 
   componentDidUpdate(prevProps) {

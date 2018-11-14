@@ -15,6 +15,7 @@
   font-size: 4.5vw;
   font-weight: 800;
   line-height: 1.3em;
+  color: white;
 }
 
 .Title__title2 {
@@ -45,6 +46,10 @@
     Modifiers
 */
 
+.Title__title1--color-petrolium {
+  color: var(--petrolium);
+}
+
 .Title__title3--weight-normal {
   font-weight: 400;
 }
@@ -53,14 +58,23 @@
   text-transform: uppercase;
 }
 
+.Title__title3--color-white {
+  color: white;
+}
+
 /*
     MediaQ
 */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 576px) {
   /*
       Types
   */
+
+  .Title__title1 {
+    font-size: 10vw;
+    line-height: 42px;
+  }
 
   .Title__title2 {
     font-size: 28px;
@@ -75,5 +89,10 @@
   .Title__title4 {
     font-size: 21px;
     line-height: 27px;
+  }
+
+  .Title__title5 {
+    font-size: 14px;
+    line-height: 20px;
   }
 }

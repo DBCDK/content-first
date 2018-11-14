@@ -80,7 +80,6 @@ class WorkPage extends React.Component {
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
 
     const tax_description = book.taxonomy_description || book.description;
-
     return (
       <div className="container">
         <div className="row WorkPage__container">
@@ -114,10 +113,15 @@ class WorkPage extends React.Component {
               <Title Tag="h3" type="title3" className="mt0">
                 {book.title}
               </Title>
-
-              <Title Tag="h2" type="title5" className="mt1">
-                {book.creator}
-              </Title>
+              <Link
+                href="/find"
+                params={{creator: book.creator}}
+                className="work-page-book-creator"
+              >
+                <Title Tag="h2" type="title5" className="mt1">
+                  {book.creator}
+                </Title>
+              </Link>
 
               <Text type="body" variant="weight-semibold" className="mt1">
                 {<TaxDescription text={tax_description} />}

@@ -6,9 +6,9 @@ import {
   getCommentsForIdSelector
 } from '../../redux/comment.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
-import {Comments as CommentsIcon} from '../general/Icons';
 import CommentList from './CommentList.component';
 import CommentInput from './CommentInput.component';
+import Text from '../base/Text';
 
 export class CommentContainer extends React.Component {
   constructor(props) {
@@ -55,9 +55,52 @@ export class CommentContainer extends React.Component {
       (this.props.comments && this.props.comments.length) || 0;
     return (
       <div style={{position: 'relative'}}>
+        <div className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0">
+          <div className="comment-container-divider col-12" />
+
+          <div className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between">
+            <Text type="body">
+              <span className="d-flex">
+                <i className="material-icons outline-mode_comment mr-1">
+                  chat_bubble_outline
+                </i>
+                Kommentér
+              </span>
+            </Text>
+
+            <Text type="body" variant="decoration-underline">
+              <span>{commentsCount + ' kommentarer'}</span>
+            </Text>
+          </div>
+        </div>
         <div className={'comments ' + this.props.className}>
           {commentsCount ? (
-            <div className="mb3">
+            <div className="mb2 ">
+              {commentsCount > this.state.showCount ? (
+                <button
+                  id="comment-toggle"
+                  onClick={() => this.setState({showAll: !this.state.showAll})}
+                  style={{
+                    marginLeft: 55,
+                    position: 'relative',
+                    paddingLeft: 0,
+                    marginTop: '-2rem'
+                  }}
+                  className="btn btn-link link-subtle"
+                >
+                  <Text
+                    type="body"
+                    variant="decoration-underline"
+                    className="mb-0"
+                  >
+                    {!this.state.showAll
+                      ? 'Vis flere kommentarer'
+                      : 'Vis færre kommentarer'}
+                  </Text>
+                </button>
+              ) : (
+                ''
+              )}
               <CommentList
                 user={this.props.user}
                 comments={this.props.comments}
@@ -67,27 +110,6 @@ export class CommentContainer extends React.Component {
                     : this.state.showCount
                 }
               />
-              {commentsCount > this.state.showCount ? (
-                <button
-                  id="comment-toggle"
-                  onClick={() => this.setState({showAll: !this.state.showAll})}
-                  style={{marginLeft: 55, position: 'relative', paddingLeft: 0}}
-                  className="btn btn-link mt1 mb1 link-subtle"
-                >
-                  <CommentsIcon
-                    value={
-                      this.props.comments ? this.props.comments.length : ''
-                    }
-                  />
-                  <span className="ml1">
-                    {!this.state.showAll
-                      ? 'Vis alle kommentarer'
-                      : 'Vis færre kommentarer'}
-                  </span>
-                </button>
-              ) : (
-                ''
-              )}
             </div>
           ) : null}
           <CommentInput

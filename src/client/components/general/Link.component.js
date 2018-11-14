@@ -16,6 +16,7 @@ const Link = ({
     href={href}
     onClick={e => {
       e.preventDefault();
+      e.stopPropagation();
       dispatch({type: type, path: href, params});
       if (onClick) {
         onClick();

@@ -16,26 +16,16 @@
   text-transform: uppercase;
   background-color: var(--fersken);
 }
-.Button__primary:hover {
-  background-color: var(--lys-fersken);
-}
 
 .Button__secondary {
   text-transform: uppercase;
   background-color: var(--french-pass);
-}
-.Button__secondary:hover {
-  background-color: var(--due);
 }
 
 .Button__tertiary {
   text-transform: none;
   background-color: var(--porcelain);
   cursor: pointer;
-}
-
-.Button__tertiary:hover {
-  background-color: var(--pistache);
 }
 
 .Button__quaternary {
@@ -46,10 +36,6 @@
   background-color: var(--porcelain);
 }
 
-.Button__quinary:hover {
-  background-color: var(--french-pass);
-}
-
 .Button__term {
   font-weight: 400;
   font-size: 0.9rem;
@@ -57,14 +43,27 @@
   background-color: var(--concrete);
 }
 
-.Button__term:hover {
-  background-color: var(--pistache);
+@media (hover: hover) { 
+  .Button__term:hover {
+    background-color: var(--pistache);
+  }
+  .Button__quinary:hover {
+    background-color: var(--french-pass);
+  }
+  .Button__tertiary:hover {
+    background-color: var(--pistache);
+  }
+  .Button__secondary:hover {
+    background-color: var(--due);
+  }
+  .Button__primary:hover {
+    background-color: var(--lys-fersken);
+  }
+ 
 }
-
 .Button__term i {
   color: var(--fersken) !important;
 }
-
 .Button__term::first-letter {
   text-transform: uppercase;
 }
@@ -94,7 +93,6 @@
 
 /* Sizes */
 .Button__large {
-  text-transform: none;
   padding: 10px 15px;
   font-size: 1.3em;
 }
@@ -111,8 +109,52 @@
   font-size: 0.75rem;
 }
 
+/* Variants */
+
+.Button__primary--bgcolor-fersken--color-white,
+.Button__primary--bgcolor-fersken--color-white:hover {
+  background-color: var(--fersken);
+  color: white;
+}
+
+.Button__primary--bgcolor-due--color-white,
+.Button__primary--bgcolor-due--color-white:hover {
+  background-color: var(--due);
+  color: white;
+}
+
+.Button__primary--bgcolor-korn--color-white,
+.Button__primary--bgcolor-korn--color-white:hover {
+  background-color: var(--korn);
+  color: white;
+}
+
+.Button__primary--bgcolor-petrolium--color-white,
+.Button__primary--bgcolor-petrolium--color-white:hover {
+  background-color: var(--petrolium);
+  color: white;
+}
+
+.Button__primary--bgcolor-fersken--color-petrolium,
+.Button__primary--bgcolor-fersken--color-petrolium:hover {
+  background-color: var(--fersken);
+  color: var(--petrolium);
+}
+
+.Button__primary--bgcolor-due--color-petrolium,
+.Button__primary--bgcolor-due--color-petrolium:hover {
+  background-color: var(--due);
+  color: var(--petrolium);
+}
+
+.Button__primary--bgcolor-korn--color-petrolium,
+.Button__primary--bgcolor-korn--color-petrolium:hover {
+  background-color: var(--korn);
+  color: var(--petrolium);
+}
+
 /* Feedback button */
-.Button__feedback{
+.Button__feedback {
   background-color: var(--pistache);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
