@@ -109,7 +109,7 @@ router
       try {
         existingRaw = await knex(tagTable)
           .where({pid})
-          .select('tag');
+          .select(['tag as id', 'score']);
       } catch (error) {
         return next({
           status: 500,
@@ -119,11 +119,11 @@ router
         });
       }
       const existing = _.map(existingRaw, obj => {
-        return obj.tag;
+        return {id: obj.id, score: parseFloat(obj.score)};
       });
       const missing = _.difference(meta.tags, existing);
       const rawTable = _.map(missing, tag => {
-        return {pid, tag};
+        return {pid, tag: tag.id, score: tag.score};
       });
       await knex(tagTable).insert(rawTable);
       const tags = _.union(meta.tags, existing);
@@ -178,7 +178,7 @@ router
           .where('pid', pid)
           .del();
         const rawTable = _.map(meta.tags, tag => {
-          return {pid, tag};
+          return {pid, tag: tag.id, score: tag.score};
         });
         await knex(tagTable).insert(rawTable);
         res
