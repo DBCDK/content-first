@@ -29,7 +29,20 @@ describe('tags', () => {
       const goodTags = require('fixtures/tag-entry.json');
       return expect(tags.parsingTagsInjection(goodTags)).to.become({
         pid: '870970-basis:53187404',
-        tags: [49, 55, 56, 90, 221, 223, 224, 230, 234, 281, 302, 313]
+        tags: [
+          {id: 49, score: 1},
+          {id: 55, score: 1},
+          {id: 56, score: 1},
+          {id: 90, score: 1},
+          {id: 221, score: 1},
+          {id: 223, score: 1},
+          {id: 224, score: 1},
+          {id: 230, score: 1},
+          {id: 234, score: 1},
+          {id: 281, score: 1},
+          {id: 302, score: 1},
+          {id: 313, score: 1}
+        ]
       });
     });
   });

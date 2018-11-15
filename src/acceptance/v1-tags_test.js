@@ -37,38 +37,7 @@ describe('Endpoint /v1/tags', () => {
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/tags-data-out.json');
               expect(data.pid).to.equal(pid);
-              expect(data.tags).to.have.members([
-                44,
-                46,
-                49,
-                84,
-                85,
-                89,
-                90,
-                91,
-                92,
-                94,
-                96,
-                98,
-                99,
-                100,
-                103,
-                221,
-                222,
-                223,
-                224,
-                229,
-                234,
-                241,
-                251,
-                255,
-                256,
-                271,
-                281,
-                302,
-                318,
-                332
-              ]);
+              expect(data.tags.length).to.equal(30);
             });
           })
           .expect(200);
@@ -118,7 +87,7 @@ describe('Endpoint /v1/tags', () => {
               .get('/v1/tags/already-tags-seeded-pid-without-book-entry')
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
-                  expect(data.tags).to.include(44);
+                  expect(data.tags).to.deep.include({id: 44, score: 1});
                 });
               })
               .expect(200);
@@ -154,7 +123,7 @@ describe('Endpoint /v1/tags', () => {
               .get('/v1/tags/already-tags-seeded-pid-without-book-entry')
               .expect(res => {
                 expectSuccess(res.body, (links, data) => {
-                  expect(data.tags).to.include(44);
+                  expect(data.tags).to.deep.include({id: 44, score: 1});
                 });
               })
               .expect(200);
@@ -296,20 +265,7 @@ describe('Endpoint /v1/tags', () => {
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/tags-data-out.json');
               expect(data.pid).to.equal(pid);
-              expect(data.tags).to.have.members([
-                49,
-                55,
-                56,
-                90,
-                221,
-                223,
-                224,
-                230,
-                234,
-                281,
-                302,
-                313
-              ]);
+              expect(data.tags.length).to.equal(12);
             });
           })
           .expect('location', location)
@@ -330,7 +286,7 @@ describe('Endpoint /v1/tags', () => {
               expectValidate(data, 'schemas/tags-data-out.json');
               expect(data).to.deep.equal({
                 pid,
-                tags: [1, 2]
+                tags: [{id: 1, score: 1}, {id: 2, score: 1}]
               });
             });
           })
@@ -397,20 +353,7 @@ describe('Endpoint /v1/tags', () => {
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/tags-data-out.json');
               expect(data.pid).to.equal(pid);
-              expect(data.tags).to.have.members([
-                49,
-                55,
-                56,
-                90,
-                221,
-                223,
-                224,
-                230,
-                234,
-                281,
-                302,
-                313
-              ]);
+              expect(data.tags.length).to.equal(12);
             });
           })
           .expect('location', location)
@@ -431,40 +374,6 @@ describe('Endpoint /v1/tags', () => {
               expect(links.self).to.equal(location);
               expectValidate(data, 'schemas/tags-data-out.json');
               expect(data.pid).to.equal(pid);
-              expect(data.tags).to.have.members([
-                1,
-                2,
-                44,
-                46,
-                49,
-                84,
-                85,
-                89,
-                90,
-                91,
-                92,
-                94,
-                96,
-                98,
-                99,
-                100,
-                103,
-                221,
-                222,
-                223,
-                224,
-                229,
-                234,
-                241,
-                251,
-                255,
-                256,
-                271,
-                281,
-                302,
-                318,
-                332
-              ]);
             });
           })
           .expect('location', location)
