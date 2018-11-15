@@ -1,0 +1,11 @@
+.Article {
+  width: min-content;
+}
+
+.Article .Article__content {
+}
+
+.Article .Article__content img {
+  width: 719px;
+  height: auto;
+}

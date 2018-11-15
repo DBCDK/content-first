@@ -24,6 +24,7 @@ import ShortList from './components/list/shortlist/ShortList.container';
 import Spinner from './components/general/Spinner.component';
 import Styleguide from './components/Styleguide/Styleguide.component';
 import FeedbackButton from './components/general/FeedbackButton.component';
+import Article from './components/article/Article.component';
 
 class App extends Component {
   componentWillMount() {
@@ -81,7 +82,8 @@ class App extends Component {
     }
 
     if (!currentPage) {
-      currentPage = <div>PAGE NOT FOUND</div>;
+      //currentPage = <div>PAGE NOT FOUND</div>;
+      currentPage = <Article path={`/${pathSplit[1]}`} />;
     }
 
     return (
