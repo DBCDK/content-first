@@ -12,7 +12,10 @@ import './WorkCard.css';
 
 export const SkeletonWorkCard = props => {
   return (
-    <div className={'WorkCard' + ' ' + props.className}>
+    <div
+      ref={props.cardRef || null}
+      className={'WorkCard' + ' ' + props.className}
+    >
       <BookCover book={{book: {}}} />
       <div
         className="skelet-taxonomy-description d-xs-none d-sm-block"
@@ -56,7 +59,8 @@ class WorkCard extends React.Component {
     return (
       nextProps.highlight !== this.props.highlight ||
       nextProps.work !== this.props.work ||
-      nextProps.allowFetch !== this.props.allowFetch
+      nextProps.allowFetch !== this.props.allowFetch ||
+      nextProps.cardRef !== this.props.cardRef
     );
   }
 
@@ -74,6 +78,7 @@ class WorkCard extends React.Component {
 
     return (
       <div
+        ref={this.props.cardRef || null}
         className={
           'WorkCard' +
           (this.props.highlight ? ' highlight' : '') +
@@ -89,7 +94,9 @@ class WorkCard extends React.Component {
         />
         <div
           style={{height: '100%'}}
-          onClick={() => this.props.onWorkPreviewClick(this.props.work)}
+          onClick={() =>
+            this.props.onWorkClick(this.props.work, this.props.rowId)
+          }
         >
           <BookCover
             className="book-cover"
@@ -111,7 +118,9 @@ class WorkCard extends React.Component {
                 width: '100%',
                 paddingTop: '80%'
               }}
-              onClick={() => this.props.onWorkPreviewClick(this.props.work)}
+              onClick={() =>
+                this.props.onWorkClick(this.props.work, this.props.rowId)
+              }
             >
               <Heading Tag="h3" type="title" style={{marginBottom: 4}}>
                 {this.props.work.book.title}
@@ -125,9 +134,14 @@ class WorkCard extends React.Component {
                 <Button
                   type="tertiary"
                   size="small"
-                  onClick={() =>
-                    this.props.onMoreLikeThisClick(this.props.work)
-                  }
+                  onClick={e => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    this.props.onMoreLikeThisClick(
+                      this.props.work,
+                      this.props.rowId
+                    );
+                  }}
                 >
                   Mere som denne
                 </Button>

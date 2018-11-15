@@ -94,7 +94,8 @@
 }
 
 .filter-page-works .WorkCard {
-  margin: 0rem 1rem 1rem 0;
+  box-sizing: content-box;
+  padding: 0rem 1rem 1rem 0;
 }
 
 .warning {

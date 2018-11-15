@@ -305,15 +305,20 @@ exports[`renders without crashing 1`] = `
         <BooksBelt
           belt={
             Object {
+              "child": false,
+              "key": "Bedste forslag",
               "name": "Bedste forslag",
               "onFrontPage": true,
+              "type": "belt",
             }
           }
         />
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
+              "key": "Mennesket og Naturen",
               "links": Array [],
               "name": "Mennesket og Naturen",
               "onFrontPage": true,
@@ -333,13 +338,16 @@ exports[`renders without crashing 1`] = `
                 2183,
                 2278,
               ],
+              "type": "belt",
             }
           }
         />
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
+              "key": "Familiens skyggesider",
               "links": Array [],
               "name": "Familiens skyggesider",
               "onFrontPage": true,
@@ -362,13 +370,16 @@ exports[`renders without crashing 1`] = `
                   "weight": 10,
                 },
               ],
+              "type": "belt",
             }
           }
         />
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
+              "key": "Tankevækkende Sci-fi",
               "links": Array [],
               "name": "Tankevækkende fremtidsvisioner",
               "onFrontPage": true,
@@ -382,6 +393,7 @@ exports[`renders without crashing 1`] = `
                 5714,
                 5713,
               ],
+              "type": "belt",
             }
           }
         />
@@ -411,7 +423,9 @@ exports[`renders without crashing 1`] = `
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
+              "key": "Krøllede fortællinger",
               "links": Array [],
               "name": "Krøllede fortællinger",
               "onFrontPage": true,
@@ -429,27 +443,16 @@ exports[`renders without crashing 1`] = `
                 5652,
                 5717,
               ],
+              "type": "belt",
             }
           }
         />
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
-              "links": Array [],
-              "name": "Bibliotekarens ugentlige anbefalinger",
-              "onFrontPage": true,
-              "tags": Array [
-                -2,
-              ],
-              "works": Array [],
-            }
-          }
-        />
-        <BooksBelt
-          belt={
-            Object {
-              "isLoading": false,
+              "key": "Sofahygge",
               "links": Array [],
               "name": "Sofahygge",
               "onFrontPage": true,
@@ -467,13 +470,16 @@ exports[`renders without crashing 1`] = `
                   "weight": 10,
                 },
               ],
+              "type": "belt",
             }
           }
         />
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
+              "key": "Tolkienesque",
               "links": Array [],
               "name": "Tolkienesque",
               "onFrontPage": true,
@@ -493,13 +499,16 @@ exports[`renders without crashing 1`] = `
                 },
                 5708,
               ],
+              "type": "belt",
             }
           }
         />
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
+              "key": "Det var en mørk og stormfuld nat",
               "links": Array [],
               "name": "Det var en mørk og stormfuld nat",
               "onFrontPage": true,
@@ -519,13 +528,16 @@ exports[`renders without crashing 1`] = `
                 5670,
                 5676,
               ],
+              "type": "belt",
             }
           }
         />
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
+              "key": "Hvad sker der bag hækken?",
               "links": Array [],
               "name": "Hvad sker der bag hækken?",
               "onFrontPage": true,
@@ -545,13 +557,16 @@ exports[`renders without crashing 1`] = `
                 5676,
                 5691,
               ],
+              "type": "belt",
             }
           }
         />
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
+              "key": "Historiske romaner",
               "links": Array [],
               "name": "Historiske romaner",
               "onFrontPage": true,
@@ -565,17 +580,19 @@ exports[`renders without crashing 1`] = `
                 5658,
                 189,
               ],
+              "type": "belt",
             }
           }
         />
         <BooksBelt
           belt={
             Object {
+              "child": false,
               "isLoading": false,
+              "key": "Vemodige nordmænd",
               "links": Array [],
               "name": "Vemodige nordmænd",
               "onFrontPage": true,
-              "pidPreview": false,
               "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
               "tags": Array [
                 Object {
@@ -588,6 +605,7 @@ exports[`renders without crashing 1`] = `
                 5683,
                 5630,
               ],
+              "type": "belt",
             }
           }
         />

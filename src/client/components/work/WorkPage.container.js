@@ -18,12 +18,7 @@ import SocialShareButton from '../general/SocialShareButton.component';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {ADD_BELT} from '../../redux/belts.reducer';
 import {get} from 'lodash';
-import {
-  filterCollection,
-  filterReviews,
-  sortTags,
-  buildSimilarBooksBelt
-} from './workFunctions';
+import {filterCollection, filterReviews, sortTags} from './workFunctions';
 import './WorkPage.css';
 
 class WorkPage extends React.Component {
@@ -71,7 +66,14 @@ class WorkPage extends React.Component {
     const belt = belts['Minder om ' + book.title];
 
     if (book.title && !belts['Minder om ' + book.title]) {
-      this.addNewBelt(buildSimilarBooksBelt(work));
+      this.addNewBelt({
+        name: 'Minder om ' + book.title,
+        key: 'Minder om ' + book.title,
+        pid: book.pid,
+        onFrontPage: false,
+        type: 'belt',
+        child: false
+      });
     }
 
     // tags collapsable variables
