@@ -1,7 +1,28 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import {connect} from 'react-redux';
-
+import Title from '../base/Title';
+import Text from '../base/Text';
+import Button from '../base/Button';
+import Link from '../general/Link.component';
 import './Article.css';
+
+const renderers = {
+  heading: props => {
+    let lvl = props.level + 1;
+    if (lvl > 3) {
+      lvl = 5;
+    }
+    return (
+      <Title Tag={`h${lvl}`} type={`title${lvl}`}>
+        {props.children}
+      </Title>
+    );
+  },
+  paragraph: props => {
+    return <Text type="body">{props.children}</Text>;
+  }
+};
 
 export class Article extends React.Component {
   fetchArticle() {
@@ -18,9 +39,11 @@ export class Article extends React.Component {
   render() {
     const article = this.fetchArticle();
     return (
-      <div className="container d-inline-flex justify-content-center">
-        <div className="Article mt-5">
-          <div className="Article__content p-4 lys-graa">{article.content}</div>
+      <div className="d-flex justify-content-center">
+        <div className="Article mt-md-5 mb-md-5">
+          <div className="Article__content lys-graa">
+            <ReactMarkdown source={article.src} renderers={renderers} />
+          </div>
         </div>
       </div>
     );

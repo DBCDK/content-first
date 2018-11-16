@@ -3,9 +3,28 @@
 }
 
 .Article .Article__content {
+  padding: 2rem;
+  min-width: 719px;
 }
 
 .Article .Article__content img {
   width: 719px;
   height: auto;
+}
+
+@media (max-width: 768px) {
+  .Article {
+    width: 100%;
+  }
+
+  .Article .Article__content {
+    min-width: auto;
+    padding: 0 2rem 2rem 2rem;
+  }
+
+  .Article .Article__content img {
+    width: calc(100% + 4rem) !important;
+    height: auto;
+    margin: 0 -2rem 0 -2rem;
+  }
 }
