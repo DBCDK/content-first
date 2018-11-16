@@ -18,6 +18,7 @@
     "chai": "^4.0.2",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^2.13.1",
+    "cypress": "^3.1.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.0",
@@ -101,14 +102,17 @@
     "start": "run-p start-backend start-frontend",
     "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/",
     "start-frontend": "react-scripts start",
-    "test": "run-s test-frontend test-units lint-js",
+    "test": "run-s test-frontend test-units cy:run lint-js",
     "test-acceptance": ". ./current.env && mocha --exit src/acceptance/*_test.js",
     "test-frontend": "CI=true react-scripts test --env=jsdom",
     "test-frontend:watch": "react-scripts test --env=jsdom",
     "test-full": "run-s test test-no-elvis",
     "test-no-db": ". ./current.env && mocha --exit src/acceptance/*_no-db.js",
     "test-no-elvis": "run-s test-no-db test-acceptance test-frontend",
-    "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js"
+    "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
+
   },
   "jest": {
     "snapshotSerializers": [
