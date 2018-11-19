@@ -206,19 +206,18 @@ export class TopBar extends React.Component {
 
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
-        {searchPage &&
-          searchExpanded && (
-            <div className="Topbar__mobile__overlay d-block d-sm-none">
-              <span onClick={() => this.toggleSearchBar('close')}>
-                <Icon name="chevron_left" /> Tilbage
-              </span>
-              <span
-                onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
-              >
-                Nulstil
-              </span>
-            </div>
-          )}
+        {searchPage && searchExpanded && (
+          <div className="Topbar__mobile__overlay d-block d-sm-none">
+            <span onClick={() => this.toggleSearchBar('close')}>
+              <Icon name="chevron_left" /> Tilbage
+            </span>
+            <span
+              onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
+            >
+              Nulstil
+            </span>
+          </div>
+        )}
         <nav className="col-12 col-m-8 Topbar__navigation">
           <span
             className="Topbar__navigation__btn widthCalc d-none d-md-flex"
@@ -290,29 +289,28 @@ export class TopBar extends React.Component {
             <Text className="logo-beta-sign mb-0" type="micro">
               BETA
             </Text>
-            {!searchExpanded &&
-              ((isIndex && isMobileOnly) || !isMobileOnly) && (
-                <div className="d-inline-flex">
-                  <Text
-                    className="d-none d-sm-inline logo-beta-text"
-                    type="small"
-                  >
-                    {'Nu 600+ bøger'}
-                  </Text>
-                  <Text
-                    className="d-inline logo-beta-link mb0"
-                    type="small"
-                    variant="decoration-underline"
-                    onClick={e => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      this.props.betaModal();
-                    }}
-                  >
-                    {'Læs mere'}
-                  </Text>
-                </div>
-              )}
+            {!searchExpanded && ((isIndex && isMobileOnly) || !isMobileOnly) && (
+              <div className="d-inline-flex">
+                <Text
+                  className="d-none d-sm-inline logo-beta-text"
+                  type="small"
+                >
+                  {'Nu 600+ bøger'}
+                </Text>
+                <Text
+                  className="d-inline logo-beta-link mb0"
+                  type="small"
+                  variant="decoration-underline"
+                  onClick={e => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.props.betaModal();
+                  }}
+                >
+                  {'Læs mere'}
+                </Text>
+              </div>
+            )}
           </div>
         </Link>
         <TopBarDropdown

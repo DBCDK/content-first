@@ -5,8 +5,8 @@ import {HISTORY_REPLACE} from '../../redux/middleware';
 import Spinner from '../general/Spinner.component';
 
 /*
-* Will create a new list object and redirect to listpage
-*/
+ * Will create a new list object and redirect to listpage
+ */
 export class ListCreator extends React.Component {
   componentDidMount() {
     this.props.createList();

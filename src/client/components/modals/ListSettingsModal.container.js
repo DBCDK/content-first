@@ -170,13 +170,11 @@ export class ListSettingsModal extends React.Component {
           </CheckBoxButton>
         </div>
         <div className="mt1">
-          {!list.image &&
-            this.state.template === 'bookcase' && (
-              <Text type="body" variant="color-fersken">
-                Tilføj et billede til listen for at andre kan se den som
-                bogreol.
-              </Text>
-            )}
+          {!list.image && this.state.template === 'bookcase' && (
+            <Text type="body" variant="color-fersken">
+              Tilføj et billede til listen for at andre kan se den som bogreol.
+            </Text>
+          )}
         </div>
       </Modal>
     );
