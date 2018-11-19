@@ -55,7 +55,7 @@
   line-height: 1.3rem;
 }
 a.list-card-nohover {
-  color: black;
+  color: var(--petrolium);
   text-decoration: none;
 }
 .list-card-description {
