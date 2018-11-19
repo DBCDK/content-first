@@ -82,7 +82,6 @@ class App extends Component {
     }
 
     if (!currentPage) {
-      //currentPage = <div>PAGE NOT FOUND</div>;
       currentPage = <Article path={`/${pathSplit[1]}`} />;
     }
 

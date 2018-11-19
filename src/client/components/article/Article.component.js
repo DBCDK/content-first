@@ -3,8 +3,6 @@ import ReactMarkdown from 'react-markdown';
 import {connect} from 'react-redux';
 import Title from '../base/Title';
 import Text from '../base/Text';
-import Button from '../base/Button';
-import Link from '../general/Link.component';
 import './Article.css';
 
 const renderers = {

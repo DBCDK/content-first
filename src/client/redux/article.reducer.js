@@ -1,4 +1,3 @@
-/* Pages */
 /* eslint import/no-webpack-loader-syntax: off */
 import About from '!raw-loader!../components/article/pages/about.md';
 import NotFound from '!raw-loader!../components/article/pages/404.md';
