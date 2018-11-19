@@ -57,6 +57,7 @@ exports[`Image Upload render function Add image 1`] = `
           <span
             className="
                 btn Button Button__medium Button__tertiary "
+            data-cy=""
             disabled={false}
           >
             <Icon
@@ -137,6 +138,7 @@ exports[`Image Upload render function Add preview image 1`] = `
     <span
       className="
           btn Button Button__medium Button__tertiary "
+      data-cy=""
       disabled={false}
     >
       <i
@@ -222,6 +224,7 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
     <span
       className="
           btn Button Button__medium Button__tertiary "
+      data-cy=""
       disabled={false}
     >
       <i
@@ -294,6 +297,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
     <span
       className="
           btn Button Button__medium Button__tertiary "
+      data-cy=""
       disabled={false}
     >
       <i

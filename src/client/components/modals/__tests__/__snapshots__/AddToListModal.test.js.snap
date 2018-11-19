@@ -33,6 +33,7 @@ exports[`AddToListModal multiple works as input 1`] = `
       <button
         className="m-3 d-inline-block d-sm-none
             btn Button Button__medium Button__link2 "
+        data-cy=""
         disabled={false}
         onClick={[Function]}
       >
@@ -189,6 +190,7 @@ exports[`AddToListModal multiple works as input 1`] = `
           <button
             className="mr-4 false
                 btn Button Button__large Button__quaternary "
+            data-cy=""
             disabled={false}
             onClick={[Function]}
           >
@@ -234,6 +236,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
       <button
         className="m-3 d-inline-block d-sm-none
             btn Button Button__medium Button__link2 "
+        data-cy=""
         disabled={false}
         onClick={[Function]}
       >
@@ -421,6 +424,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
           <button
             className="mr-4 false
                 btn Button Button__large Button__quaternary "
+            data-cy=""
             disabled={false}
             onClick={[Function]}
           >
@@ -466,6 +470,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
       <button
         className="m-3 d-inline-block d-sm-none
             btn Button Button__medium Button__link2 "
+        data-cy=""
         disabled={false}
         onClick={[Function]}
       >
@@ -639,6 +644,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
           <button
             className="mr-4 false
                 btn Button Button__large Button__quaternary "
+            data-cy=""
             disabled={false}
             onClick={[Function]}
           >

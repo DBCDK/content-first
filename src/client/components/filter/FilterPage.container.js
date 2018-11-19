@@ -110,8 +110,9 @@ class FilterPage extends React.Component {
 
           <div className="filter-page-works">
             {this.props.recommendedPids.pids.length > 0 &&
-              this.props.recommendedPids.pids.map(pid => (
+              this.props.recommendedPids.pids.map((pid, index) => (
                 <WorkCard
+                  index={index}
                   pid={pid}
                   key={pid}
                   enableHover={true}

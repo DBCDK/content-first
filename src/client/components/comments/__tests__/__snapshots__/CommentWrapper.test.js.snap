@@ -1101,6 +1101,7 @@ exports[`CommentContainer Edit button 2`] = `
                   <button
                     className="comment-cancel mr-2 ml-2
                         btn Button Button__medium Button__link "
+                    data-cy=""
                     disabled={false}
                     onClick={[Function]}
                   >
@@ -1117,6 +1118,7 @@ exports[`CommentContainer Edit button 2`] = `
                   <button
                     className="mr-2 ml-2
                         btn Button Button__large Button__quaternary "
+                    data-cy=""
                     disabled={false}
                     id="comment-submit"
                     onClick={[Function]}

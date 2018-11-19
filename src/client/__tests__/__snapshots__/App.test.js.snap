@@ -83,6 +83,7 @@ exports[`renders without crashing 1`] = `
             </span>
           </span>
           <span
+            data-cy="toggle-search-bar"
             onClick={[Function]}
           >
             Søg
@@ -90,6 +91,7 @@ exports[`renders without crashing 1`] = `
         </span>
         <a
           className="Topbar__navigation__btn d-i-block d-md-none"
+          data-cy=""
           href="/find"
           onClick={[Function]}
         >
@@ -102,6 +104,7 @@ exports[`renders without crashing 1`] = `
         </a>
         <a
           className="Topbar__navigation__btn d-flex d-md-none widthCalc"
+          data-cy=""
           href="/huskeliste"
           onClick={[Function]}
         >
@@ -150,6 +153,7 @@ exports[`renders without crashing 1`] = `
           </i>
           <a
             className="list-card-nohover"
+            data-cy=""
             href="/huskeliste"
             onClick={[Function]}
           >
@@ -173,6 +177,7 @@ exports[`renders without crashing 1`] = `
               <button
                 className="
                     btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
               >
                 Gå til huskeliste
@@ -184,6 +189,7 @@ exports[`renders without crashing 1`] = `
               <button
                 className="
                     btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
               >
                 Bestil hele listen
@@ -193,6 +199,7 @@ exports[`renders without crashing 1`] = `
         </div>
         <a
           className="Topbar__navigation__btn widthCalc"
+          data-cy="login-btn"
           href="/v1/login"
           onClick={[Function]}
         >
@@ -206,6 +213,7 @@ exports[`renders without crashing 1`] = `
       </nav>
       <a
         className="Topbar__logo "
+        data-cy=""
         href="/"
         onClick={[Function]}
       >
@@ -253,6 +261,7 @@ exports[`renders without crashing 1`] = `
         <li>
           <a
             className="list-card-nohover"
+            data-cy=""
             href="/profile"
             onClick={[Function]}
           >
@@ -266,6 +275,7 @@ exports[`renders without crashing 1`] = `
         >
           <a
             className="list-card-nohover"
+            data-cy=""
             href="/profile"
             onClick={[Function]}
           >
@@ -1863,6 +1873,7 @@ exports[`renders without crashing 1`] = `
     <button
       className="Button__feedback
           btn Button Button__medium Button__secondary "
+      data-cy=""
       disabled={false}
       onClick={[Function]}
     >

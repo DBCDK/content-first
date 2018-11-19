@@ -25,6 +25,7 @@ Array [
     </i>
     <a
         className="list-card-nohover"
+        data-cy=""
         href="/huskeliste"
         onClick={[Function]}
     >
@@ -49,6 +50,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid1"
                         onClick={[Function]}
                     >
@@ -72,6 +74,7 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid1"
                             onClick={[Function]}
                         >
@@ -110,6 +113,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid2"
                         onClick={[Function]}
                     >
@@ -133,6 +137,7 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid2"
                             onClick={[Function]}
                         >
@@ -174,6 +179,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Gå til huskeliste
@@ -185,6 +191,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Bestil hele listen
@@ -220,6 +227,7 @@ Array [
     </i>
     <a
         className="list-card-nohover"
+        data-cy=""
         href="/huskeliste"
         onClick={[Function]}
     >
@@ -244,6 +252,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid4"
                         onClick={[Function]}
                     >
@@ -267,6 +276,7 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid4"
                             onClick={[Function]}
                         >
@@ -305,6 +315,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid3"
                         onClick={[Function]}
                     >
@@ -328,6 +339,7 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid3"
                             onClick={[Function]}
                         >
@@ -366,6 +378,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid2"
                         onClick={[Function]}
                     >
@@ -389,6 +402,7 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid2"
                             onClick={[Function]}
                         >
@@ -427,6 +441,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid1"
                         onClick={[Function]}
                     >
@@ -450,6 +465,7 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid1"
                             onClick={[Function]}
                         >
@@ -491,6 +507,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Gå til huskeliste
@@ -502,6 +519,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Bestil hele listen
@@ -537,6 +555,7 @@ Array [
     </i>
     <a
         className="list-card-nohover"
+        data-cy=""
         href="/huskeliste"
         onClick={[Function]}
     >
@@ -561,6 +580,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid1"
                         onClick={[Function]}
                     >
@@ -584,6 +604,7 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid1"
                             onClick={[Function]}
                         >
@@ -625,6 +646,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Gå til huskeliste
@@ -636,6 +658,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Bestil hele listen
@@ -671,6 +694,7 @@ Array [
     </i>
     <a
         className="list-card-nohover"
+        data-cy=""
         href="/huskeliste"
         onClick={[Function]}
     >
@@ -694,6 +718,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Gå til huskeliste
@@ -705,6 +730,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Bestil hele listen

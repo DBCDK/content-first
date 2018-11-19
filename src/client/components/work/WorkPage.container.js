@@ -130,7 +130,13 @@ class WorkPage extends React.Component {
               </Text>
 
               <div className="WorkPage__details WorkPage__detailsDesktop">
-                <Text type="micro">Sideantal: {book.pages}</Text>
+                <Text
+                  data-cy={'pages-count'}
+                  data-value={book.pages}
+                  type="micro"
+                >
+                  Sideantal: {book.pages}
+                </Text>
                 <Text type="micro">Sprog: {book.language}</Text>
                 <Text type="micro">Udgivet: {book.first_edition_year}</Text>
               </div>
@@ -277,6 +283,7 @@ class WorkPage extends React.Component {
                               type="tertiary"
                               size="small"
                               className="WorkPage__tag mr1"
+                              dataCy={'tag-' + t.title}
                             >
                               {t.title}
                             </Button>
@@ -293,6 +300,7 @@ class WorkPage extends React.Component {
                     size="medium"
                     type="tertiary"
                     className="underline"
+                    dataCy="tags-collaps-toggle"
                     onClick={() => {
                       this.setState({
                         tagsCollapsed: !this.state.tagsCollapsed,

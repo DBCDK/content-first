@@ -234,7 +234,12 @@ export class TopBar extends React.Component {
                 <SearchBar />
               </span>
             </span>
-            <span onClick={() => this.toggleSearchBar()}>{searchIconText}</span>
+            <span
+              data-cy="toggle-search-bar"
+              onClick={() => this.toggleSearchBar()}
+            >
+              {searchIconText}
+            </span>
           </span>
 
           <Link
@@ -251,6 +256,7 @@ export class TopBar extends React.Component {
               href={'/v1/login'}
               type={HISTORY_PUSH_FORCE_REFRESH}
               className="Topbar__navigation__btn widthCalc"
+              dataCy="login-btn"
             >
               <span>Log ind</span>
             </Link>
