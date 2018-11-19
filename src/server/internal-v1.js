@@ -13,6 +13,6 @@ router.use('/books', require('server/internal-v1-books'));
 router.use('/tags', require('server/internal-v1-tags'));
 router.use('/taxonomy', require('server/internal-v1-taxonomy'));
 router.use('/stats', require('server/internal-v1-stats'));
-router.use('/test-login', require('server/internal-v1-test-login'));
+router.use('/test', require('server/internal-v1-test'));
 
 module.exports = router;
