@@ -15,7 +15,7 @@ const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 router
   .route('/:id')
   //
-  // GET /v1/test-login
+  // GET /v1/test-login/:id
   //
   .get(
     asyncMiddleware(async (req, res) => {
@@ -25,23 +25,22 @@ router
 
       try {
         let userId = -1;
-
         await knex(cookieTable).insert({
           cookie: loginToken,
-          community_profile_id: userId, // TODO remove this when users migrated
+          community_profile_id: userId,
           openplatform_id: openplatformId,
           openplatform_token: openplatformToken,
           expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
         });
         req.cookies['login-token'] = loginToken;
         if (
-          userId === -1 &&
           (await objectStore.find({
             type: 'USER_PROFILE',
             owner: openplatformId,
             limit: 1
           })).data.length === 0
         ) {
+          // create user in db if user dosn't exist
           await putUserData(
             {
               name: openplatformId,
@@ -61,8 +60,6 @@ router
           .location('http://localhost:3000/replay')
           .cookie('login-token', loginToken, {
             httpOnly: true
-            /* TODO: add "secure: true" in production? */
-            /* maxAge is not set, hence the cookie is removed when user closes browser (like it is in Hejmdal) */
           })
           .send();
       } catch (error) {
