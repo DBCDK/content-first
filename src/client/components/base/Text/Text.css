@@ -46,6 +46,13 @@
   text-decoration: underline;
 }
 
+.Text__body a {
+  text-decoration: underline;
+}
+.Text__body a:hover {
+  color: var(--due) !important;
+}
+
 .Text__body--weight-semibold {
   font-weight: 600;
 }
