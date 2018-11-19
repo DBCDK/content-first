@@ -1892,5 +1892,88 @@ exports[`renders without crashing 1`] = `
       <span />
     </button>
   </div>
+  <div
+    className="footer-container-spacer"
+  />
+  <div
+    className="footer-container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col footer-element first-footer"
+      >
+        <img
+          className="laesekompas-logo"
+          src="LaesekompasLogo.svg"
+        />
+        <p
+          className="mt1 Text Text__body "
+        >
+          Læsekompasset hjælper dig med at opdage bøger, der passer dig, og inspirerer dig til nye læseoplevelser.
+          <br />
+          <a
+            className="list-card-nohover"
+            href="/om"
+            onClick={[Function]}
+          >
+            Læs mere
+          </a>
+        </p>
+      </div>
+      <div
+        className="col footer-element second-footer"
+      >
+        <p
+          className="mt1 Text Text__body "
+        >
+          Siden er i øjeblikket i beta-version, hvilket betyder, at den stadig er under udvikling og at du kan opleve ting, der ikke fungerer optimalt endnu.
+        </p>
+      </div>
+      <div
+        className="avoid-orphans-row"
+      >
+        <div
+          className="col footer-element"
+        >
+          <p
+            className="mt1 Text Text__body "
+          >
+            Problemer med teknikken?
+            <br />
+            <a
+              href="https://kundeservice.dbc.dk"
+              target="_blank"
+            >
+              Skriv til DBCs kundeservice
+            </a>
+            <br />
+            <br />
+            Spørgsmål om Læsekompasset?
+            <br />
+            <a
+              href="mailto:laesekompasset@dbc.dk"
+            >
+              Skriv til projektledelsen
+            </a>
+          </p>
+        </div>
+        <div
+          className="col footer-element"
+        >
+          <p
+            className="mt1 Text Text__body "
+          >
+            DBC a/s
+            <br />
+            Tempovej 7-11
+            <br />
+            2750 Ballerup
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;
