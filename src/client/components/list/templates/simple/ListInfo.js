@@ -167,7 +167,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(updateList({_id: ownProps._id, description: e.target.value})),
   onTitleChange: e =>
     dispatch(updateList({_id: ownProps._id, title: e.target.value})),
-  confirmShareModal: (_id) => {
+  confirmShareModal: _id => {
     dispatch({
       type: 'OPEN_MODAL',
       modal: 'confirm',
