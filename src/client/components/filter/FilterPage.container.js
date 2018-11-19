@@ -5,6 +5,7 @@ import scrollToComponent from 'react-scroll-to-component';
 import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
+import Pin from '../base/Pin';
 import SearchBar from './SearchBar.component';
 import Spinner from '../general/Spinner.component';
 import BeltWrapper from '../belt/BooksBelt.component';
@@ -238,6 +239,24 @@ class FilterPage extends React.Component {
     this.handleBelts(work, row, type, newBelt);
   }
 
+  onPinClick() {
+    const type = 'belt';
+    const tags = this.props.plainSelectedTagIds;
+    const key = `pin: ${tags.join(', ')}`;
+    const name = tags.slice(0, 3).join(', ');
+
+    const newBelt = {
+      type,
+      key,
+      name,
+      onFrontPage: true,
+      child: false,
+      editing: false
+    };
+
+    this.props.addBelt(newBelt);
+  }
+
   scrollToBelt(element, offset) {
     scrollToComponent(element, {offset});
   }
@@ -254,11 +273,12 @@ class FilterPage extends React.Component {
       rows
     );
 
-    const resultCountPrefixText =
-      resultCount === 300 ? 'Mere end ' + resultCount : resultCount;
-    const resultCountPostFix = resultCount === 1 ? 'bog' : 'bøger';
     const noResultsMessage =
       'Vi fandt desværre ingen bøger som matchede din søgning';
+
+    const pinStatus = this.props.belts[
+      `pin: ${this.props.plainSelectedTagIds}`
+    ];
 
     return (
       <div className="filter-page">
@@ -280,12 +300,15 @@ class FilterPage extends React.Component {
         />
 
         <div className="container">
-          <div className="filter-page-resultCount text-left">
+          <div className="filter-page-resultCount text-left d-flex justify-content-between">
             <Heading Tag="h4" type="lead">
-              {resultCount === 0
-                ? noResultsMessage
-                : resultCountPrefixText + ' ' + resultCountPostFix}
+              {resultCount === 0 ? noResultsMessage : 'Bogforslag'}
             </Heading>
+            <Pin
+              active={pinStatus}
+              text={'Pin søgning til forside'}
+              onClick={() => this.onPinClick()}
+            />
           </div>
 
           <div
