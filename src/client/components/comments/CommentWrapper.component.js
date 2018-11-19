@@ -10,7 +10,8 @@ import Spinner from '../general/Spinner.component';
 import timeToString from '../../utils/timeToString';
 import ProfileImage from '../general/ProfileImage.component';
 import CommentInput from './CommentInput.component';
-import textParser from '../../utils/textParser';
+import Text from '../base/Text';
+import ContextMenu, {ContextMenuAction} from '../base/ContextMenu';
 
 export class CommentWrapper extends React.Component {
   constructor(props) {
@@ -63,24 +64,28 @@ export class CommentWrapper extends React.Component {
         )}
         {this.props.user &&
         this.props.user.openplatformId === user.openplatformId ? (
-          <button
-            className="comment-edit-button btn btn-link link-subtle"
-            onClick={() => this.toggleEdit(!this.state.editing)}
-          >
-            <i className="material-icons" style={{fontSize: '18px'}}>
-              edit
-            </i>
-          </button>
+          <ContextMenu className="comment-wrapper-context-menu">
+            <ContextMenuAction
+              title="Redigér indlæg"
+              icon="edit"
+              onClick={() => this.toggleEdit(!this.state.editing)}
+            />
+
+            <ContextMenuAction
+              title="Slet indlæg"
+              icon="clear"
+              onClick={() => this.props.deleteComment(this.props.comment)}
+            />
+          </ContextMenu>
         ) : null}
         <div className="flex mb2" style={{width: '100%'}}>
           <ProfileImage
             user={user}
             style={{flexShrink: 0}}
-            style={{marginRight: '20px'}}
+            style={{marginRight: '10px'}}
+            size="40"
           />
           <div style={{flexGrow: 1}}>
-            <div className="comment-author">{user.name || ''}</div>
-            <div className="comment-time mb1">{timeToString(_created)}</div>
             {this.state.editing ? (
               <CommentInput
                 hideProfile={true}
@@ -95,10 +100,21 @@ export class CommentWrapper extends React.Component {
                 error={error || null}
               />
             ) : (
-              <div
-                className="comment"
-                dangerouslySetInnerHTML={{__html: textParser(comment)}}
-              />
+              <div className="comment">
+                <div className="d-flex align-items-center">
+                  <Text type="large" className="mb-2">
+                    {user.name || ''}
+                  </Text>
+                  <Text
+                    type="small"
+                    variant="color-due"
+                    className="ml-4 mb-2 d-none d-md-block"
+                  >
+                    {timeToString(_created)}
+                  </Text>
+                </div>
+                {comment}
+              </div>
             )}
           </div>
         </div>

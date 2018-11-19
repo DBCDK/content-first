@@ -40,7 +40,11 @@ export default ({
     <div className={'d-flex flex-row ' + className}>
       <div style={{position: 'relative'}}>
         <Link href={'/værk/' + book.pid}>
-          <BookCover book={book} className="width-70 width-md-120" />
+          <BookCover
+            book={book}
+            className="width-70 width-md-120"
+            imageClassName="align-self-start"
+          />
         </Link>
         <BookmarkButton
           origin={origin}

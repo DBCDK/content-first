@@ -267,8 +267,8 @@ const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch => ({
   addToList: (work, listId) => dispatch(addElementToList(work, listId)),
   newList: title => dispatch(addList({title})),
-  toggleInList: (work, listId) => {
-    dispatch(toggleElementInList(work, listId));
+  toggleInList: async (work, listId) => {
+    await dispatch(toggleElementInList(work, listId));
     dispatch(storeList(listId));
   },
   saveList: listId => dispatch(storeList(listId)),

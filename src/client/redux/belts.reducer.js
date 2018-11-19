@@ -1,39 +1,55 @@
 const defaultState = {
   belts: {
     'Bedste forslag': {
+      key: 'Bedste forslag',
       name: 'Bedste forslag',
-      onFrontPage: true
+      onFrontPage: true,
+      type: 'belt',
+      child: false
     },
     'En god bog': {
+      key: 'En god bog',
       name: 'En god bog',
       isLoading: false,
       onFrontPage: false,
       works: [],
-      tags: [100001, 100003, {id: 5672, weight: 10}, 100005]
+      tags: [100001, 100003, {id: 5672, weight: 10}, 100005],
+      type: 'belt',
+      child: false
     },
     'En spændende bog': {
+      key: 'En spændende bog',
       name: 'En spændende bog',
       isLoading: false,
       onFrontPage: false,
       links: [],
-      tags: [5676, 5632]
+      tags: [5676, 5632],
+      type: 'belt',
+      child: false
     },
     'En anderledes bog': {
+      key: 'En anderledes bog',
       name: 'En anderledes bog',
       isLoading: false,
       onFrontPage: false,
       links: [],
-      tags: [5702]
+      tags: [5702],
+      type: 'belt',
+      child: false
     },
     'Passer med min smag': {
+      key: 'Passer med min smag',
       name: 'Passer med min smag',
       isLoading: false,
       onFrontPage: false,
       links: [],
       works: [],
-      tags: []
+      tags: [],
+      type: 'belt',
+      child: false
     },
     'Mennesket og Naturen': {
+      key: 'Mennesket og Naturen',
       name: 'Mennesket og Naturen',
       subtext:
         'Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen.',
@@ -48,9 +64,12 @@ const defaultState = {
         5277,
         2183,
         2278
-      ]
+      ],
+      type: 'belt',
+      child: false
     },
     'Familiens skyggesider': {
+      key: 'Familiens skyggesider',
       name: 'Familiens skyggesider',
       subtext:
         'Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge.',
@@ -65,18 +84,25 @@ const defaultState = {
         5696,
         5680,
         {id: 5691, weight: 10}
-      ]
+      ],
+      type: 'belt',
+      child: false
     },
+
     'Tankevækkende fremtidsvisioner': {
+      key: 'Tankevækkende Sci-fi',
       name: 'Tankevækkende fremtidsvisioner',
       subtext:
         'Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.',
       isLoading: false,
       onFrontPage: true,
       links: [],
-      tags: [{id: 4995, weight: 10}, 4927, 5714, 5713]
+      tags: [{id: 4995, weight: 10}, 4927, 5714, 5713],
+      type: 'belt',
+      child: false
     },
     'Krøllede fortællinger': {
+      key: 'Krøllede fortællinger',
       name: 'Krøllede fortællinger',
       subtext:
         'Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt.',
@@ -91,26 +117,25 @@ const defaultState = {
         5652,
         // 5711, uncomment when a work is mapped to this tag
         5717
-      ]
-    },
-    'Bibliotekarens ugentlige anbefalinger': {
-      name: 'Bibliotekarens ugentlige anbefalinger',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
-      works: [],
-      tags: [-2]
+      ],
+      type: 'belt',
+      child: false
     },
     Sofahygge: {
+      key: 'Sofahygge',
       name: 'Sofahygge',
       subtext:
         'Hent teen, tænd stearinlyset og så op med fødderne og på med plaiden.',
       isLoading: false,
       onFrontPage: true,
       links: [],
-      tags: [{id: 5637, weight: 10}, 5654, 5636, 5731, {id: 5611, weight: 10}]
+      tags: [{id: 5637, weight: 10}, 5654, 5636, 5731, {id: 5611, weight: 10}],
+      type: 'belt',
+      child: false
     },
+
     Tolkienesque: {
+      key: 'Tolkienesque',
       name: 'Tolkienesque',
       subtext:
         'De store eventyr og udfordringer venter i en anden verden, hvor magiske kræfter og overnaturlige væsner prøver hinanden af.',
@@ -125,9 +150,12 @@ const defaultState = {
         5705,
         {id: 5707, weight: 10},
         5708
-      ]
+      ],
+      type: 'belt',
+      child: false
     },
     'Det var en mørk og stormfuld nat': {
+      key: 'Det var en mørk og stormfuld nat',
       name: 'Det var en mørk og stormfuld nat',
       subtext:
         'Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt.',
@@ -142,9 +170,12 @@ const defaultState = {
         {id: 5700, weight: 10},
         5670,
         5676
-      ]
+      ],
+      type: 'belt',
+      child: false
     },
     'Hvad sker der bag hækken?': {
+      key: 'Hvad sker der bag hækken?',
       name: 'Hvad sker der bag hækken?',
       subtext:
         'Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.',
@@ -159,26 +190,34 @@ const defaultState = {
         5670,
         5676,
         5691
-      ]
+      ],
+      type: 'belt',
+      child: false
     },
+
     'Historiske romaner': {
+      key: 'Historiske romaner',
       name: 'Historiske romaner',
       subtext:
         'Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.',
       isLoading: false,
       onFrontPage: true,
       links: [],
-      tags: [{id: 4901, weight: 10}, 5660, 5658, 189]
+      tags: [{id: 4901, weight: 10}, 5660, 5658, 189],
+      type: 'belt',
+      child: false
     },
     'Vemodige nordmænd': {
+      key: 'Vemodige nordmænd',
       name: 'Vemodige nordmænd',
       subtext:
         'Når du har lyst til at tænke over livet - også det svære og sårbare.',
       isLoading: false,
       onFrontPage: true,
-      pidPreview: false,
       links: [],
-      tags: [{id: 4466, weight: 10}, 5731, 3510, 5626, 5683, 5630]
+      tags: [{id: 4466, weight: 10}, 5731, 3510, 5626, 5683, 5630],
+      type: 'belt',
+      child: false
     }
   }
 };
@@ -186,11 +225,12 @@ const defaultState = {
 export const ON_BELT_REQUEST = 'ON_BELT_REQUEST';
 export const ON_BELT_RESPONSE = 'ON_BELT_RESPONSE';
 export const ADD_BELT = 'ADD_BELT';
+export const REMOVE_BELT = 'REMOVE_BELT';
 export const ON_TAG_TOGGLE = 'ON_TAG_TOGGLE';
 export const ADD_CHILD_BELT = 'ADD_CHILD_BELT';
 export const REMOVE_CHILD_BELT = 'REMOVE_CHILD_BELT';
 export const BELT_SCROLL = 'BELT_SCROLL';
-export const WORK_PREVIEW = 'WORK_PREVIEW';
+export const REORGANIZE_FILTERPAGE_BELTS = 'REORGANIZE_FILTERPAGE_BELTS';
 
 const beltsReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -221,13 +261,25 @@ const beltsReducer = (state = defaultState, action) => {
 
     case ADD_BELT: {
       const newBelt = action.belt;
+      const key = action.belt.key || action.belt.name;
+      const allowReplace = action.allowReplace || false;
       const copy = {...state.belts};
 
-      if (!action.belt[newBelt.name]) {
-        copy[newBelt.name] = newBelt;
+      if (allowReplace || !action.belt[key]) {
+        copy[key] = newBelt;
         return Object.assign({}, {belts: copy});
       }
       return state;
+    }
+
+    case REMOVE_BELT: {
+      const belt = action.belt;
+      const key = belt.key || belt.name;
+      const copy = {...state.belts};
+      if (copy[key]) {
+        delete copy[key];
+      }
+      return Object.assign({}, {belts: copy});
     }
 
     case ON_TAG_TOGGLE: {
@@ -243,34 +295,28 @@ const beltsReducer = (state = defaultState, action) => {
     }
 
     case ADD_CHILD_BELT: {
-      const {parentBelt, childBelt, clearPreview} = action;
+      const {parentBelt, childBelt} = action;
       const belts = traverseBelts(state.belts, b => {
         const belt = {...b};
-        if (b === parentBelt) {
+        if (b.key === parentBelt.key) {
           belt.child = childBelt;
-          if (clearPreview) {
-            belt.pidPreview = false;
-          }
         }
         return belt;
       });
       return {belts};
     }
 
-    /* ikke i brug */
     case REMOVE_CHILD_BELT: {
       const {parentBelt} = action;
       const belts = traverseBelts(state.belts, b => {
         const copy = {...b};
-        if (b.child && b.child.name === parentBelt.child.name) {
-          delete copy.child;
-          parentBelt.pidPreview = false;
+        if (b.child && b.child.key === parentBelt.child.key) {
+          copy.child = false;
         }
         return copy;
       });
       return {belts};
     }
-    /* ikke i brug SLUT */
 
     case BELT_SCROLL: {
       const {belt, scrollPos} = action;
@@ -284,18 +330,15 @@ const beltsReducer = (state = defaultState, action) => {
       return {belts};
     }
 
-    case WORK_PREVIEW: {
-      const {pid, belt} = action;
-
-      const belts = traverseBelts(state.belts, b => {
-        const copy = {...b};
-        if (b === belt) {
-          copy.pidPreview = pid;
-          delete copy.child;
+    // TODO: This is a quick-and-dirty-fix for the current issue. Grooming is needed for a better solution.
+    case REORGANIZE_FILTERPAGE_BELTS: {
+      const belts = {};
+      Object.keys(state.belts).forEach(key => {
+        if (!key.includes('filterpage')) {
+          belts[key] = state.belts[key];
         }
-        return copy;
       });
-      return {belts};
+      return Object.assign({}, {belts});
     }
 
     default:
@@ -315,7 +358,7 @@ const traverseBelts = (belts, func) => {
   Object.values(belts)
     .map(b => processBelt(b))
     .forEach(b => {
-      newBelts[b.name] = b;
+      newBelts[b.key] = b;
     });
   return newBelts;
 };

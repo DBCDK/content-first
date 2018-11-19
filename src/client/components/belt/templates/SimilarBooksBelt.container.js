@@ -25,7 +25,7 @@ export class SimilarBooksBelt extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     tags: (get(state.booksReducer.books[ownProps.pid], 'book.tags') || []).map(
-      tagObject => ({id: tagObject.id, weight: tagObject.sort})
+      tagObject => ({id: tagObject.id, weight: tagObject.score || 1})
     )
   };
 };

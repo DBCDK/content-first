@@ -55,11 +55,13 @@ describe('CommentContainer', () => {
 
     expect(tree).toMatchSnapshot();
     tree
-      .find('.comment-edit-button')
+      .find('.dropdown-item')
+      .first()
       .hostNodes()
       .simulate('click');
     expect(tree).toMatchSnapshot();
   });
+
   test('Delete button', () => {
     const comment = generateComments();
     const deleteComment = jest.fn();
@@ -72,13 +74,11 @@ describe('CommentContainer', () => {
     );
     expect(tree).toMatchSnapshot();
     tree
-      .find('.comment-edit-button')
+      .find('.dropdown-item')
+      .at(1)
       .hostNodes()
       .simulate('click');
-    tree
-      .find('.comment-delete')
-      .hostNodes()
-      .simulate('click');
+
     expect(deleteComment.mock.calls[0][0]).toEqual(comment);
   });
   test('Cancel button', () => {
@@ -88,7 +88,8 @@ describe('CommentContainer', () => {
     );
     expect(tree).toMatchSnapshot();
     tree
-      .find('.comment-edit-button')
+      .find('.dropdown-item')
+      .first()
       .hostNodes()
       .simulate('click');
     tree
@@ -97,6 +98,7 @@ describe('CommentContainer', () => {
       .simulate('click');
     expect(tree).toMatchSnapshot();
   });
+
   test('Save button', () => {
     const comment = generateComments();
     const editComment = jest.fn();
@@ -111,7 +113,8 @@ describe('CommentContainer', () => {
     );
     expect(tree).toMatchSnapshot();
     tree
-      .find('.comment-edit-button')
+      .find('.dropdown-item')
+      .first()
       .hostNodes()
       .simulate('click');
     tree

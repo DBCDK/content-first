@@ -3,7 +3,7 @@
 exports[`SocialShareButton renders initial component 1`] = `
 <a
   href="https://laesekompas.dk/lister/1234"
-  onClick={null}
+  onClick={[Function]}
   target="_blank"
 >
   <button

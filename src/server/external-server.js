@@ -1,5 +1,6 @@
 'use strict';
 
+const crypto = require('crypto');
 const config = require('server/config');
 const constants = require('server/constants')();
 const logger = require('server/logger');
@@ -71,6 +72,14 @@ external.get('/howru', async (req, res) => {
     address: req.ip,
     config: configWithoutSecrets
   });
+  try {
+    status.taxonomySHA256 = crypto
+      .createHash('sha256')
+      .update(JSON.stringify(require('../data/exportTaxonomy.json')))
+      .digest('hex');
+  } catch (e) {
+    status.taxonomySHA256 = '';
+  }
   if (!status.ok) {
     res.status(503);
   }

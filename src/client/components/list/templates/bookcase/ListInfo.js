@@ -184,9 +184,12 @@ export class ListInfo extends React.Component {
                 size={40}
                 shape="round"
                 hoverTitle="Del på facebook"
-                status={!list.public || editing ? 'passive' : 'active'}
-                onClick={() => {
-                  confirmShareModal(list._id);
+                onClick={e => {
+                  if (!list.public) {
+                    e.preventDefault();
+                    confirmShareModal(list._id);
+                    return false;
+                  }
                 }}
               />
             )}
@@ -347,6 +350,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
         reason:
           'For at du kan dele din liste, skal listen være offentlig. Vil du ændre din listes status til offentlig?',
         confirmText: 'Gør min liste offentlig',
+        url:
+          'https://www.facebook.com/sharer/sharer.php?display=page&u=https://laesekompas.dk/lister/' +
+          _id,
         onConfirm: () => {
           dispatch(
             updateList({

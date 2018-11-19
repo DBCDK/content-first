@@ -9,7 +9,7 @@
       "type": "array",
       "required": true,
       "items": {
-        "type": "integer"
+        "type": "object"
       }
     }
   },

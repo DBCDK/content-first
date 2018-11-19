@@ -42,6 +42,16 @@
 .Text__large--decoration-underline {
   text-decoration: underline;
 }
+.Text__body--decoration-underline {
+  text-decoration: underline;
+}
+
+.Text__body a {
+  text-decoration: underline;
+}
+.Text__body a:hover {
+  color: var(--due) !important;
+}
 
 .Text__body--weight-semibold {
   font-weight: 600;
@@ -77,6 +87,10 @@
 
 .Text__small--color-due {
   color: var(--due);
+}
+
+.Text__small--decoration-underline {
+  text-decoration: underline;
 }
 
 .Text__micro--color-petrolium {

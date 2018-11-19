@@ -1,13 +1,19 @@
 import React from 'react';
 import Button from '../base/Button';
-import Heading from '../base/Heading';
+import Text from '../base/Text';
 import Icon from '../base/Icon';
 
 import './Modal.css';
 
 export default class Modal extends React.Component {
   render() {
-    const {doneText = 'OK', cancelText, doneDisabled} = this.props;
+    const {
+      doneText = 'OK',
+      cancelText,
+      hideCancel = false,
+      hideConfirm = false,
+      doneDisabled
+    } = this.props;
 
     return (
       <div className="modal-container ">
@@ -35,29 +41,35 @@ export default class Modal extends React.Component {
           </div>
 
           <div className="content p-4">
-            <Heading Tag="h2" type="lead">
-              {this.props.header}
-            </Heading>
+            <Text type="large">{this.props.header}</Text>
             {this.props.children}
-            <div className="bottom d-flex flex-row justify-content-end mb-5 mt-5">
-              {cancelText && (
-                <Button
-                  size="medium"
-                  className="mr-4"
-                  type="link"
-                  onClick={this.props.onClose}
-                >
-                  {cancelText}
-                </Button>
+            {!hideCancel &&
+              !hideConfirm && (
+                <div className="bottom d-flex flex-row justify-content-end mb-5 mt-5">
+                  {!hideCancel &&
+                    cancelText && (
+                      <Button
+                        size="medium"
+                        className="mr-4"
+                        type="link"
+                        onClick={this.props.onClose}
+                      >
+                        {cancelText}
+                      </Button>
+                    )}
+                  {!hideConfirm && (
+                    <a href={this.props.url || null} target="_blank">
+                      <Button
+                        className={'mr-4 ' + (doneDisabled && 'disabled')}
+                        type="quaternary"
+                        onClick={doneDisabled || this.props.onDone}
+                      >
+                        {doneText}
+                      </Button>
+                    </a>
+                  )}
+                </div>
               )}
-              <Button
-                className={'mr-4 ' + (doneDisabled && 'disabled')}
-                type="quaternary"
-                onClick={doneDisabled || this.props.onDone}
-              >
-                {doneText}
-              </Button>
-            </div>
           </div>
         </div>
       </div>

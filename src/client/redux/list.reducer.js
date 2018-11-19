@@ -218,15 +218,29 @@ const listReducer = (state = defaultState, action) => {
       if (!action.element) {
         throw new Error("'element' is missing from action");
       }
+
       const changeMap = Object.assign({}, state.changeMap, {
         [action.element.book.pid]: {}
       });
+
       const list = {
         ...state.lists[action._id]
       };
-      const removed = list.list.filter(e => e.pid !== action.element.book.pid);
+
+      const removed = list.list.filter(
+        element => element.pid !== action.element.book.pid
+      );
+
       if (removed.length < list.list.length) {
+        // delete element
+        const elementToDelete = list.list.find(element => {
+          return element.pid === action.element.book.pid;
+        });
         list.list = removed;
+        list.deleted = list.deleted || {};
+        list.deleted[elementToDelete._id] = true;
+        list.pending = list.pending || [];
+        list.pending = [...list.pending, elementToDelete];
       } else {
         action.element.pid = action.element.book.pid;
         list.list = [...list.list, action.element];
