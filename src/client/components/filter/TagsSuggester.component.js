@@ -290,14 +290,13 @@ class TagsSuggester extends React.Component {
 
     return (
       <React.Fragment>
-        {tagsInField &&
-          !inputVisibel && (
-            <Icon
-              name="search"
-              className="md-large d-md-none d-sm-inline-block"
-              onClick={() => this.toggleInputvisibility(true)}
-            />
-          )}
+        {tagsInField && !inputVisibel && (
+          <Icon
+            name="search"
+            className="md-large d-md-none d-sm-inline-block"
+            onClick={() => this.toggleInputvisibility(true)}
+          />
+        )}
         <div
           className={
             'suggestion-list tags-suggestion-list suggestion-list ' +

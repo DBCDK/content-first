@@ -372,15 +372,14 @@ class WorkPage extends React.Component {
             )}
           </div>
 
-          {work.detailsHasLoaded &&
-            work.tagsHasLoaded && (
-              <div
-                className="WorkPage__beltContainer col-12 mt4"
-                ref={e => (this.booksBeltPosition = e)}
-              >
-                <BooksBelt belt={belt} />
-              </div>
-            )}
+          {work.detailsHasLoaded && work.tagsHasLoaded && (
+            <div
+              className="WorkPage__beltContainer col-12 mt4"
+              ref={e => (this.booksBeltPosition = e)}
+            >
+              <BooksBelt belt={belt} />
+            </div>
+          )}
 
           <div className="row col-12 mb2 WorkPage__detailsMobile">
             <div className="col-12">

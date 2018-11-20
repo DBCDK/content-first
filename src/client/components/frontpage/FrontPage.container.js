@@ -12,9 +12,11 @@ class FrontPage extends React.Component {
     return (
       <div className="container">
         <div className="belts col-12 ">
-          {belts.filter(belt => belt.onFrontPage).map(belt => (
-            <BooksBelt key={belt.name} belt={belt} />
-          ))}
+          {belts
+            .filter(belt => belt.onFrontPage)
+            .map(belt => (
+              <BooksBelt key={belt.name} belt={belt} />
+            ))}
         </div>
       </div>
     );
