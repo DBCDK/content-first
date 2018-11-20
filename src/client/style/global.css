@@ -2,7 +2,7 @@
 
 /* Global Settings for new design */
 :root {
-  --petrolium: #00414b;
+  --petroleum: #00414b;
   --elm: #1d768a;
   --fersken: #f37362;
   --lys-fersken: #f38f81;
@@ -27,7 +27,7 @@
 }
 
 a {
-  color: var(--petrolium) !important;
+  color: var(--petroleum) !important;
 }
 
 /* utils */
@@ -89,11 +89,11 @@ a {
   color: var(--de-york) !important;
 }
 
-.petrolium {
-  background-color: var(--petrolium) !important;
+.petroleum {
+  background-color: var(--petroleum) !important;
 }
-.petrolium-txt {
-  color: var(--petrolium) !important;
+.petroleum-txt {
+  color: var(--petroleum) !important;
 }
 
 .white-txt {
@@ -113,11 +113,11 @@ a {
   width: 120px !important;
 }
 
-.border-bottom-petrolium {
-  border-bottom: 1px solid var(--petrolium);
+.border-bottom-petroleum {
+  border-bottom: 1px solid var(--petroleum);
 }
-.border-top-petrolium {
-  border-top: 1px solid var(--petrolium);
+.border-top-petroleum {
+  border-top: 1px solid var(--petroleum);
 }
 
 .border-pistache {

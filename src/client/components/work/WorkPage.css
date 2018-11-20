@@ -62,7 +62,7 @@
 .WorkPage__work .WorkPage__info .WorkPage__media a,
 .WorkPage__work .WorkPage__info .WorkPage__media a i {
   font-size: 1rem;
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 /* tags */
@@ -103,7 +103,7 @@
 .WorkPage__reviews .WorkPage__review {
   display: flex;
   text-decoration: none;
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 .WorkPage__review:hover .WorkPage__review__details {
@@ -250,5 +250,5 @@
 }
 
 .work-page-book-creator{
-  color: var(--petrolium) !important;
+  color: var(--petroleum) !important;
 }

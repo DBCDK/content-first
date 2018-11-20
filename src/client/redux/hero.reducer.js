@@ -10,7 +10,7 @@ const defaultState = {
       color: 'white',
       btnColor: 'korn',
       btnText: 'vis bøger',
-      btnTextColor: 'petrolium',
+      btnTextColor: 'petroleum',
       disabled: false
     },
     {
@@ -43,7 +43,7 @@ const defaultState = {
       color: 'white',
       btnColor: 'fersken',
       btnText: 'vis bøger',
-      btnTextColor: 'petrolium',
+      btnTextColor: 'petroleum',
       disabled: false
     }
   ],

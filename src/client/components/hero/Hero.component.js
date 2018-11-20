@@ -102,7 +102,7 @@ export class Hero extends React.Component {
                           type="title3"
                           className={`${shadow} mb-4`}
                           variant={
-                            hero.color !== 'petrolium'
+                            hero.color !== 'petroleum'
                               ? `color-${hero.color}`
                               : null
                           }

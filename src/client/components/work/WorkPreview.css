@@ -65,7 +65,7 @@
 .workPreview__work .workPreview__info .workPreview__media a,
 .workPreview__work .workPreview__info .workPreview__media a i {
   font-size: 1rem;
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 /* reviews */
@@ -77,7 +77,7 @@
 .workPreview__reviews .workPreview__review {
   display: flex;
   text-decoration: none;
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 .workPreview__review:hover .workPreview__review__details {
@@ -139,5 +139,5 @@
   }
 }
 .work-preview-book-creator {
-  color: var(--petrolium) !important;
+  color: var(--petroleum) !important;
 }
