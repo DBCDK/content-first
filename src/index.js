@@ -22,6 +22,7 @@ import {recommendMiddleware} from './client/redux/recommend';
 import {commentMiddleware} from './client/redux/comment.middleware';
 import {replayMiddleware} from './client/redux/replay';
 import {interactionMiddleware} from './client/redux/interaction.middleware';
+import {beltsMiddleware} from './client/redux/belts.middleware';
 
 // for window.scroll() back compatibility
 smoothscroll.polyfill();
@@ -40,7 +41,8 @@ const store = createStore([
   recommendMiddleware,
   commentMiddleware,
   replayMiddleware,
-  interactionMiddleware
+  interactionMiddleware,
+  beltsMiddleware
 ]);
 ReactDOM.render(
   <Provider store={store}>

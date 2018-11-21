@@ -11,7 +11,7 @@ class FrontPage extends React.Component {
   renderBelts(belts) {
     return (
       <div className="container">
-        <div className="belts col-12 ">
+        <div className="belts col-12">
           {belts.filter(belt => belt.onFrontPage).map(belt => (
             <BooksBelt key={belt.name} belt={belt} />
           ))}
@@ -23,6 +23,8 @@ class FrontPage extends React.Component {
   render() {
     const beltsMap = this.props.beltsMap;
     const aBeltsMap = Object.values(beltsMap);
+
+    aBeltsMap.sort((a, b) => b._created || 0 - a._created || 0);
 
     return (
       <div className="frontpage">

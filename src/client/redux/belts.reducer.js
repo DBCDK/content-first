@@ -5,7 +5,8 @@ const defaultState = {
       name: 'Bedste forslag',
       onFrontPage: true,
       type: 'belt',
-      child: false
+      child: false,
+      _created: 999999999999
     },
     'En god bog': {
       key: 'En god bog',
@@ -88,7 +89,6 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-
     'Tankevækkende fremtidsvisioner': {
       key: 'Tankevækkende Sci-fi',
       name: 'Tankevækkende fremtidsvisioner',
@@ -133,7 +133,6 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-
     Tolkienesque: {
       key: 'Tolkienesque',
       name: 'Tolkienesque',
@@ -194,7 +193,6 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-
     'Historiske romaner': {
       key: 'Historiske romaner',
       name: 'Historiske romaner',
@@ -222,6 +220,17 @@ const defaultState = {
   }
 };
 
+export const BELTS_LOAD_REQUEST = 'BELTS_LOAD_REQUEST';
+export const BELTS_LOAD_RESPONSE = 'BELTS_LOAD_RESPONSE';
+export const UPDATE_BELT = 'UPDATE_BELT';
+
+export const REMOVE_BELT_REQUEST = 'REMOVE_BELT_REQUEST';
+export const REMOVE_BELT_RESPONSE = 'REMOVE_BELT_RESPONSE';
+
+export const TOGGLE_EDIT = 'TOGGLE_EDIT';
+
+export const UPDATE_BELT_DATA = 'UPDATE_BELT_DATA';
+
 export const ON_BELT_REQUEST = 'ON_BELT_REQUEST';
 export const ON_BELT_RESPONSE = 'ON_BELT_RESPONSE';
 export const ADD_BELT = 'ADD_BELT';
@@ -234,6 +243,87 @@ export const REORGANIZE_FILTERPAGE_BELTS = 'REORGANIZE_FILTERPAGE_BELTS';
 
 const beltsReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case BELTS_LOAD_REQUEST: {
+      return Object.assign({}, state, {
+        loadingBelts: true
+      });
+    }
+
+    case BELTS_LOAD_RESPONSE: {
+      const copy = {...state.belts};
+      action.data.forEach(belt => {
+        copy[belt.key] = belt;
+      });
+      return Object.assign(
+        {},
+        {belts: copy},
+        {
+          loadingBelts: false
+        }
+      );
+    }
+
+    case UPDATE_BELT: {
+      const key = action.belt.key;
+      const copy = {...state.belts};
+      copy[key] = action.belt;
+      return Object.assign({}, {belts: copy});
+    }
+
+    case UPDATE_BELT_DATA: {
+      console.log('UPDATE_BELT_DATA action', action);
+
+      const belt = action.belt;
+      const data = action.data;
+
+      if (!data) {
+        throw new Error("'data' is missing from action");
+      }
+      if (!belt) {
+        throw new Error("'belt' is missing from action");
+      }
+
+      const copy = {...state.belts[belt.key], ...data};
+
+      console.log('UPDATE_BELT_DATA copy', copy);
+
+      return Object.assign({}, state, {
+        belts: {...state.belts, [belt.key]: copy}
+      });
+    }
+
+    case REMOVE_BELT_REQUEST: {
+      const key = action.belt.key;
+      const copy = {...state.belts};
+      delete copy[key];
+      return Object.assign(
+        {},
+        {belts: copy},
+        {
+          loadingBelts: true,
+          removingBelt: true
+        }
+      );
+    }
+
+    case REMOVE_BELT_RESPONSE: {
+      return Object.assign({}, state, {
+        loadingBelts: false,
+        removingBelt: false
+      });
+    }
+
+    case TOGGLE_EDIT: {
+      console.log('TOGGLE_EDIT');
+
+      const belt = action.belt;
+      const copy = {...state.belts};
+
+      copy[belt.key] = {...belt, editing: !belt.editing};
+
+      return Object.assign({}, {belts: copy});
+    }
+
     case ON_BELT_REQUEST: {
       const belts = state.belts.map(belt => {
         if (belt.name === action.beltName) {
@@ -262,10 +352,9 @@ const beltsReducer = (state = defaultState, action) => {
     case ADD_BELT: {
       const newBelt = action.belt;
       const key = action.belt.key || action.belt.name;
-      const allowReplace = action.allowReplace || false;
       const copy = {...state.belts};
 
-      if (allowReplace || !action.belt[key]) {
+      if (!action.belt[key]) {
         copy[key] = newBelt;
         return Object.assign({}, {belts: copy});
       }
@@ -363,8 +452,40 @@ const traverseBelts = (belts, func) => {
   return newBelts;
 };
 
+// Action creators
+
 export const getBelts = beltState => {
   return Object.values(beltState.belts);
+};
+
+export const addBelt = belt => {
+  return {
+    type: UPDATE_BELT,
+    belt: {
+      ...belt,
+      _created: Date.now(),
+      _type: belt.type
+    }
+  };
+};
+
+export const removeBelt = belt => {
+  return {
+    type: REMOVE_BELT_REQUEST,
+    belt: {
+      ...belt
+    }
+  };
+};
+
+export const updateBelt = props => {
+  console.log('updateBelt props', props);
+
+  return {
+    type: UPDATE_BELT_DATA,
+    belt: props.belt,
+    data: props.data
+  };
 };
 
 export default beltsReducer;

@@ -4,24 +4,46 @@ import VisibilitySensor from 'react-visibility-sensor';
 import {difference, isEqual} from 'lodash';
 import scrollToComponent from 'react-scroll-to-component';
 import {isMobileOnly} from 'react-device-detect';
+import Textarea from 'react-textarea-autosize';
 import WorkCard from '../../work/WorkCard.container';
+import Pin from '../../base/Pin';
 import Title from '../../base/Title';
+import Text from '../../base/Text';
+import Icon from '../../base/Icon';
 import Term from '../../base/Term';
 import Slider from '../../belt/Slider.component';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../../redux/recommend';
 import {HISTORY_PUSH} from '../../../redux/middleware';
 import {
+  updateBelt,
   ADD_CHILD_BELT,
   REMOVE_CHILD_BELT,
-  BELT_SCROLL
+  BELT_SCROLL,
+  TOGGLE_EDIT
 } from '../../../redux/belts.reducer';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import Link from '../../general/Link.component';
+
+import '../belt.css';
 
 const skeletonElements = [];
 for (let i = 0; i < 20; i++) {
   skeletonElements.push(i);
 }
+
+const EditBelt = props => {
+  return (
+    <div
+      className="Belt_editButton d-flex align-items-center"
+      onClick={props.onClick}
+    >
+      <Icon className="md-small" name="edit" />
+      <Text className="m-0 ml-2 " type="small">
+        Redigér
+      </Text>
+    </div>
+  );
+};
 
 export class BooksBelt extends React.Component {
   constructor() {
@@ -120,26 +142,35 @@ export class BooksBelt extends React.Component {
     }
   };
 
+  onEditBeltClick() {
+    const belt = this.props.belt;
+    this.props.editBelt(belt);
+  }
+
   render() {
     const {
       fetchInitial = 8,
       showTags = true,
       belt,
       tagObjects,
-      recommendedPids
+      recommendedPids,
+      onSubtextChange,
+      onTitleChange
     } = this.props;
 
     if (!belt) {
       return null;
     }
 
-    const {subtext, child, scrollPos} = belt;
-    const name = this.props.name || this.props.belt.name;
+    const {subtext, name, child, scrollPos, _owner, editing = false} = belt;
+
     const border = showTags ? 'border-right-sm-1 ' : '';
     const pids =
       recommendedPids.length > 0 && this.state.visible
         ? recommendedPids
         : skeletonElements;
+
+    console.log('render?. . .');
 
     return (
       <VisibilitySensor
@@ -148,31 +179,49 @@ export class BooksBelt extends React.Component {
       >
         <React.Fragment>
           <div
-            className="belt text-left mt-5 mt-sm-4 row"
-            ref={beltWrap => {
-              this.refs = {...this.refs, beltWrap};
-            }}
+            className="belt text-left mt-5 mt-sm-4 row position-relative"
+            ref={beltWrap => (this.refs = {...this.refs, beltWrap})}
           >
+            {_owner && <EditBelt onClick={() => this.onEditBeltClick()} />}
             <div className="p-0 col-12">
               <div className="header row">
-                <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
-                  <Title
-                    Tag="h1"
-                    type="title4"
-                    variant="transform-uppercase"
-                    className={
-                      border +
-                      'inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0 '
-                    }
-                  >
-                    {name.split(' ').map((word, idx) => {
-                      if (idx === 0) {
-                        return <strong key={idx}>{word}</strong>;
+                {!editing && (
+                  <Link href="/find" params={{tag: tagObjects.map(t => t.id)}}>
+                    <Title
+                      Tag="h1"
+                      type="title4"
+                      variant="transform-uppercase"
+                      className={
+                        border +
+                        ' inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0'
                       }
-                      return ' ' + word;
-                    })}
-                  </Title>
-                </Link>
+                    >
+                      {name.split(' ').map((word, idx) => {
+                        if (idx === 0) {
+                          return <strong key={idx}>{word}</strong>;
+                        }
+                        return ' ' + word;
+                      })}
+                      {_owner && (
+                        <Pin
+                          className="d-inline ml-2"
+                          active={true}
+                          onClick={() => this.onPinClick()}
+                        />
+                      )}
+                    </Title>
+                  </Link>
+                )}
+                {_owner &&
+                  editing && (
+                    <Textarea
+                      className={`${border} form-control inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0 Title Title__title3`}
+                      name="belt-name"
+                      placeholder="Giv dit gemte søgning en titel"
+                      onChange={onTitleChange}
+                      value={name}
+                    />
+                  )}
                 {showTags && (
                   <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
                     {tagObjects.map((t, idx) => {
@@ -191,15 +240,27 @@ export class BooksBelt extends React.Component {
                     })}
                   </div>
                 )}
-                {subtext && (
-                  <div className="d-block w-100">
-                    <Title Tag="h3" type="title5" className="ml1 mt1 mb0">
-                      {subtext}
-                    </Title>
-                  </div>
-                )}
+                {!editing &&
+                  subtext && (
+                    <div className="d-block w-100">
+                      <Title Tag="h3" type="title5" className="ml1 mt1 mb0">
+                        {subtext}
+                      </Title>
+                    </div>
+                  )}
+                {_owner &&
+                  editing && (
+                    <div className="d-block w-100">
+                      <Textarea
+                        className={`form-control ml1 mt1 mb0 Title Title__title5`}
+                        name="belt-description"
+                        placeholder="Giv din gemte søgning en beskrivelse"
+                        onChange={onSubtextChange}
+                        value={subtext}
+                      />
+                    </div>
+                  )}
               </div>
-
               <div className="mt2 row">
                 <Slider
                   initialScrollPos={scrollPos}
@@ -273,7 +334,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = (dispatch, ownProps) => ({
   fetchRecommendations: tags =>
     dispatch({
       type: RECOMMEND_REQUEST,
@@ -303,6 +364,17 @@ export const mapDispatchToProps = dispatch => ({
   },
   historyPush: pid => {
     dispatch({type: HISTORY_PUSH, path: '/værk/' + pid});
+  },
+  editBelt: belt => {
+    dispatch({type: TOGGLE_EDIT, belt});
+  },
+  onTitleChange: e => {
+    dispatch(updateBelt({belt: ownProps.belt, data: {name: e.target.value}}));
+  },
+  onSubtextChange: e => {
+    dispatch(
+      updateBelt({belt: ownProps.belt, data: {subtext: e.target.value}})
+    );
   }
 });
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {isMobileOnly} from 'react-device-detect';
+import {toast} from 'react-toastify';
+import ToastMessage from '../base/ToastMessage';
 import scrollToComponent from 'react-scroll-to-component';
 import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
@@ -24,6 +26,8 @@ import {
   getTagsbyIds
 } from '../../redux/selectors';
 import {
+  addBelt,
+  removeBelt,
   ADD_BELT,
   REMOVE_BELT,
   REORGANIZE_FILTERPAGE_BELTS
@@ -241,20 +245,44 @@ class FilterPage extends React.Component {
 
   onPinClick() {
     const type = 'belt';
-    const tags = this.props.plainSelectedTagIds;
-    const key = `pin: ${tags.join(', ')}`;
-    const name = tags.slice(0, 3).join(', ');
+    const tagIds = this.props.plainSelectedTagIds;
+    const key = `pin: ${tagIds.join(', ')}`;
+    const name = this.props.selectedTags
+      .map(tag => tag.title)
+      .slice(0, 3)
+      .join(', ');
+
+    if (this.props.belts[key]) {
+      console.log('remove belt', this.props.belts[key]);
+      this.props.removePin(this.props.belts[key]);
+      return;
+    }
 
     const newBelt = {
       type,
       key,
       name,
+      tags: tagIds,
       onFrontPage: true,
       child: false,
       editing: false
     };
 
-    this.props.addBelt(newBelt);
+    toast(
+      <ToastMessage
+        type="success"
+        icon="check_circle"
+        lines={[
+          'Søgningen er gemt på din forside',
+          <a onClick={() => this.props.history(HISTORY_PUSH, '/')}>
+            Se det her
+          </a>
+        ]}
+      />,
+      {pauseOnHover: true}
+    );
+
+    this.props.addPin(newBelt);
   }
 
   scrollToBelt(element, offset) {
@@ -277,7 +305,7 @@ class FilterPage extends React.Component {
       'Vi fandt desværre ingen bøger som matchede din søgning';
 
     const pinStatus = this.props.belts[
-      `pin: ${this.props.plainSelectedTagIds}`
+      `pin: ${this.props.plainSelectedTagIds.join(', ')}`
     ];
 
     return (
@@ -304,11 +332,13 @@ class FilterPage extends React.Component {
             <Heading Tag="h4" type="lead">
               {resultCount === 0 ? noResultsMessage : 'Bogforslag'}
             </Heading>
-            <Pin
-              active={pinStatus}
-              text={'Pin søgning til forside'}
-              onClick={() => this.onPinClick()}
-            />
+            {!this.props.loadingBelts && (
+              <Pin
+                active={pinStatus}
+                text={'Gem på din forside'}
+                onClick={() => this.onPinClick()}
+              />
+            )}
           </div>
 
           <div
@@ -385,7 +415,8 @@ const mapStateToProps = state => {
     editFilters: state.filterReducer.editFilters,
     expandedFilters: state.filterReducer.expandedFilters,
     works: state.booksReducer.books,
-    belts: state.beltsReducer.belts
+    belts: state.beltsReducer.belts,
+    loadingBelts: state.beltsReducer.loadingBelts
   };
 };
 export const mapDispatchToProps = dispatch => ({
@@ -402,11 +433,12 @@ export const mapDispatchToProps = dispatch => ({
       tags,
       max: 100 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     }),
-  addBelt: (belt, allowReplace) => {
+  addPin: belt => dispatch(addBelt(belt)),
+  removePin: belt => dispatch(removeBelt(belt)),
+  addBelt: belt => {
     dispatch({
       type: ADD_BELT,
-      belt,
-      allowReplace
+      belt
     });
   },
   removeBelt: belt => {
