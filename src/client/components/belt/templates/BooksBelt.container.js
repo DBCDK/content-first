@@ -238,9 +238,10 @@ export class BooksBelt extends React.Component {
               </div>
             </div>
           </div>
-          {belt.child && this.props.childTemplate && (
-            <this.props.childTemplate belt={belt.child} />
-          )}
+          {belt.child &&
+            this.props.childTemplate && (
+              <this.props.childTemplate belt={belt.child} />
+            )}
         </React.Fragment>
       </VisibilitySensor>
     );

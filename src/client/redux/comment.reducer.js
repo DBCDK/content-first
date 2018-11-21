@@ -51,8 +51,9 @@ const commentReducer = (state = defaultState, action) => {
         state[action.id],
         {saving: false}
       );
-      group.comments = group.comments.map(el =>
-        el._id === 'new_comment' ? {...el, ...action.data, saving: false} : el
+      group.comments = group.comments.map(
+        el =>
+          el._id === 'new_comment' ? {...el, ...action.data, saving: false} : el
       );
       return Object.assign({}, state, {[action.id]: group});
     }

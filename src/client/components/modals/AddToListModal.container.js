@@ -256,8 +256,8 @@ const mapStateToProps = state => {
     latestUsedId: state.listReducer.latestUsedId
       ? state.listReducer.latestUsedId
       : customLists[0]
-      ? customLists[0]._id
-      : ''
+        ? customLists[0]._id
+        : ''
   };
 };
 
