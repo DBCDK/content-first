@@ -75,6 +75,7 @@ router
         });
       }
       const resizedImage = await sharp(images[0].image)
+        .rotate()
         .resize(parseInt(width, 10), parseInt(height, 10))
         .toBuffer();
       await knex(coverTable).insert({
