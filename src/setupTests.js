@@ -25,6 +25,17 @@ jest.mock('react-slick', () => 'react-slick');
 jest.mock('react-truncate-markup', () => 'react-truncate-markup');
 jest.mock('react-visibility-sensor', () => 'react-visibility-sensor');
 
+jest.mock('!raw-loader!../components/article/pages/404.md', () => '404.md', {
+  virtual: true
+});
+jest.mock(
+  '!raw-loader!../components/article/pages/about.md',
+  () => 'about.md',
+  {
+    virtual: true
+  }
+);
+
 jest.mock('./client/components/general/BookCover.component', () => 'bookcover');
 jest.mock('tween', () => 'tween', {
   virtual: true

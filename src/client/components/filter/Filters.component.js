@@ -161,6 +161,7 @@ class Filters extends React.Component {
             if (filter.show) {
               return (
                 <FilterCard
+                  key={filter.title}
                   expanded={filter.expanded}
                   onCardClick={e => this.toggleCardExpanded(e, filter.title)}
                   filter={filter}
