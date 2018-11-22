@@ -4,6 +4,7 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
 Array [
   <div
     className="undefined top-bar-dropdown-list"
+    data-cy={undefined}
     onClick={[Function]}
 >
     <span
@@ -206,6 +207,7 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
 Array [
   <div
     className="undefined top-bar-dropdown-list"
+    data-cy={undefined}
     onClick={[Function]}
 >
     <span
@@ -534,6 +536,7 @@ exports[`ShortListDropDown short list contains single element 1`] = `
 Array [
   <div
     className="undefined top-bar-dropdown-list"
+    data-cy={undefined}
     onClick={[Function]}
 >
     <span
@@ -673,6 +676,7 @@ exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
 Array [
   <div
     className="undefined top-bar-dropdown-list"
+    data-cy={undefined}
     onClick={[Function]}
 >
     <span

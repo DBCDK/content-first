@@ -85,7 +85,7 @@ class WorkCard extends React.Component {
           ' ' +
           this.props.className
         }
-        data-cy={'workcard' + this.props.index}
+        data-cy={'workcard' + this.props.cardIndex}
       >
         <BookmarkButton
           origin={this.props.origin}

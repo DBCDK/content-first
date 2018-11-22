@@ -130,6 +130,7 @@ class ShortListDropdown extends React.Component {
               });
             }
           }}
+          data-cy={this.props.dataCy}
         >
           {this.props.children}
           <span className="short-badge">{'(' + elements.length + ')'}</span>

@@ -60,7 +60,7 @@ class WorkPreview extends React.Component {
   }
 
   render() {
-    const {work} = this.props;
+    const {work, cyData} = this.props;
     const {book} = work;
     const belt = this.props.belt || false;
     const tax_description =
@@ -81,7 +81,7 @@ class WorkPreview extends React.Component {
           <div className="col-12 col-xl-7 workPreview__work">
             <div className="workPreview__image col-4">
               <Link href={'/værk/' + book.pid}>
-                <BookCover book={book} />
+                <BookCover book={book} dataCy={cyData} />
               </Link>
             </div>
             <div className="workPreview__info col-8">

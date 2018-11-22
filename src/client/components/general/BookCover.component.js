@@ -70,6 +70,7 @@ const BookCover = props => {
         src={props.coverUrl}
         onLoad={props.onLoad}
         className={props.imageClassName || ''}
+        data-cy={props.dataCy || ''}
       />
     </div>
   );

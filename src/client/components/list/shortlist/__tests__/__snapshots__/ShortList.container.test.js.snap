@@ -232,6 +232,7 @@ exports[`ShortList.container Clearing list 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -239,7 +240,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -433,6 +434,7 @@ exports[`ShortList.container Clearing list 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -440,7 +442,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -735,6 +737,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -742,7 +745,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -1068,6 +1071,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -1075,7 +1079,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -1401,6 +1405,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -1408,7 +1413,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -1749,6 +1754,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -1756,7 +1762,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -2100,6 +2106,7 @@ exports[`ShortList.container remove element 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -2107,7 +2114,7 @@ exports[`ShortList.container remove element 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -2301,6 +2308,7 @@ exports[`ShortList.container remove element 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -2308,7 +2316,7 @@ exports[`ShortList.container remove element 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -2502,6 +2510,7 @@ exports[`ShortList.container remove element 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -2509,7 +2518,7 @@ exports[`ShortList.container remove element 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -2871,6 +2880,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -2878,7 +2888,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -3072,6 +3082,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -3079,7 +3090,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -3273,6 +3284,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -3280,7 +3292,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
-                                    data-cy=""
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >

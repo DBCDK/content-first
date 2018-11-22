@@ -35,5 +35,9 @@ export default middleware => {
     location: history.location
   });
 
+  if (window.Cypress) {
+    window.__store__ = store;
+  }
+
   return store;
 };

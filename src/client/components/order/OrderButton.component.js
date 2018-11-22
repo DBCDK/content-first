@@ -37,6 +37,7 @@ export function OrderButton(props) {
       type={props.type}
       size={props.size}
       onClick={props.order}
+      dataCy="order-btn"
     >
       {buttonLabel}
     </Button>

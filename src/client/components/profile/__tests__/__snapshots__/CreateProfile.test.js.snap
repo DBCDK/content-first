@@ -153,6 +153,7 @@ exports[`Image Upload render function Add image 1`] = `
                   >
                     <input
                       className="form-control mb3   has-feedback"
+                      data-cy="user-form-name"
                       name="name"
                       onChange={[Function]}
                       placeholder="Vælg brugernavn"
@@ -185,6 +186,7 @@ exports[`Image Upload render function Add image 1`] = `
                   </p>
                   <label
                     className="checkbox"
+                    data-cy="user-form-acceptedAge"
                     htmlFor="acceptedAge"
                   >
                     <input
@@ -200,6 +202,7 @@ exports[`Image Upload render function Add image 1`] = `
                   </label>
                   <label
                     className="checkbox"
+                    data-cy="user-form-acceptedTerms"
                     htmlFor="acceptedTerms"
                   >
                     <input
@@ -221,6 +224,7 @@ exports[`Image Upload render function Add image 1`] = `
                   </label>
                   <button
                     className="btn btn-success btn-block"
+                    data-cy="user-form-submit"
                   >
                     Opret profil
                      
@@ -460,6 +464,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               >
                 <input
                   className="form-control mb3   has-feedback"
+                  data-cy="user-form-name"
                   name="name"
                   onChange={[Function]}
                   placeholder="Vælg brugernavn"
@@ -492,6 +497,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               </p>
               <label
                 className="checkbox"
+                data-cy="user-form-acceptedAge"
                 htmlFor="acceptedAge"
               >
                 <input
@@ -508,6 +514,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               </label>
               <label
                 className="checkbox"
+                data-cy="user-form-acceptedTerms"
                 htmlFor="acceptedTerms"
               >
                 <input
@@ -530,6 +537,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               </label>
               <button
                 className="btn btn-success btn-block"
+                data-cy="user-form-submit"
                 disabled={undefined}
               >
                 Opret profil

@@ -83,7 +83,7 @@ exports[`renders without crashing 1`] = `
             </span>
           </span>
           <span
-            data-cy="toggle-search-bar"
+            data-cy="topbar-search-btn"
             onClick={[Function]}
           >
             Søg
@@ -127,6 +127,7 @@ exports[`renders without crashing 1`] = `
         </a>
         <div
           className="Topbar__navigation__btn d-none d-md-flex widthCalc  top-bar-dropdown-list"
+          data-cy="topbar-shortlist"
           onClick={[Function]}
         >
           <i
@@ -199,7 +200,7 @@ exports[`renders without crashing 1`] = `
         </div>
         <a
           className="Topbar__navigation__btn widthCalc"
-          data-cy="login-btn"
+          data-cy="topbar-login-btn"
           href="/v1/login"
           onClick={[Function]}
         >

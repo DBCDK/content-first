@@ -42,7 +42,7 @@ const Results = ({rows, pids, ...props}) => {
           className="w-100 d-flex justify-content-around justify-content-md-between"
           ref={e => props.rowRef(e, idx)}
         >
-          {pids[idx].map(pid => {
+          {pids[idx].map((pid, cardIndex) => {
             const work = props.works[pid];
             if (work && work.detailsHasLoaded) {
               const beltExist = props.belts[`filterpage: ${idx}`]
@@ -54,6 +54,7 @@ const Results = ({rows, pids, ...props}) => {
 
               return (
                 <WorkCard
+                  cardIndex={cardIndex}
                   key={'wc-' + pid}
                   className="p-0 pb-3 pr-sm-3"
                   rowId={idx}
@@ -70,7 +71,7 @@ const Results = ({rows, pids, ...props}) => {
         </div>
         {belt && (
           <div className="belts col-12 mb-5">
-            <BeltWrapper belt={belt} />
+            <BeltWrapper belt={belt} cyData={'workpreviewCard'} />
           </div>
         )}
       </React.Fragment>
