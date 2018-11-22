@@ -30,6 +30,7 @@
 
 .Button__quaternary {
   background-color: var(--korn);
+  text-transform: uppercase;
 }
 
 .Button__quinary {
@@ -43,7 +44,7 @@
   background-color: var(--concrete);
 }
 
-@media (hover: hover) { 
+@media (hover: hover) {
   .Button__term:hover {
     background-color: var(--pistache);
   }
@@ -59,7 +60,6 @@
   .Button__primary:hover {
     background-color: var(--lys-fersken);
   }
- 
 }
 .Button__term i {
   color: var(--fersken) !important;
@@ -98,9 +98,8 @@
 }
 
 .Button__medium {
-  text-transform: none;
   padding: 7px 10px;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .Button__small {
