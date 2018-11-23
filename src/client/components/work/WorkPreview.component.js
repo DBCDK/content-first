@@ -275,9 +275,11 @@ class WorkPreview extends React.Component {
             )}
           </div>
         </div>
-        {belt && belt.child && this.props.childTemplate && (
-          <this.props.childTemplate belt={belt.child} />
-        )}
+        {belt &&
+          belt.child &&
+          this.props.childTemplate && (
+            <this.props.childTemplate belt={belt.child} />
+          )}
       </React.Fragment>
     );
   }

@@ -142,16 +142,17 @@ export class ListInfo extends React.Component {
               )
             )}
 
-            {sticky && !expanded && (
-              <div className="list-cover-text pt-md-4 pl-md-4 pr-md-4 pt-2 pl-3 pr-2">
-                <Text type="micro" className="mb-0">
-                  <span className="display-block w-100">{list.subtitle}</span>
-                </Text>
-                <Text type="large" className="mb0">
-                  <span>{list.title}</span>
-                </Text>
-              </div>
-            )}
+            {sticky &&
+              !expanded && (
+                <div className="list-cover-text pt-md-4 pl-md-4 pr-md-4 pt-2 pl-3 pr-2">
+                  <Text type="micro" className="mb-0">
+                    <span className="display-block w-100">{list.subtitle}</span>
+                  </Text>
+                  <Text type="large" className="mb0">
+                    <span>{list.title}</span>
+                  </Text>
+                </div>
+              )}
           </div>
         </div>
 
@@ -239,11 +240,12 @@ export class ListInfo extends React.Component {
                 value={list.title || ''}
               />
 
-              {titleMissing && !list.title.length > 0 && (
-                <Text type="body" variant="color-fersken" className="mt-2">
-                  Listen skal have en titel
-                </Text>
-              )}
+              {titleMissing &&
+                !list.title.length > 0 && (
+                  <Text type="body" variant="color-fersken" className="mt-2">
+                    Listen skal have en titel
+                  </Text>
+                )}
 
               <Textarea
                 className={`mt-3 form-control Text Text__large`}
