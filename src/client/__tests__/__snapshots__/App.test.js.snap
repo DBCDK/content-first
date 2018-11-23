@@ -220,7 +220,7 @@ exports[`renders without crashing 1`] = `
           Læsekompas
         </h1>
         <div
-          className="logo-beta-wrap d-flex  justify-content-sm-between position-relative"
+          className="logo-beta-wrap d-flex position-relative"
         >
           <p
             className="logo-beta-sign mb-0 Text Text__micro "
@@ -233,13 +233,12 @@ exports[`renders without crashing 1`] = `
             <p
               className="d-none d-sm-inline logo-beta-text Text Text__small "
             >
-              Nu 600+ bøger
-            </p>
-            <p
-              className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
-              onClick={[Function]}
-            >
-              Læs mere
+              <p
+                className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
+                onClick={[Function]}
+              >
+                Læs mere
+              </p>
             </p>
           </div>
         </div>

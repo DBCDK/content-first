@@ -37,26 +37,20 @@
   padding: 0 20px 0 20px;
   cursor: pointer;
   margin: 0;
+  width: 100%;
 }
 
 .logo-beta-wrap {
   margin-top: -5px;
 }
 
-.Topbar .Topbar__logo .logo-beta-link {
-  position: absolute;
-  top: 0;
-  right: -5px;
-  transform: translateX(100%);
+.Topbar .Topbar__logo .logo-beta-sign {
+  margin-right: 1em;
 }
+
 @media only screen and (max-width: 575px) {
   .Topbar .Topbar__logo .logo-beta-text {
     display: none;
-  }
-
-  .Topbar .Topbar__logo .logo-beta-link {
-    position: relative;
-    transform: translateX(0);
   }
 }
 
