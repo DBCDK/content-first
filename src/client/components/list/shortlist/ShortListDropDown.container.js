@@ -30,7 +30,9 @@ const ShortListElement = props => {
         <div className="top-bar-dropdown-list-element--header">
           <Link href={url}>
             <TruncateMarkup lines={1}>
-              <span>{props.element.book.title}</span>
+              <span data-cy="shortlist-element-title">
+                {props.element.book.title}
+              </span>
             </TruncateMarkup>
           </Link>
         </div>

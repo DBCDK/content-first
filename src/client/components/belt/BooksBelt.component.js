@@ -5,7 +5,7 @@ import WorkPreview from '../work/WorkPreview.component';
 import SimilarBooksBelt from './templates/SimilarBooksBelt.container';
 import InteractionsRecoBelt from './templates/InteractionsRecoBelt.container';
 
-const BeltWrapper = ({belt, cyData}) => {
+const BeltWrapper = ({belt, dataCy}) => {
   if (!belt) {
     return null;
   }
@@ -36,7 +36,7 @@ const BeltWrapper = ({belt, cyData}) => {
         pid={belt.pid}
         belt={belt}
         childTemplate={BeltWrapper}
-        cyData={cyData}
+        dataCy={dataCy}
       />
     );
   }

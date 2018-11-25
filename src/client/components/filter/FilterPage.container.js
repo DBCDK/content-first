@@ -71,7 +71,7 @@ const Results = ({rows, pids, ...props}) => {
         </div>
         {belt && (
           <div className="belts col-12 mb-5">
-            <BeltWrapper belt={belt} cyData={'workpreviewCard'} />
+            <BeltWrapper belt={belt} dataCy={'workpreviewCard'} />
           </div>
         )}
       </React.Fragment>

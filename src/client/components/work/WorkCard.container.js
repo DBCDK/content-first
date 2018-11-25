@@ -92,6 +92,7 @@ class WorkCard extends React.Component {
           work={this.props.work}
           layout="teardrop"
           style={{position: 'absolute', right: 0, top: 0}}
+          dataCy="bookmarkBtn"
         />
         <div
           style={{height: '100%'}}
@@ -123,7 +124,12 @@ class WorkCard extends React.Component {
                 this.props.onWorkClick(this.props.work, this.props.rowId)
               }
             >
-              <Heading Tag="h3" type="title" style={{marginBottom: 4}}>
+              <Heading
+                Tag="h3"
+                type="title"
+                style={{marginBottom: 4}}
+                data-cy={'workcard-title' + this.props.cardIndex}
+              >
                 {this.props.work.book.title}
               </Heading>
               <Heading Tag="h3" type="subtitle" className="mt0">

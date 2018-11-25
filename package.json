@@ -92,7 +92,7 @@
   },
   "proxy": "http://localhost:3001",
   "scripts": {
-    "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js src/*/*/*/*/*/*.js",
+    "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js src/*/*/*/*/*/*.js ./cypress/*/*.js",
     "build": "react-scripts build",
     "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js src/acceptance/*_test.js",
     "db-migrate": ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
@@ -104,7 +104,7 @@
     "start": "run-p start-backend start-frontend",
     "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/",
     "start-frontend": "react-scripts start",
-    "test": "run-s test-frontend test-units cy:run lint-js",
+    "test": "run-s test-frontend test-units lint-js",
     "test-acceptance": ". ./current.env && mocha --exit src/acceptance/*_test.js",
     "test-frontend": "CI=true react-scripts test --env=jsdom",
     "test-frontend:watch": "react-scripts test --env=jsdom",
