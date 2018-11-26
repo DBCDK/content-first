@@ -12,7 +12,7 @@
 
 .ToastMessage {
   text-align: left;
-  color: var(--petrolium);
+  color: var(--petroleum);
   display: flex;
   align-items: center;
 }

@@ -1,7 +1,7 @@
 .Button {
   padding: 9px 20px;
   border-radius: 4px;
-  color: var(--petrolium);
+  color: var(--petroleum);
   background-color: var(--concrete);
   font-size: 1rem;
   line-height: 1rem;
@@ -71,7 +71,7 @@
 .Button__link {
   background-color: transparent;
   font-size: 14px;
-  color: var(--petrolium);
+  color: var(--petroleum);
   font-weight: 400;
   text-decoration: underline;
 }
@@ -83,7 +83,7 @@
   padding: 0 !important;
   background-color: transparent;
   font-size: 14px !important;
-  color: var(--petrolium);
+  color: var(--petroleum);
   font-weight: 600;
   border: 0 !important;
 }
@@ -129,28 +129,28 @@
   color: white;
 }
 
-.Button__primary--bgcolor-petrolium--color-white,
-.Button__primary--bgcolor-petrolium--color-white:hover {
-  background-color: var(--petrolium);
+.Button__primary--bgcolor-petroleum--color-white,
+.Button__primary--bgcolor-petroleum--color-white:hover {
+  background-color: var(--petroleum);
   color: white;
 }
 
-.Button__primary--bgcolor-fersken--color-petrolium,
-.Button__primary--bgcolor-fersken--color-petrolium:hover {
+.Button__primary--bgcolor-fersken--color-petroleum,
+.Button__primary--bgcolor-fersken--color-petroleum:hover {
   background-color: var(--fersken);
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
-.Button__primary--bgcolor-due--color-petrolium,
-.Button__primary--bgcolor-due--color-petrolium:hover {
+.Button__primary--bgcolor-due--color-petroleum,
+.Button__primary--bgcolor-due--color-petroleum:hover {
   background-color: var(--due);
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
-.Button__primary--bgcolor-korn--color-petrolium,
-.Button__primary--bgcolor-korn--color-petrolium:hover {
+.Button__primary--bgcolor-korn--color-petroleum,
+.Button__primary--bgcolor-korn--color-petroleum:hover {
   background-color: var(--korn);
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 /* Feedback button */

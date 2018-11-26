@@ -28,7 +28,7 @@
   position: relative;
   z-index: 2;
   background-color: white;
-  color: var(--petrolium);
+  color: var(--petroleum);
   text-decoration: none !important;
   display: flex;
   flex-direction: column;
@@ -107,12 +107,12 @@
 
 .Topbar .Topbar__navigation .Topbar__navigation__btn i {
   padding: 15px 5px 15px 15px;
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 .Topbar .Topbar__navigation .Topbar__navigation__btn span {
   padding: 15px 15px 15px 5px;
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 .Topbar__dropdown_expanded {
   background: var(--grey-nurse);
@@ -203,7 +203,7 @@
 .Topbar__dropdown li a span {
   padding: 0px 15px 15px 15px;
   display: block;
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 .Topbar__dropdown li:last-child span,
@@ -293,7 +293,7 @@
   .Topbar__dropdown li a span {
     padding: 0px 15px 15px 15px;
     display: block;
-    color: var(--petrolium);
+    color: var(--petroleum);
   }
 
   .Topbar__dropdown li:last-child span,
