@@ -76,6 +76,15 @@
   color: var(--fersken);
 }
 
+.Text__body a {
+  text-decoration: underline;
+  color: var(--petrolium);
+}
+
+.Text__body a:hover {
+  color: var(--due);
+}
+
 .Text__small--color-due {
   color: var(--due);
 }
