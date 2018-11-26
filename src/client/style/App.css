@@ -1,5 +1,10 @@
+html, body {
+  height: 100%;
+}
+
 .App {
   min-height: 100vh;
+  position: relative;
 }
 
 .App__TopbarPlaceholder {

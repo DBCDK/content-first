@@ -1,0 +1,65 @@
+:root {
+  --footer-col-height: 257px;
+  --footer-col-width: 370px;
+}
+
+.footer-container-spacer {
+  height: var(--footer-col-height);
+}
+
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-element {
+  width: calc(var(--footer-col-width) - 40px - 80px);
+  min-width: calc(var(--footer-col-width) - 40px - 80px);
+  height: calc(var(--footer-col-height) - 90px - 66px);
+  margin: 90px 80px 66px 40px;
+  padding: 0;
+  flex-grow: 0;
+}
+
+.avoid-orphans-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(2*var(--footer-col-width));
+}
+
+.laesekompas-logo {
+  position: absolute;
+  top: -32px;
+  width: 189px;
+}
+
+/* Media rule when footer folds to 2 rows with 2 elements in each */
+@media (max-width: 1449px) {   /* Set to calc(4*var(--footer-col-width)-31) */
+  .footer-container-spacer {
+    height: calc(2*var(--footer-col-height) - 160px)
+  }
+  .footer-element {
+    height: calc(var(--footer-col-height) - 40px - 100px);
+    margin: 20px 80px 40px 40px;
+  }
+  .first-footer, .second-footer {
+    height: calc(var(--footer-col-height) - 40px - 130px);
+    margin: 40px 80px 0 40px;
+  }
+}
+
+/* Media rule when footer folds to 4 rows with 1 element in each */
+@media (max-width: 709px) {   /* Set to calc(2*var(--footer-col-width)-31) */
+  .footer-container-spacer {
+    height: calc(4*var(--footer-col-height) - 440px)
+  }
+  .footer-element {
+    height: calc(var(--footer-col-height) - 40px - 100px);
+    margin: 10px 80px 0 40px;
+  }
+  .first-footer {
+    height: calc(var(--footer-col-height) - 40px - 100px);
+    margin: 10px 80px 0 40px;
+  }
+}
