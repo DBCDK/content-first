@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "books": {
+      "required": true,
+      "type": "object",
+      "properties": {
+        "total": {
+          "required": true,
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

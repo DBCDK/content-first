@@ -8,7 +8,8 @@ const request = require('supertest');
 const {expectSuccess, expectValidate} = require('fixtures/output-verifiers');
 
 describe('Statistics API', () => {
-  const webapp = request(mock.internal);
+  const internalWebapp = request(mock.internal);
+  const externalWebapp = request(mock.external);
 
   beforeEach(async () => {
     await mock.resetting();
@@ -21,12 +22,12 @@ describe('Statistics API', () => {
   });
 
   describe('/v1/stats', () => {
-    it('should give statistics about contents', () => {
+    it('should give statistics about private contents', () => {
       // Arrange.
       const location = '/v1/stats';
       // Act.
       return (
-        webapp
+        internalWebapp
           .get(location)
           .set('Accept', 'application/json')
           // Assert.
@@ -43,6 +44,28 @@ describe('Statistics API', () => {
               expect(data.tags.pids).to.equal(2);
               expect(data.tags.min).to.equal(22);
               expect(data.tags.max).to.equal(30);
+            });
+          })
+          .expect(200)
+      );
+    });
+  });
+
+  describe('/v1/stats', () => {
+    it('should give statistics about public contents', () => {
+      // Arrange.
+      const location = '/v1/stats';
+      // Act.
+      return (
+        externalWebapp
+          .get(location)
+          .set('Accept', 'application/json')
+          // Assert.
+          .expect(res => {
+            expectSuccess(res.body, (links, data) => {
+              expect(links.self).to.equal(location);
+              expectValidate(data, 'schemas/public-statistics-out.json');
+              expect(data.books.total).to.equal(2);
             });
           })
           .expect(200)
