@@ -12,16 +12,27 @@ import Text from '../../base/Text';
 import Icon from '../../base/Icon';
 import Term from '../../base/Term';
 import Button from '../../base/Button';
+import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import Slider from '../../belt/Slider.component';
 import {RECOMMEND_REQUEST, getRecommendedPids} from '../../../redux/recommend';
 import {HISTORY_PUSH} from '../../../redux/middleware';
 import {
   updateBelt,
+  updateBeltData,
+  removeBelt,
   ADD_CHILD_BELT,
   REMOVE_CHILD_BELT,
   BELT_SCROLL,
   TOGGLE_EDIT
 } from '../../../redux/belts.reducer';
+import {
+  getRecommendedBooks,
+  getTagsFromUrl,
+  getCreatorsFromUrl,
+  getTitlesFromUrl,
+  getIdsFromRange,
+  getTagsbyIds
+} from '../../../redux/selectors';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import Link from '../../general/Link.component';
 
@@ -33,6 +44,10 @@ for (let i = 0; i < 20; i++) {
 }
 
 const EditBelt = props => {
+  if (isMobileOnly) {
+    return <BeltContextMenu onClick={props.onClick} />;
+  }
+
   return (
     <div
       className="Belt_editButton d-flex align-items-center"
@@ -46,31 +61,55 @@ const EditBelt = props => {
   );
 };
 
+const BeltContextMenu = ({onClick}) => {
+  const style = {position: 'absolute', right: 0, top: 0, zIndex: 1};
+
+  return (
+    <ContextMenu title={''} className={''} style={style}>
+      <ContextMenuAction
+        title="Redigér tekst og billede"
+        icon="edit"
+        onClick={onClick}
+      />
+    </ContextMenu>
+  );
+};
+
+const Tag = ({tag, isLast}) => {
+  return (
+    <Link key={tag.id} href="/find" params={{tag: tag.id}}>
+      <Term
+        className={'ml-2 mt1' + (isLast ? ' mr-2' : '')}
+        size="medium"
+        style={{verticalAlign: 'baseline'}}
+      >
+        {tag.title}
+      </Term>
+    </Link>
+  );
+};
+
 export class BooksBelt extends React.Component {
   constructor() {
     super();
+
     this.state = {
       showDetails: false,
-      didSwipe: false
+      didSwipe: false,
+      titleMissing: false,
+      subtextMissing: false
     };
     this.fetchedTags = null;
   }
 
   componentDidMount() {
     this.fetchRecommendations();
+    this.initMissingText();
   }
 
   componentDidUpdate() {
     this.fetchRecommendations();
   }
-
-  fetchRecommendations = () => {
-    if (isEqual(this.fetchedTags, this.props.tags) || !this.state.visible) {
-      return;
-    }
-    this.props.fetchRecommendations(this.props.tags);
-    this.fetchedTags = this.props.tags;
-  };
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
@@ -81,6 +120,25 @@ export class BooksBelt extends React.Component {
       nextState.visible !== this.state.visible
     );
   }
+
+  initMissingText() {
+    const belt = this.props.belt;
+    const titleMissing = belt.name === '' ? true : false;
+    const subtextMissing = belt.subtext === '' ? true : false;
+
+    this.setState({titleMissing, subtextMissing});
+  }
+
+  fetchRecommendations = () => {
+    if (
+      isEqual(this.fetchedTags, this.props.plainSelectedTagIds) ||
+      !this.state.visible
+    ) {
+      return;
+    }
+    this.props.fetchRecommendations(this.props.plainSelectedTagIds);
+    this.fetchedTags = this.props.plainSelectedTagIds;
+  };
 
   handleChildBelts(parentBelt, childBelt) {
     let samePidClicked = false;
@@ -146,19 +204,49 @@ export class BooksBelt extends React.Component {
   onEditBeltClick() {
     const belt = this.props.belt;
     this.props.editBelt(belt);
+
+    if (!belt.editing) {
+      this.setState({title: belt.name, subtext: belt.subtext || ''});
+    }
   }
+
+  onTitleChange = e => {
+    const val = e.target.value;
+    const titleMissing = val === '' ? true : false;
+
+    this.setState({titleMissing});
+    this.props.changeTitle(val);
+  };
+
+  onSubtextChange = e => {
+    const val = e.target.value;
+    const subtextMissing = val === '' ? true : false;
+
+    this.setState({subtextMissing});
+    this.props.changeSubtext(val);
+  };
+
+  onCancelEdit = () => {
+    this.props.editBelt(this.props.belt);
+    this.props.changeTitle(this.state.title);
+    this.props.changeSubtext(this.state.subtext);
+    this.setState({title: null, subtext: null});
+  };
 
   render() {
     const {
       fetchInitial = 8,
       showTags = true,
       belt,
-      tagObjects,
+      selectedTags,
+      plainSelectedTagIds,
+      plainSelectedTags,
       recommendedPids,
       onSubtextChange,
       onTitleChange,
       onCancelEdit,
-      onSaveEdit
+      onSaveEdit,
+      removePin
     } = this.props;
 
     if (!belt) {
@@ -166,6 +254,11 @@ export class BooksBelt extends React.Component {
     }
 
     const {subtext, name, child, scrollPos, _owner, editing = false} = belt;
+
+    const titleMissing = this.state.titleMissing;
+    const subtextMissing = this.state.subtextMissing;
+    const titleMissingClass = titleMissing ? 'value-missing' : '';
+    const subtextMissingClass = subtextMissing ? '' : ''; // value-missing
 
     const border = showTags ? 'border-right-sm-1 ' : '';
     const pids =
@@ -180,27 +273,29 @@ export class BooksBelt extends React.Component {
       >
         <React.Fragment>
           <div
+            id={plainSelectedTagIds.map(v => v.id || v).join('')}
             className="belt text-left mt-5 mt-sm-4 row position-relative"
             ref={beltWrap => (this.refs = {...this.refs, beltWrap})}
           >
             {_owner && <EditBelt onClick={() => this.onEditBeltClick()} />}
             <div className="p-0 col-12">
-              <div className="header row">
+              <div className="header row d-flex flex-nowrap">
+                {_owner && <div className="logo-circle ml-2" />}
                 {_owner && editing ? (
-                  <React.Fragment>
+                  <div className="d-flex flex-wrap col-10">
                     <Textarea
-                      className={`${border} form-control border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0 Title Title__title3`}
+                      className={`${titleMissingClass} ${border} col-12 col-sm-6 p-0 pl-1 border-right-xs-0 mr-2 mb0 Title Title__title4 Title__title4--transform-uppercase`}
                       name="belt-name"
-                      placeholder="Giv din gemte søgning en titel"
-                      onChange={onTitleChange}
+                      placeholder={'Husk at give båndet en overskrift'}
+                      onChange={this.onTitleChange}
                       rows={1}
                       value={name}
                     />
                     <Textarea
-                      className={`form-control ml1 mt1 mb0 Title Title__title5`}
+                      className={`${subtextMissingClass} col-12 p-0 pl-1 mt1 mb0 Title Title__title5`}
                       name="belt-description"
                       placeholder="Giv din gemte søgning en beskrivelse"
-                      onChange={onSubtextChange}
+                      onChange={this.onSubtextChange}
                       value={subtext}
                     />
                     <div>
@@ -208,7 +303,7 @@ export class BooksBelt extends React.Component {
                         type="quaternary"
                         size="medium"
                         className="mr-4 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
-                        onClick={onSaveEdit}
+                        onClick={!titleMissing && onSaveEdit}
                       >
                         {'Gem ændringer'}
                       </Button>
@@ -216,17 +311,21 @@ export class BooksBelt extends React.Component {
                         type="link"
                         size="medium"
                         className="mr-2 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
-                        onClick={onCancelEdit}
+                        onClick={this.onCancelEdit}
                       >
                         {'Fortryd'}
                       </Button>
                     </div>
-                  </React.Fragment>
+                  </div>
                 ) : (
-                  <React.Fragment>
+                  <div className="pl-0">
                     <Link
                       href="/find"
-                      params={{tag: tagObjects.map(t => t.id)}}
+                      params={{
+                        tag: selectedTags.map(
+                          t => (t instanceof Array ? t.map(aT => aT.id) : t.id)
+                        )
+                      }}
                     >
                       <Title
                         Tag="h1"
@@ -234,7 +333,7 @@ export class BooksBelt extends React.Component {
                         variant="transform-uppercase"
                         className={
                           border +
-                          ' inline border-right-xs-0 pr2 pb0 pt0 ml1 mr1 mb0'
+                          ' inline border-right-xs-0 pr2 pb0 pt0 ml-2 ml-sm-3 mr-2 mr-sm-3 mb0'
                         }
                       >
                         {name.split(' ').map((word, idx) => {
@@ -247,37 +346,39 @@ export class BooksBelt extends React.Component {
                           <Pin
                             className="d-inline ml-2"
                             active={true}
-                            onClick={() => this.onPinClick()}
+                            onClick={e => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              removePin(belt);
+                            }}
                           />
                         )}
                       </Title>
                     </Link>
                     {showTags && (
                       <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
-                        {tagObjects.map((t, idx) => {
-                          const isLast = idx === tagObjects.length - 1;
+                        {plainSelectedTags.map((t, idx) => {
                           return (
-                            <Link key={idx} href="/find" params={{tag: t.id}}>
-                              <Term
-                                className={'ml1 mt1' + (isLast ? ' mr1' : '')}
-                                size="medium"
-                                style={{verticalAlign: 'baseline'}}
-                              >
-                                {t.title}
-                              </Term>
-                            </Link>
+                            <Tag
+                              tag={t}
+                              isLast={idx === plainSelectedTags.length - 1}
+                            />
                           );
                         })}
                       </div>
                     )}
                     {subtext && (
                       <div className="d-block w-100">
-                        <Title Tag="h3" type="title5" className="ml1 mt1 mb0">
+                        <Title
+                          Tag="h3"
+                          type="title5"
+                          className="ml-2 ml-sm-3 mr-2 mr-sm-3 mt-2 mb-0"
+                        >
                           {subtext}
                         </Title>
                       </div>
                     )}
-                  </React.Fragment>
+                  </div>
                 )}
               </div>
               <div className="mt2 row">
@@ -295,7 +396,7 @@ export class BooksBelt extends React.Component {
                   {pids.map((pid, idx) => {
                     return (
                       <WorkCard
-                        className="ml1 mr1"
+                        className="ml-2 mr-2"
                         enableHover={true}
                         highlight={child && child.pid === pid}
                         allowFetch={
@@ -331,25 +432,22 @@ export class BooksBelt extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const excluded = ownProps.excluded || [];
 
-  const recommendedPids =
-    ownProps.tags && ownProps.tags.length > 0
-      ? difference(
-          getRecommendedPids(state.recommendReducer, {
-            tags: ownProps.tags
-          }).pids,
-          excluded
-        ).slice(0, 20)
-      : [];
+  const selectedTags = getTagsbyIds(state, ownProps.tags);
+  const plainSelectedTagIds = getIdsFromRange(state, ownProps.tags);
+  const plainSelectedTags = getTagsbyIds(state, plainSelectedTagIds);
 
-  const tagObjects = ownProps.tags
-    ? ownProps.tags.map(tag => {
-        return filtersMapAll[tag.id || tag];
-      })
-    : [];
+  const recommendedPids = difference(
+    getRecommendedPids(state.recommendReducer, {
+      tags: plainSelectedTagIds
+    }).pids,
+    excluded
+  ).slice(0, 20);
 
   return {
     recommendedPids,
-    tagObjects
+    selectedTags,
+    plainSelectedTagIds,
+    plainSelectedTags
   };
 };
 
@@ -381,19 +479,21 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       scrollPos
     });
   },
+  removePin: belt => dispatch(removeBelt(belt)),
   historyPush: pid => {
     dispatch({type: HISTORY_PUSH, path: '/værk/' + pid});
   },
   editBelt: belt => {
     dispatch({type: TOGGLE_EDIT, belt});
   },
-  onTitleChange: e => {
-    dispatch(updateBelt({belt: ownProps.belt, data: {name: e.target.value}}));
+  changeTitle: val => {
+    dispatch(updateBeltData({belt: ownProps.belt, data: {name: val}}));
   },
-  onSubtextChange: e => {
-    dispatch(
-      updateBelt({belt: ownProps.belt, data: {subtext: e.target.value}})
-    );
+  changeSubtext: val => {
+    dispatch(updateBeltData({belt: ownProps.belt, data: {subtext: val}}));
+  },
+  onSaveEdit: () => {
+    dispatch(updateBelt(ownProps.belt));
   }
 });
 

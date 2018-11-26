@@ -26,12 +26,13 @@ import {
   getTagsbyIds
 } from '../../redux/selectors';
 import {
-  addBelt,
+  storeBelt,
   removeBelt,
   ADD_BELT,
   REMOVE_BELT,
   REORGANIZE_FILTERPAGE_BELTS
 } from '../../redux/belts.reducer';
+import {filtersMapAll} from '../../redux/filter.reducer';
 import {isEqual} from 'lodash';
 
 const Results = ({rows, pids, ...props}) => {
@@ -48,29 +49,27 @@ const Results = ({rows, pids, ...props}) => {
           ref={e => props.rowRef(e, idx)}
         >
           {pids[idx].map(pid => {
-            const work = props.works[pid];
-            if (work && work.detailsHasLoaded) {
-              const beltExist = props.belts[`filterpage: ${idx}`]
-                ? props.belts[`filterpage: ${idx}`]
-                : false;
-              if (beltExist) {
-                belt = beltExist;
-              }
-
-              return (
-                <WorkCard
-                  key={'wc-' + pid}
-                  className="p-0 pb-3 pr-sm-3"
-                  rowId={idx}
-                  pid={pid}
-                  highlight={belt.pid === pid}
-                  {...props}
-                />
-              );
+            const beltExist = props.belts[`filterpage: ${idx}`]
+              ? props.belts[`filterpage: ${idx}`]
+              : false;
+            if (beltExist) {
+              belt = beltExist;
             }
+
             if (pid === 'ghost') {
               return <WorkCard className="ghost" />;
             }
+
+            return (
+              <WorkCard
+                key={'wc-' + pid}
+                className="p-0 pb-3 pr-sm-3"
+                rowId={idx}
+                pid={pid}
+                highlight={belt.pid === pid}
+                {...props}
+              />
+            );
           })}
         </div>
         {belt && (
@@ -246,23 +245,28 @@ class FilterPage extends React.Component {
   onPinClick() {
     const type = 'belt';
     const tagIds = this.props.plainSelectedTagIds;
+    const tags = this.props.selectedTagIds;
     const key = `pin: ${tagIds.join(', ')}`;
-    const name = this.props.selectedTags
-      .map(tag => tag.title)
-      .slice(0, 3)
-      .join(', ');
 
     if (this.props.belts[key]) {
-      console.log('remove belt', this.props.belts[key]);
       this.props.removePin(this.props.belts[key]);
       return;
     }
+
+    if (tagIds.length === 0) {
+      return;
+    }
+
+    const name = tagIds
+      .map(tag => filtersMapAll[tag].title)
+      .slice(0, 3)
+      .join(', ');
 
     const newBelt = {
       type,
       key,
       name,
-      tags: tagIds,
+      tags,
       onFrontPage: true,
       child: false,
       editing: false
@@ -274,7 +278,11 @@ class FilterPage extends React.Component {
         icon="check_circle"
         lines={[
           'Søgningen er gemt på din forside',
-          <a onClick={() => this.props.history(HISTORY_PUSH, '/')}>
+          <a
+            onClick={() =>
+              this.props.history(HISTORY_PUSH, `/#${tagIds.join('')}`)
+            }
+          >
             Se det her
           </a>
         ]}
@@ -332,13 +340,16 @@ class FilterPage extends React.Component {
             <Heading Tag="h4" type="lead">
               {resultCount === 0 ? noResultsMessage : 'Bogforslag'}
             </Heading>
-            {!this.props.loadingBelts && (
-              <Pin
-                active={pinStatus}
-                text={'Gem på din forside'}
-                onClick={() => this.onPinClick()}
-              />
-            )}
+            {!this.props.loadingBelts &&
+              this.props.plainSelectedTagIds.length > 0 && (
+                <Pin
+                  active={pinStatus}
+                  text={
+                    pinStatus ? 'Gemt på din forside' : 'Gem på din forside'
+                  }
+                  onClick={() => this.onPinClick()}
+                />
+              )}
           </div>
 
           <div
@@ -356,7 +367,6 @@ class FilterPage extends React.Component {
                   this.onMoreLikeThisClick(work, rowId)
                 }
                 onWorkClick={(work, rowId) => this.onWorkClick(work, rowId)}
-                works={this.props.works}
                 belts={this.props.belts}
                 cardRef={workCard => (this.refs = {...this.refs, workCard})}
                 rowRef={(e, idx) => (this.refs[`row-${idx}`] = e)}
@@ -414,9 +424,9 @@ const mapStateToProps = state => {
     filters: state.filterReducer.filters,
     editFilters: state.filterReducer.editFilters,
     expandedFilters: state.filterReducer.expandedFilters,
-    works: state.booksReducer.books,
     belts: state.beltsReducer.belts,
-    loadingBelts: state.beltsReducer.loadingBelts
+    loadingBelts: state.beltsReducer.loadingBelts,
+    isLoggedIn: state.userReducer.isLoggedIn
   };
 };
 export const mapDispatchToProps = dispatch => ({
@@ -433,7 +443,7 @@ export const mapDispatchToProps = dispatch => ({
       tags,
       max: 100 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     }),
-  addPin: belt => dispatch(addBelt(belt)),
+  addPin: belt => dispatch(storeBelt(belt)),
   removePin: belt => dispatch(removeBelt(belt)),
   addBelt: belt => {
     dispatch({

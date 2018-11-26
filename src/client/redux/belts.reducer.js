@@ -222,6 +222,7 @@ const defaultState = {
 
 export const BELTS_LOAD_REQUEST = 'BELTS_LOAD_REQUEST';
 export const BELTS_LOAD_RESPONSE = 'BELTS_LOAD_RESPONSE';
+export const STORE_BELT = 'STORE_BELT';
 export const UPDATE_BELT = 'UPDATE_BELT';
 
 export const REMOVE_BELT_REQUEST = 'REMOVE_BELT_REQUEST';
@@ -263,29 +264,46 @@ const beltsReducer = (state = defaultState, action) => {
       );
     }
 
-    case UPDATE_BELT: {
-      const key = action.belt.key;
+    case STORE_BELT: {
+      const belt = action.belt;
       const copy = {...state.belts};
-      copy[key] = action.belt;
+
+      if (!belt) {
+        throw new Error("'belt' is missing from action");
+      }
+
+      copy[belt.key] = {...belt};
+      return Object.assign({}, {belts: copy});
+    }
+
+    case UPDATE_BELT: {
+      const belt = action.belt;
+      const copy = {...state.belts};
+
+      if (!belt) {
+        throw new Error("'belt' is missing from action");
+      }
+
+      copy[belt.key] = {...belt, editing: !belt.editing};
+
       return Object.assign({}, {belts: copy});
     }
 
     case UPDATE_BELT_DATA: {
-      console.log('UPDATE_BELT_DATA action', action);
-
       const belt = action.belt;
       const data = action.data;
+
+      console.log('data in update_belt_data', data);
 
       if (!data) {
         throw new Error("'data' is missing from action");
       }
+
       if (!belt) {
         throw new Error("'belt' is missing from action");
       }
 
       const copy = {...state.belts[belt.key], ...data};
-
-      console.log('UPDATE_BELT_DATA copy', copy);
 
       return Object.assign({}, state, {
         belts: {...state.belts, [belt.key]: copy}
@@ -314,8 +332,6 @@ const beltsReducer = (state = defaultState, action) => {
     }
 
     case TOGGLE_EDIT: {
-      console.log('TOGGLE_EDIT');
-
       const belt = action.belt;
       const copy = {...state.belts};
 
@@ -458,9 +474,9 @@ export const getBelts = beltState => {
   return Object.values(beltState.belts);
 };
 
-export const addBelt = belt => {
+export const storeBelt = belt => {
   return {
-    type: UPDATE_BELT,
+    type: STORE_BELT,
     belt: {
       ...belt,
       _created: Date.now(),
@@ -478,13 +494,22 @@ export const removeBelt = belt => {
   };
 };
 
-export const updateBelt = props => {
-  console.log('updateBelt props', props);
-
+// updates belt data in reducer
+export const updateBeltData = props => {
   return {
     type: UPDATE_BELT_DATA,
     belt: props.belt,
     data: props.data
+  };
+};
+
+// updates belt data in db
+export const updateBelt = belt => {
+  console.log('belt in updateBelt action', belt);
+
+  return {
+    type: UPDATE_BELT,
+    belt
   };
 };
 

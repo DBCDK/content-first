@@ -33,7 +33,7 @@ const routerReducer = (state = {}, action) => {
   switch (action.type) {
     case ON_LOCATION_CHANGE: {
       const params = getQueryStringParams(action.location.search);
-      return {path: action.path, params};
+      return {path: action.path, hash: action.location.hash, params};
     }
     default:
       return state;
