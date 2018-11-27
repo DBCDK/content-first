@@ -6,8 +6,6 @@ import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import './Pin.css';
 
 const Pin = ({
-  Tag = 'h1',
-  type = 'title3',
   active = false,
   text = false,
   className = '',

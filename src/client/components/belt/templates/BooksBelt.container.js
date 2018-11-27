@@ -25,15 +25,7 @@ import {
   BELT_SCROLL,
   TOGGLE_EDIT
 } from '../../../redux/belts.reducer';
-import {
-  getRecommendedBooks,
-  getTagsFromUrl,
-  getCreatorsFromUrl,
-  getTitlesFromUrl,
-  getIdsFromRange,
-  getTagsbyIds
-} from '../../../redux/selectors';
-import {filtersMapAll} from '../../../redux/filter.reducer';
+import {getIdsFromRange, getTagsbyIds} from '../../../redux/selectors';
 import Link from '../../general/Link.component';
 
 import '../belt.css';
@@ -242,9 +234,6 @@ export class BooksBelt extends React.Component {
       plainSelectedTagIds,
       plainSelectedTags,
       recommendedPids,
-      onSubtextChange,
-      onTitleChange,
-      onCancelEdit,
       onSaveEdit,
       removePin
     } = this.props;

@@ -69,7 +69,7 @@ const mapStateToProps = state => {
   };
 };
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = dispatch => ({
   history: (type, path, params = {}) => {
     dispatch({type, path, params});
   }
