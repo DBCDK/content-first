@@ -151,12 +151,18 @@ export const fetchBooksTags = async (pids = []) => {
 };
 
 export const fetchStats = async () => {
-  const response = await request.get('/v1/stats/');
-  if (response.body) {
-    return response.body.data;
+  try {
+    const response = await request.get('/v1/stats/');
+    if (response.body) {
+      return response.body.data;
+    }
+    console.log("/stats request didn't return a valid response");
+    return 0;
+  } catch (e) {
+    // ignore errors/missing on fetching stats
+    console.log('/stats request error', e);
+    return 0;
   }
-  console.log("/stats request didn't return a valid response");
-  return 0;
 };
 
 export const fetchReviews = (pids, store) => {

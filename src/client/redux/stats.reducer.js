@@ -15,7 +15,7 @@ const statsReducer = (state = defaultState, action) => {
 
     case FETCH_STATS_SUCCESS: {
       return {
-        // ...action.stats,
+        ...action.stats,
         isLoading: false
       };
     }
