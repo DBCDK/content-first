@@ -13,12 +13,15 @@ class FrontPage extends React.Component {
   componentDidMount() {
     const hash = this.props.hash.replace('#', '');
 
-    console.log('hash', hash);
-
     if (hash && hash !== '') {
       setTimeout(() => {
-        scrollToComponent(document.getElementById(hash), {offset: 100});
-        this.props.history(HISTORY_REPLACE, '/');
+        scrollToComponent(document.getElementById(hash), {
+          offset: 100,
+          duration: 1500
+        });
+        if (hash.includes('temp_')) {
+          this.props.history(HISTORY_REPLACE, '/');
+        }
       }, 500);
     }
   }
@@ -39,7 +42,7 @@ class FrontPage extends React.Component {
     const beltsMap = this.props.beltsMap;
     const aBeltsMap = Object.values(beltsMap);
 
-    aBeltsMap.sort((a, b) => b._created || 0 - a._created || 0);
+    aBeltsMap.sort((a, b) => (b._created || 0) - (a._created || 0));
 
     return (
       <div className="frontpage">

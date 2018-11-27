@@ -62,7 +62,7 @@ const EditBelt = props => {
 };
 
 const BeltContextMenu = ({onClick}) => {
-  const style = {position: 'absolute', right: 0, top: 0, zIndex: 1};
+  const style = {position: 'absolute', right: '-25px', top: 0, zIndex: 1};
 
   return (
     <ContextMenu title={''} className={''} style={style}>
@@ -273,24 +273,38 @@ export class BooksBelt extends React.Component {
       >
         <React.Fragment>
           <div
-            id={plainSelectedTagIds.map(v => v.id || v).join('')}
+            id={`temp_${plainSelectedTagIds.map(v => v.id || v).join('')}`}
             className="belt text-left mt-5 mt-sm-4 row position-relative"
             ref={beltWrap => (this.refs = {...this.refs, beltWrap})}
           >
             {_owner && <EditBelt onClick={() => this.onEditBeltClick()} />}
             <div className="p-0 col-12">
               <div className="header row d-flex flex-nowrap">
-                {_owner && <div className="logo-circle ml-2" />}
+                {_owner && (
+                  <div className=" d-none d-sm-block logo-circle ml-2" />
+                )}
                 {_owner && editing ? (
-                  <div className="d-flex flex-wrap col-10">
+                  <div className="d-flex flex-wrap col-12 col-sm-10">
                     <Textarea
-                      className={`${titleMissingClass} ${border} col-12 col-sm-6 p-0 pl-1 border-right-xs-0 mr-2 mb0 Title Title__title4 Title__title4--transform-uppercase`}
+                      className={`${titleMissingClass} ${border} col-12 col-sm-6 p-0 pl-1 border-right-xs-0 mr-2 mb0 mt-3 Title Title__title4 Title__title4--transform-uppercase`}
                       name="belt-name"
                       placeholder={'Husk at give båndet en overskrift'}
                       onChange={this.onTitleChange}
                       rows={1}
                       value={name}
                     />
+                    {showTags && (
+                      <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
+                        {plainSelectedTags.map((t, idx) => {
+                          return (
+                            <Tag
+                              tag={t}
+                              isLast={idx === plainSelectedTags.length - 1}
+                            />
+                          );
+                        })}
+                      </div>
+                    )}
                     <Textarea
                       className={`${subtextMissingClass} col-12 p-0 pl-1 mt1 mb0 Title Title__title5`}
                       name="belt-description"
@@ -298,11 +312,14 @@ export class BooksBelt extends React.Component {
                       onChange={this.onSubtextChange}
                       value={subtext}
                     />
-                    <div>
+                    <div
+                      div
+                      className="d-flex w-100 w-sm-auto flex-row-reverse flex-sm-row"
+                    >
                       <Button
                         type="quaternary"
                         size="medium"
-                        className="mr-4 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
+                        className="mr-0 mr-sm-4 ml-2 ml-sm-0 mt-2 mb-2 mt-sm-4 mb-sm-4"
                         onClick={!titleMissing && onSaveEdit}
                       >
                         {'Gem ændringer'}
@@ -318,7 +335,7 @@ export class BooksBelt extends React.Component {
                     </div>
                   </div>
                 ) : (
-                  <div className="pl-0">
+                  <div className="pl-0 d-flex flex-wrap mw-100">
                     <Link
                       href="/find"
                       params={{
@@ -368,7 +385,7 @@ export class BooksBelt extends React.Component {
                       </div>
                     )}
                     {subtext && (
-                      <div className="d-block w-100">
+                      <div className="w-100 w-sm-auto d-block">
                         <Title
                           Tag="h3"
                           type="title5"
@@ -381,6 +398,7 @@ export class BooksBelt extends React.Component {
                   </div>
                 )}
               </div>
+
               <div className="mt2 row">
                 <Slider
                   initialScrollPos={scrollPos}

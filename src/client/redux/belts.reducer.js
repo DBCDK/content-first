@@ -293,8 +293,6 @@ const beltsReducer = (state = defaultState, action) => {
       const belt = action.belt;
       const data = action.data;
 
-      console.log('data in update_belt_data', data);
-
       if (!data) {
         throw new Error("'data' is missing from action");
       }
@@ -505,8 +503,6 @@ export const updateBeltData = props => {
 
 // updates belt data in db
 export const updateBelt = belt => {
-  console.log('belt in updateBelt action', belt);
-
   return {
     type: UPDATE_BELT,
     belt

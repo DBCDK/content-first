@@ -280,7 +280,7 @@ class FilterPage extends React.Component {
           'Søgningen er gemt på din forside',
           <a
             onClick={() =>
-              this.props.history(HISTORY_PUSH, `/#${tagIds.join('')}`)
+              this.props.history(HISTORY_PUSH, `/#temp_${tagIds.join('')}`)
             }
           >
             Se det her
