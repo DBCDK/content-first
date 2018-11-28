@@ -13,7 +13,7 @@ class FrontPage extends React.Component {
   componentDidMount() {
     const hash = this.props.hash.replace('#', '');
 
-    if (hash && hash !== '') {
+    if (hash) {
       setTimeout(() => {
         scrollToComponent(document.getElementById(hash), {
           offset: 100,

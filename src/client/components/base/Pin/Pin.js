@@ -38,18 +38,19 @@ const mapStateToProps = state => {
   };
 };
 
-export const mapDispatchToProps = dispatch => ({
-  requireLogin: () => {
-    dispatch({
-      type: OPEN_MODAL,
-      modal: 'login',
-      context: {
-        title: 'GEM SØGNING TIL FORSIDE',
-        reason: 'Du skal logge ind for at kunne gemme din søgning til forsiden.'
-      }
-    });
-  }
-});
+export const mapDispatchToProps = (dispatch, ownProps) => {
+  const context = ownProps.notLoggedIncontext;
+
+  return {
+    requireLogin: () => {
+      dispatch({
+        type: OPEN_MODAL,
+        modal: 'login',
+        context
+      });
+    }
+  };
+};
 
 export default connect(
   mapStateToProps,

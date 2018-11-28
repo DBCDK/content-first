@@ -242,7 +242,7 @@ class FilterPage extends React.Component {
     this.handleBelts(work, row, type, newBelt);
   }
 
-  onPinClick() {
+  onPinClick = () => {
     const type = 'belt';
     const tagIds = this.props.plainSelectedTagIds;
     const tags = this.props.selectedTagIds;
@@ -291,7 +291,7 @@ class FilterPage extends React.Component {
     );
 
     this.props.addPin(newBelt);
-  }
+  };
 
   scrollToBelt(element, offset) {
     scrollToComponent(element, {offset});
@@ -347,7 +347,12 @@ class FilterPage extends React.Component {
                   text={
                     pinStatus ? 'Gemt på din forside' : 'Gem på din forside'
                   }
-                  onClick={() => this.onPinClick()}
+                  notLoggedIncontext={{
+                    title: 'GEM SØGNING TIL FORSIDE',
+                    reason:
+                      'Du skal logge ind for at kunne gemme din søgning til forsiden.'
+                  }}
+                  onClick={this.onPinClick}
                 />
               )}
           </div>
