@@ -4,7 +4,7 @@
 .top-bar-dropdown-list--close-btn {
   font-size: 20px;
   cursor: pointer;
-  color: var(--petrolium);
+  color: var(--petroleum);
   position: absolute;
   top: 15px;
   left: 15px;
@@ -65,7 +65,7 @@
 }
 .top-bar-dropdown-list-element--header a {
   font-family: var(--primary-font);
-  color: var(--petrolium);
+  color: var(--petroleum);
   font-weight: 600;
   font-size: 1.1em;
 }
@@ -92,7 +92,7 @@
   color: var(--silver-chalice);
 }
 .top-bar-dropdown-list-element--taxonomy-description {
-  color: var(--petrolium);
+  color: var(--petroleum);
   white-space: nowrap;
   overflow: hidden !important;
   text-overflow: ellipsis;
@@ -129,7 +129,7 @@
 .top-bar-dropdown-list--more-btn {
   margin: auto;
   background: var(--concrete);
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 .top-bar-dropdown-list--merge-modal .work-list {
   margin-top: 20px;

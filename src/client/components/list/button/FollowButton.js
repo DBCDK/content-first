@@ -26,7 +26,7 @@ export const FollowButton = ({
       style={style}
       type="link2"
       style={{
-        color: isFollowing ? 'var(--de-york)' : 'var(--petrolium)'
+        color: isFollowing ? 'var(--de-york)' : 'var(--petroleum)'
       }}
       onClick={() => {
         if (!isLoggedIn) {

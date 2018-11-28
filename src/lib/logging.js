@@ -11,7 +11,7 @@
  *   hostname: (a string)
  * }
  * Usually set to server/config.logger.
-*/
+ */
 
 module.exports = config => {
   const PRETTY_PRINT = config.pretty === 1 ? 2 : null;
