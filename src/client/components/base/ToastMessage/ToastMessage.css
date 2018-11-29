@@ -25,6 +25,10 @@
   color: var(--de-york);
 }
 
+.ToastMessage.danger .ToastMessage__Icon {
+  color: var(--fersken);
+}
+
 .ToastMessage.info .ToastMessage__Icon {
   color: var(--due);
 }

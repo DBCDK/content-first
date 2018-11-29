@@ -1,0 +1,19 @@
+.Pin {
+  display: flex;
+  cursor: pointer;
+}
+
+.Pin .material-icons {
+  width: 30px;
+  height: 30px;
+  background-color: var(--porcelain);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  font-size: 16px;
+}
+
+.Pin.Pin__active .material-icons {
+  color: white;
+  background-color: var(--de-york);
+}

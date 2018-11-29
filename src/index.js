@@ -22,6 +22,7 @@ import {recommendMiddleware} from './client/redux/recommend';
 import {commentMiddleware} from './client/redux/comment.middleware';
 import {replayMiddleware} from './client/redux/replay';
 import {interactionMiddleware} from './client/redux/interaction.middleware';
+import {beltsMiddleware} from './client/redux/belts.middleware';
 import {statsMiddleware} from './client/redux/stats.middleware';
 
 // for window.scroll() back compatibility
@@ -42,6 +43,7 @@ const store = createStore([
   commentMiddleware,
   replayMiddleware,
   interactionMiddleware,
+  beltsMiddleware
   statsMiddleware
 ]);
 ReactDOM.render(
