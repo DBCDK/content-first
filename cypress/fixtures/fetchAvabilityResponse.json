@@ -1,4 +1,12 @@
 {
+    "saveProfile": {
+        "type": "SAVE_USER_PROFILE",
+        "user": {
+            "name": "",
+            "acceptedTerms": true,
+            "acceptedAge": true
+        }
+    },
     "avabilityResponse": {
         "type": "AVAILABILITY",
         "pid": "870970-basis:54154313",
@@ -45,10 +53,10 @@
         "first_edition_year": 2018,
         "taxonomy_description": "Vred, ondskabsfuld og bittersød\nPsykologisk og sarkastisk fortælling",
         "ordering": true,
-        "title_full": "Bjørnen : roman",
+        "title_full": "jdj : roman",
         "unit_id": "",
         "coverUrl": "https://moreinfo.addi.dk/2.11/more_info_get.php?lokalid=54154313&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=606930ad22dfd3baf72c",
-        "title": "Bjørnen",
+        "title": "blah",
         "language": "Dansk",
         "tags": [
             {

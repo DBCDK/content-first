@@ -54,6 +54,7 @@ exports[`renders without crashing 1`] = `
                       aria-controls="react-autowhatever-1"
                       autoComplete="off"
                       className="form-control suggestion-list__search "
+                      data-cy="search-bar-input"
                       id="Searchbar__inputfield"
                       onBlur={[Function]}
                       onChange={[Function]}
@@ -178,7 +179,7 @@ exports[`renders without crashing 1`] = `
               <button
                 className="
                     btn Button Button__medium Button__tertiary "
-                data-cy=""
+                data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
               >
                 Gå til huskeliste

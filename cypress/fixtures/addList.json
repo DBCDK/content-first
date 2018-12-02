@@ -1,0 +1,43 @@
+{"addList": {
+    "type": "ADD_LIST",
+    "list": {
+        "_id": null,
+        "type": "CUSTOM_LIST",
+        "title": "En dag mere",
+        "description": "",
+        "list": [],
+        "_owner": null,
+        "_created": 1543239741763,
+        "_type": "list"
+    }
+},
+ "addToList": {
+    "type": "ADD_ELEMENT_TO_LIST",
+    "element": {
+        "book": {
+            "pid": "870970-basis:50777189",
+            "unit_id": "",
+            "work_id": "work:1442542",
+            "bibliographic_record_id": -1,
+            "creator": "Andrea Hejlskov",
+            "title": "Og den store flugt",
+            "title_full": "Og den store flugt",
+            "pages": 240,
+            "type": "Bog",
+            "work_type": "book",
+            "language": "Dansk",
+            "items": 164,
+            "libraries": 93,
+            "subject": "erindringer, etik, familien, klimaændringer, livsfilosofi, naturen, samfundsskildringer",
+            "genre": "Skønlitteratur",
+            "first_edition_year": 2013,
+            "literary_form": "",
+            "taxonomy_description": "Intet resultat\nBevægende samfundsskildringer fra Sveriges naturen",
+            "description": "Dokumentarisk fortælling om en moderne familie med fire børn der flytter ud i en svensk skov og forsøger at skabe en tilværelse uden moderne bekvemmeligheder",
+            "loans": 1196,
+            "coverUrl": "https://moreinfo.addi.dk/2.11/more_info_get.php?lokalid=50777189&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=3862e7d3b7404e921194"
+        },
+        "description": "Fra \"Mennesket og Naturen\""
+    },
+    "_id": "8a183e80-f181-11e8-953b-6f8293ea6706"
+}}

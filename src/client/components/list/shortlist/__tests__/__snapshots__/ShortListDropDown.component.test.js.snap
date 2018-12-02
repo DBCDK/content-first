@@ -184,7 +184,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
-                data-cy=""
+                data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
                 Gå til huskeliste
@@ -521,7 +521,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
-                data-cy=""
+                data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
                 Gå til huskeliste
@@ -663,7 +663,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
-                data-cy=""
+                data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
                 Gå til huskeliste
@@ -736,7 +736,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
-                data-cy=""
+                data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
                 Gå til huskeliste

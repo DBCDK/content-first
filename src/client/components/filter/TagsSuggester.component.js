@@ -50,7 +50,7 @@ const renderSuggestion = (suggestion, suggestionString) => {
   const text = suggestion.text ? suggestion.text : suggestion.title;
 
   return (
-    <div className="suggestion-title">
+    <div className="suggestion-title" data-cy="suggestion-element">
       {addEmphasisToString(text, suggestionString)}
       <Icon name={icon} className="md-small" />
       <span className="ml1 suggestion-subject">{suggestion.parents[1]}</span>
@@ -285,7 +285,8 @@ class TagsSuggester extends React.Component {
       onKeyDown: this.props.onKeyDown,
       onBlur: () => {
         this.toggleInputvisibility(false);
-      }
+      },
+      'data-cy': 'search-bar-input'
     };
 
     return (

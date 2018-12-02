@@ -55,7 +55,12 @@ export default ({
       </div>
 
       <div className="ml-3">
-        <Title Tag="h3" type="title5" className="mb0">
+        <Title
+          Tag="h3"
+          type="title5"
+          className="mb0"
+          data-cy="list-element-work-title"
+        >
           {book.title}
         </Title>
         <Text type="body">{book.creator}</Text>

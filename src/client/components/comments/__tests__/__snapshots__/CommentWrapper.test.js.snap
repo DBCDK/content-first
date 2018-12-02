@@ -54,6 +54,7 @@ exports[`CommentContainer Cancel button 1`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -80,6 +81,7 @@ exports[`CommentContainer Cancel button 1`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -269,6 +271,7 @@ exports[`CommentContainer Cancel button 2`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -295,6 +298,7 @@ exports[`CommentContainer Cancel button 2`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -485,6 +489,7 @@ exports[`CommentContainer Delete button 1`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -511,6 +516,7 @@ exports[`CommentContainer Delete button 1`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -700,6 +706,7 @@ exports[`CommentContainer Edit button 1`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -726,6 +733,7 @@ exports[`CommentContainer Edit button 1`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -915,6 +923,7 @@ exports[`CommentContainer Edit button 2`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -941,6 +950,7 @@ exports[`CommentContainer Edit button 2`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -1220,6 +1230,7 @@ exports[`CommentContainer Render edit form 1`] = `
   
   <div
     className="ContextMenu dropdown comment-wrapper-context-menu"
+    data-cy={undefined}
     style={undefined}
   >
     <div
@@ -1238,6 +1249,7 @@ exports[`CommentContainer Render edit form 1`] = `
     >
       <div
         className="dropdown-item"
+        data-cy="context-menu-action"
         onClick={[Function]}
       >
         <i
@@ -1253,6 +1265,7 @@ exports[`CommentContainer Render edit form 1`] = `
       </div>
       <div
         className="dropdown-item"
+        data-cy="context-menu-action"
         onClick={[Function]}
       >
         <i
@@ -1361,6 +1374,7 @@ exports[`CommentContainer Render save form 1`] = `
   </div>
   <div
     className="ContextMenu dropdown comment-wrapper-context-menu"
+    data-cy={undefined}
     style={undefined}
   >
     <div
@@ -1379,6 +1393,7 @@ exports[`CommentContainer Render save form 1`] = `
     >
       <div
         className="dropdown-item"
+        data-cy="context-menu-action"
         onClick={[Function]}
       >
         <i
@@ -1394,6 +1409,7 @@ exports[`CommentContainer Render save form 1`] = `
       </div>
       <div
         className="dropdown-item"
+        data-cy="context-menu-action"
         onClick={[Function]}
       >
         <i
@@ -1537,6 +1553,7 @@ exports[`CommentContainer Save button 1`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon
@@ -1563,6 +1580,7 @@ exports[`CommentContainer Save button 1`] = `
           >
             <div
               className="dropdown-item"
+              data-cy="context-menu-action"
               onClick={[Function]}
             >
               <Icon

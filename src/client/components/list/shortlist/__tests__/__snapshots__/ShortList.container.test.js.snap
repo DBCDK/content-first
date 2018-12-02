@@ -782,6 +782,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -1116,6 +1117,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -1450,6 +1452,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -1799,6 +1802,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -2555,6 +2559,7 @@ exports[`ShortList.container remove element 1`] = `
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -3329,6 +3334,7 @@ exports[`ShortList.container short list contains elements 1`] = `
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE

@@ -164,6 +164,7 @@ class ShortList extends React.Component {
                       this.props.clearList
                     )
                   }
+                  data-cy="listpage-add-elemts-to-list"
                 >
                   TILFØJ ALLE TIL LISTE
                 </span>

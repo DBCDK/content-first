@@ -85,7 +85,7 @@ class WorkCard extends React.Component {
           ' ' +
           this.props.className
         }
-        data-cy={'workcard' + this.props.cardIndex}
+        data-cy={'workcard'}
       >
         <BookmarkButton
           origin={this.props.origin}
@@ -128,7 +128,7 @@ class WorkCard extends React.Component {
                 Tag="h3"
                 type="title"
                 style={{marginBottom: 4}}
-                data-cy={'workcard-title' + this.props.cardIndex}
+                data-cy={'workcard-title'}
               >
                 {this.props.work.book.title}
               </Heading>
@@ -149,6 +149,7 @@ class WorkCard extends React.Component {
                       this.props.rowId
                     );
                   }}
+                  dataCy="WC-more-like-this"
                 >
                   Mere som denne
                 </Button>

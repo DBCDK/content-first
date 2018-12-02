@@ -98,7 +98,11 @@ const ShortListContent = props => {
         )}
       <div className="top-bar-dropdown-list--footer">
         <div onClick={props.onViewShortList}>
-          <Button size="medium" type="tertiary">
+          <Button
+            size="medium"
+            type="tertiary"
+            dataCy="shortlist-dropdown-visit-shortlist"
+          >
             Gå til huskeliste
           </Button>
         </div>
