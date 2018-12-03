@@ -1065,6 +1065,7 @@ exports[`CommentContainer Edit button 2`] = `
           >
             <div
               className="form-group "
+              onBlur={[Function]}
               onFocus={[Function]}
               style={
                 Object {
@@ -1076,7 +1077,6 @@ exports[`CommentContainer Edit button 2`] = `
                 autoFocus={true}
                 className="form-control mb1 comment-textarea"
                 name="list-description"
-                onBlur={[Function]}
                 onChange={[Function]}
                 placeholder="Skriv kommentar"
                 value="comment_test"
@@ -1085,8 +1085,8 @@ exports[`CommentContainer Edit button 2`] = `
                 className="tr"
                 style={
                   Object {
-                    "height": "0px",
-                    "opacity": 0,
+                    "height": "50px",
+                    "opacity": 1,
                     "overflow": "hidden",
                     "transition": "all 200ms",
                   }
