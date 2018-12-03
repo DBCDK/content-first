@@ -1,65 +1,41 @@
-:root {
-  --footer-col-height: 257px;
-  --footer-col-width: 370px;
-}
-
-.footer-container-spacer {
-  height: var(--footer-col-height);
+.outer-footer-container {
+  display: flex;
+  justify-content: center;
 }
 
 .footer-container {
+  padding: 43px 10px 20px 25px;
   position: absolute;
   bottom: 0;
-  width: 100%;
-}
-
-.footer-element {
-  width: calc(var(--footer-col-width) - 40px - 80px);
-  min-width: calc(var(--footer-col-width) - 40px - 80px);
-  height: calc(var(--footer-col-height) - 90px - 66px);
-  margin: 90px 80px 66px 40px;
-  padding: 0;
-  flex-grow: 0;
-}
-
-.avoid-orphans-row {
+  max-width: 1201px;
+  background-color: var(--lys-graa);
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
-  width: calc(2*var(--footer-col-width));
+  margin-left: auto;
+  margin-right:auto;
+}
+
+.logo-element-container {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .laesekompas-logo {
-  position: absolute;
-  top: -32px;
   width: 189px;
 }
 
 /* Media rule when footer folds to 2 rows with 2 elements in each */
-@media (max-width: 1449px) {   /* Set to calc(4*var(--footer-col-width)-31) */
-  .footer-container-spacer {
-    height: calc(2*var(--footer-col-height) - 160px)
-  }
+@media (max-width: 940px) {
   .footer-element {
-    height: calc(var(--footer-col-height) - 40px - 100px);
-    margin: 20px 80px 40px 40px;
-  }
-  .first-footer, .second-footer {
-    height: calc(var(--footer-col-height) - 40px - 130px);
-    margin: 40px 80px 0 40px;
+    flex-basis: 50%;
   }
 }
 
 /* Media rule when footer folds to 4 rows with 1 element in each */
-@media (max-width: 709px) {   /* Set to calc(2*var(--footer-col-width)-31) */
-  .footer-container-spacer {
-    height: calc(4*var(--footer-col-height) - 440px)
-  }
+@media (max-width: 414px) {
   .footer-element {
-    height: calc(var(--footer-col-height) - 40px - 100px);
-    margin: 10px 80px 0 40px;
-  }
-  .first-footer {
-    height: calc(var(--footer-col-height) - 40px - 100px);
-    margin: 10px 80px 0 40px;
+    flex-basis: 100%;
   }
 }

@@ -6,78 +6,87 @@ import LaesekompasLogo from '../svg/LaesekompasLogo.svg';
 
 import './Footer.css';
 
-function Block1() {
-  return (
-    <React.Fragment>
-      <img src={LaesekompasLogo} className="laesekompas-logo" />
-      <Text type="body" className="mt1">
-        Læsekompasset hjælper dig med at opdage bøger, der passer dig, og
-        inspirerer dig til nye læseoplevelser.
-        <br />
-        <Link href="/om">Læs mere</Link>
-      </Text>
-    </React.Fragment>
-  );
-}
+class Footer extends React.Component {
+  state = {height: 0};
+  footerContainer = React.createRef();
 
-function Block2() {
-  return (
-    <React.Fragment>
-      <Text type="body" className="mt1">
-        Siden er i øjeblikket i beta-version, hvilket betyder, at den stadig er
-        under udvikling og at du kan opleve ting, der ikke fungerer optimalt
-        endnu.
-      </Text>
-    </React.Fragment>
-  );
-}
+  setFooterHeight() {
+    this.setState({height: this.footerContainer.current.offsetHeight});
+  }
 
-function Block3() {
-  return (
-    <React.Fragment>
-      <Text type="body" className="mt1">
-        Problemer med teknikken?
-        <br />
-        <a href="https://kundeservice.dbc.dk" target="_blank">
-          Skriv til DBCs kundeservice
-        </a>
-        <br />
-        <br />
-        Spørgsmål om Læsekompasset?
-        <br />
-        <a href="mailto:laesekompasset@dbc.dk">Skriv til projektledelsen</a>
-      </Text>
-    </React.Fragment>
-  );
-}
+  componentDidMount() {
+    this.setFooterHeight();
+    window.addEventListener('resize', this.setFooterHeight.bind(this));
+  }
 
-function Block4() {
-  return (
-    <React.Fragment>
-      <Text type="body" className="mt1">
-        DBC a/s
-        <br />
-        Tempovej 7-11
-        <br />
-        2750 Ballerup
-      </Text>
-    </React.Fragment>
-  );
-}
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setFooterHeight.bind(this));
+  }
 
-function Footer() {
-  return (
-    <React.Fragment>
-      <div className="footer-container-spacer" />
-      <div className="footer-container">
-        <div className="row">
-          <div className="col footer-element first-footer">
-            <Block1 />
-          </div>
-          <div className="col footer-element second-footer">
-            <Block2 />
-          </div>
-          <div className="avoid-orphans-row">
+  render() {
+    function Block1() {
+      return (
+        <Text type="body" className="mt1">
+          Læsekompasset hjælper dig med at opdage bøger, der passer dig, og
+          inspirerer dig til nye læseoplevelser.
+          <br />
+          <Link href="/om">Læs mere</Link>
+        </Text>
+      );
+    }
+    function Block2() {
+      return (
+        <Text type="body" className="mt1">
+          Siden er i øjeblikket i beta-version, hvilket betyder, at den stadig
+          er under udvikling og at du kan opleve ting, der ikke fungerer
+          optimalt endnu.
+        </Text>
+      );
+    }
+    function Block3() {
+      return (
+        <Text type="body" className="mt1">
+          Problemer med teknikken?
+          <br />
+          <a href="https://kundeservice.dbc.dk" target="_blank">
+            Skriv til DBCs kundeservice
+          </a>
+          <br />
+          <br />
+          Spørgsmål om Læsekompasset?
+          <br />
+          <a href="mailto:laesekompasset@dbc.dk">Skriv til projektledelsen</a>
+        </Text>
+      );
+    }
+    function Block4() {
+      return (
+        <Text type="body" className="mt1">
+          DBC a/s
+          <br />
+          Tempovej 7-11
+          <br />
+          2750 Ballerup
+        </Text>
+      );
+    }
+    return (
+      <React.Fragment>
+        <div
+          className="footer-container-spacer"
+          style={{height: this.state.height + 'px'}}
+        />
+        <div className="row outer-footer-container">
+          <div className="row footer-container" ref={this.footerContainer}>
+            <div className="logo-element-container">
+              <img src={LaesekompasLogo} className="laesekompas-logo" />
+            </div>
+            <div className="col footer-element first-footer">
+              <Block1 />
+            </div>
+            <div className="col footer-element second-footer">
+              <Block2 />
+            </div>
             <div className="col footer-element">
               <Block3 />
             </div>
@@ -86,9 +95,9 @@ function Footer() {
             </div>
           </div>
         </div>
-      </div>
-    </React.Fragment>
-  );
+      </React.Fragment>
+    );
+  }
 }
 
 export default Footer;
