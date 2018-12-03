@@ -11,7 +11,11 @@ class Footer extends React.Component {
   footerContainer = React.createRef();
 
   setFooterHeight() {
-    this.setState({height: this.footerContainer.current.offsetHeight});
+    if (this.footer && this.footerContainer && this.footerContainer.current) {
+      this.setState({height: this.footerContainer.current.offsetHeight});
+    } else {
+      this.setState({height: 0});
+    }
   }
 
   componentDidMount() {

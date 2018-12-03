@@ -1894,20 +1894,29 @@ exports[`renders without crashing 1`] = `
   </div>
   <div
     className="footer-container-spacer"
+    style={
+      Object {
+        "height": "0px",
+      }
+    }
   />
   <div
-    className="footer-container"
+    className="row outer-footer-container"
   >
     <div
-      className="row"
+      className="row footer-container"
     >
       <div
-        className="col footer-element first-footer"
+        className="logo-element-container"
       >
         <img
           className="laesekompas-logo"
           src="LaesekompasLogo.svg"
         />
+      </div>
+      <div
+        className="col footer-element first-footer"
+      >
         <p
           className="mt1 Text Text__body "
         >
@@ -1932,46 +1941,42 @@ exports[`renders without crashing 1`] = `
         </p>
       </div>
       <div
-        className="avoid-orphans-row"
+        className="col footer-element"
       >
-        <div
-          className="col footer-element"
+        <p
+          className="mt1 Text Text__body "
         >
-          <p
-            className="mt1 Text Text__body "
+          Problemer med teknikken?
+          <br />
+          <a
+            href="https://kundeservice.dbc.dk"
+            target="_blank"
           >
-            Problemer med teknikken?
-            <br />
-            <a
-              href="https://kundeservice.dbc.dk"
-              target="_blank"
-            >
-              Skriv til DBCs kundeservice
-            </a>
-            <br />
-            <br />
-            Spørgsmål om Læsekompasset?
-            <br />
-            <a
-              href="mailto:laesekompasset@dbc.dk"
-            >
-              Skriv til projektledelsen
-            </a>
-          </p>
-        </div>
-        <div
-          className="col footer-element"
+            Skriv til DBCs kundeservice
+          </a>
+          <br />
+          <br />
+          Spørgsmål om Læsekompasset?
+          <br />
+          <a
+            href="mailto:laesekompasset@dbc.dk"
+          >
+            Skriv til projektledelsen
+          </a>
+        </p>
+      </div>
+      <div
+        className="col footer-element"
+      >
+        <p
+          className="mt1 Text Text__body "
         >
-          <p
-            className="mt1 Text Text__body "
-          >
-            DBC a/s
-            <br />
-            Tempovej 7-11
-            <br />
-            2750 Ballerup
-          </p>
-        </div>
+          DBC a/s
+          <br />
+          Tempovej 7-11
+          <br />
+          2750 Ballerup
+        </p>
       </div>
     </div>
   </div>
