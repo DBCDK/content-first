@@ -43,7 +43,7 @@ export default class Pulse extends React.Component {
             <Text
               className="pulse-label mb-0 p-1 d-inline-block"
               type="micro"
-              variant="color-petrolium"
+              variant="color-petroleum"
             >
               {label}
             </Text>

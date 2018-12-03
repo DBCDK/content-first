@@ -220,7 +220,7 @@ exports[`renders without crashing 1`] = `
           Læsekompas
         </h1>
         <div
-          className="logo-beta-wrap d-flex  justify-content-sm-between position-relative"
+          className="logo-beta-wrap d-flex position-relative"
         >
           <p
             className="logo-beta-sign mb-0 Text Text__micro "
@@ -233,13 +233,12 @@ exports[`renders without crashing 1`] = `
             <p
               className="d-none d-sm-inline logo-beta-text Text Text__small "
             >
-              Nu 600+ bøger
-            </p>
-            <p
-              className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
-              onClick={[Function]}
-            >
-              Læs mere
+              <p
+                className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
+                onClick={[Function]}
+              >
+                Læs mere
+              </p>
             </p>
           </div>
         </div>
@@ -300,15 +299,41 @@ exports[`renders without crashing 1`] = `
       className="container"
     >
       <div
-        className="belts col-12 "
+        className="belts col-12"
       >
         <BooksBelt
           belt={
             Object {
+              "_created": 999999999999,
               "child": false,
               "key": "Bedste forslag",
               "name": "Bedste forslag",
               "onFrontPage": true,
+              "type": "belt",
+            }
+          }
+        />
+        <BooksBelt
+          belt={
+            Object {
+              "child": false,
+              "isLoading": false,
+              "key": "Vemodige nordmænd",
+              "links": Array [],
+              "name": "Vemodige nordmænd",
+              "onFrontPage": true,
+              "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
+              "tags": Array [
+                Object {
+                  "id": 4466,
+                  "weight": 10,
+                },
+                5731,
+                3510,
+                5626,
+                5683,
+                5630,
+              ],
               "type": "belt",
             }
           }
@@ -374,29 +399,6 @@ exports[`renders without crashing 1`] = `
             }
           }
         />
-        <BooksBelt
-          belt={
-            Object {
-              "child": false,
-              "isLoading": false,
-              "key": "Tankevækkende Sci-fi",
-              "links": Array [],
-              "name": "Tankevækkende fremtidsvisioner",
-              "onFrontPage": true,
-              "subtext": "Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.",
-              "tags": Array [
-                Object {
-                  "id": 4995,
-                  "weight": 10,
-                },
-                4927,
-                5714,
-                5713,
-              ],
-              "type": "belt",
-            }
-          }
-        />
       </div>
     </div>
     <div
@@ -418,7 +420,7 @@ exports[`renders without crashing 1`] = `
       className="container"
     >
       <div
-        className="belts col-12 "
+        className="belts col-12"
       >
         <BooksBelt
           belt={
@@ -589,21 +591,19 @@ exports[`renders without crashing 1`] = `
             Object {
               "child": false,
               "isLoading": false,
-              "key": "Vemodige nordmænd",
+              "key": "Tankevækkende Sci-fi",
               "links": Array [],
-              "name": "Vemodige nordmænd",
+              "name": "Tankevækkende fremtidsvisioner",
               "onFrontPage": true,
-              "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
+              "subtext": "Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.",
               "tags": Array [
                 Object {
-                  "id": 4466,
+                  "id": 4995,
                   "weight": 10,
                 },
-                5731,
-                3510,
-                5626,
-                5683,
-                5630,
+                4927,
+                5714,
+                5713,
               ],
               "type": "belt",
             }
@@ -615,7 +615,7 @@ exports[`renders without crashing 1`] = `
       className="container"
     >
       <div
-        className="belts col-12 "
+        className="belts col-12"
       >
         <react-visibility-sensor
           onChange={[Function]}

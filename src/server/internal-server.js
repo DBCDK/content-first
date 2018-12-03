@@ -15,6 +15,10 @@ internal.use(
   })
 );
 
+// Auto-parse cookies.
+const cookieParser = require('cookie-parser');
+internal.use(cookieParser());
+
 internal.use(
   parser.raw({
     type: 'image/jpeg',

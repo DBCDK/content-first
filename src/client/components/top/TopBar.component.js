@@ -16,6 +16,7 @@ import {OPEN_MODAL} from '../../redux/modal.reducer';
 import Title from '../base/Title/index';
 import Text from '../base/Text/index';
 import './Topbar.css';
+import {FETCH_STATS} from '../../redux/stats.reducer';
 
 let searchPage = false;
 
@@ -67,6 +68,7 @@ export class TopBar extends React.Component {
 
     searchPage = this.props.router.path === '/find' ? true : false;
     this.setState({searchExpanded: searchPage});
+    this.props.fetchStats();
   }
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.closeDropdown);
@@ -286,7 +288,7 @@ export class TopBar extends React.Component {
           <Title className="d-none d-sm-block mb-0" Tag="h1" type="title4">
             Læsekompas
           </Title>
-          <div className="logo-beta-wrap d-flex  justify-content-sm-between position-relative">
+          <div className="logo-beta-wrap d-flex position-relative">
             <Text className="logo-beta-sign mb-0" type="micro">
               BETA
             </Text>
@@ -297,19 +299,23 @@ export class TopBar extends React.Component {
                     className="d-none d-sm-inline logo-beta-text"
                     type="small"
                   >
-                    {'Nu 600+ bøger'}
-                  </Text>
-                  <Text
-                    className="d-inline logo-beta-link mb0"
-                    type="small"
-                    variant="decoration-underline"
-                    onClick={e => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      this.props.betaModal();
-                    }}
-                  >
-                    {'Læs mere'}
+                    {this.props.stats.books &&
+                      `Nu ${this.props.stats.books.total} ` +
+                        (this.props.stats.books.total === 1
+                          ? 'bog. '
+                          : 'bøger. ')}
+                    <Text
+                      className="d-inline logo-beta-link mb0"
+                      type="small"
+                      variant="decoration-underline"
+                      onClick={e => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.props.betaModal();
+                      }}
+                    >
+                      {'Læs mere'}
+                    </Text>
                   </Text>
                 </div>
               )}
@@ -329,7 +335,8 @@ const mapStateToProps = state => {
   return {
     shortListState: state.shortListReducer,
     listsState: state.listReducer,
-    router: state.routerReducer
+    router: state.routerReducer,
+    stats: state.stats
   };
 };
 export const mapDispatchToProps = dispatch => ({
@@ -337,6 +344,7 @@ export const mapDispatchToProps = dispatch => ({
   logout: () => dispatch({type: ON_LOGOUT_REQUEST}),
   onUserListsClose: () => dispatch({type: ON_USERLISTS_COLLAPSE}),
   onShortlistClose: () => dispatch({type: ON_SHORTLIST_COLLAPSE}),
+  fetchStats: () => dispatch({type: FETCH_STATS}),
   betaModal: () => {
     dispatch({
       type: OPEN_MODAL,

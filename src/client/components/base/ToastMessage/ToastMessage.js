@@ -28,7 +28,7 @@ const ToastMessage = ({
 };
 
 ToastMessage.propTypes = {
-  type: PropTypes.oneOf(['success'])
+  type: PropTypes.oneOf(['success', 'info', 'danger'])
 };
 
 export default ToastMessage;
