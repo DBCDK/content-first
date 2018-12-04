@@ -43,7 +43,7 @@ const store = createStore([
   commentMiddleware,
   replayMiddleware,
   interactionMiddleware,
-  beltsMiddleware
+  beltsMiddleware,
   statsMiddleware
 ]);
 ReactDOM.render(
