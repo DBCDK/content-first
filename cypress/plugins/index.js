@@ -37,5 +37,4 @@ module.exports = (on, config) => {
       return args;
     }
   });
-
 };

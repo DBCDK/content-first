@@ -230,7 +230,7 @@ exports[`renders without crashing 1`] = `
           Læsekompas
         </h1>
         <div
-          className="logo-beta-wrap d-flex  justify-content-sm-between position-relative"
+          className="logo-beta-wrap d-flex position-relative"
         >
           <p
             className="logo-beta-sign mb-0 Text Text__micro "
@@ -243,13 +243,12 @@ exports[`renders without crashing 1`] = `
             <p
               className="d-none d-sm-inline logo-beta-text Text Text__small "
             >
-              Nu 600+ bøger
-            </p>
-            <p
-              className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
-              onClick={[Function]}
-            >
-              Læs mere
+              <p
+                className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
+                onClick={[Function]}
+              >
+                Læs mere
+              </p>
             </p>
           </div>
         </div>
@@ -312,15 +311,41 @@ exports[`renders without crashing 1`] = `
       className="container"
     >
       <div
-        className="belts col-12 "
+        className="belts col-12"
       >
         <BooksBelt
           belt={
             Object {
+              "_created": 999999999999,
               "child": false,
               "key": "Bedste forslag",
               "name": "Bedste forslag",
               "onFrontPage": true,
+              "type": "belt",
+            }
+          }
+        />
+        <BooksBelt
+          belt={
+            Object {
+              "child": false,
+              "isLoading": false,
+              "key": "Vemodige nordmænd",
+              "links": Array [],
+              "name": "Vemodige nordmænd",
+              "onFrontPage": true,
+              "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
+              "tags": Array [
+                Object {
+                  "id": 4466,
+                  "weight": 10,
+                },
+                5731,
+                3510,
+                5626,
+                5683,
+                5630,
+              ],
               "type": "belt",
             }
           }
@@ -386,29 +411,6 @@ exports[`renders without crashing 1`] = `
             }
           }
         />
-        <BooksBelt
-          belt={
-            Object {
-              "child": false,
-              "isLoading": false,
-              "key": "Tankevækkende Sci-fi",
-              "links": Array [],
-              "name": "Tankevækkende fremtidsvisioner",
-              "onFrontPage": true,
-              "subtext": "Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.",
-              "tags": Array [
-                Object {
-                  "id": 4995,
-                  "weight": 10,
-                },
-                4927,
-                5714,
-                5713,
-              ],
-              "type": "belt",
-            }
-          }
-        />
       </div>
     </div>
     <div
@@ -430,7 +432,7 @@ exports[`renders without crashing 1`] = `
       className="container"
     >
       <div
-        className="belts col-12 "
+        className="belts col-12"
       >
         <BooksBelt
           belt={
@@ -601,21 +603,19 @@ exports[`renders without crashing 1`] = `
             Object {
               "child": false,
               "isLoading": false,
-              "key": "Vemodige nordmænd",
+              "key": "Tankevækkende Sci-fi",
               "links": Array [],
-              "name": "Vemodige nordmænd",
+              "name": "Tankevækkende fremtidsvisioner",
               "onFrontPage": true,
-              "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
+              "subtext": "Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.",
               "tags": Array [
                 Object {
-                  "id": 4466,
+                  "id": 4995,
                   "weight": 10,
                 },
-                5731,
-                3510,
-                5626,
-                5683,
-                5630,
+                4927,
+                5714,
+                5713,
               ],
               "type": "belt",
             }
@@ -627,7 +627,7 @@ exports[`renders without crashing 1`] = `
       className="container"
     >
       <div
-        className="belts col-12 "
+        className="belts col-12"
       >
         <react-visibility-sensor
           onChange={[Function]}
@@ -1904,6 +1904,90 @@ exports[`renders without crashing 1`] = `
       </i>
       <span />
     </button>
+  </div>
+  <div
+    className="footer-container-spacer"
+  />
+  <div
+    className="footer-container"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col footer-element first-footer"
+      >
+        <img
+          className="laesekompas-logo"
+          src="LaesekompasLogo.svg"
+        />
+        <p
+          className="mt1 Text Text__body "
+        >
+          Læsekompasset hjælper dig med at opdage bøger, der passer dig, og inspirerer dig til nye læseoplevelser.
+          <br />
+          <a
+            className="list-card-nohover"
+            data-cy=""
+            href="/om"
+            onClick={[Function]}
+          >
+            Læs mere
+          </a>
+        </p>
+      </div>
+      <div
+        className="col footer-element second-footer"
+      >
+        <p
+          className="mt1 Text Text__body "
+        >
+          Siden er i øjeblikket i beta-version, hvilket betyder, at den stadig er under udvikling og at du kan opleve ting, der ikke fungerer optimalt endnu.
+        </p>
+      </div>
+      <div
+        className="avoid-orphans-row"
+      >
+        <div
+          className="col footer-element"
+        >
+          <p
+            className="mt1 Text Text__body "
+          >
+            Problemer med teknikken?
+            <br />
+            <a
+              href="https://kundeservice.dbc.dk"
+              target="_blank"
+            >
+              Skriv til DBCs kundeservice
+            </a>
+            <br />
+            <br />
+            Spørgsmål om Læsekompasset?
+            <br />
+            <a
+              href="mailto:laesekompasset@dbc.dk"
+            >
+              Skriv til projektledelsen
+            </a>
+          </p>
+        </div>
+        <div
+          className="col footer-element"
+        >
+          <p
+            className="mt1 Text Text__body "
+          >
+            DBC a/s
+            <br />
+            Tempovej 7-11
+            <br />
+            2750 Ballerup
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;

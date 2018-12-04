@@ -4,7 +4,7 @@
   background: var(--lys-graa);
   text-decoration: none;
   padding: 0;
-  color: var(--petrolium);
+  color: var(--petroleum);
   margin-bottom: 65px;
 }
 
@@ -55,7 +55,7 @@
   line-height: 1.3rem;
 }
 a.list-card-nohover {
-  color: black;
+  color: var(--petrolium);
   text-decoration: none;
 }
 .list-card-description {

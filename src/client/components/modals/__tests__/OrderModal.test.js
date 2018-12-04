@@ -1,6 +1,5 @@
 /* eslint-disable no-undefined */
 import React from 'react';
-import Immutable from 'immutable';
 import {
   OrderModal,
   mapStateToProps,
@@ -12,12 +11,12 @@ jest.mock('../../general/Spinner.component', () => 'Spinner');
 jest.mock('../Modal.component', () => 'Modal');
 jest.mock('../../general/BookCover.component', () => 'BookCover');
 
-const sampleBooks = Immutable.fromJS([
+const sampleBooks = [
   {pid: 'pid1', title: 'title1', creator: 'creator1'},
   {pid: 'pid2', title: 'title2', creator: 'creator2'},
   {pid: 'pid3', title: 'title3', creator: 'creator3'}
-]);
-const sampleBranches = Immutable.fromJS([]);
+];
+const sampleBranches = [];
 function checkOrderModal(books) {
   const tree = renderer
     .create(<OrderModal branches={sampleBranches} orders={books} />)
@@ -34,11 +33,9 @@ describe('OrderModal', () => {
   });
   it('has a working mapStateToProps', () => {
     expect(
-      Immutable.fromJS(
-        mapStateToProps({
-          orderReducer: Immutable.fromJS({orders: {}, pickupBranches: []})
-        })
-      ).toJS()
+      mapStateToProps({
+        orderReducer: {orders: {}, pickupBranches: []}
+      })
     ).toEqual({branches: [], currentBranch: undefined, orders: []});
   });
   it('has a working mapDispatchToProps', () => {

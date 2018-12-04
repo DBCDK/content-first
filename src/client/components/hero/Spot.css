@@ -11,7 +11,7 @@
   width: 70px;
   height: 70px;
   margin-left: 0px;
-  border: 20px solid var(--petrolium);
+  border: 20px solid var(--petroleum);
   border-radius: 100%;
 }
 
@@ -21,7 +21,7 @@
 
 .Spot .logo .logo-line {
   height: 20px;
-  background-color: var(--petrolium);
+  background-color: var(--petroleum);
   border-radius: 5px;
 }
 

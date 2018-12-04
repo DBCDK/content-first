@@ -20,10 +20,6 @@ describe('Order ', function() {
         'have.text',
         ' 1 bog er bestilt.'
       );
-
-      cy.get('[data-cy=modal-done-btn]').click();
-
-      cy.get('[data-cy=order-btn]').should('have.text', 'Bestilt');
     });
   });
 });

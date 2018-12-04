@@ -1,5 +1,3 @@
-import Immutable from 'immutable';
-
 const defaultState = {
   orders: {},
   pickupBranches: []
@@ -69,7 +67,7 @@ const orderReducer = (state = defaultState, action) => {
         }
       };
 
-    case ORDER_DONE:
+    case ORDER_DONE: {
       let orders = state.orders;
       Object.values(orders).map(
         book =>
@@ -81,6 +79,7 @@ const orderReducer = (state = defaultState, action) => {
         ...state,
         orders: orders
       };
+    }
 
     case PICKUP_BRANCHES:
       return {...state, pickupBranches: action.branches};

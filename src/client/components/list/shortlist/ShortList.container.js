@@ -113,9 +113,6 @@ export class ShortListItem extends React.Component {
 class ShortList extends React.Component {
   render() {
     const {elements} = this.props.shortListState;
-    console.log('elements', elements);
-    console.log('.orderList', this.props.orderList);
-
     return (
       <div className="container">
         <div className="top-bar-dropdown-list-page col-11 col-centered">

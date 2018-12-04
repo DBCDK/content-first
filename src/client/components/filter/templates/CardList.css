@@ -18,7 +18,7 @@
 }
 
 .FilterCard__content ul.FilterCard__list li.FilterCard__listItem-heading:hover {
-  color: var(--petrolium) !important;
+  color: var(--petroleum) !important;
 }
 
 .FilterCard__content ul.FilterCard__list li.FilterCard__listItem::first-letter {
