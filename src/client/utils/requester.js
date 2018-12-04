@@ -156,11 +156,9 @@ export const fetchStats = async () => {
     if (response.body) {
       return response.body.data;
     }
-    console.log("/stats request didn't return a valid response");
     return 0;
   } catch (e) {
     // ignore errors/missing on fetching stats
-    console.log('/stats request error', e);
     return 0;
   }
 };
