@@ -1,6 +1,12 @@
 describe('Test shortlist', function() {
-  it('Add element to shortlist', function() {
+  beforeEach(function() {
     cy.clearClientStorage();
+    cy.clearCookies();
+    cy.createUser();
+    cy.wait(1000);
+  });
+
+  it('Add element to shortlist', function() {
     cy.visit('/');
     cy.scrollTo(0, 400);
     cy.wait(1000);

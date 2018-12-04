@@ -1,9 +1,9 @@
 import Immutable from 'immutable';
 
-const defaultState = Immutable.fromJS({
+const defaultState = {
   orders: {},
   pickupBranches: []
-});
+};
 
 export const ORDER = 'ORDER';
 export const AVAILABILITY = 'AVAILABILITY';
@@ -17,40 +17,73 @@ export const PICKUP_BRANCHES = 'PICKUP_BRANCHES';
 const orderReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ORDER:
-      return state
-        .mergeIn(['orders', action.book.pid], Immutable.fromJS(action.book))
-        .setIn(['orders', action.book.pid, 'ordering'], true);
-
+      return {
+        ...state,
+        orders: {
+          ...state.orders,
+          [action.book.pid]: {...action.book, ordering: true}
+        }
+      };
     case AVAILABILITY:
-      return state.setIn(
-        ['orders', action.pid, 'availability'],
-        Immutable.fromJS(action.availability)
-      );
+      return {
+        ...state,
+        orders: {
+          ...state.orders,
+          [action.pid]: {
+            ...state.orders[action.pid],
+            availability: action.availability
+          }
+        }
+      };
 
     case SET_CURRENT_BRANCH:
-      return state.set('currentBranch', action.branch);
+      return {
+        ...state,
+        currentBranch: action.branch
+      };
 
     case ORDER_START:
-      return state.setIn(['orders', action.pid, 'orderState'], 'ordering');
+      return {
+        ...state,
+        orders: {
+          ...state.orders,
+          [action.pid]: {...state.orders[action.pid], orderState: 'ordering'}
+        }
+      };
 
     case ORDER_SUCCESS:
-      return state.setIn(['orders', action.pid, 'orderState'], 'ordered');
+      return {
+        ...state,
+        orders: {
+          ...state.orders,
+          [action.pid]: {...state.orders[action.pid], orderState: 'ordered'}
+        }
+      };
 
     case ORDER_FAILURE:
-      return state.setIn(['orders', action.pid, 'orderState'], 'error');
+      return {
+        ...state,
+        orders: {
+          ...state.orders,
+          [action.pid]: {...state.orders[action.pid], orderState: 'error'}
+        }
+      };
 
     case ORDER_DONE:
-      return state.update('orders', orders =>
-        orders.map(
-          book =>
-            book.get('orderState') === 'error'
-              ? book.delete('orderState').delete('ordering')
-              : book.delete('ordering')
-        )
+      let orders = state.orders;
+      Object.values(orders).map(
+        book =>
+          book.orderState === 'error'
+            ? delete book.orderState && delete book.ordering
+            : delete book.ordering
       );
+      return {
+        ...state,
+        orders: orders
+      };
 
     case PICKUP_BRANCHES:
-      return state.set('pickupBranches', Immutable.fromJS(action.branches));
+      return {...state, pickupBranches: action.branches};
 
     default:
       return state;

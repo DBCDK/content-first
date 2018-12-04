@@ -10,8 +10,6 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-//const npmRun = require('npm-run')
-const {execSync} = require('child_process');
 
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
@@ -40,21 +38,4 @@ module.exports = (on, config) => {
     }
   });
 
-  on('task', {
-    resetDB: async () => {
-      try {
-        await execSync('docker kill content-first_database_1');
-      } catch (error) {}
-      try {
-        await execSync('docker system prune --force ');
-        await execSync('docker-compose up -d');
-        await execSync('npm run db-migrate');
-        await execSync('npm run inject-metakompas');
-        return true;
-      } catch (error) {
-        console.log('errr', error);
-        return error;
-      }
-    }
-  });
 };

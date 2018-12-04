@@ -113,6 +113,9 @@ export class ShortListItem extends React.Component {
 class ShortList extends React.Component {
   render() {
     const {elements} = this.props.shortListState;
+    console.log('elements', elements);
+    console.log('.orderList', this.props.orderList);
+
     return (
       <div className="container">
         <div className="top-bar-dropdown-list-page col-11 col-centered">
@@ -206,11 +209,10 @@ class ShortList extends React.Component {
 const mapStateToProps = state => {
   const {elements} = state.shortListReducer;
   const orderList = (elements || [])
-    .filter(
-      o =>
-        state.orderReducer.getIn(['orders', o.book.pid, 'orderState']) !==
-        'ordered'
-    )
+    .filter(o => {
+      const order = state.orderReducer.orders[o.book.pid] || {};
+      return order.orderState !== 'ordered';
+    })
     .slice(0, 10);
   return {
     shortListState: state.shortListReducer,

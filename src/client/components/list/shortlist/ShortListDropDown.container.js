@@ -151,7 +151,8 @@ class ShortListDropdown extends React.Component {
           }}
           orderAll={() =>
             elements.forEach(book => {
-              this.props.dispatch({type: ORDER, book});
+              console.log('forwach book', book);
+              this.props.dispatch({type: ORDER, book: book.book});
             })
           }
         >

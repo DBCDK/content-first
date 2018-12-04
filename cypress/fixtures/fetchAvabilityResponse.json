@@ -1,22 +1,4 @@
 {
-    "saveProfile": {
-        "type": "SAVE_USER_PROFILE",
-        "user": {
-            "name": "",
-            "acceptedTerms": true,
-            "acceptedAge": true
-        }
-    },
-    "avabilityResponse": {
-        "type": "AVAILABILITY",
-        "pid": "870970-basis:54154313",
-        "availability": {
-            "willLend": true,
-            "expectedDelivery": "2018-11-22T00:00:00+01:00",
-            "orderPossible": true,
-            "orderPossibleReason": "not_owned_ILL_loc"
-        }
-    },
     "picupBranches": {
         "type": "PICKUP_BRANCHES",
         "branches": [

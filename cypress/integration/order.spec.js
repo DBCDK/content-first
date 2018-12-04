@@ -7,11 +7,23 @@ describe('Order ', function() {
   });
   it('Can order a work', function() {
     const pid = '870970-basis:54154313';
-
     cy.visit('/værk/' + pid);
-    // cy.fetchAvability(pid);
-    cy.wait(3000);
 
-    //cy.get('[data-cy=order-btn]').click()
+    cy.get('[data-cy=order-btn]').click();
+
+    cy.fixture('fetchAvabilityResponse').then(data => {
+      cy.dispatch(data.picupBranches);
+      cy.get('[data-cy=modal-done-btn]').click();
+      cy.wait(2000);
+      cy.dispatch({type: 'ORDER_SUCCESS', pid: pid});
+      cy.get('[data-cy=order-status]').should(
+        'have.text',
+        ' 1 bog er bestilt.'
+      );
+
+      cy.get('[data-cy=modal-done-btn]').click();
+
+      cy.get('[data-cy=order-btn]').should('have.text', 'Bestilt');
+    });
   });
 });

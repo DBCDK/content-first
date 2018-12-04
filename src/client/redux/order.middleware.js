@@ -41,7 +41,7 @@ function fetchPickupBranches({store}) {
 
       const user = await openplatform.user();
 
-      if (state.orderReducer.get('pickupBranches').size === 0) {
+      if (state.orderReducer.pickupBranches.length === 0) {
         store.dispatch({
           type: PICKUP_BRANCHES,
           branches: await openplatform.libraries({
@@ -56,7 +56,10 @@ function fetchPickupBranches({store}) {
 
 function fetchAvailability({store, pid}) {
   const state = store.getState();
-  if (!state.orderReducer.getIn(['orders', pid, 'availability'])) {
+  if (
+    !state.orderReducer.orders[pid] ||
+    !state.orderReducer.orders[pid].availability
+  ) {
     (async () => {
       await openplatformLogin(state);
       let availability;

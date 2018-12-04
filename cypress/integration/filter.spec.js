@@ -22,28 +22,22 @@ describe('Filter page test', function() {
       .click();
     cy.get('[data-cy=tag-filosofisk]').should('have.text', 'filosofisk');
   });
-  /*
+  
    it('Should test "Tempo" filter', function() {//TODO
      
-    cy.visit('/')
-     
-    cy.get('[data-cy=topbar-search-btn]').click()
-    cy.get('[data-cy=tempo]').click()
-   // console.log("cy.get('.slider')",cy.get('.rc-slider-handle-2'))
+    cy.visit('http://localhost:3000/find?tag=5633,5633')
 
-    cy.get('.rc-slider-handle-1').first()
-    .trigger('mousedown')
-    .trigger('mousemove', { which: 1,pageX: 600, pageY: 378})
-    .trigger('mouseup')
-    //cy.pause();
-    cy.get('[data-cy=filterDimmer]').click()
     cy.get('[data-cy=workcard]').first().click()
+    cy.get('[data-cy=workpreviewCard]')
+    .first()
+    .click();
+    
     cy.get('[data-cy=tags-collaps-toggle]').first().click()
 
-    cy.get('[data-cy=tag-statisk]').should('have.text', 'statisk')
+    cy.get('[data-cy=tag-hæsblæsende]').should('have.text', 'hæsblæsende')
 
    })
-*/
+
 
   it('Should test "Længde" filter', function() {
     cy.visit('/');

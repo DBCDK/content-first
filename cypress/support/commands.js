@@ -31,25 +31,31 @@ Cypress.Commands.add('dispatch', action => {
       store.dispatch(action);
     });
 });
+/**
+ * Clears session- and localestorage
+ */
 Cypress.Commands.add('clearClientStorage', () => {
   cy.window().then(win => {
     win.sessionStorage.clear();
   });
-
   cy.clearLocalStorage();
 });
-
+/**
+ * creates a new user and logs in
+ */
 Cypress.Commands.add('createUser', userName => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
   cy.visit('http://localhost:3002/v1/test/create/' + userName);
 });
-
+/**
+ * logs in without creating a user
+ */
 Cypress.Commands.add('login', userName => {
   cy.request('http://localhost:3002/v1/test/login/' + userName);
 });
 
 /**
- *Adds resSi
+ *Adds 'size' elements to the shortlist
  */
 Cypress.Commands.add('addElementsToShortlist', size => {
   cy.fixture('works').then(elements => {
@@ -91,7 +97,7 @@ Cypress.Commands.add('resetDB', () => {
 
   cy.exec('docker system prune --force ', {timeout: 20000, log: showLog});
   cy.exec('docker-compose up -d', {timeout: 20000, log: showLog});
-  cy.exec('npm run db-migrate', {failOnNonZeroExit: false}).then(res => {
+  cy.exec('npm run db-migrate', {failOnNonZeroExit: true}).then(res => {
     console.log('migrate err', res.stderr);
   }); //TODO: fails
   cy.exec('npm run inject-metakompas', {
@@ -100,32 +106,4 @@ Cypress.Commands.add('resetDB', () => {
   }).then(res => {
     console.log('inject-metakompas ', res.stdout);
   }); //TODO: fails in injection
-});
-
-/**
- * Not ready yet
- */
-Cypress.Commands.add('fetchAvability', pid => {
-  cy.fixture('fetchAvabilityResponse').then(data => {
-    data.avabilityResponse.pid = pid;
-    console.log('resp.book', data);
-
-    cy.dispatch({
-      type: 'ADD_USER_AGENCY',
-      agencyName: 'Lyngby-Taarbæk Bibliotekerne'
-    });
-    cy.wait(3000);
-    //  cy.dispatch(data.avabilityResponse)
-    //cy.wait(3000)
-
-    cy.dispatch(data.saveProfile);
-
-    cy.wait(3000);
-    cy.dispatch({
-      type: 'ORDER',
-      book: data.book
-    });
-    cy.dispatch(data.picupBranches);
-    cy.dispatch(data.saveProfile);
-  });
 });

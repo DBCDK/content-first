@@ -47,14 +47,16 @@ export function OrderButton(props) {
 export const mapStateToProps = (state, ownProps) => ({
   className: ownProps.className || '',
   style: ownProps.style,
-  orderState: state.orderReducer.getIn(
-    ['orders', ownProps.book.pid, 'orderState'],
+  orderState:
+    (state.orderReducer.orders[ownProps.book.pid] &&
+      state.orderReducer.orders[ownProps.book.pid].orderState) ||
     'not ordered'
-  )
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  order: () => dispatch({type: ORDER, book: ownProps.book})
+  order: () => {
+    dispatch({type: ORDER, book: ownProps.book});
+  }
 });
 export default connect(
   mapStateToProps,

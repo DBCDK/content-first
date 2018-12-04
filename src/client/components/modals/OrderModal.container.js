@@ -11,17 +11,17 @@ import {
 } from '../../redux/order.reducer';
 
 export function OrderState({book}) {
-  if (book.get('orderState') === 'ordered') {
+  if (book.orderState === 'ordered') {
     return <span style={{color: 'green'}}>Er bestilt.</span>;
   }
-  if (book.get('orderState') === 'error') {
+  if (book.orderState === 'error') {
     return (
       <span style={{color: 'red'}}>
         Fejl ved <br /> bestilling.
       </span>
     );
   }
-  if (book.get('orderState') === 'ordering') {
+  if (book.orderState === 'ordering') {
     return (
       <span>
         <Spinner size={12} style={{marginTop: 5, marginLeft: 18}} />
@@ -30,7 +30,7 @@ export function OrderState({book}) {
       </span>
     );
   }
-  if (!book.get('availability')) {
+  if (!book.availability) {
     return (
       <span style={{textAlign: 'center', display: 'inline-block'}}>
         <Spinner size={12} style={{marginTop: 5}} />
@@ -39,7 +39,7 @@ export function OrderState({book}) {
       </span>
     );
   }
-  if (book.getIn(['availability', 'orderPossible']) === false) {
+  if (book.availability.orderPossible === false) {
     return (
       <span style={{color: 'red'}}>
         Kan ikke bestilles
@@ -48,7 +48,7 @@ export function OrderState({book}) {
       </span>
     );
   }
-  if (book.getIn(['availability', 'orderPossible']) === true) {
+  if (book.availability.orderPossible === true) {
     return (
       <div style={{color: '#666', textAlign: 'center'}}>
         Kan <br /> bestilles.
@@ -69,8 +69,10 @@ function orderInfo({orders, onStart, currentBranch, branches}) {
   let unavailableCount = 0;
 
   for (const o of orders) {
-    const state = o.get('orderState');
-    const unavailable = o.getIn(['availability', 'orderPossible']) === false;
+    const state = o.orderState;
+    const unavailable = o.availability
+      ? o.availability.orderPossible === false
+      : false;
     if (unavailable) {
       ++unavailableCount;
     }
@@ -84,8 +86,7 @@ function orderInfo({orders, onStart, currentBranch, branches}) {
       !unavailable
     ) {
       doneText = 'JA TAK, BESTIL NU';
-      onDone = () =>
-        onStart(orderable, currentBranch || branches.getIn([0, 'branchId']));
+      onDone = () => onStart(orderable, currentBranch || branches[0].branchId);
       reviewingOrder = true;
     }
     if (state === 'error') {
@@ -131,7 +132,6 @@ export function OrderModal(props) {
     unavailableCount,
     reviewingOrder
   } = orderInfo(props);
-
   if (!reviewingOrder && !ordering) {
     doneText = 'OK';
     onDone = props.onClose;
@@ -152,7 +152,7 @@ export function OrderModal(props) {
           >
             ❌
           </span>
-          <div style={{color: 'red'}}>
+          <div style={{color: 'red'}} data-cy="order-status">
             Der skete en fejl så {orderError} af bøgerne ikke er blevet bestilt.
           </div>
           <div>Du kan evt. prøve at bestille bøgerne igen</div>
@@ -175,7 +175,7 @@ export function OrderModal(props) {
           >
             ✓
           </span>
-          <div>
+          <div data-cy="order-status">
             {orderSuccess > 2 ? 'Alle' : ''} {orderSuccess}{' '}
             {orderSuccess === 1 ? 'bog' : 'bøger'} er bestilt.
           </div>
@@ -201,9 +201,9 @@ export function OrderModal(props) {
         <div className="form-group">
           <strong>
             Du er ved at bestille
-            {props.orders.count() > 1 && ` ${props.orders.count()} bøger`}:
+            {props.orders.length > 1 && ` ${props.orders.length} bøger`}:
           </strong>
-          {props.orders.count() >= 10 && (
+          {props.orders.length >= 10 && (
             <small>
               <br />
               Du kan højest bestille 10 bøger ad gangen. Klik på "Bestil hele
@@ -228,7 +228,7 @@ export function OrderModal(props) {
           >
             {props.orders.map(book => {
               return (
-                <div className="row short-list-page" key={book.get('pid')}>
+                <div className="row short-list-page" key={book.pid}>
                   <div
                     className="col-12"
                     style={{
@@ -238,7 +238,7 @@ export function OrderModal(props) {
                     }}
                   >
                     <span style={{height: 60, float: 'left', marginRight: 10}}>
-                      <BookCover book={book.toJS()} style={{width: 'unset'}} />
+                      <BookCover book={book} style={{width: 'unset'}} />
                     </span>
                     <div
                       style={{
@@ -252,8 +252,8 @@ export function OrderModal(props) {
                         <OrderState book={book} />
                       </small>
                     </div>
-                    <div className="title">{book.get('title')}</div>
-                    <div className="creator">{book.get('creator')}</div>
+                    <div className="title">{book.title}</div>
+                    <div className="creator">{book.creator}</div>
                   </div>
                 </div>
               );
@@ -271,11 +271,8 @@ export function OrderModal(props) {
               value={props.currentBranch}
             >
               {props.branches.map(branch => (
-                <option
-                  key={branch.get('branchId')}
-                  value={branch.get('branchId')}
-                >
-                  {branch.getIn(['branchName', 0])}
+                <option key={branch.branchId} value={branch.branchId}>
+                  {branch.branchName[0]}
                 </option>
               ))}
             </select>
@@ -289,12 +286,11 @@ export function OrderModal(props) {
 }
 export function mapStateToProps(state) {
   return {
-    orders: state.orderReducer
-      .get('orders')
-      .valueSeq()
-      .filter(book => book.get('ordering')),
-    branches: state.orderReducer.get('pickupBranches'),
-    currentBranch: state.orderReducer.get('currentBranch')
+    orders: Object.values(state.orderReducer.orders).filter(
+      book => book.ordering
+    ),
+    branches: state.orderReducer.pickupBranches,
+    currentBranch: state.orderReducer.currentBranch
   };
 }
 export function mapDispatchToProps(dispatch) {
@@ -304,7 +300,7 @@ export function mapDispatchToProps(dispatch) {
     },
     onStart: (books, branch) => {
       for (const book of books) {
-        dispatch({type: ORDER_START, pid: book.get('pid'), branch});
+        dispatch({type: ORDER_START, pid: book.pid, branch});
       }
     },
     onClose: () => {
