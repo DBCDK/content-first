@@ -418,14 +418,20 @@ export const loadShortList = async ({isLoggedIn, store}) => {
 function formatQuery(query) {
   // Remove parenthesis and everything between from query string + leading/ending spaces
   query = query.replace(/\(.*\)/, '').trim();
-  // remove & and ,
+  // remove & , . -
   query = query
-    .split(' & ')
+    .split('&')
     .join(' ')
     .split(',')
-    .join('');
+    .join(' ')
+    .split('.')
+    .join(' ')
+    .split('-')
+    .join(' ');
+  // Replace all multiple whitespace characters with a single space
+  query = query.replace(/\s+/g, ' ');
   // add & to spaces between words in query
-  query = query.split(' ').join(' & ');
+  query = query.split(' ').join('&');
 
   return query;
 }
