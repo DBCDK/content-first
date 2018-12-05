@@ -35,10 +35,8 @@ describe('List test', function() {
 
     cy.addElementsToShortlist(3);
     cy.wait(500);
-
     cy.get('[data-cy=topbar-lists]').click(); //TODO: remove and fix issue with system list not appearing in modal
     cy.get('[data-cy=topbar-lists]').click(); //TODO: remove and fix issue with system list not appearing in modal
-
     cy.get('[data-cy=topbar-shortlist]').click();
     cy.get('[data-cy=shortlist-dropdown-visit-shortlist]').click();
     cy.wait(1000);
@@ -56,6 +54,9 @@ describe('List test', function() {
   it('Can change element order in a list', function() {
     const listName = 'new list' + Math.floor(Math.random() * 1000);
     const listDescription = 'List description';
+    const firstElement = 'Krig og fred';
+    const secondElement = 'Idioten';
+    const thirdElement = 'En vild fårejagt';
 
     cy.get('[data-cy=topbar-lists]').click();
     cy.get('[data-cy=lists-dropdown-new-list]').click();
@@ -66,10 +67,6 @@ describe('List test', function() {
     cy.wait(1000);
 
     //add elements
-    const firstElement = 'Krig og fred';
-    const secondElement = 'Idioten';
-    const thirdElement = 'En vild fårejagt';
-
     cy.get('[data-cy=listview-add-element-input]')
       .clear()
       .type(firstElement);
@@ -82,7 +79,6 @@ describe('List test', function() {
       .type(secondElement);
     cy.wait(100);
     cy.get('[data-cy=listview-add-element-input]').type('{enter}');
-
     cy.wait(500);
 
     cy.get('[data-cy=listview-add-element-input]')
@@ -90,7 +86,6 @@ describe('List test', function() {
       .type(thirdElement);
     cy.wait(100);
     cy.get('[data-cy=listview-add-element-input]').type('{enter}');
-
     cy.wait(1000);
 
     //Change elements order
@@ -99,12 +94,10 @@ describe('List test', function() {
       .click()
       .within(el => {
         cy.wait(500);
-
         cy.get('[data-cy=context-menu-action]')
           .eq(1)
           .click();
       });
-
     cy.wait(1000);
     cy.get('[data-cy=reorder-list-element]')
       .eq(1)

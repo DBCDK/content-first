@@ -17,10 +17,11 @@ describe('Login test', function() {
     cy.get('[data-cy=user-form-acceptedTerms]').click();
     cy.get('[data-cy=user-form-submit]').click();
     cy.visit('/profile');
+
     cy.get('[data-cy=user-form-name]').should('have.text', userName);
   });
 
-  it('User can login', function() {
+  it('Can login through Adgangsplatformen', function() {
     cy.visit('http://localhost:3001/v1/login');
 
     cy.get('#libraryname-input').type('Ishøj Bibliotek');
@@ -30,6 +31,7 @@ describe('Login test', function() {
     cy.get('#userid-input').type('7183532906');
     cy.get('#pin-input').type('2635');
     cy.get('#borchk-submit').click();
+
     cy.url().should('include', 'localhost');
   });
 });

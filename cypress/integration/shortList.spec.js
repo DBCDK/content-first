@@ -10,10 +10,9 @@ describe('Test shortlist', function() {
     cy.visit('/');
     cy.scrollTo(0, 400);
     cy.wait(1000);
-
     cy.get('[data-cy=workcard]')
       .first()
-      .within(el => {
+      .within(() => {
         cy.get('[data-cy=bookmarkBtn]').click();
       });
     cy.get('[data-cy=workcard-title]')
@@ -21,6 +20,7 @@ describe('Test shortlist', function() {
       .invoke('text')
       .then(workTitle => {
         cy.get('[data-cy=topbar-shortlist]').click();
+     
         cy.get('[data-cy=shortlist-element-title]').should(
           'have.text',
           workTitle

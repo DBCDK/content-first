@@ -20,6 +20,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
     cy.get('[data-cy=tag-filosofisk]').should('have.text', 'filosofisk');
   });
 
@@ -55,9 +56,9 @@ describe('Filter page test', function() {
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
+
     cy.get('[data-cy=pages-count]').then(elem => {
       let pageCount = elem[0].getAttribute('data-value');
-
       expect(pageCount).lessThan(151);
     });
   });
@@ -215,7 +216,7 @@ describe('Filter page test', function() {
 
   it('Should give one result on work search', function() {
     const workTitle = 'Kafka på stranden';
-    cy.visit('/værk/870970-basis:29372373'); //TODO: change to '/'
+    cy.visit('/'); //TODO: change to '/'
 
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=search-bar-input]')
