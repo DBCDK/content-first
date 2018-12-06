@@ -179,6 +179,8 @@ async function find(query, user = {}) {
     .orderBy('type')
     .orderBy('key')
     .orderBy('modified', 'desc')
+    .limit(query.limit)
+    .offset(query.offset)
     .select();
   result = result.map(rowToObject);
 

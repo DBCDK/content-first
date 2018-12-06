@@ -48,7 +48,7 @@
 
 .login-modal p,
 .login-modal a {
-  color: var(--petrolium);
+  color: var(--petroleum);
   font-weight: 700;
   font-size: 1em;
 }
@@ -58,7 +58,7 @@
 }
 .login-modal h3 {
   font-size: 1.1em;
-  color: var(--petrolium);
+  color: var(--petroleum);
   font-family: var(--primary-font);
   font-weight: 600;
   text-transform: uppercase;
@@ -82,7 +82,7 @@
   top: 10px;
   right: 15px;
   cursor: pointer;
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 .modal-window--header h3 {
   margin: 0;

@@ -166,7 +166,7 @@
 }
 
 .FilterCard__container.FilterCard-expanded .FilterCard__list {
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 @media only screen and (max-width: 600px) {

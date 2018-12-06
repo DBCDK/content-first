@@ -19,7 +19,7 @@ import ListContextMenu from '../../menu/ListContextMenu';
 import Pulse from '../../../pulse/Pulse.component';
 const getListById = getListByIdSelector();
 
-const dotColors = ['korn', 'due', 'de-york', 'fersken', 'petrolium'];
+const dotColors = ['korn', 'due', 'de-york', 'fersken', 'petroleum'];
 
 function percentageObjToPixel(e, pos) {
   const x = (pos.x * e.imgWidth) / 100;

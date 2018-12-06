@@ -185,8 +185,8 @@
   }
 
   .AddToListButton__Mobile__Input input:focus {
-    outline: 1px solid var(--petrolium);
-    border: 1px solid var(--petrolium);
+    outline: 1px solid var(--petroleum);
+    border: 1px solid var(--petroleum);
   }
 
   .AddToListButton__Mobile__Input button {

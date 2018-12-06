@@ -150,6 +150,19 @@ export const fetchBooksTags = async (pids = []) => {
   return books;
 };
 
+export const fetchStats = async () => {
+  try {
+    const response = await request.get('/v1/stats/');
+    if (response.body) {
+      return response.body.data;
+    }
+    return 0;
+  } catch (e) {
+    // ignore errors/missing on fetching stats
+    return 0;
+  }
+};
+
 export const fetchReviews = (pids, store) => {
   const books = store.getState().booksReducer.books;
   const booksToBeFetched = pids.map(pid => books[pid]);

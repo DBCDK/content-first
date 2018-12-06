@@ -84,6 +84,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
       </div>
       <div
         className="form-group "
+        onBlur={[Function]}
         onFocus={[Function]}
         style={
           Object {
@@ -96,7 +97,6 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
           className="form-control mb1 comment-textarea"
           disabled={undefined}
           name="list-description"
-          onBlur={[Function]}
           onChange={[Function]}
           placeholder="Skriv kommentar"
           value=""
@@ -267,6 +267,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
       </div>
       <div
         className="form-group "
+        onBlur={[Function]}
         onFocus={[Function]}
         style={
           Object {
@@ -279,7 +280,6 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           className="form-control mb1 comment-textarea"
           disabled={undefined}
           name="list-description"
-          onBlur={[Function]}
           onChange={[Function]}
           placeholder="Skriv kommentar"
           value=""
@@ -641,6 +641,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
           </ProfileImage>
           <div
             className="form-group "
+            onBlur={[Function]}
             onFocus={[Function]}
             style={
               Object {
@@ -651,7 +652,6 @@ exports[`CommentContainer Component renders all comments 1`] = `
             <textarea
               className="form-control mb1 comment-textarea"
               name="list-description"
-              onBlur={[Function]}
               onChange={[Function]}
               placeholder="Skriv kommentar"
               value=""
@@ -821,6 +821,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
       </div>
       <div
         className="form-group "
+        onBlur={[Function]}
         onFocus={[Function]}
         style={
           Object {
@@ -833,7 +834,6 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
           className="form-control mb1 comment-textarea"
           disabled={undefined}
           name="list-description"
-          onBlur={[Function]}
           onChange={[Function]}
           placeholder="Skriv kommentar"
           value=""
@@ -1112,6 +1112,7 @@ exports[`CommentContainer Component renders error 1`] = `
           </ProfileImage>
           <div
             className="form-group has-error"
+            onBlur={[Function]}
             onFocus={[Function]}
             style={
               Object {
@@ -1122,7 +1123,6 @@ exports[`CommentContainer Component renders error 1`] = `
             <textarea
               className="form-control mb1 comment-textarea"
               name="list-description"
-              onBlur={[Function]}
               onChange={[Function]}
               placeholder="Skriv kommentar"
               value="comment3"
@@ -1136,8 +1136,8 @@ exports[`CommentContainer Component renders error 1`] = `
               className="tr"
               style={
                 Object {
-                  "height": "0px",
-                  "opacity": 0,
+                  "height": "50px",
+                  "opacity": 1,
                   "overflow": "hidden",
                   "transition": "all 200ms",
                 }
@@ -1428,6 +1428,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
           </ProfileImage>
           <div
             className="form-group "
+            onBlur={[Function]}
             onFocus={[Function]}
             style={
               Object {
@@ -1438,7 +1439,6 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             <textarea
               className="form-control mb1 comment-textarea"
               name="list-description"
-              onBlur={[Function]}
               onChange={[Function]}
               placeholder="Skriv kommentar"
               value=""
@@ -1764,6 +1764,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
           </ProfileImage>
           <div
             className="form-group "
+            onBlur={[Function]}
             onFocus={[Function]}
             style={
               Object {
@@ -1774,7 +1775,6 @@ exports[`CommentContainer Toggle all comments 1`] = `
             <textarea
               className="form-control mb1 comment-textarea"
               name="list-description"
-              onBlur={[Function]}
               onChange={[Function]}
               placeholder="Skriv kommentar"
               value=""
@@ -2152,6 +2152,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
           </ProfileImage>
           <div
             className="form-group "
+            onBlur={[Function]}
             onFocus={[Function]}
             style={
               Object {
@@ -2162,7 +2163,6 @@ exports[`CommentContainer Toggle all comments 2`] = `
             <textarea
               className="form-control mb1 comment-textarea"
               name="list-description"
-              onBlur={[Function]}
               onChange={[Function]}
               placeholder="Skriv kommentar"
               value=""

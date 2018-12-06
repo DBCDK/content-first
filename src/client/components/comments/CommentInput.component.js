@@ -48,6 +48,9 @@ export default class CommentInput extends React.Component {
             }
             this.setState({focus: true});
           }}
+          onBlur={() => {
+            this.setState({focus: false});
+          }}
         >
           <Textarea
             autoFocus={this.props.autoFocus}
@@ -57,9 +60,6 @@ export default class CommentInput extends React.Component {
             name="list-description"
             placeholder={this.props.placeholder || 'Skriv kommentar'}
             onChange={e => this.props.onChange(e.target.value)}
-            onBlur={() => {
-              this.setState({focus: false});
-            }}
             value={this.props.value}
           />
           {this.props.error && this.props.error.comment === this.props.value ? (
@@ -70,8 +70,8 @@ export default class CommentInput extends React.Component {
           <div
             className="tr"
             style={{
-              height: this.state.focus || this.state.value ? '50px' : '0px',
-              opacity: this.state.focus || this.state.value ? 1 : 0,
+              height: this.state.focus || this.props.value ? '50px' : '0px',
+              opacity: this.state.focus || this.props.value ? 1 : 0,
               overflow: 'hidden',
               transition: 'all 200ms'
             }}
