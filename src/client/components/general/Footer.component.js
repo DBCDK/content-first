@@ -10,92 +10,77 @@ class Footer extends React.Component {
   state = {height: 0};
   footerContainer = React.createRef();
 
-  setFooterHeight() {
-    if (this.footer && this.footerContainer && this.footerContainer.current) {
+  setFooterHeight = () => {
+    if (this.footerContainer && this.footerContainer.current) {
       this.setState({height: this.footerContainer.current.offsetHeight});
     } else {
       this.setState({height: 0});
     }
-  }
+  };
 
   componentDidMount() {
     this.setFooterHeight();
-    window.addEventListener('resize', this.setFooterHeight.bind(this));
+    window.addEventListener('resize', this.setFooterHeight);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.setFooterHeight.bind(this));
+    window.removeEventListener('resize', this.setFooterHeight);
   }
 
   render() {
-    function Block1() {
-      return (
-        <Text type="body" className="mt1">
-          Læsekompasset hjælper dig med at opdage bøger, der passer dig, og
-          inspirerer dig til nye læseoplevelser.
-          <br />
-          <Link href="/om">Læs mere</Link>
-        </Text>
-      );
-    }
-    function Block2() {
-      return (
-        <Text type="body" className="mt1">
-          Siden er i øjeblikket i beta-version, hvilket betyder, at den stadig
-          er under udvikling og at du kan opleve ting, der ikke fungerer
-          optimalt endnu.
-        </Text>
-      );
-    }
-    function Block3() {
-      return (
-        <Text type="body" className="mt1">
-          Problemer med teknikken?
-          <br />
-          <a href="https://kundeservice.dbc.dk" target="_blank">
-            Skriv til DBCs kundeservice
-          </a>
-          <br />
-          <br />
-          Spørgsmål om Læsekompasset?
-          <br />
-          <a href="mailto:laesekompasset@dbc.dk">Skriv til projektledelsen</a>
-        </Text>
-      );
-    }
-    function Block4() {
-      return (
-        <Text type="body" className="mt1">
-          DBC a/s
-          <br />
-          Tempovej 7-11
-          <br />
-          2750 Ballerup
-        </Text>
-      );
-    }
     return (
       <React.Fragment>
         <div
-          className="footer-container-spacer"
+          className="Footer__container--spacer"
           style={{height: this.state.height + 'px'}}
         />
-        <div className="row outer-footer-container">
-          <div className="row footer-container" ref={this.footerContainer}>
-            <div className="logo-element-container">
-              <img src={LaesekompasLogo} className="laesekompas-logo" />
+        <div className="row Footer__outer-container--flexbox">
+          <div
+            className="row Footer__container--elements"
+            ref={this.footerContainer}
+          >
+            <div className="Footer__logo--element">
+              <img src={LaesekompasLogo} className="Footer__logo--image" />
             </div>
-            <div className="col footer-element first-footer">
-              <Block1 />
+            <div className="col Footer__element--block">
+              <Text type="body" className="mt1">
+                Læsekompasset hjælper dig med at opdage bøger, der passer dig,
+                og inspirerer dig til nye læseoplevelser.
+                <br />
+                <Link href="/om">Læs mere</Link>
+              </Text>
             </div>
-            <div className="col footer-element second-footer">
-              <Block2 />
+            <div className="col Footer__element--block">
+              <Text type="body" className="mt1">
+                Siden er i øjeblikket i beta-version, hvilket betyder, at den
+                stadig er under udvikling og at du kan opleve ting, der ikke
+                fungerer optimalt endnu.
+              </Text>
             </div>
-            <div className="col footer-element">
-              <Block3 />
+            <div className="col Footer__element--block">
+              <Text type="body" className="mt1">
+                Problemer med teknikken?
+                <br />
+                <a href="https://kundeservice.dbc.dk" target="_blank">
+                  Skriv til DBCs kundeservice
+                </a>
+                <br />
+                <br />
+                Spørgsmål om Læsekompasset?
+                <br />
+                <a href="mailto:laesekompasset@dbc.dk">
+                  Skriv til projektledelsen
+                </a>
+              </Text>
             </div>
-            <div className="col footer-element">
-              <Block4 />
+            <div className="col Footer__element--block">
+              <Text type="body" className="mt1">
+                DBC a/s
+                <br />
+                Tempovej 7-11
+                <br />
+                2750 Ballerup
+              </Text>
             </div>
           </div>
         </div>

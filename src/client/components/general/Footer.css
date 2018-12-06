@@ -1,9 +1,9 @@
-.outer-footer-container {
+.Footer__outer-container--flexbox {
   display: flex;
   justify-content: center;
 }
 
-.footer-container {
+.Footer__container--elements {
   padding: 43px 10px 20px 25px;
   position: absolute;
   bottom: 0;
@@ -16,26 +16,26 @@
   margin-right:auto;
 }
 
-.logo-element-container {
+.Footer__logo--element {
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.laesekompas-logo {
+.Footer__logo--image {
   width: 189px;
 }
 
 /* Media rule when footer folds to 2 rows with 2 elements in each */
 @media (max-width: 940px) {
-  .footer-element {
+  .Footer__element--block {
     flex-basis: 50%;
   }
 }
 
 /* Media rule when footer folds to 4 rows with 1 element in each */
 @media (max-width: 414px) {
-  .footer-element {
+  .Footer__element--block {
     flex-basis: 100%;
   }
 }

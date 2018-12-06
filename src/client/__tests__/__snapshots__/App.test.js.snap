@@ -1893,7 +1893,7 @@ exports[`renders without crashing 1`] = `
     </button>
   </div>
   <div
-    className="footer-container-spacer"
+    className="Footer__container--spacer"
     style={
       Object {
         "height": "0px",
@@ -1901,21 +1901,21 @@ exports[`renders without crashing 1`] = `
     }
   />
   <div
-    className="row outer-footer-container"
+    className="row Footer__outer-container--flexbox"
   >
     <div
-      className="row footer-container"
+      className="row Footer__container--elements"
     >
       <div
-        className="logo-element-container"
+        className="Footer__logo--element"
       >
         <img
-          className="laesekompas-logo"
+          className="Footer__logo--image"
           src="LaesekompasLogo.svg"
         />
       </div>
       <div
-        className="col footer-element first-footer"
+        className="col Footer__element--block"
       >
         <p
           className="mt1 Text Text__body "
@@ -1932,7 +1932,7 @@ exports[`renders without crashing 1`] = `
         </p>
       </div>
       <div
-        className="col footer-element second-footer"
+        className="col Footer__element--block"
       >
         <p
           className="mt1 Text Text__body "
@@ -1941,7 +1941,7 @@ exports[`renders without crashing 1`] = `
         </p>
       </div>
       <div
-        className="col footer-element"
+        className="col Footer__element--block"
       >
         <p
           className="mt1 Text Text__body "
@@ -1966,7 +1966,7 @@ exports[`renders without crashing 1`] = `
         </p>
       </div>
       <div
-        className="col footer-element"
+        className="col Footer__element--block"
       >
         <p
           className="mt1 Text Text__body "
