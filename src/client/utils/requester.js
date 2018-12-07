@@ -416,21 +416,23 @@ export const loadShortList = async ({isLoggedIn, store}) => {
 };
 
 function formatQuery(query) {
-  // Remove parenthesis and everything between from query string + leading/ending spaces
-  query = query.replace(/\(.*\)/, '').trim();
-  // remove & , . -
   query = query
-    .split('&')
-    .join(' ')
-    .split(',')
-    .join(' ')
-    .split('.')
-    .join(' ')
-    .split('-')
-    .join(' ');
-  // Replace all multiple whitespace characters with a single space
-  query = query.replace(/\s+/g, ' ');
-  // add & to spaces between words in query
+    // Remove parenthesis and everything between from query string + leading/ending spaces
+    .replace(/\(.*\)/g, '')
+    // Handle dot's - the rule is to remove the dot if followed by whitespace
+    .replace(/\.\s/g, ' ')
+    // One specific case: 'Digte 1909-62' must be 'Digte 1909' !!!
+    .replace(/-[0-9]+/g, '')
+    // Replace special characters with a space
+    .replace(/[']/g, ' ')
+    // remove special characters
+    .replace(/[&,!#°?-]/g, '')
+    // Replace all multiple whitespace characters with a single space
+    .replace(/\s+/g, ' ')
+    // Trim leading and trailing whitespace
+    .trim();
+
+  // Replace spaces with ampersand character
   query = query.split(' ').join('&');
 
   return query;
