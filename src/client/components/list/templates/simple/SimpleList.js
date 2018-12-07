@@ -89,7 +89,7 @@ export class SimpleList extends React.Component {
                 this.refs = {...this.refs, suggester};
               }}
               className="pt-5"
-              style={{minHeight: 500, background: 'white'}}
+              style={{background: 'white'}}
               list={list}
               onAdd={pid => this.setState({added: pid})}
               disabled={list.editing || list.isNew}
