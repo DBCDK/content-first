@@ -1,16 +1,12 @@
 describe('Filter page test', function() {
-  before(function() {
-    //cy.resetDB();
-  });
-
   it('Should test "Stemning" filter', function() {
     cy.visit('/');
 
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=stemning]').click();
-    cy.get('[data-cy=filosofisk]').click();
+    cy.get('[data-cy=mystisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
-    cy.wait(500);
+
     cy.get('[data-cy=workcard]')
       .first()
       .click();
@@ -21,7 +17,7 @@ describe('Filter page test', function() {
       .first()
       .click();
 
-    cy.get('[data-cy=tag-filosofisk]').should('have.text', 'filosofisk');
+    cy.get('[data-cy=tag-mystisk]').should('have.text', 'mystisk');
   });
 
   it('Should test "Tempo" filter', function() {
@@ -48,7 +44,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=længde]').click();
     cy.get('[data-cy=kort]').click();
     cy.get('[data-cy=filterDimmer]').click();
-    cy.wait(500);
 
     cy.get('[data-cy=workcard]')
       .first()
@@ -69,8 +64,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=univers]').click();
     cy.get('[data-cy=realistisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
-    cy.wait(500);
-
     cy.get('[data-cy=workcard]')
       .first()
       .click();
@@ -91,7 +84,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=fortællerstemme]').click();
     cy.get('[data-cy=jeg-fortæller]').click();
     cy.get('[data-cy=filterDimmer]').click();
-    cy.wait(500);
 
     cy.get('[data-cy=workcard]')
       .first()
@@ -113,7 +105,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=sprog]').click();
     cy.get('[data-cy=slang]').click();
     cy.get('[data-cy=filterDimmer]').click();
-    cy.wait(500);
 
     cy.get('[data-cy=workcard]')
       .first()
@@ -135,7 +126,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=skrivestil]').click();
     cy.get('[data-cy=bevidsthedsstrøm]').click();
     cy.get('[data-cy=filterDimmer]').click();
-    cy.wait(500);
 
     cy.get('[data-cy=workcard]')
       .first()
@@ -160,7 +150,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=handlingens-tid]').click();
     cy.get('[data-cy=oldtiden]').click();
     cy.get('[data-cy=filterDimmer]').click();
-    cy.wait(500);
     cy.get('[data-cy=workcard]')
       .first()
       .click();
@@ -205,7 +194,6 @@ describe('Filter page test', function() {
     cy.get('[data-cy=WC-more-like-this]')
       .first()
       .click();
-    cy.wait(500);
 
     cy.get('[data-cy=filterpage-book-belt]').within(el => {
       cy.get('[data-cy=workcard]')
@@ -216,7 +204,7 @@ describe('Filter page test', function() {
 
   it('Should give one result on work search', function() {
     const workTitle = 'Kafka på stranden';
-    cy.visit('/'); //TODO: change to '/'
+    cy.visit('/');
 
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=search-bar-input]')
@@ -230,7 +218,6 @@ describe('Filter page test', function() {
       .get('u')
       .contains(workTitle)
       .click();
-    cy.wait(500);
 
     cy.get('[data-cy=workcard]')
       .its('length')

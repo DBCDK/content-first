@@ -112,7 +112,7 @@
     "test-no-db": ". ./current.env && mocha --exit src/acceptance/*_no-db.js",
     "test-no-elvis": "run-s test-no-db test-acceptance test-frontend",
     "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js",
-    "cy:run": "cypress run --browser chrome ",
+    "cy:run": "cypress run --browser chrome",
     "cy:open": "cypress open"
   },
   "jest": {
