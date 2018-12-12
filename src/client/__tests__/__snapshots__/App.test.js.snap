@@ -193,7 +193,7 @@ exports[`renders without crashing 1`] = `
         </div>
         <a
           className="Topbar__navigation__btn widthCalc"
-          href="/v1/login"
+          href="/v1/auth/login"
           onClick={[Function]}
         >
           <span>
