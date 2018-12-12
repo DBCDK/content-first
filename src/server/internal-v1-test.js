@@ -102,7 +102,7 @@ async function createUser(req, doCreateUser) {
         acceptedAge: doCreateUser ? true : false,
         acceptedTerms: doCreateUser ? true : false
       },
-      req
+      req.user
     );
   }
 

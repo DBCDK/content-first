@@ -32,7 +32,7 @@ export class Hero extends React.Component {
             <Title tag="h3" type="title4">
               {'Gem dine favoritter - Opret en profil på Læsekompas.dk'}
             </Title>
-            <Link href="/v1/login" className="d-block mt-3">
+            <Link href="/v1/auth/login" className="d-block mt-3">
               <Text
                 type="large"
                 variant="decoration-underline"

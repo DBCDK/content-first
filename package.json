@@ -10,7 +10,9 @@
   "bugs": {
     "url": "https://github.com/DBCDK/content-first/issues"
   },
-  "pre-commit": ["prettier"],
+  "pre-commit": [
+    "prettier"
+  ],
   "devDependencies": {
     "babel-eslint": "^8.0.3",
     "chai": "^4.0.2",
@@ -43,6 +45,7 @@
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
     "express": "^4.15.3",
     "express-bot": "^0.4.1",
     "helmet": "^3.6.1",
@@ -53,6 +56,8 @@
     "lodash": "^4.17.4",
     "lodash.intersection": "^4.4.0",
     "openplatform": "^3.0.0",
+    "passport": "^0.4.0",
+    "passport-oauth2": "^1.4.0",
     "pg": "^7.1.0",
     "rc-slider": "^8.6.1",
     "react": "^16.2.0",
@@ -111,6 +116,8 @@
     "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }

@@ -6,6 +6,7 @@ const constants = require('server/constants')();
 const logger = require('server/logger');
 const _ = require('lodash');
 const {toLoggableString} = require('__/json');
+const passport = require('server/passport');
 
 // Remote services.
 const database = require('server/database');
@@ -44,6 +45,9 @@ external.use(
   })
 );
 
+// set up passport
+const session = require('cookie-session');
+
 // Auto-parse cookies.
 const cookieParser = require('cookie-parser');
 external.use(cookieParser());
@@ -53,6 +57,10 @@ external.use(cookieParser());
 external.use(
   require('express-bot')({querystring: {use: true, key: 'bot', value: '1'}})
 );
+
+external.use(session({secret: config.auth.secret}));
+external.use(passport.initialize());
+external.use(passport.session());
 
 // Administrative API.
 external.get('/howru', async (req, res) => {
@@ -93,7 +101,6 @@ external.get('/pid', (req, res) => {
 
 // API routes.  Should agree with constants.apiversion.
 external.use('/v1', require('server/external-v1'));
-external.use('/hejmdal', require('server/external-hejmdal'));
 external.use('/lister/:id', require('server/external-meta-list'));
 external.use(
   '/' + encodeURIComponent('værk') + '/:pid',

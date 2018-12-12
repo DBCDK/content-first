@@ -14,7 +14,7 @@ router
     asyncMiddleware(async (req, res) => {
       try {
         const result = await request
-          .post(config.auth.url + '/oauth/token')
+          .post(config.auth.smaugUrl + '/oauth/token')
           .auth(config.auth.id, config.auth.secret)
           .send('grant_type=password&username=@&password=@');
         res.status(200).json(result.body);

@@ -4,8 +4,10 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {getUser, deleteUser, getUserData, putUserData} = require('server/user');
-const objectStore = require('server/objectStore');
+const nocache = require('server/nocache');
 const _ = require('lodash');
+
+router.use(nocache);
 
 router
   .route('/')
@@ -18,10 +20,9 @@ router
       const location = req.baseUrl;
 
       try {
-        const {openplatformToken} = (await objectStore.getUser(req)) || {};
-        const userData = await getUserData({req});
+        const userData = await getUserData(req.user.openplatformId, req.user);
         res.status(200).json({
-          data: {...userData, openplatformToken},
+          data: {...userData, openplatformToken: req.user.openplatformToken},
           links: {self: location}
         });
       } catch (e) {
@@ -46,10 +47,10 @@ router
           });
         }
 
-        await putUserData(req.body, req);
+        await putUserData(req.body, req.user);
 
         return res.status(200).json({
-          data: await getUserData({req}),
+          data: await getUserData(req.user.openplatformId, req.user),
           links: {self: location}
         });
       } catch (error) {
@@ -70,7 +71,7 @@ router
       const openplatformId = req.params.id;
       const location = `/v1/user/${encodeURIComponent(openplatformId)}`;
       try {
-        const userData = await getUserData({openplatformId, req});
+        const userData = await getUserData(openplatformId, req.user);
 
         res.status(200).json({
           data: _.omit(userData, ['id', 'openplatformToken']),

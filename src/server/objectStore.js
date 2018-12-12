@@ -10,32 +10,12 @@ const objectTable = constants.objects.table;
 const uuidGenerator = require('uuid');
 
 async function getUser(req) {
-  const loginToken = req.cookies['login-token'];
-  if (loginToken) {
-    let result = await knex(cookieTable)
-      .where('cookie', loginToken)
-      .select();
-    if (result.length === 1) {
-      const [
-        {
-          community_profile_id,
-          expires_epoch_s,
-          openplatform_id,
-          openplatform_token
-        }
-      ] = result;
-
-      if (expires_epoch_s < Date.now() / 1000) {
-        return;
-      }
-
-      return {
-        id: community_profile_id,
-        openplatformToken: openplatform_token,
-        openplatformId: openplatform_id,
-        admin: false
-      };
+  if (req.isAuthenticated()) {
+    const user = req.user;
+    if (user.expires < Date.now() / 1000) {
+      return;
     }
+    return {id: -1, admin: false, ...user};
   }
   // return undefined as user, if not logged in.
   return;

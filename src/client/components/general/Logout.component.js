@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 
 export const LogoutLink = ({
-  href = '/v1/login',
+  href = '/v1/auth/login',
   className,
   children = '',
   dispatch
