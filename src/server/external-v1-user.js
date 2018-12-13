@@ -3,7 +3,13 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const {getUser, deleteUser, getUserData, putUserData} = require('server/user');
+const {
+  getUser,
+  deleteUser,
+  getUserData,
+  putUserData,
+  requireLoggedIn
+} = require('server/user');
 const nocache = require('server/nocache');
 const _ = require('lodash');
 
@@ -16,6 +22,7 @@ router
   // GET /v1/user
   //
   .get(
+    requireLoggedIn,
     asyncMiddleware(async (req, res, next) => {
       const location = req.baseUrl;
 
@@ -35,6 +42,7 @@ router
   // PUT /v1/user
   //
   .put(
+    requireLoggedIn,
     asyncMiddleware(async (req, res, next) => {
       const location = req.baseUrl;
       try {
@@ -86,6 +94,7 @@ router
     })
   )
   .delete(
+    requireLoggedIn,
     asyncMiddleware(async (req, res, next) => {
       const openplatformId = req.params.id;
       const user = await getUser(req);

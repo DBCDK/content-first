@@ -36,8 +36,7 @@ const common = new Common();
 exports.auth = {
   id: process.env.AUTH_CLIENT_ID || 'content-first',
   secret: common.secret,
-  url: process.env.AUTH_URL || 'https://oauth.login.bib.dk',
-  smaugUrl: process.env.SMAUG_URL || 'https://auth.dbc.dk'
+  url: process.env.AUTH_URL || 'https://auth.dbc.dk'
 };
 
 exports.db = knexfile[common.environment];
@@ -55,6 +54,7 @@ exports.logger = {
 };
 
 exports.login = {
+  url: process.env.LOGIN_URL || 'https://oauth.login.bib.dk',
   openplatformUrl: process.env.OPENPLATFORM_URL || 'https://openplatform.dbc.dk'
 };
 

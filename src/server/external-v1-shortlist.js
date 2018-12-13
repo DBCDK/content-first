@@ -3,9 +3,10 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const {getUserData, putUserData} = require('server/user');
+const {getUserData, putUserData, requireLoggedIn} = require('server/user');
 const logger = require('server/logger');
 
+router.use(requireLoggedIn);
 router
   .route('/')
 

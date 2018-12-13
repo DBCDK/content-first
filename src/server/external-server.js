@@ -15,6 +15,8 @@ const login = require('server/login');
 const recompas = require('server/recompas');
 const generatingServiceStatus = require('__/services/service-status');
 
+const isProduction = config.server.environment === 'production';
+
 // Public web server.
 const express = require('express');
 const external = express();
@@ -47,20 +49,19 @@ external.use(
 
 // set up passport
 const session = require('cookie-session');
+external.use(session({secret: config.auth.secret, signed: isProduction}));
+external.use(passport.initialize());
+external.use(passport.session());
 
 // Auto-parse cookies.
-const cookieParser = require('cookie-parser');
-external.use(cookieParser());
+// const cookieParser = require('cookie-parser');
+// external.use(cookieParser());
 
 // Detect visits from bots
 // test bot visit with: querystring: {use: true,key: 'bot',value: '1'}
 external.use(
   require('express-bot')({querystring: {use: true, key: 'bot', value: '1'}})
 );
-
-external.use(session({secret: config.auth.secret}));
-external.use(passport.initialize());
-external.use(passport.session());
 
 // Administrative API.
 external.get('/howru', async (req, res) => {

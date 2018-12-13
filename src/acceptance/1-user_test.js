@@ -93,14 +93,14 @@ describe('User data', () => {
     it('should complain about user not logged in when unknown token', () => {
       return webapp
         .get(location)
-        .set('cookie', 'login-token=token-not-known-to-service')
+        .set('cookie', mock.createLoginCookie('token-not-known-to-service'))
         .expect(expectError_UnknownLoginToken(location));
     });
 
     it('should complain about user not logged in when token has expired', () => {
       return webapp
         .get(location)
-        .set('cookie', 'login-token=expired-login-token')
+        .set('cookie', mock.createLoginCookie('expired-login-token'))
         .expect(expectError_UnknownLoginToken(location));
     });
 
@@ -109,7 +109,9 @@ describe('User data', () => {
         .get(location)
         .set(
           'cookie',
-          'login-token=valid-login-token-for-user-seeded-on-test-start'
+          mock.createLoginCookie(
+            'valid-login-token-for-user-seeded-on-test-start'
+          )
         );
       expect(result.body.data).to.deep.equal({
         id: 123456,
@@ -199,7 +201,7 @@ describe('User data', () => {
     it('should complain about user not logged in when unknown token', () => {
       return webapp
         .put(location)
-        .set('cookie', 'login-token=token-not-known-to-service')
+        .set('cookie', mock.createLoginCookie('token-not-known-to-service'))
         .type('application/json')
         .send(newUserInfo)
         .expect(expectError_UnknownLoginToken(location));
@@ -208,7 +210,7 @@ describe('User data', () => {
     it('should complain about user not logged in when token has expired', () => {
       return webapp
         .put(location)
-        .set('cookie', 'login-token=expired-login-token')
+        .set('cookie', mock.createLoginCookie('expired-login-token'))
         .type('application/json')
         .send(newUserInfo)
         .expect(expectError_UnknownLoginToken(location));
@@ -217,6 +219,12 @@ describe('User data', () => {
     it('should reject wrong content type', () => {
       return webapp
         .put(location)
+        .set(
+          'cookie',
+          mock.createLoginCookie(
+            'valid-login-token-for-user-seeded-on-test-start'
+          )
+        )
         .type('text/plain')
         .send('broken')
         .expect(expectError_WrongContentType);
@@ -289,7 +297,9 @@ describe('User data', () => {
         .put(location)
         .set(
           'cookie',
-          'login-token=valid-login-token-for-user-seeded-on-test-start'
+          mock.createLoginCookie(
+            'valid-login-token-for-user-seeded-on-test-start'
+          )
         )
         .type('application/json')
         .send(newUserInfo);
@@ -299,7 +309,9 @@ describe('User data', () => {
         .get(location)
         .set(
           'cookie',
-          'login-token=valid-login-token-for-user-seeded-on-test-start'
+          mock.createLoginCookie(
+            'valid-login-token-for-user-seeded-on-test-start'
+          )
         );
       expect(getResult.body.data).to.deep.equal({
         openplatformToken: '123openplatformToken456',
@@ -316,7 +328,9 @@ describe('User data', () => {
         .delete(existingUserUri)
         .set(
           'cookie',
-          'login-token=valid-login-token-for-user2-seeded-on-test-start'
+          mock.createLoginCookie(
+            'valid-login-token-for-user2-seeded-on-test-start'
+          )
         );
       expect(result.status).to.equal(403);
       expect(result.body).to.deep.equal({
@@ -338,7 +352,9 @@ describe('User data', () => {
         .delete(existingUserUri)
         .set(
           'cookie',
-          'login-token=valid-login-token-for-user-seeded-on-test-start'
+          mock.createLoginCookie(
+            'valid-login-token-for-user-seeded-on-test-start'
+          )
         );
       expect(result.status).to.equal(200);
       expect(result.body).to.deep.equal({

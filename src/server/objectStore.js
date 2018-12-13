@@ -5,7 +5,6 @@ const _ = require('lodash');
 const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
-const cookieTable = constants.cookies.table;
 const objectTable = constants.objects.table;
 const uuidGenerator = require('uuid');
 

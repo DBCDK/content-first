@@ -10,8 +10,8 @@ const logger = require('server/logger');
 
 const profileStrategy = new Strategy(
   {
-    authorizationURL: config.auth.url + '/oauth/authorize',
-    tokenURL: config.auth.url + '/oauth/token',
+    authorizationURL: config.login.url + '/oauth/authorize',
+    tokenURL: config.login.url + '/oauth/token',
     clientID: config.auth.id,
     clientSecret: config.auth.id,
     callbackURL: config.server.dmzHost + '/v1/auth/callback'
@@ -19,7 +19,7 @@ const profileStrategy = new Strategy(
   async function(token, tokenSecret, profile, done) {
     try {
       const userInfo = await request
-        .get(config.auth.url + '/userinfo')
+        .get(config.login.url + '/userinfo')
         .set('Authorization', 'Bearer ' + token);
       const uniqueId = get(userInfo, 'body.attributes.uniqueId');
       if (!uniqueId) {

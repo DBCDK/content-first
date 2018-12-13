@@ -22,7 +22,8 @@ module.exports = {
   removingLoginToken,
   deleteUser,
   createCookie,
-  fetchCookie
+  fetchCookie,
+  requireLoggedIn
 };
 
 async function userExists(id) {
@@ -70,6 +71,15 @@ async function fetchCookie(cookie) {
   const res = (await knex(cookieTable)
     .select(['openplatform_id', 'openplatform_token', 'expires_epoch_s'])
     .where('cookie', cookie))[0];
+
+  if (!res || res.expires_epoch_s < Date.now() / 1000) {
+    throw {
+      status: 403,
+      title: 'user not logged in',
+      detail: 'User not logged in or session expired'
+    };
+  }
+
   return {
     openplatformId: res.openplatform_id,
     openplatformToken: res.openplatform_token,
@@ -173,4 +183,17 @@ function removingLoginToken(token) {
   return knex(cookieTable)
     .where('cookie', token)
     .del();
+}
+
+function requireLoggedIn(req, res, next) {
+  if (!_.get(req, 'user.openplatformId')) {
+    throw {
+      status: 403,
+      title: 'user not logged in',
+      detail: `User not logged in or session expired`,
+      meta: {resource: req && req.baseUrl}
+    };
+  } else {
+    next();
+  }
 }
