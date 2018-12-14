@@ -8,6 +8,8 @@ const knex = require('knex')(config.db);
 const constants = require('server/constants')();
 const bookTable = constants.books.table;
 
+const logger = require('server/logger');
+
 router
   .route('/')
   //
@@ -16,11 +18,13 @@ router
   .get(
     // eslint-disable-next-line no-unused-vars
     asyncMiddleware(async (req, res, next) => {
-      const results = await knex(bookTable)
+      const query = knex(bookTable)
         .select()
         .whereRaw("to_tsvector('simple', creator || ' ' || title_full) @@ ?", [
           req.query.q || ''
         ]);
+      logger.log.debug('Knex search query', {query: query.toString()});
+      const results = await query;
       res.status(200).json({data: results});
     })
   );
