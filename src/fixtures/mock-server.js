@@ -70,12 +70,10 @@ class MockServer {
     console.log(util.inspect(logs, {depth: 3})); // eslint-disable-line no-console
   }
 
-  createLoginCookie(openplatformId) {
+  createLoginCookie(cookieId) {
     return (
       'session=' +
-      Buffer.from(`{"passport":{"user":"${openplatformId}"}}`).toString(
-        'base64'
-      )
+      Buffer.from(`{"passport":{"user":"${cookieId}"}}`).toString('base64')
     );
   }
 }
