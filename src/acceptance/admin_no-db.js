@@ -51,7 +51,7 @@ describe('Admin API', () => {
               expect(mock.getErrorLog().args).to.have.length(0);
             })
         );
-      });
+      }).timeout(5000);
     });
   });
 });
