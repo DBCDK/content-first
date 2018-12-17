@@ -47,11 +47,20 @@ async function createCookie(legacyId, uniqueId, openplatformToken) {
     expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
   });
 
-  if (userExists(legacyId)) {
-    logger.log.info(
-      `Migrating user data. legacyId=${legacyId}, uniqueId=${uniqueId}`
-    );
-  } else if (!userExists(uniqueId)) {
+  if (await userExists(legacyId)) {
+    logger.log.info({
+      description: 'Migrating user data',
+      legacyId,
+      uniqueId
+    });
+    const rowsUpdated = await objectStore.updateOwner(legacyId, uniqueId);
+    logger.log.info({
+      description: 'Migrating user data completed',
+      legacyId,
+      uniqueId,
+      rowsUpdated
+    });
+  } else if (!(await userExists(uniqueId))) {
     logger.log.info(`Creating user with uniqueId=${uniqueId}`);
     await putUserData(
       {

@@ -23,7 +23,7 @@ router.post('/logout', async (req, res) => {
     const openplatformToken = req.user.openplatformToken;
     req.logout();
     res.redirect(
-      `${config.auth.url}/logout/?access_token=${openplatformToken}`
+      `${config.login.url}/logout/?access_token=${openplatformToken}`
     );
   } else {
     res.redirect('/');

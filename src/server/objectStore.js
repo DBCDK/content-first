@@ -166,6 +166,21 @@ async function find(query, user = {}) {
   return {data: result};
 }
 
+async function updateOwner(oldOwner, newOwner) {
+  if (!oldOwner) {
+    throw new Error('oldOwner missing');
+  }
+  if (!newOwner) {
+    throw new Error('newOwner missing');
+  }
+
+  const res = await knex(objectTable)
+    .update('owner', newOwner)
+    .where('owner', oldOwner);
+
+  return res;
+}
+
 async function del(id, user) {
   const result = await get(id, user);
 
@@ -194,4 +209,4 @@ async function del(id, user) {
   };
 }
 
-module.exports = {getUser, get, put, find, del};
+module.exports = {getUser, get, put, find, del, updateOwner};

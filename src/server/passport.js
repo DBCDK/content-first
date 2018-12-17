@@ -17,21 +17,47 @@ const profileStrategy = new Strategy(
     callbackURL: config.server.dmzHost + '/v1/auth/callback'
   },
   async function(token, tokenSecret, profile, done) {
+    let uniqueId;
+    let legacyId;
     try {
-      const userInfo = await request
-        .get(config.login.url + '/userinfo')
-        .set('Authorization', 'Bearer ' + token);
-      const uniqueId = get(userInfo, 'body.attributes.uniqueId');
-      if (!uniqueId) {
-        throw new Error('Missing uniqueId');
+      try {
+        const userInfo = await request
+          .get(config.login.url + '/userinfo')
+          .set('Authorization', 'Bearer ' + token);
+        uniqueId = get(userInfo, 'body.attributes.uniqueId');
+        if (!uniqueId) {
+          throw new Error('Missing uniqueId');
+        }
+      } catch (e) {
+        logger.log.error({
+          token,
+          description: 'Error fetching userinfo',
+          error: String(e)
+        });
+        throw e;
       }
-      done(null, {openplatformToken: token, uniqueId, legacyId: 'leg'});
+
+      try {
+        const openplatformUser = await request
+          .get(config.login.openplatformUrl + '/user')
+          .query({access_token: token});
+
+        legacyId = get(openplatformUser, 'body.data.id');
+        if (!legacyId) {
+          throw new Error('Missing legacyId');
+        }
+      } catch (e) {
+        logger.log.error({
+          token,
+          description: 'Error fetching openplatform user',
+          error: String(e)
+        });
+        throw e;
+      }
+
+      done(null, {openplatformToken: token, uniqueId, legacyId});
     } catch (e) {
-      logger.log.error({
-        description: 'Could not log in',
-        error: String(e)
-      });
-      done(e);
+      done(null, false);
     }
   }
 );
