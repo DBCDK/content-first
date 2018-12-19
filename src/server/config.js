@@ -55,7 +55,8 @@ exports.logger = {
 
 exports.login = {
   url: process.env.LOGIN_URL || 'https://oauth.login.bib.dk',
-  openplatformUrl: process.env.OPENPLATFORM_URL || 'https://openplatform.dbc.dk'
+  openplatformUrl:
+    process.env.OPENPLATFORM_URL || 'https://openplatform.dbc.dk/v3'
 };
 
 exports.recompass = {
