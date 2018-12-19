@@ -14,6 +14,10 @@ const constants = require('server/constants')();
 const coverTable = constants.covers.table;
 const resolve = require('resolve');
 
+const logged_in_cookie = mock.createLoginCookie(
+  'valid-login-token-for-user-seeded-on-test-start'
+);
+
 describe('Endpoint /v1/image', () => {
   const webapp = request(mock.external);
   beforeEach(async () => {
@@ -121,10 +125,7 @@ describe('Endpoint /v1/image', () => {
         const contentType = 'application/json';
         return webapp
           .post(location)
-          .set(
-            'cookie',
-            'login-token=valid-login-token-for-user-seeded-on-test-start'
-          )
+          .set('cookie', logged_in_cookie)
           .type(contentType)
           .expect(400);
       });
@@ -133,10 +134,7 @@ describe('Endpoint /v1/image', () => {
         const contentType = 'image/jpeg';
         return webapp
           .post(location)
-          .set(
-            'cookie',
-            'login-token=valid-login-token-for-user-seeded-on-test-start'
-          )
+          .set('cookie', logged_in_cookie)
           .type(contentType)
           .send('broken image data')
           .expect(400);
@@ -148,10 +146,7 @@ describe('Endpoint /v1/image', () => {
         ).then(contents => {
           return webapp
             .post(location)
-            .set(
-              'cookie',
-              'login-token=valid-login-token-for-user-seeded-on-test-start'
-            )
+            .set('cookie', logged_in_cookie)
             .type('image/jpeg')
             .send(contents)
             .expect(201);

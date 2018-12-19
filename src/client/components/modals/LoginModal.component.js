@@ -41,7 +41,7 @@ export function LoginModal({context, closeModal, login}) {
             <p>
               Har du ikke en profil? Du kan nemt oprette en profil med det
               login, du bruger på biblioteket.{' '}
-              <a href={'/v1/login'}>Opret en profil</a>
+              <a href={'/v1/auth/login'}>Opret en profil</a>
             </p>
           </div>
         </div>
@@ -58,7 +58,7 @@ function mapDispatchToProps(dispatch) {
     login: () => {
       dispatch({
         type: HISTORY_PUSH_FORCE_REFRESH,
-        path: '/v1/login'
+        path: '/v1/auth/login'
       });
     }
   };

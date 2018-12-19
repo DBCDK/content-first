@@ -6,6 +6,7 @@ const constants = require('server/constants')();
 const logger = require('server/logger');
 const _ = require('lodash');
 const {toLoggableString} = require('__/json');
+const passport = require('server/passport');
 
 // Remote services.
 const database = require('server/database');
@@ -13,6 +14,8 @@ const authenticator = require('server/authenticator');
 const login = require('server/login');
 const recompas = require('server/recompas');
 const generatingServiceStatus = require('__/services/service-status');
+
+const isProduction = config.server.environment === 'production';
 
 // Public web server.
 const express = require('express');
@@ -44,9 +47,11 @@ external.use(
   })
 );
 
-// Auto-parse cookies.
-const cookieParser = require('cookie-parser');
-external.use(cookieParser());
+// set up passport
+const session = require('cookie-session');
+external.use(session({secret: config.auth.secret, signed: isProduction}));
+external.use(passport.initialize());
+external.use(passport.session());
 
 // Detect visits from bots
 // test bot visit with: querystring: {use: true,key: 'bot',value: '1'}
@@ -93,7 +98,6 @@ external.get('/pid', (req, res) => {
 
 // API routes.  Should agree with constants.apiversion.
 external.use('/v1', require('server/external-v1'));
-external.use('/hejmdal', require('server/external-hejmdal'));
 external.use('/lister/:id', require('server/external-meta-list'));
 external.use(
   '/' + encodeURIComponent('værk') + '/:pid',

@@ -250,7 +250,7 @@ export class TopBar extends React.Component {
 
           {!this.props.user.isLoggedIn && (
             <Link
-              href={'/v1/login'}
+              href={'/v1/auth/login'}
               type={HISTORY_PUSH_FORCE_REFRESH}
               className="Topbar__navigation__btn widthCalc"
             >

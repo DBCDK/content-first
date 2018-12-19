@@ -5,37 +5,16 @@ const _ = require('lodash');
 const config = require('server/config');
 const knex = require('knex')(config.db);
 const constants = require('server/constants')();
-const cookieTable = constants.cookies.table;
 const objectTable = constants.objects.table;
 const uuidGenerator = require('uuid');
 
 async function getUser(req) {
-  const loginToken = req.cookies['login-token'];
-  if (loginToken) {
-    let result = await knex(cookieTable)
-      .where('cookie', loginToken)
-      .select();
-    if (result.length === 1) {
-      const [
-        {
-          community_profile_id,
-          expires_epoch_s,
-          openplatform_id,
-          openplatform_token
-        }
-      ] = result;
-
-      if (expires_epoch_s < Date.now() / 1000) {
-        return;
-      }
-
-      return {
-        id: community_profile_id,
-        openplatformToken: openplatform_token,
-        openplatformId: openplatform_id,
-        admin: false
-      };
+  if (req.isAuthenticated()) {
+    const user = req.user;
+    if (user.expires < Date.now() / 1000) {
+      return;
     }
+    return {id: -1, admin: false, ...user};
   }
   // return undefined as user, if not logged in.
   return;
@@ -187,6 +166,21 @@ async function find(query, user = {}) {
   return {data: result};
 }
 
+async function updateOwner(oldOwner, newOwner) {
+  if (!oldOwner) {
+    throw new Error('oldOwner missing');
+  }
+  if (!newOwner) {
+    throw new Error('newOwner missing');
+  }
+
+  const res = await knex(objectTable)
+    .update('owner', newOwner)
+    .where('owner', oldOwner);
+
+  return res;
+}
+
 async function del(id, user) {
   const result = await get(id, user);
 
@@ -215,4 +209,4 @@ async function del(id, user) {
   };
 }
 
-module.exports = {getUser, get, put, find, del};
+module.exports = {getUser, get, put, find, del, updateOwner};

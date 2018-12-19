@@ -3,9 +3,17 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const {getUser, deleteUser, getUserData, putUserData} = require('server/user');
-const objectStore = require('server/objectStore');
+const {
+  getUser,
+  deleteUser,
+  getUserData,
+  putUserData,
+  requireLoggedIn
+} = require('server/user');
+const nocache = require('server/nocache');
 const _ = require('lodash');
+
+router.use(nocache);
 
 router
   .route('/')
@@ -14,14 +22,14 @@ router
   // GET /v1/user
   //
   .get(
+    requireLoggedIn,
     asyncMiddleware(async (req, res, next) => {
       const location = req.baseUrl;
 
       try {
-        const {openplatformToken} = (await objectStore.getUser(req)) || {};
-        const userData = await getUserData({req});
+        const userData = await getUserData(req.user.openplatformId, req.user);
         res.status(200).json({
-          data: {...userData, openplatformToken},
+          data: {...userData, openplatformToken: req.user.openplatformToken},
           links: {self: location}
         });
       } catch (e) {
@@ -34,6 +42,7 @@ router
   // PUT /v1/user
   //
   .put(
+    requireLoggedIn,
     asyncMiddleware(async (req, res, next) => {
       const location = req.baseUrl;
       try {
@@ -46,10 +55,10 @@ router
           });
         }
 
-        await putUserData(req.body, req);
+        await putUserData(req.body, req.user);
 
         return res.status(200).json({
-          data: await getUserData({req}),
+          data: await getUserData(req.user.openplatformId, req.user),
           links: {self: location}
         });
       } catch (error) {
@@ -70,7 +79,7 @@ router
       const openplatformId = req.params.id;
       const location = `/v1/user/${encodeURIComponent(openplatformId)}`;
       try {
-        const userData = await getUserData({openplatformId, req});
+        const userData = await getUserData(openplatformId, req.user);
 
         res.status(200).json({
           data: _.omit(userData, ['id', 'openplatformToken']),
@@ -85,6 +94,7 @@ router
     })
   )
   .delete(
+    requireLoggedIn,
     asyncMiddleware(async (req, res, next) => {
       const openplatformId = req.params.id;
       const user = await getUser(req);

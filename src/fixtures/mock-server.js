@@ -69,6 +69,13 @@ class MockServer {
     const util = require('util');
     console.log(util.inspect(logs, {depth: 3})); // eslint-disable-line no-console
   }
+
+  createLoginCookie(cookieId) {
+    return (
+      'session=' +
+      Buffer.from(`{"passport":{"user":"${cookieId}"}}`).toString('base64')
+    );
+  }
 }
 
 module.exports = new MockServer();

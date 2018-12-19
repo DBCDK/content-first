@@ -8,9 +8,12 @@ const _ = require('lodash');
 
 describe('Endpoint /v1/object', () => {
   const webapp = request(mock.external);
-  const cookie1 = 'login-token=valid-login-token-for-user-seeded-on-test-start';
-  const cookie2 =
-    'login-token=valid-login-token-for-user2-seeded-on-test-start';
+  const cookie1 = mock.createLoginCookie(
+    'valid-login-token-for-user-seeded-on-test-start'
+  );
+  const cookie2 = mock.createLoginCookie(
+    'valid-login-token-for-user2-seeded-on-test-start'
+  );
   const id1 = '123openplatformId456';
   const id2 = '123openplatformId2';
 

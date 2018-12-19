@@ -35,14 +35,14 @@ describe('Shortlist', () => {
     it('should complain about user not logged in when unknown token', () => {
       return webapp
         .get(location)
-        .set('cookie', 'login-token=token-not-known-to-service')
+        .set('cookie', mock.createLoginCookie('token-not-known-to-service'))
         .expect(expectError_UnknownLoginToken(location));
     });
 
     it('should complain about user not logged in when token has expired', () => {
       return webapp
         .get(location)
-        .set('cookie', 'login-token=expired-login-token')
+        .set('cookie', mock.createLoginCookie('expired-login-token'))
         .expect(expectError_UnknownLoginToken(location));
     });
 
@@ -51,7 +51,9 @@ describe('Shortlist', () => {
         .get(location)
         .set(
           'cookie',
-          'login-token=valid-login-token-for-user-seeded-on-test-start'
+          mock.createLoginCookie(
+            'valid-login-token-for-user-seeded-on-test-start'
+          )
         );
       expect(result.status).to.equal(200);
       expect(result.body.data).to.deep.equal([
@@ -68,7 +70,9 @@ describe('Shortlist', () => {
         .put(location)
         .set(
           'cookie',
-          'login-token=valid-login-token-for-user-seeded-on-test-start'
+          mock.createLoginCookie(
+            'valid-login-token-for-user-seeded-on-test-start'
+          )
         )
         .type('text/plain')
         .send('broken')
@@ -99,13 +103,14 @@ describe('Shortlist', () => {
         .put(location)
         .type('application/json')
         .send(newShortlist)
-        .set('cookie', 'login-token=token-not-known-to-service')
+        .set('cookie', mock.createLoginCookie('token-not-known-to-service'))
         .expect(expectError_UnknownLoginToken(location));
     });
 
     it('should overwrite shortlist', async () => {
-      const loginCookie =
-        'login-token=valid-login-token-for-user-seeded-on-test-start';
+      const loginCookie = mock.createLoginCookie(
+        'valid-login-token-for-user-seeded-on-test-start'
+      );
 
       let result = await webapp
         .put(location)

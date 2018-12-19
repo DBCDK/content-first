@@ -3,9 +3,10 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const {getUserData, putUserData} = require('server/user');
+const {getUserData, putUserData, requireLoggedIn} = require('server/user');
 const logger = require('server/logger');
 
+router.use(requireLoggedIn);
 router
   .route('/')
 
@@ -16,7 +17,8 @@ router
     asyncMiddleware(async (req, res, next) => {
       try {
         res.status(200).json({
-          data: (await getUserData({req})).shortlist,
+          data: (await getUserData(req.user.openplatformId, req.user))
+            .shortlist,
           links: {self: req.baseUrl}
         });
       } catch (error) {
@@ -41,8 +43,8 @@ router
       }
       try {
         const shortlist = req.body;
-        await putUserData({shortlist}, req);
-        const userData = await getUserData({req});
+        await putUserData({shortlist}, req.user);
+        const userData = await getUserData(req.user.openplatformId, req.user);
         res.status(200).json({
           data: userData.shortlist,
           links: {self: location}
