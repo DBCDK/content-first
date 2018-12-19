@@ -106,7 +106,6 @@
     "start-frontend": "react-scripts start",
     "test": "run-s test-frontend test-units lint-js",
     "test-acceptance": ". ./current.env && mocha --exit src/acceptance/*_test.js",
-    "test-acceptance-kfu": ". ./current.env && mocha --exit src/acceptance/*admin_test.js",
     "test-frontend": "CI=true react-scripts test --env=jsdom",
     "test-frontend:watch": "react-scripts test --env=jsdom",
     "test-full": "run-s test test-no-elvis",

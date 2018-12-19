@@ -53,10 +53,6 @@ external.use(session({secret: config.auth.secret, signed: isProduction}));
 external.use(passport.initialize());
 external.use(passport.session());
 
-// Auto-parse cookies.
-// const cookieParser = require('cookie-parser');
-// external.use(cookieParser());
-
 // Detect visits from bots
 // test bot visit with: querystring: {use: true,key: 'bot',value: '1'}
 external.use(
