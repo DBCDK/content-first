@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import smoothscroll from 'smoothscroll-polyfill';
 import './prototypes';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
@@ -27,6 +28,7 @@ import {statsMiddleware} from './client/redux/stats.middleware';
 
 // for window.scroll() back compatibility
 smoothscroll.polyfill();
+
 
 const store = createStore([
   userMiddleware,
