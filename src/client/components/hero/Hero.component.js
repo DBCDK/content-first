@@ -59,7 +59,7 @@ export class Hero extends React.Component {
     const {heroes, heroesIsLoading} = this.props;
 
     return (
-      <div className="Hero">
+      <div className="Hero mb-5">
         <Swiper {...params}>
           {!heroesIsLoading &&
             heroes.map((hero, idx) => {

@@ -126,7 +126,7 @@ export class BookcaseItem extends React.Component {
     if (!list || list.isLoading) {
       // TODO make a skeleton view of list
       return (
-        <div className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa">
+        <div className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa mb-5">
           <Spinner size="30px" className="mt-5" />
         </div>
       );
@@ -135,7 +135,7 @@ export class BookcaseItem extends React.Component {
     // If list is not reachable or list settings is set to private
     if (!list.list && (!list.isLoading && list.error)) {
       return (
-        <div className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa">
+        <div className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa mb-5">
           <Text className="bookcase-error" type="body" variant="color-fersken">
             Listen kunne ikke indlæses
           </Text>
