@@ -52,6 +52,7 @@ The backend service controlled by environment variables.  Most scripts assume th
 | DB_NAME                 | contentfirst | Name of the database             |
 | DB_USER                 | contentfirst | Database user                    |
 | DB_USER_PASSWORD        |              | Database password                |
+| DMZ_HOST |              |              | Is used to create redirect url for oauth2 |
 | INTERNAL_PORT           | 3002         | TCP port for the internal service |
 | LOG_LEVEL               | INFO         | Verbosity of service log (OFF, ERROR, WARN, WARNING, INFO, DEBUG, TRACE) |
 | LOG_SERVICE_ERRORS      | 1            | Record all 5xx errors (1), or ignore 5xx errors (0) |
@@ -59,6 +60,8 @@ The backend service controlled by environment variables.  Most scripts assume th
 | NODE_ENV                | development  | Controls other service settings (development, ci, production) |
 | PORT                    | 3001         | TCP port for the public service  |
 | PRETTY_LOG              | 1            | Pretty printed log statements (1), or one-line log statements (0) |
+| REACT_APP_MATOMO_SERVER |              | The Matomo HTTP server address. Matomo is only enabled if this is set  |
+| REACT_APP_MATOMO_SITE_ID|              | The Matomo siteId                |
 
 
 ## Endpoints
