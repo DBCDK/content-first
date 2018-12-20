@@ -103,7 +103,7 @@
     "postinstall": "./tools/setup-node-env.sh",
     "start": "run-p start-backend start-frontend",
     "start-backend": ". ./current.env && nodemon --exec node --no-stdin src/server/main.js --watch src/",
-    "start-frontend": "react-scripts start",
+    "start-frontend": ". ./current.env && react-scripts start",
     "test": "run-s test-frontend test-units lint-js",
     "test-acceptance": ". ./current.env && mocha --exit src/acceptance/*_test.js",
     "test-frontend": "CI=true react-scripts test --env=jsdom",

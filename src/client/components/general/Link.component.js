@@ -17,10 +17,10 @@ const Link = ({
     onClick={e => {
       e.preventDefault();
       e.stopPropagation();
-      dispatch({type: type, path: href, params});
       if (onClick) {
         onClick();
       }
+      dispatch({type: type, path: href, params});
     }}
   >
     {children}

@@ -1,5 +1,6 @@
 import {createBrowserHistory} from 'history';
 import {createStore, applyMiddleware, compose} from 'redux';
+import {initialize} from '../matomo';
 import reducer from './root.reducer';
 import {historyMiddleware} from './middleware';
 import {ON_LOCATION_CHANGE} from './router.reducer';
@@ -29,6 +30,7 @@ export default middleware => {
       location
     });
   });
+  initialize(history);
   store.dispatch({
     type: ON_LOCATION_CHANGE,
     path: history.location.pathname,

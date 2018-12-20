@@ -64,6 +64,12 @@ class WorkCard extends React.Component {
     );
   }
 
+  onWorkClick = e => {
+    e.stopPropagation();
+    e.preventDefault();
+    this.props.onWorkClick(this.props.work, this.props.rowId);
+  };
+
   render() {
     if (!this.props.work || !this.props.work.detailsHasLoaded) {
       return <SkeletonWorkCard {...this.props} />;
@@ -92,12 +98,7 @@ class WorkCard extends React.Component {
           layout="teardrop"
           style={{position: 'absolute', right: 0, top: 0}}
         />
-        <div
-          style={{height: '100%'}}
-          onClick={() =>
-            this.props.onWorkClick(this.props.work, this.props.rowId)
-          }
-        >
+        <div style={{height: '100%'}} onClick={this.onWorkClick}>
           <BookCover
             className="book-cover"
             book={this.props.skeleton ? {book: {}} : this.props.work.book}
@@ -118,9 +119,7 @@ class WorkCard extends React.Component {
                 width: '100%',
                 paddingTop: '80%'
               }}
-              onClick={() =>
-                this.props.onWorkClick(this.props.work, this.props.rowId)
-              }
+              onClick={this.onWorkClick}
             >
               <Heading Tag="h3" type="title" style={{marginBottom: 4}}>
                 {this.props.work.book.title}
