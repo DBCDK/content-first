@@ -35,9 +35,9 @@ export const initialize = history => {
   }
 };
 
-export const push = event => {
+export const trackEvent = (category, action, name, numericValue) => {
   if (matomoEnabled) {
-    window._paq.push(event);
+    window._paq.push(['trackEvent', category, action, name, numericValue]);
   }
 };
 

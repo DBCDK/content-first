@@ -25,10 +25,10 @@ import {replayMiddleware} from './client/redux/replay';
 import {interactionMiddleware} from './client/redux/interaction.middleware';
 import {beltsMiddleware} from './client/redux/belts.middleware';
 import {statsMiddleware} from './client/redux/stats.middleware';
+import {matomoMiddleware} from './client/redux/matomo.middleware';
 
 // for window.scroll() back compatibility
 smoothscroll.polyfill();
-
 
 const store = createStore([
   userMiddleware,
@@ -46,7 +46,8 @@ const store = createStore([
   replayMiddleware,
   interactionMiddleware,
   beltsMiddleware,
-  statsMiddleware
+  statsMiddleware,
+  matomoMiddleware
 ]);
 ReactDOM.render(
   <Provider store={store}>
