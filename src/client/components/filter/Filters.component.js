@@ -65,7 +65,7 @@ class FilterCard extends React.Component {
             className="FilterCard__cover"
             style={{backgroundImage: `url(${filter.image})`}}
           >
-            <Icon name="close" className="FilterCard__close" />
+            <Icon name="close" className="FilterCard__close hitArea-lg" />
           </div>
           <div
             className="FilterCard__content"
