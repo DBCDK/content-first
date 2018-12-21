@@ -6,7 +6,7 @@ const {external, internal} = require('fixtures/mock-server');
 const config = require('server/config');
 const {expect} = require('chai');
 const request = require('supertest');
-
+const packageJson = require('../../package.json');
 describe('Admin API on running database', () => {
   describe('Public endpoint', () => {
     const webapp = request(external);
@@ -126,7 +126,7 @@ function expectStatusContainsServiceInfo(document) {
   expect(document).to.have.property('address');
   expect(document['api-version']).to.equal('1');
   expect(document).to.have.property('version');
-  expect(document.version).to.equal('0.2.0');
+  expect(document.version).to.equal(packageJson.version);
 }
 
 function expectNoSecretsRevealed(document) {
