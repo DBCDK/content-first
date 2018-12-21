@@ -16,3 +16,5 @@ versions
 content-first.iml
 .DS_Store
 dump.rdb
+cypress/screenshots
+cypress/videos
