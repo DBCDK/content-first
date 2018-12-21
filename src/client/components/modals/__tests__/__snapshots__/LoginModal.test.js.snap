@@ -47,7 +47,7 @@ exports[`LoginModal renders function 1`] = `
           Har du ikke en profil? Du kan nemt oprette en profil med det login, du bruger på biblioteket.
            
           <a
-            href="/v1/login"
+            href="/v1/auth/login"
           >
             Opret en profil
           </a>

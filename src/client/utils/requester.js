@@ -364,7 +364,7 @@ export const deleteObject = object => {
 export const logout = dispatch => {
   dispatch({type: ON_LOGOUT_RESPONSE});
   document.body.innerHTML +=
-    '<form id="logoutform" action="/v1/logout" method="post"></form>';
+    '<form id="logoutform" action="/v1/auth/logout" method="post"></form>';
   document.getElementById('logoutform').submit();
 };
 
@@ -416,16 +416,24 @@ export const loadShortList = async ({isLoggedIn, store}) => {
 };
 
 function formatQuery(query) {
-  // Remove parenthesis and everything between from query string + leading/ending spaces
-  query = query.replace(/\(.*\)/, '').trim();
-  // remove & and ,
   query = query
-    .split(' & ')
-    .join(' ')
-    .split(',')
-    .join('');
-  // add & to spaces between words in query
-  query = query.split(' ').join(' & ');
+    // Remove parenthesis and everything between from query string + leading/ending spaces
+    .replace(/\(.*\)/g, '')
+    // Handle dot's - the rule is to remove the dot if followed by whitespace
+    .replace(/\.\s/g, ' ')
+    // One specific case: 'Digte 1909-62' must be 'Digte 1909' !!!
+    .replace(/-[0-9]+/g, '')
+    // Replace special characters with a space
+    .replace(/[']/g, ' ')
+    // remove special characters
+    .replace(/[&,!#°?-]/g, '')
+    // Replace all multiple whitespace characters with a single space
+    .replace(/\s+/g, ' ')
+    // Trim leading and trailing whitespace
+    .trim();
+
+  // Replace spaces with ampersand character
+  query = query.split(' ').join('&');
 
   return query;
 }

@@ -54,8 +54,9 @@ exports.logger = {
 };
 
 exports.login = {
-  url: process.env.LOGIN_URL || 'https://login.bib.dk',
-  openplatformUrl: process.env.OPENPLATFORM_URL || 'https://openplatform.dbc.dk'
+  url: process.env.LOGIN_URL || 'https://oauth.login.bib.dk',
+  openplatformUrl:
+    process.env.OPENPLATFORM_URL || 'https://openplatform.dbc.dk/v3'
 };
 
 exports.recompass = {
@@ -69,6 +70,6 @@ exports.server = {
   logServiceErrors: parseInt(process.env.LOG_SERVICE_ERRORS || 1, 10),
   port: tcp.normalizePort(process.env.PORT) || 3001,
   internalPort: tcp.normalizePort(process.env.INTERNAL_PORT) || 3002,
-  hostname: 'content-first.demo.dbc.dk'
-  // hostname: 'content-first.dbc.dk'
+  hostname: 'laesekompas.dk',
+  dmzHost: process.env.DMZ_HOST || 'https://laesekompas.dk'
 };

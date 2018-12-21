@@ -12,14 +12,89 @@ const cookieTable = constants.cookies.table;
 const logger = require('server/logger');
 const _ = require('lodash');
 const objectStore = require('server/objectStore');
+const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
+const uuidv4 = require('uuid/v4');
 
 module.exports = {
   putUserData,
   getUserData,
   getUser: objectStore.getUser,
   removingLoginToken,
-  deleteUser
+  deleteUser,
+  createCookie,
+  fetchCookie,
+  requireLoggedIn
 };
+
+async function userExists(id) {
+  return (
+    (await objectStore.find({
+      type: 'USER_PROFILE',
+      owner: id,
+      limit: 1
+    })).data.length !== 0
+  );
+}
+
+async function createCookie(legacyId, uniqueId, openplatformToken) {
+  const cookie = uuidv4();
+  logger.log.debug(`Creating login token ${cookie}`);
+  await knex(cookieTable).insert({
+    cookie,
+    community_profile_id: -1, // TODO remove this when users migrated
+    openplatform_id: uniqueId,
+    openplatform_token: openplatformToken,
+    expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
+  });
+
+  if (await userExists(legacyId)) {
+    logger.log.info({
+      description: 'Migrating user data',
+      legacyId,
+      uniqueId
+    });
+    const rowsUpdated = await objectStore.updateOwner(legacyId, uniqueId);
+    logger.log.info({
+      description: 'Migrating user data completed',
+      legacyId,
+      uniqueId,
+      rowsUpdated
+    });
+  } else if (!(await userExists(uniqueId))) {
+    logger.log.info(`Creating user with uniqueId=${uniqueId}`);
+    await putUserData(
+      {
+        name: '',
+        roles: [],
+        openplatformId: uniqueId,
+        shortlist: [],
+        profiles: [],
+        lists: []
+      },
+      {openplatformId: uniqueId}
+    );
+  }
+  return cookie;
+}
+async function fetchCookie(cookie) {
+  const res = (await knex(cookieTable)
+    .select(['openplatform_id', 'openplatform_token', 'expires_epoch_s'])
+    .where('cookie', cookie))[0];
+
+  if (!res || res.expires_epoch_s < Date.now() / 1000) {
+    throw {
+      status: 403,
+      title: 'user not logged in',
+      detail: 'User not logged in or session expired'
+    };
+  }
+
+  return {
+    openplatformId: res.openplatform_id,
+    openplatformToken: res.openplatform_token,
+    expires: res.expires_epoch_s
+  };
+}
 
 async function deleteUser(openplatformId) {
   await knex(constants.objects.table)
@@ -33,42 +108,34 @@ async function deleteUser(openplatformId) {
     .del();
 }
 
-function throwUnlessOpenplatformId({openplatformId, reqUser, req}) {
+function throwUnlessOpenplatformId({openplatformId}) {
   if (!openplatformId) {
-    if (JSON.stringify(reqUser) === '{}') {
-      throw {
-        status: 403,
-        title: 'user not logged in',
-        detail: `User not logged in or session expired`,
-        meta: {resource: req && req.baseUrl}
-      };
-    } else {
-      throw {status: 500, error: 'missing openplatformId'};
-    }
+    throw {
+      status: 403,
+      title: 'user not logged in',
+      detail: `User not logged in or session expired`
+    };
   }
 }
 
-async function getUserData({openplatformId, req}) {
+async function getUserData(openplatformId, loggedInuser) {
   try {
-    const reqUser = (await objectStore.getUser(req)) || {};
-    openplatformId = openplatformId || reqUser.openplatformId;
-    throwUnlessOpenplatformId({openplatformId, reqUser, req});
+    throwUnlessOpenplatformId({openplatformId});
 
     let userData = (await objectStore.find(
       {type: 'USER_PROFILE', owner: openplatformId},
-      reqUser
+      loggedInuser
     )).data[0];
     let shortlist = (await objectStore.find(
       {type: 'USER_SHORTLIST', owner: openplatformId},
-      reqUser
+      loggedInuser
     )).data[0];
 
     if (!userData) {
       throw {
         status: 404,
         title: 'user not found',
-        detail: `User ${openplatformId} does not exist or is deleted`,
-        meta: {resource: req && req.baseUrl}
+        detail: `User ${openplatformId} does not exist or is deleted`
       };
     }
 
@@ -80,20 +147,18 @@ async function getUserData({openplatformId, req}) {
     throw error;
   }
 }
-
-async function putUserData(newUserData, req) {
+async function putUserData(newUserData, user) {
   try {
-    const reqUser = (await objectStore.getUser(req)) || {};
-    const openplatformId = reqUser.openplatformId;
-    throwUnlessOpenplatformId({openplatformId, reqUser, req});
+    const openplatformId = user.openplatformId;
+    throwUnlessOpenplatformId({openplatformId});
 
     let userData = (await objectStore.find(
       {type: 'USER_PROFILE', owner: openplatformId},
-      reqUser
+      user
     )).data[0];
     let shortlist = (await objectStore.find(
       {type: 'USER_SHORTLIST', owner: openplatformId},
-      reqUser
+      user
     )).data[0];
 
     await objectStore.put(
@@ -106,7 +171,7 @@ async function putUserData(newUserData, req) {
         },
         ['openplatformToken', 'shortlist']
       ),
-      {openplatformId}
+      user
     );
     await objectStore.put(
       {
@@ -115,7 +180,7 @@ async function putUserData(newUserData, req) {
         _type: 'USER_SHORTLIST',
         _public: false
       },
-      {openplatformId}
+      user
     );
   } catch (error) {
     logger.log.error(error);
@@ -127,4 +192,17 @@ function removingLoginToken(token) {
   return knex(cookieTable)
     .where('cookie', token)
     .del();
+}
+
+function requireLoggedIn(req, res, next) {
+  if (!_.get(req, 'user.openplatformId')) {
+    throw {
+      status: 403,
+      title: 'user not logged in',
+      detail: `User not logged in or session expired`,
+      meta: {resource: req && req.baseUrl}
+    };
+  } else {
+    next();
+  }
 }

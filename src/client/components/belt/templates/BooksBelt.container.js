@@ -23,7 +23,9 @@ import {
   ADD_CHILD_BELT,
   REMOVE_CHILD_BELT,
   BELT_SCROLL,
-  TOGGLE_EDIT
+  TOGGLE_EDIT,
+  BELT_TITLE_CLICK,
+  BELT_TAG_CLICK
 } from '../../../redux/belts.reducer';
 import {getIdsFromRange, getTagsbyIds} from '../../../redux/selectors';
 import Link from '../../general/Link.component';
@@ -67,9 +69,9 @@ const BeltContextMenu = ({onClick}) => {
   );
 };
 
-const Tag = ({tag, isLast}) => {
+const Tag = ({tag, isLast, onClick}) => {
   return (
-    <Link key={tag.id} href="/find" params={{tag: tag.id}}>
+    <Link key={tag.id} href="/find" params={{tag: tag.id}} onClick={onClick}>
       <Term
         className={'ml-2 mt1' + (isLast ? ' mr-2' : '')}
         size="medium"
@@ -132,7 +134,7 @@ export class BooksBelt extends React.Component {
     this.fetchedTags = this.props.plainSelectedTagIds;
   };
 
-  handleChildBelts(parentBelt, childBelt) {
+  handleChildBelts(parentBelt, childBelt, workPosition) {
     let samePidClicked = false;
     let sameTypeClicked = false;
 
@@ -143,12 +145,12 @@ export class BooksBelt extends React.Component {
     }
 
     if (!parentBelt.child || !samePidClicked || !sameTypeClicked) {
-      this.props.addChildBelt(parentBelt, childBelt);
+      this.props.addChildBelt(parentBelt, childBelt, workPosition);
       this.scrollToChildBelt(this.refs.beltWrap, 220);
     }
   }
 
-  onMoreLikeThisClick(parentBelt, work) {
+  onMoreLikeThisClick(parentBelt, work, row, workPosition) {
     const type = 'belt';
     const book = work.book;
 
@@ -161,10 +163,10 @@ export class BooksBelt extends React.Component {
       child: false
     };
 
-    this.handleChildBelts(parentBelt, newBelt);
+    this.handleChildBelts(parentBelt, newBelt, workPosition);
   }
 
-  onWorkClick(parentBelt, work) {
+  onWorkClick(parentBelt, work, row, workPosition) {
     const type = 'preview';
     const book = work.book;
 
@@ -180,7 +182,7 @@ export class BooksBelt extends React.Component {
       child: false
     };
 
-    this.handleChildBelts(parentBelt, newBelt);
+    this.handleChildBelts(parentBelt, newBelt, workPosition);
   }
 
   scrollToChildBelt(belt, offset) {
@@ -289,6 +291,7 @@ export class BooksBelt extends React.Component {
                             <Tag
                               tag={t}
                               isLast={idx === plainSelectedTags.length - 1}
+                              onClick={() => this.props.tagClick(t)}
                             />
                           );
                         })}
@@ -332,6 +335,7 @@ export class BooksBelt extends React.Component {
                           t => (t instanceof Array ? t.map(aT => aT.id) : t.id)
                         )
                       }}
+                      onClick={this.props.titleClick}
                     >
                       <Title
                         Tag="h1"
@@ -368,6 +372,7 @@ export class BooksBelt extends React.Component {
                             <Tag
                               tag={t}
                               isLast={idx === plainSelectedTags.length - 1}
+                              onClick={() => this.props.tagClick(t)}
                             />
                           );
                         })}
@@ -414,10 +419,10 @@ export class BooksBelt extends React.Component {
                         key={pid}
                         origin={`Fra "${name}"`}
                         onMoreLikeThisClick={(work, row) =>
-                          this.onMoreLikeThisClick(belt, work, row, true)
+                          this.onMoreLikeThisClick(belt, work, row, idx)
                         }
                         onWorkClick={(work, row) => {
-                          this.onWorkClick(belt, work, row, true);
+                          this.onWorkClick(belt, work, row, idx);
                         }}
                         cardIndex={idx}
                       />
@@ -470,11 +475,25 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       tags,
       max: 50 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     }),
-  addChildBelt: (parentBelt, childBelt) => {
+  addChildBelt: (parentBelt, childBelt, workPosition) => {
     dispatch({
       type: ADD_CHILD_BELT,
       parentBelt,
-      childBelt
+      childBelt,
+      workPosition
+    });
+  },
+  titleClick: () => {
+    dispatch({
+      type: BELT_TITLE_CLICK,
+      belt: ownProps.belt
+    });
+  },
+  tagClick: tag => {
+    dispatch({
+      type: BELT_TAG_CLICK,
+      belt: ownProps.belt,
+      tag
     });
   },
   removeChildBelt: parentBelt => {
