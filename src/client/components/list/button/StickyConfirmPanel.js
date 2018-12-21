@@ -65,6 +65,7 @@ class StickyConfirmPanel extends React.Component {
               type="quaternary"
               className="mr-4 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
               onClick={this.submit}
+              dataCy="stickyPanel-submit"
             >
               {isNew ? 'Gem liste' : 'Gem ændringer'}
             </Button>

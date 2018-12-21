@@ -91,12 +91,14 @@ class WorkCard extends React.Component {
           ' ' +
           this.props.className
         }
+        data-cy={'workcard'}
       >
         <BookmarkButton
           origin={this.props.origin}
           work={this.props.work}
           layout="teardrop"
           style={{position: 'absolute', right: 0, top: 0}}
+          dataCy="bookmarkBtn"
         />
         <div style={{height: '100%'}} onClick={this.onWorkClick}>
           <BookCover
@@ -121,7 +123,12 @@ class WorkCard extends React.Component {
               }}
               onClick={this.onWorkClick}
             >
-              <Heading Tag="h3" type="title" style={{marginBottom: 4}}>
+              <Heading
+                Tag="h3"
+                type="title"
+                style={{marginBottom: 4}}
+                data-cy={'workcard-title'}
+              >
                 {this.props.work.book.title}
               </Heading>
               <Heading Tag="h3" type="subtitle" className="mt0">
@@ -141,6 +148,7 @@ class WorkCard extends React.Component {
                       this.props.rowId
                     );
                   }}
+                  dataCy="WC-more-like-this"
                 >
                   Mere som denne
                 </Button>

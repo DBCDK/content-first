@@ -103,6 +103,7 @@ export const ListInfo = ({
               placeholder="Listens titel"
               onChange={onTitleChange}
               value={list.title}
+              data-cy="listinfo-title-input"
             />
             {titleMissing &&
               !list.title.length > 0 && (
@@ -116,14 +117,20 @@ export const ListInfo = ({
               placeholder="Fortæl om listen"
               onChange={onDescriptionChange}
               value={list.description}
+              data-cy="listinfo-description-input"
             />
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Title Tag="h1" type="title3" className="mt-3">
+            <Title
+              Tag="h1"
+              type="title3"
+              className="mt-3"
+              data-cy="listinfo-title"
+            >
               {list.title}
             </Title>
-            <Text type="body">
+            <Text type="body" data-cy="listinfo-description">
               <span
                 dangerouslySetInnerHTML={{
                   __html: textParser(list.description || '')

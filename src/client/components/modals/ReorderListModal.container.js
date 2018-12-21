@@ -19,7 +19,10 @@ import {
 const getListById = getListByIdSelector();
 
 const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
-  <li className={'order-list-element row ' + className}>
+  <li
+    className={'order-list-element row ' + className}
+    data-cy="reorder-list-element"
+  >
     <div className="col-1">
       <i className="material-icons drag-indicator">drag_indicator</i>
     </div>
@@ -28,13 +31,19 @@ const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
         <BookCover book={book} style={{width: 'unset'}} />
       </span>
       <div className="order-list-element-text">
-        <Text type="large">{book.title}</Text>
+        <Text type="large" data-cy="reorder-list-element-title">
+          {book.title}
+        </Text>
         <Text type="body">{book.creator}</Text>
       </div>
     </div>
 
     <div className="d-none col-md-2 d-md-flex p-0 justify-content-between">
-      <i onClick={moveUp} className="material-icons curser-pointer">
+      <i
+        onClick={moveUp}
+        className="material-icons curser-pointer"
+        data-cy="order-list-element-moveup"
+      >
         expand_less
       </i>
       <i className="material-icons curser-pointer" onClick={moveDown}>

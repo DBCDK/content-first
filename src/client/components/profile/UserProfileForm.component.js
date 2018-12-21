@@ -74,6 +74,7 @@ export default class UserProfileForm extends React.Component {
             placeholder="Vælg brugernavn"
             value={this.state.name}
             onChange={e => this.setState({[e.target.name]: e.target.value})}
+            data-cy="user-form-name"
           />
           <span className={'form-control-feedback '} aria-hidden="true">
             <i className="material-icons" style={{fontSize: 18}}>
@@ -85,7 +86,11 @@ export default class UserProfileForm extends React.Component {
         <p className="mb6">Du er logget på via {this.props.library}</p>
 
         {!this.props.acceptedAge && (
-          <label htmlFor="acceptedAge" className="checkbox">
+          <label
+            htmlFor="acceptedAge"
+            className="checkbox"
+            data-cy="user-form-acceptedAge"
+          >
             <input
               id="acceptedAge"
               className="checkbox"
@@ -102,7 +107,11 @@ export default class UserProfileForm extends React.Component {
         )}
 
         {!this.props.acceptedTerms && (
-          <label htmlFor="acceptedTerms" className="checkbox">
+          <label
+            htmlFor="acceptedTerms"
+            className="checkbox"
+            data-cy="user-form-acceptedTerms"
+          >
             <input
               id="acceptedTerms"
               className="checkbox"
@@ -123,6 +132,7 @@ export default class UserProfileForm extends React.Component {
         <button
           className="btn btn-success btn-block"
           disabled={this.props.isSaving}
+          data-cy="user-form-submit"
         >
           {this.props.editMode ? 'Gem Profil' : 'Opret profil'}{' '}
           {(this.props.isSaving && (

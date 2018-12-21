@@ -11,6 +11,7 @@ const Button = ({
   children,
   className,
   disabled = false,
+  dataCy,
   ...props
 }) => {
   const modifier = variant ? `Button__${type}--${variant}` : '';
@@ -21,6 +22,7 @@ const Button = ({
       btn Button Button__${size} Button__${type} ${modifier}`}
       {...props}
       disabled={disabled}
+      data-cy={dataCy || ''}
     >
       {children}
     </Tag>

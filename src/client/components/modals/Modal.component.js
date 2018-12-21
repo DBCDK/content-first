@@ -63,6 +63,7 @@ export default class Modal extends React.Component {
                         className={'mr-4 ' + (doneDisabled && 'disabled')}
                         type="quaternary"
                         onClick={doneDisabled || this.props.onDone}
+                        dataCy="modal-done-btn"
                       >
                         {doneText}
                       </Button>

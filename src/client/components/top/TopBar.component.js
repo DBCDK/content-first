@@ -173,6 +173,7 @@ export class TopBar extends React.Component {
             'Topbar__navigation__btn d-none d-md-flex widthCalc ' +
             (expanded ? 'Topbar__dropdown_expanded' : '')
           }
+          dataCy="topbar-shortlist"
         >
           <Icon name="bookmark_border" />
         </ShortListDropDown>
@@ -187,6 +188,7 @@ export class TopBar extends React.Component {
           'Topbar__navigation__btn d-none d-sm-flex widthCalc ' +
           (expanded ? 'Topbar__dropdown_expanded' : '')
         }
+        dataCy="topbar-lists"
       >
         <Icon name="list" />
         <span>Lister</span>
@@ -236,7 +238,12 @@ export class TopBar extends React.Component {
                 <SearchBar />
               </span>
             </span>
-            <span onClick={() => this.toggleSearchBar()}>{searchIconText}</span>
+            <span
+              data-cy="topbar-search-btn"
+              onClick={() => this.toggleSearchBar()}
+            >
+              {searchIconText}
+            </span>
           </span>
 
           <Link
@@ -253,6 +260,7 @@ export class TopBar extends React.Component {
               href={'/v1/auth/login'}
               type={HISTORY_PUSH_FORCE_REFRESH}
               className="Topbar__navigation__btn widthCalc"
+              dataCy="topbar-login-btn"
             >
               <span>Log ind</span>
             </Link>

@@ -3,7 +3,11 @@ import Icon from '../Icon';
 import './ContextMenu.css';
 
 export const ContextMenuAction = ({title, icon, onClick = () => {}}) => (
-  <div className="dropdown-item" onClick={onClick}>
+  <div
+    className="dropdown-item"
+    onClick={onClick}
+    data-cy="context-menu-action"
+  >
     <Icon name={icon} className="align-middle mr-2" />
     <span className="align-middle">{title}</span>
   </div>
@@ -22,12 +26,18 @@ export const ContextMenuUploadAction = ({title, onClick = () => {}}) => (
     </label>
   </div>
 );
-export default ({title = '', className, children, style}) => (
-  <div className={'ContextMenu dropdown ' + className || ''} style={style}>
-    <div className="dropdown-toggle" data-toggle="dropdown">
-      <Icon name="more_vert" className="align-middle" />
-      {title && <span className="align-middle ml-2">{title}</span>}
+export default ({title = '', className, children, style, dataCy}) => {
+  return (
+    <div
+      className={'ContextMenu dropdown ' + className || ''}
+      style={style}
+      data-cy={dataCy}
+    >
+      <div className="dropdown-toggle" data-toggle="dropdown">
+        <Icon name="more_vert" className="align-middle" />
+        {title && <span className="align-middle ml-2">{title}</span>}
+      </div>
+      <div className="dropdown-menu dropdown-menu-right">{children}</div>
     </div>
-    <div className="dropdown-menu dropdown-menu-right">{children}</div>
-  </div>
-);
+  );
+};

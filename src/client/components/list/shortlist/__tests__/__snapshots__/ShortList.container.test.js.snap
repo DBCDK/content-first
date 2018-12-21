@@ -113,6 +113,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid2"
                                       onClick={[Function]}
                                     >
@@ -150,6 +151,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid2"
                                         onClick={[Function]}
                                       >
@@ -230,6 +232,7 @@ exports[`ShortList.container Clearing list 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -237,6 +240,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -311,6 +315,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
@@ -348,6 +353,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
                                       >
@@ -428,6 +434,7 @@ exports[`ShortList.container Clearing list 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -435,6 +442,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -610,6 +618,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
@@ -647,6 +656,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
                                       >
@@ -727,6 +737,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -734,6 +745,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -770,6 +782,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -940,6 +953,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
@@ -977,6 +991,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
                                       >
@@ -1057,6 +1072,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -1064,6 +1080,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -1100,6 +1117,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -1270,6 +1288,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
@@ -1307,6 +1326,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
                                       >
@@ -1387,6 +1407,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -1394,6 +1415,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -1430,6 +1452,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -1600,6 +1623,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
@@ -1637,6 +1661,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
                                       >
@@ -1732,6 +1757,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -1739,6 +1765,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -1775,6 +1802,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -1963,6 +1991,7 @@ exports[`ShortList.container remove element 1`] = `
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid3"
                                       onClick={[Function]}
                                     >
@@ -2000,6 +2029,7 @@ exports[`ShortList.container remove element 1`] = `
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid3"
                                         onClick={[Function]}
                                       >
@@ -2080,6 +2110,7 @@ exports[`ShortList.container remove element 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -2087,6 +2118,7 @@ exports[`ShortList.container remove element 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -2161,6 +2193,7 @@ exports[`ShortList.container remove element 1`] = `
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid2"
                                       onClick={[Function]}
                                     >
@@ -2198,6 +2231,7 @@ exports[`ShortList.container remove element 1`] = `
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid2"
                                         onClick={[Function]}
                                       >
@@ -2278,6 +2312,7 @@ exports[`ShortList.container remove element 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -2285,6 +2320,7 @@ exports[`ShortList.container remove element 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -2359,6 +2395,7 @@ exports[`ShortList.container remove element 1`] = `
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
@@ -2396,6 +2433,7 @@ exports[`ShortList.container remove element 1`] = `
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
                                       >
@@ -2476,6 +2514,7 @@ exports[`ShortList.container remove element 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -2483,6 +2522,7 @@ exports[`ShortList.container remove element 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -2519,6 +2559,7 @@ exports[`ShortList.container remove element 1`] = `
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE
@@ -2725,6 +2766,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid3"
                                       onClick={[Function]}
                                     >
@@ -2762,6 +2804,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid3"
                                         onClick={[Function]}
                                       >
@@ -2842,6 +2885,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -2849,6 +2893,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -2923,6 +2968,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid2"
                                       onClick={[Function]}
                                     >
@@ -2960,6 +3006,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid2"
                                         onClick={[Function]}
                                       >
@@ -3040,6 +3087,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -3047,6 +3095,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -3121,6 +3170,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   >
                                     <a
                                       className="list-card-nohover"
+                                      data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
                                     >
@@ -3158,6 +3208,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                     >
                                       <a
                                         className="list-card-nohover"
+                                        data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
                                       >
@@ -3238,6 +3289,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                               >
                                 <Button
                                   className=" ml1"
+                                  dataCy="order-btn"
                                   onClick={[Function]}
                                   size="medium"
                                   type="tertiary"
@@ -3245,6 +3297,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                   <button
                                     className=" ml1
                                         btn Button Button__medium Button__tertiary "
+                                    data-cy="order-btn"
                                     disabled={false}
                                     onClick={[Function]}
                                   >
@@ -3281,6 +3334,7 @@ exports[`ShortList.container short list contains elements 1`] = `
             >
               <span
                 className="btn btn-success"
+                data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
                 TILFØJ ALLE TIL LISTE

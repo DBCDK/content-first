@@ -34,6 +34,7 @@ export class BookmarkButton extends React.PureComponent {
         onClick={() => this.props.toggle(this.props.origin, this.props.work)}
         type="tertiary"
         size="medium"
+        dataCy={this.props.dataCy}
       >
         <Icon name="bookmark_border" className="md-small" />
         {!layout ? 'HUSK' : ''}

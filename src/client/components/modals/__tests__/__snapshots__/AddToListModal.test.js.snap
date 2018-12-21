@@ -33,6 +33,7 @@ exports[`AddToListModal multiple works as input 1`] = `
       <button
         className="m-3 d-inline-block d-sm-none
             btn Button Button__medium Button__link2 "
+        data-cy=""
         disabled={false}
         onClick={[Function]}
       >
@@ -112,6 +113,7 @@ exports[`AddToListModal multiple works as input 1`] = `
                 type="radio"
               />
               <label
+                data-cy="add-to-list-modal-system-lists"
                 htmlFor="radio-title1-0"
               >
                 title1
@@ -126,6 +128,7 @@ exports[`AddToListModal multiple works as input 1`] = `
                 type="radio"
               />
               <label
+                data-cy="add-to-list-modal-system-lists"
                 htmlFor="radio-title2-1"
               >
                 title2
@@ -140,6 +143,7 @@ exports[`AddToListModal multiple works as input 1`] = `
                 type="radio"
               />
               <label
+                data-cy="add-to-list-modal-system-lists"
                 htmlFor="radio-title3-2"
               >
                 title3
@@ -189,6 +193,7 @@ exports[`AddToListModal multiple works as input 1`] = `
           <button
             className="mr-4 false
                 btn Button Button__large Button__quaternary "
+            data-cy="modal-done-btn"
             disabled={false}
             onClick={[Function]}
           >
@@ -234,6 +239,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
       <button
         className="m-3 d-inline-block d-sm-none
             btn Button Button__medium Button__link2 "
+        data-cy=""
         disabled={false}
         onClick={[Function]}
       >
@@ -327,6 +333,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
                 type="radio"
               />
               <label
+                data-cy="add-to-list-modal-system-lists"
                 htmlFor="radio-title1-0"
               >
                 title1
@@ -341,6 +348,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
                 type="radio"
               />
               <label
+                data-cy="add-to-list-modal-system-lists"
                 htmlFor="radio-title2-1"
               >
                 title2
@@ -355,6 +363,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
                 type="radio"
               />
               <label
+                data-cy="add-to-list-modal-system-lists"
                 htmlFor="radio-title3-2"
               >
                 title3
@@ -421,6 +430,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
           <button
             className="mr-4 false
                 btn Button Button__large Button__quaternary "
+            data-cy="modal-done-btn"
             disabled={false}
             onClick={[Function]}
           >
@@ -466,6 +476,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
       <button
         className="m-3 d-inline-block d-sm-none
             btn Button Button__medium Button__link2 "
+        data-cy=""
         disabled={false}
         onClick={[Function]}
       >
@@ -545,6 +556,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
                 type="radio"
               />
               <label
+                data-cy="add-to-list-modal-system-lists"
                 htmlFor="radio-title1-0"
               >
                 title1
@@ -559,6 +571,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
                 type="radio"
               />
               <label
+                data-cy="add-to-list-modal-system-lists"
                 htmlFor="radio-title2-1"
               >
                 title2
@@ -573,6 +586,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
                 type="radio"
               />
               <label
+                data-cy="add-to-list-modal-system-lists"
                 htmlFor="radio-title3-2"
               >
                 title3
@@ -639,6 +653,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
           <button
             className="mr-4 false
                 btn Button Button__large Button__quaternary "
+            data-cy="modal-done-btn"
             disabled={false}
             onClick={[Function]}
           >

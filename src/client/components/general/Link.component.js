@@ -9,7 +9,8 @@ const Link = ({
   children = '',
   dispatch,
   onClick,
-  params = {}
+  params = {},
+  dataCy
 }) => (
   <a
     className={className}
@@ -22,6 +23,7 @@ const Link = ({
       }
       dispatch({type: type, path: href, params});
     }}
+    data-cy={dataCy || ''}
   >
     {children}
   </a>

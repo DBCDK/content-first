@@ -30,7 +30,9 @@ const ShortListElement = props => {
         <div className="top-bar-dropdown-list-element--header">
           <Link href={url}>
             <TruncateMarkup lines={1}>
-              <span>{props.element.book.title}</span>
+              <span data-cy="shortlist-element-title">
+                {props.element.book.title}
+              </span>
             </TruncateMarkup>
           </Link>
         </div>
@@ -96,7 +98,11 @@ const ShortListContent = props => {
         )}
       <div className="top-bar-dropdown-list--footer">
         <div onClick={props.onViewShortList}>
-          <Button size="medium" type="tertiary">
+          <Button
+            size="medium"
+            type="tertiary"
+            dataCy="shortlist-dropdown-visit-shortlist"
+          >
             Gå til huskeliste
           </Button>
         </div>
@@ -130,6 +136,7 @@ class ShortListDropdown extends React.Component {
               });
             }
           }}
+          data-cy={this.props.dataCy}
         >
           {this.props.children}
           <span className="short-badge">{'(' + elements.length + ')'}</span>
@@ -144,7 +151,7 @@ class ShortListDropdown extends React.Component {
           }}
           orderAll={() =>
             elements.forEach(book => {
-              this.props.dispatch({type: ORDER, book});
+              this.props.dispatch({type: ORDER, book: book.book});
             })
           }
         >

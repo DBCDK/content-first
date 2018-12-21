@@ -164,6 +164,7 @@ class ShortList extends React.Component {
                       this.props.clearList
                     )
                   }
+                  data-cy="listpage-add-elemts-to-list"
                 >
                   TILFØJ ALLE TIL LISTE
                 </span>
@@ -205,11 +206,10 @@ class ShortList extends React.Component {
 const mapStateToProps = state => {
   const {elements} = state.shortListReducer;
   const orderList = (elements || [])
-    .filter(
-      o =>
-        state.orderReducer.getIn(['orders', o.book.pid, 'orderState']) !==
-        'ordered'
-    )
+    .filter(o => {
+      const order = state.orderReducer.orders[o.book.pid] || {};
+      return order.orderState !== 'ordered';
+    })
     .slice(0, 10);
   return {
     shortListState: state.shortListReducer,

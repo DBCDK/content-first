@@ -102,7 +102,8 @@ class BookSearchSuggester extends React.Component {
       placeholder: 'Skriv titel eller forfatter',
       className: 'form-control suggestion-list__search',
       value,
-      onChange: (e, change) => this.onChange(e, change)
+      onChange: (e, change) => this.onChange(e, change),
+      'data-cy': 'listview-add-element-input'
     };
 
     // Finally, render it!

@@ -76,7 +76,12 @@ class ProfileImage extends React.Component {
           )}
         </span>
         {user && !namePosition === false ? (
-          <Heading tag="h4" type="title" className="ml-3">
+          <Heading
+            tag="h4"
+            type="title"
+            className="ml-3"
+            data-cy="user-form-name"
+          >
             {user.name}
           </Heading>
         ) : (

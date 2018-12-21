@@ -1,0 +1,134 @@
+[
+    {
+        "book": {
+            "pid": "870970-basis:51595327",
+            "unit_id": "",
+            "work_id": "work:1474713",
+            "bibliographic_record_id": -1,
+            "creator": "Tess Gerritsen",
+            "title": "Kirurgen",
+            "title_full": "Kirurgen",
+            "pages": 364,
+            "type": "Bog",
+            "work_type": "book",
+            "language": "Dansk",
+            "items": 215,
+            "libraries": 90,
+            "subject": "krimi, psykologisk thriller, seriemordere, tortur",
+            "genre": "Skønlitteratur",
+            "first_edition_year": 2015,
+            "literary_form": "",
+            "taxonomy_description": "Beretning i hurtig tempo\nOndskabsfuld og psykologisk med almindeligt sprog",
+            "description": "Krimi. En seriemorder fjerner brutalt ofrenes livmoder. Det minder om nogle mord begået for nogle år siden, men her blev morderen dræbt. Kriminalassistenterne Moore og Rizzoli frygter at en copycat er på spil",
+            "loans": 3066,
+            "coverUrl": "https://moreinfo.addi.dk/2.11/more_info_get.php?lokalid=51595327&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=ae79befe9ab1a8d9e545"
+        },
+        "coverIsLoading": false,
+        "coverHasLoaded": true,
+        "detailsIsLoading": false,
+        "detailsHasLoaded": true,
+        "links": {
+            "self": "/v1/book/870970-basis:51595327",
+            "cover": "/v1/image/870970-basis:51595327"
+        }
+    },
+    {
+        "book": {
+            "pid": "870970-basis:54145667",
+            "unit_id": "",
+            "work_id": "work:27548800",
+            "bibliographic_record_id": -1,
+            "creator": "Lisa Jewell",
+            "title": "Den fremmede gæst",
+            "title_full": "Den fremmede gæst",
+            "pages": 362,
+            "type": "Bog",
+            "work_type": "book",
+            "language": "Dansk",
+            "items": 346,
+            "libraries": 96,
+            "subject": "hukommelsestab, spænding, traumer",
+            "genre": "Skønlitteratur",
+            "first_edition_year": 2018,
+            "literary_form": "",
+            "taxonomy_description": "Historie med springer i tid\nSkæbnesvanger, psykologisk og romantisk",
+            "description": "En forkommen mand med hukommelsestab dukker op ved havet tæt på Alices' hus i Midtengland. En nygift mand forsvinder fra sin ukrainske kone i London. Noget 25 år tilbage i tiden forbinder de to begivenheder",
+            "loans": 0,
+            "coverUrl": "https://moreinfo.addi.dk/2.11/more_info_get.php?lokalid=54145667&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=466cbf0cd4ab787b6a5c"
+        },
+        "coverIsLoading": false,
+        "coverHasLoaded": true,
+        "detailsIsLoading": false,
+        "detailsHasLoaded": true,
+        "links": {
+            "self": "/v1/book/870970-basis:54145667",
+            "cover": "/v1/image/870970-basis:54145667"
+        }
+    },
+    {
+        "book": {
+            "pid": "870970-basis:53352804",
+            "unit_id": "",
+            "work_id": "work:22081346",
+            "bibliographic_record_id": -1,
+            "creator": "Luca D'Andrea (f. 1979)",
+            "title": "Bjerget",
+            "title_full": "Bjerget",
+            "pages": 493,
+            "type": "Bog",
+            "work_type": "book",
+            "language": "Dansk",
+            "items": 277,
+            "libraries": 96,
+            "subject": "galskab, krimi, posttraumatisk stress syndrom",
+            "genre": "Skønlitteratur",
+            "first_edition_year": 2017,
+            "literary_form": "",
+            "taxonomy_description": "Lang, dramatisk beretning\nRealistisk og uhyggelig",
+            "description": "Krimi. Familiefaderen Jeremiah Salinger sætter ægteskab og eget sind over styr, i opklaringen af tre bestialske mord på tre unge mennesker",
+            "loans": 80,
+            "coverUrl": "https://moreinfo.addi.dk/2.11/more_info_get.php?lokalid=53352804&attachment_type=forside_stor&bibliotek=870970&source_id=870970&key=07f27cf51db65c8f82c1"
+        },
+        "coverIsLoading": false,
+        "coverHasLoaded": true,
+        "detailsIsLoading": false,
+        "detailsHasLoaded": true,
+        "links": {
+            "self": "/v1/book/870970-basis:53352804",
+            "cover": "/v1/image/870970-basis:53352804"
+        }
+    },
+    {
+        "book": {
+            "pid": "870970-basis:51796047",
+            "unit_id": "",
+            "work_id": "work:1482788",
+            "bibliographic_record_id": -1,
+            "creator": "Edward St. Aubyn",
+            "title": "The complete Patrick Melrose novels",
+            "title_full": "The complete Patrick Melrose novels : Never mind, Bad news, Some hope, Mother's milk, and At last",
+            "pages": 857,
+            "type": "Bog",
+            "work_type": "book",
+            "language": "Engelsk",
+            "items": 37,
+            "libraries": 26,
+            "subject": "adel, far-søn forholdet, overklassen, pædofili, snobberi, stofmisbrug",
+            "genre": "Engelsk skønlitteratur",
+            "first_edition_year": 2015,
+            "literary_form": "",
+            "taxonomy_description": "Lang, vred historie\nRealistisk og frastødende",
+            "description": "Selvbiografisk fortælling fra den engelske overklasse med pædofili, stofmisbrug, snobberi og dekadent tomhed",
+            "loans": 181,
+            "coverUrl": ""
+        },
+        "coverIsLoading": false,
+        "coverHasLoaded": true,
+        "detailsIsLoading": false,
+        "detailsHasLoaded": true,
+        "links": {
+            "self": "/v1/book/870970-basis:51796047",
+            "cover": "/v1/image/870970-basis:51796047"
+        }
+    }
+]

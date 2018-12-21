@@ -58,7 +58,15 @@ class FilterCard extends React.Component {
     const Template = this.getTemplate(filter.template);
 
     return (
-      <div className={`FilterCard__container ${className} ${expandedClass}`}>
+      <div
+        className={`FilterCard__container ${className} ${expandedClass}`}
+        data-cy={
+          filter.title
+            .toLowerCase()
+            .split(' ')
+            .join('-') || ''
+        }
+      >
         <div className={`FilterCard`}>
           <div
             onClick={e => this.props.onCardClick(e)}
@@ -167,6 +175,7 @@ class Filters extends React.Component {
         <div
           className={`Filters__dimmer ${dimmerClass}`}
           onClick={() => this.closeCards()}
+          data-cy="filterDimmer"
         />
       </React.Fragment>
     );

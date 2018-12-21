@@ -424,6 +424,7 @@ export class BooksBelt extends React.Component {
                         onWorkClick={(work, row) => {
                           this.onWorkClick(belt, work, row, idx);
                         }}
+                        cardIndex={idx}
                       />
                     );
                   })}
@@ -433,7 +434,10 @@ export class BooksBelt extends React.Component {
           </div>
           {belt.child &&
             this.props.childTemplate && (
-              <this.props.childTemplate belt={belt.child} />
+              <this.props.childTemplate
+                dataCy="workpreviewCard"
+                belt={belt.child}
+              />
             )}
         </React.Fragment>
       </VisibilitySensor>

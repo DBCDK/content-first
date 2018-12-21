@@ -27,7 +27,12 @@ const ListContextMenu = ({
     return null;
   }
   return (
-    <ContextMenu title={title} className={className} style={style}>
+    <ContextMenu
+      title={title}
+      className={className}
+      style={style}
+      dataCy="context-menu-list"
+    >
       <ContextMenuAction
         title="Redigér tekst og billede"
         icon="edit"

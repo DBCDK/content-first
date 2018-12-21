@@ -4,6 +4,7 @@ exports[`ShortListDropDown modal is visible when merge is required 1`] = `
 Array [
   <div
     className="undefined top-bar-dropdown-list"
+    data-cy={undefined}
     onClick={[Function]}
 >
     <span
@@ -25,6 +26,7 @@ Array [
     </i>
     <a
         className="list-card-nohover"
+        data-cy=""
         href="/huskeliste"
         onClick={[Function]}
     >
@@ -49,6 +51,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid1"
                         onClick={[Function]}
                     >
@@ -72,13 +75,16 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid1"
                             onClick={[Function]}
                         >
                             <react-truncate-markup
                                 lines={1}
                             >
-                                <span>
+                                <span
+                                    data-cy="shortlist-element-title"
+                                >
                                     some title1
                                 </span>
                             </react-truncate-markup>
@@ -110,6 +116,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid2"
                         onClick={[Function]}
                     >
@@ -133,13 +140,16 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid2"
                             onClick={[Function]}
                         >
                             <react-truncate-markup
                                 lines={1}
                             >
-                                <span>
+                                <span
+                                    data-cy="shortlist-element-title"
+                                >
                                     some title2
                                 </span>
                             </react-truncate-markup>
@@ -174,6 +184,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
                 Gå til huskeliste
@@ -185,6 +196,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Bestil hele listen
@@ -199,6 +211,7 @@ exports[`ShortListDropDown short list contains more than 3 elements, elements ar
 Array [
   <div
     className="undefined top-bar-dropdown-list"
+    data-cy={undefined}
     onClick={[Function]}
 >
     <span
@@ -220,6 +233,7 @@ Array [
     </i>
     <a
         className="list-card-nohover"
+        data-cy=""
         href="/huskeliste"
         onClick={[Function]}
     >
@@ -244,6 +258,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid4"
                         onClick={[Function]}
                     >
@@ -267,13 +282,16 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid4"
                             onClick={[Function]}
                         >
                             <react-truncate-markup
                                 lines={1}
                             >
-                                <span>
+                                <span
+                                    data-cy="shortlist-element-title"
+                                >
                                     some title4
                                 </span>
                             </react-truncate-markup>
@@ -305,6 +323,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid3"
                         onClick={[Function]}
                     >
@@ -328,13 +347,16 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid3"
                             onClick={[Function]}
                         >
                             <react-truncate-markup
                                 lines={1}
                             >
-                                <span>
+                                <span
+                                    data-cy="shortlist-element-title"
+                                >
                                     some title3
                                 </span>
                             </react-truncate-markup>
@@ -366,6 +388,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid2"
                         onClick={[Function]}
                     >
@@ -389,13 +412,16 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid2"
                             onClick={[Function]}
                         >
                             <react-truncate-markup
                                 lines={1}
                             >
-                                <span>
+                                <span
+                                    data-cy="shortlist-element-title"
+                                >
                                     some title2
                                 </span>
                             </react-truncate-markup>
@@ -427,6 +453,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid1"
                         onClick={[Function]}
                     >
@@ -450,13 +477,16 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid1"
                             onClick={[Function]}
                         >
                             <react-truncate-markup
                                 lines={1}
                             >
-                                <span>
+                                <span
+                                    data-cy="shortlist-element-title"
+                                >
                                     some title1
                                 </span>
                             </react-truncate-markup>
@@ -491,6 +521,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
                 Gå til huskeliste
@@ -502,6 +533,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Bestil hele listen
@@ -516,6 +548,7 @@ exports[`ShortListDropDown short list contains single element 1`] = `
 Array [
   <div
     className="undefined top-bar-dropdown-list"
+    data-cy={undefined}
     onClick={[Function]}
 >
     <span
@@ -537,6 +570,7 @@ Array [
     </i>
     <a
         className="list-card-nohover"
+        data-cy=""
         href="/huskeliste"
         onClick={[Function]}
     >
@@ -561,6 +595,7 @@ Array [
                 >
                     <a
                         className="list-card-nohover"
+                        data-cy=""
                         href="/værk/pid1"
                         onClick={[Function]}
                     >
@@ -584,13 +619,16 @@ Array [
                     >
                         <a
                             className="list-card-nohover"
+                            data-cy=""
                             href="/værk/pid1"
                             onClick={[Function]}
                         >
                             <react-truncate-markup
                                 lines={1}
                             >
-                                <span>
+                                <span
+                                    data-cy="shortlist-element-title"
+                                >
                                     some title1
                                 </span>
                             </react-truncate-markup>
@@ -625,6 +663,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
                 Gå til huskeliste
@@ -636,6 +675,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Bestil hele listen
@@ -650,6 +690,7 @@ exports[`ShortListDropDown short list is empty and merge modal is hidden 1`] = `
 Array [
   <div
     className="undefined top-bar-dropdown-list"
+    data-cy={undefined}
     onClick={[Function]}
 >
     <span
@@ -671,6 +712,7 @@ Array [
     </i>
     <a
         className="list-card-nohover"
+        data-cy=""
         href="/huskeliste"
         onClick={[Function]}
     >
@@ -694,6 +736,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
                 Gå til huskeliste
@@ -705,6 +748,7 @@ Array [
             <button
                 className="
                   btn Button Button__medium Button__tertiary "
+                data-cy=""
                 disabled={false}
             >
                 Bestil hele listen

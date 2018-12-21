@@ -36,6 +36,7 @@ const BeltWrapper = ({belt}) => {
         pid={belt.pid}
         belt={belt}
         childTemplate={BeltWrapper}
+        dataCy={'workpreviewCard'}
       />
     );
   }

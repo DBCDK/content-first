@@ -10,6 +10,7 @@ const ListItem = props => {
       type="term"
       size="small"
       className={'FilterCard__listItem ' + tagState}
+      data-cy={props.filter.title.toLowerCase() || ''}
       onClick={() => {
         if (props.onFilterToggle) {
           props.onFilterToggle(props.filter);

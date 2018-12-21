@@ -103,7 +103,11 @@ const UserListsContent = props => {
         )}
       <div className="top-bar-dropdown-list--footer">
         <div onClick={() => props.onCreateNewList()}>
-          <Button size="medium" type="tertiary">
+          <Button
+            size="medium"
+            type="tertiary"
+            dataCy="lists-dropdown-new-list"
+          >
             Opret ny liste
           </Button>
         </div>
@@ -132,12 +136,13 @@ class ListOverviewDropDown extends React.Component {
     }
   }
   renderLists = lists => {
-    return lists.map(list => (
+    return lists.map((list, index) => (
       <ListElement
         key={list._id}
         list={list}
         profiles={this.props.profiles}
         userID={this.props.userID ? this.props.userID : ''}
+        index={index}
       />
     ));
   };
@@ -156,6 +161,7 @@ class ListOverviewDropDown extends React.Component {
           onClick={() => {
             this.props.onListsIconClick(expanded, this.props.shortListExpanded);
           }}
+          data-cy={this.props.dataCy}
         >
           {this.props.children}
         </div>
