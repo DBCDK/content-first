@@ -11,13 +11,16 @@ import {
 export const matomoMiddleware = () => next => action => {
   switch (action.type) {
     case ADD_BELT: {
-      const category = 'searchResult';
-      const a =
-        get(action, 'belt.type') === 'preview'
-          ? 'beltExpandWork'
-          : 'beltMoreLikeThis';
-      const name = `pid:${get(action, 'belt.pid', 'unknown')}`;
-      trackEvent(category, a, name);
+      if (get(action, 'belt.key', '').startsWith('filterpage')) {
+        // a "root" belt is added on the /find page
+        const category = 'searchResult';
+        const a =
+          get(action, 'belt.type') === 'preview'
+            ? 'beltExpandWork'
+            : 'beltMoreLikeThis';
+        const name = `pid:${get(action, 'belt.pid', 'unknown')}`;
+        trackEvent(category, a, name);
+      }
       return next(action);
     }
     case ADD_CHILD_BELT: {
