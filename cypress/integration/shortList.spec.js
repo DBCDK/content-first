@@ -2,7 +2,6 @@ describe('Test shortlist', function() {
   beforeEach(function() {
     cy.clearClientStorage();
     cy.clearCookies();
-    cy.createUser();
     cy.wait(1000);
   });
 

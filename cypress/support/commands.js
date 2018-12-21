@@ -55,13 +55,13 @@ Cypress.Commands.add('login', userName => {
 });
 
 /**
- *Adds 'size' elements to the shortlist
+ *Adds 'count' elements to the shortlist
  */
-Cypress.Commands.add('addElementsToShortlist', size => {
+Cypress.Commands.add('addElementsToShortlist', count => {
   cy.fixture('works').then(elements => {
-    size = size > elements.length ? elements.length : size;
+    count = count > elements.length ? elements.length : count;
 
-    const works = elements.slice(0, size);
+    const works = elements.slice(0, count);
     works.map(work => {
       cy.dispatch({
         type: 'ON_SHORTLIST_TOGGLE_ELEMENT',
@@ -70,40 +70,4 @@ Cypress.Commands.add('addElementsToShortlist', size => {
       });
     });
   });
-});
-
-/**
- * Resets database and injects latest metakompas data
- * not ready yet
- */
-Cypress.Commands.add('resetDB', () => {
-  const showLog = true;
-  cy.exec('docker container list', {timeout: 20000, log: showLog}).then(
-    result => {
-      if (result.stdout.indexOf('content-first_database_1') !== -1) {
-        cy.exec('docker kill content-first_database_1', {
-          timeout: 20000,
-          log: showLog
-        });
-      }
-      /* if (result.stdout.indexOf('content-first_communityservice_1') !== -1) {
-        cy.exec('docker kill content-first_communityservice_1', {
-          timeout: 20000,
-          log: showLog,
-        });
-      }*/
-    }
-  );
-
-  cy.exec('docker system prune --force ', {timeout: 20000, log: showLog});
-  cy.exec('docker-compose up -d', {timeout: 20000, log: showLog});
-  cy.exec('npm run db-migrate', {failOnNonZeroExit: true}).then(res => {
-    console.log('migrate err', res.stderr);
-  }); //TODO: fails
-  cy.exec('npm run inject-metakompas', {
-    log: showLog,
-    failOnNonZeroExit: false
-  }).then(res => {
-    console.log('inject-metakompas ', res.stdout);
-  }); //TODO: fails in injection
 });
