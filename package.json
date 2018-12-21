@@ -1,6 +1,6 @@
 {
   "name": "content-first",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "GPL-3.0",
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
     "prettier"
   ],
   "devDependencies": {
+    "auto-changelog": "^1.10.2",
     "babel-eslint": "^8.0.3",
     "chai": "^4.0.2",
     "chai-as-promised": "^7.1.1",
@@ -116,7 +117,8 @@
     "test-no-elvis": "run-s test-no-db test-acceptance test-frontend",
     "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js",
     "cy:run": "cypress run --browser chrome",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "jest": {
     "snapshotSerializers": [
