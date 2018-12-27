@@ -161,6 +161,7 @@ class FilterPage extends React.Component {
       ? selectedTagIds.filter(id => filterId !== id)
       : [...selectedTagIds, filterId];
     this.props.history(HISTORY_REPLACE, '/find', {tag: tags});
+    this.props.reorganizeBelts();
     this.initFilterPosition();
   }
 
