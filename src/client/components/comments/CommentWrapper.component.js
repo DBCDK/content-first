@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {
   UPDATE_COMMENT,
   TOGGLE_EDIT_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  FETCH_COMMENTS
 } from '../../redux/comment.reducer';
 
 import Spinner from '../general/Spinner.component';
@@ -44,6 +45,12 @@ export class CommentWrapper extends React.Component {
     }
   };
 
+  updateComments = () => {
+    if (this.props.fetchComments&&this.props.comment._key) {
+      this.props.fetchComments(this.props.comment._key);
+    }
+  };
+
   render() {
     const {
       comment,
@@ -68,13 +75,18 @@ export class CommentWrapper extends React.Component {
             <ContextMenuAction
               title="Redigér indlæg"
               icon="edit"
-              onClick={() => this.toggleEdit(!this.state.editing)}
+              onClick={() => {
+                this.toggleEdit(!this.state.editing);
+                this.updateComments();
+              }}
             />
 
             <ContextMenuAction
               title="Slet indlæg"
               icon="clear"
-              onClick={() => this.props.deleteComment(this.props.comment)}
+              onClick={() => {
+                this.props.deleteComment(this.props.comment);
+              }}
             />
           </ContextMenu>
         ) : null}
@@ -131,7 +143,8 @@ export const mapDispatchToProps = dispatch => ({
   editComment: comment => dispatch({type: UPDATE_COMMENT, comment}),
   deleteComment: comment => dispatch({type: DELETE_COMMENT, comment}),
   toggleEdit: ({comment, editing}) =>
-    dispatch({type: TOGGLE_EDIT_COMMENT, comment, editing})
+    dispatch({type: TOGGLE_EDIT_COMMENT, comment, editing}),
+  fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
 export default connect(
