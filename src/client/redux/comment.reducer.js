@@ -151,7 +151,7 @@ const commentReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {
         [action.id]: {
           id: action.id,
-          comments: action.comments.reverse(),
+          comments: action.comments.sort((a, b) => a._created - b._created),
           loading: false
         }
       });
