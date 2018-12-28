@@ -111,6 +111,7 @@
     display: flex;
     overflow: scroll;
     justify-content: start;
+    -webkit-overflow-scrolling: touch;
   }
   .spot-item-wide-container,
   .spot-item-small-container {
