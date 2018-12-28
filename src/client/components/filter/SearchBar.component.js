@@ -14,6 +14,7 @@ import {
   getIdsFromRange,
   getTagsbyIds
 } from '../../redux/selectors';
+import {REORGANIZE_FILTERPAGE_BELTS} from '../../redux/belts.reducer';
 
 import './SearchBar.css';
 
@@ -32,6 +33,9 @@ class SearchBar extends React.Component {
     const filterCards = this.props.filterCards;
     let selectedTagIds = this.props.selectedTagIds;
     let tags = [...selectedTagIds];
+
+    // clear book previous and "more like this" belts.
+    this.props.reorganizeBelts();
 
     /* history for toast 'goBack' functionality */
     const historyPath = this.props.router.path;
@@ -308,7 +312,10 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: BOOKS_REQUEST,
       pids: pids
-    })
+    }),
+  reorganizeBelts: () => {
+    dispatch({type: REORGANIZE_FILTERPAGE_BELTS});
+  }
 });
 
 export default connect(
