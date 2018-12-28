@@ -290,7 +290,7 @@ export const saveUser = user => {
   return new Promise((resolve, reject) => {
     request
       .put('/v1/user')
-      .send(Object.assign({}, {shortlist: [], profiles: []}, user))
+      .send(Object.assign({}, {profiles: []}, user))
       .end((error, res) => {
         if (error) {
           reject(res.body && res.body.errors ? res.body.errors[0] : error);
