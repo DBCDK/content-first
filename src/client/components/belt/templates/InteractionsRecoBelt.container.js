@@ -45,13 +45,9 @@ export class InteractionsRecoBelt extends React.Component {
   render() {
     const weightedTags = this.getWeightedTags();
     if (weightedTags.length > 0 && this.props.username) {
-      return (
-        <BooksBelt
-          {...this.props}
-          name={'Bedste forslag til ' + this.props.username}
-          tags={weightedTags}
-        />
-      );
+      let fullName = 'Bedste forslag til ' + this.props.username;
+
+      return <BooksBelt {...this.props} name={fullName} tags={weightedTags} />;
     }
     return null;
   }

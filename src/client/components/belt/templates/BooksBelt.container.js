@@ -244,7 +244,12 @@ export class BooksBelt extends React.Component {
       return null;
     }
 
-    const {subtext, name, child, scrollPos, _owner, editing = false} = belt;
+    const {subtext, child, scrollPos, _owner, editing = false} = belt;
+
+    let {name} = belt;
+    if (this.props.name) {
+      name = this.props.name;
+    }
 
     const titleMissing = this.state.titleMissing;
     const subtextMissing = this.state.subtextMissing;
@@ -371,6 +376,7 @@ export class BooksBelt extends React.Component {
                           return (
                             <Tag
                               tag={t}
+                              key={idx}
                               isLast={idx === plainSelectedTags.length - 1}
                               onClick={() => this.props.tagClick(t)}
                             />
