@@ -39,7 +39,7 @@ for (let i = 0; i < 20; i++) {
 
 const EditBelt = props => {
   if (isMobileOnly) {
-    return <BeltContextMenu onClick={props.onClick} />;
+    return <BeltContextMenu onClick={props.onClick}/>;
   }
 
   return (
@@ -47,7 +47,7 @@ const EditBelt = props => {
       className="Belt_editButton d-flex align-items-center"
       onClick={props.onClick}
     >
-      <Icon className="md-small" name="edit" />
+      <Icon className="md-small" name="edit"/>
       <Text className="m-0 ml-2 " type="small">
         Redigér
       </Text>
@@ -244,7 +244,12 @@ export class BooksBelt extends React.Component {
       return null;
     }
 
-    const {subtext, name, child, scrollPos, _owner, editing = false} = belt;
+    const {subtext, child, scrollPos, _owner, editing = false} = belt;
+
+    let {name} = belt;
+    if (this.props.name) {
+      name = this.props.name
+    }
 
     const titleMissing = this.state.titleMissing;
     const subtextMissing = this.state.subtextMissing;
@@ -268,11 +273,11 @@ export class BooksBelt extends React.Component {
             className="belt text-left mt-5 mt-sm-4 row position-relative"
             ref={beltWrap => (this.refs = {...this.refs, beltWrap})}
           >
-            {_owner && <EditBelt onClick={() => this.onEditBeltClick()} />}
+            {_owner && <EditBelt onClick={() => this.onEditBeltClick()}/>}
             <div className="p-0 col-12">
               <div className="header row d-flex flex-nowrap">
                 {_owner && (
-                  <div className=" d-none d-sm-block logo-circle ml-2" />
+                  <div className=" d-none d-sm-block logo-circle ml-2"/>
                 )}
                 {_owner && editing ? (
                   <div className="d-flex flex-wrap col-12 col-sm-10">
@@ -371,6 +376,7 @@ export class BooksBelt extends React.Component {
                           return (
                             <Tag
                               tag={t}
+                              key={idx}
                               isLast={idx === plainSelectedTags.length - 1}
                               onClick={() => this.props.tagClick(t)}
                             />
@@ -432,9 +438,9 @@ export class BooksBelt extends React.Component {
             </div>
           </div>
           {belt.child &&
-            this.props.childTemplate && (
-              <this.props.childTemplate belt={belt.child} />
-            )}
+          this.props.childTemplate && (
+            <this.props.childTemplate belt={belt.child}/>
+          )}
         </React.Fragment>
       </VisibilitySensor>
     );
@@ -442,6 +448,7 @@ export class BooksBelt extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+
   const excluded = ownProps.excluded || [];
 
   const selectedTags = getTagsbyIds(state, ownProps.tags);
@@ -464,7 +471,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
+
   fetchRecommendations: tags =>
+
     dispatch({
       type: RECOMMEND_REQUEST,
       fetchWorks: false,
