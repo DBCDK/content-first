@@ -62,7 +62,9 @@ export class TopBar extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('mousedown', this.closeDropdown);
+    if (this.Topbar) {
+      this.Topbar.addEventListener('mousedown', this.closeDropdown);
+    }
     window.addEventListener('resize', this.onResize);
     this.calcWidth();
 
@@ -71,7 +73,9 @@ export class TopBar extends React.Component {
     this.props.fetchStats();
   }
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.closeDropdown);
+    if (this.Topbar) {
+      this.Topbar.removeEventListener('mousedown', this.closeDropdown);
+    }
     window.removeEventListener('resize', this.onResize);
   }
 

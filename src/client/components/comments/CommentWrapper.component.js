@@ -46,7 +46,7 @@ export class CommentWrapper extends React.Component {
   };
 
   updateComments = () => {
-    if (this.props.fetchComments&&this.props.comment._key) {
+    if (this.props.fetchComments && this.props.comment._key) {
       this.props.fetchComments(this.props.comment._key);
     }
   };
