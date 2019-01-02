@@ -41,7 +41,7 @@ class BookCover extends React.Component {
     const hasNoCover = !this.props.coverUrl && this.props.coverUrlHasLoaded;
     const clickableStyle = this.props.enableLightbox ? {cursor: 'pointer'} : {};
     if (!this.props.coverUrl) {
-      const svg =
+      const coverSvg =
         'data:image/svg+xml,' +
         encodeURIComponent(
           generateSvg(
@@ -56,7 +56,7 @@ class BookCover extends React.Component {
         <React.Fragment>
           <img
             style={{...this.props.style, ...clickableStyle}}
-            src={svg}
+            src={coverSvg}
             alt={this.props.title || ''}
             className={'book-cover ' + this.props.className || ''}
             onClick={() =>
@@ -65,13 +65,13 @@ class BookCover extends React.Component {
           />
           {this.props.enableLightbox && (
             <Lightbox
-              images={[{src: svg}]}
+              images={[{src: coverSvg, caption: this.props.title}]}
               isOpen={this.state.lightboxIsOpen}
               onClose={() => {
                 this.setState({lightboxIsOpen: false});
               }}
               backdropClosesModal={true}
-              imageCountSeparator=" af "
+              showImageCount={false}
             />
           )}
         </React.Fragment>
@@ -100,8 +100,7 @@ class BookCover extends React.Component {
               this.setState({lightboxIsOpen: false});
             }}
             backdropClosesModal={true}
-            imageCountSeparator=" af "
-            showCloseButton={false}
+            // showCloseButton={false}
             showImageCount={false}
           />
         )}
