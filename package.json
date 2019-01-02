@@ -70,6 +70,7 @@
     "react-draggable": "^3.0.5",
     "react-helmet": "^5.2.0",
     "react-id-swiper": "^1.6.4",
+    "react-images": "^0.5.19",
     "react-lazy-load": "^3.0.13",
     "react-markdown": "^4.0.3",
     "react-parallax": "^2.0.0",

@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import toColor from '../../utils/toColor';
+import Lightbox from 'react-images';
+import './BookCover.css';
 
 const generateSvg = (backgroundColor, title, creator) => {
   const adjustTitlelength =
@@ -29,52 +31,93 @@ const generateSvg = (backgroundColor, title, creator) => {
   </svg>`;
 };
 
-const BookCover = props => {
-  const hasNoCover = !props.coverUrl && props.coverUrlHasLoaded;
-  if (!props.coverUrl) {
-    return (
-      <img
-        style={props.style}
-        src={
-          'data:image/svg+xml,' +
-          encodeURIComponent(
-            generateSvg(
-              props.title && hasNoCover ? toColor(props.title) : '#f8f8f8',
-              props.title && hasNoCover ? props.title : '',
-              props.title && hasNoCover ? props.creator : ''
-            )
+class BookCover extends React.Component {
+  constructor() {
+    super();
+    this.state = {lightboxIsOpen: false};
+  }
+
+  render() {
+    const hasNoCover = !this.props.coverUrl && this.props.coverUrlHasLoaded;
+    const clickableStyle = this.props.enableLightbox ? {cursor: 'pointer'} : {};
+    if (!this.props.coverUrl) {
+      const coverSvg =
+        'data:image/svg+xml,' +
+        encodeURIComponent(
+          generateSvg(
+            this.props.title && hasNoCover
+              ? toColor(this.props.title)
+              : '#f8f8f8',
+            this.props.title && hasNoCover ? this.props.title : '',
+            this.props.title && hasNoCover ? this.props.creator : ''
           )
+        );
+      return (
+        <React.Fragment>
+          <img
+            style={{...this.props.style, ...clickableStyle}}
+            src={coverSvg}
+            alt={this.props.title || ''}
+            className={'book-cover ' + this.props.className || ''}
+            onClick={() =>
+              this.setState({lightboxIsOpen: this.props.enableLightbox})
+            }
+          />
+          {this.props.enableLightbox && (
+            <Lightbox
+              images={[{src: coverSvg, caption: this.props.title}]}
+              isOpen={this.state.lightboxIsOpen}
+              onClose={() => {
+                this.setState({lightboxIsOpen: false});
+              }}
+              backdropClosesModal={true}
+              showImageCount={false}
+            />
+          )}
+        </React.Fragment>
+      );
+    }
+    return (
+      <div
+        style={{
+          ...this.props.style,
+          display: 'inline-block',
+          textAlign: 'center',
+          backgroundColor: '#f8f8f8',
+          verticalAlign: 'middle'
+        }}
+        alt={this.props.title || ''}
+        className={
+          'd-inline-flex align-items-end book-cover ' + this.props.className ||
+          ''
         }
-        alt={props.title || ''}
-        className={'book-cover ' + props.className || ''}
-      />
+      >
+        {this.props.enableLightbox && (
+          <Lightbox
+            images={[{src: this.props.coverUrl, caption: this.props.title}]}
+            isOpen={this.state.lightboxIsOpen}
+            onClose={() => {
+              this.setState({lightboxIsOpen: false});
+            }}
+            backdropClosesModal={true}
+            showImageCount={false}
+          />
+        )}
+        <img
+          style={{...this.props.style, ...clickableStyle}}
+          alt={this.props.title || ''}
+          src={this.props.coverUrl}
+          onLoad={this.props.onLoad}
+          className={this.props.imageClassName || ''}
+          data-cy={this.props.dataCy || ''}
+          onClick={() => {
+            this.setState({lightboxIsOpen: this.props.enableLightbox});
+          }}
+        />
+      </div>
     );
   }
-  return (
-    <div
-      style={{
-        ...props.style,
-        display: 'inline-block',
-        textAlign: 'center',
-        backgroundColor: '#f8f8f8',
-        verticalAlign: 'middle'
-      }}
-      alt={props.title || ''}
-      className={
-        'd-inline-flex align-items-end book-cover ' + props.className || ''
-      }
-    >
-      <img
-        style={props.style}
-        alt={props.title || ''}
-        src={props.coverUrl}
-        onLoad={props.onLoad}
-        className={props.imageClassName || ''}
-        data-cy={props.dataCy || ''}
-      />
-    </div>
-  );
-};
+}
 
 const mapStateToProps = (state, ownProps) => {
   const {book, coverHasLoaded} =

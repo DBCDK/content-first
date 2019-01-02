@@ -86,7 +86,7 @@ class WorkPage extends React.Component {
         <div className="row WorkPage__container">
           <div className="col-12 col-xl-8 WorkPage__work">
             <div className="WorkPage__image">
-              <BookCover book={book} />
+              <BookCover book={book} enableLightbox />
               <BookmarkButton
                 className="d-inline-block d-sm-none mr1"
                 origin={'Fra egen værkside'}
