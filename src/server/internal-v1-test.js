@@ -72,9 +72,7 @@ router
  */
 async function createUser(req, doCreateUser) {
   const loginToken = uuidv4();
-
   const id = req.params.id;
-
   await knex(cookieTable).insert({
     cookie: loginToken,
     community_profile_id: -1,
@@ -102,7 +100,7 @@ async function createUser(req, doCreateUser) {
         acceptedAge: doCreateUser ? true : false,
         acceptedTerms: doCreateUser ? true : false
       },
-      req.user
+      {openplatformId: id}
     );
   }
 
