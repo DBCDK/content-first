@@ -100,7 +100,6 @@ class BookCover extends React.Component {
               this.setState({lightboxIsOpen: false});
             }}
             backdropClosesModal={true}
-            // showCloseButton={false}
             showImageCount={false}
           />
         )}
