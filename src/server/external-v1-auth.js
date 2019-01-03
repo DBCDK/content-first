@@ -11,7 +11,7 @@ router.use(nocache);
 router.get(
   '/callback',
   passport.authenticate('profile', {
-    successRedirect: '/',
+    successRedirect: '/replay',
     failureRedirect: '/error'
   })
 );
