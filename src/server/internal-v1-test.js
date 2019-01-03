@@ -23,7 +23,7 @@ router
         .status(303)
         .clearCookie('test-user-data')
         .location('http://localhost:3000')
-        .send('hej');
+        .send();
     })
   );
 
