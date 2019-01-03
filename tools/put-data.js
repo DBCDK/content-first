@@ -3,15 +3,11 @@
 const crypto = require('crypto');
 const request = require('superagent');
 const {uniqBy} = require('lodash');
-const fs = require('fs');
-const targz = require('targz');
 
-const JSON_FILES_URL = process.env.JSON_FILES_URL;
 const INTERNAL_PORT = process.env.INTERNAL_PORT || 3002;
 const PORT = process.env.PORT || 3001;
 const HOST = (process.env.HOST || 'http://localhost') + ':' + INTERNAL_PORT;
 const HOWRU = (process.env.HOST || 'http://localhost') + ':' + PORT + '/howru';
-const DATA_DIR = process.cwd() + '/src/data/';
 
 const waitForReady = async () => {
   let ready = false;
@@ -76,25 +72,6 @@ Solve this by deploying metakompas, content-first or maybe both.. :)
     .put(`${HOST}/v1/tags`)
     .set('Content-Type', 'application/json')
     .send(uniqueTags);
-
-  console.log('Uploaded tags'); // eslint-disable-line
-
-  var covers = fs.readdirSync(DATA_DIR);
-  if (covers) {
-    for (let i = 0; i < covers.length; i++) {
-      const fileName = covers[i];
-      if (fileName.toLowerCase().indexOf('.jpg') === -1) {
-        continue;
-      }
-      const cover = fs.readFileSync(DATA_DIR + fileName);
-      const pid = fileName.replace(/\.jpg/gi, '');
-      await request
-        .put(`${HOST}/v1/image/${pid}`)
-        .set('Content-Type', 'image/jpeg')
-        .send(cover);
-      console.log(`Uploaded cover for pid ${pid}`); // eslint-disable-line
-    }
-  }
 }
 
 doWork()

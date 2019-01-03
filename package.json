@@ -10,9 +10,7 @@
   "bugs": {
     "url": "https://github.com/DBCDK/content-first/issues"
   },
-  "pre-commit": [
-    "prettier"
-  ],
+  "pre-commit": ["prettier"],
   "devDependencies": {
     "auto-changelog": "^1.10.2",
     "babel-eslint": "^8.0.3",
@@ -101,9 +99,9 @@
     "build": "react-scripts build",
     "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js src/acceptance/*_test.js",
     "db-migrate": ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
-    "fetch-metakompas": ". ./current.env && ./tools/fetch-data.js",
+    "fetch-metakompas": ". ./current.env && ./tools/fetch-data.js ",
     "inject-metakompas": ". ./current.env && ./tools/put-data.js",
-    "fetch-inject-metakompas": ". ./current.env && ./tools/fetch-data.js && ./tools/put-data.js",
+    "fetch-inject-metakompas": "npm run fetch-metakompas && npm run inject-metakompas",
     "lint-js": "eslint src",
     "postinstall": "./tools/setup-node-env.sh",
     "start": "run-p start-backend start-frontend",
@@ -122,8 +120,6 @@
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ]
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   }
 }
