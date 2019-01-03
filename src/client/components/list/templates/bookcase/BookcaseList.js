@@ -128,6 +128,7 @@ export class BookcaseList extends React.Component {
           showDate={true}
           onEdit={this.onEdit}
           onAddBook={this.onAddBook}
+          disabled={list.editing || list.isNew}
         />
         <div className="d-flex justify-content-center mt-0 mt-md-5 mb-5">
           <div className="fixed-width-col-sm d-xs-none d-xl-block" />

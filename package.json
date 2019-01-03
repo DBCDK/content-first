@@ -10,7 +10,9 @@
   "bugs": {
     "url": "https://github.com/DBCDK/content-first/issues"
   },
-  "pre-commit": ["prettier"],
+  "pre-commit": [
+    "prettier"
+  ],
   "devDependencies": {
     "auto-changelog": "^1.10.2",
     "babel-eslint": "^8.0.3",
@@ -120,6 +122,8 @@
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
