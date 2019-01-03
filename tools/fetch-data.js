@@ -5,7 +5,7 @@ const fs = require('fs');
 const targz = require('targz');
 
 const JSON_FILES_URL = process.env.JSON_FILES_URL;
-const DATA_DIR = process.cwd() + '/src/data/';
+const DATA_DIR = process.cwd() + '/../src/data/';
 const TAR_GZ_PATH = DATA_DIR + 'json.tar.gz';
 
 async function doWork() {

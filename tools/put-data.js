@@ -11,7 +11,7 @@ const INTERNAL_PORT = process.env.INTERNAL_PORT || 3002;
 const PORT = process.env.PORT || 3001;
 const HOST = (process.env.HOST || 'http://localhost') + ':' + INTERNAL_PORT;
 const HOWRU = (process.env.HOST || 'http://localhost') + ':' + PORT + '/howru';
-const DATA_DIR = process.cwd() + '/src/data/';
+const DATA_DIR = process.cwd() + '/../src/data/';
 
 const waitForReady = async () => {
   let ready = false;

@@ -1,0 +1,17 @@
+{
+  "name": "content-first-tools",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "fetch-metakompas": ". ../current.env && ./fetch-data.js",
+    "inject-metakompas": ". ../current.env && ./put-data.js",
+    "fetch-inject-metakompas": ". ../current.env && ./fetch-data.js && ./put-data.js"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "lodash": "^4.17.11",
+    "superagent": "^4.1.0",
+    "targz": "^1.0.1"
+  }
+}
