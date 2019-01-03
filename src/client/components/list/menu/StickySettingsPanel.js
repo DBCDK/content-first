@@ -23,8 +23,10 @@ const StickySettings = ({
   showOwner = false,
   showDate = false,
   onAddBook,
-  onEdit
+  onEdit,
+  disabled
 }) => {
+  console.log('disabled', disabled);
   return (
     <div
       className="fixed-top d-flex justify-content-center pointer-events-none"
@@ -45,7 +47,29 @@ const StickySettings = ({
           <hr className="border-top border-pistache" />
         )}
         <FollowButton _id={list._id} />
-        <AddBookButton _id={list._id} className="mt-3" onClick={onAddBook} />
+        <div style={{position: 'relative'}}>
+          {disabled && (
+            <div
+              className="position-absolute"
+              style={{
+                width: '100%',
+                height: '100%',
+                top: 0,
+                background: 'white',
+                opacity: 0.7,
+                zIndex: 1000
+              }}
+            />
+          )}
+
+          <AddBookButton
+            _id={list._id}
+            className="mt-3"
+            onClick={onAddBook}
+            disabled={disabled}
+          />
+        </div>
+
         <ListContextMenu
           className="mt-3"
           _id={_id}
