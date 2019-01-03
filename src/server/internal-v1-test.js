@@ -13,6 +13,21 @@ const objectStore = require('server/objectStore');
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 
 router
+  .route('/logout/')
+  // Log in only and create user manually
+  // GET /v1/test/login/:id
+  //
+  .get(
+    asyncMiddleware(async (req, res) => {
+      return res
+        .status(303)
+        .clearCookie('test-user-data')
+        .location('http://localhost:3000')
+        .send('hej');
+    })
+  );
+
+router
   .route('/login/:id')
   // Log in only and create user manually
   // GET /v1/test/login/:id
@@ -21,12 +36,19 @@ router
     asyncMiddleware(async (req, res) => {
       try {
         const loginToken = await createUser(req, false);
+        const user = {
+          openplatformId: req.params.id,
+          openplatformToken: req.params.id,
+          expires: Math.ceil((Date.now() + ms_OneMonth) / 1000)
+        };
+        req.user = user;
         return res
           .status(303)
           .location('http://localhost:3000/replay')
           .cookie('login-token', loginToken, {
             httpOnly: true
           })
+          .cookie('test-user-data', JSON.stringify(user))
           .send();
       } catch (error) {
         let errorMsg = JSON.stringify(error);
@@ -47,13 +69,18 @@ router
     asyncMiddleware(async (req, res) => {
       try {
         const loginToken = await createUser(req, true);
-
+        const user = {
+          openplatformId: req.params.id,
+          openplatformToken: req.params.id,
+          expires: Math.ceil((Date.now() + ms_OneMonth) / 1000)
+        };
         return res
           .status(303)
           .location('http://localhost:3000/replay')
           .cookie('login-token', loginToken, {
             httpOnly: true
           })
+          .cookie('test-user-data', JSON.stringify(user))
           .send();
       } catch (error) {
         let errorMsg = JSON.stringify(error);

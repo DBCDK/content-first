@@ -20,6 +20,8 @@ const isProduction = config.server.environment === 'production';
 // Public web server.
 const express = require('express');
 const external = express();
+const cookieParser = require('cookie-parser');
+external.use(cookieParser());
 
 // Static frontend content.
 const path = require('path');
@@ -29,6 +31,14 @@ external.use(express.static(staticPath));
 // Securing headers.
 const helmet = require('helmet');
 external.use(helmet());
+
+if (!isProduction) {
+  external.use((req, res, next) => {
+    const userData = JSON.parse(req.cookies['test-user-data']);
+    req.user = userData;
+    next();
+  });
+}
 
 // Auto-parse request bodies in JSON format.
 const parser = require('body-parser');
