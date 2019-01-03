@@ -13,7 +13,7 @@ Optional files:
 
 Example files can be found here: [src/data/examples](https://github.com/DBCDK/content-first/tree/refactor-data-folder/src/data/examples)
 
-When content-first is running, data files may be injected by doing:
+Data files may be injected by doing:
 
 - Make sure a content-first instance is running
 - Go to [the tools folder][src/data/examples](https://github.com/DBCDK/content-first/tree/refactor-data-folder/tools)
