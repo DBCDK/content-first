@@ -1,4 +1,10 @@
-const supported = window && window.sessionStorage;
+let supported;
+
+try {
+  supported = window && window.sessionStorage;
+} catch (e) {
+  // no need to handle the exception here.
+}
 
 export const setItem = (key, value, version) => {
   if (supported) {

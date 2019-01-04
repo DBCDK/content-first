@@ -26,13 +26,24 @@ import Styleguide from './components/Styleguide/Styleguide.component';
 import FeedbackButton from './components/general/FeedbackButton.component';
 import Footer from './components/general/Footer.component';
 import Article from './components/article/Article.component';
+import Text from './components/base/Text/index';
+import {OPEN_MODAL} from './redux/modal.reducer';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {didShowCookieModal: false};
+  }
   componentWillMount() {
-    this.props.dispatch({type: ON_USER_DETAILS_REQUEST});
+    this.props.userDetailsRequest();
   }
 
   render() {
+    if (!navigator.cookieEnabled && !this.state.didShowCookieModal) {
+      this.props.cookieModal();
+      this.setState({didShowCookieModal: true});
+    }
+
     const path = this.props.routerState.path;
     const pathSplit = path.split('/');
 
@@ -115,13 +126,52 @@ class App extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    routerState: state.routerReducer,
+    beltsState: state.beltsReducer,
+    user: state.userReducer
+  };
+};
+
+export const mapDispatchToProps = dispatch => ({
+  userDetailsRequest: () => dispatch({type: ON_USER_DETAILS_REQUEST}),
+  cookieModal: () => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'confirm',
+      context: {
+        title: 'Blokerede cookies',
+        reason: (
+          <React.Fragment>
+            <Text type="body" variant="weight-semibold">
+              Cookies er blokeret af din browser.
+            </Text>
+            <Text type="body">Cookies er blokeret af din browser.</Text>
+          </React.Fragment>
+        ),
+        confirmText: 'Luk',
+        hideCancel: true,
+        hideConfirm: true,
+        onConfirm: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        },
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        }
+      }
+    });
+  }
+});
 export default connect(
   // Map redux state to props
-  state => {
-    return {
-      routerState: state.routerReducer,
-      beltsState: state.beltsReducer,
-      user: state.userReducer
-    };
-  }
+  mapStateToProps,
+  mapDispatchToProps
 )(App);
