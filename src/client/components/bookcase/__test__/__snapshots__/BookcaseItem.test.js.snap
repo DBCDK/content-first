@@ -10,11 +10,6 @@ exports[`BookcaseItem Render list as bookcaseItem 1`] = `
   >
     <div
       className="bookswrap position-relative"
-      style={
-        Object {
-          "backgroundImage": "url(/v1/image/77b1d110-de77-4c23-bcf0-af30988aac33/1438/800)",
-        }
-      }
     >
       <Pulse
         active={false}
@@ -27,6 +22,9 @@ exports[`BookcaseItem Render list as bookcaseItem 1`] = `
             "y": 0,
           }
         }
+      />
+      <img
+        src="/v1/image/77b1d110-de77-4c23-bcf0-af30988aac33/719/400"
       />
     </div>
     <div
