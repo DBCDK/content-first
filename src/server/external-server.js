@@ -30,6 +30,19 @@ external.use(express.static(staticPath));
 const helmet = require('helmet');
 external.use(helmet());
 
+// add user object to the request. (For test-users in development mode)
+if (!isProduction) {
+  const cookieParser = require('cookie-parser');
+  external.use(cookieParser());
+  external.use((req, res, next) => {
+    if (!req.user && req.cookies['test-user-data']) {
+      const userData = JSON.parse(req.cookies['test-user-data']);
+      req.user = userData;
+    }
+    next();
+  });
+}
+
 // Auto-parse request bodies in JSON format.
 const parser = require('body-parser');
 external.use(
