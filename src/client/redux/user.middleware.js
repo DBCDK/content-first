@@ -114,10 +114,9 @@ export const userMiddleware = store => next => action => {
       next(action);
 
       return (async () => {
-        const user = await openplatform.user();
-
+        const openplatformId = store.getState().userReducer.openplatformId;
         try {
-          await deleteUser(user.id);
+          await deleteUser(openplatformId);
           store.dispatch({type: DELETE_USER_PROFILE_SUCCESS});
           store.dispatch({type: HISTORY_PUSH_FORCE_REFRESH, path: '/'});
         } catch (error) {
