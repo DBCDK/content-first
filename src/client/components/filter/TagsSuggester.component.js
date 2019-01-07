@@ -112,6 +112,7 @@ class TagsSuggester extends React.Component {
           encodeURIComponent(
             value
               .trim()
+              .replace(/[^A-ZÆØÅa-zæøå0-9 ]/g, ' ')
               .split(/\s+/g)
               .join(' & ') + ':*'
           )
