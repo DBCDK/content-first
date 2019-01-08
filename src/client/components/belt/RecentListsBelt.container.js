@@ -72,7 +72,7 @@ export default class RecentListsBelt extends React.Component {
                 variant="transform-uppercase"
                 className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0"
               >
-                <strong>Ugens</strong> Lister
+                <strong>Nyeste</strong> Lister
               </Title>
             </div>
             {isSkeletonBelt && (
