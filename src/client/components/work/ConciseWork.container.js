@@ -47,7 +47,7 @@ class ConciseWork extends React.Component {
 
     return (
       <div className="concise-work-container">
-        <TruncateMarkup lines={6}>
+        <TruncateMarkup lines={3}>
           <div className="carousel-header">{this.props.description}</div>
         </TruncateMarkup>
         <div className="row">
@@ -140,7 +140,7 @@ class ConciseWork extends React.Component {
               )}
             </div>
             <div className="row">
-              <div className="col-12 pt1 ">
+              <div className="col-12 pt1 pr0 ">
                 <BookmarkButton
                   className="mr1"
                   origin={'Fra egen værkside'}
