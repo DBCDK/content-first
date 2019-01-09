@@ -26,7 +26,6 @@ const StickySettings = ({
   onEdit,
   disabled
 }) => {
-  console.log('disabled', disabled);
   return (
     <div
       className="fixed-top d-flex justify-content-center pointer-events-none"
