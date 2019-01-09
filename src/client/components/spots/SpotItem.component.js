@@ -65,7 +65,7 @@ export class SpotItem extends React.Component {
             {tags &&
               tags.map(tag => {
                 return (
-                  <Link key={tag.id} href="/find" params={{tag: tag.id}}>
+                  <Link key={tag.id} href="/find" params={{tags: tag.id}}>
                     <span>{tag.title}</span>
                   </Link>
                 );

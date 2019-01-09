@@ -280,7 +280,7 @@ class WorkPage extends React.Component {
                       </Text>
                       {group.data.map(t => {
                         return (
-                          <Link key={t.id} href="/find" params={{tag: t.id}}>
+                          <Link key={t.id} href="/find" params={{tags: t.id}}>
                             <Button
                               key={t.title}
                               type="tertiary"

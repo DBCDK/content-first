@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Range} from 'rc-slider';
+import {isEqual} from 'lodash';
 
 import Heading from '../../base/Heading';
 import Icon from '../../base/Icon';
 
-import {filtersMapAll} from '../../../redux/filter.reducer';
-
-import {HISTORY_REPLACE} from '../../../redux/middleware';
+import {filtersMapAll, TOGGLE_FILTER} from '../../../redux/filter.reducer';
+import {getTagsFromUrl} from '../../../redux/selectors';
 
 import 'rc-slider/assets/index.css';
 import './CardRange.css';
@@ -16,7 +16,8 @@ class CardRange extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: [0, props.filter.range.length - 1]
+      value: [0, props.filter.range.length - 1],
+      orgValue: [0, props.filter.range.length - 1]
     };
   }
 
@@ -46,6 +47,7 @@ class CardRange extends React.Component {
       }
     });
 
+    this.setState({initValue: [min, max]});
     this.handleChange([min, max]);
   }
 
@@ -65,40 +67,16 @@ class CardRange extends React.Component {
   }
 
   handleAfterChange(value) {
+    const oldIds = this.getIdByValue(this.state.initValue);
     const ids = this.getIdByValue(value);
-    this.toggleRangeFilter(ids);
+    if (!isEqual(oldIds, ids)) {
+      this.toggleRangeFilter(ids);
+    }
   }
 
   toggleRangeFilter(filterId) {
-    const {selectedTagIds, filter} = this.props;
-    const range = filter.range;
-    const widest =
-      this.state.value[0] === 0 &&
-      this.state.value[1] === filter.range.length - 1;
-
-    /* if filterId is an Array create range filter */
-    let tags = selectedTagIds;
-    let allowAdd = true;
-    selectedTagIds.forEach((id, idx) => {
-      if (id instanceof Array) {
-        if (range.includes(id[0]) && range.includes(id[1])) {
-          if (!widest) {
-            tags[idx] = filterId[0] + ',' + filterId[1];
-            allowAdd = false;
-          } else {
-            tags.splice(idx, 1);
-          }
-        }
-      }
-    });
-
-    /* Dont reinsert if widest choice selected */
-    if (!widest && allowAdd) {
-      filterId = filterId[0] + ',' + filterId[1];
-      tags = [...tags, filterId];
-    }
-
-    this.props.history(HISTORY_REPLACE, '/find', {tag: tags});
+    this.props.toggleFilter(filterId);
+    this.setState({orgValue: filterId});
   }
 
   render() {
@@ -158,21 +136,7 @@ class CardRange extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const selectedTagIds = state.routerReducer.params.tag
-    ? state.routerReducer.params.tag
-        .map(id => {
-          if (id instanceof Array) {
-            return id.map(aId => parseInt(aId, 10));
-          }
-          return parseInt(id, 10);
-        })
-        .filter(id => {
-          if (id instanceof Array) {
-            return id.map(aId => filtersMapAll[aId]);
-          }
-          return filtersMapAll[id];
-        })
-    : [];
+  const selectedTagIds = getTagsFromUrl(state);
   return {
     selectedTagIds,
     selectedFilters: selectedTagIds.map(tag => {
@@ -184,6 +148,7 @@ const mapStateToProps = state => {
   };
 };
 export const mapDispatchToProps = dispatch => ({
+  toggleFilter: id => dispatch({type: TOGGLE_FILTER, id}),
   history: (type, path, params = {}) => {
     dispatch({type, path, params});
   }
