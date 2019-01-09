@@ -100,6 +100,7 @@ external.get('/howru', async (req, res) => {
   }
   if (!status.ok) {
     res.status(503);
+    logger.log.error(status);
   }
   res.json(status);
 });
