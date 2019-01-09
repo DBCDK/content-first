@@ -17,7 +17,7 @@ class CardRange extends React.Component {
     super(props);
     this.state = {
       value: [0, props.filter.range.length - 1],
-      orgValue: [0, props.filter.range.length - 1]
+      initValue: [0, props.filter.range.length - 1]
     };
   }
 
@@ -47,7 +47,6 @@ class CardRange extends React.Component {
       }
     });
 
-    this.setState({initValue: [min, max]});
     this.handleChange([min, max]);
   }
 
@@ -70,13 +69,9 @@ class CardRange extends React.Component {
     const oldIds = this.getIdByValue(this.state.initValue);
     const ids = this.getIdByValue(value);
     if (!isEqual(oldIds, ids)) {
-      this.toggleRangeFilter(ids);
+      this.props.toggleFilter(ids);
+      this.setState({initValue: value});
     }
-  }
-
-  toggleRangeFilter(filterId) {
-    this.props.toggleFilter(filterId);
-    this.setState({orgValue: filterId});
   }
 
   render() {
