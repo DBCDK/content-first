@@ -15,8 +15,9 @@ import {
   ON_EDIT_FILTER_TOGGLE,
   ON_EXPAND_FILTERS_TOGGLE
 } from '../../redux/filter.reducer';
-import {HISTORY_REPLACE, HISTORY_PUSH} from '../../redux/middleware';
+import {HISTORY_PUSH} from '../../redux/middleware';
 import {RECOMMEND_REQUEST} from '../../redux/recommend';
+import {TOGGLE_FILTER} from '../../redux/filter.reducer';
 import {
   getRecommendedBooks,
   getTagsFromUrl,
@@ -152,15 +153,7 @@ class FilterPage extends React.Component {
   };
 
   toggleFilter(filterId) {
-    let {selectedTagIds} = this.props;
-    /* remove title/creator if any*/
-    selectedTagIds = selectedTagIds.filter(tag => {
-      return !(typeof tag === 'string' || tag instanceof String);
-    });
-    const tags = selectedTagIds.includes(filterId)
-      ? selectedTagIds.filter(id => filterId !== id)
-      : [...selectedTagIds, filterId];
-    this.props.history(HISTORY_REPLACE, '/find', {tag: tags});
+    this.props.toggleFilter(filterId);
     this.props.reorganizeBelts();
     this.initFilterPosition();
   }
@@ -436,6 +429,7 @@ const mapStateToProps = state => {
   };
 };
 export const mapDispatchToProps = dispatch => ({
+  toggleFilter: id => dispatch({type: TOGGLE_FILTER, id}),
   editFilterToggle: () => dispatch({type: ON_EDIT_FILTER_TOGGLE}),
   expandFiltersToggle: id => dispatch({type: ON_EXPAND_FILTERS_TOGGLE, id}),
   history: (type, path, params = {}) => {

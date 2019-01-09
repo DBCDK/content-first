@@ -71,7 +71,7 @@ const BeltContextMenu = ({onClick}) => {
 
 const Tag = ({tag, isLast, onClick}) => {
   return (
-    <Link key={tag.id} href="/find" params={{tag: tag.id}} onClick={onClick}>
+    <Link key={tag.id} href="/find" params={{tags: tag.id}} onClick={onClick}>
       <Term
         className={'ml-2 mt1' + (isLast ? ' mr-2' : '')}
         size="medium"
@@ -336,9 +336,12 @@ export class BooksBelt extends React.Component {
                     <Link
                       href="/find"
                       params={{
-                        tag: selectedTags.map(
-                          t => (t instanceof Array ? t.map(aT => aT.id) : t.id)
-                        )
+                        tags: selectedTags
+                          .map(
+                            t =>
+                              t instanceof Array ? t.map(aT => aT.id) : t.id
+                          )
+                          .join(',')
                       }}
                       onClick={this.props.titleClick}
                     >

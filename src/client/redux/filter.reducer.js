@@ -60,6 +60,7 @@ export const ON_EDIT_FILTER_TOGGLE = 'ON_EDIT_FILTER_TOGGLE';
 export const ON_FILTER_TOGGLE = 'ON_FILTER_TOGGLE';
 export const ON_EXPAND_FILTERS_TOGGLE = 'ON_EXPAND_FILTERS_TOGGLE';
 export const ON_RESET_FILTERS = 'ON_RESET_FILTERS';
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 const filterReducer = (state = defaultState, action) => {
   switch (action.type) {
