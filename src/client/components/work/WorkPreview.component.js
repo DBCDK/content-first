@@ -22,11 +22,13 @@ import './WorkPreview.css';
 class WorkPreview extends React.Component {
   componentDidMount() {
     this.fetchWork(this.props.pid);
+    this.scrollToChildBelt(this.refs.preview);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.pid !== nextProps.pid) {
-      this.fetchWork(nextProps.pid);
+  componentDidUpdate(prevProps) {
+    if (this.props.pid !== prevProps.pid) {
+      this.fetchWork(prevProps.pid);
+      this.scrollToChildBelt(this.refs.preview);
     }
   }
 
@@ -36,7 +38,7 @@ class WorkPreview extends React.Component {
 
   handleChildBelts(parentBelt, childBelt) {
     this.props.addChildBelt(parentBelt, childBelt);
-    this.scrollToChildBelt(this.refs.preview, 220);
+    this.scrollToChildBelt(this.refs.preview);
   }
 
   onMoreLikeThisClick(parentBelt, work) {
@@ -49,14 +51,18 @@ class WorkPreview extends React.Component {
       name: 'Minder om ' + book.title,
       key: 'Minder om ' + book.title,
       onFrontPage: false,
-      child: false
+      child: false,
+      scrollIntoView: true
     };
 
     this.handleChildBelts(parentBelt, childBelt);
   }
 
-  scrollToChildBelt(belt, offset) {
-    scrollToComponent(belt, {offset});
+  scrollToChildBelt(belt) {
+    scrollToComponent(belt, {
+      align: 'bottom',
+      ease: 'inOutCube'
+    });
   }
 
   render() {
@@ -233,6 +239,7 @@ class WorkPreview extends React.Component {
                     href={rev.url}
                     target="_blank"
                     className="workPreview__review mb1"
+                    key={rev.url}
                   >
                     <Icon name="face" />
                     <span className="workPreview__review__details ml2">

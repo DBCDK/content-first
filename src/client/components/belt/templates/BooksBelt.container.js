@@ -99,6 +99,9 @@ export class BooksBelt extends React.Component {
   componentDidMount() {
     this.fetchRecommendations();
     this.initMissingText();
+    if (this.props.belt.scrollIntoView) {
+      this.scrollToChildBelt(this.refs.beltWrap);
+    }
   }
 
   componentDidUpdate() {
@@ -146,7 +149,6 @@ export class BooksBelt extends React.Component {
 
     if (!parentBelt.child || !samePidClicked || !sameTypeClicked) {
       this.props.addChildBelt(parentBelt, childBelt, workPosition);
-      this.scrollToChildBelt(this.refs.beltWrap, 220);
     }
   }
 
@@ -160,7 +162,8 @@ export class BooksBelt extends React.Component {
       name: 'Minder om ' + book.title,
       key: 'Minder om ' + book.title,
       onFrontPage: false,
-      child: false
+      child: false,
+      scrollIntoView: true
     };
 
     this.handleChildBelts(parentBelt, newBelt, workPosition);
@@ -179,14 +182,18 @@ export class BooksBelt extends React.Component {
       type,
       pid: book.pid,
       key: 'Preview af ' + book.title,
-      child: false
+      child: false,
+      scrollIntoView: true
     };
 
     this.handleChildBelts(parentBelt, newBelt, workPosition);
   }
 
-  scrollToChildBelt(belt, offset) {
-    scrollToComponent(belt, {offset});
+  scrollToChildBelt(belt) {
+    scrollToComponent(belt, {
+      align: 'bottom',
+      ease: 'inOutCube'
+    });
   }
 
   onVisibilityChange = visible => {
