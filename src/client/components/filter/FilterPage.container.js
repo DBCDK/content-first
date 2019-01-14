@@ -199,7 +199,6 @@ class FilterPage extends React.Component {
 
     if (!belt || !samePidClicked || !sameTypeClicked) {
       this.props.addBelt(newBelt);
-      this.scrollToBelt(this.refs[`row-${row}`], 220);
     }
   }
 
@@ -214,7 +213,8 @@ class FilterPage extends React.Component {
       name: 'Minder om ' + book.title,
       key: `filterpage: ${row}`,
       onFrontPage: false,
-      child: false
+      child: false,
+      scrollIntoView: true
     };
 
     this.handleBelts(work, row, type, newBelt);
@@ -230,7 +230,8 @@ class FilterPage extends React.Component {
       pid: book.pid,
       key: `filterpage: ${row}`,
       name: `filterpage: ${row}`,
-      child: false
+      child: false,
+      scrollIntoView: true
     };
 
     this.handleBelts(work, row, type, newBelt);
