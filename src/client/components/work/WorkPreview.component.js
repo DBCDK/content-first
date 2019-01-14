@@ -22,13 +22,13 @@ import './WorkPreview.css';
 class WorkPreview extends React.Component {
   componentDidMount() {
     this.fetchWork(this.props.pid);
-    this.scrollToChildBelt(this.refs.preview);
+    this.scrollToBelt(this.refs.preview);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.pid !== prevProps.pid) {
       this.fetchWork(prevProps.pid);
-      this.scrollToChildBelt(this.refs.preview);
+      this.scrollToBelt(this.refs.preview);
     }
   }
 
@@ -38,7 +38,7 @@ class WorkPreview extends React.Component {
 
   handleChildBelts(parentBelt, childBelt) {
     this.props.addChildBelt(parentBelt, childBelt);
-    this.scrollToChildBelt(this.refs.preview);
+    this.scrollToBelt(this.refs.preview);
   }
 
   onMoreLikeThisClick(parentBelt, work) {
@@ -58,7 +58,7 @@ class WorkPreview extends React.Component {
     this.handleChildBelts(parentBelt, childBelt);
   }
 
-  scrollToChildBelt(belt) {
+  scrollToBelt(belt) {
     scrollToComponent(belt, {
       align: 'bottom',
       ease: 'inOutCube'

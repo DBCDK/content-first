@@ -100,7 +100,7 @@ export class BooksBelt extends React.Component {
     this.fetchRecommendations();
     this.initMissingText();
     if (this.props.belt.scrollIntoView) {
-      this.scrollToChildBelt(this.refs.beltWrap);
+      this.scrollToBelt(this.refs.beltWrap);
     }
   }
 
@@ -189,7 +189,7 @@ export class BooksBelt extends React.Component {
     this.handleChildBelts(parentBelt, newBelt, workPosition);
   }
 
-  scrollToChildBelt(belt) {
+  scrollToBelt(belt) {
     scrollToComponent(belt, {
       align: 'bottom',
       ease: 'inOutCube'
