@@ -15,7 +15,7 @@ import {
   ON_EXPAND_FILTERS_TOGGLE
 } from '../../redux/filter.reducer';
 import {HISTORY_PUSH} from '../../redux/middleware';
-import {RECOMMEND_REQUEST} from '../../redux/recommend';
+import {TAGS_RECOMMEND_REQUEST} from '../../redux/recommend';
 import {TOGGLE_FILTER} from '../../redux/filter.reducer';
 import {
   getRecommendedBooks,
@@ -442,7 +442,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({type: 'SEARCH_QUERY', query: query.toLowerCase()}),
   fetchRecommendations: tags =>
     dispatch({
-      type: RECOMMEND_REQUEST,
+      type: TAGS_RECOMMEND_REQUEST,
       tags,
       max: 100 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
     }),

@@ -10,44 +10,74 @@ const librarianRecommendsMap = librarianRecommends.reduce((map, pid) => {
 }, {});
 
 const defaultState = {
-  recommendations: {}
+  recommendations: {},
+  workRecommendations: {}
 };
 
-export const RECOMMEND_REQUEST = 'RECOMMEND_REQUEST';
-export const RECOMMEND_RESPONSE = 'RECOMMEND_RESPONSE';
+export const TAGS_RECOMMEND_REQUEST = 'TAGS_RECOMMEND_REQUEST';
+export const TAGS_RECOMMEND_RESPONSE = 'TAGS_RECOMMEND_RESPONSE';
 
-const key = (tags, creators) => {
+export const WORK_RECOMMEND_REQUEST = 'WORK_RECOMMEND_REQUEST';
+export const WORK_RECOMMEND_RESPONSE = 'WORK_RECOMMEND_RESPONSE';
+
+const key = argList => {
   let res = '';
-  if (tags) {
-    const tagsCopy = [...tags];
-    tagsCopy.sort();
-    res += tagsCopy.join('-');
-  }
-  if (creators) {
-    const creatorsCopy = [...creators];
-    creatorsCopy.sort();
-    res += creatorsCopy.join('-');
+  if (argList) {
+    const argListCopy = [...argList];
+    argListCopy.sort();
+    res += argListCopy.join('-');
   }
   return res;
 };
+
 const recommendReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case RECOMMEND_REQUEST:
+    case TAGS_RECOMMEND_REQUEST:
       return {
         ...state,
         recommendations: {
           ...state.recommendations,
-          [key(action.tags, action.creators)]: {isLoading: true, pids: []}
+          [key([...action.tags, ...(action.creators || [])])]: {
+            isLoading: true,
+            pids: []
+          }
         }
       };
-    case RECOMMEND_RESPONSE:
+
+    case TAGS_RECOMMEND_RESPONSE:
       return {
         ...state,
         recommendations: {
           ...state.recommendations,
-          [key(action.tags, action.creators)]: {
+          [key([...action.tags, ...(action.creators || [])])]: {
             isLoading: false,
             pids: action.pids || [],
+            error: action.error
+          }
+        }
+      };
+
+    case WORK_RECOMMEND_REQUEST:
+      console.log('action in WORK_RECOMMEND_REQUEST:', action);
+
+      return {
+        ...state,
+        workRecommendations: {
+          ...state.workRecommendations,
+          [key(action.likes)]: {isLoading: true, pids: []}
+        }
+      };
+
+    case WORK_RECOMMEND_RESPONSE:
+      console.log('action in WORK_RECOMMEND_RESPONSE:', action);
+      return {
+        ...state,
+        workRecommendations: {
+          ...state.workRecommendations,
+          [key(action.pid)]: {
+            isLoading: false,
+            pids: action.pids || [],
+            likes: action.likes || [],
             error: action.error
           }
         }
@@ -57,9 +87,14 @@ const recommendReducer = (state = defaultState, action) => {
   }
 };
 
-export const getRecommendedPids = (state, {tags, creators}) => {
-  const k = key(tags, creators);
+export const getRecommendedPids = (state, {tags = [], creators = []}) => {
+  const k = key([...tags, ...creators]);
   return state.recommendations[k] || {isLoading: false, pids: []};
+};
+
+export const getWorkRecommendedPids = (state, {likes}) => {
+  const k = key(likes);
+  return state.workRecommendations[k] || {isLoading: false, pids: []};
 };
 
 export const applyClientSideFilters = (books, tags) => {
@@ -125,28 +160,57 @@ export const applyClientSideFilters = (books, tags) => {
   });
 };
 
-const fetchRecommendations = async ({tags = [], creators, max}) => {
-  let nonCustomTags = tags.filter(tag => !filtersMapAll[tag.id || tag].custom);
-  let customTagsSelected = true;
-  if (nonCustomTags.length === 0) {
-    // hack alert
-    // if no non custom tags are selected - for instance if only short books are selected
-    // we just pick one in order to not get an empty list.
+const fetchRecommendations = async action => {
+  console.log('action in fetchRecommendations', action);
 
-    nonCustomTags = [5642]; // varme bøger
-    customTagsSelected = false;
+  const recommender = action.tags ? 'recompasTags' : 'recompasWork';
+  const query = {recommender};
+  let customTagsSelected = true;
+
+  if (action.tags) {
+    const {tags = [], creators = [], max = 50} = action;
+
+    let nonCustomTags = tags.filter(
+      tag => !filtersMapAll[tag.id || tag].custom
+    );
+
+    if (nonCustomTags.length === 0) {
+      // hack alert
+      // if no non custom tags are selected - for instance if only short books are selected
+      // we just pick one in order to not get an empty list.
+
+      nonCustomTags = [5642]; // varme bøger
+      customTagsSelected = false;
+    }
+
+    const tagsMap = nonCustomTags.reduce((tMap, t) => {
+      if (t.weight) {
+        return {...tMap, [t.id]: t.weight};
+      }
+      return {...tMap, [t]: 1};
+    }, {});
+
+    query.tags = tagsMap;
+    query.maxresults = max;
+    query.creators = creators;
+  } else {
+    const {likes = [], dislikes = [], limit = 50} = action;
+
+    query.likes = likes;
+    query.dislikes = dislikes;
+    query.limit = limit;
   }
 
-  const tagsMap = nonCustomTags.reduce((tMap, t) => {
-    if (t.weight) {
-      return {...tMap, [t.id]: t.weight};
-    }
-    return {...tMap, [t]: 1};
-  }, {});
+  console.log('### here?', query);
 
-  const recompassResponse = (await request
-    .get('/v1/recompass')
-    .query({tags: tagsMap, creators, maxresults: max})).body.response;
+  ////////////////
+
+  const recompassResponse = (await request.get('/v1/recompass').query(query))
+    .body.response;
+
+  console.log('### recompassResponse ###', recompassResponse);
+
+  ////////////////
 
   let pids = recompassResponse
     .filter(entry => {
@@ -158,17 +222,19 @@ const fetchRecommendations = async ({tags = [], creators, max}) => {
     })
     .map(entry => entry.pid);
 
-  if (tags.includes(-2)) {
+  if (action.tags && action.tags.includes(-2)) {
     // recompass knows nothing about librarian recommendations, so we gotta include those pids as well
     pids = uniq([...pids, ...librarianRecommends]);
   }
+
+  console.log('pids result in fetchRecommendations', pids);
 
   return pids;
 };
 
 export const recommendMiddleware = store => next => action => {
   switch (action.type) {
-    case RECOMMEND_REQUEST: {
+    case TAGS_RECOMMEND_REQUEST: {
       const recommendations = getRecommendedPids(
         store.getState().recommendReducer,
         {
@@ -182,7 +248,7 @@ export const recommendMiddleware = store => next => action => {
             const pids = await fetchRecommendations(action);
             store.dispatch({
               ...action,
-              type: RECOMMEND_RESPONSE,
+              type: TAGS_RECOMMEND_RESPONSE,
               pids
             });
             store.dispatch({
@@ -193,7 +259,50 @@ export const recommendMiddleware = store => next => action => {
           } catch (error) {
             store.dispatch({
               ...action,
-              type: RECOMMEND_RESPONSE,
+              type: TAGS_RECOMMEND_RESPONSE,
+              error
+            });
+          }
+        })();
+        return next(action);
+      }
+      return;
+    }
+    case WORK_RECOMMEND_REQUEST: {
+      console.log('WORK_RECOMMEND_REQUEST middleware running . . .');
+      const workRecommendations = getWorkRecommendedPids(
+        store.getState().recommendReducer,
+        {
+          likes: action.pids
+        }
+      );
+      console.log(
+        'WORK_RECOMMEND_REQUEST: getRecommendedPids()',
+        workRecommendations
+      );
+
+      if (
+        !workRecommendations.isLoading &&
+        workRecommendations.pids.length === 0
+      ) {
+        console.log('fetching recomendations . . .');
+        (async () => {
+          try {
+            const pids = await fetchRecommendations(action);
+            store.dispatch({
+              ...action,
+              type: WORK_RECOMMEND_RESPONSE,
+              pids
+            });
+            store.dispatch({
+              type: BOOKS_REQUEST,
+              pids,
+              includeCover: false
+            });
+          } catch (error) {
+            store.dispatch({
+              ...action,
+              type: WORK_RECOMMEND_RESPONSE,
               error
             });
           }

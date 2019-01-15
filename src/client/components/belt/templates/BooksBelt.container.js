@@ -13,7 +13,11 @@ import Term from '../../base/Term';
 import Button from '../../base/Button';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import Slider from '../../belt/Slider.component';
-import {RECOMMEND_REQUEST, getRecommendedPids} from '../../../redux/recommend';
+import {
+  TAGS_RECOMMEND_REQUEST,
+  WORK_RECOMMEND_REQUEST,
+  getRecommendedPids
+} from '../../../redux/recommend';
 import {HISTORY_PUSH} from '../../../redux/middleware';
 import {
   updateBelt,
@@ -124,13 +128,19 @@ export class BooksBelt extends React.Component {
   }
 
   fetchRecommendations = () => {
-    if (
-      isEqual(this.fetchedTags, this.props.plainSelectedTagIds) ||
-      !this.state.visible
-    ) {
+    if (this.props.recommender === 'work') {
+      this.props.fetchWorkRecommendations([this.props.pid]);
       return;
     }
-    this.props.fetchRecommendations(this.props.plainSelectedTagIds);
+
+    // if (
+    //   isEqual(this.fetchedTags, this.props.plainSelectedTagIds) ||
+    //   !this.state.visible
+    // ) {
+    //   return;
+    // }
+
+    this.props.fetchTagsRecommendations(this.props.plainSelectedTagIds);
     this.fetchedTags = this.props.plainSelectedTagIds;
   };
 
@@ -483,11 +493,21 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     }),
   fetchRecommendations: tags =>
     dispatch({
-      type: RECOMMEND_REQUEST,
+      type: TAGS_RECOMMEND_REQUEST,
       fetchWorks: false,
       tags,
-      max: 50 // we ask for many recommendations, since client side filtering may reduce the actual result significantly
+      max: 50
     }),
+  fetchWorkRecommendations: (likes, dislikes) => {
+    // console.log('fetchWorkRecommendations?', likes);
+    dispatch({
+      type: WORK_RECOMMEND_REQUEST,
+      fetchWorks: false,
+      likes,
+      dislikes,
+      limit: 50
+    });
+  },
   addChildBelt: (parentBelt, childBelt, workPosition) => {
     dispatch({
       type: ADD_CHILD_BELT,

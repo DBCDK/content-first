@@ -1,6 +1,6 @@
 import recommendReducer, {
-  RECOMMEND_REQUEST,
-  RECOMMEND_RESPONSE,
+  TAGS_RECOMMEND_REQUEST,
+  TAGS_RECOMMEND_RESPONSE,
   getRecommendedPids
 } from '../recommend';
 
@@ -11,7 +11,7 @@ describe('recommendReducer', () => {
         recommendations: {}
       },
       {
-        type: RECOMMEND_REQUEST,
+        type: TAGS_RECOMMEND_REQUEST,
         tags: [2, 1, 4]
       }
     );
@@ -23,7 +23,7 @@ describe('recommendReducer', () => {
         recommendations: {}
       },
       {
-        type: RECOMMEND_REQUEST,
+        type: TAGS_RECOMMEND_REQUEST,
         creators: ['ib', 'arne']
       }
     );
@@ -37,7 +37,7 @@ describe('recommendReducer', () => {
         recommendations: {}
       },
       {
-        type: RECOMMEND_REQUEST,
+        type: TAGS_RECOMMEND_REQUEST,
         tags: [2, 1, 4],
         creators: ['ib', 'arne']
       }
@@ -52,7 +52,7 @@ describe('recommendReducer', () => {
         recommendations: {}
       },
       {
-        type: RECOMMEND_RESPONSE,
+        type: TAGS_RECOMMEND_RESPONSE,
         tags: [2, 1, 4],
         creators: ['ib', 'arne'],
         pids: ['pid1', 'pid2', 'pid3']

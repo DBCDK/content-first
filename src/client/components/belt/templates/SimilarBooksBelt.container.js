@@ -17,7 +17,12 @@ export class SimilarBooksBelt extends React.Component {
 
   render() {
     return (
-      <BooksBelt {...this.props} excluded={[this.props.pid]} showTags={false} />
+      <BooksBelt
+        {...this.props}
+        recommender={'work'} // work || tags
+        excluded={[this.props.pid]}
+        showTags={false}
+      />
     );
   }
 }
