@@ -87,7 +87,7 @@ const mockResponse = {
 describe('Endpoint /v1/recommendations', () => {
   const webapp = request(mock.external);
 
-  describe('GET /v1/recompass?tags=...', () => {
+  describe('GET /v1/recompass?recommender=recompasTags&tags=...', () => {
     it('should handle no tags', () => {
       const url = '/v1/recompass?recommender=recompasTags&tags=';
       return webapp

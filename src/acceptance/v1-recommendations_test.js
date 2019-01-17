@@ -42,24 +42,5 @@ describe('Endpoint /v1/recommendations', () => {
         })
         .expect(400);
     });
-
-    it('should return a list of books that include all specified tags', () => {
-      const tags = [205, 144, 146];
-      const url = `/v1/recommendations?tags=${tags.join()}`;
-      return webapp
-        .get(url)
-        .expect(res => {
-          expectSuccess(res.body, (links, data) => {
-            expectValidate(links, 'schemas/books-links-out.json');
-            expect(links.self).to.equal(url);
-            expectValidate(data, 'schemas/books-data-out.json');
-            expect(data).to.have.length(1);
-            expectValidate(data[0].links, 'schemas/book-links-out.json');
-            const book = data[0].book;
-            expectValidate(book, 'schemas/book-data-out.json');
-          });
-        })
-        .expect(200);
-    });
   });
 });
