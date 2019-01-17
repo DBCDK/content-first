@@ -1,5 +1,5 @@
 import React from 'react';
-
+import withScrollToComponent from '../base/scroll/scrollToComponent.hoc';
 import BooksBelt from './templates/BooksBelt.container';
 import WorkPreview from '../work/WorkPreview.component';
 import SimilarBooksBelt from './templates/SimilarBooksBelt.container';
@@ -15,7 +15,7 @@ const BeltWrapper = ({belt}) => {
       <InteractionsRecoBelt
         key={belt.key}
         belt={belt}
-        childTemplate={BeltWrapper}
+        childTemplate={BeltWrapperWithScroll}
       />
     );
   }
@@ -25,7 +25,7 @@ const BeltWrapper = ({belt}) => {
         key={belt.key}
         belt={belt}
         tags={belt.tags}
-        childTemplate={BeltWrapper}
+        childTemplate={BeltWrapperWithScroll}
       />
     );
   }
@@ -35,7 +35,7 @@ const BeltWrapper = ({belt}) => {
         key={belt.key}
         pid={belt.pid}
         belt={belt}
-        childTemplate={BeltWrapper}
+        childTemplate={BeltWrapperWithScroll}
         dataCy={'workpreviewCard'}
       />
     );
@@ -46,7 +46,7 @@ const BeltWrapper = ({belt}) => {
         key={belt.key}
         pid={belt.pid}
         belt={belt}
-        childTemplate={BeltWrapper}
+        childTemplate={BeltWrapperWithScroll}
       />
     );
   }
@@ -55,8 +55,9 @@ const BeltWrapper = ({belt}) => {
       key={belt.key}
       belt={belt}
       tags={belt.tags}
-      childTemplate={BeltWrapper}
+      childTemplate={BeltWrapperWithScroll}
     />
   );
 };
-export default BeltWrapper;
+const BeltWrapperWithScroll = withScrollToComponent(BeltWrapper);
+export default BeltWrapperWithScroll;

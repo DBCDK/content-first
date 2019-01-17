@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import VisibilitySensor from 'react-visibility-sensor';
 import {difference, isEqual} from 'lodash';
-import scrollToComponent from 'react-scroll-to-component';
 import {isMobileOnly} from 'react-device-detect';
 import Textarea from 'react-textarea-autosize';
 import WorkCard from '../../work/WorkCard.container';
@@ -27,6 +26,7 @@ import {
   BELT_TITLE_CLICK,
   BELT_TAG_CLICK
 } from '../../../redux/belts.reducer';
+import {SCROLL_TO_COMPONENT} from '../../../redux/scrollToComponent';
 import {getIdsFromRange, getTagsbyIds} from '../../../redux/selectors';
 import Link from '../../general/Link.component';
 
@@ -99,9 +99,6 @@ export class BooksBelt extends React.Component {
   componentDidMount() {
     this.fetchRecommendations();
     this.initMissingText();
-    if (this.props.belt.scrollIntoView) {
-      this.scrollToBelt(this.refs.beltWrap);
-    }
   }
 
   componentDidUpdate() {
@@ -149,6 +146,7 @@ export class BooksBelt extends React.Component {
 
     if (!parentBelt.child || !samePidClicked || !sameTypeClicked) {
       this.props.addChildBelt(parentBelt, childBelt, workPosition);
+      this.props.scrollToComponent(childBelt.key);
     }
   }
 
@@ -187,13 +185,6 @@ export class BooksBelt extends React.Component {
     };
 
     this.handleChildBelts(parentBelt, newBelt, workPosition);
-  }
-
-  scrollToBelt(belt) {
-    scrollToComponent(belt, {
-      align: 'bottom',
-      ease: 'inOutCube'
-    });
   }
 
   onVisibilityChange = visible => {
@@ -453,6 +444,7 @@ export class BooksBelt extends React.Component {
               <this.props.childTemplate
                 dataCy="workpreviewCard"
                 belt={belt.child}
+                id={belt.child.key}
               />
             )}
         </React.Fragment>
@@ -484,6 +476,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
+  scrollToComponent: id =>
+    dispatch({
+      type: SCROLL_TO_COMPONENT,
+      id
+    }),
   fetchRecommendations: tags =>
     dispatch({
       type: RECOMMEND_REQUEST,
