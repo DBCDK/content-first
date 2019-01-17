@@ -4,11 +4,7 @@
 const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
-const {
-  expectSuccess,
-  expectFailure,
-  expectValidate
-} = require('fixtures/output-verifiers');
+const {expectFailure} = require('fixtures/output-verifiers');
 
 describe('Endpoint /v1/recommendations', () => {
   const webapp = request(mock.external);
