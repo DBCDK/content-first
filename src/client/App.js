@@ -26,7 +26,6 @@ import Styleguide from './components/Styleguide/Styleguide.component';
 import FeedbackButton from './components/general/FeedbackButton.component';
 import Footer from './components/general/Footer.component';
 import Article from './components/article/Article.component';
-import Text from './components/base/Text/index';
 import {OPEN_MODAL} from './redux/modal.reducer';
 
 class App extends Component {
@@ -142,25 +141,13 @@ export const mapDispatchToProps = dispatch => ({
       type: OPEN_MODAL,
       modal: 'confirm',
       context: {
-        title: 'Blokerede cookies',
-        reason: (
-          <React.Fragment>
-            <Text type="body" variant="weight-semibold">
-              Cookies er blokeret af din browser.
-            </Text>
-            <Text type="body">Cookies er blokeret af din browser.</Text>
-          </React.Fragment>
-        ),
-        confirmText: 'Luk',
+        title: 'COOKIES ER SLÅET FRA',
+        reason:
+          'Din browser tillader ikke cookies, og det betyder, at dele af Læsekompas.dk ikke vil virke. ' +
+          'Vi anbefaler, at du ændrer indstillingen i din browser og tillader cookies, så du kan få den fulde oplevelse og de bedste boganbefalinger her på siden.',
+        confirmText: 'Ok',
         hideCancel: true,
-        hideConfirm: true,
         onConfirm: () => {
-          dispatch({
-            type: 'CLOSE_MODAL',
-            modal: 'confirm'
-          });
-        },
-        onCancel: () => {
           dispatch({
             type: 'CLOSE_MODAL',
             modal: 'confirm'
