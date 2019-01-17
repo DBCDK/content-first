@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import VisibilitySensor from 'react-visibility-sensor';
-import {difference, isEqual} from 'lodash';
 import {isMobileOnly} from 'react-device-detect';
 import Textarea from 'react-textarea-autosize';
 import WorkCard from '../../work/WorkCard.container';
@@ -436,7 +435,6 @@ export class BooksBelt extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const excluded = ownProps.excluded || [];
   const tags = ownProps.tags || [];
 
   const selectedTags = getTagsbyIds(state, tags);

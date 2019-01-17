@@ -1,6 +1,5 @@
 import React from 'react';
 import withScrollToComponent from '../base/scroll/withScrollToComponent.hoc';
-import BooksBelt from './templates/BooksBelt.container';
 import WorkPreview from '../work/WorkPreview.component';
 import PidsToPids from './templates/PidsToPids.container';
 import InteractionsToPids from './templates/InteractionsToPids.container';

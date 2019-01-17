@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {get, difference, isEqual} from 'lodash';
+import {difference} from 'lodash';
 import BooksBelt from './BooksBelt.container';
-import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 import {getIdsFromRange} from '../../../redux/selectors';
 import {
   TAGS_RECOMMEND_REQUEST,

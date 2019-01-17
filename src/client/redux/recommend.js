@@ -37,7 +37,7 @@ const recommendReducer = (state = defaultState, action) => {
         ...state,
         recommendations: {
           ...state.recommendations,
-          [key([...action.tags, ...(action.creators || [])])]: {
+          [key([...(action.tags || []), ...(action.creators || [])])]: {
             isLoading: true,
             pids: []
           }
@@ -49,7 +49,7 @@ const recommendReducer = (state = defaultState, action) => {
         ...state,
         recommendations: {
           ...state.recommendations,
-          [key([...action.tags, ...(action.creators || [])])]: {
+          [key([...(action.tags || []), ...(action.creators || [])])]: {
             isLoading: false,
             pids: action.pids || [],
             error: action.error
@@ -196,12 +196,10 @@ const fetchRecommendations = async action => {
     query.limit = limit;
   }
 
-  ////////////////
-
+  // recompas backend call
   const recompassResponse = (await request.get('/v1/recompass').query(query))
     .body.response;
 
-  ////////////////
   if (action.tags) {
     let pids = recompassResponse
       .filter(entry => {

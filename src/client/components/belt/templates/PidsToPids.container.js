@@ -1,8 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {get, difference, isEqual} from 'lodash';
+import {difference} from 'lodash';
 import BooksBelt from './BooksBelt.container';
-import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 import {
   WORK_RECOMMEND_REQUEST,
   getWorkRecommendedPids
@@ -57,7 +56,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = dispatch => ({
   fetchRecommendations: (likes, dislikes = []) => {
     dispatch({
       type: WORK_RECOMMEND_REQUEST,
