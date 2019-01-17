@@ -49,12 +49,12 @@ router
           }
         }
         case 'recompasWork': {
-          console.log('recompasWork running . . .');
-          console.log('req.query', req.query);
           //
           // Recompas recommend based on pids
           //
-          const {likes = [], dislikes = [], limit = 10} = req.query;
+          console.log('req.query', req.query);
+
+          const {likes = [], dislikes = [], limit = 50} = req.query;
           const link = `${req.baseUrl}?likes=${likes ||
             ''}&dislikes=${dislikes || ''}&limit=${limit}`;
 
@@ -69,16 +69,11 @@ router
           }
 
           try {
-            console.log('#¤#¤#¤#¤', likes);
-
             const result = await recompasWork.getRecommendations({
-              likes: [likes],
-              dislikes: [dislikes],
+              likes: JSON.parse(likes),
+              dislikes: JSON.parse(dislikes),
               limit: Number(limit)
             });
-
-            console.log('result', result);
-
             return res.status(200).json(result);
           } catch (e) {
             return res.status(500).end(e.message);

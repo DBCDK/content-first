@@ -13,11 +13,6 @@ import Term from '../../base/Term';
 import Button from '../../base/Button';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import Slider from '../../belt/Slider.component';
-import {
-  TAGS_RECOMMEND_REQUEST,
-  WORK_RECOMMEND_REQUEST,
-  getRecommendedPids
-} from '../../../redux/recommend';
 import {HISTORY_PUSH} from '../../../redux/middleware';
 import {
   updateBelt,
@@ -101,19 +96,13 @@ export class BooksBelt extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchRecommendations();
     this.initMissingText();
-  }
-
-  componentDidUpdate() {
-    this.fetchRecommendations();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return (
       nextProps.belt !== this.props.belt ||
-      nextProps.tags.length !== this.props.tags.length ||
-      nextProps.recommendedPids.length !== this.props.recommendedPids.length ||
+      nextProps.recommendations !== this.props.recommendations ||
       nextState.didSwipe !== this.state.didSwipe ||
       nextState.visible !== this.state.visible
     );
@@ -126,23 +115,6 @@ export class BooksBelt extends React.Component {
 
     this.setState({titleMissing, subtextMissing});
   }
-
-  fetchRecommendations = () => {
-    if (this.props.recommender === 'work') {
-      this.props.fetchWorkRecommendations([this.props.pid]);
-      return;
-    }
-
-    // if (
-    //   isEqual(this.fetchedTags, this.props.plainSelectedTagIds) ||
-    //   !this.state.visible
-    // ) {
-    //   return;
-    // }
-
-    this.props.fetchTagsRecommendations(this.props.plainSelectedTagIds);
-    this.fetchedTags = this.props.plainSelectedTagIds;
-  };
 
   handleChildBelts(parentBelt, childBelt, workPosition) {
     let samePidClicked = false;
@@ -243,7 +215,7 @@ export class BooksBelt extends React.Component {
       selectedTags,
       plainSelectedTagIds,
       plainSelectedTags,
-      recommendedPids,
+      recommendations,
       onSaveEdit,
       removePin
     } = this.props;
@@ -266,8 +238,8 @@ export class BooksBelt extends React.Component {
 
     const border = showTags ? 'border-right-sm-1 ' : '';
     const pids =
-      recommendedPids.length > 0 && this.state.visible
-        ? recommendedPids
+      recommendations.length > 0 && this.state.visible
+        ? recommendations
         : skeletonElements;
 
     return (
@@ -465,20 +437,13 @@ export class BooksBelt extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const excluded = ownProps.excluded || [];
+  const tags = ownProps.tags || [];
 
-  const selectedTags = getTagsbyIds(state, ownProps.tags);
-  const plainSelectedTagIds = getIdsFromRange(state, ownProps.tags);
+  const selectedTags = getTagsbyIds(state, tags);
+  const plainSelectedTagIds = getIdsFromRange(state, tags);
   const plainSelectedTags = getTagsbyIds(state, plainSelectedTagIds);
 
-  const recommendedPids = difference(
-    getRecommendedPids(state.recommendReducer, {
-      tags: plainSelectedTagIds
-    }).pids,
-    excluded
-  ).slice(0, 20);
-
   return {
-    recommendedPids,
     selectedTags,
     plainSelectedTagIds,
     plainSelectedTags
@@ -491,23 +456,6 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       type: SCROLL_TO_COMPONENT,
       id
     }),
-  fetchRecommendations: tags =>
-    dispatch({
-      type: TAGS_RECOMMEND_REQUEST,
-      fetchWorks: false,
-      tags,
-      max: 50
-    }),
-  fetchWorkRecommendations: (likes, dislikes) => {
-    // console.log('fetchWorkRecommendations?', likes);
-    dispatch({
-      type: WORK_RECOMMEND_REQUEST,
-      fetchWorks: false,
-      likes,
-      dislikes,
-      limit: 50
-    });
-  },
   addChildBelt: (parentBelt, childBelt, workPosition) => {
     dispatch({
       type: ADD_CHILD_BELT,

@@ -58,8 +58,6 @@ const recommendReducer = (state = defaultState, action) => {
       };
 
     case WORK_RECOMMEND_REQUEST:
-      console.log('action in WORK_RECOMMEND_REQUEST:', action);
-
       return {
         ...state,
         workRecommendations: {
@@ -69,15 +67,14 @@ const recommendReducer = (state = defaultState, action) => {
       };
 
     case WORK_RECOMMEND_RESPONSE:
-      console.log('action in WORK_RECOMMEND_RESPONSE:', action);
       return {
         ...state,
         workRecommendations: {
           ...state.workRecommendations,
-          [key(action.pid)]: {
+          [key(action.likes)]: {
             isLoading: false,
             pids: action.pids || [],
-            likes: action.likes || [],
+            recommendations: action.recommendations,
             error: action.error
           }
         }
@@ -161,8 +158,6 @@ export const applyClientSideFilters = (books, tags) => {
 };
 
 const fetchRecommendations = async action => {
-  console.log('action in fetchRecommendations', action);
-
   const recommender = action.tags ? 'recompasTags' : 'recompasWork';
   const query = {recommender};
   let customTagsSelected = true;
@@ -196,40 +191,37 @@ const fetchRecommendations = async action => {
   } else {
     const {likes = [], dislikes = [], limit = 50} = action;
 
-    query.likes = likes;
-    query.dislikes = dislikes;
+    query.likes = JSON.stringify(likes);
+    query.dislikes = JSON.stringify(dislikes);
     query.limit = limit;
   }
-
-  console.log('### here?', query);
 
   ////////////////
 
   const recompassResponse = (await request.get('/v1/recompass').query(query))
     .body.response;
 
-  console.log('### recompassResponse ###', recompassResponse);
-
   ////////////////
+  if (action.tags) {
+    let pids = recompassResponse
+      .filter(entry => {
+        // if custom tags selected move values less than 1
+        if (customTagsSelected) {
+          return entry.value;
+        }
+        return true;
+      })
+      .map(entry => entry.pid);
 
-  let pids = recompassResponse
-    .filter(entry => {
-      // if custom tags selected move values less than 1
-      if (customTagsSelected) {
-        return entry.value;
-      }
-      return true;
-    })
-    .map(entry => entry.pid);
+    if (action.tags.includes(-2)) {
+      // recompass knows nothing about librarian recommendations, so we gotta include those pids as well
+      pids = uniq([...pids, ...librarianRecommends]);
+    }
 
-  if (action.tags && action.tags.includes(-2)) {
-    // recompass knows nothing about librarian recommendations, so we gotta include those pids as well
-    pids = uniq([...pids, ...librarianRecommends]);
+    return pids;
   }
 
-  console.log('pids result in fetchRecommendations', pids);
-
-  return pids;
+  return recompassResponse;
 };
 
 export const recommendMiddleware = store => next => action => {
@@ -269,29 +261,25 @@ export const recommendMiddleware = store => next => action => {
       return;
     }
     case WORK_RECOMMEND_REQUEST: {
-      console.log('WORK_RECOMMEND_REQUEST middleware running . . .');
       const workRecommendations = getWorkRecommendedPids(
         store.getState().recommendReducer,
         {
-          likes: action.pids
+          likes: action.likes
         }
       );
-      console.log(
-        'WORK_RECOMMEND_REQUEST: getRecommendedPids()',
-        workRecommendations
-      );
-
       if (
         !workRecommendations.isLoading &&
         workRecommendations.pids.length === 0
       ) {
-        console.log('fetching recomendations . . .');
         (async () => {
           try {
-            const pids = await fetchRecommendations(action);
+            const recommendations = await fetchRecommendations(action);
+            const pids = recommendations.map(w => w.pid);
+
             store.dispatch({
               ...action,
               type: WORK_RECOMMEND_RESPONSE,
+              recommendations,
               pids
             });
             store.dispatch({
