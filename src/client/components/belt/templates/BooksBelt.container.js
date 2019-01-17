@@ -71,7 +71,7 @@ const BeltContextMenu = ({onClick}) => {
 
 const Tag = ({tag, isLast, onClick}) => {
   return (
-    <Link key={tag.id} href="/find" params={{tag: tag.id}} onClick={onClick}>
+    <Link key={tag.id} href="/find" params={{tags: tag.id}} onClick={onClick}>
       <Term
         className={'ml-2 mt1' + (isLast ? ' mr-2' : '')}
         size="medium"
@@ -99,6 +99,9 @@ export class BooksBelt extends React.Component {
   componentDidMount() {
     this.fetchRecommendations();
     this.initMissingText();
+    if (this.props.belt.scrollIntoView) {
+      this.scrollToBelt(this.refs.beltWrap);
+    }
   }
 
   componentDidUpdate() {
@@ -146,7 +149,6 @@ export class BooksBelt extends React.Component {
 
     if (!parentBelt.child || !samePidClicked || !sameTypeClicked) {
       this.props.addChildBelt(parentBelt, childBelt, workPosition);
-      this.scrollToChildBelt(this.refs.beltWrap, 220);
     }
   }
 
@@ -160,7 +162,8 @@ export class BooksBelt extends React.Component {
       name: 'Minder om ' + book.title,
       key: 'Minder om ' + book.title,
       onFrontPage: false,
-      child: false
+      child: false,
+      scrollIntoView: true
     };
 
     this.handleChildBelts(parentBelt, newBelt, workPosition);
@@ -179,14 +182,18 @@ export class BooksBelt extends React.Component {
       type,
       pid: book.pid,
       key: 'Preview af ' + book.title,
-      child: false
+      child: false,
+      scrollIntoView: true
     };
 
     this.handleChildBelts(parentBelt, newBelt, workPosition);
   }
 
-  scrollToChildBelt(belt, offset) {
-    scrollToComponent(belt, {offset});
+  scrollToBelt(belt) {
+    scrollToComponent(belt, {
+      align: 'bottom',
+      ease: 'inOutCube'
+    });
   }
 
   onVisibilityChange = visible => {
@@ -336,9 +343,12 @@ export class BooksBelt extends React.Component {
                     <Link
                       href="/find"
                       params={{
-                        tag: selectedTags.map(
-                          t => (t instanceof Array ? t.map(aT => aT.id) : t.id)
-                        )
+                        tags: selectedTags
+                          .map(
+                            t =>
+                              t instanceof Array ? t.map(aT => aT.id) : t.id
+                          )
+                          .join(',')
                       }}
                       onClick={this.props.titleClick}
                     >

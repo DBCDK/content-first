@@ -13,7 +13,6 @@ const getQueryStringParams = query => {
           /* Check if value is a range - if true convert to array */
           if (value.includes(',')) {
             value = value.split(',');
-            value = [value[0], value[1]];
           } else {
             value = decodeURIComponent(value.replace(/\+/g, ' '));
           }

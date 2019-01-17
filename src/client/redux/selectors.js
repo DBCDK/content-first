@@ -5,6 +5,7 @@ import {createSelector} from 'reselect';
 import {getBooks} from './books.reducer';
 import {getRecommendedPids, applyClientSideFilters} from './recommend';
 import {filtersMapAll} from './filter.reducer';
+import {getFullRange} from '../utils/taxonomy';
 
 export const getRecommendedBooks = (state, tags, max = 100) => {
   const {recommendReducer, booksReducer} = state;
@@ -47,21 +48,34 @@ export const createGetFollowedLists = () =>
   );
 
 export const getTagsFromUrl = state => {
-  return state.routerReducer.params.tag
-    ? state.routerReducer.params.tag
-        .map(id => {
-          if (id instanceof Array) {
-            return id.map(aId => parseInt(aId, 10));
-          }
-          return parseInt(id, 10);
-        })
-        .filter(id => {
-          if (id instanceof Array) {
-            return id.map(aId => filtersMapAll[aId]);
-          }
-          return filtersMapAll[id];
-        })
-    : [];
+  if (!state.routerReducer.params.tags) {
+    return [];
+  }
+  const tags = Array.isArray(state.routerReducer.params.tags[0])
+    ? state.routerReducer.params.tags[0]
+    : [state.routerReducer.params.tags[0]];
+  const filterCards = state.filtercardReducer;
+
+  return tags
+    .filter(id => {
+      return typeof id === 'string';
+    })
+    .map(id => {
+      if (id.includes(':')) {
+        return id.split(':').map(aId => parseInt(aId, 10));
+      }
+      const parsed = parseInt(id, 10);
+      if (getFullRange(parsed, filterCards, filtersMapAll)) {
+        return [parsed, parsed];
+      }
+      return parsed;
+    })
+    .filter(id => {
+      if (id instanceof Array) {
+        return id.map(aId => filtersMapAll[aId]);
+      }
+      return filtersMapAll[id];
+    });
 };
 
 export const getCreatorsFromUrl = state => {
@@ -78,7 +92,6 @@ export const getTitlesFromUrl = state => {
 
 export const getIdsFromRange = (state, aIds) => {
   const filterCards = state.filtercardReducer;
-
   let plainSelectedTagIds = [];
   aIds.forEach(id => {
     if (id instanceof Array) {

@@ -8,21 +8,25 @@ const LOCAL_STORAGE_REPLAY_VERSION = 1;
 
 const REPLAY_PATH = '/replay';
 
+const IGNORED_PATHS = {'/replay': true, '/profile/opret': true};
+
 // Put actions here, which should be listened for
 // and put in replay queue
 const replayableActions = {
   ORDER: action => action,
-  ON_LOCATION_CHANGE: action =>
-    action.path !== REPLAY_PATH
+  ON_LOCATION_CHANGE: action => {
+    // Add to history if not included in the ignored paths
+    return !IGNORED_PATHS[action.path]
       ? {type: 'HISTORY_REPLACE', path: action.path + action.location.search}
-      : null
+      : null;
+  }
 };
 
 // Some times we want to clear the replay queue,
 // for instance, at page changes and when modal closes
 const clearActions = {
   CLOSE_MODAL: () => true,
-  ON_LOCATION_CHANGE: action => action.path !== REPLAY_PATH
+  ON_LOCATION_CHANGE: action => !IGNORED_PATHS[action.path]
 };
 
 // Actions which will never be deleted from replay queue
@@ -38,8 +42,20 @@ const replaceExisting = {
 
 // Actions which will trigger dispatch of actions in replay queue
 const replayBeginWhen = {
-  ON_USER_DETAILS_ERROR: state => state.routerReducer.path === REPLAY_PATH,
-  ON_USER_DETAILS_RESPONSE: state => state.routerReducer.path === REPLAY_PATH
+  ON_USER_DETAILS_ERROR: state => {
+    // return false if user dont have an account
+    return (
+      state.userReducer.acceptedTerms &&
+      state.routerReducer.path === REPLAY_PATH
+    );
+  },
+  ON_USER_DETAILS_RESPONSE: state => {
+    // return false if user dont have an account
+    return (
+      state.userReducer.acceptedTerms &&
+      state.routerReducer.path === REPLAY_PATH
+    );
+  }
 };
 
 export const replayReducer = (

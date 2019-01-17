@@ -28,7 +28,7 @@ import {OWNED_LISTS_REQUEST} from './list.reducer';
 import {FOLLOW_LOAD_REQUEST} from './follow.reducer';
 import {BELTS_LOAD_REQUEST} from './belts.reducer';
 import openplatform from 'openplatform';
-import {HISTORY_PUSH, HISTORY_PUSH_FORCE_REFRESH} from './router.reducer';
+import {HISTORY_PUSH_FORCE_REFRESH} from './router.reducer';
 import {FETCH_INTERACTIONS} from './interaction.reducer';
 
 async function openplatformLogin(state) {
@@ -104,7 +104,7 @@ export const userMiddleware = store => next => action => {
         try {
           const user = await saveUser(action.user);
           store.dispatch({type: SAVE_USER_PROFILE_SUCCESS, user});
-          store.dispatch({type: HISTORY_PUSH, path: '/'});
+          store.dispatch({type: HISTORY_PUSH_FORCE_REFRESH, path: '/replay'});
         } catch (error) {
           store.dispatch({type: SAVE_USER_PROFILE_ERROR, error});
         }
@@ -114,10 +114,9 @@ export const userMiddleware = store => next => action => {
       next(action);
 
       return (async () => {
-        const user = await openplatform.user();
-
+        const openplatformId = store.getState().userReducer.openplatformId;
         try {
-          await deleteUser(user.id);
+          await deleteUser(openplatformId);
           store.dispatch({type: DELETE_USER_PROFILE_SUCCESS});
           store.dispatch({type: HISTORY_PUSH_FORCE_REFRESH, path: '/'});
         } catch (error) {

@@ -3,7 +3,7 @@
     "type": "small",
     "tags": [5654, 5640, 3207],
     "listLink": {
-      "url": "/find?tag=5654&tag=5640&tag=3207",
+      "url": "/find?tags=5654,5640,3207",
       "title": "Se bøger til sofahygge"
     },
     "show": true
@@ -25,7 +25,7 @@
     "color": "#F4B51B",
     "tags": [5329, 5731, 5638],
     "listLink": {
-      "url": "/find?tag=5329&tag=5731&tag=5638",
+      "url": "/find?tags=5329,5731,5638",
       "title": "Læs om mennesket og naturen"
     },
     "show": true
@@ -36,7 +36,7 @@
     "highlight": "UHYGGE OG KRIMI",
     "image": "/img/spots/jakub-kriz-418618-unsplash_cropped.jpg",
     "listLink": {
-      "url": "/find?tag=5690&tag=5694&tag=5700&tag=4907",
+      "url": "/find?tags=5690,5694,5700,4907",
       "title": "Se blodige og hårrejsende bøger"
     },
     "show": true

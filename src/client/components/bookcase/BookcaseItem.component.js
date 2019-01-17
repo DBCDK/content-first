@@ -104,8 +104,8 @@ export class BookcaseItem extends React.Component {
   };
 
   gotoListPage() {
-    const listurl = '/lister/a2d7b450-c7ba-11e8-a4c7-c500cfdf0018';
-    if (this.getWindowWidth() <= 500) {
+    const listurl = '/lister/' + this.props.id;
+    if (this.getWindowWidth() <= 1024) {
       window.open(listurl, '_self');
     }
   }
@@ -143,10 +143,6 @@ export class BookcaseItem extends React.Component {
       );
     }
 
-    const imageStyle = {
-      backgroundImage: `url(/v1/image/${list.image}/1438/800)`
-    };
-
     return (
       <section
         className={`mt-5 mb-0 mt-md-4 mb-md-4 mb-lg-5 ${
@@ -154,20 +150,13 @@ export class BookcaseItem extends React.Component {
         }  `}
       >
         <div className="caroContainer" onClick={this.gotoListPage}>
-          <div
-            className="bookswrap position-relative"
-            style={imageStyle}
-            ref={bookswrap => {
-              this.refs = {...this.refs, bookswrap};
-            }}
-          >
+          <div className="bookswrap position-relative">
             {list.list.map((work, i) => {
               const active = this.state.pulse === work.book.pid ? true : false;
               const position = percentageObjToPixel(
                 this.getBookswrapInfo(),
                 work.position
               );
-
               return (
                 <Pulse
                   active={active}
@@ -181,6 +170,10 @@ export class BookcaseItem extends React.Component {
                 />
               );
             })}
+            <img
+              src={`/v1/image/${list.image}/719/400`}
+              ref={bookswrap => (this.refs = {...this.refs, bookswrap})}
+            />
           </div>
 
           <div className="celeb">

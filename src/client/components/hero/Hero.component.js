@@ -9,7 +9,7 @@ import Title from '../base/Title';
 import Button from '../base/Button';
 import Link from '../general/Link.component';
 
-import {getLeavesMap} from '../../utils/taxonomy';
+import {getLeavesMap, tagsToUrlParams} from '../../utils/taxonomy';
 
 import './Hero.css';
 
@@ -48,11 +48,7 @@ export class Hero extends React.Component {
   }
 
   buildUrl(tags) {
-    let url = '/find?';
-    tags.forEach(tag => {
-      url += `tag=${this.inRange(tag) ? tag + ',' + tag : tag}&`;
-    });
-    return url.slice(0, -1);
+    return `/find?tags=${tagsToUrlParams(tags)}`;
   }
 
   render() {
