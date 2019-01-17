@@ -12,7 +12,7 @@ const passport = require('server/passport');
 const database = require('server/database');
 const authenticator = require('server/authenticator');
 const login = require('server/login');
-const recompas = require('server/recompas');
+const {recompasTags, recompasWork} = require('server/recompas');
 const generatingServiceStatus = require('__/services/service-status');
 
 const isProduction = config.server.environment === 'production';
@@ -81,7 +81,7 @@ external.get('/howru', async (req, res) => {
     'auth.secret',
     'login.salt'
   ]);
-  const services = [authenticator, database, login, recompas];
+  const services = [authenticator, database, login, recompasTags, recompasWork];
   const status = await generatingServiceStatus(services);
   Object.assign(status, {
     version: require('../../package').version,

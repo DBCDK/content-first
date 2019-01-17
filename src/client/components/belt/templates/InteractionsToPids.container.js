@@ -17,6 +17,10 @@ export class InteractionsToPids extends React.Component {
   }
 
   render() {
+    if (!this.props.isLoggedIn) {
+      return null;
+    }
+
     const recoPids = this.getRecoPids();
     const name = this.props.username;
     const fullName = name ? 'Bedste forslag til ' + name : '';
@@ -28,7 +32,8 @@ export class InteractionsToPids extends React.Component {
 const mapStateToProps = state => {
   return {
     interactions: state.interactionReducer.interactions,
-    username: state.userReducer.name
+    username: state.userReducer.name,
+    isLoggedIn: state.userReducer.isLoggedIn
   };
 };
 
