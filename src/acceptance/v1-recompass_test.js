@@ -107,7 +107,10 @@ describe('Endpoint /v1/recommendations', () => {
     });
 
     it('should return a list of books that include all specified tags', () => {
-      nock(config.recompass.url)
+      nock(config.recompass.url.tags)
+        .post('')
+        .reply(200, mockResponse);
+      nock(config.recompass.url.work)
         .post('')
         .reply(200, mockResponse);
       //
