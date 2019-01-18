@@ -322,6 +322,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Bedste forslag"
         />
         <BooksBelt
           belt={
@@ -347,6 +348,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Vemodige nordmænd"
         />
         <BooksBelt
           belt={
@@ -376,6 +378,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Mennesket og Naturen"
         />
         <BooksBelt
           belt={
@@ -408,6 +411,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Familiens skyggesider"
         />
       </div>
     </div>
@@ -444,6 +448,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Krøllede fortællinger"
         />
       </div>
     </div>
@@ -494,6 +499,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Sofahygge"
         />
         <BooksBelt
           belt={
@@ -523,6 +529,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Tolkienesque"
         />
         <BooksBelt
           belt={
@@ -552,6 +559,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Det var en mørk og stormfuld nat"
         />
         <BooksBelt
           belt={
@@ -581,6 +589,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Hvad sker der bag hækken?"
         />
         <BooksBelt
           belt={
@@ -604,6 +613,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Historiske romaner"
         />
         <BooksBelt
           belt={
@@ -627,6 +637,7 @@ exports[`renders without crashing 1`] = `
               "type": "belt",
             }
           }
+          id="Tankevækkende Sci-fi"
         />
       </div>
     </div>
