@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import scrollToComponent from 'react-scroll-to-component';
 import BookCover from '../general/BookCover.component';
 import TaxDescription from './TaxDescription.component';
 import Heading from '../base/Heading';
@@ -18,17 +17,16 @@ import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {ADD_CHILD_BELT} from '../../redux/belts.reducer';
 import {filterCollection, filterReviews} from './workFunctions';
 import './WorkPreview.css';
+import {SCROLL_TO_COMPONENT} from '../../redux/scrollToComponent';
 
 class WorkPreview extends React.Component {
   componentDidMount() {
     this.fetchWork(this.props.pid);
-    this.scrollToBelt(this.refs.preview);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.pid !== prevProps.pid) {
       this.fetchWork(prevProps.pid);
-      this.scrollToBelt(this.refs.preview);
     }
   }
 
@@ -38,7 +36,7 @@ class WorkPreview extends React.Component {
 
   handleChildBelts(parentBelt, childBelt) {
     this.props.addChildBelt(parentBelt, childBelt);
-    this.scrollToBelt(this.refs.preview);
+    this.props.scrollToComponent(childBelt.key);
   }
 
   onMoreLikeThisClick(parentBelt, work) {
@@ -56,13 +54,6 @@ class WorkPreview extends React.Component {
     };
 
     this.handleChildBelts(parentBelt, childBelt);
-  }
-
-  scrollToBelt(belt) {
-    scrollToComponent(belt, {
-      align: 'bottom',
-      ease: 'inOutCube'
-    });
   }
 
   render() {
@@ -285,7 +276,7 @@ class WorkPreview extends React.Component {
         {belt &&
           belt.child &&
           this.props.childTemplate && (
-            <this.props.childTemplate belt={belt.child} />
+            <this.props.childTemplate id={belt.child.key} belt={belt.child} />
           )}
       </React.Fragment>
     );
@@ -298,6 +289,11 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 export const mapDispatchToProps = dispatch => ({
+  scrollToComponent: id =>
+    dispatch({
+      type: SCROLL_TO_COMPONENT,
+      id
+    }),
   fetchWork: pid => {
     dispatch({
       type: BOOKS_REQUEST,

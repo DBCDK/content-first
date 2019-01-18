@@ -22,6 +22,7 @@ import filtercardReducer from './filtercard.reducer';
 import heroReducer from './hero.reducer';
 import articleReducer from './article.reducer';
 import stats from './stats.reducer';
+import scrollToComponent from './scrollToComponent';
 
 const combined = combineReducers({
   beltsReducer,
@@ -46,7 +47,8 @@ const combined = combineReducers({
   filtercardReducer,
   heroReducer,
   articleReducer,
-  stats
+  stats,
+  scrollToComponent
 });
 
 const rootReducer = (state = {}, action) => {

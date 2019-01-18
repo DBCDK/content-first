@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {isMobileOnly} from 'react-device-detect';
 import {toast} from 'react-toastify';
 import ToastMessage from '../base/ToastMessage';
-import scrollToComponent from 'react-scroll-to-component';
 import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
@@ -34,6 +33,7 @@ import {
   REORGANIZE_FILTERPAGE_BELTS
 } from '../../redux/belts.reducer';
 import {filtersMapAll} from '../../redux/filter.reducer';
+import {SCROLL_TO_COMPONENT} from '../../redux/scrollToComponent';
 import {isEqual} from 'lodash';
 
 const Results = ({rows, pids, ...props}) => {
@@ -75,7 +75,7 @@ const Results = ({rows, pids, ...props}) => {
         </div>
         {belt && (
           <div className="belts col-12 mb-5" data-cy="filterpage-book-belt">
-            <BeltWrapper belt={belt} />
+            <BeltWrapper id={belt.key} belt={belt} />
           </div>
         )}
       </React.Fragment>
@@ -199,6 +199,7 @@ class FilterPage extends React.Component {
 
     if (!belt || !samePidClicked || !sameTypeClicked) {
       this.props.addBelt(newBelt);
+      this.props.scrollToComponent(newBelt.key);
     }
   }
 
@@ -287,10 +288,6 @@ class FilterPage extends React.Component {
 
     this.props.addPin(newBelt);
   };
-
-  scrollToBelt(element, offset) {
-    scrollToComponent(element, {offset});
-  }
 
   render() {
     const resultsPerRow = this.state.resultsPerRow;
@@ -430,6 +427,11 @@ const mapStateToProps = state => {
   };
 };
 export const mapDispatchToProps = dispatch => ({
+  scrollToComponent: id =>
+    dispatch({
+      type: SCROLL_TO_COMPONENT,
+      id
+    }),
   toggleFilter: id => dispatch({type: TOGGLE_FILTER, id}),
   editFilterToggle: () => dispatch({type: ON_EDIT_FILTER_TOGGLE}),
   expandFiltersToggle: id => dispatch({type: ON_EXPAND_FILTERS_TOGGLE, id}),
