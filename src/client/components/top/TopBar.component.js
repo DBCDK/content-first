@@ -72,6 +72,7 @@ export class TopBar extends React.Component {
     this.setState({searchExpanded: searchPage});
     this.props.fetchStats();
   }
+
   componentWillUnmount() {
     if (this.Topbar) {
       this.Topbar.removeEventListener('mousedown', this.closeDropdown);
@@ -184,6 +185,7 @@ export class TopBar extends React.Component {
       </React.Fragment>
     );
   }
+
   renderListsOverviewDropdown() {
     const {expanded} = this.props.listsState;
     return (
@@ -199,11 +201,16 @@ export class TopBar extends React.Component {
       </ListOverviewDropDown>
     );
   }
+
   render() {
     const shortlist = this.renderShortListBtn();
     const userLists = this.renderListsOverviewDropdown();
     const searchExpanded = searchPage && this.state.searchExpanded;
-    const searchIconText = searchExpanded ? 'Luk' : 'Søg';
+    const searchIconText = searchExpanded ? (
+      <i className="material-icons  material-icons-cancel">cancel</i>
+    ) : (
+      'Søg'
+    );
     const searchFieldWidth = searchExpanded ? this.state.width : 0;
     const border = searchExpanded ? {borderColor: 'transparent'} : {};
 
@@ -227,7 +234,21 @@ export class TopBar extends React.Component {
               </span>
             </div>
           )}
+
         <nav className="col-12 col-m-8 Topbar__navigation">
+          {searchExpanded && (
+            <div className="Topbar__special">
+              <Link href="/">
+                <div className="Topbar__navigation__btn Topbar__icon">
+                  <img
+                    type="image/svg+xml"
+                    src="img/general/dibliofigur.svg"
+                    style={{width: '25px', height: '30px'}}
+                  />
+                </div>
+              </Link>
+            </div>
+          )}
           <span
             className="Topbar__navigation__btn widthCalc d-none d-md-flex"
             style={border}
@@ -294,43 +315,67 @@ export class TopBar extends React.Component {
           <div className="Topbar__overlay" />
         </nav>
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
-          <Text className="d-block d-sm-none m-0" type="large">
-            Læsekompas
-          </Text>
-          <Title className="d-none d-sm-block mb-0" Tag="h1" type="title4">
-            Læsekompas
-          </Title>
-          <div className="logo-beta-wrap d-flex position-relative">
-            <Text className="logo-beta-sign mb-0" type="micro">
-              BETA
-            </Text>
-            {!searchExpanded &&
-              ((isIndex && isMobileOnly) || !isMobileOnly) && (
-                <div className="d-inline-flex">
-                  <Text
-                    className="d-none d-sm-inline logo-beta-text"
-                    type="small"
-                  >
-                    {this.props.stats.books &&
-                      `Nu ${this.props.stats.books.total} ` +
-                        (this.props.stats.books.total === 1
-                          ? 'bog. '
-                          : 'bøger. ')}
-                    <Text
-                      className="d-inline logo-beta-link mb0"
-                      type="small"
-                      variant="decoration-underline"
-                      onClick={e => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        this.props.betaModal();
-                      }}
-                    >
-                      {'Læs mere'}
-                    </Text>
+          <div className="d-block d-sm-none d-inline-flex">
+            <object
+              type="image/svg+xml"
+              data="img/general/dibliofigur.svg"
+              style={{width: '20px', height: '25px', margin: '3px'}}
+            />
+            <div>
+              <Text className="m-0" type="large">
+                Læsekompas
+              </Text>
+              <Text className="logo-beta-sign mb-0" type="micro">
+                BETA
+              </Text>
+            </div>
+          </div>
+
+          <div className="d-none d-sm-block">
+            <div className="d-inline-flex">
+              <object
+                type="image/svg+xml"
+                data="img/general/dibliofigur.svg"
+                style={{width: '20px', height: '25px', margin: '6px'}}
+              />
+              <div>
+                <Title className="mb-0" Tag="h1" type="title4">
+                  Læsekompas
+                </Title>
+                <div className="logo-beta-wrap d-flex position-relative">
+                  <Text className="logo-beta-sign mb-0" type="micro">
+                    BETA
                   </Text>
+                  {!searchExpanded &&
+                    ((isIndex && isMobileOnly) || !isMobileOnly) && (
+                      <div className="d-inline-flex">
+                        <Text
+                          className="d-none d-sm-inline logo-beta-text"
+                          type="small"
+                        >
+                          {this.props.stats.books &&
+                            `Nu ${this.props.stats.books.total} ` +
+                              (this.props.stats.books.total === 1
+                                ? 'bog. '
+                                : 'bøger. ')}
+                          <Text
+                            className="d-inline logo-beta-link mb0"
+                            type="small"
+                            variant="decoration-underline"
+                            onClick={e => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              this.props.betaModal();
+                            }}
+                          >
+                            {'Læs mere'}
+                          </Text>
+                        </Text>
+                      </div>
+                    )}
                 </div>
-              )}
+              </div>
+            </div>
           </div>
         </Link>
         <TopBarDropdown
