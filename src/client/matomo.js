@@ -2,8 +2,10 @@ import {debounce} from 'lodash';
 
 const server = process.env.REACT_APP_MATOMO_SERVER;
 const siteId = process.env.REACT_APP_MATOMO_SITE_ID;
+const dataSiteId = process.env.REACT_APP_MATOMO_DATA_SITE_ID;
 let matomoEnabled = false;
 let currentUrl;
+let dataTracker;
 
 /*
  * Initializes Matomo
@@ -38,6 +40,23 @@ export const initialize = history => {
 export const trackEvent = (category, action, name, numericValue) => {
   if (matomoEnabled) {
     window._paq.push(['trackEvent', category, action, name, numericValue]);
+  }
+};
+
+/*
+ * The event will go into a dedicated matomo site
+ */
+export const trackDataEvent = (action, data) => {
+  if (matomoEnabled && dataSiteId) {
+    if (!window.Piwik) {
+      // piwik.js has not loaded yet
+      return;
+    }
+    if (!dataTracker) {
+      dataTracker = window.Piwik.getTracker();
+      dataTracker.setSiteId(dataSiteId);
+    }
+    dataTracker.trackEvent('data', action, JSON.stringify(data));
   }
 };
 
