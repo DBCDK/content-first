@@ -219,37 +219,80 @@ exports[`renders without crashing 1`] = `
         href="/"
         onClick={[Function]}
       >
-        <p
-          className="d-block d-sm-none m-0 Text Text__large "
-        >
-          Læsekompas
-        </p>
-        <h1
-          className="d-none d-sm-block mb-0 Title Title__title4 "
-        >
-          Læsekompas
-        </h1>
         <div
-          className="logo-beta-wrap d-flex position-relative"
+          className="d-block d-sm-none d-inline-flex"
         >
-          <p
-            className="logo-beta-sign mb-0 Text Text__micro "
-          >
-            BETA
-          </p>
+          <object
+            data="img/general/dibliofigur.svg"
+            style={
+              Object {
+                "height": "25px",
+                "margin": "3px",
+                "width": "20px",
+              }
+            }
+            type="image/svg+xml"
+          />
+          <div>
+            <p
+              className="m-0 Text Text__large "
+            >
+              Læsekompas
+            </p>
+            <p
+              className="logo-beta-sign mb-0 Text Text__micro "
+            >
+              BETA
+            </p>
+          </div>
+        </div>
+        <div
+          className="d-none d-sm-block"
+        >
           <div
             className="d-inline-flex"
           >
-            <p
-              className="d-none d-sm-inline logo-beta-text Text Text__small "
-            >
-              <p
-                className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
-                onClick={[Function]}
+            <object
+              data="img/general/dibliofigur.svg"
+              style={
+                Object {
+                  "height": "25px",
+                  "margin": "6px",
+                  "width": "20px",
+                }
+              }
+              type="image/svg+xml"
+            />
+            <div>
+              <h1
+                className="mb-0 Title Title__title4 "
               >
-                Læs mere
-              </p>
-            </p>
+                Læsekompas
+              </h1>
+              <div
+                className="logo-beta-wrap d-flex position-relative"
+              >
+                <p
+                  className="logo-beta-sign mb-0 Text Text__micro "
+                >
+                  BETA
+                </p>
+                <div
+                  className="d-inline-flex"
+                >
+                  <p
+                    className="d-none d-sm-inline logo-beta-text Text Text__small "
+                  >
+                    <p
+                      className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
+                      onClick={[Function]}
+                    >
+                      Læs mere
+                    </p>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </a>
