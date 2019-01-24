@@ -166,7 +166,10 @@ function arrangeSubserviceResponse(authLoginCommunity) {
       .get(loginConst.apiHealth)
       .reply(500);
   }
-  nock(config.recompass.url)
+  nock(config.recompass.url.tags)
+    .get('/status')
+    .reply(200, authConst.healthyResponse);
+  nock(config.recompass.url.work)
     .get('/status')
     .reply(200, authConst.healthyResponse);
 }

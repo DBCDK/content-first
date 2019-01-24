@@ -5,7 +5,7 @@ const request = require('superagent');
  * Get recommendations
  */
 
-class Recompas {
+class RecompasTags {
   constructor(config, logger) {
     this.config = config;
     this.logger = logger;
@@ -13,7 +13,7 @@ class Recompas {
   }
 
   getName() {
-    return 'recompas';
+    return 'recompasTags';
   }
 
   clear() {
@@ -40,7 +40,7 @@ class Recompas {
   async getRecommendations({tags, creators, maxresults}) {
     try {
       const result = await request
-        .post(this.config.recompass.url)
+        .post(this.config.recompass.url.tags)
         .send({tags, creators, maxresults});
       return result.body;
     } catch (e) {
@@ -54,7 +54,9 @@ class Recompas {
   }
   async testingConnection() {
     try {
-      const result = await request.get(this.config.recompass.url + '/status');
+      const result = await request.get(
+        this.config.recompass.url.tags + '/status'
+      );
       if (!result.body.ok) {
         throw new Error('Recommender /status returns not ok');
       }
@@ -66,4 +68,4 @@ class Recompas {
   }
 }
 
-module.exports = Recompas;
+module.exports = RecompasTags;

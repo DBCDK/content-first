@@ -87,9 +87,9 @@ const mockResponse = {
 describe('Endpoint /v1/recommendations', () => {
   const webapp = request(mock.external);
 
-  describe('GET /v1/recompass?tags=...', () => {
+  describe('GET /v1/recompass?recommender=recompasTags&tags=...', () => {
     it('should handle no tags', () => {
-      const url = '/v1/recompass?tags=';
+      const url = '/v1/recompass?recommender=recompasTags&tags=';
       return webapp
         .get(url)
         .expect(res => {
@@ -107,11 +107,11 @@ describe('Endpoint /v1/recommendations', () => {
     });
 
     it('should return a list of books that include all specified tags', () => {
-      nock(config.recompass.url)
-        .post('')
+      nock(config.recompass.url.tags)
+        .post('/')
         .reply(200, mockResponse);
-      //
-      const url = `/v1/recompass?tags=5329&tags=3510&tags=5734&tags=5731&tags=5280`;
+
+      const url = `/v1/recompass?recommender=recompasTags&tags=5329&tags=3510&tags=5734&tags=5731&tags=5280`;
       return webapp
         .get(url)
         .expect(res => {

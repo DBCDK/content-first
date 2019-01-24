@@ -32,7 +32,10 @@ describe('Admin API', () => {
         nock(config.auth.url)
           .get(constants.apiHealth)
           .reply(200, constants.healthyResponse);
-        nock(config.recompass.url)
+        nock(config.recompass.url.tags)
+          .get('/status')
+          .reply(200, constants.healthyResponse);
+        nock(config.recompass.url.work)
           .get('/status')
           .reply(200, constants.healthyResponse);
         // Act.

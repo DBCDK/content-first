@@ -1,9 +1,9 @@
 import React from 'react';
 import withScrollToComponent from '../base/scroll/withScrollToComponent.hoc';
-import BooksBelt from './templates/BooksBelt.container';
 import WorkPreview from '../work/WorkPreview.component';
-import SimilarBooksBelt from './templates/SimilarBooksBelt.container';
-import InteractionsRecoBelt from './templates/InteractionsRecoBelt.container';
+import PidsToPids from './templates/PidsToPids.container';
+import InteractionsToPids from './templates/InteractionsToPids.container';
+import TagsToPids from './templates/TagsToPids.container';
 
 const BeltWrapper = ({belt}) => {
   if (!belt) {
@@ -12,7 +12,7 @@ const BeltWrapper = ({belt}) => {
 
   if (belt.name === 'Bedste forslag') {
     return (
-      <InteractionsRecoBelt
+      <InteractionsToPids
         key={belt.key}
         belt={belt}
         childTemplate={BeltWrapperWithScroll}
@@ -21,7 +21,7 @@ const BeltWrapper = ({belt}) => {
   }
   if (belt.onFrontPage) {
     return (
-      <BooksBelt
+      <TagsToPids
         key={belt.key}
         belt={belt}
         tags={belt.tags}
@@ -42,16 +42,16 @@ const BeltWrapper = ({belt}) => {
   }
   if (belt.type === 'belt') {
     return (
-      <SimilarBooksBelt
+      <PidsToPids
         key={belt.key}
-        pid={belt.pid}
+        likes={[belt.pid]}
         belt={belt}
         childTemplate={BeltWrapperWithScroll}
       />
     );
   }
   return (
-    <BooksBelt
+    <TagsToPids
       key={belt.key}
       belt={belt}
       tags={belt.tags}
