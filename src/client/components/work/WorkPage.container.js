@@ -17,6 +17,7 @@ import scroll from '../../utils/scroll';
 import SocialShareButton from '../general/SocialShareButton.component';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {ADD_BELT} from '../../redux/belts.reducer';
+import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {get} from 'lodash';
 import {filterCollection, filterReviews, sortTags} from './workFunctions';
 import './WorkPage.css';
@@ -171,7 +172,12 @@ class WorkPage extends React.Component {
                   collection.map(col => {
                     if (col.count === 1) {
                       return (
-                        <a key={col.url} href={col.url} target="_blank">
+                        <Link
+                          key={col.url}
+                          href={col.url}
+                          type={HISTORY_NEW_TAB}
+                          meta={{materialType: col.type, pid: book.pid}}
+                        >
                           <Button
                             type="quaternary"
                             size="medium"
@@ -180,7 +186,7 @@ class WorkPage extends React.Component {
                             <Icon name={col.icon} />
                             {col.type}
                           </Button>
-                        </a>
+                        </Link>
                       );
                     }
                   })}

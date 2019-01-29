@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import {trackEvent, trackDataEvent} from '../matomo';
 import {get} from 'lodash';
 import {
@@ -10,6 +11,8 @@ import {
 import {ON_LOCATION_CHANGE} from './router.reducer';
 import {MATOMO_RID} from './matomo.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from './shortlist.reducer';
+import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST} from './list.reducer';
+import {HISTORY_NEW_TAB} from './middleware';
 
 export const matomoMiddleware = store => next => action => {
   switch (action.type) {
@@ -100,6 +103,48 @@ export const matomoMiddleware = store => next => action => {
         pid,
         rid
       });
+      return next(action);
+    }
+    case ADD_ELEMENT_TO_LIST:
+    case LIST_TOGGLE_ELEMENT: {
+      const pid = action.element.pid || action.element.book.pid;
+      const rid = action.rid || store.getState().matomo.rids[pid];
+      const list = store.getState().listReducer.lists[action._id];
+      if (list.type === 'SYSTEM_LIST') {
+        if (list.title === 'Har læst') {
+          trackDataEvent('hasConsumed', {
+            pid,
+            rid
+          });
+        } else {
+          trackDataEvent('willConsume', {
+            pid,
+            rid
+          });
+        }
+      } else {
+        trackDataEvent('addToList', {
+          pid,
+          rid,
+          listId: action._id
+        });
+      }
+      return next(action);
+    }
+    case HISTORY_NEW_TAB: {
+      const {materialType, pid} = action.meta;
+      const rid = action.rid || store.getState().matomo.rids[pid];
+      if (materialType === 'Ebog') {
+        trackDataEvent('openEbook', {
+          pid,
+          rid
+        });
+      } else if (materialType === 'Lydbog') {
+        trackDataEvent('openAudiobook', {
+          pid,
+          rid
+        });
+      }
       return next(action);
     }
 

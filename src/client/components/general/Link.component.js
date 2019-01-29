@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {HISTORY_PUSH} from '../../redux/middleware';
+import {HISTORY_PUSH, HISTORY_NEW_TAB} from '../../redux/middleware';
 
 const Link = ({
   href,
@@ -10,19 +10,23 @@ const Link = ({
   dispatch,
   onClick,
   params = {},
-  dataCy
+  dataCy,
+  meta
 }) => (
   <a
     className={className}
     href={href}
     onClick={e => {
-      e.preventDefault();
-      e.stopPropagation();
+      if (type !== HISTORY_NEW_TAB) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       if (onClick) {
         onClick();
       }
-      dispatch({type: type, path: href, params});
+      dispatch({type: type, path: href, params, meta});
     }}
+    target={type === HISTORY_NEW_TAB ? '_blank' : '_self'}
     data-cy={dataCy || ''}
   >
     {children}

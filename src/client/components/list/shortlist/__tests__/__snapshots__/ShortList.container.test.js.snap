@@ -116,6 +116,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       data-cy=""
                                       href="/værk/pid2"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -154,6 +155,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                         data-cy=""
                                         href="/værk/pid2"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title2
                                       </a>
@@ -318,6 +320,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -356,6 +359,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                         data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title1
                                       </a>
@@ -621,6 +625,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                       data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -659,6 +664,7 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                         data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title1
                                       </a>
@@ -956,6 +962,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                       data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -994,6 +1001,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                         data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title1
                                       </a>
@@ -1291,6 +1299,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                       data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -1329,6 +1338,7 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                         data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title1
                                       </a>
@@ -1626,6 +1636,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                       data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -1664,6 +1675,7 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                         data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title1
                                       </a>
@@ -1994,6 +2006,7 @@ exports[`ShortList.container remove element 1`] = `
                                       data-cy=""
                                       href="/værk/pid3"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -2032,6 +2045,7 @@ exports[`ShortList.container remove element 1`] = `
                                         data-cy=""
                                         href="/værk/pid3"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title3
                                       </a>
@@ -2196,6 +2210,7 @@ exports[`ShortList.container remove element 1`] = `
                                       data-cy=""
                                       href="/værk/pid2"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -2234,6 +2249,7 @@ exports[`ShortList.container remove element 1`] = `
                                         data-cy=""
                                         href="/værk/pid2"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title2
                                       </a>
@@ -2398,6 +2414,7 @@ exports[`ShortList.container remove element 1`] = `
                                       data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -2436,6 +2453,7 @@ exports[`ShortList.container remove element 1`] = `
                                         data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title1
                                       </a>
@@ -2769,6 +2787,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       data-cy=""
                                       href="/værk/pid3"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -2807,6 +2826,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                         data-cy=""
                                         href="/værk/pid3"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title3
                                       </a>
@@ -2971,6 +2991,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       data-cy=""
                                       href="/værk/pid2"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -3009,6 +3030,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                         data-cy=""
                                         href="/værk/pid2"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title2
                                       </a>
@@ -3173,6 +3195,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                       data-cy=""
                                       href="/værk/pid1"
                                       onClick={[Function]}
+                                      target="_self"
                                     >
                                       <bookcover
                                         book={
@@ -3211,6 +3234,7 @@ exports[`ShortList.container short list contains elements 1`] = `
                                         data-cy=""
                                         href="/værk/pid1"
                                         onClick={[Function]}
+                                        target="_self"
                                       >
                                         some title1
                                       </a>
