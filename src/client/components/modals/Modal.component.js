@@ -14,7 +14,6 @@ export default class Modal extends React.Component {
       hideConfirm = false,
       doneDisabled
     } = this.props;
-    console.log('IN modal render: tgus props', this.props);
     return (
       <div className="modal-container ">
         <div className="modal-backdrop" onClick={this.props.onClose} />
