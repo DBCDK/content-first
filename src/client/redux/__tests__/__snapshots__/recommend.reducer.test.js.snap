@@ -30,5 +30,6 @@ Object {
     "pid2",
     "pid3",
   ],
+  "rid": undefined,
 }
 `;
