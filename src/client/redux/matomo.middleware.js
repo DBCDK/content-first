@@ -9,6 +9,7 @@ import {
 } from './belts.reducer';
 import {ON_LOCATION_CHANGE} from './router.reducer';
 import {MATOMO_RID} from './matomo.reducer';
+import {ON_SHORTLIST_TOGGLE_ELEMENT} from './shortlist.reducer';
 
 export const matomoMiddleware = store => next => action => {
   switch (action.type) {
@@ -90,6 +91,15 @@ export const matomoMiddleware = store => next => action => {
         });
       }
 
+      return next(action);
+    }
+    case ON_SHORTLIST_TOGGLE_ELEMENT: {
+      const pid = action.element.book.pid;
+      const rid = action.rid || store.getState().matomo.rids[pid];
+      trackDataEvent('addToBasket', {
+        pid,
+        rid
+      });
       return next(action);
     }
 

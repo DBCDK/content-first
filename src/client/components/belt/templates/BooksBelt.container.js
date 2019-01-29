@@ -404,6 +404,7 @@ export class BooksBelt extends React.Component {
                           (this.state.didSwipe || idx < fetchInitial)
                         }
                         pid={pid}
+                        rid={this.props.rid}
                         key={pid}
                         origin={`Fra "${name}"`}
                         onMoreLikeThisClick={(work, row) =>

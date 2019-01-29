@@ -67,6 +67,7 @@ const Results = ({rows, pids, ...props}) => {
                 className="p-0 pb-3 pr-sm-3"
                 rowId={idx}
                 pid={pid}
+                rid={props.rid}
                 highlight={belt.pid === pid}
                 {...props}
               />
@@ -357,6 +358,7 @@ class FilterPage extends React.Component {
               <Results
                 rows={rows}
                 pids={structuredPids}
+                rid={this.props.rid}
                 enableHover={true}
                 allowFetch={true}
                 hideMoreLikeThis={false}
