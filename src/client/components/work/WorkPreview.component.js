@@ -15,6 +15,7 @@ import AddToListButton from '../general/AddToListButton.component';
 import OrderButton from '../order/OrderButton.component';
 import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {ADD_CHILD_BELT} from '../../redux/belts.reducer';
+import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {filterCollection, filterReviews} from './workFunctions';
 import './WorkPreview.css';
 import {SCROLL_TO_COMPONENT} from '../../redux/scrollToComponent';
@@ -143,7 +144,12 @@ class WorkPreview extends React.Component {
                   collection.map(col => {
                     if (col.count === 1) {
                       return (
-                        <a href={col.url} target="_blank" key={col.url}>
+                        <Link
+                          key={col.url}
+                          href={col.url}
+                          type={HISTORY_NEW_TAB}
+                          meta={{materialType: col.type, pid: book.pid}}
+                        >
                           <Button
                             type="quaternary"
                             size="medium"
@@ -152,7 +158,7 @@ class WorkPreview extends React.Component {
                             <Icon name={col.icon} />
                             {col.type}
                           </Button>
-                        </a>
+                        </Link>
                       );
                     }
                   })}

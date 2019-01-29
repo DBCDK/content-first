@@ -53,6 +53,7 @@ const getListById = getListByIdSelector();
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
 export const HISTORY_REPLACE = 'HISTORY_REPLACE';
+export const HISTORY_NEW_TAB = 'HISTORY_NEW_TAB';
 
 const paramsToString = params => {
   let res = '';
