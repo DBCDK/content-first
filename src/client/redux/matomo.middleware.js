@@ -7,6 +7,7 @@ import {
   BELT_TITLE_CLICK,
   BELT_TAG_CLICK
 } from './belts.reducer';
+import {ON_LOCATION_CHANGE} from './router.reducer';
 
 export const matomoMiddleware = () => next => action => {
   switch (action.type) {
@@ -70,6 +71,18 @@ export const matomoMiddleware = () => next => action => {
       const a = 'beltTagClick';
       const name = `tag:${get(action, 'tag.id', 'unknown')}`;
       trackEvent(category, a, name);
+      return next(action);
+    }
+    case ON_LOCATION_CHANGE: {
+      const path = action.path;
+      if (path.startsWith('/værk/')) {
+        const pid = path.slice(6, path.length);
+        trackDataEvent('workView', {
+          pid
+          // rid: action.rid
+        });
+      }
+
       return next(action);
     }
 
