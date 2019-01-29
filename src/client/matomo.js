@@ -7,6 +7,7 @@ const aid = process.env.REACT_APP_MATOMO_AID;
 let matomoEnabled = false;
 let currentUrl;
 let dataTracker;
+let dataEventQueue = [];
 
 /*
  * Initializes Matomo
@@ -30,7 +31,11 @@ export const initialize = history => {
     g.type = 'text/javascript';
     g.async = true;
     g.defer = true;
+    g.onload = () => {
+      processDataEventQueue();
+    };
     g.src = server + 'piwik.js';
+
     s.parentNode.insertBefore(g, s);
 
     observeDom();
@@ -49,16 +54,30 @@ export const trackEvent = (category, action, name, numericValue) => {
  */
 export const trackDataEvent = (action, data) => {
   if (matomoEnabled && dataSiteId) {
-    if (!window.Piwik) {
-      // piwik.js has not loaded yet
-      return;
-    }
-    if (!dataTracker) {
-      dataTracker = window.Piwik.getTracker();
-      dataTracker.setSiteId(dataSiteId);
-    }
-    dataTracker.trackEvent('data', action, JSON.stringify({...data, aid}));
+    dataEventQueue.push({action, data});
+    processDataEventQueue();
   }
+};
+
+const processDataEventQueue = () => {
+  if (!window.Piwik) {
+    // piwik.js has not loaded yet
+    return;
+  }
+  if (!dataTracker) {
+    dataTracker = window.Piwik.getTracker();
+    dataTracker.setSiteId(dataSiteId);
+  }
+  const copy = [...dataEventQueue];
+  dataEventQueue = [];
+  copy.forEach(entry => {
+    // console.log('matomo', entry.action, {...entry.data, aid});
+    dataTracker.trackEvent(
+      'data',
+      entry.action,
+      JSON.stringify({...entry.data, aid})
+    );
+  });
 };
 
 /*
