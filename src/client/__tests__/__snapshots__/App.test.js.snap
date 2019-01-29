@@ -227,7 +227,8 @@ exports[`renders without crashing 1`] = `
             style={
               Object {
                 "height": "28px",
-                "margin": "3px",
+                "margin-right": "7px",
+                "margin-top": "1px",
               }
             }
             type="image/svg+xml"
@@ -256,7 +257,8 @@ exports[`renders without crashing 1`] = `
               style={
                 Object {
                   "height": "30px",
-                  "margin": "6px",
+                  "margin-right": "7px",
+                  "margin-top": "4px",
                 }
               }
               type="image/svg+xml"
@@ -278,8 +280,8 @@ exports[`renders without crashing 1`] = `
                 <div
                   className="d-inline-flex"
                 >
-                  <p
-                    className="d-none d-sm-inline logo-beta-text Text Text__small "
+                  <div
+                    className="d-none d-sm-inline logo-beta-text Text__small"
                   >
                     <p
                       className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
@@ -287,7 +289,7 @@ exports[`renders without crashing 1`] = `
                     >
                       Læs mere
                     </p>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
