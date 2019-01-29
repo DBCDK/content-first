@@ -14,7 +14,6 @@ export default class Modal extends React.Component {
       hideConfirm = false,
       doneDisabled
     } = this.props;
-
     return (
       <div className="modal-container ">
         <div className="modal-backdrop" onClick={this.props.onClose} />
@@ -43,34 +42,33 @@ export default class Modal extends React.Component {
           <div className="content p-4">
             <Text type="large">{this.props.header}</Text>
             {this.props.children}
-            {!hideCancel &&
-              !hideConfirm && (
-                <div className="bottom d-flex flex-row justify-content-end mb-5 mt-5">
-                  {!hideCancel &&
-                    cancelText && (
-                      <Button
-                        size="medium"
-                        className="mr-4"
-                        type="link"
-                        onClick={this.props.onClose}
-                      >
-                        {cancelText}
-                      </Button>
-                    )}
-                  {!hideConfirm && (
-                    <a href={this.props.url || null} target="_blank">
-                      <Button
-                        className={'mr-4 ' + (doneDisabled && 'disabled')}
-                        type="quaternary"
-                        onClick={doneDisabled || this.props.onDone}
-                        dataCy="modal-done-btn"
-                      >
-                        {doneText}
-                      </Button>
-                    </a>
+            {
+              <div className="bottom d-flex flex-row justify-content-end mb-5 mt-5">
+                {!hideCancel &&
+                  cancelText && (
+                    <Button
+                      size="medium"
+                      className="mr-4"
+                      type="link"
+                      onClick={this.props.onClose}
+                    >
+                      {cancelText}
+                    </Button>
                   )}
-                </div>
-              )}
+                {!hideConfirm && (
+                  <a href={this.props.url || null} target="_blank">
+                    <Button
+                      className={'mr-4 ' + (doneDisabled && 'disabled')}
+                      type="quaternary"
+                      onClick={doneDisabled || this.props.onDone}
+                      dataCy="modal-done-btn"
+                    >
+                      {doneText}
+                    </Button>
+                  </a>
+                )}
+              </div>
+            }
           </div>
         </div>
       </div>

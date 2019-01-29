@@ -26,13 +26,23 @@ import Styleguide from './components/Styleguide/Styleguide.component';
 import FeedbackButton from './components/general/FeedbackButton.component';
 import Footer from './components/general/Footer.component';
 import Article from './components/article/Article.component';
+import {OPEN_MODAL} from './redux/modal.reducer';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {didShowCookieModal: false};
+  }
   componentWillMount() {
-    this.props.dispatch({type: ON_USER_DETAILS_REQUEST});
+    this.props.userDetailsRequest();
   }
 
   render() {
+    if (!navigator.cookieEnabled && !this.state.didShowCookieModal) {
+      this.props.cookieModal();
+      this.setState({didShowCookieModal: true});
+    }
+
     const path = this.props.routerState.path;
     const pathSplit = path.split('/');
 
@@ -115,13 +125,40 @@ class App extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    routerState: state.routerReducer,
+    beltsState: state.beltsReducer,
+    user: state.userReducer
+  };
+};
+
+export const mapDispatchToProps = dispatch => ({
+  userDetailsRequest: () => dispatch({type: ON_USER_DETAILS_REQUEST}),
+  cookieModal: () => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'confirm',
+      context: {
+        title: 'COOKIES ER SLÅET FRA',
+        reason:
+          'Din browser tillader ikke cookies, og det betyder, at dele af Læsekompas.dk ikke vil virke. ' +
+          'Vi anbefaler, at du ændrer indstillingen i din browser og tillader cookies, så du kan få den fulde oplevelse og de bedste boganbefalinger her på siden.',
+        confirmText: 'Ok',
+        hideCancel: true,
+        onConfirm: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        }
+      }
+    });
+  }
+});
 export default connect(
   // Map redux state to props
-  state => {
-    return {
-      routerState: state.routerReducer,
-      beltsState: state.beltsReducer,
-      user: state.userReducer
-    };
-  }
+  mapStateToProps,
+  mapDispatchToProps
 )(App);
