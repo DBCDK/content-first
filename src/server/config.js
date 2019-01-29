@@ -68,7 +68,8 @@ exports.recompass = {
 
 exports.matomo = {
   url: process.env.REACT_APP_MATOMO_SERVER,
-  siteId: process.env.REACT_APP_MATOMO_DATA_SITE_ID
+  siteId: process.env.REACT_APP_MATOMO_DATA_SITE_ID,
+  aid: process.env.REACT_APP_MATOMO_AID
 };
 
 exports.server = {
