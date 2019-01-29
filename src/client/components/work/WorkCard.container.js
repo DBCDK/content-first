@@ -96,6 +96,7 @@ class WorkCard extends React.Component {
         <BookmarkButton
           origin={this.props.origin}
           work={this.props.work}
+          rid={this.props.rid}
           layout="teardrop"
           style={{position: 'absolute', right: 0, top: 0}}
           dataCy="bookmarkBtn"
