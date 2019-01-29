@@ -26,7 +26,7 @@ class TopBarDropdown extends React.Component {
 
     return (
       <ul className={'Topbar__dropdown abort-closeDopdown ' + state}>
-        <div className="Topbar__dropdown__caret"/>
+        <div className="Topbar__dropdown__caret" />
         <li>
           <Link href="/profile" onClick={this.props.onClick}>
             <span>Min profil</span>
@@ -37,7 +37,7 @@ class TopBarDropdown extends React.Component {
             <span>Lister</span>
           </Link>
         </li>
-        <li className="divider"/>
+        <li className="divider" />
         <li
           onClick={() => {
             this.props.logout();
@@ -165,7 +165,7 @@ export class TopBar extends React.Component {
           href="/huskeliste"
           className="Topbar__navigation__btn d-flex d-md-none widthCalc"
         >
-          <Icon name="bookmark_border"/>
+          <Icon name="bookmark_border" />
           <span
             className="short-badge"
             style={{padding: 0, marginLeft: '-9px'}}
@@ -180,7 +180,7 @@ export class TopBar extends React.Component {
           }
           dataCy="topbar-shortlist"
         >
-          <Icon name="bookmark_border"/>
+          <Icon name="bookmark_border" />
         </ShortListDropDown>
       </React.Fragment>
     );
@@ -196,7 +196,7 @@ export class TopBar extends React.Component {
         }
         dataCy="topbar-lists"
       >
-        <Icon name="list"/>
+        <Icon name="list" />
         <span>Lister</span>
       </ListOverviewDropDown>
     );
@@ -223,18 +223,18 @@ export class TopBar extends React.Component {
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
         {searchPage &&
-        searchExpanded && (
-          <div className="Topbar__mobile__overlay d-block d-sm-none">
+          searchExpanded && (
+            <div className="Topbar__mobile__overlay d-block d-sm-none">
               <span onClick={() => this.toggleSearchBar('close')}>
-                <Icon name="chevron_left"/> Tilbage
+                <Icon name="chevron_left" /> Tilbage
               </span>
-            <span
-              onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
-            >
+              <span
+                onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
+              >
                 Nulstil
               </span>
-          </div>
-        )}
+            </div>
+          )}
 
         <nav className="col-12 col-m-8 Topbar__navigation">
           {searchExpanded && (
@@ -254,14 +254,14 @@ export class TopBar extends React.Component {
             className="Topbar__navigation__btn widthCalc d-none d-md-flex"
             style={border}
           >
-            <Icon name="search" onClick={() => this.toggleSearchBar('open')}/>
+            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
             <span className="relative--container">
               <span
                 className="Topbar__SearchBarWrapper"
                 style={{width: searchFieldWidth}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
-                <SearchBar/>
+                <SearchBar />
               </span>
             </span>
             <span
@@ -276,13 +276,12 @@ export class TopBar extends React.Component {
             href="/find"
             className="Topbar__navigation__btn d-i-block d-md-none"
           >
-            <Icon name="search" onClick={() => this.toggleSearchBar('open')}/>
+            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
           </Link>
 
           {shortlist}
 
           {!this.props.user.isLoggedIn && (
-
             <Link
               href={'/v1/auth/login'}
               type={HISTORY_PUSH_FORCE_REFRESH}
@@ -293,7 +292,6 @@ export class TopBar extends React.Component {
             </Link>
           )}
           {this.props.user.isLoggedIn && (
-
             <React.Fragment>
               {userLists}
 
@@ -311,19 +309,25 @@ export class TopBar extends React.Component {
                 className="Topbar__navigation__btn abort-closeDopdown d-flex d-sm-none"
                 onClick={() => this.toggleDropdown()}
               >
-                <Icon name="menu" className="Topbar__burger"/>
+                <Icon name="menu" className="Topbar__burger" />
               </span>
             </React.Fragment>
           )}
-          <div className="Topbar__overlay"/>
+          <div className="Topbar__overlay" />
         </nav>
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
           <div className="d-block d-sm-none d-inline-flex">
-            {isSpecialIndex && (<object
-              type="image/svg+xml"
-              data="img/general/dibliofigur.svg"
-              style={{height: '28px', 'margin-top': '1px', 'margin-right': '7px'}}
-            />)}
+            {isSpecialIndex && (
+              <object
+                type="image/svg+xml"
+                data="img/general/dibliofigur.svg"
+                style={{
+                  height: '28px',
+                  'margin-top': '1px',
+                  'margin-right': '7px'
+                }}
+              />
+            )}
             <div>
               <Text className="m-0" type="large">
                 Læsekompas
@@ -340,7 +344,11 @@ export class TopBar extends React.Component {
                 <object
                   type="image/svg+xml"
                   data="img/general/dibliofigur.svg"
-                  style={{height: '30px', 'margin-top': '4px', 'margin-right': '7px'}}
+                  style={{
+                    height: '30px',
+                    'margin-top': '4px',
+                    'margin-right': '7px'
+                  }}
                 />
               )}
 
@@ -353,31 +361,29 @@ export class TopBar extends React.Component {
                     BETA
                   </Text>
                   {!searchExpanded &&
-                  ((isIndex && isMobileOnly) || !isMobileOnly) && (
-                    <div className="d-inline-flex">
-                      <div
-                        className="d-none d-sm-inline logo-beta-text Text__small"
-                      >
-                        {this.props.stats.books &&
-                        `Nu ${this.props.stats.books.total} ` +
-                        (this.props.stats.books.total === 1
-                          ? 'bog. '
-                          : 'bøger. ')}
-                        <Text
-                          className="d-inline logo-beta-link mb0"
-                          type="small"
-                          variant="decoration-underline"
-                          onClick={e => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            this.props.betaModal();
-                          }}
-                        >
-                          {'Læs mere'}
-                        </Text>
+                    ((isIndex && isMobileOnly) || !isMobileOnly) && (
+                      <div className="d-inline-flex">
+                        <div className="d-none d-sm-inline logo-beta-text Text__small">
+                          {this.props.stats.books &&
+                            `Nu ${this.props.stats.books.total} ` +
+                              (this.props.stats.books.total === 1
+                                ? 'bog. '
+                                : 'bøger. ')}
+                          <Text
+                            className="d-inline logo-beta-link mb0"
+                            type="small"
+                            variant="decoration-underline"
+                            onClick={e => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              this.props.betaModal();
+                            }}
+                          >
+                            {'Læs mere'}
+                          </Text>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
               </div>
             </div>
