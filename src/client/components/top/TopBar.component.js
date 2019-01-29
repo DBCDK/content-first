@@ -218,7 +218,8 @@ export class TopBar extends React.Component {
     const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
 
     const isIndex = this.props.router.path === '/' ? true : false;
-
+    const pathSplit = this.props.router.path.split('/');
+    const isSpecialIndex = pathSplit.length < 3 ? true : false;
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
         {searchPage &&
@@ -242,7 +243,7 @@ export class TopBar extends React.Component {
                 <div className="Topbar__navigation__btn Topbar__icon">
                   <img
                     type="image/svg+xml"
-                    src="img/general/dibliofigur.svg"
+                    src="/img/general/dibliofigur.svg"
                     style={{height: '25px'}}
                   />
                 </div>
@@ -316,11 +317,17 @@ export class TopBar extends React.Component {
         </nav>
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
           <div className="d-block d-sm-none d-inline-flex">
-            <object
-              type="image/svg+xml"
-              data="img/general/dibliofigur.svg"
-              style={{height: '28px', margin: '3px'}}
-            />
+            {isSpecialIndex && (
+              <object
+                type="image/svg+xml"
+                data="img/general/dibliofigur.svg"
+                style={{
+                  height: '28px',
+                  'margin-top': '1px',
+                  'margin-right': '7px'
+                }}
+              />
+            )}
             <div>
               <Text className="m-0" type="large">
                 Læsekompas
@@ -333,11 +340,18 @@ export class TopBar extends React.Component {
 
           <div className="d-none d-sm-block">
             <div className="d-inline-flex">
-              <object
-                type="image/svg+xml"
-                data="img/general/dibliofigur.svg"
-                style={{height: '30px', margin: '6px'}}
-              />
+              {isSpecialIndex && (
+                <object
+                  type="image/svg+xml"
+                  data="img/general/dibliofigur.svg"
+                  style={{
+                    height: '30px',
+                    'margin-top': '4px',
+                    'margin-right': '7px'
+                  }}
+                />
+              )}
+
               <div>
                 <Title className="mb-0" Tag="h1" type="title4">
                   Læsekompas
@@ -349,10 +363,7 @@ export class TopBar extends React.Component {
                   {!searchExpanded &&
                     ((isIndex && isMobileOnly) || !isMobileOnly) && (
                       <div className="d-inline-flex">
-                        <Text
-                          className="d-none d-sm-inline logo-beta-text"
-                          type="small"
-                        >
+                        <div className="d-none d-sm-inline logo-beta-text Text__small">
                           {this.props.stats.books &&
                             `Nu ${this.props.stats.books.total} ` +
                               (this.props.stats.books.total === 1
@@ -370,7 +381,7 @@ export class TopBar extends React.Component {
                           >
                             {'Læs mere'}
                           </Text>
-                        </Text>
+                        </div>
                       </div>
                     )}
                 </div>
