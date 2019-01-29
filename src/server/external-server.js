@@ -13,6 +13,7 @@ const database = require('server/database');
 const authenticator = require('server/authenticator');
 const login = require('server/login');
 const {recompasTags, recompasWork} = require('server/recompas');
+const matomo = require('server/matomo');
 const generatingServiceStatus = require('__/services/service-status');
 
 const isProduction = config.server.environment === 'production';
@@ -42,6 +43,8 @@ if (!isProduction) {
     next();
   });
 }
+
+matomo.trackDataEvent('info', {app: 'content-first', isProduction});
 
 // Auto-parse request bodies in JSON format.
 const parser = require('body-parser');

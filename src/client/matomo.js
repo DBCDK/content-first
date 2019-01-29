@@ -3,6 +3,7 @@ import {debounce} from 'lodash';
 const server = process.env.REACT_APP_MATOMO_SERVER;
 const siteId = process.env.REACT_APP_MATOMO_SITE_ID;
 const dataSiteId = process.env.REACT_APP_MATOMO_DATA_SITE_ID;
+const aid = process.env.REACT_APP_MATOMO_AID;
 let matomoEnabled = false;
 let currentUrl;
 let dataTracker;
@@ -56,7 +57,7 @@ export const trackDataEvent = (action, data) => {
       dataTracker = window.Piwik.getTracker();
       dataTracker.setSiteId(dataSiteId);
     }
-    dataTracker.trackEvent('data', action, JSON.stringify(data));
+    dataTracker.trackEvent('data', action, JSON.stringify({...data, aid}));
   }
 };
 

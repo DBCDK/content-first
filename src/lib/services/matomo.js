@@ -14,9 +14,10 @@ const {debounce} = require('lodash');
  * to store a stringified JSON.
  */
 class MatomoClient {
-  constructor(matomoUrl, siteId, logger, debounceWaitMs = 2000) {
+  constructor(matomoUrl, siteId, applicationId, logger, debounceWaitMs = 2000) {
     this.matomoUrl = matomoUrl;
     this.siteId = siteId;
+    this.aid = applicationId;
     this.logger = logger;
     this.queue = [];
     this._postEvents = debounce(this._postEvents, debounceWaitMs, {
@@ -50,7 +51,7 @@ class MatomoClient {
     const uri = `?idsite=${
       this.siteId
     }&rec=1&e_c=data&e_a=${action}&e_n=${encodeURIComponent(
-      JSON.stringify(data)
+      JSON.stringify(Object.assign({}, data, {aid: this.aid}))
     )}`;
     this.queue.push(uri);
     this._postEvents();
