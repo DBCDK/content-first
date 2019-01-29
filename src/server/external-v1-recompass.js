@@ -1,9 +1,11 @@
 'use strict';
 
 const express = require('express');
+const uuidGenerator = require('uuid');
 const router = express.Router({mergeParams: true});
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {recompasWork, recompasTags} = require('server/recompas');
+const matomo = require('server/matomo');
 
 router
   .route('/')
@@ -13,7 +15,6 @@ router
   .get(
     asyncMiddleware(async (req, res, next) => {
       const recommender = req.query.recommender;
-
       if (recommender) {
         switch (recommender) {
           case 'recompasTags': {
@@ -44,6 +45,8 @@ router
                 creators: creators,
                 maxresults: parseInt(maxresults, 10)
               });
+              result.rid = uuidGenerator.v1();
+              matomo.trackDataEvent('recommend', result);
 
               return res.status(200).json(result);
             } catch (e) {
@@ -74,6 +77,9 @@ router
                 dislikes: JSON.parse(dislikes),
                 limit: Number(limit)
               });
+              result.rid = uuidGenerator.v1();
+              matomo.trackDataEvent('recommend', result);
+
               return res.status(200).json(result);
             } catch (e) {
               return res.status(500).end(e.message);
