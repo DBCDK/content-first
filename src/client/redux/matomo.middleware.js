@@ -8,8 +8,9 @@ import {
   BELT_TAG_CLICK
 } from './belts.reducer';
 import {ON_LOCATION_CHANGE} from './router.reducer';
+import {MATOMO_RID} from './matomo.reducer';
 
-export const matomoMiddleware = () => next => action => {
+export const matomoMiddleware = store => next => action => {
   switch (action.type) {
     case ADD_BELT: {
       if (get(action, 'belt.key', '').startsWith('filterpage')) {
@@ -23,10 +24,12 @@ export const matomoMiddleware = () => next => action => {
         trackEvent(category, a, name);
 
         if (get(action, 'belt.type') === 'preview') {
+          const pid = get(action, 'belt.pid', 'unknown');
           trackDataEvent('preview', {
-            pid: get(action, 'belt.pid', 'unknown'),
+            pid,
             rid: action.rid
           });
+          store.dispatch({type: MATOMO_RID, key: pid, rid: action.rid});
         }
       }
       return next(action);
@@ -45,10 +48,12 @@ export const matomoMiddleware = () => next => action => {
       trackEvent(category, a, name, val);
 
       if (get(action, 'childBelt.type') === 'preview') {
+        const pid = get(action, 'childBelt.pid', 'unknown');
         trackDataEvent('preview', {
-          pid: get(action, 'childBelt.pid', 'unknown'),
+          pid,
           rid: action.rid
         });
+        store.dispatch({type: MATOMO_RID, key: pid, rid: action.rid});
       }
       return next(action);
     }
@@ -75,11 +80,13 @@ export const matomoMiddleware = () => next => action => {
     }
     case ON_LOCATION_CHANGE: {
       const path = action.path;
+
       if (path.startsWith('/værk/')) {
         const pid = path.slice(6, path.length);
+        const rid = store.getState().matomo.rids[pid];
         trackDataEvent('workView', {
-          pid
-          // rid: action.rid
+          pid,
+          rid
         });
       }
 
