@@ -23,6 +23,7 @@ export const getRecommendedBooks = (state, tags, max = 100) => {
   result.isLoading = booksAreLoading;
   result.pids = booksAreLoading ? [] : applyClientSideFilters(books, tags);
   result.pids = result.pids.map(b => b.book.pid).slice(0, max);
+  result.rid = recommendedPids.rid;
 
   return result;
 };

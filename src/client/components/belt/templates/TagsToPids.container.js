@@ -38,15 +38,14 @@ export class TagsToPids extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const excluded = ownProps.excluded || [];
   const plainSelectedTagIds = getIdsFromRange(state, ownProps.tags);
-  const recommendations = difference(
-    getRecommendedPids(state.recommendReducer, {
-      tags: plainSelectedTagIds
-    }).pids,
-    excluded
-  ).slice(0, 20);
+  let {pids, rid} = getRecommendedPids(state.recommendReducer, {
+    tags: plainSelectedTagIds
+  });
+  pids = difference(pids, excluded).slice(0, 20);
 
   return {
-    recommendations
+    recommendations: pids,
+    rid
   };
 };
 
