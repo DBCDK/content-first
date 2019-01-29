@@ -12,6 +12,7 @@ import {ON_LOCATION_CHANGE} from './router.reducer';
 import {MATOMO_RID} from './matomo.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from './shortlist.reducer';
 import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST} from './list.reducer';
+import {ORDER_SUCCESS} from './order.reducer';
 import {HISTORY_NEW_TAB} from './middleware';
 
 export const matomoMiddleware = store => next => action => {
@@ -145,6 +146,15 @@ export const matomoMiddleware = store => next => action => {
           rid
         });
       }
+      return next(action);
+    }
+    case ORDER_SUCCESS: {
+      const pid = action.pid;
+      const rid = store.getState().matomo.rids[pid];
+      trackDataEvent('order', {
+        pid,
+        rid
+      });
       return next(action);
     }
 
