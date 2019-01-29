@@ -459,7 +459,8 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       type: ADD_CHILD_BELT,
       parentBelt,
       childBelt,
-      workPosition
+      workPosition,
+      rid: ownProps.rid
     });
   },
   titleClick: () => {

@@ -1,4 +1,4 @@
-import {trackEvent} from '../matomo';
+import {trackEvent, trackDataEvent} from '../matomo';
 import {get} from 'lodash';
 import {
   ADD_CHILD_BELT,
@@ -20,6 +20,13 @@ export const matomoMiddleware = () => next => action => {
             : 'beltMoreLikeThis';
         const name = `pid:${get(action, 'belt.pid', 'unknown')}`;
         trackEvent(category, a, name);
+
+        if (get(action, 'belt.type') === 'preview') {
+          trackDataEvent('preview', {
+            pid: get(action, 'belt.pid', 'unknown'),
+            rid: action.rid
+          });
+        }
       }
       return next(action);
     }
@@ -35,6 +42,13 @@ export const matomoMiddleware = () => next => action => {
       const name = `pid:${get(action, 'childBelt.pid', 'unknown')}`;
       const val = action.workPosition;
       trackEvent(category, a, name, val);
+
+      if (get(action, 'childBelt.type') === 'preview') {
+        trackDataEvent('preview', {
+          pid: get(action, 'childBelt.pid', 'unknown'),
+          rid: action.rid
+        });
+      }
       return next(action);
     }
     case BELT_SCROLL: {

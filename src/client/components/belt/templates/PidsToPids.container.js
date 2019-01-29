@@ -44,15 +44,14 @@ export class PidsToPids extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const excluded = ownProps.excluded || [];
-  const recommendations = difference(
-    getWorkRecommendedPids(state.recommendReducer, {
-      likes: ownProps.likes
-    }).pids,
-    excluded
-  ).slice(0, 20);
+  let {pids, rid} = getWorkRecommendedPids(state.recommendReducer, {
+    likes: ownProps.likes
+  });
+  pids = difference(pids, excluded).slice(0, 20);
 
   return {
-    recommendations
+    recommendations: pids,
+    rid
   };
 };
 

@@ -46,7 +46,10 @@ router
                 maxresults: parseInt(maxresults, 10)
               });
               result.rid = uuidGenerator.v1();
-              matomo.trackDataEvent('recommend', result);
+              matomo.trackDataEvent(
+                'recommend',
+                Object.assign({}, result, {request: req.query})
+              );
 
               return res.status(200).json(result);
             } catch (e) {
@@ -78,7 +81,10 @@ router
                 limit: Number(limit)
               });
               result.rid = uuidGenerator.v1();
-              matomo.trackDataEvent('recommend', result);
+              matomo.trackDataEvent(
+                'recommend',
+                Object.assign({}, result, {request: req.query})
+              );
 
               return res.status(200).json(result);
             } catch (e) {

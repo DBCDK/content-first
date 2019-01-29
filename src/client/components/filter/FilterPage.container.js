@@ -198,7 +198,7 @@ class FilterPage extends React.Component {
     }
 
     if (!belt || !samePidClicked || !sameTypeClicked) {
-      this.props.addBelt(newBelt);
+      this.props.addBelt(newBelt, this.props.rid);
       this.props.scrollToComponent(newBelt.key);
     }
   }
@@ -410,6 +410,7 @@ const mapStateToProps = state => {
   const recommendedPids = getRecommendedBooks(state, plainSelectedTagIds, 300);
 
   return {
+    rid: recommendedPids.rid,
     recommendedPids: results || recommendedPids,
     filterCards,
     selectedCreators,
@@ -448,10 +449,11 @@ export const mapDispatchToProps = dispatch => ({
     }),
   addPin: belt => dispatch(storeBelt(belt)),
   removePin: belt => dispatch(removeBelt(belt)),
-  addBelt: belt => {
+  addBelt: (belt, rid) => {
     dispatch({
       type: ADD_BELT,
-      belt
+      belt,
+      rid
     });
   },
   removeBelt: belt => {
