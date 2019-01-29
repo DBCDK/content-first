@@ -115,6 +115,7 @@ describe('Endpoint /v1/recommendations', () => {
       return webapp
         .get(url)
         .expect(res => {
+          delete res.body.rid;
           expect(res.body).to.deep.equal(mockResponse);
         })
         .expect(200);
