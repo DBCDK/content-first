@@ -220,6 +220,7 @@ export class TopBar extends React.Component {
     const isIndex = this.props.router.path === '/' ? true : false;
     const pathSplit = this.props.router.path.split('/');
     const isSpecialIndex = pathSplit.length < 3 ? true : false;
+
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
         {searchPage &&
@@ -238,13 +239,14 @@ export class TopBar extends React.Component {
 
         <nav className="col-12 col-m-8 Topbar__navigation">
           {searchExpanded && (
-            <div className="Topbar__special">
+            <div>
               <Link href="/">
-                <div className="Topbar__navigation__btn Topbar__icon">
+                <div className="Topbar__special widthCalc">
                   <img
                     type="image/svg+xml"
+                    alt=""
                     src="/img/general/dibliofigur.svg"
-                    style={{height: '25px'}}
+                    style={{height: '28px'}}
                   />
                 </div>
               </Link>
@@ -323,13 +325,13 @@ export class TopBar extends React.Component {
                 data="img/general/dibliofigur.svg"
                 style={{
                   height: '28px',
-                  'margin-top': '1px',
-                  'margin-right': '7px'
+                  marginTop: '1px',
+                  marginRight: '7px'
                 }}
               />
             )}
             <div>
-              <Text className="m-0" type="large">
+              <Text className="m-0" type="large" style={{lineHeight: '1.25rem'}}>
                 Læsekompas
               </Text>
               <Text className="logo-beta-sign mb-0" type="micro">
@@ -345,15 +347,15 @@ export class TopBar extends React.Component {
                   type="image/svg+xml"
                   data="img/general/dibliofigur.svg"
                   style={{
-                    height: '30px',
-                    'margin-top': '4px',
-                    'margin-right': '7px'
+                    height: '28px',
+                    marginTop: '6px',
+                    marginRight: '7px'
                   }}
                 />
               )}
 
               <div>
-                <Title className="mb-0" Tag="h1" type="title4">
+                <Title className="mb-0" Tag="h1" type="title4" >
                   Læsekompas
                 </Title>
                 <div className="logo-beta-wrap d-flex position-relative">
