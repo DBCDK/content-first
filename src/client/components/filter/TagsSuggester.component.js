@@ -268,7 +268,6 @@ class TagsSuggester extends React.Component {
   }
 
   render() {
-
     const inputVisibel = this.state.inputVisibel;
     const tagsInField = this.props.selectedFilters.length === 0 ? false : true;
     const inputVisibelClass = inputVisibel || !tagsInField ? '' : '';
@@ -279,7 +278,9 @@ class TagsSuggester extends React.Component {
     const inputProps = {
       id: 'Searchbar__inputfield',
       type: 'search',
-      placeholder: this.props.selectedFilters.length?'':'Søg på stemning, sted eller stil...',
+      placeholder: this.props.selectedFilters.length
+        ? ''
+        : 'Søg på stemning, sted eller stil...',
       className: 'form-control suggestion-list__search ' + inputVisibelClass,
       value: this.props.value || '',
       onChange: this.props.onChange,
