@@ -119,7 +119,7 @@
     "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js",
     "cy:run": "cypress run --browser chrome",
     "cy:open": "cypress open",
-    "version": "auto-changelog -p && git add CHANGELOG.md"
+    "version": "auto-changelog --package --commit-limit 0 && git add CHANGELOG.md"
   },
   "jest": {
     "snapshotSerializers": [
