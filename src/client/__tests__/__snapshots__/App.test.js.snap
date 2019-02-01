@@ -223,12 +223,13 @@ exports[`renders without crashing 1`] = `
           className="d-block d-sm-none d-inline-flex"
         >
           <object
-            data="img/general/dibliofigur.svg"
+            data="/img/general/dibliofigur.svg"
             style={
               Object {
                 "height": "28px",
                 "marginRight": "7px",
                 "marginTop": "1px",
+                "pointer-events": "none",
               }
             }
             type="image/svg+xml"
@@ -258,12 +259,13 @@ exports[`renders without crashing 1`] = `
             className="d-inline-flex"
           >
             <object
-              data="img/general/dibliofigur.svg"
+              data="/img/general/dibliofigur.svg"
               style={
                 Object {
                   "height": "28px",
                   "marginRight": "7px",
                   "marginTop": "6px",
+                  "pointer-events": "none",
                 }
               }
               type="image/svg+xml"
