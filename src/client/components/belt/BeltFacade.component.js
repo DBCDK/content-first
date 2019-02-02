@@ -2,7 +2,7 @@ import React from 'react';
 
 import WorkPreview from '../work/WorkPreview.component';
 import PidsToPids from './book/PidsToPids.component';
-import InteractionsBelt from './book/InteractionsToPids.component';
+import InteractionsToPids from './book/InteractionsToPids.component';
 import TagsToPids from './book/TagsToPids.component';
 
 const BeltFacade = ({belt, ...props}) => {
@@ -12,7 +12,7 @@ const BeltFacade = ({belt, ...props}) => {
 
   if (belt.name === 'Bedste forslag') {
     return (
-      <InteractionsBelt
+      <InteractionsToPids
         {...props}
         key={belt.key}
         belt={belt}
