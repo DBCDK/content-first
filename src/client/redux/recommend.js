@@ -1,6 +1,7 @@
+import {createSelector} from 'reselect';
 import librarianRecommends from '../../data/librarian-recommends.json';
 import request from 'superagent';
-import {uniq} from 'lodash';
+import {uniq, difference} from 'lodash';
 import {filtersMapAll} from './filter.reducer';
 import {BOOKS_REQUEST} from './books.reducer';
 
@@ -84,6 +85,39 @@ const recommendReducer = (state = defaultState, action) => {
       return state;
   }
 };
+
+const emptyResponse = {isLoading: false, pids: []};
+export const createGetRecommendedPids = () =>
+  createSelector(
+    [
+      (state, {tags}) =>
+        state.recommendReducer.recommendations[key([...tags])] || emptyResponse,
+      (state, {excluded}) => excluded
+    ],
+    (recommendations, excluded) => {
+      recommendations.pids = difference(recommendations.pids, excluded).slice(
+        0,
+        20
+      );
+      return recommendations;
+    }
+  );
+
+export const createWorkRecommendedPids = () =>
+  createSelector(
+    [
+      (state, {likes}) =>
+        state.recommendReducer.workRecommendations[key(likes)] || emptyResponse,
+      (state, {excluded}) => excluded
+    ],
+    (recommendations, excluded) => {
+      recommendations.pids = difference(recommendations.pids, excluded).slice(
+        0,
+        20
+      );
+      return recommendations;
+    }
+  );
 
 export const getRecommendedPids = (state, {tags = [], creators = []}) => {
   const k = key([...tags, ...creators]);
