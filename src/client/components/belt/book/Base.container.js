@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import VisibilitySensor from 'react-visibility-sensor';
 import {isMobileOnly} from 'react-device-detect';
 import Textarea from 'react-textarea-autosize';
 import WorkCard from '../../work/WorkCard.container';
@@ -27,6 +26,7 @@ import {
 import {SCROLL_TO_COMPONENT} from '../../../redux/scrollToComponent';
 import {getIdsFromRange, getTagsbyIds} from '../../../redux/selectors';
 import Link from '../../general/Link.component';
+import withScrollToComponent from '../../base/scroll/withScrollToComponent.hoc';
 
 import '../belt.css';
 
@@ -103,7 +103,7 @@ export class BooksBelt extends React.Component {
       nextProps.belt !== this.props.belt ||
       nextProps.recommendations !== this.props.recommendations ||
       nextState.didSwipe !== this.state.didSwipe ||
-      nextState.visible !== this.state.visible
+      nextProps.isVisible !== this.props.isVisible
     );
   }
 
@@ -168,12 +168,6 @@ export class BooksBelt extends React.Component {
     this.handleChildBelts(parentBelt, newBelt, workPosition);
   }
 
-  onVisibilityChange = visible => {
-    if (visible) {
-      this.setState({visible});
-    }
-  };
-
   onEditBeltClick() {
     const belt = this.props.belt;
     this.props.editBelt(belt);
@@ -237,200 +231,194 @@ export class BooksBelt extends React.Component {
 
     const border = showTags ? 'border-right-sm-1 ' : '';
     const pids =
-      recommendations.length > 0 && this.state.visible
+      recommendations.length > 0 && this.props.isVisible
         ? recommendations
         : skeletonElements;
 
     return (
-      <VisibilitySensor
-        onChange={this.onVisibilityChange}
-        partialVisibility={true}
-      >
-        <React.Fragment>
-          <div
-            id={`temp_${plainSelectedTagIds.map(v => v.id || v).join('')}`}
-            className="belt text-left mt-5 mt-sm-4 row position-relative"
-            ref={beltWrap => (this.refs = {...this.refs, beltWrap})}
-          >
-            {_owner && <EditBelt onClick={() => this.onEditBeltClick()} />}
-            <div className="p-0 col-12">
-              <div className="header row d-flex flex-nowrap">
-                {_owner && (
-                  <div className=" d-none d-sm-block logo-circle ml-2" />
-                )}
-                {_owner && editing ? (
-                  <div className="d-flex flex-wrap col-12 col-sm-10">
-                    <Textarea
-                      className={`${titleMissingClass} ${border} col-12 col-sm-6 p-0 pl-1 border-right-xs-0 mr-2 mb0 mt-3 Title Title__title4 Title__title4--transform-uppercase`}
-                      name="belt-name"
-                      placeholder={'Husk at give båndet en overskrift'}
-                      onChange={this.onTitleChange}
-                      rows={1}
-                      value={name}
-                    />
-                    {showTags && (
-                      <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
-                        {plainSelectedTags.map((t, idx) => {
-                          return (
-                            <Tag
-                              tag={t}
-                              isLast={idx === plainSelectedTags.length - 1}
-                              onClick={() => this.props.tagClick(t)}
-                            />
-                          );
-                        })}
-                      </div>
-                    )}
-                    <Textarea
-                      className={`${subtextMissingClass} col-12 p-0 pl-1 mt1 mb0 Title Title__title5`}
-                      name="belt-description"
-                      placeholder="Giv din gemte søgning en beskrivelse"
-                      onChange={this.onSubtextChange}
-                      value={subtext}
-                    />
-                    <div
-                      div
-                      className="d-flex w-100 w-sm-auto flex-row-reverse flex-sm-row"
-                    >
-                      <Button
-                        type="quaternary"
-                        size="medium"
-                        className="mr-0 mr-sm-4 ml-2 ml-sm-0 mt-2 mb-2 mt-sm-4 mb-sm-4"
-                        onClick={!titleMissing && onSaveEdit}
-                      >
-                        {'Gem ændringer'}
-                      </Button>
-                      <Button
-                        type="link"
-                        size="medium"
-                        className="mr-2 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
-                        onClick={this.onCancelEdit}
-                      >
-                        {'Fortryd'}
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="pl-0 d-flex flex-wrap mw-100">
-                    <Link
-                      href="/find"
-                      params={{
-                        tags: selectedTags
-                          .map(
-                            t =>
-                              t instanceof Array ? t.map(aT => aT.id) : t.id
-                          )
-                          .join(',')
-                      }}
-                      onClick={this.props.titleClick}
-                    >
-                      <Title
-                        Tag="h1"
-                        type="title4"
-                        variant="transform-uppercase"
-                        className={
-                          border +
-                          ' inline border-right-xs-0 pr2 pb0 pt0 ml-2 ml-sm-3 mr-2 mr-sm-3 mb0'
-                        }
-                      >
-                        {name.split(' ').map((word, idx) => {
-                          if (idx === 0) {
-                            return <strong key={idx}>{word}</strong>;
-                          }
-                          return ' ' + word;
-                        })}
-                        {_owner && (
-                          <Pin
-                            className="d-inline ml-2"
-                            active={true}
-                            onClick={e => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              removePin(belt);
-                            }}
+      <React.Fragment>
+        <div
+          id={`temp_${plainSelectedTagIds.map(v => v.id || v).join('')}`}
+          className="belt text-left mt-5 mt-sm-4 row position-relative"
+          ref={beltWrap => (this.refs = {...this.refs, beltWrap})}
+        >
+          {_owner && <EditBelt onClick={() => this.onEditBeltClick()} />}
+          <div className="p-0 col-12">
+            <div className="header row d-flex flex-nowrap">
+              {_owner && (
+                <div className=" d-none d-sm-block logo-circle ml-2" />
+              )}
+              {_owner && editing ? (
+                <div className="d-flex flex-wrap col-12 col-sm-10">
+                  <Textarea
+                    className={`${titleMissingClass} ${border} col-12 col-sm-6 p-0 pl-1 border-right-xs-0 mr-2 mb0 mt-3 Title Title__title4 Title__title4--transform-uppercase`}
+                    name="belt-name"
+                    placeholder={'Husk at give båndet en overskrift'}
+                    onChange={this.onTitleChange}
+                    rows={1}
+                    value={name}
+                  />
+                  {showTags && (
+                    <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
+                      {plainSelectedTags.map((t, idx) => {
+                        return (
+                          <Tag
+                            tag={t}
+                            isLast={idx === plainSelectedTags.length - 1}
+                            onClick={() => this.props.tagClick(t)}
                           />
-                        )}
-                      </Title>
-                    </Link>
-                    {showTags && (
-                      <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
-                        {plainSelectedTags.map((t, idx) => {
-                          return (
-                            <Tag
-                              tag={t}
-                              key={idx}
-                              isLast={idx === plainSelectedTags.length - 1}
-                              onClick={() => this.props.tagClick(t)}
-                            />
-                          );
-                        })}
-                      </div>
-                    )}
-                    {subtext && (
-                      <div className="w-100 w-sm-auto d-block">
-                        <Title
-                          Tag="h3"
-                          type="title5"
-                          className="ml-2 ml-sm-3 mr-2 mr-sm-3 mt-2 mb-0"
-                        >
-                          {subtext}
-                        </Title>
-                      </div>
-                    )}
+                        );
+                      })}
+                    </div>
+                  )}
+                  <Textarea
+                    className={`${subtextMissingClass} col-12 p-0 pl-1 mt1 mb0 Title Title__title5`}
+                    name="belt-description"
+                    placeholder="Giv din gemte søgning en beskrivelse"
+                    onChange={this.onSubtextChange}
+                    value={subtext}
+                  />
+                  <div
+                    div
+                    className="d-flex w-100 w-sm-auto flex-row-reverse flex-sm-row"
+                  >
+                    <Button
+                      type="quaternary"
+                      size="medium"
+                      className="mr-0 mr-sm-4 ml-2 ml-sm-0 mt-2 mb-2 mt-sm-4 mb-sm-4"
+                      onClick={!titleMissing && onSaveEdit}
+                    >
+                      {'Gem ændringer'}
+                    </Button>
+                    <Button
+                      type="link"
+                      size="medium"
+                      className="mr-2 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
+                      onClick={this.onCancelEdit}
+                    >
+                      {'Fortryd'}
+                    </Button>
                   </div>
-                )}
-              </div>
+                </div>
+              ) : (
+                <div className="pl-0 d-flex flex-wrap mw-100">
+                  <Link
+                    href="/find"
+                    params={{
+                      tags: selectedTags
+                        .map(
+                          t => (t instanceof Array ? t.map(aT => aT.id) : t.id)
+                        )
+                        .join(',')
+                    }}
+                    onClick={this.props.titleClick}
+                  >
+                    <Title
+                      Tag="h1"
+                      type="title4"
+                      variant="transform-uppercase"
+                      className={
+                        border +
+                        ' inline border-right-xs-0 pr2 pb0 pt0 ml-2 ml-sm-3 mr-2 mr-sm-3 mb0'
+                      }
+                    >
+                      {name.split(' ').map((word, idx) => {
+                        if (idx === 0) {
+                          return <strong key={idx}>{word}</strong>;
+                        }
+                        return ' ' + word;
+                      })}
+                      {_owner && (
+                        <Pin
+                          className="d-inline ml-2"
+                          active={true}
+                          onClick={e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            removePin(belt);
+                          }}
+                        />
+                      )}
+                    </Title>
+                  </Link>
+                  {showTags && (
+                    <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
+                      {plainSelectedTags.map((t, idx) => {
+                        return (
+                          <Tag
+                            tag={t}
+                            key={idx}
+                            isLast={idx === plainSelectedTags.length - 1}
+                            onClick={() => this.props.tagClick(t)}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
+                  {subtext && (
+                    <div className="w-100 w-sm-auto d-block">
+                      <Title
+                        Tag="h3"
+                        type="title5"
+                        className="ml-2 ml-sm-3 mr-2 mr-sm-3 mt-2 mb-0"
+                      >
+                        {subtext}
+                      </Title>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
-              <div className="mt2 row">
-                <Slider
-                  initialScrollPos={scrollPos}
-                  onSwipe={index => {
-                    if (index > 0 && !this.state.didSwipe) {
-                      this.setState({didSwipe: true});
-                    }
-                    if (scrollPos !== index) {
-                      this.props.beltScroll(belt, index);
-                    }
-                  }}
-                >
-                  {pids.map((pid, idx) => {
-                    return (
-                      <WorkCard
-                        className="ml-2 mr-2"
-                        enableHover={true}
-                        highlight={child && child.pid === pid}
-                        allowFetch={
-                          this.state.visible &&
-                          (this.state.didSwipe || idx < fetchInitial)
-                        }
-                        pid={pid}
-                        rid={this.props.rid}
-                        key={pid}
-                        origin={`Fra "${name}"`}
-                        onMoreLikeThisClick={(work, row) =>
-                          this.onMoreLikeThisClick(belt, work, row, idx)
-                        }
-                        onWorkClick={(work, row) => {
-                          this.onWorkClick(belt, work, row, idx);
-                        }}
-                        cardIndex={idx}
-                      />
-                    );
-                  })}
-                </Slider>
-              </div>
+            <div className="mt2 row">
+              <Slider
+                initialScrollPos={scrollPos}
+                onSwipe={index => {
+                  if (index > 0 && !this.state.didSwipe) {
+                    this.setState({didSwipe: true});
+                  }
+                  if (scrollPos !== index) {
+                    this.props.beltScroll(belt, index);
+                  }
+                }}
+              >
+                {pids.map((pid, idx) => {
+                  return (
+                    <WorkCard
+                      className="ml-2 mr-2"
+                      enableHover={true}
+                      highlight={child && child.pid === pid}
+                      allowFetch={
+                        this.props.isVisible &&
+                        (this.state.didSwipe || idx < fetchInitial)
+                      }
+                      pid={pid}
+                      rid={this.props.rid}
+                      key={pid}
+                      origin={`Fra "${name}"`}
+                      onMoreLikeThisClick={(work, row) =>
+                        this.onMoreLikeThisClick(belt, work, row, idx)
+                      }
+                      onWorkClick={(work, row) => {
+                        this.onWorkClick(belt, work, row, idx);
+                      }}
+                      cardIndex={idx}
+                    />
+                  );
+                })}
+              </Slider>
             </div>
           </div>
-          {belt.child &&
-            this.props.childTemplate && (
-              <this.props.childTemplate
-                dataCy="workpreviewCard"
-                belt={belt.child}
-                id={belt.child.key}
-              />
-            )}
-        </React.Fragment>
-      </VisibilitySensor>
+        </div>
+        {belt.child &&
+          this.props.childTemplate && (
+            <this.props.childTemplate
+              dataCy="workpreviewCard"
+              belt={belt.child}
+              id={belt.child.key}
+            />
+          )}
+      </React.Fragment>
     );
   }
 }
@@ -511,4 +499,4 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BooksBelt);
+)(withScrollToComponent(BooksBelt));

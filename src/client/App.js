@@ -85,7 +85,6 @@ class App extends Component {
     if (!currentPage) {
       currentPage = <Article path={`/${pathSplit[1]}`} />;
     }
-
     return (
       <div className="App">
         {topbar ? (
@@ -120,7 +119,6 @@ export default connect(
   state => {
     return {
       routerState: state.routerReducer,
-      beltsState: state.beltsReducer,
       user: state.userReducer
     };
   }

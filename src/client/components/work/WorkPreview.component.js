@@ -20,6 +20,8 @@ import {filterCollection, filterReviews} from './workFunctions';
 import './WorkPreview.css';
 import {SCROLL_TO_COMPONENT} from '../../redux/scrollToComponent';
 
+import withScrollToComponent from '../base/scroll/withScrollToComponent.hoc';
+
 class WorkPreview extends React.Component {
   componentDidMount() {
     this.fetchWork(this.props.pid);
@@ -321,4 +323,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(WorkPreview);
+)(withScrollToComponent(WorkPreview));

@@ -9,7 +9,7 @@ import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import SkeletonText from '../base/Skeleton/Text';
 import SkeletonUser from '../base/Skeleton/User';
-import BooksBelt from '../belt/BooksBelt.component';
+import BeltFacade from '../belt/BeltFacade.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Link from '../general/Link.component';
@@ -392,7 +392,7 @@ class WorkPage extends React.Component {
                 className="WorkPage__beltContainer col-12 mt4"
                 ref={e => (this.booksBeltPosition = e)}
               >
-                <BooksBelt belt={belt} />
+                <BeltFacade belt={belt} />
               </div>
             )}
 
