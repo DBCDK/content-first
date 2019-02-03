@@ -3,8 +3,12 @@ import {connect} from 'react-redux';
 import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 
 /**
- * A HOC that takes a pid as input prop, and injects a work prop in
- * the wrapped component
+ * A HOC that makes the enhanced component take a pid as input prop, download
+ * the corresponding work, and then mapping the work as prop.
+ *
+ * @param {React.Component} WrappedComponent The component to be enhanced
+ * @param {object} params Specifies what work metadata to download
+ * @returns {React.Component} The enhanced component
  *
  * @example
  * // create a pure component
@@ -17,7 +21,6 @@ import {BOOKS_REQUEST} from '../../../redux/books.reducer';
  * // the work may be lazy-loaded using the isVisible prop.
  * // if isVisible=false, the work is not downloaded until isVisible=true
  * <GreatBook pid={'870970-basis:123456'} isVisible={false}/>
- *
  */
 const withWork = (
   WrappedComponent,
