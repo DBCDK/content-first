@@ -11,11 +11,11 @@ import {BOOKS_REQUEST} from '../../../redux/books.reducer';
  * @returns {React.Component} The enhanced component
  *
  * @example
- * // create a pure component
+ * // create a pure component and enhance it
  * const GreatBook = ({work}) => <div>{work.book.title} is a great book</div>;
  * export default withWork(GreatBook, {includeCover: true})
  *
- * // use it like this
+ * // use the enhanced component like this
  * <GreatBook pid={'870970-basis:123456'}/>
  *
  * // the work may be lazy-loaded using the isVisible prop.

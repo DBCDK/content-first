@@ -6,6 +6,26 @@ import {
   createGetRecommendedPids
 } from '../../../redux/recommend';
 
+/**
+ * A HOC that makes the enhanced component take a list of tags as input prop,
+ * download the corresponding recommendations, and then map them as a prop.
+ *
+ * @param {React.Component} WrappedComponent The component to be enhanced
+ * @returns {React.Component} The enhanced component
+ *
+ * @example
+ * // create a pure component and enhance it
+ * const GreatRecommendations = ({recommendations}) =>
+ *  <ul>{recommendations.map(pid => <li>{pid}</li>)}</ul>;
+ * export default withTagsToPids(GreatRecommendations)
+ *
+ * // use the enhanced component like this
+ * <GreatRecommendations tags={[123, 234]}/>
+ *
+ * // the recommendations may be lazy-loaded using the isVisible prop.
+ * // if isVisible=false, recommendations are not downloaded until isVisible=true
+ * <GreatRecommendations tags={[123, 234]} isVisible={false}/>
+ */
 const withTagsToPids = WrappedComponent => {
   const Wrapped = class extends React.Component {
     componentDidMount() {
@@ -17,7 +37,7 @@ const withTagsToPids = WrappedComponent => {
     }
     fetch() {
       if (
-        this.props.isVisible &&
+        (this.props.isVisible || typeof this.props.isVisible === 'undefined') &&
         this.fetched !== this.props.plainSelectedTagIds
       ) {
         this.fetched = this.props.plainSelectedTagIds;
@@ -26,7 +46,6 @@ const withTagsToPids = WrappedComponent => {
     }
 
     render() {
-      // console.log('ima rendering', this.props);
       return <WrappedComponent {...this.props} />;
     }
   };

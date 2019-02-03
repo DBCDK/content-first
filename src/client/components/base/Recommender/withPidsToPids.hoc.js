@@ -5,6 +5,27 @@ import {
   createWorkRecommendedPids
 } from '../../../redux/recommend';
 
+/**
+ * A HOC that makes the enhanced component take a list of likes (pids) as
+ * input prop, download the corresponding recommendations, and then map them
+ * as a prop.
+ *
+ * @param {React.Component} WrappedComponent The component to be enhanced
+ * @returns {React.Component} The enhanced component
+ *
+ * @example
+ * // create a pure component and enhance it
+ * const GreatRecommendations = ({recommendations}) =>
+ *  <ul>{recommendations.map(pid => <li>{pid}</li>)}</ul>;
+ * export default withPidsToPids(GreatRecommendations)
+ *
+ * // use the enhanced component like this
+ * <GreatRecommendations likes={['870970-basis:123456', '870970-basis:456789']}/>
+ *
+ * // the recommendations may be lazy-loaded using the isVisible prop.
+ * // if isVisible=false, recommendations are not downloaded until isVisible=true
+ * <GreatRecommendations tags={['870970-basis:123456']} isVisible={false}/>
+ */
 const withPidsToPids = WrappedComponent => {
   const Wrapped = class extends React.Component {
     componentDidMount() {
