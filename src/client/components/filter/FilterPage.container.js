@@ -65,6 +65,7 @@ const Results = ({rows, pids, ...props}) => {
               <WorkCard
                 key={'wc-' + pid}
                 className="p-0 pb-3 pr-sm-3"
+                isVisible={true}
                 rowId={idx}
                 pid={pid}
                 rid={props.rid}

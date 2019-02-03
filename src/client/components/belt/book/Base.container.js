@@ -388,7 +388,7 @@ export class BooksBelt extends React.Component {
                       className="ml-2 mr-2"
                       enableHover={true}
                       highlight={child && child.pid === pid}
-                      allowFetch={
+                      isVisible={
                         this.props.isVisible &&
                         (this.state.didSwipe || idx < fetchInitial)
                       }
