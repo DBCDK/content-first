@@ -2,7 +2,6 @@
 Selectors working on the global state object
 */
 import {createSelector} from 'reselect';
-import {difference} from 'lodash';
 import {getBooks} from './books.reducer';
 import {getRecommendedPids, applyClientSideFilters} from './recommend';
 import {filtersMapAll} from './filter.reducer';
