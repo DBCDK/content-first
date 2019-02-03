@@ -13,7 +13,6 @@ import SocialShareButton from '../general/SocialShareButton.component';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import OrderButton from '../order/OrderButton.component';
-import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {ADD_CHILD_BELT} from '../../redux/belts.reducer';
 import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {filterCollection, filterReviews} from './workFunctions';
