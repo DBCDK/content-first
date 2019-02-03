@@ -2,6 +2,23 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 
+/**
+ * A HOC that takes a pid as input prop, and injects a work prop in
+ * the wrapped component
+ *
+ * @example
+ * // create a pure component
+ * const GreatBook = ({work}) => <div>{work.book.title} is a great book</div>;
+ * export default withWork(GreatBook, {includeCover: true})
+ *
+ * // use it like this
+ * <GreatBook pid={'870970-basis:123456'}/>
+ *
+ * // the work may be lazy-loaded using the isVisible prop.
+ * // if isVisible=false, the work is not downloaded until isVisible=true
+ * <GreatBook pid={'870970-basis:123456'} isVisible={false}/>
+ *
+ */
 const withWork = (
   WrappedComponent,
   {
