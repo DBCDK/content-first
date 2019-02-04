@@ -48,12 +48,13 @@ const mapStateToProps = state => {
     shortListState: state.shortListReducer
   };
 };
-export const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = (dispatch, ownProps) => ({
   toggle: (origin, element) =>
     dispatch({
       type: ON_SHORTLIST_TOGGLE_ELEMENT,
       element,
-      origin
+      origin,
+      rid: ownProps.rid
     })
 });
 

@@ -9,7 +9,7 @@ import Heading from '../base/Heading';
 import Pin from '../base/Pin';
 import SearchBar from './SearchBar.component';
 import Spinner from '../general/Spinner.component';
-import BeltWrapper from '../belt/BooksBelt.component';
+import BeltFacade from '../belt/BeltFacade.component';
 import {
   ON_EDIT_FILTER_TOGGLE,
   ON_EXPAND_FILTERS_TOGGLE
@@ -65,8 +65,10 @@ const Results = ({rows, pids, ...props}) => {
               <WorkCard
                 key={'wc-' + pid}
                 className="p-0 pb-3 pr-sm-3"
+                isVisible={true}
                 rowId={idx}
                 pid={pid}
+                rid={props.rid}
                 highlight={belt.pid === pid}
                 {...props}
               />
@@ -75,7 +77,7 @@ const Results = ({rows, pids, ...props}) => {
         </div>
         {belt && (
           <div className="belts col-12 mb-5" data-cy="filterpage-book-belt">
-            <BeltWrapper id={belt.key} belt={belt} />
+            <BeltFacade id={belt.key} belt={belt} />
           </div>
         )}
       </React.Fragment>
@@ -198,7 +200,7 @@ class FilterPage extends React.Component {
     }
 
     if (!belt || !samePidClicked || !sameTypeClicked) {
-      this.props.addBelt(newBelt);
+      this.props.addBelt(newBelt, this.props.rid);
       this.props.scrollToComponent(newBelt.key);
     }
   }
@@ -357,6 +359,7 @@ class FilterPage extends React.Component {
               <Results
                 rows={rows}
                 pids={structuredPids}
+                rid={this.props.rid}
                 enableHover={true}
                 allowFetch={true}
                 hideMoreLikeThis={false}
@@ -410,6 +413,7 @@ const mapStateToProps = state => {
   const recommendedPids = getRecommendedBooks(state, plainSelectedTagIds, 300);
 
   return {
+    rid: recommendedPids.rid,
     recommendedPids: results || recommendedPids,
     filterCards,
     selectedCreators,
@@ -448,10 +452,11 @@ export const mapDispatchToProps = dispatch => ({
     }),
   addPin: belt => dispatch(storeBelt(belt)),
   removePin: belt => dispatch(removeBelt(belt)),
-  addBelt: belt => {
+  addBelt: (belt, rid) => {
     dispatch({
       type: ADD_BELT,
-      belt
+      belt,
+      rid
     });
   },
   removeBelt: belt => {

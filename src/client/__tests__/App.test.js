@@ -10,7 +10,7 @@ import renderer from 'react-test-renderer';
 
 jest.mock('../components/belt/Slider.component', () => 'slider');
 jest.mock('../components/bookcase/Bookcase.component', () => 'Bookcase');
-jest.mock('../components/belt/BooksBelt.component', () => 'BooksBelt');
+jest.mock('../components/belt/BeltFacade.component', () => 'BooksBelt');
 jest.mock('../components/spots/Spots.container.js', () => 'SpotsContainer');
 jest.mock('../components/hero/Hero.component.js', () => 'Hero');
 jest.mock('../components/hero/Spot.component.js', () => 'Spot');

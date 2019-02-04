@@ -1,6 +1,7 @@
+import {createSelector} from 'reselect';
 import librarianRecommends from '../../data/librarian-recommends.json';
 import request from 'superagent';
-import {uniq} from 'lodash';
+import {uniq, difference} from 'lodash';
 import {filtersMapAll} from './filter.reducer';
 import {BOOKS_REQUEST} from './books.reducer';
 
@@ -52,6 +53,7 @@ const recommendReducer = (state = defaultState, action) => {
           [key([...(action.tags || []), ...(action.creators || [])])]: {
             isLoading: false,
             pids: action.pids || [],
+            rid: action.rid,
             error: action.error
           }
         }
@@ -74,7 +76,7 @@ const recommendReducer = (state = defaultState, action) => {
           [key(action.likes)]: {
             isLoading: false,
             pids: action.pids || [],
-            recommendations: action.recommendations,
+            rid: action.rid,
             error: action.error
           }
         }
@@ -83,6 +85,39 @@ const recommendReducer = (state = defaultState, action) => {
       return state;
   }
 };
+
+const emptyResponse = {isLoading: false, pids: []};
+export const createGetRecommendedPids = () =>
+  createSelector(
+    [
+      (state, {tags}) =>
+        state.recommendReducer.recommendations[key([...tags])] || emptyResponse,
+      (state, {excluded}) => excluded
+    ],
+    (recommendations, excluded) => {
+      recommendations.pids = difference(recommendations.pids, excluded).slice(
+        0,
+        20
+      );
+      return recommendations;
+    }
+  );
+
+export const createWorkRecommendedPids = () =>
+  createSelector(
+    [
+      (state, {likes}) =>
+        state.recommendReducer.workRecommendations[key(likes)] || emptyResponse,
+      (state, {excluded}) => excluded
+    ],
+    (recommendations, excluded) => {
+      recommendations.pids = difference(recommendations.pids, excluded).slice(
+        0,
+        20
+      );
+      return recommendations;
+    }
+  );
 
 export const getRecommendedPids = (state, {tags = [], creators = []}) => {
   const k = key([...tags, ...creators]);
@@ -198,10 +233,10 @@ const fetchRecommendations = async action => {
 
   // recompas backend call
   const recompassResponse = (await request.get('/v1/recompass').query(query))
-    .body.response;
+    .body;
 
   if (action.tags) {
-    let pids = recompassResponse
+    let pids = recompassResponse.response
       .filter(entry => {
         // if custom tags selected move values less than 1
         if (customTagsSelected) {
@@ -215,10 +250,8 @@ const fetchRecommendations = async action => {
       // recompass knows nothing about librarian recommendations, so we gotta include those pids as well
       pids = uniq([...pids, ...librarianRecommends]);
     }
-
-    return pids;
+    recompassResponse.response = pids;
   }
-
   return recompassResponse;
 };
 
@@ -235,11 +268,14 @@ export const recommendMiddleware = store => next => action => {
       if (!recommendations.isLoading && recommendations.pids.length === 0) {
         (async () => {
           try {
-            const pids = await fetchRecommendations(action);
+            const body = await fetchRecommendations(action);
+            const pids = body.response;
+            const rid = body.rid;
             store.dispatch({
               ...action,
               type: TAGS_RECOMMEND_RESPONSE,
-              pids
+              pids,
+              rid
             });
             store.dispatch({
               type: BOOKS_REQUEST,
@@ -271,14 +307,14 @@ export const recommendMiddleware = store => next => action => {
       ) {
         (async () => {
           try {
-            const recommendations = await fetchRecommendations(action);
-            const pids = recommendations.map(w => w.pid);
-
+            const body = await fetchRecommendations(action);
+            const pids = body.response.map(w => w.pid);
+            const rid = body.rid;
             store.dispatch({
               ...action,
               type: WORK_RECOMMEND_RESPONSE,
-              recommendations,
-              pids
+              pids,
+              rid
             });
             store.dispatch({
               type: BOOKS_REQUEST,

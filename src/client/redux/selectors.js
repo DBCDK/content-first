@@ -23,6 +23,7 @@ export const getRecommendedBooks = (state, tags, max = 100) => {
   result.isLoading = booksAreLoading;
   result.pids = booksAreLoading ? [] : applyClientSideFilters(books, tags);
   result.pids = result.pids.map(b => b.book.pid).slice(0, max);
+  result.rid = recommendedPids.rid;
 
   return result;
 };
@@ -89,6 +90,32 @@ export const getTitlesFromUrl = state => {
     ? state.routerReducer.params.title
     : [];
 };
+
+export const createGetIdsFromRange = () =>
+  createSelector(
+    [state => state.filtercardReducer, (state, {tags}) => tags],
+    (filterCards, tags = []) => {
+      let plainSelectedTagIds = [];
+      tags.forEach(id => {
+        if (id instanceof Array) {
+          const parent = filtersMapAll[id[0]].parents[0];
+          const range = filterCards[parent].range;
+
+          const min = range.indexOf(id[0]);
+          const max = range.indexOf(id[1]);
+
+          range.forEach((aId, idx) => {
+            if (idx >= min && idx <= max) {
+              plainSelectedTagIds.push(aId);
+            }
+          });
+        } else {
+          plainSelectedTagIds.push(id);
+        }
+      });
+      return plainSelectedTagIds;
+    }
+  );
 
 export const getIdsFromRange = (state, aIds) => {
   const filterCards = state.filtercardReducer;
