@@ -9,17 +9,17 @@ import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import SkeletonText from '../base/Skeleton/Text';
 import SkeletonUser from '../base/Skeleton/User';
-import BooksBelt from '../belt/BooksBelt.component';
+import BeltFacade from '../belt/BeltFacade.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Link from '../general/Link.component';
 import scroll from '../../utils/scroll';
 import SocialShareButton from '../general/SocialShareButton.component';
-import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {ADD_BELT} from '../../redux/belts.reducer';
 import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {get} from 'lodash';
 import {filterCollection, filterReviews, sortTags} from './workFunctions';
+import withWork from '../base/Work/withWork.hoc';
 import './WorkPage.css';
 
 class WorkPage extends React.Component {
@@ -28,18 +28,17 @@ class WorkPage extends React.Component {
     this.state = {tagsCollapsed: true, transition: true, addToList: null};
   }
 
-  fetchWork(pid) {
-    this.props.fetchWork(pid);
+  init() {
     this.setState({tagsCollapsed: true, transition: false});
   }
 
   componentDidMount() {
-    this.fetchWork(this.props.pid);
+    this.init();
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.pid !== prevProps.pid) {
-      this.fetchWork(this.props.pid);
+      this.init();
     }
   }
 
@@ -67,6 +66,8 @@ class WorkPage extends React.Component {
     const belt = belts['Minder om ' + book.title];
 
     if (book.title && !belts['Minder om ' + book.title]) {
+      // TODO this should not be in render
+      // probably, this component shouldnt be responsible for dispatching this action
       this.addNewBelt({
         name: 'Minder om ' + book.title,
         key: 'Minder om ' + book.title,
@@ -392,7 +393,7 @@ class WorkPage extends React.Component {
                 className="WorkPage__beltContainer col-12 mt4"
                 ref={e => (this.booksBeltPosition = e)}
               >
-                <BooksBelt belt={belt} />
+                <BeltFacade belt={belt} />
               </div>
             )}
 
@@ -464,22 +465,13 @@ class WorkPage extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
-    work: state.booksReducer.books[ownProps.pid],
     beltsState: state.beltsReducer.belts
   };
 };
 
 export const mapDispatchToProps = dispatch => ({
-  fetchWork: pid =>
-    dispatch({
-      type: BOOKS_REQUEST,
-      pids: [pid],
-      includeTags: true,
-      includeReviews: true,
-      includeCollection: true
-    }),
   addBelt: belt => {
     dispatch({
       type: ADD_BELT,
@@ -491,4 +483,11 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(WorkPage);
+)(
+  withWork(WorkPage, {
+    includeTags: true,
+    includeReviews: true,
+    includeCollection: true,
+    includeCover: true
+  })
+);

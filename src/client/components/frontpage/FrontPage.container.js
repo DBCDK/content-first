@@ -2,9 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
 import Hero from '../hero/Hero.component';
-import RecentListsBelt from '../belt/RecentListsBelt.container';
+import RecentListsBelt from '../belt/list/RecentListsBelt.container';
 import BookcaseItem from '../bookcase/BookcaseItem.component';
-import BooksBelt from '../belt/BooksBelt.component';
+import BeltFacade from '../belt/BeltFacade.component';
 import SpotsContainer from '../spots/Spots.container';
 import {HISTORY_REPLACE} from '../../redux/middleware';
 
@@ -30,7 +30,7 @@ class FrontPage extends React.Component {
       <div className="container">
         <div className="belts col-12">
           {belts.filter(belt => belt.onFrontPage).map(belt => (
-            <BooksBelt id={belt.key} key={belt.key} belt={belt} />
+            <BeltFacade id={belt.key} key={belt.key} belt={belt} />
           ))}
         </div>
       </div>
@@ -43,7 +43,6 @@ class FrontPage extends React.Component {
     const bookcase = 'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018';
 
     aBeltsMap.sort((a, b) => (b._created || 0) - (a._created || 0));
-
     return (
       <div className="frontpage">
         <Hero />

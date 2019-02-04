@@ -95,7 +95,6 @@ class App extends Component {
     if (!currentPage) {
       currentPage = <Article path={`/${pathSplit[1]}`} />;
     }
-
     return (
       <div className="App">
         {topbar ? (
@@ -129,7 +128,6 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     routerState: state.routerReducer,
-    beltsState: state.beltsReducer,
     user: state.userReducer
   };
 };

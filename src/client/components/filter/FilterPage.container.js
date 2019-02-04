@@ -9,7 +9,7 @@ import Heading from '../base/Heading';
 import Pin from '../base/Pin';
 import SearchBar from './SearchBar.component';
 import Spinner from '../general/Spinner.component';
-import BeltWrapper from '../belt/BooksBelt.component';
+import BeltFacade from '../belt/BeltFacade.component';
 import {
   ON_EDIT_FILTER_TOGGLE,
   ON_EXPAND_FILTERS_TOGGLE
@@ -65,6 +65,7 @@ const Results = ({rows, pids, ...props}) => {
               <WorkCard
                 key={'wc-' + pid}
                 className="p-0 pb-3 pr-sm-3"
+                isVisible={true}
                 rowId={idx}
                 pid={pid}
                 rid={props.rid}
@@ -76,7 +77,7 @@ const Results = ({rows, pids, ...props}) => {
         </div>
         {belt && (
           <div className="belts col-12 mb-5" data-cy="filterpage-book-belt">
-            <BeltWrapper id={belt.key} belt={belt} />
+            <BeltFacade id={belt.key} belt={belt} />
           </div>
         )}
       </React.Fragment>

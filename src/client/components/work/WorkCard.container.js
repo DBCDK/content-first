@@ -1,12 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import BookCover from '../general/BookCover.component';
 import BookmarkButton from '../general/BookmarkButton';
 import TaxDescription from './TaxDescription.component';
 import Paragraph from '../base/Paragraph';
 import Heading from '../base/Heading';
 import Button from '../base/Button';
-import {BOOKS_REQUEST} from '../../redux/books.reducer';
+import withWork from '../base/Work/withWork.hoc';
 
 import './WorkCard.css';
 
@@ -42,25 +41,11 @@ class WorkCard extends React.Component {
     showTaxonomy: true,
     workClass: 'work'
   };
-  fetch = () => {
-    if (this.props.allowFetch) {
-      if (!this.props.work || !this.props.work.coverHasLoaded) {
-        this.props.fetchWork(this.props.pid);
-      }
-    }
-  };
-  componentDidMount() {
-    this.fetch();
-  }
-  componentDidUpdate() {
-    this.fetch();
-  }
+
   shouldComponentUpdate(nextProps) {
     return (
       nextProps.highlight !== this.props.highlight ||
-      nextProps.work !== this.props.work ||
-      nextProps.allowFetch !== this.props.allowFetch ||
-      nextProps.cardRef !== this.props.cardRef
+      nextProps.work !== this.props.work
     );
   }
 
@@ -74,7 +59,6 @@ class WorkCard extends React.Component {
     if (!this.props.work || !this.props.work.detailsHasLoaded) {
       return <SkeletonWorkCard {...this.props} />;
     }
-
     // check if more-like-this button is disabled (default: false)
     const hideMoreLikeThis = this.props.hideMoreLikeThis || false;
 
@@ -176,20 +160,4 @@ class WorkCard extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    work: state.booksReducer.books[ownProps.pid]
-  };
-};
-export const mapDispatchToProps = dispatch => ({
-  fetchWork: pid =>
-    dispatch({
-      type: BOOKS_REQUEST,
-      pids: [pid]
-    })
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(WorkCard);
+export default withWork(WorkCard, {includeCover: true});

@@ -1,5 +1,5 @@
 import request from 'superagent';
-import {debounce, get, difference} from 'lodash';
+import {throttle, get, difference} from 'lodash';
 import unique from '../utils/unique';
 import {BOOKS_REQUEST, BOOKS_PARTIAL_UPDATE} from './books.reducer';
 import {
@@ -119,6 +119,7 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
     })
   });
   const response = await requestFunction(pidsToFetch, store);
+
   store.dispatch({
     type: BOOKS_PARTIAL_UPDATE,
     books: response.map(work => ({
@@ -131,11 +132,11 @@ const partialUpdateRequest = async (name, pids, requestFunction, store) => {
 };
 const createDebouncedFunction = (name, requestFunction) => {
   let pidQueue = [];
-  let debounced = debounce(store => {
+  let debounced = throttle(store => {
     const pidQueueCopy = [...pidQueue];
     partialUpdateRequest(name, pidQueueCopy, requestFunction, store);
     pidQueue = difference(pidQueue, pidQueueCopy);
-  }, 20);
+  }, 100);
   return (pids, store) => {
     pidQueue = [...pidQueue, ...pids];
     debounced(store);

@@ -13,28 +13,16 @@ import SocialShareButton from '../general/SocialShareButton.component';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import OrderButton from '../order/OrderButton.component';
-import {BOOKS_REQUEST} from '../../redux/books.reducer';
 import {ADD_CHILD_BELT} from '../../redux/belts.reducer';
 import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {filterCollection, filterReviews} from './workFunctions';
 import './WorkPreview.css';
 import {SCROLL_TO_COMPONENT} from '../../redux/scrollToComponent';
 
+import withScrollToComponent from '../base/scroll/withScrollToComponent.hoc';
+import withWork from '../base/Work/withWork.hoc';
+
 class WorkPreview extends React.Component {
-  componentDidMount() {
-    this.fetchWork(this.props.pid);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.pid !== prevProps.pid) {
-      this.fetchWork(prevProps.pid);
-    }
-  }
-
-  fetchWork(pid) {
-    this.props.fetchWork(pid);
-  }
-
   handleChildBelts(parentBelt, childBelt) {
     this.props.addChildBelt(parentBelt, childBelt);
     this.props.scrollToComponent(childBelt.key);
@@ -289,25 +277,12 @@ class WorkPreview extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    work: state.booksReducer.books[ownProps.pid]
-  };
-};
 export const mapDispatchToProps = dispatch => ({
   scrollToComponent: id =>
     dispatch({
       type: SCROLL_TO_COMPONENT,
       id
     }),
-  fetchWork: pid => {
-    dispatch({
-      type: BOOKS_REQUEST,
-      pids: [pid],
-      includeReviews: true,
-      includeCollection: true
-    });
-  },
   addChildBelt: (parentBelt, childBelt, clearPreview = true) => {
     dispatch({
       type: ADD_CHILD_BELT,
@@ -319,6 +294,14 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
-)(WorkPreview);
+)(
+  withScrollToComponent(
+    withWork(WorkPreview, {
+      includeReviews: true,
+      includeCollection: true,
+      includeCover: true
+    })
+  )
+);
