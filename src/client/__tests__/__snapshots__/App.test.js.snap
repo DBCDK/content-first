@@ -60,7 +60,7 @@ exports[`renders without crashing 1`] = `
                       onChange={[Function]}
                       onFocus={[Function]}
                       onKeyDown={[Function]}
-                      placeholder="Søg på titel, forfatter, stemning..."
+                      placeholder="Søg på stemning, sted eller stil..."
                       type="search"
                       value=""
                     />
@@ -228,12 +228,13 @@ exports[`renders without crashing 1`] = `
           className="d-block d-sm-none d-inline-flex"
         >
           <object
-            data="img/general/dibliofigur.svg"
+            data="/img/general/dibliofigur.svg"
             style={
               Object {
                 "height": "28px",
-                "margin-right": "7px",
-                "margin-top": "1px",
+                "marginRight": "7px",
+                "marginTop": "1px",
+                "pointer-events": "none",
               }
             }
             type="image/svg+xml"
@@ -241,6 +242,11 @@ exports[`renders without crashing 1`] = `
           <div>
             <p
               className="m-0 Text Text__large "
+              style={
+                Object {
+                  "lineHeight": "1.25rem",
+                }
+              }
             >
               Læsekompas
             </p>
@@ -258,12 +264,13 @@ exports[`renders without crashing 1`] = `
             className="d-inline-flex"
           >
             <object
-              data="img/general/dibliofigur.svg"
+              data="/img/general/dibliofigur.svg"
               style={
                 Object {
-                  "height": "30px",
-                  "margin-right": "7px",
-                  "margin-top": "4px",
+                  "height": "28px",
+                  "marginRight": "7px",
+                  "marginTop": "6px",
+                  "pointer-events": "none",
                 }
               }
               type="image/svg+xml"

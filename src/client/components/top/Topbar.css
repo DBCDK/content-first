@@ -83,7 +83,7 @@
 }
 
 .Topbar .Topbar__navigation .Topbar__navigation__btn {
-  display: inline-block;
+
   min-width: 80px;
   height: 100%;
   display: flex;
@@ -137,15 +137,6 @@
 // Topbar user image and default icon
 */
 
-.Topbar__icon {
-  height: 100%;
-  min-width: 65px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  cursor: pointer;
-  border-right: 1px solid var(--pistache);
-}
 
 .Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top,
 .Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top img {
@@ -164,9 +155,16 @@ i {
 
 .Topbar__special {
   height: 100%;
-  weight: 100%;
+  min-width: 80px;
   background-color: transparent;
   cursor: pointer;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-decoration: none;
+  border-right: 1px solid var(--pistache);
+  position: relative;
+  z-index: 3;
 }
 
 /*
