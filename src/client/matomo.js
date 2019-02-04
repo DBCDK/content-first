@@ -71,7 +71,6 @@ const processDataEventQueue = () => {
   const copy = [...dataEventQueue];
   dataEventQueue = [];
   copy.forEach(entry => {
-    // console.log('matomo', entry.action, {...entry.data, aid});
     dataTracker.trackEvent(
       'data',
       entry.action,
