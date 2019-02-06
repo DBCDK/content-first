@@ -1,4 +1,11 @@
-import timeToString, {MINUTE, HOUR, DAY, MONTH, YEAR} from '../dateTimeFormat';
+import timeToString, {
+  MINUTE,
+  HOUR,
+  DAY,
+  MONTH,
+  YEAR,
+  timestampToLongDate
+} from '../dateTimeFormat';
 
 describe('timeToString util', () => {
   test('convert years', () => {
@@ -24,5 +31,10 @@ describe('timeToString util', () => {
   test('convert now', () => {
     expect(timeToString(Date.now() / 1000)).toEqual('Lige nu');
     expect(timeToString(Date.now() / 1000 - 30)).toEqual('Lige nu');
+  });
+  test('convert long date', () => {
+    expect(timestampToLongDate('October 13, 2014 11:13:00')).toEqual(
+      '13. oktober 2014'
+    );
   });
 });
