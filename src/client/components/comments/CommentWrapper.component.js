@@ -8,7 +8,7 @@ import {
 } from '../../redux/comment.reducer';
 
 import Spinner from '../general/Spinner.component';
-import timeToString from '../../utils/timeToString';
+import timeToString from '../../utils/dateTimeFormat';
 import ProfileImage from '../general/ProfileImage.component';
 import CommentInput from './CommentInput.component';
 import Text from '../base/Text';

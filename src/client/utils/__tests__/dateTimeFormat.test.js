@@ -1,4 +1,4 @@
-import timeToString, {MINUTE, HOUR, DAY, MONTH, YEAR} from '../timeToString';
+import timeToString, {MINUTE, HOUR, DAY, MONTH, YEAR} from '../dateTimeFormat';
 
 describe('timeToString util', () => {
   test('convert years', () => {

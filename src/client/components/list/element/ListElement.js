@@ -13,7 +13,7 @@ import Text from '../../base/Text';
 import T from '../../base/T';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import ProfileImage from '../../general/ProfileImage.component';
-import timeToString from '../../../utils/timeToString';
+import timeToString from '../../../utils/dateTimeFormat';
 import WorkRow from '../../work/WorkRow';
 
 const UserInfo = ({showUserInfo, owner, time}) => {

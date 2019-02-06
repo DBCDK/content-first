@@ -11,7 +11,7 @@ import {getUser} from '../../../../redux/users';
 import ProfileImage from '../../../general/ProfileImage.component';
 import SocialShareButton from '../../../general/SocialShareButton.component';
 import Comments from '../../../comments/Comment.container';
-import timeToString from '../../../../utils/timeToString';
+import timeToString from '../../../../utils/dateTimeFormat';
 import textParser from '../../../../utils/textParser';
 import Title from '../../../base/Title';
 import Text from '../../../base/Text';
