@@ -14,7 +14,7 @@ import {
 export function ProfileModal({onClose, onAcceptAndClose}) {
 
   return (
-    <div className="modal-container " >
+    <div className="modal-container ">
       <div className="modal-backdrop" onClick={onClose} />
       <div className={'profile-modal modal-window '}>
 
@@ -26,13 +26,12 @@ export function ProfileModal({onClose, onAcceptAndClose}) {
             width: '692px',
             height: '416',
             paddingTop: '40px',
-            paddingBottom: '34px',
-
+            paddingBottom: '34px'
           }}>
 
             <div style={{
               marginLeft: '80px',
-              marginRight: '80px',
+              marginRight: '80px'
             }}>
               <div style={{
                 fontSize: '21px',
@@ -72,14 +71,14 @@ export function ProfileModal({onClose, onAcceptAndClose}) {
                       marginRight: '8px'
                     }}>
                     Hvad skal vi kalde dig?
-                    <p/>
+                    <p />
                     <div style={{display: 'inline-flex'}}>
                       <div className='profile-picture'
                            style={{
                              width: '55px',
                              paddingTop: '15px'
                            }}>
-                        <img style={{width: '45px'}} src="/img/general/user-placeholder-thumbnail.png"/>
+                        <img style={{width: '45px'}} src="/img/general/user-placeholder-thumbnail.png" />
                       </div>
                       <div className='profile-input'>
                         <div style={{
@@ -115,7 +114,7 @@ export function ProfileModal({onClose, onAcceptAndClose}) {
                     backgroundColor: 'var(--concrete)',
                     paddingLeft: '15px',
                     paddingTop: '10px',
-                    paddingRight: '15px',
+                    paddingRight: '15px'
                   }}>
 
                     <div style={{fontSize: '10px', fontWeight: '700', width: '200px'}}>
@@ -155,6 +154,7 @@ export function ProfileModal({onClose, onAcceptAndClose}) {
     </div>
   );
 }
+
 export const mapStateToProps = state => ({
   name: state.userReducer.name,
   acceptedTerms: state.userReducer.acceptedTerms,
@@ -171,38 +171,13 @@ export const mapStateToProps = state => ({
 
 
 export const mapDispatchToProps = dispatch => {
-  const closeModal = (type, modal) => dispatch({type, modal});
-  const deleteUser = type => dispatch({type});
-
 
   return {
-    onClose: () => dispatch({type:CLOSE_MODAL, modal:'profile'}),
-    onAcceptAndClose: () => dispatch({type:CLOSE_MODAL, modal:'profile'})
-//    addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
-  //  saveUser: user => dispatch({type: SAVE_USER_PROFILE, user}),
-
-    /*confirmDeleteModal: () => {
-      dispatch({
-        type: 'OPEN_MODAL',
-        modal: 'profile',
-        context: {
-          title: 'Er du sikker på at du vil slette din profil?',
-          reason:
-            'Du er ved at slette din profil og alt data som er tilknyttet den, Er du sikker på at du vil fortsætte?.',
-          confirmText: 'Slet min profil',
-          onConfirm: () => {
-            closeModal('CLOSE_MODAL', 'profile');
-            deleteUser(DELETE_USER_PROFILE);
-          },
-          onCancel: () => closeModal('CLOSE_MODAL', 'profile')
-        }
-      });
-    }*/
+    onClose: () => dispatch({type: CLOSE_MODAL, modal: 'profile'}),
+    onAcceptAndClose: () => dispatch({type: CLOSE_MODAL, modal: 'profile'})
   };
 };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProfileModal);
-
-
