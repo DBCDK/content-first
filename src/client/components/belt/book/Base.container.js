@@ -9,6 +9,7 @@ import Text from '../../base/Text';
 import Icon from '../../base/Icon';
 import Term from '../../base/Term';
 import Button from '../../base/Button';
+import T from '../../base/T';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import Slider from '../../belt/Slider.component';
 import {HISTORY_PUSH} from '../../../redux/middleware';
@@ -47,7 +48,7 @@ const EditBelt = props => {
     >
       <Icon className="md-small" name="edit" />
       <Text className="m-0 ml-2 " type="small">
-        Redigér
+        <T component="general" name="edit" />
       </Text>
     </div>
   );
@@ -59,7 +60,7 @@ const BeltContextMenu = ({onClick}) => {
   return (
     <ContextMenu title={''} className={''} style={style}>
       <ContextMenuAction
-        title="Redigér tekst og billede"
+        title={T({component: 'general', name: 'editMultiple'})}
         icon="edit"
         onClick={onClick}
       />
@@ -138,7 +139,7 @@ export class BooksBelt extends React.Component {
     const newBelt = {
       type,
       pid: book.pid,
-      name: 'Minder om ' + book.title,
+      name: T({component: 'belts', name: 'remindsOf'}) + ' ' + book.title,
       key: 'Minder om ' + book.title,
       onFrontPage: false,
       child: false,
@@ -253,7 +254,10 @@ export class BooksBelt extends React.Component {
                   <Textarea
                     className={`${titleMissingClass} ${border} col-12 col-sm-6 p-0 pl-1 border-right-xs-0 mr-2 mb0 mt-3 Title Title__title4 Title__title4--transform-uppercase`}
                     name="belt-name"
-                    placeholder={'Husk at give båndet en overskrift'}
+                    placeholder={T({
+                      component: 'belts',
+                      name: 'pinPlaceholderTitle'
+                    })}
                     onChange={this.onTitleChange}
                     rows={1}
                     value={name}
@@ -274,7 +278,10 @@ export class BooksBelt extends React.Component {
                   <Textarea
                     className={`${subtextMissingClass} col-12 p-0 pl-1 mt1 mb0 Title Title__title5`}
                     name="belt-description"
-                    placeholder="Giv din gemte søgning en beskrivelse"
+                    placeholder={T({
+                      component: 'belts',
+                      name: 'pinPlaceholderDescription'
+                    })}
                     onChange={this.onSubtextChange}
                     value={subtext}
                   />
@@ -288,7 +295,7 @@ export class BooksBelt extends React.Component {
                       className="mr-0 mr-sm-4 ml-2 ml-sm-0 mt-2 mb-2 mt-sm-4 mb-sm-4"
                       onClick={!titleMissing && onSaveEdit}
                     >
-                      {'Gem ændringer'}
+                      <T component="general" name="saveChanges" />
                     </Button>
                     <Button
                       type="link"
@@ -296,7 +303,7 @@ export class BooksBelt extends React.Component {
                       className="mr-2 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
                       onClick={this.onCancelEdit}
                     >
-                      {'Fortryd'}
+                      <T component="general" name="cancel" />
                     </Button>
                   </div>
                 </div>

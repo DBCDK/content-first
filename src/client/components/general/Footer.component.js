@@ -1,5 +1,6 @@
 import React from 'react';
 import Text from '../base/Text';
+import T from '../base/T';
 import Link from '../general/Link.component';
 
 import LaesekompasLogo from '../svg/LaesekompasLogo.svg';
@@ -44,42 +45,41 @@ class Footer extends React.Component {
             </div>
             <div className="col Footer__element--block">
               <Text type="body" className="mt1">
-                Læsekompasset hjælper dig med at opdage bøger, der passer dig,
-                og inspirerer dig til nye læseoplevelser.
+                <T component="footer" name="sectionOne" />
                 <br />
-                <Link href="/om">Læs mere</Link>
+                <Link href="/om">
+                  <T component="general" name="readMore" />
+                </Link>
               </Text>
             </div>
             <div className="col Footer__element--block">
               <Text type="body" className="mt1">
-                Siden er i øjeblikket i beta-version, hvilket betyder, at den
-                stadig er under udvikling og at du kan opleve ting, der ikke
-                fungerer optimalt endnu.
+                <T component="footer" name="sectionTwo" />
               </Text>
             </div>
             <div className="col Footer__element--block">
               <Text type="body" className="mt1">
-                Problemer med teknikken?
+                <T component="footer" name="customerServiceText" />
                 <br />
                 <a href="https://kundeservice.dbc.dk" target="_blank">
-                  Skriv til DBCs kundeservice
+                  <T component="footer" name="customerServiceLinkText" />
                 </a>
                 <br />
                 <br />
-                Spørgsmål om Læsekompasset?
+                <T component="footer" name="writeToManagementText" />
                 <br />
                 <a href="mailto:laesekompasset@dbc.dk">
-                  Skriv til projektledelsen
+                  <T component="footer" name="writeToManagementLinkText" />
                 </a>
               </Text>
             </div>
             <div className="col Footer__element--block">
               <Text type="body" className="mt1">
-                DBC a/s
+                <T component="footer" name="addressCompany" />
                 <br />
-                Tempovej 7-11
+                <T component="footer" name="addressStreet" />
                 <br />
-                2750 Ballerup
+                <T component="footer" name="addressCity" />
               </Text>
             </div>
           </div>

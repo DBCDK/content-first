@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Spinner from '../general/Spinner.component';
 import Title from '../base/Title';
+import T from '../base/T';
 import SimpleList from './templates/simple/SimpleList';
 import BookcaseList from './templates/bookcase/BookcaseList';
 import {getListByIdSelector} from '../../redux/list.reducer';
@@ -46,14 +47,14 @@ export class ListPage extends React.Component {
     if (list.error) {
       return (
         <Title Tag="h1" type="title3" className="text-center mt-5">
-          Listen kunne ikke hentes
+          <T component="list" name="fetchListError" />
         </Title>
       );
     }
     if (!list._type) {
       return (
         <Title Tag="h1" type="title3" className="text-center mt-5">
-          Listen er slettet
+          <T component="list" name="listNotAvailable" />
         </Title>
       );
     }

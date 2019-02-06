@@ -9,6 +9,7 @@ import {OPEN_MODAL} from '../../redux/modal.reducer';
 import CommentList from './CommentList.component';
 import CommentInput from './CommentInput.component';
 import Text from '../base/Text';
+import T from '../base/T';
 
 export class CommentContainer extends React.Component {
   constructor(props) {
@@ -64,12 +65,18 @@ export class CommentContainer extends React.Component {
                 <i className="material-icons outline-mode_comment mr-1">
                   chat_bubble_outline
                 </i>
-                Kommentér
+                <T component="post" name="comment" />
               </span>
             </Text>
 
             <Text type="body" variant="decoration-underline">
-              <span>{commentsCount + ' kommentarer'}</span>
+              <span>
+                <T
+                  component="post"
+                  name={commentsCount === 1 ? 'commentCount' : 'commentsCount'}
+                  vars={[commentsCount || '0']}
+                />
+              </span>
             </Text>
           </div>
         </div>
@@ -93,9 +100,11 @@ export class CommentContainer extends React.Component {
                     variant="decoration-underline"
                     className="mb-0"
                   >
-                    {!this.state.showAll
-                      ? 'Vis flere kommentarer'
-                      : 'Vis færre kommentarer'}
+                    {!this.state.showAll ? (
+                      <T component="post" name="showMoreComments" />
+                    ) : (
+                      <T component="post" name="showLessComments" />
+                    )}
                   </Text>
                 </button>
               ) : (
@@ -159,8 +168,8 @@ export const mapDispatchToProps = dispatch => ({
       type: OPEN_MODAL,
       modal: 'login',
       context: {
-        title: 'Skriv kommentar',
-        reason: 'Du skal logge ind for at skrive en kommentar.'
+        title: <T component="post" name="writeComment" />,
+        reason: <T component="post" name="modalWriteCommentLogin" />
       }
     });
   }

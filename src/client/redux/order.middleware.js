@@ -1,5 +1,7 @@
+import React from 'react';
 import openplatform from 'openplatform';
 import {OPEN_MODAL} from './modal.reducer';
+import T from '../components/base/T';
 import {
   ORDER,
   ORDER_START,
@@ -101,8 +103,8 @@ export const orderMiddleware = store => next => action => {
           type: OPEN_MODAL,
           modal: 'login',
           context: {
-            title: 'BESTIL',
-            reason: 'Du skal logge ind for at bestille bøger.'
+            title: <T component="order" name="modalTitle" />,
+            reason: <T component="order" name="loginModalText" />
           }
         });
         return next(action);

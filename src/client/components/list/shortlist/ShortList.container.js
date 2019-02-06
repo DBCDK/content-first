@@ -12,6 +12,7 @@ import {ORDER} from '../../../redux/order.reducer';
 import BookCover from '../../general/BookCover.component';
 import OrderButton from '../../order/OrderButton.component';
 import Link from '../../general/Link.component';
+import T from '../../base/T';
 
 export class ShortListItem extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ export class ShortListItem extends React.Component {
 
   render() {
     const url = `/værk/${this.props.element.book.pid}`;
+
     return (
       <div className="item col-12 col-lg-10 text-left">
         <div className="row">
@@ -65,13 +67,11 @@ export class ShortListItem extends React.Component {
                           });
                         }}
                       >
-                        Fortryd
+                        <T component="general" name="cancel" />
                       </span>
-                      <input
-                        className="btn btn-success ml2"
-                        type="submit"
-                        value="Gem"
-                      />
+                      <button className="btn btn-success ml2" type="submit">
+                        <T component="general" name="save" />
+                      </button>
                     </div>
                   )}
                 </form>
@@ -83,7 +83,7 @@ export class ShortListItem extends React.Component {
               className="d-flex align-items-center"
               onClick={this.props.onAddToList}
             >
-              Tilføj til liste
+              <T component="list" name="addToList" />
               <i className="material-icons" style={{fontSize: 11}}>
                 arrow_forward_ios
               </i>
@@ -96,7 +96,9 @@ export class ShortListItem extends React.Component {
               type="tertiary"
               label="Bestil"
               className="ml1"
-            />
+            >
+              <T component="general" name="bestil" />
+            </OrderButton>
           </div>
 
           <i
@@ -116,7 +118,9 @@ class ShortList extends React.Component {
     return (
       <div className="container">
         <div className="top-bar-dropdown-list-page col-11 col-centered">
-          <div className="page-header-1">Huskeliste</div>
+          <div className="page-header-1">
+            <T component="shortlist" name="title" />
+          </div>
           <div className="items mb2">
             <ReactCSSTransitionGroup
               transitionName="dropdownlist"
@@ -138,7 +142,9 @@ class ShortList extends React.Component {
                       [
                         {
                           book: e.book,
-                          description: e.origin || 'Tilføjet fra huskelisten'
+                          description: e.origin || (
+                            <T component="shortlist" name="origin" />
+                          )
                         }
                       ],
                       this.props.isLoggedIn,
@@ -150,7 +156,9 @@ class ShortList extends React.Component {
             </ReactCSSTransitionGroup>
           </div>
           {elements.length === 0 && (
-            <div className="empty-list-text">Din huskeliste er tom</div>
+            <div className="empty-list-text">
+              <T component="shortlist" name="emptyList" />
+            </div>
           )}
           {elements.length > 0 && (
             <div className="list-actions col-12 col-lg-10 text-right mt4 mb4">
@@ -166,7 +174,7 @@ class ShortList extends React.Component {
                   }
                   data-cy="listpage-add-elemts-to-list"
                 >
-                  TILFØJ ALLE TIL LISTE
+                  <T component="list" name="addAllToList" />
                 </span>
                 <span
                   className={
@@ -183,13 +191,13 @@ class ShortList extends React.Component {
                       ))
                   }
                 >
-                  BESTIL HELE LISTEN
+                  <T component="shortlist" name="shortlistOrder" />
                 </span>
                 <span
                   className="clear-all-btn btn btn-success ml2"
                   onClick={() => this.props.clearList()}
                 >
-                  RYD LISTEN
+                  <T component="shortlist" name="shortlistClear" />
                   <i className="material-icons ml1" style={{fontSize: '18px'}}>
                     delete
                   </i>

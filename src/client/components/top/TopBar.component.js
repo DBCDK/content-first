@@ -13,8 +13,9 @@ import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import {ON_USERLISTS_COLLAPSE} from '../../redux/list.reducer';
 import {ON_SHORTLIST_COLLAPSE} from '../../redux/shortlist.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
-import Title from '../base/Title/index';
-import Text from '../base/Text/index';
+import Title from '../base/Title/';
+import Text from '../base/Text/';
+import T from '../base/T/';
 import './Topbar.css';
 import {FETCH_STATS} from '../../redux/stats.reducer';
 
@@ -34,7 +35,9 @@ class TopBarDropdown extends React.Component {
         </li>
         <li className="d-block d-sm-none">
           <Link href="/profile" onClick={this.props.onClick}>
-            <span>Lister</span>
+            <span>
+              <T component="list" name="listButton" />
+            </span>
           </Link>
         </li>
         <li className="divider"/>
@@ -44,7 +47,9 @@ class TopBarDropdown extends React.Component {
             this.props.onClick();
           }}
         >
-          <span>Log ud</span>
+          <span>
+            <T component="login" name="logoutButton" />
+          </span>
         </li>
       </ul>
     );
@@ -196,8 +201,10 @@ export class TopBar extends React.Component {
         }
         dataCy="topbar-lists"
       >
-        <Icon name="list"/>
-        <span>Lister</span>
+        <Icon name="list" />
+        <span>
+          <T component="list" name="listButton" />
+        </span>
       </ListOverviewDropDown>
     );
   }
@@ -209,7 +216,7 @@ export class TopBar extends React.Component {
     const searchIconText = searchExpanded ? (
       <i className="material-icons  material-icons-cancel">cancel</i>
     ) : (
-      'Søg'
+      <T component="general" name="searchButton" />
     );
     const searchFieldWidth = searchExpanded ? this.state.width : 0;
     const border = searchExpanded ? {borderColor: 'transparent'} : {};
@@ -218,6 +225,10 @@ export class TopBar extends React.Component {
     const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
 
     const isIndex = this.props.router.path === '/' ? true : false;
+
+    const booksCount = this.props.stats.books
+      ? this.props.stats.books.total
+      : '0';
 
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
@@ -288,7 +299,9 @@ export class TopBar extends React.Component {
               className="Topbar__navigation__btn widthCalc"
               dataCy="topbar-login-btn"
             >
-              <span>Log ind</span>
+              <span>
+                <T component="login" name="loginButton" />
+              </span>
             </Link>
           )}
           {this.props.user.isLoggedIn && (
@@ -365,26 +378,27 @@ export class TopBar extends React.Component {
                     BETA
                   </Text>
                   {!searchExpanded &&
-                  ((isIndex && isMobileOnly) || !isMobileOnly) && (
-                    <div className="d-inline-flex">
-                      <div className="d-none d-sm-inline logo-beta-text Text__small">
-                        {this.props.stats.books &&
-                        `Nu ${this.props.stats.books.total} ` +
-                        (this.props.stats.books.total === 1
-                          ? 'bog. '
-                          : 'bøger. ')}
-                        <Text
-                          className="d-inline logo-beta-link mb0"
-                          type="small"
-                          variant="decoration-underline"
-                          onClick={e => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            this.props.betaModal();
-                          }}
-                        >
-                          {'Læs mere'}
-                        </Text>
+                    ((isIndex && isMobileOnly) || !isMobileOnly) && (
+                      <div className="d-inline-flex">
+                        <div className="d-none d-sm-inline logo-beta-text Text__small">
+                          <T
+                            component="topbar"
+                            name="betaText"
+                            vars={[booksCount]}
+                          />
+                          <Text
+                            className="d-inline logo-beta-link mb0"
+                            type="small"
+                            variant="decoration-underline"
+                            onClick={e => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              this.props.betaModal();
+                            }}
+                          >
+                            <T component="general" name="readMore" />
+                          </Text>
+                        </div>
                       </div>
                     </div>
                   )}

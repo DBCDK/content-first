@@ -10,6 +10,7 @@ import textParser from '../../../utils/textParser';
 import Comments from '../../comments/Comment.container';
 import CommentInput from '../../comments/CommentInput.component';
 import Text from '../../base/Text';
+import T from '../../base/T';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import ProfileImage from '../../general/ProfileImage.component';
 import timeToString from '../../../utils/timeToString';
@@ -45,14 +46,20 @@ const ElementContextMenu = ({
     >
       {isElementOwner && (
         <ContextMenuAction
-          title="Redigér indlæg"
+          title={T({
+            component: 'post',
+            name: 'editPost'
+          })}
           icon="edit"
           onClick={onEdit}
         />
       )}
       {(isElementOwner || isListOwner) && (
         <ContextMenuAction
-          title="Slet indlæg"
+          title={T({
+            component: 'post',
+            name: 'deletePost'
+          })}
           icon="clear"
           onClick={onDelete}
         />
@@ -141,16 +148,21 @@ export class ListElement extends React.Component {
               user={owner}
               value={element.description}
               cancelText={
-                this.state.originalDescription
-                  ? 'Fortryd'
-                  : 'Brug bogens beskrivelse'
+                this.state.originalDescription ? (
+                  <T component="general" name="cancel" />
+                ) : (
+                  <T component="post" name="useBookDescription" />
+                )
               }
               onSubmit={this.submit}
               onCancel={this.cancel}
               onChange={this.updateDescription}
               disabled={false}
               error={null}
-              placeholder="Fortæl om bogen"
+              placeholder={T({
+                component: 'post',
+                name: 'aboutTheBook'
+              })}
             />
           ) : (
             <Text type="body" className="mt-3">

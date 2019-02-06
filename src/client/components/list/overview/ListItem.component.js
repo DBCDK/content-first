@@ -1,6 +1,7 @@
 import React from 'react';
 import BookCover from '../../general/BookCover.component';
 import Link from '../../general/Link.component';
+import T from '../../base/T';
 
 const Cover = ({pid, title, coverUrl, width, height}) => (
   <BookCover
@@ -38,11 +39,15 @@ const ListItem = ({list, title, _id, image, hideIfEmpty = true}) => {
           );
         })}
         <Link href={`/lister/${_id}`} className="ml1 link-subtle inline">
-          {list.length === 6
-            ? '+ 1 bog mere'
-            : list.length > 6
-              ? `+ ${list.length - 5} bøger mere`
-              : 'Se listen'}
+          {list.length > 5 ? (
+            <T
+              component="list"
+              name={list.length === 6 ? 'moreBook' : 'moreBooks'}
+              vars={[list.length - 5]}
+            />
+          ) : (
+            <T component="list" name={'showList'} />
+          )}
         </Link>
       </Link>
     </div>

@@ -15,6 +15,7 @@ import timeToString from '../../../../utils/timeToString';
 import textParser from '../../../../utils/textParser';
 import Title from '../../../base/Title';
 import Text from '../../../base/Text';
+import T from '../../../base/T';
 import ImageUpload from '../../../general/ImageUpload.component';
 import FollowButton from '../../button/FollowButton';
 import AddBookButton from '../../button/AddBookButton';
@@ -44,7 +45,7 @@ export const ListInfo = ({
             loading={list.imageIsLoading}
             handleLoaded={this.onResize}
             previewImage={list.image ? `/v1/image/${list.image}/719/400` : null}
-            buttonText="Skift billede"
+            buttonText={<T component="general" name="changeImage" />}
             buttonPosition="inside"
             onFile={img => {
               addImage(list._id, img);
@@ -72,7 +73,7 @@ export const ListInfo = ({
             hex={'#3b5998'}
             size={40}
             shape="round"
-            hoverTitle="Del på facebook"
+            hoverTitle={<T component="share" name="shareOnFacebook" />}
             onClick={e => {
               if (!list.public) {
                 e.preventDefault();
@@ -100,7 +101,7 @@ export const ListInfo = ({
             <Textarea
               className={`mt-3 form-control Title Title__title3`}
               name="list-description"
-              placeholder="Listens titel"
+              placeholder={T({component: 'list', name: 'placeholderTitle'})}
               onChange={onTitleChange}
               value={list.title}
               data-cy="listinfo-title-input"
@@ -108,13 +109,16 @@ export const ListInfo = ({
             {titleMissing &&
               !list.title.length > 0 && (
                 <Text type="body" variant="color-fersken" className="mt-2">
-                  Listen skal have en titel
+                  <T component="list" name="noTitle" />
                 </Text>
               )}
             <Textarea
               className={`form-control mt-4 comment-textarea`}
               name="list-description"
-              placeholder="Fortæl om listen"
+              placeholder={T({
+                component: 'list',
+                name: 'placeholderDescription'
+              })}
               onChange={onDescriptionChange}
               value={list.description}
               data-cy="listinfo-description-input"
@@ -179,10 +183,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       type: 'OPEN_MODAL',
       modal: 'confirm',
       context: {
-        title: 'Din liste skal være offentlig!',
-        reason:
-          'For at du kan dele din liste, skal listen være offentlig. Vil du ændre din listes status til offentlig?',
-        confirmText: 'Gør min liste offentlig',
+        title: <T component="share" name="shareModalTitle" />,
+        reason: <T component="share" name="shareModalDescription" />,
+        confirmText: <T component="share" name="makePublicButton" />,
         url:
           'https://www.facebook.com/sharer/sharer.php?display=page&u=https://laesekompas.dk/lister/' +
           _id,

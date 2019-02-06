@@ -5,6 +5,7 @@ import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {FOLLOW, UNFOLLOW} from '../../../redux/follow.reducer';
 import Button from '../../base/Button';
 import Icon from '../../base/Icon';
+import T from '../../base/T';
 const getListById = getListByIdSelector();
 
 export const FollowButton = ({
@@ -40,7 +41,10 @@ export const FollowButton = ({
     >
       <Icon name="visibility" className="align-middle" />
       <span className="align-middle ml-2">
-        {isFollowing ? 'Følger liste' : 'Følg liste'}
+        <T
+          component="list"
+          name={isFollowing ? 'followingList' : 'followList'}
+        />
       </span>
     </Button>
   );
@@ -72,8 +76,8 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       type: OPEN_MODAL,
       modal: 'login',
       context: {
-        title: 'FØLG LISTE',
-        reason: 'Du skal logge ind for at følge en liste.'
+        title: <T component="list" name={'followList'} />,
+        reason: <T component="list" name={'loginFollowModalDescription'} />
       }
     });
   }

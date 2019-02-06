@@ -5,6 +5,7 @@ import {toast} from 'react-toastify';
 import Icon from '../base/Icon';
 import ToastMessage from '../base/ToastMessage';
 import Button from '../base/Button';
+import T from '../base/T/';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {
   CUSTOM_LIST,
@@ -95,8 +96,8 @@ export class AddToListButton extends React.Component {
           onClick={() => {
             this.props.openModal(
               {
-                title: 'LÆG I LISTE',
-                reason: 'Du skal logge ind for at lægge bøger i en liste.'
+                title: <T component="login" name="modalTitle" />,
+                reason: <T component="login" name="modalDescription" />
               },
               'login'
             );

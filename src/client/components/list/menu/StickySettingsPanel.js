@@ -12,6 +12,7 @@ import ListContextMenu from './ListContextMenu';
 import FollowButton from '../button/FollowButton';
 import AddBookButton from '../button/AddBookButton';
 import Text from '../../base/Text';
+import T from '../../base/T';
 import {timestampToDateTime} from '../../../utils/timeToString';
 import ProfileImage from '../../general/ProfileImage.component';
 const getListById = getListByIdSelector();
@@ -73,7 +74,7 @@ const StickySettings = ({
           className="mt-3"
           _id={_id}
           onEdit={onEdit}
-          title="Redigér liste"
+          title={T({component: 'list', name: 'editList'})}
         />
       </div>
     </div>

@@ -1,0 +1,650 @@
+{
+  "language": "en",
+  "components": {
+    "general": {
+      "readMore": {
+        "da": "Læs mere",
+        "en": "Read more"
+      },
+      "searchButton": {
+        "da": "Søg",
+        "en": "Search"
+      },
+      "back": {
+        "da": "Tilbage",
+        "en": "Back"
+      },
+      "cancel": {
+        "da": "Fortryd",
+        "en": "Cancel"
+      },
+      "save": {
+        "da": "Gem",
+        "en": "Save"
+      },
+      "edit": {
+        "da": "Redigér",
+        "en": "Edit"
+      },
+      "bestil": {
+        "da": "Bestil",
+        "en": "Order"
+      },
+      "book": {
+        "da": "bog",
+        "en": "book"
+      },
+      "books": {
+        "da": "bøger",
+        "en": "books"
+      },
+      "all": {
+        "da": "Alle",
+        "en": "All"
+      },
+      "by": {
+        "da": "Af",
+        "en": "By"
+      },
+      "from": {
+        "da": "Fra",
+        "en": "From"
+      },
+      "cancelEdit": {
+        "da": "Fortryd redigéring",
+        "en": "Cancel edit"
+      },
+      "changeImage": {
+        "da": "Skift billede",
+        "en": "Change image"
+      },
+      "saveChanges": {
+        "da": "Gem ændringerne",
+        "en": "Save changes"
+      },
+      "editMultiple": {
+        "da": "Redigér tekst og billede",
+        "en": "Edit text and image"
+      },
+      "reorder": {
+        "da": "Skift rækkefølge",
+        "en": "Reorder"
+      },
+      "editSettings": {
+        "da": "Redigér indstillinger",
+        "en": "Settings"
+      },
+      "addABook": {
+        "da": "Tilføj en bog",
+        "en": "Add a book"
+      }
+    },
+
+    "login": {
+      "loginButton": {
+        "da": "Log ind",
+        "en": "Log in"
+      },
+      "logoutButton": {
+        "da": "Log ud",
+        "en": "Log out"
+      },
+      "signedInby": {
+        "da": "Du er logget på via",
+        "en": "You are signed in by"
+      },
+      "modalTitle": {
+        "da": "Læg i liste",
+        "en": "Add to list"
+      },
+      "modalDescription": {
+        "da": "Du skal logge ind for at lægge bøger i en liste.",
+        "en": "You have to be signed in, before you can add books to a list."
+      },
+      "modalCreateProfileText": {
+        "da": "Har du ikke en profil? Du kan nemt oprette en profil med det login, du bruger på biblioteket.",
+        "en": "No profile? ..."
+      },
+      "modalCreateProfileLink": {
+        "da": "Opret en profil",
+        "en": "Create profile"
+      },
+      "modalNoContextReason": {
+        "da": "Du skal logge ind",
+        "en": "You have to log in"
+      }
+    },
+
+    "topbar": {
+      "betaText": {
+        "da": "Nu %s bøger. ",
+        "en": "Now %s books. "
+      }
+    },
+
+    "footer": {
+      "sectionOne": {
+        "da": "Læsekompasset hjælper dig med at opdage bøger, der passer dig, og inspirerer dig til nye læseoplevelser.",
+        "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "sectionTwo": {
+        "da": "Siden er i øjeblikket i beta-version, hvilket betyder, at den stadig er under udvikling og at du kan opleve ting, der ikke fungerer optimalt endnu.",
+        "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "customerServiceText": {
+        "da": "Problemer med teknikken?",
+        "en": "Problems with the site?"
+      },
+      "customerServiceLinkText": {
+        "da": "Skriv til DBCs kundeservice",
+        "en": "Write to DBCs customer service"
+      },
+      "writeToManagementText": {
+        "da": "Spørgsmål om Læsekompasset?",
+        "en": "Questions for Læsekompasset?"
+      },
+      "writeToManagementLinkText": {
+        "da": "Skriv til projektledelsen",
+        "en": "Write to the management"
+      },
+      "addressCompany": {
+        "da": "DBC a/s",
+        "en": "DBC a/s"
+      },
+      "addressStreet": {
+        "da": "Tempovej 7-11",
+        "en": "Tempovej 7-11"
+      },
+      "addressCity": {
+        "da": "2750 Ballerup",
+        "en": "2750 Ballerup"
+      }
+    },
+
+    "profile": {
+      "createProfile": {
+        "da": "Opret profil",
+        "en": "Create profile"
+      },
+      "editProfile": {
+        "da": "Redigér profil",
+        "en": "Edit profile"
+      },
+      "saveProfile": {
+        "da": "Gem Profil",
+        "en": "Save profile"
+      },
+      "deleteProfile": {
+        "da": "Slet profil",
+        "en": "Delete profile"
+      },
+      "deleteMyProfile": {
+        "da": "Slet min profil",
+        "en": "Delete my profile"
+      },
+      "cancelCreateProfile": {
+        "da": "Jeg ønsker alligevel ikke at oprette en profil",
+        "en": "However, I do not want to create a profile"
+      },
+      "enterInformations": {
+        "da": "Indtast dine personlige oplysninger:",
+        "en": "Enter your personal informations"
+      },
+      "changeProfilePicture": {
+        "da": "Skift profilbillede",
+        "en": "Change profile picture"
+      },
+      "uploadProfilePicture": {
+        "da": "Upload profilbillede",
+        "en": "Upload profile picture"
+      },
+      "deleteProfileModalTitle": {
+        "da": "Er du sikker på at du vil slette din profil?",
+        "en": "Are you sure you want to delete your profile?"
+      },
+      "deleteProfileModalDescription": {
+        "da": "Du er ved at slette din profil og alt data som er tilknyttet den, Er du sikker på at du vil fortsætte?.",
+        "en": "You are about to delete your profile, all data will be deleted, are you sure you want to proceed? "
+      },
+      "validationUsernameLength": {
+        "da": "Dit brugernavn skal være minimum 4 karakterer langt",
+        "en": "Your username, should contain at least 4 characters"
+      },
+      "validationAcceptAge": {
+        "da": "Du skal være over 13 år for at oprette en profil",
+        "en": "You have to be over 13 years old to create a profile"
+      },
+      "validationAcceptTerms": {
+        "da": "For at oprette en profil, skal du acceptere reglerne for anvendelse af Læsekompasset.",
+        "en": "You have to accept our terms"
+      },
+      "saveProfileError": {
+        "da": "Det er ikke muligt at gemme profilen",
+        "en": "It`s not possible to save the profile"
+      },
+      "placeholderUsername": {
+        "da": "Vælg brugernavn",
+        "en": "Select username"
+      },
+      "ageCheckboxText": {
+        "da": "Jeg er over 13 år",
+        "en": "I am older than 13 years"
+      },
+      "termsCheckboxText": {
+        "da": "Jeg har læst og accepteret",
+        "en": "I have read and agreed to"
+      },
+      "termsCheckboxLink": {
+        "da": "reglerne for anvendelse af Læsekompasset",
+        "en": "Læsekompassets terms of use"
+      }
+    },
+
+    "shortlist": {
+      "title": {
+        "da": "Huskeliste",
+        "en": "Shortlist"
+      },
+      "titleWithBooks": {
+        "da": "Huskeliste (%s)",
+        "en": "Shortlist (%s)"
+      },
+      "origin": {
+        "da": "Tilføjet fra huskelisten",
+        "en": "Added from the shortlist"
+      },
+      "emptyList": {
+        "da": "Din huskeliste er tom",
+        "en": "Your shortlist is empty"
+      },
+      "shortlistGo": {
+        "da": "Gå til huskeliste",
+        "en": "To shortlist"
+      },
+      "shortlistOrder": {
+        "da": "Bestil hele listen",
+        "en": "Order the entire list"
+      },
+      "shortlistClear": {
+        "da": "Ryd listen",
+        "en": "Clear list"
+      }
+    },
+
+    "list": {
+      "listButton": {
+        "da": "Lister",
+        "en": "Lists"
+      },
+      "addToList": {
+        "da": "Tilføj til liste",
+        "en": "Add to list"
+      },
+      "addallToList": {
+        "da": "Tilføj alle til liste",
+        "en": "Add all to a list"
+      },
+      "editLists": {
+        "da": "Redigér lister",
+        "en": "Edit lists"
+      },
+      "editList": {
+        "da": "Redigér liste",
+        "en": "Edit list"
+      },
+      "saveList": {
+        "da": "Gem liste",
+        "en": "Save list"
+      },
+      "deleteList": {
+        "da": "Slet liste",
+        "en": "Delete list"
+      },
+      "cancelList": {
+        "da": "Fortryd oprettelse af liste",
+        "en": "Cancel list editing"
+      },
+      "createNew": {
+        "da": "Opret ny liste",
+        "en": "Create new list"
+      },
+      "yourListsTitle": {
+        "da": "Dine lister",
+        "en": "Your lists"
+      },
+      "followList": {
+        "da": "Følg liste",
+        "en": "Follow list"
+      },
+      "followingList": {
+        "da": "Følger liste",
+        "en": "Following list"
+      },
+      "loginFollowModalDescription": {
+        "da": "Du skal logge ind for at følge en liste.",
+        "en": "You have to be signed in to follow a list"
+      },
+      "fetchListError": {
+        "da": "Listen kunne ikke hentes",
+        "en": "Couldn`t view list"
+      },
+      "listNotAvailable": {
+        "da": "Listen er slettet",
+        "en": "List is no longer availabel"
+      },
+      "placeholderTitle": {
+        "da": "Listens titel",
+        "en": "Title of the list"
+      },
+      "noTitle": {
+        "da": "Listen skal have en titel",
+        "en": "The list must have a title"
+      },
+      "placeholderAboutList": {
+        "da": "Fortæl om listen",
+        "en": "Tell about the list"
+      },
+      "placeholderDescription": {
+        "da": "Listens beskrivelse",
+        "en": "List description"
+      },
+      "placeholderUnderTitle": {
+        "da": "Listens undertitel",
+        "en": "The subtitle of the list"
+      },
+      "placeholderUrlText": {
+        "da": "Listens link tekst",
+        "en": "Url text"
+      },
+      "addBooksToList": {
+        "da": "Vil du tilføje bøger til listen?",
+        "en": "Add books to the list?"
+      },
+      "duplicated": {
+        "da": " eksisterer allerede i listen",
+        "en": " already exist in the list"
+      },
+      "placeholderBookSuggester": {
+        "da": "Skriv titel eller forfatter",
+        "en": "Title or author"
+      },
+      "recentListsTitle": {
+        "da": "Nyeste lister",
+        "en": "Recent Lists"
+      },
+      "deleteListModalTitle": {
+        "da": "Skal denne liste slettes?",
+        "en": "Delete list?"
+      },
+      "deleteListModalDescription": {
+        "da": "Er du sikker på du vil slette den valgte liste.",
+        "en": "Are you sure you want to delete the selected list."
+      },
+      "moreBook": {
+        "da": "+ %s bog mere",
+        "en": "+ %s more book"
+      },
+      "moreBooks": {
+        "da": "+ %s bøger mere",
+        "en": "+ %s more books"
+      },
+      "showList": {
+        "da": "Vis liste",
+        "en": "Show list"
+      },
+      "followLists": {
+        "da": "Lister som du følger:",
+        "en": "Lists you are following:"
+      },
+      "noFollowLists": {
+        "da": "Du følger i øjeblikket ingen lister",
+        "en": "You are currently not following any lists"
+      }
+    },
+
+    "post": {
+      "editPost": {
+        "da": "Redigér indlæg",
+        "en": "Edit post"
+      },
+      "deletePost": {
+        "da": "Slet indlæg",
+        "en": "Delete post"
+      },
+      "aboutTheBook": {
+        "da": "Fortæl om bogen",
+        "en": "Tell about the book"
+      },
+      "useBookDescription": {
+        "da": "Brug bogens beskrivelse",
+        "en": "Use the books description"
+      },
+      "writeComment": {
+        "da": "Skriv kommentar",
+        "en": "Write a comment"
+      },
+      "modalWriteCommentLogin": {
+        "da": "Du skal logge ind for at skrive en kommentar.",
+        "en": "You have to be signed in to write a comment."
+      },
+      "comment": {
+        "da": "Kommentér",
+        "en": "Comment"
+      },
+      "showMoreComments": {
+        "da": "Vis flere kommentarer",
+        "en": "Show more comments"
+      },
+      "showLessComments": {
+        "da": "Vis færre kommentarer",
+        "en": "Show less comments"
+      },
+      "commentCount": {
+        "da": "%s kommentar",
+        "en": "%s comment"
+      },
+      "commentsCount": {
+        "da": "%s kommentarer",
+        "en": "%s comments"
+      },
+      "now": {
+        "da": "Lige nu",
+        "en": "Just now"
+      }
+    },
+
+    "order": {
+      "orderInProgress": {
+        "da": "Bestiller...",
+        "en": "Ordering..."
+      },
+      "orderDone": {
+        "da": "Bestilt",
+        "en": "Ordered"
+      },
+      "orderError": {
+        "da": "Fejl ved bestilling",
+        "en": "Order error"
+      },
+      "orderAvailability": {
+        "da": "Tjekker tilgængelighed",
+        "en": "Checking availability"
+      },
+      "orderPossible": {
+        "da": "Kan bestilles",
+        "en": "Order is possible"
+      },
+      "orderNow": {
+        "da": "Ja tak, bestil nu",
+        "en": "Yes please, order now"
+      },
+      "booksOrdered": {
+        "da": "%s %s er bestilt",
+        "en": "%s %s is ordered"
+      },
+      "booksOrderedText": {
+        "da": "Du får besked fra dit bibliotek, når de er klar til afhentning",
+        "en": ""
+      },
+      "anErrorOccured": {
+        "da": "Der skete en fejl så %s af bøgerne ikke er blevet bestilt.",
+        "en": "An error occured, %s of the books can`t be ordered"
+      },
+      "anErrorOccuredHelpText": {
+        "da": "Du kan evt. prøve at bestille bøgerne igen",
+        "en": "You can try to order the books again"
+      },
+      "notYourLibrary": {
+        "da": "Kan ikke bestilles til dit bibliotek.",
+        "en": "Can`t be ordered to your library"
+      },
+      "modalTitle": {
+        "da": "Bestil",
+        "en": "Order"
+      },
+      "modalTextCount": {
+        "da": "Du er ved at bestille %s %s",
+        "en": "You are about to order %s %s"
+      },
+      "modalOrderLimit": {
+        "da": "Du kan højest bestille 10 bøger ad gangen. Klik på 'Bestil hele listen' igen for at bestille flere bøger.",
+        "en": "You can only order a maximum of 10 books at a time. Click 'Order entire list', again to order more books."
+      },
+      "modalOrderNotice": {
+        "da": "Bemærk: Der er problemer med bestillingen af mindst en af bøgerne.",
+        "en": "Notice: There is a problem with one og more books in the current order."
+      },
+      "orderPickup": {
+        "da": "Til afhentning på:",
+        "en": "For pickup at:"
+      },
+      "loginModalText": {
+        "da": "Du skal logge ind for at bestille bøger.",
+        "en": "You need to be signed in to order books"
+      }
+    },
+
+    "share": {
+      "shareOnFacebook": {
+        "da": "Del på facebook",
+        "en": "share on facebook"
+      },
+      "shareModalTitle": {
+        "da": "Din liste skal være offentlig!",
+        "en": "Your list is currently private"
+      },
+      "shareModalDescription": {
+        "da": "For at du kan dele din liste, skal listen være offentlig. Vil du ændre din listes status til offentlig?",
+        "en": "Your list needs to be public before you can share it, do you want to change the status of the list to public?"
+      },
+      "makePublicButton": {
+        "da": "Gør min liste offentlig",
+        "en": "Make my list public"
+      }
+    },
+    "belts": {
+      "bestRecommendations": {
+        "da": "Bedste forslag til",
+        "en": "Best suggestions for"
+      },
+      "pinPlaceholderDescription": {
+        "da": "Giv din gemte søgning en beskrivelse",
+        "en": "Give your pinned search a description"
+      },
+      "pinPlaceholderTitle": {
+        "da": "Husk at give båndet en overskrift",
+        "en": "Remember to give your pinned search a title"
+      },
+      "remindsOf": {
+        "da": "Minder om",
+        "en": "Reminds of"
+      }
+    },
+    "work": {
+      "moreLikeThis": {
+        "da": "Mere som denne",
+        "en": "More like this"
+      }
+    }
+  },
+  "units": {
+    "second": {
+      "da": "sekund",
+      "en": "second"
+    },
+    "seconds": {
+      "da": "sekunder",
+      "en": "seconds"
+    },
+    "minute": {
+      "da": "minut",
+      "en": "minute"
+    },
+    "minutes": {
+      "da": "minutter",
+      "en": "minutes"
+    },
+    "hour": {
+      "da": "time",
+      "en": "hour"
+    },
+    "hours": {
+      "da": "timer",
+      "en": "hours"
+    },
+    "day": {
+      "da": "dag",
+      "en": "day"
+    },
+    "days": {
+      "da": "dage",
+      "en": "days"
+    },
+    "month": {
+      "da": "måned",
+      "en": "month"
+    },
+    "months": {
+      "da": "måneder",
+      "en": "months"
+    },
+    "year": {
+      "da": "år",
+      "en": "year"
+    },
+    "years": {
+      "da": "år",
+      "en": "years"
+    },
+    "shortMonths": {
+      "da": [
+        "jan",
+        "feb",
+        "mar",
+        "apr",
+        "maj",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "okt",
+        "nov",
+        "dec"
+      ],
+      "en": [
+        "jan",
+        "feb",
+        "mar",
+        "apr",
+        "may",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec"
+      ]
+    }
+  }
+}

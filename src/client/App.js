@@ -26,6 +26,7 @@ import Styleguide from './components/Styleguide/Styleguide.component';
 import FeedbackButton from './components/general/FeedbackButton.component';
 import Footer from './components/general/Footer.component';
 import Article from './components/article/Article.component';
+import T from './components/base/T';
 import {OPEN_MODAL} from './redux/modal.reducer';
 
 class App extends Component {
@@ -55,11 +56,18 @@ class App extends Component {
     } else if (pathSplit[1] === 'profile') {
       if (pathSplit[2] === 'opret') {
         topbar = false;
-        currentPage = <CreateProfilePage title="Opret profil" />;
+        currentPage = (
+          <CreateProfilePage
+            title={T({component: 'profile', name: 'createProfile'})}
+          />
+        );
       } else if (pathSplit[2] === 'rediger') {
         topbar = false;
         currentPage = (
-          <CreateProfilePage title="Redigér profil" editMode={true} />
+          <CreateProfilePage
+            title={T({component: 'profile', name: 'editProfile'})}
+            editMode={true}
+          />
         );
       } else if (pathSplit[2] === 'smag') {
         currentPage = <TastePage />;

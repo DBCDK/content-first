@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import T from '../../base/T';
+import ListItem from '../../list/overview/ListItem.component.js';
 import {
   CUSTOM_LIST,
   SYSTEM_LIST,
@@ -7,8 +9,6 @@ import {
   createGetLists
 } from '../../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../../redux/middleware';
-
-import ListItem from '../../list/overview/ListItem.component.js';
 
 export class Lists extends React.Component {
   componentDidMount() {
@@ -61,7 +61,7 @@ export class Lists extends React.Component {
               e.preventDefault();
             }}
           >
-            Ny liste
+            <T component="list" name="createNew" />
             <span className="material-icons ml4">add</span>
           </a>
         </div>

@@ -7,6 +7,7 @@ import {
   getListByIdSelector
 } from '../../../redux/list.reducer';
 import Button from '../../base/Button';
+import T from '../../base/T';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
 const getListById = getListByIdSelector();
 
@@ -59,7 +60,11 @@ class StickyConfirmPanel extends React.Component {
               className="mr-2 ml-2 mt-2 mb-2 mt-sm-4 mb-sm-4"
               onClick={this.cancel}
             >
-              {isNew ? 'Fortryd oprettelse af liste' : 'Fortryd'}
+              {isNew ? (
+                <T component="list" name={'cancelList'} />
+              ) : (
+                <T component="general" name="cancel" />
+              )}
             </Button>
             <Button
               type="quaternary"
@@ -67,7 +72,11 @@ class StickyConfirmPanel extends React.Component {
               onClick={this.submit}
               dataCy="stickyPanel-submit"
             >
-              {isNew ? 'Gem liste' : 'Gem ændringer'}
+              {isNew ? (
+                <T component="list" name="saveList" />
+              ) : (
+                <T component="general" name="saveChanges" />
+              )}
             </Button>
           </div>
         </div>

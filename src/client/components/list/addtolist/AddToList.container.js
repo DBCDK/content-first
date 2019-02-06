@@ -5,6 +5,7 @@ import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import BookSearchSuggester from './BookSearchSuggester';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
+import T from '../../base/T';
 import ProfileImage from '../../general/ProfileImage.component';
 
 export class AddToList extends React.Component {
@@ -68,7 +69,7 @@ export class AddToList extends React.Component {
           variant="transform-uppercase"
           className="ml-2 ml-sm-0"
         >
-          Vil du tilføje bøger til listen?
+          <T component="list" name="addBooksToList" />
         </Title>
 
         <div className="d-flex flex-row french-pass pt-4">
@@ -95,7 +96,7 @@ export class AddToList extends React.Component {
               variant="color-fersken"
               className="mt-2 mb-0 d-inline"
             >
-              {' eksisterer allerede i listen'}
+              <T component="list" name="duplicated" />
             </Text>
           </React.Fragment>
         )}
@@ -124,8 +125,8 @@ export const mapDispatchToProps = dispatch => ({
       type: OPEN_MODAL,
       modal: 'login',
       context: {
-        title: 'LÆG I LISTE',
-        reason: 'Du skal logge ind for at lægge bøger i en liste.'
+        title: <T component="login" name="modalTitle" />,
+        reason: <T component="login" name="modalDescription" />
       }
     });
   }
