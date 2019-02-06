@@ -14,6 +14,11 @@ const defaultState = {
     context: null,
     callback: null
   },
+  profile: {
+    open: false,
+    context: null,
+    callback: null
+  },
   confirm: {
     open: false,
     context: null,

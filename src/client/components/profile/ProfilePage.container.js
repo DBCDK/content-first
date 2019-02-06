@@ -4,7 +4,6 @@ import ProfileImage from '../general/ProfileImage.component';
 import Link from '../general/Link.component';
 import Lists from '../list/overview/Lists.container';
 import Follow from '../follow/Follow.component';
-import T from '../base/T';
 
 export class ProfilePage extends React.Component {
   render() {
@@ -20,7 +19,7 @@ export class ProfilePage extends React.Component {
                   namePosition={'bottom'}
                 />
                 <Link className="small link-subtle" href="/profile/rediger">
-                  <T component="general" name="edit" />
+                  Redigér
                 </Link>
               </div>
             ) : (
@@ -28,9 +27,7 @@ export class ProfilePage extends React.Component {
             )}
           </div>
           <div className="col-9">
-            <h1 className="headline">
-              <T component="list" name="yourListsTitle" />
-            </h1>
+            <h1 className="headline">Dine Lister</h1>
             <div className="profile-lists">
               <Lists />
             </div>

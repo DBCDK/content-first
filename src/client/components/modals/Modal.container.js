@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import AddToListModal from './AddToListModal.container';
 import OrderModal from './OrderModal.container';
 import LoginModal from './LoginModal.component';
+import ProfileModal from './ProfileModal.component';
 import ConfirmModal from './ConfirmModal.component';
 import ListSettingsModal from './ListSettingsModal.container';
 import ReorderListModal from './ReorderListModal.container';
@@ -19,6 +20,7 @@ class Modal extends React.Component {
     }
     return false;
   }
+
   componentWillReceiveProps(nextProps) {
     const openCurrent = Modal.anyOpen(this.props.modalState);
     const openNext = Modal.anyOpen(nextProps.modalState);
@@ -56,6 +58,9 @@ class Modal extends React.Component {
     }
     if (this.props.modalState.login.open) {
       modal = <LoginModal context={this.props.modalState.login.context} />;
+    }
+    if (this.props.modalState.profile.open) {
+      modal = <ProfileModal context={this.props.modalState.profile.context} />;
     }
     if (this.props.modalState.confirm.open) {
       modal = <ConfirmModal context={this.props.modalState.confirm.context} />;
