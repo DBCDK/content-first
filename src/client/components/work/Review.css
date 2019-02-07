@@ -1,0 +1,11 @@
+.Review__container {
+  height: auto;
+  text-align: left;
+}
+
+.Review__block--top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+

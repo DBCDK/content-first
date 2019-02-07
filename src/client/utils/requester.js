@@ -18,6 +18,11 @@ const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;
 
+/**
+ * fetchTags
+ * @param pids
+ * @returns {Promise<void>}
+ */
 export const fetchTags = async (pids = []) => {
   let result = {};
   let requests = [];
@@ -44,6 +49,12 @@ export const fetchTags = async (pids = []) => {
   return result;
 };
 
+/**
+ * fetchBooks
+ * @param pids
+ * @param store
+ * @returns {Promise<any[] | never>}
+ */
 export const fetchBooks = (pids = [], store) => {
   pids = unique(pids);
   const getBooks = request.post('/v1/books/').send({pids});
@@ -64,6 +75,11 @@ export const fetchBooks = (pids = [], store) => {
     });
 };
 
+/**
+ * fetchCoverRefs
+ * @param pids
+ * @returns {Promise<any[] | never>}
+ */
 export const fetchCoverRefs = (pids = []) => {
   pids = unique(pids);
 
@@ -100,6 +116,11 @@ export const fetchCoverRefs = (pids = []) => {
   });
 };
 
+/**
+ * fetchBooksRefs
+ * @param pids
+ * @returns {Promise<any[] | never>}
+ */
 export const fetchBooksRefs = async (pids = []) => {
   pids = unique(pids);
 
@@ -136,6 +157,11 @@ export const fetchBooksRefs = async (pids = []) => {
   });
 };
 
+/**
+ * fetchBooksTags
+ * @param pids
+ * @returns {Promise<{book: {pid: *, tags: *}}[]>}
+ */
 export const fetchBooksTags = async (pids = []) => {
   pids = unique(pids);
   const tags = await fetchTags(pids);
@@ -150,6 +176,10 @@ export const fetchBooksTags = async (pids = []) => {
   return books;
 };
 
+/**
+ * fetchStats
+ * @returns {Promise<*>}
+ */
 export const fetchStats = async () => {
   try {
     const response = await request.get('/v1/stats/');
@@ -163,6 +193,12 @@ export const fetchStats = async () => {
   }
 };
 
+/**
+ * fetchReviews
+ * @param pids
+ * @param store
+ * @returns {Promise<any[] | never>}
+ */
 export const fetchReviews = (pids, store) => {
   const books = store.getState().booksReducer.books;
   const booksToBeFetched = pids.map(pid => books[pid]);
@@ -172,7 +208,13 @@ export const fetchReviews = (pids, store) => {
       try {
         const result = await openplatform.work({
           pids: ref.book.reviews.data,
-          fields: ['identifierURI', 'creatorOth', 'isPartOf', 'date'],
+          fields: [
+            'identifierURI',
+            'creatorOth',
+            'isPartOf',
+            'date',
+            'fullTextReviews'
+          ],
           access_token: await fetchAnonymousToken()
         });
 
@@ -202,6 +244,12 @@ export const fetchReviews = (pids, store) => {
   });
 };
 
+/**
+ * fetchCollection
+ * @param pids
+ * @param store
+ * @returns {Promise<any[] | never>}
+ */
 export const fetchCollection = (pids, store) => {
   const books = store.getState().booksReducer.books;
   const booksToBeFetched = pids.map(pid => books[pid]);
@@ -246,12 +294,22 @@ export const fetchCollection = (pids, store) => {
   });
 };
 
+/**
+ * fetchProfileRecommendations
+ * @param profileState
+ * @param dispatch
+ */
 export const fetchProfileRecommendations = (profileState, dispatch) => {
   requestProfileRecommendations().then(recommendations =>
     dispatch({type: TASTE_RECOMMENDATIONS_RESPONSE, recommendations})
   );
 };
 
+/**
+ * fetchUser
+ * @param dispatch
+ * @param cb
+ */
 export const fetchUser = (dispatch, cb) => {
   request.get('/v1/user').end(function(error, res) {
     if (error) {
@@ -270,6 +328,11 @@ export const fetchUser = (dispatch, cb) => {
   });
 };
 
+/**
+ * addImage
+ * @param imageData
+ * @returns {Promise<any>}
+ */
 export const addImage = imageData => {
   return new Promise((resolve, reject) => {
     if (!['image/png', 'image/jpeg'].includes(imageData.type)) {
@@ -289,6 +352,11 @@ export const addImage = imageData => {
   });
 };
 
+/**
+ * saveUser
+ * @param user
+ * @returns {Promise<any>}
+ */
 export const saveUser = user => {
   return new Promise((resolve, reject) => {
     request
@@ -304,6 +372,11 @@ export const saveUser = user => {
   });
 };
 
+/**
+ * deleteUser
+ * @param id
+ * @returns {Promise<any>}
+ */
 export const deleteUser = id => {
   return new Promise((resolve, reject) => {
     request.delete('/v1/user/' + id).end((error, res) => {
@@ -316,6 +389,14 @@ export const deleteUser = id => {
   });
 };
 
+/**
+ * fetchObjects
+ * @param key
+ * @param type
+ * @param owner
+ * @param limit
+ * @returns {Promise<any>}
+ */
 export const fetchObjects = (key, type, owner, limit = 100) => {
   return new Promise((resolve, reject) => {
     request
@@ -331,6 +412,11 @@ export const fetchObjects = (key, type, owner, limit = 100) => {
   });
 };
 
+/**
+ * addObject
+ * @param object
+ * @returns {Promise<any>}
+ */
 export const addObject = object => {
   return new Promise((resolve, reject) => {
     request
@@ -346,6 +432,11 @@ export const addObject = object => {
   });
 };
 
+/**
+ * updateObject
+ * @param object
+ * @returns {Promise<any>}
+ */
 export const updateObject = object => {
   return new Promise((resolve, reject) => {
     request
@@ -360,10 +451,20 @@ export const updateObject = object => {
       });
   });
 };
+
+/**
+ * deleteObject
+ * @param object
+ * @returns {Promise<any>}
+ */
 export const deleteObject = object => {
   return updateObject({_id: object._id});
 };
 
+/**
+ * logout
+ * @param dispatch
+ */
 export const logout = dispatch => {
   dispatch({type: ON_LOGOUT_RESPONSE});
   document.body.innerHTML +=
@@ -371,6 +472,11 @@ export const logout = dispatch => {
   document.getElementById('logoutform').submit();
 };
 
+/**
+ * saveShortList
+ * @param elements
+ * @param isLoggedIn
+ */
 export const saveShortList = (elements, isLoggedIn) => {
   setItem(SHORT_LIST_KEY, elements, SHORT_LIST_VERSION);
   if (isLoggedIn) {
@@ -391,6 +497,12 @@ export const saveShortList = (elements, isLoggedIn) => {
   }
 };
 
+/**
+ * loadShortList
+ * @param isLoggedIn
+ * @param store
+ * @returns {Promise<*>}
+ */
 export const loadShortList = async ({isLoggedIn, store}) => {
   const localStorageElements = getItem(SHORT_LIST_KEY, SHORT_LIST_VERSION, []);
   if (!isLoggedIn) {
@@ -418,6 +530,11 @@ export const loadShortList = async ({isLoggedIn, store}) => {
   }
 };
 
+/**
+ * formatQuery
+ * @param query
+ * @returns {*}
+ */
 function formatQuery(query) {
   query = query
     // Remove parenthesis and everything between from query string + leading/ending spaces
@@ -440,6 +557,13 @@ function formatQuery(query) {
 
   return query;
 }
+
+/**
+ * fetchSearchResults
+ * @param query
+ * @param dispatch
+ * @returns {Promise<void>}
+ */
 export async function fetchSearchResults({query, dispatch}) {
   query = formatQuery(query);
 
@@ -459,6 +583,10 @@ export async function fetchSearchResults({query, dispatch}) {
 
 let accessToken;
 let accessTokenRequest = null;
+/**
+ * fetchAnonymousToken
+ * @returns {Promise<*>}
+ */
 export const fetchAnonymousToken = async () => {
   if (accessToken) {
     // Return already fetched token
