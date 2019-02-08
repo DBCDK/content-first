@@ -5,6 +5,7 @@ import Title from '../base/Title';
 import Text from '../base/Text';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
+import T from '../base/T';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import SkeletonText from '../base/Skeleton/Text';
@@ -69,7 +70,7 @@ class WorkPage extends React.Component {
       // TODO this should not be in render
       // probably, this component shouldnt be responsible for dispatching this action
       this.addNewBelt({
-        name: 'Minder om ' + book.title,
+        name: T({component: 'belts', name: 'remindsOf'}) + ' ' + book.title,
         key: 'Minder om ' + book.title,
         pid: book.pid,
         onFrontPage: false,
@@ -91,7 +92,7 @@ class WorkPage extends React.Component {
               <BookCover book={book} enableLightbox />
               <BookmarkButton
                 className="d-inline-block d-sm-none mr1"
-                origin={'Fra egen værkside'}
+                origin={T({component: 'work', name: 'bookmarkButtonOrigin'})}
                 work={work}
                 layout="circle"
                 style={{
@@ -110,7 +111,7 @@ class WorkPage extends React.Component {
                 hex={'#3b5998'}
                 size={40}
                 shape="round"
-                hoverTitle="Del på facebook"
+                hoverTitle={T({component: 'share', name: 'shareOnFacebook'})}
               />
 
               <Title Tag="h3" type="title3" className="mt0">
@@ -140,10 +141,15 @@ class WorkPage extends React.Component {
                   data-value={book.pages}
                   type="micro"
                 >
-                  Sideantal: {book.pages}
+                  <T component="work" name="pages" /> {book.pages}
                 </Text>
-                <Text type="micro">Sprog: {book.language}</Text>
-                <Text type="micro">Udgivet: {book.first_edition_year}</Text>
+                <Text type="micro">
+                  <T component="work" name="language" /> {book.language}
+                </Text>
+                <Text type="micro">
+                  <T component="work" name="released" />
+                  {book.first_edition_year}
+                </Text>
               </div>
 
               <div className="row">
@@ -153,7 +159,7 @@ class WorkPage extends React.Component {
                     variant="weight-semibold"
                     className="mt1 mb0"
                   >
-                    Lån som:
+                    <T component="work" name="loanTitle" />
                   </Text>
                 </div>
               </div>
@@ -164,8 +170,8 @@ class WorkPage extends React.Component {
                     book={book}
                     size="medium"
                     type="quaternary"
-                    label="Bog"
                     icon="book"
+                    label={T({component: 'general', name: 'book'})}
                     className="mr1 mt1"
                   />
                 )}
@@ -200,7 +206,7 @@ class WorkPage extends React.Component {
                         className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                       >
                         <Icon name={'book'} />
-                        Bog
+                        <T component="general" name="book" />
                       </Button>
                     </a>
                     <a>
@@ -210,7 +216,7 @@ class WorkPage extends React.Component {
                         className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                       >
                         <Icon name={'alternate_email'} />
-                        Ebog
+                        <T component="general" name="ebook" />
                       </Button>
                     </a>
                     <a>
@@ -220,7 +226,7 @@ class WorkPage extends React.Component {
                         className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                       >
                         <Icon name={'voicemail'} />
-                        Lydbog
+                        <T component="general" name="audiobook" />
                       </Button>
                     </a>
                   </React.Fragment>
@@ -230,7 +236,10 @@ class WorkPage extends React.Component {
                 <div className="col-12 mt1">
                   <BookmarkButton
                     className="mr1"
-                    origin={'Fra egen værkside'}
+                    origin={T({
+                      component: 'work',
+                      name: 'bookmarkButtonOrigin'
+                    })}
                     work={work}
                   />
                   <AddToListButton className="mr1 pt1" work={work} />
@@ -249,7 +258,7 @@ class WorkPage extends React.Component {
                       scroll(pos);
                     }}
                   >
-                    Mere som denne
+                    <T component="work" name="moreLikeThis" />
                   </Button>
                 </div>
               </div>
@@ -261,7 +270,7 @@ class WorkPage extends React.Component {
                     variant="weight-semibold"
                     className="mt3 mb0"
                   >
-                    Om bogen:
+                    <T component="work" name="bookSpecsTitle" />
                   </Text>
                 </div>
               </div>
@@ -318,9 +327,14 @@ class WorkPage extends React.Component {
                       });
                     }}
                   >
-                    {this.state.tagsCollapsed
-                      ? 'Se alle tags'
-                      : 'Se færre tags'}
+                    <T
+                      component="work"
+                      name={
+                        this.state.tagsCollapsed
+                          ? 'tagsCollapsibleShow'
+                          : 'tagsCollapsibleHide'
+                      }
+                    />
                   </Button>
                 </div>
               </div>
@@ -330,7 +344,7 @@ class WorkPage extends React.Component {
             <div className="row">
               <div className="col-md-12">
                 <Title Tag="h3" type="title4" className="mt0 mb2">
-                  Anmeldelser:
+                  <T component="work" name={'reviewsTitle'} />
                 </Title>
               </div>
             </div>
@@ -400,26 +414,33 @@ class WorkPage extends React.Component {
           <div className="row col-12 mb2 WorkPage__detailsMobile">
             <div className="col-12">
               <Text type="body" variant="weight-semibold" className="mt1">
-                Mere info:
+                <T component="work" name="infoTitle" />
               </Text>
             </div>
             <div className="col-12">
               <div className="WorkPage__details">
-                <Text type="micro">Sideantal: {book.pages}</Text>
-                <Text type="micro">Sprog: {book.language}</Text>
-                <Text type="micro">Udgivet: {book.first_edition_year}</Text>
+                <Text type="micro">
+                  <T component="work" name="pages" /> {book.pages}
+                </Text>
+                <Text type="micro">
+                  <T component="work" name="language" /> {book.language}
+                </Text>
+                <Text type="micro">
+                  <T component="work" name="released" />{' '}
+                  {book.first_edition_year}
+                </Text>
               </div>
             </div>
             <div className="col-12">
               <div className="WorkPage__formats mt1">
                 <Text type="body" variant="weight-semibold" className="mt1">
-                  Formater:
+                  <T component="work" name="formatTitle" />
                 </Text>
                 <div className="row col-12">
                   {work.collectionHasLoaded && (
                     <Text type="micro" className="mr1">
-                      <Icon name={'book'} className="md-xsmall" />
-                      {' Bog'}
+                      <Icon name={'book'} className="md-xsmall" />{' '}
+                      <T component="general" name="book" />
                     </Text>
                   )}
                   {work.collectionHasLoaded &&

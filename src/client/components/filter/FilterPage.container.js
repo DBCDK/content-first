@@ -7,6 +7,7 @@ import Filters from './Filters.component';
 import WorkCard from '../work/WorkCard.container';
 import Heading from '../base/Heading';
 import Pin from '../base/Pin';
+import T from '../base/T';
 import SearchBar from './SearchBar.component';
 import Spinner from '../general/Spinner.component';
 import BeltFacade from '../belt/BeltFacade.component';
@@ -213,7 +214,7 @@ class FilterPage extends React.Component {
       row,
       type,
       pid: book.pid,
-      name: 'Minder om ' + book.title,
+      name: T({component: 'belts', name: 'remindsOf'}) + ' ' + book.title,
       key: `filterpage: ${row}`,
       onFrontPage: false,
       child: false,
@@ -275,13 +276,13 @@ class FilterPage extends React.Component {
         type="success"
         icon="check_circle"
         lines={[
-          'Søgningen er gemt på din forside',
+          <T component="filter" name="pinnedToFrontpageToast" />,
           <a
             onClick={() =>
               this.props.history(HISTORY_PUSH, `/#temp_${tagIds.join('')}`)
             }
           >
-            Se det her
+            <T component="filter" name="watchToastAction" />
           </a>
         ]}
       />,
@@ -303,8 +304,7 @@ class FilterPage extends React.Component {
       rows
     );
 
-    const noResultsMessage =
-      'Vi fandt desværre ingen bøger som matchede din søgning';
+    const noResultsMessage = <T component="filter" name="noSearchMatch" />;
 
     const pinStatus = this.props.belts[
       `pin: ${this.props.plainSelectedTagIds.join(', ')}`
@@ -332,19 +332,25 @@ class FilterPage extends React.Component {
         <div className="container">
           <div className="filter-page-resultCount text-left d-flex justify-content-between">
             <Heading Tag="h4" type="lead">
-              {resultCount === 0 ? noResultsMessage : 'Bogforslag'}
+              {resultCount === 0 ? (
+                noResultsMessage
+              ) : (
+                <T component="filter" name="suggestions" />
+              )}
             </Heading>
             {!this.props.loadingBelts &&
               this.props.plainSelectedTagIds.length > 0 && (
                 <Pin
                   active={pinStatus}
-                  text={
-                    pinStatus ? 'Gemt på din forside' : 'Gem på din forside'
-                  }
+                  text={T({
+                    component: 'filter',
+                    name: pinStatus ? 'pinAdded' : 'pinAdd'
+                  })}
                   notLoggedIncontext={{
-                    title: 'GEM SØGNING TIL FORSIDE',
-                    reason:
-                      'Du skal logge ind for at kunne gemme din søgning til forsiden.'
+                    title: <T component="filter" name="pinLoginModalTitle" />,
+                    reason: (
+                      <T component="filter" name="pinLoginModalDescription" />
+                    )
                   }}
                   onClick={this.onPinClick}
                 />
@@ -370,9 +376,11 @@ class FilterPage extends React.Component {
                 belts={this.props.belts}
                 cardRef={workCard => (this.refs = {...this.refs, workCard})}
                 rowRef={(e, idx) => (this.refs[`row-${idx}`] = e)}
-                origin={`Fra din søgning på ${this.props.selectedTags
-                  .map(t => t.title)
-                  .join(', ')}`}
+                origin={T({
+                  component: 'filter',
+                  name: 'filterOrigin',
+                  vars: [this.props.selectedTags.map(t => t.title).join(', ')]
+                })}
               />
             ) : (
               Array.from(new Array(100), (v, i) => i + 1).map(skeleton => (

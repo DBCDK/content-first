@@ -30,7 +30,9 @@ class TopBarDropdown extends React.Component {
         <div className="Topbar__dropdown__caret"/>
         <li>
           <Link href="/profile" onClick={this.props.onClick}>
-            <span>Min profil</span>
+            <span>
+              <T component="profile" name="profilePage" />
+            </span>
           </Link>
         </li>
         <li className="d-block d-sm-none">
@@ -236,7 +238,8 @@ export class TopBar extends React.Component {
         searchExpanded && (
           <div className="Topbar__mobile__overlay d-block d-sm-none">
               <span onClick={() => this.toggleSearchBar('close')}>
-                <Icon name="chevron_left"/> Tilbage
+                <Icon name="chevron_left" />
+                <T component="general" name="back" />
               </span>
             <span
               onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
@@ -436,34 +439,27 @@ export const mapDispatchToProps = dispatch => ({
       type: OPEN_MODAL,
       modal: 'confirm',
       context: {
-        title: 'Om Læsekompas.dk',
+        title: <T component="topbar" name="betaModalTitle" />,
         reason: (
           <React.Fragment>
             <Text type="body" variant="weight-semibold">
-              {
-                'Læsekompasset er skabt for at gøre det nemt for dig at opdage bøger, der passer til dig, og inspirere dig til nye læseoplevelser.'
-              }
+              <T component="topbar" name="betaModalDescription" />
             </Text>
             <Text type="body">
-              {
-                'Vi arbejder hele tiden på at forbedre Læsekompasset og øge antallet af bøger. Lige nu er vi i '
-              }
+              <T component="topbar" name="betaModalBody1" />
               <Text
                 className="d-inline"
                 type="body"
                 variant="color-fersken--weight-semibold--transform-uppercase"
               >
-                betatest
+                {' betatest'}
               </Text>
-              {
-                /* eslint-disable */
-                '. Det betyder, at du frit kan bruge webstedet, men at du sagtens kan opleve ting, der ikke fungerer optimalt endnu, og at mængden af bøger lige nu er begrænset. I løbet af de kommende måneder kommer alle de vigtigste nye udgivelser med, og der vil også med tiden komme flere ældre bøger med. Læsekompasset har skønlitteratur til voksne, men fagbøger og børnebøger kan du ikke finde her.\r\n \r\nVi vil blive meget glade for din feedback, som du kan give os via feedback-knappen nederst på siden. Din feedback hjælper os med at gøre Læsekompasset bedre.'
-                /* eslint-enable */
-              }
+              {'. '}
+              <T component="topbar" name="betaModalBody2" />
             </Text>
           </React.Fragment>
         ),
-        confirmText: 'Luk',
+        confirmText: <T component="general" name="close" />,
         hideCancel: true,
         hideConfirm: true,
         onConfirm: () => {

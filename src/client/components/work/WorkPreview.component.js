@@ -6,6 +6,7 @@ import Heading from '../base/Heading';
 import Button from '../base/Button';
 import Paragraph from '../base/Paragraph';
 import Icon from '../base/Icon';
+import T from '../base/T';
 import SkeletonText from '../base/Skeleton/Text';
 import SkeletonUser from '../base/Skeleton/User';
 import Link from '../general/Link.component';
@@ -16,9 +17,7 @@ import OrderButton from '../order/OrderButton.component';
 import {ADD_CHILD_BELT} from '../../redux/belts.reducer';
 import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {filterCollection, filterReviews} from './workFunctions';
-import './WorkPreview.css';
 import {SCROLL_TO_COMPONENT} from '../../redux/scrollToComponent';
-
 import withScrollToComponent from '../base/scroll/withScrollToComponent.hoc';
 import withWork from '../base/Work/withWork.hoc';
 
@@ -35,7 +34,7 @@ class WorkPreview extends React.Component {
     const childBelt = {
       type,
       pid: book.pid,
-      name: 'Minder om ' + book.title,
+      name: T({component: 'belts', name: 'remindsOf'}) + ' ' + book.title,
       key: 'Minder om ' + book.title,
       onFrontPage: false,
       child: false,
@@ -79,7 +78,7 @@ class WorkPreview extends React.Component {
                 hex={'#3b5998'}
                 size={30}
                 shape="round"
-                hoverTitle="Del på facebook"
+                hoverTitle={T({component: 'share', name: 'shareOnFacebook'})}
               />
               <Heading Tag="h1" type="lead" className="mt0">
                 <Link href={'/værk/' + book.pid}>{book.title}</Link>
@@ -95,15 +94,24 @@ class WorkPreview extends React.Component {
               </Link>
 
               <Paragraph className="mt1">
-                <strong>{<TaxDescription text={tax_description} />}</strong>
+                <strong>
+                  <TaxDescription text={tax_description} />
+                </strong>
               </Paragraph>
 
               <Paragraph className="mt1">{book.description}</Paragraph>
 
               <div className="workPreview__details">
-                <span>Sideantal: {book.pages}</span>
-                <span>Sprog: {book.language}</span>
-                <span>Udgivet: {book.first_edition_year}</span>
+                <span>
+                  <T component="work" name="pages" /> {book.pages}
+                </span>
+                <span>
+                  <T component="work" name="language" /> {book.language}
+                </span>
+                <span>
+                  <T component="work" name="released" />
+                  {book.first_edition_year}
+                </span>
               </div>
 
               <div className="row">
@@ -113,7 +121,7 @@ class WorkPreview extends React.Component {
                     type="subtitle"
                     className="mt1 mb0 kobber-txt"
                   >
-                    Lån som:
+                    <T component="work" name="loanTitle" />
                   </Heading>
                 </div>
               </div>
@@ -123,7 +131,7 @@ class WorkPreview extends React.Component {
                     book={book}
                     size="medium"
                     type="quaternary"
-                    label="Bog"
+                    label={T({component: 'general', name: 'book'})}
                     icon="local_library"
                     className="mr1 mt1"
                   />
@@ -159,7 +167,7 @@ class WorkPreview extends React.Component {
                         className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
                       >
                         <Icon name={'local_library'} />
-                        Bog
+                        <T component="general" name="book" />
                       </Button>
                     </a>
                     <a>
@@ -169,7 +177,7 @@ class WorkPreview extends React.Component {
                         className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
                       >
                         <Icon name={'alternate_email'} />
-                        Ebog
+                        <T component="general" name="ebook" />
                       </Button>
                     </a>
                     <a>
@@ -179,7 +187,7 @@ class WorkPreview extends React.Component {
                         className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
                       >
                         <Icon name={'voicemail'} />
-                        Lydbog
+                        <T component="general" name="audiobook" />
                       </Button>
                     </a>
                   </React.Fragment>
@@ -189,7 +197,10 @@ class WorkPreview extends React.Component {
                 <div className="col-12">
                   <BookmarkButton
                     className="mr1 mt1"
-                    origin={'Fra egen værkside'}
+                    origin={T({
+                      component: 'work',
+                      name: 'bookmarkButtonOrigin'
+                    })}
                     work={work}
                   />
                   <AddToListButton className="mr1 mt1" work={work} />
@@ -203,7 +214,7 @@ class WorkPreview extends React.Component {
                     className="underline"
                     onClick={() => this.onMoreLikeThisClick(belt, work)}
                   >
-                    Mere som denne
+                    <T component="work" name="moreLikeThis" />
                   </Button>
                 </div>
               </div>
@@ -213,7 +224,7 @@ class WorkPreview extends React.Component {
             <div className="row">
               <div className="col-md-12">
                 <Heading Tag="h3" type="title" className="mt0 mb2">
-                  Anmeldelser:
+                  <T component="work" name={'reviewsTitle'} />
                 </Heading>
               </div>
             </div>

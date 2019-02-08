@@ -4,6 +4,7 @@ import {uniqBy} from 'lodash';
 import Autosuggest from 'react-autosuggest';
 
 import Icon from '../base/Icon';
+import T from '../base/T';
 
 const parseSearchRes = (query, response) => {
   const result = {};
@@ -278,9 +279,7 @@ class TagsSuggester extends React.Component {
     const inputProps = {
       id: 'Searchbar__inputfield',
       type: 'search',
-      placeholder: this.props.selectedFilters.length
-        ? ''
-        : 'Søg på stemning, sted eller stil...',
+      placeholder: T({component: 'filter', name: 'suggesterPlaceholder'}),
       className: 'form-control suggestion-list__search ' + inputVisibelClass,
       value: this.props.value || '',
       onChange: this.props.onChange,

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../redux/shortlist.reducer';
 import Icon from '../base/Icon';
 import Button from '../base/Button';
+import T from '../base/T';
 
 import './BookmarkButton.css';
 
@@ -37,7 +38,7 @@ export class BookmarkButton extends React.PureComponent {
         dataCy={this.props.dataCy}
       >
         <Icon name="bookmark_border" className="md-small" />
-        {!layout ? 'HUSK' : ''}
+        {!layout ? <T component="shortlist" name="buttonLabel" /> : ''}
       </Button>
     );
   }

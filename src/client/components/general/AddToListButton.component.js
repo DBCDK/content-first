@@ -65,7 +65,7 @@ export class AddToListButton extends React.Component {
     // Number of customLists to show
     const customListsToShow = isMobile ? 20 : 3;
 
-    let defaultTitle = 'Tilføj til liste';
+    let defaultTitle = T({component: 'list', name: 'addToList'});
     let systemTitle = '';
     let customTitle = '';
     if (isLoggedIn) {
@@ -143,7 +143,7 @@ export class AddToListButton extends React.Component {
             onClick={() => this.forceClose()}
           >
             <Icon name="chevron_left" className="md-medium" />
-            Tilbage
+            <T component="general" name="back" />
           </li>
           <li className="AddToListButton__Mobile__Heading">Tilføj til liste</li>
           {this.props.customLists.map((list, i) => {
@@ -151,9 +151,12 @@ export class AddToListButton extends React.Component {
 
             let status = this.pidInList(book.pid, list.list);
             const statusClass = status ? 'Radio__Active' : '';
-            const ToastMessageLabel = status
-              ? 'Fjernet fra: '
-              : 'Tilføjet til: ';
+            const ToastMessageLabel = (
+              <T
+                component="list"
+                name={status ? 'toastRemovedFrom' : 'toastAddedTo'}
+              />
+            );
 
             if (i < customListsToShow) {
               return (
@@ -172,7 +175,11 @@ export class AddToListButton extends React.Component {
                 >
                   <span className={'AddToListButton__Radio ' + statusClass} />
                   <span>{list.title}</span>
-                  {ny && <span className="AddToListButton__New"> Ny</span>}
+                  {ny && (
+                    <span className="AddToListButton__New">
+                      <T component="general" name="new" />
+                    </span>
+                  )}
                 </li>
               );
             }
@@ -185,9 +192,12 @@ export class AddToListButton extends React.Component {
           {this.props.systemLists.map(list => {
             let status = this.pidInList(book.pid, list.list);
             const statusClass = status ? 'Radio__Active' : '';
-            const ToastMessageLabel = status
-              ? 'Fjernet fra: '
-              : 'Tilføjet til: ';
+            const ToastMessageLabel = (
+              <T
+                component="list"
+                name={status ? 'toastRemovedFrom' : 'toastAddedTo'}
+              />
+            );
 
             return (
               <li
@@ -210,7 +220,7 @@ export class AddToListButton extends React.Component {
           })}
 
           <li className="AddToListButton__Mobile__Heading">
-            Eller opret en ny Liste
+            <T component="list" name="newList" />
           </li>
           <li className="AddToListButton__Mobile__Input">
             <input
@@ -224,7 +234,7 @@ export class AddToListButton extends React.Component {
               className="mb1"
               onClick={() => this.createNewList()}
             >
-              Tilføj liste
+              <T component="list" name="addList" />
             </Button>
           </li>
 
@@ -232,13 +242,17 @@ export class AddToListButton extends React.Component {
 
           <li onClick={() => this.props.openModal([work], 'addToList')}>
             <span className="AddToListButton__Radio" />
-            <span>Læg på anden liste</span>
+            <span>
+              <T component="list" name="addToAnotherList" />
+            </span>
             <Icon className="md-small" name="chevron_right" />
           </li>
 
           <li onClick={() => this.props.openModal([work], 'addToList')}>
             <span className="AddToListButton__Radio" />
-            <span>Opret ny liste</span>
+            <span>
+              <T component="list" name="createNew" />
+            </span>
             <Icon className="md-small" name="chevron_right" />
           </li>
         </ul>

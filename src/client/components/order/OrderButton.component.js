@@ -11,7 +11,7 @@ export function OrderButton(props) {
       '',
       <React.Fragment>
         <Icon name={props.icon} />
-        {props.label}
+        {props.children || props.label}
       </React.Fragment>
     ],
     ordered: ['btn-success', <T component="order" name="orderDone" />],
@@ -41,7 +41,7 @@ export function OrderButton(props) {
       onClick={props.order}
       dataCy="order-btn"
     >
-      {props.children || props.label}
+      {buttonLabel}
     </Button>
   );
 }

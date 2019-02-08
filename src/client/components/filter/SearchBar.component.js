@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {toast} from 'react-toastify';
 import ToastMessage from '../base/ToastMessage';
+import T from '../base/T';
 import SelectedFilters from './SelectedFilters.component';
 import {TOGGLE_FILTER} from '../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../redux/middleware';
@@ -38,13 +39,13 @@ class SearchBar extends React.Component {
         type="info"
         icon="history"
         lines={[
-          'Du startede en ny søgning',
+          T({component: 'filter', name: 'newSearchToast'}),
           <a
             onClick={() =>
               this.props.historyReplace(historyPath, historyParams)
             }
           >
-            Tilbage
+            <T component="general" name="back" />
           </a>
         ]}
       />,

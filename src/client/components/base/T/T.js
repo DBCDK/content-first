@@ -22,24 +22,21 @@ export const components = translation.components;
  */
 
 const T = ({component, name, vars}) => {
-  let err = false;
   if (!components[component]) {
-    err = 'Cant find component: ' + component;
+    console.log('Cant find component: ' + component);
   }
   if (!components[component][name]) {
-    err = 'Cant find ' + name + ' in component ' + component;
+    console.log('Cant find ' + name + ' in component ' + component);
   }
   if (!components[component][name][lang]) {
-    err =
+    console.log(
       'Cant find language ' +
-      lang +
-      ' in component ' +
-      component +
-      ' name ' +
-      name;
-  }
-  if (err) {
-    console.log('err: ', err);
+        lang +
+        ' in component ' +
+        component +
+        ' name ' +
+        name
+    );
   }
 
   const text = components[component][name][lang];
