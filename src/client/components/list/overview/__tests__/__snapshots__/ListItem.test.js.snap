@@ -33,7 +33,7 @@ exports[`ListItem renders initial component 1`] = `
       className="ml1 link-subtle inline"
       href="/lister/some-id"
     >
-      Se listen
+      Vis liste
     </Link>
   </Link>
 </div>

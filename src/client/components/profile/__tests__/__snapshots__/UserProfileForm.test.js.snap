@@ -42,7 +42,13 @@ exports[`UserProfileForm render function It adds validation error for age 1`] = 
     <p
       className="mb6"
     >
-      Du er logget på via 
+      <T
+        component="login"
+        name="signedInby"
+      >
+        Du er logget på via
+      </T>
+       
     </p>
     <label
       className="checkbox"
@@ -58,7 +64,13 @@ exports[`UserProfileForm render function It adds validation error for age 1`] = 
         type="checkbox"
       />
       <span />
-       Jeg er over 13 år
+       
+      <T
+        component="profile"
+        name="ageCheckboxText"
+      >
+        Jeg er over 13 år
+      </T>
     </label>
     <label
       className="checkbox"
@@ -74,25 +86,44 @@ exports[`UserProfileForm render function It adds validation error for age 1`] = 
         type="checkbox"
       />
       <span />
-       Jeg har læst og accepteret
+      <T
+        component="profile"
+        name="termsCheckboxText"
+      >
+        Jeg har læst og accepteret
+      </T>
        
       <a
         href="#terms"
       >
-        reglerne for anvendelse af Læsekompasset
+        <T
+          component="profile"
+          name="termsCheckboxLink"
+        >
+          reglerne for anvendelse af Læsekompasset
+        </T>
       </a>
     </label>
     <div
       className="error mb2"
     >
-      Dit brugernavn skal være minimum 4 karakterer langt
+      <T
+        component="profile"
+        name="validationUsernameLength"
+      >
+        Dit brugernavn skal være minimum 4 karakterer langt
+      </T>
     </div>
     <button
       className="btn btn-success btn-block"
       data-cy="user-form-submit"
     >
-      Opret profil
-       
+      <T
+        component="profile"
+        name="editProfile"
+      >
+        Redigér profil
+      </T>
     </button>
   </form>
 </UserProfileForm>
@@ -142,7 +173,13 @@ exports[`UserProfileForm render function It adds validation error for age 2`] = 
     <p
       className="mb6"
     >
-      Du er logget på via 
+      <T
+        component="login"
+        name="signedInby"
+      >
+        Du er logget på via
+      </T>
+       
     </p>
     <label
       className="checkbox"
@@ -158,25 +195,44 @@ exports[`UserProfileForm render function It adds validation error for age 2`] = 
         type="checkbox"
       />
       <span />
-       Jeg har læst og accepteret
+      <T
+        component="profile"
+        name="termsCheckboxText"
+      >
+        Jeg har læst og accepteret
+      </T>
        
       <a
         href="#terms"
       >
-        reglerne for anvendelse af Læsekompasset
+        <T
+          component="profile"
+          name="termsCheckboxLink"
+        >
+          reglerne for anvendelse af Læsekompasset
+        </T>
       </a>
     </label>
     <div
       className="error mb2"
     >
-      Dit brugernavn skal være minimum 4 karakterer langt
+      <T
+        component="profile"
+        name="validationUsernameLength"
+      >
+        Dit brugernavn skal være minimum 4 karakterer langt
+      </T>
     </div>
     <button
       className="btn btn-success btn-block"
       data-cy="user-form-submit"
     >
-      Opret profil
-       
+      <T
+        component="profile"
+        name="editProfile"
+      >
+        Redigér profil
+      </T>
     </button>
   </form>
 </UserProfileForm>
@@ -224,7 +280,13 @@ exports[`UserProfileForm render function It adds validation error for terms 1`] 
     <p
       className="mb6"
     >
-      Du er logget på via 
+      <T
+        component="login"
+        name="signedInby"
+      >
+        Du er logget på via
+      </T>
+       
     </p>
     <label
       className="checkbox"
@@ -240,7 +302,13 @@ exports[`UserProfileForm render function It adds validation error for terms 1`] 
         type="checkbox"
       />
       <span />
-       Jeg er over 13 år
+       
+      <T
+        component="profile"
+        name="ageCheckboxText"
+      >
+        Jeg er over 13 år
+      </T>
     </label>
     <label
       className="checkbox"
@@ -256,25 +324,44 @@ exports[`UserProfileForm render function It adds validation error for terms 1`] 
         type="checkbox"
       />
       <span />
-       Jeg har læst og accepteret
+      <T
+        component="profile"
+        name="termsCheckboxText"
+      >
+        Jeg har læst og accepteret
+      </T>
        
       <a
         href="#terms"
       >
-        reglerne for anvendelse af Læsekompasset
+        <T
+          component="profile"
+          name="termsCheckboxLink"
+        >
+          reglerne for anvendelse af Læsekompasset
+        </T>
       </a>
     </label>
     <div
       className="error mb2"
     >
-      Dit brugernavn skal være minimum 4 karakterer langt
+      <T
+        component="profile"
+        name="validationUsernameLength"
+      >
+        Dit brugernavn skal være minimum 4 karakterer langt
+      </T>
     </div>
     <button
       className="btn btn-success btn-block"
       data-cy="user-form-submit"
     >
-      Opret profil
-       
+      <T
+        component="profile"
+        name="editProfile"
+      >
+        Redigér profil
+      </T>
     </button>
   </form>
 </UserProfileForm>
@@ -324,7 +411,13 @@ exports[`UserProfileForm render function It adds validation error for terms 2`] 
     <p
       className="mb6"
     >
-      Du er logget på via 
+      <T
+        component="login"
+        name="signedInby"
+      >
+        Du er logget på via
+      </T>
+       
     </p>
     <label
       className="checkbox"
@@ -340,19 +433,34 @@ exports[`UserProfileForm render function It adds validation error for terms 2`] 
         type="checkbox"
       />
       <span />
-       Jeg er over 13 år
+       
+      <T
+        component="profile"
+        name="ageCheckboxText"
+      >
+        Jeg er over 13 år
+      </T>
     </label>
     <div
       className="error mb2"
     >
-      Dit brugernavn skal være minimum 4 karakterer langt
+      <T
+        component="profile"
+        name="validationUsernameLength"
+      >
+        Dit brugernavn skal være minimum 4 karakterer langt
+      </T>
     </div>
     <button
       className="btn btn-success btn-block"
       data-cy="user-form-submit"
     >
-      Opret profil
-       
+      <T
+        component="profile"
+        name="editProfile"
+      >
+        Redigér profil
+      </T>
     </button>
   </form>
 </UserProfileForm>
@@ -399,7 +507,8 @@ exports[`UserProfileForm render function renders an user profile form 1`] = `
   <p
     className="mb6"
   >
-    Du er logget på via 
+    Du er logget på via
+     
   </p>
   <label
     className="checkbox"
@@ -416,7 +525,8 @@ exports[`UserProfileForm render function renders an user profile form 1`] = `
       type="checkbox"
     />
     <span />
-     Jeg er over 13 år
+     
+    Jeg er over 13 år
   </label>
   <label
     className="checkbox"
@@ -433,7 +543,7 @@ exports[`UserProfileForm render function renders an user profile form 1`] = `
       type="checkbox"
     />
     <span />
-     Jeg har læst og accepteret
+    Jeg har læst og accepteret
      
     <a
       href="#terms"
@@ -446,9 +556,7 @@ exports[`UserProfileForm render function renders an user profile form 1`] = `
     data-cy="user-form-submit"
     disabled={undefined}
   >
-    Opret profil
-     
-    
+    Redigér profil
   </button>
 </form>
 `;

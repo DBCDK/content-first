@@ -1,4 +1,3 @@
-import React from 'react';
 import './T.css';
 
 // Translation data obj
@@ -10,9 +9,11 @@ export const components = translation.components;
 
 /**
  *
- * The componentWay: <T component="" name="" vars={[]}/>
+ * The componentWay:
+ * * <T component="" name="" vars={[x,y,..]}/>
  *
- * The functionWay: T({component: '', name: '', vars: []});
+ * The functionWay:
+ * * T({component: '', name: '', vars: [x,y,..]});
  *
  * @param {String} component
  * @param {String} name
@@ -22,23 +23,6 @@ export const components = translation.components;
  */
 
 const T = ({component, name, vars}) => {
-  if (!components[component]) {
-    console.log('Cant find component: ' + component);
-  }
-  if (!components[component][name]) {
-    console.log('Cant find ' + name + ' in component ' + component);
-  }
-  if (!components[component][name][lang]) {
-    console.log(
-      'Cant find language ' +
-        lang +
-        ' in component ' +
-        component +
-        ' name ' +
-        name
-    );
-  }
-
   const text = components[component][name][lang];
 
   if (text.includes('%s')) {

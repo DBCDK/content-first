@@ -55,7 +55,7 @@ exports[`AddToListModal multiple works as input 1`] = `
       <p
         className=" Text Text__large "
       >
-        GEM I LISTE
+        Gem i liste
       </p>
       <div
         className="row"
@@ -179,7 +179,12 @@ exports[`AddToListModal multiple works as input 1`] = `
           <p
             className="mt2"
           >
-            Du er ved at gemme 2 bøger
+            Du er ved at gemme 
+            2
+             
+            bøger
+            
+            
           </p>
         </div>
       </div>
@@ -197,7 +202,7 @@ exports[`AddToListModal multiple works as input 1`] = `
             disabled={false}
             onClick={[Function]}
           >
-            JA TAK, GEM NU
+            Ja tak, gem nu
           </button>
         </a>
       </div>
@@ -261,7 +266,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
       <p
         className=" Text Text__large "
       >
-        GEM I LISTE
+        Gem i liste
       </p>
       <div
         className="row"
@@ -415,7 +420,12 @@ exports[`AddToListModal newly added list is selected 1`] = `
           <textarea
             className="comment"
             onChange={[Function]}
-            placeholder="Skriv evt. en kommentar til bogen"
+            placeholder={
+              <T
+                component="list"
+                name="bookCommentModal"
+              />
+            }
             value=""
           />
         </div>
@@ -434,7 +444,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
             disabled={false}
             onClick={[Function]}
           >
-            JA TAK, GEM NU
+            Ja tak, gem nu
           </button>
         </a>
       </div>
@@ -498,7 +508,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
       <p
         className=" Text Text__large "
       >
-        GEM I LISTE
+        Gem i liste
       </p>
       <div
         className="row"
@@ -638,7 +648,12 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
           <textarea
             className="comment"
             onChange={[Function]}
-            placeholder="Skriv evt. en kommentar til bogen"
+            placeholder={
+              <T
+                component="list"
+                name="bookCommentModal"
+              />
+            }
             value=""
           />
         </div>
@@ -657,7 +672,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
             disabled={false}
             onClick={[Function]}
           >
-            JA TAK, GEM NU
+            Ja tak, gem nu
           </button>
         </a>
       </div>

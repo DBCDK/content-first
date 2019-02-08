@@ -165,7 +165,10 @@ exports[`renders without crashing 1`] = `
             <p
               className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
             >
-              Huskeliste (0)
+              Huskeliste (
+              0
+              )
+              
             </p>
           </a>
           <div
@@ -295,6 +298,10 @@ exports[`renders without crashing 1`] = `
                   <div
                     className="d-none d-sm-inline logo-beta-text Text__small"
                   >
+                    Nu 
+                    0
+                     bøger. 
+                    
                     <p
                       className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
                       onClick={[Function]}
@@ -723,7 +730,7 @@ exports[`renders without crashing 1`] = `
                   <strong>
                     Nyeste
                   </strong>
-                   Lister
+                   lister
                 </h1>
               </div>
               <div

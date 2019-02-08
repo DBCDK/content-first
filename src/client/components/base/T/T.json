@@ -1,5 +1,5 @@
 {
-  "language": "en",
+  "language": "da",
   "components": {
     "general": {
       "readMore": {
@@ -484,7 +484,7 @@
       },
       "recentListsTitle": {
         "da": "Nyeste lister",
-        "en": "Recent Lists"
+        "en": "Recent lists"
       },
       "deleteListModalTitle": {
         "da": "Skal denne liste slettes?",

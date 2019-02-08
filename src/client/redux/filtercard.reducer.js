@@ -1,7 +1,4 @@
-import T from '../components/base/T';
-
 /* eslint-disable */
-
 const defaultState = {
   Stemning: {
     title: 'Stemning',

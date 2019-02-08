@@ -1115,7 +1115,12 @@ exports[`CommentContainer Edit button 2`] = `
                     disabled={false}
                     onClick={[Function]}
                   >
-                    Fortryd
+                    <T
+                      component="general"
+                      name="cancel"
+                    >
+                      Fortryd
+                    </T>
                   </button>
                 </Button>
                 <Button
@@ -1133,7 +1138,12 @@ exports[`CommentContainer Edit button 2`] = `
                     id="comment-submit"
                     onClick={[Function]}
                   >
-                    Kommentér
+                    <T
+                      component="post"
+                      name="comment"
+                    >
+                      Kommentér
+                    </T>
                   </button>
                 </Button>
               </div>

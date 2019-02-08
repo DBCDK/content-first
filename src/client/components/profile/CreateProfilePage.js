@@ -88,7 +88,7 @@ export class CreateProfilePage extends React.Component {
                     </React.Fragment>
                   ) : (
                     <LogoutLink>
-                      <T component="general" name="cancelCreateProfile" />
+                      <T component="profile" name="cancelCreateProfile" />
                     </LogoutLink>
                   )}
                 </div>
