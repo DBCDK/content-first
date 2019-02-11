@@ -27,7 +27,7 @@ class TopBarDropdown extends React.Component {
 
     return (
       <ul className={'Topbar__dropdown abort-closeDopdown ' + state}>
-        <div className="Topbar__dropdown__caret"/>
+        <div className="Topbar__dropdown__caret" />
         <li>
           <Link href="/profile" onClick={this.props.onClick}>
             <span>
@@ -42,7 +42,7 @@ class TopBarDropdown extends React.Component {
             </span>
           </Link>
         </li>
-        <li className="divider"/>
+        <li className="divider" />
         <li
           onClick={() => {
             this.props.logout();
@@ -172,7 +172,7 @@ export class TopBar extends React.Component {
           href="/huskeliste"
           className="Topbar__navigation__btn d-flex d-md-none widthCalc"
         >
-          <Icon name="bookmark_border"/>
+          <Icon name="bookmark_border" />
           <span
             className="short-badge"
             style={{padding: 0, marginLeft: '-9px'}}
@@ -187,7 +187,7 @@ export class TopBar extends React.Component {
           }
           dataCy="topbar-shortlist"
         >
-          <Icon name="bookmark_border"/>
+          <Icon name="bookmark_border" />
         </ShortListDropDown>
       </React.Fragment>
     );
@@ -235,24 +235,23 @@ export class TopBar extends React.Component {
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
         {searchPage &&
-        searchExpanded && (
-          <div className="Topbar__mobile__overlay d-block d-sm-none">
+          searchExpanded && (
+            <div className="Topbar__mobile__overlay d-block d-sm-none">
               <span onClick={() => this.toggleSearchBar('close')}>
                 <Icon name="chevron_left" />
                 <T component="general" name="back" />
               </span>
-            <span
-              onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
-            >
+              <span
+                onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
+              >
                 Nulstil
               </span>
-          </div>
-        )}
+            </div>
+          )}
 
         <nav className="col-12 col-m-8 Topbar__navigation">
           {searchExpanded && (
             <div>
-
               <div className="Topbar__special widthCalc">
                 <img
                   type="image/svg+xml"
@@ -261,21 +260,20 @@ export class TopBar extends React.Component {
                   style={{height: '28px'}}
                 />
               </div>
-
             </div>
           )}
           <span
             className="Topbar__navigation__btn widthCalc d-none d-md-flex"
             style={border}
           >
-            <Icon name="search" onClick={() => this.toggleSearchBar('open')}/>
+            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
             <span className="relative--container">
               <span
                 className="Topbar__SearchBarWrapper"
                 style={{width: searchFieldWidth}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
-                <SearchBar/>
+                <SearchBar />
               </span>
             </span>
             <span
@@ -290,7 +288,7 @@ export class TopBar extends React.Component {
             href="/find"
             className="Topbar__navigation__btn d-i-block d-md-none"
           >
-            <Icon name="search" onClick={() => this.toggleSearchBar('open')}/>
+            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
           </Link>
 
           {shortlist}
@@ -325,11 +323,11 @@ export class TopBar extends React.Component {
                 className="Topbar__navigation__btn abort-closeDopdown d-flex d-sm-none"
                 onClick={() => this.toggleDropdown()}
               >
-                <Icon name="menu" className="Topbar__burger"/>
+                <Icon name="menu" className="Topbar__burger" />
               </span>
             </React.Fragment>
           )}
-          <div className="Topbar__overlay"/>
+          <div className="Topbar__overlay" />
         </nav>
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
           <div className="d-block d-sm-none d-inline-flex">
@@ -359,7 +357,6 @@ export class TopBar extends React.Component {
 
           <div className="d-none d-sm-block">
             <div className="d-inline-flex">
-
               <object
                 type="image/svg+xml"
                 data="/img/general/dibliofigur.svg"
@@ -370,7 +367,6 @@ export class TopBar extends React.Component {
                   'pointer-events': 'none'
                 }}
               />
-
 
               <div>
                 <Title className="mb-0" Tag="h1" type="title4">
@@ -403,8 +399,7 @@ export class TopBar extends React.Component {
                           </Text>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
               </div>
             </div>

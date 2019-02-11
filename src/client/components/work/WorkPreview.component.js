@@ -21,6 +21,8 @@ import {SCROLL_TO_COMPONENT} from '../../redux/scrollToComponent';
 import withScrollToComponent from '../base/scroll/withScrollToComponent.hoc';
 import withWork from '../base/Work/withWork.hoc';
 
+import './WorkPreview.css';
+
 class WorkPreview extends React.Component {
   handleChildBelts(parentBelt, childBelt) {
     this.props.addChildBelt(parentBelt, childBelt);
@@ -103,10 +105,12 @@ class WorkPreview extends React.Component {
 
               <div className="workPreview__details">
                 <span>
-                  <T component="work" name="pages" /> {book.pages}
+                  <T component="work" name="pages" />
+                  {book.pages}
                 </span>
                 <span>
-                  <T component="work" name="language" /> {book.language}
+                  <T component="work" name="language" />
+                  {book.language}
                 </span>
                 <span>
                   <T component="work" name="released" />

@@ -378,7 +378,10 @@ class FilterPage extends React.Component {
                 rowRef={(e, idx) => (this.refs[`row-${idx}`] = e)}
                 origin={T({
                   component: 'filter',
-                  name: 'filterOrigin',
+                  name:
+                    this.props.selectedTags.length > 0
+                      ? 'filterOrigin'
+                      : 'filterOriginNoTags',
                   vars: [this.props.selectedTags.map(t => t.title).join(', ')]
                 })}
               />

@@ -8,6 +8,7 @@ export const units = translation.units;
 export const components = translation.components;
 
 /**
+ * Examples:
  *
  * The componentWay:
  * * <T component="" name="" vars={[x,y,..]}/>
@@ -15,10 +16,17 @@ export const components = translation.components;
  * The functionWay:
  * * T({component: '', name: '', vars: [x,y,..]});
  *
+ * The function-in-component way:
+ * <T
+   component=''
+   name=''
+   vars={[x, y, T({component: '', name: ''})]}
+ />
+ *
  * @param {String} component
  * @param {String} name
  * @param {Array} vars
- * @return {String || Array}
+ * @return {String}
  *
  */
 
@@ -32,10 +40,10 @@ const T = ({component, name, vars}) => {
       return '! Missing texts or vars';
     }
 
-    let aReturn = [];
+    let aReturn = '';
     for (var i = 0; i < aText.length; i++) {
-      aReturn.push(aText[i] || '');
-      aReturn.push(vars[i] || '');
+      aReturn += aText[i] || '';
+      aReturn += vars[i] || '';
     }
     return aReturn;
   }

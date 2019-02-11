@@ -589,6 +589,10 @@
         "da": "Fra din søgning på %s",
         "en": "From your search on %s"
       },
+      "filterOriginNoTags": {
+        "da": "Fra søgesiden",
+        "en": "From searchpage"
+      },
       "forward": {
         "da": "flere",
         "en": "more"

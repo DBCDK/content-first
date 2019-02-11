@@ -233,10 +233,10 @@ export class AddToListModal extends React.Component {
                   name="aboutToSaveModal"
                   vars={[
                     this.props.works.length,
-                    <T
-                      component="general"
-                      name={this.props.works.length > 1 ? 'books' : 'book'}
-                    />
+                    T({
+                      component: 'general',
+                      name: this.props.works.length > 1 ? 'books' : 'book'
+                    })
                   ]}
                 />
               </p>
