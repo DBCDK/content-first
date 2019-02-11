@@ -24,8 +24,6 @@ const autolinker = new AutoLinker({
  * @returns {String}
  */
 export default function textParser(text, links = true, newLines = 'break') {
-  console.log('tt', text);
-
   // Make sure the text is clean when it comes in
   text = sanitizeHtml(text);
 

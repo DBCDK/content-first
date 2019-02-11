@@ -23,12 +23,7 @@ exports[`OrderModal render function renders initial request 1`] = `
       className="form-group"
     >
       <strong>
-        Du er ved at bestille 
-        3
-         
-        bøger
-        
-        
+        Du er ved at bestille 3 [object Object]
       </strong>
       <div
         style={

@@ -179,12 +179,7 @@ exports[`AddToListModal multiple works as input 1`] = `
           <p
             className="mt2"
           >
-            Du er ved at gemme 
-            2
-             
-            bøger
-            
-            
+            Du er ved at gemme 2 bøger
           </p>
         </div>
       </div>
