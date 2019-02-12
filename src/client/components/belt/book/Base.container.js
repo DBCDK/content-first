@@ -139,7 +139,7 @@ export class BooksBelt extends React.Component {
     const newBelt = {
       type,
       pid: book.pid,
-      name: T({component: 'belts', name: 'remindsOf'}) + ' ' + book.title,
+      name: T({component: 'belts', name: 'remindsOf', vars: [book.title]}),
       key: 'Minder om ' + book.title,
       onFrontPage: false,
       child: false,

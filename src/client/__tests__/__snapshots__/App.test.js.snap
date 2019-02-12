@@ -721,10 +721,13 @@ exports[`renders without crashing 1`] = `
                 <h1
                   className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0 Title Title__title4 Title__title4--transform-uppercase"
                 >
-                  <strong>
-                    Nyeste
-                  </strong>
-                   lister
+                  <span
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<strong>Nyeste</strong> lister",
+                      }
+                    }
+                  />
                 </h1>
               </div>
               <div

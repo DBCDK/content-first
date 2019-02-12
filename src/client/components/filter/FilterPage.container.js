@@ -214,7 +214,7 @@ class FilterPage extends React.Component {
       row,
       type,
       pid: book.pid,
-      name: T({component: 'belts', name: 'remindsOf'}) + ' ' + book.title,
+      name: T({component: 'belts', name: 'remindsOf', vars: [book.title]}),
       key: `filterpage: ${row}`,
       onFrontPage: false,
       child: false,

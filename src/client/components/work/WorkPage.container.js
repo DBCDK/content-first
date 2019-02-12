@@ -70,7 +70,7 @@ class WorkPage extends React.Component {
       // TODO this should not be in render
       // probably, this component shouldnt be responsible for dispatching this action
       this.addNewBelt({
-        name: T({component: 'belts', name: 'remindsOf'}) + ' ' + book.title,
+        name: T({component: 'belts', name: 'remindsOf', vars: [book.title]}),
         key: 'Minder om ' + book.title,
         pid: book.pid,
         onFrontPage: false,

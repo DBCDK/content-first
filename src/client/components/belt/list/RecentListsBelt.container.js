@@ -73,14 +73,11 @@ export default class RecentListsBelt extends React.Component {
                 variant="transform-uppercase"
                 className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0"
               >
-                {T({component: 'list', name: 'recentListsTitle'})
-                  .split(' ')
-                  .map((word, idx) => {
-                    if (idx === 0) {
-                      return <strong key={idx}>{word}</strong>;
-                    }
-                    return ' ' + word;
-                  })}
+                <T
+                  component="list"
+                  name="recentListsTitle"
+                  renderAsHtml={true}
+                />
               </Title>
             </div>
             {isSkeletonBelt && (

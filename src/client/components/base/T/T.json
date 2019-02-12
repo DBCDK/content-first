@@ -483,8 +483,8 @@
         "en": "Title or author"
       },
       "recentListsTitle": {
-        "da": "Nyeste lister",
-        "en": "Recent lists"
+        "da": "<strong>Nyeste</strong> lister",
+        "en": "<strong>Recent</strong> lists"
       },
       "deleteListModalTitle": {
         "da": "Skal denne liste slettes?",
@@ -761,8 +761,8 @@
         "en": "Remember to give your pinned search a title"
       },
       "remindsOf": {
-        "da": "Minder om",
-        "en": "Reminds of"
+        "da": "Minder om %s",
+        "en": "Reminds of %s"
       }
     }
   },
