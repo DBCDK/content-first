@@ -126,7 +126,12 @@ exports[`Image Upload render function Add image 1`] = `
               className="mb2"
             >
               <b>
-                Indtast dine personlige oplysninger:
+                <T
+                  component="profile"
+                  name="enterInformations"
+                >
+                  Indtast dine personlige oplysninger:
+                </T>
               </b>
             </p>
             <div
@@ -179,7 +184,13 @@ exports[`Image Upload render function Add image 1`] = `
                   <p
                     className="mb6"
                   >
-                    Du er logget på via 
+                    <T
+                      component="login"
+                      name="signedInby"
+                    >
+                      Du er logget på via
+                    </T>
+                     
                     <spinner
                       size="12px"
                     />
@@ -198,7 +209,13 @@ exports[`Image Upload render function Add image 1`] = `
                       type="checkbox"
                     />
                     <span />
-                     Jeg er over 13 år
+                     
+                    <T
+                      component="profile"
+                      name="ageCheckboxText"
+                    >
+                      Jeg er over 13 år
+                    </T>
                   </label>
                   <label
                     className="checkbox"
@@ -214,26 +231,45 @@ exports[`Image Upload render function Add image 1`] = `
                       type="checkbox"
                     />
                     <span />
-                     Jeg har læst og accepteret
+                    <T
+                      component="profile"
+                      name="termsCheckboxText"
+                    >
+                      Jeg har læst og accepteret
+                    </T>
                      
                     <a
                       href="#terms"
                     >
-                      reglerne for anvendelse af Læsekompasset
+                      <T
+                        component="profile"
+                        name="termsCheckboxLink"
+                      >
+                        reglerne for anvendelse af Læsekompasset
+                      </T>
                     </a>
                   </label>
                   <button
                     className="btn btn-success btn-block"
                     data-cy="user-form-submit"
                   >
-                    Opret profil
-                     
+                    <T
+                      component="profile"
+                      name="editProfile"
+                    >
+                      Redigér profil
+                    </T>
                   </button>
                 </form>
               </UserProfileForm>
             </div>
             <logout>
-              Jeg ønsker alligevel ikke at oprette en profil
+              <T
+                component="profile"
+                name="cancelCreateProfile"
+              >
+                Jeg ønsker alligevel ikke at oprette en profil
+              </T>
             </logout>
           </div>
         </div>
@@ -490,7 +526,8 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               <p
                 className="mb6"
               >
-                Du er logget på via 
+                Du er logget på via
+                 
                 <spinner
                   size="12px"
                 />
@@ -510,7 +547,8 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                   type="checkbox"
                 />
                 <span />
-                 Jeg er over 13 år
+                 
+                Jeg er over 13 år
               </label>
               <label
                 className="checkbox"
@@ -527,7 +565,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                   type="checkbox"
                 />
                 <span />
-                 Jeg har læst og accepteret
+                Jeg har læst og accepteret
                  
                 <a
                   href="#terms"
@@ -540,9 +578,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 data-cy="user-form-submit"
                 disabled={undefined}
               >
-                Opret profil
-                 
-                
+                Redigér profil
               </button>
             </form>
           </div>

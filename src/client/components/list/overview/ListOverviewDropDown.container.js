@@ -17,6 +17,7 @@ import {createGetLists} from '../../../redux/list.reducer';
 import toColor from '../../../utils/toColor';
 import Button from '../../base/Button/Button';
 import Text from '../../base/Text';
+import T from '../../base/T/';
 import Link from '../../general/Link.component';
 import Spinner from '../../general/Spinner.component';
 import './dropdownList.css';
@@ -59,7 +60,9 @@ const ListElement = props => {
         </div>
         <div className="top-bar-dropdown-list-element--origin">
           {props.profiles[props.list._owner] && !isOwner
-            ? 'Af ' + props.profiles[props.list._owner].name
+            ? <T component="general" name="by" /> +
+              ' ' +
+              props.profiles[props.list._owner].name
             : ''}
         </div>
       </div>
@@ -86,7 +89,7 @@ const UserListsContent = props => {
           variant="color-fersken--weight-semibold--transform-uppercase"
           className="tc"
         >
-          Lister
+          <T component="list" name="listButton" />
         </Text>
       </Link>
       {props.children &&
@@ -108,12 +111,12 @@ const UserListsContent = props => {
             type="tertiary"
             dataCy="lists-dropdown-new-list"
           >
-            Opret ny liste
+            <T component="list" name="createNew" />
           </Button>
         </div>
         <div onClick={() => props.onEditLists()}>
           <Button size="medium" type="tertiary">
-            Rediger lister
+            <T component="list" name="editLists" />
           </Button>
         </div>
       </div>

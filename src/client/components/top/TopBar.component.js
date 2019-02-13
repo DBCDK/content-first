@@ -13,8 +13,9 @@ import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
 import {ON_USERLISTS_COLLAPSE} from '../../redux/list.reducer';
 import {ON_SHORTLIST_COLLAPSE} from '../../redux/shortlist.reducer';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
-import Title from '../base/Title/index';
-import Text from '../base/Text/index';
+import Title from '../base/Title/';
+import Text from '../base/Text/';
+import T from '../base/T/';
 import './Topbar.css';
 import {FETCH_STATS} from '../../redux/stats.reducer';
 
@@ -26,25 +27,31 @@ class TopBarDropdown extends React.Component {
 
     return (
       <ul className={'Topbar__dropdown abort-closeDopdown ' + state}>
-        <div className="Topbar__dropdown__caret"/>
+        <div className="Topbar__dropdown__caret" />
         <li>
           <Link href="/profile" onClick={this.props.onClick}>
-            <span>Min profil</span>
+            <span>
+              <T component="profile" name="profilePage" />
+            </span>
           </Link>
         </li>
         <li className="d-block d-sm-none">
           <Link href="/profile" onClick={this.props.onClick}>
-            <span>Lister</span>
+            <span>
+              <T component="list" name="listButton" />
+            </span>
           </Link>
         </li>
-        <li className="divider"/>
+        <li className="divider" />
         <li
           onClick={() => {
             this.props.logout();
             this.props.onClick();
           }}
         >
-          <span>Log ud</span>
+          <span>
+            <T component="login" name="logoutButton" />
+          </span>
         </li>
       </ul>
     );
@@ -165,7 +172,7 @@ export class TopBar extends React.Component {
           href="/huskeliste"
           className="Topbar__navigation__btn d-flex d-md-none widthCalc"
         >
-          <Icon name="bookmark_border"/>
+          <Icon name="bookmark_border" />
           <span
             className="short-badge"
             style={{padding: 0, marginLeft: '-9px'}}
@@ -180,7 +187,7 @@ export class TopBar extends React.Component {
           }
           dataCy="topbar-shortlist"
         >
-          <Icon name="bookmark_border"/>
+          <Icon name="bookmark_border" />
         </ShortListDropDown>
       </React.Fragment>
     );
@@ -196,8 +203,10 @@ export class TopBar extends React.Component {
         }
         dataCy="topbar-lists"
       >
-        <Icon name="list"/>
-        <span>Lister</span>
+        <Icon name="list" />
+        <span>
+          <T component="list" name="listButton" />
+        </span>
       </ListOverviewDropDown>
     );
   }
@@ -209,7 +218,7 @@ export class TopBar extends React.Component {
     const searchIconText = searchExpanded ? (
       <i className="material-icons  material-icons-cancel">cancel</i>
     ) : (
-      'Søg'
+      <T component="general" name="searchButton" />
     );
     const searchFieldWidth = searchExpanded ? this.state.width : 0;
     const border = searchExpanded ? {borderColor: 'transparent'} : {};
@@ -219,26 +228,30 @@ export class TopBar extends React.Component {
 
     const isIndex = this.props.router.path === '/' ? true : false;
 
+    const booksCount = this.props.stats.books
+      ? this.props.stats.books.total
+      : '0';
+
     return (
       <header className="Topbar row" ref={e => (this.Topbar = e)}>
         {searchPage &&
-        searchExpanded && (
-          <div className="Topbar__mobile__overlay d-block d-sm-none">
+          searchExpanded && (
+            <div className="Topbar__mobile__overlay d-block d-sm-none">
               <span onClick={() => this.toggleSearchBar('close')}>
-                <Icon name="chevron_left"/> Tilbage
+                <Icon name="chevron_left" />
+                <T component="general" name="back" />
               </span>
-            <span
-              onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
-            >
+              <span
+                onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
+              >
                 Nulstil
               </span>
-          </div>
-        )}
+            </div>
+          )}
 
         <nav className="col-12 col-m-8 Topbar__navigation">
           {searchExpanded && (
             <div>
-
               <div className="Topbar__special widthCalc">
                 <img
                   type="image/svg+xml"
@@ -247,21 +260,20 @@ export class TopBar extends React.Component {
                   style={{height: '28px'}}
                 />
               </div>
-
             </div>
           )}
           <span
             className="Topbar__navigation__btn widthCalc d-none d-md-flex"
             style={border}
           >
-            <Icon name="search" onClick={() => this.toggleSearchBar('open')}/>
+            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
             <span className="relative--container">
               <span
                 className="Topbar__SearchBarWrapper"
                 style={{width: searchFieldWidth}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
-                <SearchBar/>
+                <SearchBar />
               </span>
             </span>
             <span
@@ -276,7 +288,7 @@ export class TopBar extends React.Component {
             href="/find"
             className="Topbar__navigation__btn d-i-block d-md-none"
           >
-            <Icon name="search" onClick={() => this.toggleSearchBar('open')}/>
+            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
           </Link>
 
           {shortlist}
@@ -288,7 +300,9 @@ export class TopBar extends React.Component {
               className="Topbar__navigation__btn widthCalc"
               dataCy="topbar-login-btn"
             >
-              <span>Log ind</span>
+              <span>
+                <T component="login" name="loginButton" />
+              </span>
             </Link>
           )}
           {this.props.user.isLoggedIn && (
@@ -309,11 +323,11 @@ export class TopBar extends React.Component {
                 className="Topbar__navigation__btn abort-closeDopdown d-flex d-sm-none"
                 onClick={() => this.toggleDropdown()}
               >
-                <Icon name="menu" className="Topbar__burger"/>
+                <Icon name="menu" className="Topbar__burger" />
               </span>
             </React.Fragment>
           )}
-          <div className="Topbar__overlay"/>
+          <div className="Topbar__overlay" />
         </nav>
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
           <div className="d-block d-sm-none d-inline-flex">
@@ -343,7 +357,6 @@ export class TopBar extends React.Component {
 
           <div className="d-none d-sm-block">
             <div className="d-inline-flex">
-
               <object
                 type="image/svg+xml"
                 data="/img/general/dibliofigur.svg"
@@ -355,7 +368,6 @@ export class TopBar extends React.Component {
                 }}
               />
 
-
               <div>
                 <Title className="mb-0" Tag="h1" type="title4">
                   Læsekompas
@@ -365,29 +377,29 @@ export class TopBar extends React.Component {
                     BETA
                   </Text>
                   {!searchExpanded &&
-                  ((isIndex && isMobileOnly) || !isMobileOnly) && (
-                    <div className="d-inline-flex">
-                      <div className="d-none d-sm-inline logo-beta-text Text__small">
-                        {this.props.stats.books &&
-                        `Nu ${this.props.stats.books.total} ` +
-                        (this.props.stats.books.total === 1
-                          ? 'bog. '
-                          : 'bøger. ')}
-                        <Text
-                          className="d-inline logo-beta-link mb0"
-                          type="small"
-                          variant="decoration-underline"
-                          onClick={e => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            this.props.betaModal();
-                          }}
-                        >
-                          {'Læs mere'}
-                        </Text>
+                    ((isIndex && isMobileOnly) || !isMobileOnly) && (
+                      <div className="d-inline-flex">
+                        <div className="d-none d-sm-inline logo-beta-text Text__small">
+                          <T
+                            component="topbar"
+                            name="betaText"
+                            vars={[booksCount]}
+                          />
+                          <Text
+                            className="d-inline logo-beta-link mb0"
+                            type="small"
+                            variant="decoration-underline"
+                            onClick={e => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              this.props.betaModal();
+                            }}
+                          >
+                            <T component="general" name="readMore" />
+                          </Text>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
               </div>
             </div>
@@ -422,34 +434,27 @@ export const mapDispatchToProps = dispatch => ({
       type: OPEN_MODAL,
       modal: 'confirm',
       context: {
-        title: 'Om Læsekompas.dk',
+        title: <T component="topbar" name="betaModalTitle" />,
         reason: (
           <React.Fragment>
             <Text type="body" variant="weight-semibold">
-              {
-                'Læsekompasset er skabt for at gøre det nemt for dig at opdage bøger, der passer til dig, og inspirere dig til nye læseoplevelser.'
-              }
+              <T component="topbar" name="betaModalDescription" />
             </Text>
             <Text type="body">
-              {
-                'Vi arbejder hele tiden på at forbedre Læsekompasset og øge antallet af bøger. Lige nu er vi i '
-              }
+              <T component="topbar" name="betaModalBody1" />
               <Text
                 className="d-inline"
                 type="body"
                 variant="color-fersken--weight-semibold--transform-uppercase"
               >
-                betatest
+                {' betatest'}
               </Text>
-              {
-                /* eslint-disable */
-                '. Det betyder, at du frit kan bruge webstedet, men at du sagtens kan opleve ting, der ikke fungerer optimalt endnu, og at mængden af bøger lige nu er begrænset. I løbet af de kommende måneder kommer alle de vigtigste nye udgivelser med, og der vil også med tiden komme flere ældre bøger med. Læsekompasset har skønlitteratur til voksne, men fagbøger og børnebøger kan du ikke finde her.\r\n \r\nVi vil blive meget glade for din feedback, som du kan give os via feedback-knappen nederst på siden. Din feedback hjælper os med at gøre Læsekompasset bedre.'
-                /* eslint-enable */
-              }
+              {'. '}
+              <T component="topbar" name="betaModalBody2" />
             </Text>
           </React.Fragment>
         ),
-        confirmText: 'Luk',
+        confirmText: <T component="general" name="close" />,
         hideCancel: true,
         hideConfirm: true,
         onConfirm: () => {

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
+import T from '../base/T';
 import {ORDER} from '../../redux/order.reducer.js';
 
 export function OrderButton(props) {
@@ -10,10 +11,10 @@ export function OrderButton(props) {
       '',
       <React.Fragment>
         <Icon name={props.icon} />
-        {props.label}
+        {props.children || props.label}
       </React.Fragment>
     ],
-    ordered: ['btn-success', 'Bestilt'],
+    ordered: ['btn-success', <T component="order" name="orderDone" />],
     ordering: [
       'btn-info',
       <span>
@@ -26,11 +27,12 @@ export function OrderButton(props) {
             marginRight: 5
           }}
         />
-        Bestiller...
+        <T component="order" name="orderInProgress" />
       </span>
     ],
-    error: ['btn-danger', 'Fejl ved bestilling']
+    error: ['btn-danger', <T component="order" name="orderError" />]
   }[props.orderState];
+
   return (
     <Button
       className={`${buttonClass} ${props.className}`}

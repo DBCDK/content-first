@@ -5,6 +5,7 @@ import CarouselSlider from './CarouselSlider.component';
 import ConciseWork from '../work/ConciseWork.container';
 import Title from '../base/Title';
 import Text from '../base/Text';
+import T from '../base/T';
 import Spinner from '../general/Spinner.component';
 import textParser from '../../utils/textParser';
 import {getListByIdSelector} from '../../redux/list.reducer';
@@ -137,7 +138,7 @@ export class BookcaseItem extends React.Component {
       return (
         <div className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa mb-5">
           <Text className="bookcase-error" type="body" variant="color-fersken">
-            Listen kunne ikke indlæses
+            <T component="bookcase" name="fetchListError" />
           </Text>
         </div>
       );

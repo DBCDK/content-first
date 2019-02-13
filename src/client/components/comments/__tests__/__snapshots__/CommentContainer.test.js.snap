@@ -403,7 +403,12 @@ exports[`CommentContainer Component renders all comments 1`] = `
               >
                 chat_bubble_outline
               </i>
-              Kommentér
+              <T
+                component="post"
+                name="comment"
+              >
+                Kommentér
+              </T>
             </span>
           </p>
         </Text>
@@ -415,7 +420,17 @@ exports[`CommentContainer Component renders all comments 1`] = `
             className=" Text Text__body Text__body--decoration-underline"
           >
             <span>
-              5 kommentarer
+              <T
+                component="post"
+                name="commentsCount"
+                vars={
+                  Array [
+                    5,
+                  ]
+                }
+              >
+                5 kommentarer
+              </T>
             </span>
           </p>
         </Text>
@@ -448,7 +463,12 @@ exports[`CommentContainer Component renders all comments 1`] = `
             <p
               className="mb-0 Text Text__body Text__body--decoration-underline"
             >
-              Vis færre kommentarer
+              <T
+                component="post"
+                name="showLessComments"
+              >
+                Vis færre kommentarer
+              </T>
             </p>
           </Text>
         </button>
@@ -684,7 +704,12 @@ exports[`CommentContainer Component renders all comments 1`] = `
                   disabled={false}
                   onClick={[Function]}
                 >
-                  Fortryd
+                  <T
+                    component="general"
+                    name="cancel"
+                  >
+                    Fortryd
+                  </T>
                 </button>
               </Button>
               <Button
@@ -702,7 +727,12 @@ exports[`CommentContainer Component renders all comments 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Kommentér
+                  <T
+                    component="post"
+                    name="comment"
+                  >
+                    Kommentér
+                  </T>
                 </button>
               </Button>
             </div>
@@ -749,7 +779,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
         className=" Text Text__body Text__body--decoration-underline"
       >
         <span>
-          1 kommentarer
+          1 kommentar
         </span>
       </p>
     </div>
@@ -946,7 +976,12 @@ exports[`CommentContainer Component renders error 1`] = `
               >
                 chat_bubble_outline
               </i>
-              Kommentér
+              <T
+                component="post"
+                name="comment"
+              >
+                Kommentér
+              </T>
             </span>
           </p>
         </Text>
@@ -958,7 +993,17 @@ exports[`CommentContainer Component renders error 1`] = `
             className=" Text Text__body Text__body--decoration-underline"
           >
             <span>
-              2 kommentarer
+              <T
+                component="post"
+                name="commentsCount"
+                vars={
+                  Array [
+                    2,
+                  ]
+                }
+              >
+                2 kommentarer
+              </T>
             </span>
           </p>
         </Text>
@@ -991,7 +1036,12 @@ exports[`CommentContainer Component renders error 1`] = `
             <p
               className="mb-0 Text Text__body Text__body--decoration-underline"
             >
-              Vis flere kommentarer
+              <T
+                component="post"
+                name="showMoreComments"
+              >
+                Vis flere kommentarer
+              </T>
             </p>
           </Text>
         </button>
@@ -1164,7 +1214,12 @@ exports[`CommentContainer Component renders error 1`] = `
                   disabled={false}
                   onClick={[Function]}
                 >
-                  Fortryd
+                  <T
+                    component="general"
+                    name="cancel"
+                  >
+                    Fortryd
+                  </T>
                 </button>
               </Button>
               <Button
@@ -1182,7 +1237,12 @@ exports[`CommentContainer Component renders error 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Kommentér
+                  <T
+                    component="post"
+                    name="comment"
+                  >
+                    Kommentér
+                  </T>
                 </button>
               </Button>
             </div>
@@ -1260,7 +1320,12 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
               >
                 chat_bubble_outline
               </i>
-              Kommentér
+              <T
+                component="post"
+                name="comment"
+              >
+                Kommentér
+              </T>
             </span>
           </p>
         </Text>
@@ -1272,7 +1337,17 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             className=" Text Text__body Text__body--decoration-underline"
           >
             <span>
-              3 kommentarer
+              <T
+                component="post"
+                name="commentsCount"
+                vars={
+                  Array [
+                    3,
+                  ]
+                }
+              >
+                3 kommentarer
+              </T>
             </span>
           </p>
         </Text>
@@ -1305,7 +1380,12 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             <p
               className="mb-0 Text Text__body Text__body--decoration-underline"
             >
-              Vis flere kommentarer
+              <T
+                component="post"
+                name="showMoreComments"
+              >
+                Vis flere kommentarer
+              </T>
             </p>
           </Text>
         </button>
@@ -1477,7 +1557,12 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                   disabled={false}
                   onClick={[Function]}
                 >
-                  Fortryd
+                  <T
+                    component="general"
+                    name="cancel"
+                  >
+                    Fortryd
+                  </T>
                 </button>
               </Button>
               <Button
@@ -1495,7 +1580,12 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Kommentér
+                  <T
+                    component="post"
+                    name="comment"
+                  >
+                    Kommentér
+                  </T>
                 </button>
               </Button>
             </div>
@@ -1586,7 +1676,12 @@ exports[`CommentContainer Toggle all comments 1`] = `
               >
                 chat_bubble_outline
               </i>
-              Kommentér
+              <T
+                component="post"
+                name="comment"
+              >
+                Kommentér
+              </T>
             </span>
           </p>
         </Text>
@@ -1598,7 +1693,17 @@ exports[`CommentContainer Toggle all comments 1`] = `
             className=" Text Text__body Text__body--decoration-underline"
           >
             <span>
-              5 kommentarer
+              <T
+                component="post"
+                name="commentsCount"
+                vars={
+                  Array [
+                    5,
+                  ]
+                }
+              >
+                5 kommentarer
+              </T>
             </span>
           </p>
         </Text>
@@ -1631,7 +1736,12 @@ exports[`CommentContainer Toggle all comments 1`] = `
             <p
               className="mb-0 Text Text__body Text__body--decoration-underline"
             >
-              Vis flere kommentarer
+              <T
+                component="post"
+                name="showMoreComments"
+              >
+                Vis flere kommentarer
+              </T>
             </p>
           </Text>
         </button>
@@ -1815,7 +1925,12 @@ exports[`CommentContainer Toggle all comments 1`] = `
                   disabled={false}
                   onClick={[Function]}
                 >
-                  Fortryd
+                  <T
+                    component="general"
+                    name="cancel"
+                  >
+                    Fortryd
+                  </T>
                 </button>
               </Button>
               <Button
@@ -1833,7 +1948,12 @@ exports[`CommentContainer Toggle all comments 1`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Kommentér
+                  <T
+                    component="post"
+                    name="comment"
+                  >
+                    Kommentér
+                  </T>
                 </button>
               </Button>
             </div>
@@ -1924,7 +2044,12 @@ exports[`CommentContainer Toggle all comments 2`] = `
               >
                 chat_bubble_outline
               </i>
-              Kommentér
+              <T
+                component="post"
+                name="comment"
+              >
+                Kommentér
+              </T>
             </span>
           </p>
         </Text>
@@ -1936,7 +2061,17 @@ exports[`CommentContainer Toggle all comments 2`] = `
             className=" Text Text__body Text__body--decoration-underline"
           >
             <span>
-              5 kommentarer
+              <T
+                component="post"
+                name="commentsCount"
+                vars={
+                  Array [
+                    5,
+                  ]
+                }
+              >
+                5 kommentarer
+              </T>
             </span>
           </p>
         </Text>
@@ -1969,7 +2104,12 @@ exports[`CommentContainer Toggle all comments 2`] = `
             <p
               className="mb-0 Text Text__body Text__body--decoration-underline"
             >
-              Vis færre kommentarer
+              <T
+                component="post"
+                name="showLessComments"
+              >
+                Vis færre kommentarer
+              </T>
             </p>
           </Text>
         </button>
@@ -2205,7 +2345,12 @@ exports[`CommentContainer Toggle all comments 2`] = `
                   disabled={false}
                   onClick={[Function]}
                 >
-                  Fortryd
+                  <T
+                    component="general"
+                    name="cancel"
+                  >
+                    Fortryd
+                  </T>
                 </button>
               </Button>
               <Button
@@ -2223,7 +2368,12 @@ exports[`CommentContainer Toggle all comments 2`] = `
                   id="comment-submit"
                   onClick={[Function]}
                 >
-                  Kommentér
+                  <T
+                    component="post"
+                    name="comment"
+                  >
+                    Kommentér
+                  </T>
                 </button>
               </Button>
             </div>

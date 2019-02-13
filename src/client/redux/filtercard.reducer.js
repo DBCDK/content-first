@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 const defaultState = {
   Stemning: {
     title: 'Stemning',

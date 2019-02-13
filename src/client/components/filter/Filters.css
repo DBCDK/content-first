@@ -36,7 +36,7 @@
 .Filters__next span {
   display: inline-block;
   line-height: normal;
-  width: 40px;
+  max-width: 40px;
   vertical-align: middle;
   text-align: left;
 }
@@ -212,11 +212,11 @@
 
   .FilterCard .FilterCard__cover .FilterCard__close {
     bottom: -3.9rem;
-    right:.7rem;
+    right: 0.7rem;
     font-size: 1.3rem;
-    width:50px;
-    height:50px;
-    text-align:center;
+    width: 50px;
+    height: 50px;
+    text-align: center;
     line-height: 45px;
   }
 

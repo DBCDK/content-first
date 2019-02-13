@@ -5,6 +5,7 @@ import ImageUpload from '../general/ImageUpload.component';
 import UserProfileForm from './UserProfileForm.component';
 import Heading from '../base/Heading/';
 import Paragraph from '../base/Paragraph/';
+import T from '../base/T';
 import Spinner from '../general/Spinner.component';
 import Link from '../general/Link.component';
 import LogoutLink from '../general/Logout.component';
@@ -43,17 +44,20 @@ export class CreateProfilePage extends React.Component {
                         ? `/v1/image/${this.props.profileImageId}/150/150`
                         : null
                     }
-                    buttonText={
-                      this.props.profileImageId
-                        ? 'Skift profilbillede'
-                        : 'Upload profilbillede'
-                    }
+                    buttonText={T({
+                      component: 'profile',
+                      name: this.props.profileImageId
+                        ? 'changeProfilePicture'
+                        : 'uploadProfilePicture'
+                    })}
                     onFile={this.props.addImage}
                   />
                 </div>
                 <div className="col-9 mb2">
                   <p className="mb2">
-                    <b>Indtast dine personlige oplysninger:</b>
+                    <b>
+                      <T component="profile" name="enterInformations" />
+                    </b>
                   </p>
                   <div className="mb2">
                     <UserProfileForm
@@ -75,14 +79,16 @@ export class CreateProfilePage extends React.Component {
                         className="text-danger profile-delete"
                         onClick={() => this.props.confirmDeleteModal()}
                       >
-                        Slet profil
+                        <T component="profile" name="deleteProfile" />
                       </Link>
                       {' | '}
-                      <Link href="/profile">Fortryd redigéring</Link>
+                      <Link href="/profile">
+                        <T component="general" name="cancelEdit" />
+                      </Link>
                     </React.Fragment>
                   ) : (
                     <LogoutLink>
-                      Jeg ønsker alligevel ikke at oprette en profil
+                      <T component="profile" name="cancelCreateProfile" />
                     </LogoutLink>
                   )}
                 </div>
@@ -192,10 +198,11 @@ export const mapDispatchToProps = dispatch => {
         type: 'OPEN_MODAL',
         modal: 'confirm',
         context: {
-          title: 'Er du sikker på at du vil slette din profil?',
-          reason:
-            'Du er ved at slette din profil og alt data som er tilknyttet den, Er du sikker på at du vil fortsætte?.',
-          confirmText: 'Slet min profil',
+          title: <T component="profile" name="deleteProfileModalTitle" />,
+          reason: (
+            <T component="profile" name="deleteProfileModalDescription" />
+          ),
+          confirmText: <T component="profile" name="deleteMyProfile" />,
           onConfirm: () => {
             closeModal('CLOSE_MODAL', 'confirm');
             deleteUser(DELETE_USER_PROFILE);

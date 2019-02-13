@@ -1,7 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {toast} from 'react-toastify';
 import Modal from './Modal.component';
 import WorkItemSmall from '../work/WorkItemSmall.component';
+import ToastMessage from '../base/ToastMessage';
+import T from '../base/T';
 import {
   CUSTOM_LIST,
   SYSTEM_LIST,
@@ -11,8 +14,6 @@ import {
   storeList
 } from '../../redux/list.reducer';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import ToastMessage from '../base/ToastMessage';
-import {toast} from 'react-toastify';
 
 const defaultState = {
   comment: '',
@@ -99,7 +100,13 @@ export class AddToListModal extends React.Component {
       <ToastMessage
         type="success"
         icon="check_circle"
-        lines={[count + ' bøger tilføjet til listen ' + listName]}
+        lines={[
+          T({
+            component: 'list',
+            name: 'booksAddedToList',
+            vars: [count, listName]
+          })
+        ]}
       />
     );
   };
@@ -112,14 +119,16 @@ export class AddToListModal extends React.Component {
     return (
       <Modal
         className="add-to-list--modal p-4"
-        header={'GEM I LISTE'}
+        header={T({component: 'list', name: 'addToListModalTitle'})}
         onClose={this.close}
         onDone={this.onDone}
-        doneText="JA TAK, GEM NU"
+        doneText={T({component: 'list', name: 'saveNowModal'})}
         doneDisabled={this.state.list || this.state.listName ? false : true}
       >
         <div className="row">
-          <strong className="col-12">Hvilken liste vil du gemme i?</strong>
+          <strong className="col-12">
+            <T component="list" name="addToListModalDescription" />
+          </strong>
         </div>
         <div className="row">
           <div className="col-6">
@@ -199,7 +208,7 @@ export class AddToListModal extends React.Component {
                   className=""
                   type="text"
                   name="add-list"
-                  placeholder="Opret ny liste"
+                  placeholder={T({component: 'list', name: 'createNew'})}
                   value={this.state.listName}
                   onChange={e => this.setState({listName: e.target.value})}
                 />
@@ -218,9 +227,19 @@ export class AddToListModal extends React.Component {
           </div>
           <div className="col-6">
             {this.props.works && (
-              <p className="mt2">{`Du er ved at gemme ${
-                this.props.works.length
-              } ${this.props.works.length > 1 ? 'bøger' : 'bog'}`}</p>
+              <p className="mt2">
+                <T
+                  component="list"
+                  name="aboutToSaveModal"
+                  vars={[
+                    this.props.works.length,
+                    T({
+                      component: 'general',
+                      name: this.props.works.length > 1 ? 'books' : 'book'
+                    })
+                  ]}
+                />
+              </p>
             )}
             {this.props.work && [
               <WorkItemSmall key="item" work={this.props.work} />,
@@ -228,7 +247,9 @@ export class AddToListModal extends React.Component {
                 key="textarea"
                 className="comment"
                 placeholder={
-                  this.props.work.origin || 'Skriv evt. en kommentar til bogen'
+                  this.props.work.origin || (
+                    <T component="list" name="bookCommentModal" />
+                  )
                 }
                 value={this.state.comment}
                 onChange={e => this.setState({comment: e.target.value})}

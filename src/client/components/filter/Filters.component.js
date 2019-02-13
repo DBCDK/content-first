@@ -2,6 +2,7 @@ import React from 'react';
 import Swiper from 'react-id-swiper';
 import Heading from '../base/Heading';
 import Icon from '../base/Icon';
+import T from '../base/T';
 import CardList from './templates/CardList.component.js';
 import CardRange from './templates/CardRange.component.js';
 
@@ -21,9 +22,7 @@ const params = {
   renderNextButton: () => (
     <div className="Filters__next">
       <span>
-        Flere
-        <br />
-        valg
+        <T component="filter" name="forward" />
       </span>
       <Icon name="chevron_right" />
     </div>
@@ -32,9 +31,7 @@ const params = {
     <div className="Filters__prev hidden">
       <Icon name="chevron_left" />
       <span>
-        Forrige
-        <br />
-        valg
+        <T component="filter" name="previous" />
       </span>
     </div>
   )

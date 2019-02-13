@@ -1,5 +1,6 @@
 import React from 'react';
 import Spinner from '../general/Spinner.component';
+import T from '../base/T';
 
 export default class UserProfileForm extends React.Component {
   constructor(props) {
@@ -16,20 +17,21 @@ export default class UserProfileForm extends React.Component {
     // Check if usernameis more than 4 characters
     if (this.state.name.length < 4) {
       return this.setState({
-        validationError: 'Dit brugernavn skal være minimum 4 karakterer langt'
+        validationError: (
+          <T component="profile" name="validationUsernameLength" />
+        )
       });
     }
     // Check if user accepted age (above 13)
     if (!this.state.acceptedAge) {
       return this.setState({
-        validationError: 'Du skal være over 13 år for at oprette en profil'
+        validationError: <T component="profile" name="validationAcceptAge" />
       });
     }
     // Check if user accepted Terms
     if (!this.state.acceptedTerms) {
       return this.setState({
-        validationError:
-          'For at oprette en profil, skal du acceptere reglerne for anvendelse af Læsekompasset.'
+        validationError: <T component="profile" name="validationAcceptTerms" />
       });
     }
 
@@ -45,7 +47,9 @@ export default class UserProfileForm extends React.Component {
   renderErrors() {
     const error =
       this.state.validationError ||
-      (this.props.error ? 'Det er ikke muligt at gemme profilen' : null);
+      (this.props.error ? (
+        <T component="profile" name="saveProfileError" />
+      ) : null);
     if (error) {
       return <div className="error mb2">{error}</div>;
     }
@@ -71,7 +75,10 @@ export default class UserProfileForm extends React.Component {
                 'is-invalid')} has-feedback`}
             type="text"
             name="name"
-            placeholder="Vælg brugernavn"
+            placeholder={T({
+              component: 'profile',
+              name: 'placeholderUsername'
+            })}
             value={this.state.name}
             onChange={e => this.setState({[e.target.name]: e.target.value})}
             data-cy="user-form-name"
@@ -83,7 +90,9 @@ export default class UserProfileForm extends React.Component {
             </i>
           </span>
         </div>
-        <p className="mb6">Du er logget på via {this.props.library}</p>
+        <p className="mb6">
+          <T component="login" name="signedInby" /> {this.props.library}
+        </p>
 
         {!this.props.acceptedAge && (
           <label
@@ -102,7 +111,7 @@ export default class UserProfileForm extends React.Component {
                 this.setState({acceptedAge: !this.state.acceptedAge})
               }
             />
-            <span /> Jeg er over 13 år
+            <span /> <T component="profile" name="ageCheckboxText" />
           </label>
         )}
 
@@ -123,8 +132,11 @@ export default class UserProfileForm extends React.Component {
                 this.setState({acceptedTerms: !this.state.acceptedTerms})
               }
             />
-            <span /> Jeg har læst og accepteret{' '}
-            <a href="#terms">reglerne for anvendelse af Læsekompasset</a>
+            <span />
+            <T component="profile" name="termsCheckboxText" />{' '}
+            <a href="#terms">
+              <T component="profile" name="termsCheckboxLink" />
+            </a>
           </label>
         )}
 
@@ -134,11 +146,13 @@ export default class UserProfileForm extends React.Component {
           disabled={this.props.isSaving}
           data-cy="user-form-submit"
         >
-          {this.props.editMode ? 'Gem Profil' : 'Opret profil'}{' '}
-          {(this.props.isSaving && (
+          <T
+            component="profile"
+            name={this.props.editMode ? 'saveProfile' : 'editProfile'}
+          />
+          {this.props.isSaving && (
             <Spinner size={12} color="white" style={{marginLeft: '10px'}} />
-          )) ||
-            ''}
+          )}
         </button>
       </form>
     );

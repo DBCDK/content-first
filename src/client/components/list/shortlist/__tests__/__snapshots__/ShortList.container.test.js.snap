@@ -39,7 +39,12 @@ exports[`ShortList.container Clearing list 1`] = `
           <div
             className="page-header-1"
           >
-            Huskeliste
+            <T
+              component="shortlist"
+              name="title"
+            >
+              Huskeliste
+            </T>
           </div>
           <div
             className="items mb2"
@@ -186,7 +191,12 @@ exports[`ShortList.container Clearing list 1`] = `
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -251,7 +261,12 @@ exports[`ShortList.container Clearing list 1`] = `
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -390,7 +405,12 @@ exports[`ShortList.container Clearing list 1`] = `
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -455,7 +475,12 @@ exports[`ShortList.container Clearing list 1`] = `
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -478,7 +503,12 @@ exports[`ShortList.container Clearing list 1`] = `
           <div
             className="empty-list-text"
           >
-            Din huskeliste er tom
+            <T
+              component="shortlist"
+              name="emptyList"
+            >
+              Din huskeliste er tom
+            </T>
           </div>
         </div>
       </div>
@@ -548,7 +578,12 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
           <div
             className="page-header-1"
           >
-            Huskeliste
+            <T
+              component="shortlist"
+              name="title"
+            >
+              Huskeliste
+            </T>
           </div>
           <div
             className="items mb2"
@@ -695,7 +730,12 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -760,7 +800,12 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -791,19 +836,34 @@ exports[`ShortList.container Saving changed description, is hiding buttons and s
                 data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
-                TILFØJ ALLE TIL LISTE
+                <T
+                  component="list"
+                  name="addAllToList"
+                >
+                  Tilføj alle til liste
+                </T>
               </span>
               <span
                 className="btn ml2 btn-success"
                 onClick={[Function]}
               >
-                BESTIL HELE LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistOrder"
+                >
+                  Bestil hele listen
+                </T>
               </span>
               <span
                 className="clear-all-btn btn btn-success ml2"
                 onClick={[Function]}
               >
-                RYD LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistClear"
+                >
+                  Ryd listen
+                </T>
                 <i
                   className="material-icons ml1"
                   style={
@@ -885,7 +945,12 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
           <div
             className="page-header-1"
           >
-            Huskeliste
+            <T
+              component="shortlist"
+              name="title"
+            >
+              Huskeliste
+            </T>
           </div>
           <div
             className="items mb2"
@@ -1032,7 +1097,12 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -1097,7 +1167,12 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -1128,19 +1203,34 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                 data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
-                TILFØJ ALLE TIL LISTE
+                <T
+                  component="list"
+                  name="addAllToList"
+                >
+                  Tilføj alle til liste
+                </T>
               </span>
               <span
                 className="btn ml2 btn-success"
                 onClick={[Function]}
               >
-                BESTIL HELE LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistOrder"
+                >
+                  Bestil hele listen
+                </T>
               </span>
               <span
                 className="clear-all-btn btn btn-success ml2"
                 onClick={[Function]}
               >
-                RYD LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistClear"
+                >
+                  Ryd listen
+                </T>
                 <i
                   className="material-icons ml1"
                   style={
@@ -1222,7 +1312,12 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
           <div
             className="page-header-1"
           >
-            Huskeliste
+            <T
+              component="shortlist"
+              name="title"
+            >
+              Huskeliste
+            </T>
           </div>
           <div
             className="items mb2"
@@ -1369,7 +1464,12 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -1434,7 +1534,12 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -1465,19 +1570,34 @@ exports[`ShortList.container cancel changed description, is hiding buttons and s
                 data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
-                TILFØJ ALLE TIL LISTE
+                <T
+                  component="list"
+                  name="addAllToList"
+                >
+                  Tilføj alle til liste
+                </T>
               </span>
               <span
                 className="btn ml2 btn-success"
                 onClick={[Function]}
               >
-                BESTIL HELE LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistOrder"
+                >
+                  Bestil hele listen
+                </T>
               </span>
               <span
                 className="clear-all-btn btn btn-success ml2"
                 onClick={[Function]}
               >
-                RYD LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistClear"
+                >
+                  Ryd listen
+                </T>
                 <i
                   className="material-icons ml1"
                   style={
@@ -1559,7 +1679,12 @@ exports[`ShortList.container change description reveal cancel and submit buttons
           <div
             className="page-header-1"
           >
-            Huskeliste
+            <T
+              component="shortlist"
+              name="title"
+            >
+              Huskeliste
+            </T>
           </div>
           <div
             className="items mb2"
@@ -1702,13 +1827,24 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                       className="btn btn-default"
                                       onClick={[Function]}
                                     >
-                                      Fortryd
+                                      <T
+                                        component="general"
+                                        name="cancel"
+                                      >
+                                        Fortryd
+                                      </T>
                                     </span>
-                                    <input
+                                    <button
                                       className="btn btn-success ml2"
                                       type="submit"
-                                      value="Gem"
-                                    />
+                                    >
+                                      <T
+                                        component="general"
+                                        name="save"
+                                      >
+                                        Gem
+                                      </T>
+                                    </button>
                                   </div>
                                 </form>
                               </div>
@@ -1721,7 +1857,12 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -1786,7 +1927,12 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -1817,19 +1963,34 @@ exports[`ShortList.container change description reveal cancel and submit buttons
                 data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
-                TILFØJ ALLE TIL LISTE
+                <T
+                  component="list"
+                  name="addAllToList"
+                >
+                  Tilføj alle til liste
+                </T>
               </span>
               <span
                 className="btn ml2 btn-success"
                 onClick={[Function]}
               >
-                BESTIL HELE LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistOrder"
+                >
+                  Bestil hele listen
+                </T>
               </span>
               <span
                 className="clear-all-btn btn btn-success ml2"
                 onClick={[Function]}
               >
-                RYD LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistClear"
+                >
+                  Ryd listen
+                </T>
                 <i
                   className="material-icons ml1"
                   style={
@@ -1929,7 +2090,12 @@ exports[`ShortList.container remove element 1`] = `
           <div
             className="page-header-1"
           >
-            Huskeliste
+            <T
+              component="shortlist"
+              name="title"
+            >
+              Huskeliste
+            </T>
           </div>
           <div
             className="items mb2"
@@ -2076,7 +2242,12 @@ exports[`ShortList.container remove element 1`] = `
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -2141,7 +2312,12 @@ exports[`ShortList.container remove element 1`] = `
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -2280,7 +2456,12 @@ exports[`ShortList.container remove element 1`] = `
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -2345,7 +2526,12 @@ exports[`ShortList.container remove element 1`] = `
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -2484,7 +2670,12 @@ exports[`ShortList.container remove element 1`] = `
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -2549,7 +2740,12 @@ exports[`ShortList.container remove element 1`] = `
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -2580,19 +2776,34 @@ exports[`ShortList.container remove element 1`] = `
                 data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
-                TILFØJ ALLE TIL LISTE
+                <T
+                  component="list"
+                  name="addAllToList"
+                >
+                  Tilføj alle til liste
+                </T>
               </span>
               <span
                 className="btn ml2 btn-success"
                 onClick={[Function]}
               >
-                BESTIL HELE LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistOrder"
+                >
+                  Bestil hele listen
+                </T>
               </span>
               <span
                 className="clear-all-btn btn btn-success ml2"
                 onClick={[Function]}
               >
-                RYD LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistClear"
+                >
+                  Ryd listen
+                </T>
                 <i
                   className="material-icons ml1"
                   style={
@@ -2710,7 +2921,12 @@ exports[`ShortList.container short list contains elements 1`] = `
           <div
             className="page-header-1"
           >
-            Huskeliste
+            <T
+              component="shortlist"
+              name="title"
+            >
+              Huskeliste
+            </T>
           </div>
           <div
             className="items mb2"
@@ -2857,7 +3073,12 @@ exports[`ShortList.container short list contains elements 1`] = `
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -2922,7 +3143,12 @@ exports[`ShortList.container short list contains elements 1`] = `
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -3061,7 +3287,12 @@ exports[`ShortList.container short list contains elements 1`] = `
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -3126,7 +3357,12 @@ exports[`ShortList.container short list contains elements 1`] = `
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -3265,7 +3501,12 @@ exports[`ShortList.container short list contains elements 1`] = `
                               className="d-flex align-items-center"
                               onClick={[Function]}
                             >
-                              Tilføj til liste
+                              <T
+                                component="list"
+                                name="addToList"
+                              >
+                                Tilføj til liste
+                              </T>
                               <i
                                 className="material-icons"
                                 style={
@@ -3330,7 +3571,12 @@ exports[`ShortList.container short list contains elements 1`] = `
                                         className="material-icons material-icons-undefined "
                                       />
                                     </Icon>
-                                    Bestil
+                                    <T
+                                      component="general"
+                                      name="bestil"
+                                    >
+                                      Bestil
+                                    </T>
                                   </button>
                                 </Button>
                               </OrderButton>
@@ -3361,19 +3607,34 @@ exports[`ShortList.container short list contains elements 1`] = `
                 data-cy="listpage-add-elemts-to-list"
                 onClick={[Function]}
               >
-                TILFØJ ALLE TIL LISTE
+                <T
+                  component="list"
+                  name="addAllToList"
+                >
+                  Tilføj alle til liste
+                </T>
               </span>
               <span
                 className="btn ml2 btn-success"
                 onClick={[Function]}
               >
-                BESTIL HELE LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistOrder"
+                >
+                  Bestil hele listen
+                </T>
               </span>
               <span
                 className="clear-all-btn btn btn-success ml2"
                 onClick={[Function]}
               >
-                RYD LISTEN
+                <T
+                  component="shortlist"
+                  name="shortlistClear"
+                >
+                  Ryd listen
+                </T>
                 <i
                   className="material-icons ml1"
                   style={
@@ -3433,7 +3694,12 @@ exports[`ShortList.container short list is empty 1`] = `
           <div
             className="page-header-1"
           >
-            Huskeliste
+            <T
+              component="shortlist"
+              name="title"
+            >
+              Huskeliste
+            </T>
           </div>
           <div
             className="items mb2"
@@ -3463,7 +3729,12 @@ exports[`ShortList.container short list is empty 1`] = `
           <div
             className="empty-list-text"
           >
-            Din huskeliste er tom
+            <T
+              component="shortlist"
+              name="emptyList"
+            >
+              Din huskeliste er tom
+            </T>
           </div>
         </div>
       </div>

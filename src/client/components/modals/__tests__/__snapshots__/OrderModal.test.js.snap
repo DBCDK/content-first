@@ -3,8 +3,18 @@
 exports[`OrderModal render function renders initial request 1`] = `
 <Modal
   className="add-to-list--modal"
-  doneText="JA TAK, BESTIL NU"
-  header="BESTIL"
+  doneText={
+    <T
+      component="order"
+      name="orderNow"
+    />
+  }
+  header={
+    <T
+      component="order"
+      name="modalTitle"
+    />
+  }
   onClose={undefined}
   onDone={[Function]}
 >
@@ -13,9 +23,7 @@ exports[`OrderModal render function renders initial request 1`] = `
       className="form-group"
     >
       <strong>
-        Du er ved at bestille
-         3 bøger
-        :
+        Du er ved at bestille 3 [object Object]
       </strong>
       <div
         style={
@@ -76,7 +84,9 @@ exports[`OrderModal render function renders initial request 1`] = `
                 }
               }
             >
-              <small>
+              <small
+                className="d-block"
+              >
                 <span
                   style={
                     Object {
@@ -93,10 +103,7 @@ exports[`OrderModal render function renders initial request 1`] = `
                       }
                     }
                   />
-                  <br />
-                  Checker 
-                  <br />
-                   tilgængelighed
+                  Tjekker tilgængelighed
                 </span>
               </small>
             </div>
@@ -159,7 +166,9 @@ exports[`OrderModal render function renders initial request 1`] = `
                 }
               }
             >
-              <small>
+              <small
+                className="d-block"
+              >
                 <span
                   style={
                     Object {
@@ -176,10 +185,7 @@ exports[`OrderModal render function renders initial request 1`] = `
                       }
                     }
                   />
-                  <br />
-                  Checker 
-                  <br />
-                   tilgængelighed
+                  Tjekker tilgængelighed
                 </span>
               </small>
             </div>
@@ -242,7 +248,9 @@ exports[`OrderModal render function renders initial request 1`] = `
                 }
               }
             >
-              <small>
+              <small
+                className="d-block"
+              >
                 <span
                   style={
                     Object {
@@ -259,10 +267,7 @@ exports[`OrderModal render function renders initial request 1`] = `
                       }
                     }
                   />
-                  <br />
-                  Checker 
-                  <br />
-                   tilgængelighed
+                  Tjekker tilgængelighed
                 </span>
               </small>
             </div>

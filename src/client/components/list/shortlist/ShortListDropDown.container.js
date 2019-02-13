@@ -13,6 +13,7 @@ import {ORDER} from '../../../redux/order.reducer';
 import BookCover from '../../general/BookCover.component';
 import Button from '../../base/Button/Button';
 import Text from '../../base/Text';
+import T from '../../base/T';
 import Link from '../../general/Link.component';
 import '../overview/dropdownList.css';
 
@@ -73,7 +74,11 @@ const ShortListContent = props => {
           variant="color-fersken--weight-semibold--transform-uppercase"
           className="tc"
         >
-          {`Huskeliste (${props.elements && props.elements.length})`}
+          <T
+            component="shortlist"
+            name="titleWithBooks"
+            vars={[`${props.elements && props.elements.length}`]}
+          />
         </Text>
       </Link>
       <div
@@ -82,7 +87,7 @@ const ShortListContent = props => {
           (emptyList ? '' : 'd-none')
         }
       >
-        {emptyList && 'Din huskeliste er tom'}
+        {emptyList && <T component="shortlist" name="emptyList" />}
       </div>
       {props.children &&
         props.children.length > 0 && (
@@ -103,14 +108,14 @@ const ShortListContent = props => {
             type="tertiary"
             dataCy="shortlist-dropdown-visit-shortlist"
           >
-            Gå til huskeliste
+            <T component="shortlist" name="shortlistGo" />
           </Button>
         </div>
         <div
           onClick={() => props.elements.length > 0 && props - props.orderAll()}
         >
           <Button size="medium" type="tertiary">
-            Bestil hele listen
+            <T component="shortlist" name="shortlistOrder" />
           </Button>
         </div>
       </div>

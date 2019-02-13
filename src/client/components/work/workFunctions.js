@@ -1,3 +1,5 @@
+import T from '../base/T';
+
 export function filterCollection(work) {
   if (work.collectionHasLoaded) {
     if (work.book.collection.data.length > 0) {
@@ -16,7 +18,7 @@ export function filterCollection(work) {
           if (col.type[0].includes('Lydbog (net)')) {
             count1++;
             return {
-              type: 'Lydbog',
+              type: T({component: 'general', name: 'audiobook'}),
               icon: 'voicemail',
               url: col.identifierURI[0],
               count: count1
@@ -26,7 +28,7 @@ export function filterCollection(work) {
           if (col.type[0].includes('Ebog')) {
             count2++;
             return {
-              type: 'Ebog',
+              type: T({component: 'general', name: 'ebook'}),
               icon: 'alternate_email',
               url: col.identifierURI[0],
               count: count2

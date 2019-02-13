@@ -2,6 +2,7 @@ import React from 'react';
 import Textarea from 'react-textarea-autosize';
 import ProfileImage from '../general/ProfileImage.component';
 import Button from '../base/Button';
+import T from '../base/T';
 
 export default class CommentInput extends React.Component {
   constructor(props) {
@@ -58,7 +59,10 @@ export default class CommentInput extends React.Component {
             disabled={this.props.disabled}
             className={`form-control mb1 comment-textarea`}
             name="list-description"
-            placeholder={this.props.placeholder || 'Skriv kommentar'}
+            placeholder={
+              this.props.placeholder ||
+              T({component: 'post', name: 'writeComment'})
+            }
             onChange={e => this.props.onChange(e.target.value)}
             value={this.props.value}
           />
@@ -82,7 +86,7 @@ export default class CommentInput extends React.Component {
               className="comment-cancel mr-2 ml-2"
               onClick={this.onCancel}
             >
-              {this.props.cancelText || 'Fortryd'}
+              {this.props.cancelText || <T component="general" name="cancel" />}
             </Button>
             <Button
               id="comment-submit"
@@ -91,7 +95,7 @@ export default class CommentInput extends React.Component {
               onClick={this.onSubmit}
               disabled={this.props.disabled || !this.props.value}
             >
-              Kommentér
+              <T component="post" name="comment" />
             </Button>
           </div>
         </div>

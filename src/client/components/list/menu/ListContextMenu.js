@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import T from '../../base/T';
+
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import {
@@ -34,22 +36,22 @@ const ListContextMenu = ({
       dataCy="context-menu-list"
     >
       <ContextMenuAction
-        title="Redigér tekst og billede"
+        title={T({component: 'general', name: 'editMultiple'})}
         icon="edit"
         onClick={editListInfo}
       />
       <ContextMenuAction
-        title="Skift rækkefølge"
+        title={T({component: 'general', name: 'reorder'})}
         icon="swap_vert"
         onClick={reorderList}
       />
       <ContextMenuAction
-        title="Redigér indstillinger"
+        title={T({component: 'general', name: 'editSettings'})}
         icon="settings"
         onClick={editSettings}
       />
       <ContextMenuAction
-        title="Slet liste"
+        title={T({component: 'list', name: 'deleteList'})}
         icon="clear"
         onClick={confirmDelete}
       />
@@ -90,9 +92,9 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
       type: 'OPEN_MODAL',
       modal: 'confirm',
       context: {
-        title: 'Skal denne liste slettes?',
-        reason: 'Er du sikker på du vil slette den valgte liste.',
-        confirmText: 'Slet liste',
+        title: <T component="list" name="deleteListModalTitle" />,
+        reason: <T component="list" name="deleteListModalTitle" />,
+        confirmText: <T component="list" name="deleteList" />,
         onConfirm: () => {
           dispatch(
             removeList(ownProps._id),

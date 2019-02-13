@@ -6,6 +6,7 @@ import Paragraph from '../base/Paragraph';
 import Heading from '../base/Heading';
 import Button from '../base/Button';
 import withWork from '../base/Work/withWork.hoc';
+import T from '../base/T';
 
 import './WorkCard.css';
 
@@ -135,7 +136,7 @@ class WorkCard extends React.Component {
                   }}
                   dataCy="WC-more-like-this"
                 >
-                  Mere som denne
+                  <T component="work" name="moreLikeThis" />
                 </Button>
               )}
               <Paragraph className="mt1">

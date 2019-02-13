@@ -4,6 +4,7 @@ import {getListByIdSelector} from '../../../redux/list.reducer';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import Button from '../../base/Button';
 import Icon from '../../base/Icon';
+import T from '../../base/T';
 const getListById = getListByIdSelector();
 
 export const AddBookButton = ({
@@ -30,7 +31,9 @@ export const AddBookButton = ({
       }}
     >
       <Icon name="add" className="align-middle" />
-      <span className="align-middle ml-2">Tilføj en bog</span>
+      <span className="align-middle ml-2">
+        <T component="general" name="addABook" />
+      </span>
     </Button>
   );
 };
@@ -48,8 +51,8 @@ export const mapDispatchToProps = dispatch => ({
       type: OPEN_MODAL,
       modal: 'login',
       context: {
-        title: 'LÆG I LISTE',
-        reason: 'Du skal logge ind for at lægge bøger i en liste.'
+        title: <T component="login" name="modalTitle" />,
+        reason: <T component="login" name="modalDescription" />
       }
     });
   }

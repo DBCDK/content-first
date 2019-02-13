@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Spinner from '../general/Spinner.component';
 import Modal from './Modal.component';
 import BookCover from '../general/BookCover.component';
+import T from '../base/T';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import {
   SET_CURRENT_BRANCH,
@@ -12,12 +13,16 @@ import {
 
 export function OrderState({book}) {
   if (book.orderState === 'ordered') {
-    return <span style={{color: 'green'}}>Er bestilt.</span>;
+    return (
+      <span style={{color: 'green'}}>
+        <T component="order" name="orderDone" />
+      </span>
+    );
   }
   if (book.orderState === 'error') {
     return (
       <span style={{color: 'red'}}>
-        Fejl ved <br /> bestilling.
+        <T component="order" name="orderError" />
       </span>
     );
   }
@@ -25,8 +30,7 @@ export function OrderState({book}) {
     return (
       <span>
         <Spinner size={12} style={{marginTop: 5, marginLeft: 18}} />
-        <br />
-        Bestiller
+        <T component="order" name="orderInProgress" />
       </span>
     );
   }
@@ -34,24 +38,21 @@ export function OrderState({book}) {
     return (
       <span style={{textAlign: 'center', display: 'inline-block'}}>
         <Spinner size={12} style={{marginTop: 5}} />
-        <br />
-        Checker <br /> tilgængelighed
+        <T component="order" name="orderAvailability" />
       </span>
     );
   }
   if (book.availability.orderPossible === false) {
     return (
       <span style={{color: 'red'}}>
-        Kan ikke bestilles
-        <br />
-        til dit bibliotek.
+        <T component="order" name="notYourLibrary" />
       </span>
     );
   }
   if (book.availability.orderPossible === true) {
     return (
       <div style={{color: '#666', textAlign: 'center'}}>
-        Kan <br /> bestilles.
+        <T component="order" name="orderPossible" />
       </div>
     );
   }
@@ -85,7 +86,7 @@ function orderInfo({orders, onStart, currentBranch, branches}) {
       state !== 'ordering' &&
       !unavailable
     ) {
-      doneText = 'JA TAK, BESTIL NU';
+      doneText = <T component="order" name="orderNow" />;
       onDone = () => onStart(orderable, currentBranch || branches[0].branchId);
       reviewingOrder = true;
     }
@@ -94,13 +95,12 @@ function orderInfo({orders, onStart, currentBranch, branches}) {
     }
     if (state === 'ordering') {
       ordering = true;
-      doneText = 'BESTILLER...';
+      doneText = <T component="order" name="orderInProgress" />;
       onDone = () => {};
       orderStatus = (
         <span>
           <Spinner size={32} style={{margin: 8}} />
-          <br />
-          Bestiller...
+          <T component="order" name="orderInProgress" />
         </span>
       );
     }
@@ -132,6 +132,14 @@ export function OrderModal(props) {
     unavailableCount,
     reviewingOrder
   } = orderInfo(props);
+
+  const bookOrBooks = (
+    <T
+      component="general"
+      name={props.orders.length === 1 ? 'book' : 'books'}
+    />
+  );
+
   if (!reviewingOrder && !ordering) {
     doneText = 'OK';
     onDone = props.onClose;
@@ -153,9 +161,11 @@ export function OrderModal(props) {
             ❌
           </span>
           <div style={{color: 'red'}} data-cy="order-status">
-            Der skete en fejl så {orderError} af bøgerne ikke er blevet bestilt.
+            <T component="order" name="anErrorOccured" vars={[orderError]} />
           </div>
-          <div>Du kan evt. prøve at bestille bøgerne igen</div>
+          <div>
+            <T component="order" name="anErrorOccuredHelpText" />
+          </div>
         </div>
       );
     } else {
@@ -176,12 +186,18 @@ export function OrderModal(props) {
             ✓
           </span>
           <div data-cy="order-status">
-            {orderSuccess > 2 ? 'Alle' : ''} {orderSuccess}{' '}
-            {orderSuccess === 1 ? 'bog' : 'bøger'} er bestilt.
+            <T
+              component="order"
+              name="booksOrdered"
+              vars={[
+                orderSuccess > 1 ? <T component="general" name="all" /> : '',
+                bookOrBooks
+              ]}
+            />
           </div>
           {orderSuccess > 0 && (
             <div>
-              Du får besked fra dit bibliotek, når de er klar til afhentning
+              <T component="order" name="booksOrderedText" />
             </div>
           )}
         </div>
@@ -192,7 +208,7 @@ export function OrderModal(props) {
   return (
     <Modal
       className="add-to-list--modal"
-      header={'BESTIL'}
+      header={<T component="order" name="modalTitle" />}
       onClose={props.onClose}
       onDone={onDone}
       doneText={doneText}
@@ -200,20 +216,20 @@ export function OrderModal(props) {
       <div>
         <div className="form-group">
           <strong>
-            Du er ved at bestille
-            {props.orders.length > 1 && ` ${props.orders.length} bøger`}:
+            <T
+              component="order"
+              name="modalTextCount"
+              vars={[props.orders.length, bookOrBooks]}
+            />
           </strong>
           {props.orders.length >= 10 && (
-            <small>
-              <br />
-              Du kan højest bestille 10 bøger ad gangen. Klik på "Bestil hele
-              listen" igen for at bestille flere bøger.
+            <small className="d-block">
+              <T component="order" name="modalOrderLimit" />
             </small>
           )}
           {unavailableCount > 0 && (
-            <small style={{color: 'red'}}>
-              <br />
-              Bemærk: Der er problemer med bestillingen af mindst en af bøgerne.
+            <small className="d-block" style={{color: 'red'}}>
+              <T component="order" name="modalOrderNotice" />
             </small>
           )}
           <div
@@ -248,7 +264,7 @@ export function OrderModal(props) {
                         marginRight: 10
                       }}
                     >
-                      <small>
+                      <small className="d-block">
                         <OrderState book={book} />
                       </small>
                     </div>
@@ -262,7 +278,9 @@ export function OrderModal(props) {
         </div>
         {reviewingOrder ? (
           <div className="form-group" style={{marginBottom: 0}}>
-            <label htmlFor="pickupBranch">Til afhentning på:</label>
+            <label htmlFor="pickupBranch">
+              <T component="order" name="orderPickup" />
+            </label>
             <select
               className="form-control"
               id="pickupBranch"

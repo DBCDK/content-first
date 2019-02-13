@@ -60,7 +60,7 @@ exports[`renders without crashing 1`] = `
                       onChange={[Function]}
                       onFocus={[Function]}
                       onKeyDown={[Function]}
-                      placeholder="Søg på stemning, sted eller stil..."
+                      placeholder="Søg på titel, forfatter, stemning..."
                       type="search"
                       value=""
                     />
@@ -295,6 +295,7 @@ exports[`renders without crashing 1`] = `
                   <div
                     className="d-none d-sm-inline logo-beta-text Text__small"
                   >
+                    Nu 0 bøger. 
                     <p
                       className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
                       onClick={[Function]}
@@ -720,10 +721,13 @@ exports[`renders without crashing 1`] = `
                 <h1
                   className="inline pr2 pb0 pt0 pb-sm-1 pt-sm-1 ml1 mr1 mb0 Title Title__title4 Title__title4--transform-uppercase"
                 >
-                  <strong>
-                    Nyeste
-                  </strong>
-                   Lister
+                  <span
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "<strong>Nyeste</strong> lister",
+                      }
+                    }
+                  />
                 </h1>
               </div>
               <div

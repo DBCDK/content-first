@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import ArrowBack from '../svg/ArrowBack.svg';
+import T from '../base/T/';
 import {isMobile} from 'react-device-detect';
 
 export function LoginModal({context, closeModal, login}) {
@@ -11,7 +12,9 @@ export function LoginModal({context, closeModal, login}) {
       return (
         <div className="login-modal-small-screen-header" onClick={closeModal}>
           <img src={ArrowBack} alt="luk" onClick={closeModal} />
-          <p>Tilbage</p>
+          <p>
+            <T component="general" name="back" />
+          </p>
         </div>
       );
     }
@@ -24,6 +27,7 @@ export function LoginModal({context, closeModal, login}) {
       </i>
     );
   }
+
   return (
     <div className="modal-container login-modal-container">
       <div className="modal-backdrop" onClick={closeModal} />
@@ -31,17 +35,23 @@ export function LoginModal({context, closeModal, login}) {
         <div className="modal-window--header text-center">{renderHeder()}</div>
         <div className="modal-window--content">
           <h3>{context.title || context}</h3>
-          <p>{context.reason || 'Du skal logge ind.'}</p>
+          <p>
+            {context.reason || (
+              <T component="login" name="modalNoContextReason" />
+            )}
+          </p>
           <div className="modal-window--buttons text-center">
             <span className={`btn  modal-window-login-btn`} onClick={login}>
-              LOG IND
+              <T component="login" name="loginButton" />
             </span>
           </div>
           <div className="loginmodal-create-profile-text">
             <p>
-              Har du ikke en profil? Du kan nemt oprette en profil med det
-              login, du bruger på biblioteket.{' '}
-              <a href={'/v1/auth/login'}>Opret en profil</a>
+              <T component="login" name="modalCreateProfileText" />
+              <a href={'/v1/auth/login'}>
+                {' '}
+                <T component="login" name="modalCreateProfileLink" />
+              </a>
             </p>
           </div>
         </div>

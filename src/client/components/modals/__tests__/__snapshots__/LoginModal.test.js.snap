@@ -37,7 +37,7 @@ exports[`LoginModal renders function 1`] = `
           className="btn  modal-window-login-btn"
           onClick={undefined}
         >
-          LOG IND
+          Log ind
         </span>
       </div>
       <div
@@ -45,10 +45,10 @@ exports[`LoginModal renders function 1`] = `
       >
         <p>
           Har du ikke en profil? Du kan nemt oprette en profil med det login, du bruger på biblioteket.
-           
           <a
             href="/v1/auth/login"
           >
+             
             Opret en profil
           </a>
         </p>
