@@ -7,6 +7,7 @@ import ProfileModal from './ProfileModal.component';
 import ConfirmModal from './ConfirmModal.component';
 import ListSettingsModal from './ListSettingsModal.container';
 import ReorderListModal from './ReorderListModal.container';
+import ShowReviewModal from './ShowReviewModal.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class Modal extends React.Component {
@@ -72,10 +73,14 @@ class Modal extends React.Component {
         />
       );
     }
-
     if (this.props.modalState.reorderList.open) {
       modal = (
         <ReorderListModal context={this.props.modalState.reorderList.context} />
+      );
+    }
+    if (this.props.modalState.showReview.open) {
+      modal = (
+        <ShowReviewModal context={this.props.modalState.showReview.context} />
       );
     }
     return (

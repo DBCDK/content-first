@@ -33,12 +33,23 @@ const defaultState = {
     open: false,
     context: null,
     callback: null
+  },
+  showReview: {
+    open: false,
+    context: null,
+    callback: null
   }
 };
 
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
+/**
+ * modalReducer
+ * @param state
+ * @param action
+ * @returns {*}
+ */
 const modalReducer = (state = defaultState, action) => {
   switch (action.type) {
     case OPEN_MODAL:

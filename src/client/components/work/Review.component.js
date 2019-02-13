@@ -3,11 +3,14 @@ import {timestampToLongDate} from '../../utils/dateTimeFormat';
 import './Review.css';
 import Title from '../base/Title';
 import Text from '../base/Text';
+import {OPEN_MODAL} from '../../redux/modal.reducer';
+import {connect} from 'react-redux';
+import Link from '../general/Link.component';
 
 /**
  * This class displays a single review item
  */
-class Review extends React.Component {
+export class Review extends React.Component {
   /**
    * render
    * @returns {*}
@@ -60,7 +63,7 @@ class Review extends React.Component {
             </div>
             {reviewKeys.map(key => {
               return (
-                <React.Fragment>
+                <React.Fragment key={key}>
                   <Title Tag="h6" type="title6" className="mb0">
                     {key}
                   </Title>
@@ -110,6 +113,21 @@ class Review extends React.Component {
           <Text type="body">
             <em>{reviewParagraph}</em>
           </Text>
+          <Text>
+            <Link
+              className="mb0"
+              type="small"
+              onClick={() => {
+                this.props.showReviewModal(
+                  this.props.reviewType,
+                  this.props.book,
+                  this.props.review
+                );
+              }}
+            >
+              Læs materialevurderingen
+            </Link>
+          </Text>
         </div>
       );
     }
@@ -117,4 +135,44 @@ class Review extends React.Component {
   }
 }
 
-export default Review;
+/**
+ *
+ * @returns {{}}
+ */
+function mapStateToProps() {
+  return {};
+}
+
+/**
+ *
+ * @param dispatch
+ * @returns {{showReviewModal: showReviewModal}}
+ */
+export const mapDispatchToProps = dispatch => ({
+  showReviewModal: (reviewType, book, review) => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'showReview',
+      context: {
+        reviewType: reviewType,
+        view: 'full',
+        book: book,
+        review: review,
+        confirmText: 'Luk',
+        hideCancel: true,
+        hideConfirm: true,
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'showReview'
+          });
+        }
+      }
+    });
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Review);
