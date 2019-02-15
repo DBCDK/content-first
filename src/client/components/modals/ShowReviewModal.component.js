@@ -1,5 +1,5 @@
 import React from 'react';
-import Review from '../work/Review.component';
+import FullTextReview from '../work/FullTextReview.component';
 import Modal from './Modal.component';
 
 /**
@@ -16,12 +16,7 @@ export default class ShowReviewModal extends React.Component {
         doneText={this.props.context.confirmText}
         cancelText="Fortryd"
       >
-        <Review
-          reviewType={this.props.context.reviewType}
-          view={this.props.context.view}
-          review={this.props.context.review}
-          book={this.props.context.book}
-        />
+        {<FullTextReview {...this.props.context} />}
       </Modal>
     );
   }

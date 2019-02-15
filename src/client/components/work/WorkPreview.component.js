@@ -61,10 +61,6 @@ class WorkPreview extends React.Component {
     this.handleChildBelts(parentBelt, childBelt);
   }
 
-  /**
-   * render
-   * @returns {*}
-   */
   render() {
     const {work, dataCy} = this.props;
     const {book} = work;
@@ -78,13 +74,11 @@ class WorkPreview extends React.Component {
     // get reviews from litteratursiden
     const reviews = filterReviews(work);
     const lectorReviews =
-      typeof this.props.work.reviewsHasLoaded === 'undefined' ||
-      !this.props.work.reviewsHasLoaded
-        ? false
-        : typeof this.props.work.book.reviews.data === 'undefined' ||
-          this.props.work.book.reviews.data.length === 0
-          ? false
-          : this.props.work.book.reviews.data;
+      work.reviewsHasLoaded &&
+      work.book.reviews.data &&
+      work.book.reviews.data.length > 0
+        ? work.book.reviews.data
+        : false;
     return (
       <React.Fragment>
         <div

@@ -28,33 +28,19 @@ import ReviewList from './ReviewList.component';
  * WorkPage
  */
 class WorkPage extends React.Component {
-  /**
-   * constructor
-   * @param props
-   */
   constructor(props) {
     super(props);
     this.state = {tagsCollapsed: true, transition: true, addToList: null};
   }
 
-  /**
-   * init
-   */
   init() {
     this.setState({tagsCollapsed: true, transition: false});
   }
 
-  /**
-   * componentDidMount
-   */
   componentDidMount() {
     this.init();
   }
 
-  /**
-   * componentDidUpdate
-   * @param prevProps
-   */
   componentDidUpdate(prevProps) {
     if (this.props.pid !== prevProps.pid) {
       this.init();
@@ -69,10 +55,6 @@ class WorkPage extends React.Component {
     this.props.addBelt(belt);
   }
 
-  /**
-   * render
-   * @returns {*}
-   */
   render() {
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
@@ -111,13 +93,11 @@ class WorkPage extends React.Component {
 
     const tax_description = book.taxonomy_description || book.description;
     const lectorReviews =
-      typeof this.props.work.reviewsHasLoaded === 'undefined' ||
-      !this.props.work.reviewsHasLoaded
-        ? false
-        : typeof this.props.work.book.reviews.data === 'undefined' ||
-          this.props.work.book.reviews.data.length === 0
-          ? false
-          : this.props.work.book.reviews.data;
+      work.reviewsHasLoaded &&
+      work.book.reviews.data &&
+      work.book.reviews.data.length > 0
+        ? work.book.reviews.data
+        : false;
     return (
       <div className="container">
         <div className="row WorkPage__container">
