@@ -29,7 +29,7 @@ router
       try {
         const userData = await getUserData(req.user.openplatformId, req.user);
         res.status(200).json({
-          data: {...userData, openplatformToken: req.user.openplatformToken},
+          data: {...userData, openplatformToken: req.user.openplatformToken, over13:req.user.special.over13},
           links: {self: location}
         });
       } catch (e) {

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="23" cy="23" r="23"></circle>
+        <circle id="path-3" cx="23" cy="23" r="23"></circle>
+    </defs>
+    <g id="Profil-og-opret-profil" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Forstegangslogin-desktop-v-hover" transform="translate(-247.000000, -340.000000)">
+            <g id="Group" transform="translate(247.000000, 340.000000)">
+                <g id="Group-Copy-4">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#1D7B8A" xlink:href="#path-1"></use>
+                    <g id="baseline-person-24px-2" mask="url(#mask-2)" fill="#EDB347" fill-rule="nonzero">
+                        <g transform="translate(7.666667, 15.333333)" id="Shape">
+                            <path d="M15.3333333,15.3333333 C19.5691667,15.3333333 23,11.9025 23,7.66666667 C23,3.43083333 19.5691667,0 15.3333333,0 C11.0975,0 7.66666667,3.43083333 7.66666667,7.66666667 C7.66666667,11.9025 11.0975,15.3333333 15.3333333,15.3333333 Z M15.3333333,19.1666667 C10.2158333,19.1666667 0,21.735 0,26.8333333 L0,30.6666667 L30.6666667,30.6666667 L30.6666667,26.8333333 C30.6666667,21.735 20.4508333,19.1666667 15.3333333,19.1666667 Z"></path>
+                        </g>
+                    </g>
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <use id="Mask" fill-opacity="0.75" fill="#333333" xlink:href="#path-3"></use>
+                </g>
+                <g id="baseline-photo_camera-24px" transform="translate(11.000000, 11.000000)">
+                    <circle id="Oval" fill="#FFFFFF" cx="12" cy="12" r="3.2"></circle>
+                    <path d="M9,2 L7.17,4 L4,4 C2.9,4 2,4.9 2,6 L2,18 C2,19.1 2.9,20 4,20 L20,20 C21.1,20 22,19.1 22,18 L22,6 C22,4.9 21.1,4 20,4 L16.83,4 L15,2 L9,2 Z M12,17 C9.24,17 7,14.76 7,12 C7,9.24 9.24,7 12,7 C14.76,7 17,9.24 17,12 C17,14.76 14.76,17 12,17 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+                    <polygon id="Path" points="0 0 24 0 24 24 0 24"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

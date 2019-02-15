@@ -36,15 +36,17 @@ async function userExists(id) {
   );
 }
 
-async function createCookie(legacyId, uniqueId, openplatformToken) {
+async function createCookie(legacyId, uniqueId, openplatformToken, user) {
   const cookie = uuidv4();
   logger.log.debug(`Creating login token ${cookie}`);
+
   await knex(cookieTable).insert({
     cookie,
     community_profile_id: -1, // TODO remove this when users migrated
     openplatform_id: uniqueId,
     openplatform_token: openplatformToken,
-    expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
+    expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000),
+    user: user
   });
 
   if (await userExists(legacyId)) {
@@ -78,7 +80,7 @@ async function createCookie(legacyId, uniqueId, openplatformToken) {
 }
 async function fetchCookie(cookie) {
   const res = (await knex(cookieTable)
-    .select(['openplatform_id', 'openplatform_token', 'expires_epoch_s'])
+    .select(['openplatform_id', 'openplatform_token', 'expires_epoch_s', 'user'])
     .where('cookie', cookie))[0];
 
   if (!res || res.expires_epoch_s < Date.now() / 1000) {
@@ -92,7 +94,8 @@ async function fetchCookie(cookie) {
   return {
     openplatformId: res.openplatform_id,
     openplatformToken: res.openplatform_token,
-    expires: res.expires_epoch_s
+    expires: res.expires_epoch_s,
+    special:res.user
   };
 }
 
@@ -119,6 +122,7 @@ function throwUnlessOpenplatformId({openplatformId}) {
 }
 
 async function getUserData(openplatformId, loggedInuser) {
+
   try {
     throwUnlessOpenplatformId({openplatformId});
 

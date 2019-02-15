@@ -4,6 +4,12 @@
   background-color:white;
 }
 
+.profile-rules-modal{
+  width:1000px;
+  height:416px;
+  background-color:white;
+}
+
 .profile-form {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
