@@ -6,7 +6,7 @@ export class ProfileInput extends React.Component {
   }
 
   render() {
-    const handleChange = (e) => {
+    const handleChange = e => {
       this.props.onInputChange(e.target.value);
     };
 

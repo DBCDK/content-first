@@ -18,33 +18,29 @@ const profileStrategy = new Strategy(
     callbackURL: config.server.dmzHost + '/v1/auth/callback'
   },
 
-
-  async function (token, tokenSecret, profile, done) {
-
-
+  async function(token, tokenSecret, profile, done) {
     let uniqueId;
     let legacyId;
-    let special = {over13: false}
+    let special = {over13: false};
 
-    const over13 = (cpr) => {
-
+    const over13 = cpr => {
       let bd = cpr.substr(0, 6);
 
       let now = moment();
-      let n = now.format('DDMMYYYY')
+      let n = now.format('DDMMYYYY');
       let yearNow = n.substr(6, 2);
 
       let dayMonth = bd.substr(0, 4);
       let yearCheck = bd.substr(4, 2);
 
-      let fullBirthYear=(yearCheck > yearNow)?'19' + yearCheck:'20' + yearCheck;
+      let fullBirthYear =
+        yearCheck > yearNow ? '19' + yearCheck : '20' + yearCheck;
 
       let fullDate = dayMonth + fullBirthYear;
       let bdMoment = moment(fullDate, 'DDMMYYYY');
 
       let age = now.diff(bdMoment, 'years');
-      return (age > 13) ? true : false;
-
+      return age > 13 ? true : false;
     };
 
     try {
@@ -95,8 +91,8 @@ const profileStrategy = new Strategy(
 
 passport.use('profile', profileStrategy);
 
-passport.serializeUser(async function (user, done) {
-  console.log("passport user: ", user)
+passport.serializeUser(async function(user, done) {
+  console.log('passport user: ', user);
   try {
     const cookie = await createCookie(
       user.legacyId,
@@ -114,7 +110,7 @@ passport.serializeUser(async function (user, done) {
   }
 });
 
-passport.deserializeUser(async function (cookie, done) {
+passport.deserializeUser(async function(cookie, done) {
   try {
     const user = await fetchCookie(cookie);
     done(null, user);

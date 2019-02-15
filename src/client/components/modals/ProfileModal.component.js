@@ -1,17 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import {ProfileInput} from "../profile/ProfileInput.component";
-import ProfileUploadImage from "../general/ProfileUploadImage.component";
+import {ProfileInput} from '../profile/ProfileInput.component';
+import ProfileUploadImage from '../general/ProfileUploadImage.component';
 
-import {
-  ADD_PROFILE_IMAGE,
-  SAVE_USER_PROFILE
-} from '../../redux/user.reducer';
+import {ADD_PROFILE_IMAGE, SAVE_USER_PROFILE} from '../../redux/user.reducer';
 
-import Spinner from "../general/Spinner.component";
-import ProfileUpdateUser from "../profile/ProfileUpdateUser.component";
-
+import Spinner from '../general/Spinner.component';
+import ProfileUpdateUser from '../profile/ProfileUpdateUser.component';
 
 export class ProfileModal extends React.Component {
   constructor(props) {
@@ -24,45 +20,48 @@ export class ProfileModal extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({username: !this.props.username ? "" : this.props.username})
+    this.setState({username: !this.props.username ? '' : this.props.username});
   }
 
   render() {
-
-    const onHandleChange = (val) => {
-
-      this.setState({username: val, showNameInfo: (val.length < 4)});
+    const onHandleChange = val => {
+      this.setState({username: val, showNameInfo: val.length < 4});
     };
 
     const updateProfile = (e, obj) => {
       //submit
-      console.log("accepted rules and submitting name:" + this.state.username + "..... when callback is received, close modal"),
+      console.log(
+        'accepted rules and submitting name:' +
+          this.state.username +
+          '..... when callback is received, close modal'
+      ),
         e.preventDefault();
       this.props.saveUser(obj);
       this.props.onClose();
     };
 
     const onBackButton = () => {
-      this.setState({page: 'accept'})
+      this.setState({page: 'accept'});
     };
 
     const onShowRules = () => {
-      this.setState({page: 'rules'})
+      this.setState({page: 'rules'});
     };
 
     const showAgeLimitWindow = () => {
       return (
-        <div className={'profile-rules-modal  modal-window'}
-             style={{
-               font: 'var(--primary-font)',
-               borderRadius: '4px',
-               color: 'var(--petroleum)',
-               width: '692px',
-               height: '416px',
-               paddingTop: '40px',
-               paddingBottom: '5px',
-               display: 'flex'
-             }}
+        <div
+          className={'profile-rules-modal  modal-window'}
+          style={{
+            font: 'var(--primary-font)',
+            borderRadius: '4px',
+            color: 'var(--petroleum)',
+            width: '692px',
+            height: '416px',
+            paddingTop: '40px',
+            paddingBottom: '5px',
+            display: 'flex'
+          }}
         >
           <div
             style={{
@@ -82,7 +81,6 @@ export class ProfileModal extends React.Component {
                   width: '530px',
                   fontSize: '21px',
                   fontWeight: '700'
-
                 }}
               >
                 DU HAR IKKE TILLADELSE TIL AT OPRETTE EN PROFIL PÅ MIN NÆSTE BOG
@@ -95,18 +93,39 @@ export class ProfileModal extends React.Component {
                   width: '507px',
                   fontWeight: '400',
                   paddingTop: '28px'
-
-
                 }}
               >
-                Vi har fået information om, at du er under 13 år, og derfor ikke har tilladelse til at oprette en
-                profil. Du kan stadig bruge Min næste bog, til at finde skønlitteratur, men det er desværre ikke muligt
-                at låne en bog og laver lister. Hvis du gerne vil låne bøger kan du stadig gøre det gennem
-                <a href="https://www.bibliotek.dk" target='_blank' style={{color: 'var(--petroleum)', textDecoration:'underline'}}> bibliotek.dk.</a>
+                Vi har fået information om, at du er under 13 år, og derfor ikke
+                har tilladelse til at oprette en profil. Du kan stadig bruge Min
+                næste bog, til at finde skønlitteratur, men det er desværre ikke
+                muligt at låne en bog og laver lister. Hvis du gerne vil låne
+                bøger kan du stadig gøre det gennem
+                <a
+                  href="https://www.bibliotek.dk"
+                  target="_blank"
+                  style={{
+                    color: 'var(--petroleum)',
+                    textDecoration: 'underline'
+                  }}
+                >
+                  {' '}
+                  bibliotek.dk.
+                </a>
                 <br />
                 <br />
-                Har vi fået forkerte informationer, og er du over 13 år, så henvend dig til
-                <a href='https://kundeservice.dbc.dk/' target='_blank' style={{color: 'var(--petroleum)', textDecoration:'underline'}}> DBCs kundeservice.  </a>
+                Har vi fået forkerte informationer, og er du over 13 år, så
+                henvend dig til
+                <a
+                  href="https://kundeservice.dbc.dk/"
+                  target="_blank"
+                  style={{
+                    color: 'var(--petroleum)',
+                    textDecoration: 'underline'
+                  }}
+                >
+                  {' '}
+                  DBCs kundeservice.{' '}
+                </a>
               </div>
               <div
                 style={{
@@ -115,8 +134,8 @@ export class ProfileModal extends React.Component {
                   borderWidth: 'thin',
                   marginTop: '24px',
                   marginBottom: '12px'
-
-                }} />
+                }}
+              />
               <div style={{textAlign: 'right'}}>
                 <button
                   className="mr1 mt1 btn Button Button__medium"
@@ -128,7 +147,6 @@ export class ProfileModal extends React.Component {
                     backgroundColor: 'var(--korn)',
                     textTransform: 'Uppercase'
                   }}
-
                   data-cy="user-form-submit"
                 >
                   Tilbage til læsekompasset
@@ -137,11 +155,11 @@ export class ProfileModal extends React.Component {
             </div>
           </div>
         </div>
-      )
+      );
     };
     const showAcceptWindow = () => {
       /**/
-      let infoStyle = {display: 'none'}
+      let infoStyle = {display: 'none'};
       if (this.state.showNameInfo) {
         infoStyle = {
           width: '200px',
@@ -151,11 +169,10 @@ export class ProfileModal extends React.Component {
           fontSize: '10px',
           fontWeight: '400',
           color: '#495057'
-        }
+        };
       }
       return (
         <div className={'profile-modal modal-window'}>
-
           <div
             style={{
               font: 'var(--primary-font)',
@@ -195,8 +212,14 @@ export class ProfileModal extends React.Component {
                   }}
                 >
                   … skal du acceptere
-                  <a style={{cursor: 'pointer', color: 'var(--malibu)'}} onClick={onShowRules}> regler og vilkår for
-                    anvendelse af Læsekompasset </a>, der kort fortalt anvendes til at gøre dit indhold mere
+                  <a
+                    style={{cursor: 'pointer', color: 'var(--malibu)'}}
+                    onClick={onShowRules}
+                  >
+                    {' '}
+                    regler og vilkår for anvendelse af Læsekompasset{' '}
+                  </a>
+                  , der kort fortalt anvendes til at gøre dit indhold mere
                   personaliseret.
                 </div>
 
@@ -221,7 +244,6 @@ export class ProfileModal extends React.Component {
                     Hvad skal vi kalde dig?
                     <p />
                     <div style={{display: 'inline-flex'}}>
-
                       <ProfileUploadImage
                         error={this.props.imageError}
                         style={{borderRadius: '50%'}}
@@ -236,18 +258,19 @@ export class ProfileModal extends React.Component {
                             ? `/v1/image/${this.props.tempImageId}/150/150`
                             : null
                         }
-
                         buttonText={
                           this.props.profileImageId
                             ? 'Skift profilbillede'
                             : 'Upload profilbillede'
                         }
                         onFile={this.props.addImage}
-                        thumbnailImage={"/img/general/user-placeholder-thumbnail.png"}
-                        thumbnailImageHover={"/img/general/user-placeholder-thumbnail-hover.png"}
-
+                        thumbnailImage={
+                          '/img/general/user-placeholder-thumbnail.png'
+                        }
+                        thumbnailImageHover={
+                          '/img/general/user-placeholder-thumbnail-hover.png'
+                        }
                       />
-
 
                       <div className="profile-input">
                         <div
@@ -262,7 +285,10 @@ export class ProfileModal extends React.Component {
                           className="input-group mb2 has-feedback"
                           style={{width: '205px'}}
                         >
-                          <ProfileInput username={this.state.username} onInputChange={onHandleChange} />
+                          <ProfileInput
+                            username={this.state.username}
+                            onInputChange={onHandleChange}
+                          />
                           <div className="profile-name-info" style={infoStyle}>
                             Min. 4 tegn
                           </div>
@@ -278,8 +304,7 @@ export class ProfileModal extends React.Component {
                       height: '0',
                       borderTop: '20px solid transparent',
                       borderRight: '16px solid var(--concrete)',
-                      borderBottom: '20px solid transparent',
-
+                      borderBottom: '20px solid transparent'
                     }}
                   />
 
@@ -352,22 +377,22 @@ export class ProfileModal extends React.Component {
             </div>
           </div>
         </div>
-
-      )
+      );
     };
     const showRulesWindow = () => {
       return (
-        <div className={'profile-rules-modal  modal-window'}
-             style={{
-               font: 'var(--primary-font)',
-               borderRadius: '4px',
-               color: 'var(--petroleum)',
-               width: '680px',
-               height: '85%',
-               paddingTop: '10px',
-               paddingBottom: '5px',
-               display: 'flex'
-             }}
+        <div
+          className={'profile-rules-modal  modal-window'}
+          style={{
+            font: 'var(--primary-font)',
+            borderRadius: '4px',
+            color: 'var(--petroleum)',
+            width: '680px',
+            height: '85%',
+            paddingTop: '10px',
+            paddingBottom: '5px',
+            display: 'flex'
+          }}
         >
           <div
             style={{
@@ -384,11 +409,7 @@ export class ProfileModal extends React.Component {
                 cursor: 'pointer'
               }}
             >
-              <a
-                onClick={onBackButton}
-              >
-                {'<  Tilbage'}
-              </a>
+              <a onClick={onBackButton}>{'<  Tilbage'}</a>
             </div>
 
             <div
@@ -396,8 +417,8 @@ export class ProfileModal extends React.Component {
                 width: '680px',
                 marginLeft: '-40px',
                 border: 'solid 1px var(--silver-chalice)'
-
-              }} />
+              }}
+            />
             <div
               style={{
                 height: '92%',
@@ -434,21 +455,21 @@ export class ProfileModal extends React.Component {
                   fontWeight: '400',
                   paddingTop: '6px',
                   paddingBottom: '16px'
-
                 }}
               >
-                Læsekompas.dk er bibliotekernes inspirationsværktøj til voksne læsere af skønlitteratur. Alle kan
-                anvende
-                Læsekompasset, men det kræver biblioteks-login, hvis du vil bestille bøger direkte i løsningen.
-                Læsekompas.dk indeholder et udvalg af skønlitteratur for voksne, der er tilgængeligt til hjemlån eller
-                som
-                e-lån fra folkebiblioteker. Mængden af værker øges over tid og Læsekompasset sigter mod at tilbyde en
-                bred
-                vifte af litteratur. Alle værker indekseres med oplevelsesord for at gøre det muligt for brugere at
-                navigere i litteratur på en ny måde. Der er mulighed for at fremfinde værker og bestille dem direkte i
-                læsekompas.dk. Læsekompas.dk giver også brugere mulighed for at oprette og dele lister med bøger. Man
-                skal
-                være over 13 år for at oprette sig som bruger.
+                Læsekompas.dk er bibliotekernes inspirationsværktøj til voksne
+                læsere af skønlitteratur. Alle kan anvende Læsekompasset, men
+                det kræver biblioteks-login, hvis du vil bestille bøger direkte
+                i løsningen. Læsekompas.dk indeholder et udvalg af
+                skønlitteratur for voksne, der er tilgængeligt til hjemlån eller
+                som e-lån fra folkebiblioteker. Mængden af værker øges over tid
+                og Læsekompasset sigter mod at tilbyde en bred vifte af
+                litteratur. Alle værker indekseres med oplevelsesord for at gøre
+                det muligt for brugere at navigere i litteratur på en ny måde.
+                Der er mulighed for at fremfinde værker og bestille dem direkte
+                i læsekompas.dk. Læsekompas.dk giver også brugere mulighed for
+                at oprette og dele lister med bøger. Man skal være over 13 år
+                for at oprette sig som bruger.
               </div>
 
               <div
@@ -472,11 +493,11 @@ export class ProfileModal extends React.Component {
                   paddingBottom: '16px'
                 }}
               >
-                Læsekompas.dk er lanceret som en beta-version. Dette betyder, at vi fortsat tester og justerer. Den
-                version af læsekompas.dk, du oplever er ikke helt færdigudviklet og du vil derfor opleve at løsningen
-                udvikler sig over tid.
+                Læsekompas.dk er lanceret som en beta-version. Dette betyder, at
+                vi fortsat tester og justerer. Den version af læsekompas.dk, du
+                oplever er ikke helt færdigudviklet og du vil derfor opleve at
+                løsningen udvikler sig over tid.
               </div>
-
 
               <div
                 className="profile__rules-title2"
@@ -499,17 +520,13 @@ export class ProfileModal extends React.Component {
                   paddingBottom: '16px'
                 }}
               >
-                Læsekompas.dk er skabt og drives af de danske folkebiblioteker i samarbejde med DBC.
-
-                <div
-                  style={{display: 'block', marginTop: '12px'}}>
-
+                Læsekompas.dk er skabt og drives af de danske folkebiblioteker i
+                samarbejde med DBC.
+                <div style={{display: 'block', marginTop: '12px'}}>
                   <div>DBC as</div>
                   <div>Tempovej 7-11</div>
                   <div>2750 Ballerup</div>
                   <div>dbc@dbc.dk</div>
-
-
                 </div>
               </div>
 
@@ -534,31 +551,38 @@ export class ProfileModal extends React.Component {
                   paddingBottom: '16px'
                 }}
               >
-                Følgende regler gælder for indlæg og indhold, som du og andre brugere selv lægger på læsekompas.dk. Du
-                er
-                ansvarlig for, at dine indlæg er i overensstemmelse med den til enhver tid gældende lovgivning, herunder
-                at dine indlæg ikke krænker tredjemands rettigheder, eksempelvis ophavsret til tekst og billeder. Egne
-                fotos du uploader til Læsekompasset gøres tilgængelige under en creative commons licens, og du giver
-                læsekompas.dk lov til at mangfoldiggøre, gøre tilgængelig for tredjemand og lave afledte værker. For
-                alle
-                informationer og alt materiale, du leverer til læsekompas.dk gælder, at du leverer det vederlagsfrit og
-                til fri brug for læsekompas.dk. Læsekompas.dk kan ikke kontrollere og er ikke ansvarlig for indhold, som
-                brugerne leverer, og for at du som bruger kan risikere at blive udsat for indhold, som du finder
-                anstødeligt, fejlagtigt eller på anden måde kritisabelt. Du anerkender, at vi som udbyder ikke
-                forhåndsgodkender brugernes indhold, men at vi har retten til uden nærmere begrundelse at fjerne enhver
-                form for indhold, som offentliggøres via læsekompas.dk, hvis det er i modstrid med gældende lovgivning
-                eller ordlyden af de her nævnte betingelser.
+                Følgende regler gælder for indlæg og indhold, som du og andre
+                brugere selv lægger på læsekompas.dk. Du er ansvarlig for, at
+                dine indlæg er i overensstemmelse med den til enhver tid
+                gældende lovgivning, herunder at dine indlæg ikke krænker
+                tredjemands rettigheder, eksempelvis ophavsret til tekst og
+                billeder. Egne fotos du uploader til Læsekompasset gøres
+                tilgængelige under en creative commons licens, og du giver
+                læsekompas.dk lov til at mangfoldiggøre, gøre tilgængelig for
+                tredjemand og lave afledte værker. For alle informationer og alt
+                materiale, du leverer til læsekompas.dk gælder, at du leverer
+                det vederlagsfrit og til fri brug for læsekompas.dk.
+                Læsekompas.dk kan ikke kontrollere og er ikke ansvarlig for
+                indhold, som brugerne leverer, og for at du som bruger kan
+                risikere at blive udsat for indhold, som du finder anstødeligt,
+                fejlagtigt eller på anden måde kritisabelt. Du anerkender, at vi
+                som udbyder ikke forhåndsgodkender brugernes indhold, men at vi
+                har retten til uden nærmere begrundelse at fjerne enhver form
+                for indhold, som offentliggøres via læsekompas.dk, hvis det er i
+                modstrid med gældende lovgivning eller ordlyden af de her nævnte
+                betingelser.
               </div>
             </div>
           </div>
         </div>
-      )
-    }
+      );
+    };
 
     return (
-
       <div className="modal-container">
-        {this.state.page === 'accept' && this.props.over13 && showAcceptWindow(this.state.username)}
+        {this.state.page === 'accept' &&
+          this.props.over13 &&
+          showAcceptWindow(this.state.username)}
         {this.state.page === 'rules' && this.props.over13 && showRulesWindow()}
         {!this.props.over13 && showAgeLimitWindow()}
       </div>
@@ -567,7 +591,6 @@ export class ProfileModal extends React.Component {
 }
 
 export const mapStateToProps = state => ({
-
   acceptedAge: state.userReducer.acceptedAge,
   token: state.userReducer.openplatformToken,
   id: state.userReducer.openplatformId,
@@ -578,8 +601,6 @@ export const mapStateToProps = state => ({
   tempImageId: state.userReducer.tempImageId,
   over13: state.userReducer.over13,
   agencyName: state.userReducer.agencyName
-
-
 });
 
 export const mapDispatchToProps = dispatch => {

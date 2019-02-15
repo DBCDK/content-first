@@ -80,7 +80,12 @@ async function createCookie(legacyId, uniqueId, openplatformToken, user) {
 }
 async function fetchCookie(cookie) {
   const res = (await knex(cookieTable)
-    .select(['openplatform_id', 'openplatform_token', 'expires_epoch_s', 'user'])
+    .select([
+      'openplatform_id',
+      'openplatform_token',
+      'expires_epoch_s',
+      'user'
+    ])
     .where('cookie', cookie))[0];
 
   if (!res || res.expires_epoch_s < Date.now() / 1000) {
@@ -95,7 +100,7 @@ async function fetchCookie(cookie) {
     openplatformId: res.openplatform_id,
     openplatformToken: res.openplatform_token,
     expires: res.expires_epoch_s,
-    special:res.user
+    special: res.user
   };
 }
 
@@ -122,7 +127,6 @@ function throwUnlessOpenplatformId({openplatformId}) {
 }
 
 async function getUserData(openplatformId, loggedInuser) {
-
   try {
     throwUnlessOpenplatformId({openplatformId});
 

@@ -1,14 +1,25 @@
 import React from 'react';
 import Spinner from './Spinner.component';
-import HoverButton from "./HoverButton.component";
+import HoverButton from './HoverButton.component';
 
-
-const UploadButton = ({buttonText, fieldName, readFiles, style, className, baseImage, thumbnailImageHover}) => {
-
+const UploadButton = ({
+  buttonText,
+  fieldName,
+  readFiles,
+  style,
+  className,
+  baseImage,
+  thumbnailImageHover
+}) => {
   return (
     <label style={style} className={className}>
-
-      {baseImage && <HoverButton src={baseImage} mouseOver={thumbnailImageHover} mouseOut={baseImage} />}
+      {baseImage && (
+        <HoverButton
+          src={baseImage}
+          mouseOver={thumbnailImageHover}
+          mouseOut={baseImage}
+        />
+      )}
       <input
         accept="image/png, image/jpeg"
         type="file"
@@ -17,32 +28,31 @@ const UploadButton = ({buttonText, fieldName, readFiles, style, className, baseI
         onChange={readFiles}
       />
     </label>
-  )
+  );
 };
 
-
 const Error = ({error, name}) => {
-  let retText='';
+  let retText = '';
   if (!error) {
     return null;
   }
   if (error.status === 413) {
-    retText = name.toUpperCase() + ' er for stor. Billedet må maks fylde 10mb'
+    retText = name.toUpperCase() + ' er for stor. Billedet må maks fylde 10mb';
   }
   if (error.status === 400) {
-    retText = name.toUpperCase() + ' er ikke et gyldigt billede. Upload en gyldig png eller jpg.'
+    retText =
+      name.toUpperCase() +
+      ' er ikke et gyldigt billede. Upload en gyldig png eller jpg.';
   }
   if (!error.status || error.status === 500) {
-    retText = 'Der er sket en fejl. ' + name.toUpperCase() +' kan ikke uploades.'
+    retText =
+      'Der er sket en fejl. ' + name.toUpperCase() + ' kan ikke uploades.';
   }
-  return retText
-
+  return retText;
 };
 
-
 export default class ProfileUploadImage extends React.Component {
-
-  readFiles = (e) => {
+  readFiles = e => {
     const {files} = e.target;
     if (files && files[0]) {
       this.setState({imageName: files[0].name});
@@ -57,22 +67,23 @@ export default class ProfileUploadImage extends React.Component {
       basePictureDefault: false,
       tempPictureLoaded: false,
       savedPictureLoaded: true
-    }
-  };
+    };
+  }
 
   componentDidMount() {
-
     this.setState({
-      basePictureDefault: (!this.props.tempPersonalImage && !this.props.personalImage) ? true : false,
-      tempPictureLoaded: (this.props.tempPersonalImage && this.props.personalImage) ? true : false,
-      savedPictureLoaded: (!this.props.tempPersonalImage && this.props.personalImage) ? true : false
+      basePictureDefault:
+        !this.props.tempPersonalImage && !this.props.personalImage
+          ? true
+          : false,
+      tempPictureLoaded:
+        this.props.tempPersonalImage && this.props.personalImage ? true : false,
+      savedPictureLoaded:
+        !this.props.tempPersonalImage && this.props.personalImage ? true : false
     });
-
-  };
+  }
 
   render() {
-
-
     let baseImage;
 
     if (this.state.savedPictureLoaded) {
@@ -85,7 +96,6 @@ export default class ProfileUploadImage extends React.Component {
       baseImage = this.props.thumbnailImage;
     }
 
-
     return (
       <div>
         <div
@@ -93,7 +103,6 @@ export default class ProfileUploadImage extends React.Component {
           style={{
             width: '57px',
             paddingTop: '12px'
-
           }}
         >
           <div className={'image-upload ' + this.props.className}>
@@ -105,16 +114,14 @@ export default class ProfileUploadImage extends React.Component {
                 ...this.props.style
               }}
             >
-              {this.props.loading && (
+              {(this.props.loading && (
                 <Spinner
                   style={{
                     backgroundColor: 'var(--petroleum)',
                     size: '46px'
                   }}
-
                 />
-              )
-              || (
+              )) || (
                 <div>
                   <UploadButton
                     fieldName={this.props.fieldName}
@@ -124,13 +131,21 @@ export default class ProfileUploadImage extends React.Component {
                   />
                 </div>
               )}
-
             </div>
             <div style={{clear: 'both'}} />
-            <div style={{width: '200px', color: 'red', fontSize: '10px', fontWeight:'400', marginLeft:'60px', marginTop:'20px', height:'40px'}}>
+            <div
+              style={{
+                width: '200px',
+                color: 'red',
+                fontSize: '10px',
+                fontWeight: '400',
+                marginLeft: '60px',
+                marginTop: '20px',
+                height: '40px'
+              }}
+            >
               <Error error={this.props.error} name={this.state.imageName} />
             </div>
-
           </div>
         </div>
       </div>

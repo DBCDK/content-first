@@ -3,7 +3,6 @@ import Spinner from '../general/Spinner.component';
 
 export default class ProfileUpdateUser extends React.Component {
   onSubmit = e => {
-
     // Check if usernameis more than 4 characters
     if (this.state.name.length < 4) {
       return this.setState({
@@ -24,7 +23,7 @@ export default class ProfileUpdateUser extends React.Component {
       image: this.props.imageId
     };
 
-    e.preventDefault()
+    e.preventDefault();
     this.props.updateProfile(e, obj);
   };
 
@@ -38,8 +37,7 @@ export default class ProfileUpdateUser extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState({name: props.name})
-
+    this.setState({name: props.name});
   }
 
   renderErrors() {
@@ -52,7 +50,7 @@ export default class ProfileUpdateUser extends React.Component {
   }
 
   render() {
-    let btnStyle={};
+    let btnStyle = {};
     if (this.props.deactivate) {
       btnStyle = {
         paddingTop: '7px',
@@ -60,26 +58,30 @@ export default class ProfileUpdateUser extends React.Component {
         color: 'var(--silver-chalice)',
         backgroundColor: 'var(--alto)',
         textTransform: 'Uppercase'
-      }
+      };
     } else {
-
       btnStyle = {
         paddingTop: '7px',
         height: '34px',
         color: 'var(--petroleum)',
         backgroundColor: 'var(--korn)',
         textTransform: 'Uppercase'
-      }
+      };
     }
 
     return (
-      <div
-        style={{display: 'flex'}}
-      >
-
+      <div style={{display: 'flex'}}>
         {/*<p className="mb6">Du er logget på via {this.props.library}</p>*/}
 
-        <div style={{textAlign: 'left', width: '282px', marginRight: '10px', marginTop: '15px', fontSize: '12px'}}>
+        <div
+          style={{
+            textAlign: 'left',
+            width: '282px',
+            marginRight: '10px',
+            marginTop: '15px',
+            fontSize: '12px'
+          }}
+        >
           {this.renderErrors()}
         </div>
         <button
@@ -93,9 +95,8 @@ export default class ProfileUpdateUser extends React.Component {
           {(this.props.isSaving && (
             <Spinner size={12} color="white" style={{marginLeft: '10px'}} />
           )) ||
-          ''}
+            ''}
         </button>
-
       </div>
     );
   }
