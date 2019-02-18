@@ -3,6 +3,7 @@
 def app
 def imageName="content-first"
 def imageLabel=BUILD_NUMBER
+def taxonomyUrl="https://ux-is.dbc.dk/job/kompasset/job/make-reports/lastSuccessfulBuild/artifact/json-files.tar.gz"
 
 pipeline {
     agent {
@@ -17,6 +18,7 @@ pipeline {
         stage('Build image') {
             steps { script {
                 // Work around bug https://issues.jenkins-ci.org/browse/JENKINS-44609 , https://issues.jenkins-ci.org/browse/JENKINS-44789
+                sh "cd src/data; curl -O $taxonomyUrl; tar -xf json-files.tar.gz"
                 sh "docker build -t $imageName:${imageLabel} --pull --no-cache ."
                 app = docker.image("$imageName:${imageLabel}")
             } }
