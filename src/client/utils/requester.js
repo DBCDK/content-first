@@ -15,7 +15,6 @@ import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
 import {OPEN_MODAL} from '../redux/modal.reducer';
 
-
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
 const SHORT_LIST_VERSION = 1;

@@ -16,14 +16,13 @@ export default class HoverButton extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({src: this.props.src})
+    this.setState({src: this.props.src});
   }
 
   componentDidUpdate(prevProps) {
-
     if (prevProps.src !== this.props.src) {
-      this.mouseEnter()
-      this.mouseLeave()
+      this.mouseEnter();
+      this.mouseLeave();
     }
   }
 
@@ -31,7 +30,7 @@ export default class HoverButton extends React.Component {
     return (
       <div>
         <img
-          className='profile-hoverButtonImg'
+          className="profile-hoverButtonImg"
           style={{cursor: 'pointer', width: '46px', height: '46px'}}
           src={this.state.src}
           onMouseOver={this.mouseEnter}

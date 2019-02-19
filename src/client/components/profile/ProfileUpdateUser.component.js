@@ -21,7 +21,7 @@ export default class ProfileUpdateUser extends React.Component {
     const obj = {
       name: this.state.name,
       image: this.props.imageId,
-      acceptedTerms:true
+      acceptedTerms: true
     };
 
     e.preventDefault();
