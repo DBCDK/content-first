@@ -72,6 +72,10 @@ exports.matomo = {
   aid: process.env.REACT_APP_MATOMO_AID
 };
 
+exports.suggester = {
+  url: process.env.SUGGESTER_URL
+};
+
 exports.server = {
   environment: common.environment,
   logServiceErrors: parseInt(process.env.LOG_SERVICE_ERRORS || 1, 10),

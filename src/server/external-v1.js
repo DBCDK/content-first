@@ -26,5 +26,6 @@ router.use('/user', require('server/external-v1-user'));
 router.use('/recompass', require('server/external-v1-recompass'));
 router.use('/stats', require('server/external-v1-stats'));
 router.use('/auth', require('server/external-v1-auth').router);
+router.use('/suggester', require('server/external-v1-suggester'));
 
 module.exports = router;

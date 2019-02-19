@@ -13,6 +13,7 @@ const database = require('server/database');
 const authenticator = require('server/authenticator');
 const login = require('server/login');
 const {recompasTags, recompasWork} = require('server/recompas');
+const suggester = require('server/suggester');
 const matomo = require('server/matomo');
 const generatingServiceStatus = require('__/services/service-status');
 
@@ -84,7 +85,14 @@ external.get('/howru', async (req, res) => {
     'auth.secret',
     'login.salt'
   ]);
-  const services = [authenticator, database, login, recompasTags, recompasWork];
+  const services = [
+    authenticator,
+    database,
+    login,
+    recompasTags,
+    recompasWork,
+    suggester
+  ];
   const status = await generatingServiceStatus(services);
   Object.assign(status, {
     version: require('../../package').version,
