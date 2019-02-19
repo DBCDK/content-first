@@ -21,14 +21,12 @@ const SelectedFilter = props => {
   }
 
   return (
-    <Button Tag="div" size="medium" type="term" className="selected-filter">
+    <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
       <span>{title}</span>
       <Icon
         className="md-small"
         name="close"
-        onClick={() => {
-          props.onDisableFilter(id);
-        }}
+        onClick={() => props.onDisableFilter(id)}
       />
     </Button>
   );
@@ -55,7 +53,7 @@ class SelectedFilters extends React.Component {
               this.props.onFilterToggle(suggestion)
             }
           />
-          <div className="selected-filters">
+          <div id="selectedFilters" className="selected-filters">
             {this.props.selectedFilters.map((filter, idx) => {
               return (
                 <SelectedFilter

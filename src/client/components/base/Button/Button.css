@@ -44,6 +44,10 @@
   background-color: var(--concrete);
 }
 
+.Button__term i {
+  vertical-align: middle;
+}
+
 @media (hover: hover) {
   .Button__term:hover {
     background-color: var(--pistache);

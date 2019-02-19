@@ -89,11 +89,17 @@ const Results = ({rows, pids, ...props}) => {
 class FilterPage extends React.Component {
   constructor() {
     super();
-    this.state = {query: '', expanded: false, resultsPerRow: null};
+    this.state = {
+      query: '',
+      expanded: false,
+      resultsPerRow: null
+    };
   }
 
   componentDidMount() {
-    this.fetch();
+    setTimeout(() => {
+      this.fetch();
+    }, 600);
     this.handleResize();
     this.initFilterPosition();
     window.addEventListener('resize', this.handleResize);

@@ -27,6 +27,7 @@ import FeedbackButton from './components/general/FeedbackButton.component';
 import Footer from './components/general/Footer.component';
 import Article from './components/article/Article.component';
 import T from './components/base/T';
+import Animate from './components/base/Animate';
 import {OPEN_MODAL} from './redux/modal.reducer';
 
 class App extends Component {
@@ -103,6 +104,7 @@ class App extends Component {
     if (!currentPage) {
       currentPage = <Article path={`/${pathSplit[1]}`} />;
     }
+
     return (
       <div className="App">
         {topbar ? (
@@ -113,8 +115,13 @@ class App extends Component {
         ) : (
           ''
         )}
+
         {currentPage}
+
         <Modal />
+
+        <Animate />
+
         <ToastContainer
           position="top-right"
           autoClose={5000}

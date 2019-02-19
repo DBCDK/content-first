@@ -92,6 +92,8 @@ class SearchBar extends React.Component {
         }}
         onFiltersScroll={e => this.onFiltersMouseWheelScrool(e)}
         selectedFilters={this.props.selectedTags}
+        selectedTags={this.props.selectedTagIds}
+        transition={this.props.transition}
         filters={this.props.filters}
         edit={this.state.expanded}
         onEditFilterToggle={this.props.editFilterToggle}
@@ -127,6 +129,7 @@ const mapStateToProps = state => {
     recommendedPids: getRecommendedBooks(state, plainSelectedTagIds, 300),
     filterCards,
     router: state.routerReducer,
+    transition: state.routerReducer.params.transition || false,
     selectedTagIds: mergedSelectedTags,
     plainSelectedTagIds,
     selectedTags: selectedTags.length > 0 ? selectedTags : mergedSelectedTags,
