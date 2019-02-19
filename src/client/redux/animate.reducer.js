@@ -16,8 +16,6 @@ const animateReducer = (state = defaultState, action) => {
         throw new Error('! You need to set both a "from" and "to" position');
       }
 
-      console.log('ANIMATE_START');
-
       const newState = Object.assign({}, state, {
         ...state,
         [action.name]: {
@@ -39,8 +37,6 @@ const animateReducer = (state = defaultState, action) => {
         throw new Error('! No animation name found');
       }
 
-      console.log('ANIMATE_STOP');
-
       return Object.assign({}, state, {
         [action.name]: {
           animating: false,
@@ -55,8 +51,6 @@ const animateReducer = (state = defaultState, action) => {
 };
 
 export const startAnimate = animate => {
-  console.log('startAnimate action', animate);
-
   return {
     type: ANIMATE_START,
     name: animate.name,
@@ -68,8 +62,6 @@ export const startAnimate = animate => {
 };
 
 export const stopAnimate = name => {
-  console.log('stopAnimate name', name);
-
   return {
     type: ANIMATE_STOP,
     name

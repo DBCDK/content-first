@@ -97,9 +97,7 @@ class FilterPage extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.fetch();
-    }, 600);
+    this.fetch();
     this.handleResize();
     this.initFilterPosition();
     window.addEventListener('resize', this.handleResize);

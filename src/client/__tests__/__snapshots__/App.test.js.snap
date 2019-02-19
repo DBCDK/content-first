@@ -6,14 +6,30 @@ exports[`renders without crashing 1`] = `
 >
   <div>
     <header
-      className="Topbar row"
+      className="Topbar row searchBar-closed"
+      id="topbar"
     >
       <nav
         className="col-12 col-m-8 Topbar__navigation"
       >
+        <div>
+          <div
+            className="Topbar__special widthCalc"
+          >
+            <img
+              alt=""
+              src="/img/general/dibliofigur.svg"
+              style={
+                Object {
+                  "height": "28px",
+                }
+              }
+              type="image/svg+xml"
+            />
+          </div>
+        </div>
         <span
           className="Topbar__navigation__btn widthCalc d-none d-md-flex"
-          style={Object {}}
         >
           <i
             className="material-icons material-icons-search "
@@ -79,6 +95,7 @@ exports[`renders without crashing 1`] = `
                 </i>
                 <div
                   className="selected-filters"
+                  id="selectedFilters"
                 />
               </div>
             </span>

@@ -44,15 +44,25 @@
 
 /* Hero tags animation */
 
-.searchbarTags-hidden .searchbar-tags {
+.tags-hidden {
   opacity: 0 !important;
 }
 
-.searchbar-tags-animate:first-child {
-  margin-left: 0.5rem;
-}
 .searchbar-tags-animate:last-child {
   margin-right: 0;
+}
+
+.searchbar-tags-animate:first-child {
+  margin-left: 0;
+
+  -webkit-animation: firsttag 0.5s forwards, tag 0.5s forwards;
+  animation: firsttag 0.5s forwards, tag 0.5s forwards;
+}
+
+@-webkit-keyframes firsttag {
+  100% {
+    margin-left: 0.5rem;
+  }
 }
 
 .searchbar-tags-animate {
@@ -76,9 +86,13 @@
   animation: button 0.5s forwards;
 }
 
+.searchbar-tags-animate button span {
+  vertical-align: middle;
+}
+
 @-webkit-keyframes button {
   100% {
-    padding: 7px 10px;
+    padding: 7px 10px 7px 10px;
     font-size: 14px;
   }
 }
@@ -96,6 +110,8 @@
     opacity: 1;
   }
 }
+
+/* Hero tags animation END*/
 
 .Hero .searchbar .searchbar-innerWrap i {
   color: var(--petroleum);
@@ -191,6 +207,11 @@
   .Hero .searchbar .searchbar-innerWrap {
     flex-direction: row !important;
   }
+
+  .Hero .searchbar .searchbar-innerWrap > span {
+    flex-direction: row !important;
+  }
+
   .Hero .searchbar .searchbar-innerWrap i {
     display: inline-block !important;
   }

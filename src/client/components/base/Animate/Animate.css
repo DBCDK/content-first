@@ -18,19 +18,6 @@
 
 .animate__container > :first-child {
   position: fixed;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out;
-
-  /* top: 500px;
-  left: 500px;
-
-  -webkit-animation: tags 0.5s forwards;
-  animation: tags 0.5s forwards; */
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
-
-/* @-webkit-keyframes tags {
-  100% {
-    top: 23px;
-    left: 125px;
-  }
-} */

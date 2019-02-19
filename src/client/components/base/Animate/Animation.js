@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import './Animate.css';
 import {stopAnimate} from '../../../redux/animate.reducer';
 
-// Set animation-duration time
-const timer = 500;
+import './Animate.css';
+
+// Animation-duration time
+const timer = 550;
 
 export class Animation extends React.Component {
   constructor(props) {
@@ -16,8 +17,6 @@ export class Animation extends React.Component {
     setTimeout(() => {
       this.setState({init: true});
     }, 10);
-
-    console.log('this.props', this.props);
 
     setTimeout(() => {
       this.props.animation.onEnd();
@@ -39,7 +38,7 @@ export class Animation extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {};
 };
 

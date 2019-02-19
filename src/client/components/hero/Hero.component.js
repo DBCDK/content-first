@@ -7,13 +7,10 @@ import {Parallax, Background} from 'react-parallax';
 import Icon from '../base/Icon';
 import Title from '../base/Title';
 import Button from '../base/Button';
-import Animate from '../base/Animate';
-import Link from '../general/Link.component';
 
 import {getLeavesMap, tagsToUrlParams} from '../../utils/taxonomy';
 
 import {startAnimate} from '../../redux/animate.reducer';
-import {HISTORY_PUSH} from '../../redux/middleware';
 
 import './Hero.css';
 
@@ -57,6 +54,9 @@ export class Hero extends React.Component {
 
   buildTags(tags) {
     return tags.map(tag => {
+      const cur = this.props.animate[`tag-${tag}`];
+      const hideTags = cur && cur.animating ? 'tags-hidden' : '';
+
       return (
         <span
           key={tag}
@@ -66,11 +66,16 @@ export class Hero extends React.Component {
             e.preventDefault();
             e.stopPropagation();
 
+            if (window.innerWidth < 992) {
+              this.props.redirect(this.buildUrl([tag]));
+              return;
+            }
+
             this.toggleSearchbar('open');
             this.resetSearchbarPlaceholder();
 
             this.props.startAnimation({
-              name: 'tagAnimation',
+              name: `tag-${tag}`,
               component: this.buildAnimationTags([tag]),
               from: this.getPosition(this[tag]),
               to: this.getPosition(document.getElementById('selectedFilters')),
@@ -78,7 +83,7 @@ export class Hero extends React.Component {
             });
           }}
         >
-          <Button size="large" type="term" className="mr-3 h-100">
+          <Button size="large" type="term" className={`${hideTags} mr-3 h-100`}>
             {leavesMap[tag].title}
           </Button>
         </span>
@@ -94,7 +99,7 @@ export class Hero extends React.Component {
           className="searchbar-tags searchbar-tags-animate mt-2 mt-lg-0 d-inline-block"
         >
           <Button size="large" type="term" className="mr-3 h-100">
-            {leavesMap[tag].title}
+            <span>{leavesMap[tag].title}</span>
             <Icon className="md-small" name="close" />
           </Button>
         </span>
@@ -114,10 +119,14 @@ export class Hero extends React.Component {
   }
 
   resetSearchbarPlaceholder() {
-    document.getElementById('Searchbar__inputfield').placeholder = '';
+    const searchbar = document.getElementById('Searchbar__inputfield');
+    if (searchbar) {
+      searchbar.placeholder = '';
+    }
   }
 
   getPosition(element) {
+    console.log('element', element);
     return {
       top: element.getBoundingClientRect().top,
       left: element.getBoundingClientRect().left
@@ -151,9 +160,9 @@ export class Hero extends React.Component {
 
                 const url = this.buildUrl(hero.tags);
 
-                const hideTagsClass =
-                  animate['tagsAnimation'] && animate['tagsAnimation'].animating
-                    ? 'searchbarTags-hidden'
+                const hideTags =
+                  animate.tagsAnimation && animate.tagsAnimation.animating
+                    ? 'tags-hidden'
                     : '';
 
                 return (
@@ -195,6 +204,11 @@ export class Hero extends React.Component {
                         <span
                           className="searchbar-link"
                           onClick={() => {
+                            if (window.innerWidth < 992) {
+                              redirect(url);
+                              return;
+                            }
+
                             this.toggleSearchbar('open');
                             this.resetSearchbarPlaceholder();
 
@@ -211,13 +225,16 @@ export class Hero extends React.Component {
                         >
                           <div className="searchbar p-0 p-sm-2 d-inline-flex d-lg-flex flex-column flex-lg-row justify-content-between">
                             <div
-                              className={`${hideTagsClass} searchbar-innerWrap d-inline-flex flex-column flex-lg-row d h-100`}
+                              className={'searchbar-innerWrap d-inline-flex'}
                             >
                               <Icon
                                 name="search"
                                 className="md-xlarge align-self-center d-none d-lg-inline-block mr-3 ml-2"
                               />
-                              <span ref={e => (this.searchbar = e)}>
+                              <span
+                                className={`${hideTags} d-inline-flex flex-column flex-md-row h-100`}
+                                ref={e => (this.searchbar = e)}
+                              >
                                 {this.buildTags(hero.tags)}
                               </span>
                             </div>
