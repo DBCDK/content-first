@@ -4,7 +4,7 @@ import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import {ProfileInput} from '../profile/ProfileInput.component';
 import ProfileUploadImage from '../general/ProfileUploadImage.component';
 
-import {ADD_PROFILE_IMAGE, SAVE_USER_PROFILE} from '../../redux/user.reducer';
+import {ADD_PROFILE_IMAGE, ON_LOGOUT_REQUEST, SAVE_USER_PROFILE} from '../../redux/user.reducer';
 
 import Spinner from '../general/Spinner.component';
 import ProfileUpdateUser from '../profile/ProfileUpdateUser.component';
@@ -30,12 +30,7 @@ export class ProfileModal extends React.Component {
 
     const updateProfile = (e, obj) => {
       //submit
-      console.log(
-        'accepted rules and submitting name:' +
-          this.state.username +
-          '..... when callback is received, close modal'
-      ),
-        e.preventDefault();
+      e.preventDefault();
       this.props.saveUser(obj);
       this.props.onClose();
     };
@@ -48,10 +43,15 @@ export class ProfileModal extends React.Component {
       this.setState({page: 'rules'});
     };
 
+    const closeWindowAndLogout = () => {
+      this.props.onClose()
+      this.props.logout()
+    }
+
     const showAgeLimitWindow = () => {
       return (
         <div
-          className={'profile-rules-modal  modal-window'}
+          className={'profile-rules-modal  modal-window profile__ageLimit-window'}
           style={{
             font: 'var(--primary-font)',
             borderRadius: '4px',
@@ -64,12 +64,14 @@ export class ProfileModal extends React.Component {
           }}
         >
           <div
+            className='profile__modal-margins'
             style={{
               marginLeft: '80px',
               marginRight: '80px'
             }}
           >
             <div
+              className='profile__ageLimit-scroll'
               style={{
                 height: '92%',
                 overflowY: 'scroll'
@@ -103,6 +105,7 @@ export class ProfileModal extends React.Component {
                 <a
                   href="https://www.bibliotek.dk"
                   target="_blank"
+                  className='profile__rule-link'
                   style={{
                     color: 'var(--petroleum)',
                     textDecoration: 'underline'
@@ -118,6 +121,7 @@ export class ProfileModal extends React.Component {
                 <a
                   href="https://kundeservice.dbc.dk/"
                   target="_blank"
+                  className='profile__rule-link'
                   style={{
                     color: 'var(--petroleum)',
                     textDecoration: 'underline'
@@ -128,6 +132,7 @@ export class ProfileModal extends React.Component {
                 </a>
               </div>
               <div
+                className='profile__line'
                 style={{
                   width: '526px',
                   borderBottom: 'solid #979797',
@@ -138,8 +143,8 @@ export class ProfileModal extends React.Component {
               />
               <div style={{textAlign: 'right'}}>
                 <button
-                  className="mr1 mt1 btn Button Button__medium"
-                  onClick={this.props.onClose}
+                  className="mr1 mt1 btn Button Button__medium profile__btn-active"
+                  onClick={closeWindowAndLogout}
                   style={{
                     paddingTop: '7px',
                     height: '34px',
@@ -149,7 +154,7 @@ export class ProfileModal extends React.Component {
                   }}
                   data-cy="user-form-submit"
                 >
-                  Tilbage til læsekompasset
+                  Log Ud
                 </button>
               </div>
             </div>
@@ -159,6 +164,14 @@ export class ProfileModal extends React.Component {
     };
     const showAcceptWindow = () => {
       /**/
+      const getInfoClass = () => {
+        if (this.state.showNameInfo) {
+          return "profile__info-active"
+        } else {
+          return "profile__info-disabled"
+        }
+
+      }
       let infoStyle = {display: 'none'};
       if (this.state.showNameInfo) {
         infoStyle = {
@@ -172,8 +185,9 @@ export class ProfileModal extends React.Component {
         };
       }
       return (
-        <div className={'profile-modal modal-window'}>
+        <div className={'profile-modal modal-window profile__accept-window'}>
           <div
+
             style={{
               font: 'var(--primary-font)',
               borderRadius: '4px',
@@ -185,12 +199,14 @@ export class ProfileModal extends React.Component {
             }}
           >
             <div
+              className='profile__modal-margins'
               style={{
                 marginLeft: '80px',
                 marginRight: '80px'
               }}
             >
               <div
+                className="profile__accept-title1"
                 style={{
                   fontSize: '21px',
                   width: '529px',
@@ -203,6 +219,7 @@ export class ProfileModal extends React.Component {
 
               <div>
                 <div
+                  className="profile__accept-title2"
                   style={{
                     textAlign: 'center',
                     marginTop: '33px',
@@ -213,6 +230,7 @@ export class ProfileModal extends React.Component {
                 >
                   … skal du acceptere
                   <a
+                    className='profile__accept-link'
                     style={{cursor: 'pointer', color: 'var(--malibu)'}}
                     onClick={onShowRules}
                   >
@@ -224,6 +242,7 @@ export class ProfileModal extends React.Component {
                 </div>
 
                 <div
+                  className='profile__accept-inputZone'
                   style={{
                     width: '100%',
                     display: 'inline-flex',
@@ -234,6 +253,7 @@ export class ProfileModal extends React.Component {
                   }}
                 >
                   <div
+                    className='profile__accept-nameAndImg'
                     style={{
                       fontSize: '14px',
                       fontWeight: '700',
@@ -272,7 +292,7 @@ export class ProfileModal extends React.Component {
                         }
                       />
 
-                      <div className="profile-input">
+                      <div className="profile__accept-inputNameTitle">
                         <div
                           style={{
                             fontSize: '14px',
@@ -289,7 +309,7 @@ export class ProfileModal extends React.Component {
                             username={this.state.username}
                             onInputChange={onHandleChange}
                           />
-                          <div className="profile-name-info" style={infoStyle}>
+                          <div className={"profile__name-info " + getInfoClass()} style={infoStyle}>
                             Min. 4 tegn
                           </div>
                         </div>
@@ -298,6 +318,7 @@ export class ProfileModal extends React.Component {
                   </div>
 
                   <div
+                    className='profile__accept-box'
                     style={{
                       marginTop: '55px',
                       width: '0',
@@ -309,6 +330,7 @@ export class ProfileModal extends React.Component {
                   />
 
                   <div
+                    className='profile__accept-boxTriangle'
                     style={{
                       minWidth: '220px',
                       borderRadius: '4px',
@@ -320,6 +342,7 @@ export class ProfileModal extends React.Component {
                     }}
                   >
                     <div
+                      className='profile__accept-boxTitle'
                       style={{
                         fontSize: '10px',
                         fontWeight: '700',
@@ -330,6 +353,7 @@ export class ProfileModal extends React.Component {
                     </div>
 
                     <div
+                      className='profile__accept-boxText'
                       style={{
                         fontSize: '10px',
                         fontWeight: '400',
@@ -355,6 +379,7 @@ export class ProfileModal extends React.Component {
                 </div>
 
                 <div
+                  className='profile__accept-line'
                   style={{
                     textAlign: 'right',
                     borderTop: '1px solid #979797',
@@ -365,7 +390,7 @@ export class ProfileModal extends React.Component {
                     imageId={this.props.profileImageId}
                     name={this.state.username}
                     acceptedAge={this.props.over13}
-                    library={this.props.agencyName || <Spinner size="12px" />}
+                    acceptedTerms={this.props.acceptedTerms}
                     updateProfile={updateProfile}
                     error={this.props.error}
                     isSaving={this.props.isSaving}
@@ -382,7 +407,7 @@ export class ProfileModal extends React.Component {
     const showRulesWindow = () => {
       return (
         <div
-          className={'profile-rules-modal  modal-window'}
+          className={'profile-rules-modal  modal-window profile__rules-window'}
           style={{
             font: 'var(--primary-font)',
             borderRadius: '4px',
@@ -395,12 +420,14 @@ export class ProfileModal extends React.Component {
           }}
         >
           <div
+            className='profile__rules-margin'
             style={{
               marginLeft: '40px',
               marginRight: '40px'
             }}
           >
             <div
+              className='profile__rules-backbtn'
               style={{
                 fontSize: '14px',
                 height: '30px',
@@ -413,6 +440,7 @@ export class ProfileModal extends React.Component {
             </div>
 
             <div
+              className='profile__rules-line'
               style={{
                 width: '680px',
                 marginLeft: '-40px',
@@ -420,6 +448,7 @@ export class ProfileModal extends React.Component {
               }}
             />
             <div
+              className='profile__rules-scroll'
               style={{
                 height: '92%',
                 overflowY: 'scroll'
@@ -581,10 +610,10 @@ export class ProfileModal extends React.Component {
     return (
       <div className="modal-container">
         {this.state.page === 'accept' &&
-          this.props.over13 &&
-          showAcceptWindow(this.state.username)}
+        this.props.over13 &&
+        showAcceptWindow(this.state.username)}
         {this.state.page === 'rules' && this.props.over13 && showRulesWindow()}
-        {!this.props.over13 && showAgeLimitWindow()}
+        {!this.props.over13 && !this.state.page === 'accept' && showAgeLimitWindow()}
       </div>
     );
   }
@@ -607,7 +636,8 @@ export const mapDispatchToProps = dispatch => {
   return {
     onClose: () => dispatch({type: CLOSE_MODAL, modal: 'profile'}),
     addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
-    saveUser: user => dispatch({type: SAVE_USER_PROFILE, user})
+    saveUser: user => dispatch({type: SAVE_USER_PROFILE, user}),
+    logout: () => dispatch({type: ON_LOGOUT_REQUEST})
   };
 };
 export default connect(

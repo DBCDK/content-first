@@ -3,14 +3,15 @@ import Spinner from './Spinner.component';
 import HoverButton from './HoverButton.component';
 
 const UploadButton = ({
-  buttonText,
-  fieldName,
-  readFiles,
-  style,
-  className,
-  baseImage,
-  thumbnailImageHover
-}) => {
+                        buttonText,
+                        fieldName,
+                        readFiles,
+                        style,
+                        className,
+                        baseImage,
+                        thumbnailImageHover
+                      }) => {
+
   return (
     <label style={style} className={className}>
       {baseImage && (
@@ -58,6 +59,8 @@ export default class ProfileUploadImage extends React.Component {
       this.setState({imageName: files[0].name});
       this.props.onFile(files[0]);
     }
+
+
   };
 
   constructor(props) {
@@ -70,12 +73,26 @@ export default class ProfileUploadImage extends React.Component {
     };
   }
 
+  componentDidUpdate(prevProps, prevState) {
+
+    if (prevProps.loading !== this.props.loading) {
+
+     this.setState({
+      basePictureDefault:
+        !this.props.tempPersonalImage && !this.props.personalImage ? true : false,
+      tempPictureLoaded:
+        this.props.tempPersonalImage && this.props.personalImage ? true : false,
+      savedPictureLoaded:
+        !this.props.tempPersonalImage && this.props.personalImage ? true : false
+    });
+    }
+  }
+
+
   componentDidMount() {
     this.setState({
       basePictureDefault:
-        !this.props.tempPersonalImage && !this.props.personalImage
-          ? true
-          : false,
+        !this.props.tempPersonalImage && !this.props.personalImage ? true : false,
       tempPictureLoaded:
         this.props.tempPersonalImage && this.props.personalImage ? true : false,
       savedPictureLoaded:
@@ -95,7 +112,6 @@ export default class ProfileUploadImage extends React.Component {
     if (this.state.basePictureDefault) {
       baseImage = this.props.thumbnailImage;
     }
-
     return (
       <div>
         <div

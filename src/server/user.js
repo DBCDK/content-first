@@ -46,7 +46,7 @@ async function createCookie(legacyId, uniqueId, openplatformToken, user) {
     openplatform_id: uniqueId,
     openplatform_token: openplatformToken,
     expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000),
-    user: user
+    user:user
   });
 
   if (await userExists(legacyId)) {
@@ -66,12 +66,14 @@ async function createCookie(legacyId, uniqueId, openplatformToken, user) {
     logger.log.info(`Creating user with uniqueId=${uniqueId}`);
     await putUserData(
       {
-        name: '',
+        name: user.name,
         roles: [],
         openplatformId: uniqueId,
         shortlist: [],
         profiles: [],
-        lists: []
+        lists: [],
+        over13:user.over13
+
       },
       {openplatformId: uniqueId}
     );
@@ -156,6 +158,7 @@ async function getUserData(openplatformId, loggedInuser) {
   }
 }
 async function putUserData(newUserData, user) {
+
   try {
     const openplatformId = user.openplatformId;
     throwUnlessOpenplatformId({openplatformId});

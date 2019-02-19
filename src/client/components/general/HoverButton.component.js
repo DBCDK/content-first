@@ -1,6 +1,13 @@
 import React from 'react';
 
 export default class HoverButton extends React.Component {
+  mouseEnter = () => {
+    this.setState({src: this.props.mouseOver});
+  };
+  mouseLeave = () => {
+    this.setState({src: this.props.mouseOut});
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -9,21 +16,22 @@ export default class HoverButton extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({src: this.props.src});
+    this.setState({src: this.props.src})
   }
 
-  mouseEnter = () => {
-    this.setState({src: this.props.mouseOver});
-  };
-  mouseLeave = () => {
-    this.setState({src: this.props.mouseOut});
-  };
+  componentDidUpdate(prevProps) {
+
+    if (prevProps.src !== this.props.src) {
+      this.mouseEnter()
+      this.mouseLeave()
+    }
+  }
 
   render() {
-    console.log('src  state', this.state.src);
     return (
       <div>
         <img
+          className='profile-hoverButtonImg'
           style={{cursor: 'pointer', width: '46px', height: '46px'}}
           src={this.state.src}
           onMouseOver={this.mouseEnter}

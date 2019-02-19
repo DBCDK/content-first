@@ -18,10 +18,10 @@ const profileStrategy = new Strategy(
     callbackURL: config.server.dmzHost + '/v1/auth/callback'
   },
 
-  async function(token, tokenSecret, profile, done) {
+  async function (token, tokenSecret, profile, done) {
     let uniqueId;
     let legacyId;
-    let special = {over13: false};
+    let special = {over13: false, name: ''};
 
     const over13 = cpr => {
       let bd = cpr.substr(0, 6);
@@ -50,6 +50,7 @@ const profileStrategy = new Strategy(
           .set('Authorization', 'Bearer ' + token);
 
         special.over13 = over13(userInfo.body.attributes.cpr);
+        //  special.over13 = over13('1224061212');
 
         uniqueId = get(userInfo, 'body.attributes.uniqueId');
         if (!uniqueId) {
@@ -70,6 +71,7 @@ const profileStrategy = new Strategy(
           .query({access_token: token});
 
         legacyId = get(openplatformUser, 'body.data.id');
+        special.name = get(openplatformUser, 'body.data.name');
         if (!legacyId) {
           throw new Error('Missing legacyId');
         }
@@ -81,7 +83,6 @@ const profileStrategy = new Strategy(
         });
         throw e;
       }
-
       done(null, {openplatformToken: token, uniqueId, legacyId, special});
     } catch (e) {
       done(null, false);
@@ -91,8 +92,7 @@ const profileStrategy = new Strategy(
 
 passport.use('profile', profileStrategy);
 
-passport.serializeUser(async function(user, done) {
-  console.log('passport user: ', user);
+passport.serializeUser(async function (user, done) {
   try {
     const cookie = await createCookie(
       user.legacyId,
@@ -110,7 +110,7 @@ passport.serializeUser(async function(user, done) {
   }
 });
 
-passport.deserializeUser(async function(cookie, done) {
+passport.deserializeUser(async function (cookie, done) {
   try {
     const user = await fetchCookie(cookie);
     done(null, user);

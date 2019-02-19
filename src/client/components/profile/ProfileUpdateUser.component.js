@@ -20,7 +20,8 @@ export default class ProfileUpdateUser extends React.Component {
 
     const obj = {
       name: this.state.name,
-      image: this.props.imageId
+      image: this.props.imageId,
+      acceptedTerms:true
     };
 
     e.preventDefault();
@@ -91,7 +92,7 @@ export default class ProfileUpdateUser extends React.Component {
           disabled={this.props.deactivate}
           data-cy="user-form-submit"
         >
-          {this.props.editMode ? 'Gem Profil' : 'Accepter regler og vilkår'}{' '}
+          {this.props.editMode ? 'Gem Profil' : 'Accepter regler og vilkår'}
           {(this.props.isSaving && (
             <Spinner size={12} color="white" style={{marginLeft: '10px'}} />
           )) ||
