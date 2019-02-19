@@ -9,7 +9,6 @@ export class Animate extends React.Component {
     // Array of animation names from reducer
     const aAnimations = Object.values(animate);
 
-    // Listen on queued animations
     if (aAnimations.length === 0) {
       return null;
     }

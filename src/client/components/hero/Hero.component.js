@@ -126,7 +126,6 @@ export class Hero extends React.Component {
   }
 
   getPosition(element) {
-    console.log('element', element);
     return {
       top: element.getBoundingClientRect().top,
       left: element.getBoundingClientRect().left

@@ -57,11 +57,6 @@
   height: 50px;
   padding: 0 15px 0 15px;
   font-size: 1.3em;
-
-  /* -webkit-animation: tags 1s forwards;
-  animation: tags 1s forwards; */
-
-  /* transform: translate(-50%, -50%); */
 }
 
 .selected-filter.filter-animate:first-child {
@@ -71,13 +66,6 @@
 .filter-animate i {
   display: none;
 }
-
-/* @-webkit-keyframes tags {
-  100% {
-    top: 30px;
-    left: 100px;
-  }
-} */
 
 .selected-filters-wrap .suggestion-list {
   display: inline-block;

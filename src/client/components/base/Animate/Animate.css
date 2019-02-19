@@ -9,13 +9,6 @@
   pointer-events: none;
 }
 
-.animate__container .animate__missing-component {
-  display: block;
-  margin: 40vh auto 0 auto;
-  background-color: white;
-  border: 5px;
-}
-
 .animate__container > :first-child {
   position: fixed;
   transition-duration: 0.5s;
