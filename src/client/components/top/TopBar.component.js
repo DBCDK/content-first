@@ -262,10 +262,7 @@ export class TopBar extends React.Component {
               />
             </div>
           </div>
-          <span
-            className="Topbar__navigation__btn widthCalc d-none d-md-flex"
-            style={border}
-          >
+          <span className="Topbar__navigation__btn widthCalc d-none d-md-flex">
             <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
             <span className="relative--container">
               <span
