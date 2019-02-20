@@ -6,6 +6,7 @@ import Text from '../base/Text';
 import {OPEN_MODAL} from '../../redux/modal.reducer';
 import {connect} from 'react-redux';
 import Link from '../general/Link.component';
+import TruncateMarkup from 'react-truncate-markup';
 
 /**
  * This class displays a single resume review item
@@ -32,21 +33,25 @@ export class ResumeReview extends React.Component {
     return (
       <div className="Review__container mr-4 mb-5">
         <div className="Review__block--top">
-          <Title Tag="h6" type="title6">
+          <Title Tag="h6" type="title6" className="mb0">
             Bibliotekernes vurdering
           </Title>
-          <Text type="small" className="due-txt">
+          <Text type="small" className="due-txt mb0">
             {date}
           </Text>
         </div>
         {name !== false &&
           name.trim() !== '' && (
-            <Text type="body" className="mb0">
+            <Text type="body" className="mb1">
               Af {name}
             </Text>
           )}
-        <Text type="body">
-          <em>{reviewParagraph}</em>
+        <Text type="body" className="mb0">
+          <em>
+            <TruncateMarkup lines={3} ellipsis="...">
+              <div>{reviewParagraph}</div>
+            </TruncateMarkup>
+          </em>
         </Text>
         <Text>
           <Link
