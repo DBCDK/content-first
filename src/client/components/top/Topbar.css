@@ -18,7 +18,14 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+}
 
+.Topbar.searchBar-closed .Topbar__SearchBarWrapper {
+  width: 0px !important;
+}
+
+.Topbar.searchBar-closed .Topbar__special {
+  display: none;
 }
 
 .Topbar .Topbar__mobile__overlay {
@@ -71,7 +78,7 @@
   width: 0px;
   height: 40px;
   padding: 0 !important;
-  transition-duration: 0.2s;
+  /* transition-duration: 0.2s; */
   display: inline-block;
   vertical-align: middle;
   margin-bottom: 5px;
@@ -83,7 +90,6 @@
 }
 
 .Topbar .Topbar__navigation .Topbar__navigation__btn {
-
   min-width: 80px;
   height: 100%;
   display: flex;
@@ -137,19 +143,17 @@
 // Topbar user image and default icon
 */
 
-
 .Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top,
 .Topbar .Topbar__navigation .Topbar__navigation__btn .profile-top img {
-
   height: 35px;
 }
 
 .Topbar
-.Topbar__navigation
-.Topbar__navigation__btn
-.profile-top
-.profile-image
-i {
+  .Topbar__navigation
+  .Topbar__navigation__btn
+  .profile-top
+  .profile-image
+  i {
   padding: 0;
 }
 
@@ -162,7 +166,6 @@ i {
   justify-content: space-around;
   align-items: center;
   text-decoration: none;
-  border-right: 1px solid var(--pistache);
   position: relative;
   z-index: 3;
 }
@@ -253,7 +256,6 @@ i {
   transition-timing-function: ease-out;
 }
 
-
 @media only screen and (max-width: 575px) {
   .Topbar {
     height: 60px;
@@ -286,7 +288,6 @@ i {
   .Topbar .Topbar__navigation .Topbar__navigation__btn {
     min-width: 60px;
     border-left: 0;
-
   }
 
   .Topbar .Topbar__navigation .Topbar__navigation__btn i {

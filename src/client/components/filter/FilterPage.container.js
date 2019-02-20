@@ -89,7 +89,11 @@ const Results = ({rows, pids, ...props}) => {
 class FilterPage extends React.Component {
   constructor() {
     super();
-    this.state = {query: '', expanded: false, resultsPerRow: null};
+    this.state = {
+      query: '',
+      expanded: false,
+      resultsPerRow: null
+    };
   }
 
   componentDidMount() {

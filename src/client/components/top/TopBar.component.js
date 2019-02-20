@@ -220,8 +220,6 @@ export class TopBar extends React.Component {
     ) : (
       <T component="general" name="searchButton" />
     );
-    const searchFieldWidth = searchExpanded ? this.state.width : 0;
-    const border = searchExpanded ? {borderColor: 'transparent'} : {};
 
     const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
@@ -233,7 +231,11 @@ export class TopBar extends React.Component {
       : '0';
 
     return (
-      <header className="Topbar row" ref={e => (this.Topbar = e)}>
+      <header
+        id="topbar"
+        ref={e => (this.Topbar = e)}
+        className={`Topbar row ${!searchExpanded ? 'searchBar-closed' : ''}`}
+      >
         {searchPage &&
           searchExpanded && (
             <div className="Topbar__mobile__overlay d-block d-sm-none">
@@ -250,27 +252,22 @@ export class TopBar extends React.Component {
           )}
 
         <nav className="col-12 col-m-8 Topbar__navigation">
-          {searchExpanded && (
-            <div>
-              <div className="Topbar__special widthCalc">
-                <img
-                  type="image/svg+xml"
-                  alt=""
-                  src="/img/general/dibliofigur.svg"
-                  style={{height: '28px'}}
-                />
-              </div>
+          <div>
+            <div className="Topbar__special widthCalc">
+              <img
+                type="image/svg+xml"
+                alt=""
+                src="/img/general/dibliofigur.svg"
+                style={{height: '28px'}}
+              />
             </div>
-          )}
-          <span
-            className="Topbar__navigation__btn widthCalc d-none d-md-flex"
-            style={border}
-          >
+          </div>
+          <span className="Topbar__navigation__btn widthCalc d-none d-md-flex">
             <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
             <span className="relative--container">
               <span
                 className="Topbar__SearchBarWrapper"
-                style={{width: searchFieldWidth}}
+                style={{width: this.state.width}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
                 <SearchBar />
