@@ -1,18 +1,5 @@
 version: "3"
 services:
-
-  communityservice:
-    image: dbcdk/communityservice
-    links:
-      - database
-    environment:
-      DB_NAME: communityservice
-      DB_USER: communityservice
-      DB_HOST: database
-    ports:
-      - "${COMMUNITY_PORT:-3003}:3000"
-    command: sh -c './tools/wait-for.sh database:5432 -- npm start'
-
   database:
     image: postgres:9.6
     volumes:
@@ -20,7 +7,7 @@ services:
     ports:
       - "${DB_PORT:-5432}:5432"
     environment:
-      POSTGRES_MULTIPLE_DATABASES: contentfirst, communityservice
+      POSTGRES_MULTIPLE_DATABASES: contentfirst
 networks:
   default:
     ipam:
