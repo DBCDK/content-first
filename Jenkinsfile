@@ -1,7 +1,7 @@
 #!groovy​
 
 def app
-def imageName="content-first"
+def imageName="content-first-992"
 def imageLabel=BUILD_NUMBER
 def taxonomyUrl="https://ux-is.dbc.dk/job/kompasset/job/make-reports/lastSuccessfulBuild/artifact/json-files.tar.gz"
 
