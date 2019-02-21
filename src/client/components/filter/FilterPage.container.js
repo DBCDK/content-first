@@ -329,7 +329,7 @@ class FilterPage extends React.Component {
           cards={this.props.filterCards}
           selectedFilters={this.props.selectedTags}
           onFilterToggle={filter => {
-            this.toggleFilter(filter.id || filter);
+            this.toggleFilter(filter);
           }}
         />
 
