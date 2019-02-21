@@ -6,27 +6,17 @@ import Autosuggest from 'react-autosuggest';
 import Icon from '../base/Icon';
 import T from '../base/T';
 
-const parseSearchRes = (query, response) => {
-  const result = {};
-  response
-    .filter(tagObject => {
-      if (tagObject.title.toLowerCase().search(query.toLowerCase()) > -1) {
-        return true;
-      }
-      return false;
-    })
-    .splice(0, 10)
-    .forEach(tagObject => {
-      const nearestParent = tagObject.parents[tagObject.parents.length - 1];
-      let group = result[nearestParent];
-      if (!group) {
-        group = {title: nearestParent, suggestions: []};
-        result[nearestParent] = group;
-      }
-      group.suggestions.push(tagObject);
-    });
-
-  return Object.values(result);
+const getTypeData = suggestion => {
+  switch (suggestion.type) {
+    case 'TITLE':
+      return {icon: 'book', category: 'bog'};
+    case 'AUTHOR':
+      return {icon: 'account_circle', category: 'forfatter'};
+    case 'TAG':
+      return {icon: 'label', category: suggestion.category};
+    default:
+      return {};
+  }
 };
 
 const addEmphasisToString = (string, pattern) => {
@@ -47,14 +37,14 @@ const addEmphasisToString = (string, pattern) => {
 };
 
 const renderSuggestion = (suggestion, suggestionString) => {
-  const icon = suggestion.icon ? suggestion.icon : 'label';
-  const text = suggestion.text ? suggestion.text : suggestion.title;
+  const text = suggestion.text ? suggestion.text : suggestion.matchedTerm;
+  const {icon, category} = getTypeData(suggestion);
 
   return (
     <div className="suggestion-title" data-cy="suggestion-element">
       {addEmphasisToString(text, suggestionString)}
       <Icon name={icon} className="md-small" />
-      <span className="ml1 suggestion-subject">{suggestion.parents[1]}</span>
+      <span className="ml1 suggestion-subject">{category}</span>
     </div>
   );
 };
@@ -67,206 +57,41 @@ class TagsSuggester extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tagsSuggestions: {title: 'Tags', suggestions: []},
-      authorSuggestions: {title: 'Forfatterer', suggestions: []},
-      titleSuggestions: {title: 'Bøger', suggestions: []},
-      clientSuggestions: {title: 'Tags', suggestions: []},
       suggestions: [],
       inputVisibel: false
     };
   }
 
-  clientsideFilters({value}) {
+  getClientSideSuggestions({value}) {
     const filters = this.props.filters;
-    const length = filters.Længde.filter(l =>
+    return filters.Længde.filter(l =>
       l.title.toLowerCase().includes(value)
     ).map(l => {
       return {
         id: l.id,
-        title: l.title,
-        text: l.title,
+        type: 'TAG',
+        matchedTerm: l.title,
         parents: ['', 'Længde']
       };
     });
-
-    this.setState({
-      clientSuggestions: {title: 'Tags', suggestions: length}
-    });
   }
 
-  async onTagsSuggestionsFetchRequested({value}) {
-    const response = await request.get('/v1/tags/suggest').query({q: value});
-    let result = parseSearchRes(value, response.body.data.tags);
-    const merged = [].concat.apply([], result.map(res => res.suggestions));
-    this.setState({tagsSuggestions: {title: 'Tags', suggestions: merged}});
-  }
+  fetchSuggestions = async ({value}) => {
+    const response = await request.get('/v1/suggester').query({query: value});
+    const clientSuggestions = this.getClientSideSuggestions({value});
+    let suggestions = [...clientSuggestions, ...response.body];
 
-  async onAuthorTitleSuggestionsFetchRequested({value}) {
-    value = value
-      .toLowerCase()
-      .split(',')
-      .join('');
-    this.currentRequest = value;
-    const results = JSON.parse(
-      (await request.get(
-        '/v1/search?q=' +
-          encodeURIComponent(
-            value
-              .trim()
-              .replace(/[^A-ZÆØÅa-zæøå0-9 ]/g, ' ')
-              .split(/\s+/g)
-              .join(' & ') + ':*'
-          )
-      )).text
-    ).data.map(book => ({
-      suggestions: [
-        {
-          title: book.title,
-          creator: book.creator
-        }
-      ]
-    }));
-    let authorResults = results
-      .filter(a => {
-        if (!a.suggestions[0].creator.toLowerCase().includes(value)) {
-          return a.suggestions[0].title
-            .toLowerCase()
-            .split(',')
-            .join('')
-            .includes(value);
-        }
-        return a.suggestions[0].creator.toLowerCase().includes(value);
-      })
-      .map(a => {
-        return {
-          text: a.suggestions[0].creator,
-          type: 'creator',
-          parents: ['', 'Forfatter'],
-          icon: 'account_circle',
-          title: a.suggestions[0].creator
-        };
-      });
+    this.setState({suggestions});
+  };
 
-    // move duplicated creators
-    authorResults = uniqBy(authorResults, 'text');
+  onSuggestionsClearRequested = () => {
+    this.setState({suggestions: []});
+    this.props.onChange({target: {value: ''}});
+  };
 
-    const titleResults = results
-      .filter(t => {
-        if (
-          !t.suggestions[0].title
-            .toLowerCase()
-            .split(',')
-            .join('')
-            .includes(value)
-        ) {
-          return t.suggestions[0].creator.toLowerCase().includes(value);
-        }
-        return t.suggestions[0].title
-          .toLowerCase()
-          .split(',')
-          .join('')
-          .includes(value);
-      })
-      .map(t => {
-        return {
-          text: t.suggestions[0].title,
-          type: 'title',
-          parents: ['', 'Bog'],
-          icon: 'book',
-          title: t.suggestions[0].title
-        };
-      });
-
-    if (this.currentRequest === value) {
-      this.setState({
-        authorSuggestions: {title: 'Forfatterer', suggestions: authorResults},
-        titleSuggestions: {title: 'Bøger', suggestions: titleResults}
-      });
-    }
-  }
-
-  onSuggestionsClearRequested() {
-    this.state = {
-      tagsSuggestions: {title: 'Tags', suggestions: []},
-      authorSuggestions: {title: 'Forfatterer', suggestions: []},
-      titleSuggestions: {title: 'Bøger', suggestions: []}
-    };
-    delete this.currentRequest;
-  }
-
-  toggleInputvisibility(status) {
+  toggleInputvisibility = status => {
     this.setState({inputVisibel: status});
-  }
-
-  renderSuggestions() {
-    let {
-      tagsSuggestions,
-      clientSuggestions,
-      authorSuggestions,
-      titleSuggestions
-    } = this.state;
-
-    // Add client tags to suggestion tags
-    tagsSuggestions.suggestions = [
-      ...tagsSuggestions.suggestions,
-      ...clientSuggestions.suggestions
-    ];
-
-    // Fill suggestions with authors (Maximum 2)
-    authorSuggestions = {
-      suggestions: authorSuggestions.suggestions.slice(0, 2),
-      title: authorSuggestions.title
-    };
-
-    // Fill suggestions with book titles (maximum 4)
-    titleSuggestions = {
-      suggestions: titleSuggestions.suggestions.slice(
-        0,
-        4 - authorSuggestions.suggestions.length
-      ),
-      title: titleSuggestions.title
-    };
-
-    // Fill suggestions with tags (Maximum 6)
-    tagsSuggestions = {
-      suggestions: tagsSuggestions.suggestions.slice(
-        0,
-        10 -
-          (titleSuggestions.suggestions.length +
-            authorSuggestions.suggestions.length)
-      ),
-      title: tagsSuggestions.title
-    };
-
-    // Backfill suggestions with booktitles if any
-    if (tagsSuggestions.suggestions.length < 6) {
-      titleSuggestions = {
-        suggestions: this.state.titleSuggestions.suggestions.slice(
-          0,
-          10 -
-            (tagsSuggestions.suggestions.length +
-              authorSuggestions.suggestions.length)
-        ),
-        title: titleSuggestions.title
-      };
-    }
-
-    const suggestions = [];
-    // push tags if not empty
-    if (tagsSuggestions.suggestions.length > 0) {
-      suggestions.push(tagsSuggestions);
-    }
-    // push authors if not empty
-    if (authorSuggestions.suggestions.length > 0) {
-      suggestions.push(authorSuggestions);
-    }
-    // push titles if not empty
-    if (titleSuggestions.suggestions.length > 0) {
-      suggestions.push(titleSuggestions);
-    }
-
-    return suggestions;
-  }
+  };
 
   render() {
     const inputVisibel = this.state.inputVisibel;
@@ -310,25 +135,13 @@ class TagsSuggester extends React.Component {
         >
           <Autosuggest
             suggestions={this.state.suggestions}
-            multiSection={true}
-            highlightFirstSuggestion={true}
-            onSuggestionsFetchRequested={async e => {
-              await this.onTagsSuggestionsFetchRequested(e);
-              await this.onAuthorTitleSuggestionsFetchRequested(e);
-              this.clientsideFilters(e);
-              this.setState({suggestions: this.renderSuggestions()});
-            }}
-            onSuggestionsClearRequested={() => {
-              this.onSuggestionsClearRequested();
-              this.props.onChange({target: {value: ''}});
-            }}
-            onSuggestionSelected={this.props.onSuggestionSelected}
-            getSuggestionValue={obj => obj.text || obj.title}
-            getSectionSuggestions={section => section.suggestions}
+            onSuggestionsFetchRequested={this.fetchSuggestions}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={suggestion => suggestion}
             renderSuggestion={suggestion =>
               renderSuggestion(suggestion, this.props.value)
             }
-            renderSectionTitle={section => renderSectionTitle(section)}
+            onSuggestionSelected={this.props.onSuggestionSelected}
             focusInputOnSuggestionClick={true}
             inputProps={inputProps}
           />

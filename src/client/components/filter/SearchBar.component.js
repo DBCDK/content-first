@@ -100,7 +100,7 @@ class SearchBar extends React.Component {
         query={this.state.query}
         onQueryChange={e => this.setState({query: e.target.value})}
         onFilterToggle={filter => {
-          this.toggleFilter(filter.id || filter);
+          this.toggleFilter(filter);
         }}
         onKeyDown={e => this.handleOnKeyDown(e)}
         onFocus={() => {

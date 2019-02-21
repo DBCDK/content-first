@@ -54,70 +54,56 @@ export const filterMiddleware = store => next => async action => {
         selectedTitles
       );
       let newQueryType;
-      const isTitelorCreator =
-        (filterId.parents && filterId.parents[1] === 'Forfatter') ||
-        (filterId.parents && filterId.parents[1] === 'Bog');
-      const isTag = !isTitelorCreator;
-      const fullRange = getFullRange(filterId, filterCards, filtersMapAll);
+      console.log(filterId);
+      const isTag = !!filterId.id;
+
       const params = {};
       let tags = [...selectedTagIdss];
-      if (fullRange) {
-        // The tag is part of a range
-        const location = findRangeLocation(
-          filterId,
-          selectedTagIdss,
-          fullRange
-        );
-        const prevSelectedRange = tags[location];
-        const newSelectedRange = getSelectedRange(
-          filterId,
-          prevSelectedRange,
-          fullRange
-        );
+      if (isTag) {
+        const fullRange = getFullRange(filterId.id, filterCards, filtersMapAll);
+        if (fullRange) {
+          // The tag is part of a range
+          const location = findRangeLocation(
+            filterId.id,
+            selectedTagIdss,
+            fullRange
+          );
+          const prevSelectedRange = tags[location];
+          const newSelectedRange = getSelectedRange(
+            filterId.id,
+            prevSelectedRange,
+            fullRange
+          );
 
-        // We need to add, remove or replace the tag range
-        if (location === -1) {
-          tags.push(newSelectedRange);
-        } else if (
-          isFullRange(newSelectedRange, fullRange) ||
-          (isEqual(prevSelectedRange, newSelectedRange) && isRange(filterId))
-        ) {
-          tags.splice(location, 1);
+          // We need to add, remove or replace the tag range
+          if (location === -1) {
+            tags.push(newSelectedRange);
+          } else if (
+            isFullRange(newSelectedRange, fullRange) ||
+            (isEqual(prevSelectedRange, newSelectedRange) &&
+              isRange(filterId.id))
+          ) {
+            tags.splice(location, 1);
+          } else {
+            tags[location] = newSelectedRange;
+          }
+          newQueryType = 'tags';
+          params.tags = tagsToUrlParams(tags);
         } else {
-          tags[location] = newSelectedRange;
+          const location = tags.indexOf(filterId.id);
+          if (location === -1) {
+            tags.push(filterId.id);
+          } else {
+            tags.splice(location, 1);
+          }
+          newQueryType = 'tags';
+          params.tags = tagsToUrlParams(tags);
         }
-        newQueryType = 'tags';
-        params.tags = tagsToUrlParams(tags);
-      } else if (isTag) {
-        const location = tags.indexOf(filterId);
-        if (location === -1) {
-          tags.push(filterId);
-        } else {
-          tags.splice(location, 1);
-        }
-        newQueryType = 'tags';
-        params.tags = tagsToUrlParams(tags);
-      } else if (isTitelorCreator) {
-        /* If selected tag is a Creator or Book Title */
-        if (mergedSelectedTags.includes(filterId.text)) {
-          /* if creator/title already exist - remove*/
-          tags = [];
-          store.dispatch({type: 'SEARCH_QUERY', query: ''});
-        } else {
-          /* if creator/title dont exist - add it*/
-          tags = [encodeURIComponent(filterId.text)];
-          store.dispatch({
-            type: 'SEARCH_QUERY',
-            query: filterId.text.toLowerCase()
-          });
-          newQueryType = 'titlecreator';
-        }
-        /* if no type is set its a remove tag action and the type value is not important */
-        if (!filterId.type) {
-          filterId.type = 'creator'; // or Title
-        }
-        /* add as title or creator key */
-        params[filterId.type] = tags;
+      } else if (filterId.type === 'TITLE') {
+        params['pid'] = filterId.pid;
+      } else if (filterId.type === 'AUTHOR') {
+        // TODO handle author
+        params['author'] = filterId.authorName;
       }
 
       if (prevQueryType && prevQueryType !== newQueryType) {
