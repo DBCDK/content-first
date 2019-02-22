@@ -97,6 +97,14 @@
       "audiobook": {
         "da": "Lydbog",
         "en": "Audiobook"
+      },
+      "private": {
+        "da": "Privat",
+        "en": "Private"
+      },
+      "public": {
+        "da": "Offentlig",
+        "en": "Public"
       }
     },
 
@@ -450,6 +458,10 @@
         "da": "Listens titel",
         "en": "Title of the list"
       },
+      "noTitleValue": {
+        "da": "Ny liste",
+        "en": "New list"
+      },
       "noTitle": {
         "da": "Listen skal have en titel",
         "en": "The list must have a title"
@@ -545,6 +557,22 @@
       "saveNowModal": {
         "da": "Ja tak, gem nu",
         "en": "Yes please, save now"
+      },
+      "labelName": {
+        "da": "Navn:",
+        "en": "Name:"
+      },
+      "labelPrivacy": {
+        "da": "Synlighed:",
+        "en": "Visibility:"
+      },
+      "permissionsComments": {
+        "da": "Tillad kommentarer",
+        "en": "Allow comments"
+      },
+      "permissionsAdd": {
+        "da": "Tillad at andre tilføjer bøger til listen",
+        "en": "Allow others to add books to the list"
       }
     },
 

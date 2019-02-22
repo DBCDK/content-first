@@ -1,0 +1,18 @@
+.Tabs__container-horizontal {
+  position: relative;
+}
+
+.Tabs__pagination {
+  position: absolute;
+  top: 0;
+}
+
+.Tabs__pagination-bullet {
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
+}
+
+.Tabs__pagination-bullet-active {
+  text-decoration: underline;
+}

@@ -156,6 +156,12 @@
   color: var(--petroleum);
 }
 
+.Button__quaternary--bgcolor-porcelain--color-petroleum,
+.Button__quaternary--bgcolor-porcelain--color-petroleum:hover {
+  background-color: var(--porcelain);
+  color: var(--petrolium);
+}
+
 /* Feedback button */
 .Button__feedback {
   background-color: var(--pistache);

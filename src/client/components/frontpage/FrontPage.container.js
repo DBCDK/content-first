@@ -8,9 +8,15 @@ import BeltFacade from '../belt/BeltFacade.component';
 import SpotsContainer from '../spots/Spots.container';
 import {HISTORY_REPLACE} from '../../redux/middleware';
 
+//#delete:
+import {OPEN_MODAL} from '../../redux/modal.reducer';
+
 class FrontPage extends React.Component {
   componentDidMount() {
     const hash = this.props.hash.replace('#', '');
+
+    //#delete:
+    this.props.openModal();
 
     if (hash) {
       setTimeout(() => {
@@ -71,7 +77,8 @@ const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch => ({
   history: (type, path, params = {}) => {
     dispatch({type, path, params});
-  }
+  },
+  openModal: () => dispatch({type: OPEN_MODAL, modal: 'list'})
 });
 
 export default connect(

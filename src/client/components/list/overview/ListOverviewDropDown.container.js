@@ -20,6 +20,9 @@ import Text from '../../base/Text';
 import T from '../../base/T/';
 import Link from '../../general/Link.component';
 import Spinner from '../../general/Spinner.component';
+
+import {OPEN_MODAL} from '../../../redux/modal.reducer';
+
 import './dropdownList.css';
 import toReadListIcon from '../../images/toReadListIcon.png';
 import readListIcon from '../../images/readListIcon.png';
@@ -223,7 +226,8 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({type: ON_USERLISTS_COLLAPSE});
   },
   onCreateNewList: () => {
-    dispatch({type: HISTORY_PUSH, path: '/lister/opret'});
+    //dispatch({type: HISTORY_PUSH, path: '/lister/opret'});
+    dispatch({type: OPEN_MODAL, modal: 'list'});
     dispatch({type: ON_USERLISTS_COLLAPSE});
   },
   onListsIconClick: (userListsexpanded, shortListExpanded) => {
