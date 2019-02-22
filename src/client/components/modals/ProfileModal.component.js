@@ -33,7 +33,7 @@ export class ProfileModal extends React.Component {
 
     const updateProfile = (e, obj) => {
       // submit
-      console.log("obj",obj)
+      console.log('obj', obj);
       e.preventDefault();
       this.props.saveUser(obj);
       this.props.onClose();
