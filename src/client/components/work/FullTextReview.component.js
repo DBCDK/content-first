@@ -13,8 +13,8 @@ export default class FullTextReview extends React.Component {
       return '';
     }
     const review = this.props.review;
-    const author = (this.props.book.creator && this.props.book.creator) || '';
-    const title = (this.props.book.title && this.props.book.title) || '';
+    const author = this.props.book.creator || '';
+    const title = this.props.book.title || '';
     const firstname = (review.reviewer && review.reviewer.firstname) || '';
     const surname = (review.reviewer && review.reviewer.surname) || '';
     const name = (firstname + ' ' + surname).trim(); // Trim the space away in case of missing first- or surname
@@ -39,7 +39,7 @@ export default class FullTextReview extends React.Component {
           return (
             <React.Fragment key={key}>
               <Title Tag="h6" type="title6" className="mb0">
-                {key}
+                {key === 'review' ? 'Vurdering' : key}
               </Title>
               {paragraphNumber++ === 0 ? (
                 <Title Tag="h5" type="title5" className="mb2">
@@ -51,6 +51,16 @@ export default class FullTextReview extends React.Component {
             </React.Fragment>
           );
         })}
+        {review.note ? (
+          <React.Fragment>
+            <Title Tag="h6" type="title6" className="mb0">
+              Note
+            </Title>
+            <Text type="body">{review.note}</Text>
+          </React.Fragment>
+        ) : (
+          ''
+        )}
         <Text type="body" className="mb0">
           Lektørudtalelse
         </Text>
