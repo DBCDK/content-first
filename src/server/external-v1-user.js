@@ -34,7 +34,7 @@ router
             ...userData,
             openplatformToken: req.user.openplatformToken,
             over13: req.user.special.over13,
-            name: req.user.special.name
+            tempname: req.user.special.name
           },
           links: {self: location}
         });

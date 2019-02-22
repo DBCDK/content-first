@@ -33,6 +33,7 @@ export class ProfileModal extends React.Component {
 
     const updateProfile = (e, obj) => {
       // submit
+      console.log("obj",obj)
       e.preventDefault();
       this.props.saveUser(obj);
       this.props.onClose();
@@ -318,7 +319,7 @@ export const mapStateToProps = state => ({
   acceptedAge: state.userReducer.acceptedAge,
   token: state.userReducer.openplatformToken,
   id: state.userReducer.openplatformId,
-  username: state.userReducer.name,
+  username: state.userReducer.tempname,
   imageError: state.userReducer.imageError,
   imageIsLoading: state.userReducer.profileImageIsLoading,
   profileImageId: state.userReducer.tempImageId || state.userReducer.image,

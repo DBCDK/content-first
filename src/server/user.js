@@ -66,7 +66,7 @@ async function createCookie(legacyId, uniqueId, openplatformToken, user) {
     logger.log.info(`Creating user with uniqueId=${uniqueId}`);
     await putUserData(
       {
-        name: user.name,
+        name: '',
         roles: [],
         openplatformId: uniqueId,
         shortlist: [],
