@@ -3,11 +3,11 @@ import Spinner from './Spinner.component';
 import HoverButton from './HoverButton.component';
 
 const UploadButton = ({
-                        fieldName,
-                        readFiles,
-                        baseImage,
-                        thumbnailImageHover
-                      }) => {
+  fieldName,
+  readFiles,
+  baseImage,
+  thumbnailImageHover
+}) => {
   return (
     <label>
       {baseImage && (
@@ -35,17 +35,21 @@ const Error = ({error, name}) => {
   }
   if (error.status === 413) {
     if (name) {
-      retText = name.toUpperCase() + ' er for stor. Billedet må maks fylde 10mb';
+      retText =
+        name.toUpperCase() + ' er for stor. Billedet må maks fylde 10mb';
     }
   }
   if (error.status === 400) {
     if (name) {
-      retText = name.toUpperCase() + ' er ikke et gyldigt billede. Upload en gyldig png eller jpg.';
+      retText =
+        name.toUpperCase() +
+        ' er ikke et gyldigt billede. Upload en gyldig png eller jpg.';
     }
   }
   if (!error.status || error.status === 500) {
     if (name) {
-      retText = 'Der er sket en fejl. ' + name.toUpperCase() + ' kan ikke uploades.';
+      retText =
+        'Der er sket en fejl. ' + name.toUpperCase() + ' kan ikke uploades.';
     }
   }
   return retText;
@@ -74,11 +78,17 @@ export default class ProfileUploadImage extends React.Component {
     if (prevProps.loading !== this.props.loading) {
       this.setState({
         basePictureDefault:
-          !this.props.tempPersonalImage && !this.props.personalImage ? true : false,
+          !this.props.tempPersonalImage && !this.props.personalImage
+            ? true
+            : false,
         tempPictureLoaded:
-          this.props.tempPersonalImage && this.props.personalImage ? true : false,
+          this.props.tempPersonalImage && this.props.personalImage
+            ? true
+            : false,
         savedPictureLoaded:
-          !this.props.tempPersonalImage && this.props.personalImage ? true : false
+          !this.props.tempPersonalImage && this.props.personalImage
+            ? true
+            : false
       });
     }
   }
@@ -86,7 +96,9 @@ export default class ProfileUploadImage extends React.Component {
   componentDidMount() {
     this.setState({
       basePictureDefault:
-        !this.props.tempPersonalImage && !this.props.personalImage ? true : false,
+        !this.props.tempPersonalImage && !this.props.personalImage
+          ? true
+          : false,
       tempPictureLoaded:
         this.props.tempPersonalImage && this.props.personalImage ? true : false,
       savedPictureLoaded:
@@ -125,7 +137,7 @@ export default class ProfileUploadImage extends React.Component {
               }}
             >
               {(this.props.loading && (
-                <Spinner className='profile__spinner' />
+                <Spinner className="profile__spinner" />
               )) || (
                 <div>
                   <UploadButton
@@ -138,7 +150,7 @@ export default class ProfileUploadImage extends React.Component {
               )}
             </div>
             <div style={{clear: 'both'}} />
-            <div className='profile__image-errors'>
+            <div className="profile__image-errors">
               <Error error={this.props.error} name={this.state.imageName} />
             </div>
           </div>

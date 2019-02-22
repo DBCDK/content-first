@@ -10,7 +10,6 @@ import {
   SAVE_USER_PROFILE
 } from '../../redux/user.reducer';
 
-
 import ProfileUpdateUser from '../profile/ProfileUpdateUser.component';
 
 export class ProfileModal extends React.Component {
@@ -113,7 +112,7 @@ export class ProfileModal extends React.Component {
       };
       return (
         <div className={'profile__modal-window'}>
-          <div className='profile__accept-window'>
+          <div className="profile__accept-window">
             <div className="profile__accept-margins">
               <div className="profile__accept-title1">
                 FØRSTE GANG DU BRUGER LÆSEKOMPASSET …
@@ -170,14 +169,14 @@ export class ProfileModal extends React.Component {
                         <div className="profile__accept-inputNameTitle">
                           Brugernavn
                         </div>
-                        <div
-                          className="input-group mb2 has-feedback"
-                        >
+                        <div className="input-group mb2 has-feedback">
                           <ProfileInput
                             username={this.state.username}
                             onInputChange={onHandleChange}
                           />
-                          <div className={"profile__name-info" + getInfoClass()}>
+                          <div
+                            className={'profile__name-info' + getInfoClass()}
+                          >
                             Min. 4 tegn
                           </div>
                         </div>
@@ -194,18 +193,10 @@ export class ProfileModal extends React.Component {
 
                     <div className="profile__accept-boxText">
                       <ul>
-                        <li>
-                          når vi taler til dig her på siden
-                        </li>
-                        <li>
-                          når du deler dine lister
-                        </li>
-                        <li>
-                          når du kommeterer på andres lister
-                        </li>
-                        <li>
-                          give dig mere personaliseret indhold
-                        </li>
+                        <li>når vi taler til dig her på siden</li>
+                        <li>når du deler dine lister</li>
+                        <li>når du kommeterer på andres lister</li>
+                        <li>give dig mere personaliseret indhold</li>
                       </ul>
                     </div>
                   </div>
@@ -223,7 +214,6 @@ export class ProfileModal extends React.Component {
                   editMode={this.props.editMode}
                   deactivate={this.state.showNameInfo}
                 />
-
               </div>
             </div>
           </div>
@@ -232,8 +222,7 @@ export class ProfileModal extends React.Component {
     };
     const showRulesWindow = () => {
       return (
-
-        <div className='profile__modal-window profile__rules-window'>
+        <div className="profile__modal-window profile__rules-window">
           <div className="profile__rules-margin">
             <div className="profile__rules-backbtn">
               <a onClick={onBackButton}>{'<  Tilbage'}</a>
@@ -272,9 +261,7 @@ export class ProfileModal extends React.Component {
                 løsningen udvikler sig over tid.
               </div>
 
-              <div className="profile__rules-title2">
-                Hvem står bag?
-              </div>
+              <div className="profile__rules-title2">Hvem står bag?</div>
               <div className="profile__rules-content">
                 Læsekompas.dk er skabt og drives af de danske folkebiblioteker i
                 samarbejde med DBC.
@@ -286,9 +273,7 @@ export class ProfileModal extends React.Component {
                 </div>
               </div>
 
-              <div className="profile__rules-title2">
-                Brugergeneret indhold
-              </div>
+              <div className="profile__rules-title2">Brugergeneret indhold</div>
               <div className="profile__rules-content">
                 Følgende regler gælder for indlæg og indhold, som du og andre
                 brugere selv lægger på læsekompas.dk. Du er ansvarlig for, at
@@ -320,8 +305,8 @@ export class ProfileModal extends React.Component {
     return (
       <div className="profile__modal-container">
         {this.state.page === 'accept' &&
-        this.props.over13 &&
-        showAcceptWindow(this.state.username)}
+          this.props.over13 &&
+          showAcceptWindow(this.state.username)}
         {this.state.page === 'rules' && this.props.over13 && showRulesWindow()}
         {!this.props.over13 && showAgeLimitWindow()}
       </div>

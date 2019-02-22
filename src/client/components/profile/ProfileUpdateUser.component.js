@@ -45,7 +45,6 @@ export default class ProfileUpdateUser extends React.Component {
   }
 
   render() {
-
     const checkActive = () => {
       if (this.props.deactivate) {
         return {
@@ -61,11 +60,11 @@ export default class ProfileUpdateUser extends React.Component {
 
     return (
       <div style={{display: 'flex'}}>
-        <div className='profile__accept-buttonbuffer'>
+        <div className="profile__accept-buttonbuffer">
           {this.renderErrors()}
         </div>
         <button
-          className={"btn Button profile__accept-button"}
+          className={'btn Button profile__accept-button'}
           style={checkActive()}
           onClick={this.onSubmit}
           disabled={this.props.deactivate}
@@ -75,7 +74,7 @@ export default class ProfileUpdateUser extends React.Component {
           {(this.props.isSaving && (
             <Spinner size={12} color="white" style={{marginLeft: '10px'}} />
           )) ||
-          ''}
+            ''}
         </button>
       </div>
     );
