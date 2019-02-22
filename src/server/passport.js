@@ -18,7 +18,7 @@ const profileStrategy = new Strategy(
     callbackURL: config.server.dmzHost + '/v1/auth/callback'
   },
 
-  async function(token, tokenSecret, profile, done) {
+  async function (token, tokenSecret, profile, done) {
     let uniqueId;
     let legacyId;
     let special = {over13: false, name: ''};
@@ -49,8 +49,8 @@ const profileStrategy = new Strategy(
           .get(config.login.url + '/userinfo')
           .set('Authorization', 'Bearer ' + token);
 
-        special.over13 = over13(userInfo.body.attributes.cpr);
-        //  special.over13 = over13('1224061212');
+         special.over13 = over13(userInfo.body.attributes.cpr);
+        // special.over13 = over13('1224061212');
 
         uniqueId = get(userInfo, 'body.attributes.uniqueId');
         if (!uniqueId) {
@@ -92,7 +92,7 @@ const profileStrategy = new Strategy(
 
 passport.use('profile', profileStrategy);
 
-passport.serializeUser(async function(user, done) {
+passport.serializeUser(async function (user, done) {
   try {
     const cookie = await createCookie(
       user.legacyId,
@@ -110,7 +110,7 @@ passport.serializeUser(async function(user, done) {
   }
 });
 
-passport.deserializeUser(async function(cookie, done) {
+passport.deserializeUser(async function (cookie, done) {
   try {
     const user = await fetchCookie(cookie);
     done(null, user);

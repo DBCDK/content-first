@@ -10,7 +10,7 @@ import {
   SAVE_USER_PROFILE
 } from '../../redux/user.reducer';
 
-import Spinner from '../general/Spinner.component';
+
 import ProfileUpdateUser from '../profile/ProfileUpdateUser.component';
 
 export class ProfileModal extends React.Component {
@@ -33,7 +33,7 @@ export class ProfileModal extends React.Component {
     };
 
     const updateProfile = (e, obj) => {
-      //submit
+      // submit
       e.preventDefault();
       this.props.saveUser(obj);
       this.props.onClose();
@@ -54,55 +54,14 @@ export class ProfileModal extends React.Component {
 
     const showAgeLimitWindow = () => {
       return (
-        <div
-          className={
-            'profile-rules-modal  modal-window profile__ageLimit-window'
-          }
-          style={{
-            font: 'var(--primary-font)',
-            borderRadius: '4px',
-            color: 'var(--petroleum)',
-            width: '692px',
-            height: '416px',
-            paddingTop: '40px',
-            paddingBottom: '5px',
-            display: 'flex'
-          }}
-        >
-          <div
-            className="profile__modal-margins"
-            style={{
-              marginLeft: '80px',
-              marginRight: '80px'
-            }}
-          >
-            <div
-              className="profile__ageLimit-scroll"
-              style={{
-                height: '92%',
-                overflowY: 'scroll'
-              }}
-            >
-              <div
-                className="profile__rules-title1"
-                style={{
-                  width: '530px',
-                  fontSize: '21px',
-                  fontWeight: '700'
-                }}
-              >
-                DU HAR IKKE TILLADELSE TIL AT OPRETTE EN PROFIL PÅ MIN NÆSTE BOG
+        <div className="modal-window profile__ageLimit-window">
+          <div className="profile__accept-margins">
+            <div className="profile__ageLimit-scroll">
+              <div className="profile__ageLimit-title1">
+                DU HAR IKKE TILLADELSE TIL AT OPRETTE EN PROFIL PÅ LÆSEKOMPASSET
               </div>
 
-              <div
-                className="profile__rules-content"
-                style={{
-                  fontSize: '14px',
-                  width: '507px',
-                  fontWeight: '400',
-                  paddingTop: '28px'
-                }}
-              >
+              <div className="profile__ageLimit-content">
                 Vi har fået information om, at du er under 13 år, og derfor ikke
                 har tilladelse til at oprette en profil. Du kan stadig bruge Min
                 næste bog, til at finde skønlitteratur, men det er desværre ikke
@@ -111,11 +70,7 @@ export class ProfileModal extends React.Component {
                 <a
                   href="https://www.bibliotek.dk"
                   target="_blank"
-                  className="profile__rule-link"
-                  style={{
-                    color: 'var(--petroleum)',
-                    textDecoration: 'underline'
-                  }}
+                  className="profile__ageLimit-link"
                 >
                   {' '}
                   bibliotek.dk.
@@ -127,38 +82,19 @@ export class ProfileModal extends React.Component {
                 <a
                   href="https://kundeservice.dbc.dk/"
                   target="_blank"
-                  className="profile__rule-link"
-                  style={{
-                    color: 'var(--petroleum)',
-                    textDecoration: 'underline'
-                  }}
+                  className="profile__ageLimit-link"
                 >
                   {' '}
                   DBCs kundeservice.{' '}
                 </a>
               </div>
-              <div
-                className="profile__line"
-                style={{
-                  width: '526px',
-                  borderBottom: 'solid #979797',
-                  borderWidth: 'thin',
-                  marginTop: '24px',
-                  marginBottom: '12px'
-                }}
-              />
+              <div className="profile__line" />
               <div style={{textAlign: 'right'}}>
                 <button
-                  className="mr1 mt1 btn Button Button__medium profile__btn-active"
+                  className="btn Button profile__accept-button"
                   onClick={closeWindowAndLogout}
-                  style={{
-                    paddingTop: '7px',
-                    height: '34px',
-                    color: 'var(--petroleum)',
-                    backgroundColor: 'var(--korn)',
-                    textTransform: 'Uppercase'
-                  }}
                   data-cy="user-form-submit"
+                  style={{backgroundColor: 'var(--korn)'}}
                 >
                   Log Ud
                 </button>
@@ -169,72 +105,24 @@ export class ProfileModal extends React.Component {
       );
     };
     const showAcceptWindow = () => {
-      /**/
       const getInfoClass = () => {
-        if (this.state.showNameInfo) {
-          return 'profile__info-active';
-        } else {
-          return 'profile__info-disabled';
+        if (!this.state.showNameInfo) {
+          return '-disabled';
         }
+        return '';
       };
-      let infoStyle = {display: 'none'};
-      if (this.state.showNameInfo) {
-        infoStyle = {
-          width: '200px',
-          height: '24px',
-          marginLeft: '7px',
-          marginTop: '-28px',
-          fontSize: '10px',
-          fontWeight: '400',
-          color: '#495057'
-        };
-      }
       return (
-        <div className={'profile-modal modal-window profile__accept-window'}>
-          <div
-            style={{
-              font: 'var(--primary-font)',
-              borderRadius: '4px',
-              color: 'var(--petroleum)',
-              width: '692px',
-              height: '416',
-              paddingTop: '40px',
-              paddingBottom: '34px'
-            }}
-          >
-            <div
-              className="profile__modal-margins"
-              style={{
-                marginLeft: '80px',
-                marginRight: '80px'
-              }}
-            >
-              <div
-                className="profile__accept-title1"
-                style={{
-                  fontSize: '21px',
-                  width: '529px',
-                  textTransform: 'uppercase',
-                  fontWeight: '700'
-                }}
-              >
-                FØRSTE GANG DU BRUGER MIN NÆSTE BOG …
+        <div className={'profile__modal-window'}>
+          <div className='profile__accept-window'>
+            <div className="profile__accept-margins">
+              <div className="profile__accept-title1">
+                FØRSTE GANG DU BRUGER LÆSEKOMPASSET …
               </div>
 
               <div>
-                <div
-                  className="profile__accept-title2"
-                  style={{
-                    textAlign: 'center',
-                    marginTop: '33px',
-                    fontSize: '14px',
-                    width: '507px',
-                    fontWeight: '400'
-                  }}
-                >
+                <div className="profile__accept-title2">
                   … skal du acceptere
                   <a
-                    className="profile__accept-link"
                     style={{cursor: 'pointer', color: 'var(--malibu)'}}
                     onClick={onShowRules}
                   >
@@ -245,26 +133,8 @@ export class ProfileModal extends React.Component {
                   personaliseret.
                 </div>
 
-                <div
-                  className="profile__accept-inputZone"
-                  style={{
-                    width: '100%',
-                    display: 'inline-flex',
-                    fontSize: '12px',
-                    textAlign: 'left',
-                    marginTop: '28px',
-                    marginBottom: '8px'
-                  }}
-                >
-                  <div
-                    className="profile__accept-nameAndImg"
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: '700',
-                      width: '265px',
-                      marginRight: '8px'
-                    }}
-                  >
+                <div className="profile__accept-inputZone">
+                  <div className="profile__accept-nameAndImg">
                     Hvad skal vi kalde dig?
                     <p />
                     <div style={{display: 'inline-flex'}}>
@@ -296,27 +166,18 @@ export class ProfileModal extends React.Component {
                         }
                       />
 
-                      <div className="profile__accept-inputNameTitle">
-                        <div
-                          style={{
-                            fontSize: '14px',
-                            fontWeight: '400'
-                          }}
-                        >
+                      <div>
+                        <div className="profile__accept-inputNameTitle">
                           Brugernavn
                         </div>
                         <div
                           className="input-group mb2 has-feedback"
-                          style={{width: '205px'}}
                         >
                           <ProfileInput
                             username={this.state.username}
                             onInputChange={onHandleChange}
                           />
-                          <div
-                            className={'profile__name-info ' + getInfoClass()}
-                            style={infoStyle}
-                          >
+                          <div className={"profile__name-info" + getInfoClass()}>
                             Min. 4 tegn
                           </div>
                         </div>
@@ -324,60 +185,25 @@ export class ProfileModal extends React.Component {
                     </div>
                   </div>
 
-                  <div
-                    className="profile__accept-box"
-                    style={{
-                      marginTop: '55px',
-                      width: '0',
-                      height: '0',
-                      borderTop: '20px solid transparent',
-                      borderRight: '16px solid var(--concrete)',
-                      borderBottom: '20px solid transparent'
-                    }}
-                  />
+                  <div className="profile__accept-boxTriangle" />
 
-                  <div
-                    className="profile__accept-boxTriangle"
-                    style={{
-                      minWidth: '220px',
-                      borderRadius: '4px',
-                      backgroundColor: 'var(--concrete)',
-                      paddingLeft: '15px',
-                      paddingTop: '10px',
-                      paddingRight: '15px',
-                      height: '117px'
-                    }}
-                  >
-                    <div
-                      className="profile__accept-boxTitle"
-                      style={{
-                        fontSize: '10px',
-                        fontWeight: '700',
-                        width: '200px'
-                      }}
-                    >
+                  <div className="profile__accept-box">
+                    <div className="profile__accept-boxTitle">
                       Hvad skal vi bruge det til?
                     </div>
 
-                    <div
-                      className="profile__accept-boxText"
-                      style={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        marginLeft: '-26px'
-                      }}
-                    >
+                    <div className="profile__accept-boxText">
                       <ul>
-                        <li style={{margin: '5px 0'}}>
+                        <li>
                           når vi taler til dig her på siden
                         </li>
-                        <li style={{margin: '5px 0'}}>
+                        <li>
                           når du deler dine lister
                         </li>
-                        <li style={{margin: '5px 0'}}>
+                        <li>
                           når du kommeterer på andres lister
                         </li>
-                        <li style={{margin: '5px 0'}}>
+                        <li>
                           give dig mere personaliseret indhold
                         </li>
                       </ul>
@@ -385,26 +211,19 @@ export class ProfileModal extends React.Component {
                   </div>
                 </div>
 
-                <div
-                  className="profile__accept-line"
-                  style={{
-                    textAlign: 'right',
-                    borderTop: '1px solid #979797',
-                    paddingTop: '15px'
-                  }}
-                >
-                  <ProfileUpdateUser
-                    imageId={this.props.profileImageId}
-                    name={this.state.username}
-                    acceptedAge={this.props.over13}
-                    acceptedTerms={this.props.acceptedTerms}
-                    updateProfile={updateProfile}
-                    error={this.props.error}
-                    isSaving={this.props.isSaving}
-                    editMode={this.props.editMode}
-                    deactivate={this.state.showNameInfo}
-                  />
-                </div>
+                <div className="profile__accept-line" />
+                <ProfileUpdateUser
+                  imageId={this.props.profileImageId}
+                  name={this.state.username}
+                  acceptedAge={this.props.over13}
+                  acceptedTerms={this.props.acceptedTerms}
+                  updateProfile={updateProfile}
+                  error={this.props.error}
+                  isSaving={this.props.isSaving}
+                  editMode={this.props.editMode}
+                  deactivate={this.state.showNameInfo}
+                />
+
               </div>
             </div>
           </div>
@@ -413,86 +232,21 @@ export class ProfileModal extends React.Component {
     };
     const showRulesWindow = () => {
       return (
-        <div
-          className={'profile-rules-modal  modal-window profile__rules-window'}
-          style={{
-            font: 'var(--primary-font)',
-            borderRadius: '4px',
-            color: 'var(--petroleum)',
-            width: '680px',
-            height: '85%',
-            paddingTop: '10px',
-            paddingBottom: '5px',
-            display: 'flex'
-          }}
-        >
-          <div
-            className="profile__rules-margin"
-            style={{
-              marginLeft: '40px',
-              marginRight: '40px'
-            }}
-          >
-            <div
-              className="profile__rules-backbtn"
-              style={{
-                fontSize: '14px',
-                height: '30px',
-                fontWeight: '600',
-                marginLeft: '-12px',
-                cursor: 'pointer'
-              }}
-            >
+
+        <div className='profile__modal-window profile__rules-window'>
+          <div className="profile__rules-margin">
+            <div className="profile__rules-backbtn">
               <a onClick={onBackButton}>{'<  Tilbage'}</a>
             </div>
-
-            <div
-              className="profile__rules-line"
-              style={{
-                width: '680px',
-                marginLeft: '-40px',
-                border: 'solid 1px var(--silver-chalice)'
-              }}
-            />
-            <div
-              className="profile__rules-scroll"
-              style={{
-                height: '92%',
-                overflowY: 'scroll'
-              }}
-            >
-              <div
-                className="profile__rules-title1"
-                style={{
-                  width: '600px',
-                  fontSize: '24px',
-                  fontWeight: '700',
-                  paddingTop: '13px'
-                }}
-              >
+            <div className="profile__rules-line" />
+            <div className="profile__rules-scroll">
+              <div className="profile__rules-title1">
                 REGLER FOR ANVENDELSE AF LÆSEKOMPASSET
               </div>
-              <div
-                className="profile__rules-title2"
-                style={{
-                  width: '600px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  paddingTop: '17px'
-                }}
-              >
+              <div className="profile__rules-title2">
                 Læsekompas.dk er dit inspirationsværktøj til at finde ny læsning
               </div>
-              <div
-                className="profile__rules-content"
-                style={{
-                  fontSize: '14px',
-                  width: '600px',
-                  fontWeight: '400',
-                  paddingTop: '6px',
-                  paddingBottom: '16px'
-                }}
-              >
+              <div className="profile__rules-content">
                 Læsekompas.dk er bibliotekernes inspirationsværktøj til voksne
                 læsere af skønlitteratur. Alle kan anvende Læsekompasset, men
                 det kræver biblioteks-login, hvis du vil bestille bøger direkte
@@ -508,54 +262,20 @@ export class ProfileModal extends React.Component {
                 for at oprette sig som bruger.
               </div>
 
-              <div
-                className="profile__rules-title2"
-                style={{
-                  width: '600px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  paddingTop: '17px'
-                }}
-              >
+              <div className="profile__rules-title2">
                 Beta-version af læsekompas.dk
               </div>
-              <div
-                className="profile__rules-content"
-                style={{
-                  fontSize: '14px',
-                  width: '600px',
-                  fontWeight: '400',
-                  paddingTop: '6px',
-                  paddingBottom: '16px'
-                }}
-              >
+              <div className="profile__rules-content">
                 Læsekompas.dk er lanceret som en beta-version. Dette betyder, at
                 vi fortsat tester og justerer. Den version af læsekompas.dk, du
                 oplever er ikke helt færdigudviklet og du vil derfor opleve at
                 løsningen udvikler sig over tid.
               </div>
 
-              <div
-                className="profile__rules-title2"
-                style={{
-                  width: '600px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  paddingTop: '17px'
-                }}
-              >
+              <div className="profile__rules-title2">
                 Hvem står bag?
               </div>
-              <div
-                className="profile__rules-content"
-                style={{
-                  fontSize: '14px',
-                  width: '600px',
-                  fontWeight: '400',
-                  paddingTop: '6px',
-                  paddingBottom: '16px'
-                }}
-              >
+              <div className="profile__rules-content">
                 Læsekompas.dk er skabt og drives af de danske folkebiblioteker i
                 samarbejde med DBC.
                 <div style={{display: 'block', marginTop: '12px'}}>
@@ -566,27 +286,10 @@ export class ProfileModal extends React.Component {
                 </div>
               </div>
 
-              <div
-                className="profile__rules-title2"
-                style={{
-                  width: '600px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  paddingTop: '17px'
-                }}
-              >
+              <div className="profile__rules-title2">
                 Brugergeneret indhold
               </div>
-              <div
-                className="profile__rules-content"
-                style={{
-                  fontSize: '14px',
-                  width: '600px',
-                  fontWeight: '400',
-                  paddingTop: '6px',
-                  paddingBottom: '16px'
-                }}
-              >
+              <div className="profile__rules-content">
                 Følgende regler gælder for indlæg og indhold, som du og andre
                 brugere selv lægger på læsekompas.dk. Du er ansvarlig for, at
                 dine indlæg er i overensstemmelse med den til enhver tid
@@ -615,14 +318,12 @@ export class ProfileModal extends React.Component {
     };
 
     return (
-      <div className="modal-container">
+      <div className="profile__modal-container">
         {this.state.page === 'accept' &&
-          this.props.over13 &&
-          showAcceptWindow(this.state.username)}
+        this.props.over13 &&
+        showAcceptWindow(this.state.username)}
         {this.state.page === 'rules' && this.props.over13 && showRulesWindow()}
-        {!this.props.over13 &&
-          !this.state.page === 'accept' &&
-          showAgeLimitWindow()}
+        {!this.props.over13 && showAgeLimitWindow()}
       </div>
     );
   }

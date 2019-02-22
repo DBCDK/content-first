@@ -13,7 +13,8 @@ export class ProfileInput extends React.Component {
     return (
       <div>
         <input
-          className="form-control mb3 has-feedback"
+          className="form-control mb3 has-feedback profile__mobileinputfield"
+          style={{width: '205px', height: '40px', borderRadius: '0px'}}
           type="text"
           name="name"
           placeholder="Skriv brugernavn"

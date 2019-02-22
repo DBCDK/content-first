@@ -3,16 +3,10 @@ import Spinner from '../general/Spinner.component';
 
 export default class ProfileUpdateUser extends React.Component {
   onSubmit = e => {
-    // Check if usernameis more than 4 characters
+    // Check if username is more than 4 characters
     if (this.state.name.length < 4) {
       return this.setState({
         validationError: 'Dit brugernavn skal være minimum 4 karakterer langt'
-      });
-    }
-    // Check if user accepted age (above 13)
-    if (!this.state.acceptedAge) {
-      return this.setState({
-        validationError: 'Du skal være over 13 år for at oprette en profil'
       });
     }
 
@@ -51,44 +45,29 @@ export default class ProfileUpdateUser extends React.Component {
   }
 
   render() {
-    let btnStyle = {};
-    if (this.props.deactivate) {
-      btnStyle = {
-        paddingTop: '7px',
-        height: '34px',
-        color: 'var(--silver-chalice)',
-        backgroundColor: 'var(--alto)',
-        textTransform: 'Uppercase'
-      };
-    } else {
-      btnStyle = {
-        paddingTop: '7px',
-        height: '34px',
+
+    const checkActive = () => {
+      if (this.props.deactivate) {
+        return {
+          color: 'var(--silver-chalice)',
+          backgroundColor: 'var(--alto)'
+        };
+      }
+      return {
         color: 'var(--petroleum)',
-        backgroundColor: 'var(--korn)',
-        textTransform: 'Uppercase'
+        backgroundColor: 'var(--korn)'
       };
-    }
+    };
 
     return (
       <div style={{display: 'flex'}}>
-        {/*<p className="mb6">Du er logget på via {this.props.library}</p>*/}
-
-        <div
-          style={{
-            textAlign: 'left',
-            width: '282px',
-            marginRight: '10px',
-            marginTop: '15px',
-            fontSize: '12px'
-          }}
-        >
+        <div className='profile__accept-buttonbuffer'>
           {this.renderErrors()}
         </div>
         <button
-          className="mr1 mt1 btn Button Button__medium"
+          className={"btn Button profile__accept-button"}
+          style={checkActive()}
           onClick={this.onSubmit}
-          style={btnStyle}
           disabled={this.props.deactivate}
           data-cy="user-form-submit"
         >
@@ -96,7 +75,7 @@ export default class ProfileUpdateUser extends React.Component {
           {(this.props.isSaving && (
             <Spinner size={12} color="white" style={{marginLeft: '10px'}} />
           )) ||
-            ''}
+          ''}
         </button>
       </div>
     );
