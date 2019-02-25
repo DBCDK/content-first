@@ -2,37 +2,72 @@ import React from 'react';
 import TagsSuggester from './TagsSuggester.component';
 import Icon from '../base/Icon';
 import Button from '../base/Button';
+import withTagsFromUrl from '../base/AdressBar/withTagsFromUrl.hoc';
+import withWork from '../base/Work/withWork.hoc';
 
-const SelectedFilter = props => {
-  let title = props.filter.title || props.filter;
-  let id = props.filter;
+const SelectedWork = withWork(({selected, work, onRemove}) => (
+  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+    <span>{work && work.book.title}</span>
+    <Icon
+      className="md-small"
+      name="close"
+      onClick={() => onRemove(selected.match)}
+    />
+  </Button>
+));
 
-  if (props.filter instanceof Array) {
-    /* Capitalize first letter for each in range */
-    const first = props.filter[0].title.replace(/^\w/, c => c.toUpperCase());
-    const last = props.filter[1].title.replace(/^\w/, c => c.toUpperCase());
-
-    title = first === last ? first : first + ' - ' + last;
-    id = [props.filter[0].id, props.filter[1].id];
-  }
-
-  if (typeof props.filter === 'string' || props.filter instanceof String) {
-    id = {text: props.filter, parents: ['', 'Forfatter']};
-  }
-
-  return (
-    <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
-      <span>{title}</span>
-      <Icon
-        className="md-small"
-        name="close"
-        onClick={() => props.onDisableFilter(id)}
-      />
-    </Button>
-  );
-};
+//TODO create withTag, because we might fetch tag from id async in the near future?
+const SelectedTag = ({selected, onRemove}) => (
+  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+    <span>{selected.title}</span>
+    <Icon
+      className="md-small"
+      name="close"
+      onClick={() => onRemove(selected.match)}
+    />
+  </Button>
+);
+const SelectedQuery = ({selected, onRemove}) => (
+  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+    <span>{selected.query}</span>
+    <Icon
+      className="md-small"
+      name="close"
+      onClick={() => onRemove(selected.match)}
+    />
+  </Button>
+);
 
 class SelectedFilters extends React.Component {
+  renderSelected = selected => {
+    switch (selected.type) {
+      case 'TAG':
+        return (
+          <SelectedTag
+            selected={selected}
+            onRemove={this.props.toggleSelected}
+          />
+        );
+      case 'TITLE':
+        return (
+          <SelectedWork
+            pid={selected.pid}
+            selected={selected}
+            onRemove={this.props.toggleSelected}
+          />
+        );
+      case 'QUERY':
+        return (
+          <SelectedQuery
+            selected={selected}
+            onRemove={this.props.toggleSelected}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -54,19 +89,11 @@ class SelectedFilters extends React.Component {
             }
           />
           <div id="selectedFilters" className="selected-filters">
-            {this.props.selectedFilters.map((filter, idx) => {
-              return (
-                <SelectedFilter
-                  key={idx}
-                  filter={filter}
-                  onDisableFilter={this.props.onFilterToggle}
-                />
-              );
-            })}
+            {this.props.tags.map((filter, idx) => this.renderSelected(filter))}
           </div>
         </div>
       </React.Fragment>
     );
   }
 }
-export default SelectedFilters;
+export default withTagsFromUrl(SelectedFilters);

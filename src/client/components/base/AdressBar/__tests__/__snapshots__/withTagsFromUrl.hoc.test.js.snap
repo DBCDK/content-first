@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withTagsFromUrl.hoc appends a tag when it is not already selected 1`] = `
+Array [
+  "Peter Hansen",
+  "870970-basis:123456",
+  "5643",
+  "Hest",
+]
+`;
+
+exports[`withTagsFromUrl.hoc expands a pid as a TITLE 1`] = `
+Array [
+  Object {
+    "match": "870970-basis:123456",
+    "pid": "870970-basis:123456",
+    "type": "TITLE",
+  },
+]
+`;
+
+exports[`withTagsFromUrl.hoc expands a tag as a TAG 1`] = `
+Array [
+  Object {
+    "id": 5643,
+    "match": "5643",
+    "parents": Array [
+      "Univers",
+      "stemning",
+      "humoristisk",
+    ],
+    "score": 0,
+    "title": "grotesk",
+    "type": "TAG",
+  },
+]
+`;
+
+exports[`withTagsFromUrl.hoc expands an author as a QUERY 1`] = `
+Array [
+  Object {
+    "match": "Peter Hansen",
+    "query": "Peter Hansen",
+    "type": "QUERY",
+  },
+]
+`;
+
+exports[`withTagsFromUrl.hoc expands multiple tags 1`] = `
+Array [
+  Object {
+    "match": "test1",
+    "query": "test1",
+    "type": "QUERY",
+  },
+  Object {
+    "match": "test2",
+    "query": "test2",
+    "type": "QUERY",
+  },
+]
+`;
+
+exports[`withTagsFromUrl.hoc expands multiple tags of different kinds 1`] = `
+Array [
+  Object {
+    "match": "Peter Hansen",
+    "query": "Peter Hansen",
+    "type": "QUERY",
+  },
+  Object {
+    "match": "870970-basis:123456",
+    "pid": "870970-basis:123456",
+    "type": "TITLE",
+  },
+  Object {
+    "id": 5643,
+    "match": "5643",
+    "parents": Array [
+      "Univers",
+      "stemning",
+      "humoristisk",
+    ],
+    "score": 0,
+    "title": "grotesk",
+    "type": "TAG",
+  },
+]
+`;
+
+exports[`withTagsFromUrl.hoc expands single tag 1`] = `
+Array [
+  Object {
+    "match": "test",
+    "query": "test",
+    "type": "QUERY",
+  },
+]
+`;
+
+exports[`withTagsFromUrl.hoc removes the tag when it is already selected 1`] = `
+Array [
+  "Peter Hansen",
+  "5643",
+]
+`;
