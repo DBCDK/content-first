@@ -52,28 +52,6 @@ exports[`UserProfileForm render function It adds validation error for age 1`] = 
     </p>
     <label
       className="checkbox"
-      data-cy="user-form-acceptedAge"
-      htmlFor="acceptedAge"
-    >
-      <input
-        checked={false}
-        className="checkbox"
-        id="acceptedAge"
-        name="acceptedAge"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span />
-       
-      <T
-        component="profile"
-        name="ageCheckboxText"
-      >
-        Jeg er over 13 år
-      </T>
-    </label>
-    <label
-      className="checkbox"
       data-cy="user-form-acceptedTerms"
       htmlFor="acceptedTerms"
     >
@@ -290,28 +268,6 @@ exports[`UserProfileForm render function It adds validation error for terms 1`] 
     </p>
     <label
       className="checkbox"
-      data-cy="user-form-acceptedAge"
-      htmlFor="acceptedAge"
-    >
-      <input
-        checked={false}
-        className="checkbox"
-        id="acceptedAge"
-        name="acceptedAge"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span />
-       
-      <T
-        component="profile"
-        name="ageCheckboxText"
-      >
-        Jeg er over 13 år
-      </T>
-    </label>
-    <label
-      className="checkbox"
       data-cy="user-form-acceptedTerms"
       htmlFor="acceptedTerms"
     >
@@ -419,28 +375,6 @@ exports[`UserProfileForm render function It adds validation error for terms 2`] 
       </T>
        
     </p>
-    <label
-      className="checkbox"
-      data-cy="user-form-acceptedAge"
-      htmlFor="acceptedAge"
-    >
-      <input
-        checked={false}
-        className="checkbox"
-        id="acceptedAge"
-        name="acceptedAge"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <span />
-       
-      <T
-        component="profile"
-        name="ageCheckboxText"
-      >
-        Jeg er over 13 år
-      </T>
-    </label>
     <div
       className="error mb2"
     >
@@ -510,24 +444,6 @@ exports[`UserProfileForm render function renders an user profile form 1`] = `
     Du er logget på via
      
   </p>
-  <label
-    className="checkbox"
-    data-cy="user-form-acceptedAge"
-    htmlFor="acceptedAge"
-  >
-    <input
-      checked={false}
-      className="checkbox"
-      disabled={undefined}
-      id="acceptedAge"
-      name="acceptedAge"
-      onChange={[Function]}
-      type="checkbox"
-    />
-    <span />
-     
-    Jeg er over 13 år
-  </label>
   <label
     className="checkbox"
     data-cy="user-form-acceptedTerms"
