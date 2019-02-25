@@ -54,7 +54,7 @@ export class ProfileModal extends React.Component {
 
     const showAgeLimitWindow = () => {
       return (
-        <div className="modal-window profile__ageLimit-window">
+        <div className="modal-window profile__ageLimit-window" data-cy="user-form-under13">
           <div className="profile__accept-margins">
             <div className="profile__ageLimit-scroll">
               <div className="profile__ageLimit-title1">
@@ -93,7 +93,6 @@ export class ProfileModal extends React.Component {
                 <button
                   className="btn Button profile__accept-button"
                   onClick={closeWindowAndLogout}
-                  data-cy="user-form-submit"
                   style={{backgroundColor: 'var(--korn)'}}
                 >
                   Log Ud
@@ -112,7 +111,7 @@ export class ProfileModal extends React.Component {
         return '';
       };
       return (
-        <div className={'profile__modal-window'}>
+        <div className={'profile__modal-window'} data-cy="user-form-over13">
           <div className="profile__accept-window">
             <div className="profile__accept-margins">
               <div className="profile__accept-title1">
