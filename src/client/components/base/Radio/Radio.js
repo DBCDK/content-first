@@ -1,19 +1,17 @@
 import React from 'react';
 import './Radio.css';
 
-// icons from:
-// https://material.io/tools/icons/?icon=local_library&style=round
-
-const Radio = ({group, checked, onChange, children, className}) => {
+const Radio = ({value, group, onChange, checked, children, className}) => {
   return (
-    <label className={`Radio__wrap ${className}`}>
+    <label className={`Radio__wrap`}>
       {children}
       <input
+        className={`Radio ${className}`}
         name={group}
-        className={`Radio`}
+        value={value}
         type="radio"
         checked={checked}
-        onChange={e => onChange}
+        onChange={onChange}
       />
       <span className="Radio__button" />
     </label>
@@ -21,10 +19,3 @@ const Radio = ({group, checked, onChange, children, className}) => {
 };
 
 export default Radio;
-
-// <div className="Radio__wrap">
-//
-//   <input className={`Radio ${children ? 'mr-2' : ''}`} type="radio" />
-//   {children && <label className="Radio__label">{children}</label>}
-//
-// </div>

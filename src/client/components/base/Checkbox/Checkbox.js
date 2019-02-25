@@ -1,24 +1,20 @@
 import React from 'react';
 import './Checkbox.css';
 
-// icons from:
-// https://material.io/tools/icons/?icon=local_library&style=round
-
-const Checkbox = ({group, children, className, ...props}) => {
+const Checkbox = ({value, children, onChange, checked, className}) => {
   return (
-    <label className="Checkbox__wrap">
+    <label className={`Checkbox__wrap`}>
       {children}
-      <input className={`Checkbox`} type="checkbox" name={group} />
+      <input
+        className={`Checkbox ${className}`}
+        type="checkbox"
+        value={value}
+        checked={checked}
+        onChange={onChange}
+      />
       <span className="Checkbox__button" />
     </label>
   );
 };
 
 export default Checkbox;
-
-// <div className="Radio__wrap">
-//
-//   <input className={`Radio ${children ? 'mr-2' : ''}`} type="radio" />
-//   {children && <label className="Radio__label">{children}</label>}
-//
-// </div>

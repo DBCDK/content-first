@@ -12,50 +12,49 @@ import {saveList} from '../../../utils/requestLists';
 
 const getListById = getListByIdSelector();
 
-const withList = WrappedComponent => {
-  let createdId;
-
+export const withListCreator = WrappedComponent => {
   const Wrapper = class extends React.Component {
     constructor(props) {
       super(props);
       this.state = {id: null};
     }
 
-    // createList = () => {
-    //   console.log('createList');
-    //   this.props.createList(list => this.setState({id: list._id}));
-    // };
+    componentDidMount() {
+      if (!this.props.id) {
+        this.createList();
+      }
+    }
 
-    createList = () => {
-      console.log('saveList', this.props.userId);
-      // this.props.saveList(this.props.userId);
+    createList = async () => {
+      const list = await saveList(
+        {type: CUSTOM_LIST, isNew: true},
+        this.props.openplatformId
+      );
+
+      this.setState({id: list._id});
+      this.props.createList(list);
     };
 
     render() {
-      console.log('ddd', this.props.userId);
-
-      return <WrappedComponent {...this.props} createList={this.createList} />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          id={this.props.id ? this.props.id : this.state.id}
+        />
+      );
     }
   };
 
   const mapStateToProps = (state, ownProps) => {
     return {
-      list: getListById(state, {_id: ownProps._id}),
-      userId: state.userReducer.openplatformId
+      openplatformId: state.userReducer.openplatformId
     };
   };
 
   const mapDispatchToProps = (dispatch, ownProps) => ({
-    createList: async callback => {
-      await dispatch(addList({type: CUSTOM_LIST, isNew: true}));
-    },
-    saveList: async userId => {
-      await dispatch(saveList({}, userId));
-    },
-    storeList: list => dispatch(storeList(list._id)),
-    updateListData: data => dispatch(updateList(data)),
-    onTitleChange: e =>
-      dispatch(updateList({_id: ownProps._id, title: e.target.value}))
+    createList: async list => {
+      await dispatch(addList(list));
+    }
   });
 
   return connect(
@@ -64,4 +63,28 @@ const withList = WrappedComponent => {
   )(Wrapper);
 };
 
-export default withList;
+export const withList = WrappedComponent => {
+  const Wrapper = class extends React.Component {
+    render() {
+      return <WrappedComponent {...this.props} />;
+    }
+  };
+
+  const mapStateToProps = (state, ownProps) => {
+    return {
+      list: getListById(state, {_id: ownProps.id})
+    };
+  };
+
+  const mapDispatchToProps = (dispatch, ownProps) => ({
+    saveList: list => dispatch(storeList(list._id)),
+    updateListData: data => dispatch(updateList({_id: ownProps.id, ...data}))
+  });
+
+  return connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Wrapper);
+};
+
+// export withListCreator(withList);

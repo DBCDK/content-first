@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import Textarea from 'react-textarea-autosize';
+import ImageUpload from '../general/ImageUpload.component';
 
 import Modal from './Modal.component';
 import Title from '../base/Title';
@@ -9,107 +9,156 @@ import Text from '../base/Text';
 import T from '../base/T';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
-
 import Radio from '../base/Radio';
 import Checkbox from '../base/Checkbox';
-
 import Tabs from '../base/Tabs';
+import {withList, withListCreator} from '../base/List/withList.hoc';
 
-import withList from '../base/List/withList.hoc';
+import {ADD_LIST_IMAGE} from '../../redux/list.reducer';
 
 import './ListModal.css';
 
 const pages = ['Listoplysninger', 'Avanceret'];
 
-const PageInfo = ({list, className = null, onTitleChange}) => {
-  // autofocus text in title input
-  if (this.title) {
-    this.title.select();
+class PageInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {showPermissions: false};
   }
 
-  function onPrivacyChange(e) {
-    console.log('e onChange', e);
-    alert('i changed');
+  componentDidMount() {
+    if (this.title) {
+      this.title.select();
+    }
   }
 
-  const showPermissions = true;
+  togglePermissions(status) {
+    this.setState({showPermissions: status});
+  }
 
-  return (
-    <div className={`listModal-page ${className}`}>
-      <label>
-        <T component={'list'} name={'labelName'} />
-      </label>
+  onPermissionsChange = e => {
+    const value = e.target.value;
 
-      <input
-        ref={e => (this.title = e)}
-        className={`form-control`}
-        name="list-title"
-        placeholder={T({component: 'list', name: 'placeholderTitle'})}
-        onChange={onTitleChange}
-        value={
-          list && list.title
-            ? list.title
-            : T({component: 'list', name: 'noTitleValue'})
-        }
-        data-cy="listinfo-title-input"
-      />
+    // Show/Hide permissions checkboxes
+    if (value === 'public') {
+      this.togglePermissions(true);
+    }
 
-      <label className="mt-4">
-        <T component={'list'} name={'labelPrivacy'} />
-      </label>
+    if (value === 'private') {
+      this.togglePermissions(false);
+    }
 
-      <div>
-        <Radio group="privacy" onChange={onPrivacyChange}>
-          <Text type="body">{T({component: 'general', name: 'private'})}</Text>
-        </Radio>
-      </div>
+    //...
+  };
 
-      <div>
-        <Radio group="privacy">
-          <Text type="body">{T({component: 'general', name: 'public'})}</Text>
-        </Radio>
-      </div>
+  render() {
+    const {list, className = null, updateListData, addImage} = this.props;
+    const {showPermissions} = this.state;
 
-      <div className={`pl-4 ${!showPermissions ? 'd-none' : ''}`}>
+    return (
+      <div className={`listModal-page ${className}`}>
+        <label>
+          <T component={'list'} name={'labelName'} />
+        </label>
+
+        <input
+          ref={e => (this.title = e)}
+          className={`form-control`}
+          name="listModal-title"
+          placeholder={T({component: 'list', name: 'placeholderTitle'})}
+          onChange={e => updateListData({title: e.target.value})}
+          value={
+            list.title
+              ? list.title
+              : T({component: 'list', name: 'noTitleValue'})
+          }
+          data-cy="listinfo-title-input"
+        />
+
+        <label className="mt-4">
+          <T component={'list'} name={'labelPrivacy'} />
+        </label>
+
         <div>
-          <Checkbox>
+          <Radio
+            value="private"
+            group="privacy"
+            onChange={this.onPermissionsChange}
+          >
             <Text type="body">
-              {T({component: 'list', name: 'permissionsComments'})}
+              {T({component: 'general', name: 'private'})}
             </Text>
-          </Checkbox>
+          </Radio>
         </div>
+
         <div>
-          <Checkbox>
-            <Text type="body">
-              {T({component: 'list', name: 'permissionsAdd'})}
-            </Text>
-          </Checkbox>
+          <Radio
+            value="public"
+            group="privacy"
+            onChange={this.onPermissionsChange}
+          >
+            <Text type="body">{T({component: 'general', name: 'public'})}</Text>
+          </Radio>
+        </div>
+
+        <div className={`pl-4 ${!showPermissions ? 'd-none' : ''}`}>
+          <div>
+            <Checkbox value="social" onChange={this.onPermissionsChange}>
+              <Text type="body">
+                {T({component: 'list', name: 'permissionsComments'})}
+              </Text>
+            </Checkbox>
+          </div>
+          <div>
+            <Checkbox value="open" onChange={this.onPermissionsChange}>
+              <Text type="body">
+                {T({component: 'list', name: 'permissionsAdd'})}
+              </Text>
+            </Checkbox>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-4 d-flex flex-column">
+            <label>
+              <T component={'general'} name={'image'} />
+            </label>
+            <ImageUpload
+              error={list.imageError}
+              loading={list.imageIsLoading}
+              handleLoaded={this.onResize}
+              previewImage={
+                list.image ? `/v1/image/${list.image}/719/400` : null
+              }
+              buttonText={<T component="general" name="changeImage" />}
+              buttonPosition="inside"
+              onFile={img => addImage(list._id, img)}
+            />
+          </div>
+          <div className="col-8 d-flex flex-column">
+            <label>
+              <T component={'general'} name={'description'} />
+            </label>
+            <textarea
+              className="listModal-description"
+              placeholder={T({
+                component: 'list',
+                name: 'placeholderDescription'
+              })}
+            />
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const PageAdvanced = ({className = null}) => {
   return <div className={`listModal-page ${className}`}>Advanced</div>;
 };
 
 export class ListModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {id: null};
-  }
-
-  componentDidMount() {
-    if (!this.props.list) {
-      this.props.createList();
-    }
-  }
-
   render() {
-    const {list, close, saveList} = this.props;
-
-    console.log('this.state.id', this.state.id);
+    const {list = {}, close, updateListData, saveList} = this.props;
 
     return (
       <Modal
@@ -117,26 +166,35 @@ export class ListModal extends React.Component {
         className="listModal"
         onClose={close}
         onDone={() => {
-          // updateListData({
-          //   _id: list._id,
-          //   template: this.state.template,
-          //   public: this.state.public,
-          //   social: this.state.social,
-          //   open: this.state.open
-          // });
-          //saveList(list);
+          saveList(list);
           close();
         }}
         doneText="Opret"
         cancelText="Fortryd"
       >
         <Tabs pages={pages}>
-          <PageInfo list={list} />
-          <PageAdvanced list={list} />
+          <PageInfo list={list} updateListData={data => updateListData(data)} />
+          <PageAdvanced
+            list={list}
+            updateListData={data => updateListData(data)}
+          />
         </Tabs>
       </Modal>
     );
   }
 }
 
-export default withList(ListModal);
+const mapStateToProps = state => {
+  return {};
+};
+
+export const mapDispatchToProps = dispatch => ({
+  addImage: (_id, image) => dispatch({type: ADD_LIST_IMAGE, image, _id})
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withListCreator(withList(ListModal)));
+
+// export default withList(ListModal);

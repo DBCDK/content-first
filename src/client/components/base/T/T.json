@@ -62,6 +62,18 @@
         "da": "Fortryd redigéring",
         "en": "Cancel edit"
       },
+      "image": {
+        "da": "Billede:",
+        "en": "Image:"
+      },
+      "description": {
+        "da": "Beskrivelse:",
+        "en": "Description:"
+      },
+      "addImage": {
+        "da": "Tilføj billede",
+        "en": "Add image"
+      },
       "changeImage": {
         "da": "Skift billede",
         "en": "Change image"
@@ -471,8 +483,8 @@
         "en": "Tell about the list"
       },
       "placeholderDescription": {
-        "da": "Listens beskrivelse",
-        "en": "List description"
+        "da": "Giv din liste en fængende beskrivelse",
+        "en": "Give your list a catchy description"
       },
       "placeholderUnderTitle": {
         "da": "Listens undertitel",

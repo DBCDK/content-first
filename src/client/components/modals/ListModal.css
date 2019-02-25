@@ -10,6 +10,16 @@
 
 .listModal .listModal-page {
   width: 100%;
-  height: 300px;
-  background-color: #f1f1f1;
+  max-height: 300px;
+  overflow-x: hidden;
+}
+
+.listModal .image-upload .image-upload--zone {
+  background: var(--lys-graa);
+  border: none;
+}
+
+.listModal .listModal-description {
+  height: 150px;
+  resize: none;
 }

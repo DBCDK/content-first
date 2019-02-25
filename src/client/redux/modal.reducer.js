@@ -42,8 +42,6 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 const modalReducer = (state = defaultState, action) => {
   switch (action.type) {
     case OPEN_MODAL: {
-      console.log('OPEN_MODAL action', action);
-
       return Object.assign({}, state, {
         [action.modal]: {
           open: true,

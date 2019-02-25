@@ -278,6 +278,7 @@ const listReducer = (state = defaultState, action) => {
           }
         });
       }
+
       list.isLoading = false;
 
       return Object.assign({}, state, {
