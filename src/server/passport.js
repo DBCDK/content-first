@@ -6,9 +6,8 @@ const config = require('server/config');
 const request = require('superagent');
 const {get} = require('lodash');
 const logger = require('server/logger');
-const over13 =require('./utils/over13');
+const over13 = require('./utils/over13');
 const {createCookie, fetchCookie} = require('server/user');
-
 
 const profileStrategy = new Strategy(
   {
@@ -19,7 +18,7 @@ const profileStrategy = new Strategy(
     callbackURL: config.server.dmzHost + '/v1/auth/callback'
   },
 
-  async function (token, tokenSecret, profile, done) {
+  async function(token, tokenSecret, profile, done) {
     let uniqueId;
     let legacyId;
     let special = {over13: false, name: ''};
@@ -74,7 +73,7 @@ const profileStrategy = new Strategy(
 
 passport.use('profile', profileStrategy);
 
-passport.serializeUser(async function (user, done) {
+passport.serializeUser(async function(user, done) {
   try {
     const cookie = await createCookie(
       user.legacyId,
@@ -92,7 +91,7 @@ passport.serializeUser(async function (user, done) {
   }
 });
 
-passport.deserializeUser(async function (cookie, done) {
+passport.deserializeUser(async function(cookie, done) {
   try {
     const user = await fetchCookie(cookie);
     done(null, user);
@@ -104,6 +103,5 @@ passport.deserializeUser(async function (cookie, done) {
     done(null, false);
   }
 });
-
 
 module.exports = passport;

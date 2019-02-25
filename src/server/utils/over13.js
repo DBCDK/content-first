@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-const over13 = (cpr) => {
+const over13 = cpr => {
   if (cpr.length !== 10) {
     return 'misformed cpr';
   }
@@ -13,8 +13,7 @@ const over13 = (cpr) => {
   let dayMonth = bd.substr(0, 4);
   let yearCheck = bd.substr(4, 2);
 
-  let fullBirthYear =
-    yearCheck > yearNow ? '19' + yearCheck : '20' + yearCheck;
+  let fullBirthYear = yearCheck > yearNow ? '19' + yearCheck : '20' + yearCheck;
 
   let fullDate = dayMonth + fullBirthYear;
   let bdMoment = moment(fullDate, 'DDMMYYYY');
