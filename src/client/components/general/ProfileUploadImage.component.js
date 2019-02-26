@@ -1,6 +1,6 @@
 import React from 'react';
 import Spinner from './Spinner.component';
-import HoverButton from './HoverButton.component';
+import HoverImage from './HoverImage.component';
 
 const UploadButton = ({
   fieldName,
@@ -11,10 +11,9 @@ const UploadButton = ({
   return (
     <label>
       {baseImage && (
-        <HoverButton
+        <HoverImage
           src={baseImage}
           mouseOver={thumbnailImageHover}
-          mouseOut={baseImage}
         />
       )}
       <input
