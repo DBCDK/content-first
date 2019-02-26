@@ -11,10 +11,7 @@ const UploadButton = ({
   return (
     <label>
       {baseImage && (
-        <HoverImage
-          src={baseImage}
-          mouseOver={thumbnailImageHover}
-        />
+        <HoverImage src={baseImage} mouseOver={thumbnailImageHover} />
       )}
       <input
         accept="image/png, image/jpeg"
