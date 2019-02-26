@@ -1,20 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`withTagsFromUrl.hoc appends a range tag when it is not already selected 1`] = `
+exports[`withTagsFromUrl.hoc existing range is replaced 1`] = `
 Array [
   Array [
-    5629,
-    5631,
+    5630,
+    5632,
   ],
-]
-`;
-
-exports[`withTagsFromUrl.hoc appends a tag when it is not already selected 1`] = `
-Array [
-  "Peter Hansen",
-  "870970-basis:123456",
-  5643,
-  "Hest",
 ]
 `;
 
@@ -145,41 +136,128 @@ Array [
 ]
 `;
 
-exports[`withTagsFromUrl.hoc removes a range tag when it is the full range 1`] = `
+exports[`withTagsFromUrl.hoc tag add is ignored when tag is already in a selected range 1`] = `
 Array [
+  Array [
+    5629,
+    5632,
+  ],
+]
+`;
+
+exports[`withTagsFromUrl.hoc tag add is ignored when tag is already in a selected range 2`] = `
+Array [
+  Array [
+    5629,
+    5632,
+  ],
+]
+`;
+
+exports[`withTagsFromUrl.hoc tag add is ignored when tag is already in a selected range 3`] = `
+Array [
+  Array [
+    5629,
+    5632,
+  ],
+]
+`;
+
+exports[`withTagsFromUrl.hoc tag add is ignored when tag is already in a selected range 4`] = `
+Array [
+  Array [
+    5629,
+    5632,
+  ],
+]
+`;
+
+exports[`withTagsFromUrl.hoc tag is added 1`] = `
+Array [
+  "Peter Hansen",
   "870970-basis:123456",
 ]
 `;
 
-exports[`withTagsFromUrl.hoc removes a range tag when the exact same range is toggled 1`] = `
+exports[`withTagsFromUrl.hoc tag is added 2`] = `
 Array [
-  "870970-basis:123456",
+  "Peter Hansen",
+  "Peter Hansen",
 ]
 `;
 
-exports[`withTagsFromUrl.hoc removes the tag when it is already selected 1`] = `
+exports[`withTagsFromUrl.hoc tag is added 3`] = `
 Array [
   "Peter Hansen",
   5643,
 ]
 `;
 
-exports[`withTagsFromUrl.hoc replace a range tag when it is already selected 1`] = `
+exports[`withTagsFromUrl.hoc tag is added 4`] = `
 Array [
+  "Peter Hansen",
   Array [
     5629,
     5631,
   ],
-  "870970-basis:123456",
 ]
 `;
 
-exports[`withTagsFromUrl.hoc replace a range tag when it is already selected, and the selected tag is not in range format 1`] = `
+exports[`withTagsFromUrl.hoc tag is removed 1`] = `
 Array [
+  "Peter Hansen",
+  5643,
   Array [
     5629,
     5631,
   ],
+]
+`;
+
+exports[`withTagsFromUrl.hoc tag is removed 2`] = `
+Array [
   "870970-basis:123456",
+  5643,
+  Array [
+    5629,
+    5631,
+  ],
+]
+`;
+
+exports[`withTagsFromUrl.hoc tag is removed 3`] = `
+Array [
+  "Peter Hansen",
+  "870970-basis:123456",
+  Array [
+    5629,
+    5631,
+  ],
+]
+`;
+
+exports[`withTagsFromUrl.hoc tag is removed 4`] = `
+Array [
+  "Peter Hansen",
+  "870970-basis:123456",
+  5643,
+]
+`;
+
+exports[`withTagsFromUrl.hoc tag range is updated to the left 1`] = `
+Array [
+  Array [
+    5629,
+    5632,
+  ],
+]
+`;
+
+exports[`withTagsFromUrl.hoc tag range is updated to the right 1`] = `
+Array [
+  Array [
+    5630,
+    5633,
+  ],
 ]
 `;

@@ -59,16 +59,13 @@ class SelectedFilters extends React.Component {
     switch (selected.type) {
       case 'TAG':
         return (
-          <SelectedTag
-            selected={selected}
-            onRemove={this.props.toggleSelected}
-          />
+          <SelectedTag selected={selected} onRemove={this.props.removeTag} />
         );
       case 'TAG_RANGE':
         return (
           <SelectedTagRange
             selected={selected}
-            onRemove={this.props.toggleSelected}
+            onRemove={this.props.removeTag}
           />
         );
       case 'TITLE':
@@ -76,15 +73,12 @@ class SelectedFilters extends React.Component {
           <SelectedWork
             pid={selected.pid}
             selected={selected}
-            onRemove={this.props.toggleSelected}
+            onRemove={this.props.removeTag}
           />
         );
       case 'QUERY':
         return (
-          <SelectedQuery
-            selected={selected}
-            onRemove={this.props.toggleSelected}
-          />
+          <SelectedQuery selected={selected} onRemove={this.props.removeTag} />
         );
       default:
         return null;
@@ -95,7 +89,7 @@ class SelectedFilters extends React.Component {
     /* handle backspace */
     const {tags, query} = this.props;
     if (tags.length > 0 && e.keyCode === 8 && query === '') {
-      this.props.toggleSelected(tags[tags.length - 1].match);
+      this.props.removeTag(tags[tags.length - 1].match);
     }
   };
 
@@ -118,13 +112,13 @@ class SelectedFilters extends React.Component {
             onSuggestionSelected={(e, {suggestion}) => {
               switch (suggestion.type) {
                 case 'TAG':
-                  this.props.toggleSelected(suggestion.id);
+                  this.props.addTag(suggestion.id);
                   break;
                 case 'AUTHOR':
-                  this.props.toggleSelected(suggestion.authorName);
+                  this.props.addTag(suggestion.authorName);
                   break;
                 case 'TITLE':
-                  this.props.toggleSelected(suggestion.pid);
+                  this.props.addTag(suggestion.pid);
                   break;
               }
             }}

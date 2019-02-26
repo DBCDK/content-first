@@ -4,13 +4,7 @@ import {createSelector} from 'reselect';
 import {isEqual} from 'lodash';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
-import {
-  isRange,
-  getFullRange,
-  isSameRange,
-  isFullRange,
-  getSelectedRange
-} from '../../../utils/taxonomy';
+import {getFullRange} from '../../../utils/taxonomy';
 
 /**
  * A HOC that enhance the wrapped component with a list of tags (pids, creators, tags)
@@ -56,8 +50,23 @@ import {
 const withTagsFromUrl = WrappedComponent => {
   const Wrapped = class extends React.Component {
     toggleSelected = tag => {
-      const modified = toggleTag(this.props.tags, this.props.filterCards, tag);
-      this.props.updateUrl(modified);
+      if (this.isSelected(tag)) {
+        this.removeTag(tag);
+      } else {
+        this.addTag(tag);
+      }
+    };
+    removeTag = tag => {
+      if (this.isSelected(tag)) {
+        const modified = removeTag(this.props.tags, tag);
+        this.props.updateUrl(modified);
+      }
+    };
+    addTag = tag => {
+      if (!this.isSelected(tag)) {
+        const modified = addTag(this.props.tags, this.props.filterCards, tag);
+        this.props.updateUrl(modified);
+      }
     };
     isSelected = tag => {
       return !!this.props.tagsMap[tag];
@@ -68,6 +77,8 @@ const withTagsFromUrl = WrappedComponent => {
           {...this.props}
           toggleSelected={this.toggleSelected}
           isSelected={this.isSelected}
+          removeTag={this.removeTag}
+          addTag={this.addTag}
         />
       );
     }
@@ -86,11 +97,17 @@ const withTagsFromUrl = WrappedComponent => {
       dispatch({
         type: HISTORY_REPLACE,
         path: '/find',
-        params: {
-          tagss: tags
-            .map(t => (Array.isArray(t) ? t.join(':') : encodeURIComponent(t)))
-            .join(',')
-        }
+        params:
+          tags.length > 0
+            ? {
+                tagss: tags
+                  .map(
+                    t =>
+                      Array.isArray(t) ? t.join(':') : encodeURIComponent(t)
+                  )
+                  .join(',')
+              }
+            : {}
       });
     }
   });
@@ -158,50 +175,47 @@ export const tagsFromURL = (urlTags, filterCards) => {
     .filter(t => t);
 };
 
-export const toggleTag = (expandedTags, filterCards, tag) => {
+export const removeTag = (expandedTags, tag) => {
+  return expandedTags.filter(t => !isEqual(t.match, tag)).map(t => t.match);
+};
+export const addTag = (expandedTags, filterCards, tag) => {
   const isRangeTag = getFullRange(tag, filterCards, filtersMapAll);
   if (isRangeTag) {
-    let add = true;
-    const nextTags = expandedTags.map(s => {
+    let updated = false;
+    const res = [];
+    expandedTags.forEach(t => {
       if (
-        s.type === 'TAG_RANGE' &&
-        (s.fullRange.includes(tag) || s.fullRange.includes(tag[0]))
+        t.type === 'TAG_RANGE' &&
+        (t.fullRange.includes(tag) || t.fullRange.includes(tag[0]))
       ) {
-        /* tag is part of this range */
-        add = false;
-        if (isFullRange(tag, s.fullRange) || isEqual(s.match, tag)) {
-          /* delete when tag is the full range or an exact match to already selected */
-          return null;
-        } else {
-          if (typeof tag === 'number') {
-            /* Update range */
-            const prevSelectedRange = [s.left.id, s.right.id];
-            const newSelectedRange = getSelectedRange(
-              tag,
-              prevSelectedRange,
-              s.fullRange
-            );
-            return newSelectedRange;
+        updated = true;
+        if (typeof tag === 'number') {
+          if (t.fullRange.indexOf(tag) < t.fullRange.indexOf(t.left.id)) {
+            res.push([tag, t.right.id]);
+          } else if (
+            t.fullRange.indexOf(tag) > t.fullRange.indexOf(t.right.id)
+          ) {
+            res.push([t.left.id, tag]);
           } else {
-            /* Replace range */
-            return tag;
+            res.push(t.match);
           }
+        } else {
+          res.push(tag);
         }
+      } else {
+        res.push(t.match);
       }
-      return s.match;
     });
-
-    if (add) {
-      nextTags.push(tag);
+    if (!updated) {
+      if (typeof tag === 'number') {
+        res.push([tag, tag]);
+      } else {
+        res.push(tag);
+      }
     }
-    return nextTags.filter(t => t);
+    return res;
   } else {
-    const nextTags = expandedTags.map(s => s.match).filter(s => s !== tag);
-    if (nextTags.length === expandedTags.length) {
-      // nothing removed, add
-      nextTags.push(tag);
-    }
-    return nextTags;
+    return [...expandedTags.map(t => t.match), tag];
   }
 };
 

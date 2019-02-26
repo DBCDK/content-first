@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import {tagsFromURL, toggleTag} from '../withTagsFromUrl.hoc';
+import {tagsFromURL, addTag, removeTag} from '../withTagsFromUrl.hoc';
 const filtercards = {
   Tempo: {
     title: 'Tempo',
@@ -39,61 +39,44 @@ describe('withTagsFromUrl.hoc', () => {
       tagsFromURL(['Peter Hansen', '870970-basis:123456', '5643'], filtercards)
     ).toMatchSnapshot();
   });
+  it('tag is removed', () => {
+    const expandedTags = tagsFromURL(
+      ['Peter Hansen', '870970-basis:123456', '5643', '5629:5631'],
+      filtercards
+    );
+    expect(removeTag(expandedTags, '870970-basis:123456')).toMatchSnapshot();
+    expect(removeTag(expandedTags, 'Peter Hansen')).toMatchSnapshot();
+    expect(removeTag(expandedTags, 5643)).toMatchSnapshot();
+    expect(removeTag(expandedTags, [5629, 5631])).toMatchSnapshot();
+  });
 
-  it('removes the tag when it is already selected', () => {
-    const expandedTags = tagsFromURL(
-      ['Peter Hansen', '870970-basis:123456', '5643'],
-      filtercards
-    );
+  it('tag is added', () => {
+    const expandedTags = tagsFromURL(['Peter Hansen'], filtercards);
     expect(
-      toggleTag(expandedTags, filtercards, '870970-basis:123456')
+      addTag(expandedTags, filtercards, '870970-basis:123456')
     ).toMatchSnapshot();
+    expect(addTag(expandedTags, filtercards, 'Peter Hansen')).toMatchSnapshot();
+    expect(addTag(expandedTags, filtercards, 5643)).toMatchSnapshot();
+    expect(addTag(expandedTags, filtercards, [5629, 5631])).toMatchSnapshot();
   });
-  it('appends a tag when it is not already selected', () => {
-    const expandedTags = tagsFromURL(
-      ['Peter Hansen', '870970-basis:123456', '5643'],
-      filtercards
-    );
-    expect(toggleTag(expandedTags, filtercards, 'Hest')).toMatchSnapshot();
+
+  it('existing range is replaced', () => {
+    const expandedTags = tagsFromURL(['5629:5631'], filtercards);
+    expect(addTag(expandedTags, filtercards, [5630, 5632])).toMatchSnapshot();
   });
-  it('appends a range tag when it is not already selected', () => {
-    const expandedTags = tagsFromURL([], filtercards);
-    expect(
-      toggleTag(expandedTags, filtercards, [5629, 5631])
-    ).toMatchSnapshot();
+  it('tag add is ignored when tag is already in a selected range', () => {
+    const expandedTags = tagsFromURL(['5629:5632'], filtercards);
+    expect(addTag(expandedTags, filtercards, 5629)).toMatchSnapshot();
+    expect(addTag(expandedTags, filtercards, 5630)).toMatchSnapshot();
+    expect(addTag(expandedTags, filtercards, 5631)).toMatchSnapshot();
+    expect(addTag(expandedTags, filtercards, 5632)).toMatchSnapshot();
   });
-  it('replace a range tag when it is already selected', () => {
-    const expandedTags = tagsFromURL(
-      ['5629:5630', '870970-basis:123456'],
-      filtercards
-    );
-    expect(
-      toggleTag(expandedTags, filtercards, [5629, 5631])
-    ).toMatchSnapshot();
+  it('tag range is updated to the left', () => {
+    const expandedTags = tagsFromURL(['5630:5632'], filtercards);
+    expect(addTag(expandedTags, filtercards, 5629)).toMatchSnapshot();
   });
-  it('replace a range tag when it is already selected, and the selected tag is not in range format', () => {
-    const expandedTags = tagsFromURL(
-      ['5629:5630', '870970-basis:123456'],
-      filtercards
-    );
-    expect(toggleTag(expandedTags, filtercards, 5631)).toMatchSnapshot();
-  });
-  it('removes a range tag when it is the full range', () => {
-    const expandedTags = tagsFromURL(
-      ['5629:5630', '870970-basis:123456'],
-      filtercards
-    );
-    expect(
-      toggleTag(expandedTags, filtercards, [5629, 5633])
-    ).toMatchSnapshot();
-  });
-  it('removes a range tag when the exact same range is toggled', () => {
-    const expandedTags = tagsFromURL(
-      ['5629:5630', '870970-basis:123456'],
-      filtercards
-    );
-    expect(
-      toggleTag(expandedTags, filtercards, [5629, 5630])
-    ).toMatchSnapshot();
+  it('tag range is updated to the right', () => {
+    const expandedTags = tagsFromURL(['5630:5632'], filtercards);
+    expect(addTag(expandedTags, filtercards, 5633)).toMatchSnapshot();
   });
 });

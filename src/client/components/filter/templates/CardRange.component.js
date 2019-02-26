@@ -71,7 +71,7 @@ class CardRange extends React.Component {
     const oldIds = this.getIdByValue(this.state.initValue);
     const ids = this.getIdByValue(value);
     if (!isEqual(oldIds, ids)) {
-      this.props.toggleSelected(ids);
+      this.props.addTag(ids);
     }
   }
 
