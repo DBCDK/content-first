@@ -69,21 +69,6 @@ class SearchBar extends React.Component {
     }
   }
 
-  handleOnKeyDown(e) {
-    let tags = this.props.selectedTagIds;
-    /* Hvis der er tags i url */
-    if (tags.length > 0) {
-      /* Hvis brugeren trykker backspace */
-      if (e.keyCode === 8) {
-        /* Hvis brugeren ikke er igang med at skrive et ord */
-        if (this.state.query === '') {
-          this.props.toggleFilter(tags[tags.length - 1]);
-          this.initFilterPosition();
-        }
-      }
-    }
-  }
-
   render() {
     return (
       <SelectedFilters

@@ -1,7 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {createSelector} from 'reselect';
+import {isEqual} from 'lodash';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
+import {
+  isRange,
+  getFullRange,
+  isSameRange,
+  isFullRange
+} from '../../../utils/taxonomy';
 
 /**
  * A HOC that enhance the wrapped component with a list of tags (pids, creators, tags)
@@ -34,31 +42,42 @@ import {HISTORY_REPLACE} from '../../../redux/middleware';
  *     "title": "gættelege",
  *   }
  * ]
+ * Furthermore it generates a 'tagsMap' prop, which may be used for fast lookups.
+ * {
+ *  "Rowan Williams": {
+ *    "type": "QUERY",
+ *     "query": "Rowan Williams"
+ *   }
+ * }
+ *
  *
  */
 const withTagsFromUrl = WrappedComponent => {
   const Wrapped = class extends React.Component {
     toggleSelected = tag => {
-      const expanded = tagsFromURL(this.props.tags && this.props.tags[0]);
-      const modified = toggleTag(expanded, tag);
+      const modified = toggleTag(this.props.tags, this.props.filterCards, tag);
       this.props.updateUrl(modified);
     };
+    isSelected = tag => {
+      return !!this.props.tagsMap[tag];
+    };
     render() {
-      const tags = tagsFromURL(this.props.tags && this.props.tags[0]);
-      console.log(JSON.stringify(tags, null, 2));
       return (
         <WrappedComponent
           {...this.props}
-          tags={tags}
           toggleSelected={this.toggleSelected}
+          isSelected={this.isSelected}
         />
       );
     }
   };
 
   const mapStateToProps = state => {
+    const {tags, tagsMap} = tagsFromUrlSelector(state);
     return {
-      tags: state.routerReducer.params.tagss
+      tags,
+      tagsMap,
+      filterCards: state.filtercardReducer
     };
   };
   const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -66,7 +85,11 @@ const withTagsFromUrl = WrappedComponent => {
       dispatch({
         type: HISTORY_REPLACE,
         path: '/find',
-        params: {tagss: tags.map(t => encodeURIComponent(t)).join(',')}
+        params: {
+          tagss: tags
+            .map(t => (Array.isArray(t) ? t.join(':') : encodeURIComponent(t)))
+            .join(',')
+        }
       });
     }
   });
@@ -77,6 +100,18 @@ const withTagsFromUrl = WrappedComponent => {
 };
 
 export default withTagsFromUrl;
+
+const tagsFromUrlSelector = createSelector(
+  [state => state.routerReducer.params.tagss],
+  tags => {
+    const expandedTags = tagsFromURL(tags && tags[0]);
+    const tagsMap = {};
+    expandedTags.forEach(expanded => {
+      tagsMap[expanded.match] = expanded;
+    });
+    return {tags: expandedTags, tagsMap};
+  }
+);
 
 export const tagsFromURL = urlTags => {
   if (!urlTags) {
@@ -90,10 +125,16 @@ export const tagsFromURL = urlTags => {
       const decoded = decodeURIComponent(tag);
       if (isPid(decoded)) {
         return {type: 'TITLE', pid: decoded, match: decoded};
+      } else if (isTagRange(decoded)) {
+        let [left, right] = decoded.split(':');
+        left = filtersMapAll[parseInt(left, 10)];
+        right = filtersMapAll[parseInt(right, 10)];
+        return {type: 'TAG_RANGE', left, right, match: [left.id, right.id]};
       }
+      const parsedAsInt = parseInt(decoded, 10);
       const tagObj = filtersMapAll[parseInt(decoded, 10)];
       if (tagObj) {
-        return {...tagObj, type: 'TAG', match: decoded};
+        return {...tagObj, type: 'TAG', match: parsedAsInt};
       }
       return {
         type: 'QUERY',
@@ -104,16 +145,40 @@ export const tagsFromURL = urlTags => {
     .filter(t => t);
 };
 
-export const toggleTag = (expandedTags, tag) => {
+export const toggleTag = (expandedTags, filterCards, tag) => {
   const tags = expandedTags.map(s => s.match);
-  const nextTags = tags.filter(s => s !== tag);
-  if (nextTags.length === tags.length) {
-    // nothing removed, add
-    nextTags.push(tag);
+  if (isRange(tag)) {
+    let add = true;
+    const nextTags = tags.map(s => {
+      const fullRange = getFullRange(s, filterCards, filtersMapAll);
+      if (isSameRange(tag, fullRange)) {
+        add = false;
+        if (isFullRange(tag, fullRange) || isEqual(s, tag)) {
+          return null;
+        } else {
+          return tag;
+        }
+      }
+      return s;
+    });
+
+    if (add) {
+      nextTags.push(tag);
+    }
+    return nextTags.filter(t => t);
+  } else {
+    const nextTags = tags.filter(s => s !== tag);
+    if (nextTags.length === tags.length) {
+      // nothing removed, add
+      nextTags.push(tag);
+    }
+    return nextTags;
   }
-  return nextTags;
 };
 
 const isPid = id => {
   return /.+-.+:.+/.test(id);
+};
+const isTagRange = id => {
+  return /\d+:\d+/.test(id);
 };

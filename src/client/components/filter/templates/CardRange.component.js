@@ -5,7 +5,7 @@ import {isEqual} from 'lodash';
 
 import Heading from '../../base/Heading';
 import Icon from '../../base/Icon';
-
+import withTagsFromUrl from '../../base/AdressBar/withTagsFromUrl.hoc';
 import {filtersMapAll, TOGGLE_FILTER} from '../../../redux/filter.reducer';
 import {getTagsFromUrl} from '../../../redux/selectors';
 
@@ -26,12 +26,12 @@ class CardRange extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.selectedTagIds !== nextProps.selectedTagIds) {
-      this.initValue(nextProps.selectedFilters);
+    if (this.props.tags !== nextProps.tags) {
+      this.initValue(nextProps.tags);
     }
   }
 
-  initValue(selectedFilters = this.props.selectedFilters) {
+  initValue(selectedFilters = this.props.tags) {
     const range = this.props.filter.range;
 
     let min = 0;
@@ -39,15 +39,19 @@ class CardRange extends React.Component {
 
     /* if value in selected filter is a range and exist in current range array */
     selectedFilters.forEach(filter => {
-      if (filter instanceof Array) {
-        if (range.includes(filter[0].id) && range.includes(filter[1].id)) {
-          min = range.indexOf(filter[0].id);
-          max = range.indexOf(filter[1].id);
-        }
+      if (
+        filter.type === 'TAG_RANGE' &&
+        range.includes(filter.left.id) &&
+        range.includes(filter.right.id)
+      ) {
+        console.log('its a range');
+        min = range.indexOf(filter.left.id);
+        max = range.indexOf(filter.right.id);
       }
     });
 
     this.handleChange([min, max]);
+    this.setState({initValue: [min, max]});
   }
 
   getIdByValue(value = this.state.value) {
@@ -69,13 +73,13 @@ class CardRange extends React.Component {
     const oldIds = this.getIdByValue(this.state.initValue);
     const ids = this.getIdByValue(value);
     if (!isEqual(oldIds, ids)) {
-      this.props.toggleFilter(ids);
-      this.setState({initValue: value});
+      this.props.toggleSelected(ids);
     }
   }
 
   render() {
     const {filter, expanded} = this.props;
+    console.log(filter, 'tags', this.props.tags);
 
     /* fetch ids by selected value in range slider */
     const ids = this.getIdByValue();
@@ -129,26 +133,4 @@ class CardRange extends React.Component {
     );
   }
 }
-
-const mapStateToProps = state => {
-  const selectedTagIds = getTagsFromUrl(state);
-  return {
-    selectedTagIds,
-    selectedFilters: selectedTagIds.map(tag => {
-      if (tag instanceof Array) {
-        return tag.map(aTag => filtersMapAll[aTag]);
-      }
-      return filtersMapAll[tag.id || tag];
-    })
-  };
-};
-export const mapDispatchToProps = dispatch => ({
-  toggleFilter: id => dispatch({type: TOGGLE_FILTER, id}),
-  history: (type, path, params = {}) => {
-    dispatch({type, path, params});
-  }
-});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CardRange);
+export default withTagsFromUrl(CardRange);

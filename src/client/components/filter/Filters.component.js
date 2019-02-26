@@ -5,6 +5,7 @@ import Icon from '../base/Icon';
 import T from '../base/T';
 import CardList from './templates/CardList.component.js';
 import CardRange from './templates/CardRange.component.js';
+import withTagsFromUrl from '../base/AdressBar/withTagsFromUrl.hoc';
 
 import './Filters.css';
 
@@ -179,4 +180,4 @@ class Filters extends React.Component {
   }
 }
 
-export default Filters;
+export default withTagsFromUrl(Filters);

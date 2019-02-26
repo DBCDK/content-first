@@ -1,37 +1,34 @@
 import React from 'react';
 import Heading from '../../base/Heading';
+import withTagsFromUrl from '../../base/AdressBar/withTagsFromUrl.hoc';
 
 import './CardList.css';
 
-const ListItem = props => {
-  const tagState = props.selected ? 'listItem-active' : 'listItem-inactive';
-  return (
-    <li
-      type="term"
-      size="small"
-      className={'FilterCard__listItem ' + tagState}
-      data-cy={props.filter.title.toLowerCase() || ''}
-      onClick={() => {
-        if (props.onFilterToggle) {
-          props.onFilterToggle(props.filter);
-        }
-      }}
-    >
-      {props.filter.title}
-    </li>
-  );
-};
+const ListItem = withTagsFromUrl(
+  ({filter, isSelected, toggleSelected, enabled = true}) => {
+    const selected = isSelected(filter.id);
+    const tagState = selected ? 'listItem-active' : 'listItem-inactive';
+    return (
+      <li
+        type="term"
+        size="small"
+        className={'FilterCard__listItem ' + tagState}
+        data-cy={filter.title.toLowerCase() || ''}
+        onClick={() => {
+          if (enabled) {
+            toggleSelected(filter.id);
+          }
+        }}
+      >
+        {filter.title}
+      </li>
+    );
+  }
+);
 
 class FilterCardList extends React.Component {
   render() {
-    const {
-      filter,
-      filters,
-      selectedFilters,
-      onFilterToggle,
-      expanded
-    } = this.props;
-
+    const {filter, filters, expanded, isSelected} = this.props;
     const ignore = [];
 
     const oFilters = filters[filter.title];
@@ -44,27 +41,22 @@ class FilterCardList extends React.Component {
           aFilters.map(f => {
             if (f instanceof Array) {
               return f.map(aF => {
-                if (
-                  selectedFilters.map(selected => selected.id).indexOf(aF.id) >=
-                  0
-                ) {
+                if (isSelected(aF.id)) {
                   ignore.push(aF.id);
                   return (
                     <React.Fragment>
-                      <ListItem key={aF.id} filter={aF} selected={true} />
+                      <ListItem key={aF.id} filter={aF} enabled={false} />
                       {!expanded && <span>{', '}</span>}
                     </React.Fragment>
                   );
                 }
               });
             }
-            if (
-              selectedFilters.map(selected => selected.id).indexOf(f.id) >= 0
-            ) {
+            if (isSelected(f.id)) {
               ignore.push(f.id);
               return (
                 <React.Fragment>
-                  <ListItem key={f.id} filter={f} selected={true} />
+                  <ListItem key={f.id} filter={f} enabled={false} />
                   {!expanded && <span>{', '}</span>}
                 </React.Fragment>
               );
@@ -90,16 +82,7 @@ class FilterCardList extends React.Component {
                   if (!ignore.includes(aF.id)) {
                     return (
                       <React.Fragment key={aF.id}>
-                        <ListItem
-                          key={aF.id}
-                          filter={aF}
-                          selected={
-                            selectedFilters
-                              .map(selected => selected.id)
-                              .indexOf(aF.id) >= 0
-                          }
-                          onFilterToggle={expanded && onFilterToggle}
-                        />
+                        <ListItem key={aF.id} filter={aF} />
                         {!expanded && <span>{', '}</span>}
                       </React.Fragment>
                     );
@@ -111,16 +94,7 @@ class FilterCardList extends React.Component {
           if (!ignore.includes(f.id)) {
             return (
               <React.Fragment key={f.id}>
-                <ListItem
-                  key={f.id}
-                  filter={f}
-                  selected={
-                    selectedFilters
-                      .map(selected => selected.id)
-                      .indexOf(f.id) >= 0
-                  }
-                  onFilterToggle={expanded && onFilterToggle}
-                />
+                <ListItem key={f.id} filter={f} />
                 {!expanded && <span>{', '}</span>}
               </React.Fragment>
             );
@@ -140,4 +114,4 @@ class FilterCardList extends React.Component {
   }
 }
 
-export default FilterCardList;
+export default withTagsFromUrl(FilterCardList);

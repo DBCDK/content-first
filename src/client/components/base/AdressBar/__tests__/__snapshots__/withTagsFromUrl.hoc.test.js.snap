@@ -1,10 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`withTagsFromUrl.hoc appends a range tag when it is not already selected 1`] = `
+Array [
+  Array [
+    5629,
+    5631,
+  ],
+]
+`;
+
 exports[`withTagsFromUrl.hoc appends a tag when it is not already selected 1`] = `
 Array [
   "Peter Hansen",
   "870970-basis:123456",
-  "5643",
+  5643,
   "Hest",
 ]
 `;
@@ -23,15 +32,42 @@ exports[`withTagsFromUrl.hoc expands a tag as a TAG 1`] = `
 Array [
   Object {
     "id": 5643,
-    "match": "5643",
+    "match": 5643,
     "parents": Array [
-      "Univers",
-      "stemning",
+      "Stemning",
       "humoristisk",
     ],
     "score": 0,
     "title": "grotesk",
     "type": "TAG",
+  },
+]
+`;
+
+exports[`withTagsFromUrl.hoc expands a tag range 1`] = `
+Array [
+  Object {
+    "left": Object {
+      "id": 5629,
+      "parents": Array [
+        "Tempo",
+      ],
+      "score": 0,
+      "title": "statisk",
+    },
+    "match": Array [
+      5629,
+      5630,
+    ],
+    "right": Object {
+      "id": 5630,
+      "parents": Array [
+        "Tempo",
+      ],
+      "score": 0,
+      "title": "dvælende",
+    },
+    "type": "TAG_RANGE",
   },
 ]
 `;
@@ -75,10 +111,9 @@ Array [
   },
   Object {
     "id": 5643,
-    "match": "5643",
+    "match": 5643,
     "parents": Array [
-      "Univers",
-      "stemning",
+      "Stemning",
       "humoristisk",
     ],
     "score": 0,
@@ -98,9 +133,31 @@ Array [
 ]
 `;
 
+exports[`withTagsFromUrl.hoc removes a range tag when it is the full range 1`] = `
+Array [
+  "870970-basis:123456",
+]
+`;
+
+exports[`withTagsFromUrl.hoc removes a range tag when the exact same range is toggled 1`] = `
+Array [
+  "870970-basis:123456",
+]
+`;
+
 exports[`withTagsFromUrl.hoc removes the tag when it is already selected 1`] = `
 Array [
   "Peter Hansen",
-  "5643",
+  5643,
+]
+`;
+
+exports[`withTagsFromUrl.hoc replace a range tag when it is already selected 1`] = `
+Array [
+  Array [
+    5629,
+    5631,
+  ],
+  "870970-basis:123456",
 ]
 `;

@@ -27,6 +27,22 @@ const SelectedTag = ({selected, onRemove}) => (
     />
   </Button>
 );
+const SelectedTagRange = ({selected, onRemove}) => (
+  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+    {selected.left.id === selected.right.id ? (
+      <span>{selected.left.title}</span>
+    ) : (
+      <span>
+        {selected.left.title} - {selected.right.title}
+      </span>
+    )}
+    <Icon
+      className="md-small"
+      name="close"
+      onClick={() => onRemove(selected.match)}
+    />
+  </Button>
+);
 const SelectedQuery = ({selected, onRemove}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
     <span>{selected.query}</span>
@@ -44,6 +60,13 @@ class SelectedFilters extends React.Component {
       case 'TAG':
         return (
           <SelectedTag
+            selected={selected}
+            onRemove={this.props.toggleSelected}
+          />
+        );
+      case 'TAG_RANGE':
+        return (
+          <SelectedTagRange
             selected={selected}
             onRemove={this.props.toggleSelected}
           />
@@ -68,6 +91,14 @@ class SelectedFilters extends React.Component {
     }
   };
 
+  handleOnKeyDown = e => {
+    /* handle backspace */
+    const {tags, query} = this.props;
+    if (tags.length > 0 && e.keyCode === 8 && query === '') {
+      this.props.toggleSelected(tags[tags.length - 1].match);
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -81,12 +112,22 @@ class SelectedFilters extends React.Component {
             selectedFilters={this.props.selectedFilters}
             filters={this.props.filters}
             value={this.props.query}
-            onKeyDown={this.props.onKeyDown}
+            onKeyDown={this.handleOnKeyDown}
             onFocus={this.props.onFocus}
             onChange={this.props.onQueryChange}
-            onSuggestionSelected={(e, {suggestion}) =>
-              this.props.onFilterToggle(suggestion)
-            }
+            onSuggestionSelected={(e, {suggestion}) => {
+              switch (suggestion.type) {
+                case 'TAG':
+                  this.props.toggleSelected(suggestion.id);
+                  break;
+                case 'AUTHOR':
+                  this.props.toggleSelected(suggestion.authorName);
+                  break;
+                case 'TITLE':
+                  this.props.toggleSelected(suggestion.pid);
+                  break;
+              }
+            }}
           />
           <div id="selectedFilters" className="selected-filters">
             {this.props.tags.map((filter, idx) => this.renderSelected(filter))}
