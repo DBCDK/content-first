@@ -1,5 +1,6 @@
 .Tabs__container-horizontal {
   position: relative;
+  padding-top: 30px !important;
 }
 
 .Tabs__pagination {
@@ -15,4 +16,16 @@
 
 .Tabs__pagination-bullet-active {
   text-decoration: underline;
+}
+
+.swiper-slide::-webkit-scrollbar-track {
+  background-color: var(--porcelain);
+}
+
+.swiper-slide::-webkit-scrollbar {
+  width: 6px;
+}
+
+.swiper-slide::-webkit-scrollbar-thumb {
+  background-color: var(--petroleum);
 }

@@ -9,6 +9,8 @@ import Text from '../base/Text';
 import T from '../base/T';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
+import Input from '../base/Input';
+import Textarea from '../base/Textarea';
 import Radio from '../base/Radio';
 import Checkbox from '../base/Checkbox';
 import Tabs from '../base/Tabs';
@@ -27,8 +29,10 @@ class PageInfo extends React.Component {
   }
 
   componentDidMount() {
-    if (this.title) {
-      this.title.select();
+    if (this.input) {
+      setTimeout(() => {
+        this.input.select();
+      }, 1500);
     }
   }
 
@@ -36,54 +40,37 @@ class PageInfo extends React.Component {
     this.setState({showPermissions: status});
   }
 
-  onPermissionsChange = e => {
-    const value = e.target.value;
-
-    // Show/Hide permissions checkboxes
-    if (value === 'public') {
-      this.togglePermissions(true);
-    }
-
-    if (value === 'private') {
-      this.togglePermissions(false);
-    }
-
-    //...
-  };
-
   render() {
-    const {list, className = null, updateListData, addImage} = this.props;
+    const {list, className = null, addImage, updateListData} = this.props;
     const {showPermissions} = this.state;
 
     return (
       <div className={`listModal-page ${className}`}>
-        <label>
-          <T component={'list'} name={'labelName'} />
-        </label>
-
-        <input
-          ref={e => (this.title = e)}
-          className={`form-control`}
+        <div className="modal-seperator mb-2" />
+        <Input
+          inputRef={e => (this.input = e)}
+          className={`listModal-title`}
           name="listModal-title"
           placeholder={T({component: 'list', name: 'placeholderTitle'})}
           onChange={e => updateListData({title: e.target.value})}
-          value={
-            list.title
-              ? list.title
-              : T({component: 'list', name: 'noTitleValue'})
-          }
+          value={list.title}
           data-cy="listinfo-title-input"
-        />
+        >
+          <T component={'list'} name={'labelName'} />
+        </Input>
 
-        <label className="mt-4">
+        <label className="mt-4 mb-4">
           <T component={'list'} name={'labelPrivacy'} />
         </label>
 
         <div>
           <Radio
-            value="private"
             group="privacy"
-            onChange={this.onPermissionsChange}
+            checked={!list.public}
+            onChange={e => {
+              this.togglePermissions(false);
+              updateListData({public: false, open: false, social: false});
+            }}
           >
             <Text type="body">
               {T({component: 'general', name: 'private'})}
@@ -93,33 +80,46 @@ class PageInfo extends React.Component {
 
         <div>
           <Radio
-            value="public"
             group="privacy"
-            onChange={this.onPermissionsChange}
+            checked={list.public}
+            onChange={e => {
+              this.togglePermissions(true);
+              updateListData({public: true});
+            }}
           >
             <Text type="body">{T({component: 'general', name: 'public'})}</Text>
           </Radio>
         </div>
 
-        <div className={`pl-4 ${!showPermissions ? 'd-none' : ''}`}>
+        <div
+          className={`listModal-permissions pl-4 ${
+            showPermissions ? 'permissions-visible' : ''
+          }`}
+        >
           <div>
-            <Checkbox value="social" onChange={this.onPermissionsChange}>
+            <Checkbox
+              checked={list.social}
+              onChange={() => updateListData({social: !list.social})}
+            >
               <Text type="body">
                 {T({component: 'list', name: 'permissionsComments'})}
               </Text>
             </Checkbox>
           </div>
           <div>
-            <Checkbox value="open" onChange={this.onPermissionsChange}>
+            <Checkbox
+              checked={list.open}
+              onChange={() => updateListData({open: !list.open})}
+            >
               <Text type="body">
                 {T({component: 'list', name: 'permissionsAdd'})}
               </Text>
             </Checkbox>
           </div>
         </div>
-        <div className="row">
-          <div className="col-4 d-flex flex-column">
-            <label>
+        <div className="row mt-4">
+          <div className="col-6 col-md-4">
+            <label className="m-0">
               <T component={'general'} name={'image'} />
             </label>
             <ImageUpload
@@ -127,24 +127,25 @@ class PageInfo extends React.Component {
               loading={list.imageIsLoading}
               handleLoaded={this.onResize}
               previewImage={
-                list.image ? `/v1/image/${list.image}/719/400` : null
+                list.image ? `/v1/image/${list.image}/150/150` : null
               }
               buttonText={<T component="general" name="changeImage" />}
               buttonPosition="inside"
               onFile={img => addImage(list._id, img)}
             />
           </div>
-          <div className="col-8 d-flex flex-column">
-            <label>
-              <T component={'general'} name={'description'} />
-            </label>
-            <textarea
+          <div className="col-6 col-md-8">
+            <Textarea
               className="listModal-description"
+              value={list.description}
               placeholder={T({
                 component: 'list',
                 name: 'placeholderDescription'
               })}
-            />
+              onChange={e => updateListData({description: e.target.value})}
+            >
+              <T component={'general'} name={'description'} />
+            </Textarea>
           </div>
         </div>
       </div>
@@ -152,13 +153,22 @@ class PageInfo extends React.Component {
   }
 }
 
-const PageAdvanced = ({className = null}) => {
-  return <div className={`listModal-page ${className}`}>Advanced</div>;
-};
+class PageAdvanced extends React.Component {
+  render() {
+    const {className = null} = this.props;
+
+    return (
+      <div className={`listModal-page ${className}`}>
+        <div className="modal-seperator" />
+        Advanced
+      </div>
+    );
+  }
+}
 
 export class ListModal extends React.Component {
   render() {
-    const {list = {}, close, updateListData, saveList} = this.props;
+    const {list = {}, close, addImage, updateListData, saveList} = this.props;
 
     return (
       <Modal
@@ -173,7 +183,11 @@ export class ListModal extends React.Component {
         cancelText="Fortryd"
       >
         <Tabs pages={pages}>
-          <PageInfo list={list} updateListData={data => updateListData(data)} />
+          <PageInfo
+            list={list}
+            addImage={addImage}
+            updateListData={data => updateListData(data)}
+          />
           <PageAdvanced
             list={list}
             updateListData={data => updateListData(data)}

@@ -109,7 +109,8 @@
 .Button__small {
   text-transform: none;
   padding: 5px 10px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: normal;
 }
 
 /* Variants */

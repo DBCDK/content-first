@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import T from '../T';
 
 import {
   addList,
@@ -20,15 +21,28 @@ export const withListCreator = WrappedComponent => {
     }
 
     componentDidMount() {
-      if (!this.props.id) {
-        this.createList();
+      if (!this.props.id && this.props.openplatformId) {
+        this.createList(this.props.openplatformId);
       }
     }
 
-    createList = async () => {
+    componentDidUpdate(prevProps) {
+      if (!this.props.id) {
+        if (prevProps.openplatformId !== this.props.openplatformId) {
+          this.createList(this.props.openplatformId);
+        }
+      }
+    }
+
+    createList = async openplatformId => {
       const list = await saveList(
-        {type: CUSTOM_LIST, isNew: true},
-        this.props.openplatformId
+        {
+          type: CUSTOM_LIST,
+          isNew: false,
+          public: false,
+          title: T({component: 'list', name: 'noTitleValue'})
+        },
+        openplatformId
       );
 
       this.setState({id: list._id});
@@ -77,7 +91,9 @@ export const withList = WrappedComponent => {
   };
 
   const mapDispatchToProps = (dispatch, ownProps) => ({
-    saveList: list => dispatch(storeList(list._id)),
+    saveList: list => {
+      dispatch(storeList(list._id));
+    },
     updateListData: data => dispatch(updateList({_id: ownProps.id, ...data}))
   });
 

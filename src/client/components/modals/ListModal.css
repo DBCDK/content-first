@@ -14,12 +14,30 @@
   overflow-x: hidden;
 }
 
+@media only screen and (max-width: 800px) {
+  .listModal .listModal-page {
+    max-height: 100%;
+  }
+}
+
 .listModal .image-upload .image-upload--zone {
   background: var(--lys-graa);
   border: none;
 }
 
 .listModal .listModal-description {
+  outline: none;
   height: 150px;
   resize: none;
+}
+
+.listModal-permissions {
+  max-height: 0;
+  transition-duration: 0.3s;
+  overflow: hidden;
+}
+
+.listModal .permissions-visible {
+  max-height: 150px;
+  transition-duration: 0.75s;
 }

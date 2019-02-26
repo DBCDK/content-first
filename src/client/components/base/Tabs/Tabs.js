@@ -10,6 +10,7 @@ const Tabs = ({className = null, children, params, pages, ...props}) => {
   //
   const settings = {
     containerModifierClass: 'Tabs__container-',
+    slideClass: 'swiper-slide',
     mousewheel: false,
     slidesPerView: 1,
     noSwiping: !isMobile,

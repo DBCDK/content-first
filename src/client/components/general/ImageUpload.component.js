@@ -5,11 +5,8 @@ import Icon from '../base/Icon';
 
 const UploadButton = ({buttonText, fieldName, readFiles, style, className}) => (
   <label style={style} className={className}>
-    <Button type="tertiary" size="medium" Tag="span">
-      <Icon name="photo" className="align-middle" />
-      <span className="align-middle ml-2">
-        {buttonText || 'Upload billede'}
-      </span>
+    <Button type="tertiary" size="small" Tag="span">
+      <span className="align-middle">{buttonText || 'Upload billede'}</span>
     </Button>
     <input
       accept="image/png, image/jpeg"
@@ -115,7 +112,12 @@ export default class ImageUpload extends React.Component {
               buttonText={this.props.buttonText}
               fieldName={this.props.fieldName}
               readFiles={this.readFiles}
-              style={{position: 'absolute', bottom: 5, left: 10}}
+              style={{
+                position: 'absolute',
+                bottom: 5,
+                left: '50%',
+                transform: 'translate(-50%)'
+              }}
             />
           )}
         </div>

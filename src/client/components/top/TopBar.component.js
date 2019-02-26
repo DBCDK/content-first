@@ -335,7 +335,7 @@ export class TopBar extends React.Component {
                 height: '28px',
                 marginTop: '1px',
                 marginRight: '7px',
-                'pointer-events': 'none'
+                pointerEvents: 'none'
               }}
             />
             <div>
@@ -361,7 +361,7 @@ export class TopBar extends React.Component {
                   height: '28px',
                   marginTop: '6px',
                   marginRight: '7px',
-                  'pointer-events': 'none'
+                  pointerEvents: 'none'
                 }}
               />
 
