@@ -7,7 +7,6 @@ import Heading from '../../base/Heading';
 import Icon from '../../base/Icon';
 import withTagsFromUrl from '../../base/AdressBar/withTagsFromUrl.hoc';
 import {filtersMapAll, TOGGLE_FILTER} from '../../../redux/filter.reducer';
-import {getTagsFromUrl} from '../../../redux/selectors';
 
 import 'rc-slider/assets/index.css';
 import './CardRange.css';
@@ -44,7 +43,6 @@ class CardRange extends React.Component {
         range.includes(filter.left.id) &&
         range.includes(filter.right.id)
       ) {
-        console.log('its a range');
         min = range.indexOf(filter.left.id);
         max = range.indexOf(filter.right.id);
       }
@@ -79,7 +77,6 @@ class CardRange extends React.Component {
 
   render() {
     const {filter, expanded} = this.props;
-    console.log(filter, 'tags', this.props.tags);
 
     /* fetch ids by selected value in range slider */
     const ids = this.getIdByValue();

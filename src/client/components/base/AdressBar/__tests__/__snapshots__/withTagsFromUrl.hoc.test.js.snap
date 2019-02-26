@@ -47,6 +47,18 @@ Array [
 exports[`withTagsFromUrl.hoc expands a tag range 1`] = `
 Array [
   Object {
+    "fullRange": Array [
+      5629,
+      5630,
+      5631,
+      5632,
+      5633,
+    ],
+    "inRange": Array [
+      5629,
+      5630,
+      5631,
+    ],
     "left": Object {
       "id": 5629,
       "parents": Array [
@@ -57,15 +69,15 @@ Array [
     },
     "match": Array [
       5629,
-      5630,
+      5631,
     ],
     "right": Object {
-      "id": 5630,
+      "id": 5631,
       "parents": Array [
         "Tempo",
       ],
       "score": 0,
-      "title": "dvælende",
+      "title": "fremadskridende",
     },
     "type": "TAG_RANGE",
   },
@@ -153,6 +165,16 @@ Array [
 `;
 
 exports[`withTagsFromUrl.hoc replace a range tag when it is already selected 1`] = `
+Array [
+  Array [
+    5629,
+    5631,
+  ],
+  "870970-basis:123456",
+]
+`;
+
+exports[`withTagsFromUrl.hoc replace a range tag when it is already selected, and the selected tag is not in range format 1`] = `
 Array [
   Array [
     5629,

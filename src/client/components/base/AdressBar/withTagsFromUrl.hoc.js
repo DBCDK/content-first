@@ -8,7 +8,8 @@ import {
   isRange,
   getFullRange,
   isSameRange,
-  isFullRange
+  isFullRange,
+  getSelectedRange
 } from '../../../utils/taxonomy';
 
 /**
@@ -102,9 +103,9 @@ const withTagsFromUrl = WrappedComponent => {
 export default withTagsFromUrl;
 
 const tagsFromUrlSelector = createSelector(
-  [state => state.routerReducer.params.tagss],
-  tags => {
-    const expandedTags = tagsFromURL(tags && tags[0]);
+  [state => state.routerReducer.params.tagss, state => state.filtercardReducer],
+  (tags, filterCards) => {
+    const expandedTags = tagsFromURL(tags && tags[0], filterCards);
     const tagsMap = {};
     expandedTags.forEach(expanded => {
       tagsMap[expanded.match] = expanded;
@@ -113,7 +114,7 @@ const tagsFromUrlSelector = createSelector(
   }
 );
 
-export const tagsFromURL = urlTags => {
+export const tagsFromURL = (urlTags, filterCards) => {
   if (!urlTags) {
     return [];
   }
@@ -129,7 +130,19 @@ export const tagsFromURL = urlTags => {
         let [left, right] = decoded.split(':');
         left = filtersMapAll[parseInt(left, 10)];
         right = filtersMapAll[parseInt(right, 10)];
-        return {type: 'TAG_RANGE', left, right, match: [left.id, right.id]};
+        const fullRange = getFullRange(left.id, filterCards, filtersMapAll);
+        const inRange = fullRange.slice(
+          fullRange.indexOf(left.id),
+          fullRange.indexOf(right.id) + 1
+        );
+        return {
+          type: 'TAG_RANGE',
+          left,
+          right,
+          match: [left.id, right.id],
+          inRange,
+          fullRange
+        };
       }
       const parsedAsInt = parseInt(decoded, 10);
       const tagObj = filtersMapAll[parseInt(decoded, 10)];
@@ -146,20 +159,36 @@ export const tagsFromURL = urlTags => {
 };
 
 export const toggleTag = (expandedTags, filterCards, tag) => {
-  const tags = expandedTags.map(s => s.match);
-  if (isRange(tag)) {
+  const isRangeTag = getFullRange(tag, filterCards, filtersMapAll);
+  if (isRangeTag) {
     let add = true;
-    const nextTags = tags.map(s => {
-      const fullRange = getFullRange(s, filterCards, filtersMapAll);
-      if (isSameRange(tag, fullRange)) {
+    const nextTags = expandedTags.map(s => {
+      if (
+        s.type === 'TAG_RANGE' &&
+        (s.fullRange.includes(tag) || s.fullRange.includes(tag[0]))
+      ) {
+        /* tag is part of this range */
         add = false;
-        if (isFullRange(tag, fullRange) || isEqual(s, tag)) {
+        if (isFullRange(tag, s.fullRange) || isEqual(s.match, tag)) {
+          /* delete when tag is the full range or an exact match to already selected */
           return null;
         } else {
-          return tag;
+          if (typeof tag === 'number') {
+            /* Update range */
+            const prevSelectedRange = [s.left.id, s.right.id];
+            const newSelectedRange = getSelectedRange(
+              tag,
+              prevSelectedRange,
+              s.fullRange
+            );
+            return newSelectedRange;
+          } else {
+            /* Replace range */
+            return tag;
+          }
         }
       }
-      return s;
+      return s.match;
     });
 
     if (add) {
@@ -167,8 +196,8 @@ export const toggleTag = (expandedTags, filterCards, tag) => {
     }
     return nextTags.filter(t => t);
   } else {
-    const nextTags = tags.filter(s => s !== tag);
-    if (nextTags.length === tags.length) {
+    const nextTags = expandedTags.map(s => s.match).filter(s => s !== tag);
+    if (nextTags.length === expandedTags.length) {
       // nothing removed, add
       nextTags.push(tag);
     }
