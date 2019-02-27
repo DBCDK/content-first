@@ -404,32 +404,6 @@ exports[`renders without crashing 1`] = `
             Object {
               "child": false,
               "isLoading": false,
-              "key": "Vemodige nordmænd",
-              "links": Array [],
-              "name": "Vemodige nordmænd",
-              "onFrontPage": true,
-              "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
-              "tags": Array [
-                Object {
-                  "id": 4466,
-                  "weight": 10,
-                },
-                5731,
-                3510,
-                5626,
-                5683,
-                5630,
-              ],
-              "type": "belt",
-            }
-          }
-          id="Vemodige nordmænd"
-        />
-        <BooksBelt
-          belt={
-            Object {
-              "child": false,
-              "isLoading": false,
               "key": "Mennesket og Naturen",
               "links": Array [],
               "name": "Mennesket og Naturen",
@@ -497,6 +471,30 @@ exports[`renders without crashing 1`] = `
       <div
         className="belts col-12"
       >
+        <BooksBelt
+          belt={
+            Object {
+              "child": false,
+              "isLoading": false,
+              "key": "Tankevækkende Sci-fi",
+              "links": Array [],
+              "name": "Tankevækkende fremtidsvisioner",
+              "onFrontPage": true,
+              "subtext": "Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.",
+              "tags": Array [
+                Object {
+                  "id": 4995,
+                  "weight": 10,
+                },
+                4927,
+                5714,
+                5713,
+              ],
+              "type": "belt",
+            }
+          }
+          id="Tankevækkende Sci-fi"
+        />
         <BooksBelt
           belt={
             Object {
@@ -695,24 +693,26 @@ exports[`renders without crashing 1`] = `
             Object {
               "child": false,
               "isLoading": false,
-              "key": "Tankevækkende Sci-fi",
+              "key": "Vemodige nordmænd",
               "links": Array [],
-              "name": "Tankevækkende fremtidsvisioner",
+              "name": "Vemodige nordmænd",
               "onFrontPage": true,
-              "subtext": "Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.",
+              "subtext": "Når du har lyst til at tænke over livet - også det svære og sårbare.",
               "tags": Array [
                 Object {
-                  "id": 4995,
+                  "id": 4466,
                   "weight": 10,
                 },
-                4927,
-                5714,
-                5713,
+                5731,
+                3510,
+                5626,
+                5683,
+                5630,
               ],
               "type": "belt",
             }
           }
-          id="Tankevækkende Sci-fi"
+          id="Vemodige nordmænd"
         />
       </div>
     </div>
