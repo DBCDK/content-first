@@ -229,13 +229,17 @@ export class TopBar extends React.Component {
       ? this.props.stats.books.total
       : '0';
 
+		console.log("searchExpanded",searchExpanded)
+		console.log("searchIconText",searchIconText)
+		console.log("isIndex",isIndex)
+
     return (
       <header
         id="topbar"
         ref={e => (this.Topbar = e)}
         className={`Topbar row ${!searchExpanded ? 'searchBar-closed' : ''}`}
       >
-        {searchPage &&
+       {/* {searchPage &&
           searchExpanded && (
             <div className="Topbar__mobile__overlay d-block d-sm-none">
               <span onClick={() => this.toggleSearchBar('close')}>
@@ -248,7 +252,7 @@ export class TopBar extends React.Component {
                 Nulstil
               </span>
             </div>
-          )}
+          )}*/}
         <nav className="col-12 col-m-8 Topbar__navigation">
           <div className="Topbar__special widthCalc">
             <a href="/">
@@ -279,13 +283,14 @@ export class TopBar extends React.Component {
               {searchIconText}
             </span>
           </span>
-
+          {!searchExpanded && (
           <Link
             href="/find"
             className="Topbar__navigation__btn d-i-block d-md-none"
           >
             <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
           </Link>
+          )}
 
           {shortlist}
 
