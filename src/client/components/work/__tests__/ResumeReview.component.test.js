@@ -107,8 +107,7 @@ const sampleReviews = [
         '2008, der slet ikke kvalitetsmæssig kan sammenlignes med Lille Sven',
       'Samlet konklusion':
         'En intenst fortalt historie om en idealistisk ung mand i modstandsbevægelsen ' +
-        'med bred læserappel',
-      title: 'Materialevurdering oprindeligt udarbejdet til udgave fra 2009'
+        'med bred læserappel'
     },
     note: 'Materialevurdering oprindeligt udarbejdet til udgave fra 2009'
   }
