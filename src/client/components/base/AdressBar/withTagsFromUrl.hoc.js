@@ -89,7 +89,8 @@ const withTagsFromUrl = WrappedComponent => {
     return {
       tags,
       tagsMap,
-      filterCards: state.filtercardReducer
+      filterCards: state.filtercardReducer,
+      filters: state.filterReducer.filters
     };
   };
   const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -100,7 +101,7 @@ const withTagsFromUrl = WrappedComponent => {
         params:
           tags.length > 0
             ? {
-                tagss: tags
+                tags: tags
                   .map(
                     t =>
                       Array.isArray(t) ? t.join(':') : encodeURIComponent(t)
@@ -120,7 +121,7 @@ const withTagsFromUrl = WrappedComponent => {
 export default withTagsFromUrl;
 
 const tagsFromUrlSelector = createSelector(
-  [state => state.routerReducer.params.tagss, state => state.filtercardReducer],
+  [state => state.routerReducer.params.tags, state => state.filtercardReducer],
   (tags, filterCards) => {
     const expandedTags = tagsFromURL(tags && tags[0], filterCards);
     const tagsMap = {};

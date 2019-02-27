@@ -7,7 +7,7 @@ import CardList from './templates/CardList.component.js';
 import CardRange from './templates/CardRange.component.js';
 import withTagsFromUrl from '../base/AdressBar/withTagsFromUrl.hoc';
 
-import './Filters.css';
+import './FilterCards.css';
 
 const params = {
   containerClass: 'Filters__swiper-container',
@@ -93,7 +93,7 @@ class Filters extends React.Component {
     super();
     this.state = {
       showDimmer: false,
-      oFilters: props.cards
+      oFilters: props.filterCards
     };
   }
 
