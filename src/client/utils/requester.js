@@ -2,7 +2,6 @@ import openplatform from 'openplatform';
 import request from 'superagent';
 import {BOOKS_RESPONSE} from '../redux/books.reducer';
 import {SEARCH_RESULTS} from '../redux/search.reducer';
-import {HISTORY_PUSH} from '../redux/router.reducer';
 import {
   ON_USER_DETAILS_RESPONSE,
   ON_LOGOUT_RESPONSE,
@@ -13,6 +12,7 @@ import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
+import {OPEN_MODAL} from '../redux/modal.reducer';
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';
@@ -260,7 +260,10 @@ export const fetchUser = (dispatch, cb) => {
       const user = JSON.parse(res.text).data;
       dispatch({type: ON_USER_DETAILS_RESPONSE, user});
       if (!user.acceptedTerms) {
-        dispatch({type: HISTORY_PUSH, path: '/profile/opret'});
+        dispatch({
+          type: OPEN_MODAL,
+          modal: 'profile'
+        });
       }
     }
     cb();

@@ -94,6 +94,50 @@ router
 
 /**
  *
+ * test age and name
+ **/
+
+/**
+ *
+ * Log in with user name and over 13 boolean (1 or !1)
+ * GET /v1/test/login/:id
+ */
+
+router.route('/cprlogin/:id/:over13').get(
+  asyncMiddleware(async (req, res) => {
+    try {
+      const loginToken = await createUser(req, false);
+      const user = {
+        openplatformId: req.params.id,
+        openplatformToken: req.params.id,
+        expires: Math.ceil((Date.now() + ms_OneMonth) / 1000),
+        special: {
+          over13: req.params.over13 === '1' ? true : false,
+          name: req.params.id
+        }
+      };
+
+      req.user = user;
+      return res
+        .status(303)
+        .location('http://localhost:3000/replay')
+        .cookie('login-token', loginToken, {
+          httpOnly: true
+        })
+        .cookie('test-user-data', JSON.stringify(user))
+        .send();
+    } catch (error) {
+      let errorMsg = JSON.stringify(error);
+      if (errorMsg === '{}') {
+        errorMsg = error.toString();
+      }
+      return res.status(400).send(error);
+    }
+  })
+);
+
+/**
+ *
  * @param {String} id openplatform_id
  * @param {boolean} createUser   if true: create user profile and log in. Else only log in
  */
