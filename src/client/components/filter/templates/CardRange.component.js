@@ -1,12 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {Range} from 'rc-slider';
 import {isEqual} from 'lodash';
 
 import Heading from '../../base/Heading';
 import Icon from '../../base/Icon';
 import withTagsFromUrl from '../../base/AdressBar/withTagsFromUrl.hoc';
-import {filtersMapAll, TOGGLE_FILTER} from '../../../redux/filter.reducer';
+import {filtersMapAll} from '../../../redux/filter.reducer';
 
 import 'rc-slider/assets/index.css';
 import './CardRange.css';

@@ -1,6 +1,3 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-
 import {tagsFromURL, addTag, removeTag} from '../withTagsFromUrl.hoc';
 const filtercards = {
   Tempo: {

@@ -1,6 +1,5 @@
 import React from 'react';
 import request from 'superagent';
-import {uniqBy} from 'lodash';
 import Autosuggest from 'react-autosuggest';
 
 import Icon from '../base/Icon';
@@ -47,10 +46,6 @@ const renderSuggestion = (suggestion, suggestionString) => {
       <span className="ml1 suggestion-subject">{category}</span>
     </div>
   );
-};
-
-const renderSectionTitle = section => {
-  return <div className="section-title">{section.title}</div>;
 };
 
 class TagsSuggester extends React.Component {

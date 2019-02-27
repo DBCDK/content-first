@@ -93,7 +93,7 @@ const withTagsFromUrl = WrappedComponent => {
       filters: state.filterReducer.filters
     };
   };
-  const mapDispatchToProps = (dispatch, ownProps) => ({
+  const mapDispatchToProps = dispatch => ({
     updateUrl: tags => {
       dispatch({
         type: HISTORY_REPLACE,
@@ -215,9 +215,8 @@ export const addTag = (expandedTags, filterCards, tag) => {
       }
     }
     return res;
-  } else {
-    return [...expandedTags.map(t => t.match), tag];
   }
+  return [...expandedTags.map(t => t.match), tag];
 };
 
 const isPid = id => {

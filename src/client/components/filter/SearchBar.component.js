@@ -63,11 +63,16 @@ class SearchBar extends React.Component {
     switch (selected.type) {
       case 'TAG':
         return (
-          <SelectedTag selected={selected} onRemove={this.props.removeTag} />
+          <SelectedTag
+            key={selected.match}
+            selected={selected}
+            onRemove={this.props.removeTag}
+          />
         );
       case 'TAG_RANGE':
         return (
           <SelectedTagRange
+            key={selected.match}
             selected={selected}
             onRemove={this.props.removeTag}
           />
@@ -75,6 +80,7 @@ class SearchBar extends React.Component {
       case 'TITLE':
         return (
           <SelectedWork
+            key={selected.match}
             pid={selected.pid}
             selected={selected}
             onRemove={this.props.removeTag}
@@ -82,7 +88,11 @@ class SearchBar extends React.Component {
         );
       case 'QUERY':
         return (
-          <SelectedQuery selected={selected} onRemove={this.props.removeTag} />
+          <SelectedQuery
+            key={selected.match}
+            selected={selected}
+            onRemove={this.props.removeTag}
+          />
         );
       default:
         return null;
@@ -146,11 +156,13 @@ class SearchBar extends React.Component {
                 case 'TITLE':
                   this.props.addTag(suggestion.pid);
                   break;
+                default:
+                  break;
               }
             }}
           />
           <div id="selectedFilters" className="selected-filters">
-            {this.props.tags.map((filter, idx) => this.renderSelected(filter))}
+            {this.props.tags.map(filter => this.renderSelected(filter))}
           </div>
         </div>
       </React.Fragment>
