@@ -95,7 +95,12 @@
     "uuid": "^3.1.0",
     "xml2js": "^0.4.19"
   },
-  "proxy": "http://localhost:3001",
+
+  "proxy": {
+    "/v1": {
+      "target": "http://localhost:3001/"
+    }
+  },
   "scripts": {
     "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js src/*/*/*/*/*/*.js ./cypress/*/*.js",
     "build": "react-scripts build",
