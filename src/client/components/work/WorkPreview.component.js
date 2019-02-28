@@ -5,7 +5,6 @@ import TaxDescription from './TaxDescription.component';
 import Heading from '../base/Heading';
 import Button from '../base/Button';
 import Paragraph from '../base/Paragraph';
-import Title from '../base/Title';
 import Icon from '../base/Icon';
 import T from '../base/T';
 import SkeletonText from '../base/Skeleton/Text';
