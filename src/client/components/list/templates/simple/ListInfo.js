@@ -16,13 +16,13 @@ import textParser from '../../../../utils/textParser';
 import Title from '../../../base/Title';
 import Text from '../../../base/Text';
 import T from '../../../base/T';
-import ImageUpload from '../../../general/ImageUpload.component';
 import FollowButton from '../../button/FollowButton';
 import AddBookButton from '../../button/AddBookButton';
 import ListContextMenu from '../../menu/ListContextMenu';
 
 const getListById = getListByIdSelector();
 
+/* eslint no-unused-vars: ["error", { "args": "none" }]*/
 export const ListInfo = ({
   list,
   profile,
@@ -37,33 +37,9 @@ export const ListInfo = ({
 }) => {
   return (
     <div className="box-shadow">
-      <div className="list-cover-image-wrapper pl-0 pb-4 pt-md-4 pl-md-4 pr-md-4 lys-graa">
-        {editing ? (
-          <ImageUpload
-            error={list.imageError}
-            style={{borderRadius: 0, border: 0, width: '100%', height: '100%'}}
-            loading={list.imageIsLoading}
-            handleLoaded={this.onResize}
-            previewImage={list.image ? `/v1/image/${list.image}/719/400` : null}
-            buttonText={<T component="general" name="changeImage" />}
-            buttonPosition="inside"
-            onFile={img => {
-              addImage(list._id, img);
-            }}
-          />
-        ) : (
-          list.image && (
-            <img
-              className="list-cover-image w-100"
-              alt=""
-              src={`/v1/image/${list.image}/719/400`}
-            />
-          )
-        )}
-      </div>
       <div className="pl-3 pr-3 pl-sm-4 pr-sm-4 pb-4 lys-graa pt-2 position-relative">
         <div
-          className="d-flex flex-row position-absolute pr-0"
+          className="d-flex flex-row position-absolute pr-0 mt3"
           style={{right: 0, top: 0}}
         >
           <SocialShareButton
@@ -90,7 +66,7 @@ export const ListInfo = ({
           />
         </div>
 
-        <div className="d-flex flex-row">
+        <div className="d-flex flex-row mt3">
           <ProfileImage user={profile} size={'40'} namePosition="right" />
           <Text type="body" variant="color-due" className="ml-4">
             {timeToString(list._created)}
