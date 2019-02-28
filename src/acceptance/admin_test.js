@@ -172,4 +172,7 @@ function arrangeSubserviceResponse(authLoginCommunity) {
   nock(config.recompass.url.work)
     .get('/status')
     .reply(200, authConst.healthyResponse);
+  nock(config.suggester.url)
+    .get('/?query=test')
+    .reply(200, authConst.healthyResponse);
 }

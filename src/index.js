@@ -26,7 +26,6 @@ import {interactionMiddleware} from './client/redux/interaction.middleware';
 import {beltsMiddleware} from './client/redux/belts.middleware';
 import {statsMiddleware} from './client/redux/stats.middleware';
 import {matomoMiddleware} from './client/redux/matomo.middleware';
-import {filterMiddleware} from './client/redux/filter.middleware';
 
 // for window.scroll() back compatibility
 smoothscroll.polyfill();
@@ -48,8 +47,7 @@ const store = createStore([
   interactionMiddleware,
   beltsMiddleware,
   statsMiddleware,
-  matomoMiddleware,
-  filterMiddleware
+  matomoMiddleware
 ]);
 ReactDOM.render(
   <Provider store={store}>

@@ -1,6 +1,5 @@
 import React from 'react';
 import request from 'superagent';
-import {uniqBy} from 'lodash';
 import Autosuggest from 'react-autosuggest';
 
 import Icon from '../base/Icon';
@@ -49,10 +48,6 @@ const renderSuggestion = (suggestion, suggestionString) => {
   );
 };
 
-const renderSectionTitle = section => {
-  return <div className="section-title">{section.title}</div>;
-};
-
 class TagsSuggester extends React.Component {
   constructor(props) {
     super(props);
@@ -95,7 +90,7 @@ class TagsSuggester extends React.Component {
 
   render() {
     const inputVisibel = this.state.inputVisibel;
-    const tagsInField = this.props.selectedFilters.length === 0 ? false : true;
+    const tagsInField = this.props.tags.length > 0;
     const inputVisibelClass = inputVisibel || !tagsInField ? '' : '';
     const suggestionlistClass =
       inputVisibel || !tagsInField ? 'input-visible' : 'input-hidden';
@@ -144,6 +139,7 @@ class TagsSuggester extends React.Component {
             onSuggestionSelected={this.props.onSuggestionSelected}
             focusInputOnSuggestionClick={true}
             inputProps={inputProps}
+            highlightFirstSuggestion={true}
           />
         </div>
         {!tagsInField && (

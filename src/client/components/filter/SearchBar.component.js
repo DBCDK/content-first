@@ -1,59 +1,120 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {toast} from 'react-toastify';
-import ToastMessage from '../base/ToastMessage';
-import T from '../base/T';
-import SelectedFilters from './SelectedFilters.component';
-import {TOGGLE_FILTER} from '../../redux/filter.reducer';
-import {HISTORY_REPLACE} from '../../redux/middleware';
-import {BOOKS_REQUEST} from '../../redux/books.reducer';
-import {
-  getRecommendedBooks,
-  getTagsFromUrl,
-  getCreatorsFromUrl,
-  getTitlesFromUrl,
-  getIdsFromRange,
-  getTagsbyIds
-} from '../../redux/selectors';
-import {REORGANIZE_FILTERPAGE_BELTS} from '../../redux/belts.reducer';
-
+import TagsSuggester from './TagsSuggester.component';
+import Icon from '../base/Icon';
+import Button from '../base/Button';
+import withTagsFromUrl from '../base/AdressBar/withTagsFromUrl.hoc';
+import withWork from '../base/Work/withWork.hoc';
 import './SearchBar.css';
 
-class SearchBar extends React.Component {
-  componentDidMount() {
-    this.initFilterPosition();
-  }
+const SelectedWork = withWork(({selected, work, onRemove}) => (
+  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+    <span>{work && work.book.title}</span>
+    <Icon
+      className="md-small"
+      name="close"
+      onClick={() => onRemove(selected.match)}
+    />
+  </Button>
+));
+const SelectedTag = ({selected, onRemove}) => (
+  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+    <span>{selected.title}</span>
+    <Icon
+      className="md-small"
+      name="close"
+      onClick={() => onRemove(selected.match)}
+    />
+  </Button>
+);
+const SelectedTagRange = ({selected, onRemove}) => (
+  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+    {selected.left.id === selected.right.id ? (
+      <span>{selected.left.title}</span>
+    ) : (
+      <span>
+        {selected.left.title} - {selected.right.title}
+      </span>
+    )}
+    <Icon
+      className="md-small"
+      name="close"
+      onClick={() => onRemove(selected.match)}
+    />
+  </Button>
+);
+const SelectedQuery = ({selected, onRemove}) => (
+  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+    <span>{selected.query}</span>
+    <Icon
+      className="md-small"
+      name="close"
+      onClick={() => onRemove(selected.match)}
+    />
+  </Button>
+);
 
+class SearchBar extends React.Component {
   constructor() {
     super();
     this.state = {query: '', expanded: false};
   }
 
-  toggleFilter(filterId) {
-    this.props.toggleFilter(filterId);
-  }
+  renderSelected = selected => {
+    switch (selected.type) {
+      case 'TAG':
+        return (
+          <SelectedTag
+            key={selected.match}
+            selected={selected}
+            onRemove={this.props.removeTag}
+          />
+        );
+      case 'TAG_RANGE':
+        return (
+          <SelectedTagRange
+            key={selected.match}
+            selected={selected}
+            onRemove={this.props.removeTag}
+          />
+        );
+      case 'TITLE':
+        return (
+          <SelectedWork
+            key={selected.match}
+            pid={selected.pid}
+            selected={selected}
+            onRemove={this.props.removeTag}
+          />
+        );
+      case 'QUERY':
+        return (
+          <SelectedQuery
+            key={selected.match}
+            selected={selected}
+            onRemove={this.props.removeTag}
+          />
+        );
+      default:
+        return null;
+    }
+  };
 
-  triggerCancelToast(historyPath, historyParams) {
-    toast(
-      <ToastMessage
-        type="info"
-        icon="history"
-        lines={[
-          T({component: 'filter', name: 'newSearchToast'}),
-          <a
-            onClick={() =>
-              this.props.historyReplace(historyPath, historyParams)
-            }
-          >
-            <T component="general" name="back" />
-          </a>
-        ]}
-      />,
-      {hideProgressBar: false, pauseOnHover: true}
-    );
-  }
+  handleOnKeyDown = e => {
+    /* handle backspace */
+    const {tags} = this.props;
+    const query = this.state.query;
+    if (tags.length > 0 && e.keyCode === 8 && query === '') {
+      this.props.removeTag(tags[tags.length - 1].match);
+    }
+  };
 
-  onFiltersMouseWheelScrool(e) {
+  initFilterPosition = () => {
+    if (this.filtersRef) {
+      this.filtersRef.scrollLeft = 99999999;
+    }
+  };
+
+  onFiltersMouseWheelScrool = e => {
     e.preventDefault();
     let scrollSpeed = 40;
     /* eslint-disable no-unused-expressions */
@@ -61,105 +122,51 @@ class SearchBar extends React.Component {
       ? (this.filtersRef.scrollLeft += scrollSpeed)
       : (this.filtersRef.scrollLeft -= scrollSpeed);
     /* eslint-enable no-unused-expressions */
-  }
-
-  initFilterPosition() {
-    if (this.filtersRef) {
-      this.filtersRef.scrollLeft = 99999999;
-    }
-  }
-
-  handleOnKeyDown(e) {
-    let tags = this.props.selectedTagIds;
-    /* Hvis der er tags i url */
-    if (tags.length > 0) {
-      /* Hvis brugeren trykker backspace */
-      if (e.keyCode === 8) {
-        /* Hvis brugeren ikke er igang med at skrive et ord */
-        if (this.state.query === '') {
-          this.props.toggleFilter(tags[tags.length - 1]);
-          this.initFilterPosition();
-        }
-      }
-    }
-  }
+  };
 
   render() {
     return (
-      <SelectedFilters
-        filtersRef={r => {
-          this.filtersRef = r;
-        }}
-        onFiltersScroll={e => this.onFiltersMouseWheelScrool(e)}
-        selectedFilters={this.props.selectedTags}
-        selectedTags={this.props.selectedTagIds}
-        transition={this.props.transition}
-        filters={this.props.filters}
-        edit={this.state.expanded}
-        onEditFilterToggle={this.props.editFilterToggle}
-        query={this.state.query}
-        onQueryChange={e => this.setState({query: e.target.value})}
-        onFilterToggle={filter => {
-          this.toggleFilter(filter);
-        }}
-        onKeyDown={e => this.handleOnKeyDown(e)}
-        onFocus={() => {
-          this.setState({expanded: true});
-          this.initFilterPosition();
-        }}
-      />
+      <React.Fragment>
+        <div
+          className="selected-filters-wrap text-left"
+          id="selected-filters-wrap"
+          ref={r => {
+            this.filtersRef = r;
+          }}
+          onWheel={this.onFiltersMouseWheelScrool}
+        >
+          <TagsSuggester
+            tags={this.props.tags}
+            filters={this.props.filters}
+            value={this.state.query}
+            onKeyDown={this.handleOnKeyDown}
+            onFocus={() => {
+              this.setState({expanded: true});
+              this.initFilterPosition();
+            }}
+            onChange={e => this.setState({query: e.target.value})}
+            onSuggestionSelected={(e, {suggestion}) => {
+              switch (suggestion.type) {
+                case 'TAG':
+                  this.props.addTag(suggestion.id);
+                  break;
+                case 'AUTHOR':
+                  this.props.addTag(suggestion.authorName);
+                  break;
+                case 'TITLE':
+                  this.props.addTag(suggestion.pid);
+                  break;
+                default:
+                  break;
+              }
+            }}
+          />
+          <div id="selectedFilters" className="selected-filters">
+            {this.props.tags.map(filter => this.renderSelected(filter))}
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
-
-const mapStateToProps = state => {
-  const filterCards = state.filtercardReducer;
-  const selectedTagIds = getTagsFromUrl(state);
-  const selectedCreators = getCreatorsFromUrl(state);
-  const selectedTitles = getTitlesFromUrl(state);
-  const plainSelectedTagIds = getIdsFromRange(state, selectedTagIds);
-  const selectedTags = getTagsbyIds(state, selectedTagIds);
-  const mergedSelectedTags = [].concat(
-    selectedTagIds,
-    selectedCreators,
-    selectedTitles
-  );
-
-  return {
-    recommendedPids: getRecommendedBooks(state, plainSelectedTagIds, 300),
-    filterCards,
-    router: state.routerReducer,
-    transition: state.routerReducer.params.transition || false,
-    selectedTagIds: mergedSelectedTags,
-    plainSelectedTagIds,
-    selectedTags: selectedTags.length > 0 ? selectedTags : mergedSelectedTags,
-    filters: state.filterReducer.filters,
-    editFilters: state.filterReducer.editFilters,
-    expandedFilters: state.filterReducer.expandedFilters
-  };
-};
-export const mapDispatchToProps = dispatch => ({
-  toggleFilter: id => dispatch({type: TOGGLE_FILTER, id}),
-  historyReplace: (path, params) => {
-    dispatch({
-      type: HISTORY_REPLACE,
-      path,
-      params
-    });
-  },
-  onSearch: query =>
-    dispatch({type: 'SEARCH_QUERY', query: query.toLowerCase()}),
-  fetchWorks: pids =>
-    dispatch({
-      type: BOOKS_REQUEST,
-      pids: pids
-    }),
-  reorganizeBelts: () => {
-    dispatch({type: REORGANIZE_FILTERPAGE_BELTS});
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchBar);
+export default withTagsFromUrl(SearchBar);

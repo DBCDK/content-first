@@ -38,6 +38,7 @@ export const filters = {
     leavesMap[5617]
   ]
 };
+
 export const filtersMap = getLeavesMap(filters);
 export const filtersMapAll = {...getLeavesMap(), ...filtersMap}; // all tags from taxonomy
 export const filterIds = getLeaves(filters).map(f => f.id);
