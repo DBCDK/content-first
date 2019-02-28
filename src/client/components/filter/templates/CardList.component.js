@@ -50,6 +50,7 @@ class FilterCardList extends React.Component {
                     </React.Fragment>
                   );
                 }
+                return null;
               });
             }
             if (isSelected(f.id)) {
@@ -61,6 +62,7 @@ class FilterCardList extends React.Component {
                 </React.Fragment>
               );
             }
+            return null;
           })}
 
         {aFilters.map((f, idx) => {
@@ -87,6 +89,7 @@ class FilterCardList extends React.Component {
                       </React.Fragment>
                     );
                   }
+                  return null;
                 })}
               </React.Fragment>
             );
@@ -99,6 +102,7 @@ class FilterCardList extends React.Component {
               </React.Fragment>
             );
           }
+          return null;
         })}
         {!expanded && (
           <Heading

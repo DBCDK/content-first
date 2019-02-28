@@ -167,6 +167,7 @@ class Filters extends React.Component {
                 />
               );
             }
+            return null;
           })}
           <div className="FilterCard__space" />
         </Swiper>
