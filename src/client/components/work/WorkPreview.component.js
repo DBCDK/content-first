@@ -20,15 +20,29 @@ import {filterCollection, filterReviews} from './workFunctions';
 import {SCROLL_TO_COMPONENT} from '../../redux/scrollToComponent';
 import withScrollToComponent from '../base/scroll/withScrollToComponent.hoc';
 import withWork from '../base/Work/withWork.hoc';
+import ReviewList from './ReviewList.component';
 
 import './WorkPreview.css';
 
+/**
+ * WorkPreview
+ */
 class WorkPreview extends React.Component {
+  /**
+   * handleChildBelts
+   * @param parentBelt
+   * @param childBelt
+   */
   handleChildBelts(parentBelt, childBelt) {
     this.props.addChildBelt(parentBelt, childBelt);
     this.props.scrollToComponent(childBelt.key);
   }
 
+  /**
+   * onMoreLikeThisClick
+   * @param parentBelt
+   * @param work
+   */
   onMoreLikeThisClick(parentBelt, work) {
     const type = 'belt';
     const book = work.book;
@@ -58,7 +72,12 @@ class WorkPreview extends React.Component {
     const collection = filterCollection(work);
     // get reviews from litteratursiden
     const reviews = filterReviews(work);
-
+    const lectorReviews =
+      work.reviewsHasLoaded &&
+      work.book.reviews.data &&
+      work.book.reviews.data.length > 0
+        ? work.book.reviews.data
+        : false;
     return (
       <React.Fragment>
         <div
@@ -161,6 +180,7 @@ class WorkPreview extends React.Component {
                         </Link>
                       );
                     }
+                    return '';
                   })}
                 {!work.collectionHasLoaded && (
                   <React.Fragment>
@@ -227,7 +247,7 @@ class WorkPreview extends React.Component {
           <div className="col-md-0 col-lg-5 workPreview__reviews pt1 pb1">
             <div className="row">
               <div className="col-md-12">
-                <Heading Tag="h3" type="title" className="mt0 mb2">
+                <Heading Tag="h5" type="title5" className="mt0 mb2">
                   <T component="work" name={'reviewsTitle'} />
                 </Heading>
               </div>
@@ -280,6 +300,7 @@ class WorkPreview extends React.Component {
                 </a>
               </React.Fragment>
             )}
+            <ReviewList book={book} reviews={lectorReviews} />
           </div>
         </div>
         {belt &&
@@ -292,6 +313,11 @@ class WorkPreview extends React.Component {
   }
 }
 
+/**
+ * mapDispatchToProps
+ * @param dispatch
+ * @returns {{addChildBelt: addChildBelt, scrollToComponent: (function(*): *)}}
+ */
 export const mapDispatchToProps = dispatch => ({
   scrollToComponent: id =>
     dispatch({
@@ -308,6 +334,9 @@ export const mapDispatchToProps = dispatch => ({
   }
 });
 
+/**
+ * connect
+ */
 export default connect(
   null,
   mapDispatchToProps

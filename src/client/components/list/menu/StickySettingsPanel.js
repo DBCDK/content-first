@@ -13,7 +13,7 @@ import FollowButton from '../button/FollowButton';
 import AddBookButton from '../button/AddBookButton';
 import Text from '../../base/Text';
 import T from '../../base/T';
-import {timestampToDateTime} from '../../../utils/timeToString';
+import {timestampToDateTime} from '../../../utils/dateTimeFormat';
 import ProfileImage from '../../general/ProfileImage.component';
 const getListById = getListByIdSelector();
 

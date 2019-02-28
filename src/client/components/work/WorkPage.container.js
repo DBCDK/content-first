@@ -22,7 +22,11 @@ import {get} from 'lodash';
 import {filterCollection, filterReviews, sortTags} from './workFunctions';
 import withWork from '../base/Work/withWork.hoc';
 import './WorkPage.css';
+import ReviewList from './ReviewList.component';
 
+/**
+ * WorkPage
+ */
 class WorkPage extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +47,10 @@ class WorkPage extends React.Component {
     }
   }
 
+  /**
+   * addNewBelt
+   * @param belt
+   */
   addNewBelt(belt) {
     this.props.addBelt(belt);
   }
@@ -84,6 +92,12 @@ class WorkPage extends React.Component {
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
 
     const tax_description = book.taxonomy_description || book.description;
+    const lectorReviews =
+      work.reviewsHasLoaded &&
+      work.book.reviews.data &&
+      work.book.reviews.data.length > 0
+        ? work.book.reviews.data
+        : false;
     return (
       <div className="container">
         <div className="row WorkPage__container">
@@ -343,7 +357,7 @@ class WorkPage extends React.Component {
           <div className="col-12 col-xl-4 WorkPage__reviews mt-5 mb-5 mt-xl-0 mb-xl-0">
             <div className="row">
               <div className="col-md-12">
-                <Title Tag="h3" type="title4" className="mt0 mb2">
+                <Title Tag="h5" type="title5" className="mt3 mb2">
                   <T component="work" name={'reviewsTitle'} />
                 </Title>
               </div>
@@ -399,8 +413,8 @@ class WorkPage extends React.Component {
                 </a>
               </React.Fragment>
             )}
+            <ReviewList book={book} reviews={lectorReviews} />
           </div>
-
           {work.detailsHasLoaded &&
             work.tagsHasLoaded && (
               <div
@@ -486,12 +500,22 @@ class WorkPage extends React.Component {
   }
 }
 
+/**
+ * mapStateToProps
+ * @param state
+ * @returns {{beltsState: *}}
+ */
 const mapStateToProps = state => {
   return {
     beltsState: state.beltsReducer.belts
   };
 };
 
+/**
+ * mapDispatchToProps
+ * @param dispatch
+ * @returns {{addBelt: addBelt}}
+ */
 export const mapDispatchToProps = dispatch => ({
   addBelt: belt => {
     dispatch({
@@ -501,6 +525,9 @@ export const mapDispatchToProps = dispatch => ({
   }
 });
 
+/**
+ * connect
+ */
 export default connect(
   mapStateToProps,
   mapDispatchToProps
