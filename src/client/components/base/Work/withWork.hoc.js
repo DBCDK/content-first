@@ -29,7 +29,7 @@ const withWork = (
     includeReviews = false,
     includeCollection = false,
     includeCover = false
-  }
+  } = {}
 ) => {
   const Wrapped = class extends React.Component {
     componentDidMount() {
