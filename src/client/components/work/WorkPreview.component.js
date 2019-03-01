@@ -105,8 +105,7 @@ class WorkPreview extends React.Component {
                 <Link href={'/værk/' + book.pid}>{book.title}</Link>
               </Heading>
               <Link
-                href="/find"
-                params={{creator: book.creator}}
+                href={'/find?creator=' + encodeURI(book.creator)}
                 className="work-preview-book-creator"
               >
                 <Heading Tag="h2" type="heading" className="mt1">
