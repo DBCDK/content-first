@@ -8,6 +8,7 @@ import {
   OWNED_LISTS_REQUEST,
   createGetLists
 } from '../../../redux/list.reducer';
+import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {HISTORY_PUSH} from '../../../redux/middleware';
 
 export class Lists extends React.Component {
@@ -54,11 +55,11 @@ export class Lists extends React.Component {
         </div>
         <div>
           <a
-            href="/lister/opret"
+            href="!#"
             className="btn btn-primary d-inline-flex align-items-center"
             onClick={e => {
-              this.props.dispatch({type: HISTORY_PUSH, path: '/lister/opret'});
               e.preventDefault();
+              this.props.createNewList();
             }}
           >
             <T component="list" name="createNew" />
@@ -87,7 +88,8 @@ const mapStateToProps = state => {
   };
 };
 export const mapDispatchToProps = dispatch => ({
-  loadLists: () => dispatch({type: OWNED_LISTS_REQUEST})
+  loadLists: () => dispatch({type: OWNED_LISTS_REQUEST}),
+  createNewList: () => dispatch({type: OPEN_MODAL, modal: 'list'})
 });
 export default connect(
   mapStateToProps,

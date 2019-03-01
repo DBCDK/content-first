@@ -6,6 +6,7 @@ import {
   addList,
   updateList,
   storeList,
+  removeList,
   getListByIdSelector,
   CUSTOM_LIST
 } from '../../../redux/list.reducer';
@@ -38,7 +39,6 @@ export const withListCreator = WrappedComponent => {
       const list = await saveList(
         {
           type: CUSTOM_LIST,
-          isNew: false,
           public: false,
           title: T({component: 'list', name: 'noTitleValue'})
         },
@@ -54,6 +54,7 @@ export const withListCreator = WrappedComponent => {
         <WrappedComponent
           {...this.props}
           id={this.props.id ? this.props.id : this.state.id}
+          justCreated={!!this.state.id}
         />
       );
     }
@@ -79,8 +80,19 @@ export const withListCreator = WrappedComponent => {
 
 export const withList = WrappedComponent => {
   const Wrapper = class extends React.Component {
+    componentWillUnmount() {
+      if (this.props.justCreated && !this.stored) {
+        this.props.deleteList();
+      }
+    }
+
+    storeList = list => {
+      this.stored = true;
+      this.props.storeList(list);
+    };
+
     render() {
-      return <WrappedComponent {...this.props} />;
+      return <WrappedComponent {...this.props} storeList={this.storeList} />;
     }
   };
 
@@ -91,10 +103,9 @@ export const withList = WrappedComponent => {
   };
 
   const mapDispatchToProps = (dispatch, ownProps) => ({
-    saveList: list => {
-      dispatch(storeList(list._id));
-    },
-    updateListData: data => dispatch(updateList({_id: ownProps.id, ...data}))
+    storeList: list => dispatch(storeList(list._id)),
+    updateListData: data => dispatch(updateList({_id: ownProps.id, ...data})),
+    deleteList: () => dispatch(removeList(ownProps.id))
   });
 
   return connect(

@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../base/Button';
 import Text from '../base/Text';
+import Title from '../base/Title';
 import Icon from '../base/Icon';
 
 import './Modal.css';
@@ -12,7 +13,8 @@ export default class Modal extends React.Component {
       cancelText,
       hideCancel = false,
       hideConfirm = false,
-      doneDisabled
+      doneDisabled,
+      onError = false
     } = this.props;
     return (
       <div className="modal-container ">
@@ -37,11 +39,21 @@ export default class Modal extends React.Component {
           </div>
 
           <div className="content">
-            <Text type="large">{this.props.header}</Text>
+            <Title type="title4" variant="transform-uppercase--weight-bold">
+              {this.props.header}
+            </Title>
             {this.props.children}
-            <div className="modal-seperator mt-5 mb-4" />
+            {!hideCancel &&
+              !hideConfirm && <div className="modal-seperator mt-5 mb-4" />}
             {
-              <div className="bottom d-flex flex-row justify-content-end pt-1">
+              <div className="bottom d-flex flex-row justify-content-end align-items-center pt-1">
+                {onError && (
+                  <div className="mr-3">
+                    <Text type="body" variant="color-fersken">
+                      {onError}
+                    </Text>
+                  </div>
+                )}
                 {!hideCancel &&
                   cancelText && (
                     <Button
@@ -57,6 +69,7 @@ export default class Modal extends React.Component {
                 {!hideConfirm && (
                   <a href={this.props.url || null} target="_blank">
                     <Button
+                      disabled={onError}
                       size="medium"
                       className={'mr-0 ' + (doneDisabled && 'disabled')}
                       type="quaternary"

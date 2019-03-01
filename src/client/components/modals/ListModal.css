@@ -10,8 +10,6 @@
 
 .listModal .listModal-page {
   width: 100%;
-  max-height: 300px;
-  overflow-x: hidden;
 }
 
 @media only screen and (max-width: 800px) {
@@ -22,14 +20,12 @@
 
 .listModal .image-upload .image-upload--zone {
   background: var(--lys-graa);
+  background-size: cover;
+  background-position: center center;
   border: none;
 }
 
-.listModal .listModal-description {
-  outline: none;
-  height: 150px;
-  resize: none;
-}
+/* Info page */
 
 .listModal-permissions {
   max-height: 0;
@@ -40,4 +36,33 @@
 .listModal .permissions-visible {
   max-height: 150px;
   transition-duration: 0.75s;
+}
+
+/* advanced page */
+
+.listModal-color-select-bg {
+  display: inline-block;
+  background: var(--lys-graa);
+}
+
+.listModal-color-select .pulse-toucharea {
+  position: static;
+  transform: none;
+  width: auto;
+  margin: 0px;
+  height: auto;
+}
+
+.listModal-color-select .pulse-toucharea:last-child {
+  margin: 0 !important;
+}
+
+.listModal-color-select .pulse-toucharea .pulse {
+  margin: 0;
+}
+
+.listModal .listModal-description {
+  outline: none;
+  height: 150px;
+  resize: none;
 }

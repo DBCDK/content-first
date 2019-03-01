@@ -117,6 +117,10 @@
       "public": {
         "da": "Offentlig",
         "en": "Public"
+      },
+      "create": {
+        "da": "opret",
+        "en": "create"
       }
     },
 
@@ -475,7 +479,7 @@
         "en": "New list"
       },
       "noTitle": {
-        "da": "Listen skal have en titel",
+        "da": "Du skal navngive din liste",
         "en": "The list must have a title"
       },
       "placeholderAboutList": {
@@ -585,6 +589,22 @@
       "permissionsAdd": {
         "da": "Tillad at andre tilføjer bøger til listen",
         "en": "Allow others to add books to the list"
+      },
+      "uploadBookcaseImage": {
+        "da": "Upload billede af dine bøger",
+        "en": "Upload picture of your bookshelf"
+      },
+      "uploadBookcaseImageHeading": {
+        "da": "Lav din egen interaktive bogreol",
+        "en": "Create your own interactive bookshelf"
+      },
+      "dotColorsTitle": {
+        "da": "Punkternes farve:",
+        "en": "Color of the dots:"
+      },
+      "bookcaseTitle": {
+        "da": "Aktiver bogreol",
+        "en": "Activate bookshelf"
       }
     },
 
@@ -787,6 +807,7 @@
         "en": "Make my list public"
       }
     },
+
     "belts": {
       "bestRecommendations": {
         "da": "Bedste forslag til",
@@ -803,6 +824,17 @@
       "remindsOf": {
         "da": "Minder om %s",
         "en": "Reminds of %s"
+      }
+    },
+
+    "tabs": {
+      "listInfo": {
+        "da": "Listoplysninger",
+        "en": "List details"
+      },
+      "advanced": {
+        "da": "Avanceret",
+        "en": "Advanced"
       }
     }
   },

@@ -1,5 +1,6 @@
 import React from 'react';
 import Spinner from './Spinner.component';
+import Text from '../base/Text';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
 
@@ -101,10 +102,16 @@ export default class ImageUpload extends React.Component {
             </div>
           )) || (
             <div className="d-flex align-items-center justify-content-center h-100 ">
-              <i className="material-icons md-xxlarge">image</i>
+              {this.props.heading ? (
+                <Text type="large" variant="weight-bold--color-white">
+                  {this.props.heading}
+                </Text>
+              ) : (
+                <i className="material-icons md-xxlarge">image</i>
+              )}
             </div>
           )}
-          <div className="droppable-image-overlay">
+          <div className="droppable-image-overlay w-100 h-100">
             {this.props.overlayText || ''}
           </div>
           {this.props.buttonPosition === 'inside' && (
@@ -114,7 +121,7 @@ export default class ImageUpload extends React.Component {
               readFiles={this.readFiles}
               style={{
                 position: 'absolute',
-                bottom: 5,
+                bottom: '10%',
                 left: '50%',
                 transform: 'translate(-50%)'
               }}

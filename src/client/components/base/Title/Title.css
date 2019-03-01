@@ -58,6 +58,11 @@
   text-transform: uppercase;
 }
 
+.Title__title4--transform-uppercase--weight-bold {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 .Title__title3--color-white {
   color: white;
 }

@@ -68,10 +68,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 export const mapDispatchToProps = (dispatch, ownProps) => ({
   editListInfo: () => {
-    dispatch(updateList({_id: ownProps._id, editing: true}));
-    if (ownProps.onEdit) {
-      ownProps.onEdit();
-    }
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'list',
+      context: {id: ownProps._id}
+    });
   },
   reorderList: () => {
     dispatch({

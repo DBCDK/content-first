@@ -4,18 +4,18 @@ import './Input.css';
 const Input = ({
   type = 'text',
   inputRef = null,
-  value,
+  value = '',
   placeholder,
   onChange,
   children,
   className
 }) => {
   return (
-    <div className={`Input__wrap`}>
+    <div className="Input__wrap">
       {children && <label className={`Input__label`}>{children}</label>}
       <input
-        ref={inputRef}
         type={type}
+        ref={inputRef}
         className={`Input ${className}`}
         placeholder={placeholder}
         value={value}

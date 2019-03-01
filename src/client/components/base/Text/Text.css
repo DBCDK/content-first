@@ -40,6 +40,11 @@
     Modifiers
 */
 
+.Text__large--weight-bold--color-white {
+  font-weight: 700;
+  color: white;
+}
+
 .Text__large--decoration-underline {
   text-decoration: underline;
 }

@@ -32,7 +32,7 @@ exports[`Image Upload render function Add image 1`] = `
         />
       </div>
       <div
-        className="droppable-image-overlay"
+        className="droppable-image-overlay w-100 h-100"
       />
     </div>
     <div
@@ -51,27 +51,17 @@ exports[`Image Upload render function Add image 1`] = `
       >
         <Button
           Tag="span"
-          size="medium"
+          size="small"
           type="tertiary"
         >
           <span
             className="
-                btn Button Button__medium Button__tertiary "
+                btn Button Button__small Button__tertiary "
             data-cy=""
             disabled={false}
           >
-            <Icon
-              className="align-middle"
-              name="photo"
-            >
-              <i
-                className="material-icons material-icons-photo align-middle"
-              >
-                photo
-              </i>
-            </Icon>
             <span
-              className="align-middle ml-2"
+              className="align-middle"
             >
               Upload billede
             </span>
@@ -119,7 +109,7 @@ exports[`Image Upload render function Add preview image 1`] = `
       />
     </div>
     <div
-      className="droppable-image-overlay"
+      className="droppable-image-overlay w-100 h-100"
     >
       
     </div>
@@ -137,17 +127,12 @@ exports[`Image Upload render function Add preview image 1`] = `
   >
     <span
       className="
-          btn Button Button__medium Button__tertiary "
+          btn Button Button__small Button__tertiary "
       data-cy=""
       disabled={false}
     >
-      <i
-        className="material-icons material-icons-photo align-middle"
-      >
-        photo
-      </i>
       <span
-        className="align-middle ml-2"
+        className="align-middle"
       >
         Upload billede
       </span>
@@ -194,18 +179,13 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
       className="d-flex align-items-center justify-content-center h-100 "
     >
       <i
-        className="material-icons"
-        style={
-          Object {
-            "fontSize": 100,
-          }
-        }
+        className="material-icons md-xxlarge"
       >
         image
       </i>
     </div>
     <div
-      className="droppable-image-overlay"
+      className="droppable-image-overlay w-100 h-100"
     >
       
     </div>
@@ -223,17 +203,12 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
   >
     <span
       className="
-          btn Button Button__medium Button__tertiary "
+          btn Button Button__small Button__tertiary "
       data-cy=""
       disabled={false}
     >
-      <i
-        className="material-icons material-icons-photo align-middle"
-      >
-        photo
-      </i>
       <span
-        className="align-middle ml-2"
+        className="align-middle"
       >
         Upload billede
       </span>
@@ -267,18 +242,13 @@ exports[`Image Upload render function renders an image upload form 1`] = `
       className="d-flex align-items-center justify-content-center h-100 "
     >
       <i
-        className="material-icons"
-        style={
-          Object {
-            "fontSize": 100,
-          }
-        }
+        className="material-icons md-xxlarge"
       >
         image
       </i>
     </div>
     <div
-      className="droppable-image-overlay"
+      className="droppable-image-overlay w-100 h-100"
     >
       
     </div>
@@ -296,17 +266,12 @@ exports[`Image Upload render function renders an image upload form 1`] = `
   >
     <span
       className="
-          btn Button Button__medium Button__tertiary "
+          btn Button Button__small Button__tertiary "
       data-cy=""
       disabled={false}
     >
-      <i
-        className="material-icons material-icons-photo align-middle"
-      >
-        photo
-      </i>
       <span
-        className="align-middle ml-2"
+        className="align-middle"
       >
         Upload billede
       </span>

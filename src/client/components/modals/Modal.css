@@ -2,7 +2,7 @@
   position: relative;
 }
 .modal-window .content {
-  max-height: 500px;
+  max-height: 75%;
   padding: 0rem 81px 2rem 81px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
