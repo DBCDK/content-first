@@ -525,14 +525,6 @@ exports[`renders without crashing 1`] = `
           }
           id="Krøllede fortællinger"
         />
-      </div>
-    </div>
-    <div
-      className="container"
-    >
-      <div
-        className="belts col-12"
-      >
         <BooksBelt
           belt={
             Object {

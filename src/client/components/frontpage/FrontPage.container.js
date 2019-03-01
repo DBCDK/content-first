@@ -39,7 +39,6 @@ class FrontPage extends React.Component {
   render() {
     const beltsMap = this.props.beltsMap;
     const aBeltsMap = Object.values(beltsMap);
-    // const bookcase = 'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018';
 
     aBeltsMap.sort((a, b) => (b._created || 0) - (a._created || 0));
     return (
@@ -47,9 +46,7 @@ class FrontPage extends React.Component {
         <Hero />
         {this.renderBelts(aBeltsMap.slice(0, 7))}
         <SpotsContainer />
-        {this.renderBelts(aBeltsMap.slice(7, 9))}
-        {/* <BookcaseItem id={bookcase} />*/}
-        {this.renderBelts(aBeltsMap.slice(9, aBeltsMap.length))}
+        {this.renderBelts(aBeltsMap.slice(7, aBeltsMap.length))}
         <div className="container">
           <div className="belts col-12">
             <RecentListsBelt />
