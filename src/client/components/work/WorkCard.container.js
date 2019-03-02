@@ -65,7 +65,7 @@ class WorkCard extends React.Component {
 
     const tax_description =
       this.props.work.book.taxonomy_description ||
-      this.props.work.book.description;
+      this.props.work.book.taxonomy_description_subjects;
 
     return (
       <div
