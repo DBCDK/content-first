@@ -163,7 +163,7 @@ export const requestMiddleware = store => next => action => {
 
         debouncedFunctions.details(action.pids, store);
         if (includeCover) {
-          debouncedFunctions.cover(action.pids, store);
+          // debouncedFunctions.cover(action.pids, store);
         }
         if (includeTags) {
           debouncedFunctions.tags(action.pids, store);
