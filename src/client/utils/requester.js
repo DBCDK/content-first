@@ -9,7 +9,7 @@ import {
   ON_USER_DETAILS_ERROR
 } from '../redux/user.reducer';
 import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
-import {getLeavesMap} from './taxonomy';
+import {getLeavesMap, fromTitle} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
@@ -44,24 +44,131 @@ export const fetchTags = async (pids = []) => {
   return result;
 };
 
-export const fetchBooks = (pids = [], store) => {
-  pids = unique(pids);
-  const getBooks = request.post('/v1/books/').send({pids});
+// export const fetchBooks = (pids = [], store) => {
+//   pids = unique(pids);
+//   const getBooks = request.post('/v1/books/').send({pids});
 
-  return Promise.all([getBooks])
-    .then(async responses => {
-      let books = JSON.parse(responses[0].text).data;
-      return books;
+//   return Promise.all([getBooks])
+//     .then(async responses => {
+//       let books = JSON.parse(responses[0].text).data;
+//       return books;
+//     })
+//     .catch(error => {
+//       store.dispatch({
+//         type: 'LOG_ERROR',
+//         actionType: BOOKS_RESPONSE,
+//         pids,
+//         error: String(error)
+//       });
+//       throw error;
+//     });
+// };
+
+const upperCaseFirst = str => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+const subjectsToTaxonomyDescription = subjects => {
+  if (!subjects) {
+    return '';
+  }
+  switch (subjects.length) {
+    case 1:
+      return `${upperCaseFirst(subjects[0])}`;
+    case 2:
+      return `${upperCaseFirst(subjects[0])} og ${subjects[1]}`;
+    case 3:
+      return `${upperCaseFirst(subjects[0])}, ${subjects[1]} og ${subjects[2]}`;
+    case 4:
+      return `${upperCaseFirst(subjects[0])} og ${
+        subjects[1]
+      }\n${upperCaseFirst(subjects[2])} og ${subjects[3]}`;
+    case 5:
+      return `${upperCaseFirst(subjects[0])}, ${subjects[1]} og ${
+        subjects[2]
+      }\n${upperCaseFirst(subjects[3])} og ${subjects[4]}`;
+    case 6:
+      return `${upperCaseFirst(subjects[0])}, ${subjects[1]} og ${
+        subjects[2]
+      }\n${upperCaseFirst(subjects[3])}, ${subjects[4]} og ${subjects[5]}`;
+    case 0:
+    default:
+      return '';
+  }
+  subjects = subjects.slice(0, 6);
+};
+export const fetchBooks = (pids = []) => {
+  pids = unique(pids);
+
+  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
+  return Promise.all(
+    pids.map(async pid => {
+      try {
+        const [
+          {
+            dcTitle,
+            creator,
+            abstract,
+            extent,
+            dcLanguage,
+            date,
+            subjectDBCS,
+            coverUrlFull
+          }
+        ] = await openplatform.work({
+          pids: [pid],
+          fields: [
+            'dcTitle',
+            'creator',
+            'abstract',
+            'extent',
+            'dcLanguage',
+            'date',
+            'subjectDBCS',
+            'coverUrlFull'
+          ],
+          access_token: await fetchAnonymousToken()
+        });
+        return {
+          title: dcTitle && dcTitle[0],
+          creator: creator && creator[0],
+          description: abstract && abstract[0],
+          extent: extent && extent[0] && parseInt(extent[0], 10),
+          dcLanguage: dcLanguage && dcLanguage[0],
+          date: date && date[0],
+          subjectDBCS: subjectDBCS || [],
+          coverUrlFull: coverUrlFull && coverUrlFull[0]
+        };
+      } catch (e) {
+        // ignore errors/missing on fetching covers
+        return;
+      }
     })
-    .catch(error => {
-      store.dispatch({
-        type: 'LOG_ERROR',
-        actionType: BOOKS_RESPONSE,
-        pids,
-        error: String(error)
-      });
-      throw error;
-    });
+  ).then(result => {
+    console.log(result);
+    return pids
+      .map((pid, i) => {
+        if (result && result[i]) {
+          return {
+            book: {
+              pid: pid,
+              title: result[i].title || '',
+              creator: result[i].creator || '',
+              description: result[i].description || '',
+              pages: result[i].extent || '',
+              language: result[i].dcLanguage || '',
+              first_edition_year: result[i].date || '',
+              taxonomy_description_subjects:
+                subjectsToTaxonomyDescription(result[i].subjectDBCS) ||
+                `${result[i].title || ''}\n${result[i].creator || ''}`,
+              tags: result[i].subjectDBCS.map(title => fromTitle(title)),
+              coverUrl: result[i].coverUrlFull || null
+            }
+          };
+        }
+      })
+      .filter(b => b);
+  });
 };
 
 export const fetchCoverRefs = (pids = []) => {

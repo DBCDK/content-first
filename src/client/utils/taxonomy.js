@@ -27,6 +27,21 @@ export const getLeavesMap = (t = taxonomy) => {
   return res;
 };
 
+export const getFromTitleMap = (t = taxonomy) => {
+  const res = {};
+  getLeaves(t).forEach(leaf => {
+    res[leaf.title.toLowerCase()] = leaf;
+  });
+  return res;
+};
+let fromTitleMap;
+export const fromTitle = title => {
+  if (!fromTitleMap) {
+    fromTitleMap = getFromTitleMap();
+  }
+  return fromTitleMap[title.toLowerCase()];
+};
+
 export const isRange = tagId => Array.isArray(tagId) && tagId.length === 2;
 export const isFullRange = (tagId, fullRange) =>
   fullRange[0] === tagId[0] && fullRange[fullRange.length - 1] === tagId[1];
