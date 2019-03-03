@@ -61,7 +61,6 @@ export const fetchTaxonomyDescription = (pids = [], store) => {
           taxonomy_description: entry.book.taxonomy_description
         }
       }));
-      console.log({books});
       return books;
     })
     .catch(error => {

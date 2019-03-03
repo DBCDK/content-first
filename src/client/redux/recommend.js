@@ -3,7 +3,7 @@ import librarianRecommends from '../../data/librarian-recommends.json';
 import request from 'superagent';
 import {uniq, difference} from 'lodash';
 import {filtersMapAll} from './filter.reducer';
-import {BOOKS_REQUEST} from './books.reducer';
+// import {BOOKS_REQUEST} from './books.reducer';
 
 const librarianRecommendsMap = librarianRecommends.reduce((map, pid) => {
   map[pid] = true;
