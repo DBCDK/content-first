@@ -9,7 +9,11 @@ import {
   ON_USER_DETAILS_ERROR
 } from '../redux/user.reducer';
 import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
-import {getLeavesMap, fromTitle} from './taxonomy';
+import {
+  getLeavesMap,
+  fromTitle,
+  subjectsToTaxonomyDescription
+} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
@@ -71,40 +75,6 @@ export const fetchTaxonomyDescription = (pids = [], store) => {
     });
 };
 
-const upperCaseFirst = str => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-// move this to tax utils
-const subjectsToTaxonomyDescription = subjects => {
-  if (!subjects) {
-    return '';
-  }
-  switch (subjects.length) {
-    case 1:
-      return `${upperCaseFirst(subjects[0])}`;
-    case 2:
-      return `${upperCaseFirst(subjects[0])} og ${subjects[1]}`;
-    case 3:
-      return `${upperCaseFirst(subjects[0])}, ${subjects[1]} og ${subjects[2]}`;
-    case 4:
-      return `${upperCaseFirst(subjects[0])} og ${
-        subjects[1]
-      }\n${upperCaseFirst(subjects[2])} og ${subjects[3]}`;
-    case 5:
-      return `${upperCaseFirst(subjects[0])}, ${subjects[1]} og ${
-        subjects[2]
-      }\n${upperCaseFirst(subjects[3])} og ${subjects[4]}`;
-    case 6:
-      return `${upperCaseFirst(subjects[0])}, ${subjects[1]} og ${
-        subjects[2]
-      }\n${upperCaseFirst(subjects[3])}, ${subjects[4]} og ${subjects[5]}`;
-    case 0:
-    default:
-      return '';
-  }
-  subjects = subjects.slice(0, 6);
-};
 export const fetchBooks = (pids = []) => {
   pids = unique(pids);
 
@@ -138,14 +108,22 @@ export const fetchBooks = (pids = []) => {
           access_token: await fetchAnonymousToken()
         });
         return {
-          title: dcTitle && dcTitle[0],
-          creator: creator && creator[0],
-          description: abstract && abstract[0],
-          extent: extent && extent[0] && parseInt(extent[0], 10),
-          dcLanguage: dcLanguage && dcLanguage[0],
-          date: date && date[0],
-          subjectDBCS: subjectDBCS || [],
-          coverUrlFull: coverUrlFull && coverUrlFull[0]
+          book: {
+            pid,
+            title: (dcTitle && dcTitle[0]) || '',
+            creator: (creator && creator[0]) || '',
+            description: (abstract && abstract[0]) || '',
+            pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
+            language: (dcLanguage && dcLanguage[0]) || '',
+            first_edition_year: (date && date[0]) || '',
+            taxonomy_description_subjects:
+              subjectsToTaxonomyDescription(subjectDBCS) || '',
+            tags:
+              (subjectDBCS &&
+                subjectDBCS.map(title => fromTitle(title)).filter(t => t)) ||
+              '',
+            coverUrl: (coverUrlFull && coverUrlFull[0]) || null
+          }
         };
       } catch (e) {
         // ignore errors/missing on fetching covers
@@ -153,65 +131,7 @@ export const fetchBooks = (pids = []) => {
       }
     })
   ).then(result => {
-    console.log(result);
-    return pids
-      .map((pid, i) => {
-        if (result && result[i]) {
-          return {
-            book: {
-              pid: pid,
-              title: result[i].title || '',
-              creator: result[i].creator || '',
-              description: result[i].description || '',
-              pages: result[i].extent || '',
-              language: result[i].dcLanguage || '',
-              first_edition_year: result[i].date || '',
-              taxonomy_description_subjects:
-                subjectsToTaxonomyDescription(result[i].subjectDBCS) ||
-                `${result[i].title || ''}\n${result[i].creator || ''}`,
-              tags: result[i].subjectDBCS.map(title => fromTitle(title)),
-              coverUrl: result[i].coverUrlFull || null
-            }
-          };
-        }
-      })
-      .filter(b => b);
-  });
-};
-
-export const fetchCoverRefs = (pids = []) => {
-  pids = unique(pids);
-
-  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
-  return Promise.all(
-    pids.map(async pid => {
-      try {
-        const [{coverUrlFull}] = await openplatform.work({
-          pids: [pid],
-          fields: ['coverUrlFull'],
-          access_token: await fetchAnonymousToken()
-        });
-        return {
-          coverUrlFull: coverUrlFull && coverUrlFull[0]
-        };
-      } catch (e) {
-        // ignore errors/missing on fetching covers
-        return;
-      }
-    })
-  ).then(result => {
-    return pids
-      .map((pid, i) => {
-        if (result && result[i]) {
-          return {
-            book: {
-              pid: pid,
-              coverUrl: result[i].coverUrlFull || ''
-            }
-          };
-        }
-      })
-      .filter(b => b);
+    return result.filter(b => b);
   });
 };
 
