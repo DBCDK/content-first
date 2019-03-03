@@ -44,30 +44,38 @@ export const fetchTags = async (pids = []) => {
   return result;
 };
 
-// export const fetchBooks = (pids = [], store) => {
-//   pids = unique(pids);
-//   const getBooks = request.post('/v1/books/').send({pids});
+export const fetchTaxonomyDescription = (pids = [], store) => {
+  pids = unique(pids);
+  const getBooks = request.post('/v1/books/').send({pids});
 
-//   return Promise.all([getBooks])
-//     .then(async responses => {
-//       let books = JSON.parse(responses[0].text).data;
-//       return books;
-//     })
-//     .catch(error => {
-//       store.dispatch({
-//         type: 'LOG_ERROR',
-//         actionType: BOOKS_RESPONSE,
-//         pids,
-//         error: String(error)
-//       });
-//       throw error;
-//     });
-// };
+  return Promise.all([getBooks])
+    .then(async responses => {
+      let books = JSON.parse(responses[0].text).data;
+      books = books.map(entry => ({
+        book: {
+          pid: entry.book.pid,
+          taxonomy_description: entry.book.taxonomy_description
+        }
+      }));
+      console.log({books});
+      return books;
+    })
+    .catch(error => {
+      store.dispatch({
+        type: 'LOG_ERROR',
+        actionType: BOOKS_RESPONSE,
+        pids,
+        error: String(error)
+      });
+      throw error;
+    });
+};
 
 const upperCaseFirst = str => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
+// move this to tax utils
 const subjectsToTaxonomyDescription = subjects => {
   if (!subjects) {
     return '';

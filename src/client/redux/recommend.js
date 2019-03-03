@@ -277,11 +277,11 @@ export const recommendMiddleware = store => next => action => {
               pids,
               rid
             });
-            store.dispatch({
-              type: BOOKS_REQUEST,
-              pids,
-              includeCover: false
-            });
+            // store.dispatch({
+            //   type: BOOKS_REQUEST,
+            //   pids,
+            //   includeCover: false
+            // });
           } catch (error) {
             store.dispatch({
               ...action,
@@ -316,11 +316,11 @@ export const recommendMiddleware = store => next => action => {
               pids,
               rid
             });
-            store.dispatch({
-              type: BOOKS_REQUEST,
-              pids,
-              includeCover: false
-            });
+            // store.dispatch({
+            //   type: BOOKS_REQUEST,
+            //   pids,
+            //   includeCover: false
+            // });
           } catch (error) {
             store.dispatch({
               ...action,

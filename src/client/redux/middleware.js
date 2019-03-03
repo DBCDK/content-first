@@ -10,6 +10,7 @@ import {
   fetchCollection,
   fetchCoverRefs,
   fetchSearchResults,
+  fetchTaxonomyDescription,
   saveShortList,
   loadShortList,
   addImage,
@@ -147,6 +148,10 @@ const createDebouncedFunction = (name, requestFunction) => {
 const debouncedFunctions = {
   cover: createDebouncedFunction('cover', fetchCoverRefs),
   details: createDebouncedFunction('details', fetchBooks),
+  taxonomyDescription: createDebouncedFunction(
+    'taxonomyDescription',
+    fetchTaxonomyDescription
+  ),
   tags: createDebouncedFunction('tags', fetchBooksTags)
 };
 
@@ -162,6 +167,7 @@ export const requestMiddleware = store => next => action => {
         } = action;
 
         debouncedFunctions.details(action.pids, store);
+        debouncedFunctions.taxonomyDescription(action.pids, store);
         if (includeCover) {
           // debouncedFunctions.cover(action.pids, store);
         }
