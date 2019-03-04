@@ -30,7 +30,7 @@ export default class FullTextReview extends React.Component {
           <Text type="micro" className="mb3">
             Bibliotekernes vurdering af {author}: {title}
           </Text>
-          <Text type="small" className="due-txt">
+          <Text type="small" className="due-txt date-col">
             {date}
           </Text>
         </div>

@@ -44,3 +44,7 @@
   justify-content: space-between;
 }
 
+.date-col {
+  min-width: 80px;
+  text-align: right;
+}
