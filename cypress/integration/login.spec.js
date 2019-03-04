@@ -4,6 +4,20 @@ describe('Login test', function() {
     cy.clearCookies();
   });
 
+  it('Can log in with name from CPR data and knows you are OVER 13 year old', function() {
+    const userName = 'testUser' + Math.floor(Math.random() * 1000);
+    cy.cprlogin(userName, '1');
+    cy.visit('/');
+    cy.get('[data-cy=user-form-over13]');
+  });
+
+  it('Shows login when UNDER 13 year old', function() {
+    const userName = 'testUser' + Math.floor(Math.random() * 1000);
+    cy.cprlogin(userName, '0');
+    cy.visit('/');
+    cy.get('[data-cy=user-form-under13]');
+  });
+
   it('Can create a new profile', function() {
     const userName = 'testUser' + Math.floor(Math.random() * 1000);
 

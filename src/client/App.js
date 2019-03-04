@@ -13,7 +13,6 @@ import SearchPage from './components/search/SearchPage.container';
 import WorkPage from './components/work/WorkPage.container';
 import TastePage from './components/profile/TastePage.container';
 import ProfilePage from './components/profile/ProfilePage.container';
-import Bookcase from './components/bookcase/Bookcase.component';
 import CreateProfilePage from './components/profile/CreateProfilePage';
 import TopBar from './components/top/TopBar.component';
 import {ON_USER_DETAILS_REQUEST} from './redux/user.reducer';
@@ -91,8 +90,6 @@ class App extends Component {
       currentPage = <ShortList />;
     } else if (pathSplit[1] === 'søg') {
       currentPage = <SearchPage />;
-    } else if (pathSplit[1] === 'bogreol') {
-      currentPage = <Bookcase />;
     } else if (pathSplit[1] === 'find') {
       currentPage = <FilterPage />;
     } else if (pathSplit[1] === 'replay') {

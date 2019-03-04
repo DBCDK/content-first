@@ -1,5 +1,5 @@
 const request = require('superagent');
-const {debounce} = require('lodash');
+const {throttle} = require('lodash');
 
 /**
  * MatomoClient make use of the "bulk tracking" API of Matomo to track events.
@@ -14,13 +14,21 @@ const {debounce} = require('lodash');
  * to store a stringified JSON.
  */
 class MatomoClient {
-  constructor(matomoUrl, siteId, applicationId, logger, debounceWaitMs = 2000) {
+  constructor(
+    matomoUrl,
+    siteId,
+    applicationId,
+    logger,
+    debounceWaitMs = 2000,
+    siteUrl = 'https://laesekompas.dk'
+  ) {
     this.matomoUrl = matomoUrl;
     this.siteId = siteId;
     this.aid = applicationId;
     this.logger = logger;
+    this.siteUrl = siteUrl;
     this.queue = [];
-    this._postEvents = debounce(this._postEvents, debounceWaitMs, {
+    this._postEvents = throttle(this._postEvents, debounceWaitMs, {
       trailing: true
     });
 
@@ -48,8 +56,8 @@ class MatomoClient {
    * @return {void}
    */
   trackDataEvent(action, data) {
-    const uri = `?idsite=${
-      this.siteId
+    const uri = `?idsite=${this.siteId}&url=${
+      this.siteUrl
     }&rec=1&e_c=data&e_a=${action}&e_n=${encodeURIComponent(
       JSON.stringify(Object.assign({}, data, {aid: this.aid}))
     )}`;

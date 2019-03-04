@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
 import Hero from '../hero/Hero.component';
 import RecentListsBelt from '../belt/list/RecentListsBelt.container';
-import BookcaseItem from '../bookcase/BookcaseItem.component';
 import BeltFacade from '../belt/BeltFacade.component';
 import SpotsContainer from '../spots/Spots.container';
 import {HISTORY_REPLACE} from '../../redux/middleware';
@@ -40,7 +39,6 @@ class FrontPage extends React.Component {
   render() {
     const beltsMap = this.props.beltsMap;
     const aBeltsMap = Object.values(beltsMap);
-    const bookcase = 'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018';
 
     aBeltsMap.sort((a, b) => (b._created || 0) - (a._created || 0));
     return (
@@ -48,9 +46,7 @@ class FrontPage extends React.Component {
         <Hero />
         {this.renderBelts(aBeltsMap.slice(0, 7))}
         <SpotsContainer />
-        {this.renderBelts(aBeltsMap.slice(7, 9))}
-        <BookcaseItem id={bookcase} />
-        {this.renderBelts(aBeltsMap.slice(9, aBeltsMap.length))}
+        {this.renderBelts(aBeltsMap.slice(7, aBeltsMap.length))}
         <div className="container">
           <div className="belts col-12">
             <RecentListsBelt />

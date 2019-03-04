@@ -35,7 +35,8 @@
 @media (max-height: 700px) {
   .modal-window {
     position: absolute;
-    width: 100%;
+    width: 100%!important;
+    max-width: none!important;
     height: 100%;
     top: 0px;
     max-height: inherit;

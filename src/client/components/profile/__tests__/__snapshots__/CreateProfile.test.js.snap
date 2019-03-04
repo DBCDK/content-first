@@ -187,28 +187,6 @@ exports[`Image Upload render function Add image 1`] = `
                   </p>
                   <label
                     className="checkbox"
-                    data-cy="user-form-acceptedAge"
-                    htmlFor="acceptedAge"
-                  >
-                    <input
-                      checked={false}
-                      className="checkbox"
-                      id="acceptedAge"
-                      name="acceptedAge"
-                      onChange={[Function]}
-                      type="checkbox"
-                    />
-                    <span />
-                     
-                    <T
-                      component="profile"
-                      name="ageCheckboxText"
-                    >
-                      Jeg er over 13 år
-                    </T>
-                  </label>
-                  <label
-                    className="checkbox"
                     data-cy="user-form-acceptedTerms"
                     htmlFor="acceptedTerms"
                   >
@@ -512,24 +490,6 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                   size="12px"
                 />
               </p>
-              <label
-                className="checkbox"
-                data-cy="user-form-acceptedAge"
-                htmlFor="acceptedAge"
-              >
-                <input
-                  checked={false}
-                  className="checkbox"
-                  disabled={undefined}
-                  id="acceptedAge"
-                  name="acceptedAge"
-                  onChange={[Function]}
-                  type="checkbox"
-                />
-                <span />
-                 
-                Jeg er over 13 år
-              </label>
               <label
                 className="checkbox"
                 data-cy="user-form-acceptedTerms"

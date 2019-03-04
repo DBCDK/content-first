@@ -3,10 +3,12 @@ import {connect} from 'react-redux';
 import AddToListModal from './AddToListModal.container';
 import OrderModal from './OrderModal.container';
 import LoginModal from './LoginModal.component';
+import ProfileModal from './ProfileModal.component';
 import ConfirmModal from './ConfirmModal.component';
 import ListSettingsModal from './ListSettingsModal.container';
 import ReorderListModal from './ReorderListModal.container';
 import ListModal from './ListModal.component';
+import ShowReviewModal from './ShowReviewModal.component';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
@@ -22,6 +24,7 @@ class Modal extends React.Component {
     }
     return false;
   }
+
   componentWillReceiveProps(nextProps) {
     const openCurrent = Modal.anyOpen(this.props.modalState);
     const openNext = Modal.anyOpen(nextProps.modalState);
@@ -77,6 +80,9 @@ class Modal extends React.Component {
         />
       );
     }
+    if (this.props.modalState.profile.open) {
+      modal = <ProfileModal context={this.props.modalState.profile.context} />;
+    }
     if (this.props.modalState.confirm.open) {
       modal = (
         <ConfirmModal
@@ -107,6 +113,11 @@ class Modal extends React.Component {
           close={this.props.close('list')}
           {...this.props.modalState.list.context}
         />
+      );
+    }
+    if (this.props.modalState.showReview.open) {
+      modal = (
+        <ShowReviewModal context={this.props.modalState.showReview.context} />
       );
     }
     return (

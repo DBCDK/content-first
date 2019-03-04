@@ -9,7 +9,6 @@
 .WorkPage__container .WorkPage__work {
   display: flex;
   padding: 0 3rem 0 0;
-  border-right: 1px solid var(--lightgrey);
 }
 
 .WorkPage__work .WorkPage__image {
@@ -95,6 +94,10 @@
 }
 
 /* reviews */
+
+.WorkPage__reviews {
+  background-color: var(--lys-graa);
+}
 
 .WorkPage__container .WorkPage__reviews {
   padding: 0 0 0 3rem;

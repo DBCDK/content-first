@@ -44,17 +44,11 @@ const replaceExisting = {
 const replayBeginWhen = {
   ON_USER_DETAILS_ERROR: state => {
     // return false if user dont have an account
-    return (
-      state.userReducer.acceptedTerms &&
-      state.routerReducer.path === REPLAY_PATH
-    );
+    return state.routerReducer.path === REPLAY_PATH;
   },
   ON_USER_DETAILS_RESPONSE: state => {
     // return false if user dont have an account
-    return (
-      state.userReducer.acceptedTerms &&
-      state.routerReducer.path === REPLAY_PATH
-    );
+    return state.routerReducer.path === REPLAY_PATH;
   }
 };
 
