@@ -24,7 +24,6 @@ export default class FullTextReview extends React.Component {
       return '';
     }
     const reviewKeys = Object.keys(review.review);
-    var paragraphNumber = 0;
     return (
       <div className="Review__container mr-4 mb-5">
         <div className="Review__block--top">
@@ -41,13 +40,7 @@ export default class FullTextReview extends React.Component {
               <Title Tag="h6" type="title6" className="mb0">
                 {key === 'review' ? 'Vurdering' : key}
               </Title>
-              {paragraphNumber++ === 0 ? (
-                <Title Tag="h5" type="title5" className="mb2">
-                  {review.review[key]}
-                </Title>
-              ) : (
-                <Text type="body">{review.review[key]}</Text>
-              )}
+              <Text type="body">{review.review[key]}</Text>
             </React.Fragment>
           );
         })}
