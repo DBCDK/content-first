@@ -66,7 +66,7 @@ class WorkPreview extends React.Component {
     const belt = this.props.belt || false;
     const tax_description =
       this.props.work.book.taxonomy_description ||
-      this.props.work.book.description;
+      this.props.work.book.taxonomy_description_subjects;
 
     // get collections including ereolen
     const collection = filterCollection(work);
@@ -340,8 +340,7 @@ export default connect(
   withScrollToComponent(
     withWork(WorkPreview, {
       includeReviews: true,
-      includeCollection: true,
-      includeCover: true
+      includeCollection: true
     })
   )
 );

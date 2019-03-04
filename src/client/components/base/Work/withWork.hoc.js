@@ -13,7 +13,7 @@ import {BOOKS_REQUEST} from '../../../redux/books.reducer';
  * @example
  * // create a pure component and enhance it
  * const GreatBook = ({work}) => <div>{work.book.title} is a great book</div>;
- * export default withWork(GreatBook, {includeCover: true})
+ * export default withWork(GreatBook, {includeTags: true})
  *
  * // use the enhanced component like this
  * <GreatBook pid={'870970-basis:123456'}/>
@@ -24,12 +24,7 @@ import {BOOKS_REQUEST} from '../../../redux/books.reducer';
  */
 const withWork = (
   WrappedComponent,
-  {
-    includeTags = false,
-    includeReviews = false,
-    includeCollection = false,
-    includeCover = false
-  } = {}
+  {includeTags = false, includeReviews = false, includeCollection = false} = {}
 ) => {
   const Wrapped = class extends React.Component {
     componentDidMount() {
@@ -66,8 +61,7 @@ const withWork = (
         pids: [pid],
         includeTags,
         includeReviews,
-        includeCollection,
-        includeCover
+        includeCollection
       })
   });
   return connect(

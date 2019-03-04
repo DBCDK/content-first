@@ -38,7 +38,7 @@ class BookCover extends React.Component {
   }
 
   render() {
-    const hasNoCover = !this.props.coverUrl && this.props.coverUrlHasLoaded;
+    const hasNoCover = this.props.coverUrl === null;
     const clickableStyle = this.props.enableLightbox ? {cursor: 'pointer'} : {};
     if (!this.props.coverUrl) {
       const coverSvg =
