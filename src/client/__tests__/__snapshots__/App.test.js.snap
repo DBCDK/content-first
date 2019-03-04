@@ -525,29 +525,6 @@ exports[`renders without crashing 1`] = `
           }
           id="Krøllede fortællinger"
         />
-      </div>
-    </div>
-    <div
-      className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa mb-5"
-    >
-      <span
-        className="spinner mt-5"
-        style={
-          Object {
-            "borderTopColor": null,
-            "display": "inline-block",
-            "height": "30px",
-            "width": "30px",
-          }
-        }
-      />
-    </div>
-    <div
-      className="container"
-    >
-      <div
-        className="belts col-12"
-      >
         <BooksBelt
           belt={
             Object {
