@@ -107,7 +107,7 @@ export default class ImageUpload extends React.Component {
                   {this.props.heading}
                 </Text>
               ) : (
-                <i className="material-icons md-xxlarge">image</i>
+                <Icon name="image" className="md-xxlarge" />
               )}
             </div>
           )}

@@ -6,7 +6,6 @@ import T from '../../base/T';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import {
-  updateList,
   removeList,
   getListByIdSelector,
   CUSTOM_LIST

@@ -61,13 +61,13 @@ export const withListCreator = WrappedComponent => {
     }
   };
 
-  const mapStateToProps = (state, ownProps) => {
+  const mapStateToProps = state => {
     return {
       openplatformId: state.userReducer.openplatformId
     };
   };
 
-  const mapDispatchToProps = (dispatch, ownProps) => ({
+  const mapDispatchToProps = dispatch => ({
     createList: async list => {
       await dispatch(addList(list));
     }

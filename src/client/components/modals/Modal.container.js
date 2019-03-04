@@ -121,11 +121,11 @@ class Modal extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   modalState: state.modalReducer
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = dispatch => ({
   close: modal => () => dispatch({type: CLOSE_MODAL, modal})
 });
 

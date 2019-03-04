@@ -179,7 +179,7 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
       className="d-flex align-items-center justify-content-center h-100 "
     >
       <i
-        className="material-icons md-xxlarge"
+        className="material-icons material-icons-image md-xxlarge"
       >
         image
       </i>
@@ -242,7 +242,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
       className="d-flex align-items-center justify-content-center h-100 "
     >
       <i
-        className="material-icons md-xxlarge"
+        className="material-icons material-icons-image md-xxlarge"
       >
         image
       </i>

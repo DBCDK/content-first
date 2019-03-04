@@ -268,7 +268,6 @@ export const fetchUser = (dispatch, cb) => {
 };
 
 export const addImage = imageData => {
-  console.log('addImage', imageData);
   return new Promise((resolve, reject) => {
     if (!['image/png', 'image/jpeg'].includes(imageData.type)) {
       return reject({status: 400, msg: 'Invalid MIME type'});
@@ -281,7 +280,6 @@ export const addImage = imageData => {
         if (error) {
           reject(res.body && res.body.errors ? res.body.errors[0] : error);
         } else {
-          console.log('imageData res.body', res.body);
           resolve(res.body);
         }
       });

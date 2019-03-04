@@ -49,11 +49,16 @@ exports[`Image Upload render function Add image 1`] = `
                   <div
                     className="d-flex align-items-center justify-content-center h-100 "
                   >
-                    <i
-                      className="material-icons md-xxlarge"
+                    <Icon
+                      className="md-xxlarge"
+                      name="image"
                     >
-                      image
-                    </i>
+                      <i
+                        className="material-icons material-icons-image md-xxlarge"
+                      >
+                        image
+                      </i>
+                    </Icon>
                   </div>
                   <div
                     className="droppable-image-overlay w-100 h-100"
@@ -404,7 +409,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 className="d-flex align-items-center justify-content-center h-100 "
               >
                 <i
-                  className="material-icons md-xxlarge"
+                  className="material-icons material-icons-image md-xxlarge"
                 >
                   image
                 </i>

@@ -4,11 +4,8 @@ import {connect} from 'react-redux';
 import ImageUpload from '../general/ImageUpload.component';
 import Pulse from '../pulse/Pulse.component';
 import Modal from './Modal.component';
-import Title from '../base/Title';
 import Text from '../base/Text';
 import T from '../base/T';
-import Button from '../base/Button';
-import Icon from '../base/Icon';
 import Input from '../base/Input';
 import Textarea from '../base/Textarea';
 import Radio from '../base/Radio';
@@ -23,7 +20,6 @@ import {
 } from '../../utils/converter.js';
 
 import {addImage} from '../../utils/requester';
-import {ADD_LIST_IMAGE} from '../../redux/list.reducer';
 
 import './ListModal.css';
 
@@ -48,14 +44,7 @@ class PageInfo extends React.Component {
   }
 
   render() {
-    const {
-      list,
-      justCreated,
-      className = null,
-      addImage,
-      updateListData,
-      onError
-    } = this.props;
+    const {list, handleImage, className = null, updateListData} = this.props;
 
     return (
       <div className={`listModal-page listModal-info ${className}`}>
@@ -83,7 +72,7 @@ class PageInfo extends React.Component {
           <Radio
             group="privacy"
             checked={!list.public}
-            onChange={e =>
+            onChange={() =>
               updateListData({public: false, open: false, social: false})
             }
           >
@@ -97,7 +86,7 @@ class PageInfo extends React.Component {
           <Radio
             group="privacy"
             checked={list.public}
-            onChange={e => updateListData({public: true})}
+            onChange={() => updateListData({public: true})}
           >
             <Text type="body">{T({component: 'general', name: 'public'})}</Text>
           </Radio>
@@ -144,7 +133,7 @@ class PageInfo extends React.Component {
               }
               buttonText={<T component="general" name="changeImage" />}
               buttonPosition="inside"
-              onFile={img => addImage(list._id, img)}
+              onFile={img => handleImage(img)}
             />
           </div>
           <div className="col-6 col-md-8 pl-2">
@@ -211,7 +200,7 @@ class PageAdvanced extends React.Component {
       list,
       justCreated,
       className = null,
-      addImage,
+      handleImage,
       updateListData
     } = this.props;
     const {wrap} = this.state;
@@ -262,7 +251,7 @@ class PageAdvanced extends React.Component {
               }
               buttonText={<T component="list" name="uploadBookcaseImage" />}
               buttonPosition="inside"
-              onFile={img => addImage(list._id, img)}
+              onFile={img => handleImage(img)}
             />
           ) : (
             <img
@@ -286,7 +275,6 @@ class PageAdvanced extends React.Component {
               <div className="listModal-color-select-bg p-2">
                 <div className="listModal-color-select d-flex flex-row align-items-center position-relative">
                   {dotColors.map((color, i) => {
-                    console.log('color', color);
                     const active = color === list.dotColor ? true : false;
                     const disableClass = !active ? 'pulse-expand-disable' : '';
 
@@ -383,12 +371,12 @@ export class ListModal extends React.Component {
     }
   };
 
-  async handleImage(id, image) {
+  async handleImage(image) {
     this.handleImageState({
       imageIsLoading: true
     });
 
-    const img = await addImage(image);
+    const img = await this.props.addImage(image);
 
     this.handleImageState({
       image: img.id,
@@ -412,16 +400,8 @@ export class ListModal extends React.Component {
   };
 
   render() {
-    const {
-      justCreated,
-      close,
-      updateListData,
-      storeList,
-      deleteList
-    } = this.props;
+    const {justCreated, close, updateListData, storeList} = this.props;
     const {error, hideActions, list} = this.state;
-
-    console.log('list', list);
 
     return (
       <Modal
@@ -447,14 +427,14 @@ export class ListModal extends React.Component {
           <PageInfo
             list={list}
             justCreated={justCreated}
-            addImage={(id, image) => this.handleImage(id, image)}
+            handleImage={image => this.handleImage(image)}
             updateListData={data => this.updateListData(data)}
             onError={this.handleError}
           />
           <PageAdvanced
             list={list}
             justCreated={justCreated}
-            addImage={(id, image) => this.handleImage(id, image)}
+            handleImage={image => this.handleImage(image)}
             updateListData={data => this.updateListData(data)}
           />
         </Tabs>
@@ -463,20 +443,15 @@ export class ListModal extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = () => {
   return {};
 };
 
-export const mapDispatchToProps = dispatch => ({
-  addImage: (_id, image) => addImage(image)
+export const mapDispatchToProps = () => ({
+  addImage: image => addImage(image)
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withListCreator(withList(ListModal)));
-
-// addImage: (_id, image) => dispatch({type: ADD_LIST_IMAGE, image, _id})
-// image: this.props.list.image,
-// imageError: this.props.list.imageError,
-// imageIsLoading: this.props.list.imageIsLoading

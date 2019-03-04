@@ -59,14 +59,7 @@ export class Tabs extends React.Component {
   };
 
   render() {
-    const {
-      className = null,
-      children,
-      params,
-      pages,
-      onPageChange,
-      customSettings = {}
-    } = this.props;
+    const {className = null, children, pages, customSettings = {}} = this.props;
 
     //
     // Merge settings
@@ -76,8 +69,8 @@ export class Tabs extends React.Component {
       ...defaultSettings,
       pagination: {
         ...defaultSettings.pagination,
-        renderBullet: function(i, className) {
-          return `<span class="${className} mr-2">
+        renderBullet: function(i, swiperClass) {
+          return `<span class="${swiperClass} mr-2">
                   <Text type="body" variant="weight-semibold">
                     ${pages[i]}
                   </Text>

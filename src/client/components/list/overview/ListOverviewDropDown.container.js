@@ -226,7 +226,6 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({type: ON_USERLISTS_COLLAPSE});
   },
   onCreateNewList: () => {
-    //dispatch({type: HISTORY_PUSH, path: '/lister/opret'});
     dispatch({type: OPEN_MODAL, modal: 'list'});
     dispatch({type: ON_USERLISTS_COLLAPSE});
   },

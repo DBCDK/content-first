@@ -11,8 +11,6 @@ import {differenceBy} from 'lodash';
 //
 
 export const saveList = async (list, loggedInUserId) => {
-  console.log('saveList list', list);
-
   list = Object.assign({}, list);
   list._type = 'list';
   list.list = list.list || [];

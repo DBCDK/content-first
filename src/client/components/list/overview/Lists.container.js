@@ -9,7 +9,6 @@ import {
   createGetLists
 } from '../../../redux/list.reducer';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
-import {HISTORY_PUSH} from '../../../redux/middleware';
 
 export class Lists extends React.Component {
   componentDidMount() {
