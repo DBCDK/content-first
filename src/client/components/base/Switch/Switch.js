@@ -4,7 +4,7 @@ import './Switch.css';
 const Switch = ({
   name = '',
   className = null,
-  value,
+  value = '',
   children,
   onChange,
   checked

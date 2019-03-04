@@ -22,6 +22,7 @@ import {
   pixelObjToPercentage
 } from '../../utils/converter.js';
 
+import {addImage} from '../../utils/requester';
 import {ADD_LIST_IMAGE} from '../../redux/list.reducer';
 
 import './ListModal.css';
@@ -30,21 +31,12 @@ import './ListModal.css';
 const dotColors = ['petroleum', 'fersken', 'de-york', 'due', 'korn'];
 
 class PageInfo extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {showPermissions: false};
-  }
-
   componentDidMount() {
     if (this.input) {
       setTimeout(() => {
         this.input.select();
       }, 100);
     }
-  }
-
-  togglePermissions(status) {
-    this.setState({showPermissions: status});
   }
 
   validateInput(value) {
@@ -64,7 +56,6 @@ class PageInfo extends React.Component {
       updateListData,
       onError
     } = this.props;
-    const {showPermissions} = this.state;
 
     return (
       <div className={`listModal-page listModal-info ${className}`}>
@@ -92,10 +83,9 @@ class PageInfo extends React.Component {
           <Radio
             group="privacy"
             checked={!list.public}
-            onChange={e => {
-              this.togglePermissions(false);
-              updateListData({public: false, open: false, social: false});
-            }}
+            onChange={e =>
+              updateListData({public: false, open: false, social: false})
+            }
           >
             <Text type="body">
               {T({component: 'general', name: 'private'})}
@@ -107,10 +97,7 @@ class PageInfo extends React.Component {
           <Radio
             group="privacy"
             checked={list.public}
-            onChange={e => {
-              this.togglePermissions(true);
-              updateListData({public: true});
-            }}
+            onChange={e => updateListData({public: true})}
           >
             <Text type="body">{T({component: 'general', name: 'public'})}</Text>
           </Radio>
@@ -118,7 +105,7 @@ class PageInfo extends React.Component {
 
         <div
           className={`listModal-permissions pl-4 ${
-            showPermissions ? 'permissions-visible' : ''
+            list.public ? 'permissions-visible' : ''
           }`}
         >
           <div>
@@ -143,11 +130,12 @@ class PageInfo extends React.Component {
           </div>
         </div>
         <div className="row mt-4">
-          <div className="col-6 col-md-4">
+          <div className="col-6 col-md-4 pr-2">
             <label className="m-0">
               <T component={'general'} name={'image'} />
             </label>
             <ImageUpload
+              style={{width: '100%'}}
               error={list.imageError}
               loading={list.imageIsLoading}
               handleLoaded={this.onResize}
@@ -159,7 +147,7 @@ class PageInfo extends React.Component {
               onFile={img => addImage(list._id, img)}
             />
           </div>
-          <div className="col-6 col-md-8">
+          <div className="col-6 col-md-8 pl-2">
             <Textarea
               className="listModal-description"
               value={list.description}
@@ -298,6 +286,7 @@ class PageAdvanced extends React.Component {
               <div className="listModal-color-select-bg p-2">
                 <div className="listModal-color-select d-flex flex-row align-items-center position-relative">
                   {dotColors.map((color, i) => {
+                    console.log('color', color);
                     const active = color === list.dotColor ? true : false;
                     const disableClass = !active ? 'pulse-expand-disable' : '';
 
@@ -353,7 +342,31 @@ const pages = [
 export class ListModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {error: null, hideActions: false};
+    this.state = {
+      error: null,
+      hideActions: false,
+      list: {
+        image: false,
+        imageError: false,
+        imageIsLoading: false
+      }
+    };
+  }
+
+  componentDidMount() {
+    if (this.props.list) {
+      this.setState({list: this.props.list});
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.list !== this.props.list) {
+      const list = {
+        ...this.props.list,
+        ...this.state.list
+      };
+      this.setState({list});
+    }
   }
 
   handlePageChange = page => {
@@ -370,21 +383,45 @@ export class ListModal extends React.Component {
     }
   };
 
+  async handleImage(id, image) {
+    this.handleImageState({
+      imageIsLoading: true
+    });
+
+    const img = await addImage(image);
+
+    this.handleImageState({
+      image: img.id,
+      imageError: img.errors,
+      imageIsLoading: false
+    });
+  }
+
+  handleImageState(imgStatus) {
+    const list = {
+      ...this.state.list,
+      ...imgStatus
+    };
+
+    this.setState({list});
+  }
+
   updateListData = data => {
-    this.setState();
+    const list = {...this.state.list, ...data};
+    this.setState({list});
   };
 
   render() {
     const {
-      list = {},
       justCreated,
       close,
-      addImage,
       updateListData,
       storeList,
       deleteList
     } = this.props;
-    const {error, hideActions} = this.state;
+    const {error, hideActions, list} = this.state;
+
+    console.log('list', list);
 
     return (
       <Modal
@@ -392,6 +429,7 @@ export class ListModal extends React.Component {
         className="listModal"
         onClose={() => close()}
         onDone={() => {
+          updateListData(list);
           storeList(list);
           close();
         }}
@@ -409,14 +447,14 @@ export class ListModal extends React.Component {
           <PageInfo
             list={list}
             justCreated={justCreated}
-            addImage={addImage}
+            addImage={(id, image) => this.handleImage(id, image)}
             updateListData={data => this.updateListData(data)}
             onError={this.handleError}
           />
           <PageAdvanced
             list={list}
             justCreated={justCreated}
-            addImage={addImage}
+            addImage={(id, image) => this.handleImage(id, image)}
             updateListData={data => this.updateListData(data)}
           />
         </Tabs>
@@ -430,7 +468,7 @@ const mapStateToProps = state => {
 };
 
 export const mapDispatchToProps = dispatch => ({
-  addImage: (_id, image) => dispatch({type: ADD_LIST_IMAGE, image, _id})
+  addImage: (_id, image) => addImage(image)
 });
 
 export default connect(
@@ -438,4 +476,7 @@ export default connect(
   mapDispatchToProps
 )(withListCreator(withList(ListModal)));
 
-// export default withList(ListModal);
+// addImage: (_id, image) => dispatch({type: ADD_LIST_IMAGE, image, _id})
+// image: this.props.list.image,
+// imageError: this.props.list.imageError,
+// imageIsLoading: this.props.list.imageIsLoading

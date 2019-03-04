@@ -40,7 +40,8 @@ export const withListCreator = WrappedComponent => {
         {
           type: CUSTOM_LIST,
           public: false,
-          title: T({component: 'list', name: 'noTitleValue'})
+          title: T({component: 'list', name: 'noTitleValue'}),
+          dotColor: 'petroleum'
         },
         openplatformId
       );

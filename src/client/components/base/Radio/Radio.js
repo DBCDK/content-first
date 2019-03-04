@@ -1,7 +1,14 @@
 import React from 'react';
 import './Radio.css';
 
-const Radio = ({value, group, onChange, checked, children, className}) => {
+const Radio = ({
+  className = '',
+  value = '',
+  group,
+  onChange,
+  checked,
+  children
+}) => {
   return (
     <label className={`Radio__wrap`}>
       {children}

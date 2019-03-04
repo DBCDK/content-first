@@ -27,13 +27,13 @@
 
 /* Info page */
 
-.listModal-permissions {
+.listModal .listModal-permissions {
   max-height: 0;
   transition-duration: 0.3s;
   overflow: hidden;
 }
 
-.listModal .permissions-visible {
+.listModal .listModal-permissions.permissions-visible {
   max-height: 150px;
   transition-duration: 0.75s;
 }

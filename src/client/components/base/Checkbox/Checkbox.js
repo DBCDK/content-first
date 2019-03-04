@@ -1,7 +1,7 @@
 import React from 'react';
 import './Checkbox.css';
 
-const Checkbox = ({value, children, onChange, checked, className}) => {
+const Checkbox = ({value = '', children, onChange, checked, className}) => {
   return (
     <label className={`Checkbox__wrap`}>
       {children}
