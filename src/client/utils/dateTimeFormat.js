@@ -101,3 +101,17 @@ export function timestampToLongDate(timestamp) {
 
   return date + '. ' + month + ' ' + year;
 }
+
+/**
+ *
+ * @param timestamp
+ * @returns {string}
+ */
+export function timestampToShortDate(timestamp) {
+  const a = makeDate(timestamp);
+  const year = a.getFullYear();
+  const month = monthsShort[a.getMonth()];
+  const date = a.getDate();
+
+  return date + '. ' + month + ' ' + year;
+}

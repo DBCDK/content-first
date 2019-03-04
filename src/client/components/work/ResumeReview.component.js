@@ -1,5 +1,5 @@
 import React from 'react';
-import {timestampToLongDate} from '../../utils/dateTimeFormat';
+import {timestampToShortDate} from '../../utils/dateTimeFormat';
 import './Review.css';
 import Title from '../base/Title';
 import Text from '../base/Text';
@@ -21,7 +21,7 @@ export class ResumeReview extends React.Component {
     const surname = (review.reviewer && review.reviewer.surname) || '';
     const name = (firstname + ' ' + surname).trim(); // Trim the space away in case of missing first- or surname
     const date =
-      (review.creationDate && timestampToLongDate(review.creationDate)) || '';
+      (review.creationDate && timestampToShortDate(review.creationDate)) || '';
     if (typeof review.review === 'undefined' || review.review === null) {
       return '';
     }
