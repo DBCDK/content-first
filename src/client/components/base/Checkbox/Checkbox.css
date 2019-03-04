@@ -39,7 +39,7 @@
 
 /* Checkbox checked */
 .Checkbox__wrap .Checkbox:checked ~ .Checkbox__button {
-  background-color: white;
+  background-color: var(--petroleum);
   border: 2px solid var(--petroleum);
 }
 
@@ -49,7 +49,7 @@
   top: 0px;
   width: 6px;
   height: 10px;
-  border: solid var(--petroleum);
+  border: solid white;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);

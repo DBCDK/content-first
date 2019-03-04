@@ -70,7 +70,7 @@ export class Tabs extends React.Component {
       pagination: {
         ...defaultSettings.pagination,
         renderBullet: function(i, swiperClass) {
-          return `<span class="${swiperClass} mr-2">
+          return `<span class="${swiperClass} mr-4">
                   <Text type="body" variant="weight-semibold">
                     ${pages[i]}
                   </Text>
