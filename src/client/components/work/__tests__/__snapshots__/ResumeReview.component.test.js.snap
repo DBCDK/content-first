@@ -15,7 +15,7 @@ exports[`ResumeReview render function 1`] = `
     <p
       className="due-txt mb0 Text Text__small "
     >
-      2. marts 2005
+      2. mar 2005
     </p>
   </div>
   <p
@@ -67,7 +67,7 @@ exports[`ResumeReview render function 2`] = `
     <p
       className="due-txt mb0 Text Text__small "
     >
-      6. marts 2017
+      6. mar 2017
     </p>
   </div>
   <p
@@ -119,7 +119,7 @@ exports[`ResumeReview render function 3`] = `
     <p
       className="due-txt mb0 Text Text__small "
     >
-      11. august 2017
+      11. aug 2017
     </p>
   </div>
   <p
@@ -171,7 +171,7 @@ exports[`ResumeReview render function 4`] = `
     <p
       className="due-txt mb0 Text Text__small "
     >
-      6. marts 2017
+      6. mar 2017
     </p>
   </div>
   <p
