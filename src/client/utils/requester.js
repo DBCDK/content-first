@@ -9,7 +9,11 @@ import {
   ON_USER_DETAILS_ERROR
 } from '../redux/user.reducer';
 import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
-import {getLeavesMap} from './taxonomy';
+import {
+  getLeavesMap,
+  fromTitle,
+  subjectsToTaxonomyDescription
+} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
@@ -44,13 +48,19 @@ export const fetchTags = async (pids = []) => {
   return result;
 };
 
-export const fetchBooks = (pids = [], store) => {
+export const fetchTaxonomyDescription = (pids = [], store) => {
   pids = unique(pids);
   const getBooks = request.post('/v1/books/').send({pids});
 
   return Promise.all([getBooks])
     .then(async responses => {
       let books = JSON.parse(responses[0].text).data;
+      books = books.map(entry => ({
+        book: {
+          pid: entry.book.pid,
+          taxonomy_description: entry.book.taxonomy_description
+        }
+      }));
       return books;
     })
     .catch(error => {
@@ -64,20 +74,55 @@ export const fetchBooks = (pids = [], store) => {
     });
 };
 
-export const fetchCoverRefs = (pids = []) => {
+export const fetchBooks = (pids = []) => {
   pids = unique(pids);
 
   // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
   return Promise.all(
     pids.map(async pid => {
       try {
-        const [{coverUrlFull}] = await openplatform.work({
+        const [
+          {
+            dcTitle,
+            creator,
+            abstract,
+            extent,
+            dcLanguage,
+            date,
+            subjectDBCS,
+            coverUrlFull
+          }
+        ] = await openplatform.work({
           pids: [pid],
-          fields: ['coverUrlFull'],
+          fields: [
+            'dcTitle',
+            'creator',
+            'abstract',
+            'extent',
+            'dcLanguage',
+            'date',
+            'subjectDBCS',
+            'coverUrlFull'
+          ],
           access_token: await fetchAnonymousToken()
         });
         return {
-          coverUrlFull: coverUrlFull && coverUrlFull[0]
+          book: {
+            pid,
+            title: (dcTitle && dcTitle[0]) || '',
+            creator: (creator && creator[0]) || '',
+            description: (abstract && abstract[0]) || '',
+            pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
+            language: (dcLanguage && dcLanguage[0]) || '',
+            first_edition_year: (date && date[0]) || '',
+            taxonomy_description_subjects:
+              subjectsToTaxonomyDescription(subjectDBCS) || '',
+            tags:
+              (subjectDBCS &&
+                subjectDBCS.map(title => fromTitle(title)).filter(t => t)) ||
+              '',
+            coverUrl: (coverUrlFull && coverUrlFull[0]) || null
+          }
         };
       } catch (e) {
         // ignore errors/missing on fetching covers
@@ -85,18 +130,7 @@ export const fetchCoverRefs = (pids = []) => {
       }
     })
   ).then(result => {
-    return pids
-      .map((pid, i) => {
-        if (result && result[i]) {
-          return {
-            book: {
-              pid: pid,
-              coverUrl: result[i].coverUrlFull || ''
-            }
-          };
-        }
-      })
-      .filter(b => b);
+    return result.filter(b => b);
   });
 };
 

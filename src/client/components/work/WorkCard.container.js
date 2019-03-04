@@ -65,7 +65,9 @@ class WorkCard extends React.Component {
 
     const tax_description =
       this.props.work.book.taxonomy_description ||
-      this.props.work.book.description;
+      this.props.work.book.taxonomy_description_subjects ||
+      `${this.props.work.book.title || ''}\n${this.props.work.book.creator ||
+        ''}`;
 
     return (
       <div
@@ -161,4 +163,4 @@ class WorkCard extends React.Component {
   }
 }
 
-export default withWork(WorkCard, {includeCover: true});
+export default withWork(WorkCard);

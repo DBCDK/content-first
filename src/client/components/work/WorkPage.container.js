@@ -83,7 +83,8 @@ class WorkPage extends React.Component {
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
 
-    const tax_description = book.taxonomy_description || book.description;
+    const tax_description =
+      book.taxonomy_description || book.taxonomy_description_subjects || '';
     return (
       <div className="container">
         <div className="row WorkPage__container">
@@ -508,7 +509,6 @@ export default connect(
   withWork(WorkPage, {
     includeTags: true,
     includeReviews: true,
-    includeCollection: true,
-    includeCover: true
+    includeCollection: true
   })
 );
