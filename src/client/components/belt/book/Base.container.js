@@ -206,6 +206,7 @@ export class BooksBelt extends React.Component {
       fetchInitial = 8,
       showTags = true,
       belt,
+      selectedTags,
       plainSelectedTagIds,
       plainSelectedTags,
       recommendations,
@@ -308,33 +309,46 @@ export class BooksBelt extends React.Component {
                 </div>
               ) : (
                 <div className="pl-0 d-flex flex-wrap mw-100">
-                  <Title
-                    Tag="h1"
-                    type="title4"
-                    variant="transform-uppercase"
-                    className={
-                      border +
-                      ' inline border-right-xs-0 pr2 pb0 pt0 ml-2 ml-sm-3 mr-2 mr-sm-3 mb0'
-                    }
+                  <Link
+                    href="/find"
+                    params={{
+                      tags: selectedTags
+                        .map(
+                          t => (t instanceof Array ? t.map(aT => aT.id) : t.id)
+                        )
+                        .join(',')
+                    }}
+                    onClick={this.props.titleClick}
+                    disable={this.props.disableHeaderLink === true}
                   >
-                    {name.split(' ').map((word, idx) => {
-                      if (idx === 0) {
-                        return <strong key={idx}>{word}</strong>;
+                    <Title
+                      Tag="h1"
+                      type="title4"
+                      variant="transform-uppercase"
+                      className={
+                        border +
+                        ' inline border-right-xs-0 pr2 pb0 pt0 ml-2 ml-sm-3 mr-2 mr-sm-3 mb0'
                       }
-                      return ' ' + word;
-                    })}
-                    {_owner && (
-                      <Pin
-                        className="d-inline ml-2"
-                        active={true}
-                        onClick={e => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          removePin(belt);
-                        }}
-                      />
-                    )}
-                  </Title>
+                    >
+                      {name.split(' ').map((word, idx) => {
+                        if (idx === 0) {
+                          return <strong key={idx}>{word}</strong>;
+                        }
+                        return ' ' + word;
+                      })}
+                      {_owner && (
+                        <Pin
+                          className="d-inline ml-2"
+                          active={true}
+                          onClick={e => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            removePin(belt);
+                          }}
+                        />
+                      )}
+                    </Title>
+                  </Link>
                   {showTags && (
                     <div className="d-sm-inline h-scroll-xs h-scroll-sm-none">
                       {plainSelectedTags.map((t, idx) => {
