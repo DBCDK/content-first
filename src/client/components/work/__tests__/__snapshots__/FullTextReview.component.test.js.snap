@@ -16,9 +16,9 @@ exports[`FullTextReview render function 1`] = `
       Den bedste indretning
     </p>
     <p
-      className="due-txt Text Text__small "
+      className="due-txt date-col Text Text__small "
     >
-      2. marts 2005
+      2. mar 2005
     </p>
   </div>
   <h6
@@ -26,11 +26,11 @@ exports[`FullTextReview render function 1`] = `
   >
     Vurdering
   </h6>
-  <h5
-    className="mb2 Title Title__title5 "
+  <p
+    className=" Text Text__body "
   >
     Siden vinteren 2003 har DR1 i flere omgange sendt Hjerterum, en række meget sete programmer om boligindretning, hvor konceptet er, at to mennesker - ofte med meget forskellig smag - skal flytte sammen, og hvor en indretningsarkitekt med det bedste fra deres respektive indbo så indretter deres nye fælles hjem. Det er der kommet mange flotte, spændende og anderledes løsninger ud af, og i denne bog viser Vibeke Brinck, hvordan hun gjorde i fem konkrete tilfælde. Fælles for alle fem hjem er det personlige og individuelle frem for det meget strømlinede og arkitekttegnede. Der er dansk-svensk minimalisme, farvecollage på Nørrebro, stuelejlighed på Østerbro, taglejlighed i Århus og rækkehus på Amager. Der er inspirerende før-og-efter fotos, og der er masser af tips og ideer at hente til fornyelse eller opfriskning af de hjemlige stuer - både hvis det drejer sig om små effektfulde detaljer eller større projekter. Desuden er kapitler om farver, lys, møblering og materialer. Bogen lægger sig tæt op af udsendelserne, og er meget anvendelig til de mange lånere, der til stadighed efterspørger nyt om bogligindretning. En pendant til denne bog er Liselotte Risells bedste indretningsideer fra TV 2-succesen Helt solgt! (2003)
-  </h5>
+  </p>
   
   <p
     className="mb0 Text Text__body "
@@ -61,9 +61,9 @@ exports[`FullTextReview render function 2`] = `
       Nordisk halløj
     </p>
     <p
-      className="due-txt Text Text__small "
+      className="due-txt date-col Text Text__small "
     >
-      6. marts 2017
+      6. mar 2017
     </p>
   </div>
   <h6
@@ -71,11 +71,11 @@ exports[`FullTextReview render function 2`] = `
   >
     Vurdering
   </h6>
-  <h5
-    className="mb2 Title Title__title5 "
+  <p
+    className=" Text Text__body "
   >
     En på alle måder stor roman af Hanne Marie Svendsen. I Sydvestgrønland lå der fra 985 til 1400-tallet en vidtstrakt nordisk bebyggelse med omkring 3.000 indbyggere, eget bispesæde og et munke- og et nonnekloster. Her lader Svendsen sin veloplagte, spændende og meget underholdende roman foregå. Den unge forældreløse Unn og hendes fostersøster Ingebjørg er under oplæring i nonneklosteret. Ingebjørg indordner sig, mens den mere rastløse Unn stiller en række nærmest kætterske spørgsmål til religionen og tilværelsen. Med Unn som hovedperson ledes man gennem romanens mange handlinger, og man møder en vrimmel af bipersoner. Der er lidenskabelige opgør, magtkampe og fejder, og middelalderens splittelse mellem hedensk overtro og religiøse skikke udspiller sig i et på én gang magisk og realistisk univers. Sprogligt er Unn fra Stjernestene holdt i sin egen tone og den beskriver den grønlandske natur flot og billedskabende. Lidenskab, tro og begærlighed er gennemgående temaer i den eventyrlige roman, som vil appellere til en stor læserkreds; dels læsere af historiske romaner i almindelighed, læsere af romaner med stærke kvindelige personligheder som f.eks. Dinas bog og sikkert også læsere af Ib Michael. Dystert grå-grønt-brunligt omslag
-  </h5>
+  </p>
   <h6
     className="mb0 Title Title__title6 "
   >
@@ -115,9 +115,9 @@ exports[`FullTextReview render function 3`] = `
       A
     </p>
     <p
-      className="due-txt Text Text__small "
+      className="due-txt date-col Text Text__small "
     >
-      11. august 2017
+      11. aug 2017
     </p>
   </div>
   <h6
@@ -125,11 +125,11 @@ exports[`FullTextReview render function 3`] = `
   >
     Kort om bogen
   </h6>
-  <h5
-    className="mb2 Title Title__title5 "
+  <p
+    className=" Text Text__body "
   >
     49-årige David har en stor stilling på en avis. En dag bryder David sammen og må genfinde sig selv i et lille sommerhus. Et hverdagsrealistisk drama om stress og kærlighed, der med fordel kan formidles til mandlige læsere
-  </h5>
+  </p>
   <h6
     className="mb0 Title Title__title6 "
   >
@@ -190,9 +190,9 @@ exports[`FullTextReview render function 4`] = `
       Modstanden
     </p>
     <p
-      className="due-txt Text Text__small "
+      className="due-txt date-col Text Text__small "
     >
-      6. marts 2017
+      6. mar 2017
     </p>
   </div>
   <h6
@@ -200,11 +200,11 @@ exports[`FullTextReview render function 4`] = `
   >
     Anvendelse/målgruppe/niveau
   </h6>
-  <h5
-    className="mb2 Title Title__title5 "
+  <p
+    className=" Text Text__body "
   >
     Rasmussens nyeste rammer lige ind i den fornyede interesse for 2. verdenskrig og den danske modstandsbevægelse. Omslaget signalerer ikke umiddelbart dette, men det sort/hvide fotografi af Sven er dog tidstypisk
-  </h5>
+  </p>
   <h6
     className="mb0 Title Title__title6 "
   >

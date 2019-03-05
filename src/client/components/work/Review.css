@@ -44,3 +44,11 @@
   justify-content: space-between;
 }
 
+.date-col {
+  min-width: 80px;
+  text-align: right;
+}
+
+.Review__block--paragraph {
+  font-size: 0.9em;
+}
