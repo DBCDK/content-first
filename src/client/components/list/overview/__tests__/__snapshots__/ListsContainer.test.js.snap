@@ -13,7 +13,7 @@ exports[`Lists Container List is rendered 1`] = `
   <div>
     <a
       className="btn btn-primary d-inline-flex align-items-center"
-      href="/lister/opret"
+      href="!#"
       onClick={[Function]}
     >
       Opret ny liste
@@ -124,7 +124,7 @@ exports[`Lists Container List is rendered 2`] = `
   <div>
     <a
       className="btn btn-primary d-inline-flex align-items-center"
-      href="/lister/opret"
+      href="!#"
       onClick={[Function]}
     >
       Opret ny liste

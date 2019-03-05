@@ -76,9 +76,7 @@ export const historyMiddleware = history => store => next => action => {
     case HISTORY_PUSH:
       if (store.getState().routerReducer.path !== action.path) {
         const paramsString = action.params ? paramsToString(action.params) : '';
-
         history.push(action.path + paramsString);
-
         window.scrollTo(0, 0);
       }
       break;

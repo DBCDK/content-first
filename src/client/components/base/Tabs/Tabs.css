@@ -1,0 +1,31 @@
+.Tabs__container-horizontal {
+  position: relative;
+  padding-top: 30px !important;
+}
+
+.Tabs__pagination {
+  position: absolute;
+  top: 0;
+}
+
+.Tabs__pagination-bullet {
+  cursor: pointer;
+  outline: none;
+  font-weight: 600;
+}
+
+.Tabs__pagination-bullet-active {
+  text-decoration: underline;
+}
+
+.swiper-slide::-webkit-scrollbar-track {
+  background-color: var(--porcelain);
+}
+
+.swiper-slide::-webkit-scrollbar {
+  width: 6px;
+}
+
+.swiper-slide::-webkit-scrollbar-thumb {
+  background-color: var(--petroleum);
+}

@@ -34,6 +34,11 @@ const defaultState = {
     context: null,
     callback: null
   },
+  list: {
+    open: false,
+    context: null,
+    callback: null
+  },
   showReview: {
     open: false,
     context: null,
@@ -52,7 +57,7 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
  */
 const modalReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case OPEN_MODAL:
+    case OPEN_MODAL: {
       return Object.assign({}, state, {
         [action.modal]: {
           open: true,
@@ -60,6 +65,7 @@ const modalReducer = (state = defaultState, action) => {
           callback: action.callback
         }
       });
+    }
     case CLOSE_MODAL:
       return Object.assign({}, state, {
         [action.modal]: {open: false, context: null}

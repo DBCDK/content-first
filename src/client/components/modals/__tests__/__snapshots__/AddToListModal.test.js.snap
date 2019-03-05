@@ -13,11 +13,6 @@ exports[`AddToListModal multiple works as input 1`] = `
   >
     <div
       className="top d-flex flex-row justify-content-start justify-content-sm-end"
-      style={
-        Object {
-          "borderBottom": "1px solid var(--pistache)",
-        }
-      }
     >
       <i
         className="material-icons material-icons-clear m-3 d-none d-sm-inline-block"
@@ -50,13 +45,13 @@ exports[`AddToListModal multiple works as input 1`] = `
       </button>
     </div>
     <div
-      className="content p-4"
+      className="content"
     >
-      <p
-        className=" Text Text__large "
+      <h1
+        className=" Title Title__title4 Title__title4--transform-uppercase--weight-bold"
       >
         Gem i liste
-      </p>
+      </h1>
       <div
         className="row"
       >
@@ -184,15 +179,18 @@ exports[`AddToListModal multiple works as input 1`] = `
         </div>
       </div>
       <div
-        className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
+        className="modal-seperator mt-5 mb-4"
+      />
+      <div
+        className="bottom d-flex flex-row justify-content-end align-items-center pt-1"
       >
         <a
           href={null}
           target="_blank"
         >
           <button
-            className="mr-4 false
-                btn Button Button__large Button__quaternary "
+            className="mr-0 false
+                btn Button Button__medium Button__quaternary "
             data-cy="modal-done-btn"
             disabled={false}
             onClick={[Function]}
@@ -219,11 +217,6 @@ exports[`AddToListModal newly added list is selected 1`] = `
   >
     <div
       className="top d-flex flex-row justify-content-start justify-content-sm-end"
-      style={
-        Object {
-          "borderBottom": "1px solid var(--pistache)",
-        }
-      }
     >
       <i
         className="material-icons material-icons-clear m-3 d-none d-sm-inline-block"
@@ -256,13 +249,13 @@ exports[`AddToListModal newly added list is selected 1`] = `
       </button>
     </div>
     <div
-      className="content p-4"
+      className="content"
     >
-      <p
-        className=" Text Text__large "
+      <h1
+        className=" Title Title__title4 Title__title4--transform-uppercase--weight-bold"
       >
         Gem i liste
-      </p>
+      </h1>
       <div
         className="row"
       >
@@ -426,15 +419,18 @@ exports[`AddToListModal newly added list is selected 1`] = `
         </div>
       </div>
       <div
-        className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
+        className="modal-seperator mt-5 mb-4"
+      />
+      <div
+        className="bottom d-flex flex-row justify-content-end align-items-center pt-1"
       >
         <a
           href={null}
           target="_blank"
         >
           <button
-            className="mr-4 false
-                btn Button Button__large Button__quaternary "
+            className="mr-0 false
+                btn Button Button__medium Button__quaternary "
             data-cy="modal-done-btn"
             disabled={false}
             onClick={[Function]}
@@ -461,11 +457,6 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
   >
     <div
       className="top d-flex flex-row justify-content-start justify-content-sm-end"
-      style={
-        Object {
-          "borderBottom": "1px solid var(--pistache)",
-        }
-      }
     >
       <i
         className="material-icons material-icons-clear m-3 d-none d-sm-inline-block"
@@ -498,13 +489,13 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
       </button>
     </div>
     <div
-      className="content p-4"
+      className="content"
     >
-      <p
-        className=" Text Text__large "
+      <h1
+        className=" Title Title__title4 Title__title4--transform-uppercase--weight-bold"
       >
         Gem i liste
-      </p>
+      </h1>
       <div
         className="row"
       >
@@ -654,15 +645,18 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
         </div>
       </div>
       <div
-        className="bottom d-flex flex-row justify-content-end mb-5 mt-5"
+        className="modal-seperator mt-5 mb-4"
+      />
+      <div
+        className="bottom d-flex flex-row justify-content-end align-items-center pt-1"
       >
         <a
           href={null}
           target="_blank"
         >
           <button
-            className="mr-4 false
-                btn Button Button__large Button__quaternary "
+            className="mr-0 false
+                btn Button Button__medium Button__quaternary "
             data-cy="modal-done-btn"
             disabled={false}
             onClick={[Function]}

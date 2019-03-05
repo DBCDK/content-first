@@ -1,0 +1,68 @@
+.listModal {
+  width: 750px;
+}
+
+@media only screen and (max-width: 800px) {
+  .listModal {
+    width: 100%;
+  }
+}
+
+.listModal .listModal-page {
+  width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  .listModal .listModal-page {
+    max-height: 100%;
+  }
+}
+
+.listModal .image-upload .image-upload--zone {
+  background: var(--lys-graa);
+  background-size: cover;
+  background-position: center center;
+  border: none;
+}
+
+/* Info page */
+
+.listModal .listModal-permissions {
+  max-height: 0;
+  transition-duration: 0.3s;
+  overflow: hidden;
+}
+
+.listModal .listModal-permissions.permissions-visible {
+  max-height: 150px;
+  transition-duration: 0.75s;
+}
+
+/* advanced page */
+
+.listModal-color-select-bg {
+  display: inline-block;
+  background: var(--lys-graa);
+}
+
+.listModal-color-select .pulse-toucharea {
+  position: static;
+  transform: none;
+  width: auto;
+  margin: 0px;
+  height: auto;
+}
+
+.listModal-color-select .pulse-toucharea:last-child {
+  margin: 0 !important;
+}
+
+.listModal-color-select .pulse-toucharea .pulse {
+  margin: 0;
+}
+
+.listModal .listModal-description {
+  outline: none;
+  height: 150px;
+  resize: none;
+}

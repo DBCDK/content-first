@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../base/Button';
 import Text from '../base/Text';
+import Title from '../base/Title';
 import Icon from '../base/Icon';
 
 import './Modal.css';
@@ -12,16 +13,14 @@ export default class Modal extends React.Component {
       cancelText,
       hideCancel = false,
       hideConfirm = false,
-      doneDisabled
+      doneDisabled,
+      onError = false
     } = this.props;
     return (
       <div className="modal-container ">
         <div className="modal-backdrop" onClick={this.props.onClose} />
         <div className={'modal-window ' + this.props.className || ''}>
-          <div
-            className="top d-flex flex-row justify-content-start justify-content-sm-end"
-            style={{borderBottom: '1px solid var(--pistache)'}}
-          >
+          <div className="top d-flex flex-row justify-content-start justify-content-sm-end">
             <Icon
               name="clear"
               className="m-3 d-none d-sm-inline-block"
@@ -39,17 +38,29 @@ export default class Modal extends React.Component {
             </Button>
           </div>
 
-          <div className="content p-4">
-            <Text type="large">{this.props.header}</Text>
+          <div className="content">
+            <Title type="title4" variant="transform-uppercase--weight-bold">
+              {this.props.header}
+            </Title>
             {this.props.children}
+            {!hideCancel &&
+              !hideConfirm && <div className="modal-seperator mt-5 mb-4" />}
             {
-              <div className="bottom d-flex flex-row justify-content-end mb-5 mt-5">
+              <div className="bottom d-flex flex-row justify-content-end align-items-center pt-1">
+                {onError && (
+                  <div className="mr-3">
+                    <Text type="body" variant="color-fersken">
+                      {onError}
+                    </Text>
+                  </div>
+                )}
                 {!hideCancel &&
                   cancelText && (
                     <Button
                       size="medium"
-                      className="mr-4"
-                      type="link"
+                      className="mr-1"
+                      type="quaternary"
+                      variant="bgcolor-porcelain--color-petroleum"
                       onClick={this.props.onClose}
                     >
                       {cancelText}
@@ -58,7 +69,9 @@ export default class Modal extends React.Component {
                 {!hideConfirm && (
                   <a href={this.props.url || null} target="_blank">
                     <Button
-                      className={'mr-4 ' + (doneDisabled && 'disabled')}
+                      disabled={onError}
+                      size="medium"
+                      className={'mr-0 ' + (doneDisabled && 'disabled')}
                       type="quaternary"
                       onClick={doneDisabled || this.props.onDone}
                       dataCy="modal-done-btn"

@@ -1,0 +1,69 @@
+.Checkbox__wrap {
+  display: inline-block;
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default Checkbox button */
+.Checkbox__wrap .Checkbox {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Create a custom Checkbox button */
+.Checkbox__button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+}
+
+/* Checkbox unchecked */
+.Checkbox__wrap .Checkbox ~ .Checkbox__button {
+  border: 1px solid var(--petroleum);
+}
+
+/* Checkbox :hover */
+.Checkbox__wrap:hover .Checkbox ~ .Checkbox__button {
+}
+
+/* Checkbox checked */
+.Checkbox__wrap .Checkbox:checked ~ .Checkbox__button {
+  background-color: var(--petroleum);
+  border: 2px solid var(--petroleum);
+}
+
+/* Checkbox dot styling */
+.Checkbox__wrap .Checkbox__button:after {
+  left: 3px;
+  top: 0px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* Checkbox dot - if Checkbox is unchecked */
+.Checkbox__button:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Checkbox dot - if Checkbox is checked */
+.Checkbox__wrap .Checkbox:checked ~ .Checkbox__button:after {
+  display: block;
+}

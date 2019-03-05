@@ -1,0 +1,12 @@
+.Input {
+  display: block;
+  height: 35px;
+  width: 100%;
+  border: 1px solid var(--porcelain);
+  padding-left: 8px;
+  outline: none;
+}
+
+.Input__label {
+  margin: 0;
+}

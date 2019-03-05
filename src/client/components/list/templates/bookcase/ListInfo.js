@@ -18,21 +18,13 @@ import FollowButton from '../../button/FollowButton';
 import AddBookButton from '../../button/AddBookButton';
 import ListContextMenu from '../../menu/ListContextMenu';
 import Pulse from '../../../pulse/Pulse.component';
+import {
+  percentageObjToPixel,
+  pixelObjToPercentage
+} from '../../../../utils/converter.js';
 const getListById = getListByIdSelector();
 
 const dotColors = ['korn', 'due', 'de-york', 'fersken', 'petroleum'];
-
-function percentageObjToPixel(e, pos) {
-  const x = (pos.x * e.imgWidth) / 100;
-  const y = (pos.y * e.imgHeight) / 100;
-  return {x, y};
-}
-
-function pixelObjToPercentage(e, pos) {
-  const x = (pos.x / e.imgWidth) * 100;
-  const y = (pos.y / e.imgHeight) * 100;
-  return {x, y};
-}
 
 export class ListInfo extends React.Component {
   onPulseClick(work) {

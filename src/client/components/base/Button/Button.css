@@ -109,7 +109,8 @@
 .Button__small {
   text-transform: none;
   padding: 5px 10px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: normal;
 }
 
 /* Variants */
@@ -154,6 +155,12 @@
 .Button__primary--bgcolor-korn--color-petroleum:hover {
   background-color: var(--korn);
   color: var(--petroleum);
+}
+
+.Button__quaternary--bgcolor-porcelain--color-petroleum,
+.Button__quaternary--bgcolor-porcelain--color-petroleum:hover {
+  background-color: var(--porcelain);
+  color: var(--petrolium);
 }
 
 /* Feedback button */
