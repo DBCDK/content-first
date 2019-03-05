@@ -9,11 +9,7 @@ import {
   ON_USER_DETAILS_ERROR
 } from '../redux/user.reducer';
 import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
-import {
-  getLeavesMap,
-  fromTitle,
-  subjectsToTaxonomyDescription
-} from './taxonomy';
+import {getLeavesMap} from './taxonomy';
 import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';

@@ -9,7 +9,6 @@ import {
   fetchReviews,
   fetchCollection,
   fetchSearchResults,
-  fetchTaxonomyDescription,
   saveShortList,
   loadShortList,
   addImage,

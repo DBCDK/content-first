@@ -46,7 +46,7 @@ describe('Endpoint /v1/books', () => {
 
       it('should give a list of existing books', () => {
         nock(config.login.openplatformUrl)
-          .filteringRequestBody(body => '*')
+          .filteringRequestBody(() => '*')
           .post('/work', '*')
           .reply(200, {data: [{dcTitle: ['havelaagebogen']}]});
         const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
