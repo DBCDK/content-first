@@ -9,7 +9,6 @@ import {
   fetchReviews,
   fetchCollection,
   fetchSearchResults,
-  fetchTaxonomyDescription,
   saveShortList,
   loadShortList,
   addImage,
@@ -146,10 +145,6 @@ const createDebouncedFunction = (name, requestFunction) => {
 };
 const debouncedFunctions = {
   details: createDebouncedFunction('details', fetchBooks),
-  taxonomyDescription: createDebouncedFunction(
-    'taxonomyDescription',
-    fetchTaxonomyDescription
-  ),
   tags: createDebouncedFunction('tags', fetchBooksTags)
 };
 
@@ -160,7 +155,6 @@ export const requestMiddleware = store => next => action => {
         const {includeTags, includeReviews, includeCollection} = action;
 
         debouncedFunctions.details(action.pids, store);
-        debouncedFunctions.taxonomyDescription(action.pids, store);
         if (includeTags) {
           debouncedFunctions.tags(action.pids, store);
         }

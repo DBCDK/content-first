@@ -15,7 +15,11 @@ const withIsVisible = WrappedComponent => {
 
     render() {
       return (
-        <VisibilitySensor onChange={this.onChange} partialVisibility={true}>
+        <VisibilitySensor
+          onChange={this.onChange}
+          partialVisibility={true}
+          offset={{top: -1000, bottom: -1000}}
+        >
           <WrappedComponent {...this.props} {...this.state} />
         </VisibilitySensor>
       );

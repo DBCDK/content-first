@@ -7,6 +7,9 @@ const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const {recompasWork, recompasTags} = require('server/recompas');
 const matomo = require('server/matomo');
 
+const NodeCache = require('node-cache');
+const cache = new NodeCache({stdTTL: 60 * 60 * 4});
+
 router
   .route('/')
   //
@@ -14,6 +17,10 @@ router
   //
   .get(
     asyncMiddleware(async (req, res, next) => {
+      const value = cache.get(req.originalUrl);
+      if (value) {
+        return res.status(200).json(value);
+      }
       const recommender = req.query.recommender;
       if (recommender) {
         switch (recommender) {
@@ -22,6 +29,7 @@ router
             // Recompas recommend based on tags
             //
             const {tags = {}, creators = {}, maxresults = 10} = req.query;
+
             const link = `${req.baseUrl}?tags=${req.query.tags ||
               ''}&creators=${req.query.creators ||
               ''}&maxresults=${maxresults}`;
@@ -50,6 +58,8 @@ router
                 'recommend',
                 Object.assign({}, result, {request: req.query})
               );
+
+              cache.set(req.originalUrl, result);
 
               return res.status(200).json(result);
             } catch (e) {
@@ -85,6 +95,7 @@ router
                 'recommend',
                 Object.assign({}, result, {request: req.query})
               );
+              cache.set(req.originalUrl, result);
 
               return res.status(200).json(result);
             } catch (e) {
