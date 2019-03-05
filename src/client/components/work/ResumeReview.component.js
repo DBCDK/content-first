@@ -33,7 +33,7 @@ export class ResumeReview extends React.Component {
     return (
       <div className="Review__container mr-4 mb-5">
         <div className="Review__block--top">
-          <Title Tag="h6" type="title6" className="mb0">
+          <Title Tag="h6" type="title6" className="Review__block--title mb0">
             Bibliotekernes vurdering
           </Title>
           <Text type="small" className="due-txt mb0">
@@ -42,7 +42,7 @@ export class ResumeReview extends React.Component {
         </div>
         {name !== false &&
           name.trim() !== '' && (
-            <Text type="body" className="mb1">
+            <Text type="body" className="Review__block--lector mb1">
               Af {name}
             </Text>
           )}
@@ -55,7 +55,7 @@ export class ResumeReview extends React.Component {
         </Text>
         <Text>
           <Link
-            className="mb0"
+            className="Review__block--link mb0"
             type="small"
             onClick={() => {
               this.props.showReviewModal(
