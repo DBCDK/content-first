@@ -48,20 +48,13 @@ export const fetchTags = async (pids = []) => {
   return result;
 };
 
-export const fetchTaxonomyDescription = (pids = [], store) => {
+export const fetchBooks = (pids = [], store) => {
   pids = unique(pids);
   const getBooks = request.post('/v1/books/').send({pids});
 
   return Promise.all([getBooks])
     .then(async responses => {
-      let books = JSON.parse(responses[0].text).data;
-      books = books.map(entry => ({
-        book: {
-          pid: entry.book.pid,
-          taxonomy_description: entry.book.taxonomy_description
-        }
-      }));
-      return books;
+      return JSON.parse(responses[0].text).data;
     })
     .catch(error => {
       store.dispatch({
@@ -72,66 +65,6 @@ export const fetchTaxonomyDescription = (pids = [], store) => {
       });
       throw error;
     });
-};
-
-export const fetchBooks = (pids = []) => {
-  pids = unique(pids);
-
-  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
-  return Promise.all(
-    pids.map(async pid => {
-      try {
-        const [
-          {
-            dcTitle,
-            creator,
-            abstract,
-            extent,
-            dcLanguage,
-            date,
-            subjectDBCS,
-            coverUrlFull
-          }
-        ] = await openplatform.work({
-          pids: [pid],
-          fields: [
-            'dcTitle',
-            'creator',
-            'abstract',
-            'extent',
-            'dcLanguage',
-            'date',
-            'subjectDBCS',
-            'coverUrlFull'
-          ],
-          access_token: await fetchAnonymousToken()
-        });
-        return {
-          book: {
-            pid,
-            title: (dcTitle && dcTitle[0]) || '',
-            creator: (creator && creator[0]) || '',
-            description: (abstract && abstract[0]) || '',
-            pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
-            language: (dcLanguage && dcLanguage[0]) || '',
-            first_edition_year: (date && date[0]) || '',
-            taxonomy_description_subjects:
-              subjectsToTaxonomyDescription(subjectDBCS) || '',
-            tags:
-              (subjectDBCS &&
-                subjectDBCS.map(title => fromTitle(title)).filter(t => t)) ||
-              '',
-            coverUrl: (coverUrlFull && coverUrlFull[0]) || null
-          }
-        };
-      } catch (e) {
-        // ignore errors/missing on fetching covers
-        return;
-      }
-    })
-  ).then(result => {
-    return result.filter(b => b);
-  });
 };
 
 export const fetchBooksRefs = async (pids = []) => {
