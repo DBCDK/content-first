@@ -16,7 +16,7 @@ exports[`FullTextReview render function 1`] = `
       Den bedste indretning
     </p>
     <p
-      className="due-txt Text Text__small "
+      className="due-txt date-col Text Text__small "
     >
       2. mar 2005
     </p>
@@ -61,7 +61,7 @@ exports[`FullTextReview render function 2`] = `
       Nordisk halløj
     </p>
     <p
-      className="due-txt Text Text__small "
+      className="due-txt date-col Text Text__small "
     >
       6. mar 2017
     </p>
@@ -115,7 +115,7 @@ exports[`FullTextReview render function 3`] = `
       A
     </p>
     <p
-      className="due-txt Text Text__small "
+      className="due-txt date-col Text Text__small "
     >
       11. aug 2017
     </p>
@@ -190,7 +190,7 @@ exports[`FullTextReview render function 4`] = `
       Modstanden
     </p>
     <p
-      className="due-txt Text Text__small "
+      className="due-txt date-col Text Text__small "
     >
       6. mar 2017
     </p>

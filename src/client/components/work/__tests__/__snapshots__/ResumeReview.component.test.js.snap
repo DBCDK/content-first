@@ -25,7 +25,7 @@ exports[`ResumeReview render function 1`] = `
     Lone Krøgh
   </p>
   <p
-    className="mb0 Text Text__body "
+    className="Review__block--paragraph mb0 Text Text__body "
   >
     <em>
       <react-truncate-markup
@@ -77,7 +77,7 @@ exports[`ResumeReview render function 2`] = `
     Lone Krøgh
   </p>
   <p
-    className="mb0 Text Text__body "
+    className="Review__block--paragraph mb0 Text Text__body "
   >
     <em>
       <react-truncate-markup
@@ -129,7 +129,7 @@ exports[`ResumeReview render function 3`] = `
     Jacob Holm Krogsøe
   </p>
   <p
-    className="mb0 Text Text__body "
+    className="Review__block--paragraph mb0 Text Text__body "
   >
     <em>
       <react-truncate-markup
@@ -181,7 +181,7 @@ exports[`ResumeReview render function 4`] = `
     Per Månson
   </p>
   <p
-    className="mb0 Text Text__body "
+    className="Review__block--paragraph mb0 Text Text__body "
   >
     <em>
       <react-truncate-markup

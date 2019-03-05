@@ -46,7 +46,7 @@ export class ResumeReview extends React.Component {
               Af {name}
             </Text>
           )}
-        <Text type="body" className="mb0">
+        <Text type="body" className="Review__block--paragraph mb0">
           <em>
             <TruncateMarkup lines={3} ellipsis="...">
               <div>{reviewParagraph}</div>
