@@ -1,9 +1,12 @@
-import {difference} from 'lodash';
-import taxonomyJson from '../../data/exportTaxonomy.json';
+const {difference} = require('lodash');
 
-export const taxonomy = taxonomyJson;
+const taxonomyJson =
+  process.env.NODE_ENV === 'ci'
+    ? require('../../data/examples/exportTaxonomy.json')
+    : require('../../data/exportTaxonomy.json');
+const taxonomy = taxonomyJson;
 
-export const getLeaves = (t = taxonomy, parentStack = []) => {
+const getLeaves = (t = taxonomy, parentStack = []) => {
   if (Array.isArray(t)) {
     return t.map(leaf => {
       return Object.assign({}, leaf, {parents: [...parentStack]});
@@ -19,7 +22,7 @@ export const getLeaves = (t = taxonomy, parentStack = []) => {
   return result;
 };
 
-export const getLeavesMap = (t = taxonomy) => {
+const getLeavesMap = (t = taxonomy) => {
   const res = {};
   getLeaves(t).forEach(leaf => {
     res[leaf.id] = leaf;
@@ -27,7 +30,7 @@ export const getLeavesMap = (t = taxonomy) => {
   return res;
 };
 
-export const getFromTitleMap = (t = taxonomy) => {
+const getFromTitleMap = (t = taxonomy) => {
   const res = {};
   getLeaves(t).forEach(leaf => {
     res[leaf.title.toLowerCase()] = leaf;
@@ -35,20 +38,20 @@ export const getFromTitleMap = (t = taxonomy) => {
   return res;
 };
 let fromTitleMap;
-export const fromTitle = title => {
+const fromTitle = title => {
   if (!fromTitleMap) {
     fromTitleMap = getFromTitleMap();
   }
   return fromTitleMap[title.toLowerCase()];
 };
 
-export const isRange = tagId => Array.isArray(tagId) && tagId.length === 2;
-export const isFullRange = (tagId, fullRange) =>
+const isRange = tagId => Array.isArray(tagId) && tagId.length === 2;
+const isFullRange = (tagId, fullRange) =>
   fullRange[0] === tagId[0] && fullRange[fullRange.length - 1] === tagId[1];
 
-export const isSameRange = (tagId, fullRange) =>
+const isSameRange = (tagId, fullRange) =>
   isRange(tagId) && difference(tagId, fullRange).length === 0;
-export const getFullRange = (tagId, filterCards, filtersMapAll) => {
+const getFullRange = (tagId, filterCards, filtersMapAll) => {
   const filter = filtersMapAll[tagId] || filtersMapAll[tagId[0]];
   if (!filter) {
     return false;
@@ -57,7 +60,7 @@ export const getFullRange = (tagId, filterCards, filtersMapAll) => {
   const range = (filterCards[parent] && filterCards[parent].range) || false;
   return range;
 };
-export const findRangeLocation = (tagId, tags = [], fullRange) => {
+const findRangeLocation = (tagId, tags = [], fullRange) => {
   for (let i = 0; i < tags.length; i++) {
     if (isSameRange(tags[i], fullRange)) {
       return i;
@@ -65,15 +68,11 @@ export const findRangeLocation = (tagId, tags = [], fullRange) => {
   }
   return -1;
 };
-export const getDistances = (tagId, fullRange) => {
+const getDistances = (tagId, fullRange) => {
   const index = fullRange.indexOf(tagId);
   return {begin: index, end: fullRange.length - index};
 };
-export const getQueryType = (
-  selectedTagIdss,
-  selectedCreators,
-  selectedTitles
-) => {
+const getQueryType = (selectedTagIdss, selectedCreators, selectedTitles) => {
   if (selectedTagIdss.length > 0) {
     return 'tags';
   }
@@ -82,7 +81,7 @@ export const getQueryType = (
   }
   return false;
 };
-export const getSelectedRange = (tagId, selectedRange, fullRange) => {
+const getSelectedRange = (tagId, selectedRange, fullRange) => {
   if (isRange(tagId)) {
     return tagId;
   }
@@ -100,13 +99,13 @@ export const getSelectedRange = (tagId, selectedRange, fullRange) => {
   }
   return [selectedRange[0], tagId];
 };
-export const tagsToUrlParams = tags =>
+const tagsToUrlParams = tags =>
   tags.map(id => (isRange(id) ? id.join(':') : id)).join(',');
 
 const upperCaseFirst = str => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
-export const subjectsToTaxonomyDescription = subjects => {
+const subjectsToTaxonomyDescription = subjects => {
   if (!subjects) {
     return '';
   }
@@ -134,4 +133,22 @@ export const subjectsToTaxonomyDescription = subjects => {
     default:
       return '';
   }
+};
+
+module.exports = {
+  taxonomy,
+  getLeaves,
+  getLeavesMap,
+  getFromTitleMap,
+  fromTitle,
+  isRange,
+  isFullRange,
+  isSameRange,
+  getFullRange,
+  findRangeLocation,
+  getDistances,
+  getQueryType,
+  getSelectedRange,
+  tagsToUrlParams,
+  subjectsToTaxonomyDescription
 };
