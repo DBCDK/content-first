@@ -34,6 +34,16 @@ describe('Endpoint /v1/books', () => {
       });
 
       it('should handle non-existing pids', () => {
+        nock(config.auth.url)
+          .filteringRequestBody(() => '*')
+          .post('/oauth/token', '*')
+          .reply(200, {access_token: 'accesstoken'});
+        nock(config.login.openplatformUrl)
+          .filteringRequestBody(() => '*')
+          .post('/work', '*')
+          .reply(200, {
+            data: [{dcTitle: ['Error: unknown/missing/inaccessible record']}]
+          });
         const pid = 123456789;
         const url = `/v1/books?pids=${pid}`;
         return webapp
@@ -45,6 +55,10 @@ describe('Endpoint /v1/books', () => {
       });
 
       it('should give a list of existing books', () => {
+        nock(config.auth.url)
+          .filteringRequestBody(() => '*')
+          .post('/oauth/token', '*')
+          .reply(200, {access_token: 'accesstoken'});
         nock(config.login.openplatformUrl)
           .filteringRequestBody(() => '*')
           .post('/work', '*')
