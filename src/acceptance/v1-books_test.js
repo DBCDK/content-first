@@ -1,9 +1,11 @@
 /* eslint-env mocha */
 'use strict';
 
+const config = require('server/config');
 const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
+const nock = require('nock');
 const {
   expectSuccess,
   expectFailure,
@@ -43,46 +45,21 @@ describe('Endpoint /v1/books', () => {
       });
 
       it('should give a list of existing books', () => {
+        nock(config.login.openplatformUrl)
+          .filteringRequestBody(body => '*')
+          .post('/work', '*')
+          .reply(200, {data: [{dcTitle: ['havelaagebogen']}]});
         const pid = 'already-seeded-pid-blendstrup-havelaagebogen';
         const url = `/v1/books?pids=${pid}`;
         return webapp
           .get(url)
           .expect(200)
           .expect(res => {
-            expectSuccess(res.body, (links, data) => {
-              expectValidate(links, 'schemas/books-links-out.json');
-              expect(links.self).to.equal(url);
-              expectValidate(data, 'schemas/books-data-out.json');
-              expect(data).to.have.length(1);
-              expectValidate(data[0].links, 'schemas/book-links-out.json');
-              expect(data[0].links.self).to.equal(`/v1/book/${pid}`);
-              expect(data[0].links.cover).to.equal(`/v1/image/${pid}`);
-              expectValidate(data[0].book, 'schemas/book-data-out.json');
-              expect(data[0].book).to.deep.equal({
-                pid: 'already-seeded-pid-blendstrup-havelaagebogen',
-                unit_id: 'unit:22125672',
-                work_id: 'work:20137979',
-                bibliographic_record_id: 53188931,
-                creator: 'Jens Blendstrup',
-                title: 'Havelågebogen',
-                title_full:
-                  'Havelågebogen : trælåger, gitterlåger, fyldningslåger, jern- og smedejernslåger',
-                taxonomy_description:
-                  'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne',
-                description: 'Noget med låger',
-                pages: 645,
-                loans: 1020,
-                type: 'Bog',
-                work_type: 'book',
-                language: 'Dansk',
-                items: 196,
-                libraries: 80,
-                first_edition_year: 2017,
-                genre: 'humor',
-                subject: 'billedværker, humor, fotografier',
-                literary_form: 'digte, fiktion'
-              });
-            });
+            expect(res.body.data).to.have.length(1);
+            expect(res.body.data[0].book.taxonomy_description).to.equal(
+              'Fotografier af havelåger sat sammen med korte tekster, der fantaserer over, hvem der mon bor inde bag lågerne'
+            );
+            expect(res.body.data[0].book.title).to.equal('havelaagebogen');
           });
       });
     });
