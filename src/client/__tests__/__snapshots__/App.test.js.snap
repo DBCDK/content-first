@@ -79,7 +79,7 @@ exports[`renders without crashing 1`] = `
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       placeholder="Søg på titel, forfatter, stemning..."
-                      type="search"
+                      type="text"
                       value=""
                     />
                     <div
