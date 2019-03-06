@@ -12,9 +12,11 @@ exports[`renders without crashing 1`] = `
       <nav
         className="col-12 col-m-8 Topbar__navigation"
       >
-        <div>
-          <div
-            className="Topbar__special widthCalc"
+        <div
+          className="Topbar__special widthCalc"
+        >
+          <a
+            href="/"
           >
             <img
               alt=""
@@ -26,7 +28,7 @@ exports[`renders without crashing 1`] = `
               }
               type="image/svg+xml"
             />
-          </div>
+          </a>
         </div>
         <span
           className="Topbar__navigation__btn widthCalc d-none d-md-flex"
@@ -54,7 +56,7 @@ exports[`renders without crashing 1`] = `
                 onWheel={[Function]}
               >
                 <div
-                  className="suggestion-list tags-suggestion-list suggestion-list input-visible"
+                  className="suggestion-list tags-suggestion-list suggestion-list "
                   onClick={[Function]}
                 >
                   <div
@@ -69,7 +71,7 @@ exports[`renders without crashing 1`] = `
                       aria-autocomplete="list"
                       aria-controls="react-autowhatever-1"
                       autoComplete="off"
-                      className="form-control suggestion-list__search "
+                      className="form-control suggestion-list__search"
                       data-cy="search-bar-input"
                       id="Searchbar__inputfield"
                       onBlur={[Function]}
@@ -251,7 +253,7 @@ exports[`renders without crashing 1`] = `
                 "height": "28px",
                 "marginRight": "7px",
                 "marginTop": "1px",
-                "pointer-events": "none",
+                "pointerEvents": "none",
               }
             }
             type="image/svg+xml"
@@ -287,7 +289,7 @@ exports[`renders without crashing 1`] = `
                   "height": "28px",
                   "marginRight": "7px",
                   "marginTop": "6px",
-                  "pointer-events": "none",
+                  "pointerEvents": "none",
                 }
               }
               type="image/svg+xml"
