@@ -333,7 +333,7 @@ exports[`Image Upload render function Add image 1`] = `
             <h3
               className="mb0 mt2 Heading Heading__title"
             >
-              Brugergeneret indhold
+              Brugergenereret indhold
             </h3>
           </Heading>
           <Paragraph>
@@ -584,7 +584,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
         <h3
           className="mb0 mt2 Heading Heading__title"
         >
-          Brugergeneret indhold
+          Brugergenereret indhold
         </h3>
         <p
           className=" Paragraph Paragraph__whattocall"
