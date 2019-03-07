@@ -16,7 +16,7 @@ Læsekompasset er lanceret som en betaversion. Dette betyder, at vi fortsat test
 
 Læsekompasset er skabt i samarbejde med de danske folkebiblioteker og drives af DBC.
 
-### Brugergeneret indhold
+### Brugergenereret indhold
 
 Følgende regler gælder for indlæg eller indhold, som du og andre brugere selv lægger på websitet, i det omfang vi åbner mulighed for dette. Du er ansvarlig for, at dine indlæg er i overensstemmelse med den til enhver tid gældende lovgivning, herunder at dine indlæg ikke krænker tredjemands rettigheder, eksempelvis ophavsret til tekst og billeder. Du giver DBC og Læsekompasset ret til at mangfoldiggøre egne fotos, som du uploader til Læsekompasset, at gøre dem tilgængelige for tredjemand og at lave afledte værker.
 

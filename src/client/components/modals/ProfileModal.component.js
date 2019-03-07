@@ -254,7 +254,7 @@ export class ProfileModal extends React.Component {
               </div>
             </div>
 
-            <div className="profile__rules-title2">Brugergeneret indhold</div>
+            <div className="profile__rules-title2">Brugergenereret indhold</div>
             <div className="profile__rules-content">
               Følgende regler gælder for indlæg og indhold, som du og andre
               brugere selv lægger på læsekompas.dk. Du er ansvarlig for, at dine

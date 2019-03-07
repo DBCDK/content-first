@@ -140,7 +140,7 @@ export class CreateProfilePage extends React.Component {
               </Paragraph>
 
               <Heading type="title" Tag="h3" className="mb0 mt2">
-                Brugergeneret indhold
+                Brugergenereret indhold
               </Heading>
               <Paragraph>
                 Følgende regler gælder for indlæg og indhold, som du og andre
