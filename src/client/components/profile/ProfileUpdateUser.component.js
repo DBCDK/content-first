@@ -59,7 +59,7 @@ export default class ProfileUpdateUser extends React.Component {
     };
 
     return (
-      <div style={{display: 'flex'}}>
+      <div className="profile__accept-buttonzone">
         <div className="profile__accept-buttonbuffer">
           {this.renderErrors()}
         </div>

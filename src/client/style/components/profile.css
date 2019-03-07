@@ -19,129 +19,6 @@
     }
 }
 
-@media only screen and (max-width: 500px) {
-    .profile__modal-container {
-        width: 375px !important;
-        padding-top: 0px;
-        -webkit-animation-name: slideup; /* Safari 4.0 - 8.0 */
-        -webkit-animation-duration: 0.3s; /* Safari 4.0 - 8.0 */
-        animation-name: slideup;
-        animation-duration: 0.3s;
-        top: 0px;
-    }
-
-    .profile__modal-window {
-        width: 375px !important;
-        height: 667px !important;
-        padding-top: 0 !important;
-        margin-top: 0px !important;
-    }
-
-    .profile__accept-window {
-        padding-top: 10px !important;
-    }
-
-    .profile__accept-margins {
-        margin-left: 13px !important;
-        margin-right: 15px !important;
-    }
-
-    .profile__accept-title1 {
-        width: 347px !important;
-    }
-
-    .profile__accept-title2 {
-        width: 347px !important;
-        font-size: 13px !important;
-    }
-
-    .profile__accept-inputZone {
-        display: inline-block !important;
-        margin-top: 10px !important;
-        margin-bottom: 8px !important;
-
-    }
-
-    .profile__mobileinputfield {
-        width: 284px !important;
-    }
-
-    .profile__name-info {
-        width: 205px !important;
-        text-align: right;
-    }
-
-    .profile__accept-boxTriangle {
-        margin-top: -65px !important;
-        margin-left: 70px;
-        border-right: 20px solid transparent !important;
-        border-bottom: 12px solid var(--concrete) !important;
-        border-top: 20px solid transparent !important;
-        border-left: 20px solid transparent !important;
-    }
-
-    .profile__accept-box {
-        width: 235px;
-        margin-left: 55px;
-        margin-bottom: 12px;
-    }
-
-    .profile__accept-line {
-        padding-top: 20px !important;
-    }
-
-    .profile__image-errors {
-        margin-top: 220px !important;
-        width: 350px !important;
-        margin-left: 0px !important;
-        position: absolute;
-    }
-
-    /*RULES*/
-    .profile__rules-margin {
-        margin-left: 13px !important;
-        margin-right: 13px !important;
-    }
-
-    .profile__rules-backbtn {
-        margin-top: 10px;
-        margin-left: 0px !important;
-
-    }
-
-    .profile__rules-title1 {
-        width: 330px !important;
-        padding-top: 8px !important;
-    }
-
-    .profile__rules-title2 {
-        width: 330px !important;
-    }
-
-    .profile__rules-content {
-        width: 330px !important;
-    }
-
-    /*AGE LIMIT*/
-
-    .profile__ageLimit-window {
-
-        padding-top: 10px !important;
-
-    }
-
-    .profile__ageLimit-title1 {
-        width: 330px !important;
-    }
-    .profile__ageLimit-content {
-        width: 330px !important;
-    }
-    .profile__line {
-        width: 330px !important;
-    }
-
-}
-
 .profile__modal-window {
 
     width: 692px;
@@ -178,6 +55,7 @@
     width: 529px;
     text-transform: uppercase;
     font-weight: 700;
+    text-align:left;
 }
 
 .profile__accept-title2 {
@@ -273,6 +151,10 @@
     text-align: right;
     border-top: 1px solid #979797;
     padding-top: 15px;
+}
+
+.profile__accept-buttonzone{
+    display:flex;
 }
 
 .profile__accept-buttonbuffer {
@@ -466,3 +348,153 @@
     text-decoration: none !important;
 }
 
+@media only screen and (max-width: 600px) {
+    .profile__modal-container {
+        padding-top: 0px;
+        -webkit-animation-name: slideup; /* Safari 4.0 - 8.0 */
+        -webkit-animation-duration: 0.3s; /* Safari 4.0 - 8.0 */
+        animation-name: slideup;
+        animation-duration: 0.3s;
+        top: 0px;
+    }
+
+    .profile__modal-window {
+        width: 100% !important;
+        height: 100% !important;
+        padding-top: 0 !important;
+        margin-top: 0px !important;
+    }
+
+    .profile__accept-window {
+        padding-top: 10px !important;
+    }
+
+    .profile__accept-margins {
+        margin-left: 10px !important;
+        margin-right: 15px !important;
+        width:100% !important;
+    }
+
+    .profile__accept-title1 {
+        display: inline-block !important;
+        width: 300px !important;
+        margin-left:-20px;
+    }
+
+    .profile__accept-title2 {
+        display: inline-block !important;
+        width: 300px !important;
+        font-size: 13px !important;
+        margin-left:-20px;
+    }
+
+    .profile__accept-input-container {
+        text-align: center;
+    }
+
+    .profile__accept-inputZone {
+        display: inline-block !important;
+        margin-top: 10px !important;
+        margin-bottom: 8px !important;
+        width:320px;
+    }
+
+    .profile__accept-nameAndImg {
+        font-size: 14px;
+        font-weight: 700;
+        width: 265px;
+        margin-right: 8px;
+    }
+
+    .profile__mobileinputfield {
+        width: 235px !important;
+        margin-right: calc((100% - 330px) / 2) !important;
+    }
+
+    .profile__name-info {
+        width: 205px !important;
+        text-align: right;
+    }
+
+    .profile__accept-boxTriangle {
+        margin-top: -65px !important;
+        margin-left: 70px;
+        border-right: 20px solid transparent !important;
+        border-bottom: 12px solid var(--concrete) !important;
+        border-top: 20px solid transparent !important;
+        border-left: 20px solid transparent !important;
+    }
+
+    .profile__accept-box {
+        width: 235px;
+        margin-left: 55px;
+        margin-bottom: 12px;
+    }
+
+    .profile__accept-line {
+        padding-top: 20px !important;
+        width:100% !important;
+    }
+
+    .profile__image-errors {
+        margin-top: 220px !important;
+        width: 350px !important;
+        margin-left: 0px !important;
+        position: absolute;
+    }
+
+    .profile__accept-buttonzone{
+        display:inline-block !important;
+    }
+    .profile__accept-button {
+        display: inline-block !important;
+
+}
+    /*RULES*/
+    .profile__rules-margin {
+        margin-left: 10px !important;
+        margin-right: 15px !important;
+    }
+
+    .profile__rules-line {
+        width: 115% !important;
+    }
+
+    .profile__rules-backbtn {
+        margin-top: 10px;
+        margin-left: 0px !important;
+    }
+
+    .profile__rules-title1 {
+        width: 100% !important;
+        padding-top: 8px !important;
+    }
+
+    .profile__rules-title2 {
+        width: 100% !important;
+    }
+
+    .profile__rules-content {
+        width: 100% !important;
+    }
+
+    /*AGE LIMIT*/
+    .profile__ageLimit-window {
+
+        padding-top: 10px !important;
+
+    }
+
+    .profile__ageLimit-title1 {
+        width: 330px !important;
+    }
+
+    .profile__ageLimit-content {
+        width: 330px !important;
+    }
+
+    .profile__line {
+        width: 100% !important;
+    }
+
+}
