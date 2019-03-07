@@ -98,6 +98,10 @@
         "da": "Tilføj en bog",
         "en": "Add a book"
       },
+      "book": {
+        "da": "Bog",
+        "en": "Book"
+      },
       "ebook": {
         "da": "Ebog",
         "en": "Ebook"
