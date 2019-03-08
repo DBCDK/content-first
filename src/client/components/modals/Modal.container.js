@@ -25,28 +25,6 @@ class Modal extends React.Component {
     return false;
   }
 
-  componentWillReceiveProps(nextProps) {
-    const openCurrent = Modal.anyOpen(this.props.modalState);
-    const openNext = Modal.anyOpen(nextProps.modalState);
-
-    if (openCurrent !== openNext) {
-      if (openNext) {
-        this.bodyScrollTop = document.body.scrollTop;
-        this.documentElementScrollTop = document.documentElement.scrollTop;
-        // document.body.classList.add('modal-open'); // super slow on ipad safari
-        // document.body.setAttribute('style', 'position:fixed; overflow-y: hidden; top: 0; bottom: 0; left: 0; right: 0;'); // super slow on ipad safari
-        document.body.setAttribute(
-          'style',
-          'position:fixed; top: 0; bottom: 0; left: 0; right: 0;'
-        );
-      } else {
-        document.body.setAttribute('style', '');
-        document.body.scrollTop = this.bodyScrollTop;
-        document.documentElement.scrollTop = this.documentElementScrollTop;
-      }
-    }
-  }
-
   render() {
     let modal = null;
     if (this.props.modalState.addToList.open) {
