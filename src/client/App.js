@@ -28,6 +28,7 @@ import Article from './components/article/Article.component';
 import T from './components/base/T';
 import Animate from './components/base/Animate';
 import {OPEN_MODAL} from './redux/modal.reducer';
+import CookieWarning from './components/general/CookieWarning/CookieWarning';
 
 class App extends Component {
   constructor(props) {
@@ -116,7 +117,7 @@ class App extends Component {
         {currentPage}
 
         <Modal />
-
+        <CookieWarning />
         <Animate />
 
         <ToastContainer
