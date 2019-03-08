@@ -28,23 +28,7 @@ const dotColors = ['korn', 'due', 'de-york', 'fersken', 'petroleum'];
 
 export class ListInfo extends React.Component {
   onPulseClick(work) {
-    if (!this.props.editing) {
-      return this.props.pulseClick(work.pid);
-    }
-  }
-
-  onPulseDragStop(e, ui, work) {
-    const pos = pixelObjToPercentage(this.props.info, {
-      x: ui.x,
-      y: ui.y
-    });
-    const newList = this.props.list.list.map(b => {
-      if (b === work) {
-        work.position = pos;
-      }
-      return b;
-    });
-    this.props.updatePulsePositions(newList);
+    this.props.pulseClick(work.pid);
   }
 
   render() {
@@ -69,15 +53,15 @@ export class ListInfo extends React.Component {
       titleMissing
     } = this.props;
 
-    const height = editing ? 'auto' : info.height;
-    const width = editing ? '100%' : info.width;
+    const height = info.height;
+    const width = info.width;
     const padding = expanded ? info.padding : '0';
 
     const notSticky = !sticky
       ? 'slideUp pl-0 pb-md-4 pt-md-4 pl-md-4 pr-md-4'
       : '';
-    const stickyClass = sticky && !editing ? ' scale sticky' : '';
-    const expandedClass = expanded && !editing ? ' expanded' : '';
+    const stickyClass = sticky ? ' scale sticky' : '';
+    const expandedClass = expanded ? ' expanded' : '';
 
     return (
       <div className={'box-shadow position-relative'}>
@@ -92,47 +76,22 @@ export class ListInfo extends React.Component {
               list.list.map(work => {
                 return (
                   <Pulse
-                    noAnimation={editing}
                     dragContainer={'parent'}
                     position={percentageObjToPixel(info, work.position)}
-                    draggable={editing}
                     label={work.book.title}
                     key={'pulse-' + work.pid}
                     color={list.dotColor || false}
                     onClick={() => this.onPulseClick(work)}
-                    onStop={(e, ui) => this.onPulseDragStop(e, ui, work)}
                   />
                 );
               })}
-            {editing ? (
-              <ImageUpload
-                className="w-100"
-                error={list.imageError}
-                style={{
-                  borderRadius: 0,
-                  border: 0,
-                  width: '100%',
-                  height: '100%'
-                }}
-                loading={list.imageIsLoading}
-                handleLoaded={this.onResize}
-                previewImage={
-                  list.image ? `/v1/image/${list.image}/719/400` : null
-                }
-                buttonText={<T component="general" name="changeImage" />}
-                buttonPosition="inside"
-                onFile={img => {
-                  addImage(list._id, img);
-                }}
+
+            {list.image && (
+              <img
+                alt=""
+                className={'list-cover-image_ w-100'}
+                src={`/v1/image/${list.image}/719/400`}
               />
-            ) : (
-              list.image && (
-                <img
-                  alt=""
-                  className={'list-cover-image_ w-100'}
-                  src={`/v1/image/${list.image}/719/400`}
-                />
-              )
             )}
 
             {sticky &&
@@ -168,137 +127,32 @@ export class ListInfo extends React.Component {
             className="d-flex flex-row position-absolute pr-0"
             style={{right: 0, top: 0}}
           >
-            {!editing && (
-              <SocialShareButton
-                className={'ssb-fb align-middle mr-2 mr-md-4 mt-3 mt-md-2'}
-                facebook={true}
-                href={'https://laesekompas.dk/lister/' + list._id}
-                hex={'#3b5998'}
-                size={40}
-                shape="round"
-                hoverTitle={<T component="share" name="shareOnFacebook" />}
-                onClick={e => {
-                  if (!list.public) {
-                    e.preventDefault();
-                    confirmShareModal(list._id);
-                    return false;
-                  }
-                }}
-              />
-            )}
-            <ListContextMenu
-              _id={list._id}
-              className="d-lg-none align-middle mt-3"
-              title=""
-              onEdit={onEdit}
+            <SocialShareButton
+              className={'ssb-fb align-middle mr-2 mr-md-4 mt-3 mt-md-2'}
+              facebook={true}
+              href={'https://laesekompas.dk/lister/' + list._id}
+              hex={'#3b5998'}
+              size={40}
+              shape="round"
+              hoverTitle={<T component="share" name="shareOnFacebook" />}
+              onClick={e => {
+                if (!list.public) {
+                  e.preventDefault();
+                  confirmShareModal(list._id);
+                  return false;
+                }
+              }}
             />
           </div>
 
-          {editing ? (
-            <React.Fragment>
-              <div className="info-color-select mr-2 mr-md-0 d-flex flex-row-reverse position-relative">
-                {dotColors.map((color, i) => {
-                  const active = color === list.dotColor ? true : false;
-                  const disableClass = !active ? 'pulse-expand-disable' : '';
-
-                  return (
-                    <Pulse
-                      className={'ml-2 ' + disableClass}
-                      dragContainer={'parent'}
-                      draggable={false}
-                      pid={false}
-                      label={false}
-                      color={color}
-                      active={active}
-                      key={'pulse-' + i}
-                      onClick={() => onColorChange(color)}
-                    />
-                  );
-                })}
-              </div>
-
-              <Textarea
-                className={`mt-3 form-control fersken-txt Text Text__micro`}
-                name="list-description"
-                placeholder={T({
-                  component: 'list',
-                  name: 'placeholderUnderTitle'
-                })}
-                onChange={onSubtitleChange}
-                value={list.subtitle}
-              />
-
-              <Textarea
-                className={`mt-3 form-control d-inline w-100 Title Title__title3`}
-                name="list-description"
-                onChange={onTitleChange}
-                placeholder={T({component: 'list', name: 'placeholderTitle'})}
-                value={list.title || ''}
-              />
-
-              {titleMissing &&
-                !list.title.length > 0 && (
-                  <Text type="body" variant="color-fersken" className="mt-2">
-                    <T component="list" name="noTitle" />
-                  </Text>
-                )}
-
-              <Textarea
-                className={`mt-3 form-control Text Text__large`}
-                name="list-description"
-                onChange={onLeadChange}
-                placeholder={T({
-                  component: 'list',
-                  name: 'placeholderAboutList'
-                })}
-                value={list.lead || ''}
-              />
-
-              <Textarea
-                className={`form-control mt-4 comment-textarea`}
-                name="list-description"
-                placeholder={T({
-                  component: 'list',
-                  name: 'placeholderDescription'
-                })}
-                onChange={onDescriptionChange}
-                value={list.description}
-              />
-
-              <Textarea
-                className={`mt-3 form-control Text Text__large`}
-                name="list-description"
-                placeholder={T({
-                  component: 'list',
-                  name: 'placeholderUrlText'
-                })}
-                onChange={onUrlTextChange}
-                value={list.urlText}
-              />
-            </React.Fragment>
+          {list.description.length > 0 ? (
+            <div className="list-pr pt-3 pb-4">
+              <Text type="body">{list.description}</Text>
+            </div>
           ) : (
-            <React.Fragment>
-              <Text type="micro" className="mb-0">
-                {list.subtitle}
-              </Text>
-
-              <Title Tag="h1" type="title3">
-                {list.title}
-              </Title>
-
-              <Text type="large" className="mt-3">
-                {list.lead}
-              </Text>
-
-              <Text type="body">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: textParser(list.description || '')
-                  }}
-                />
-              </Text>
-            </React.Fragment>
+            <div className="pb-4" />
           )}
+
           <div className="d-flex flex-row lys-graa justify-content-between d-lg-none mt-4">
             <div>
               <FollowButton _id={list._id} />
@@ -312,7 +166,7 @@ export class ListInfo extends React.Component {
           <Comments
             className="m-0 pl-3 pl-sm-4 pr-3 pr-sm-4 pt-4 pb-0 porcelain"
             id={list._id}
-            disabled={editing}
+            disabled={false}
           />
         )}
       </div>
@@ -324,28 +178,11 @@ const mapStateToProps = (state, ownProps) => {
   const list = getListById(state, {_id: ownProps._id});
 
   return {
-    list,
-    editing: list.editing || list.isNew
+    list
   };
 };
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
-  addImage: (_id, image) => dispatch({type: ADD_LIST_IMAGE, image, _id}),
-
-  onSubtitleChange: e =>
-    dispatch(updateList({_id: ownProps._id, subtitle: e.target.value})),
-  onTitleChange: e =>
-    dispatch(updateList({_id: ownProps._id, title: e.target.value})),
-  onLeadChange: e =>
-    dispatch(updateList({_id: ownProps._id, lead: e.target.value})),
-  onDescriptionChange: e =>
-    dispatch(updateList({_id: ownProps._id, description: e.target.value})),
-  onUrlTextChange: e =>
-    dispatch(updateList({_id: ownProps._id, urlText: e.target.value})),
-  onColorChange: color =>
-    dispatch(updateList({_id: ownProps._id, dotColor: color})),
-  updatePulsePositions: list => dispatch(updateList({_id: ownProps._id, list})),
-
   confirmShareModal: _id => {
     dispatch({
       type: 'OPEN_MODAL',

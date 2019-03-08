@@ -133,7 +133,7 @@ export class BookcaseList extends React.Component {
         <div className="d-flex justify-content-center mt-0 mt-md-5 mb-5">
           <div className="fixed-width-col-sm d-xs-none d-xl-block" />
           <div
-            className="list-container pistache fixed-width-col-md"
+            className="list-container fixed-width-col-md"
             ref={cover => {
               this.refs = {...this.refs, cover};
             }}

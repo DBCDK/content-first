@@ -8,7 +8,7 @@ import {
 } from '../../redux/comment.reducer';
 
 import Spinner from '../general/Spinner.component';
-import timeToString from '../../utils/dateTimeFormat';
+import {timestampToLongDate} from '../../utils/dateTimeFormat';
 import ProfileImage from '../general/ProfileImage.component';
 import CommentInput from './CommentInput.component';
 import Text from '../base/Text';
@@ -90,11 +90,11 @@ export class CommentWrapper extends React.Component {
             />
           </ContextMenu>
         ) : null}
-        <div className="flex mb2" style={{width: '100%'}}>
+        <div className="d-flex mb2 w-100">
           <ProfileImage
+            className="mt-3"
             user={user}
             style={{flexShrink: 0}}
-            style={{marginRight: '10px'}}
             size="40"
           />
           <div style={{flexGrow: 1}}>
@@ -113,16 +113,16 @@ export class CommentWrapper extends React.Component {
               />
             ) : (
               <div className="comment">
-                <div className="d-flex align-items-center">
-                  <Text type="large" className="mb-2">
-                    {user.name || ''}
-                  </Text>
+                <div className="d-flex flex-column">
                   <Text
                     type="small"
                     variant="color-due"
-                    className="ml-4 mb-2 d-none d-md-block"
+                    className="d-none d-md-block mb-1"
                   >
-                    {timeToString(_created)}
+                    {timestampToLongDate(_created)}
+                  </Text>
+                  <Text type="large" className="mb-2 align-top">
+                    {user.name || ''}
                   </Text>
                 </div>
                 {comment}

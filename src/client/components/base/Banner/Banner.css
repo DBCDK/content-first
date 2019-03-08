@@ -1,0 +1,22 @@
+.Banner__wrap {
+  height: 160px;
+}
+
+.Banner {
+  margin: auto;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .Banner {
+    padding: 1rem 57px 1rem 57px;
+  }
+}
+
+.Banner .Banner__title {
+  flex-grow: 2;
+}

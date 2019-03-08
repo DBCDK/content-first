@@ -35,7 +35,7 @@ const ListContextMenu = ({
       dataCy="context-menu-list"
     >
       <ContextMenuAction
-        title={T({component: 'general', name: 'editMultiple'})}
+        title={T({component: 'list', name: 'editListInfo'})}
         icon="edit"
         onClick={editListInfo}
       />
@@ -45,13 +45,8 @@ const ListContextMenu = ({
         onClick={reorderList}
       />
       <ContextMenuAction
-        title={T({component: 'general', name: 'editSettings'})}
-        icon="settings"
-        onClick={editSettings}
-      />
-      <ContextMenuAction
         title={T({component: 'list', name: 'deleteList'})}
-        icon="clear"
+        icon="delete"
         onClick={confirmDelete}
       />
     </ContextMenu>

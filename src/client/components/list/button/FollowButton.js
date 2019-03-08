@@ -27,7 +27,8 @@ export const FollowButton = ({
       style={style}
       type="link2"
       style={{
-        color: isFollowing ? 'var(--de-york)' : 'var(--petroleum)'
+        color: isFollowing ? 'var(--de-york)' : 'var(--petroleum)',
+        textDecoration: 'none'
       }}
       onClick={() => {
         if (!isLoggedIn) {
@@ -39,8 +40,8 @@ export const FollowButton = ({
         return follow();
       }}
     >
-      <Icon name="visibility" className="align-middle" />
-      <span className="align-middle ml-2">
+      <span className="align-middle">
+        <Icon name="playlist_add" className="mr-1 align-middle" />
         <T
           component="list"
           name={isFollowing ? 'followingList' : 'followList'}

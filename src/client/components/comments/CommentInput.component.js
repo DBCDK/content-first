@@ -3,6 +3,7 @@ import Textarea from 'react-textarea-autosize';
 import ProfileImage from '../general/ProfileImage.component';
 import Button from '../base/Button';
 import T from '../base/T';
+import Icon from '../base/Icon';
 
 export default class CommentInput extends React.Component {
   constructor(props) {
@@ -23,9 +24,11 @@ export default class CommentInput extends React.Component {
   };
 
   render() {
+    const {className} = this.props;
+
     return (
       <div
-        className={this.props.className}
+        className={`comment-textarea-wrap ${className}`}
         style={{
           display: 'flex'
         }}
@@ -33,13 +36,13 @@ export default class CommentInput extends React.Component {
         {!this.props.hideProfile ? (
           <ProfileImage
             user={this.props.user}
-            style={{marginRight: '10px'}}
+            style={{marginRight: '15px'}}
             size="40"
           />
         ) : null}
         <div
-          style={{width: '100%'}}
-          className={`form-group ${this.props.error ? 'has-error' : ''}`}
+          style={{width: '100%', border: '1px solid red'}}
+          className={`${this.props.error ? 'has-error' : ''}`}
           onFocus={() => {
             if (!this.props.user.openplatformId) {
               if (this.props.requireLogin) {
@@ -57,11 +60,11 @@ export default class CommentInput extends React.Component {
             autoFocus={this.props.autoFocus}
             ref={ref => (this.textarea = ref)}
             disabled={this.props.disabled}
-            className={`form-control mb1 comment-textarea`}
+            className={`comment-textarea border-0`}
             name="list-description"
             placeholder={
               this.props.placeholder ||
-              T({component: 'post', name: 'writeComment'})
+              T({component: 'post', name: 'yourComment'})
             }
             onChange={e => this.props.onChange(e.target.value)}
             value={this.props.value}
@@ -71,33 +74,13 @@ export default class CommentInput extends React.Component {
           ) : (
             ''
           )}
-          <div
-            className="tr"
-            style={{
-              height: this.state.focus || this.props.value ? '50px' : '0px',
-              opacity: this.state.focus || this.props.value ? 1 : 0,
-              overflow: 'hidden',
-              transition: 'all 200ms'
-            }}
-          >
-            <Button
-              type="link"
-              size="medium"
-              className="comment-cancel mr-2 ml-2"
-              onClick={this.onCancel}
-            >
-              {this.props.cancelText || <T component="general" name="cancel" />}
-            </Button>
-            <Button
-              id="comment-submit"
-              type="quaternary"
-              className="mr-2 ml-2"
-              onClick={this.onSubmit}
-              disabled={this.props.disabled || !this.props.value}
-            >
-              <T component="post" name="comment" />
-            </Button>
-          </div>
+
+          <Icon
+            id="comment-submit"
+            name="send"
+            onClick={this.onSubmit}
+            disabled={this.props.disabled || !this.props.value}
+          />
         </div>
       </div>
     );

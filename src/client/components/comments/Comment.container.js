@@ -56,30 +56,6 @@ export class CommentContainer extends React.Component {
       (this.props.comments && this.props.comments.length) || 0;
     return (
       <div style={{position: 'relative'}}>
-        <div className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0">
-          <div className="comment-container-divider col-12" />
-
-          <div className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between">
-            <Text type="body">
-              <span className="d-flex">
-                <i className="material-icons outline-mode_comment mr-1">
-                  chat_bubble_outline
-                </i>
-                <T component="post" name="comment" />
-              </span>
-            </Text>
-
-            <Text type="body" variant="decoration-underline">
-              <span>
-                <T
-                  component="post"
-                  name={commentsCount === 1 ? 'commentCount' : 'commentsCount'}
-                  vars={[commentsCount || '0']}
-                />
-              </span>
-            </Text>
-          </div>
-        </div>
         <div className={'comments ' + this.props.className}>
           {commentsCount ? (
             <div className="mb2 ">

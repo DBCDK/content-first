@@ -76,6 +76,11 @@
   color: var(--fersken);
 }
 
+.Text__body--color-white--weight-semibold {
+  font-weight: 600;
+  color: white;
+}
+
 .Text__body--color-fersken--weight-semibold--transform-uppercase {
   font-weight: 600;
   text-transform: uppercase;
@@ -95,8 +100,16 @@
   color: var(--due);
 }
 
+.Text__small--color-white {
+  color: white;
+}
+
 .Text__small--decoration-underline {
   text-decoration: underline;
+}
+
+.Text__small--weight-semibold {
+  font-weight: 600;
 }
 
 .Text__micro--color-petroleum {

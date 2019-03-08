@@ -14,25 +14,19 @@
   height: 40px;
 }
 
-.suggestion-list::before {
-  content: '';
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-image: url('/search.svg');
-  background-size: contain;
-  position: absolute;
-  left: 20px;
-  top: 8px;
-}
 .suggestion-list__search {
-  padding: 0 0 0 4rem;
+  padding: 0;
   border: none;
   box-shadow: none;
 }
 
+.react-autosuggest__container {
+  flex-grow: 1;
+}
+
 /* Style react-autosuggest as bootstrap form elements */
-.react-autosuggest__input--focused {
+.react-autosuggest__input--focused,
+.suggestion-list__search {
   outline: none;
 }
 
@@ -43,6 +37,10 @@
 
 .react-autosuggest__suggestions-container {
   display: none;
+  position: absolute;
+  /* border compensation hack*/
+  left: -1px;
+  width: calc(100% + 2px) !important;
 }
 
 .react-autosuggest__suggestions-container--open {

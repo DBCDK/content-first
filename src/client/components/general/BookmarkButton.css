@@ -1,17 +1,20 @@
+.BookmarkButton {
+  padding: 0;
+}
+
 .BookmarkButton i {
   font-size: 1rem;
-  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 .BookmarkButtonCircle {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background: #fff;
   border-radius: 100%;
   box-shadow: -1px 1px 8px 0 rgba(0, 0, 0, 0.19);
   cursor: pointer;
   transition: 0.2s background;
-  text-align: center;
   color: var(--petroleum);
   z-index: 1;
 }
@@ -19,16 +22,13 @@
   border-top-right-radius: 0%;
 }
 
-.BookmarkButton i {
-  vertical-align: middle;
-}
 .BookmarkButtonCircle.marked,
 .BookmarkButton.marked {
   background: var(--korn);
 }
-@media (hover:none){
+@media (hover: none) {
   .BookmarkButton:focus {
     outline: 0;
-    box-shadow:none !important; 
-   }
+    box-shadow: none !important;
+  }
 }
