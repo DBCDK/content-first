@@ -12,7 +12,6 @@ import FilterPage from './components/filter/FilterPage.container';
 import SearchPage from './components/search/SearchPage.container';
 import WorkPage from './components/work/WorkPage.container';
 import TastePage from './components/profile/TastePage.container';
-import ProfilePage from './components/profile/ProfilePage.container';
 import CreateProfilePage from './components/profile/CreateProfilePage';
 import TopBar from './components/top/TopBar.component';
 import {ON_USER_DETAILS_REQUEST} from './redux/user.reducer';
@@ -72,8 +71,6 @@ class App extends Component {
         );
       } else if (pathSplit[2] === 'smag') {
         currentPage = <TastePage />;
-      } else {
-        currentPage = <ProfilePage />;
       }
     } else if (pathSplit[1] === 'lister') {
       if (pathSplit[2]) {

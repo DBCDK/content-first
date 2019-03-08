@@ -29,16 +29,9 @@ class TopBarDropdown extends React.Component {
       <ul className={'Topbar__dropdown abort-closeDopdown ' + state}>
         <div className="Topbar__dropdown__caret" />
         <li>
-          <Link href="/profile" onClick={this.props.onClick}>
+          <Link href="/profile/opret" onClick={this.props.onClick}>
             <span>
               <T component="profile" name="profilePage" />
-            </span>
-          </Link>
-        </li>
-        <li className="d-block d-sm-none">
-          <Link href="/profile" onClick={this.props.onClick}>
-            <span>
-              <T component="list" name="listButton" />
             </span>
           </Link>
         </li>
@@ -236,20 +229,19 @@ export class TopBar extends React.Component {
         ref={e => (this.Topbar = e)}
         className={`Topbar row ${!searchExpanded ? 'searchBar-closed' : ''}`}
       >
-        {searchPage &&
-          searchExpanded && (
-            <div className="Topbar__mobile__overlay d-block d-sm-none">
-              <span onClick={() => this.toggleSearchBar('close')}>
-                <Icon name="chevron_left" />
-                <T component="general" name="back" />
-              </span>
-              <span
-                onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
-              >
-                Nulstil
-              </span>
-            </div>
-          )}
+        {searchPage && searchExpanded && (
+          <div className="Topbar__mobile__overlay d-block d-sm-none">
+            <span onClick={() => this.toggleSearchBar('close')}>
+              <Icon name="chevron_left" />
+              <T component="general" name="back" />
+            </span>
+            <span
+              onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
+            >
+              Nulstil
+            </span>
+          </div>
+        )}
 
         <nav className="col-12 col-m-8 Topbar__navigation">
           <div>
