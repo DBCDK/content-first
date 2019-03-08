@@ -8,7 +8,7 @@ exports[`ResumeReview render function 1`] = `
     className="Review__block--top"
   >
     <h6
-      className="mb0 Title Title__title6 "
+      className="Review__block--title mb0 Title Title__title6 "
     >
       Bibliotekernes vurdering
     </h6>
@@ -19,7 +19,7 @@ exports[`ResumeReview render function 1`] = `
     </p>
   </div>
   <p
-    className="mb1 Text Text__body "
+    className="Review__block--lector mb1 Text Text__body "
   >
     Af 
     Lone Krøgh
@@ -42,7 +42,7 @@ exports[`ResumeReview render function 1`] = `
     className=" Text Text__body "
   >
     <Link
-      className="mb0"
+      className="Review__block--link mb0"
       onClick={[Function]}
       type="small"
     >
@@ -60,7 +60,7 @@ exports[`ResumeReview render function 2`] = `
     className="Review__block--top"
   >
     <h6
-      className="mb0 Title Title__title6 "
+      className="Review__block--title mb0 Title Title__title6 "
     >
       Bibliotekernes vurdering
     </h6>
@@ -71,7 +71,7 @@ exports[`ResumeReview render function 2`] = `
     </p>
   </div>
   <p
-    className="mb1 Text Text__body "
+    className="Review__block--lector mb1 Text Text__body "
   >
     Af 
     Lone Krøgh
@@ -94,7 +94,7 @@ exports[`ResumeReview render function 2`] = `
     className=" Text Text__body "
   >
     <Link
-      className="mb0"
+      className="Review__block--link mb0"
       onClick={[Function]}
       type="small"
     >
@@ -112,7 +112,7 @@ exports[`ResumeReview render function 3`] = `
     className="Review__block--top"
   >
     <h6
-      className="mb0 Title Title__title6 "
+      className="Review__block--title mb0 Title Title__title6 "
     >
       Bibliotekernes vurdering
     </h6>
@@ -123,7 +123,7 @@ exports[`ResumeReview render function 3`] = `
     </p>
   </div>
   <p
-    className="mb1 Text Text__body "
+    className="Review__block--lector mb1 Text Text__body "
   >
     Af 
     Jacob Holm Krogsøe
@@ -146,7 +146,7 @@ exports[`ResumeReview render function 3`] = `
     className=" Text Text__body "
   >
     <Link
-      className="mb0"
+      className="Review__block--link mb0"
       onClick={[Function]}
       type="small"
     >
@@ -164,7 +164,7 @@ exports[`ResumeReview render function 4`] = `
     className="Review__block--top"
   >
     <h6
-      className="mb0 Title Title__title6 "
+      className="Review__block--title mb0 Title Title__title6 "
     >
       Bibliotekernes vurdering
     </h6>
@@ -175,7 +175,7 @@ exports[`ResumeReview render function 4`] = `
     </p>
   </div>
   <p
-    className="mb1 Text Text__body "
+    className="Review__block--lector mb1 Text Text__body "
   >
     Af 
     Per Månson
@@ -198,7 +198,7 @@ exports[`ResumeReview render function 4`] = `
     className=" Text Text__body "
   >
     <Link
-      className="mb0"
+      className="Review__block--link mb0"
       onClick={[Function]}
       type="small"
     >

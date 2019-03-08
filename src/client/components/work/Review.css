@@ -49,6 +49,9 @@
   text-align: right;
 }
 
-.Review__block--paragraph {
+.WorkPreview__container .Review__block--title,
+.WorkPreview__container .Review__block--lector,
+.WorkPreview__container .Review__block--paragraph,
+.WorkPreview__container .Review__block--link {
   font-size: 0.9em;
 }
