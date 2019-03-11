@@ -486,15 +486,16 @@
     }
 
     .profile__ageLimit-title1 {
-        width: 330px !important;
+        width: 100% !important;
     }
 
     .profile__ageLimit-content {
-        width: 330px !important;
+        width: 100% !important;
     }
 
     .profile__line {
         width: 100% !important;
     }
+
 
 }
