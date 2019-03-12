@@ -14,38 +14,15 @@ import SocialShareButton from '../general/SocialShareButton.component';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import OrderButton from '../order/OrderButton.component';
-import {ADD_CHILD_BELT} from '../../redux/belts.reducer';
 import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {filterCollection, filterReviews} from './workFunctions';
-import {SCROLL_TO_COMPONENT} from '../../redux/scrollToComponent';
 import withScrollToComponent from '../base/scroll/withScrollToComponent.hoc';
 import withWork from '../base/Work/withWork.hoc';
+import withChildBelt from '../base/Belt/withChildBelt.hoc';
 
 import './WorkPreview.css';
 
 class WorkPreview extends React.Component {
-  handleChildBelts(parentBelt, childBelt) {
-    this.props.addChildBelt(parentBelt, childBelt);
-    this.props.scrollToComponent(childBelt.key);
-  }
-
-  onMoreLikeThisClick(parentBelt, work) {
-    const type = 'belt';
-    const book = work.book;
-
-    const childBelt = {
-      type,
-      pid: book.pid,
-      name: T({component: 'belts', name: 'remindsOf', vars: [book.title]}),
-      key: 'Minder om ' + book.title,
-      onFrontPage: false,
-      child: false,
-      scrollIntoView: true
-    };
-
-    this.handleChildBelts(parentBelt, childBelt);
-  }
-
   render() {
     const {work, dataCy} = this.props;
     const {book} = work;
@@ -62,7 +39,7 @@ class WorkPreview extends React.Component {
     return (
       <React.Fragment>
         <div
-          className="row WorkPreview__container"
+          className={'row WorkPreview__container ' + this.props.className}
           ref={preview => (this.refs = {...this.refs, preview})}
         >
           <div className="col-12 col-xl-7 workPreview__work">
@@ -216,7 +193,7 @@ class WorkPreview extends React.Component {
                     type="tertiary"
                     size="medium"
                     className="underline"
-                    onClick={() => this.onMoreLikeThisClick(belt, work)}
+                    onClick={() => this.props.openSimilarBelt(work)}
                   >
                     <T component="work" name="moreLikeThis" />
                   </Button>
@@ -282,36 +259,12 @@ class WorkPreview extends React.Component {
             )}
           </div>
         </div>
-        {belt &&
-          belt.child &&
-          this.props.childTemplate && (
-            <this.props.childTemplate id={belt.child.key} belt={belt.child} />
-          )}
       </React.Fragment>
     );
   }
 }
 
-export const mapDispatchToProps = dispatch => ({
-  scrollToComponent: id =>
-    dispatch({
-      type: SCROLL_TO_COMPONENT,
-      id
-    }),
-  addChildBelt: (parentBelt, childBelt, clearPreview = true) => {
-    dispatch({
-      type: ADD_CHILD_BELT,
-      parentBelt,
-      childBelt,
-      clearPreview
-    });
-  }
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(
+export default withChildBelt(
   withScrollToComponent(
     withWork(WorkPreview, {
       includeReviews: true,

@@ -94,7 +94,7 @@ class WorkCard extends React.Component {
             book={this.props.skeleton ? {book: {}} : this.props.work.book}
           />
 
-          <Paragraph className="mt1 d-xs-none d-sm-block">
+          <Paragraph className="mt-2 d-xs-none d-sm-block">
             {<TaxDescription text={tax_description} />}
           </Paragraph>
 
@@ -141,7 +141,7 @@ class WorkCard extends React.Component {
                   <T component="work" name="moreLikeThis" />
                 </Button>
               )}
-              <Paragraph className="mt1">
+              <Paragraph className="mt-2">
                 {<TaxDescription text={tax_description} />}
               </Paragraph>
               <div className="expand-more-wrapper text-center">

@@ -1,13 +1,5 @@
 const defaultState = {
   belts: {
-    'Bedste forslag': {
-      key: 'Bedste forslag',
-      name: 'Bedste forslag',
-      onFrontPage: true,
-      type: 'belt',
-      child: false,
-      _created: 999999999999
-    },
     'En god bog': {
       key: 'En god bog',
       name: 'En god bog',

@@ -2,6 +2,7 @@ import React from 'react';
 import FilterCards from './FilterCards.component';
 import SearchBar from './SearchBar.component';
 import Title from '../base/Title';
+import Results from './Results.component';
 
 class FilterPage extends React.Component {
   render() {
@@ -17,11 +18,12 @@ class FilterPage extends React.Component {
 
         <FilterCards />
 
-        <div className="container text-center">
+        <Results />
+        {/* <div className="container text-center">
           <Title Tag="h2" type="title4" className="mt-5">
-            Her kodes ...
+            Her kodes ... ost
           </Title>
-        </div>
+        </div> */}
       </div>
     );
   }

@@ -9,12 +9,13 @@
 /* Override id swiper style */
 .swiper-button-next,
 .swiper-button-prev {
+  transform: translateX(-50%) translateY(-50%);
   font-size: 3rem;
   background-image: none;
   position: absolute !important;
 }
 .swiper-button-next {
-  right: -30px;
+  right: -40px;
 }
 .swiper-button-prev {
   left: -30px;

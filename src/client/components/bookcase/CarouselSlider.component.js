@@ -1,6 +1,6 @@
 import React from 'react';
 import SlickSlider from 'react-slick';
-import Slide from '../belt/Slide.component';
+import Slide from '../base/Belt/Slide.component';
 
 const PrevArrow = function(props) {
   return (

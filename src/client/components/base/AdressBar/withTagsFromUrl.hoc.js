@@ -149,10 +149,9 @@ export const tagsFromURL = (urlTags, filterCards) => {
         left = filtersMapAll[parseInt(left, 10)];
         right = filtersMapAll[parseInt(right, 10)];
         const fullRange = getFullRange(left.id, filterCards, filtersMapAll);
-        const inRange = fullRange.slice(
-          fullRange.indexOf(left.id),
-          fullRange.indexOf(right.id) + 1
-        );
+        const inRange = fullRange
+          .slice(fullRange.indexOf(left.id), fullRange.indexOf(right.id) + 1)
+          .map(id => filtersMapAll[id]);
         return {
           type: 'TAG_RANGE',
           left,

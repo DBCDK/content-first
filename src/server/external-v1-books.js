@@ -80,7 +80,7 @@ const fetchWork = async pid => {
       tags:
         (subjectDBCS &&
           subjectDBCS.map(title => fromTitle(title)).filter(t => t)) ||
-        '',
+        [],
       coverUrl: (coverUrlFull && coverUrlFull[0]) || null
     }
   };

@@ -46,9 +46,30 @@ Array [
       5633,
     ],
     "inRange": Array [
-      5629,
-      5630,
-      5631,
+      Object {
+        "id": 5629,
+        "parents": Array [
+          "Tempo",
+        ],
+        "score": 0,
+        "title": "statisk",
+      },
+      Object {
+        "id": 5630,
+        "parents": Array [
+          "Tempo",
+        ],
+        "score": 0,
+        "title": "dvælende",
+      },
+      Object {
+        "id": 5631,
+        "parents": Array [
+          "Tempo",
+        ],
+        "score": 0,
+        "title": "fremadskridende",
+      },
     ],
     "left": Object {
       "id": 5629,

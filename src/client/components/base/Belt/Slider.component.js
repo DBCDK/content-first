@@ -1,7 +1,7 @@
 import React from 'react';
 import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
-import Icon from '../base/Icon';
+import Icon from '../Icon';
 import './Slider.css';
 
 const params = {
@@ -60,7 +60,7 @@ class DesktopSlider extends React.Component {
   constructor(props) {
     super(props);
     this.initialScrollPos = props.initialScrollPos || 0;
-    this.state = {isBeginning: null, isEnd: null};
+    this.state = {isBeginning: true, isEnd: false};
   }
   init = swiper => {
     if (swiper !== this.swiper) {
