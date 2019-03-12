@@ -1,5 +1,6 @@
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
+
 import ProfileImage from '../general/ProfileImage.component';
 import Button from '../base/Button';
 import T from '../base/T';
@@ -24,25 +25,24 @@ export default class CommentInput extends React.Component {
   };
 
   render() {
-    const {className} = this.props;
+    const {className, hideProfile, editing} = this.props;
 
     return (
       <div
-        className={`comment-textarea-wrap ${className}`}
-        style={{
-          display: 'flex'
-        }}
+        className={`comment-textarea-wrap mb-3 d-flex ${className}`}
+        style={{marginTop: editing ? '10px' : 0}}
       >
-        {!this.props.hideProfile ? (
+        {!hideProfile && (
           <ProfileImage
             user={this.props.user}
             style={{marginRight: '15px'}}
             size="40"
           />
-        ) : null}
+        )}
         <div
-          style={{width: '100%', border: '1px solid red'}}
-          className={`${this.props.error ? 'has-error' : ''}`}
+          className={`d-flex flex-wrap align-items-center w-100 ${
+            this.props.error ? 'has-error' : ''
+          }`}
           onFocus={() => {
             if (!this.props.user.openplatformId) {
               if (this.props.requireLogin) {
@@ -56,31 +56,38 @@ export default class CommentInput extends React.Component {
             this.setState({focus: false});
           }}
         >
-          <Textarea
-            autoFocus={this.props.autoFocus}
-            ref={ref => (this.textarea = ref)}
-            disabled={this.props.disabled}
-            className={`comment-textarea border-0`}
-            name="list-description"
-            placeholder={
-              this.props.placeholder ||
-              T({component: 'post', name: 'yourComment'})
-            }
-            onChange={e => this.props.onChange(e.target.value)}
-            value={this.props.value}
-          />
-          {this.props.error && this.props.error.comment === this.props.value ? (
-            <div className="error">{this.props.error.error}</div>
-          ) : (
-            ''
-          )}
-
-          <Icon
-            id="comment-submit"
-            name="send"
-            onClick={this.onSubmit}
-            disabled={this.props.disabled || !this.props.value}
-          />
+          <div
+            className="d-flex w-100"
+            style={{
+              border: '1px solid #E9EAEB',
+              overflow: 'hidden'
+            }}
+          >
+            <Textarea
+              autoFocus={this.props.autoFocus}
+              ref={ref => (this.textarea = ref)}
+              disabled={this.props.disabled}
+              className={'comment-textarea border-0 pl-3'}
+              name="list-description"
+              placeholder={
+                this.props.placeholder ||
+                T({component: 'post', name: 'yourComment'})
+              }
+              onChange={e => this.props.onChange(e.target.value)}
+              value={this.props.value}
+            />
+            <Icon
+              id="comment-submit"
+              className="comment-submit-icon align-self-end"
+              name={editing ? 'check' : 'send'}
+              onClick={this.onSubmit}
+              disabled={this.props.disabled || !this.props.value}
+            />
+          </div>
+          {this.props.error &&
+            this.props.error.comment === this.props.value && (
+              <div className="error">{this.props.error.error}</div>
+            )}
         </div>
       </div>
     );

@@ -621,6 +621,14 @@
       "commentListLabel": {
         "da": "Kommentér listen",
         "en": "Comment list"
+      },
+      "list": {
+        "da": "Liste",
+        "en": "List"
+      },
+      "bookshelf": {
+        "da": "Bogreol",
+        "en": "Bookshelf"
       }
     },
 
@@ -688,9 +696,25 @@
         "da": "Redigér indlæg",
         "en": "Edit post"
       },
+      "editDescription": {
+        "da": "Redigér beskrivelse",
+        "en": "Edit description"
+      },
+      "deleteBook": {
+        "da": "Fjern bog",
+        "en": "Remove book"
+      },
       "deletePost": {
         "da": "Slet indlæg",
         "en": "Delete post"
+      },
+      "editComment": {
+        "da": "Redigér kommentar",
+        "en": "Edit comment"
+      },
+      "deleteComment": {
+        "da": "Slet kommentar",
+        "en": "Delete comment"
       },
       "aboutTheBook": {
         "da": "Fortæl om bogen",
@@ -717,12 +741,12 @@
         "en": "Comment"
       },
       "showMoreComments": {
-        "da": "Vis flere kommentarer",
-        "en": "Show more comments"
+        "da": "Vis tidligere kommentarer",
+        "en": "Show earlier comments"
       },
       "showLessComments": {
-        "da": "Vis færre kommentarer",
-        "en": "Show less comments"
+        "da": "Skjul tidligere kommentarer",
+        "en": "hide earlier comments"
       },
       "commentCount": {
         "da": "Kommentar (%s)",

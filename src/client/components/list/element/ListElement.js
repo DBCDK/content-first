@@ -57,7 +57,7 @@ const ElementContextMenu = ({
         <ContextMenuAction
           title={T({
             component: 'post',
-            name: 'editPost'
+            name: 'editDescription'
           })}
           icon="edit"
           onClick={onEdit}
@@ -67,9 +67,9 @@ const ElementContextMenu = ({
         <ContextMenuAction
           title={T({
             component: 'post',
-            name: 'deletePost'
+            name: 'deleteBook'
           })}
-          icon="clear"
+          icon="delete"
           onClick={onDelete}
         />
       )}
@@ -247,7 +247,7 @@ export class ListElement extends React.Component {
                   />
                 )}
                 {showTaxDescription && (
-                  <Text type="body" variant="weight-semibold">
+                  <Text className="pr-4" type="body" variant="weight-semibold">
                     <TaxDescription text={book.taxonomy_description} />
                   </Text>
                 )}

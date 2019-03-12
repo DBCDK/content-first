@@ -1,11 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {
-  updateList,
-  storeList,
-  ADD_LIST_IMAGE,
-  getListByIdSelector
-} from '../../../../redux/list.reducer';
+import {updateList, storeList} from '../../../../redux/list.reducer';
 import {getUser} from '../../../../redux/users';
 import ProfileImage from '../../../general/ProfileImage.component';
 import SocialShareButton from '../../../general/SocialShareButton.component';
@@ -14,10 +9,9 @@ import T from '../../../base/T';
 import Text from '../../../base/Text';
 import FollowButton from '../../button/FollowButton';
 
-const getListById = getListByIdSelector();
-
 export const ListInfo = ({
   list,
+  isListOwner,
   profile,
   editing,
   onDescriptionChange,
@@ -44,7 +38,7 @@ export const ListInfo = ({
             hex={'#3b5998'}
             size={40}
             shape="round"
-            hoverTitle={<T component="share" name="shareOnFacebook" />}
+            hoverTitle={T({component: 'share', name: 'shareOnFacebook'})}
             onClick={e => {
               if (!list.public) {
                 e.preventDefault();
@@ -63,22 +57,27 @@ export const ListInfo = ({
           <div className="pb-4" />
         )}
 
-        <div className="list-divider m-0" />
-
-        <div className="list-interactions d-flex flex-row-reverse justify-content-between">
-          <FollowButton _id={list._id} />
-          <CommentCounter id={list._id} />
-        </div>
+        {list.public && (
+          <React.Fragment>
+            <div className="list-divider m-0" />
+            <div className="list-interactions d-flex flex-row-reverse justify-content-between">
+              {list.public ? (
+                <FollowButton disabled={isListOwner} _id={list._id} />
+              ) : (
+                <div />
+              )}
+              {list.social && <CommentCounter id={list._id} />}
+            </div>
+          </React.Fragment>
+        )}
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const list = getListById(state, {_id: ownProps._id});
   return {
-    list,
-    profile: getUser(state, {id: list._owner})
+    profile: getUser(state, {id: ownProps.list._owner})
   };
 };
 export const mapDispatchToProps = (dispatch, ownProps) => ({

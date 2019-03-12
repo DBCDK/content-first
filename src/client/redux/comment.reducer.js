@@ -35,13 +35,13 @@ const commentReducer = (state = defaultState, action) => {
         {error: null, saving: true}
       );
       group.comments = [
-        ...group.comments,
         {
           comment: action.comment,
           saving: true,
           _id: 'new_comment',
           _owner: action.owner
-        }
+        },
+        ...group.comments
       ];
       return Object.assign({}, state, {[action.id]: group});
     }
@@ -151,7 +151,7 @@ const commentReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {
         [action.id]: {
           id: action.id,
-          comments: action.comments.sort((a, b) => a._created - b._created),
+          comments: action.comments.sort((a, b) => b._created - a._created),
           loading: false
         }
       });

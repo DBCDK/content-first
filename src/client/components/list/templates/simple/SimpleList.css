@@ -1,6 +1,13 @@
+.fixed-width-col-md {
+  width: 100%;
+}
+
 @media (min-width: 768px) {
   .list-info {
     padding: 0 0.5rem 0 57px !important;
+  }
+  .fixed-width-col-md {
+    width: 780px;
   }
 }
 
@@ -34,14 +41,9 @@
   margin: 0;
 }
 
-.listElement-comments .comment-textarea,
-.simpleList-comment .comment-textarea {
-  width: 100%;
-}
-
 @media (min-width: 768px) {
-  .listElement-comments .comment-textarea,
-  .simpleList-comment .comment-textarea {
+  .listElement-comments .comment-textarea-wrap,
+  .simpleList-comment .comment-textarea-wrap {
     width: 60%;
   }
 }

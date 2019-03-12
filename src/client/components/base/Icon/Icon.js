@@ -4,10 +4,23 @@ import './Icon.css';
 // icons from:
 // https://material.io/tools/icons/?icon=local_library&style=round
 
-const Icon = ({name, className, ...props}) => {
+const Icon = ({
+  name,
+  className,
+  disabled = false,
+  onClick = null,
+  ...props
+}) => {
+  const classDisabled = disabled ? 'md-disabled' : '';
   return (
     <i
-      className={`material-icons material-icons-${name} ${className || ''}`}
+      className={`material-icons material-icons-${name} ${className ||
+        ''} ${classDisabled}`}
+      onClick={e => {
+        if (!disabled && onClick) {
+          onClick();
+        }
+      }}
       {...props}
     >
       {name}

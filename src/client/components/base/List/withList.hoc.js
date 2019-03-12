@@ -18,7 +18,7 @@ export const withListCreator = WrappedComponent => {
   const Wrapper = class extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {id: null};
+      this.state = {id: null, owner: null};
     }
 
     componentDidMount() {
@@ -98,8 +98,19 @@ export const withList = WrappedComponent => {
   };
 
   const mapStateToProps = (state, ownProps) => {
+    const list = getListById(state, {_id: ownProps.id || ownProps._id});
+
+    if (list && list._owner) {
+      console.log(
+        'isOwner',
+        state.userReducer.openplatformId === ownProps.owner
+      );
+    }
+
     return {
-      list: getListById(state, {_id: ownProps.id})
+      list,
+      isListOwner:
+        ownProps.justCreated || state.userReducer.openplatformId === list._owner
     };
   };
 
@@ -114,5 +125,3 @@ export const withList = WrappedComponent => {
     mapDispatchToProps
   )(Wrapper);
 };
-
-// export withListCreator(withList);

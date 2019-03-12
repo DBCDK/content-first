@@ -12,6 +12,7 @@ import {timestampToLongDate} from '../../utils/dateTimeFormat';
 import ProfileImage from '../general/ProfileImage.component';
 import CommentInput from './CommentInput.component';
 import Text from '../base/Text';
+import T from '../base/T';
 import ContextMenu, {ContextMenuAction} from '../base/ContextMenu';
 
 export class CommentWrapper extends React.Component {
@@ -73,34 +74,27 @@ export class CommentWrapper extends React.Component {
         this.props.user.openplatformId === user.openplatformId ? (
           <ContextMenu className="comment-wrapper-context-menu">
             <ContextMenuAction
-              title="Redigér indlæg"
+              title={T({component: 'post', name: 'editComment'})}
               icon="edit"
               onClick={() => {
                 this.toggleEdit(!this.state.editing);
                 this.updateComments();
               }}
             />
-
             <ContextMenuAction
-              title="Slet indlæg"
-              icon="clear"
+              title={T({component: 'post', name: 'deleteComment'})}
+              icon="delete"
               onClick={() => {
                 this.props.deleteComment(this.props.comment);
               }}
             />
           </ContextMenu>
         ) : null}
-        <div className="d-flex mb2 w-100">
-          <ProfileImage
-            className="mt-3"
-            user={user}
-            style={{flexShrink: 0}}
-            size="40"
-          />
+        <div className="d-flex align-items-center mb-3 w-100">
           <div style={{flexGrow: 1}}>
             {this.state.editing ? (
               <CommentInput
-                hideProfile={true}
+                editing={this.state.editing}
                 autoFocus={true}
                 user={this.props.user}
                 value={this.state.comment}
@@ -112,20 +106,23 @@ export class CommentWrapper extends React.Component {
                 error={error || null}
               />
             ) : (
-              <div className="comment">
-                <div className="d-flex flex-column">
-                  <Text
-                    type="small"
-                    variant="color-due"
-                    className="d-none d-md-block mb-1"
-                  >
+              <div className="comment d-flex">
+                <ProfileImage
+                  user={user}
+                  style={{marginRight: '15px', marginTop: '10px'}}
+                  size="40"
+                />
+                <div className="d-flex flex-column w-100">
+                  <Text type="small" variant="color-due" className="mb-1">
                     {timestampToLongDate(_created)}
                   </Text>
-                  <Text type="large" className="mb-2 align-top">
-                    {user.name || ''}
-                  </Text>
+                  <div className="comment-nameComment-wrap">
+                    <Text type="large" className="d-inline">
+                      {user.name || ''}
+                    </Text>
+                    <div className="d-inline ml-2">{comment}</div>
+                  </div>
                 </div>
-                {comment}
               </div>
             )}
           </div>

@@ -57,35 +57,18 @@ export class CommentContainer extends React.Component {
     return (
       <div style={{position: 'relative'}}>
         <div className={'comments ' + this.props.className}>
+          <CommentInput
+            user={this.props.user}
+            value={this.state.newCommentValue}
+            onSubmit={this.onSubmit}
+            onCancel={() => this.setState({newCommentValue: ''})}
+            onChange={value => this.setState({newCommentValue: value})}
+            disabled={this.props.saving}
+            error={this.props.error || null}
+            requireLogin={this.props.requireLogin}
+          />
           {commentsCount ? (
-            <div className="mb2 ">
-              {commentsCount > this.state.showCount ? (
-                <button
-                  id="comment-toggle"
-                  onClick={() => this.setState({showAll: !this.state.showAll})}
-                  style={{
-                    marginLeft: 55,
-                    position: 'relative',
-                    paddingLeft: 0,
-                    marginTop: '-2rem'
-                  }}
-                  className="btn btn-link link-subtle"
-                >
-                  <Text
-                    type="body"
-                    variant="decoration-underline"
-                    className="mb-0"
-                  >
-                    {!this.state.showAll ? (
-                      <T component="post" name="showMoreComments" />
-                    ) : (
-                      <T component="post" name="showLessComments" />
-                    )}
-                  </Text>
-                </button>
-              ) : (
-                ''
-              )}
+            <div className="mb2">
               <CommentList
                 user={this.props.user}
                 comments={this.props.comments}
@@ -97,16 +80,31 @@ export class CommentContainer extends React.Component {
               />
             </div>
           ) : null}
-          <CommentInput
-            user={this.props.user}
-            value={this.state.newCommentValue}
-            onSubmit={this.onSubmit}
-            onCancel={() => this.setState({newCommentValue: ''})}
-            onChange={value => this.setState({newCommentValue: value})}
-            disabled={this.props.saving}
-            error={this.props.error || null}
-            requireLogin={this.props.requireLogin}
-          />
+          {commentsCount > this.state.showCount ? (
+            <button
+              id="comment-toggle"
+              onClick={() => this.setState({showAll: !this.state.showAll})}
+              style={{
+                marginLeft: 55,
+                position: 'relative',
+                paddingLeft: 0
+              }}
+              className="btn btn-link link-subtle pb-0"
+            >
+              <Text type="body" variant="decoration-underline" className="mb-0">
+                <T
+                  component="post"
+                  name={
+                    !this.state.showAll
+                      ? 'showMoreComments'
+                      : 'showLessComments'
+                  }
+                />
+              </Text>
+            </button>
+          ) : (
+            ''
+          )}
         </div>
         {this.props.disabled && (
           <div

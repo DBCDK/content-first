@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
 
+import {withList} from '../../../base/List/withList.hoc';
+
 import T from '../../../base/T';
 import Icon from '../../../base/Icon';
 import Title from '../../../base/Title';
@@ -57,7 +59,7 @@ export class SimpleList extends React.Component {
         >
           <div className="d-flex align-items-center">
             <Text type="body" variant="color-white--weight-semibold">
-              {'Liste'}
+              <T component="list" name="list" />
             </Text>
             <div className="d-flex ml-4">
               <Icon
@@ -97,6 +99,8 @@ export class SimpleList extends React.Component {
           >
             <ListInfo
               _id={_id}
+              list={list}
+              isListOwner={isListOwner}
               onAddBook={this.onAddBook}
               onEdit={this.onEdit}
               titleMissing={this.state.titleMissing}
@@ -127,25 +131,23 @@ export class SimpleList extends React.Component {
               )}
             </div>
 
-            {list.open ||
-              (isListOwner && (
+            {(list.open || isListOwner) && (
+              <div className="p-3 p-md-0">
                 <AddToList
+                  list={list}
+                  onAdd={pid => this.setState({added: pid})}
                   suggesterRef={suggester =>
                     (this.refs = {...this.refs, suggester})
                   }
-                  style={{background: 'white'}}
-                  list={list}
-                  onAdd={pid => this.setState({added: pid})}
-                  disabled={list.editing || list.isNew}
                 />
-              ))}
+              </div>
+            )}
 
             {list.social && (
-              <div>
-                {list.open ||
-                  (isListOwner && (
-                    <div className="list-divider petroleum mt-4 mb-4" />
-                  ))}
+              <div className="p-3 p-md-0">
+                {(list.open || isListOwner) && (
+                  <div className="list-divider petroleum mt-4 mb-4" />
+                )}
                 <Text type="small" variant="weight-semibold" className="mb-3">
                   <T component="list" name="commentListLabel" />
                 </Text>
@@ -163,11 +165,7 @@ export class SimpleList extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const list = getListById(state, {_id: ownProps._id});
-  return {
-    list,
-    isListOwner: state.userReducer.openplatformId === list._owner
-  };
+const mapStateToProps = () => {
+  return {};
 };
-export default connect(mapStateToProps)(SimpleList);
+export default connect(mapStateToProps)(withList(SimpleList));

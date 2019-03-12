@@ -9,6 +9,7 @@ import T from '../../base/T';
 const getListById = getListByIdSelector();
 
 export const FollowButton = ({
+  disabled = false,
   allowFollow,
   isLoggedIn,
   isFollowing,
@@ -25,6 +26,7 @@ export const FollowButton = ({
     <Button
       className={className}
       style={style}
+      disabled={disabled}
       type="link2"
       style={{
         color: isFollowing ? 'var(--de-york)' : 'var(--petroleum)',
