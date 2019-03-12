@@ -14,15 +14,8 @@ class FilterPage extends React.Component {
             </div>
           </div>
         </div>
-
         <FilterCards />
-
         <Results />
-        {/* <div className="container text-center">
-          <Title Tag="h2" type="title4" className="mt-5">
-            Her kodes ... ost
-          </Title>
-        </div> */}
       </div>
     );
   }
