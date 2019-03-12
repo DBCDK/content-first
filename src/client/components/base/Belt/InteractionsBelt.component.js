@@ -22,9 +22,7 @@ export class InteractionsBelt extends React.Component {
           Tag="h1"
           type="title4"
           variant="transform-uppercase"
-          className={
-            ' inline border-right-xs-0 pr2 pb0 pt0 ml-2 ml-sm-0 mr-2 mr-sm-3 mb2'
-          }
+          className="ml-2 ml-sm-0 mb-4"
         >
           <strong className="mr-2">Bedste forslag</strong>
           <span className="mr-2">til</span>
