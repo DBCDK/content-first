@@ -1,29 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {SCROLL_TO_COMPONENT} from '../../../redux/scrollToComponent';
+import {UPDATE_MOUNT} from '../../../redux/mounts.reducer';
 
 const withChildBelt = WrappedComponent => {
   const Wrapped = class extends React.Component {
-    constructor() {
-      super();
-      this.state = {parent: null, child: null, type: null};
-    }
     componentDidUpdate(prevProps) {
       if (prevProps.mount !== this.props.mount) {
-        this.setState({child: null});
+        // this.props.updateMount({parent: null, child: null, type: null});
       }
     }
     openSimilarBelt = work => {
       if (
-        work.book.pid === this.state.parent &&
-        this.state.type === 'SIMILAR'
+        work.book.pid === this.props.mountedData.parent &&
+        this.props.mountedData.type === 'SIMILAR'
       ) {
-        this.setState({parent: null, child: null, type: null});
+        this.props.updateMount({parent: null, child: null, type: null});
       } else {
         const mount = this.props.mount + work.book.pid;
         this.props.scrollToComponent(mount);
         const SimilarBelt = require('./SimilarBelt.component').default;
-        this.setState({
+        this.props.updateMount({
           type: 'SIMILAR',
           parent: work.book.pid,
           child: (
@@ -34,15 +31,15 @@ const withChildBelt = WrappedComponent => {
     };
     openWorkPreview = work => {
       if (
-        work.book.pid === this.state.parent &&
-        this.state.type === 'PREVIEW'
+        work.book.pid === this.props.mountedData.parent &&
+        this.props.mountedData.type === 'PREVIEW'
       ) {
-        this.setState({parent: null, child: null, type: null});
+        this.props.updateMount({parent: null, child: null, type: null});
       } else {
         const mount = this.props.mount + work.book.pid;
         this.props.scrollToComponent(mount);
         const WorkPreview = require('../../work/WorkPreview.component').default;
-        this.setState({
+        this.props.updateMount({
           type: 'PREVIEW',
           parent: work.book.pid,
           child: <WorkPreview mount={mount} key={mount} pid={work.book.pid} />
@@ -55,17 +52,23 @@ const withChildBelt = WrappedComponent => {
         <React.Fragment>
           <WrappedComponent
             {...this.props}
-            selected={this.state.parent}
+            selected={this.props.mountedData.parent}
             openSimilarBelt={this.openSimilarBelt}
             openWorkPreview={this.openWorkPreview}
           />
-          {this.state.child}
+          {this.props.mountedData.child}
         </React.Fragment>
       );
     }
   };
 
-  const mapDispatchToProps = dispatch => ({
+  const defaultData = {};
+  const mapStateToProps = (state, ownProps) => ({
+    mountedData: state.mounts[ownProps.mount] || defaultData
+  });
+  const mapDispatchToProps = (dispatch, ownProps) => ({
+    updateMount: data =>
+      dispatch({type: UPDATE_MOUNT, data, mount: ownProps.mount}),
     scrollToComponent: id =>
       dispatch({
         type: SCROLL_TO_COMPONENT,
@@ -74,7 +77,7 @@ const withChildBelt = WrappedComponent => {
   });
 
   return connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(Wrapped);
 };

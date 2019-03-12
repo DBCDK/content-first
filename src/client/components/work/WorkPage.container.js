@@ -396,6 +396,7 @@ class WorkPage extends React.Component {
           {work.detailsHasLoaded &&
             work.tagsHasLoaded && (
               <SimilarBelt
+                key={'workpage' + book.pid}
                 mount={'workpage' + book.pid}
                 likes={[book.pid]}
                 style={{background: 'white'}}

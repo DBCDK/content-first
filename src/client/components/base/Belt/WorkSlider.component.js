@@ -6,7 +6,6 @@ import Slider from './Slider.component';
 export default class WorkSlider extends React.Component {
   constructor() {
     super();
-    this.state = {disSwipe: false, scrollPos: 0, worksPerSlide: 4};
     this.handleResize = debounce(this.handleResize, 100);
   }
   componentDidMount() {
@@ -27,6 +26,7 @@ export default class WorkSlider extends React.Component {
   render() {
     const {pids = []} = this.props;
     const worksPerSlide = this.getWorksPerSlide();
+    const {didSwipe = false, scrollPos = 0} = this.props.mountedData;
 
     return (
       <div
@@ -34,13 +34,13 @@ export default class WorkSlider extends React.Component {
         ref={container => (this.refs = {...this.refs, container})}
       >
         <Slider
-          initialScrollPos={this.state.scrollPos}
+          initialScrollPos={scrollPos}
           onSwipe={index => {
-            if (index > 0 && !this.state.didSwipe) {
-              this.setState({didSwipe: true});
+            if (index > 0 && !didSwipe) {
+              this.props.updateMount({didSwipe: true});
             }
-            if (this.state.scrollPos !== index) {
-              this.setState({scrollPos: index});
+            if (scrollPos !== index) {
+              this.props.updateMount({scrollPos: index});
             }
           }}
         >
@@ -52,7 +52,7 @@ export default class WorkSlider extends React.Component {
                     className={idx === pids.length - 1 ? '' : 'mr-4'}
                     enableHover={true}
                     highlight={this.props.selected === pid}
-                    isVisible={idx < this.state.scrollPos + worksPerSlide * 2}
+                    isVisible={idx < scrollPos + worksPerSlide * 2}
                     pid={pid}
                     rid={this.props.rid}
                     key={pid}
