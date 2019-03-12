@@ -1,6 +1,5 @@
 import React from 'react';
 import {get, debounce} from 'lodash';
-import Title from '../Title';
 import WorkCard from '../../work/WorkCard.container';
 import withChildBelt from './withChildBelt.hoc';
 
@@ -88,11 +87,11 @@ class MultiRowContainer extends React.Component {
     return (
       <div className={'work-container w-100 ' + this.props.className}>
         <div ref={container => (this.refs = {...this.refs, container})}>
-          {rows.map(pids => (
+          {rows.map(pidList => (
             <Row
-              key={JSON.stringify(pids)}
-              mount={JSON.stringify(pids)}
-              pids={pids}
+              key={JSON.stringify(pidList)}
+              mount={JSON.stringify(pidList)}
+              pids={pidList}
               cardRef={workCard => (this.refs = {...this.refs, workCard})}
             />
           ))}

@@ -49,7 +49,6 @@ const withQueryToPids = WrappedComponent => {
           isFetching: false,
           pids: result.body.map(entry => entry.pid)
         });
-        console.log({result});
       }
     }
 

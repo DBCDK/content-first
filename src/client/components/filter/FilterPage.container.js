@@ -1,7 +1,6 @@
 import React from 'react';
 import FilterCards from './FilterCards.component';
 import SearchBar from './SearchBar.component';
-import Title from '../base/Title';
 import Results from './Results.component';
 
 class FilterPage extends React.Component {

@@ -2,7 +2,6 @@ import React from 'react';
 import withIsVisible from '../scroll/withIsVisible.hoc';
 import withChildBelt from './withChildBelt.hoc';
 import withQueryToPids from '../Recommender/withQueryToPids.hoc';
-import withWork from '../Work/withWork.hoc';
 import WorkSlider from './WorkSlider.component';
 import Title from '../Title';
 import withScrollToComponent from '../scroll/withScrollToComponent.hoc';

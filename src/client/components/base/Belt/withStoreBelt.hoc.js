@@ -2,8 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {storeBelt, removeBelt, updateBelt} from '../../../redux/belts.reducer';
 
-const getKey = tags => 'pin' + tags.join(',');
-
 const withBeltStore = WrappedComponent => {
   const Wrapped = class extends React.Component {
     render() {

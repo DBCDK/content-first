@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import BookCover from '../general/BookCover.component';
 import TaxDescription from './TaxDescription.component';
 import Heading from '../base/Heading';
@@ -26,7 +25,6 @@ class WorkPreview extends React.Component {
   render() {
     const {work, dataCy} = this.props;
     const {book} = work;
-    const belt = this.props.belt || false;
     const tax_description =
       this.props.work.book.taxonomy_description ||
       this.props.work.book.taxonomy_description_subjects;

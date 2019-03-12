@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import TaxDescription from './TaxDescription.component';
 import Title from '../base/Title';
 import Text from '../base/Text';
@@ -16,7 +15,6 @@ import OrderButton from '../order/OrderButton.component';
 import Link from '../general/Link.component';
 import scroll from '../../utils/scroll';
 import SocialShareButton from '../general/SocialShareButton.component';
-import {ADD_BELT} from '../../redux/belts.reducer';
 import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {get} from 'lodash';
 import {filterCollection, filterReviews, sortTags} from './workFunctions';

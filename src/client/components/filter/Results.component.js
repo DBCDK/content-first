@@ -14,7 +14,7 @@ import withStoreBelt from '../base/Belt/withStoreBelt.hoc';
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
 const StoreBeltPin = withStoreBelt(
-  ({isStored, tags, storeBelt, removeBelt, id}) => {
+  ({isStored, tags, storeBelt, removeBelt}) => {
     return (
       <Pin
         active={isStored}
