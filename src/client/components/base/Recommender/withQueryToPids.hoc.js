@@ -12,7 +12,7 @@ import request from 'superagent';
  * // create a pure component and enhance it
  * const GreatBooks = ({pids}) =>
  *  <ul>{pids.map(pid => <li>{pid}</li>)}</ul>;
- * export default withTagsToPids(GreatBooks)
+ * export default withQueryToPids(GreatBooks)
  *
  * // use the enhanced component like this
  * <GreatBooks query="hest"/>
