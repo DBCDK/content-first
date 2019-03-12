@@ -44,13 +44,6 @@ const fromTitle = title => {
   }
   return fromTitleMap[title.toLowerCase()];
 };
-let fromIdMap;
-const fromId = t => {
-  if (!fromIdMap) {
-    fromIdMap = getLeavesMap();
-  }
-  return fromIdMap[t] || fromIdMap[t.id];
-};
 
 const isRange = tagId => Array.isArray(tagId) && tagId.length === 2;
 const isFullRange = (tagId, fullRange) =>
@@ -147,7 +140,6 @@ module.exports = {
   getLeaves,
   getLeavesMap,
   getFromTitleMap,
-  fromId,
   fromTitle,
   isRange,
   isFullRange,
