@@ -18,20 +18,21 @@ let constructElement = item => {
 };
 
 const Toolbar = ({children}) => {
+  const elements = Array.isArray(children) ? children : [children];
   return (
     <div className="Toolbar">
       <div className="Toolbar__left">
-        {children
+        {elements
           .filter(items => items.props.align === TOOLBAR_LEFT)
           .map(item => constructElement(item))}
       </div>
       <div className="Toolbar__center">
-        {children
+        {elements
           .filter(items => items.props.align === TOOLBAR_CENTER)
           .map(item => constructElement(item))}
       </div>
       <div className="Toolbar__right">
-        {children
+        {elements
           .filter(items => items.props.align === TOOLBAR_RIGHT)
           .map(item => constructElement(item))}
       </div>
