@@ -1,8 +1,13 @@
-.BookmarkButton {
+.BookmarkButtonCircle.icon-large i {
+  font-size: 1.2rem;
+}
+
+.BookmarkButtonCircle {
   padding: 0;
 }
 
-.BookmarkButton i {
+.BookmarkButton i,
+.BookmarkButton span {
   font-size: 1rem;
   vertical-align: middle;
 }

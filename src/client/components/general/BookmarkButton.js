@@ -38,7 +38,13 @@ export class BookmarkButton extends React.PureComponent {
         dataCy={this.props.dataCy}
       >
         <Icon name="bookmark_border" />
-        {!layout ? <T component="shortlist" name="buttonLabel" /> : ''}
+        {!layout ? (
+          <span className="ml-1">
+            <T component="shortlist" name="buttonLabel" />
+          </span>
+        ) : (
+          ''
+        )}
       </Button>
     );
   }
