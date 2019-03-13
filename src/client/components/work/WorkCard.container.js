@@ -53,7 +53,7 @@ class WorkCard extends React.Component {
   onWorkClick = e => {
     e.stopPropagation();
     e.preventDefault();
-    this.props.onWorkClick(this.props.work, this.props.rowId);
+    this.props.onWorkClick(this.props.work, this.props.origin, this.props.rid);
   };
 
   render() {
@@ -133,7 +133,8 @@ class WorkCard extends React.Component {
                     e.preventDefault();
                     this.props.onMoreLikeThisClick(
                       this.props.work,
-                      this.props.rowId
+                      this.props.origin,
+                      this.props.rid
                     );
                   }}
                   dataCy="WC-more-like-this"

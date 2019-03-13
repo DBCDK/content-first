@@ -1,13 +1,8 @@
 /* eslint-disable complexity */
 import {trackEvent, trackDataEvent} from '../matomo';
 import {get} from 'lodash';
-import {
-  ADD_CHILD_BELT,
-  ADD_BELT,
-  BELT_SCROLL,
-  BELT_TITLE_CLICK,
-  BELT_TAG_CLICK
-} from './belts.reducer';
+import {BELT_SCROLL, BELT_TITLE_CLICK, BELT_TAG_CLICK} from './belts.reducer';
+import {UPDATE_MOUNT} from './mounts.reducer';
 import {ON_LOCATION_CHANGE} from './router.reducer';
 import {MATOMO_RID} from './matomo.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from './shortlist.reducer';
@@ -17,70 +12,46 @@ import {HISTORY_NEW_TAB} from './middleware';
 
 export const matomoMiddleware = store => next => action => {
   switch (action.type) {
-    case ADD_BELT: {
-      if (get(action, 'belt.key', '').startsWith('filterpage')) {
-        // a "root" belt is added on the /find page
-        const category = 'searchResult';
-        const a =
-          get(action, 'belt.type') === 'preview'
-            ? 'beltExpandWork'
-            : 'beltMoreLikeThis';
-        const name = `pid:${get(action, 'belt.pid', 'unknown')}`;
+    case UPDATE_MOUNT: {
+      const type = get(action, 'data.type');
+      const pid = get(action, 'data.parent', 'unknown');
+      const parentBeltName = get(action, 'data.beltName', 'unknown');
+      const rid = get(action, 'data.rid');
+      const scrollPos = get(action, 'data.scrollPos');
+      const titleClick = get(action, 'data.titleClick');
+      const tagClick = get(action, 'data.tagClick');
+      if (type === 'PREVIEW') {
+        const category = `preview:${pid}`;
+        const a = 'beltExpandWork';
+        const name = `pid:${pid}`;
         trackEvent(category, a, name);
-
-        if (get(action, 'belt.type') === 'preview') {
-          const pid = get(action, 'belt.pid', 'unknown');
-          trackDataEvent('preview', {
-            pid,
-            rid: action.rid
-          });
-          store.dispatch({type: MATOMO_RID, key: pid, rid: action.rid});
-        }
-      }
-      return next(action);
-    }
-    case ADD_CHILD_BELT: {
-      const category =
-        get(action, 'parentBelt.type') === 'preview'
-          ? `preview:${get(action, 'parentBelt.pid', 'unknown')}`
-          : `belt:${get(action, 'parentBelt.name', 'unknown')}`;
-      const a =
-        get(action, 'childBelt.type') === 'preview'
-          ? 'beltExpandWork'
-          : 'beltMoreLikeThis';
-      const name = `pid:${get(action, 'childBelt.pid', 'unknown')}`;
-      const val = action.workPosition;
-      trackEvent(category, a, name, val);
-
-      if (get(action, 'childBelt.type') === 'preview') {
-        const pid = get(action, 'childBelt.pid', 'unknown');
         trackDataEvent('preview', {
           pid,
-          rid: action.rid
+          rid: rid
         });
-        store.dispatch({type: MATOMO_RID, key: pid, rid: action.rid});
+      } else if (type === 'SIMILAR') {
+        const category = `belt:${parentBeltName}`;
+        const a = 'beltMoreLikeThis';
+        const name = `pid:${pid}`;
+        trackEvent(category, a, name);
+      } else if (scrollPos) {
+        const category = `belt:${parentBeltName}`;
+        const a = 'beltSwipe';
+        const name = 'position';
+        const val = scrollPos;
+        trackEvent(category, a, name, val);
+      } else if (titleClick) {
+        const category = `belt:${titleClick}`;
+        const a = 'beltTitleClick';
+        const name = `tag:${get(action, 'tag.id', 'unknown')}`;
+        trackEvent(category, a);
+      } else if (tagClick) {
+        const category = `belt:${parentBeltName}`;
+        const a = 'beltTagClick';
+        const name = `tag:${tagClick}`;
+        trackEvent(category, a, name);
       }
-      return next(action);
-    }
-    case BELT_SCROLL: {
-      const category = `belt:${get(action, 'belt.name', 'unknown')}`;
-      const a = 'beltSwipe';
-      const name = 'position';
-      const val = action.scrollPos;
-      trackEvent(category, a, name, val);
-      return next(action);
-    }
-    case BELT_TITLE_CLICK: {
-      const category = `belt:${get(action, 'belt.name', 'unknown')}`;
-      const a = 'beltTitleClick';
-      trackEvent(category, a);
-      return next(action);
-    }
-    case BELT_TAG_CLICK: {
-      const category = `belt:${get(action, 'belt.name', 'unknown')}`;
-      const a = 'beltTagClick';
-      const name = `tag:${get(action, 'tag.id', 'unknown')}`;
-      trackEvent(category, a, name);
+      store.dispatch({type: MATOMO_RID, key: pid, rid: rid});
       return next(action);
     }
     case ON_LOCATION_CHANGE: {

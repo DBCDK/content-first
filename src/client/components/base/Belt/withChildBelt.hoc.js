@@ -12,7 +12,7 @@ const withChildBelt = WrappedComponent => {
         // this.props.updateMount({parent: null, child: null, type: null});
       }
     }
-    openSimilarBelt = work => {
+    openSimilarBelt = (work, beltName = '', rid) => {
       if (isMobileOnly) {
         this.props.historyPush(work.book.pid);
       } else if (
@@ -26,14 +26,16 @@ const withChildBelt = WrappedComponent => {
         const SimilarBelt = require('./SimilarBelt.component').default;
         this.props.updateMount({
           type: 'SIMILAR',
+          beltName,
           parent: work.book.pid,
           child: (
             <SimilarBelt key={mount} mount={mount} likes={[work.book.pid]} />
-          )
+          ),
+          rid
         });
       }
     };
-    openWorkPreview = work => {
+    openWorkPreview = (work, beltName = '', rid) => {
       if (isMobileOnly) {
         this.props.historyPush(work.book.pid);
       } else if (
@@ -47,8 +49,10 @@ const withChildBelt = WrappedComponent => {
         const WorkPreview = require('../../work/WorkPreview.component').default;
         this.props.updateMount({
           type: 'PREVIEW',
+          beltName,
           parent: work.book.pid,
-          child: <WorkPreview mount={mount} key={mount} pid={work.book.pid} />
+          child: <WorkPreview mount={mount} key={mount} pid={work.book.pid} />,
+          rid
         });
       }
     };

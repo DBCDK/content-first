@@ -37,10 +37,16 @@ export default class WorkSlider extends React.Component {
           initialScrollPos={scrollPos}
           onSwipe={index => {
             if (index > 0 && !didSwipe) {
-              this.props.updateMount({didSwipe: true});
+              this.props.updateMount({
+                didSwipe: true,
+                beltName: this.props.origin
+              });
             }
             if (scrollPos !== index) {
-              this.props.updateMount({scrollPos: index});
+              this.props.updateMount({
+                scrollPos: index,
+                beltName: this.props.origin
+              });
             }
           }}
         >

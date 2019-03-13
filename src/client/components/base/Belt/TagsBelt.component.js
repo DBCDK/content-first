@@ -66,6 +66,18 @@ export class TagsBelt extends React.Component {
     const editing = this.state.editing;
     const titleMissing = this.state.name.trim().length === 0;
     const titleMissingClass = titleMissing ? 'value-missing' : '';
+    const origin = T({
+      component: 'filter',
+      name: tags.length > 0 ? 'filterOrigin' : 'filterOriginNoTags',
+      vars: [
+        tags
+          .map(t => {
+            const tag = filtersMapAll[t.id ? t.id : t];
+            return get(tag, 'title');
+          })
+          .join(', ')
+      ]
+    });
 
     return (
       <div
@@ -172,7 +184,11 @@ export class TagsBelt extends React.Component {
                   params={{
                     tags: tags.map(t => (t.id ? t.id : t)).join(',')
                   }}
-                  onClick={this.props.titleClick}
+                  onClick={() => {
+                    if (this.props.updateMount) {
+                      this.props.updateMount({titleClick: origin});
+                    }
+                  }}
                 >
                   <Title
                     Tag="h1"
@@ -201,7 +217,19 @@ export class TagsBelt extends React.Component {
                     const tag = filtersMapAll[t.id ? t.id : t];
                     const isLast = idx === tags.length - 1;
                     return (
-                      <Link key={tag.id} href="/find" params={{tags: tag.id}}>
+                      <Link
+                        key={tag.id}
+                        href="/find"
+                        params={{tags: tag.id}}
+                        onClick={() => {
+                          if (this.props.updateMount) {
+                            this.props.updateMount({
+                              beltName: origin,
+                              tagClick: tag.title
+                            });
+                          }
+                        }}
+                      >
                         <Term
                           className={'my-1 ' + (isLast ? '' : 'mr-2')}
                           size="medium"
@@ -232,18 +260,7 @@ export class TagsBelt extends React.Component {
           pids={this.props.recommendations}
           onMoreLikeThisClick={this.props.openSimilarBelt}
           onWorkClick={this.props.openWorkPreview}
-          origin={T({
-            component: 'filter',
-            name: tags.length > 0 ? 'filterOrigin' : 'filterOriginNoTags',
-            vars: [
-              tags
-                .map(t => {
-                  const tag = filtersMapAll[t.id ? t.id : t];
-                  return get(tag, 'title');
-                })
-                .join(', ')
-            ]
-          })}
+          origin={origin}
         />
       </div>
     );
