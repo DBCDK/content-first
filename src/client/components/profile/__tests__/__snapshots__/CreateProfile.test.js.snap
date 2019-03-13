@@ -27,6 +27,7 @@ exports[`Image Upload render function Add image 1`] = `
             className="profile__edit-image-upload"
           >
             <ProfileUploadImage
+<<<<<<< HEAD
               activateSaveButton={[Function]}
               onFile={[Function]}
               personalImage={null}
@@ -68,6 +69,85 @@ exports[`Image Upload render function Add image 1`] = `
                         />
                       </label>
                     </UploadButton>
+=======
+              buttonText="Upload profilbillede"
+              h="90px"
+              onFile={[Function]}
+              personalImage={null}
+              style={
+                Object {
+                  "borderRadius": "50%",
+                  "height": "90px",
+                  "width": "90px",
+                }
+              }
+              tempPersonalImage={null}
+              thumbnailImage="/img/general/user-placeholder-thumbnail.svg"
+              thumbnailImageHover="/img/general/user-placeholder-thumbnail-hover.svg"
+              w="90px"
+            >
+              <div
+                className="profile-picture"
+                style={
+                  Object {
+                    "paddingTop": "12px",
+                    "width": "57px",
+                  }
+                }
+              >
+                <div
+                  className="image-upload undefined"
+                >
+                  <div
+                    style={
+                      Object {
+                        "borderRadius": "50%",
+                        "height": "90px",
+                        "overflow": "hidden",
+                        "width": "90px",
+                      }
+                    }
+                  >
+                    <div>
+                      <UploadButton
+                        baseImage="/img/general/user-placeholder-thumbnail.svg"
+                        h="90px"
+                        readFiles={[Function]}
+                        thumbnailImageHover="/img/general/user-placeholder-thumbnail-hover.svg"
+                        w="90px"
+                      >
+                        <label>
+                          <HoverImage
+                            h="90px"
+                            mouseOver="/img/general/user-placeholder-thumbnail-hover.svg"
+                            src="/img/general/user-placeholder-thumbnail.svg"
+                            w="90px"
+                          >
+                            <div>
+                              <img
+                                onMouseOut={[Function]}
+                                onMouseOver={[Function]}
+                                src="/img/general/user-placeholder-thumbnail.svg"
+                                style={
+                                  Object {
+                                    "cursor": "pointer",
+                                    "height": "90px",
+                                    "width": "90px",
+                                  }
+                                }
+                              />
+                            </div>
+                          </HoverImage>
+                          <input
+                            accept="image/png, image/jpeg"
+                            className="droppable-image-field--file-input"
+                            onChange={[Function]}
+                            type="file"
+                          />
+                        </label>
+                      </UploadButton>
+                    </div>
+>>>>>>> added design for mobile
                   </div>
                   <div
                     style={
@@ -95,9 +175,13 @@ exports[`Image Upload render function Add image 1`] = `
           className="profile__edit-textfield-zone"
         >
           <EditProfileForm
+<<<<<<< HEAD
             activateSaveButton={[Function]}
             confirmDelete={[Function]}
             enableButton={true}
+=======
+            confirmDelete={[Function]}
+>>>>>>> added design for mobile
             updateImageId={[Function]}
           >
             <form
@@ -186,12 +270,32 @@ exports[`Image Upload render function Add image 1`] = `
                   className="profile__edit-bottom-elements"
                 >
                   <div
+<<<<<<< HEAD
                     className="btn profile__edit-savebtn"
                   >
                     <button
                       data-cy="user-form-submit"
                       disabled={false}
                     >
+=======
+                    style={
+                      Object {
+                        "marginTop": "8px",
+                      }
+                    }
+                  >
+                    <Link
+                      href="/profile"
+                    >
+                      Fortryd
+                    </Link>
+                  </div>
+                  <div>
+                    <button
+                      className="btn profile__edit-savebtn"
+                      data-cy="user-form-submit"
+                    >
+>>>>>>> added design for mobile
                       Gem Ændringer
                     </button>
                   </div>
@@ -231,6 +335,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
         >
           <div
             className="profile-picture"
+<<<<<<< HEAD
           >
             <div
               className="image-upload"
@@ -253,6 +358,53 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                     type="file"
                   />
                 </label>
+=======
+            style={
+              Object {
+                "paddingTop": "12px",
+                "width": "57px",
+              }
+            }
+          >
+            <div
+              className="image-upload undefined"
+            >
+              <div
+                style={
+                  Object {
+                    "borderRadius": "50%",
+                    "height": "90px",
+                    "overflow": "hidden",
+                    "width": "90px",
+                  }
+                }
+              >
+                <div>
+                  <label>
+                    <div>
+                      <img
+                        onMouseOut={[Function]}
+                        onMouseOver={[Function]}
+                        src="/img/general/user-placeholder-thumbnail.svg"
+                        style={
+                          Object {
+                            "cursor": "pointer",
+                            "height": "90px",
+                            "width": "90px",
+                          }
+                        }
+                      />
+                    </div>
+                    <input
+                      accept="image/png, image/jpeg"
+                      className="droppable-image-field--file-input"
+                      name={undefined}
+                      onChange={[Function]}
+                      type="file"
+                    />
+                  </label>
+                </div>
+>>>>>>> added design for mobile
               </div>
               <div
                 style={
@@ -352,11 +504,31 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               className="profile__edit-bottom-elements"
             >
               <div
+<<<<<<< HEAD
                 className="btn profile__edit-savebtn"
               >
                 <button
                   data-cy="user-form-submit"
                   disabled={true}
+=======
+                style={
+                  Object {
+                    "marginTop": "8px",
+                  }
+                }
+              >
+                <Link
+                  href="/profile"
+                >
+                  Fortryd
+                </Link>
+              </div>
+              <div>
+                <button
+                  className="btn profile__edit-savebtn"
+                  data-cy="user-form-submit"
+                  disabled={undefined}
+>>>>>>> added design for mobile
                 >
                   Gem Ændringer
                 </button>
