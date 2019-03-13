@@ -10,12 +10,12 @@ import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import SkeletonText from '../base/Skeleton/Text';
 import SkeletonUser from '../base/Skeleton/User';
+import Share from '../base/Share';
 import BeltFacade from '../belt/BeltFacade.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Link from '../general/Link.component';
 import scroll from '../../utils/scroll';
-import SocialShareButton from '../general/SocialShareButton.component';
 import {ADD_BELT} from '../../redux/belts.reducer';
 import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {get} from 'lodash';
@@ -118,15 +118,13 @@ class WorkPage extends React.Component {
               />
             </div>
             <div className="WorkPage__info">
-              <SocialShareButton
-                className={'ssb-fb'}
-                facebook={true}
+              <Share
+                className="ssb-fb align-self-center"
                 href={'https://laesekompas.dk/værk/' + book.pid}
-                hex={'#3b5998'}
-                size={40}
-                shape="round"
-                hoverTitle={T({component: 'share', name: 'shareOnFacebook'})}
-              />
+                title={T({component: 'share', name: 'shareOnFacebook'})}
+              >
+                Del
+              </Share>
 
               <Title Tag="h3" type="title3" className="mt0">
                 {book.title}

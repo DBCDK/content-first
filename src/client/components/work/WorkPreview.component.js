@@ -9,8 +9,8 @@ import Icon from '../base/Icon';
 import T from '../base/T';
 import SkeletonText from '../base/Skeleton/Text';
 import SkeletonUser from '../base/Skeleton/User';
+import Share from '../base/Share';
 import Link from '../general/Link.component';
-import SocialShareButton from '../general/SocialShareButton.component';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
 import OrderButton from '../order/OrderButton.component';
@@ -91,16 +91,13 @@ class WorkPreview extends React.Component {
               </Link>
             </div>
             <div className="workPreview__info col-8">
-              <SocialShareButton
-                className={'ssb-fb'}
-                styles={{fontWeight: 'bold'}}
-                facebook={true}
+              <Share
+                className="d-inline ssb-fb"
                 href={'https://laesekompas.dk/værk/' + book.pid}
-                hex={'#3b5998'}
-                size={30}
-                shape="round"
-                hoverTitle={T({component: 'share', name: 'shareOnFacebook'})}
-              />
+                title={T({component: 'share', name: 'shareOnFacebook'})}
+              >
+                Del
+              </Share>
               <Heading Tag="h1" type="lead" className="mt0">
                 <Link href={'/værk/' + book.pid}>{book.title}</Link>
               </Heading>

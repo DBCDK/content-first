@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {updateList, storeList} from '../../../../redux/list.reducer';
-import SocialShareButton from '../../../general/SocialShareButton.component';
+import Share from '../../../base/Share';
 
 import Title from '../../../base/Title';
 import Text from '../../../base/Text';
@@ -103,22 +103,13 @@ export const ListInfo = ({
           style={{right: 0, top: 0}}
         >
           <ProfileImage user={profile} size={'40'} namePosition="right" />
-          <SocialShareButton
-            className={'ssb-fb align-middle'}
-            facebook={true}
+          <Share
+            className="align-self-center"
             href={'https://laesekompas.dk/lister/' + list._id}
-            hex={'#3b5998'}
-            size={40}
-            shape="round"
-            hoverTitle={T({component: 'share', name: 'shareOnFacebook'})}
-            onClick={e => {
-              if (!list.public) {
-                e.preventDefault();
-                confirmShareModal(list._id);
-                return false;
-              }
-            }}
-          />
+            title={T({component: 'share', name: 'shareOnFacebook'})}
+          >
+            Del
+          </Share>
         </div>
 
         {list.description.length > 0 ? (

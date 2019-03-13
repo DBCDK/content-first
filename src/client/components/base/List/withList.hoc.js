@@ -41,6 +41,7 @@ export const withListCreator = WrappedComponent => {
           type: CUSTOM_LIST,
           public: false,
           title: T({component: 'list', name: 'noTitleValue'}),
+          description: '',
           dotColor: 'petroleum'
         },
         openplatformId
@@ -100,17 +101,15 @@ export const withList = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const list = getListById(state, {_id: ownProps.id || ownProps._id});
 
-    if (list && list._owner) {
-      console.log(
-        'isOwner',
-        state.userReducer.openplatformId === ownProps.owner
-      );
-    }
+    console.log(
+      'isListOwner',
+      (list && state.userReducer.openplatformId === list._owner) || null
+    );
 
     return {
       list,
       isListOwner:
-        ownProps.justCreated || state.userReducer.openplatformId === list._owner
+        (list && state.userReducer.openplatformId === list._owner) || null
     };
   };
 

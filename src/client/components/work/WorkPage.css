@@ -29,7 +29,7 @@
   position: relative;
 }
 
-.WorkPage__work .WorkPage__info .ssb {
+.WorkPage__work .WorkPage__info .Share {
   position: absolute;
   right: 0;
   top: 0;
@@ -208,7 +208,7 @@
   .WorkPage__work .WorkPage__image .BookmarkButtonCircle {
     display: block;
   }
-  .WorkPage__work .WorkPage__info .ssb {
+  .WorkPage__work .WorkPage__info .Share {
     top: 10px;
     right: 10px;
   }
@@ -252,6 +252,6 @@
   }
 }
 
-.work-page-book-creator{
+.work-page-book-creator {
   color: var(--petroleum) !important;
 }

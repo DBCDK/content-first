@@ -56,7 +56,6 @@
 @import './components/comment.css';
 @import './components/circletemplate.css';
 @import './components/bookcaseTemplate.css';
-@import './components/socialShareButton.css';
 @import './components/follow.css';
 @import './components/concisework.css';
 
@@ -327,9 +326,9 @@ div.belt-subtext {
 .high-contrast {
   filter: contrast(1.25);
 }
-.curser-pointer{
+.curser-pointer {
   cursor: pointer;
 }
-.curser-move{
+.curser-move {
   cursor: move;
 }

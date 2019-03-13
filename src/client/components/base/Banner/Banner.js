@@ -17,7 +17,7 @@ const Banner = ({
 
   return (
     <div className="Banner__wrap" style={bannerStyles}>
-      <div className={`Banner p-3 ${className}`}>
+      <div className={`Banner ${className}`}>
         <div className="align-self-start">{children}</div>
         <div className="Banner__title align-self-stretch d-flex">
           <Title

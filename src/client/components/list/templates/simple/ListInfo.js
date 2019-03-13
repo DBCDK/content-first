@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {updateList, storeList} from '../../../../redux/list.reducer';
 import {getUser} from '../../../../redux/users';
 import ProfileImage from '../../../general/ProfileImage.component';
-import SocialShareButton from '../../../general/SocialShareButton.component';
 import CommentCounter from '../../../comments/CommentCounter.component';
 import T from '../../../base/T';
+import Share from '../../../base/Share';
 import Text from '../../../base/Text';
 import FollowButton from '../../button/FollowButton';
 
@@ -24,29 +24,22 @@ export const ListInfo = ({
 }) => {
   return (
     <div className="lys-graa position-relative">
-      <div>
-        <img className="w-100" src={`/v1/image/${list.image}/719/400`} />
-      </div>
+      {list.image && (
+        <div>
+          <img className="w-100" src={`/v1/image/${list.image}/719/400`} />
+        </div>
+      )}
 
       <div className="list-info pl-3 pr-3">
-        <div className="list-owner d-flex justify-content-between ">
+        <div className="list-owner d-flex justify-content-between align-items-start">
           <ProfileImage user={profile} size={'40'} namePosition="right" />
-          <SocialShareButton
-            className={'ssb-fb align-middle'}
-            facebook={true}
+          <Share
+            className="align-self-center"
             href={'https://laesekompas.dk/lister/' + list._id}
-            hex={'#3b5998'}
-            size={40}
-            shape="round"
-            hoverTitle={T({component: 'share', name: 'shareOnFacebook'})}
-            onClick={e => {
-              if (!list.public) {
-                e.preventDefault();
-                confirmShareModal(list._id);
-                return false;
-              }
-            }}
-          />
+            title={T({component: 'share', name: 'shareOnFacebook'})}
+          >
+            Del
+          </Share>
         </div>
 
         {list.description.length > 0 ? (
