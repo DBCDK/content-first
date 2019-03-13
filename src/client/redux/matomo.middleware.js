@@ -1,7 +1,6 @@
 /* eslint-disable complexity */
 import {trackEvent, trackDataEvent} from '../matomo';
 import {get} from 'lodash';
-import {BELT_SCROLL, BELT_TITLE_CLICK, BELT_TAG_CLICK} from './belts.reducer';
 import {UPDATE_MOUNT} from './mounts.reducer';
 import {ON_LOCATION_CHANGE} from './router.reducer';
 import {MATOMO_RID} from './matomo.reducer';
@@ -43,7 +42,6 @@ export const matomoMiddleware = store => next => action => {
       } else if (titleClick) {
         const category = `belt:${titleClick}`;
         const a = 'beltTitleClick';
-        const name = `tag:${get(action, 'tag.id', 'unknown')}`;
         trackEvent(category, a);
       } else if (tagClick) {
         const category = `belt:${parentBeltName}`;
