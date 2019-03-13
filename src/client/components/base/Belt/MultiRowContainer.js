@@ -4,7 +4,15 @@ import WorkCard from '../../work/WorkCard.container';
 import withChildBelt from './withChildBelt.hoc';
 
 const Row = withChildBelt(
-  ({pids, cardRef, openSimilarBelt, openWorkPreview, selected, rid}) => (
+  ({
+    pids,
+    cardRef,
+    openSimilarBelt,
+    openWorkPreview,
+    selected,
+    rid,
+    origin
+  }) => (
     <div
       className="d-flex justify-content-around justify-content-md-between px-0 px-sm-3 px-lg-5 pt-5 "
       ref={container => (this.refs = {...this.refs, container})}
@@ -19,7 +27,7 @@ const Row = withChildBelt(
           pid={pid}
           rid={rid}
           key={pid + idx}
-          origin={`Fra søgning`}
+          origin={origin || ''}
           onMoreLikeThisClick={openSimilarBelt}
           onWorkClick={openWorkPreview}
         />
@@ -90,6 +98,7 @@ class MultiRowContainer extends React.Component {
             <Row
               key={JSON.stringify(pidList)}
               mount={JSON.stringify(pidList)}
+              origin={this.props.origin}
               rid={this.props.rid}
               pids={pidList}
               cardRef={workCard => (this.refs = {...this.refs, workCard})}

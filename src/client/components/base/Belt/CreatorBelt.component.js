@@ -25,6 +25,7 @@ export class CreatorBelt extends React.Component {
           onMoreLikeThisClick={this.props.openSimilarBelt}
           onWorkClick={this.props.openWorkPreview}
           className=""
+          origin={`Fra søgning på forfatter ${this.props.query}`}
         />
       </div>
     );

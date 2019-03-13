@@ -232,7 +232,18 @@ export class TagsBelt extends React.Component {
           pids={this.props.recommendations}
           onMoreLikeThisClick={this.props.openSimilarBelt}
           onWorkClick={this.props.openWorkPreview}
-          className=""
+          origin={T({
+            component: 'filter',
+            name: tags.length > 0 ? 'filterOrigin' : 'filterOriginNoTags',
+            vars: [
+              tags
+                .map(t => {
+                  const tag = filtersMapAll[t.id ? t.id : t];
+                  return get(tag, 'title');
+                })
+                .join(', ')
+            ]
+          })}
         />
       </div>
     );

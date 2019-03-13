@@ -33,7 +33,7 @@ export class InteractionsBelt extends React.Component {
           pids={this.props.recommendations}
           onMoreLikeThisClick={this.props.openSimilarBelt}
           onWorkClick={this.props.openWorkPreview}
-          className=""
+          origin={`Fra bedste forslag til ${name}`}
         />
       </div>
     );

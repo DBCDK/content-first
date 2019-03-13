@@ -1,4 +1,5 @@
 import React from 'react';
+import {get} from 'lodash';
 import withIsVisible from '../scroll/withIsVisible.hoc';
 import withChildBelt from './withChildBelt.hoc';
 import withPidsToPids from '../Recommender/withPidsToPids.hoc';
@@ -9,6 +10,15 @@ import withScrollToComponent from '../scroll/withScrollToComponent.hoc';
 
 const WorkTitle = withWork(({work}) => (
   <span>{work && work.book && work.book.title}</span>
+));
+const Slider = withWork(({work, ...props}) => (
+  <WorkSlider
+    {...props}
+    pids={props.recommendations}
+    onMoreLikeThisClick={props.openSimilarBelt}
+    onWorkClick={props.openWorkPreview}
+    origin={`Fra "Minder om ${get(work, 'book.title')}"`}
+  />
 ));
 const WorksTitle = ({pids}) => (
   <Title
@@ -37,13 +47,7 @@ export class SimilarBelt extends React.Component {
         style={this.props.style}
       >
         <WorksTitle pids={this.props.likes} />
-        <WorkSlider
-          {...this.props}
-          pids={this.props.recommendations}
-          onMoreLikeThisClick={this.props.openSimilarBelt}
-          onWorkClick={this.props.openWorkPreview}
-          className=""
-        />
+        <Slider pid={get(this.props, 'likes[0]')} {...this.props} />
       </div>
     );
   }

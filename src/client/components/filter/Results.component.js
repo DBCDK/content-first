@@ -96,7 +96,7 @@ class Results extends React.Component {
             >
               <strong>Valgte bøger</strong>
             </Title>
-            <MultiRowContainer recommendations={pids} />
+            <MultiRowContainer recommendations={pids} origin="Fra søgning" />
           </div>
         )}
 
@@ -132,7 +132,17 @@ class Results extends React.Component {
               />
             </div>
 
-            <TagsMultiRowContainer tags={tags.map(tag => tag.id)} />
+            <TagsMultiRowContainer
+              tags={tags.map(tag => tag.id)}
+              origin={T({
+                component: 'filter',
+                name:
+                  this.props.tags.length > 0
+                    ? 'filterOrigin'
+                    : 'filterOriginNoTags',
+                vars: [tags.map(t => t.title).join(', ')]
+              })}
+            />
           </div>
         )}
       </div>

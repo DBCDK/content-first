@@ -56,7 +56,7 @@ export default class WorkSlider extends React.Component {
                     pid={pid}
                     rid={this.props.rid}
                     key={pid}
-                    origin={`Fra mig`}
+                    origin={this.props.origin}
                     onMoreLikeThisClick={this.props.onMoreLikeThisClick}
                     onWorkClick={this.props.onWorkClick}
                     cardIndex={idx}
