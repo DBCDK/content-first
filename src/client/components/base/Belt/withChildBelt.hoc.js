@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {isMobileOnly} from 'react-device-detect';
 import {SCROLL_TO_COMPONENT} from '../../../redux/scrollToComponent';
 import {UPDATE_MOUNT} from '../../../redux/mounts.reducer';
+import {HISTORY_PUSH} from '../../../redux/middleware';
 
 const withChildBelt = WrappedComponent => {
   const Wrapped = class extends React.Component {
@@ -11,7 +13,9 @@ const withChildBelt = WrappedComponent => {
       }
     }
     openSimilarBelt = work => {
-      if (
+      if (isMobileOnly) {
+        this.props.historyPush(work.book.pid);
+      } else if (
         work.book.pid === this.props.mountedData.parent &&
         this.props.mountedData.type === 'SIMILAR'
       ) {
@@ -30,7 +34,9 @@ const withChildBelt = WrappedComponent => {
       }
     };
     openWorkPreview = work => {
-      if (
+      if (isMobileOnly) {
+        this.props.historyPush(work.book.pid);
+      } else if (
         work.book.pid === this.props.mountedData.parent &&
         this.props.mountedData.type === 'PREVIEW'
       ) {
@@ -73,7 +79,10 @@ const withChildBelt = WrappedComponent => {
       dispatch({
         type: SCROLL_TO_COMPONENT,
         id
-      })
+      }),
+    historyPush: pid => {
+      dispatch({type: HISTORY_PUSH, path: '/værk/' + pid});
+    }
   });
 
   return connect(
