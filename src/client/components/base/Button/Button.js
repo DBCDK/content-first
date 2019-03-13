@@ -7,6 +7,8 @@ const Button = ({
   Tag = 'button',
   size = 'large',
   type = 'primary',
+  iconLeft = '',
+  iconRight = '',
   variant = false,
   children,
   className,
@@ -16,6 +18,19 @@ const Button = ({
 }) => {
   const modifier = variant ? `Button__${type}--${variant}` : '';
 
+  const iconLeftSnippet =
+    iconLeft === '' ? (
+      ''
+    ) : (
+      <i className="material-icons Button__icon--left">{iconLeft}</i>
+    );
+  const iconRightSnippet =
+    iconRight === '' ? (
+      ''
+    ) : (
+      <i className="material-icons Button__icon--right">{iconRight}</i>
+    );
+
   return (
     <Tag
       className={`${className || ''}
@@ -24,7 +39,9 @@ const Button = ({
       disabled={disabled}
       data-cy={dataCy || ''}
     >
+      {iconLeftSnippet}
       {children}
+      {iconRightSnippet}
     </Tag>
   );
 };
