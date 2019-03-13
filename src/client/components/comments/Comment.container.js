@@ -87,11 +87,12 @@ export class CommentContainer extends React.Component {
               style={{
                 marginLeft: 55,
                 position: 'relative',
-                paddingLeft: 0
+                paddingLeft: 0,
+                textDecoration: 'none'
               }}
               className="btn btn-link link-subtle pb-0"
             >
-              <Text type="body" variant="decoration-underline" className="mb-0">
+              <Text type="body" variant="weight-semibold" className="mb-0">
                 <T
                   component="post"
                   name={

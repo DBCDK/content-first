@@ -34,16 +34,12 @@
 }
 
 /* typography */
-.t-body {
-  font-family: var(--secondary-font);
-}
 
 .t-title {
   font-family: var(--primary-font);
 }
 
 .link {
-  font-family: var(--secondary-font);
   color: var(--link);
   cursor: pointer;
 }
@@ -52,7 +48,6 @@
 }
 
 .link-subtle {
-  font-family: var(--secondary-font);
   color: var(--greybrown);
 }
 

@@ -208,11 +208,12 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           "marginLeft": 55,
           "paddingLeft": 0,
           "position": "relative",
+          "textDecoration": "none",
         }
       }
     >
       <p
-        className="mb-0 Text Text__body Text__body--decoration-underline"
+        className="mb-0 Text Text__body Text__body--weight-semibold"
       >
         Vis tidligere kommentarer
       </p>
@@ -525,16 +526,17 @@ exports[`CommentContainer Component renders all comments 1`] = `
             "marginLeft": 55,
             "paddingLeft": 0,
             "position": "relative",
+            "textDecoration": "none",
           }
         }
       >
         <Text
           className="mb-0"
           type="body"
-          variant="decoration-underline"
+          variant="weight-semibold"
         >
           <p
-            className="mb-0 Text Text__body Text__body--decoration-underline"
+            className="mb-0 Text Text__body Text__body--weight-semibold"
           >
             <T
               component="post"
@@ -893,16 +895,17 @@ exports[`CommentContainer Component renders error 1`] = `
             "marginLeft": 55,
             "paddingLeft": 0,
             "position": "relative",
+            "textDecoration": "none",
           }
         }
       >
         <Text
           className="mb-0"
           type="body"
-          variant="decoration-underline"
+          variant="weight-semibold"
         >
           <p
-            className="mb-0 Text Text__body Text__body--decoration-underline"
+            className="mb-0 Text Text__body Text__body--weight-semibold"
           >
             <T
               component="post"
@@ -1144,16 +1147,17 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             "marginLeft": 55,
             "paddingLeft": 0,
             "position": "relative",
+            "textDecoration": "none",
           }
         }
       >
         <Text
           className="mb-0"
           type="body"
-          variant="decoration-underline"
+          variant="weight-semibold"
         >
           <p
-            className="mb-0 Text Text__body Text__body--decoration-underline"
+            className="mb-0 Text Text__body Text__body--weight-semibold"
           >
             <T
               component="post"
@@ -1421,16 +1425,17 @@ exports[`CommentContainer Toggle all comments 1`] = `
             "marginLeft": 55,
             "paddingLeft": 0,
             "position": "relative",
+            "textDecoration": "none",
           }
         }
       >
         <Text
           className="mb-0"
           type="body"
-          variant="decoration-underline"
+          variant="weight-semibold"
         >
           <p
-            className="mb-0 Text Text__body Text__body--decoration-underline"
+            className="mb-0 Text Text__body Text__body--weight-semibold"
           >
             <T
               component="post"
@@ -1750,16 +1755,17 @@ exports[`CommentContainer Toggle all comments 2`] = `
             "marginLeft": 55,
             "paddingLeft": 0,
             "position": "relative",
+            "textDecoration": "none",
           }
         }
       >
         <Text
           className="mb-0"
           type="body"
-          variant="decoration-underline"
+          variant="weight-semibold"
         >
           <p
-            className="mb-0 Text Text__body Text__body--decoration-underline"
+            className="mb-0 Text Text__body Text__body--weight-semibold"
           >
             <T
               component="post"

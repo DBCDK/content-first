@@ -26,11 +26,7 @@
   display: inline-block;
   cursor: pointer;
 }
-.circle-template .list-element p {
-  font-family: var(--secondary-font);
-}
 .circle-template .list-element .title {
-  font-family: var(--secondary-font);
   text-shadow: 2px 2px 10px black;
   color: white;
   font-size: 14px;
@@ -38,17 +34,9 @@
   margin-top: 0.5em;
 }
 
-.circle-template .list-description {
-  font-family: var(--secondary-font);
-}
-
 .circle-template .list-element img {
   /* height: 180px; */
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.675);
-}
-
-.circle-template .social {
-  font-family: var(--secondary-font);
 }
 
 .circle-template .popover .profile-image {

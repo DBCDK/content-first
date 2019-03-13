@@ -1,17 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
-
 import {withList} from '../../../base/List/withList.hoc';
-
 import T from '../../../base/T';
 import Icon from '../../../base/Icon';
-
 import Text from '../../../base/Text';
 import Banner from '../../../base/Banner';
-
 import Comments from '../../../comments/Comment.container';
-
 import AddToList from '../../addtolist/AddToList.container';
 import ListElement from '../../element/ListElement';
 import ListInfo from './ListInfo';

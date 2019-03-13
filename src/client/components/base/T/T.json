@@ -587,12 +587,12 @@
         "en": "Yes please, save now"
       },
       "labelName": {
-        "da": "Navn:",
-        "en": "Name:"
+        "da": "Navn",
+        "en": "Name"
       },
       "labelPrivacy": {
-        "da": "Synlighed:",
-        "en": "Visibility:"
+        "da": "Synlighed",
+        "en": "Visibility"
       },
       "permissionsComments": {
         "da": "Tillad kommentarer",

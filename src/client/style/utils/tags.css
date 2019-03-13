@@ -12,7 +12,6 @@
 /* General tag styling */
 
 .tag {
-  font-family: var(--secondary-font);
   color: var(--darkgrey);
   display: inline-block;
   font-weight: 400;
