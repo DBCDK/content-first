@@ -77,6 +77,10 @@ exports.suggester = {
   url: process.env.SUGGESTER_URL
 };
 
+exports.searcher = {
+  url: process.env.SEARCH_URL
+};
+
 exports.server = {
   environment: common.environment,
   logServiceErrors: parseInt(process.env.LOG_SERVICE_ERRORS || 1, 10),

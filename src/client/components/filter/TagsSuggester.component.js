@@ -1,6 +1,8 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import request from 'superagent';
 import Autosuggest from 'react-autosuggest';
+import {BOOKS_PARTIAL_UPDATE} from '../../redux/books.reducer';
 
 import Icon from '../base/Icon';
 import T from '../base/T';
@@ -75,6 +77,18 @@ class TagsSuggester extends React.Component {
     const response = await request.get('/v1/suggester').query({query: value});
     const clientSuggestions = this.getClientSideSuggestions({value});
     let suggestions = [...clientSuggestions, ...response.body];
+
+    /* performance optimization, updating the redux books state */
+    const books = suggestions.filter(s => s.type === 'TITLE').map(s => {
+      return {
+        book: {
+          title: s.title,
+          creator: s.authorName,
+          pid: s.pid
+        }
+      };
+    });
+    this.props.updateBooks(books);
 
     this.setState({suggestions});
   };
@@ -159,4 +173,10 @@ class TagsSuggester extends React.Component {
   }
 }
 
-export default TagsSuggester;
+export const mapDispatchToProps = dispatch => ({
+  updateBooks: books => dispatch({type: BOOKS_PARTIAL_UPDATE, books})
+});
+export default connect(
+  null,
+  mapDispatchToProps
+)(TagsSuggester);

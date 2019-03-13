@@ -34,14 +34,14 @@ const withScrollToComponent = WrappedComponent => {
 
   const mapStateToProps = (state, ownProps) => {
     return {
-      doScroll: !!state.scrollToComponent[ownProps.id]
+      doScroll: !!state.scrollToComponent[ownProps.mount]
     };
   };
   const mapDispatchToProps = (dispatch, ownProps) => ({
     complete: () =>
       dispatch({
         type: SCROLL_TO_COMPONENT_COMPLETE,
-        id: ownProps.id
+        id: ownProps.mount
       })
   });
   return connect(

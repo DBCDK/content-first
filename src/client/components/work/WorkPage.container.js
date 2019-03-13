@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import TaxDescription from './TaxDescription.component';
 import Title from '../base/Title';
 import Text from '../base/Text';
@@ -11,12 +10,11 @@ import AddToListButton from '../general/AddToListButton.component';
 import SkeletonText from '../base/Skeleton/Text';
 import SkeletonUser from '../base/Skeleton/User';
 import Share from '../base/Share';
-import BeltFacade from '../belt/BeltFacade.component';
+import SimilarBelt from '../base/Belt/SimilarBelt.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
 import Link from '../general/Link.component';
 import scroll from '../../utils/scroll';
-import {ADD_BELT} from '../../redux/belts.reducer';
 import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {get} from 'lodash';
 import {filterCollection, filterReviews, sortTags} from './workFunctions';
@@ -47,14 +45,6 @@ class WorkPage extends React.Component {
     }
   }
 
-  /**
-   * addNewBelt
-   * @param belt
-   */
-  addNewBelt(belt) {
-    this.props.addBelt(belt);
-  }
-
   render() {
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
@@ -70,23 +60,6 @@ class WorkPage extends React.Component {
     // sort tags by group
     const tags = sortTags(work);
 
-    // build belt for "mere som denne" button
-    const belts = this.props.beltsState;
-    const belt = belts['Minder om ' + book.title];
-
-    if (book.title && !belts['Minder om ' + book.title]) {
-      // TODO this should not be in render
-      // probably, this component shouldnt be responsible for dispatching this action
-      this.addNewBelt({
-        name: T({component: 'belts', name: 'remindsOf', vars: [book.title]}),
-        key: 'Minder om ' + book.title,
-        pid: book.pid,
-        onFrontPage: false,
-        type: 'belt',
-        child: false
-      });
-    }
-
     // tags collapsable variables
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
@@ -101,231 +74,305 @@ class WorkPage extends React.Component {
         : false;
 
     return (
-      <div className="container">
-        <div className="row WorkPage__container">
-          <div className="col-12 col-xl-8 WorkPage__work">
-            <div className="WorkPage__image">
-              <BookCover book={book} enableLightbox />
-              <BookmarkButton
-                className="d-inline-block d-sm-none mr1"
-                origin={T({component: 'work', name: 'bookmarkButtonOrigin'})}
-                work={work}
-                layout="circle"
-                style={{
-                  position: 'absolute',
-                  top: '1rem',
-                  right: 0,
-                  borderRadius: '50%'
-                }}
-              />
-            </div>
-            <div className="WorkPage__info">
-              <Share
-                className="ssb-fb align-self-center"
-                href={'https://laesekompas.dk/værk/' + book.pid}
-                title={T({component: 'share', name: 'shareOnFacebook'})}
-              >
-                Del
-              </Share>
-
-              <Title Tag="h3" type="title3" className="mt0">
-                {book.title}
-              </Title>
-              <Link
-                href="/find"
-                params={{creator: book.creator}}
-                className="work-page-book-creator"
-              >
-                <Title Tag="h2" type="title5" className="mt1">
-                  {book.creator}
-                </Title>
-              </Link>
-
-              <Text type="body" variant="weight-semibold" className="mt1">
-                {<TaxDescription text={tax_description} />}
-              </Text>
-
-              <Text type="body" className="mt1">
-                {book.description}
-              </Text>
-
-              <div className="WorkPage__details WorkPage__detailsDesktop">
-                <Text
-                  data-cy={'pages-count'}
-                  data-value={book.pages}
-                  type="micro"
-                >
-                  <T component="work" name="pages" /> {book.pages}
-                </Text>
-                <Text type="micro">
-                  <T component="work" name="language" /> {book.language}
-                </Text>
-                <Text type="micro">
-                  <T component="work" name="released" />
-                  {book.first_edition_year}
-                </Text>
-              </div>
-
-              <div className="row">
-                <div className="col-12 pt1">
-                  <Text
-                    type="body"
-                    variant="weight-semibold"
-                    className="mt1 mb0"
-                  >
-                    <T component="work" name="loanTitle" />
-                  </Text>
-                </div>
-              </div>
-
-              <div className="WorkPage__media">
-                {work.collectionHasLoaded && (
-                  <OrderButton
-                    book={book}
-                    size="medium"
-                    type="quaternary"
-                    icon="book"
-                    label={T({component: 'general', name: 'book'})}
-                    className="mr1 mt1"
-                  />
-                )}
-                {work.collectionHasLoaded &&
-                  collection.map(col => {
-                    if (col.count === 1) {
-                      return (
-                        <Link
-                          key={col.url}
-                          href={col.url}
-                          type={HISTORY_NEW_TAB}
-                          meta={{materialType: col.type, pid: book.pid}}
-                        >
-                          <Button
-                            type="quaternary"
-                            size="medium"
-                            className="mr1 mt1"
-                          >
-                            <Icon name={col.icon} />
-                            {col.type}
-                          </Button>
-                        </Link>
-                      );
-                    }
-                  })}
-                {!work.collectionHasLoaded && (
-                  <React.Fragment>
-                    <a>
-                      <Button
-                        type="tertiary"
-                        size="medium"
-                        className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
-                      >
-                        <Icon name={'book'} />
-                        <T component="general" name="book" />
-                      </Button>
-                    </a>
-                    <a>
-                      <Button
-                        type="tertiary"
-                        size="medium"
-                        className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
-                      >
-                        <Icon name={'alternate_email'} />
-                        <T component="general" name="ebook" />
-                      </Button>
-                    </a>
-                    <a>
-                      <Button
-                        type="tertiary"
-                        size="medium"
-                        className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
-                      >
-                        <Icon name={'voicemail'} />
-                        <T component="general" name="audiobook" />
-                      </Button>
-                    </a>
-                  </React.Fragment>
-                )}
-              </div>
-              <div className="row">
-                <div className="col-12 mt1">
+      <div>
+        <div className="WorkPage__container">
+          <div className="container">
+            <div className="row mt-5">
+              <div className="col-12 col-xl-8 WorkPage__work">
+                <div className="WorkPage__image">
+                  <BookCover book={book} enableLightbox />
                   <BookmarkButton
-                    className="mr1"
+                    className="d-inline-block d-sm-none mr1"
                     origin={T({
                       component: 'work',
                       name: 'bookmarkButtonOrigin'
                     })}
                     work={work}
-                  />
-                  <AddToListButton className="mr1 pt1" work={work} />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-12 pt2">
-                  <Button
-                    type="tertiary"
-                    size="medium"
-                    className="underline"
-                    onClick={() => {
-                      const pos = this.booksBeltPosition
-                        ? this.booksBeltPosition.offsetTop - 50
-                        : 0;
-                      scroll(pos);
+                    layout="circle"
+                    style={{
+                      position: 'absolute',
+                      top: '1rem',
+                      right: 0,
+                      borderRadius: '50%'
                     }}
-                  >
-                    <T component="work" name="moreLikeThis" />
-                  </Button>
+                  />
                 </div>
-              </div>
-
-              <div className="row WorkPage__tagHeading__Mobile">
-                <div className="col-md-12">
-                  <Text
-                    type="body"
-                    variant="weight-semibold"
-                    className="mt3 mb0"
+                <div className="WorkPage__info">
+                  <Share
+                    className="ssb-fb align-self-center"
+                    href={'https://laesekompas.dk/værk/' + book.pid}
+                    title={T({component: 'share', name: 'shareOnFacebook'})}
                   >
-                    <T component="work" name="bookSpecsTitle" />
+                    Del
+                  </Share>
+
+                  <Title Tag="h3" type="title3" className="mt0">
+                    {book.title}
+                  </Title>
+                  <Link
+                    href="/find"
+                    params={{creator: book.creator}}
+                    className="work-page-book-creator"
+                  >
+                    <Title Tag="h2" type="title5" className="mt1">
+                      {book.creator}
+                    </Title>
+                  </Link>
+
+                  <Text type="body" variant="weight-semibold" className="mt1">
+                    {<TaxDescription text={tax_description} />}
                   </Text>
+
+                  <Text type="body" className="mt1">
+                    {book.description}
+                  </Text>
+
+                  <div className="WorkPage__details WorkPage__detailsDesktop">
+                    <Text
+                      data-cy={'pages-count'}
+                      data-value={book.pages}
+                      type="micro"
+                    >
+                      <T component="work" name="pages" /> {book.pages}
+                    </Text>
+                    <Text type="micro">
+                      <T component="work" name="language" /> {book.language}
+                    </Text>
+                    <Text type="micro">
+                      <T component="work" name="released" />
+                      {book.first_edition_year}
+                    </Text>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-12 pt1">
+                      <Text
+                        type="body"
+                        variant="weight-semibold"
+                        className="mt1 mb0"
+                      >
+                        <T component="work" name="loanTitle" />
+                      </Text>
+                    </div>
+                  </div>
+
+                  <div className="WorkPage__media">
+                    {work.collectionHasLoaded && (
+                      <OrderButton
+                        book={book}
+                        size="medium"
+                        type="quaternary"
+                        icon="book"
+                        label={T({component: 'general', name: 'book'})}
+                        className="mr1 mt1"
+                      />
+                    )}
+                    {work.collectionHasLoaded &&
+                      collection.map(col => {
+                        if (col.count === 1) {
+                          return (
+                            <Link
+                              key={col.url}
+                              href={col.url}
+                              type={HISTORY_NEW_TAB}
+                              meta={{materialType: col.type, pid: book.pid}}
+                            >
+                              <Button
+                                type="quaternary"
+                                size="medium"
+                                className="mr1 mt1"
+                              >
+                                <Icon name={col.icon} />
+                                {col.type}
+                              </Button>
+                            </Link>
+                          );
+                        }
+                      })}
+                    {!work.collectionHasLoaded && (
+                      <React.Fragment>
+                        <a>
+                          <Button
+                            type="tertiary"
+                            size="medium"
+                            className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
+                          >
+                            <Icon name={'book'} />
+                            <T component="general" name="book" />
+                          </Button>
+                        </a>
+                        <a>
+                          <Button
+                            type="tertiary"
+                            size="medium"
+                            className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
+                          >
+                            <Icon name={'alternate_email'} />
+                            <T component="general" name="ebook" />
+                          </Button>
+                        </a>
+                        <a>
+                          <Button
+                            type="tertiary"
+                            size="medium"
+                            className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
+                          >
+                            <Icon name={'voicemail'} />
+                            <T component="general" name="audiobook" />
+                          </Button>
+                        </a>
+                      </React.Fragment>
+                    )}
+                  </div>
+                  <div className="row">
+                    <div className="col-12 mt1">
+                      <BookmarkButton
+                        className="mr1"
+                        origin={T({
+                          component: 'work',
+                          name: 'bookmarkButtonOrigin'
+                        })}
+                        work={work}
+                      />
+                      <AddToListButton className="mr1 pt1" work={work} />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12 pt2">
+                      <Button
+                        type="tertiary"
+                        size="medium"
+                        className="underline"
+                        onClick={() => {
+                          const pos = this.booksBeltPosition
+                            ? this.booksBeltPosition.offsetTop - 50
+                            : 0;
+                          scroll(pos);
+                        }}
+                      >
+                        <T component="work" name="moreLikeThis" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div className="row WorkPage__tagHeading__Mobile">
+                    <div className="col-md-12">
+                      <Text
+                        type="body"
+                        variant="weight-semibold"
+                        className="mt3 mb0"
+                      >
+                        <T component="work" name="bookSpecsTitle" />
+                      </Text>
+                    </div>
+                  </div>
+
+                  <div
+                    id="collapsable-tags"
+                    style={{
+                      transition: this.state.transition ? null : 'none',
+                      height: this.state.tagsCollapsed ? '65px' : height + 'px',
+                      overflowY: 'hidden'
+                    }}
+                    className="row col-12 mt1 WorkPage__tagContainer text-left"
+                  >
+                    {tags.map(group => {
+                      return (
+                        <React.Fragment>
+                          <Text
+                            key={group.title}
+                            type="body"
+                            className="WorkPage__tagHeading mb0 mt0"
+                          >
+                            {group.title + ':'}
+                          </Text>
+                          {group.data.map(t => {
+                            return (
+                              <Link
+                                key={t.id}
+                                href="/find"
+                                params={{tags: t.id}}
+                              >
+                                <Button
+                                  key={t.title}
+                                  type="tertiary"
+                                  size="small"
+                                  className="WorkPage__tag mr1"
+                                  dataCy={'tag-' + t.title}
+                                >
+                                  {t.title}
+                                </Button>
+                              </Link>
+                            );
+                          })}
+                        </React.Fragment>
+                      );
+                    })}
+                  </div>
+                  <div className="row">
+                    <div className="mt1 col-12">
+                      <Button
+                        size="medium"
+                        type="tertiary"
+                        className="underline"
+                        dataCy="tags-collaps-toggle"
+                        onClick={() => {
+                          this.setState({
+                            tagsCollapsed: !this.state.tagsCollapsed,
+                            transition: true
+                          });
+                        }}
+                      >
+                        <T
+                          component="work"
+                          name={
+                            this.state.tagsCollapsed
+                              ? 'tagsCollapsibleShow'
+                              : 'tagsCollapsibleHide'
+                          }
+                        />
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div className="col-12 col-xl-4 WorkPage__reviews mt-5 mb-5 mt-xl-0 mb-xl-0">
+                <div className="row">
+                  <div className="col-md-12">
+                    <Title Tag="h3" type="title4" className="mt0 mb2">
+                      <T component="work" name={'reviewsTitle'} />
+                    </Title>
+                  </div>
+                </div>
 
-              <div
-                id="collapsable-tags"
-                style={{
-                  transition: this.state.transition ? null : 'none',
-                  height: this.state.tagsCollapsed ? '65px' : height + 'px',
-                  overflowY: 'hidden'
-                }}
-                className="row col-12 mt1 WorkPage__tagContainer text-left"
-              >
-                {tags.map(group => {
-                  return (
-                    <React.Fragment>
-                      <Text
-                        key={group.title}
-                        type="body"
-                        className="WorkPage__tagHeading mb0 mt0"
+                {work.reviewsHasLoaded &&
+                  reviews.map(rev => {
+                    return (
+                      <a
+                        href={rev.url}
+                        target="_blank"
+                        className="WorkPage__review mb1"
                       >
                         {group.title + ':'}
-                      </Text>
-                      {group.data.map(t => {
-                        return (
-                          <Link key={t.id} href="/find" params={{tags: t.id}}>
-                            <Button
-                              key={t.title}
-                              type="tertiary"
-                              size="small"
-                              className="WorkPage__tag mr1"
-                              dataCy={'tag-' + t.title}
-                            >
-                              {t.title}
-                            </Button>
-                          </Link>
-                        );
-                      })}
-                    </React.Fragment>
-                  );
-                })}
+
+                        {group.data.map(t => {
+                          return (
+                            <Link key={t.id} href="/find" params={{tags: t.id}}>
+                              <Button
+                                key={t.title}
+                                type="tertiary"
+                                size="small"
+                                className="WorkPage__tag mr1"
+                                dataCy={'tag-' + t.title}
+                              >
+                                {t.title}
+                              </Button>
+                            </Link>
+                          );
+                        })}
+                      </a>
+                    );
+                  })}
               </div>
               <div className="row">
                 <div className="mt1 col-12">
@@ -417,12 +464,13 @@ class WorkPage extends React.Component {
           </div>
           {work.detailsHasLoaded &&
             work.tagsHasLoaded && (
-              <div
-                className="WorkPage__beltContainer col-12 mt4"
-                ref={e => (this.booksBeltPosition = e)}
-              >
-                <BeltFacade belt={belt} />
-              </div>
+              <SimilarBelt
+                key={'workpage' + book.pid}
+                mount={'workpage' + book.pid}
+                likes={[book.pid]}
+                style={{background: 'white'}}
+                className="mt-5"
+              />
             )}
 
           <div className="row col-12 mb2 WorkPage__detailsMobile">
@@ -500,41 +548,8 @@ class WorkPage extends React.Component {
   }
 }
 
-/**
- * mapStateToProps
- * @param state
- * @returns {{beltsState: *}}
- */
-const mapStateToProps = state => {
-  return {
-    beltsState: state.beltsReducer.belts
-  };
-};
-
-/**
- * mapDispatchToProps
- * @param dispatch
- * @returns {{addBelt: addBelt}}
- */
-export const mapDispatchToProps = dispatch => ({
-  addBelt: belt => {
-    dispatch({
-      type: ADD_BELT,
-      belt
-    });
-  }
+export default withWork(WorkPage, {
+  includeTags: true,
+  includeReviews: true,
+  includeCollection: true
 });
-
-/**
- * connect
- */
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(
-  withWork(WorkPage, {
-    includeTags: true,
-    includeReviews: true,
-    includeCollection: true
-  })
-);

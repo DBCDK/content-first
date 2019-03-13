@@ -1,11 +1,4 @@
-import {mergeWith, uniqBy, isArray} from 'lodash';
-
-/* custom merger for merging tags from both metakompas and from subjects */
-const mergeCustomizer = (objValue, srcValue) => {
-  if (isArray(objValue)) {
-    return uniqBy(objValue.concat(srcValue), 'id');
-  }
-};
+import {merge, get, uniqBy} from 'lodash';
 
 const defaultState = {
   books: {}
@@ -21,8 +14,12 @@ const booksReducer = (state = defaultState, action) => {
     case BOOKS_PARTIAL_UPDATE: {
       const books = {...state.books};
       action.books.forEach(b => {
+        const oldTags = get(books[pid], 'book.tags', []);
+        const newTags = get(b, 'book.tags', []);
         const pid = b.book.pid;
-        books[pid] = mergeWith({}, books[pid], b, mergeCustomizer);
+        books[pid] = merge({}, books[pid], b, {
+          book: {tags: uniqBy([...oldTags, ...newTags], 'id')}
+        });
       });
       return Object.assign({}, state, {books: books});
     }
