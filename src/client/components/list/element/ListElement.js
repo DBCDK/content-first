@@ -11,7 +11,6 @@ import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
 import T from '../../base/T';
-import ProfileImage from '../../general/ProfileImage.component';
 import {timestampToLongDate} from '../../../utils/dateTimeFormat';
 import BookCover from '../../general/BookCover.component';
 import textParser from '../../../utils/textParser';
@@ -78,7 +77,7 @@ const ElementContextMenu = ({
 };
 
 const Description = ({
-  showDescription = true,
+  showDescription,
   editing = false,
   owner,
   element,
@@ -183,9 +182,7 @@ export class ListElement extends React.Component {
     } = this.props;
 
     const {editing, originalDescription} = this.state;
-
     const book = element.book;
-    const bookcase = list.template === 'bookcase' ? true : false;
 
     const description = (
       <Description
@@ -193,6 +190,7 @@ export class ListElement extends React.Component {
         owner={owner}
         element={element}
         originalDescription={originalDescription}
+        showDescription={showDescription}
         onSubmit={this.submit}
         onCancel={this.cancel}
         onChange={this.updateDescription}

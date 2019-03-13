@@ -9,19 +9,7 @@ import Share from '../../../base/Share';
 import Text from '../../../base/Text';
 import FollowButton from '../../button/FollowButton';
 
-export const ListInfo = ({
-  list,
-  isListOwner,
-  profile,
-  editing,
-  onDescriptionChange,
-  onTitleChange,
-  addImage,
-  confirmShareModal,
-  onAddBook,
-  onEdit,
-  titleMissing
-}) => {
+export const ListInfo = ({list, isListOwner, profile}) => {
   return (
     <div className="lys-graa position-relative">
       {list.image && (
@@ -73,7 +61,7 @@ const mapStateToProps = (state, ownProps) => {
     profile: getUser(state, {id: ownProps.list._owner})
   };
 };
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = dispatch => ({
   confirmShareModal: _id => {
     dispatch({
       type: 'OPEN_MODAL',

@@ -181,11 +181,10 @@ export class WorkRow extends React.Component {
                 user={owner}
                 value={work.description}
                 cancelText={
-                  this.state.originalDescription ? (
-                    <T component="general" name="cancel" />
-                  ) : (
-                    <T component="post" name="useBookDescription" />
-                  )
+                  <T
+                    component="general"
+                    name={originalDescription ? 'cancel' : 'useBookDescription'}
+                  />
                 }
                 onSubmit={this.submit}
                 onCancel={this.cancel}

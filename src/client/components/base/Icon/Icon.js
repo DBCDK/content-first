@@ -18,7 +18,7 @@ const Icon = ({
         ''} ${classDisabled}`}
       onClick={e => {
         if (!disabled && onClick) {
-          onClick();
+          onClick(e);
         }
       }}
       {...props}

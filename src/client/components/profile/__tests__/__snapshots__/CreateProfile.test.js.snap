@@ -54,7 +54,8 @@ exports[`Image Upload render function Add image 1`] = `
                       name="image"
                     >
                       <i
-                        className="material-icons material-icons-image md-xxlarge"
+                        className="material-icons material-icons-image md-xxlarge "
+                        onClick={[Function]}
                       >
                         image
                       </i>
@@ -387,7 +388,8 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 className="d-flex align-items-center justify-content-center h-100 "
               >
                 <i
-                  className="material-icons material-icons-image md-xxlarge"
+                  className="material-icons material-icons-image md-xxlarge "
+                  onClick={[Function]}
                 >
                   image
                 </i>

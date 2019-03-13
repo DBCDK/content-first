@@ -81,23 +81,6 @@ describe('CommentContainer', () => {
 
     expect(deleteComment.mock.calls[0][0]).toEqual(comment);
   });
-  test('Cancel button', () => {
-    const comment = generateComments();
-    const tree = mount(
-      <CommentWrapper comment={comment} user={comment.user} />
-    );
-    expect(tree).toMatchSnapshot();
-    tree
-      .find('.dropdown-item')
-      .first()
-      .hostNodes()
-      .simulate('click');
-    tree
-      .find('.comment-cancel')
-      .hostNodes()
-      .simulate('click');
-    expect(tree).toMatchSnapshot();
-  });
 
   test('Save button', () => {
     const comment = generateComments();

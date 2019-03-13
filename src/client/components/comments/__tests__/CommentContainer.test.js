@@ -144,9 +144,9 @@ describe('CommentContainer', () => {
     );
     const toggleButton = tree.find('#comment-toggle');
     expect(tree).toMatchSnapshot();
-    expect(toggleButton.text()).toContain('Vis flere kommentarer');
+    expect(toggleButton.text()).toContain('Vis tidligere kommentarer');
     toggleButton.simulate('click');
-    expect(toggleButton.text()).toContain('Vis færre kommentarer');
+    expect(toggleButton.text()).toContain('Skjul tidligere kommentarer');
     expect(tree).toMatchSnapshot();
   });
 });

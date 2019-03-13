@@ -15,7 +15,6 @@ const getListById = getListByIdSelector();
 
 const ListContextMenu = ({
   editListInfo,
-  editSettings,
   reorderList,
   isOwner,
   isCustomList,
@@ -72,13 +71,6 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch({
       type: OPEN_MODAL,
       modal: 'reorderList',
-      context: {_id: ownProps._id}
-    });
-  },
-  editSettings: () => {
-    dispatch({
-      type: OPEN_MODAL,
-      modal: 'listSettings',
       context: {_id: ownProps._id}
     });
   },

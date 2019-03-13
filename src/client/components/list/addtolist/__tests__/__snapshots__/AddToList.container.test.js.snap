@@ -20,14 +20,13 @@ exports[`AddToList render when allowAdd is true 1`] = `
     />
   </Title>
   <div
-    className="d-flex flex-row french-pass pt-4"
+    className="d-flex flex-row pt-2"
   >
     <ProfileImage
-      className="ml-4"
       size="40"
     />
     <Connect(BookSearchSuggester)
-      className="ml-4 mr-4"
+      className="ml-3 mr-5"
       list={
         Object {
           "_id": 1,
@@ -92,14 +91,13 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
     />
   </Title>
   <div
-    className="d-flex flex-row french-pass pt-4"
+    className="d-flex flex-row pt-2"
   >
     <ProfileImage
-      className="ml-4"
       size="40"
     />
     <Connect(BookSearchSuggester)
-      className="ml-4 mr-4"
+      className="ml-3 mr-5"
       list={
         Object {
           "_id": 1,
@@ -164,14 +162,13 @@ exports[`AddToList show error msg when selected books is already in list 1`] = `
     />
   </Title>
   <div
-    className="d-flex flex-row french-pass pt-4"
+    className="d-flex flex-row pt-2"
   >
     <ProfileImage
-      className="ml-4"
       size="40"
     />
     <Connect(BookSearchSuggester)
-      className="ml-4 mr-4"
+      className="ml-3 mr-5"
       list={
         Object {
           "_id": 1,

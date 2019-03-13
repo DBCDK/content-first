@@ -6,13 +6,12 @@ import {withList} from '../../../base/List/withList.hoc';
 
 import T from '../../../base/T';
 import Icon from '../../../base/Icon';
-import Title from '../../../base/Title';
+
 import Text from '../../../base/Text';
 import Banner from '../../../base/Banner';
 
 import Comments from '../../../comments/Comment.container';
 
-import {getListByIdSelector} from '../../../../redux/list.reducer';
 import AddToList from '../../addtolist/AddToList.container';
 import ListElement from '../../element/ListElement';
 import ListInfo from './ListInfo';
@@ -22,8 +21,6 @@ import ListContextMenu from '../../menu/ListContextMenu';
 import {timestampToLongDate} from '../../../../utils/dateTimeFormat';
 
 import './SimpleList.css';
-
-const getListById = getListByIdSelector();
 
 export class SimpleList extends React.Component {
   constructor() {

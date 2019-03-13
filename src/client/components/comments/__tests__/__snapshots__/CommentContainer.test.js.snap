@@ -9,45 +9,13 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
   }
 >
   <div
-    className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
-  >
-    <div
-      className="comment-container-divider col-12"
-    />
-    <div
-      className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
-    >
-      <p
-        className=" Text Text__body "
-      >
-        <span
-          className="d-flex"
-        >
-          <i
-            className="material-icons outline-mode_comment mr-1"
-          >
-            chat_bubble_outline
-          </i>
-          Kommentér
-        </span>
-      </p>
-      <p
-        className=" Text Text__body Text__body--decoration-underline"
-      >
-        <span>
-          0 kommentarer
-        </span>
-      </p>
-    </div>
-  </div>
-  <div
     className="comments undefined"
   >
     <div
-      className={undefined}
+      className="comment-textarea-wrap mb-3 d-flex undefined"
       style={
         Object {
-          "display": "flex",
+          "marginTop": 0,
         }
       }
     >
@@ -60,7 +28,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
             Object {
               "height": "40px",
               "lineHeight": "inherit",
-              "marginRight": "10px",
+              "marginRight": "15px",
               "width": "40px",
             }
           }
@@ -83,58 +51,39 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
         
       </div>
       <div
-        className="form-group "
+        className="d-flex flex-wrap align-items-center w-100 "
         onBlur={[Function]}
         onFocus={[Function]}
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
       >
-        <textarea
-          autoFocus={undefined}
-          className="form-control mb1 comment-textarea"
-          disabled={undefined}
-          name="list-description"
-          onChange={[Function]}
-          placeholder="Skriv kommentar"
-          value=""
-        />
-        
         <div
-          className="tr"
+          className="d-flex w-100"
           style={
             Object {
-              "height": "0px",
-              "opacity": 0,
+              "border": "1px solid #E9EAEB",
               "overflow": "hidden",
-              "transition": "all 200ms",
             }
           }
         >
-          <button
-            className="comment-cancel mr-2 ml-2
-                btn Button Button__medium Button__link "
-            data-cy=""
-            disabled={false}
-            onClick={[Function]}
-          >
-            Fortryd
-          </button>
-          <button
-            className="mr-2 ml-2
-                btn Button Button__large Button__quaternary "
-            data-cy=""
-            disabled={true}
+          <textarea
+            autoFocus={undefined}
+            className="comment-textarea border-0 pl-3"
+            disabled={undefined}
+            name="list-description"
+            onChange={[Function]}
+            placeholder="Din kommentar ..."
+            value=""
+          />
+          <i
+            className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
             id="comment-submit"
             onClick={[Function]}
           >
-            Kommentér
-          </button>
+            send
+          </i>
         </div>
       </div>
     </div>
+    
   </div>
 </div>
 `;
@@ -148,91 +97,13 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
   }
 >
   <div
-    className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
-  >
-    <div
-      className="comment-container-divider col-12"
-    />
-    <div
-      className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
-    >
-      <p
-        className=" Text Text__body "
-      >
-        <span
-          className="d-flex"
-        >
-          <i
-            className="material-icons outline-mode_comment mr-1"
-          >
-            chat_bubble_outline
-          </i>
-          Kommentér
-        </span>
-      </p>
-      <p
-        className=" Text Text__body Text__body--decoration-underline"
-      >
-        <span>
-          2 kommentarer
-        </span>
-      </p>
-    </div>
-  </div>
-  <div
     className="comments undefined"
   >
     <div
-      className="mb2 "
-    >
-      <button
-        className="btn btn-link link-subtle"
-        id="comment-toggle"
-        onClick={[Function]}
-        style={
-          Object {
-            "marginLeft": 55,
-            "marginTop": "-2rem",
-            "paddingLeft": 0,
-            "position": "relative",
-          }
-        }
-      >
-        <p
-          className="mb-0 Text Text__body Text__body--decoration-underline"
-        >
-          Vis flere kommentarer
-        </p>
-      </button>
-      <div
-        style={
-          Object {
-            "height": 0,
-            "transition": "height 500ms",
-          }
-        }
-      >
-        <div>
-          <comment
-            comment={
-              Object {
-                "_id": "1",
-                "comment": "comment1",
-                "user": Object {
-                  "name": "Benny Cosmos",
-                },
-              }
-            }
-            onChange={[Function]}
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      className={undefined}
+      className="comment-textarea-wrap mb-3 d-flex undefined"
       style={
         Object {
-          "display": "flex",
+          "marginTop": 0,
         }
       }
     >
@@ -245,7 +116,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
             Object {
               "height": "40px",
               "lineHeight": "inherit",
-              "marginRight": "10px",
+              "marginRight": "15px",
               "width": "40px",
             }
           }
@@ -268,58 +139,84 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         
       </div>
       <div
-        className="form-group "
+        className="d-flex flex-wrap align-items-center w-100 "
         onBlur={[Function]}
         onFocus={[Function]}
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
       >
-        <textarea
-          autoFocus={undefined}
-          className="form-control mb1 comment-textarea"
-          disabled={undefined}
-          name="list-description"
-          onChange={[Function]}
-          placeholder="Skriv kommentar"
-          value=""
-        />
-        
         <div
-          className="tr"
+          className="d-flex w-100"
           style={
             Object {
-              "height": "0px",
-              "opacity": 0,
+              "border": "1px solid #E9EAEB",
               "overflow": "hidden",
-              "transition": "all 200ms",
             }
           }
         >
-          <button
-            className="comment-cancel mr-2 ml-2
-                btn Button Button__medium Button__link "
-            data-cy=""
-            disabled={false}
-            onClick={[Function]}
-          >
-            Fortryd
-          </button>
-          <button
-            className="mr-2 ml-2
-                btn Button Button__large Button__quaternary "
-            data-cy=""
-            disabled={true}
+          <textarea
+            autoFocus={undefined}
+            className="comment-textarea border-0 pl-3"
+            disabled={undefined}
+            name="list-description"
+            onChange={[Function]}
+            placeholder="Din kommentar ..."
+            value=""
+          />
+          <i
+            className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
             id="comment-submit"
             onClick={[Function]}
           >
-            Kommentér
-          </button>
+            send
+          </i>
         </div>
       </div>
     </div>
+    <div
+      className="mb2"
+    >
+      <div
+        style={
+          Object {
+            "height": 0,
+            "overflow": "hidden",
+            "transition": "height 300ms ease-in-out",
+          }
+        }
+      >
+        <div>
+          <comment
+            comment={
+              Object {
+                "_id": "0",
+                "comment": "comment0",
+                "user": Object {
+                  "name": "Benny Cosmos",
+                },
+              }
+            }
+            onChange={[Function]}
+          />
+        </div>
+      </div>
+    </div>
+    <button
+      className="btn btn-link link-subtle pb-0"
+      id="comment-toggle"
+      onClick={[Function]}
+      style={
+        Object {
+          "marginLeft": 55,
+          "paddingLeft": 0,
+          "position": "relative",
+        }
+      }
+    >
+      <p
+        className="mb-0 Text Text__body Text__body--decoration-underline"
+      >
+        Vis tidligere kommentarer
+      </p>
+    </button>
   </div>
 </div>
 `;
@@ -381,97 +278,118 @@ exports[`CommentContainer Component renders all comments 1`] = `
     }
   >
     <div
-      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
-    >
-      <div
-        className="comment-container-divider col-12"
-      />
-      <div
-        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
-      >
-        <Text
-          type="body"
-        >
-          <p
-            className=" Text Text__body "
-          >
-            <span
-              className="d-flex"
-            >
-              <i
-                className="material-icons outline-mode_comment mr-1"
-              >
-                chat_bubble_outline
-              </i>
-              <T
-                component="post"
-                name="comment"
-              >
-                Kommentér
-              </T>
-            </span>
-          </p>
-        </Text>
-        <Text
-          type="body"
-          variant="decoration-underline"
-        >
-          <p
-            className=" Text Text__body Text__body--decoration-underline"
-          >
-            <span>
-              <T
-                component="post"
-                name="commentsCount"
-                vars={
-                  Array [
-                    5,
-                  ]
-                }
-              >
-                5 kommentarer
-              </T>
-            </span>
-          </p>
-        </Text>
-      </div>
-    </div>
-    <div
       className="comments undefined"
     >
-      <div
-        className="mb2 "
+      <CommentInput
+        error={null}
+        onCancel={[Function]}
+        onChange={[Function]}
+        onSubmit={[Function]}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
+        value=""
       >
-        <button
-          className="btn btn-link link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
+        <div
+          className="comment-textarea-wrap mb-3 d-flex undefined"
           style={
             Object {
-              "marginLeft": 55,
-              "marginTop": "-2rem",
-              "paddingLeft": 0,
-              "position": "relative",
+              "marginTop": 0,
             }
           }
         >
-          <Text
-            className="mb-0"
-            type="body"
-            variant="decoration-underline"
+          <ProfileImage
+            size="40"
+            style={
+              Object {
+                "marginRight": "15px",
+              }
+            }
+            user={
+              Object {
+                "image": "image_id",
+              }
+            }
           >
-            <p
-              className="mb-0 Text Text__body Text__body--decoration-underline"
+            <div
+              className="profile-card d-flex flex-column "
             >
-              <T
-                component="post"
-                name="showLessComments"
+              <span
+                className="profile-image text-center small round"
+                style={
+                  Object {
+                    "height": "40px",
+                    "lineHeight": "inherit",
+                    "marginRight": "15px",
+                    "width": "40px",
+                  }
+                }
               >
-                Vis færre kommentarer
-              </T>
-            </p>
-          </Text>
-        </button>
+                <User
+                  pulse={true}
+                >
+                  <div
+                    className="Skeleton__user__wrap Skeleton__pulse__active"
+                  >
+                    <span
+                      className="Skeleton__user "
+                    >
+                      <img
+                        className="d-none"
+                        onLoad={[Function]}
+                        src="/v1/image/image_id/40/40"
+                      />
+                    </span>
+                  </div>
+                </User>
+              </span>
+            </div>
+          </ProfileImage>
+          <div
+            className="d-flex flex-wrap align-items-center w-100 "
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            <div
+              className="d-flex w-100"
+              style={
+                Object {
+                  "border": "1px solid #E9EAEB",
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <textarea
+                className="comment-textarea border-0 pl-3"
+                name="list-description"
+                onChange={[Function]}
+                placeholder="Din kommentar ..."
+                value=""
+              />
+              <Icon
+                className="comment-submit-icon align-self-end"
+                disabled={true}
+                id="comment-submit"
+                name="send"
+                onClick={[Function]}
+              >
+                <i
+                  className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+                  id="comment-submit"
+                  onClick={[Function]}
+                >
+                  send
+                </i>
+              </Icon>
+            </div>
+          </div>
+        </div>
+      </CommentInput>
+      <div
+        className="mb2"
+      >
         <CommentList
           comments={
             Array [
@@ -523,7 +441,8 @@ exports[`CommentContainer Component renders all comments 1`] = `
             style={
               Object {
                 "height": 0,
-                "transition": "height 500ms",
+                "overflow": "hidden",
+                "transition": "height 300ms ease-in-out",
               }
             }
           >
@@ -597,148 +516,35 @@ exports[`CommentContainer Component renders all comments 1`] = `
           </div>
         </CommentList>
       </div>
-      <CommentInput
-        error={null}
-        onCancel={[Function]}
-        onChange={[Function]}
-        onSubmit={[Function]}
-        user={
+      <button
+        className="btn btn-link link-subtle pb-0"
+        id="comment-toggle"
+        onClick={[Function]}
+        style={
           Object {
-            "image": "image_id",
+            "marginLeft": 55,
+            "paddingLeft": 0,
+            "position": "relative",
           }
         }
-        value=""
       >
-        <div
-          style={
-            Object {
-              "display": "flex",
-            }
-          }
+        <Text
+          className="mb-0"
+          type="body"
+          variant="decoration-underline"
         >
-          <ProfileImage
-            size="40"
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
+          <p
+            className="mb-0 Text Text__body Text__body--decoration-underline"
           >
-            <div
-              className="profile-card d-flex flex-column "
+            <T
+              component="post"
+              name="showLessComments"
             >
-              <span
-                className="profile-image text-center small round"
-                style={
-                  Object {
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "10px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
-          <div
-            className="form-group "
-            onBlur={[Function]}
-            onFocus={[Function]}
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-          >
-            <textarea
-              className="form-control mb1 comment-textarea"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv kommentar"
-              value=""
-            />
-            <div
-              className="tr"
-              style={
-                Object {
-                  "height": "0px",
-                  "opacity": 0,
-                  "overflow": "hidden",
-                  "transition": "all 200ms",
-                }
-              }
-            >
-              <Button
-                className="comment-cancel mr-2 ml-2"
-                onClick={[Function]}
-                size="medium"
-                type="link"
-              >
-                <button
-                  className="comment-cancel mr-2 ml-2
-                      btn Button Button__medium Button__link "
-                  data-cy=""
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <T
-                    component="general"
-                    name="cancel"
-                  >
-                    Fortryd
-                  </T>
-                </button>
-              </Button>
-              <Button
-                className="mr-2 ml-2"
-                disabled={true}
-                id="comment-submit"
-                onClick={[Function]}
-                type="quaternary"
-              >
-                <button
-                  className="mr-2 ml-2
-                      btn Button Button__large Button__quaternary "
-                  data-cy=""
-                  disabled={true}
-                  id="comment-submit"
-                  onClick={[Function]}
-                >
-                  <T
-                    component="post"
-                    name="comment"
-                  >
-                    Kommentér
-                  </T>
-                </button>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </CommentInput>
+              Skjul tidligere kommentarer
+            </T>
+          </p>
+        </Text>
+      </button>
     </div>
   </div>
 </CommentContainer>
@@ -753,74 +559,13 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
   }
 >
   <div
-    className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
-  >
-    <div
-      className="comment-container-divider col-12"
-    />
-    <div
-      className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
-    >
-      <p
-        className=" Text Text__body "
-      >
-        <span
-          className="d-flex"
-        >
-          <i
-            className="material-icons outline-mode_comment mr-1"
-          >
-            chat_bubble_outline
-          </i>
-          Kommentér
-        </span>
-      </p>
-      <p
-        className=" Text Text__body Text__body--decoration-underline"
-      >
-        <span>
-          1 kommentar
-        </span>
-      </p>
-    </div>
-  </div>
-  <div
     className="comments undefined"
   >
     <div
-      className="mb2 "
-    >
-      
-      <div
-        style={
-          Object {
-            "height": 0,
-            "transition": "height 500ms",
-          }
-        }
-      >
-        <div>
-          <comment
-            comment={
-              Object {
-                "_id": "comment",
-                "comment": "This is a comment with ❤️ and links.com 
-               and line breaks",
-                "user": Object {
-                  "name": "Benny Cosmos",
-                },
-              }
-            }
-            onChange={[Function]}
-          />
-        </div>
-      </div>
-    </div>
-    <div
-      className={undefined}
+      className="comment-textarea-wrap mb-3 d-flex undefined"
       style={
         Object {
-          "display": "flex",
+          "marginTop": 0,
         }
       }
     >
@@ -833,7 +578,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
             Object {
               "height": "40px",
               "lineHeight": "inherit",
-              "marginRight": "10px",
+              "marginRight": "15px",
               "width": "40px",
             }
           }
@@ -856,58 +601,68 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
         
       </div>
       <div
-        className="form-group "
+        className="d-flex flex-wrap align-items-center w-100 "
         onBlur={[Function]}
         onFocus={[Function]}
-        style={
-          Object {
-            "width": "100%",
-          }
-        }
       >
-        <textarea
-          autoFocus={undefined}
-          className="form-control mb1 comment-textarea"
-          disabled={undefined}
-          name="list-description"
-          onChange={[Function]}
-          placeholder="Skriv kommentar"
-          value=""
-        />
-        
         <div
-          className="tr"
+          className="d-flex w-100"
           style={
             Object {
-              "height": "0px",
-              "opacity": 0,
+              "border": "1px solid #E9EAEB",
               "overflow": "hidden",
-              "transition": "all 200ms",
             }
           }
         >
-          <button
-            className="comment-cancel mr-2 ml-2
-                btn Button Button__medium Button__link "
-            data-cy=""
-            disabled={false}
-            onClick={[Function]}
-          >
-            Fortryd
-          </button>
-          <button
-            className="mr-2 ml-2
-                btn Button Button__large Button__quaternary "
-            data-cy=""
-            disabled={true}
+          <textarea
+            autoFocus={undefined}
+            className="comment-textarea border-0 pl-3"
+            disabled={undefined}
+            name="list-description"
+            onChange={[Function]}
+            placeholder="Din kommentar ..."
+            value=""
+          />
+          <i
+            className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
             id="comment-submit"
             onClick={[Function]}
           >
-            Kommentér
-          </button>
+            send
+          </i>
         </div>
       </div>
     </div>
+    <div
+      className="mb2"
+    >
+      <div
+        style={
+          Object {
+            "height": 0,
+            "overflow": "hidden",
+            "transition": "height 300ms ease-in-out",
+          }
+        }
+      >
+        <div>
+          <comment
+            comment={
+              Object {
+                "_id": "comment",
+                "comment": "This is a comment with ❤️ and links.com 
+               and line breaks",
+                "user": Object {
+                  "name": "Benny Cosmos",
+                },
+              }
+            }
+            onChange={[Function]}
+          />
+        </div>
+      </div>
+    </div>
+    
   </div>
 </div>
 `;
@@ -954,97 +709,128 @@ exports[`CommentContainer Component renders error 1`] = `
     }
   >
     <div
-      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
-    >
-      <div
-        className="comment-container-divider col-12"
-      />
-      <div
-        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
-      >
-        <Text
-          type="body"
-        >
-          <p
-            className=" Text Text__body "
-          >
-            <span
-              className="d-flex"
-            >
-              <i
-                className="material-icons outline-mode_comment mr-1"
-              >
-                chat_bubble_outline
-              </i>
-              <T
-                component="post"
-                name="comment"
-              >
-                Kommentér
-              </T>
-            </span>
-          </p>
-        </Text>
-        <Text
-          type="body"
-          variant="decoration-underline"
-        >
-          <p
-            className=" Text Text__body Text__body--decoration-underline"
-          >
-            <span>
-              <T
-                component="post"
-                name="commentsCount"
-                vars={
-                  Array [
-                    2,
-                  ]
-                }
-              >
-                2 kommentarer
-              </T>
-            </span>
-          </p>
-        </Text>
-      </div>
-    </div>
-    <div
       className="comments undefined"
     >
-      <div
-        className="mb2 "
+      <CommentInput
+        error={
+          Object {
+            "comment": "comment3",
+            "error": "some error occures",
+          }
+        }
+        onCancel={[Function]}
+        onChange={[Function]}
+        onSubmit={[Function]}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
+        value="comment3"
       >
-        <button
-          className="btn btn-link link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
+        <div
+          className="comment-textarea-wrap mb-3 d-flex undefined"
           style={
             Object {
-              "marginLeft": 55,
-              "marginTop": "-2rem",
-              "paddingLeft": 0,
-              "position": "relative",
+              "marginTop": 0,
             }
           }
         >
-          <Text
-            className="mb-0"
-            type="body"
-            variant="decoration-underline"
+          <ProfileImage
+            size="40"
+            style={
+              Object {
+                "marginRight": "15px",
+              }
+            }
+            user={
+              Object {
+                "image": "image_id",
+              }
+            }
           >
-            <p
-              className="mb-0 Text Text__body Text__body--decoration-underline"
+            <div
+              className="profile-card d-flex flex-column "
             >
-              <T
-                component="post"
-                name="showMoreComments"
+              <span
+                className="profile-image text-center small round"
+                style={
+                  Object {
+                    "height": "40px",
+                    "lineHeight": "inherit",
+                    "marginRight": "15px",
+                    "width": "40px",
+                  }
+                }
               >
-                Vis flere kommentarer
-              </T>
-            </p>
-          </Text>
-        </button>
+                <User
+                  pulse={true}
+                >
+                  <div
+                    className="Skeleton__user__wrap Skeleton__pulse__active"
+                  >
+                    <span
+                      className="Skeleton__user "
+                    >
+                      <img
+                        className="d-none"
+                        onLoad={[Function]}
+                        src="/v1/image/image_id/40/40"
+                      />
+                    </span>
+                  </div>
+                </User>
+              </span>
+            </div>
+          </ProfileImage>
+          <div
+            className="d-flex flex-wrap align-items-center w-100 has-error"
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            <div
+              className="d-flex w-100"
+              style={
+                Object {
+                  "border": "1px solid #E9EAEB",
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <textarea
+                className="comment-textarea border-0 pl-3"
+                name="list-description"
+                onChange={[Function]}
+                placeholder="Din kommentar ..."
+                value="comment3"
+              />
+              <Icon
+                className="comment-submit-icon align-self-end"
+                disabled={false}
+                id="comment-submit"
+                name="send"
+                onClick={[Function]}
+              >
+                <i
+                  className="material-icons material-icons-send comment-submit-icon align-self-end "
+                  id="comment-submit"
+                  onClick={[Function]}
+                >
+                  send
+                </i>
+              </Icon>
+            </div>
+            <div
+              className="error"
+            >
+              some error occures
+            </div>
+          </div>
+        </div>
+      </CommentInput>
+      <div
+        className="mb2"
+      >
         <CommentList
           comments={
             Array [
@@ -1075,7 +861,8 @@ exports[`CommentContainer Component renders error 1`] = `
             style={
               Object {
                 "height": 0,
-                "transition": "height 500ms",
+                "overflow": "hidden",
+                "transition": "height 300ms ease-in-out",
               }
             }
           >
@@ -1083,172 +870,49 @@ exports[`CommentContainer Component renders error 1`] = `
               <comment
                 comment={
                   Object {
-                    "_id": "1",
-                    "comment": "comment1",
+                    "_id": "0",
+                    "comment": "comment0",
                     "user": Object {
                       "name": "Benny Cosmos",
                     },
                   }
                 }
-                key="1"
+                key="0"
                 onChange={[Function]}
               />
             </div>
           </div>
         </CommentList>
       </div>
-      <CommentInput
-        error={
+      <button
+        className="btn btn-link link-subtle pb-0"
+        id="comment-toggle"
+        onClick={[Function]}
+        style={
           Object {
-            "comment": "comment3",
-            "error": "some error occures",
+            "marginLeft": 55,
+            "paddingLeft": 0,
+            "position": "relative",
           }
         }
-        onCancel={[Function]}
-        onChange={[Function]}
-        onSubmit={[Function]}
-        user={
-          Object {
-            "image": "image_id",
-          }
-        }
-        value="comment3"
       >
-        <div
-          style={
-            Object {
-              "display": "flex",
-            }
-          }
+        <Text
+          className="mb-0"
+          type="body"
+          variant="decoration-underline"
         >
-          <ProfileImage
-            size="40"
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
+          <p
+            className="mb-0 Text Text__body Text__body--decoration-underline"
           >
-            <div
-              className="profile-card d-flex flex-column "
+            <T
+              component="post"
+              name="showMoreComments"
             >
-              <span
-                className="profile-image text-center small round"
-                style={
-                  Object {
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "10px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
-          <div
-            className="form-group has-error"
-            onBlur={[Function]}
-            onFocus={[Function]}
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-          >
-            <textarea
-              className="form-control mb1 comment-textarea"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv kommentar"
-              value="comment3"
-            />
-            <div
-              className="error"
-            >
-              some error occures
-            </div>
-            <div
-              className="tr"
-              style={
-                Object {
-                  "height": "50px",
-                  "opacity": 1,
-                  "overflow": "hidden",
-                  "transition": "all 200ms",
-                }
-              }
-            >
-              <Button
-                className="comment-cancel mr-2 ml-2"
-                onClick={[Function]}
-                size="medium"
-                type="link"
-              >
-                <button
-                  className="comment-cancel mr-2 ml-2
-                      btn Button Button__medium Button__link "
-                  data-cy=""
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <T
-                    component="general"
-                    name="cancel"
-                  >
-                    Fortryd
-                  </T>
-                </button>
-              </Button>
-              <Button
-                className="mr-2 ml-2"
-                disabled={false}
-                id="comment-submit"
-                onClick={[Function]}
-                type="quaternary"
-              >
-                <button
-                  className="mr-2 ml-2
-                      btn Button Button__large Button__quaternary "
-                  data-cy=""
-                  disabled={false}
-                  id="comment-submit"
-                  onClick={[Function]}
-                >
-                  <T
-                    component="post"
-                    name="comment"
-                  >
-                    Kommentér
-                  </T>
-                </button>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </CommentInput>
+              Vis tidligere kommentarer
+            </T>
+          </p>
+        </Text>
+      </button>
     </div>
   </div>
 </CommentContainer>
@@ -1298,97 +962,118 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
     }
   >
     <div
-      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
-    >
-      <div
-        className="comment-container-divider col-12"
-      />
-      <div
-        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
-      >
-        <Text
-          type="body"
-        >
-          <p
-            className=" Text Text__body "
-          >
-            <span
-              className="d-flex"
-            >
-              <i
-                className="material-icons outline-mode_comment mr-1"
-              >
-                chat_bubble_outline
-              </i>
-              <T
-                component="post"
-                name="comment"
-              >
-                Kommentér
-              </T>
-            </span>
-          </p>
-        </Text>
-        <Text
-          type="body"
-          variant="decoration-underline"
-        >
-          <p
-            className=" Text Text__body Text__body--decoration-underline"
-          >
-            <span>
-              <T
-                component="post"
-                name="commentsCount"
-                vars={
-                  Array [
-                    3,
-                  ]
-                }
-              >
-                3 kommentarer
-              </T>
-            </span>
-          </p>
-        </Text>
-      </div>
-    </div>
-    <div
       className="comments undefined"
     >
-      <div
-        className="mb2 "
+      <CommentInput
+        error={null}
+        onCancel={[Function]}
+        onChange={[Function]}
+        onSubmit={[Function]}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
+        value=""
       >
-        <button
-          className="btn btn-link link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
+        <div
+          className="comment-textarea-wrap mb-3 d-flex undefined"
           style={
             Object {
-              "marginLeft": 55,
-              "marginTop": "-2rem",
-              "paddingLeft": 0,
-              "position": "relative",
+              "marginTop": 0,
             }
           }
         >
-          <Text
-            className="mb-0"
-            type="body"
-            variant="decoration-underline"
+          <ProfileImage
+            size="40"
+            style={
+              Object {
+                "marginRight": "15px",
+              }
+            }
+            user={
+              Object {
+                "image": "image_id",
+              }
+            }
           >
-            <p
-              className="mb-0 Text Text__body Text__body--decoration-underline"
+            <div
+              className="profile-card d-flex flex-column "
             >
-              <T
-                component="post"
-                name="showMoreComments"
+              <span
+                className="profile-image text-center small round"
+                style={
+                  Object {
+                    "height": "40px",
+                    "lineHeight": "inherit",
+                    "marginRight": "15px",
+                    "width": "40px",
+                  }
+                }
               >
-                Vis flere kommentarer
-              </T>
-            </p>
-          </Text>
-        </button>
+                <User
+                  pulse={true}
+                >
+                  <div
+                    className="Skeleton__user__wrap Skeleton__pulse__active"
+                  >
+                    <span
+                      className="Skeleton__user "
+                    >
+                      <img
+                        className="d-none"
+                        onLoad={[Function]}
+                        src="/v1/image/image_id/40/40"
+                      />
+                    </span>
+                  </div>
+                </User>
+              </span>
+            </div>
+          </ProfileImage>
+          <div
+            className="d-flex flex-wrap align-items-center w-100 "
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            <div
+              className="d-flex w-100"
+              style={
+                Object {
+                  "border": "1px solid #E9EAEB",
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <textarea
+                className="comment-textarea border-0 pl-3"
+                name="list-description"
+                onChange={[Function]}
+                placeholder="Din kommentar ..."
+                value=""
+              />
+              <Icon
+                className="comment-submit-icon align-self-end"
+                disabled={true}
+                id="comment-submit"
+                name="send"
+                onClick={[Function]}
+              >
+                <i
+                  className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+                  id="comment-submit"
+                  onClick={[Function]}
+                >
+                  send
+                </i>
+              </Icon>
+            </div>
+          </div>
+        </div>
+      </CommentInput>
+      <div
+        className="mb2"
+      >
         <CommentList
           comments={
             Array [
@@ -1427,7 +1112,8 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             style={
               Object {
                 "height": 0,
-                "transition": "height 500ms",
+                "overflow": "hidden",
+                "transition": "height 300ms ease-in-out",
               }
             }
           >
@@ -1435,163 +1121,49 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
               <comment
                 comment={
                   Object {
-                    "_id": "new_comment",
-                    "comment": "comment new",
-                    "saving": true,
+                    "_id": "0",
+                    "comment": "comment0",
                     "user": Object {
                       "name": "Benny Cosmos",
                     },
                   }
                 }
-                key="new_comment"
+                key="0"
                 onChange={[Function]}
               />
             </div>
           </div>
         </CommentList>
       </div>
-      <CommentInput
-        error={null}
-        onCancel={[Function]}
-        onChange={[Function]}
-        onSubmit={[Function]}
-        user={
+      <button
+        className="btn btn-link link-subtle pb-0"
+        id="comment-toggle"
+        onClick={[Function]}
+        style={
           Object {
-            "image": "image_id",
+            "marginLeft": 55,
+            "paddingLeft": 0,
+            "position": "relative",
           }
         }
-        value=""
       >
-        <div
-          style={
-            Object {
-              "display": "flex",
-            }
-          }
+        <Text
+          className="mb-0"
+          type="body"
+          variant="decoration-underline"
         >
-          <ProfileImage
-            size="40"
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
+          <p
+            className="mb-0 Text Text__body Text__body--decoration-underline"
           >
-            <div
-              className="profile-card d-flex flex-column "
+            <T
+              component="post"
+              name="showMoreComments"
             >
-              <span
-                className="profile-image text-center small round"
-                style={
-                  Object {
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "10px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
-          <div
-            className="form-group "
-            onBlur={[Function]}
-            onFocus={[Function]}
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-          >
-            <textarea
-              className="form-control mb1 comment-textarea"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv kommentar"
-              value=""
-            />
-            <div
-              className="tr"
-              style={
-                Object {
-                  "height": "0px",
-                  "opacity": 0,
-                  "overflow": "hidden",
-                  "transition": "all 200ms",
-                }
-              }
-            >
-              <Button
-                className="comment-cancel mr-2 ml-2"
-                onClick={[Function]}
-                size="medium"
-                type="link"
-              >
-                <button
-                  className="comment-cancel mr-2 ml-2
-                      btn Button Button__medium Button__link "
-                  data-cy=""
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <T
-                    component="general"
-                    name="cancel"
-                  >
-                    Fortryd
-                  </T>
-                </button>
-              </Button>
-              <Button
-                className="mr-2 ml-2"
-                disabled={true}
-                id="comment-submit"
-                onClick={[Function]}
-                type="quaternary"
-              >
-                <button
-                  className="mr-2 ml-2
-                      btn Button Button__large Button__quaternary "
-                  data-cy=""
-                  disabled={true}
-                  id="comment-submit"
-                  onClick={[Function]}
-                >
-                  <T
-                    component="post"
-                    name="comment"
-                  >
-                    Kommentér
-                  </T>
-                </button>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </CommentInput>
+              Vis tidligere kommentarer
+            </T>
+          </p>
+        </Text>
+      </button>
     </div>
   </div>
 </CommentContainer>
@@ -1654,97 +1226,118 @@ exports[`CommentContainer Toggle all comments 1`] = `
     }
   >
     <div
-      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
-    >
-      <div
-        className="comment-container-divider col-12"
-      />
-      <div
-        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
-      >
-        <Text
-          type="body"
-        >
-          <p
-            className=" Text Text__body "
-          >
-            <span
-              className="d-flex"
-            >
-              <i
-                className="material-icons outline-mode_comment mr-1"
-              >
-                chat_bubble_outline
-              </i>
-              <T
-                component="post"
-                name="comment"
-              >
-                Kommentér
-              </T>
-            </span>
-          </p>
-        </Text>
-        <Text
-          type="body"
-          variant="decoration-underline"
-        >
-          <p
-            className=" Text Text__body Text__body--decoration-underline"
-          >
-            <span>
-              <T
-                component="post"
-                name="commentsCount"
-                vars={
-                  Array [
-                    5,
-                  ]
-                }
-              >
-                5 kommentarer
-              </T>
-            </span>
-          </p>
-        </Text>
-      </div>
-    </div>
-    <div
       className="comments undefined"
     >
-      <div
-        className="mb2 "
+      <CommentInput
+        error={null}
+        onCancel={[Function]}
+        onChange={[Function]}
+        onSubmit={[Function]}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
+        value=""
       >
-        <button
-          className="btn btn-link link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
+        <div
+          className="comment-textarea-wrap mb-3 d-flex undefined"
           style={
             Object {
-              "marginLeft": 55,
-              "marginTop": "-2rem",
-              "paddingLeft": 0,
-              "position": "relative",
+              "marginTop": 0,
             }
           }
         >
-          <Text
-            className="mb-0"
-            type="body"
-            variant="decoration-underline"
+          <ProfileImage
+            size="40"
+            style={
+              Object {
+                "marginRight": "15px",
+              }
+            }
+            user={
+              Object {
+                "image": "image_id",
+              }
+            }
           >
-            <p
-              className="mb-0 Text Text__body Text__body--decoration-underline"
+            <div
+              className="profile-card d-flex flex-column "
             >
-              <T
-                component="post"
-                name="showMoreComments"
+              <span
+                className="profile-image text-center small round"
+                style={
+                  Object {
+                    "height": "40px",
+                    "lineHeight": "inherit",
+                    "marginRight": "15px",
+                    "width": "40px",
+                  }
+                }
               >
-                Vis flere kommentarer
-              </T>
-            </p>
-          </Text>
-        </button>
+                <User
+                  pulse={true}
+                >
+                  <div
+                    className="Skeleton__user__wrap Skeleton__pulse__active"
+                  >
+                    <span
+                      className="Skeleton__user "
+                    >
+                      <img
+                        className="d-none"
+                        onLoad={[Function]}
+                        src="/v1/image/image_id/40/40"
+                      />
+                    </span>
+                  </div>
+                </User>
+              </span>
+            </div>
+          </ProfileImage>
+          <div
+            className="d-flex flex-wrap align-items-center w-100 "
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            <div
+              className="d-flex w-100"
+              style={
+                Object {
+                  "border": "1px solid #E9EAEB",
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <textarea
+                className="comment-textarea border-0 pl-3"
+                name="list-description"
+                onChange={[Function]}
+                placeholder="Din kommentar ..."
+                value=""
+              />
+              <Icon
+                className="comment-submit-icon align-self-end"
+                disabled={true}
+                id="comment-submit"
+                name="send"
+                onClick={[Function]}
+              >
+                <i
+                  className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+                  id="comment-submit"
+                  onClick={[Function]}
+                >
+                  send
+                </i>
+              </Icon>
+            </div>
+          </div>
+        </div>
+      </CommentInput>
+      <div
+        className="mb2"
+      >
         <CommentList
           comments={
             Array [
@@ -1796,7 +1389,8 @@ exports[`CommentContainer Toggle all comments 1`] = `
             style={
               Object {
                 "height": 0,
-                "transition": "height 500ms",
+                "overflow": "hidden",
+                "transition": "height 300ms ease-in-out",
               }
             }
           >
@@ -1804,162 +1398,49 @@ exports[`CommentContainer Toggle all comments 1`] = `
               <comment
                 comment={
                   Object {
-                    "_id": "4",
-                    "comment": "comment4",
+                    "_id": "0",
+                    "comment": "comment0",
                     "user": Object {
                       "name": "Benny Cosmos",
                     },
                   }
                 }
-                key="4"
+                key="0"
                 onChange={[Function]}
               />
             </div>
           </div>
         </CommentList>
       </div>
-      <CommentInput
-        error={null}
-        onCancel={[Function]}
-        onChange={[Function]}
-        onSubmit={[Function]}
-        user={
+      <button
+        className="btn btn-link link-subtle pb-0"
+        id="comment-toggle"
+        onClick={[Function]}
+        style={
           Object {
-            "image": "image_id",
+            "marginLeft": 55,
+            "paddingLeft": 0,
+            "position": "relative",
           }
         }
-        value=""
       >
-        <div
-          style={
-            Object {
-              "display": "flex",
-            }
-          }
+        <Text
+          className="mb-0"
+          type="body"
+          variant="decoration-underline"
         >
-          <ProfileImage
-            size="40"
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
+          <p
+            className="mb-0 Text Text__body Text__body--decoration-underline"
           >
-            <div
-              className="profile-card d-flex flex-column "
+            <T
+              component="post"
+              name="showMoreComments"
             >
-              <span
-                className="profile-image text-center small round"
-                style={
-                  Object {
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "10px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
-          <div
-            className="form-group "
-            onBlur={[Function]}
-            onFocus={[Function]}
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-          >
-            <textarea
-              className="form-control mb1 comment-textarea"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv kommentar"
-              value=""
-            />
-            <div
-              className="tr"
-              style={
-                Object {
-                  "height": "0px",
-                  "opacity": 0,
-                  "overflow": "hidden",
-                  "transition": "all 200ms",
-                }
-              }
-            >
-              <Button
-                className="comment-cancel mr-2 ml-2"
-                onClick={[Function]}
-                size="medium"
-                type="link"
-              >
-                <button
-                  className="comment-cancel mr-2 ml-2
-                      btn Button Button__medium Button__link "
-                  data-cy=""
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <T
-                    component="general"
-                    name="cancel"
-                  >
-                    Fortryd
-                  </T>
-                </button>
-              </Button>
-              <Button
-                className="mr-2 ml-2"
-                disabled={true}
-                id="comment-submit"
-                onClick={[Function]}
-                type="quaternary"
-              >
-                <button
-                  className="mr-2 ml-2
-                      btn Button Button__large Button__quaternary "
-                  data-cy=""
-                  disabled={true}
-                  id="comment-submit"
-                  onClick={[Function]}
-                >
-                  <T
-                    component="post"
-                    name="comment"
-                  >
-                    Kommentér
-                  </T>
-                </button>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </CommentInput>
+              Vis tidligere kommentarer
+            </T>
+          </p>
+        </Text>
+      </button>
     </div>
   </div>
 </CommentContainer>
@@ -2022,97 +1503,118 @@ exports[`CommentContainer Toggle all comments 2`] = `
     }
   >
     <div
-      className="comment-container-info row pl-3 pl-sm-4 pr-3 pr-sm-4  pb-0"
-    >
-      <div
-        className="comment-container-divider col-12"
-      />
-      <div
-        className="pl-md-5 pr-md-5 col-12  d-flex justify-content-between"
-      >
-        <Text
-          type="body"
-        >
-          <p
-            className=" Text Text__body "
-          >
-            <span
-              className="d-flex"
-            >
-              <i
-                className="material-icons outline-mode_comment mr-1"
-              >
-                chat_bubble_outline
-              </i>
-              <T
-                component="post"
-                name="comment"
-              >
-                Kommentér
-              </T>
-            </span>
-          </p>
-        </Text>
-        <Text
-          type="body"
-          variant="decoration-underline"
-        >
-          <p
-            className=" Text Text__body Text__body--decoration-underline"
-          >
-            <span>
-              <T
-                component="post"
-                name="commentsCount"
-                vars={
-                  Array [
-                    5,
-                  ]
-                }
-              >
-                5 kommentarer
-              </T>
-            </span>
-          </p>
-        </Text>
-      </div>
-    </div>
-    <div
       className="comments undefined"
     >
-      <div
-        className="mb2 "
+      <CommentInput
+        error={null}
+        onCancel={[Function]}
+        onChange={[Function]}
+        onSubmit={[Function]}
+        user={
+          Object {
+            "image": "image_id",
+          }
+        }
+        value=""
       >
-        <button
-          className="btn btn-link link-subtle"
-          id="comment-toggle"
-          onClick={[Function]}
+        <div
+          className="comment-textarea-wrap mb-3 d-flex undefined"
           style={
             Object {
-              "marginLeft": 55,
-              "marginTop": "-2rem",
-              "paddingLeft": 0,
-              "position": "relative",
+              "marginTop": 0,
             }
           }
         >
-          <Text
-            className="mb-0"
-            type="body"
-            variant="decoration-underline"
+          <ProfileImage
+            size="40"
+            style={
+              Object {
+                "marginRight": "15px",
+              }
+            }
+            user={
+              Object {
+                "image": "image_id",
+              }
+            }
           >
-            <p
-              className="mb-0 Text Text__body Text__body--decoration-underline"
+            <div
+              className="profile-card d-flex flex-column "
             >
-              <T
-                component="post"
-                name="showLessComments"
+              <span
+                className="profile-image text-center small round"
+                style={
+                  Object {
+                    "height": "40px",
+                    "lineHeight": "inherit",
+                    "marginRight": "15px",
+                    "width": "40px",
+                  }
+                }
               >
-                Vis færre kommentarer
-              </T>
-            </p>
-          </Text>
-        </button>
+                <User
+                  pulse={true}
+                >
+                  <div
+                    className="Skeleton__user__wrap Skeleton__pulse__active"
+                  >
+                    <span
+                      className="Skeleton__user "
+                    >
+                      <img
+                        className="d-none"
+                        onLoad={[Function]}
+                        src="/v1/image/image_id/40/40"
+                      />
+                    </span>
+                  </div>
+                </User>
+              </span>
+            </div>
+          </ProfileImage>
+          <div
+            className="d-flex flex-wrap align-items-center w-100 "
+            onBlur={[Function]}
+            onFocus={[Function]}
+          >
+            <div
+              className="d-flex w-100"
+              style={
+                Object {
+                  "border": "1px solid #E9EAEB",
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <textarea
+                className="comment-textarea border-0 pl-3"
+                name="list-description"
+                onChange={[Function]}
+                placeholder="Din kommentar ..."
+                value=""
+              />
+              <Icon
+                className="comment-submit-icon align-self-end"
+                disabled={true}
+                id="comment-submit"
+                name="send"
+                onClick={[Function]}
+              >
+                <i
+                  className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+                  id="comment-submit"
+                  onClick={[Function]}
+                >
+                  send
+                </i>
+              </Icon>
+            </div>
+          </div>
+        </div>
+      </CommentInput>
+      <div
+        className="mb2"
+      >
         <CommentList
           comments={
             Array [
@@ -2164,7 +1666,8 @@ exports[`CommentContainer Toggle all comments 2`] = `
             style={
               Object {
                 "height": 0,
-                "transition": "height 500ms",
+                "overflow": "hidden",
+                "transition": "height 300ms ease-in-out",
               }
             }
           >
@@ -2238,148 +1741,35 @@ exports[`CommentContainer Toggle all comments 2`] = `
           </div>
         </CommentList>
       </div>
-      <CommentInput
-        error={null}
-        onCancel={[Function]}
-        onChange={[Function]}
-        onSubmit={[Function]}
-        user={
+      <button
+        className="btn btn-link link-subtle pb-0"
+        id="comment-toggle"
+        onClick={[Function]}
+        style={
           Object {
-            "image": "image_id",
+            "marginLeft": 55,
+            "paddingLeft": 0,
+            "position": "relative",
           }
         }
-        value=""
       >
-        <div
-          style={
-            Object {
-              "display": "flex",
-            }
-          }
+        <Text
+          className="mb-0"
+          type="body"
+          variant="decoration-underline"
         >
-          <ProfileImage
-            size="40"
-            style={
-              Object {
-                "marginRight": "10px",
-              }
-            }
-            user={
-              Object {
-                "image": "image_id",
-              }
-            }
+          <p
+            className="mb-0 Text Text__body Text__body--decoration-underline"
           >
-            <div
-              className="profile-card d-flex flex-column "
+            <T
+              component="post"
+              name="showLessComments"
             >
-              <span
-                className="profile-image text-center small round"
-                style={
-                  Object {
-                    "height": "40px",
-                    "lineHeight": "inherit",
-                    "marginRight": "10px",
-                    "width": "40px",
-                  }
-                }
-              >
-                <User
-                  pulse={true}
-                >
-                  <div
-                    className="Skeleton__user__wrap Skeleton__pulse__active"
-                  >
-                    <span
-                      className="Skeleton__user "
-                    >
-                      <img
-                        className="d-none"
-                        onLoad={[Function]}
-                        src="/v1/image/image_id/40/40"
-                      />
-                    </span>
-                  </div>
-                </User>
-              </span>
-            </div>
-          </ProfileImage>
-          <div
-            className="form-group "
-            onBlur={[Function]}
-            onFocus={[Function]}
-            style={
-              Object {
-                "width": "100%",
-              }
-            }
-          >
-            <textarea
-              className="form-control mb1 comment-textarea"
-              name="list-description"
-              onChange={[Function]}
-              placeholder="Skriv kommentar"
-              value=""
-            />
-            <div
-              className="tr"
-              style={
-                Object {
-                  "height": "0px",
-                  "opacity": 0,
-                  "overflow": "hidden",
-                  "transition": "all 200ms",
-                }
-              }
-            >
-              <Button
-                className="comment-cancel mr-2 ml-2"
-                onClick={[Function]}
-                size="medium"
-                type="link"
-              >
-                <button
-                  className="comment-cancel mr-2 ml-2
-                      btn Button Button__medium Button__link "
-                  data-cy=""
-                  disabled={false}
-                  onClick={[Function]}
-                >
-                  <T
-                    component="general"
-                    name="cancel"
-                  >
-                    Fortryd
-                  </T>
-                </button>
-              </Button>
-              <Button
-                className="mr-2 ml-2"
-                disabled={true}
-                id="comment-submit"
-                onClick={[Function]}
-                type="quaternary"
-              >
-                <button
-                  className="mr-2 ml-2
-                      btn Button Button__large Button__quaternary "
-                  data-cy=""
-                  disabled={true}
-                  id="comment-submit"
-                  onClick={[Function]}
-                >
-                  <T
-                    component="post"
-                    name="comment"
-                  >
-                    Kommentér
-                  </T>
-                </button>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </CommentInput>
+              Skjul tidligere kommentarer
+            </T>
+          </p>
+        </Text>
+      </button>
     </div>
   </div>
 </CommentContainer>

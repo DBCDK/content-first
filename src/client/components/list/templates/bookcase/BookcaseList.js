@@ -1,30 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
-
 import {withList} from '../../../base/List/withList.hoc';
-
-import {getListByIdSelector} from '../../../../redux/list.reducer';
-import {getUser} from '../../../../redux/users';
 import AddToList from '../../addtolist/AddToList.container';
 import ListElement from '../../element/ListElement';
 import ListInfo from './ListInfo';
-
 import T from '../../../base/T';
 import Icon from '../../../base/Icon';
-import Title from '../../../base/Title';
 import Text from '../../../base/Text';
 import Banner from '../../../base/Banner';
-
 import Comments from '../../../comments/Comment.container';
-
 import ListContextMenu from '../../menu/ListContextMenu';
-
 import {timestampToLongDate} from '../../../../utils/dateTimeFormat';
 
 import './bookcaseList.css';
-
-const getListById = getListByIdSelector();
 
 export class BookcaseList extends React.Component {
   constructor() {

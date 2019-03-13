@@ -32,7 +32,7 @@ exports[`renders without crashing 1`] = `
           className="Topbar__navigation__btn widthCalc d-none d-md-flex"
         >
           <i
-            className="material-icons material-icons-search "
+            className="material-icons material-icons-search  "
             onClick={[Function]}
           >
             search
@@ -88,7 +88,7 @@ exports[`renders without crashing 1`] = `
                   </div>
                 </div>
                 <i
-                  className="material-icons material-icons-search md-large d-md-none d-sm-inline-block"
+                  className="material-icons material-icons-search md-large d-md-none d-sm-inline-block "
                   onClick={[Function]}
                 >
                   search
@@ -115,7 +115,7 @@ exports[`renders without crashing 1`] = `
           target="_self"
         >
           <i
-            className="material-icons material-icons-search "
+            className="material-icons material-icons-search  "
             onClick={[Function]}
           >
             search
@@ -129,7 +129,8 @@ exports[`renders without crashing 1`] = `
           target="_self"
         >
           <i
-            className="material-icons material-icons-bookmark_border "
+            className="material-icons material-icons-bookmark_border  "
+            onClick={[Function]}
           >
             bookmark_border
           </i>
@@ -151,7 +152,8 @@ exports[`renders without crashing 1`] = `
           onClick={[Function]}
         >
           <i
-            className="material-icons material-icons-bookmark_border "
+            className="material-icons material-icons-bookmark_border  "
+            onClick={[Function]}
           >
             bookmark_border
           </i>
@@ -1971,7 +1973,8 @@ exports[`renders without crashing 1`] = `
       onClick={[Function]}
     >
       <i
-        className="material-icons material-icons-chat_bubble_outline icon__feedback md-small"
+        className="material-icons material-icons-chat_bubble_outline icon__feedback md-small "
+        onClick={[Function]}
       >
         chat_bubble_outline
       </i>

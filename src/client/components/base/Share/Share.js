@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import facebook from './facebook.svg';
 import './Share.css';
@@ -34,8 +33,7 @@ const Share = ({
   target = '_blank',
   preventCash = true,
   onClick = null,
-  title = null,
-  ...props
+  title = null
 }) => {
   const url = 'https://www.facebook.com/sharer/sharer.php?display=page&u=';
   const cash = preventCash ? `?${Date.now()}` : '';

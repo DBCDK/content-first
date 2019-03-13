@@ -4,28 +4,21 @@ import {connect} from 'react-redux';
 import {updateList, storeList} from '../../../../redux/list.reducer';
 import Share from '../../../base/Share';
 
-import Title from '../../../base/Title';
 import Text from '../../../base/Text';
 import T from '../../../base/T';
 
 import FollowButton from '../../button/FollowButton';
-import AddBookButton from '../../button/AddBookButton';
-import ListContextMenu from '../../menu/ListContextMenu';
+
 import Pulse from '../../../pulse/Pulse.component';
 import ProfileImage from '../../../general/ProfileImage.component';
 import CommentCounter from '../../../comments/CommentCounter.component';
-import {
-  percentageObjToPixel,
-  pixelObjToPercentage
-} from '../../../../utils/converter.js';
+import {percentageObjToPixel} from '../../../../utils/converter.js';
 import {getUser} from '../../../../redux/users';
 
 export const ListInfo = ({
   list,
   isListOwner,
   profile,
-  confirmShareModal,
-  onAddBook,
   infoRef,
   sticky,
   expanded,
@@ -144,7 +137,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export const mapDispatchToProps = (dispatch, ownProps) => ({
+export const mapDispatchToProps = dispatch => ({
   confirmShareModal: _id => {
     dispatch({
       type: 'OPEN_MODAL',

@@ -101,11 +101,6 @@ export const withList = WrappedComponent => {
   const mapStateToProps = (state, ownProps) => {
     const list = getListById(state, {_id: ownProps.id || ownProps._id});
 
-    console.log(
-      'isListOwner',
-      (list && state.userReducer.openplatformId === list._owner) || null
-    );
-
     return {
       list,
       isListOwner:
