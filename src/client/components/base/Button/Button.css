@@ -181,11 +181,11 @@
 }
 
 .Button__icon--left {
-  margin-right: 0.4em;
+  margin-right: 0.25em;
 }
 
 .Button__icon--right {
-  margin-left: 0.4em;
+  margin-left: 0.25em;
 }
 
 .Button span {

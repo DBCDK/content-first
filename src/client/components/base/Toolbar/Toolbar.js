@@ -17,19 +17,12 @@ let constructElement = item => {
   return React.createElement(item.type, propsWithoutAlign, item.props.children);
 };
 
-const Toolbar = props => {
+const Toolbar = ({className, ...props}) => {
   const elements = Array.isArray(props.children)
     ? props.children
     : [props.children];
-  const newProps = {
-    ...props,
-    className:
-      typeof props.className === 'undefined'
-        ? 'Toolbar'
-        : 'Toolbar ' + props.className
-  };
   return (
-    <div {...newProps}>
+    <div className={`Toolbar ${className || ''}`} {...props}>
       <div className="Toolbar__left">
         {elements
           .filter(items => items.props.align === TOOLBAR_LEFT)
