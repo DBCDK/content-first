@@ -336,10 +336,11 @@ class WorkPage extends React.Component {
                   </div>
                 </div>
               </div>
+
               <div className="col-12 col-xl-4 WorkPage__reviews mt-5 mb-5 mt-xl-0 mb-xl-0">
                 <div className="row">
                   <div className="col-md-12">
-                    <Title Tag="h3" type="title4" className="mt0 mb2">
+                    <Title Tag="h5" type="title5" className="mt3 mb2">
                       <T component="work" name={'reviewsTitle'} />
                     </Title>
                   </div>
@@ -353,114 +354,51 @@ class WorkPage extends React.Component {
                         target="_blank"
                         className="WorkPage__review mb1"
                       >
-                        {group.title + ':'}
-
-                        {group.data.map(t => {
-                          return (
-                            <Link key={t.id} href="/find" params={{tags: t.id}}>
-                              <Button
-                                key={t.title}
-                                type="tertiary"
-                                size="small"
-                                className="WorkPage__tag mr1"
-                                dataCy={'tag-' + t.title}
-                              >
-                                {t.title}
-                              </Button>
-                            </Link>
-                          );
-                        })}
+                        <Icon name="face" />
+                        <span className="WorkPage__review__details ml2">
+                          <Text
+                            type="body"
+                            variant="weight-semibold"
+                            className="mb0"
+                          >
+                            {rev.creator}
+                          </Text>
+                          <Text type="body">{rev.date}</Text>
+                        </span>
                       </a>
                     );
                   })}
-              </div>
-              <div className="row">
-                <div className="mt1 col-12">
-                  <Button
-                    size="medium"
-                    type="tertiary"
-                    className="underline"
-                    dataCy="tags-collaps-toggle"
-                    onClick={() => {
-                      this.setState({
-                        tagsCollapsed: !this.state.tagsCollapsed,
-                        transition: true
-                      });
-                    }}
-                  >
-                    <T
-                      component="work"
-                      name={
-                        this.state.tagsCollapsed
-                          ? 'tagsCollapsibleShow'
-                          : 'tagsCollapsibleHide'
-                      }
-                    />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-xl-4 WorkPage__reviews mt-5 mb-5 mt-xl-0 mb-xl-0">
-            <div className="row">
-              <div className="col-md-12">
-                <Title Tag="h5" type="title5" className="mt3 mb2">
-                  <T component="work" name={'reviewsTitle'} />
-                </Title>
+                {!work.reviewsHasLoaded && (
+                  <React.Fragment>
+                    <a className="WorkPage__review mb1">
+                      <SkeletonUser pulse={true} className="mr1" />
+                      <SkeletonText
+                        lines={2}
+                        color="#e9eaeb"
+                        className="Skeleton__Pulse"
+                      />
+                    </a>
+                    <a className="WorkPage__review mb1">
+                      <SkeletonUser pulse={true} className="mr1" />
+                      <SkeletonText
+                        lines={2}
+                        color="#e9eaeb"
+                        className="Skeleton__Pulse"
+                      />
+                    </a>
+                    <a className="WorkPage__review">
+                      <SkeletonUser pulse={true} className="mr1" />
+                      <SkeletonText
+                        lines={2}
+                        color="#e9eaeb"
+                        className="Skeleton__Pulse"
+                      />
+                    </a>
+                  </React.Fragment>
+                )}
+                <ReviewList book={book} reviews={lectorReviews} />
               </div>
             </div>
-
-            {work.reviewsHasLoaded &&
-              reviews.map(rev => {
-                return (
-                  <a
-                    href={rev.url}
-                    target="_blank"
-                    className="WorkPage__review mb1"
-                  >
-                    <Icon name="face" />
-                    <span className="WorkPage__review__details ml2">
-                      <Text
-                        type="body"
-                        variant="weight-semibold"
-                        className="mb0"
-                      >
-                        {rev.creator}
-                      </Text>
-                      <Text type="body">{rev.date}</Text>
-                    </span>
-                  </a>
-                );
-              })}
-            {!work.reviewsHasLoaded && (
-              <React.Fragment>
-                <a className="WorkPage__review mb1">
-                  <SkeletonUser pulse={true} className="mr1" />
-                  <SkeletonText
-                    lines={2}
-                    color="#e9eaeb"
-                    className="Skeleton__Pulse"
-                  />
-                </a>
-                <a className="WorkPage__review mb1">
-                  <SkeletonUser pulse={true} className="mr1" />
-                  <SkeletonText
-                    lines={2}
-                    color="#e9eaeb"
-                    className="Skeleton__Pulse"
-                  />
-                </a>
-                <a className="WorkPage__review">
-                  <SkeletonUser pulse={true} className="mr1" />
-                  <SkeletonText
-                    lines={2}
-                    color="#e9eaeb"
-                    className="Skeleton__Pulse"
-                  />
-                </a>
-              </React.Fragment>
-            )}
-            <ReviewList book={book} reviews={lectorReviews} />
           </div>
           {work.detailsHasLoaded &&
             work.tagsHasLoaded && (
