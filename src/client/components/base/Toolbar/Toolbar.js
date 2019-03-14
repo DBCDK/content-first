@@ -6,9 +6,13 @@ const TOOLBAR_LEFT = 'left';
 const TOOLBAR_CENTER = 'center';
 const TOOLBAR_RIGHT = 'right';
 
-let constructElement = item => {
+let constructElement = (item, index) => {
   const {align, ...props} = item.props; // eslint-disable-line no-unused-vars
-  return React.createElement(item.type, props, item.props.children);
+  return React.createElement(
+    item.type,
+    {key: index, ...props},
+    item.props.children
+  );
 };
 
 const Toolbar = ({className, ...props}) => {
@@ -20,17 +24,17 @@ const Toolbar = ({className, ...props}) => {
       <div className="Toolbar__left">
         {elements
           .filter(items => items.props.align === TOOLBAR_LEFT)
-          .map(item => constructElement(item))}
+          .map((item, index) => constructElement(item, index))}
       </div>
       <div className="Toolbar__center">
         {elements
           .filter(items => items.props.align === TOOLBAR_CENTER)
-          .map(item => constructElement(item))}
+          .map((item, index) => constructElement(item, index))}
       </div>
       <div className="Toolbar__right">
         {elements
           .filter(items => items.props.align === TOOLBAR_RIGHT)
-          .map(item => constructElement(item))}
+          .map((item, index) => constructElement(item, index))}
       </div>
     </div>
   );
