@@ -58,6 +58,7 @@
     "knex": "^0.13.0",
     "lodash": "^4.17.4",
     "lodash.intersection": "^4.4.0",
+    "moment": "^2.24.0",
     "openplatform": "^3.0.0",
     "passport": "^0.4.0",
     "passport-oauth2": "^1.4.0",
