@@ -2,19 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Toolbar.css';
 
-const TOOLBAR_ALIGN = 'align';
 const TOOLBAR_LEFT = 'left';
 const TOOLBAR_CENTER = 'center';
 const TOOLBAR_RIGHT = 'right';
 
 let constructElement = item => {
-  const propsWithoutAlign = {};
-  Object.keys(item.props).forEach(key => {
-    if (key !== TOOLBAR_ALIGN) {
-      propsWithoutAlign[key] = item.props[key];
-    }
-  });
-  return React.createElement(item.type, propsWithoutAlign, item.props.children);
+  const {align, ...props} = item.props; // eslint-disable-line no-unused-vars
+  return React.createElement(item.type, props, item.props.children);
 };
 
 const Toolbar = ({className, ...props}) => {
