@@ -7,7 +7,7 @@ const MatomoClient = require('__/services/matomo');
 
 module.exports = new MatomoClient(
   config.matomo.url,
-  config.matomo.siteId,
+  config.matomo.dataSiteId,
   config.matomo.aid,
   logger
 );
