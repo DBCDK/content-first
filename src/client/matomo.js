@@ -1,9 +1,9 @@
-import {debounce} from 'lodash';
+import {debounce, get} from 'lodash';
 
-const server = process.env.REACT_APP_MATOMO_SERVER;
-const siteId = process.env.REACT_APP_MATOMO_SITE_ID;
-const dataSiteId = process.env.REACT_APP_MATOMO_DATA_SITE_ID;
-const aid = process.env.REACT_APP_MATOMO_AID;
+const server = get(window, 'CONFIG.matomo.url');
+const siteId = get(window, 'CONFIG.matomo.siteId');
+const dataSiteId = get(window, 'CONFIG.matomo.dataSiteId');
+const aid = get(window, 'CONFIG.matomo.aid');
 let matomoEnabled = false;
 let currentUrl;
 let dataTracker;
