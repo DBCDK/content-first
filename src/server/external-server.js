@@ -24,17 +24,19 @@ const express = require('express');
 const external = express();
 
 // Inject config into index.html
-const indexHtmlWithConfig = fs
-  .readFileSync(
-    path.resolve(__dirname, '..', '..', 'build', 'index.html'),
-    'utf8'
-  )
-  .replace(
-    '</head>',
-    `<script>CONFIG = ${JSON.stringify({
-      matomo: config.matomo
-    })};</script></head>`
-  );
+const indexHtmlWithConfig = isProduction
+  ? fs
+      .readFileSync(
+        path.resolve(__dirname, '..', '..', 'build', 'index.html'),
+        'utf8'
+      )
+      .replace(
+        '</head>',
+        `<script>CONFIG = ${JSON.stringify({
+          matomo: config.matomo
+        })};</script></head>`
+      )
+  : '';
 
 // Serve indexHtmlWithConfig on the root path.
 // Needs to be done before setting up static files
