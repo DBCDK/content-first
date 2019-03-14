@@ -255,7 +255,7 @@ exports[`renders without crashing 1`] = `
                 "height": "28px",
                 "marginRight": "7px",
                 "marginTop": "1px",
-                "pointer-events": "none",
+                "pointerEvents": "none",
               }
             }
             type="image/svg+xml"
@@ -291,7 +291,7 @@ exports[`renders without crashing 1`] = `
                   "height": "28px",
                   "marginRight": "7px",
                   "marginTop": "6px",
-                  "pointer-events": "none",
+                  "pointerEvents": "none",
                 }
               }
               type="image/svg+xml"
@@ -516,23 +516,6 @@ exports[`renders without crashing 1`] = `
         }
         type="belt"
       />
-    </div>
-    <div
-      className="d-flex bookcase-skeleton position-relative justify-content-center lys-graa mb-5"
-    >
-      <span
-        className="spinner mt-5"
-        style={
-          Object {
-            "borderTopColor": null,
-            "display": "inline-block",
-            "height": "30px",
-            "width": "30px",
-          }
-        }
-      />
-    </div>
-    <div>
       <TagsBelt
         child={false}
         id="Tolkienesque"
@@ -675,6 +658,48 @@ exports[`renders without crashing 1`] = `
     </div>
   </div>
   <span />
+  <div
+    className=" cookie-warning-container row "
+  >
+    <div
+      className="cookie-warning-content-container"
+    >
+      <div
+        className="cookie-warning-text-container"
+      >
+        <h5
+          className=" Title Title__title5 "
+        >
+          Cookies på Læsekompas
+        </h5>
+        <p
+          className="cookie-warning-body Text Text__body "
+        >
+          Vi bruger cookies for at kunne give dig en bedre brugeroplevelse. Når du klikker videre på siden, accepterer du dette.
+          <br />
+          Læs mere i 
+          <span
+            onClick={[Function]}
+          >
+            vores privatlivspolitik.
+          </span>
+        </p>
+      </div>
+      <div
+        className="cookie-warning-button-container"
+      >
+        <button
+          className="
+              btn Button Button__medium Button__primary Button__primary--bgcolor-petroleum--color-white"
+          data-cy=""
+          disabled={false}
+          onClick={[Function]}
+        >
+          ACCEPTÉR COOKIES
+        </button>
+      </div>
+    </div>
+  </div>
   <div
     className="Toastify"
   />
