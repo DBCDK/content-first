@@ -336,27 +336,12 @@ exports[`renders without crashing 1`] = `
           <a
             className="list-card-nohover"
             data-cy=""
-            href="/profile"
+            href="/profile/opret"
             onClick={[Function]}
             target="_self"
           >
             <span>
               Min profil
-            </span>
-          </a>
-        </li>
-        <li
-          className="d-block d-sm-none"
-        >
-          <a
-            className="list-card-nohover"
-            data-cy=""
-            href="/profile"
-            onClick={[Function]}
-            target="_self"
-          >
-            <span>
-              Lister
             </span>
           </a>
         </li>
