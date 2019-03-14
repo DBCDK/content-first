@@ -177,13 +177,17 @@
 /* Icons */
 .Button__icon--left, .Button__icon--right {
   vertical-align: middle;
-  font-size: 1.2rem;
+  font-size: 1.4em;
 }
 
 .Button__icon--left {
-  margin-right: 0.6rem;
+  margin-right: 0.4em;
 }
 
 .Button__icon--right {
-  margin-left: 0.6rem;
+  margin-left: 0.4em;
+}
+
+.Button span {
+  vertical-align: middle;
 }

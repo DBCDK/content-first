@@ -40,7 +40,7 @@ const Button = ({
       data-cy={dataCy || ''}
     >
       {iconLeftSnippet}
-      {children}
+      <span>{children}</span>
       {iconRightSnippet}
     </Tag>
   );
