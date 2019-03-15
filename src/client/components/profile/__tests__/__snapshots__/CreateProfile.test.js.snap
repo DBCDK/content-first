@@ -28,6 +28,7 @@ exports[`Image Upload render function Add image 1`] = `
           >
             <ProfileUploadImage
 <<<<<<< HEAD
+<<<<<<< HEAD
               activateSaveButton={[Function]}
               onFile={[Function]}
               personalImage={null}
@@ -71,6 +72,8 @@ exports[`Image Upload render function Add image 1`] = `
                     </UploadButton>
 =======
               buttonText="Upload profilbillede"
+=======
+>>>>>>> updated tests, added T component, post rebase
               h="90px"
               onFile={[Function]}
               personalImage={null}
@@ -211,7 +214,7 @@ exports[`Image Upload render function Add image 1`] = `
                       data-cy="user-form-name"
                       name="name"
                       onChange={[Function]}
-                      placeholder="Skriv brugernavn"
+                      placeholder="Vælg brugernavn"
                       type="text"
                       value=""
                     />
@@ -455,7 +458,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                   data-cy="user-form-name"
                   name="name"
                   onChange={[Function]}
-                  placeholder="Skriv brugernavn"
+                  placeholder="Vælg brugernavn"
                   type="text"
                   value=""
                 />
