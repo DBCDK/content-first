@@ -22,12 +22,7 @@ export default class UserProfileForm extends React.Component {
         )
       });
     }
-    // Check if user accepted age (above 13)
-    if (!this.state.acceptedAge) {
-      return this.setState({
-        validationError: <T component="profile" name="validationAcceptAge" />
-      });
-    }
+
     // Check if user accepted Terms
     if (!this.state.acceptedTerms) {
       return this.setState({
@@ -93,27 +88,6 @@ export default class UserProfileForm extends React.Component {
         <p className="mb6">
           <T component="login" name="signedInby" /> {this.props.library}
         </p>
-
-        {!this.props.acceptedAge && (
-          <label
-            htmlFor="acceptedAge"
-            className="checkbox"
-            data-cy="user-form-acceptedAge"
-          >
-            <input
-              id="acceptedAge"
-              className="checkbox"
-              name="acceptedAge"
-              type="checkbox"
-              disabled={this.props.isSaving}
-              checked={this.state.acceptedAge || false}
-              onChange={() =>
-                this.setState({acceptedAge: !this.state.acceptedAge})
-              }
-            />
-            <span /> <T component="profile" name="ageCheckboxText" />
-          </label>
-        )}
 
         {!this.props.acceptedTerms && (
           <label

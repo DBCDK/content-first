@@ -12,8 +12,6 @@ import FilterPage from './components/filter/FilterPage.container';
 import SearchPage from './components/search/SearchPage.container';
 import WorkPage from './components/work/WorkPage.container';
 import TastePage from './components/profile/TastePage.container';
-import ProfilePage from './components/profile/ProfilePage.container';
-import Bookcase from './components/bookcase/Bookcase.component';
 import CreateProfilePage from './components/profile/CreateProfilePage';
 import TopBar from './components/top/TopBar.component';
 import {ON_USER_DETAILS_REQUEST} from './redux/user.reducer';
@@ -29,6 +27,7 @@ import Article from './components/article/Article.component';
 import T from './components/base/T';
 import Animate from './components/base/Animate';
 import {OPEN_MODAL} from './redux/modal.reducer';
+import CookieWarning from './components/general/CookieWarning/CookieWarning';
 
 class App extends Component {
   constructor(props) {
@@ -72,8 +71,6 @@ class App extends Component {
         );
       } else if (pathSplit[2] === 'smag') {
         currentPage = <TastePage />;
-      } else {
-        currentPage = <ProfilePage />;
       }
     } else if (pathSplit[1] === 'lister') {
       if (pathSplit[2]) {
@@ -91,8 +88,6 @@ class App extends Component {
       currentPage = <ShortList />;
     } else if (pathSplit[1] === 'søg') {
       currentPage = <SearchPage />;
-    } else if (pathSplit[1] === 'bogreol') {
-      currentPage = <Bookcase />;
     } else if (pathSplit[1] === 'find') {
       currentPage = <FilterPage />;
     } else if (pathSplit[1] === 'replay') {
@@ -119,7 +114,7 @@ class App extends Component {
         {currentPage}
 
         <Modal />
-
+        <CookieWarning />
         <Animate />
 
         <ToastContainer

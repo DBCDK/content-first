@@ -26,6 +26,9 @@ export default () => (
         <Title Tag="h5" type="title5">
           This is a Title5
         </Title>
+        <Title Tag="h6" type="title6">
+          This is a Title6
+        </Title>
       </div>
       <div className="col-8 tl mt4">
         <Title type="title4">Text</Title>

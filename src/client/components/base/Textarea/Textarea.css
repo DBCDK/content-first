@@ -1,0 +1,12 @@
+.Textarea {
+  display: block;
+  height: 35px;
+  width: 100%;
+  border: 1px solid var(--porcelain);
+  padding: 8px;
+  outline: none;
+}
+
+.Textarea__label {
+  margin: 0;
+}

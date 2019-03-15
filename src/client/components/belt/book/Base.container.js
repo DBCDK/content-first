@@ -319,6 +319,7 @@ export class BooksBelt extends React.Component {
                         .join(',')
                     }}
                     onClick={this.props.titleClick}
+                    disable={this.props.disableHeaderLink === true}
                   >
                     <Title
                       Tag="h1"

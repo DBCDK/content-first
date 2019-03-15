@@ -21,7 +21,14 @@ const Title = ({
 
 Title.propTypes = {
   Tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']),
-  type: PropTypes.oneOf(['title1', 'title2', 'title3', 'title4', 'title5'])
+  type: PropTypes.oneOf([
+    'title1',
+    'title2',
+    'title3',
+    'title4',
+    'title5',
+    'title6'
+  ])
 };
 
 export default Title;

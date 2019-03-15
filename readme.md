@@ -60,10 +60,10 @@ The backend service controlled by environment variables. Most scripts assume tha
 | NODE_ENV                      | development           | Controls other service settings (development, ci, production)            |
 | PORT                          | 3001                  | TCP port for the public service                                          |
 | PRETTY_LOG                    | 1                     | Pretty printed log statements (1), or one-line log statements (0)        |
-| REACT_APP_MATOMO_SERVER       |                       | The Matomo HTTP server address. Matomo is only enabled if this is set    |
-| REACT_APP_MATOMO_SITE_ID      |                       | The Matomo siteId                                                        |
-| REACT_APP_MATOMO_DATA_SITE_ID |                       | The Matomo siteId for data events                                        |
-| REACT_APP_MATOMO_AID          |                       | The Application ID connecting events to specific application instance    |
+| MATOMO_URL                    |                       | The Matomo HTTP server address. Matomo is only enabled if this is set    |
+| MATOMO_SITE_ID                |                       | The Matomo siteId                                                        |
+| MATOMO_DATA_SITE_ID           |                       | The Matomo siteId for data events                                        |
+| MATOMO_AID                    |                       | The Application ID connecting events to specific application instance    |
 
 ## Endpoints
 

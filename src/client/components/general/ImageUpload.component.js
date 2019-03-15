@@ -1,15 +1,13 @@
 import React from 'react';
 import Spinner from './Spinner.component';
+import Text from '../base/Text';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
 
 const UploadButton = ({buttonText, fieldName, readFiles, style, className}) => (
   <label style={style} className={className}>
-    <Button type="tertiary" size="medium" Tag="span">
-      <Icon name="photo" className="align-middle" />
-      <span className="align-middle ml-2">
-        {buttonText || 'Upload billede'}
-      </span>
+    <Button type="tertiary" size="small" Tag="span">
+      <span className="align-middle">{buttonText || 'Upload billede'}</span>
     </Button>
     <input
       accept="image/png, image/jpeg"
@@ -104,12 +102,16 @@ export default class ImageUpload extends React.Component {
             </div>
           )) || (
             <div className="d-flex align-items-center justify-content-center h-100 ">
-              <i className="material-icons" style={{fontSize: 100}}>
-                image
-              </i>
+              {this.props.heading ? (
+                <Text type="large" variant="weight-bold--color-white">
+                  {this.props.heading}
+                </Text>
+              ) : (
+                <Icon name="image" className="md-xxlarge" />
+              )}
             </div>
           )}
-          <div className="droppable-image-overlay">
+          <div className="droppable-image-overlay w-100 h-100">
             {this.props.overlayText || ''}
           </div>
           {this.props.buttonPosition === 'inside' && (
@@ -117,7 +119,12 @@ export default class ImageUpload extends React.Component {
               buttonText={this.props.buttonText}
               fieldName={this.props.fieldName}
               readFiles={this.readFiles}
-              style={{position: 'absolute', bottom: 5, left: 10}}
+              style={{
+                position: 'absolute',
+                bottom: '10%',
+                left: '50%',
+                transform: 'translate(-50%)'
+              }}
             />
           )}
         </div>

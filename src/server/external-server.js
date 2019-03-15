@@ -1,6 +1,8 @@
 'use strict';
 
 const crypto = require('crypto');
+const fs = require('fs');
+const path = require('path');
 const config = require('server/config');
 const constants = require('server/constants')();
 const logger = require('server/logger');
@@ -15,15 +17,34 @@ const login = require('server/login');
 const {recompasTags, recompasWork} = require('server/recompas');
 const matomo = require('server/matomo');
 const generatingServiceStatus = require('__/services/service-status');
-
 const isProduction = config.server.environment === 'production';
 
 // Public web server.
 const express = require('express');
 const external = express();
 
+// Inject config into index.html
+const indexHtmlWithConfig = isProduction
+  ? fs
+      .readFileSync(
+        path.resolve(__dirname, '..', '..', 'build', 'index.html'),
+        'utf8'
+      )
+      .replace(
+        '</head>',
+        `<script>CONFIG = ${JSON.stringify({
+          matomo: config.matomo
+        })};</script></head>`
+      )
+  : '';
+
+// Serve indexHtmlWithConfig on the root path.
+// Needs to be done before setting up static files
+external.get('/', (req, res) => {
+  res.send(indexHtmlWithConfig);
+});
+
 // Static frontend content.
-const path = require('path');
 const staticPath = path.join(__dirname, '..', '..', 'build');
 external.use(express.static(staticPath));
 
@@ -123,7 +144,7 @@ external.use(
 
 // Let frontend React handle all other routes.
 external.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', '..', 'build', 'index.html'));
+  res.send(indexHtmlWithConfig);
 });
 
 // Error handlers.

@@ -29,16 +29,9 @@ class TopBarDropdown extends React.Component {
       <ul className={'Topbar__dropdown abort-closeDopdown ' + state}>
         <div className="Topbar__dropdown__caret" />
         <li>
-          <Link href="/profile" onClick={this.props.onClick}>
+          <Link href="/profile/opret" onClick={this.props.onClick}>
             <span>
               <T component="profile" name="profilePage" />
-            </span>
-          </Link>
-        </li>
-        <li className="d-block d-sm-none">
-          <Link href="/profile" onClick={this.props.onClick}>
-            <span>
-              <T component="list" name="listButton" />
             </span>
           </Link>
         </li>

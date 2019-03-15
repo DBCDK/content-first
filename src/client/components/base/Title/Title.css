@@ -42,6 +42,12 @@
   line-height: 1.57rem;
 }
 
+.Title__title6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.57rem;
+}
+
 /*
     Modifiers
 */
@@ -56,6 +62,11 @@
 
 .Title__title4--transform-uppercase {
   text-transform: uppercase;
+}
+
+.Title__title4--transform-uppercase--weight-bold {
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .Title__title3--color-white {

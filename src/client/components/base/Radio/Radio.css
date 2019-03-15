@@ -1,0 +1,76 @@
+/* .Radio__wrap {
+}
+
+.Radio {
+  vertical-align: middle;
+  border: 2px solid var(--petroleum);
+}
+
+.Radio__label {
+} */
+
+.Radio__wrap {
+  display: inline-block;
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.Radio__wrap .Radio {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Create a custom radio button */
+.Radio__button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+}
+
+/* Radio unchecked */
+.Radio__wrap .Radio ~ .Radio__button {
+  border: 1px solid var(--petroleum);
+}
+
+/* Radio :hover */
+.Radio__wrap:hover .Radio ~ .Radio__button {
+}
+
+/* Radio checked */
+.Radio__wrap .Radio:checked ~ .Radio__button {
+  background-color: white;
+  border: 2px solid var(--petroleum);
+}
+
+/* Radio dot styling */
+.Radio__wrap .Radio__button:after {
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--petroleum);
+}
+
+/* Radio dot - if radio is unchecked */
+.Radio__button:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Radio dot - if radio is checked */
+.Radio__wrap .Radio:checked ~ .Radio__button:after {
+  display: block;
+}

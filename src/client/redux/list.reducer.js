@@ -278,6 +278,7 @@ const listReducer = (state = defaultState, action) => {
           }
         });
       }
+
       list.isLoading = false;
 
       return Object.assign({}, state, {
@@ -368,6 +369,7 @@ export const addList = (
     title = '',
     description = '',
     isNew,
+    dotColor = 'petroleum',
     list = [],
     _id = null,
     _owner = null,
@@ -383,6 +385,7 @@ export const addList = (
       title,
       description,
       isNew,
+      dotColor,
       list,
       _owner,
       _created,

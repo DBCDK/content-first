@@ -54,9 +54,11 @@
     "immutable": "^4.0.0-rc.9",
     "is-my-json-valid": "^2.16.1",
     "jimp": "^0.2.28",
+    "js-cookie": "^2.2.0",
     "knex": "^0.13.0",
     "lodash": "^4.17.4",
     "lodash.intersection": "^4.4.0",
+    "moment": "^2.24.0",
     "openplatform": "^3.0.0",
     "passport": "^0.4.0",
     "passport-oauth2": "^1.4.0",
@@ -95,7 +97,11 @@
     "uuid": "^3.1.0",
     "xml2js": "^0.4.19"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": {
+    "/v1": {
+      "target": "http://localhost:3001/"
+    }
+  },
   "scripts": {
     "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js src/*/*/*/*/*/*.js ./cypress/*/*.js",
     "build": "react-scripts build",
