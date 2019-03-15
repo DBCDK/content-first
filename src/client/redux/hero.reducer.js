@@ -3,7 +3,7 @@
 const defaultState = {
   heroes: [
     {
-      img: 'img/hero/launch.png',
+      img: 'img/hero/launch.jpg',
       btnColor: 'pistache',
       btnText: 'Find en bog, der er lige dig',
       btnTextColor: 'petroleum',

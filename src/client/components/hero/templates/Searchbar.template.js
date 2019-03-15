@@ -6,6 +6,8 @@ import Icon from '../../base/Icon';
 import Title from '../../base/Title';
 import Button from '../../base/Button';
 
+import Explorer from '../explorer/explorer.component.js';
+
 import {getLeavesMap, tagsToUrlParams} from '../../../utils/taxonomy';
 import {startAnimate} from '../../../redux/animate.reducer';
 
@@ -218,6 +220,7 @@ export class SearchbarTemplate extends React.Component {
             </span>
           </div>
         </div>
+        <Explorer />
       </Parallax>
     );
   }

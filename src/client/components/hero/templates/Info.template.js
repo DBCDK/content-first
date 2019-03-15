@@ -2,9 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Parallax, Background} from 'react-parallax';
 
+import T from '../../base/T';
 import Icon from '../../base/Icon';
 import Title from '../../base/Title';
 import Button from '../../base/Button';
+
+import Explorer from '../explorer/explorer.component.js';
 
 import {startAnimate} from '../../../redux/animate.reducer';
 
@@ -19,19 +22,12 @@ export class Hero extends React.Component {
       <Parallax className={className} strength={250}>
         <Background>
           <div
-            className={`hero-bg-image box-wrap`}
+            className={`hero-bg-image box-wrap pistache`}
             style={{backgroundImage: `url(${hero.img})`}}
-          >
-            <div className="box">{hero.btnText}</div>
-          </div>
+          />
         </Background>
-
-        <div className="info-callToAction text-center">
-          <Title type="title4" variant="color-white">
-            Opdag en bog - og lån den på biblioteket
-          </Title>
-          <Icon className="md-xlarge" name="expand_more" />
-        </div>
+        <div className="box">{hero.btnText}</div>
+        <Explorer />
       </Parallax>
     );
   }

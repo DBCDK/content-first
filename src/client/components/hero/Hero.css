@@ -1,3 +1,7 @@
+.react-parallax-content {
+  height: 100%;
+}
+
 .Hero {
   height: calc(100vh - 150px - 80px);
 }
