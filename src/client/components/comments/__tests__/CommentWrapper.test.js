@@ -2,6 +2,7 @@ import React from 'react';
 import {CommentWrapper} from '../CommentWrapper.component';
 import renderer from 'react-test-renderer';
 import {mount} from 'enzyme';
+const CREATED_TIME_STAMP = 1000;
 
 jest.mock('react-textarea-autosize', () => 'textarea');
 
@@ -12,7 +13,8 @@ function generateComments({key = 'test', saving, error} = {}) {
     user: {
       name: 'Benny Cosmos',
       openplatformId: '1234'
-    }
+    },
+    _created: CREATED_TIME_STAMP
   };
 
   if (saving) {
