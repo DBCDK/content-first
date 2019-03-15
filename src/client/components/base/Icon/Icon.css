@@ -21,3 +21,9 @@ i {
 .material-icons.md-xxlarge {
   font-size: 54px;
 }
+
+/* disbaled icon */
+.material-icons.md-disabled {
+  cursor: default;
+  opacity: 0.5;
+}

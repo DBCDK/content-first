@@ -1,0 +1,11 @@
+.Share {
+  border-radius: 2px;
+  padding: 2px 7px;
+}
+
+.Share .Share__title {
+  font-size: 10px;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}

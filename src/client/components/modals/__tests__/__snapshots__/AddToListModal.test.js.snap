@@ -15,7 +15,7 @@ exports[`AddToListModal multiple works as input 1`] = `
       className="top d-flex flex-row justify-content-start justify-content-sm-end"
     >
       <i
-        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block"
+        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block "
         onClick={[Function]}
         style={
           Object {
@@ -33,7 +33,8 @@ exports[`AddToListModal multiple works as input 1`] = `
         onClick={[Function]}
       >
         <i
-          className="material-icons material-icons-chevron_left align-middle"
+          className="material-icons material-icons-chevron_left align-middle "
+          onClick={[Function]}
         >
           chevron_left
         </i>
@@ -219,7 +220,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
       className="top d-flex flex-row justify-content-start justify-content-sm-end"
     >
       <i
-        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block"
+        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block "
         onClick={[Function]}
         style={
           Object {
@@ -237,7 +238,8 @@ exports[`AddToListModal newly added list is selected 1`] = `
         onClick={[Function]}
       >
         <i
-          className="material-icons material-icons-chevron_left align-middle"
+          className="material-icons material-icons-chevron_left align-middle "
+          onClick={[Function]}
         >
           chevron_left
         </i>
@@ -459,7 +461,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
       className="top d-flex flex-row justify-content-start justify-content-sm-end"
     >
       <i
-        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block"
+        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block "
         onClick={[Function]}
         style={
           Object {
@@ -477,7 +479,8 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
         onClick={[Function]}
       >
         <i
-          className="material-icons material-icons-chevron_left align-middle"
+          className="material-icons material-icons-chevron_left align-middle "
+          onClick={[Function]}
         >
           chevron_left
         </i>

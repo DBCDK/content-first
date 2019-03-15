@@ -1,12 +1,15 @@
 import React from 'react';
 import Icon from '../base/Icon';
 import SkeletonUser from '../base/Skeleton/User';
-import Heading from '../base/Heading';
+import Text from '../base/Text';
 
 /*
-<ProfileImage user={user} />
 
-// namePosition: false (default) || 'bottom' || 'right'
+<ProfileImage
+  user={user}
+  namePosition: false (default) || 'bottom' || 'right'
+/>
+
 */
 
 class ProfileImage extends React.Component {
@@ -76,14 +79,13 @@ class ProfileImage extends React.Component {
           )}
         </span>
         {user && !namePosition === false ? (
-          <Heading
-            tag="h4"
-            type="title"
-            className="ml-3"
+          <Text
+            type="large"
+            className="ml-3 align-self-center"
             data-cy="user-form-name"
           >
             {user.name}
-          </Heading>
+          </Text>
         ) : (
           ''
         )}

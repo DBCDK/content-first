@@ -79,11 +79,18 @@ class WorkCard extends React.Component {
         data-cy={'workcard'}
       >
         <BookmarkButton
+          className="icon-large"
           origin={this.props.origin}
           work={this.props.work}
           rid={this.props.rid}
           layout="teardrop"
-          style={{position: 'absolute', right: 0, top: 0}}
+          style={{
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            width: '40px',
+            height: '40px'
+          }}
           dataCy="bookmarkBtn"
         />
         <div style={{height: '100%'}} onClick={this.onWorkClick}>

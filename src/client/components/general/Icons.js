@@ -17,7 +17,6 @@ export const Comments = props => {
       style={{
         position: 'relative',
         fontSize: 10,
-        fontFamily: 'var(--secondary-font)',
         ...props.style
       }}
       className={props.className}
@@ -58,7 +57,6 @@ export const Likes = props => {
       style={{
         position: 'relative',
         fontSize: 10,
-        fontFamily: 'var(--secondary-font)',
         ...props.style
       }}
       className={props.className}

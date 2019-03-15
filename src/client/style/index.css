@@ -9,7 +9,6 @@
   --lightgrey: #d9d9d9;
   --mediumgrey: #545454;
   --darkgrey: #333333;
-  --secondary-font: 'Raleway', sans-serif;
 }
 
 /*imports for new design*/
@@ -56,7 +55,6 @@
 @import './components/comment.css';
 @import './components/circletemplate.css';
 @import './components/bookcaseTemplate.css';
-@import './components/socialShareButton.css';
 @import './components/follow.css';
 @import './components/concisework.css';
 
@@ -75,6 +73,14 @@ body {
   padding: 0;
   font-family: var(--primary-font);
   color: var(--petroleum);
+}
+
+/* Remove inner-shadows on iphone */
+input,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .scrolling-wrapper .card {
@@ -327,9 +333,9 @@ div.belt-subtext {
 .high-contrast {
   filter: contrast(1.25);
 }
-.curser-pointer{
+.curser-pointer {
   cursor: pointer;
 }
-.curser-move{
+.curser-move {
   cursor: move;
 }

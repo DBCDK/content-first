@@ -26,7 +26,6 @@
   --primary-font: 'Montserrat', sans-serif;
 }
 
-
 /* utils */
 .french-pass {
   background: var(--french-pass) !important;
@@ -136,7 +135,6 @@
 }
 
 /* disabled styles */
-
 button:disabled,
 button[disabled] {
   color: var(--silver-chalice);

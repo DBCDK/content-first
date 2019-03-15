@@ -72,11 +72,11 @@ export class AddToList extends React.Component {
           <T component="list" name="addBooksToList" />
         </Title>
 
-        <div className="d-flex flex-row french-pass pt-4">
-          <ProfileImage className="ml-4" user={profile} size={'40'} />
+        <div className="d-flex flex-row pt-2">
+          <ProfileImage user={profile} size={'40'} />
           <BookSearchSuggester
             suggesterRef={suggesterRef}
-            className="ml-4 mr-4"
+            className="ml-3 mr-5"
             list={list}
             onSubmit={this.submit}
           />

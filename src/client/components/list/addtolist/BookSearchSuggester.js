@@ -5,6 +5,7 @@ import Autosuggest from 'react-autosuggest';
 import BookCover from '../../general/BookCover.component';
 import Text from '../../base/Text';
 import T from '../../base/T';
+import Icon from '../../base/Icon';
 
 import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 
@@ -101,7 +102,7 @@ class BookSearchSuggester extends React.Component {
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
       placeholder: T({component: 'list', name: 'placeholderBookSuggester'}),
-      className: 'form-control suggestion-list__search',
+      className: 'w-100 suggestion-list__search',
       value,
       onChange: (e, change) => this.onChange(e, change),
       'data-cy': 'listview-add-element-input'
@@ -109,7 +110,11 @@ class BookSearchSuggester extends React.Component {
 
     // Finally, render it!
     return (
-      <div className={'suggestion-list ' + className} style={style}>
+      <div
+        className={'d-flex position-relative suggestion-list ' + className}
+        style={style}
+      >
+        <Icon name="search" className="align-self-center pl-2 pr-2" />
         <Autosuggest
           ref={suggesterRef}
           suggestions={suggestions}

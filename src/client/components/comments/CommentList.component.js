@@ -30,12 +30,14 @@ export default class CommentList extends React.Component {
       return null;
     }
 
-    const showComments = comments.slice(-showCount);
+    const showComments = comments.slice(0, showCount);
+
     return (
       <div
         style={{
           height: this.state.height || 0,
-          transition: 'height 500ms'
+          transition: 'height 300ms ease-in-out',
+          overflow: 'hidden'
         }}
       >
         <div ref={el => (this.listWrapper = el)}>

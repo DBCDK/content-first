@@ -5,6 +5,9 @@
   border: 1px solid var(--porcelain);
   padding-left: 8px;
   outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .Input__label {

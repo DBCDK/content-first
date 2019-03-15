@@ -121,6 +121,14 @@
       "create": {
         "da": "opret",
         "en": "create"
+      },
+      "createdThe": {
+        "da": "Oprettede d.",
+        "en": "Created the"
+      },
+      "addedThe": {
+        "da": "Tilføjet d.",
+        "en": "Added the"
       }
     },
 
@@ -267,7 +275,7 @@
         "en": "More tags"
       },
       "tagsCollapsibleHide": {
-        "da": "Se færre tagsæ",
+        "da": "Se færre tags",
         "en": "Less tags"
       }
     },
@@ -430,12 +438,16 @@
         "da": "Redigér liste",
         "en": "Edit list"
       },
+      "editListInfo": {
+        "da": "Redigér listeoplysninger",
+        "en": "Edit list informations"
+      },
       "saveList": {
         "da": "Gem liste",
         "en": "Save list"
       },
       "deleteList": {
-        "da": "Slet liste",
+        "da": "Slet listen",
         "en": "Delete list"
       },
       "cancelList": {
@@ -507,7 +519,7 @@
         "en": " already exist in the list"
       },
       "placeholderBookSuggester": {
-        "da": "Skriv titel eller forfatter",
+        "da": "Søg på titel eller forfatter",
         "en": "Title or author"
       },
       "recentListsTitle": {
@@ -575,12 +587,12 @@
         "en": "Yes please, save now"
       },
       "labelName": {
-        "da": "Navn:",
-        "en": "Name:"
+        "da": "Navn",
+        "en": "Name"
       },
       "labelPrivacy": {
-        "da": "Synlighed:",
-        "en": "Visibility:"
+        "da": "Synlighed",
+        "en": "Visibility"
       },
       "permissionsComments": {
         "da": "Tillad kommentarer",
@@ -605,6 +617,18 @@
       "bookcaseTitle": {
         "da": "Aktiver bogreol",
         "en": "Activate bookshelf"
+      },
+      "commentListLabel": {
+        "da": "Kommentér listen",
+        "en": "Comment list"
+      },
+      "list": {
+        "da": "Liste",
+        "en": "List"
+      },
+      "bookshelf": {
+        "da": "Bogreol",
+        "en": "Bookshelf"
       }
     },
 
@@ -672,9 +696,25 @@
         "da": "Redigér indlæg",
         "en": "Edit post"
       },
+      "editDescription": {
+        "da": "Redigér beskrivelse",
+        "en": "Edit description"
+      },
+      "deleteBook": {
+        "da": "Fjern bog",
+        "en": "Remove book"
+      },
       "deletePost": {
         "da": "Slet indlæg",
         "en": "Delete post"
+      },
+      "editComment": {
+        "da": "Redigér kommentar",
+        "en": "Edit comment"
+      },
+      "deleteComment": {
+        "da": "Slet kommentar",
+        "en": "Delete comment"
       },
       "aboutTheBook": {
         "da": "Fortæl om bogen",
@@ -688,6 +728,10 @@
         "da": "Skriv kommentar",
         "en": "Write a comment"
       },
+      "yourComment": {
+        "da": "Din kommentar ...",
+        "en": "Your comment ..."
+      },
       "modalWriteCommentLogin": {
         "da": "Du skal logge ind for at skrive en kommentar.",
         "en": "You have to be signed in to write a comment."
@@ -697,20 +741,20 @@
         "en": "Comment"
       },
       "showMoreComments": {
-        "da": "Vis flere kommentarer",
-        "en": "Show more comments"
+        "da": "Vis tidligere kommentarer",
+        "en": "Show earlier comments"
       },
       "showLessComments": {
-        "da": "Vis færre kommentarer",
-        "en": "Show less comments"
+        "da": "Skjul tidligere kommentarer",
+        "en": "hide earlier comments"
       },
       "commentCount": {
-        "da": "%s kommentar",
-        "en": "%s comment"
+        "da": "Kommentar (%s)",
+        "en": "Comments (%s)"
       },
       "commentsCount": {
-        "da": "%s kommentarer",
-        "en": "%s comments"
+        "da": "Kommentarer (%s)",
+        "en": "Comments (%s)"
       },
       "now": {
         "da": "Lige nu",

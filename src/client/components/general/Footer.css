@@ -4,16 +4,16 @@
 }
 
 .Footer__container--elements {
-  padding: 43px 10px 20px 25px;
+  padding: 30px 10px 20px 25px;
   position: absolute;
+  background-color: var(--lys-graa);
   bottom: 0;
   max-width: 1201px;
-  background-color: var(--lys-graa);
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
 }
 
 .Footer__logo--element {

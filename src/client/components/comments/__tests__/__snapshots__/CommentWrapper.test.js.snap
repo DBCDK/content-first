@@ -1,439 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CommentContainer Cancel button 1`] = `
-<CommentWrapper
-  comment={
-    Object {
-      "_id": "test",
-      "comment": "comment_test",
-      "user": Object {
-        "name": "Benny Cosmos",
-        "openplatformId": "1234",
-      },
-    }
-  }
-  user={
-    Object {
-      "name": "Benny Cosmos",
-      "openplatformId": "1234",
-    }
-  }
->
-  <div
-    className="comment-wrapper"
-    key="test"
-  >
-    <Component
-      className="comment-wrapper-context-menu"
-    >
-      <div
-        className="ContextMenu dropdown comment-wrapper-context-menu"
-      >
-        <div
-          className="dropdown-toggle"
-          data-toggle="dropdown"
-        >
-          <Icon
-            className="align-middle"
-            name="more_vert"
-          >
-            <i
-              className="material-icons material-icons-more_vert align-middle"
-            >
-              more_vert
-            </i>
-          </Icon>
-        </div>
-        <div
-          className="dropdown-menu dropdown-menu-right"
-        >
-          <Component
-            icon="edit"
-            onClick={[Function]}
-            title="Redigér indlæg"
-          >
-            <div
-              className="dropdown-item"
-              data-cy="context-menu-action"
-              onClick={[Function]}
-            >
-              <Icon
-                className="align-middle mr-2"
-                name="edit"
-              >
-                <i
-                  className="material-icons material-icons-edit align-middle mr-2"
-                >
-                  edit
-                </i>
-              </Icon>
-              <span
-                className="align-middle"
-              >
-                Redigér indlæg
-              </span>
-            </div>
-          </Component>
-          <Component
-            icon="clear"
-            onClick={[Function]}
-            title="Slet indlæg"
-          >
-            <div
-              className="dropdown-item"
-              data-cy="context-menu-action"
-              onClick={[Function]}
-            >
-              <Icon
-                className="align-middle mr-2"
-                name="clear"
-              >
-                <i
-                  className="material-icons material-icons-clear align-middle mr-2"
-                >
-                  clear
-                </i>
-              </Icon>
-              <span
-                className="align-middle"
-              >
-                Slet indlæg
-              </span>
-            </div>
-          </Component>
-        </div>
-      </div>
-    </Component>
-    <div
-      className="flex mb2"
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
-    >
-      <ProfileImage
-        size="40"
-        style={
-          Object {
-            "marginRight": "10px",
-          }
-        }
-        user={
-          Object {
-            "name": "Benny Cosmos",
-            "openplatformId": "1234",
-          }
-        }
-      >
-        <div
-          className="profile-card d-flex flex-column "
-        >
-          <span
-            className="profile-image text-center small round"
-            style={
-              Object {
-                "height": "40px",
-                "lineHeight": "74px",
-                "marginRight": "10px",
-                "width": "40px",
-              }
-            }
-          >
-            <Icon
-              name="face"
-              style={
-                Object {
-                  "backgroundColor": "#e9eaeb",
-                  "borderRadius": "50%",
-                  "display": "block",
-                  "fontSize": "26px",
-                  "height": "40px",
-                  "lineHeight": "40px",
-                  "width": "40px",
-                }
-              }
-            >
-              <i
-                className="material-icons material-icons-face "
-                style={
-                  Object {
-                    "backgroundColor": "#e9eaeb",
-                    "borderRadius": "50%",
-                    "display": "block",
-                    "fontSize": "26px",
-                    "height": "40px",
-                    "lineHeight": "40px",
-                    "width": "40px",
-                  }
-                }
-              >
-                face
-              </i>
-            </Icon>
-          </span>
-        </div>
-      </ProfileImage>
-      <div
-        style={
-          Object {
-            "flexGrow": 1,
-          }
-        }
-      >
-        <div
-          className="comment"
-        >
-          <div
-            className="d-flex align-items-center"
-          >
-            <Text
-              className="mb-2"
-              type="large"
-            >
-              <p
-                className="mb-2 Text Text__large "
-              >
-                Benny Cosmos
-              </p>
-            </Text>
-            <Text
-              className="ml-4 mb-2 d-none d-md-block"
-              type="small"
-              variant="color-due"
-            >
-              <p
-                className="ml-4 mb-2 d-none d-md-block Text Text__small Text__small--color-due"
-              >
-                Lige nu
-              </p>
-            </Text>
-          </div>
-          comment_test
-        </div>
-      </div>
-    </div>
-  </div>
-</CommentWrapper>
-`;
-
-exports[`CommentContainer Cancel button 2`] = `
-<CommentWrapper
-  comment={
-    Object {
-      "_id": "test",
-      "comment": "comment_test",
-      "user": Object {
-        "name": "Benny Cosmos",
-        "openplatformId": "1234",
-      },
-    }
-  }
-  user={
-    Object {
-      "name": "Benny Cosmos",
-      "openplatformId": "1234",
-    }
-  }
->
-  <div
-    className="comment-wrapper"
-    key="test"
-  >
-    <Component
-      className="comment-wrapper-context-menu"
-    >
-      <div
-        className="ContextMenu dropdown comment-wrapper-context-menu"
-      >
-        <div
-          className="dropdown-toggle"
-          data-toggle="dropdown"
-        >
-          <Icon
-            className="align-middle"
-            name="more_vert"
-          >
-            <i
-              className="material-icons material-icons-more_vert align-middle"
-            >
-              more_vert
-            </i>
-          </Icon>
-        </div>
-        <div
-          className="dropdown-menu dropdown-menu-right"
-        >
-          <Component
-            icon="edit"
-            onClick={[Function]}
-            title="Redigér indlæg"
-          >
-            <div
-              className="dropdown-item"
-              data-cy="context-menu-action"
-              onClick={[Function]}
-            >
-              <Icon
-                className="align-middle mr-2"
-                name="edit"
-              >
-                <i
-                  className="material-icons material-icons-edit align-middle mr-2"
-                >
-                  edit
-                </i>
-              </Icon>
-              <span
-                className="align-middle"
-              >
-                Redigér indlæg
-              </span>
-            </div>
-          </Component>
-          <Component
-            icon="clear"
-            onClick={[Function]}
-            title="Slet indlæg"
-          >
-            <div
-              className="dropdown-item"
-              data-cy="context-menu-action"
-              onClick={[Function]}
-            >
-              <Icon
-                className="align-middle mr-2"
-                name="clear"
-              >
-                <i
-                  className="material-icons material-icons-clear align-middle mr-2"
-                >
-                  clear
-                </i>
-              </Icon>
-              <span
-                className="align-middle"
-              >
-                Slet indlæg
-              </span>
-            </div>
-          </Component>
-        </div>
-      </div>
-    </Component>
-    <div
-      className="flex mb2"
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
-    >
-      <ProfileImage
-        size="40"
-        style={
-          Object {
-            "marginRight": "10px",
-          }
-        }
-        user={
-          Object {
-            "name": "Benny Cosmos",
-            "openplatformId": "1234",
-          }
-        }
-      >
-        <div
-          className="profile-card d-flex flex-column "
-        >
-          <span
-            className="profile-image text-center small round"
-            style={
-              Object {
-                "height": "40px",
-                "lineHeight": "74px",
-                "marginRight": "10px",
-                "width": "40px",
-              }
-            }
-          >
-            <Icon
-              name="face"
-              style={
-                Object {
-                  "backgroundColor": "#e9eaeb",
-                  "borderRadius": "50%",
-                  "display": "block",
-                  "fontSize": "26px",
-                  "height": "40px",
-                  "lineHeight": "40px",
-                  "width": "40px",
-                }
-              }
-            >
-              <i
-                className="material-icons material-icons-face "
-                style={
-                  Object {
-                    "backgroundColor": "#e9eaeb",
-                    "borderRadius": "50%",
-                    "display": "block",
-                    "fontSize": "26px",
-                    "height": "40px",
-                    "lineHeight": "40px",
-                    "width": "40px",
-                  }
-                }
-              >
-                face
-              </i>
-            </Icon>
-          </span>
-        </div>
-      </ProfileImage>
-      <div
-        style={
-          Object {
-            "flexGrow": 1,
-          }
-        }
-      >
-        <div
-          className="comment"
-        >
-          <div
-            className="d-flex align-items-center"
-          >
-            <Text
-              className="mb-2"
-              type="large"
-            >
-              <p
-                className="mb-2 Text Text__large "
-              >
-                Benny Cosmos
-              </p>
-            </Text>
-            <Text
-              className="ml-4 mb-2 d-none d-md-block"
-              type="small"
-              variant="color-due"
-            >
-              <p
-                className="ml-4 mb-2 d-none d-md-block Text Text__small Text__small--color-due"
-              >
-                Lige nu
-              </p>
-            </Text>
-          </div>
-          comment_test
-        </div>
-      </div>
-    </div>
-  </div>
-</CommentWrapper>
-`;
-
 exports[`CommentContainer Delete button 1`] = `
 <CommentWrapper
   comment={
@@ -473,7 +39,8 @@ exports[`CommentContainer Delete button 1`] = `
             name="more_vert"
           >
             <i
-              className="material-icons material-icons-more_vert align-middle"
+              className="material-icons material-icons-more_vert align-middle "
+              onClick={[Function]}
             >
               more_vert
             </i>
@@ -485,7 +52,7 @@ exports[`CommentContainer Delete button 1`] = `
           <Component
             icon="edit"
             onClick={[Function]}
-            title="Redigér indlæg"
+            title="Redigér kommentar"
           >
             <div
               className="dropdown-item"
@@ -497,7 +64,8 @@ exports[`CommentContainer Delete button 1`] = `
                 name="edit"
               >
                 <i
-                  className="material-icons material-icons-edit align-middle mr-2"
+                  className="material-icons material-icons-edit align-middle mr-2 "
+                  onClick={[Function]}
                 >
                   edit
                 </i>
@@ -505,14 +73,14 @@ exports[`CommentContainer Delete button 1`] = `
               <span
                 className="align-middle"
               >
-                Redigér indlæg
+                Redigér kommentar
               </span>
             </div>
           </Component>
           <Component
-            icon="clear"
+            icon="delete"
             onClick={[Function]}
-            title="Slet indlæg"
+            title="Slet kommentar"
           >
             <div
               className="dropdown-item"
@@ -521,18 +89,19 @@ exports[`CommentContainer Delete button 1`] = `
             >
               <Icon
                 className="align-middle mr-2"
-                name="clear"
+                name="delete"
               >
                 <i
-                  className="material-icons material-icons-clear align-middle mr-2"
+                  className="material-icons material-icons-delete align-middle mr-2 "
+                  onClick={[Function]}
                 >
-                  clear
+                  delete
                 </i>
               </Icon>
               <span
                 className="align-middle"
               >
-                Slet indlæg
+                Slet kommentar
               </span>
             </div>
           </Component>
@@ -540,75 +109,8 @@ exports[`CommentContainer Delete button 1`] = `
       </div>
     </Component>
     <div
-      className="flex mb2"
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
+      className="d-flex align-items-center mb-3 w-100"
     >
-      <ProfileImage
-        size="40"
-        style={
-          Object {
-            "marginRight": "10px",
-          }
-        }
-        user={
-          Object {
-            "name": "Benny Cosmos",
-            "openplatformId": "1234",
-          }
-        }
-      >
-        <div
-          className="profile-card d-flex flex-column "
-        >
-          <span
-            className="profile-image text-center small round"
-            style={
-              Object {
-                "height": "40px",
-                "lineHeight": "74px",
-                "marginRight": "10px",
-                "width": "40px",
-              }
-            }
-          >
-            <Icon
-              name="face"
-              style={
-                Object {
-                  "backgroundColor": "#e9eaeb",
-                  "borderRadius": "50%",
-                  "display": "block",
-                  "fontSize": "26px",
-                  "height": "40px",
-                  "lineHeight": "40px",
-                  "width": "40px",
-                }
-              }
-            >
-              <i
-                className="material-icons material-icons-face "
-                style={
-                  Object {
-                    "backgroundColor": "#e9eaeb",
-                    "borderRadius": "50%",
-                    "display": "block",
-                    "fontSize": "26px",
-                    "height": "40px",
-                    "lineHeight": "40px",
-                    "width": "40px",
-                  }
-                }
-              >
-                face
-              </i>
-            </Icon>
-          </span>
-        </div>
-      </ProfileImage>
       <div
         style={
           Object {
@@ -617,34 +119,107 @@ exports[`CommentContainer Delete button 1`] = `
         }
       >
         <div
-          className="comment"
+          className="comment d-flex"
         >
+          <ProfileImage
+            size="40"
+            style={
+              Object {
+                "marginRight": "15px",
+                "marginTop": "10px",
+              }
+            }
+            user={
+              Object {
+                "name": "Benny Cosmos",
+                "openplatformId": "1234",
+              }
+            }
+          >
+            <div
+              className="profile-card d-flex flex-column "
+            >
+              <span
+                className="profile-image text-center small round"
+                style={
+                  Object {
+                    "height": "40px",
+                    "lineHeight": "74px",
+                    "marginRight": "15px",
+                    "marginTop": "10px",
+                    "width": "40px",
+                  }
+                }
+              >
+                <Icon
+                  name="face"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                      "borderRadius": "50%",
+                      "display": "block",
+                      "fontSize": "26px",
+                      "height": "40px",
+                      "lineHeight": "40px",
+                      "width": "40px",
+                    }
+                  }
+                >
+                  <i
+                    className="material-icons material-icons-face  "
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                        "borderRadius": "50%",
+                        "display": "block",
+                        "fontSize": "26px",
+                        "height": "40px",
+                        "lineHeight": "40px",
+                        "width": "40px",
+                      }
+                    }
+                  >
+                    face
+                  </i>
+                </Icon>
+              </span>
+            </div>
+          </ProfileImage>
           <div
-            className="d-flex align-items-center"
+            className="d-flex flex-column w-100"
           >
             <Text
-              className="mb-2"
-              type="large"
-            >
-              <p
-                className="mb-2 Text Text__large "
-              >
-                Benny Cosmos
-              </p>
-            </Text>
-            <Text
-              className="ml-4 mb-2 d-none d-md-block"
+              className="mb-1"
               type="small"
               variant="color-due"
             >
               <p
-                className="ml-4 mb-2 d-none d-md-block Text Text__small Text__small--color-due"
+                className="mb-1 Text Text__small Text__small--color-due"
               >
-                Lige nu
+                13. marts 2019
               </p>
             </Text>
+            <div
+              className="comment-nameComment-wrap"
+            >
+              <Text
+                className="d-inline"
+                type="large"
+              >
+                <p
+                  className="d-inline Text Text__large "
+                >
+                  Benny Cosmos
+                </p>
+              </Text>
+              <div
+                className="d-inline ml-2"
+              >
+                comment_test
+              </div>
+            </div>
           </div>
-          comment_test
         </div>
       </div>
     </div>
@@ -690,7 +265,8 @@ exports[`CommentContainer Edit button 1`] = `
             name="more_vert"
           >
             <i
-              className="material-icons material-icons-more_vert align-middle"
+              className="material-icons material-icons-more_vert align-middle "
+              onClick={[Function]}
             >
               more_vert
             </i>
@@ -702,7 +278,7 @@ exports[`CommentContainer Edit button 1`] = `
           <Component
             icon="edit"
             onClick={[Function]}
-            title="Redigér indlæg"
+            title="Redigér kommentar"
           >
             <div
               className="dropdown-item"
@@ -714,7 +290,8 @@ exports[`CommentContainer Edit button 1`] = `
                 name="edit"
               >
                 <i
-                  className="material-icons material-icons-edit align-middle mr-2"
+                  className="material-icons material-icons-edit align-middle mr-2 "
+                  onClick={[Function]}
                 >
                   edit
                 </i>
@@ -722,14 +299,14 @@ exports[`CommentContainer Edit button 1`] = `
               <span
                 className="align-middle"
               >
-                Redigér indlæg
+                Redigér kommentar
               </span>
             </div>
           </Component>
           <Component
-            icon="clear"
+            icon="delete"
             onClick={[Function]}
-            title="Slet indlæg"
+            title="Slet kommentar"
           >
             <div
               className="dropdown-item"
@@ -738,18 +315,19 @@ exports[`CommentContainer Edit button 1`] = `
             >
               <Icon
                 className="align-middle mr-2"
-                name="clear"
+                name="delete"
               >
                 <i
-                  className="material-icons material-icons-clear align-middle mr-2"
+                  className="material-icons material-icons-delete align-middle mr-2 "
+                  onClick={[Function]}
                 >
-                  clear
+                  delete
                 </i>
               </Icon>
               <span
                 className="align-middle"
               >
-                Slet indlæg
+                Slet kommentar
               </span>
             </div>
           </Component>
@@ -757,75 +335,8 @@ exports[`CommentContainer Edit button 1`] = `
       </div>
     </Component>
     <div
-      className="flex mb2"
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
+      className="d-flex align-items-center mb-3 w-100"
     >
-      <ProfileImage
-        size="40"
-        style={
-          Object {
-            "marginRight": "10px",
-          }
-        }
-        user={
-          Object {
-            "name": "Benny Cosmos",
-            "openplatformId": "1234",
-          }
-        }
-      >
-        <div
-          className="profile-card d-flex flex-column "
-        >
-          <span
-            className="profile-image text-center small round"
-            style={
-              Object {
-                "height": "40px",
-                "lineHeight": "74px",
-                "marginRight": "10px",
-                "width": "40px",
-              }
-            }
-          >
-            <Icon
-              name="face"
-              style={
-                Object {
-                  "backgroundColor": "#e9eaeb",
-                  "borderRadius": "50%",
-                  "display": "block",
-                  "fontSize": "26px",
-                  "height": "40px",
-                  "lineHeight": "40px",
-                  "width": "40px",
-                }
-              }
-            >
-              <i
-                className="material-icons material-icons-face "
-                style={
-                  Object {
-                    "backgroundColor": "#e9eaeb",
-                    "borderRadius": "50%",
-                    "display": "block",
-                    "fontSize": "26px",
-                    "height": "40px",
-                    "lineHeight": "40px",
-                    "width": "40px",
-                  }
-                }
-              >
-                face
-              </i>
-            </Icon>
-          </span>
-        </div>
-      </ProfileImage>
       <div
         style={
           Object {
@@ -834,34 +345,107 @@ exports[`CommentContainer Edit button 1`] = `
         }
       >
         <div
-          className="comment"
+          className="comment d-flex"
         >
+          <ProfileImage
+            size="40"
+            style={
+              Object {
+                "marginRight": "15px",
+                "marginTop": "10px",
+              }
+            }
+            user={
+              Object {
+                "name": "Benny Cosmos",
+                "openplatformId": "1234",
+              }
+            }
+          >
+            <div
+              className="profile-card d-flex flex-column "
+            >
+              <span
+                className="profile-image text-center small round"
+                style={
+                  Object {
+                    "height": "40px",
+                    "lineHeight": "74px",
+                    "marginRight": "15px",
+                    "marginTop": "10px",
+                    "width": "40px",
+                  }
+                }
+              >
+                <Icon
+                  name="face"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                      "borderRadius": "50%",
+                      "display": "block",
+                      "fontSize": "26px",
+                      "height": "40px",
+                      "lineHeight": "40px",
+                      "width": "40px",
+                    }
+                  }
+                >
+                  <i
+                    className="material-icons material-icons-face  "
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                        "borderRadius": "50%",
+                        "display": "block",
+                        "fontSize": "26px",
+                        "height": "40px",
+                        "lineHeight": "40px",
+                        "width": "40px",
+                      }
+                    }
+                  >
+                    face
+                  </i>
+                </Icon>
+              </span>
+            </div>
+          </ProfileImage>
           <div
-            className="d-flex align-items-center"
+            className="d-flex flex-column w-100"
           >
             <Text
-              className="mb-2"
-              type="large"
-            >
-              <p
-                className="mb-2 Text Text__large "
-              >
-                Benny Cosmos
-              </p>
-            </Text>
-            <Text
-              className="ml-4 mb-2 d-none d-md-block"
+              className="mb-1"
               type="small"
               variant="color-due"
             >
               <p
-                className="ml-4 mb-2 d-none d-md-block Text Text__small Text__small--color-due"
+                className="mb-1 Text Text__small Text__small--color-due"
               >
-                Lige nu
+                13. marts 2019
               </p>
             </Text>
+            <div
+              className="comment-nameComment-wrap"
+            >
+              <Text
+                className="d-inline"
+                type="large"
+              >
+                <p
+                  className="d-inline Text Text__large "
+                >
+                  Benny Cosmos
+                </p>
+              </Text>
+              <div
+                className="d-inline ml-2"
+              >
+                comment_test
+              </div>
+            </div>
           </div>
-          comment_test
         </div>
       </div>
     </div>
@@ -907,7 +491,8 @@ exports[`CommentContainer Edit button 2`] = `
             name="more_vert"
           >
             <i
-              className="material-icons material-icons-more_vert align-middle"
+              className="material-icons material-icons-more_vert align-middle "
+              onClick={[Function]}
             >
               more_vert
             </i>
@@ -919,7 +504,7 @@ exports[`CommentContainer Edit button 2`] = `
           <Component
             icon="edit"
             onClick={[Function]}
-            title="Redigér indlæg"
+            title="Redigér kommentar"
           >
             <div
               className="dropdown-item"
@@ -931,7 +516,8 @@ exports[`CommentContainer Edit button 2`] = `
                 name="edit"
               >
                 <i
-                  className="material-icons material-icons-edit align-middle mr-2"
+                  className="material-icons material-icons-edit align-middle mr-2 "
+                  onClick={[Function]}
                 >
                   edit
                 </i>
@@ -939,14 +525,14 @@ exports[`CommentContainer Edit button 2`] = `
               <span
                 className="align-middle"
               >
-                Redigér indlæg
+                Redigér kommentar
               </span>
             </div>
           </Component>
           <Component
-            icon="clear"
+            icon="delete"
             onClick={[Function]}
-            title="Slet indlæg"
+            title="Slet kommentar"
           >
             <div
               className="dropdown-item"
@@ -955,18 +541,19 @@ exports[`CommentContainer Edit button 2`] = `
             >
               <Icon
                 className="align-middle mr-2"
-                name="clear"
+                name="delete"
               >
                 <i
-                  className="material-icons material-icons-clear align-middle mr-2"
+                  className="material-icons material-icons-delete align-middle mr-2 "
+                  onClick={[Function]}
                 >
-                  clear
+                  delete
                 </i>
               </Icon>
               <span
                 className="align-middle"
               >
-                Slet indlæg
+                Slet kommentar
               </span>
             </div>
           </Component>
@@ -974,75 +561,8 @@ exports[`CommentContainer Edit button 2`] = `
       </div>
     </Component>
     <div
-      className="flex mb2"
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
+      className="d-flex align-items-center mb-3 w-100"
     >
-      <ProfileImage
-        size="40"
-        style={
-          Object {
-            "marginRight": "10px",
-          }
-        }
-        user={
-          Object {
-            "name": "Benny Cosmos",
-            "openplatformId": "1234",
-          }
-        }
-      >
-        <div
-          className="profile-card d-flex flex-column "
-        >
-          <span
-            className="profile-image text-center small round"
-            style={
-              Object {
-                "height": "40px",
-                "lineHeight": "74px",
-                "marginRight": "10px",
-                "width": "40px",
-              }
-            }
-          >
-            <Icon
-              name="face"
-              style={
-                Object {
-                  "backgroundColor": "#e9eaeb",
-                  "borderRadius": "50%",
-                  "display": "block",
-                  "fontSize": "26px",
-                  "height": "40px",
-                  "lineHeight": "40px",
-                  "width": "40px",
-                }
-              }
-            >
-              <i
-                className="material-icons material-icons-face "
-                style={
-                  Object {
-                    "backgroundColor": "#e9eaeb",
-                    "borderRadius": "50%",
-                    "display": "block",
-                    "fontSize": "26px",
-                    "height": "40px",
-                    "lineHeight": "40px",
-                    "width": "40px",
-                  }
-                }
-              >
-                face
-              </i>
-            </Icon>
-          </span>
-        </div>
-      </ProfileImage>
       <div
         style={
           Object {
@@ -1052,8 +572,8 @@ exports[`CommentContainer Edit button 2`] = `
       >
         <CommentInput
           autoFocus={true}
+          editing={true}
           error={null}
-          hideProfile={true}
           onCancel={[Function]}
           onChange={[Function]}
           onDelete={[Function]}
@@ -1067,85 +587,113 @@ exports[`CommentContainer Edit button 2`] = `
           value="comment_test"
         >
           <div
+            className="comment-textarea-wrap mb-3 d-flex undefined"
             style={
               Object {
-                "display": "flex",
+                "marginTop": "10px",
               }
             }
           >
-            <div
-              className="form-group "
-              onBlur={[Function]}
-              onFocus={[Function]}
+            <ProfileImage
+              size="40"
               style={
                 Object {
-                  "width": "100%",
+                  "marginRight": "15px",
+                }
+              }
+              user={
+                Object {
+                  "name": "Benny Cosmos",
+                  "openplatformId": "1234",
                 }
               }
             >
-              <textarea
-                autoFocus={true}
-                className="form-control mb1 comment-textarea"
-                name="list-description"
-                onChange={[Function]}
-                placeholder="Skriv kommentar"
-                value="comment_test"
-              />
               <div
-                className="tr"
+                className="profile-card d-flex flex-column "
+              >
+                <span
+                  className="profile-image text-center small round"
+                  style={
+                    Object {
+                      "height": "40px",
+                      "lineHeight": "74px",
+                      "marginRight": "15px",
+                      "width": "40px",
+                    }
+                  }
+                >
+                  <Icon
+                    name="face"
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                        "borderRadius": "50%",
+                        "display": "block",
+                        "fontSize": "26px",
+                        "height": "40px",
+                        "lineHeight": "40px",
+                        "width": "40px",
+                      }
+                    }
+                  >
+                    <i
+                      className="material-icons material-icons-face  "
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "backgroundColor": "#e9eaeb",
+                          "borderRadius": "50%",
+                          "display": "block",
+                          "fontSize": "26px",
+                          "height": "40px",
+                          "lineHeight": "40px",
+                          "width": "40px",
+                        }
+                      }
+                    >
+                      face
+                    </i>
+                  </Icon>
+                </span>
+              </div>
+            </ProfileImage>
+            <div
+              className="d-flex flex-wrap align-items-center w-100 "
+              onBlur={[Function]}
+              onFocus={[Function]}
+            >
+              <div
+                className="d-flex w-100"
                 style={
                   Object {
-                    "height": "50px",
-                    "opacity": 1,
+                    "border": "1px solid #E9EAEB",
                     "overflow": "hidden",
-                    "transition": "all 200ms",
                   }
                 }
               >
-                <Button
-                  className="comment-cancel mr-2 ml-2"
-                  onClick={[Function]}
-                  size="medium"
-                  type="link"
-                >
-                  <button
-                    className="comment-cancel mr-2 ml-2
-                        btn Button Button__medium Button__link "
-                    data-cy=""
-                    disabled={false}
-                    onClick={[Function]}
-                  >
-                    <T
-                      component="general"
-                      name="cancel"
-                    >
-                      Fortryd
-                    </T>
-                  </button>
-                </Button>
-                <Button
-                  className="mr-2 ml-2"
+                <textarea
+                  autoFocus={true}
+                  className="comment-textarea border-0 pl-3"
+                  name="list-description"
+                  onChange={[Function]}
+                  placeholder="Din kommentar ..."
+                  value="comment_test"
+                />
+                <Icon
+                  className="comment-submit-icon align-self-end"
                   disabled={false}
                   id="comment-submit"
+                  name="check"
                   onClick={[Function]}
-                  type="quaternary"
                 >
-                  <button
-                    className="mr-2 ml-2
-                        btn Button Button__large Button__quaternary "
-                    data-cy=""
-                    disabled={false}
+                  <i
+                    className="material-icons material-icons-check comment-submit-icon align-self-end "
                     id="comment-submit"
                     onClick={[Function]}
                   >
-                    <T
-                      component="post"
-                      name="comment"
-                    >
-                      Kommentér
-                    </T>
-                  </button>
-                </Button>
+                    check
+                  </i>
+                </Icon>
               </div>
             </div>
           </div>
@@ -1162,46 +710,8 @@ exports[`CommentContainer Render comment 1`] = `
 >
   
   <div
-    className="flex mb2"
-    style={
-      Object {
-        "width": "100%",
-      }
-    }
+    className="d-flex align-items-center mb-3 w-100"
   >
-    <div
-      className="profile-card d-flex flex-column "
-    >
-      <span
-        className="profile-image text-center small round"
-        style={
-          Object {
-            "height": "40px",
-            "lineHeight": "74px",
-            "marginRight": "10px",
-            "width": "40px",
-          }
-        }
-      >
-        <i
-          className="material-icons material-icons-face "
-          style={
-            Object {
-              "backgroundColor": "#e9eaeb",
-              "borderRadius": "50%",
-              "display": "block",
-              "fontSize": "26px",
-              "height": "40px",
-              "lineHeight": "40px",
-              "width": "40px",
-            }
-          }
-        >
-          face
-        </i>
-      </span>
-      
-    </div>
     <div
       style={
         Object {
@@ -1210,23 +720,66 @@ exports[`CommentContainer Render comment 1`] = `
       }
     >
       <div
-        className="comment"
+        className="comment d-flex"
       >
         <div
-          className="d-flex align-items-center"
+          className="profile-card d-flex flex-column "
+        >
+          <span
+            className="profile-image text-center small round"
+            style={
+              Object {
+                "height": "40px",
+                "lineHeight": "74px",
+                "marginRight": "15px",
+                "marginTop": "10px",
+                "width": "40px",
+              }
+            }
+          >
+            <i
+              className="material-icons material-icons-face  "
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#e9eaeb",
+                  "borderRadius": "50%",
+                  "display": "block",
+                  "fontSize": "26px",
+                  "height": "40px",
+                  "lineHeight": "40px",
+                  "width": "40px",
+                }
+              }
+            >
+              face
+            </i>
+          </span>
+          
+        </div>
+        <div
+          className="d-flex flex-column w-100"
         >
           <p
-            className="mb-2 Text Text__large "
+            className="mb-1 Text Text__small Text__small--color-due"
           >
-            Benny Cosmos
+            13. marts 2019
           </p>
-          <p
-            className="ml-4 mb-2 d-none d-md-block Text Text__small Text__small--color-due"
+          <div
+            className="comment-nameComment-wrap"
           >
-            Lige nu
-          </p>
+            <p
+              className="d-inline Text Text__large "
+            >
+              Benny Cosmos
+            </p>
+            <div
+              className="d-inline ml-2"
+            >
+              comment_test
+            </div>
+          </div>
         </div>
-        comment_test
       </div>
     </div>
   </div>
@@ -1248,7 +801,8 @@ exports[`CommentContainer Render edit form 1`] = `
       data-toggle="dropdown"
     >
       <i
-        className="material-icons material-icons-more_vert align-middle"
+        className="material-icons material-icons-more_vert align-middle "
+        onClick={[Function]}
       >
         more_vert
       </i>
@@ -1263,14 +817,15 @@ exports[`CommentContainer Render edit form 1`] = `
         onClick={[Function]}
       >
         <i
-          className="material-icons material-icons-edit align-middle mr-2"
+          className="material-icons material-icons-edit align-middle mr-2 "
+          onClick={[Function]}
         >
           edit
         </i>
         <span
           className="align-middle"
         >
-          Redigér indlæg
+          Redigér kommentar
         </span>
       </div>
       <div
@@ -1279,59 +834,22 @@ exports[`CommentContainer Render edit form 1`] = `
         onClick={[Function]}
       >
         <i
-          className="material-icons material-icons-clear align-middle mr-2"
+          className="material-icons material-icons-delete align-middle mr-2 "
+          onClick={[Function]}
         >
-          clear
+          delete
         </i>
         <span
           className="align-middle"
         >
-          Slet indlæg
+          Slet kommentar
         </span>
       </div>
     </div>
   </div>
   <div
-    className="flex mb2"
-    style={
-      Object {
-        "width": "100%",
-      }
-    }
+    className="d-flex align-items-center mb-3 w-100"
   >
-    <div
-      className="profile-card d-flex flex-column "
-    >
-      <span
-        className="profile-image text-center small round"
-        style={
-          Object {
-            "height": "40px",
-            "lineHeight": "74px",
-            "marginRight": "10px",
-            "width": "40px",
-          }
-        }
-      >
-        <i
-          className="material-icons material-icons-face "
-          style={
-            Object {
-              "backgroundColor": "#e9eaeb",
-              "borderRadius": "50%",
-              "display": "block",
-              "fontSize": "26px",
-              "height": "40px",
-              "lineHeight": "40px",
-              "width": "40px",
-            }
-          }
-        >
-          face
-        </i>
-      </span>
-      
-    </div>
     <div
       style={
         Object {
@@ -1340,23 +858,66 @@ exports[`CommentContainer Render edit form 1`] = `
       }
     >
       <div
-        className="comment"
+        className="comment d-flex"
       >
         <div
-          className="d-flex align-items-center"
+          className="profile-card d-flex flex-column "
+        >
+          <span
+            className="profile-image text-center small round"
+            style={
+              Object {
+                "height": "40px",
+                "lineHeight": "74px",
+                "marginRight": "15px",
+                "marginTop": "10px",
+                "width": "40px",
+              }
+            }
+          >
+            <i
+              className="material-icons material-icons-face  "
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#e9eaeb",
+                  "borderRadius": "50%",
+                  "display": "block",
+                  "fontSize": "26px",
+                  "height": "40px",
+                  "lineHeight": "40px",
+                  "width": "40px",
+                }
+              }
+            >
+              face
+            </i>
+          </span>
+          
+        </div>
+        <div
+          className="d-flex flex-column w-100"
         >
           <p
-            className="mb-2 Text Text__large "
+            className="mb-1 Text Text__small Text__small--color-due"
           >
-            Benny Cosmos
+            13. marts 2019
           </p>
-          <p
-            className="ml-4 mb-2 d-none d-md-block Text Text__small Text__small--color-due"
+          <div
+            className="comment-nameComment-wrap"
           >
-            Lige nu
-          </p>
+            <p
+              className="d-inline Text Text__large "
+            >
+              Benny Cosmos
+            </p>
+            <div
+              className="d-inline ml-2"
+            >
+              comment_test
+            </div>
+          </div>
         </div>
-        comment_test
       </div>
     </div>
   </div>
@@ -1392,7 +953,8 @@ exports[`CommentContainer Render save form 1`] = `
       data-toggle="dropdown"
     >
       <i
-        className="material-icons material-icons-more_vert align-middle"
+        className="material-icons material-icons-more_vert align-middle "
+        onClick={[Function]}
       >
         more_vert
       </i>
@@ -1407,14 +969,15 @@ exports[`CommentContainer Render save form 1`] = `
         onClick={[Function]}
       >
         <i
-          className="material-icons material-icons-edit align-middle mr-2"
+          className="material-icons material-icons-edit align-middle mr-2 "
+          onClick={[Function]}
         >
           edit
         </i>
         <span
           className="align-middle"
         >
-          Redigér indlæg
+          Redigér kommentar
         </span>
       </div>
       <div
@@ -1423,59 +986,22 @@ exports[`CommentContainer Render save form 1`] = `
         onClick={[Function]}
       >
         <i
-          className="material-icons material-icons-clear align-middle mr-2"
+          className="material-icons material-icons-delete align-middle mr-2 "
+          onClick={[Function]}
         >
-          clear
+          delete
         </i>
         <span
           className="align-middle"
         >
-          Slet indlæg
+          Slet kommentar
         </span>
       </div>
     </div>
   </div>
   <div
-    className="flex mb2"
-    style={
-      Object {
-        "width": "100%",
-      }
-    }
+    className="d-flex align-items-center mb-3 w-100"
   >
-    <div
-      className="profile-card d-flex flex-column "
-    >
-      <span
-        className="profile-image text-center small round"
-        style={
-          Object {
-            "height": "40px",
-            "lineHeight": "74px",
-            "marginRight": "10px",
-            "width": "40px",
-          }
-        }
-      >
-        <i
-          className="material-icons material-icons-face "
-          style={
-            Object {
-              "backgroundColor": "#e9eaeb",
-              "borderRadius": "50%",
-              "display": "block",
-              "fontSize": "26px",
-              "height": "40px",
-              "lineHeight": "40px",
-              "width": "40px",
-            }
-          }
-        >
-          face
-        </i>
-      </span>
-      
-    </div>
     <div
       style={
         Object {
@@ -1484,23 +1010,66 @@ exports[`CommentContainer Render save form 1`] = `
       }
     >
       <div
-        className="comment"
+        className="comment d-flex"
       >
         <div
-          className="d-flex align-items-center"
+          className="profile-card d-flex flex-column "
+        >
+          <span
+            className="profile-image text-center small round"
+            style={
+              Object {
+                "height": "40px",
+                "lineHeight": "74px",
+                "marginRight": "15px",
+                "marginTop": "10px",
+                "width": "40px",
+              }
+            }
+          >
+            <i
+              className="material-icons material-icons-face  "
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "#e9eaeb",
+                  "borderRadius": "50%",
+                  "display": "block",
+                  "fontSize": "26px",
+                  "height": "40px",
+                  "lineHeight": "40px",
+                  "width": "40px",
+                }
+              }
+            >
+              face
+            </i>
+          </span>
+          
+        </div>
+        <div
+          className="d-flex flex-column w-100"
         >
           <p
-            className="mb-2 Text Text__large "
+            className="mb-1 Text Text__small Text__small--color-due"
           >
-            Benny Cosmos
+            13. marts 2019
           </p>
-          <p
-            className="ml-4 mb-2 d-none d-md-block Text Text__small Text__small--color-due"
+          <div
+            className="comment-nameComment-wrap"
           >
-            Lige nu
-          </p>
+            <p
+              className="d-inline Text Text__large "
+            >
+              Benny Cosmos
+            </p>
+            <div
+              className="d-inline ml-2"
+            >
+              comment_test
+            </div>
+          </div>
         </div>
-        comment_test
       </div>
     </div>
   </div>
@@ -1547,7 +1116,8 @@ exports[`CommentContainer Save button 1`] = `
             name="more_vert"
           >
             <i
-              className="material-icons material-icons-more_vert align-middle"
+              className="material-icons material-icons-more_vert align-middle "
+              onClick={[Function]}
             >
               more_vert
             </i>
@@ -1559,7 +1129,7 @@ exports[`CommentContainer Save button 1`] = `
           <Component
             icon="edit"
             onClick={[Function]}
-            title="Redigér indlæg"
+            title="Redigér kommentar"
           >
             <div
               className="dropdown-item"
@@ -1571,7 +1141,8 @@ exports[`CommentContainer Save button 1`] = `
                 name="edit"
               >
                 <i
-                  className="material-icons material-icons-edit align-middle mr-2"
+                  className="material-icons material-icons-edit align-middle mr-2 "
+                  onClick={[Function]}
                 >
                   edit
                 </i>
@@ -1579,14 +1150,14 @@ exports[`CommentContainer Save button 1`] = `
               <span
                 className="align-middle"
               >
-                Redigér indlæg
+                Redigér kommentar
               </span>
             </div>
           </Component>
           <Component
-            icon="clear"
+            icon="delete"
             onClick={[Function]}
-            title="Slet indlæg"
+            title="Slet kommentar"
           >
             <div
               className="dropdown-item"
@@ -1595,18 +1166,19 @@ exports[`CommentContainer Save button 1`] = `
             >
               <Icon
                 className="align-middle mr-2"
-                name="clear"
+                name="delete"
               >
                 <i
-                  className="material-icons material-icons-clear align-middle mr-2"
+                  className="material-icons material-icons-delete align-middle mr-2 "
+                  onClick={[Function]}
                 >
-                  clear
+                  delete
                 </i>
               </Icon>
               <span
                 className="align-middle"
               >
-                Slet indlæg
+                Slet kommentar
               </span>
             </div>
           </Component>
@@ -1614,75 +1186,8 @@ exports[`CommentContainer Save button 1`] = `
       </div>
     </Component>
     <div
-      className="flex mb2"
-      style={
-        Object {
-          "width": "100%",
-        }
-      }
+      className="d-flex align-items-center mb-3 w-100"
     >
-      <ProfileImage
-        size="40"
-        style={
-          Object {
-            "marginRight": "10px",
-          }
-        }
-        user={
-          Object {
-            "name": "Benny Cosmos",
-            "openplatformId": "1234",
-          }
-        }
-      >
-        <div
-          className="profile-card d-flex flex-column "
-        >
-          <span
-            className="profile-image text-center small round"
-            style={
-              Object {
-                "height": "40px",
-                "lineHeight": "74px",
-                "marginRight": "10px",
-                "width": "40px",
-              }
-            }
-          >
-            <Icon
-              name="face"
-              style={
-                Object {
-                  "backgroundColor": "#e9eaeb",
-                  "borderRadius": "50%",
-                  "display": "block",
-                  "fontSize": "26px",
-                  "height": "40px",
-                  "lineHeight": "40px",
-                  "width": "40px",
-                }
-              }
-            >
-              <i
-                className="material-icons material-icons-face "
-                style={
-                  Object {
-                    "backgroundColor": "#e9eaeb",
-                    "borderRadius": "50%",
-                    "display": "block",
-                    "fontSize": "26px",
-                    "height": "40px",
-                    "lineHeight": "40px",
-                    "width": "40px",
-                  }
-                }
-              >
-                face
-              </i>
-            </Icon>
-          </span>
-        </div>
-      </ProfileImage>
       <div
         style={
           Object {
@@ -1691,34 +1196,107 @@ exports[`CommentContainer Save button 1`] = `
         }
       >
         <div
-          className="comment"
+          className="comment d-flex"
         >
+          <ProfileImage
+            size="40"
+            style={
+              Object {
+                "marginRight": "15px",
+                "marginTop": "10px",
+              }
+            }
+            user={
+              Object {
+                "name": "Benny Cosmos",
+                "openplatformId": "1234",
+              }
+            }
+          >
+            <div
+              className="profile-card d-flex flex-column "
+            >
+              <span
+                className="profile-image text-center small round"
+                style={
+                  Object {
+                    "height": "40px",
+                    "lineHeight": "74px",
+                    "marginRight": "15px",
+                    "marginTop": "10px",
+                    "width": "40px",
+                  }
+                }
+              >
+                <Icon
+                  name="face"
+                  style={
+                    Object {
+                      "backgroundColor": "#e9eaeb",
+                      "borderRadius": "50%",
+                      "display": "block",
+                      "fontSize": "26px",
+                      "height": "40px",
+                      "lineHeight": "40px",
+                      "width": "40px",
+                    }
+                  }
+                >
+                  <i
+                    className="material-icons material-icons-face  "
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "backgroundColor": "#e9eaeb",
+                        "borderRadius": "50%",
+                        "display": "block",
+                        "fontSize": "26px",
+                        "height": "40px",
+                        "lineHeight": "40px",
+                        "width": "40px",
+                      }
+                    }
+                  >
+                    face
+                  </i>
+                </Icon>
+              </span>
+            </div>
+          </ProfileImage>
           <div
-            className="d-flex align-items-center"
+            className="d-flex flex-column w-100"
           >
             <Text
-              className="mb-2"
-              type="large"
-            >
-              <p
-                className="mb-2 Text Text__large "
-              >
-                Benny Cosmos
-              </p>
-            </Text>
-            <Text
-              className="ml-4 mb-2 d-none d-md-block"
+              className="mb-1"
               type="small"
               variant="color-due"
             >
               <p
-                className="ml-4 mb-2 d-none d-md-block Text Text__small Text__small--color-due"
+                className="mb-1 Text Text__small Text__small--color-due"
               >
-                Lige nu
+                13. marts 2019
               </p>
             </Text>
+            <div
+              className="comment-nameComment-wrap"
+            >
+              <Text
+                className="d-inline"
+                type="large"
+              >
+                <p
+                  className="d-inline Text Text__large "
+                >
+                  Benny Cosmos
+                </p>
+              </Text>
+              <div
+                className="d-inline ml-2"
+              >
+                comment_test
+              </div>
+            </div>
           </div>
-          comment_test
         </div>
       </div>
     </div>

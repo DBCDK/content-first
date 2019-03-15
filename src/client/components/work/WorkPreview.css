@@ -32,13 +32,10 @@
   width: 100%;
 }
 
-.workPreview__work .workPreview__info .ssb {
+.workPreview__work .workPreview__info .Share {
   position: absolute;
   right: 0;
   top: 0;
-}
-.workPreview__work .workPreview__info .ssb img {
-  width: 60%;
 }
 
 .workPreview__work .workPreview__info .workPreview__details {

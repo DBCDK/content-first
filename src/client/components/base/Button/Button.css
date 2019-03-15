@@ -86,13 +86,10 @@
 .Button__link2 {
   padding: 0 !important;
   background-color: transparent;
-  font-size: 14px !important;
+  font-size: 12px !important;
   color: var(--petroleum);
   font-weight: 600;
   border: 0 !important;
-}
-.Button__link2:hover {
-  text-decoration: underline;
 }
 
 /* Sizes */

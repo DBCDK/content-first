@@ -9,9 +9,6 @@
   top: 4em;
 }
 
-.list-wrapper .b-dark .ssb-fb {
-}
-
 .list-wrapper .b-dark .ssb-follow {
   margin-right: 1em;
 }
@@ -20,8 +17,6 @@
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 40px;
-
-  font-family: var(--secondary-font);
 }
 .simplelist .profile-description {
   position: relative;
@@ -44,10 +39,4 @@
   right: 0px;
   font-size: 18px;
   cursor: pointer;
-}
-
-.simplelist .ssb-fb {
-  position: absolute;
-  right: 25px;
-  top: 0px;
 }

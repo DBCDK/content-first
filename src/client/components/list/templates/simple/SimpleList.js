@@ -1,13 +1,21 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
-import {getListByIdSelector} from '../../../../redux/list.reducer';
+import {withList} from '../../../base/List/withList.hoc';
+import T from '../../../base/T';
+import Icon from '../../../base/Icon';
+import Text from '../../../base/Text';
+import Banner from '../../../base/Banner';
+import Comments from '../../../comments/Comment.container';
 import AddToList from '../../addtolist/AddToList.container';
 import ListElement from '../../element/ListElement';
 import ListInfo from './ListInfo';
 import StickyConfirmPanel from '../../button/StickyConfirmPanel';
-import StickySettingsPanel from '../../menu/StickySettingsPanel';
-const getListById = getListByIdSelector();
+import ListContextMenu from '../../menu/ListContextMenu';
+
+import {timestampToLongDate} from '../../../../utils/dateTimeFormat';
+
+import './SimpleList.css';
 
 export class SimpleList extends React.Component {
   constructor() {
@@ -32,35 +40,64 @@ export class SimpleList extends React.Component {
   };
 
   render() {
-    const {_id, list} = this.props;
+    const {_id, list, isListOwner} = this.props;
     const {added} = this.state;
     return (
       <React.Fragment>
+        <Banner
+          color="#81c793"
+          title={list.title}
+          className="fixed-width-col-md position-relative"
+        >
+          <div className="d-flex align-items-center">
+            <Text type="body" variant="color-white--weight-semibold">
+              <T component="list" name="list" />
+            </Text>
+            <div className="d-flex ml-4">
+              <Icon
+                className="align-middle md-xsmall text-white"
+                name={list.public ? 'visibility' : 'visibility_off'}
+              />
+              <Text className="ml-2" type="small" variant="color-white">
+                <T
+                  component="general"
+                  name={list.public ? 'public' : 'private'}
+                />
+              </Text>
+            </div>
+            <ListContextMenu
+              className="mt-3"
+              _id={list._id}
+              style={{position: 'absolute', right: 0, top: 0, color: 'white'}}
+            />
+          </div>
+          <Text type="small" variant="color-white">
+            <T component={'general'} name="createdThe" />
+            {` ${timestampToLongDate(list._created)}`}
+          </Text>
+        </Banner>
+
         <StickyConfirmPanel
           _id={_id}
           onTitleMissing={bool => this.setState({titleMissing: bool})}
         />
-        <StickySettingsPanel
-          _id={_id}
-          onEdit={this.onEdit}
-          onAddBook={this.onAddBook}
-          disabled={list.editing || list.isNew}
-        />
-        <div className="d-flex justify-content-center mt-0 mt-md-5 mb-5">
-          <div className="fixed-width-col-sm d-xs-none d-xl-block" />
+
+        <div className="d-flex justify-content-center mt-0">
           <div
-            className="list-container pistache fixed-width-col-md"
+            className="list-container fixed-width-col-md"
             ref={cover => {
               this.refs = {...this.refs, cover};
             }}
           >
             <ListInfo
               _id={_id}
+              list={list}
+              isListOwner={isListOwner}
               onAddBook={this.onAddBook}
               onEdit={this.onEdit}
               titleMissing={this.state.titleMissing}
             />
-            <div className="position-relative">
+            <div className="position-relative mt-4 mt-md-5">
               {list.list.map(element => {
                 return (
                   <ListElement
@@ -85,28 +122,42 @@ export class SimpleList extends React.Component {
                 />
               )}
             </div>
-            <AddToList
-              suggesterRef={suggester => {
-                this.refs = {...this.refs, suggester};
-              }}
-              className="pt-5"
-              style={{background: 'white'}}
-              list={list}
-              onAdd={pid => this.setState({added: pid})}
-              disabled={list.editing || list.isNew}
-            />
+
+            {(list.open || isListOwner) && (
+              <div className="p-3 p-md-0">
+                <AddToList
+                  list={list}
+                  onAdd={pid => this.setState({added: pid})}
+                  suggesterRef={suggester =>
+                    (this.refs = {...this.refs, suggester})
+                  }
+                />
+              </div>
+            )}
+
+            {list.social && (
+              <div className="p-3 p-md-0">
+                {(list.open || isListOwner) && (
+                  <div className="list-divider petroleum mt-4 mb-4" />
+                )}
+                <Text type="small" variant="weight-semibold" className="mb-3">
+                  <T component="list" name="commentListLabel" />
+                </Text>
+                <Comments
+                  className="simpleList-comment mb-5"
+                  id={list._id}
+                  disabled={false}
+                />
+              </div>
+            )}
           </div>
-          <div className="fixed-width-col-sm d-xs-none d-lg-block mt-4 ml-4" />
         </div>
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const list = getListById(state, {_id: ownProps._id});
-  return {
-    list
-  };
+const mapStateToProps = () => {
+  return {};
 };
-export default connect(mapStateToProps)(SimpleList);
+export default connect(mapStateToProps)(withList(SimpleList));
