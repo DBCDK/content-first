@@ -18,7 +18,7 @@
 .Hero .swiper-container-horizontal > .swiper-pagination-bullets {
   top: auto;
   text-align: center;
-  top: 50px;
+  top: 25px;
 }
 
 .Hero .swiper-pagination-bullet {
@@ -138,6 +138,10 @@
   }
   .Hero .hero-bg-image {
     height: calc(100vh + 80px);
+  }
+
+  .Hero .swiper-container-horizontal > .swiper-pagination-bullets {
+    top: 15px;
   }
 }
 

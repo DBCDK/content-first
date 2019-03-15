@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Material+Icons');
+@import './fonts.css';
 
 /* Global Settings for new design */
 :root {
@@ -24,8 +25,8 @@
   --mine-shaft: #333333;
 
   --primary-font: 'Montserrat', sans-serif;
+  --primary-black: 'Montserrat-black', 'Montserrat', sans-serif;
 }
-
 
 /* utils */
 .french-pass {

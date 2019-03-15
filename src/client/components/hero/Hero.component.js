@@ -15,10 +15,10 @@ const params = {
   noSwiping: !isMobile,
   speed: 1000,
   loop: true,
-  autoplay: {
-    delay: 10000,
-    disableOnInteraction: false
-  },
+  // autoplay: {
+  //   delay: 10000,
+  //   disableOnInteraction: false
+  // },
   slidesPerGroup: 1,
   effect: 'fade',
   pagination: {

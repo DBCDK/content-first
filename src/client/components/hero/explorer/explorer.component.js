@@ -9,8 +9,8 @@ import './explorer.css';
 const Explorer = () => {
   return (
     <div className="info-callToAction text-center">
-      <Title type="title4" variant="color-white">
-        <T component="hero" name="exploreText" />
+      <Title type="title5" variant="color-white">
+        <T component="hero" name="exploreText" renderAsHtml={true} />
       </Title>
       <Icon className="md-xlarge" name="expand_more" />
     </div>

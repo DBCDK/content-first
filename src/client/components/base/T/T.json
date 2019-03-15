@@ -838,7 +838,7 @@
     },
     "hero": {
       "exploreText": {
-        "da": "Opdag en bog - og lån den på biblioteket",
+        "da": "Opdag en bog <strong>-</strong> <span> og lån den på biblioteket</span>",
         "en": "Discover a book - and loan it at the library"
       }
     }
