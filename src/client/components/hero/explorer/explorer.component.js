@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
 import T from '../../base/T';
 import Title from '../../base/Title';
@@ -7,7 +6,7 @@ import Icon from '../../base/Icon';
 
 import './explorer.css';
 
-const Explorer = ({}) => {
+const Explorer = () => {
   return (
     <div className="info-callToAction text-center">
       <Title type="title4" variant="color-white">

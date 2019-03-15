@@ -114,19 +114,10 @@ export class SearchbarTemplate extends React.Component {
   }
 
   render() {
-    const {
-      hero,
-      className,
-      animate,
-      heroesIsLoading,
-      startAnimation,
-      redirect
-    } = this.props;
+    const {hero, className, animate, startAnimation, redirect} = this.props;
 
     const shadow = hero.color === 'white' ? 'black-shadow' : 'white-shadow';
-
     const url = this.buildUrl(hero.tags);
-
     const hideTags =
       animate.tagsAnimation && animate.tagsAnimation.animating
         ? 'tags-hidden'

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
 
-/*** templates ***/
+/* templates */
 import SearchbarTemplate from './templates/Searchbar.template.js';
 import InfoTemplate from './templates/Info.template.js';
 
@@ -56,13 +56,7 @@ export class Hero extends React.Component {
   }
 
   render() {
-    const {
-      heroes,
-      animate,
-      heroesIsLoading,
-      startAnimation,
-      redirect
-    } = this.props;
+    const {heroes, heroesIsLoading} = this.props;
 
     return (
       <div className="Hero mb-5">
@@ -87,7 +81,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = () => {
   return {};
 };
 

@@ -1,15 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {Parallax, Background} from 'react-parallax';
 
-import T from '../../base/T';
-import Icon from '../../base/Icon';
-import Title from '../../base/Title';
-import Button from '../../base/Button';
-
 import Explorer from '../explorer/explorer.component.js';
-
-import {startAnimate} from '../../../redux/animate.reducer';
 
 import '../Hero.css';
 import './Info.css';
@@ -33,15 +25,4 @@ export class Hero extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {};
-};
-
-const mapDispatchToProps = dispatch => {
-  return {};
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Hero);
+export default Hero;
