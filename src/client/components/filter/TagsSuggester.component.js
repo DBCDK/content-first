@@ -268,19 +268,26 @@ class TagsSuggester extends React.Component {
     return suggestions;
   }
 
+  clearFilters() {
+    let _ref = {};
+    for (let i = 0; i < this.props.selectedFilters.length; i++) {
+      _ref.suggestion = this.props.selectedFilters[i];
+      this.props.onSuggestionSelected('e', _ref);
+    }
+  }
+
   render() {
-    const inputVisibel = this.state.inputVisibel;
     const tagsInField = this.props.selectedFilters.length === 0 ? false : true;
-    const inputVisibelClass = inputVisibel || !tagsInField ? '' : '';
-    const suggestionlistClass =
-      inputVisibel || !tagsInField ? 'input-visible' : 'input-hidden';
+    const pholder = tagsInField
+      ? ' '
+      : T({component: 'filter', name: 'suggesterPlaceholder'});
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
       id: 'Searchbar__inputfield',
-      type: 'search',
-      placeholder: T({component: 'filter', name: 'suggesterPlaceholder'}),
-      className: 'form-control suggestion-list__search ' + inputVisibelClass,
+      type: 'text',
+      placeholder: pholder,
+      className: 'form-control suggestion-list__search',
       value: this.props.value || '',
       onChange: this.props.onChange,
       onFocus: this.props.onFocus,
@@ -293,19 +300,17 @@ class TagsSuggester extends React.Component {
 
     return (
       <React.Fragment>
-        {tagsInField &&
-          !inputVisibel && (
+        {tagsInField && (
+          <div style={{height: '0px', marginTop: '3px', marginRight: '10px'}}>
             <Icon
-              name="search"
+              name="cancel"
               className="md-large d-md-none d-sm-inline-block"
-              onClick={() => this.toggleInputvisibility(true)}
+              onClick={() => this.clearFilters()}
             />
-          )}
+          </div>
+        )}
         <div
-          className={
-            'suggestion-list tags-suggestion-list suggestion-list ' +
-            suggestionlistClass
-          }
+          className={'suggestion-list tags-suggestion-list suggestion-list '}
           onClick={() => this.toggleInputvisibility(true)}
         >
           <Autosuggest

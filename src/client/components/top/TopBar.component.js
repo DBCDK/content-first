@@ -52,53 +52,9 @@ class TopBarDropdown extends React.Component {
 }
 
 export class TopBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dropdownActive: false,
-      searchExpanded: false,
-      width: 0
-    };
-  }
-
-  componentDidMount() {
-    if (this.Topbar) {
-      this.Topbar.addEventListener('mousedown', this.closeDropdown);
-    }
-    window.addEventListener('resize', this.onResize);
-    this.calcWidth();
-
-    searchPage = this.props.router.path === '/find' ? true : false;
-    this.setState({searchExpanded: searchPage});
-    this.props.fetchStats();
-  }
-
-  componentWillUnmount() {
-    if (this.Topbar) {
-      this.Topbar.removeEventListener('mousedown', this.closeDropdown);
-    }
-    window.removeEventListener('resize', this.onResize);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    searchPage = nextProps.router.path === '/find' ? true : false;
-    this.setState({searchExpanded: searchPage});
-  }
-
   onResize = () => {
     this.calcWidth();
   };
-
-  toggleDropdown() {
-    this.setState({dropdownActive: !this.state.dropdownActive});
-    if (this.props.shortListState.expanded) {
-      this.props.onShortlistClose();
-    }
-    if (this.props.listsState.expanded) {
-      this.props.onUserListsClose();
-    }
-  }
-
   closeDropdown = event => {
     // Dont dubble close on 'dropdown' click
     let abortCloseDropdown = false;
@@ -122,6 +78,55 @@ export class TopBar extends React.Component {
       this.setState({dropdownActive: false});
     }
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      dropdownActive: false,
+      searchExpanded: false,
+      width: 0,
+      showCancel: false
+    };
+  }
+
+  componentDidMount() {
+    if (this.Topbar) {
+      this.Topbar.addEventListener('mousedown', this.closeDropdown);
+    }
+    window.addEventListener('resize', this.onResize);
+    this.calcWidth();
+
+    searchPage = this.props.router.path === '/find' ? true : false;
+    this.setState({searchExpanded: searchPage});
+    this.props.fetchStats();
+
+    const tagsInField = window.location.href.split('=')[1];
+    this.setState({showCancel: tagsInField});
+  }
+
+  componentWillUnmount() {
+    if (this.Topbar) {
+      this.Topbar.removeEventListener('mousedown', this.closeDropdown);
+    }
+    this.calcWidth();
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    searchPage = nextProps.router.path === '/find' ? true : false;
+    this.setState({searchExpanded: searchPage});
+    this.calcWidth();
+  }
+
+  toggleDropdown() {
+    this.setState({dropdownActive: !this.state.dropdownActive});
+    if (this.props.shortListState.expanded) {
+      this.props.onShortlistClose();
+    }
+    if (this.props.listsState.expanded) {
+      this.props.onUserListsClose();
+    }
+  }
 
   toggleSearchBar(action = false) {
     const searchBar = document.getElementById('Searchbar__inputfield');
@@ -208,11 +213,29 @@ export class TopBar extends React.Component {
     const shortlist = this.renderShortListBtn();
     const userLists = this.renderListsOverviewDropdown();
     const searchExpanded = searchPage && this.state.searchExpanded;
-    const searchIconText = searchExpanded ? (
-      <i className="material-icons  material-icons-cancel">cancel</i>
-    ) : (
-      <T component="general" name="searchButton" />
-    );
+    const showCancelBtn = window.location.href.split('=')[1];
+    let searchIconText;
+    if (searchExpanded && showCancelBtn) {
+      searchIconText = (
+        <span
+          data-cy="topbar-search-btn"
+          onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
+        >
+          <i className="material-icons  material-icons-cancel">cancel</i>
+        </span>
+      );
+    }
+
+    if (!searchExpanded) {
+      searchIconText = (
+        <span
+          data-cy="topbar-search-btn"
+          onClick={() => this.toggleSearchBar()}
+        >
+          <T component="general" name="searchButton" />
+        </span>
+      );
+    }
 
     const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
@@ -229,31 +252,18 @@ export class TopBar extends React.Component {
         ref={e => (this.Topbar = e)}
         className={`Topbar row ${!searchExpanded ? 'searchBar-closed' : ''}`}
       >
-        {searchPage && searchExpanded && (
-          <div className="Topbar__mobile__overlay d-block d-sm-none">
-            <span onClick={() => this.toggleSearchBar('close')}>
-              <Icon name="chevron_left" />
-              <T component="general" name="back" />
-            </span>
-            <span
-              onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
-            >
-              Nulstil
-            </span>
-          </div>
-        )}
-
         <nav className="col-12 col-m-8 Topbar__navigation">
-          <div>
-            <div className="Topbar__special widthCalc">
+          <div className="Topbar__special widthCalc">
+            <a href="/">
               <img
                 type="image/svg+xml"
                 alt=""
                 src="/img/general/dibliofigur.svg"
                 style={{height: '28px'}}
               />
-            </div>
+            </a>
           </div>
+
           <span className="Topbar__navigation__btn widthCalc d-none d-md-flex">
             <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
             <span className="relative--container">
@@ -265,20 +275,19 @@ export class TopBar extends React.Component {
                 <SearchBar />
               </span>
             </span>
-            <span
-              data-cy="topbar-search-btn"
-              onClick={() => this.toggleSearchBar()}
-            >
-              {searchIconText}
-            </span>
+            {searchIconText}
           </span>
-
-          <Link
-            href="/find"
-            className="Topbar__navigation__btn d-i-block d-md-none"
-          >
-            <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
-          </Link>
+          {!searchExpanded && (
+            <Link
+              href="/find"
+              className="Topbar__navigation__btn d-i-block d-md-none"
+            >
+              <Icon
+                name="search"
+                onClick={() => this.toggleSearchBar('open')}
+              />
+            </Link>
+          )}
 
           {shortlist}
 

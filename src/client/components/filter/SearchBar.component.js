@@ -20,13 +20,13 @@ import {REORGANIZE_FILTERPAGE_BELTS} from '../../redux/belts.reducer';
 import './SearchBar.css';
 
 class SearchBar extends React.Component {
-  componentDidMount() {
-    this.initFilterPosition();
-  }
-
   constructor() {
     super();
     this.state = {query: '', expanded: false};
+  }
+
+  componentDidMount() {
+    this.initFilterPosition();
   }
 
   toggleFilter(filterId) {
@@ -72,6 +72,7 @@ class SearchBar extends React.Component {
   handleOnKeyDown(e) {
     let tags = this.props.selectedTagIds;
     /* Hvis der er tags i url */
+
     if (tags.length > 0) {
       /* Hvis brugeren trykker backspace */
       if (e.keyCode === 8) {
