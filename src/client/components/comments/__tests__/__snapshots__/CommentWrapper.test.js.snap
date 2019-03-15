@@ -4,6 +4,7 @@ exports[`CommentContainer Delete button 1`] = `
 <CommentWrapper
   comment={
     Object {
+      "_created": 1000,
       "_id": "test",
       "comment": "comment_test",
       "user": Object {
@@ -197,7 +198,7 @@ exports[`CommentContainer Delete button 1`] = `
               <p
                 className="mb-1 Text Text__small Text__small--color-due"
               >
-                13. marts 2019
+                1. januar 1970
               </p>
             </Text>
             <div
@@ -231,6 +232,7 @@ exports[`CommentContainer Edit button 1`] = `
 <CommentWrapper
   comment={
     Object {
+      "_created": 1000,
       "_id": "test",
       "comment": "comment_test",
       "user": Object {
@@ -423,7 +425,7 @@ exports[`CommentContainer Edit button 1`] = `
               <p
                 className="mb-1 Text Text__small Text__small--color-due"
               >
-                13. marts 2019
+                1. januar 1970
               </p>
             </Text>
             <div
@@ -457,6 +459,7 @@ exports[`CommentContainer Edit button 2`] = `
 <CommentWrapper
   comment={
     Object {
+      "_created": 1000,
       "_id": "test",
       "comment": "comment_test",
       "user": Object {
@@ -763,7 +766,7 @@ exports[`CommentContainer Render comment 1`] = `
           <p
             className="mb-1 Text Text__small Text__small--color-due"
           >
-            13. marts 2019
+            1. januar 1970
           </p>
           <div
             className="comment-nameComment-wrap"
@@ -901,7 +904,7 @@ exports[`CommentContainer Render edit form 1`] = `
           <p
             className="mb-1 Text Text__small Text__small--color-due"
           >
-            13. marts 2019
+            1. januar 1970
           </p>
           <div
             className="comment-nameComment-wrap"
@@ -1053,7 +1056,7 @@ exports[`CommentContainer Render save form 1`] = `
           <p
             className="mb-1 Text Text__small Text__small--color-due"
           >
-            13. marts 2019
+            1. januar 1970
           </p>
           <div
             className="comment-nameComment-wrap"
@@ -1080,6 +1083,7 @@ exports[`CommentContainer Save button 1`] = `
 <CommentWrapper
   comment={
     Object {
+      "_created": 1000,
       "_id": "test",
       "comment": "comment_test",
       "user": Object {
@@ -1274,7 +1278,7 @@ exports[`CommentContainer Save button 1`] = `
               <p
                 className="mb-1 Text Text__small Text__small--color-due"
               >
-                13. marts 2019
+                1. januar 1970
               </p>
             </Text>
             <div
