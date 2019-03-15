@@ -348,7 +348,7 @@ export class TopBar extends React.Component {
                 Læsekompas
               </Text>
               <Text className="logo-beta-sign mb-0" type="micro">
-                BETA
+                SNEAK PEEK
               </Text>
             </div>
           </div>
@@ -372,7 +372,7 @@ export class TopBar extends React.Component {
                 </Title>
                 <div className="logo-beta-wrap d-flex position-relative">
                   <Text className="logo-beta-sign mb-0" type="micro">
-                    BETA
+                    SNEAK PEEK
                   </Text>
                   {!searchExpanded &&
                     ((isIndex && isMobileOnly) || !isMobileOnly) && (

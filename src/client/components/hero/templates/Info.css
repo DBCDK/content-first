@@ -1,0 +1,47 @@
+.box-wrap {
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-position: 80% !important;
+  background-size: cover !important;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.box {
+  width: 50vw;
+  position: absolute;
+  font-size: 3vw;
+  font-weight: 900;
+  text-align: center;
+  color: white;
+  background-color: var(--petroleum);
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  padding: 1rem;
+  transform: translate(-50%, -50%);
+  font-family: var(--primary-black);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 767px) {
+  .box-wrap {
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-position: 73% !important;
+  }
+
+  .box {
+    width: 70vw;
+    top: 40%;
+    font-size: 7vw;
+  }
+}
+
+@media (max-width: 350px) {
+  .box {
+    width: 65vw;
+  }
+}

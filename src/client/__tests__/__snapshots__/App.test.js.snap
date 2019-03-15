@@ -274,7 +274,7 @@ exports[`renders without crashing 1`] = `
             <p
               className="logo-beta-sign mb-0 Text Text__micro "
             >
-              BETA
+              SNEAK PEEK
             </p>
           </div>
         </div>
@@ -308,7 +308,7 @@ exports[`renders without crashing 1`] = `
                 <p
                   className="logo-beta-sign mb-0 Text Text__micro "
                 >
-                  BETA
+                  SNEAK PEEK
                 </p>
                 <div
                   className="d-inline-flex"

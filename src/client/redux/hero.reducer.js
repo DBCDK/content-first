@@ -3,6 +3,14 @@
 const defaultState = {
   heroes: [
     {
+      img: 'img/hero/launch.jpg',
+      btnColor: 'pistache',
+      btnText: 'Find en bog, der er lige dig',
+      btnTextColor: 'petroleum',
+      template: 'info',
+      disabled: false
+    },
+    {
       title: 'Hvordan er din næste bog?',
       text: '',
       img: 'img/hero/fantastisk-mystisk-dyster.jpg',
@@ -11,6 +19,7 @@ const defaultState = {
       btnColor: 'korn',
       btnText: 'vis bøger',
       btnTextColor: 'petroleum',
+      template: 'searchbar',
       disabled: false
     },
     {
@@ -22,6 +31,7 @@ const defaultState = {
       btnColor: 'due',
       btnText: 'vis bøger',
       btnTextColor: 'white',
+      template: 'searchbar',
       disabled: false
     },
     {
@@ -33,6 +43,7 @@ const defaultState = {
       btnColor: 'mine-shaft',
       btnText: 'vis bøger',
       btnTextColor: 'white',
+      template: 'searchbar',
       disabled: false
     },
     {
@@ -44,6 +55,7 @@ const defaultState = {
       btnColor: 'fersken',
       btnText: 'vis bøger',
       btnTextColor: 'petroleum',
+      template: 'searchbar',
       disabled: false
     }
   ],

@@ -1,0 +1,31 @@
+.info-callToAction {
+  width: 85%;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.info-callToAction i {
+  color: white;
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .info-callToAction {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .info-callToAction {
+    bottom: 0px;
+  }
+
+  .info-callToAction strong {
+    display: none;
+  }
+
+  .info-callToAction span {
+    display: block;
+  }
+}

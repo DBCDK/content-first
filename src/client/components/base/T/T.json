@@ -870,7 +870,6 @@
         "en": "Reminds of %s"
       }
     },
-
     "tabs": {
       "listInfo": {
         "da": "Listoplysninger",
@@ -879,6 +878,12 @@
       "advanced": {
         "da": "Avanceret",
         "en": "Advanced"
+      }
+    },
+    "hero": {
+      "exploreText": {
+        "da": "Opdag en bog <strong>-</strong> <span> og lån den på biblioteket</span>",
+        "en": "Discover a book - and loan it at the library"
       }
     }
   },
