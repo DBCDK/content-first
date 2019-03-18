@@ -29,6 +29,7 @@ exports[`Image Upload render function Add image 1`] = `
             <ProfileUploadImage
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
               activateSaveButton={[Function]}
               onFile={[Function]}
               personalImage={null}
@@ -74,6 +75,9 @@ exports[`Image Upload render function Add image 1`] = `
               buttonText="Upload profilbillede"
 =======
 >>>>>>> updated tests, added T component, post rebase
+=======
+              activateSaveButton={[Function]}
+>>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
               h="90px"
               onFile={[Function]}
               personalImage={null}
@@ -179,12 +183,18 @@ exports[`Image Upload render function Add image 1`] = `
         >
           <EditProfileForm
 <<<<<<< HEAD
+<<<<<<< HEAD
             activateSaveButton={[Function]}
             confirmDelete={[Function]}
             enableButton={true}
 =======
             confirmDelete={[Function]}
 >>>>>>> added design for mobile
+=======
+            activateSaveButton={[Function]}
+            confirmDelete={[Function]}
+            enableButton={true}
+>>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
             updateImageId={[Function]}
           >
             <form
@@ -214,7 +224,7 @@ exports[`Image Upload render function Add image 1`] = `
                       data-cy="user-form-name"
                       name="name"
                       onChange={[Function]}
-                      placeholder="Vælg brugernavn"
+                      placeholder="Skriv brugernavn"
                       type="text"
                       value=""
                     />
@@ -274,6 +284,7 @@ exports[`Image Upload render function Add image 1`] = `
                 >
                   <div
 <<<<<<< HEAD
+<<<<<<< HEAD
                     className="btn profile__edit-savebtn"
                   >
                     <button
@@ -286,17 +297,13 @@ exports[`Image Upload render function Add image 1`] = `
                         "marginTop": "8px",
                       }
                     }
+=======
+                    className="btn profile__edit-savebtn"
+>>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
                   >
-                    <Link
-                      href="/profile"
-                    >
-                      Fortryd
-                    </Link>
-                  </div>
-                  <div>
                     <button
-                      className="btn profile__edit-savebtn"
                       data-cy="user-form-submit"
+                      disabled={false}
                     >
 >>>>>>> added design for mobile
                       Gem Ændringer
@@ -458,7 +465,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                   data-cy="user-form-name"
                   name="name"
                   onChange={[Function]}
-                  placeholder="Vælg brugernavn"
+                  placeholder="Skriv brugernavn"
                   type="text"
                   value=""
                 />
@@ -508,6 +515,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
             >
               <div
 <<<<<<< HEAD
+<<<<<<< HEAD
                 className="btn profile__edit-savebtn"
               >
                 <button
@@ -519,19 +527,18 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                     "marginTop": "8px",
                   }
                 }
+=======
+                className="btn profile__edit-savebtn"
+>>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
               >
-                <Link
-                  href="/profile"
-                >
-                  Fortryd
-                </Link>
-              </div>
-              <div>
                 <button
-                  className="btn profile__edit-savebtn"
                   data-cy="user-form-submit"
+<<<<<<< HEAD
                   disabled={undefined}
 >>>>>>> added design for mobile
+=======
+                  disabled={true}
+>>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
                 >
                   Gem Ændringer
                 </button>
