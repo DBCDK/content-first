@@ -1,5 +1,3 @@
-# Om Læsekompasset
-
 ### Læsekompasset er dit online inspirationsværktøj til at finde ny læsning
 
 Læsekompasset er bibliotekernes inspirationsværktøj til voksne læsere af skønlitteratur. Alle kan anvende Læsekompasset, men det kræver biblioteks-login, hvis du vil låne bøger igennem websitet.
