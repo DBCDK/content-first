@@ -23,17 +23,23 @@ const Toolbar = ({className, ...props}) => {
     <div className={`Toolbar ${className || ''}`} {...props}>
       <div className="Toolbar__left">
         {elements
-          .filter(items => items.props.align === TOOLBAR_LEFT)
+          .filter(
+            item => item && item.props && item.props.align === TOOLBAR_LEFT
+          )
           .map((item, index) => constructElement(item, index))}
       </div>
       <div className="Toolbar__center">
         {elements
-          .filter(items => items.props.align === TOOLBAR_CENTER)
+          .filter(
+            item => item && item.props && item.props.align === TOOLBAR_CENTER
+          )
           .map((item, index) => constructElement(item, index))}
       </div>
       <div className="Toolbar__right">
         {elements
-          .filter(items => items.props.align === TOOLBAR_RIGHT)
+          .filter(
+            item => item && item.props && item.props.align === TOOLBAR_RIGHT
+          )
           .map((item, index) => constructElement(item, index))}
       </div>
     </div>
