@@ -14,9 +14,9 @@ const booksReducer = (state = defaultState, action) => {
     case BOOKS_PARTIAL_UPDATE: {
       const books = {...state.books};
       action.books.forEach(b => {
+        const pid = b.book.pid;
         const oldTags = get(books[pid], 'book.tags', []);
         const newTags = get(b, 'book.tags', []);
-        const pid = b.book.pid;
         books[pid] = merge({}, books[pid], b, {
           book: {tags: uniqBy([...oldTags, ...newTags], 'id')}
         });
