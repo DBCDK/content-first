@@ -1,7 +1,7 @@
 #!groovy​
 
 def app
-def imageName="content-first-992"
+def imageName="content-first"
 def imageLabel=BUILD_NUMBER
 def taxonomyUrl="https://ux-is.dbc.dk/job/kompasset/job/make-reports/lastSuccessfulBuild/artifact/json-files.tar.gz"
 
@@ -36,9 +36,9 @@ pipeline {
             }
         }
         stage('Push to Artifactory') {
-//            when {
-//                branch "master"
-//            }
+           when {
+               branch "master"
+           }
             steps {
                 script {
                     if (currentBuild.resultIsBetterOrEqualTo('SUCCESS')) {
