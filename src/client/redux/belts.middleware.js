@@ -19,11 +19,13 @@ export const beltsMiddleware = store => next => async action => {
       const openplatformId = store.getState().userReducer.openplatformId;
       const response = await addObject({
         ...action.belt,
+        _type: 'belt',
         _owner: openplatformId
       });
 
       const belt = {
         ...action.belt,
+        _type: 'belt',
         ...response.data,
         _owner: openplatformId
       };
@@ -33,13 +35,15 @@ export const beltsMiddleware = store => next => async action => {
 
     case UPDATE_BELT: {
       const openplatformId = store.getState().userReducer.openplatformId;
+      let belt = store.getState().beltsReducer.belts[action.belt.key];
       const response = await updateObject({
+        ...belt,
         ...action.belt,
-        editing: false,
         _owner: openplatformId
       });
 
-      const belt = {
+      belt = {
+        ...belt,
         ...action.belt,
         ...response.data
       };
@@ -48,7 +52,10 @@ export const beltsMiddleware = store => next => async action => {
     }
 
     case REMOVE_BELT_REQUEST: {
-      const _id = action.belt._id;
+      const _id =
+        action.belt._id ||
+        store.getState().beltsReducer.belts[action.belt.key]._id;
+
       return (async () => {
         next(action);
         deleteObject({_id});

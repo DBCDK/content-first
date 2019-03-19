@@ -52,7 +52,6 @@ export const fetchTags = async (pids = []) => {
 /**
  * fetchBooks
  * @param pids
- * @param store
  * @returns {Promise<any[] | never>}
  */
 export const fetchBooks = (pids = [], store) => {
@@ -61,8 +60,7 @@ export const fetchBooks = (pids = [], store) => {
 
   return Promise.all([getBooks])
     .then(async responses => {
-      let books = JSON.parse(responses[0].text).data;
-      return books;
+      return JSON.parse(responses[0].text).data;
     })
     .catch(error => {
       store.dispatch({
@@ -73,47 +71,6 @@ export const fetchBooks = (pids = [], store) => {
       });
       throw error;
     });
-};
-
-/**
- * fetchCoverRefs
- * @param pids
- * @returns {Promise<any[] | never>}
- */
-export const fetchCoverRefs = (pids = []) => {
-  pids = unique(pids);
-
-  // Fetch the covers from openplatform in parallel with fetching the metadata for the backend.
-  return Promise.all(
-    pids.map(async pid => {
-      try {
-        const [{coverUrlFull}] = await openplatform.work({
-          pids: [pid],
-          fields: ['coverUrlFull'],
-          access_token: await fetchAnonymousToken()
-        });
-        return {
-          coverUrlFull: coverUrlFull && coverUrlFull[0]
-        };
-      } catch (e) {
-        // ignore errors/missing on fetching covers
-        return;
-      }
-    })
-  ).then(result => {
-    return pids
-      .map((pid, i) => {
-        if (result && result[i]) {
-          return {
-            book: {
-              pid: pid,
-              coverUrl: result[i].coverUrlFull || ''
-            }
-          };
-        }
-      })
-      .filter(b => b);
-  });
 };
 
 /**

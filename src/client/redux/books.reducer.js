@@ -1,4 +1,4 @@
-import {merge} from 'lodash';
+import {merge, get, uniqBy} from 'lodash';
 
 const defaultState = {
   books: {}
@@ -15,7 +15,11 @@ const booksReducer = (state = defaultState, action) => {
       const books = {...state.books};
       action.books.forEach(b => {
         const pid = b.book.pid;
-        books[pid] = merge({}, books[pid], b);
+        const oldTags = get(books[pid], 'book.tags', []);
+        const newTags = get(b, 'book.tags', []);
+        books[pid] = merge({}, books[pid], b, {
+          book: {tags: uniqBy([...oldTags, ...newTags], 'id')}
+        });
       });
       return Object.assign({}, state, {books: books});
     }

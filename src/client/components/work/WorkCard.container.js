@@ -53,7 +53,7 @@ class WorkCard extends React.Component {
   onWorkClick = e => {
     e.stopPropagation();
     e.preventDefault();
-    this.props.onWorkClick(this.props.work, this.props.rowId);
+    this.props.onWorkClick(this.props.work, this.props.origin, this.props.rid);
   };
 
   render() {
@@ -65,7 +65,9 @@ class WorkCard extends React.Component {
 
     const tax_description =
       this.props.work.book.taxonomy_description ||
-      this.props.work.book.description;
+      this.props.work.book.taxonomy_description_subjects ||
+      `${this.props.work.book.title || ''}\n${this.props.work.book.creator ||
+        ''}`;
 
     return (
       <div
@@ -99,7 +101,7 @@ class WorkCard extends React.Component {
             book={this.props.skeleton ? {book: {}} : this.props.work.book}
           />
 
-          <Paragraph className="mt1 d-xs-none d-sm-block">
+          <Paragraph className="mt-2 d-xs-none d-sm-block">
             {<TaxDescription text={tax_description} />}
           </Paragraph>
 
@@ -138,7 +140,8 @@ class WorkCard extends React.Component {
                     e.preventDefault();
                     this.props.onMoreLikeThisClick(
                       this.props.work,
-                      this.props.rowId
+                      this.props.origin,
+                      this.props.rid
                     );
                   }}
                   dataCy="WC-more-like-this"
@@ -146,7 +149,7 @@ class WorkCard extends React.Component {
                   <T component="work" name="moreLikeThis" />
                 </Button>
               )}
-              <Paragraph className="mt1">
+              <Paragraph className="mt-2">
                 {<TaxDescription text={tax_description} />}
               </Paragraph>
               <div className="expand-more-wrapper text-center">
@@ -168,4 +171,4 @@ class WorkCard extends React.Component {
   }
 }
 
-export default withWork(WorkCard, {includeCover: true});
+export default withWork(WorkCard);

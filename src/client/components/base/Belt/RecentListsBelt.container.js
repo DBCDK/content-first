@@ -1,9 +1,9 @@
 import React from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 import ListCard from '../../list/card/ListCard.component';
-import Title from '../../base/Title';
-import T from '../../base/T';
-import Slider from '../Slider.component';
+import Title from '../Title';
+import T from '../T';
+import Slider from './Slider.component';
 import {fetchRecent} from '../../../utils/requestLists';
 import {difference} from 'lodash';
 

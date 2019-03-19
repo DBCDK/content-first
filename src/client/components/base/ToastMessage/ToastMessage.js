@@ -17,8 +17,8 @@ const ToastMessage = ({
         <Icon name={icon} className="ToastMessage__Icon md-medium mr1" />
       )}
       <span className="ToastMessage__Lines">
-        {lines.map(line => (
-          <span key={line} className="ToastMessage__Line">
+        {lines.map((line, idx) => (
+          <span key={idx} className="ToastMessage__Line">
             {line}
           </span>
         ))}

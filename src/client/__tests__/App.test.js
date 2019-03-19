@@ -8,8 +8,13 @@ import renderer from 'react-test-renderer';
 //   return require('./__mocks__/mockedTaxonomy.json');
 // });
 
-jest.mock('../components/belt/Slider.component', () => 'slider');
-jest.mock('../components/belt/BeltFacade.component', () => 'BooksBelt');
+jest.mock('../components/base/Belt/Slider.component', () => 'slider');
+jest.mock('../components/base/Belt/CreatorBelt.component', () => 'CreatorBelt');
+jest.mock('../components/base/Belt/TagsBelt.component', () => 'TagsBelt');
+jest.mock(
+  '../components/base/Belt/RecentListsBelt.container',
+  () => 'RecentListsBelt'
+);
 jest.mock('../components/spots/Spots.container.js', () => 'SpotsContainer');
 jest.mock('../components/hero/Hero.component.js', () => 'Hero');
 jest.mock('../components/hero/Spot.component.js', () => 'Spot');

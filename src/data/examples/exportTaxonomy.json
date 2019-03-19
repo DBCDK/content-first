@@ -1,13 +1,13 @@
 {
   "ramme": {
-    "Handlingens tid": [
+    "Handlingens tid udtrykt i ord": [
       {
         "id": 6000,
         "title": "hej",
         "score": 0
       }
     ],
-    "Univers": [
+    "univers": [
       {
         "id": 6001,
         "title": "hej1",
@@ -42,7 +42,8 @@
         "title": "hæsblæsende",
         "score": 0
       }
-    ]
+    ],
+    "fortællerstemme":[]
   },
   "stemning": {
     "positiv": [

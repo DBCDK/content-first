@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
 import librarianRecommends from '../../data/librarian-recommends.json';
 import request from 'superagent';
-import {uniq, difference} from 'lodash';
+import {uniq, difference, isEqual} from 'lodash';
 import {filtersMapAll} from './filter.reducer';
 import {BOOKS_REQUEST} from './books.reducer';
 
@@ -87,21 +87,48 @@ const recommendReducer = (state = defaultState, action) => {
 };
 
 const emptyResponse = {isLoading: false, pids: []};
-export const createGetRecommendedPids = () =>
-  createSelector(
+export const createGetRecommendedPids = () => {
+  let prevRecommendations;
+  return createSelector(
     [
-      (state, {tags}) =>
-        state.recommendReducer.recommendations[key([...tags])] || emptyResponse,
+      (state, {tags}) => {
+        /* Because of client side filters, we have to do some work here
+        We apply the client side filters, make a deep equal to the prev result,
+        and only return a new object if it has changed.
+        All this, because we don't want components to re-render every time a
+        work is updated.. */
+        const recommendations =
+          state.recommendReducer.recommendations[key([...tags])] ||
+          emptyResponse;
+        const recommendationsCopy = {...recommendations};
+        recommendationsCopy.pids = recommendationsCopy.pids
+          .map(pid => {
+            const work = state.booksReducer.books[pid];
+            if (work && !work.isLoading) {
+              if (applyClientSideFilter(work, tags)) {
+                return pid;
+              }
+              return null;
+            }
+            return pid;
+          })
+          .filter(pid => pid);
+        if (isEqual(prevRecommendations, recommendationsCopy)) {
+          return prevRecommendations;
+        }
+        prevRecommendations = recommendationsCopy;
+        return recommendationsCopy;
+      },
       (state, {excluded}) => excluded
     ],
     (recommendations, excluded) => {
-      recommendations.pids = difference(recommendations.pids, excluded).slice(
-        0,
-        20
-      );
-      return recommendations;
+      return {
+        ...recommendations,
+        pids: difference(recommendations.pids, excluded).slice(0, 20)
+      };
     }
   );
+};
 
 export const createWorkRecommendedPids = () =>
   createSelector(
@@ -130,66 +157,71 @@ export const getWorkRecommendedPids = (state, {likes}) => {
 };
 
 export const applyClientSideFilters = (books, tags) => {
+  return books.filter(work => {
+    return applyClientSideFilter(work, tags);
+  });
+};
+
+export const applyClientSideFilter = (work, tags) => {
   let minPages = 0;
   let maxPages = 500000;
-  return books.filter(work => {
-    if (!work) {
-      return false;
-    }
-    // step1: check if short tag is selected
+
+  if (!work) {
+    return false;
+  }
+  // step1: check if short tag is selected
+  if (tags.includes(100000)) {
+    // short book
+    maxPages = 150;
+  }
+  // step2: check if medium tag is selected
+  if (tags.includes(100001)) {
+    // medium length book
+    maxPages = 350;
+    minPages = 150;
     if (tags.includes(100000)) {
-      // short book
-      maxPages = 150;
+      minPages = 0;
     }
-    // step2: check if medium tag is selected
+  }
+  // step3: check if long tag is selected
+  if (tags.includes(100002)) {
+    maxPages = 500000;
+    minPages = 350;
     if (tags.includes(100001)) {
-      // medium length book
-      maxPages = 350;
       minPages = 150;
-      if (tags.includes(100000)) {
-        minPages = 0;
-      }
     }
-    // step3: check if long tag is selected
-    if (tags.includes(100002)) {
-      maxPages = 500000;
-      minPages = 350;
-      if (tags.includes(100001)) {
-        minPages = 150;
-      }
-      if (tags.includes(100000)) {
-        minPages = 0;
-      }
+    if (tags.includes(100000)) {
+      minPages = 0;
     }
+  }
 
-    // step4: filter by min and max pages.
-    if (
-      work.book.pages &&
-      work.book.pages !== 0 &&
-      (work.book.pages <= minPages || work.book.pages >= maxPages)
-    ) {
+  // step4: filter by min and max pages.
+  if (
+    work.book.pages &&
+    work.book.pages !== 0 &&
+    (work.book.pages <= minPages || work.book.pages >= maxPages)
+  ) {
+    return false;
+  }
+
+  if (tags.includes(100003)) {
+    // availability
+    if (work.book.libraries < 50) {
       return false;
     }
-
-    if (tags.includes(100003)) {
-      // availability
-      if (work.book.libraries < 50) {
-        return false;
-      }
+  }
+  if (tags.includes(100005)) {
+    // popularity
+    if (work.book.loans < 100) {
+      return false;
     }
-    if (tags.includes(100005)) {
-      // popularity
-      if (work.book.loans < 100) {
-        return false;
-      }
+  }
+  if (tags.includes(-2)) {
+    if (!librarianRecommendsMap[work.book.pid]) {
+      return false;
     }
-    if (tags.includes(-2)) {
-      if (!librarianRecommendsMap[work.book.pid]) {
-        return false;
-      }
-    }
-    return true;
-  });
+  }
+  return true;
 };
 
 const fetchRecommendations = async action => {
@@ -277,11 +309,19 @@ export const recommendMiddleware = store => next => action => {
               pids,
               rid
             });
-            store.dispatch({
-              type: BOOKS_REQUEST,
-              pids,
-              includeCover: false
+            let containsClientSideTags = false;
+            action.tags.forEach(tag => {
+              if (tag >= 100000 || tag.id >= 100000) {
+                containsClientSideTags = true;
+              }
             });
+            if (containsClientSideTags) {
+              store.dispatch({
+                type: BOOKS_REQUEST,
+                pids,
+                includeCover: false
+              });
+            }
           } catch (error) {
             store.dispatch({
               ...action,
@@ -315,11 +355,6 @@ export const recommendMiddleware = store => next => action => {
               type: WORK_RECOMMEND_RESPONSE,
               pids,
               rid
-            });
-            store.dispatch({
-              type: BOOKS_REQUEST,
-              pids,
-              includeCover: false
             });
           } catch (error) {
             store.dispatch({

@@ -38,6 +38,9 @@ describe('Admin API', () => {
         nock(config.recompass.url.work)
           .get('/status')
           .reply(200, constants.healthyResponse);
+        nock(config.suggester.url)
+          .get('/?query=test')
+          .reply(200, constants.healthyResponse);
         // Act.
         return (
           webapp
