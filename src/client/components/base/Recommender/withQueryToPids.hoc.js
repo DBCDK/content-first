@@ -41,9 +41,12 @@ const withQueryToPids = WrappedComponent => {
       ) {
         this.fetched = this.props.query;
         this.setState({isFetching: true, pids: []});
-        const result = await request
-          .get('/v1/searcher')
-          .query({query: this.props.query});
+        const result = await request.get('/v1/searcher').query({
+          query: `"${this.props.query}"`,
+          rows: 200,
+          field: 'author',
+          exact: true
+        });
 
         this.setState({
           isFetching: false,
