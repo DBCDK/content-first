@@ -110,9 +110,8 @@ class Results extends React.Component {
                     return ' ' + tag.title;
                   } else if (idx === tags.length - 1) {
                     return ' og ' + tag.title;
-                  } else {
-                    return ', ' + tag.title;
                   }
+                  return ', ' + tag.title;
                 })}
               </Title>
               <StoreBeltPin
