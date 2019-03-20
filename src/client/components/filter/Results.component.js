@@ -91,9 +91,10 @@ class Results extends React.Component {
           </div>
         )}
 
-        {creators.map(creator => (
-          <CreatorBelt mount={'filterpage' + creator} query={creator} />
-        ))}
+        {creators.map(creator => {
+          const mount = 'filterpage' + creator;
+          return <CreatorBelt key={mount} mount={mount} query={creator} />;
+        })}
 
         {tags.length > 0 && (
           <div>
