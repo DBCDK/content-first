@@ -8,7 +8,6 @@ import Pin from '../base/Pin';
 import withTagsFromUrl from '../base/AdressBar/withTagsFromUrl.hoc';
 import withTagsToPids from '../base/Recommender/withTagsToPids.hoc';
 import CreatorBelt from '../base/Belt/CreatorBelt.component';
-import SimilarBelt from '../base/Belt/SimilarBelt.component';
 import MultiRowContainer from '../base/Belt/MultiRowContainer';
 import withStoreBelt from '../base/Belt/withStoreBelt.hoc';
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
