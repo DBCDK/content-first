@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import {ProfileInput} from '../profile/ProfileInput.component';
 import ProfileUploadImage from '../general/ProfileUploadImage.component';
+import T from '../base/T';
 
 import {
   ADD_PROFILE_IMAGE,
@@ -96,34 +97,30 @@ export class ProfileModal extends React.Component {
     return (
       <div className={'profile__modal-window'} data-cy="user-form-over13">
         <div className="profile__accept-window">
-          <div
-            className="profile__accept-margins"
-            style={{display: 'inline-block'}}
-          >
+          <div className="profile__accept-margins">
             <div className="profile__accept-input-container">
               <div className="profile__accept-title1">
-                FØRSTE GANG DU BRUGER LÆSEKOMPASSET …
+                <T component="profile" name="acceptTitle" />
               </div>
 
               <div>
                 <div className="profile__accept-title2">
-                  … skal du acceptere
+                  <T component="profile" name="ruleText1" />
                   <a
                     style={{cursor: 'pointer', color: 'var(--malibu)'}}
                     onClick={this.onShowRules}
                   >
                     {' '}
-                    regler og vilkår for anvendelse af Læsekompasset{' '}
+                    <T component="profile" name="ruleLink" />{' '}
                   </a>
-                  , der kort fortalt anvendes til at gøre dit indhold mere
-                  personaliseret.
+                  <T component="profile" name="ruleText2" />
                 </div>
 
                 <div className="profile__accept-inputZone">
                   <div className="profile__accept-nameAndImg">
-                    Hvad skal vi kalde dig?
+                    <T component="profile" name="usernameOvertitle" />
                     <p />
-                    <div style={{display: 'inline-flex'}}>
+                    <div className="d-flex">
                       <ProfileUploadImage
                         error={this.props.imageError}
                         style={{borderRadius: '50%'}}
@@ -154,7 +151,7 @@ export class ProfileModal extends React.Component {
 
                       <div>
                         <div className="profile__accept-inputNameTitle">
-                          Brugernavn
+                          <T component="profile" name="usernameTitle" />
                         </div>
                         <div className="input-group mb2 has-feedback">
                           <ProfileInput
@@ -164,7 +161,10 @@ export class ProfileModal extends React.Component {
                           <div
                             className={'profile__name-info' + getInfoClass()}
                           >
-                            Min. 4 tegn
+                            <T
+                              component="profile"
+                              name="validationUsernameLengthShort"
+                            />
                           </div>
                         </div>
                       </div>
@@ -175,15 +175,35 @@ export class ProfileModal extends React.Component {
 
                   <div className="profile__accept-box">
                     <div className="profile__accept-boxTitle">
-                      Hvad skal vi bruge det til?
+                      <T component="profile" name="profileInstructionsTitle" />
                     </div>
 
                     <div className="profile__accept-boxText">
                       <ul>
-                        <li>når vi taler til dig her på siden</li>
-                        <li>når du deler dine lister</li>
-                        <li>når du kommeterer på andres lister</li>
-                        <li>give dig mere personaliseret indhold</li>
+                        <li>
+                          <T
+                            component="profile"
+                            name="profileInstructionsLine1"
+                          />
+                        </li>
+                        <li>
+                          <T
+                            component="profile"
+                            name="profileInstructionsLine2"
+                          />
+                        </li>
+                        <li>
+                          <T
+                            component="profile"
+                            name="profileInstructionsLine3"
+                          />
+                        </li>
+                        <li>
+                          <T
+                            component="profile"
+                            name="profileInstructionsLine4"
+                          />
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -252,7 +272,8 @@ export class ProfileModal extends React.Component {
             <div className="profile__rules-content">
               Læsekompas.dk er skabt og drives af de danske folkebiblioteker i
               samarbejde med DBC.
-              <div style={{display: 'block', marginTop: '12px'}}>
+              <div>
+                <br />
                 <div>DBC as</div>
                 <div>Tempovej 7-11</div>
                 <div>2750 Ballerup</div>
