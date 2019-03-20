@@ -88,14 +88,6 @@ class Results extends React.Component {
       <div className="filter-page-results mt-5">
         {pids.length > 0 && (
           <div>
-            <Title
-              Tag="h1"
-              type="title4"
-              variant="transform-uppercase"
-              className="mr-4 px-2 px-sm-3 px-lg-5 pt-5"
-            >
-              <strong>Valgte bøger</strong>
-            </Title>
             <MultiRowContainer recommendations={pids} origin="Fra søgning" />
           </div>
         )}
@@ -103,12 +95,6 @@ class Results extends React.Component {
         {creators.map(creator => (
           <CreatorBelt mount={'filterpage' + creator} query={creator} />
         ))}
-        {pids.length > 0 && (
-          <SimilarBelt
-            mount={'filterpage' + JSON.stringify(pids)}
-            likes={pids}
-          />
-        )}
 
         {tags.length > 0 && (
           <div>
@@ -119,11 +105,15 @@ class Results extends React.Component {
                 variant="transform-uppercase"
                 className="mr-4"
               >
+                <strong>Forslag til</strong>
                 {tags.map((tag, idx) => {
                   if (idx === 0) {
-                    return <strong key={idx}>{tag.title}</strong>;
+                    return ' ' + tag.title;
+                  } else if (idx === tags.length - 1) {
+                    return ' og ' + tag.title;
+                  } else {
+                    return ', ' + tag.title;
                   }
-                  return ' ' + tag.title;
                 })}
               </Title>
               <StoreBeltPin
