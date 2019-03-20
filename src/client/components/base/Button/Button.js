@@ -14,6 +14,8 @@ const Button = ({
   className,
   disabled = false,
   dataCy,
+  href,
+  onClick,
   ...props
 }) => {
   const modifier = variant ? `Button__${type}--${variant}` : '';
@@ -31,6 +33,13 @@ const Button = ({
       <i className="material-icons Button__icon--right">{iconRight}</i>
     );
 
+  var onClickValue = {};
+  if (typeof href !== 'undefined') {
+    onClickValue = {onClick: () => window.open(href)};
+  } else if (typeof onClick !== 'undefined') {
+    onClickValue = {onClick: onClick};
+  }
+
   return (
     <Tag
       className={`${className || ''}
@@ -38,6 +47,7 @@ const Button = ({
       {...props}
       disabled={disabled}
       data-cy={dataCy || ''}
+      {...onClickValue}
     >
       {iconLeftSnippet}
       <span>{children}</span>
