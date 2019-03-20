@@ -6,7 +6,7 @@ const TOOLBAR_LEFT = 'left';
 const TOOLBAR_CENTER = 'center';
 const TOOLBAR_RIGHT = 'right';
 
-let constructElement = (item, index) => {
+const constructElement = (item, index) => {
   const {align, ...props} = item.props; // eslint-disable-line no-unused-vars
   return React.createElement(
     item.type,
@@ -15,32 +15,39 @@ let constructElement = (item, index) => {
   );
 };
 
+const constructElements = (elements, position) => {
+  return elements
+    .filter(item => item && item.props && item.props.align === position)
+    .map(
+      (item, index) =>
+        Array.isArray(item)
+          ? constructElements(item, position)
+          : constructElement(item, index)
+    );
+};
+
 const Toolbar = ({className, ...props}) => {
   const elements = Array.isArray(props.children)
     ? props.children
     : [props.children];
+  const allElements = [];
+  elements.forEach(element => {
+    if (Array.isArray(element)) {
+      element.forEach(innerElement => allElements.push(innerElement));
+    } else {
+      allElements.push(element);
+    }
+  });
   return (
     <div className={`Toolbar ${className || ''}`} {...props}>
       <div className="Toolbar__left">
-        {elements
-          .filter(
-            item => item && item.props && item.props.align === TOOLBAR_LEFT
-          )
-          .map((item, index) => constructElement(item, index))}
+        {constructElements(allElements, TOOLBAR_LEFT)}
       </div>
       <div className="Toolbar__center">
-        {elements
-          .filter(
-            item => item && item.props && item.props.align === TOOLBAR_CENTER
-          )
-          .map((item, index) => constructElement(item, index))}
+        {constructElements(allElements, TOOLBAR_CENTER)}
       </div>
       <div className="Toolbar__right">
-        {elements
-          .filter(
-            item => item && item.props && item.props.align === TOOLBAR_RIGHT
-          )
-          .map((item, index) => constructElement(item, index))}
+        {constructElements(allElements, TOOLBAR_RIGHT)}
       </div>
     </div>
   );
