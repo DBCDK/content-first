@@ -207,14 +207,6 @@
         "da": "Skriv til DBCs kundeservice",
         "en": "Write to DBCs customer service"
       },
-      "writeToManagementText": {
-        "da": "Spørgsmål om Læsekompasset?",
-        "en": "Questions for Læsekompasset?"
-      },
-      "writeToManagementLinkText": {
-        "da": "Skriv til projektledelsen",
-        "en": "Write to the management"
-      },
       "addressCompany": {
         "da": "DBC a/s",
         "en": "DBC a/s"
