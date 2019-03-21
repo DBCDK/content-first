@@ -1,0 +1,38 @@
+/* Logo */
+
+.diblio-logo {
+  width: 17px;
+  height: 13px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.diblio-logo div {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+}
+
+.diblio-logo div:first-child {
+  width: 70%;
+}
+
+.diblio-logo div:last-child {
+  width: 80%;
+}
+
+/* "Reminds of" button */
+
+.RemindsOf {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--due);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.RemindsOf p {
+  padding-top: 1px;
+}

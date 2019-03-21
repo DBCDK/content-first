@@ -4,9 +4,8 @@ import BookmarkButton from '../general/BookmarkButton';
 import TaxDescription from './TaxDescription.component';
 import Paragraph from '../base/Paragraph';
 import Heading from '../base/Heading';
-import Button from '../base/Button';
 import withWork from '../base/Work/withWork.hoc';
-import T from '../base/T';
+import RemindsOf from '../base/RemindsOf';
 
 import './WorkCard.css';
 
@@ -132,9 +131,7 @@ class WorkCard extends React.Component {
               {hideMoreLikeThis ? (
                 <hr className="w-100" />
               ) : (
-                <Button
-                  type="tertiary"
-                  size="small"
+                <RemindsOf
                   onClick={e => {
                     e.stopPropagation();
                     e.preventDefault();
@@ -145,9 +142,7 @@ class WorkCard extends React.Component {
                     );
                   }}
                   dataCy="WC-more-like-this"
-                >
-                  <T component="work" name="moreLikeThis" />
-                </Button>
+                />
               )}
               <Paragraph className="mt-2">
                 {<TaxDescription text={tax_description} />}

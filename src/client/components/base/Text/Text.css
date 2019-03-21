@@ -81,6 +81,12 @@
   color: white;
 }
 
+.Text__body--color-white--weight-semibold--transform-uppercase {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+}
+
 .Text__body--color-fersken--weight-semibold--transform-uppercase {
   font-weight: 600;
   text-transform: uppercase;

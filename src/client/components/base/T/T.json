@@ -226,6 +226,10 @@
         "da": "Mere som denne",
         "en": "More like this"
       },
+      "remindsOf": {
+        "da": "Minder om",
+        "en": "Reminds of"
+      },
       "loanTitle": {
         "da": "Lån som:",
         "en": "Loan as: "
