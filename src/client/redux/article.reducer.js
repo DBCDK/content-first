@@ -7,6 +7,7 @@ const defaultState = {
     '/om': {
       id: 1,
       name: 'om',
+      title: 'Om Læsekompasset',
       src: About
     },
     '/404': {
