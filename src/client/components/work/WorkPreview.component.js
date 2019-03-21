@@ -9,6 +9,7 @@ import T from '../base/T';
 import SkeletonText from '../base/Skeleton/Text';
 import SkeletonUser from '../base/Skeleton/User';
 import Share from '../base/Share';
+import RemindsOf from '../base/RemindsOf';
 import Link from '../general/Link.component';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
@@ -193,14 +194,7 @@ class WorkPreview extends React.Component {
               </div>
               <div className="row">
                 <div className="col-12 pt2">
-                  <Button
-                    type="tertiary"
-                    size="medium"
-                    className="underline"
-                    onClick={() => this.props.openSimilarBelt(work)}
-                  >
-                    <T component="work" name="moreLikeThis" />
-                  </Button>
+                  <RemindsOf onClick={() => this.props.openSimilarBelt(work)} />
                 </div>
               </div>
             </div>

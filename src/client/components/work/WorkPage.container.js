@@ -10,6 +10,7 @@ import AddToListButton from '../general/AddToListButton.component';
 import SkeletonText from '../base/Skeleton/Text';
 import SkeletonUser from '../base/Skeleton/User';
 import Share from '../base/Share';
+import RemindsOf from '../base/RemindsOf';
 import SimilarBelt from '../base/Belt/SimilarBelt.component';
 import BookCover from '../general/BookCover.component';
 import OrderButton from '../order/OrderButton.component';
@@ -77,7 +78,7 @@ class WorkPage extends React.Component {
       <div>
         <div className="WorkPage__container">
           <div className="container">
-            <div className="row mt-5">
+            <div className="row mt-0 mt-sm-5">
               <div className="col-12 col-xl-8 WorkPage__work">
                 <div className="WorkPage__image">
                   <BookCover book={book} enableLightbox />
@@ -239,23 +240,18 @@ class WorkPage extends React.Component {
                   </div>
                   <div className="row">
                     <div className="col-12 pt2">
-                      <Button
-                        type="tertiary"
-                        size="medium"
-                        className="underline"
+                      <RemindsOf
                         onClick={() => {
                           const pos = this.booksBeltPosition
                             ? this.booksBeltPosition.offsetTop - 50
                             : 0;
                           scroll(pos);
                         }}
-                      >
-                        <T component="work" name="moreLikeThis" />
-                      </Button>
+                      />
                     </div>
                   </div>
 
-                  <div className="row WorkPage__tagHeading__Mobile">
+                  <div className="row WorkPage__tagHeading__Mobile pt2">
                     <div className="col-md-12">
                       <Text
                         type="body"
@@ -400,16 +396,6 @@ class WorkPage extends React.Component {
               </div>
             </div>
           </div>
-          {work.detailsHasLoaded &&
-            work.tagsHasLoaded && (
-              <SimilarBelt
-                key={'workpage' + book.pid}
-                mount={'workpage' + book.pid}
-                likes={[book.pid]}
-                style={{background: 'white'}}
-                className="mt-5"
-              />
-            )}
 
           <div className="row col-12 mb2 WorkPage__detailsMobile">
             <div className="col-12">
@@ -480,6 +466,18 @@ class WorkPage extends React.Component {
               </div>
             </div>
           </div>
+
+          {work.detailsHasLoaded &&
+            work.tagsHasLoaded && (
+              <SimilarBelt
+                beltRef={e => (this.booksBeltPosition = e)}
+                key={'workpage' + book.pid}
+                mount={'workpage' + book.pid}
+                likes={[book.pid]}
+                style={{background: 'white'}}
+                className="mt-xl-5"
+              />
+            )}
         </div>
       </div>
     );
