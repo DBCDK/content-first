@@ -17,6 +17,7 @@ import Text from '../../base/Text';
 import T from '../../base/T';
 import Divider from '../../base/Divider';
 import Button from '../../base/Button';
+import Banner from '../../base/Banner';
 import {filterCollection} from '../../work/workFunctions';
 import withWork from '../../base/Work/withWork.hoc';
 
@@ -118,104 +119,110 @@ class ShortList extends React.Component {
   render() {
     const {elements} = this.props.shortListState;
     return (
-      <div className="container">
-        <div className="page-header-1">
-          <T component="shortlist" name="title" />
-        </div>
+      <React.Fragment>
+        <Banner
+          color="#81c793"
+          className="fixed-width-col-md position-relative text-uppercase"
+          title={T({component: 'shortlist', name: 'title'})}
+        />
 
-        <div className="top-bar-dropdown-list-page col-11 col-centered">
-          <div className="items mb-2">
-            <Toolbar className="top-bar-upper-toolbar">
-              <Button
-                align="right"
-                size="large"
-                type="quaternary"
-                iconLeft="delete"
-                className="bg-white pr-0"
-                onClick={() => this.props.clearList()}
+        <div className="container">
+          <div className="top-bar-dropdown-list-page col-11 col-centered">
+            <div className="items mb-2">
+              <Toolbar className="top-bar-upper-toolbar">
+                <Button
+                  align="right"
+                  size="large"
+                  type="quaternary"
+                  iconLeft="delete"
+                  className="bg-white pr-0"
+                  onClick={() => this.props.clearList()}
+                >
+                  <T component="shortlist" name="shortlistClear" />
+                </Button>
+              </Toolbar>
+              <ReactCSSTransitionGroup
+                transitionName="dropdownlist"
+                transitionEnter={false}
+                transitionLeaveTimeout={200}
               >
-                <T component="shortlist" name="shortlistClear" />
-              </Button>
-            </Toolbar>
-            <ReactCSSTransitionGroup
-              transitionName="dropdownlist"
-              transitionEnter={false}
-              transitionLeaveTimeout={200}
-            >
-              {elements.map(e => (
-                <div key={e.book.pid}>
-                  <Divider />
-                  <ShortListItemWithWork
-                    key={e.book.pid}
-                    origin={e.origin}
-                    pid={e.book.pid}
-                    onRemove={() => {
-                      this.props.remove(e.book.pid);
-                    }}
-                    onOriginUpdate={origin => {
-                      this.props.originUpdate(origin, e.book.pid);
-                    }}
-                    onAddToList={() => {
-                      this.props.addToList(
-                        [
-                          {
-                            book: e.book,
-                            description: e.origin || (
-                              <T component="shortlist" name="origin" />
-                            )
-                          }
-                        ],
-                        this.props.isLoggedIn,
-                        () => this.props.remove(e.book.pid)
-                      );
-                    }}
-                  />
-                </div>
-              ))}
-            </ReactCSSTransitionGroup>
-            <Divider />
-          </div>
-          {elements.length === 0 && (
-            <div className="empty-list-text">
-              <T component="shortlist" name="emptyList" />
+                {elements.map(e => (
+                  <div key={e.book.pid}>
+                    <Divider />
+                    <ShortListItemWithWork
+                      key={e.book.pid}
+                      origin={e.origin}
+                      pid={e.book.pid}
+                      onRemove={() => {
+                        this.props.remove(e.book.pid);
+                      }}
+                      onOriginUpdate={origin => {
+                        this.props.originUpdate(origin, e.book.pid);
+                      }}
+                      onAddToList={() => {
+                        this.props.addToList(
+                          [
+                            {
+                              book: e.book,
+                              description: e.origin || (
+                                <T component="shortlist" name="origin" />
+                              )
+                            }
+                          ],
+                          this.props.isLoggedIn,
+                          () => this.props.remove(e.book.pid)
+                        );
+                      }}
+                    />
+                  </div>
+                ))}
+              </ReactCSSTransitionGroup>
+              <Divider />
             </div>
-          )}
-          {elements.length > 0 && (
-            <Toolbar className="bottom-toolbar mt-5 mb-5">
-              <Button
-                align="right"
-                iconLeft="list"
-                size="large"
-                type="tertiary"
-                className="text-uppercase"
-                onClick={() =>
-                  this.props.addToList(
-                    elements,
-                    this.props.isLoggedIn,
-                    this.props.clearList
-                  )
-                }
-              >
-                <T component="list" name="addAllToList" />
-              </Button>
-              <Button
-                align="right"
-                iconLeft="chrome_reader_mode"
-                size="large"
-                type="quaternary"
-                className="btn ml-4"
-                onClick={
-                  this.props.orderList.length > 0 &&
-                  (() =>
-                    this.props.orderAll(this.props.orderList.map(e => e.book)))
-                }
-              >
-                <T component="shortlist" name="shortlistOrder" />
-              </Button>
-            </Toolbar>
-          )}
+            {elements.length === 0 && (
+              <div className="empty-list-text">
+                <T component="shortlist" name="emptyList" />
+              </div>
+            )}
+            {elements.length > 0 && (
+              <Toolbar className="bottom-toolbar mt-5 mb-5">
+                <Button
+                  align="right"
+                  iconLeft="list"
+                  size="large"
+                  type="tertiary"
+                  className="text-uppercase"
+                  onClick={() =>
+                    this.props.addToList(
+                      elements,
+                      this.props.isLoggedIn,
+                      this.props.clearList
+                    )
+                  }
+                >
+                  <T component="list" name="addAllToList" />
+                </Button>
+                <Button
+                  align="right"
+                  iconLeft="chrome_reader_mode"
+                  size="large"
+                  type="quaternary"
+                  className="btn ml-4"
+                  onClick={
+                    this.props.orderList.length > 0 &&
+                    (() =>
+                      this.props.orderAll(
+                        this.props.orderList.map(e => e.book)
+                      ))
+                  }
+                >
+                  <T component="shortlist" name="shortlistOrder" />
+                </Button>
+              </Toolbar>
+            )}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
