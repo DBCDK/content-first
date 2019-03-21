@@ -369,8 +369,8 @@
         "en": "Bookmark"
       },
       "title": {
-        "da": "Huskeliste",
-        "en": "Shortlist"
+        "da": "Din huskeliste",
+        "en": "Your Shortlist"
       },
       "titleWithBooks": {
         "da": "Huskeliste (%s)",
