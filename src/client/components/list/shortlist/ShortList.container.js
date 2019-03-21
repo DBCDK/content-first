@@ -38,73 +38,95 @@ export class ShortListItem extends React.Component {
 
     // get collections including ereolen
     const collection = filterCollection(this.props.work);
+    const addToListButton = (
+      <Button
+        align="left"
+        size="medium"
+        type="tertiary"
+        className="mr-2 text-uppercase"
+        onClick={this.props.onClick}
+      >
+        <T component="list" name="addToList" />
+      </Button>
+    );
+    const orderBookButton = (
+      <OrderButton
+        book={work.book}
+        align="right"
+        size="medium"
+        type="quaternary"
+        className="ml-2"
+        iconLeft="chrome_reader_mode"
+      >
+        <T component="general" name="book" />
+      </OrderButton>
+    );
+    const orderElectronicBookButtons =
+      work.collectionHasLoaded &&
+      collection.filter(col => col.count === 1).map(col => {
+        return (
+          <Button
+            align="right"
+            size="medium"
+            type="quaternary"
+            iconLeft={col.icon}
+            className="ml-2"
+            key={col.url}
+            href={col.url}
+          >
+            {col.type}
+          </Button>
+        );
+      });
 
     return (
-      <div className={`short-list-item d-flex flex-row ${className}`}>
-        <i className="material-icons remove-btn" onClick={this.props.onRemove}>
-          clear
-        </i>
-        <Link href={url}>
-          <BookCover
-            book={work.book}
-            style={{height: 'unset', width: '70px'}}
-          />
-        </Link>
-        <div className="top-bar-dropdown-shortlist-item-page">
-          <Title Tag="h1" type="title5" className="mr-4">
-            {work.book.title}
-          </Title>
-          <Text type="body" className="mb-1">
-            {work.book.creator}
-          </Text>
-          <Text type="body" className="mb-1">
-            {origin}
-          </Text>
-          <Toolbar>
-            <Button
-              align="left"
-              size="medium"
-              type="tertiary"
-              className="mr-2 text-uppercase"
-              onClick={this.props.onAddToList}
-            >
-              <T component="list" name="addToList" />
-            </Button>
-            <Text align="right" type="body">
-              <T component="work" name="loanTitle" />
-            </Text>
-            <OrderButton
+      <React.Fragment>
+        <div className={`short-list-item d-flex flex-row ${className}`}>
+          <i
+            className="material-icons remove-btn"
+            onClick={this.props.onRemove}
+          >
+            clear
+          </i>
+          <Link href={url}>
+            <BookCover
               book={work.book}
-              align="right"
-              size="medium"
-              type="quaternary"
-              className="ml-2"
-              iconLeft="chrome_reader_mode"
-            >
-              <T component="general" name="book" />
-            </OrderButton>
-            {work.collectionHasLoaded &&
-              collection.map(col => {
-                if (col.count === 1) {
-                  return (
-                    <Button
-                      align="right"
-                      size="medium"
-                      type="quaternary"
-                      iconLeft={col.icon}
-                      className="ml-2"
-                      key={col.url}
-                      href={col.url}
-                    >
-                      {col.type}
-                    </Button>
-                  );
-                }
-                return '';
-              })}
+              style={{height: 'unset', width: '70px'}}
+            />
+          </Link>
+          <div className="top-bar-dropdown-shortlist-item-page">
+            <Title Tag="h1" type="title5" className="mr-4">
+              {work.book.title}
+            </Title>
+            <Text type="body" className="mb-1">
+              {work.book.creator}
+            </Text>
+            <Text type="body" className="mb-1">
+              {origin}
+            </Text>
+            <Toolbar className="desktop-styling">
+              {addToListButton}
+              <Text align="right" type="body">
+                <T component="work" name="loanTitle" />
+              </Text>
+              {orderBookButton}
+              {orderElectronicBookButtons}
+            </Toolbar>
+            <div className="mobile-styling">{addToListButton}</div>
+          </div>
+        </div>
+        <div className="mobile-styling">
+          <Text align="left" type="body">
+            <T component="work" name="loanTitle" />
+          </Text>
+          <Toolbar className="mobile-styling">
+            <React.Fragment align="left">
+              {orderBookButton}
+              {orderElectronicBookButtons}
+            </React.Fragment>
           </Toolbar>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -141,6 +163,7 @@ class ShortList extends React.Component {
                   <T component="shortlist" name="shortlistClear" />
                 </Button>
               </Toolbar>
+              <Divider />
               <ReactCSSTransitionGroup
                 transitionName="dropdownlist"
                 transitionEnter={false}
@@ -148,7 +171,6 @@ class ShortList extends React.Component {
               >
                 {elements.map(e => (
                   <div key={e.book.pid}>
-                    <Divider />
                     <ShortListItemWithWork
                       key={e.book.pid}
                       origin={e.origin}
@@ -174,10 +196,10 @@ class ShortList extends React.Component {
                         );
                       }}
                     />
+                    <Divider />
                   </div>
                 ))}
               </ReactCSSTransitionGroup>
-              <Divider />
             </div>
             {elements.length === 0 && (
               <div className="empty-list-text">
