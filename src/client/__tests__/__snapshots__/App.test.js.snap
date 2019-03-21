@@ -723,21 +723,13 @@ exports[`renders without crashing 1`] = `
     </button>
   </div>
   <div
-    className="Footer__container--spacer"
-    style={
-      Object {
-        "height": "0px",
-      }
-    }
-  />
-  <div
-    className="row Footer__outer-container--flexbox"
+    className="Footer__outer-container--flexbox "
   >
     <div
-      className="row Footer__container--elements"
+      className="Footer__container--elements p-3 pt-5 pb-md-5"
     >
       <div
-        className="Footer__logo--element"
+        className="Footer__logo--element mb-1"
       >
         <img
           className="Footer__logo--image"
@@ -745,10 +737,10 @@ exports[`renders without crashing 1`] = `
         />
       </div>
       <div
-        className="col Footer__element--block"
+        className="Footer__element--block"
       >
         <p
-          className="mt1 Text Text__body "
+          className="mt-3 pr-md-3 pr-lg-3 Text Text__body "
         >
           Læsekompasset hjælper dig med at opdage bøger, der passer dig, og inspirerer dig til nye læseoplevelser.
           <br />
@@ -764,19 +756,19 @@ exports[`renders without crashing 1`] = `
         </p>
       </div>
       <div
-        className="col Footer__element--block"
+        className="Footer__element--block"
       >
         <p
-          className="mt1 Text Text__body "
+          className="mt-3 pr-lg-3 Text Text__body "
         >
           Siden er i øjeblikket i beta-version, hvilket betyder, at den stadig er under udvikling og at du kan opleve ting, der ikke fungerer optimalt endnu.
         </p>
       </div>
       <div
-        className="col Footer__element--block"
+        className="Footer__element--block"
       >
         <p
-          className="mt1 Text Text__body "
+          className="mt-3 pr-md-3 pr-lg-3 Text Text__body "
         >
           Problemer med teknikken?
           <br />
@@ -786,22 +778,13 @@ exports[`renders without crashing 1`] = `
           >
             Skriv til DBCs kundeservice
           </a>
-          <br />
-          <br />
-          Spørgsmål om Læsekompasset?
-          <br />
-          <a
-            href="mailto:laesekompasset@dbc.dk"
-          >
-            Skriv til projektledelsen
-          </a>
         </p>
       </div>
       <div
-        className="col Footer__element--block"
+        className="Footer__element--block"
       >
         <p
-          className="mt1 Text Text__body "
+          className="mt-3 Text Text__body "
         >
           DBC a/s
           <br />

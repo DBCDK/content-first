@@ -14,7 +14,6 @@ class Footer extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => {}, 200);
     this.handleStickyState();
     window.addEventListener('resize', this.handleStickyState);
   }
@@ -24,7 +23,12 @@ class Footer extends React.Component {
   }
 
   componentDidUpdate() {
+    // check sticky state now
     this.handleStickyState();
+    // Ensure sticky state
+    setTimeout(() => {
+      this.handleStickyState();
+    }, 100);
   }
 
   handleStickyState = () => {
@@ -35,23 +39,19 @@ class Footer extends React.Component {
   };
 
   shouldBeSticky() {
-    const footer = this.componentRef;
-    const footerHeight = footer ? footer.clientHeight : 200;
-
-    // Check if the content on the page (with a static positioned footer) would have a scrollbar.
-    // if true - the footer should keep being static after page content.
-    // if false - the content on page is to short and footer should be fixed/stick to the bottom.
-    return !(window.innerHeight + footerHeight < document.body.scrollHeight);
+    return !(document.body.scrollHeight - window.innerHeight);
   }
 
   render() {
-    const isStickyClass = this.state.sticky ? 'Footer__sticky' : '';
+    const sticky = this.state.sticky;
+    const isStickyClass = sticky ? 'Footer__sticky' : '';
+
+    if (sticky === null) {
+      return null;
+    }
 
     return (
-      <div
-        ref={e => (this.componentRef = e)}
-        className={`Footer__outer-container--flexbox ${isStickyClass}`}
-      >
+      <div className={`Footer__outer-container--flexbox ${isStickyClass}`}>
         <div className="Footer__container--elements p-3 pt-5 pb-md-5">
           <div className="Footer__logo--element mb-1">
             <img src={LaesekompasLogo} className="Footer__logo--image" />
