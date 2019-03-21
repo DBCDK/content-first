@@ -141,6 +141,19 @@
 .top-bar-dropdown-list--merge-modal .more-btn {
   margin-top: 30px;
 }
+.short-list-item {
+  padding-right: 15px;
+}
+.top-bar-upper-toolbar {
+  marginBottom: -0.7em;
+  padding-right: 15px;
+}
+.bottom-toolbar {
+  padding-right: 15px;
+}
+.top-bar-dropdown-list-page {
+  padding-right: 0;
+}
 .top-bar-dropdown-list-page .items {
   margin-top: 40px;
 }
@@ -154,8 +167,8 @@
 }
 .top-bar-dropdown-list-page .remove-btn {
   position: absolute;
-  right: 0px;
-  font-size: 18px;
+  right: 15px;
+  font-size: 24px;
   cursor: pointer;
 }
 .top-bar-dropdown-list-page .book-cover {
@@ -195,22 +208,20 @@
   margin-top: 200px;
 }
 
-.dropdownlist-enter {
-  opacity: 0;
-  max-height: 0px;
+.top-bar-dropdown-shortlist-item-page {
+  margin-left: 19px;
+  width: 100%;
 }
 
-.dropdownlist-enter.dropdownlist-enter-active {
-  opacity: 1;
-  transition: all 0.2s;
-  max-height: 200px;
+.top-bar-dropdown-shortlist-item-page .Toolbar .Text {
+  white-space: nowrap;
 }
+
 .dropdownlist-leave {
   opacity: 1;
   max-height: 200px;
 }
-.dropdownlist-leave.dropdownlist-leave-active,
-.dropdownlist-leave.dropdownlist-leave-active * {
+.dropdownlist-leave.dropdownlist-leave-active {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-top: 0 !important;
