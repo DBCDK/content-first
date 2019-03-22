@@ -31,7 +31,7 @@ external.use((req, res, next) => {
   res.on('finish', () => {
     const elapsedHrTime = process.hrtime(startHrTime);
     const elapsedTimeInMs = elapsedHrTime[0] * 1000 + elapsedHrTime[1] / 1e6;
-    logger.log.debug({baseUrl: req.baseUrl, ms: elapsedTimeInMs});
+    logger.log.debug('timings', {baseUrl: req.baseUrl, ms: elapsedTimeInMs});
   });
 
   next();
