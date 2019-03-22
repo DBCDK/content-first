@@ -1,17 +1,9 @@
 import React from 'react';
 import Spinner from '../general/Spinner.component';
+import T from '../base/T';
 
 export default class ProfileUpdateUser extends React.Component {
   onSubmit = e => {
-    // Check if username is more than 4 characters
-    if (this.state.name.length < 4) {
-      return this.setState({
-        validationError: 'Dit brugernavn skal være minimum 4 karakterer langt'
-      });
-    }
-
-    this.setState({validationError: null});
-
     const obj = {
       name: this.state.name,
       image: this.props.imageId,
@@ -35,15 +27,6 @@ export default class ProfileUpdateUser extends React.Component {
     this.setState({name: props.name});
   }
 
-  renderErrors() {
-    const error =
-      this.state.validationError ||
-      (this.props.error ? 'Det er ikke muligt at gemme profilen' : null);
-    if (error) {
-      return <div className="error mb2">{error}</div>;
-    }
-  }
-
   render() {
     const checkActive = () => {
       if (this.props.deactivate) {
@@ -59,10 +42,8 @@ export default class ProfileUpdateUser extends React.Component {
     };
 
     return (
-      <div style={{display: 'flex'}}>
-        <div className="profile__accept-buttonbuffer">
-          {this.renderErrors()}
-        </div>
+      <div className="profile__accept-buttonzone">
+        <div className="profile__accept-buttonbuffer" />
         <button
           className={'btn Button profile__accept-button'}
           style={checkActive()}
@@ -70,7 +51,7 @@ export default class ProfileUpdateUser extends React.Component {
           disabled={this.props.deactivate}
           data-cy="user-form-submit"
         >
-          {this.props.editMode ? 'Gem Profil' : 'Accepter regler og vilkår'}
+          <T component="profile" name="acceptAndSubmit" />
           {(this.props.isSaving && (
             <Spinner size={12} color="white" style={{marginLeft: '10px'}} />
           )) ||

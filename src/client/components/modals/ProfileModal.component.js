@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import {ProfileInput} from '../profile/ProfileInput.component';
 import ProfileUploadImage from '../general/ProfileUploadImage.component';
+import T from '../base/T';
 
 import {
   ADD_PROFILE_IMAGE,
@@ -97,92 +98,117 @@ export class ProfileModal extends React.Component {
       <div className={'profile__modal-window'} data-cy="user-form-over13">
         <div className="profile__accept-window">
           <div className="profile__accept-margins">
-            <div className="profile__accept-title1">
-              FØRSTE GANG DU BRUGER LÆSEKOMPASSET …
-            </div>
-
-            <div>
-              <div className="profile__accept-title2">
-                … skal du acceptere
-                <a
-                  style={{cursor: 'pointer', color: 'var(--malibu)'}}
-                  onClick={this.onShowRules}
-                >
-                  {' '}
-                  regler og vilkår for anvendelse af Læsekompasset{' '}
-                </a>
-                , der kort fortalt anvendes til at gøre dit indhold mere
-                personaliseret.
+            <div className="profile__accept-input-container">
+              <div className="profile__accept-title1">
+                <T component="profile" name="acceptTitle" />
               </div>
 
-              <div className="profile__accept-inputZone">
-                <div className="profile__accept-nameAndImg">
-                  Hvad skal vi kalde dig?
-                  <p />
-                  <div style={{display: 'inline-flex'}}>
-                    <ProfileUploadImage
-                      error={this.props.imageError}
-                      style={{borderRadius: '50%'}}
-                      loading={this.props.imageIsLoading}
-                      personalImage={
-                        this.props.profileImageId
-                          ? `/v1/image/${this.props.profileImageId}/150/150`
-                          : null
-                      }
-                      tempPersonalImage={
-                        this.props.tempImageId
-                          ? `/v1/image/${this.props.tempImageId}/150/150`
-                          : null
-                      }
-                      buttonText={
-                        this.props.profileImageId
-                          ? 'Skift profilbillede'
-                          : 'Upload profilbillede'
-                      }
-                      onFile={this.props.addImage}
-                      thumbnailImage={
-                        '/img/general/user-placeholder-thumbnail.png'
-                      }
-                      thumbnailImageHover={
-                        '/img/general/user-placeholder-thumbnail-hover.png'
-                      }
-                    />
+              <div>
+                <div className="profile__accept-title2">
+                  <T component="profile" name="ruleText1" />
+                  <a
+                    style={{cursor: 'pointer', color: 'var(--malibu)'}}
+                    onClick={this.onShowRules}
+                  >
+                    {' '}
+                    <T component="profile" name="ruleLink" />{' '}
+                  </a>
+                  <T component="profile" name="ruleText2" />
+                </div>
 
-                    <div>
-                      <div className="profile__accept-inputNameTitle">
-                        Brugernavn
-                      </div>
-                      <div className="input-group mb2 has-feedback">
-                        <ProfileInput
-                          username={this.state.username}
-                          onInputChange={this.onHandleChange}
-                        />
-                        <div className={'profile__name-info' + getInfoClass()}>
-                          Min. 4 tegn
+                <div className="profile__accept-inputZone">
+                  <div className="profile__accept-nameAndImg">
+                    <T component="profile" name="usernameOvertitle" />
+                    <p />
+                    <div className="d-flex">
+                      <ProfileUploadImage
+                        error={this.props.imageError}
+                        style={{borderRadius: '50%'}}
+                        loading={this.props.imageIsLoading}
+                        personalImage={
+                          this.props.profileImageId
+                            ? `/v1/image/${this.props.profileImageId}/150/150`
+                            : null
+                        }
+                        tempPersonalImage={
+                          this.props.tempImageId
+                            ? `/v1/image/${this.props.tempImageId}/150/150`
+                            : null
+                        }
+                        buttonText={
+                          this.props.profileImageId
+                            ? 'Skift profilbillede'
+                            : 'Upload profilbillede'
+                        }
+                        onFile={this.props.addImage}
+                        thumbnailImage={
+                          '/img/general/user-placeholder-thumbnail.png'
+                        }
+                        thumbnailImageHover={
+                          '/img/general/user-placeholder-thumbnail-hover.png'
+                        }
+                      />
+
+                      <div>
+                        <div className="profile__accept-inputNameTitle">
+                          <T component="profile" name="usernameTitle" />
+                        </div>
+                        <div className="input-group mb2 has-feedback">
+                          <ProfileInput
+                            username={this.state.username}
+                            onInputChange={this.onHandleChange}
+                          />
+                          <div
+                            className={'profile__name-info' + getInfoClass()}
+                          >
+                            <T
+                              component="profile"
+                              name="validationUsernameLengthShort"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="profile__accept-boxTriangle" />
+                  <div className="profile__accept-boxTriangle" />
 
-                <div className="profile__accept-box">
-                  <div className="profile__accept-boxTitle">
-                    Hvad skal vi bruge det til?
-                  </div>
+                  <div className="profile__accept-box">
+                    <div className="profile__accept-boxTitle">
+                      <T component="profile" name="profileInstructionsTitle" />
+                    </div>
 
-                  <div className="profile__accept-boxText">
-                    <ul>
-                      <li>når vi taler til dig her på siden</li>
-                      <li>når du deler dine lister</li>
-                      <li>når du kommeterer på andres lister</li>
-                      <li>give dig mere personaliseret indhold</li>
-                    </ul>
+                    <div className="profile__accept-boxText">
+                      <ul>
+                        <li>
+                          <T
+                            component="profile"
+                            name="profileInstructionsLine1"
+                          />
+                        </li>
+                        <li>
+                          <T
+                            component="profile"
+                            name="profileInstructionsLine2"
+                          />
+                        </li>
+                        <li>
+                          <T
+                            component="profile"
+                            name="profileInstructionsLine3"
+                          />
+                        </li>
+                        <li>
+                          <T
+                            component="profile"
+                            name="profileInstructionsLine4"
+                          />
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
-
               <div className="profile__accept-line" />
               <ProfileUpdateUser
                 imageId={this.props.profileImageId}
@@ -246,7 +272,8 @@ export class ProfileModal extends React.Component {
             <div className="profile__rules-content">
               Læsekompas.dk er skabt og drives af de danske folkebiblioteker i
               samarbejde med DBC.
-              <div style={{display: 'block', marginTop: '12px'}}>
+              <div>
+                <br />
                 <div>DBC as</div>
                 <div>Tempovej 7-11</div>
                 <div>2750 Ballerup</div>

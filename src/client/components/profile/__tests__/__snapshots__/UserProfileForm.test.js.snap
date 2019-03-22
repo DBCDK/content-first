@@ -19,7 +19,7 @@ exports[`UserProfileForm render function It adds validation error for age 1`] = 
         data-cy="user-form-name"
         name="name"
         onChange={[Function]}
-        placeholder="Vælg brugernavn"
+        placeholder="Skriv brugernavn"
         type="text"
         value=""
       />
@@ -128,7 +128,7 @@ exports[`UserProfileForm render function It adds validation error for age 2`] = 
         data-cy="user-form-name"
         name="name"
         onChange={[Function]}
-        placeholder="Vælg brugernavn"
+        placeholder="Skriv brugernavn"
         type="text"
         value=""
       />
@@ -235,7 +235,7 @@ exports[`UserProfileForm render function It adds validation error for terms 1`] 
         data-cy="user-form-name"
         name="name"
         onChange={[Function]}
-        placeholder="Vælg brugernavn"
+        placeholder="Skriv brugernavn"
         type="text"
         value=""
       />
@@ -344,7 +344,7 @@ exports[`UserProfileForm render function It adds validation error for terms 2`] 
         data-cy="user-form-name"
         name="name"
         onChange={[Function]}
-        placeholder="Vælg brugernavn"
+        placeholder="Skriv brugernavn"
         type="text"
         value=""
       />
@@ -418,7 +418,7 @@ exports[`UserProfileForm render function renders an user profile form 1`] = `
       data-cy="user-form-name"
       name="name"
       onChange={[Function]}
-      placeholder="Vælg brugernavn"
+      placeholder="Skriv brugernavn"
       type="text"
       value=""
     />
