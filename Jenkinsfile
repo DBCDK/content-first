@@ -10,8 +10,8 @@ pipeline {
         label 'devel9-head'
     }
     environment {
-        GITLAB_ID = 207
-        DOCKER_TAG = imageLabel
+        GITLAB_ID = "207"
+        DOCKER_TAG = "${imageLabel}"
         IMAGE = "${imageName}:${imageLabel}"
         GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
     }
