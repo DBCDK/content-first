@@ -86,15 +86,13 @@ const UserListsContent = props => {
       >
         clear
       </i>
-      <Link href="/lister">
-        <Text
-          type="body"
-          variant="color-fersken--weight-semibold--transform-uppercase"
-          className="tc"
-        >
-          <T component="list" name="listButton" />
-        </Text>
-      </Link>
+      <Text
+        type="body"
+        variant="color-fersken--weight-semibold--transform-uppercase"
+        className="tc"
+      >
+        <T component="list" name="listButton" />
+      </Text>
       {props.children &&
         props.children.length > 0 && (
           <div className="top-bar-dropdown-list--elements">
