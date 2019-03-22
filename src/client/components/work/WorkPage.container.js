@@ -7,8 +7,6 @@ import Icon from '../base/Icon';
 import T from '../base/T';
 import BookmarkButton from '../general/BookmarkButton';
 import AddToListButton from '../general/AddToListButton.component';
-import SkeletonText from '../base/Skeleton/Text';
-import SkeletonUser from '../base/Skeleton/User';
 import Share from '../base/Share';
 import RemindsOf from '../base/RemindsOf';
 import SimilarBelt from '../base/Belt/SimilarBelt.component';
@@ -21,7 +19,7 @@ import {get} from 'lodash';
 import {filterCollection, filterReviews, sortTags} from './workFunctions';
 import withWork from '../base/Work/withWork.hoc';
 import './WorkPage.css';
-import ReviewList from './ReviewList.component';
+import ReviewList from './Review/ReviewList.component';
 
 /**
  * WorkPage
@@ -29,7 +27,11 @@ import ReviewList from './ReviewList.component';
 class WorkPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {tagsCollapsed: true, transition: true, addToList: null};
+    this.state = {
+      tagsCollapsed: true,
+      transition: true,
+      addToList: null
+    };
   }
 
   init() {
@@ -49,7 +51,6 @@ class WorkPage extends React.Component {
   render() {
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
-
     if (!book) {
       return null;
     }
@@ -333,67 +334,15 @@ class WorkPage extends React.Component {
                 </div>
               </div>
 
-              <div className="col-12 col-xl-4 WorkPage__reviews mt-5 mb-5 mt-xl-0 mb-xl-0">
-                <div className="row">
-                  <div className="col-md-12">
-                    <Title Tag="h5" type="title5" className="mt3 mb2">
-                      <T component="work" name={'reviewsTitle'} />
-                    </Title>
-                  </div>
-                </div>
-
-                {work.reviewsHasLoaded &&
-                  reviews.map(rev => {
-                    return (
-                      <a
-                        href={rev.url}
-                        target="_blank"
-                        className="WorkPage__review mb1"
-                      >
-                        <Icon name="face" />
-                        <span className="WorkPage__review__details ml2">
-                          <Text
-                            type="body"
-                            variant="weight-semibold"
-                            className="mb0"
-                          >
-                            {rev.creator}
-                          </Text>
-                          <Text type="body">{rev.date}</Text>
-                        </span>
-                      </a>
-                    );
-                  })}
-                {!work.reviewsHasLoaded && (
-                  <React.Fragment>
-                    <a className="WorkPage__review mb1">
-                      <SkeletonUser pulse={true} className="mr1" />
-                      <SkeletonText
-                        lines={2}
-                        color="#e9eaeb"
-                        className="Skeleton__Pulse"
-                      />
-                    </a>
-                    <a className="WorkPage__review mb1">
-                      <SkeletonUser pulse={true} className="mr1" />
-                      <SkeletonText
-                        lines={2}
-                        color="#e9eaeb"
-                        className="Skeleton__Pulse"
-                      />
-                    </a>
-                    <a className="WorkPage__review">
-                      <SkeletonUser pulse={true} className="mr1" />
-                      <SkeletonText
-                        lines={2}
-                        color="#e9eaeb"
-                        className="Skeleton__Pulse"
-                      />
-                    </a>
-                  </React.Fragment>
-                )}
-                <ReviewList book={book} reviews={lectorReviews} />
-              </div>
+              <ReviewList
+                book={book}
+                reviews={reviews}
+                lectorReviews={lectorReviews}
+                maxHeight={500}
+                work={work}
+                className="col-12 col-xl-4 WorkPage__reviews mt-5 mb-5 mt-xl-0 mb-xl-0 "
+                showMoreColor="white"
+              />
             </div>
           </div>
 

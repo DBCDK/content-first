@@ -1,5 +1,5 @@
 import React from 'react';
-import FullTextReview from '../work/FullTextReview.component';
+import FullTextReview from '../work/Review/FullTextReview.component';
 import Modal from './Modal.component';
 
 /**

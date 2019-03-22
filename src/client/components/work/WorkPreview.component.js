@@ -6,8 +6,6 @@ import Button from '../base/Button';
 import Paragraph from '../base/Paragraph';
 import Icon from '../base/Icon';
 import T from '../base/T';
-import SkeletonText from '../base/Skeleton/Text';
-import SkeletonUser from '../base/Skeleton/User';
 import Share from '../base/Share';
 import RemindsOf from '../base/RemindsOf';
 import Link from '../general/Link.component';
@@ -18,7 +16,7 @@ import {HISTORY_NEW_TAB} from '../../redux/middleware';
 import {filterCollection, filterReviews} from './workFunctions';
 import withScrollToComponent from '../base/scroll/withScrollToComponent.hoc';
 import withWork from '../base/Work/withWork.hoc';
-import ReviewList from './ReviewList.component';
+import ReviewList from './Review/ReviewList.component';
 import withChildBelt from '../base/Belt/withChildBelt.hoc';
 
 import './WorkPreview.css';
@@ -199,64 +197,16 @@ class WorkPreview extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-md-0 col-lg-5 workPreview__reviews pt1 pb1">
-            <div className="row">
-              <div className="col-md-12">
-                <Heading Tag="h5" type="title5" className="mt0 mb2">
-                  <T component="work" name={'reviewsTitle'} />
-                </Heading>
-              </div>
-            </div>
-            {work.reviewsHasLoaded &&
-              reviews.map(rev => {
-                return (
-                  <a
-                    href={rev.url}
-                    target="_blank"
-                    className="workPreview__review mb1"
-                    key={rev.url}
-                  >
-                    <Icon name="face" />
-                    <span className="workPreview__review__details ml2">
-                      <Heading Tag="h5" type="subtitle">
-                        <strong>{rev.creator}</strong>
-                        <br />
-                        {rev.date}
-                      </Heading>
-                    </span>
-                  </a>
-                );
-              })}
-            {!work.reviewsHasLoaded && (
-              <React.Fragment>
-                <a className="workPreview__review mb1">
-                  <SkeletonUser pulse={true} className="mr1" />
-                  <SkeletonText
-                    lines={2}
-                    color="#e9eaeb"
-                    className="Skeleton__Pulse"
-                  />
-                </a>
-                <a className="workPreview__review mb1">
-                  <SkeletonUser pulse={true} className="mr1" />
-                  <SkeletonText
-                    lines={2}
-                    color="#e9eaeb"
-                    className="Skeleton__Pulse"
-                  />
-                </a>
-                <a className="workPreview__review">
-                  <SkeletonUser pulse={true} className="mr1" />
-                  <SkeletonText
-                    lines={2}
-                    color="#e9eaeb"
-                    className="Skeleton__Pulse"
-                  />
-                </a>
-              </React.Fragment>
-            )}
-            <ReviewList book={book} reviews={lectorReviews} />
-          </div>
+
+          <ReviewList
+            book={book}
+            reviews={reviews}
+            lectorReviews={lectorReviews}
+            maxHeight={350}
+            work={work}
+            className="col-md-0 col-lg-5 workPreview__reviews pt1 pb1"
+            showMoreColor="var(--lys-graa)"
+          />
         </div>
       </React.Fragment>
     );

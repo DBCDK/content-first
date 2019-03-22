@@ -1,8 +1,8 @@
 import React from 'react';
-import {timestampToShortDate} from '../../utils/dateTimeFormat';
+import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
-import Title from '../base/Title';
-import Text from '../base/Text';
+import Title from '../../base/Title';
+import Text from '../../base/Text';
 
 /**
  * This class displays a single full review item
