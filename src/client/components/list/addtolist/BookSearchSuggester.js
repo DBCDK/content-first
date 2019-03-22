@@ -62,10 +62,13 @@ class BookSearchSuggester extends React.Component {
 
   async onSuggestionsFetchRequested({value}) {
     value = value.toLowerCase();
+
+    console.log('value', value);
+
     this.currentRequest = value;
     const results = JSON.parse(
       (await request.get(
-        '/v1/search?q=' +
+        '/v1/suggester?rows=20&query=' +
           encodeURIComponent(
             value
               .trim()
@@ -73,15 +76,26 @@ class BookSearchSuggester extends React.Component {
               .join(' & ') + ':*'
           )
       )).text
-    )
-      .data.map(book => ({links: {}, book}))
+    );
+
+    const books = results
+      .filter(s => s.type === 'TITLE')
+      .map(s => {
+        return {
+          book: {
+            title: s.title,
+            creator: s.authorName,
+            pid: s.pid
+          }
+        };
+      })
       .slice(0, 5);
 
-    const pids = results.map(work => work.book.pid);
+    const pids = books.map(work => work.book.pid);
     this.props.fetchWorks(pids);
 
     if (this.currentRequest === value) {
-      this.setState({suggestions: results});
+      this.setState({suggestions: books});
     }
   }
 
