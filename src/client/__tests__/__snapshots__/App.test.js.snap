@@ -78,7 +78,7 @@ exports[`renders without crashing 1`] = `
                       onChange={[Function]}
                       onFocus={[Function]}
                       onKeyDown={[Function]}
-                      placeholder="Søg på titel, forfatter, stemning..."
+                      placeholder="Søg på stemning, sted eller stil..."
                       type="text"
                       value=""
                     />
