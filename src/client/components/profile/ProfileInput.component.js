@@ -14,7 +14,7 @@ export class ProfileInput extends React.Component {
     return (
       <div>
         <input
-          className="form-control mb3 has-feedback profile__mobileinputfield"
+          className="form-control mb3 profile__mobileinputfield"
           style={{width: '205px', height: '40px', borderRadius: '0px'}}
           type="text"
           name="name"

@@ -98,10 +98,6 @@
         "da": "Tilføj en bog",
         "en": "Add a book"
       },
-      "book": {
-        "da": "Bog",
-        "en": "Book"
-      },
       "ebook": {
         "da": "Ebog",
         "en": "Ebook"
@@ -131,7 +127,6 @@
         "en": "Added the"
       }
     },
-
     "login": {
       "loginButton": {
         "da": "Log ind",
@@ -166,7 +161,6 @@
         "en": "You have to log in"
       }
     },
-
     "topbar": {
       "betaModalTitle": {
         "da": "Om Læsekompas.dk",
@@ -193,7 +187,6 @@
         "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       }
     },
-
     "footer": {
       "sectionOne": {
         "da": "Læsekompasset hjælper dig med at opdage bøger, der passer dig, og inspirerer dig til nye læseoplevelser.",
@@ -211,6 +204,14 @@
         "da": "Skriv til DBCs kundeservice",
         "en": "Write to DBCs customer service"
       },
+      "writeToManagementText": {
+        "da": "Spørgsmål om Læsekompasset?",
+        "en": "Questions for Læsekompasset?"
+      },
+      "writeToManagementLinkText": {
+        "da": "Skriv til projektledelsen",
+        "en": "Write to the management"
+      },
       "addressCompany": {
         "da": "DBC a/s",
         "en": "DBC a/s"
@@ -224,15 +225,10 @@
         "en": "2750 Ballerup"
       }
     },
-
     "work": {
       "moreLikeThis": {
         "da": "Mere som denne",
         "en": "More like this"
-      },
-      "remindsOf": {
-        "da": "Minder om",
-        "en": "Reminds of"
       },
       "loanTitle": {
         "da": "Lån som:",
@@ -279,7 +275,6 @@
         "en": "Less tags"
       }
     },
-
     "profile": {
       "profilePage": {
         "da": "Min profil",
@@ -297,6 +292,10 @@
         "da": "Gem Profil",
         "en": "Save profile"
       },
+      "saveProfileToast":{
+        "da": "Din profil er opdateret",
+        "en": "Your profile has been updated"
+      },
       "deleteProfile": {
         "da": "Slet profil",
         "en": "Delete profile"
@@ -309,29 +308,9 @@
         "da": "Jeg ønsker alligevel ikke at oprette en profil",
         "en": "However, I do not want to create a profile"
       },
-      "acceptTitle": {
-        "da": "FØRSTE GANG DU BRUGER LÆSEKOMPASSET …",
-        "en": "THE FIRST TIME YOU USE LÆSEKOMPASSET …"
-      },
-      "ruleText1": {
-        "da": "… skal du acceptere",
-        "en": "… you must accept"
-      },
-      "ruleLink": {
-        "da": "regler og vilkår for anvendelse af Læsekompasset",
-        "en": "rules and conditions for the use of Læsekompasset"
-      },
-      "ruleText2": {
-        "da": " , der kort fortalt anvendes til at gøre dit indhold mere personaliseret.",
-        "en": " , basically is used to make your experience here more personal"
-      },
-      "usernameOvertitle": {
-        "da": "Hvad skal vi kalde dig?",
-        "en": "What should we call you?"
-      },
       "enterInformations": {
         "da": "Indtast dine personlige oplysninger:",
-        "en": "Enter your personal informations"
+        "en": "Enter your personal information"
       },
       "changeProfilePicture": {
         "da": "Skift profilbillede",
@@ -341,25 +320,9 @@
         "da": "Upload profilbillede",
         "en": "Upload profile picture"
       },
-      "profileInstructionsTitle":{
-        "da": "Hvad skal vi bruge det til?",
-        "en": "What will we use it for?"
-      },
-      "profileInstructionsLine1":{
-        "da": "når vi taler til dig her på siden",
-        "en": "when we communicate with you here on the site"
-      },
-      "profileInstructionsLine2":{
-        "da": "når du deler dine lister",
-        "en": "when you share your lists"
-      },
-      "profileInstructionsLine3":{
-        "da": "når du kommeterer på andres lister",
-        "en": "when you comment on other lists"
-      },
-      "profileInstructionsLine4":{
-        "da": "give dig mere personaliseret indhold",
-        "en": "give you more personalized content"
+      "profilePictureTooLarge": {
+        "da": " er for stor. Billedet må maks fylde 10mb",
+        "en": " is too large. Pictures must be max 10mb"
       },
       "deleteProfileModalTitle": {
         "da": "Er du sikker på at du vil slette din profil?",
@@ -373,10 +336,6 @@
         "da": "Dit brugernavn skal være minimum 4 karakterer langt",
         "en": "Your username, should contain at least 4 characters"
       },
-      "validationUsernameLengthShort":{
-        "da": "Min. 4 tegn",
-        "en": "Min. 4 characters"
-      },
       "validationAcceptAge": {
         "da": "Du skal være over 13 år for at oprette en profil",
         "en": "You have to be over 13 years old to create a profile"
@@ -389,9 +348,13 @@
         "da": "Det er ikke muligt at gemme profilen",
         "en": "It`s not possible to save the profile"
       },
-      "usernameTitle":{
-        "da": "Brugernavn",
-        "en": "Username"
+      "saveProfilePictureError": {
+        "da": " er ikke et gyldigt billede. Upload en gyldig png eller jpg.",
+        "en": " is not a permissible type. Upload a .png or .jpg"
+      },
+      "saveProfileGeneralPictureError": {
+        "da": " kan ikke uploades. Der er sket en fejl.",
+        "en": " can't be uploaded. Internal server error."
       },
       "placeholderUsername": {
         "da": "Skriv brugernavn",
@@ -408,13 +371,8 @@
       "termsCheckboxLink": {
         "da": "reglerne for anvendelse af Læsekompasset",
         "en": "Læsekompassets terms of use"
-      },
-      "acceptAndSubmit":{
-        "da": "Accepter regler og vilkår",
-        "en": "Accept rules and conditions"
       }
     },
-
     "shortlist": {
       "buttonLabel": {
         "da": "Husk",
@@ -449,14 +407,12 @@
         "en": "Clear list"
       }
     },
-
     "bookcase": {
       "fetchListError": {
         "da": "Listen kunne ikke indlæses",
         "en": "List could not be loaded"
       }
     },
-
     "list": {
       "listButton": {
         "da": "Lister",
@@ -683,7 +639,6 @@
         "en": "Bookshelf"
       }
     },
-
     "filter": {
       "newSearchToast": {
         "da": "Du startede en ny søgning",
@@ -742,7 +697,6 @@
         "en": "Search by title, author, mood..."
       }
     },
-
     "post": {
       "editPost": {
         "da": "Redigér indlæg",
@@ -813,7 +767,6 @@
         "en": "Just now"
       }
     },
-
     "order": {
       "orderInProgress": {
         "da": "Bestiller...",
@@ -884,7 +837,6 @@
         "en": "You need to be signed in to order books"
       }
     },
-
     "share": {
       "shareOnFacebook": {
         "da": "Del på facebook",
@@ -903,7 +855,6 @@
         "en": "Make my list public"
       }
     },
-
     "belts": {
       "bestRecommendations": {
         "da": "Bedste forslag til",
