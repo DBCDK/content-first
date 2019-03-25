@@ -1,6 +1,7 @@
 .image-upload input {
   display: none;
 }
+/*
 .image-upload--zone {
   border: 1px solid lightgrey;
   cursor: default;
@@ -33,4 +34,4 @@
 
 .image-upload .glyphicon-plus {
   font-size: 30px;
-}
+}*/

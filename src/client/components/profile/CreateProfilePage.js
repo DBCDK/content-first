@@ -80,7 +80,6 @@ export class CreateProfilePage extends React.Component {
 			return <Spinner className="spinner-deleteProfile" size="36px" />;
 		}
 
-<<<<<<< HEAD
 		return (
 			<div className="container">
 				<div className="profile__edit-titlezone">
@@ -95,22 +94,6 @@ export class CreateProfilePage extends React.Component {
 			</div>
 		);
 	}
-=======
-    return (
-      <div className="container">
-        <div className="profile__edit-titlezone">
-          <h1 className="profile__edit-title">{this.props.title}</h1>
-        </div>
-        <div className="profile__edit-page-position">
-          <div className="profile__edit-top-position">
-            {showImageSection()}
-            {showFormSection()}
-          </div>
-        </div>
-      </div>
-    );
-  }
->>>>>>> lint issues, updated snapshot
 }
 
 export const mapStateToProps = state => ({
