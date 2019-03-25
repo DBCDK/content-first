@@ -27,11 +27,7 @@ exports[`Image Upload render function Add image 1`] = `
             className="profile__edit-image-upload"
           >
             <ProfileUploadImage
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
               activateSaveButton={[Function]}
-<<<<<<< HEAD
               onFile={[Function]}
               personalImage={null}
               tempPersonalImage={null}
@@ -72,63 +68,6 @@ exports[`Image Upload render function Add image 1`] = `
                         />
                       </label>
                     </UploadButton>
-=======
-              buttonText="Upload profilbillede"
-=======
->>>>>>> updated tests, added T component, post rebase
-=======
-              activateSaveButton={[Function]}
->>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
-              h="90px"
-=======
->>>>>>> cleaned up styles and other minor code clumps
-              onFile={[Function]}
-              personalImage={null}
-              tempPersonalImage={null}
-              thumbnailImage="/img/general/user-placeholder-thumbnail.svg"
-              thumbnailImageHover="/img/general/user-placeholder-thumbnail-hover.svg"
-            >
-              <div
-                className="profile-picture"
-              >
-                <div
-                  className="image-upload"
-                >
-                  <div
-                    className="image-upload-loader"
-                  >
-                    <UploadButton
-                      baseImage="/img/general/user-placeholder-thumbnail.svg"
-                      readFiles={[Function]}
-                      thumbnailImageHover="/img/general/user-placeholder-thumbnail-hover.svg"
-                    >
-                      <label>
-                        <HoverImage
-                          mouseOver="/img/general/user-placeholder-thumbnail-hover.svg"
-                          src="/img/general/user-placeholder-thumbnail.svg"
-                        >
-                          <img
-                            className="image-upload-image"
-                            onMouseOut={[Function]}
-                            onMouseOver={[Function]}
-                            src="/img/general/user-placeholder-thumbnail.svg"
-                          />
-<<<<<<< HEAD
-                        </label>
-                      </UploadButton>
-                    </div>
->>>>>>> added design for mobile
-=======
-                        </HoverImage>
-                        <input
-                          accept="image/png, image/jpeg"
-                          className="droppable-image-field--file-input"
-                          onChange={[Function]}
-                          type="file"
-                        />
-                      </label>
-                    </UploadButton>
->>>>>>> cleaned up styles and other minor code clumps
                   </div>
                   <div
                     style={
@@ -156,19 +95,9 @@ exports[`Image Upload render function Add image 1`] = `
           className="profile__edit-textfield-zone"
         >
           <EditProfileForm
-<<<<<<< HEAD
-<<<<<<< HEAD
             activateSaveButton={[Function]}
             confirmDelete={[Function]}
             enableButton={true}
-=======
-            confirmDelete={[Function]}
->>>>>>> added design for mobile
-=======
-            activateSaveButton={[Function]}
-            confirmDelete={[Function]}
-            enableButton={true}
->>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
             updateImageId={[Function]}
           >
             <form
@@ -257,32 +186,12 @@ exports[`Image Upload render function Add image 1`] = `
                   className="profile__edit-bottom-elements"
                 >
                   <div
-<<<<<<< HEAD
-<<<<<<< HEAD
                     className="btn profile__edit-savebtn"
                   >
                     <button
                       data-cy="user-form-submit"
                       disabled={false}
                     >
-<<<<<<< HEAD
-=======
-                    style={
-                      Object {
-                        "marginTop": "8px",
-                      }
-                    }
-=======
-                    className="btn profile__edit-savebtn"
->>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
-                  >
-                    <button
-                      data-cy="user-form-submit"
-                      disabled={false}
-                    >
->>>>>>> added design for mobile
-=======
->>>>>>> lint issues, updated snapshot
                       Gem Ændringer
                     </button>
                   </div>
@@ -322,8 +231,6 @@ exports[`Image Upload render function renders an image upload form 1`] = `
         >
           <div
             className="profile-picture"
-<<<<<<< HEAD
-<<<<<<< HEAD
           >
             <div
               className="image-upload"
@@ -346,69 +253,6 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                     type="file"
                   />
                 </label>
-=======
-            style={
-              Object {
-                "paddingTop": "12px",
-                "width": "57px",
-              }
-            }
-=======
->>>>>>> cleaned up styles and other minor code clumps
-          >
-            <div
-              className="image-upload"
-            >
-              <div
-                className="image-upload-loader"
-              >
-<<<<<<< HEAD
-                <div>
-                  <label>
-                    <div>
-                      <img
-                        onMouseOut={[Function]}
-                        onMouseOver={[Function]}
-                        src="/img/general/user-placeholder-thumbnail.svg"
-                        style={
-                          Object {
-                            "cursor": "pointer",
-                            "height": "90px",
-                            "width": "90px",
-                          }
-                        }
-                      />
-                    </div>
-                    <input
-                      accept="image/png, image/jpeg"
-                      className="droppable-image-field--file-input"
-                      name={undefined}
-                      onChange={[Function]}
-                      type="file"
-                    />
-                  </label>
-                </div>
-<<<<<<< HEAD
->>>>>>> added design for mobile
-=======
->>>>>>> lint issues, updated snapshot
-=======
-                <label>
-                  <img
-                    className="image-upload-image"
-                    onMouseOut={[Function]}
-                    onMouseOver={[Function]}
-                    src="/img/general/user-placeholder-thumbnail.svg"
-                  />
-                  <input
-                    accept="image/png, image/jpeg"
-                    className="droppable-image-field--file-input"
-                    name={undefined}
-                    onChange={[Function]}
-                    type="file"
-                  />
-                </label>
->>>>>>> cleaned up styles and other minor code clumps
               </div>
               <div
                 style={
@@ -508,31 +352,11 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               className="profile__edit-bottom-elements"
             >
               <div
-<<<<<<< HEAD
-<<<<<<< HEAD
                 className="btn profile__edit-savebtn"
               >
                 <button
                   data-cy="user-form-submit"
                   disabled={true}
-=======
-                style={
-                  Object {
-                    "marginTop": "8px",
-                  }
-                }
-=======
-                className="btn profile__edit-savebtn"
->>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
-              >
-                <button
-                  data-cy="user-form-submit"
-<<<<<<< HEAD
-                  disabled={undefined}
->>>>>>> added design for mobile
-=======
-                  disabled={true}
->>>>>>> added enabled/disabled button, toast call on updated user, fine tuning of css, updated snapshot, added T tags
                 >
                   Gem Ændringer
                 </button>

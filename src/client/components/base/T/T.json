@@ -234,6 +234,10 @@
         "da": "Mere som denne",
         "en": "More like this"
       },
+      "remindsOf": {
+        "da": "Minder om",
+        "en": "Reminds of"
+      },
       "loanTitle": {
         "da": "Lån som:",
         "en": "Loan as: "
@@ -312,6 +316,26 @@
         "da": "Jeg ønsker alligevel ikke at oprette en profil",
         "en": "However, I do not want to create a profile"
       },
+      "acceptTitle": {
+        "da": "FØRSTE GANG DU BRUGER LÆSEKOMPASSET …",
+        "en": "THE FIRST TIME YOU USE LÆSEKOMPASSET …"
+      },
+      "ruleText1": {
+        "da": "… skal du acceptere",
+        "en": "… you must accept"
+      },
+      "ruleLink": {
+        "da": "regler og vilkår for anvendelse af Læsekompasset",
+        "en": "rules and conditions for the use of Læsekompasset"
+      },
+      "ruleText2": {
+        "da": " , der kort fortalt anvendes til at gøre dit indhold mere personaliseret.",
+        "en": " , basically is used to make your experience here more personal"
+      },
+      "usernameOvertitle": {
+        "da": "Hvad skal vi kalde dig?",
+        "en": "What should we call you?"
+      },
       "enterInformations": {
         "da": "Indtast dine personlige oplysninger:",
         "en": "Enter your personal information"
@@ -328,6 +352,26 @@
         "da": " er for stor. Billedet må maks fylde 10mb",
         "en": " is too large. Pictures must be max 10mb"
       },
+      "profileInstructionsTitle":{
+        "da": "Hvad skal vi bruge det til?",
+        "en": "What will we use it for?"
+      },
+      "profileInstructionsLine1":{
+        "da": "når vi taler til dig her på siden",
+        "en": "when we communicate with you here on the site"
+      },
+      "profileInstructionsLine2":{
+        "da": "når du deler dine lister",
+        "en": "when you share your lists"
+      },
+      "profileInstructionsLine3":{
+        "da": "når du kommeterer på andres lister",
+        "en": "when you comment on other lists"
+      },
+      "profileInstructionsLine4":{
+        "da": "give dig mere personaliseret indhold",
+        "en": "give you more personalized content"
+      },
       "deleteProfileModalTitle": {
         "da": "Er du sikker på at du vil slette din profil?",
         "en": "Are you sure you want to delete your profile?"
@@ -340,6 +384,10 @@
         "da": "Dit brugernavn skal være minimum 4 karakterer langt",
         "en": "Your username, should contain at least 4 characters"
       },
+      "validationUsernameLengthShort":{
+        "da": "Min. 4 tegn",
+        "en": "Min. 4 characters"
+      },
       "validationAcceptAge": {
         "da": "Du skal være over 13 år for at oprette en profil",
         "en": "You have to be over 13 years old to create a profile"
@@ -351,6 +399,10 @@
       "saveProfileError": {
         "da": "Det er ikke muligt at gemme profilen",
         "en": "It`s not possible to save the profile"
+      },
+      "usernameTitle":{
+        "da": "Brugernavn",
+        "en": "Username"
       },
       "saveProfilePictureError": {
         "da": " er ikke et gyldigt billede. Upload en gyldig png eller jpg.",
@@ -375,6 +427,10 @@
       "termsCheckboxLink": {
         "da": "reglerne for anvendelse af Læsekompasset",
         "en": "Læsekompassets terms of use"
+      },
+      "acceptAndSubmit":{
+        "da": "Accepter regler og vilkår",
+        "en": "Accept rules and conditions"
       }
     },
     "shortlist": {
