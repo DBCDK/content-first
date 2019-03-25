@@ -20,39 +20,31 @@
 }
 
 .profile__accept-usernameZone {
-    margin-left:57px;
-    margin-top:-77px;
-
+    margin-left: 57px;
+    margin-top: -77px;
 }
-
 
 .profile-picture {
-    height:63px;
-    margin-top:80 !important;
-    margin-right:-205px !important;
-
+    height: 63px;
+    margin-top: 80 !important;
+    margin-right: -205px !important;
 }
 
-
-
-.profile__accept-nameAndImg .profile-picture .image-upload .image-upload-loader  {
+.profile__accept-nameAndImg .profile-picture .image-upload .image-upload-loader {
     width: 46px !important;
     height: 46px !important;
     border-radius: 50% !important;
-    margin-top:15px;
+    margin-top: 15px;
 }
-
 
 .profile__accept-nameAndImg .profile-picture .image-upload .image-upload-loader .image-upload-image {
     width: 46px;
     height: 46px;
     border-radius: 50%;
     cursor: pointer;
-
 }
 
 .profile__modal-window {
-
     width: 692px;
     height: 416px;
     background-color: white;
@@ -61,7 +53,6 @@
     border: 1px solid rgba(0, 0, 0, 0.15);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.175);
     z-index: 99999;
-
 }
 
 .profile__spinner {
@@ -179,7 +170,7 @@
 }
 
 .profile__accept-line {
-    text-align: right;
+    text-align: right !important;
     border-top: 1px solid #979797;
     padding-top: 15px;
 }
@@ -192,11 +183,13 @@
 }
 
 .profile__accept-button {
+    text-align: right !important;
     padding-top: 7px;
     height: 34px;
     text-transform: Uppercase;
     color: var(--petroleum);
     background-color: var(--korn);
+
 }
 
 .profile__accept-button-disabled {
@@ -417,8 +410,9 @@
         margin-bottom: 8px !important;
 
     }
-    .profile-picture{
-        margin-right:10px !important;
+
+    .profile-picture {
+        margin-right: 10px !important;
     }
 
     .profile__mobileinputfield {

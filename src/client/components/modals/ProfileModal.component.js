@@ -73,7 +73,8 @@ export class ProfileModal extends React.Component {
               </a>
             </div>
             <div className="profile__line" />
-            <div style={{textAlign: 'right'}}>
+            <div className={'profile__accept-buttonbuffer'} />
+            <div>
               <button
                 className="btn Button profile__accept-button"
                 onClick={this.closeWindowAndLogout}

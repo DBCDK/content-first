@@ -10,11 +10,9 @@
 
 .has-topbar .profile-page-content {
     margin-top: 80px;
-
 }
 
 .profile__edit-page-position {
-
     margin-left: calc((100% - 705px) / 2);
     margin-right: calc((100% - 705px) / 2);
     width: 100%;
