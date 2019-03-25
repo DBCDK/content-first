@@ -210,24 +210,16 @@ export class TopBar extends React.Component {
   }
 
   render() {
-    const searchbar = document.getElementById('Searchbar__inputfield');
-    if (searchbar) {
-      searchbar.focus();
-    }
-
     const shortlist = this.renderShortListBtn();
     const userLists = this.renderListsOverviewDropdown();
     const searchExpanded = searchPage && this.state.searchExpanded;
     const showCancelBtn = window.location.href.split('=')[1];
-
     let searchIconText;
     if (searchExpanded && showCancelBtn) {
       searchIconText = (
         <span
           data-cy="topbar-search-btn"
-          onClick={() => {
-            this.props.historyPush(HISTORY_REPLACE, '/find');
-          }}
+          onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
         >
           <i className="material-icons  material-icons-cancel">cancel</i>
         </span>
@@ -253,15 +245,6 @@ export class TopBar extends React.Component {
     const booksCount = this.props.stats.books
       ? this.props.stats.books.total
       : '0';
-
-    let widthCheck = Math.max(
-      document.documentElement.clientWidth,
-      window.innerWidth || 0
-    );
-    let showMobile = false;
-    if (widthCheck <= 768) {
-      showMobile = true;
-    }
 
     return (
       <header
@@ -289,7 +272,7 @@ export class TopBar extends React.Component {
                 style={{width: this.state.width}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
-                {!showMobile && <SearchBar />}
+                <SearchBar />
               </span>
             </span>
             {searchIconText}
