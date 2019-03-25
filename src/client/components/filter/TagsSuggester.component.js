@@ -6,6 +6,7 @@ import {BOOKS_PARTIAL_UPDATE} from '../../redux/books.reducer';
 
 import Icon from '../base/Icon';
 import T from '../base/T';
+import {HISTORY_REPLACE} from '../../redux/middleware';
 
 const getTypeData = suggestion => {
   switch (suggestion.type) {
@@ -102,14 +103,6 @@ class TagsSuggester extends React.Component {
     this.setState({inputVisibel: status});
   };
 
-  clearFilters() {
-    let _ref = {};
-    for (let i = 0; i < this.props.selectedFilters.length; i++) {
-      _ref.suggestion = this.props.selectedFilters[i];
-      this.props.onSuggestionSelected('e', _ref);
-    }
-  }
-
   render() {
     const tagsInField = this.props.tags.length > 0;
     const pholder = tagsInField
@@ -135,11 +128,20 @@ class TagsSuggester extends React.Component {
     return (
       <React.Fragment>
         {tagsInField && (
-          <div style={{height: '0px', marginTop: '3px', marginRight: '10px'}}>
+          <div
+            style={{
+              cursor: 'pointer',
+              height: '0px',
+              marginTop: '3px',
+              marginRight: '10px'
+            }}
+          >
             <Icon
               name="cancel"
               className="md-large d-md-none d-sm-inline-block"
-              onClick={() => this.clearFilters()}
+              onClick={() => {
+                this.props.historyPush(HISTORY_REPLACE, '/find');
+              }}
             />
           </div>
         )}
@@ -174,7 +176,8 @@ class TagsSuggester extends React.Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  updateBooks: books => dispatch({type: BOOKS_PARTIAL_UPDATE, books})
+  updateBooks: books => dispatch({type: BOOKS_PARTIAL_UPDATE, books}),
+  historyPush: (type, path) => dispatch({type, path})
 });
 export default connect(
   null,
