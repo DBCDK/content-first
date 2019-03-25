@@ -19,7 +19,11 @@ const orderReducer = (state = defaultState, action) => {
         ...state,
         orders: {
           ...state.orders,
-          [action.book.pid]: {...action.book, ordering: true}
+          [action.book.pid]: {
+            ...state.orders[action.book.pid],
+            ...action.book,
+            ordering: true
+          }
         }
       };
     case AVAILABILITY:
