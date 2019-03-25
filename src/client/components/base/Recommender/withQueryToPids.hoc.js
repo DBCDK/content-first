@@ -45,7 +45,8 @@ const withQueryToPids = WrappedComponent => {
           query: `"${this.props.query}"`,
           rows: 200,
           field: 'author',
-          exact: true
+          exact: true,
+          merge_workid: true
         });
 
         this.setState({
