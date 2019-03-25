@@ -9,7 +9,6 @@ import './style/filterpage.css';
 import Modal from './components/modals/Modal.container';
 import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
-import SearchPage from './components/search/SearchPage.container';
 import WorkPage from './components/work/WorkPage.container';
 import TastePage from './components/profile/TastePage.container';
 import CreateProfilePage from './components/profile/CreateProfilePage';
@@ -86,8 +85,6 @@ class App extends Component {
       }
     } else if (pathSplit[1] === 'huskeliste') {
       currentPage = <ShortList />;
-    } else if (pathSplit[1] === 'søg') {
-      currentPage = <SearchPage />;
     } else if (pathSplit[1] === 'find') {
       currentPage = <FilterPage />;
     } else if (pathSplit[1] === 'replay') {

@@ -24,12 +24,20 @@ export default class CommentInput extends React.Component {
   };
 
   render() {
-    const {className, hideProfile, editing} = this.props;
+    const {
+      className = '',
+      submitIcon = 'send',
+      editIcon = 'check',
+      hideProfile,
+      editing
+    } = this.props;
 
     return (
       <div
         className={`comment-textarea-wrap mb-3 d-flex ${className}`}
-        style={{marginTop: editing ? '10px' : 0}}
+        style={{
+          marginTop: editing ? '10px' : 0
+        }}
       >
         {!hideProfile && (
           <ProfileImage
@@ -78,7 +86,7 @@ export default class CommentInput extends React.Component {
             <Icon
               id="comment-submit"
               className="comment-submit-icon align-self-end"
-              name={editing ? 'check' : 'send'}
+              name={editing ? editIcon : submitIcon}
               onClick={this.onSubmit}
               disabled={this.props.disabled || !this.props.value}
             />
