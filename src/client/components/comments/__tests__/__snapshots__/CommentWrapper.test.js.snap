@@ -590,7 +590,7 @@ exports[`CommentContainer Edit button 2`] = `
           value="comment_test"
         >
           <div
-            className="comment-textarea-wrap mb-3 d-flex undefined"
+            className="comment-textarea-wrap mb-3 d-flex "
             style={
               Object {
                 "marginTop": "10px",
