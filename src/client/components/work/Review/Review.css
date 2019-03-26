@@ -79,13 +79,13 @@ a:hover.tooltips span {
   bottom: 30px;
   left: 50%;
   margin-left: -76px;
-  z-index: 999;
+  z-index: 3;
 }
 .show-more-reviews{
   width: 100%;
   height: 100px;
   position: absolute;
-  z-index: 99;
+  z-index: 3;
   font-weight: 600;
   line-height: 100px;
   cursor: pointer;

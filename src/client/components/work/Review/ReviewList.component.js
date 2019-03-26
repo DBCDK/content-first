@@ -7,6 +7,7 @@ import Text from '../../base/Text';
 import T from '../../base/T';
 import SkeletonText from '../../base/Skeleton/Text';
 import SkeletonUser from '../../base/Skeleton/User';
+import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
 
 /**
@@ -17,12 +18,10 @@ class ReviewList extends React.Component {
     super(props);
     this.state = {
       displayAllReviews: false,
-      showReviewButton: true
+      showReviewButton: true,
+      reviewsHasLoaded: false,
+      collapsed: false
     };
-  }
-
-  componentDidMount() {
-    console.log('this.refs', this.refs);
   }
 
   componentDidUpdate(prevProps) {
@@ -32,12 +31,8 @@ class ReviewList extends React.Component {
     ) {
       const showReviewButton =
         this.refs.reviewsContainer &&
-        this.refs.reviewsContainer.offsetHeight >= this.props.maxHeight;
-      console.log(
-        '  this.refs.reviewsContainer.offsetHeight ',
-        this.refs.reviewsContainer.offsetHeight
-      );
-      this.setState({showReviewButton: showReviewButton});
+        this.refs.reviewsContainer.offsetHeight > this.props.maxHeight;
+      this.setState({collapsed: showReviewButton, reviewsHasLoaded: false});
     }
   }
 
@@ -47,8 +42,6 @@ class ReviewList extends React.Component {
     return (
       reviews &&
       reviews.map((reviewList, outerKey) => {
-        console.log('reviewList', reviewList);
-
         if (typeof reviewList.fullTextReviews !== 'undefined') {
           return reviewList.fullTextReviews.map((review, innerKey) => {
             return (
@@ -68,34 +61,20 @@ class ReviewList extends React.Component {
   render() {
     const work = this.props.work;
 
-    const showReviewButton =
-      work.reviewsHasLoaded && this.state.showReviewButton;
-    /*
-      work.reviewsHasLoaded &&
-      (this.state.displayAllReviews
-        ? this.refs.reviewsContainer &&
-          this.refs.reviewsContainer.offsetHeight >= 500
-        : true);*/
-    console.log('showReviewButton', showReviewButton);
-
-    const containerHeight = {
-      maxHeight: !this.state.displayAllReviews
-        ? this.props.maxHeight + 'px'
-        : ''
-    };
+    let containerHeight = this.state.collapsed
+      ? {
+          maxHeight: this.props.maxHeight + 'px'
+        }
+      : {};
 
     const reviewList = this.renderReviewList();
-    console.log('renderReviewList', reviewList);
     return (
       <React.Fragment>
         <div
-          ref={reviewsContainer =>
-            (this.refs = {...this.refs, reviewsContainer})
-          }
           className={
             ' ' +
             this.props.className +
-            (!this.state.displayAllReviews
+            (this.state.collapsed
               ? ' paper_reviews_show'
               : ' paper_reviews_hide_overflow')
           }
@@ -109,25 +88,59 @@ class ReviewList extends React.Component {
             </div>
           </div>
 
-          {work.reviewsHasLoaded &&
-            this.props.reviews.map(rev => {
-              console.log('rev', rev);
+          {work.reviewsHasLoaded && (
+            <div
+              ref={reviewsContainer =>
+                (this.refs = {...this.refs, reviewsContainer})
+              }
+            >
+              {this.props.reviews.map(rev => {
+                const date =
+                  rev.creator.split(',')[1] &&
+                  timestampToShortDate(rev.creator.split(',')[1]);
+                return (
+                  <div className="review_list__review  mb-3">
+                    <span className="review_list__review__details ">
+                      <Text
+                        type="body"
+                        variant="weight-semibold"
+                        className="mb0"
+                      >
+                        {rev.creator.includes('Litteratursiden')
+                          ? 'Litteratursiden'
+                          : rev.creator}
+                      </Text>
 
-              return (
-                <a
-                  href={rev.url}
-                  target="_blank"
-                  className="WorkPage__review mb1"
-                >
-                  <span className="WorkPage__review__details ">
-                    <Text type="body" variant="weight-semibold" className="mb0">
-                      {rev.creator}
-                    </Text>
-                    <Text type="body">{rev.date}</Text>
-                  </span>
-                </a>
-              );
-            })}
+                      <Text className="d-flex">
+                        <a
+                          type="small"
+                          onClick={() => {}}
+                          target="_blank"
+                          href={rev.url}
+                        >
+                          Læs anmedelsen
+                        </a>
+                        <a target="_blank" href={rev.url}>
+                          <i
+                            class="material-icons"
+                            style={{fontSize: '1.2rem', textDecoration: 'none'}}
+                          >
+                            launch
+                          </i>
+                        </a>
+                      </Text>
+                    </span>
+                    {date && (
+                      <Text type="small" className="due-txt mb0">
+                        {date}
+                      </Text>
+                    )}
+                  </div>
+                );
+              })}
+              {reviewList}
+            </div>
+          )}
           {!work.reviewsHasLoaded && (
             <React.Fragment>
               <a className="workPreview__review mb1">
@@ -157,34 +170,26 @@ class ReviewList extends React.Component {
             </React.Fragment>
           )}
 
-          {reviewList}
-          {showReviewButton &&
-            !this.state.displayAllReviews && (
-              <div
-                className="show-more-reviews "
-                onClick={() =>
-                  this.setState({
-                    displayAllReviews: !this.state.displayAllReviews
-                  })
-                }
-                style={{
-                  background: `linear-gradient(to bottom, transparent,${
-                    this.props.showMoreColor
-                  } )`
-                }}
-              >
-                <span>
-                  {this.state.displayAllReviews
-                    ? 'Skjul anmedelser'
-                    : 'Vis flere anmedelser'}
-                </span>
-                <Icon
-                  name={
-                    this.state.displayAllReviews ? 'expand_less' : 'expand_more'
-                  }
-                />
-              </div>
-            )}
+          {this.state.collapsed && (
+            <div
+              className="show-more-reviews "
+              onClick={() =>
+                this.setState({
+                  collapsed: !this.state.collapsed
+                })
+              }
+              style={{
+                background: `linear-gradient(to bottom, transparent,${
+                  this.props.showMoreColor
+                } )`
+              }}
+            >
+              <span>Vis flere anmedelser</span>
+              <Icon
+                name={!this.state.collapsed ? 'expand_less' : 'expand_more'}
+              />
+            </div>
+          )}
         </div>
       </React.Fragment>
     );

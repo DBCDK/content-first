@@ -16,7 +16,6 @@ export class ResumeReview extends React.Component {
     if (this.props.review === false) {
       return '';
     }
-    console.log('in ResumeReview', this.props);
     const review = this.props.review;
     const firstname = (review.reviewer && review.reviewer.firstname) || '';
     const surname = (review.reviewer && review.reviewer.surname) || '';

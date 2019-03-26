@@ -13,12 +13,12 @@ class ReviewRating extends React.Component {
     let ratingShapes = [];
     for (let i = 0; i < maxRating; i++) {
       const elmStyle = {
-        fontSize: '1.5em',
+        fontSize: '1.2em',
         color:
           rating > i
             ? this.props.type === 'star'
               ? 'var(--korn)'
-              : 'red'
+              : 'var(--fersken)'
             : ' grey'
       };
       ratingShapes.push(
