@@ -42,6 +42,7 @@ export default class ProfileUpdateUser extends React.Component {
 
     return (
       <div style={{display: 'flex'}}>
+        <div style={{width: '305px'}} />
         <button
           className={'btn Button profile__accept-button'}
           style={checkActive()}
