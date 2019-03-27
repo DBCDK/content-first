@@ -378,11 +378,6 @@ export class TopBar extends React.Component {
                     ((isIndex && isMobileOnly) || !isMobileOnly) && (
                       <div className="d-inline-flex">
                         <div className="d-none d-sm-inline logo-beta-text Text__small">
-                          <T
-                            component="topbar"
-                            name="betaText"
-                            vars={[booksCount]}
-                          />
                           <Text
                             className="d-inline logo-beta-link mb0"
                             type="small"

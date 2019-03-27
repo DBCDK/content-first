@@ -168,10 +168,6 @@
     },
 
     "topbar": {
-      "betaText": {
-        "da": "Nu %s bøger. ",
-        "en": "Now %s books. "
-      },
       "betaModalTitle": {
         "da": "Om Læsekompas.dk",
         "en": "About Læsekompas.dk"
