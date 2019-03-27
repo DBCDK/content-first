@@ -1,5 +1,6 @@
 import React from 'react';
 import Spinner from '../general/Spinner.component';
+import T from '../base/T';
 
 export default class ProfileUpdateUser extends React.Component {
   onSubmit = e => {
@@ -50,7 +51,7 @@ export default class ProfileUpdateUser extends React.Component {
           disabled={this.props.deactivate}
           data-cy="user-form-submit"
         >
-          {this.props.editMode ? 'Gem Profil' : 'Accepter regler og vilkår'}
+          <T component="profile" name="acceptAndSubmit" />
           {(this.props.isSaving && (
             <Spinner size={12} color="white" style={{marginLeft: '10px'}} />
           )) ||
