@@ -44,7 +44,7 @@ export class ShortListItem extends React.Component {
         size="medium"
         type="tertiary"
         className="mr-2 text-uppercase"
-        onClick={this.props.onClick}
+        onClick={this.props.onAddToList}
       >
         <T component="list" name="addToList" />
       </Button>
@@ -80,7 +80,7 @@ export class ShortListItem extends React.Component {
       });
 
     return (
-      <React.Fragment>
+      <div>
         <div className={`short-list-item d-flex flex-row ${className}`}>
           <i
             className="material-icons remove-btn"
@@ -120,13 +120,13 @@ export class ShortListItem extends React.Component {
             <T component="work" name="loanTitle" />
           </Text>
           <Toolbar className="mobile-styling">
-            <React.Fragment align="left">
+            <div align="left">
               {orderBookButton}
               {orderElectronicBookButtons}
-            </React.Fragment>
+            </div>
           </Toolbar>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }
@@ -137,7 +137,7 @@ const ShortListItemWithWork = withWork(ShortListItem, {
   includeCover: true
 });
 
-class ShortList extends React.Component {
+export class ShortList extends React.Component {
   render() {
     const {elements} = this.props.shortListState;
     return (
@@ -169,36 +169,38 @@ class ShortList extends React.Component {
                 transitionEnter={false}
                 transitionLeaveTimeout={200}
               >
-                {elements.map(e => (
-                  <div key={e.book.pid}>
-                    <ShortListItemWithWork
-                      key={e.book.pid}
-                      origin={e.origin}
-                      pid={e.book.pid}
-                      onRemove={() => {
-                        this.props.remove(e.book.pid);
-                      }}
-                      onOriginUpdate={origin => {
-                        this.props.originUpdate(origin, e.book.pid);
-                      }}
-                      onAddToList={() => {
-                        this.props.addToList(
-                          [
-                            {
-                              book: e.book,
-                              description: e.origin || (
-                                <T component="shortlist" name="origin" />
-                              )
-                            }
-                          ],
-                          this.props.isLoggedIn,
-                          () => this.props.remove(e.book.pid)
-                        );
-                      }}
-                    />
-                    <Divider />
-                  </div>
-                ))}
+                {elements.map(e => {
+                  return (
+                    <div key={e.book.pid}>
+                      <ShortListItemWithWork
+                        key={e.book.pid}
+                        origin={e.origin}
+                        pid={e.book.pid}
+                        onRemove={() => {
+                          this.props.remove(e.book.pid);
+                        }}
+                        onOriginUpdate={origin => {
+                          this.props.originUpdate(origin, e.book.pid);
+                        }}
+                        onAddToList={() => {
+                          this.props.addToList(
+                            [
+                              {
+                                book: e.book,
+                                description: e.origin || (
+                                  <T component="shortlist" name="origin" />
+                                )
+                              }
+                            ],
+                            this.props.isLoggedIn,
+                            () => this.props.remove(e.book.pid)
+                          );
+                        }}
+                      />
+                      <Divider />
+                    </div>
+                  );
+                })}
               </ReactCSSTransitionGroup>
             </div>
             {elements.length === 0 && (
