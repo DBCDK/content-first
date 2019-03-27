@@ -1,0 +1,56 @@
+.similarBelt .swiper-wrapper {
+  padding: 42px 0 50px 42px;
+}
+
+.similarBelt.childBelt .WorkCard .book-cover {
+  background-color: var(--porcelain);
+}
+
+.similarBelt.childBelt .desktop-slider {
+  overflow: hidden;
+}
+
+.similarBelt.childBelt .swiper-wrapper .WorkCard .expand-more-wrapper {
+  bottom: -50px;
+}
+
+.similarBelt.childBelt .swiper-wrapper .WorkCard:first-child .whiteLine {
+  width: 500%;
+  left: -400%;
+}
+
+.similarBelt.childBelt .swiper-wrapper .WorkCard:last-child .whiteLine {
+  width: 500%;
+  right: -400%;
+}
+
+.similarBelt.childBelt .swiper-button-next {
+  right: 0;
+  background-color: red;
+}
+
+.similarBelt.childBelt
+  .swiper-container-horizontal
+  > .swiper-pagination-bullets {
+  top: 10px;
+  text-align: right;
+  height: 20px;
+}
+
+.similarBelt.childBelt .swiper-wrapper .WorkCard .whiteLine {
+  width: 200%;
+  height: 50px;
+  position: absolute;
+  bottom: -50px;
+  left: -50%;
+  z-index: 1;
+  background-color: white;
+}
+
+.similarBelt.lys-graa .swiper-container {
+  background-color: #f8f8f8;
+}
+
+.similarBelt.lys-graa .swiper-wrapper .WorkCard .hover-details {
+  background: linear-gradient(transparent, var(--lys-graa) 40%) !important;
+}

@@ -93,6 +93,7 @@ class DesktopSlider extends React.Component {
 
   render() {
     const props = this.props;
+
     return (
       <div className="col-12 p-0 desktop-slider">
         <Swiper
@@ -106,6 +107,7 @@ class DesktopSlider extends React.Component {
         >
           {props.children}
         </Swiper>
+
         {!this.state.isEnd && (
           <Icon
             name="chevron_right"

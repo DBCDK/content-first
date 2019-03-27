@@ -47,13 +47,17 @@ class WorkPreview extends React.Component {
     return (
       <React.Fragment>
         <div
-          className={'row WorkPreview__container ' + this.props.className}
+          className={'row mb-5 WorkPreview__container ' + this.props.className}
           ref={preview => (this.refs = {...this.refs, preview})}
         >
           <div className="col-12 col-xl-7 workPreview__work">
             <div className="workPreview__image col-4">
               <Link href={'/værk/' + book.pid}>
-                <BookCover book={book} dataCy={dataCy} />
+                <BookCover
+                  book={book}
+                  styles={{background: 'transparent'}}
+                  dataCy={dataCy}
+                />
               </Link>
             </div>
             <div className="workPreview__info col-8">
@@ -194,7 +198,17 @@ class WorkPreview extends React.Component {
               </div>
               <div className="row">
                 <div className="col-12 pt2">
-                  <RemindsOf onClick={() => this.props.openSimilarBelt(work)} />
+                  <div className="position-relative d-inline">
+                    <RemindsOf
+                      onClick={() => this.props.openSimilarBelt(work)}
+                    />
+                    {this.props.hasChildBelt && (
+                      <Icon
+                        name="expand_more"
+                        className="workPreview__arrow md-large"
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

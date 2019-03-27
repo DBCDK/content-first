@@ -83,8 +83,8 @@ class BookCover extends React.Component {
           ...this.props.style,
           display: 'inline-block',
           textAlign: 'center',
-          backgroundColor: '#f8f8f8',
-          verticalAlign: 'middle'
+          verticalAlign: 'middle',
+          ...this.props.styles
         }}
         alt={this.props.title || ''}
         className={

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700|Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,900|Material+Icons');
 @import './fonts.css';
 
 /* Global Settings for new design */
@@ -23,6 +23,7 @@
   --silver-chalice: #a7a7a7;
   --kobber: #b17642;
   --mine-shaft: #333333;
+  --white: #ffffff;
 
   --primary-font: 'Montserrat', sans-serif;
   --primary-black: 'Montserrat-black', 'Montserrat', sans-serif;

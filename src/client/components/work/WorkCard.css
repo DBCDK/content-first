@@ -11,7 +11,7 @@
   height: 70%;
   width: 100%;
   padding: 20px;
-  background: #f8f8f8;
+  background-color: var(--lys-graa);
   object-fit: contain;
 }
 
@@ -33,6 +33,7 @@
   background: linear-gradient(transparent, white 40%);
   cursor: pointer;
   padding: 10px;
+  z-index: 2;
 }
 .WorkCard.highlight .hover-details {
   opacity: 1;
@@ -41,12 +42,11 @@
   opacity: 1;
 }
 
-.WorkCard .expand-more {
-  margin-top: 0px;
-  transition: margin 0.2s;
-}
-.WorkCard .expand-more-wrapper:hover .expand-more {
-  margin-top: 10px;
+.WorkCard .expand-more-wrapper {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .WorkCard.ghost {

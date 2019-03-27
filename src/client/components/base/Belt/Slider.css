@@ -21,8 +21,8 @@
   left: -30px;
 }
 
-.swiper-container {
-  padding-top: 40px;
+.desktop-slider .swiper-wrapper {
+  padding-top: 42px;
 }
 
 .swiper-container-horizontal > .swiper-pagination-bullets {
