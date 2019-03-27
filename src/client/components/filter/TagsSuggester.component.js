@@ -147,7 +147,6 @@ class TagsSuggester extends React.Component {
 									this.refs.smallSearchBar
 								).getElementsByClassName('suggestion-list__search')[0];
 								searchfield.focus();
-
 							}}
 						/>
 					</div>
