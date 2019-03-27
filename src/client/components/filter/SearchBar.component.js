@@ -1,10 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import TagsSuggester from './TagsSuggester.component';
 import Icon from '../base/Icon';
 import Button from '../base/Button';
 import withTagsFromUrl from '../base/AdressBar/withTagsFromUrl.hoc';
 import withWork from '../base/Work/withWork.hoc';
 import './SearchBar.css';
+
 
 const SelectedWork = withWork(({selected, work, onRemove}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
@@ -61,6 +63,15 @@ class SearchBar extends React.Component {
 
   componentDidMount() {
     this.initFilterPosition();
+
+		const searchfield = ReactDOM.findDOMNode(
+			this.refs.tagSuggester
+		).getElementsByClassName('suggestion-list__search')[0];
+		console.log("searchfield", searchfield)
+		if(searchfield){
+			searchfield.focus();
+		}
+
   }
 
   toggleFilter(filterId) {
@@ -146,6 +157,7 @@ class SearchBar extends React.Component {
             tags={this.props.tags}
             filters={this.props.filters}
             value={this.state.query}
+            ref={"tagSuggester"}
             onKeyDown={this.handleOnKeyDown}
             onFocus={() => {
               this.setState({expanded: true});
