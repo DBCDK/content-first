@@ -178,7 +178,7 @@
       },
       "betaModalDescription": {
         "da": "Læsekompasset er skabt for at gøre det nemt for dig at opdage bøger, der passer til dig, og inspirere dig til nye læseoplevelser",
-        "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        "en": "Læsekompasset was created to make it easy for you to discover just the right books for you and to inspire new reading experiences."
       },
       "betaModalBody1": {
         "da": "Vi arbejder hele tiden på at forbedre Læsekompasset og øge antallet af bøger. Lige nu er vi i",
@@ -207,14 +207,6 @@
         "da": "Skriv til DBCs kundeservice",
         "en": "Write to DBCs customer service"
       },
-      "writeToManagementText": {
-        "da": "Spørgsmål om Læsekompasset?",
-        "en": "Questions for Læsekompasset?"
-      },
-      "writeToManagementLinkText": {
-        "da": "Skriv til projektledelsen",
-        "en": "Write to the management"
-      },
       "addressCompany": {
         "da": "DBC a/s",
         "en": "DBC a/s"
@@ -233,6 +225,10 @@
       "moreLikeThis": {
         "da": "Mere som denne",
         "en": "More like this"
+      },
+      "remindsOf": {
+        "da": "Minder om",
+        "en": "Reminds of"
       },
       "loanTitle": {
         "da": "Lån som:",
@@ -309,6 +305,26 @@
         "da": "Jeg ønsker alligevel ikke at oprette en profil",
         "en": "However, I do not want to create a profile"
       },
+      "acceptTitle": {
+        "da": "FØRSTE GANG DU BRUGER LÆSEKOMPASSET …",
+        "en": "THE FIRST TIME YOU USE LÆSEKOMPASSET …"
+      },
+      "ruleText1": {
+        "da": "… skal du acceptere",
+        "en": "… you must accept"
+      },
+      "ruleLink": {
+        "da": "regler og vilkår for anvendelse af Læsekompasset",
+        "en": "rules and conditions for the use of Læsekompasset"
+      },
+      "ruleText2": {
+        "da": " , der kort fortalt anvendes til at gøre dit indhold mere personaliseret.",
+        "en": " , basically is used to make your experience here more personal"
+      },
+      "usernameOvertitle": {
+        "da": "Hvad skal vi kalde dig?",
+        "en": "What should we call you?"
+      },
       "enterInformations": {
         "da": "Indtast dine personlige oplysninger:",
         "en": "Enter your personal informations"
@@ -320,6 +336,26 @@
       "uploadProfilePicture": {
         "da": "Upload profilbillede",
         "en": "Upload profile picture"
+      },
+      "profileInstructionsTitle":{
+        "da": "Hvad skal vi bruge det til?",
+        "en": "What will we use it for?"
+      },
+      "profileInstructionsLine1":{
+        "da": "når vi taler til dig her på siden",
+        "en": "when we communicate with you here on the site"
+      },
+      "profileInstructionsLine2":{
+        "da": "når du deler dine lister",
+        "en": "when you share your lists"
+      },
+      "profileInstructionsLine3":{
+        "da": "når du kommeterer på andres lister",
+        "en": "when you comment on other lists"
+      },
+      "profileInstructionsLine4":{
+        "da": "give dig mere personaliseret indhold",
+        "en": "give you more personalized content"
       },
       "deleteProfileModalTitle": {
         "da": "Er du sikker på at du vil slette din profil?",
@@ -333,6 +369,10 @@
         "da": "Dit brugernavn skal være minimum 4 karakterer langt",
         "en": "Your username, should contain at least 4 characters"
       },
+      "validationUsernameLengthShort":{
+        "da": "Min. 4 tegn",
+        "en": "Min. 4 characters"
+      },
       "validationAcceptAge": {
         "da": "Du skal være over 13 år for at oprette en profil",
         "en": "You have to be over 13 years old to create a profile"
@@ -345,8 +385,12 @@
         "da": "Det er ikke muligt at gemme profilen",
         "en": "It`s not possible to save the profile"
       },
+      "usernameTitle":{
+        "da": "Brugernavn",
+        "en": "Username"
+      },
       "placeholderUsername": {
-        "da": "Vælg brugernavn",
+        "da": "Skriv brugernavn",
         "en": "Select username"
       },
       "ageCheckboxText": {
@@ -360,6 +404,10 @@
       "termsCheckboxLink": {
         "da": "reglerne for anvendelse af Læsekompasset",
         "en": "Læsekompassets terms of use"
+      },
+      "acceptAndSubmit":{
+        "da": "Accepter regler og vilkår",
+        "en": "Accept rules and conditions"
       }
     },
 

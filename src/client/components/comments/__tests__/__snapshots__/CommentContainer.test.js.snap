@@ -12,7 +12,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
     className="comments undefined"
   >
     <div
-      className="comment-textarea-wrap mb-3 d-flex undefined"
+      className="comment-textarea-wrap mb-3 d-flex "
       style={
         Object {
           "marginTop": 0,
@@ -100,7 +100,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
     className="comments undefined"
   >
     <div
-      className="comment-textarea-wrap mb-3 d-flex undefined"
+      className="comment-textarea-wrap mb-3 d-flex "
       style={
         Object {
           "marginTop": 0,
@@ -294,7 +294,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
         value=""
       >
         <div
-          className="comment-textarea-wrap mb-3 d-flex undefined"
+          className="comment-textarea-wrap mb-3 d-flex "
           style={
             Object {
               "marginTop": 0,
@@ -564,7 +564,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
     className="comments undefined"
   >
     <div
-      className="comment-textarea-wrap mb-3 d-flex undefined"
+      className="comment-textarea-wrap mb-3 d-flex "
       style={
         Object {
           "marginTop": 0,
@@ -731,7 +731,7 @@ exports[`CommentContainer Component renders error 1`] = `
         value="comment3"
       >
         <div
-          className="comment-textarea-wrap mb-3 d-flex undefined"
+          className="comment-textarea-wrap mb-3 d-flex "
           style={
             Object {
               "marginTop": 0,
@@ -980,7 +980,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
         value=""
       >
         <div
-          className="comment-textarea-wrap mb-3 d-flex undefined"
+          className="comment-textarea-wrap mb-3 d-flex "
           style={
             Object {
               "marginTop": 0,
@@ -1245,7 +1245,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
         value=""
       >
         <div
-          className="comment-textarea-wrap mb-3 d-flex undefined"
+          className="comment-textarea-wrap mb-3 d-flex "
           style={
             Object {
               "marginTop": 0,
@@ -1523,7 +1523,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
         value=""
       >
         <div
-          className="comment-textarea-wrap mb-3 d-flex undefined"
+          className="comment-textarea-wrap mb-3 d-flex "
           style={
             Object {
               "marginTop": 0,

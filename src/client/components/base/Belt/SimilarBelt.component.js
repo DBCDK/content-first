@@ -42,6 +42,7 @@ export class SimilarBelt extends React.Component {
   render() {
     return (
       <div
+        ref={this.props.beltRef || null}
         className={'px-0 px-sm-3 px-lg-5 pt-5 ' + this.props.className}
         // style={{background: 'var(--lys-graa)', ...(this.props.style || {})}}
         style={this.props.style}

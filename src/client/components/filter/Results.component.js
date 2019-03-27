@@ -84,7 +84,7 @@ class Results extends React.Component {
       .map(q => q.query);
 
     return (
-      <div className="filter-page-results mt-5">
+      <div className="filter-page-results pt-5">
         {pids.length > 0 && (
           <div>
             <MultiRowContainer recommendations={pids} origin="Fra søgning" />

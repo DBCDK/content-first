@@ -1,6 +1,7 @@
 import React from 'react';
 import Text from '../base/Text';
 import T from '../base/T';
+
 import Link from '../general/Link.component';
 
 import LaesekompasLogo from '../svg/LaesekompasLogo.svg';
@@ -8,43 +9,71 @@ import LaesekompasLogo from '../svg/LaesekompasLogo.svg';
 import './Footer.css';
 
 class Footer extends React.Component {
-  state = {height: 0};
-  footerContainer = React.createRef();
-
-  setFooterHeight = () => {
-    if (this.footerContainer && this.footerContainer.current) {
-      this.setState({height: this.footerContainer.current.offsetHeight});
-    } else {
-      this.setState({height: 0});
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {sticky: null};
+  }
 
   componentDidMount() {
-    this.setFooterHeight();
-    window.addEventListener('resize', this.setFooterHeight);
+    this.handleStickyState();
+    this.observeDom();
+    window.addEventListener('resize', this.handleStickyState);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.setFooterHeight);
+    window.removeEventListener('resize', this.handleStickyState);
   }
 
+  componentDidUpdate() {
+    // check sticky state
+    this.handleStickyState();
+  }
+
+  handleStickyState = () => {
+    const sticky = this.shouldBeSticky();
+    if (sticky !== this.state.sticky) {
+      this.setState({sticky});
+    }
+  };
+
+  shouldBeSticky() {
+    const contentHeight = this.contentLine
+      ? this.contentLine.offsetTop
+      : document.body.scrollHeight;
+
+    return contentHeight + 200 < window.innerHeight;
+  }
+
+  observeDom = () => {
+    const targetNode = document.getElementById('root');
+    const observer = new MutationObserver(() => {
+      this.handleStickyState();
+    });
+    observer.observe(targetNode, {
+      attributes: true,
+      childList: true,
+      subtree: true
+    });
+  };
+
   render() {
+    const sticky = this.state.sticky;
+    const isStickyClass = sticky ? 'Footer__sticky' : '';
+
+    if (sticky === null) {
+      return null;
+    }
+
     return (
       <React.Fragment>
-        <div
-          className="Footer__container--spacer"
-          style={{height: this.state.height + 'px'}}
-        />
-        <div className="row Footer__outer-container--flexbox">
-          <div
-            className="row Footer__container--elements"
-            ref={this.footerContainer}
-          >
-            <div className="Footer__logo--element">
+        <div className="Footer__ghost" ref={e => (this.contentLine = e)} />
+        <div className={`Footer__outer-container--flexbox ${isStickyClass}`}>
+          <div className="Footer__container--elements p-3 pt-5 pb-md-5">
+            <div className="Footer__logo--element mb-1">
               <img src={LaesekompasLogo} className="Footer__logo--image" />
             </div>
-            <div className="col Footer__element--block">
-              <Text type="body" className="mt1">
+            <div className="Footer__element--block">
+              <Text type="body" className="mt-3 pr-md-3 pr-lg-3">
                 <T component="footer" name="sectionOne" />
                 <br />
                 <Link href="/om">
@@ -52,29 +81,22 @@ class Footer extends React.Component {
                 </Link>
               </Text>
             </div>
-            <div className="col Footer__element--block">
-              <Text type="body" className="mt1">
+            <div className="Footer__element--block">
+              <Text type="body" className="mt-3 pr-lg-3">
                 <T component="footer" name="sectionTwo" />
               </Text>
             </div>
-            <div className="col Footer__element--block">
-              <Text type="body" className="mt1">
+            <div className="Footer__element--block">
+              <Text type="body" className="mt-3 pr-md-3 pr-lg-3">
                 <T component="footer" name="customerServiceText" />
                 <br />
                 <a href="https://kundeservice.dbc.dk" target="_blank">
                   <T component="footer" name="customerServiceLinkText" />
                 </a>
-                <br />
-                <br />
-                <T component="footer" name="writeToManagementText" />
-                <br />
-                <a href="mailto:laesekompasset@dbc.dk">
-                  <T component="footer" name="writeToManagementLinkText" />
-                </a>
               </Text>
             </div>
-            <div className="col Footer__element--block">
-              <Text type="body" className="mt1">
+            <div className="Footer__element--block">
+              <Text type="body" className="mt-3">
                 <T component="footer" name="addressCompany" />
                 <br />
                 <T component="footer" name="addressStreet" />

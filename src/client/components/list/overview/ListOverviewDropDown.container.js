@@ -63,7 +63,7 @@ const ListElement = props => {
         </div>
         <div className="top-bar-dropdown-list-element--origin">
           {props.profiles[props.list._owner] && !isOwner
-            ? <T component="general" name="by" /> +
+            ? T({component: 'general', name: 'by'}) +
               ' ' +
               props.profiles[props.list._owner].name
             : ''}
@@ -86,15 +86,13 @@ const UserListsContent = props => {
       >
         clear
       </i>
-      <Link href="/lister">
-        <Text
-          type="body"
-          variant="color-fersken--weight-semibold--transform-uppercase"
-          className="tc"
-        >
-          <T component="list" name="listButton" />
-        </Text>
-      </Link>
+      <Text
+        type="body"
+        variant="color-fersken--weight-semibold--transform-uppercase"
+        className="tc"
+      >
+        <T component="list" name="listButton" />
+      </Text>
       {props.children &&
         props.children.length > 0 && (
           <div className="top-bar-dropdown-list--elements">

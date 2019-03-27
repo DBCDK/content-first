@@ -92,7 +92,7 @@ const Description = ({
 
   return showDescription && editing ? (
     <CommentInput
-      className="mt-3 ml-3 list-pr"
+      className="mt-3 list-pr"
       hideProfile={true}
       autoFocus={true}
       user={owner}
@@ -109,6 +109,7 @@ const Description = ({
       onChange={onChange}
       disabled={false}
       error={null}
+      editing={true}
       placeholder={T({
         component: 'post',
         name: 'aboutTheBook'

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import {connect} from 'react-redux';
+import Banner from '../base/Banner';
 import Title from '../base/Title';
 import Text from '../base/Text';
 import './Article.css';
@@ -12,7 +13,7 @@ const renderers = {
       lvl = 5;
     }
     return (
-      <Title Tag={`h${lvl}`} type={`title${lvl}`}>
+      <Title Tag={`h${lvl}`} type={`title${lvl}`} className="mb-2 mt-3">
         {props.children}
       </Title>
     );
@@ -37,10 +38,15 @@ export class Article extends React.Component {
   render() {
     const article = this.fetchArticle();
     return (
-      <div className="d-flex justify-content-center">
-        <div className="Article mt-md-5 mb-md-5">
-          <div className="Article__content lys-graa">
-            <ReactMarkdown source={article.src} renderers={renderers} />
+      <div className="">
+        {article.title && (
+          <Banner className="Article__banner" title={article.title} />
+        )}
+        <div className="d-flex justify-content-center">
+          <div className="Article mt-3 mb-3 mt-sm-5 mb-sm-5">
+            <div className="Article__content">
+              <ReactMarkdown source={article.src} renderers={renderers} />
+            </div>
           </div>
         </div>
       </div>

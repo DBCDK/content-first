@@ -1,25 +1,34 @@
 .Footer__outer-container--flexbox {
   display: flex;
   justify-content: center;
+  background-color: var(--lys-graa);
+  margin-top: 50px;
+  z-index: 2;
+}
+
+.Footer__outer-container--flexbox.Footer__sticky {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-top: 0px;
 }
 
 .Footer__container--elements {
-  padding: 30px 10px 20px 25px;
-  position: absolute;
-  background-color: var(--lys-graa);
-  bottom: 0;
+  padding: ;
   max-width: 1201px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+}
+
+.Footer__element--block {
+  width: 25%;
 }
 
 .Footer__logo--element {
   width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
 .Footer__logo--image {
@@ -27,14 +36,14 @@
 }
 
 /* Media rule when footer folds to 2 rows with 2 elements in each */
-@media (max-width: 940px) {
+@media (max-width: 992px) {
   .Footer__element--block {
     flex-basis: 50%;
   }
 }
 
 /* Media rule when footer folds to 4 rows with 1 element in each */
-@media (max-width: 414px) {
+@media (max-width: 576px) {
   .Footer__element--block {
     flex-basis: 100%;
   }
