@@ -242,10 +242,6 @@ export class TopBar extends React.Component {
 
     const isIndex = this.props.router.path === '/' ? true : false;
 
-    const booksCount = this.props.stats.books
-      ? this.props.stats.books.total
-      : '0';
-
     return (
       <header
         id="topbar"
