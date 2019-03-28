@@ -192,7 +192,11 @@ Array [
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
-                Gå til huskeliste
+                
+                <span>
+                    Gå til huskeliste
+                </span>
+                
             </button>
         </div>
         <div
@@ -204,7 +208,11 @@ Array [
                 data-cy=""
                 disabled={false}
             >
-                Bestil hele listen
+                
+                <span>
+                    Lån alle bøger
+                </span>
+                
             </button>
         </div>
     </div>
@@ -538,7 +546,11 @@ Array [
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
-                Gå til huskeliste
+                
+                <span>
+                    Gå til huskeliste
+                </span>
+                
             </button>
         </div>
         <div
@@ -550,7 +562,11 @@ Array [
                 data-cy=""
                 disabled={false}
             >
-                Bestil hele listen
+                
+                <span>
+                    Lån alle bøger
+                </span>
+                
             </button>
         </div>
     </div>
@@ -683,7 +699,11 @@ Array [
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
-                Gå til huskeliste
+                
+                <span>
+                    Gå til huskeliste
+                </span>
+                
             </button>
         </div>
         <div
@@ -695,7 +715,11 @@ Array [
                 data-cy=""
                 disabled={false}
             >
-                Bestil hele listen
+                
+                <span>
+                    Lån alle bøger
+                </span>
+                
             </button>
         </div>
     </div>
@@ -757,7 +781,11 @@ Array [
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
             >
-                Gå til huskeliste
+                
+                <span>
+                    Gå til huskeliste
+                </span>
+                
             </button>
         </div>
         <div
@@ -769,7 +797,11 @@ Array [
                 data-cy=""
                 disabled={false}
             >
-                Bestil hele listen
+                
+                <span>
+                    Lån alle bøger
+                </span>
+                
             </button>
         </div>
     </div>

@@ -421,8 +421,8 @@
         "en": "Bookmark"
       },
       "title": {
-        "da": "Huskeliste",
-        "en": "Shortlist"
+        "da": "Din huskeliste",
+        "en": "Your Shortlist"
       },
       "titleWithBooks": {
         "da": "Huskeliste (%s)",
@@ -441,7 +441,7 @@
         "en": "To shortlist"
       },
       "shortlistOrder": {
-        "da": "Bestil hele listen",
+        "da": "Lån alle bøger",
         "en": "Order the entire list"
       },
       "shortlistClear": {

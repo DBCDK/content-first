@@ -206,7 +206,11 @@ exports[`renders without crashing 1`] = `
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
               >
-                Gå til huskeliste
+                
+                <span>
+                  Gå til huskeliste
+                </span>
+                
               </button>
             </div>
             <div
@@ -218,7 +222,11 @@ exports[`renders without crashing 1`] = `
                 data-cy=""
                 disabled={false}
               >
-                Bestil hele listen
+                
+                <span>
+                  Lån alle bøger
+                </span>
+                
               </button>
             </div>
           </div>
@@ -694,7 +702,11 @@ exports[`renders without crashing 1`] = `
           disabled={false}
           onClick={[Function]}
         >
-          ACCEPTÉR COOKIES
+          
+          <span>
+            ACCEPTÉR COOKIES
+          </span>
+          
         </button>
       </div>
     </div>
@@ -712,13 +724,17 @@ exports[`renders without crashing 1`] = `
       disabled={false}
       onClick={[Function]}
     >
-      <i
-        className="material-icons material-icons-chat_bubble_outline icon__feedback md-small "
-        onClick={[Function]}
-      >
-        chat_bubble_outline
-      </i>
-      <span />
+      
+      <span>
+        <i
+          className="material-icons material-icons-chat_bubble_outline icon__feedback md-small "
+          onClick={[Function]}
+        >
+          chat_bubble_outline
+        </i>
+        <span />
+      </span>
+      
     </button>
   </div>
   <Footer />

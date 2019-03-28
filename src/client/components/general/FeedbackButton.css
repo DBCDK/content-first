@@ -12,12 +12,12 @@
     padding-top: 3px;
 }
 
-.Button__feedback span:before {
+.Button__feedback i+span:before {
     content: 'GIV OS FEEDBACK';
 }
 
 @media only screen and (max-width: 500px) {
-    .Button__feedback span:before {
+    .Button__feedback i+span:before {
         display: none;
     }
 
