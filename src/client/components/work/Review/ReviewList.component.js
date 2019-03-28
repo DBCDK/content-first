@@ -17,8 +17,6 @@ class ReviewList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayAllReviews: false,
-      showReviewButton: true,
       reviewsHasLoaded: false,
       collapsed: false
     };
@@ -29,10 +27,10 @@ class ReviewList extends React.Component {
       this.props.work.reviewsHasLoaded &&
       this.props.work.reviewsHasLoaded !== prevProps.work.reviewsHasLoaded
     ) {
-      const showReviewButton =
+      const collapsed =
         this.refs.reviewsContainer &&
         this.refs.reviewsContainer.offsetHeight > this.props.maxHeight;
-      this.setState({collapsed: showReviewButton, reviewsHasLoaded: false});
+      this.setState({collapsed: collapsed, reviewsHasLoaded: false});
     }
   }
 
@@ -184,10 +182,12 @@ class ReviewList extends React.Component {
                 } )`
               }}
             >
-              <span>Vis flere anmedelser</span>
-              <Icon
-                name={!this.state.collapsed ? 'expand_less' : 'expand_more'}
-              />
+              <div>
+                <Icon
+                  name={!this.state.collapsed ? 'expand_less' : 'expand_more'}
+                />
+                <p>Vis flere anmedelser</p>
+              </div>
             </div>
           )}
         </div>

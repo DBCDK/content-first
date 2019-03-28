@@ -3,7 +3,6 @@ import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
-import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {connect} from 'react-redux';
 import ReviewRating from './ReviewRating.component';
 /**
@@ -16,13 +15,15 @@ export class PaperReview extends React.Component {
       return '';
     }
     const review = this.props.review;
-    const creator = review.creatorOth[0];
+    const creator = review.creatorOth && review.creatorOth[0];
     const date =
-      (review.isPartOf[0].split(',')[1] &&
+      (review.isPartOf &&
+        review.isPartOf[0].split(',')[1] &&
         timestampToShortDate(review.isPartOf[0].split(',')[1])) ||
       null;
 
     const source =
+      review.isPartOf &&
       review.isPartOf[0].split(',')[0] &&
       review.isPartOf[0].split(',')[0].replace('.dk online', '');
 
@@ -98,35 +99,4 @@ function mapStateToProps(state) {
   };
 }
 
-/**
- *
- * @param dispatch
- * @returns {{showReviewModal: showReviewModal}}
- */
-export const mapDispatchToProps = dispatch => ({
-  showReviewModal: (reviewType, book, review) => {
-    dispatch({
-      type: OPEN_MODAL,
-      modal: 'showReview',
-      context: {
-        reviewType: reviewType,
-        book: book,
-        review: review,
-        confirmText: 'Luk',
-        hideCancel: true,
-        hideConfirm: true,
-        onCancel: () => {
-          dispatch({
-            type: 'CLOSE_MODAL',
-            modal: 'showReview'
-          });
-        }
-      }
-    });
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PaperReview);
+export default connect(mapStateToProps)(PaperReview);

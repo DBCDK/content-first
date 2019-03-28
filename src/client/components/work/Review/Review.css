@@ -90,19 +90,19 @@ a:hover.tooltips span {
   line-height: 100px;
   cursor: pointer;
   outline: none;
-
   bottom: 0;
   left: 0;
-  text-align: center;
-  /*background: linear-gradient(to bottom, transparent, white);
-
-*/
-  
 }
-
-.show-more-reviews i {
-  vertical-align: middle;
+.show-more-reviews i{
+  position: absolute;
+  bottom: 21px;
 }
+.show-more-reviews div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: baseline;
+  align-items: center;
+  align-content: center;}
 
 .paper_reviews_hide_overflow{
   overflow: visible;

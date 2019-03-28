@@ -202,7 +202,7 @@ class WorkPreview extends React.Component {
             book={book}
             reviews={reviews}
             lectorReviews={lectorReviews}
-            maxHeight={350}
+            maxHeight={400}
             work={work}
             className="col-md-0 col-lg-5 workPreview__reviews pt1 pb1"
             showMoreColor="var(--lys-graa)"
