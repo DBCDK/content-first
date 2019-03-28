@@ -26,6 +26,7 @@ import './WorkPreview.css';
 /**
  * WorkPreview
  */
+
 class WorkPreview extends React.Component {
   render() {
     const {work, dataCy} = this.props;

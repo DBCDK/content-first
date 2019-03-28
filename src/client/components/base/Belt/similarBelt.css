@@ -1,32 +1,27 @@
-.similarBelt .swiper-wrapper {
-  padding: 42px 0 50px 42px;
-}
-
 .similarBelt.childBelt .WorkCard .book-cover {
   background-color: var(--porcelain);
 }
 
-.similarBelt.childBelt .desktop-slider {
-  overflow: hidden;
-}
-
-.similarBelt.childBelt .swiper-wrapper .WorkCard .expand-more-wrapper {
+.similarBelt.childBelt .WorkCard .expand-more-wrapper {
   bottom: -50px;
 }
 
-.similarBelt.childBelt .swiper-wrapper .WorkCard:first-child .whiteLine {
+.similarBelt.childBelt .WorkCard:first-child .whiteLine {
   width: 500%;
   left: -400%;
 }
 
-.similarBelt.childBelt .swiper-wrapper .WorkCard:last-child .whiteLine {
+.similarBelt.childBelt .WorkCard:last-child .whiteLine {
   width: 500%;
   right: -400%;
 }
 
+.similarBelt.childBelt .swiper-button-prev {
+  left: 0rem;
+}
+
 .similarBelt.childBelt .swiper-button-next {
-  right: 0;
-  background-color: red;
+  right: 0rem;
 }
 
 .similarBelt.childBelt
@@ -37,7 +32,7 @@
   height: 20px;
 }
 
-.similarBelt.childBelt .swiper-wrapper .WorkCard .whiteLine {
+.similarBelt.childBelt .WorkCard .whiteLine {
   width: 200%;
   height: 50px;
   position: absolute;
@@ -51,6 +46,6 @@
   background-color: #f8f8f8;
 }
 
-.similarBelt.lys-graa .swiper-wrapper .WorkCard .hover-details {
+.similarBelt.lys-graa .WorkCard .hover-details {
   background: linear-gradient(transparent, var(--lys-graa) 40%) !important;
 }

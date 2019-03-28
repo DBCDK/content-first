@@ -47,7 +47,7 @@ class BookCover extends React.Component {
           generateSvg(
             this.props.title && hasNoCover
               ? toColor(this.props.title)
-              : '#f8f8f8',
+              : 'transparent',
             this.props.title && hasNoCover ? this.props.title : '',
             this.props.title && hasNoCover ? this.props.creator : ''
           )

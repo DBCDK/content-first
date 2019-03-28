@@ -109,26 +109,30 @@ class DesktopSlider extends React.Component {
         </Swiper>
 
         {!this.state.isEnd && (
-          <Icon
-            name="chevron_right"
-            className="swiper-button-next material-icons"
-            onClick={() => {
-              if (this.swiper) {
-                this.swiper.slideNext();
-              }
-            }}
-          />
+          <div className="swiper-button-next">
+            <Icon
+              name="chevron_right"
+              className="swiper-button-next-icon material-icons"
+              onClick={() => {
+                if (this.swiper) {
+                  this.swiper.slideNext();
+                }
+              }}
+            />
+          </div>
         )}
         {!this.state.isBeginning && (
-          <Icon
-            name="chevron_left"
-            className="swiper-button-prev material-icons"
-            onClick={() => {
-              if (this.swiper) {
-                this.swiper.slidePrev();
-              }
-            }}
-          />
+          <div className="swiper-button-prev">
+            <Icon
+              name="chevron_left"
+              className="swiper-button-prev-icon material-icons"
+              onClick={() => {
+                if (this.swiper) {
+                  this.swiper.slidePrev();
+                }
+              }}
+            />
+          </div>
         )}
       </div>
     );

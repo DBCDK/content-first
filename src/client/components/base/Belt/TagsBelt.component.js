@@ -82,7 +82,7 @@ export class TagsBelt extends React.Component {
     return (
       <div
         id={`temp_${tags.map(v => v.id || v).join('')}`}
-        className={'belt px-0 px-sm-3 px-lg-5 pt-5 ' + this.props.className}
+        className={'belt ' + this.props.className}
       >
         <div className="d-flex flex-row position-relative">
           {isOwner && (
@@ -177,7 +177,7 @@ export class TagsBelt extends React.Component {
               </div>
             </div>
           ) : (
-            <div>
+            <div className="mb-0 px-0 px-sm-3 px-lg-5 pt-5">
               <div className="pl-0 d-flex flex-wrap mw-100">
                 <Link
                   href="/find"

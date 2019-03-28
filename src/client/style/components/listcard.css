@@ -8,6 +8,10 @@
   margin-bottom: 65px;
 }
 
+.list-card:first-child {
+  margin-left: 0;
+}
+
 .list-card a {
   display: block;
   height: 100%;
@@ -104,6 +108,10 @@ a.list-card-nohover {
   background: var(--lys-graa);
   padding: 15px;
   margin-bottom: 65px;
+}
+
+.ListCard__skeleton:first-child {
+  margin-left: 0;
 }
 
 .ListCard__skeleton .ListCard__skeleton__cover {
