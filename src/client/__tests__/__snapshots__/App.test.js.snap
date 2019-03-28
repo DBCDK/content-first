@@ -381,6 +381,32 @@ exports[`renders without crashing 1`] = `
     <div>
       <TagsBelt
         child={false}
+        id="Krøllede fortællinger"
+        isLoading={false}
+        links={Array []}
+        mount="frontpage[{\\"id\\":2683,\\"weight\\":10},{\\"id\\":5614,\\"weight\\":10},5624,5652,5717]"
+        name="Krøllede fortællinger"
+        onFrontPage={true}
+        subtext="Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt."
+        tags={
+          Array [
+            Object {
+              "id": 2683,
+              "weight": 10,
+            },
+            Object {
+              "id": 5614,
+              "weight": 10,
+            },
+            5624,
+            5652,
+            5717,
+          ]
+        }
+        type="belt"
+      />
+      <TagsBelt
+        child={false}
         id="Mennesket og Naturen"
         isLoading={false}
         links={Array []}
@@ -463,32 +489,6 @@ exports[`renders without crashing 1`] = `
     </div>
     <SpotsContainer />
     <div>
-      <TagsBelt
-        child={false}
-        id="Krøllede fortællinger"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[{\\"id\\":2683,\\"weight\\":10},{\\"id\\":5614,\\"weight\\":10},5624,5652,5717]"
-        name="Krøllede fortællinger"
-        onFrontPage={true}
-        subtext="Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt."
-        tags={
-          Array [
-            Object {
-              "id": 2683,
-              "weight": 10,
-            },
-            Object {
-              "id": 5614,
-              "weight": 10,
-            },
-            5624,
-            5652,
-            5717,
-          ]
-        }
-        type="belt"
-      />
       <TagsBelt
         child={false}
         id="Sofahygge"
