@@ -93,6 +93,7 @@ export class AddToListButton extends React.Component {
           className={'AddToListButton ' + this.props.className || ''}
           type="quinary"
           size="medium"
+          iconRight="more_vert"
           onClick={() => {
             this.props.openModal(
               {
@@ -103,8 +104,7 @@ export class AddToListButton extends React.Component {
             );
           }}
         >
-          <Icon className="md-small" name="more_vert" />
-          <span>{defaultTitle}</span>
+          {defaultTitle}
         </Button>
       );
     }
@@ -124,13 +124,9 @@ export class AddToListButton extends React.Component {
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="true"
+          iconRight="more_vert"
         >
-          <Icon className="md-small" name="more_vert" />
-          <span>
-            {systemTitle.slice(0, -2) ||
-              customTitle.slice(0, -2) ||
-              defaultTitle}
-          </span>
+          {systemTitle.slice(0, -2) || customTitle.slice(0, -2) || defaultTitle}
         </Button>
 
         <ul
