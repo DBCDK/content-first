@@ -316,7 +316,6 @@ exports[`renders without crashing 1`] = `
                   <div
                     className="d-none d-sm-inline logo-beta-text Text__small"
                   >
-                    Nu 0 bøger. 
                     <p
                       className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
                       onClick={[Function]}
