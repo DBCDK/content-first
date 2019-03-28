@@ -217,8 +217,7 @@ class WorkPreview extends React.Component {
                     className="workPreview__review mb1"
                     key={rev.url}
                   >
-                    <Icon name="face" />
-                    <span className="workPreview__review__details ml2">
+                    <span className="workPreview__review__details">
                       <Heading Tag="h5" type="subtitle">
                         <strong>{rev.creator}</strong>
                         <br />

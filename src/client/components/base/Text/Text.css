@@ -40,6 +40,10 @@
     Modifiers
 */
 
+.Text__large--weight-semibold {
+  font-weight: 600;
+}
+
 .Text__large--weight-bold--color-white {
   font-weight: 700;
   color: white;

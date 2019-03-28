@@ -339,6 +339,7 @@ export class TopBar extends React.Component {
               <Text
                 className="m-0"
                 type="large"
+                variant="weight-semibold"
                 style={{lineHeight: '1.25rem'}}
               >
                 Læsekompas
@@ -363,7 +364,12 @@ export class TopBar extends React.Component {
               />
 
               <div>
-                <Title className="mb-0" Tag="h1" type="title4">
+                <Title
+                  className="mb-0"
+                  Tag="h1"
+                  type="title4"
+                  variant="weight-semibold"
+                >
                   Læsekompas
                 </Title>
                 <div className="logo-beta-wrap d-flex position-relative">
