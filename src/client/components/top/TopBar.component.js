@@ -426,7 +426,7 @@ export const mapDispatchToProps = dispatch => ({
         title: <T component="topbar" name="betaModalTitle" />,
         reason: (
           <React.Fragment>
-            <Text type="body" variant="weight-semibold">
+            <Text type="body" variant="weight-semibold" className="mb-3">
               <T component="topbar" name="betaModalDescription" />
             </Text>
             <Text type="body">
@@ -436,10 +436,14 @@ export const mapDispatchToProps = dispatch => ({
                 type="body"
                 variant="color-fersken--weight-semibold--transform-uppercase"
               >
-                {' betatest'}
+                <T component="topbar" name="sneakPeek" />
               </Text>
-              {'. '}
+            </Text>
+            <Text type="body" className="mb-3">
               <T component="topbar" name="betaModalBody2" />
+            </Text>
+            <Text type="body">
+              <T component="topbar" name="betaModalBody3" />
             </Text>
           </React.Fragment>
         ),
