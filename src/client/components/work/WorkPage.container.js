@@ -111,7 +111,7 @@ class WorkPage extends React.Component {
                     {book.title}
                   </Title>
                   <Link
-                    href={'find?tags=' + encodeURI(book.creator)}
+                    href={'/find?tags=' + encodeURI(book.creator)}
                     className="work-page-book-creator"
                   >
                     <Title Tag="h2" type="title5" className="mt1">
@@ -465,17 +465,16 @@ class WorkPage extends React.Component {
             </div>
           </div>
 
-          {work.detailsHasLoaded &&
-            work.tagsHasLoaded && (
-              <SimilarBelt
-                beltRef={e => (this.booksBeltPosition = e)}
-                key={'workpage' + book.pid}
-                mount={'workpage' + book.pid}
-                likes={[book.pid]}
-                style={{background: 'white'}}
-                className="mt-xl-5"
-              />
-            )}
+          {work.detailsHasLoaded && work.tagsHasLoaded && (
+            <SimilarBelt
+              beltRef={e => (this.booksBeltPosition = e)}
+              key={'workpage' + book.pid}
+              mount={'workpage' + book.pid}
+              likes={[book.pid]}
+              style={{background: 'white'}}
+              className="mt-xl-5"
+            />
+          )}
         </div>
       </div>
     );
