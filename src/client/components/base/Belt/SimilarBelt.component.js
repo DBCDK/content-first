@@ -8,6 +8,8 @@ import WorkSlider from './WorkSlider.component';
 import Title from '../Title';
 import withScrollToComponent from '../scroll/withScrollToComponent.hoc';
 
+import './similarBelt.css';
+
 const WorkTitle = withWork(({work}) => (
   <span>{work && work.book && work.book.title}</span>
 ));
@@ -20,12 +22,12 @@ const Slider = withWork(({work, ...props}) => (
     origin={`Fra "Minder om ${get(work, 'book.title')}"`}
   />
 ));
-const WorksTitle = ({pids}) => (
+const WorksTitle = ({pids, className}) => (
   <Title
     Tag="h1"
     type="title4"
     variant="transform-uppercase"
-    className="ml-2 ml-sm-0 mb-4"
+    className={`mb-3 ${className}`}
   >
     <strong className="mr-2">Minder om</strong>
     {pids.map((pid, idx) => (
@@ -40,15 +42,37 @@ const WorksTitle = ({pids}) => (
 
 export class SimilarBelt extends React.Component {
   render() {
+    const {
+      className = '',
+      style = {},
+      likes,
+      beltRef = null,
+      isChildBelt
+    } = this.props;
+
+    const bgColor = isChildBelt ? 'lys-graa' : 'white';
+
+    const isChildBeltClass = isChildBelt
+      ? 'similarBelt-childBelt childBelt'
+      : '';
+
     return (
       <div
-        ref={this.props.beltRef || null}
-        className={'px-0 px-sm-3 px-lg-5 pt-5 ' + this.props.className}
-        // style={{background: 'var(--lys-graa)', ...(this.props.style || {})}}
-        style={this.props.style}
+        ref={beltRef}
+        className={`similarBelt position-relative ${className} ${isChildBeltClass} ${bgColor}`}
+        style={{
+          ...style
+        }}
       >
-        <WorksTitle pids={this.props.likes} />
-        <Slider pid={get(this.props, 'likes[0]')} {...this.props} />
+        <WorksTitle
+          pids={likes}
+          className={`mb-0 px-0 px-sm-3 px-lg-5 pt-5 ${bgColor}`}
+        />
+        <Slider
+          isChildBelt={isChildBelt}
+          pid={get(this.props, 'likes[0]')}
+          {...this.props}
+        />
       </div>
     );
   }

@@ -654,15 +654,7 @@ exports[`renders without crashing 1`] = `
         type="belt"
       />
     </div>
-    <div
-      className="container"
-    >
-      <div
-        className="belts col-12"
-      >
-        <RecentListsBelt />
-      </div>
-    </div>
+    <RecentListsBelt />
   </div>
   <span />
   <div

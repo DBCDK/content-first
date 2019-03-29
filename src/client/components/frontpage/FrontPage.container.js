@@ -56,11 +56,7 @@ class FrontPage extends React.Component {
         {this.renderBelts(aBeltsMap.slice(0, 7))}
         <SpotsContainer />
         {this.renderBelts(aBeltsMap.slice(7, aBeltsMap.length))}
-        <div className="container">
-          <div className="belts col-12">
-            <RecentListsBelt />
-          </div>
-        </div>
+        <RecentListsBelt />
       </div>
     );
   }
