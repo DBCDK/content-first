@@ -1,4 +1,5 @@
 import React from 'react';
+import './WorkSlider.component.css';
 import {get, debounce} from 'lodash';
 import WorkCard from '../../work/WorkCard.container';
 import Slider from './Slider.component';
@@ -40,14 +41,7 @@ export default class WorkSlider extends React.Component {
             <Title
               tag="h1"
               type="title4"
-              className="position-relative text-uppercase font-weight-bold"
-              style={{
-                color: 'var(--silver-chalice)',
-                textAlign: 'center',
-                top: '150px',
-                zIndex: 2,
-                height: 0
-              }}
+              className="WorkSlider__no-hits-container position-relative text-uppercase font-weight-bold"
             >
               <T component="belts" name="noHits" renderAsHtml={true} />
             </Title>
