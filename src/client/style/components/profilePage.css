@@ -160,7 +160,7 @@
 }
 
 .profile__edit-bottom-position {
-    border-top: 0.5px solid var(--petroleum);
+    border-top: 0.5px solid #979797;
     margin-top: 14px;
     padding-top: 15px;
     height: 70px;
@@ -317,7 +317,6 @@
     }
 
     .profile__edit-bottom-position {
-        border-top: 0.5px solid var(--petroleum);
         width: 300px;
         min-width: 0;
         margin-left: -5px;
