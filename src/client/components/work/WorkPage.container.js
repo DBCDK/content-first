@@ -111,8 +111,7 @@ class WorkPage extends React.Component {
                     {book.title}
                   </Title>
                   <Link
-                    href="/find"
-                    params={{tags: book.creator}}
+                    href={'find?tags=' + encodeURI(book.creator)}
                     className="work-page-book-creator"
                   >
                     <Title Tag="h2" type="title5" className="mt1">
