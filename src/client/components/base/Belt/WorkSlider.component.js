@@ -2,6 +2,8 @@ import React from 'react';
 import {get, debounce} from 'lodash';
 import WorkCard from '../../work/WorkCard.container';
 import Slider from './Slider.component';
+import Title from '../../base/Title';
+import T from '../T';
 
 export default class WorkSlider extends React.Component {
   constructor() {
@@ -33,6 +35,23 @@ export default class WorkSlider extends React.Component {
         className={this.props.className}
         ref={container => (this.refs = {...this.refs, container})}
       >
+        {this.props.recommendationsLoaded &&
+          pids.length === 0 && (
+            <Title
+              tag="h1"
+              type="title4"
+              className="position-relative text-uppercase font-weight-bold"
+              style={{
+                color: 'var(--silver-chalice)',
+                textAlign: 'center',
+                top: '150px',
+                zIndex: 2,
+                height: 0
+              }}
+            >
+              <T component="belts" name="noHits" renderAsHtml={true} />
+            </Title>
+          )}
         <Slider
           initialScrollPos={scrollPos}
           onSwipe={index => {

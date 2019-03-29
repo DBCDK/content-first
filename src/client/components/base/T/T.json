@@ -916,6 +916,10 @@
       "remindsOf": {
         "da": "Minder om %s",
         "en": "Reminds of %s"
+      },
+      "noHits": {
+        "da": "Der er endnu ikke nok data til<br>at vise bøger der minder om",
+        "en": "There are not enough data to<br>show books, that reminds about"
       }
     },
     "tabs": {

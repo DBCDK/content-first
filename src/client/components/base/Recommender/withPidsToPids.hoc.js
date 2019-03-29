@@ -56,7 +56,8 @@ const withPidsToPids = WrappedComponent => {
       });
       return {
         recommendations: pids,
-        rid
+        rid,
+        recommendationsLoaded: !!rid
       };
     };
   };
