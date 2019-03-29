@@ -135,10 +135,10 @@ export class TopBar extends React.Component {
       status = action === 'open' ? true : false;
     }
     if (status) {
-			const searchfield = ReactDOM.findDOMNode(
-				this.refs.topSearchBar
-			).getElementsByClassName('suggestion-list__search')[0];
-			searchfield.focus();
+      const searchfield = ReactDOM.findDOMNode(
+        this.refs.topSearchBar
+      ).getElementsByClassName('suggestion-list__search')[0];
+      searchfield.focus();
     }
 
     this.props.historyPush(HISTORY_PUSH, '/find');
@@ -222,16 +222,16 @@ export class TopBar extends React.Component {
     let searchIconText;
     if (searchExpanded && showCancelBtn) {
       searchIconText = (
-				<span
-					data-cy="topbar-search-btn"
-					onClick={() => {
-						this.props.historyPush(HISTORY_REPLACE, '/find');
-						const searchfield = ReactDOM.findDOMNode(
-							this.refs.topSearchBar
-						).getElementsByClassName('suggestion-list__search')[0];
-						searchfield.focus();
-					}}
-				>
+        <span
+          data-cy="topbar-search-btn"
+          onClick={() => {
+            this.props.historyPush(HISTORY_REPLACE, '/find');
+            const searchfield = ReactDOM.findDOMNode(
+              this.refs.topSearchBar
+            ).getElementsByClassName('suggestion-list__search')[0];
+            searchfield.focus();
+          }}
+        >
           <i className="material-icons  material-icons-cancel" ref="cancelref">
             cancel
           </i>
@@ -281,7 +281,7 @@ export class TopBar extends React.Component {
                 style={{width: this.state.width}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
-                <SearchBar ref ="topSearchBar"/>
+                <SearchBar ref="topSearchBar" />
               </span>
             </span>
             {searchIconText}
