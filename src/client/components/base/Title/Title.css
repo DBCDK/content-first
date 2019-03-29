@@ -60,6 +60,10 @@
   font-weight: 400;
 }
 
+.Title__title4--weight-semibold {
+  font-weight: 600;
+}
+
 .Title__title4--transform-uppercase {
   text-transform: uppercase;
 }

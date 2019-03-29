@@ -188,7 +188,7 @@ export function OrderModal(props) {
               component="order"
               name="booksOrdered"
               vars={[
-                orderSuccess > 1 ? <T component="general" name="all" /> : '',
+                orderSuccess > 1 ? T({component: 'general', name: 'all'}) : '',
                 bookOrBooks
               ]}
             />

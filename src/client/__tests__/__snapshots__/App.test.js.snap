@@ -270,7 +270,7 @@ exports[`renders without crashing 1`] = `
           />
           <div>
             <p
-              className="m-0 Text Text__large "
+              className="m-0 Text Text__large Text__large--weight-semibold"
               style={
                 Object {
                   "lineHeight": "1.25rem",
@@ -306,7 +306,7 @@ exports[`renders without crashing 1`] = `
             />
             <div>
               <h1
-                className="mb-0 Title Title__title4 "
+                className="mb-0 Title Title__title4 Title__title4--weight-semibold"
               >
                 Læsekompas
               </h1>
