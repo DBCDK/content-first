@@ -73,7 +73,6 @@ export class ProfileModal extends React.Component {
               </a>
             </div>
             <div className="profile__line" />
-            <div className={'profile__accept-buttonbuffer'} />
             <div>
               <button
                 className="btn Button profile__accept-button"
@@ -150,7 +149,7 @@ export class ProfileModal extends React.Component {
                         }
                       />
 
-                      <div>
+                      <div className="profile__accept-userBox">
                         <div className="profile__accept-inputNameTitle">
                           <T component="profile" name="usernameTitle" />
                         </div>

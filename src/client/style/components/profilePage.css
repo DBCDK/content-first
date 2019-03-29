@@ -68,7 +68,7 @@
     font-size: 14px;
     font-weight: 400;
     text-align: center;
-    margin-top: 90px;
+
 }
 
 .profile__edit-image-upload .profile-picture .image-upload .profile__image-errors {
@@ -152,6 +152,7 @@
     font-weight: 500;
     height: 20px;
     margin-bottom: 16px;
+    width:300px;
 }
 
 .profile__edit-link a {
@@ -270,7 +271,7 @@
         font-size: 14px;
         font-weight: 400;
         text-align: center;
-        margin-top: 35px;
+        margin-top: 10px;
     }
 
     /*FORM*/
@@ -282,7 +283,7 @@
     }
 
     .profile__edit-textfield-zone form {
-        width: 300px !important;
+        width: 00px !important;
         text-align: center;
     }
 
