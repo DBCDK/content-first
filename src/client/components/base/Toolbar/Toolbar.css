@@ -1,0 +1,43 @@
+/*
+ *  Base
+ */
+
+.Toolbar {
+  display: flex;
+  width: 100%;
+}
+
+
+/*
+ *  Types
+ */
+
+.Toolbar__left {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Toolbar__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Toolbar__right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+/*
+ *  MediaQ
+ */
+
+@media only screen and (max-width: 576px) {
+}
+

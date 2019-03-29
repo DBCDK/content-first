@@ -32,17 +32,21 @@ exports[`AddToListModal multiple works as input 1`] = `
         disabled={false}
         onClick={[Function]}
       >
-        <i
-          className="material-icons material-icons-chevron_left align-middle "
-          onClick={[Function]}
-        >
-          chevron_left
-        </i>
-        <span
-          className="align-middle"
-        >
-          Tilbage
+        
+        <span>
+          <i
+            className="material-icons material-icons-chevron_left align-middle "
+            onClick={[Function]}
+          >
+            chevron_left
+          </i>
+          <span
+            className="align-middle"
+          >
+            Tilbage
+          </span>
         </span>
+        
       </button>
     </div>
     <div
@@ -196,7 +200,11 @@ exports[`AddToListModal multiple works as input 1`] = `
             disabled={false}
             onClick={[Function]}
           >
-            Ja tak, gem nu
+            
+            <span>
+              Ja tak, gem nu
+            </span>
+            
           </button>
         </a>
       </div>
@@ -237,17 +245,21 @@ exports[`AddToListModal newly added list is selected 1`] = `
         disabled={false}
         onClick={[Function]}
       >
-        <i
-          className="material-icons material-icons-chevron_left align-middle "
-          onClick={[Function]}
-        >
-          chevron_left
-        </i>
-        <span
-          className="align-middle"
-        >
-          Tilbage
+        
+        <span>
+          <i
+            className="material-icons material-icons-chevron_left align-middle "
+            onClick={[Function]}
+          >
+            chevron_left
+          </i>
+          <span
+            className="align-middle"
+          >
+            Tilbage
+          </span>
         </span>
+        
       </button>
     </div>
     <div
@@ -437,7 +449,11 @@ exports[`AddToListModal newly added list is selected 1`] = `
             disabled={false}
             onClick={[Function]}
           >
-            Ja tak, gem nu
+            
+            <span>
+              Ja tak, gem nu
+            </span>
+            
           </button>
         </a>
       </div>
@@ -478,17 +494,21 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
         disabled={false}
         onClick={[Function]}
       >
-        <i
-          className="material-icons material-icons-chevron_left align-middle "
-          onClick={[Function]}
-        >
-          chevron_left
-        </i>
-        <span
-          className="align-middle"
-        >
-          Tilbage
+        
+        <span>
+          <i
+            className="material-icons material-icons-chevron_left align-middle "
+            onClick={[Function]}
+          >
+            chevron_left
+          </i>
+          <span
+            className="align-middle"
+          >
+            Tilbage
+          </span>
         </span>
+        
       </button>
     </div>
     <div
@@ -664,7 +684,11 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
             disabled={false}
             onClick={[Function]}
           >
-            Ja tak, gem nu
+            
+            <span>
+              Ja tak, gem nu
+            </span>
+            
           </button>
         </a>
       </div>

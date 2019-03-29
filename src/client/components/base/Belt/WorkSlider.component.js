@@ -33,7 +33,7 @@ export default class WorkSlider extends React.Component {
 
     return (
       <div
-        className={this.props.className}
+        className={this.props.className + ' position-relative'}
         ref={container => (this.refs = {...this.refs, container})}
       >
         {this.props.recommendationsLoaded &&
@@ -70,6 +70,7 @@ export default class WorkSlider extends React.Component {
                     cardRef={workCard => (this.refs = {...this.refs, workCard})}
                     className={idx === pids.length - 1 ? '' : 'mr-4'}
                     enableHover={true}
+                    hoverClass={this.props.bgClass}
                     highlight={this.props.selected === pid}
                     isVisible={idx < scrollPos + worksPerSlide * 2}
                     pid={pid}

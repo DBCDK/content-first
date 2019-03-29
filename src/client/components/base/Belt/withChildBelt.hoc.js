@@ -29,7 +29,12 @@ const withChildBelt = WrappedComponent => {
           beltName,
           parent: work.book.pid,
           child: (
-            <SimilarBelt key={mount} mount={mount} likes={[work.book.pid]} />
+            <SimilarBelt
+              key={mount}
+              mount={mount}
+              isChildBelt={true}
+              likes={[work.book.pid]}
+            />
           ),
           rid
         });
@@ -65,6 +70,7 @@ const withChildBelt = WrappedComponent => {
             selected={this.props.mountedData.parent}
             openSimilarBelt={this.openSimilarBelt}
             openWorkPreview={this.openWorkPreview}
+            hasChildBelt={!!this.props.mountedData.child}
           />
           {this.props.mountedData.child}
         </React.Fragment>

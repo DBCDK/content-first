@@ -1,153 +1,414 @@
 import React from 'react';
-import {Provider} from 'react-redux';
-import createStore from '../../../../redux/Store';
-import ShortList from '../ShortList.container';
 import {mount} from 'enzyme';
-import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../../../redux/shortlist.reducer';
+import {ShortList} from '../ShortList.container';
 
-const createTestElement = id => {
+// Mock window.open
+global.open = jest.fn();
+
+// Mock Link
+jest.mock('../../../general/Link.component', () =>
+  jest.fn(props => <mocked-link>{props.children}</mocked-link>)
+);
+const Link = require('../../../general/Link.component');
+
+// Mock OrderButton
+const mockOrderBook = jest.fn();
+jest.mock('../../../order/OrderButton.component', () => {
+  return jest.fn(props => (
+    <mocked-order-button onClick={mockOrderBook}>
+      {props.children}
+    </mocked-order-button>
+  ));
+});
+const OrderButton = require('../../../order/OrderButton.component');
+
+// Mock filterCollection
+import * as workFunctions from '../../../work/workFunctions';
+workFunctions.filterCollection = jest.fn(() => [
+  {
+    count: 1,
+    icon: 'alternate_email',
+    type: 'Ebog',
+    url: 'https://this/url/ebog'
+  },
+  {
+    count: 1,
+    icon: 'headset',
+    type: 'Lydbog',
+    url: 'https://this/url/lydbog'
+  }
+]);
+
+// Mock withWork
+jest.mock(
+  '../../../base/Work/withWork.hoc',
+  () => WrappedComponent => props => (
+    <WrappedComponent
+      work={{
+        book: {
+          collection: {
+            data: [
+              {type: 'Bog' + props.pid},
+              {
+                identifierURI: 'https://identifier/uri/' + props.pid,
+                type: 'type' + props.pid
+              }
+            ],
+            isLoading: false
+          },
+          coverUrl: 'https://cover/url/' + props.pid,
+          creator: 'creator' + props.pid,
+          description: 'description' + props.pid,
+          first_edition_year: 'first edition year' + props.pid,
+          language: 'language' + props.pid,
+          pages: 'pages - ' + props.pid,
+          pid: props.pid,
+          reviews: [],
+          tags: [],
+          taxonomy_description_subjects:
+            'taxonomy description subjects - ' + props.pid,
+          title: 'title - ' + props.pid
+        },
+        collectionHasLoaded: true,
+        collectionIsLoading: false,
+        detailsHasLoaded: true,
+        detailsIsLoading: false,
+        refsHasLoaded: true,
+        refsIsLoading: false,
+        reviewsHasLoaded: true,
+        reviewsIsLoading: false
+      }}
+      {...props}
+    />
+  )
+);
+
+const createBook = id => {
   return {
-    book: {
-      pid: 'pid' + id,
-      title: 'some title' + id,
-      coverUrl: 'https://some/cover/url' + id,
-      taxonomy_description: 'some description' + id
-    },
-    origin: 'Minder om noget' + id
+    pid: 'pid - ' + id,
+    title: 'some title - ' + id,
+    creator: 'creator - ' + id,
+    description: 'some description - ' + id,
+    pages: 'pages - ' + id,
+    language: 'language - ' + id,
+    first_edition_year: 'first edition year - ' + id,
+    taxonomy_description_subjects: 'taxonomy description subjects - ' + id,
+    coverUrl: 'https://some/cover/url/' + id,
+    taxonomy_description: 'taxonomy description - ' + id
   };
 };
-const addElement = (store, id) => {
-  const {book, origin} = createTestElement(id);
-  store.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element: {book}, origin});
+const createTestElement = id => {
+  return {
+    book: createBook(id),
+    detailsIsLoading: false,
+    detailsHasLoaded: true,
+    origin: 'origin - ' + id
+  };
+};
+const createTestElements = count => {
+  const elements = [];
+  for (var i = 0; i < count; i++) {
+    elements.push(createTestElement(i));
+  }
+  return elements;
 };
 
 describe('ShortList.container', () => {
-  test('short list is empty', () => {
-    const store = createStore();
-    const tree = mount(
-      <Provider store={store}>
-        <ShortList />
-      </Provider>
-    );
+  test('Short list is empty', () => {
+    jest.clearAllMocks();
+    const tree = mount(<ShortList shortListState={{elements: []}} />);
     expect(tree).toMatchSnapshot();
+    expect(Link).toHaveBeenCalledTimes(0);
+    expect(OrderButton).toHaveBeenCalledTimes(0);
   });
 
-  test('short list contains elements', () => {
-    const store = createStore();
-    addElement(store, 1);
-    addElement(store, 2);
-    addElement(store, 3);
+  test('Short list contains elements', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
     const tree = mount(
-      <Provider store={store}>
-        <ShortList />
-      </Provider>
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+      />
     );
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('remove element', () => {
-    const store = createStore();
-    addElement(store, 1);
-    addElement(store, 2);
-    addElement(store, 3);
-    const tree = mount(
-      <Provider store={store}>
-        <ShortList />
-      </Provider>
-    );
-    tree
-      .find('.item .remove-btn')
-      .first()
-      .simulate('click');
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('change description reveal cancel and submit buttons', () => {
-    const store = createStore();
-    addElement(store, 1);
-    const tree = mount(
-      <Provider store={store}>
-        <ShortList />
-      </Provider>
-    );
-    tree
-      .find('.item textarea')
-      .first()
-      .simulate('change', {target: {value: 'description is changed'}});
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('Saving changed description, is hiding buttons and showing new value', () => {
-    const store = createStore();
-    addElement(store, 1);
-    const tree = mount(
-      <Provider store={store}>
-        <ShortList />
-      </Provider>
-    );
-    tree
-      .find('.item textarea')
-      .first()
-      .simulate('change', {target: {value: 'description is changed'}});
-    tree
-      .find('.item form')
-      .first()
-      .simulate('submit');
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('cancel changed description, is hiding buttons and showing old value', () => {
-    const store = createStore();
-    addElement(store, 1);
-    const tree = mount(
-      <Provider store={store}>
-        <ShortList />
-      </Provider>
-    );
-    tree
-      .find('.item textarea')
-      .first()
-      .simulate('change', {target: {value: 'description is changed'}});
-    tree
-      .find('.item .btn-default')
-      .first()
-      .simulate('click');
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('cancel changed description, is hiding buttons and showing old value', () => {
-    const store = createStore();
-    addElement(store, 1);
-    const tree = mount(
-      <Provider store={store}>
-        <ShortList />
-      </Provider>
-    );
-    tree
-      .find('.item textarea')
-      .first()
-      .simulate('change', {target: {value: 'description is changed'}});
-    tree
-      .find('.item .btn-default')
-      .first()
-      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
     expect(tree).toMatchSnapshot();
   });
 
   test('Clearing list', () => {
-    const store = createStore();
-    addElement(store, 1);
-    addElement(store, 2);
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const mockClearList = jest.fn();
     const tree = mount(
-      <Provider store={store}>
-        <ShortList />
-      </Provider>
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+        clearList={mockClearList}
+      />
     );
     tree
-      .find('.clear-all-btn')
+      .find(
+        '.top-bar-dropdown-list-page .top-bar-upper-toolbar .Toolbar__right .Button'
+      )
       .first()
       .simulate('click');
-    tree.update();
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(mockClearList).toHaveBeenCalledTimes(1);
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Remove element', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const mockRemove = jest.fn();
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+        remove={mockRemove}
+      />
+    );
+    tree
+      .find('.short-list-item .remove-btn')
+      .first()
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(mockRemove).toHaveBeenCalledTimes(1);
+    expect(mockRemove).toHaveBeenCalledWith('pid - 0');
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Add to list - desktop version', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const mockAddToList = jest.fn();
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+        addToList={mockAddToList}
+      />
+    );
+    tree
+      .find(
+        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__left .Button'
+      )
+      .first()
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(mockAddToList).toHaveBeenCalledTimes(1);
+    var argument = mockAddToList.mock.calls[0][0]; // First argument in first call
+    expect(argument[0].book.pid).toBe('pid - 0');
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Add to list - mobile version', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const mockAddToList = jest.fn();
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+        addToList={mockAddToList}
+      />
+    );
+    tree
+      .find('.top-bar-dropdown-shortlist-item-page div.mobile-styling .Button')
+      .first()
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(mockAddToList).toHaveBeenCalledTimes(1);
+    var argument = mockAddToList.mock.calls[0][0]; // First argument in first call
+    expect(argument[0].book.pid).toBe('pid - 0');
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Order book - desktop version', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+      />
+    );
+    tree
+      .find(
+        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right mocked-order-button'
+      )
+      .at(0)
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(mockOrderBook).toHaveBeenCalledTimes(1);
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Order book - mobile version', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+      />
+    );
+    tree
+      .find(
+        'div.short-list-item + div.mobile-styling .Toolbar.mobile-styling .Toolbar__left mocked-order-button'
+      )
+      .at(0)
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(mockOrderBook).toHaveBeenCalledTimes(1);
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Order ebook - desktop version', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+      />
+    );
+    tree
+      .find(
+        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right .Button'
+      )
+      .at(0)
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(global.open).toHaveBeenCalledTimes(1);
+    expect(global.open).toHaveBeenCalledWith('https://this/url/ebog');
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Order ebook - mobile version', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+      />
+    );
+    tree
+      .find(
+        'div.short-list-item + div.mobile-styling .Toolbar.mobile-styling .Toolbar__left .Button'
+      )
+      .at(0)
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(global.open).toHaveBeenCalledTimes(1);
+    expect(global.open).toHaveBeenCalledWith('https://this/url/ebog');
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Order lydbook - desktop version', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+      />
+    );
+    tree
+      .find(
+        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__right .Button'
+      )
+      .at(1)
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(global.open).toHaveBeenCalledTimes(1);
+    expect(global.open).toHaveBeenCalledWith('https://this/url/lydbog');
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Order lydbook - mobile version', () => {
+    jest.clearAllMocks();
+    const testElements = createTestElements(3);
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+      />
+    );
+    tree
+      .find(
+        'div.short-list-item + div.mobile-styling .Toolbar.mobile-styling .Toolbar__left .Button'
+      )
+      .at(1)
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(global.open).toHaveBeenCalledTimes(1);
+    expect(global.open).toHaveBeenCalledWith('https://this/url/lydbog');
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Add all to list', () => {
+    jest.clearAllMocks();
+    const mockAddToList = jest.fn();
+    const testElements = createTestElements(3);
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+        addToList={mockAddToList}
+      />
+    );
+    tree
+      .find(
+        'div.top-bar-dropdown-list-page div.Toolbar.bottom-toolbar div.Toolbar__right button'
+      )
+      .at(0)
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(mockAddToList).toHaveBeenCalledTimes(1);
+    var argument = mockAddToList.mock.calls[0][0]; // First argument in first call
+    expect(argument[0].book.pid).toBe('pid - 0');
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Order all books', () => {
+    jest.clearAllMocks();
+    const mockOrderAll = jest.fn();
+    const testElements = createTestElements(3);
+    const tree = mount(
+      <ShortList
+        shortListState={{elements: testElements}}
+        orderList={testElements}
+        orderAll={mockOrderAll}
+      />
+    );
+    tree
+      .find(
+        'div.top-bar-dropdown-list-page div.Toolbar.bottom-toolbar div.Toolbar__right button'
+      )
+      .at(1)
+      .simulate('click');
+    expect(Link).toHaveBeenCalledTimes(3);
+    expect(OrderButton).toHaveBeenCalledTimes(6);
+    expect(mockOrderAll).toHaveBeenCalledTimes(1);
+    var argument = mockOrderAll.mock.calls[0][0]; // First argument in first call
+    expect(argument.length).toBe(3);
+    expect(argument[0].pid).toBe('pid - 0');
+    expect(argument[1].pid).toBe('pid - 1');
+    expect(argument[2].pid).toBe('pid - 2');
     expect(tree).toMatchSnapshot();
   });
 });

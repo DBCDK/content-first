@@ -28,14 +28,12 @@ export default class HoverImage extends React.Component {
 
   render() {
     return (
-      <div>
-        <img
-          style={{cursor: 'pointer', width: '46px', height: '46px'}}
-          src={this.state.src}
-          onMouseOver={this.mouseEnter}
-          onMouseOut={this.mouseLeave}
-        />
-      </div>
+      <img
+        className="image-upload-image"
+        src={this.state.src}
+        onMouseOver={this.mouseEnter}
+        onMouseOut={this.mouseLeave}
+      />
     );
   }
 }

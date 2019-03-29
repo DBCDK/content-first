@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {isMobileOnly} from 'react-device-detect';
 import Link from '../general/Link.component';
@@ -129,14 +130,17 @@ export class TopBar extends React.Component {
   }
 
   toggleSearchBar(action = false) {
-    const searchBar = document.getElementById('Searchbar__inputfield');
     let status = !this.state.searchExpanded;
     if (action) {
       status = action === 'open' ? true : false;
     }
-    if (status && searchBar) {
-      searchBar.focus();
+    if (status) {
+      const searchfield = ReactDOM.findDOMNode(
+        this.refs.topSearchBar
+      ).getElementsByClassName('suggestion-list__search')[0];
+      searchfield.focus();
     }
+
     this.props.historyPush(HISTORY_PUSH, '/find');
     this.setState({searchExpanded: status});
   }
@@ -214,14 +218,23 @@ export class TopBar extends React.Component {
     const userLists = this.renderListsOverviewDropdown();
     const searchExpanded = searchPage && this.state.searchExpanded;
     const showCancelBtn = window.location.href.split('=')[1];
+
     let searchIconText;
     if (searchExpanded && showCancelBtn) {
       searchIconText = (
         <span
           data-cy="topbar-search-btn"
-          onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
+          onClick={() => {
+            this.props.historyPush(HISTORY_REPLACE, '/find');
+            const searchfield = ReactDOM.findDOMNode(
+              this.refs.topSearchBar
+            ).getElementsByClassName('suggestion-list__search')[0];
+            searchfield.focus();
+          }}
         >
-          <i className="material-icons  material-icons-cancel">cancel</i>
+          <i className="material-icons  material-icons-cancel" ref="cancelref">
+            cancel
+          </i>
         </span>
       );
     }
@@ -241,10 +254,6 @@ export class TopBar extends React.Component {
     const hideOnIE11 = isIE11 && searchExpanded ? 'hidden' : '';
 
     const isIndex = this.props.router.path === '/' ? true : false;
-
-    const booksCount = this.props.stats.books
-      ? this.props.stats.books.total
-      : '0';
 
     return (
       <header
@@ -272,7 +281,7 @@ export class TopBar extends React.Component {
                 style={{width: this.state.width}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
-                <SearchBar />
+                <SearchBar ref="topSearchBar" />
               </span>
             </span>
             {searchIconText}
@@ -343,6 +352,7 @@ export class TopBar extends React.Component {
               <Text
                 className="m-0"
                 type="large"
+                variant="weight-semibold"
                 style={{lineHeight: '1.25rem'}}
               >
                 Læsekompas
@@ -367,7 +377,12 @@ export class TopBar extends React.Component {
               />
 
               <div>
-                <Title className="mb-0" Tag="h1" type="title4">
+                <Title
+                  className="mb-0"
+                  Tag="h1"
+                  type="title4"
+                  variant="weight-semibold"
+                >
                   Læsekompas
                 </Title>
                 <div className="logo-beta-wrap d-flex position-relative">
@@ -378,11 +393,6 @@ export class TopBar extends React.Component {
                     ((isIndex && isMobileOnly) || !isMobileOnly) && (
                       <div className="d-inline-flex">
                         <div className="d-none d-sm-inline logo-beta-text Text__small">
-                          <T
-                            component="topbar"
-                            name="betaText"
-                            vars={[booksCount]}
-                          />
                           <Text
                             className="d-inline logo-beta-link mb0"
                             type="small"
@@ -435,7 +445,7 @@ export const mapDispatchToProps = dispatch => ({
         title: <T component="topbar" name="betaModalTitle" />,
         reason: (
           <React.Fragment>
-            <Text type="body" variant="weight-semibold">
+            <Text type="body" variant="weight-semibold" className="mb-3">
               <T component="topbar" name="betaModalDescription" />
             </Text>
             <Text type="body">
@@ -445,10 +455,14 @@ export const mapDispatchToProps = dispatch => ({
                 type="body"
                 variant="color-fersken--weight-semibold--transform-uppercase"
               >
-                {' betatest'}
+                <T component="topbar" name="sneakPeek" />
               </Text>
-              {'. '}
+            </Text>
+            <Text type="body" className="mb-3">
               <T component="topbar" name="betaModalBody2" />
+            </Text>
+            <Text type="body">
+              <T component="topbar" name="betaModalBody3" />
             </Text>
           </React.Fragment>
         ),

@@ -104,7 +104,6 @@ export const userMiddleware = store => next => action => {
         try {
           const user = await saveUser(action.user);
           store.dispatch({type: SAVE_USER_PROFILE_SUCCESS, user});
-          store.dispatch({type: HISTORY_PUSH_FORCE_REFRESH, path: '/replay'});
         } catch (error) {
           store.dispatch({type: SAVE_USER_PROFILE_ERROR, error});
         }

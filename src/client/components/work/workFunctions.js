@@ -19,7 +19,7 @@ export function filterCollection(work) {
             count1++;
             return {
               type: T({component: 'general', name: 'audiobook'}),
-              icon: 'voicemail',
+              icon: 'headset',
               url: col.identifierURI[0],
               count: count1
             };

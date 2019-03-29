@@ -14,15 +14,12 @@ export class InteractionsBelt extends React.Component {
       return null;
     }
     return (
-      <div
-        className={'px-0 px-sm-3 px-lg-5 pt-5 ' + this.props.className}
-        style={this.props.style}
-      >
+      <div className={this.props.className} style={this.props.style}>
         <Title
           Tag="h1"
           type="title4"
           variant="transform-uppercase"
-          className="ml-2 ml-sm-0 mb-4"
+          className="mb-3 mb-md-0 px-2 px-sm-3 px-lg-5 pb-0 pb-sm-3 pt-5"
         >
           <strong className="mr-2">Bedste forslag</strong>
           <span className="mr-2">til</span>

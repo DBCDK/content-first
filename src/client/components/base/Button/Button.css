@@ -157,7 +157,7 @@
 .Button__quaternary--bgcolor-porcelain--color-petroleum,
 .Button__quaternary--bgcolor-porcelain--color-petroleum:hover {
   background-color: var(--porcelain);
-  color: var(--petrolium);
+  color: var(--petroleum);
 }
 
 /* Feedback button */
@@ -172,4 +172,22 @@
 
 .Button__feedback:hover {
   background-color: var(--sea-mist);
+}
+
+/* Icons */
+.Button__icon--left, .Button__icon--right {
+  vertical-align: middle;
+  font-size: 1.4em;
+}
+
+.Button__icon--left {
+  margin-right: 0.25em;
+}
+
+.Button__icon--right {
+  margin-left: 0.25em;
+}
+
+.Button span {
+  vertical-align: middle;
 }

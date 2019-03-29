@@ -3,7 +3,6 @@
 }
 
 .AddToListButton {
-  max-width: 165px;
   min-width: 150px;
   text-transform: uppercase;
   text-align: left;
@@ -29,7 +28,6 @@
 
 .AddToListButton span {
   display: inline-block;
-  width: calc(100% - (14px + 0.5rem));
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

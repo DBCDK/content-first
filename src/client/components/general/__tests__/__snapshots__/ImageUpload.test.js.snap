@@ -60,10 +60,12 @@ exports[`Image Upload render function Add image 1`] = `
             data-cy=""
             disabled={false}
           >
-            <span
-              className="align-middle"
-            >
-              Upload billede
+            <span>
+              <span
+                className="align-middle"
+              >
+                Upload billede
+              </span>
             </span>
           </span>
         </Button>
@@ -131,11 +133,15 @@ exports[`Image Upload render function Add preview image 1`] = `
       data-cy=""
       disabled={false}
     >
-      <span
-        className="align-middle"
-      >
-        Upload billede
+      
+      <span>
+        <span
+          className="align-middle"
+        >
+          Upload billede
+        </span>
       </span>
+      
     </span>
     <input
       accept="image/png, image/jpeg"
@@ -208,11 +214,15 @@ exports[`Image Upload render function Add spinner on loading 1`] = `
       data-cy=""
       disabled={false}
     >
-      <span
-        className="align-middle"
-      >
-        Upload billede
+      
+      <span>
+        <span
+          className="align-middle"
+        >
+          Upload billede
+        </span>
       </span>
+      
     </span>
     <input
       accept="image/png, image/jpeg"
@@ -272,11 +282,15 @@ exports[`Image Upload render function renders an image upload form 1`] = `
       data-cy=""
       disabled={false}
     >
-      <span
-        className="align-middle"
-      >
-        Upload billede
+      
+      <span>
+        <span
+          className="align-middle"
+        >
+          Upload billede
+        </span>
       </span>
+      
     </span>
     <input
       accept="image/png, image/jpeg"

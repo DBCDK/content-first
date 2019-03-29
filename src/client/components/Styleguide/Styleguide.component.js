@@ -2,7 +2,9 @@ import React from 'react';
 import Button from '../base/Button';
 import Title from '../base/Title';
 import Text from '../base/Text';
+import Divider from '../base/Divider';
 import ContextMenu, {ContextMenuAction} from '../base/ContextMenu';
+import Toolbar from '../base/Toolbar';
 
 export default () => (
   <div className="container">
@@ -99,6 +101,21 @@ export default () => (
         <div className="mt1">
           <Button size="small">Small button</Button>
         </div>
+        <div className="mt1">
+          <Button type="primary" iconLeft="headset">
+            Button with left aligned icon
+          </Button>
+        </div>
+        <div className="mt1">
+          <Button type="primary" iconRight="done">
+            Button with right aligned icon
+          </Button>
+        </div>
+        <div className="mt1">
+          <Button type="primary" iconLeft="face" iconRight="pan_tool">
+            Button with both left and right aligned icons
+          </Button>
+        </div>
       </div>
       <div className="col-8 tl mt4">
         <Title type="title4">Dropdown</Title>
@@ -112,6 +129,24 @@ export default () => (
           </ContextMenu>
         </div>
       </div>
+      <div className="col-8 tl mt4">
+        <Title type="title4">Divider</Title>
+      </div>
+      <Divider />
+      <div className="col-8 tl mt4">
+        <Title type="title4">Toolbar</Title>
+      </div>
+      <Toolbar>
+        <Button align="left" type="tertiary">
+          Left aligned button
+        </Button>
+        <Button align="center" type="tertiary">
+          Centered button
+        </Button>
+        <Button align="right" type="tertiary">
+          Right aligned button
+        </Button>
+      </Toolbar>
       <div className="col-8 tl mt4" />
     </div>
   </div>
