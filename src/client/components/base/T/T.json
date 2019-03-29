@@ -131,7 +131,6 @@
         "en": "Added the"
       }
     },
-
     "login": {
       "loginButton": {
         "da": "Log ind",
@@ -166,7 +165,6 @@
         "en": "You have to log in"
       }
     },
-
     "topbar": {
       "betaText": {
         "da": "Nu %s bøger. ",
@@ -189,7 +187,6 @@
         "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       }
     },
-
     "footer": {
       "sectionOne": {
         "da": "Læsekompasset hjælper dig med at opdage bøger, der passer dig, og inspirerer dig til nye læseoplevelser.",
@@ -220,7 +217,6 @@
         "en": "2750 Ballerup"
       }
     },
-
     "work": {
       "moreLikeThis": {
         "da": "Mere som denne",
@@ -262,9 +258,17 @@
         "da": "Anmeldelser:",
         "en": "Reviews:"
       },
+      "showMoreReviews": {
+        "da": "Vis flere anmedelser",
+        "en": "Show more reviews"
+      },
       "bookmarkButtonOrigin": {
         "da": "Fra egen værkside",
         "en": "From workpage"
+      },
+      "readReview": {
+        "da": "Læs anmedelsen",
+        "en": "Read review"
       },
       "tagsCollapsibleShow": {
         "da": "Se alle tags",
@@ -275,7 +279,6 @@
         "en": "Less tags"
       }
     },
-
     "profile": {
       "profilePage": {
         "da": "Min profil",
@@ -358,7 +361,6 @@
         "en": "Læsekompassets terms of use"
       }
     },
-
     "shortlist": {
       "buttonLabel": {
         "da": "Husk",
@@ -393,14 +395,12 @@
         "en": "Clear list"
       }
     },
-
     "bookcase": {
       "fetchListError": {
         "da": "Listen kunne ikke indlæses",
         "en": "List could not be loaded"
       }
     },
-
     "list": {
       "listButton": {
         "da": "Lister",
@@ -627,7 +627,6 @@
         "en": "Bookshelf"
       }
     },
-
     "filter": {
       "newSearchToast": {
         "da": "Du startede en ny søgning",
@@ -686,7 +685,6 @@
         "en": "Search by title, author, mood..."
       }
     },
-
     "post": {
       "editPost": {
         "da": "Redigér indlæg",
@@ -757,7 +755,6 @@
         "en": "Just now"
       }
     },
-
     "order": {
       "orderInProgress": {
         "da": "Bestiller...",
@@ -828,7 +825,6 @@
         "en": "You need to be signed in to order books"
       }
     },
-
     "share": {
       "shareOnFacebook": {
         "da": "Del på facebook",
@@ -847,7 +843,6 @@
         "en": "Make my list public"
       }
     },
-
     "belts": {
       "bestRecommendations": {
         "da": "Bedste forslag til",

@@ -44,7 +44,7 @@ export class PaperReview extends React.Component {
     return (
       <div className={'Review__container mr-4 mb-3'}>
         <div className="Review__block--top">
-          <div className="Review__block--title mb0 d-flex">
+          <div className="Review__block--title mb-0 d-flex">
             <Title Tag="h6" type="title6" className="mb-0 mr-2">
               {source}
             </Title>
@@ -56,14 +56,14 @@ export class PaperReview extends React.Component {
           </div>
 
           {date && (
-            <Text type="small" className="due-txt mb0">
+            <Text type="small" className="due-txt mb-0">
               {date}
             </Text>
           )}
         </div>
         {creator &&
           creator.trim() !== '' && (
-            <Text type="body" className="Review__block--lector mb1">
+            <Text type="body" className="Review__block--lector mb-1">
               Af {creator}
             </Text>
           )}

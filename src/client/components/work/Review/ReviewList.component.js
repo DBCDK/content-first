@@ -116,7 +116,7 @@ class ReviewList extends React.Component {
                           target="_blank"
                           href={rev.url}
                         >
-                          Læs anmedelsen
+                          <T component="work" name={'readReview'} />
                         </a>
                         <a target="_blank" href={rev.url}>
                           <i
@@ -186,7 +186,9 @@ class ReviewList extends React.Component {
                 <Icon
                   name={!this.state.collapsed ? 'expand_less' : 'expand_more'}
                 />
-                <p>Vis flere anmedelser</p>
+                <p>
+                  <T component="work" name={'showMoreReviews'} />
+                </p>
               </div>
             </div>
           )}

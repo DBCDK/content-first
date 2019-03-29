@@ -1,7 +1,5 @@
 @media (max-width: 575.98px) {
-  .show-review--modal {
-    xmargin: 0 30px 0 20px!important;
-  }
+
   .show-review--modal .content {
     margin: 0!important;
   }
@@ -54,9 +52,6 @@
 .WorkPreview__container .Review__block--paragraph,
 .WorkPreview__container .Review__block--link {
   font-size: 0.9em;
-}
-.disabled-review p,h6, i{
-  /*color: gray !important;*/
 }
 a.tooltips {
   position: relative;
