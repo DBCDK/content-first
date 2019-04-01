@@ -82,10 +82,12 @@
     margin-right: 8px;
 }
 
-.profile__accept-nameAndImg .image-upload-loader {
-    margin-top: 20px;
-}
 
+.profile__accept-nameAndImg .image-upload-image {
+    margin-top: 17px;
+    width:45px;
+    height:45px;
+}
 .profile__accept-inputNameTitle {
     font-size: 14px;
     font-weight: 400;
@@ -152,7 +154,7 @@
 }
 
 .profile__accept-userBox {
-    margin-left: -212px;
+    margin-left: -207px;
 }
 
 .profile__accept-userBox .input-group .profile__mobileinputfield {
@@ -369,6 +371,8 @@
     }
 
     .profile__modal-window {
+        padding-left: calc((100% - 300px) / 2);
+        padding-right: calc((100% - 300px) / 2);
         padding-top: 0 !important;
         margin-top: 0 !important;
         width: 100%;
@@ -376,8 +380,6 @@
     }
 
     .profile__accept-window {
-        margin-left: calc((100% - 300px) / 2);
-        margin-right: calc((100% - 300px) / 2);
         padding-top: 10px !important;
     }
 
@@ -410,7 +412,7 @@
 
     .profile__accept-userBox {
         height: 110px;
-        margin-left: 8px;
+        margin-left: 5px;
 
 
     }
