@@ -4,6 +4,7 @@ import BookmarkButton from '../general/BookmarkButton';
 import TaxDescription from './TaxDescription.component';
 import Paragraph from '../base/Paragraph';
 import Heading from '../base/Heading';
+import Icon from '../base/Icon';
 import withWork from '../base/Work/withWork.hoc';
 import RemindsOf from '../base/RemindsOf';
 
@@ -33,6 +34,7 @@ export const SkeletonWorkCard = props => {
         className="skelet-taxonomy-description d-xs-none d-sm-block"
         style={{height: 12, width: '60%', background: '#f8f8f8', marginTop: 10}}
       />
+      <div className="whiteLine" />
     </div>
   );
 };
@@ -68,15 +70,12 @@ class WorkCard extends React.Component {
       `${this.props.work.book.title || ''}\n${this.props.work.book.creator ||
         ''}`;
 
+    const highlight = this.props.highlight ? 'highlight' : '';
+
     return (
       <div
         ref={this.props.cardRef || null}
-        className={
-          'WorkCard' +
-          (this.props.highlight ? ' highlight' : '') +
-          ' ' +
-          this.props.className
-        }
+        className={`WorkCard ${highlight} ${this.props.className}`}
         data-cy={'workcard'}
       >
         <BookmarkButton
@@ -96,7 +95,6 @@ class WorkCard extends React.Component {
         />
         <div style={{height: '100%'}} onClick={this.onWorkClick}>
           <BookCover
-            className="book-cover"
             book={this.props.skeleton ? {book: {}} : this.props.work.book}
           />
 
@@ -106,7 +104,7 @@ class WorkCard extends React.Component {
 
           {this.props.enableHover && (
             <div
-              className="hover-details d-xs-none d-sm-block"
+              className={`hover-details d-xs-none d-sm-block`}
               style={{
                 position: 'absolute',
                 left: 0,
@@ -148,19 +146,12 @@ class WorkCard extends React.Component {
                 {<TaxDescription text={tax_description} />}
               </Paragraph>
               <div className="expand-more-wrapper text-center">
-                <i
-                  className="expand-more material-icons"
-                  style={{
-                    fontSize: this.props.highlight ? 36 : 36,
-                    marginTop: this.props.highlight ? 10 : 0
-                  }}
-                >
-                  expand_more
-                </i>
+                <Icon name="expand_more" className="md-large" />
               </div>
             </div>
           )}
         </div>
+        <div className="whiteLine" />
       </div>
     );
   }

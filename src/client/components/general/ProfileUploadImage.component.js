@@ -1,6 +1,7 @@
 import React from 'react';
 import Spinner from './Spinner.component';
 import HoverImage from './HoverImage.component';
+import T from '../base/T';
 
 const UploadButton = ({
   fieldName,
@@ -32,20 +33,22 @@ const Error = ({error, name}) => {
   if (error.status === 413) {
     if (name) {
       retText =
-        name.toUpperCase() + ' er for stor. Billedet må maks fylde 10mb';
+        name.toUpperCase() +
+        T({component: 'profile', name: 'profilePictureTooLarge'});
     }
   }
   if (error.status === 400) {
     if (name) {
       retText =
         name.toUpperCase() +
-        ' er ikke et gyldigt billede. Upload en gyldig png eller jpg.';
+        T({component: 'profile', name: 'saveProfilePictureError'});
     }
   }
   if (!error.status || error.status === 500) {
     if (name) {
       retText =
-        'Der er sket en fejl. ' + name.toUpperCase() + ' kan ikke uploades.';
+        name.toUpperCase() +
+        T({component: 'profile', name: 'saveProfileGeneralPictureError'});
     }
   }
   return retText;
@@ -55,6 +58,9 @@ export default class ProfileUploadImage extends React.Component {
   readFiles = e => {
     const {files} = e.target;
     if (files && files[0]) {
+      if (this.props.activateSaveButton) {
+        this.props.activateSaveButton();
+      }
       this.setState({imageName: files[0].name});
       this.props.onFile(files[0]);
     }
@@ -114,41 +120,25 @@ export default class ProfileUploadImage extends React.Component {
     if (this.state.basePictureDefault) {
       baseImage = this.props.thumbnailImage;
     }
+
     return (
-      <div>
-        <div
-          className="profile-picture"
-          style={{
-            width: '57px',
-            paddingTop: '12px'
-          }}
-        >
-          <div className={'image-upload ' + this.props.className}>
-            <div
-              style={{
-                width: '46px',
-                height: '46px',
-                overflow: 'hidden',
-                ...this.props.style
-              }}
-            >
-              {(this.props.loading && (
-                <Spinner className="profile__spinner" />
-              )) || (
-                <div>
-                  <UploadButton
-                    fieldName={this.props.fieldName}
-                    readFiles={this.readFiles}
-                    baseImage={baseImage}
-                    thumbnailImageHover={this.props.thumbnailImageHover}
-                  />
-                </div>
-              )}
-            </div>
-            <div style={{clear: 'both'}} />
-            <div className="profile__image-errors">
-              <Error error={this.props.error} name={this.state.imageName} />
-            </div>
+      <div className="profile-picture">
+        <div className="image-upload">
+          <div className="image-upload-loader">
+            {(this.props.loading && (
+              <Spinner className="profile__spinner" />
+            )) || (
+              <UploadButton
+                fieldName={this.props.fieldName}
+                readFiles={this.readFiles}
+                baseImage={baseImage}
+                thumbnailImageHover={this.props.thumbnailImageHover}
+              />
+            )}
+          </div>
+          <div style={{clear: 'both'}} />
+          <div className="profile__image-errors">
+            <Error error={this.props.error} name={this.state.imageName} />
           </div>
         </div>
       </div>

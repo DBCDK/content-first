@@ -141,8 +141,35 @@
 .top-bar-dropdown-list--merge-modal .more-btn {
   margin-top: 30px;
 }
+.short-list-item {
+  padding-right: 15px;
+}
+.top-bar-upper-toolbar {
+  marginBottom: -0.7em;
+  padding-right: 15px;
+}
+.top-bar-upper-toolbar + .Divider {
+  margin-top: 0px;
+}
+.bottom-toolbar {
+  padding-right: 15px;
+}
+.Toolbar.desktop-styling,
+.mobile-styling button,
+.mobile-styling p.Text {
+  margin-top: 1em;
+}
+.Toolbar.mobile-styling div:first-child button:first-child {
+  margin-left: 0!important;
+}
+
+.top-bar-dropdown-list-page {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 672px;
+}
 .top-bar-dropdown-list-page .items {
-  margin-top: 40px;
+  margin-top: 9px;
 }
 .top-bar-dropdown-list-page .items .item {
   border-bottom: 1px solid lightgray;
@@ -154,8 +181,8 @@
 }
 .top-bar-dropdown-list-page .remove-btn {
   position: absolute;
-  right: 0px;
-  font-size: 18px;
+  right: 15px;
+  font-size: 24px;
   cursor: pointer;
 }
 .top-bar-dropdown-list-page .book-cover {
@@ -195,22 +222,20 @@
   margin-top: 200px;
 }
 
-.dropdownlist-enter {
-  opacity: 0;
-  max-height: 0px;
+.top-bar-dropdown-shortlist-item-page {
+  margin-left: 19px;
+  width: 100%;
 }
 
-.dropdownlist-enter.dropdownlist-enter-active {
-  opacity: 1;
-  transition: all 0.2s;
-  max-height: 200px;
+.top-bar-dropdown-shortlist-item-page .Toolbar .Text {
+  white-space: nowrap;
 }
+
 .dropdownlist-leave {
   opacity: 1;
   max-height: 200px;
 }
-.dropdownlist-leave.dropdownlist-leave-active,
-.dropdownlist-leave.dropdownlist-leave-active * {
+.dropdownlist-leave.dropdownlist-leave-active {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
   margin-top: 0 !important;
@@ -258,5 +283,36 @@
   .top-bar-dropdown-list-element--cover-image img {
     max-width: 40px;
     width: auto;
+  }
+}
+
+@media (max-width: 575px) {
+  .desktop-styling {
+    display: none!important;
+  }
+  .top-bar-upper-toolbar,
+  .short-list-item {
+    padding-right: 0;
+  }
+  .short-list-item .remove-btn {
+    right: 0;
+  }
+  .bottom-toolbar {
+    margin-top: 1em!important;
+    padding-right: 0!important;
+  }
+  .bottom-toolbar .Toolbar__right {
+    flex-direction: column-reverse;
+    justify-content: right;
+    align-items: flex-end;
+  }
+  .bottom-toolbar .Toolbar__right button {
+    margin-bottom: 1em;
+  }
+}
+
+@media (min-width: 576px) {
+  .mobile-styling {
+    display: none;
   }
 }

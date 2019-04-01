@@ -1,36 +1,4 @@
 .image-upload input {
   display: none;
 }
-.image-upload--zone {
-  border: 1px solid lightgrey;
-  cursor: default;
-  margin: auto;
-  text-align: center;
-  position: relative;
-  float: left;
-}
 
-.image-upload .glyphicon {
-  color: lightgrey;
-  display: block;
-}
-
-.image-upload .background-icon {
-  margin-top: 35px;
-  margin-bottom: 15px;
-  font-size: 120px;
-  display: block;
-  line-height: 120px;
-}
-
-.image-upload .background-icon.glyphicon-picture {
-  margin-top: 0;
-  margin-bottom: 15px;
-  font-size: 80px;
-  display: block;
-  line-height: 150px;
-}
-
-.image-upload .glyphicon-plus {
-  font-size: 30px;
-}

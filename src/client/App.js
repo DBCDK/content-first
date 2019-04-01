@@ -54,14 +54,13 @@ class App extends Component {
       currentPage = <WorkPage pid={pathSplit[2]} />;
     } else if (pathSplit[1] === 'profile') {
       if (pathSplit[2] === 'opret') {
-        topbar = false;
+        topbar = true;
         currentPage = (
           <CreateProfilePage
             title={T({component: 'profile', name: 'createProfile'})}
           />
         );
       } else if (pathSplit[2] === 'rediger') {
-        topbar = false;
         currentPage = (
           <CreateProfilePage
             title={T({component: 'profile', name: 'editProfile'})}

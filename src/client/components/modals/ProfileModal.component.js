@@ -73,7 +73,7 @@ export class ProfileModal extends React.Component {
               </a>
             </div>
             <div className="profile__line" />
-            <div style={{textAlign: 'right'}}>
+            <div>
               <button
                 className="btn Button profile__accept-button"
                 onClick={this.closeWindowAndLogout}
@@ -149,7 +149,7 @@ export class ProfileModal extends React.Component {
                         }
                       />
 
-                      <div>
+                      <div className="profile__accept-userBox">
                         <div className="profile__accept-inputNameTitle">
                           <T component="profile" name="usernameTitle" />
                         </div>

@@ -24,6 +24,9 @@ const UserInfo = ({showUserInfo, owner, time}) => {
   if (!showUserInfo) {
     return false;
   }
+  if (!owner) {
+    return null;
+  }
   return (
     <div className="d-flex flex-column align-items-md-end pb-2">
       <Text type="small" variant="color-due">
@@ -181,7 +184,6 @@ export class ListElement extends React.Component {
       showTaxDescription = true,
       showDescription = true
     } = this.props;
-
     const {editing, originalDescription} = this.state;
     const book = element.book;
 
