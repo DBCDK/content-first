@@ -41,7 +41,8 @@ export default class WorkSlider extends React.Component {
             <Title
               tag="h1"
               type="title4"
-              className="WorkSlider__no-hits-container position-relative text-uppercase font-weight-bold"
+              variant="transform-uppercase--weight-bold"
+              className="WorkSlider__no-hits-container position-relative"
             >
               <T component="belts" name="noHits" renderAsHtml={true} />
             </Title>
