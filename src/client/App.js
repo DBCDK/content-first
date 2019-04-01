@@ -148,7 +148,7 @@ export const mapDispatchToProps = dispatch => ({
         title: 'COOKIES ER SLÅET FRA',
         reason:
           'Din browser tillader ikke cookies, og det betyder, at dele af Læsekompas.dk ikke vil virke. ' +
-          'Vi anbefaler, at du ændrer indstillingen i din browser og tillader cookies, så du kan få den fulde oplevelse og de bedste boganbefalinger her på siden.',
+          'Vi anbefaler, at du ændrer indstillingen i din browser og tillader cookies, så du kan få den fulde oplevelse og de bedste læseforslag her på siden.',
         confirmText: 'Ok',
         hideCancel: true,
         onConfirm: () => {
