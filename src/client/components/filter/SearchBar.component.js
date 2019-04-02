@@ -54,18 +54,6 @@ const SelectedQuery = ({selected, onRemove}) => (
 );
 
 class SearchBar extends React.Component {
-  constructor() {
-    super();
-    this.state = {query: '', expanded: false};
-  }
-
-  componentDidMount() {
-    this.initFilterPosition();
-  }
-
-  toggleFilter(filterId) {
-    this.props.toggleFilter(filterId);
-  }
   renderSelected = selected => {
     switch (selected.type) {
       case 'TAG':
@@ -105,7 +93,6 @@ class SearchBar extends React.Component {
         return null;
     }
   };
-
   handleOnKeyDown = e => {
     /* handle backspace */
     const {tags} = this.props;
@@ -114,13 +101,11 @@ class SearchBar extends React.Component {
       this.props.removeTag(tags[tags.length - 1].match);
     }
   };
-
   initFilterPosition = () => {
     if (this.filtersRef) {
       this.filtersRef.scrollLeft = 99999999;
     }
   };
-
   onFiltersMouseWheelScrool = e => {
     e.preventDefault();
     let scrollSpeed = 40;
@@ -130,6 +115,19 @@ class SearchBar extends React.Component {
       : (this.filtersRef.scrollLeft -= scrollSpeed);
     /* eslint-enable no-unused-expressions */
   };
+
+  constructor() {
+    super();
+    this.state = {query: '', expanded: false};
+  }
+
+  componentDidMount() {
+    this.initFilterPosition();
+  }
+
+  toggleFilter(filterId) {
+    this.props.toggleFilter(filterId);
+  }
 
   render() {
     return (
@@ -176,4 +174,5 @@ class SearchBar extends React.Component {
     );
   }
 }
+
 export default withTagsFromUrl(SearchBar);

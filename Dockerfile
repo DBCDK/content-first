@@ -25,8 +25,7 @@ RUN npm run build && \
 # ---- Release ----
 FROM $NODE_BASEIMAGE AS release
 WORKDIR /home/node/app
-COPY --from=build /home/node/app/prod_build ./
-RUN chown -R node:node ./
+COPY --chown=node:node --from=build /home/node/app/prod_build ./
 EXPOSE 3000
 USER node
 CMD node src/server/main.js

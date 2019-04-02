@@ -93,6 +93,7 @@ class DesktopSlider extends React.Component {
 
   render() {
     const props = this.props;
+
     return (
       <div className="col-12 p-0 desktop-slider">
         <Swiper
@@ -106,27 +107,32 @@ class DesktopSlider extends React.Component {
         >
           {props.children}
         </Swiper>
+
         {!this.state.isEnd && (
-          <Icon
-            name="chevron_right"
-            className="swiper-button-next material-icons"
-            onClick={() => {
-              if (this.swiper) {
-                this.swiper.slideNext();
-              }
-            }}
-          />
+          <div className="swiper-button-next">
+            <Icon
+              name="chevron_right"
+              className="swiper-button-next-icon material-icons"
+              onClick={() => {
+                if (this.swiper) {
+                  this.swiper.slideNext();
+                }
+              }}
+            />
+          </div>
         )}
         {!this.state.isBeginning && (
-          <Icon
-            name="chevron_left"
-            className="swiper-button-prev material-icons"
-            onClick={() => {
-              if (this.swiper) {
-                this.swiper.slidePrev();
-              }
-            }}
-          />
+          <div className="swiper-button-prev">
+            <Icon
+              name="chevron_left"
+              className="swiper-button-prev-icon material-icons"
+              onClick={() => {
+                if (this.swiper) {
+                  this.swiper.slidePrev();
+                }
+              }}
+            />
+          </div>
         )}
       </div>
     );

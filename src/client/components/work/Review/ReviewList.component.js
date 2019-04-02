@@ -51,7 +51,7 @@ class ReviewList extends React.Component {
             );
           });
         }
-        const hasRating = reviewList.abstract; // show only reviews with rating
+        const hasRating = true; // reviewList.abstract; // show only reviews with rating
         return hasRating && <PaperReview review={reviewList} key={outerKey} />;
       })
     );
@@ -97,7 +97,7 @@ class ReviewList extends React.Component {
                   rev.creator.split(',')[1] &&
                   timestampToShortDate(rev.creator.split(',')[1]);
                 return (
-                  <div className="review_list__review  mb-3">
+                  <div className="review_list__review mr-4 mb-3">
                     <span className="review_list__review__details ">
                       <Text
                         type="body"

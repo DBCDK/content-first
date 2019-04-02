@@ -56,7 +56,7 @@ exports[`renders without crashing 1`] = `
                 onWheel={[Function]}
               >
                 <div
-                  className="suggestion-list tags-suggestion-list suggestion-list "
+                  className="suggestion-list tags-suggestion-list suggestion-list"
                   onClick={[Function]}
                 >
                   <div
@@ -206,7 +206,11 @@ exports[`renders without crashing 1`] = `
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={false}
               >
-                Gå til huskeliste
+                
+                <span>
+                  Gå til huskeliste
+                </span>
+                
               </button>
             </div>
             <div
@@ -218,7 +222,11 @@ exports[`renders without crashing 1`] = `
                 data-cy=""
                 disabled={false}
               >
-                Bestil hele listen
+                
+                <span>
+                  Lån alle bøger
+                </span>
+                
               </button>
             </div>
           </div>
@@ -262,7 +270,7 @@ exports[`renders without crashing 1`] = `
           />
           <div>
             <p
-              className="m-0 Text Text__large "
+              className="m-0 Text Text__large Text__large--weight-semibold"
               style={
                 Object {
                   "lineHeight": "1.25rem",
@@ -298,7 +306,7 @@ exports[`renders without crashing 1`] = `
             />
             <div>
               <h1
-                className="mb-0 Title Title__title4 "
+                className="mb-0 Title Title__title4 Title__title4--weight-semibold"
               >
                 Læsekompas
               </h1>
@@ -316,7 +324,6 @@ exports[`renders without crashing 1`] = `
                   <div
                     className="d-none d-sm-inline logo-beta-text Text__small"
                   >
-                    Nu 0 bøger. 
                     <p
                       className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
                       onClick={[Function]}
@@ -647,15 +654,7 @@ exports[`renders without crashing 1`] = `
         type="belt"
       />
     </div>
-    <div
-      className="container"
-    >
-      <div
-        className="belts col-12"
-      >
-        <RecentListsBelt />
-      </div>
-    </div>
+    <RecentListsBelt />
   </div>
   <span />
   <div
@@ -695,7 +694,11 @@ exports[`renders without crashing 1`] = `
           disabled={false}
           onClick={[Function]}
         >
-          ACCEPTÉR COOKIES
+          
+          <span>
+            ACCEPTÉR COOKIES
+          </span>
+          
         </button>
       </div>
     </div>
@@ -713,87 +716,19 @@ exports[`renders without crashing 1`] = `
       disabled={false}
       onClick={[Function]}
     >
-      <i
-        className="material-icons material-icons-chat_bubble_outline icon__feedback md-small "
-        onClick={[Function]}
-      >
-        chat_bubble_outline
-      </i>
-      <span />
+      
+      <span>
+        <i
+          className="material-icons material-icons-chat_bubble_outline icon__feedback md-small "
+          onClick={[Function]}
+        >
+          chat_bubble_outline
+        </i>
+        <span />
+      </span>
+      
     </button>
   </div>
-  <div
-    className="Footer__outer-container--flexbox "
-  >
-    <div
-      className="Footer__container--elements p-3 pt-5 pb-md-5"
-    >
-      <div
-        className="Footer__logo--element mb-1"
-      >
-        <img
-          className="Footer__logo--image"
-          src="LaesekompasLogo.svg"
-        />
-      </div>
-      <div
-        className="Footer__element--block"
-      >
-        <p
-          className="mt-3 pr-md-3 pr-lg-3 Text Text__body "
-        >
-          Læsekompasset hjælper dig med at opdage bøger, der passer dig, og inspirerer dig til nye læseoplevelser.
-          <br />
-          <a
-            className="list-card-nohover"
-            data-cy=""
-            href="/om"
-            onClick={[Function]}
-            target="_self"
-          >
-            Læs mere
-          </a>
-        </p>
-      </div>
-      <div
-        className="Footer__element--block"
-      >
-        <p
-          className="mt-3 pr-lg-3 Text Text__body "
-        >
-          Siden er i øjeblikket i beta-version, hvilket betyder, at den stadig er under udvikling og at du kan opleve ting, der ikke fungerer optimalt endnu.
-        </p>
-      </div>
-      <div
-        className="Footer__element--block"
-      >
-        <p
-          className="mt-3 pr-md-3 pr-lg-3 Text Text__body "
-        >
-          Problemer med teknikken?
-          <br />
-          <a
-            href="https://kundeservice.dbc.dk"
-            target="_blank"
-          >
-            Skriv til DBCs kundeservice
-          </a>
-        </p>
-      </div>
-      <div
-        className="Footer__element--block"
-      >
-        <p
-          className="mt-3 Text Text__body "
-        >
-          DBC a/s
-          <br />
-          Tempovej 7-11
-          <br />
-          2750 Ballerup
-        </p>
-      </div>
-    </div>
-  </div>
+  <Footer />
 </div>
 `;

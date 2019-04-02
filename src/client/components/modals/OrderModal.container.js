@@ -133,12 +133,10 @@ export function OrderModal(props) {
     reviewingOrder
   } = orderInfo(props);
 
-  const bookOrBooks = (
-    <T
-      component="general"
-      name={props.orders.length === 1 ? 'book' : 'books'}
-    />
-  );
+  const bookOrBooks = T({
+    component: 'general',
+    name: props.orders.length === 1 ? 'book' : 'books'
+  });
 
   if (!reviewingOrder && !ordering) {
     doneText = 'OK';
@@ -190,7 +188,7 @@ export function OrderModal(props) {
               component="order"
               name="booksOrdered"
               vars={[
-                orderSuccess > 1 ? <T component="general" name="all" /> : '',
+                orderSuccess > 1 ? T({component: 'general', name: 'all'}) : '',
                 bookOrBooks
               ]}
             />

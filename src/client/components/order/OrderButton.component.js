@@ -38,6 +38,8 @@ export function OrderButton(props) {
       className={`${buttonClass} ${props.className}`}
       type={props.type}
       size={props.size}
+      iconLeft={props.iconLeft}
+      iconRight={props.iconRight}
       onClick={props.order}
       dataCy="order-btn"
     >

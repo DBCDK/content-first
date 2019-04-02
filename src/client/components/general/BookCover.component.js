@@ -47,7 +47,7 @@ class BookCover extends React.Component {
           generateSvg(
             this.props.title && hasNoCover
               ? toColor(this.props.title)
-              : '#f8f8f8',
+              : 'transparent',
             this.props.title && hasNoCover ? this.props.title : '',
             this.props.title && hasNoCover ? this.props.creator : ''
           )
@@ -83,8 +83,8 @@ class BookCover extends React.Component {
           ...this.props.style,
           display: 'inline-block',
           textAlign: 'center',
-          backgroundColor: '#f8f8f8',
-          verticalAlign: 'middle'
+          verticalAlign: 'middle',
+          ...this.props.styles
         }}
         alt={this.props.title || ''}
         className={

@@ -11,7 +11,7 @@ export class SpotsBelt extends React.Component {
 
   render() {
     return (
-      <div className="spots-container mb-5">
+      <div className="spots-container mb-0 mb-md-5 mt-5">
         {this.props.spots.map((spot, index) => {
           if (spot.show) {
             return (
