@@ -54,14 +54,13 @@ class App extends Component {
       currentPage = <WorkPage pid={pathSplit[2]} />;
     } else if (pathSplit[1] === 'profile') {
       if (pathSplit[2] === 'opret') {
-        topbar = false;
+        topbar = true;
         currentPage = (
           <CreateProfilePage
             title={T({component: 'profile', name: 'createProfile'})}
           />
         );
       } else if (pathSplit[2] === 'rediger') {
-        topbar = false;
         currentPage = (
           <CreateProfilePage
             title={T({component: 'profile', name: 'editProfile'})}
@@ -149,7 +148,7 @@ export const mapDispatchToProps = dispatch => ({
         title: 'COOKIES ER SLÅET FRA',
         reason:
           'Din browser tillader ikke cookies, og det betyder, at dele af Læsekompas.dk ikke vil virke. ' +
-          'Vi anbefaler, at du ændrer indstillingen i din browser og tillader cookies, så du kan få den fulde oplevelse og de bedste boganbefalinger her på siden.',
+          'Vi anbefaler, at du ændrer indstillingen i din browser og tillader cookies, så du kan få den fulde oplevelse og de bedste læseforslag her på siden.',
         confirmText: 'Ok',
         hideCancel: true,
         onConfirm: () => {

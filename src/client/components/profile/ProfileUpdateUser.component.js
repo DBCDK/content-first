@@ -42,7 +42,7 @@ export default class ProfileUpdateUser extends React.Component {
     };
 
     return (
-      <div className="profile__accept-buttonzone">
+      <div className="d-flex">
         <div className="profile__accept-buttonbuffer" />
         <button
           className={'btn Button profile__accept-button'}

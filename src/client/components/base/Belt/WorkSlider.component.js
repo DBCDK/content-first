@@ -1,7 +1,10 @@
 import React from 'react';
+import './WorkSlider.component.css';
 import {get, debounce} from 'lodash';
 import WorkCard from '../../work/WorkCard.container';
 import Slider from './Slider.component';
+import Title from '../../base/Title';
+import T from '../T';
 
 export default class WorkSlider extends React.Component {
   constructor() {
@@ -33,6 +36,17 @@ export default class WorkSlider extends React.Component {
         className={this.props.className + ' position-relative'}
         ref={container => (this.refs = {...this.refs, container})}
       >
+        {this.props.recommendationsLoaded &&
+          pids.length === 0 && (
+            <Title
+              tag="h1"
+              type="title4"
+              variant="transform-uppercase--weight-bold"
+              className="WorkSlider__no-hits-container position-relative"
+            >
+              <T component="belts" name="noHits" renderAsHtml={true} />
+            </Title>
+          )}
         <Slider
           initialScrollPos={scrollPos}
           onSwipe={index => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {isMobileOnly} from 'react-device-detect';
 import Link from '../general/Link.component';
@@ -129,14 +130,17 @@ export class TopBar extends React.Component {
   }
 
   toggleSearchBar(action = false) {
-    const searchBar = document.getElementById('Searchbar__inputfield');
     let status = !this.state.searchExpanded;
     if (action) {
       status = action === 'open' ? true : false;
     }
-    if (status && searchBar) {
-      searchBar.focus();
+    if (status) {
+      const searchfield = ReactDOM.findDOMNode(
+        this.refs.topSearchBar
+      ).getElementsByClassName('suggestion-list__search')[0];
+      searchfield.focus();
     }
+
     this.props.historyPush(HISTORY_PUSH, '/find');
     this.setState({searchExpanded: status});
   }
@@ -214,14 +218,23 @@ export class TopBar extends React.Component {
     const userLists = this.renderListsOverviewDropdown();
     const searchExpanded = searchPage && this.state.searchExpanded;
     const showCancelBtn = window.location.href.split('=')[1];
+
     let searchIconText;
     if (searchExpanded && showCancelBtn) {
       searchIconText = (
         <span
           data-cy="topbar-search-btn"
-          onClick={() => this.props.historyPush(HISTORY_REPLACE, '/find')}
+          onClick={() => {
+            this.props.historyPush(HISTORY_REPLACE, '/find');
+            const searchfield = ReactDOM.findDOMNode(
+              this.refs.topSearchBar
+            ).getElementsByClassName('suggestion-list__search')[0];
+            searchfield.focus();
+          }}
         >
-          <i className="material-icons  material-icons-cancel">cancel</i>
+          <i className="material-icons  material-icons-cancel" ref="cancelref">
+            cancel
+          </i>
         </span>
       );
     }
@@ -268,7 +281,7 @@ export class TopBar extends React.Component {
                 style={{width: this.state.width}}
                 ref={e => (this.SearchBarWrapper = e)}
               >
-                <SearchBar />
+                <SearchBar ref="topSearchBar" />
               </span>
             </span>
             {searchIconText}

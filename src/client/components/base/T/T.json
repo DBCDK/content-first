@@ -131,7 +131,6 @@
         "en": "Added the"
       }
     },
-
     "login": {
       "loginButton": {
         "da": "Log ind",
@@ -166,7 +165,6 @@
         "en": "You have to log in"
       }
     },
-
     "topbar": {
       "betaModalTitle": {
         "da": "Om Læsekompas.dk",
@@ -193,7 +191,6 @@
         "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       }
     },
-
     "footer": {
       "sectionOne": {
         "da": "Læsekompasset hjælper dig med at opdage bøger, der passer dig, og inspirerer dig til nye læseoplevelser.",
@@ -211,6 +208,14 @@
         "da": "Skriv til DBCs kundeservice",
         "en": "Write to DBCs customer service"
       },
+      "writeToManagementText": {
+        "da": "Spørgsmål om Læsekompasset?",
+        "en": "Questions for Læsekompasset?"
+      },
+      "writeToManagementLinkText": {
+        "da": "Skriv til projektledelsen",
+        "en": "Write to the management"
+      },
       "addressCompany": {
         "da": "DBC a/s",
         "en": "DBC a/s"
@@ -224,7 +229,6 @@
         "en": "2750 Ballerup"
       }
     },
-
     "work": {
       "moreLikeThis": {
         "da": "Mere som denne",
@@ -279,7 +283,6 @@
         "en": "Less tags"
       }
     },
-
     "profile": {
       "profilePage": {
         "da": "Min profil",
@@ -296,6 +299,10 @@
       "saveProfile": {
         "da": "Gem Profil",
         "en": "Save profile"
+      },
+      "saveProfileToast":{
+        "da": "Din profil er opdateret",
+        "en": "Your profile has been updated"
       },
       "deleteProfile": {
         "da": "Slet profil",
@@ -331,7 +338,7 @@
       },
       "enterInformations": {
         "da": "Indtast dine personlige oplysninger:",
-        "en": "Enter your personal informations"
+        "en": "Enter your personal information"
       },
       "changeProfilePicture": {
         "da": "Skift profilbillede",
@@ -340,6 +347,10 @@
       "uploadProfilePicture": {
         "da": "Upload profilbillede",
         "en": "Upload profile picture"
+      },
+      "profilePictureTooLarge": {
+        "da": " er for stor. Billedet må maks fylde 10mb",
+        "en": " is too large. Pictures must be max 10mb"
       },
       "profileInstructionsTitle":{
         "da": "Hvad skal vi bruge det til?",
@@ -393,6 +404,14 @@
         "da": "Brugernavn",
         "en": "Username"
       },
+      "saveProfilePictureError": {
+        "da": " er ikke et gyldigt billede. Upload en gyldig png eller jpg.",
+        "en": " is not a permissible type. Upload a .png or .jpg"
+      },
+      "saveProfileGeneralPictureError": {
+        "da": " kan ikke uploades. Der er sket en fejl.",
+        "en": " can't be uploaded. Internal server error."
+      },
       "placeholderUsername": {
         "da": "Skriv brugernavn",
         "en": "Select username"
@@ -412,9 +431,17 @@
       "acceptAndSubmit":{
         "da": "Accepter regler og vilkår",
         "en": "Accept rules and conditions"
+      },
+      "profilePictureTooLarge":{
+        "da": " er for stor. Billedet må maks fylde 10mb",
+        "en": " is too large. Max 10mb"
+      },
+      "saveProfileToast":{
+        "da": "Din profil er opdateret",
+        "en": "Your profile has been updated"
       }
-    },
 
+    },
     "shortlist": {
       "buttonLabel": {
         "da": "Husk",
@@ -449,14 +476,12 @@
         "en": "Clear list"
       }
     },
-
     "bookcase": {
       "fetchListError": {
         "da": "Listen kunne ikke indlæses",
         "en": "List could not be loaded"
       }
     },
-
     "list": {
       "listButton": {
         "da": "Lister",
@@ -683,7 +708,6 @@
         "en": "Bookshelf"
       }
     },
-
     "filter": {
       "newSearchToast": {
         "da": "Du startede en ny søgning",
@@ -742,7 +766,6 @@
         "en": "Search by title, author, mood..."
       }
     },
-
     "post": {
       "editPost": {
         "da": "Redigér indlæg",
@@ -813,7 +836,6 @@
         "en": "Just now"
       }
     },
-
     "order": {
       "orderInProgress": {
         "da": "Bestiller...",
@@ -884,7 +906,6 @@
         "en": "You need to be signed in to order books"
       }
     },
-
     "share": {
       "shareOnFacebook": {
         "da": "Del på facebook",
@@ -903,7 +924,6 @@
         "en": "Make my list public"
       }
     },
-
     "belts": {
       "bestRecommendations": {
         "da": "Bedste forslag til",
@@ -920,6 +940,10 @@
       "remindsOf": {
         "da": "Minder om %s",
         "en": "Reminds of %s"
+      },
+      "noHits": {
+        "da": "Der er endnu ikke nok data til at vise bøger der minder om",
+        "en": "There are not enough data to show books, that reminds about"
       }
     },
     "tabs": {
