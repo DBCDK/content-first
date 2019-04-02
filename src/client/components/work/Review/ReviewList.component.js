@@ -51,7 +51,7 @@ class ReviewList extends React.Component {
             );
           });
         }
-        const hasRating = true; // reviewList.abstract; // show only reviews with rating
+        const hasRating = reviewList.abstract; // show only reviews with rating
         return hasRating && <PaperReview review={reviewList} key={outerKey} />;
       })
     );
