@@ -59,6 +59,30 @@ class TagsSuggester extends React.Component {
       inputVisibel: false
     };
   }
+  componentDidMount() {
+    window.addEventListener('scroll', this.hideKeyboardOnScroll.bind(this));
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.hideKeyboardOnScroll);
+  }
+
+  hideKeyboardOnScroll() {
+    const prevScrollPosiion = this.prevScrollPosiion || 0;
+    const difference = window.pageYOffset - prevScrollPosiion;
+    if (
+      this.sarchBar &&
+      this.sarchBar.input &&
+      (difference > 1 || difference < -1)
+    ) {
+      this.sarchBar.input.blur();
+      this.prevScrollPosiion = window.pageYOffset;
+    }
+  }
+  handleKeyPress(e) {
+    if (e.key === 'Enter' && this.sarchBar && this.sarchBar.input) {
+      this.sarchBar.input.blur();
+    }
+  }
 
   getClientSideSuggestions({value}) {
     const filters = this.props.filters;
@@ -122,7 +146,8 @@ class TagsSuggester extends React.Component {
       onBlur: () => {
         this.toggleInputvisibility(false);
       },
-      'data-cy': 'search-bar-input'
+      'data-cy': 'search-bar-input',
+      onKeyPress: this.handleKeyPress.bind(this)
     };
 
     return (
@@ -167,6 +192,7 @@ class TagsSuggester extends React.Component {
             focusInputOnSuggestionClick={true}
             inputProps={inputProps}
             highlightFirstSuggestion={true}
+            ref={c => (this.sarchBar = c)}
           />
         </div>
         {!tagsInField && (
