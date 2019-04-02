@@ -27,11 +27,7 @@ import ReviewList from './Review/ReviewList.component';
 class WorkPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      tagsCollapsed: true,
-      transition: true,
-      addToList: null
-    };
+    this.state = {tagsCollapsed: true, transition: true, addToList: null};
   }
 
   init() {
@@ -51,6 +47,7 @@ class WorkPage extends React.Component {
   render() {
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
+
     if (!book) {
       return null;
     }
@@ -112,8 +109,7 @@ class WorkPage extends React.Component {
                     {book.title}
                   </Title>
                   <Link
-                    href="/find"
-                    params={{creator: book.creator}}
+                    href={'/find?tags=' + encodeURI(book.creator)}
                     className="work-page-book-creator"
                   >
                     <Title Tag="h2" type="title5" className="mt1">

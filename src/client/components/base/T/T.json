@@ -166,24 +166,28 @@
       }
     },
     "topbar": {
-      "betaText": {
-        "da": "Nu %s bøger. ",
-        "en": "Now %s books. "
-      },
       "betaModalTitle": {
         "da": "Om Læsekompas.dk",
         "en": "About Læsekompas.dk"
       },
       "betaModalDescription": {
-        "da": "Læsekompasset er skabt for at gøre det nemt for dig at opdage bøger, der passer til dig, og inspirere dig til nye læseoplevelser",
-        "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        "da": "Læsekompasset er skabt for at gøre det nemt for dig at opdage bøger, der passer til dig, og inspirere dig til nye læseoplevelser.",
+        "en": "Læsekompasset was created to make it easy for you to discover just the right books for you and to inspire new reading experiences."
       },
       "betaModalBody1": {
-        "da": "Vi arbejder hele tiden på at forbedre Læsekompasset og øge antallet af bøger. Lige nu er vi i",
+        "da": "Vi arbejder hele tiden på at forbedre Læsekompasset og forbedre beskrivelsen af bøgerne. Lige nu kalder vi det et",
         "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut"
       },
+      "sneakPeek": {
+        "da": " sneak peek.",
+        "en": " sneak peek."
+      },
       "betaModalBody2": {
-        "da": "Det betyder, at du frit kan bruge webstedet, men at du sagtens kan opleve ting, der ikke fungerer optimalt endnu, og at mængden af bøger lige nu er begrænset. I løbet af de kommende måneder kommer alle de vigtigste nye udgivelser med, og der vil også med tiden komme flere ældre bøger med. Læsekompasset har skønlitteratur til voksne, men fagbøger og børnebøger kan du ikke finde her.\r\n \r\nVi vil blive meget glade for din feedback, som du kan give os via feedback-knappen nederst på siden. Din feedback hjælper os med at gøre Læsekompasset bedre.",
+        "da": "Det betyder, at du frit kan bruge webstedet, men at du sagtens kan opleve ting, der ikke fungerer optimalt endnu. Beskrivelsen af mange bøger er lige nu også begrænset. I løbet af de kommende måneder får alle de vigtigste nye udgivelser grundige beskrivelser, og det samme vil med tiden også gælde ældre bøger. Læsekompasset har skønlitteratur til voksne, men fagbøger og børnebøger kan du ikke finde her.",
+        "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      },
+      "betaModalBody3": {
+        "da": "Vi vil blive meget glade for din feedback, som du kan give os via feedback-knappen nederst på siden. Din feedback hjælper os med at gøre Læsekompasset bedre.",
         "en": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
       }
     },
@@ -203,6 +207,14 @@
       "customerServiceLinkText": {
         "da": "Skriv til DBCs kundeservice",
         "en": "Write to DBCs customer service"
+      },
+      "writeToManagementText": {
+        "da": "Spørgsmål om Læsekompasset?",
+        "en": "Questions for Læsekompasset?"
+      },
+      "writeToManagementLinkText": {
+        "da": "Skriv til projektledelsen",
+        "en": "Write to the management"
       },
       "addressCompany": {
         "da": "DBC a/s",
@@ -258,17 +270,9 @@
         "da": "Anmeldelser:",
         "en": "Reviews:"
       },
-      "showMoreReviews": {
-        "da": "Vis flere anmedelser",
-        "en": "Show more reviews"
-      },
       "bookmarkButtonOrigin": {
         "da": "Fra egen værkside",
         "en": "From workpage"
-      },
-      "readReview": {
-        "da": "Læs anmedelsen",
-        "en": "Read review"
       },
       "tagsCollapsibleShow": {
         "da": "Se alle tags",
@@ -277,6 +281,14 @@
       "tagsCollapsibleHide": {
         "da": "Se færre tags",
         "en": "Less tags"
+      },
+      "showMoreReviews": {
+        "da": "Vis flere anmedelser",
+        "en": "Show more reviews"
+      },
+      "readReview": {
+        "da": "Læs anmedelsen",
+        "en": "Read review"
       }
     },
     "profile": {
@@ -296,6 +308,10 @@
         "da": "Gem Profil",
         "en": "Save profile"
       },
+      "saveProfileToast":{
+        "da": "Din profil er opdateret",
+        "en": "Your profile has been updated"
+      },
       "deleteProfile": {
         "da": "Slet profil",
         "en": "Delete profile"
@@ -308,9 +324,29 @@
         "da": "Jeg ønsker alligevel ikke at oprette en profil",
         "en": "However, I do not want to create a profile"
       },
+      "acceptTitle": {
+        "da": "FØRSTE GANG DU BRUGER LÆSEKOMPASSET …",
+        "en": "THE FIRST TIME YOU USE LÆSEKOMPASSET …"
+      },
+      "ruleText1": {
+        "da": "… skal du acceptere",
+        "en": "… you must accept"
+      },
+      "ruleLink": {
+        "da": "regler og vilkår for anvendelse af Læsekompasset",
+        "en": "rules and conditions for the use of Læsekompasset"
+      },
+      "ruleText2": {
+        "da": " , der kort fortalt anvendes til at gøre dit indhold mere personaliseret.",
+        "en": " , basically is used to make your experience here more personal"
+      },
+      "usernameOvertitle": {
+        "da": "Hvad skal vi kalde dig?",
+        "en": "What should we call you?"
+      },
       "enterInformations": {
         "da": "Indtast dine personlige oplysninger:",
-        "en": "Enter your personal informations"
+        "en": "Enter your personal information"
       },
       "changeProfilePicture": {
         "da": "Skift profilbillede",
@@ -319,6 +355,30 @@
       "uploadProfilePicture": {
         "da": "Upload profilbillede",
         "en": "Upload profile picture"
+      },
+      "profilePictureTooLarge": {
+        "da": " er for stor. Billedet må maks fylde 10mb",
+        "en": " is too large. Pictures must be max 10mb"
+      },
+      "profileInstructionsTitle":{
+        "da": "Hvad skal vi bruge det til?",
+        "en": "What will we use it for?"
+      },
+      "profileInstructionsLine1":{
+        "da": "når vi taler til dig her på siden",
+        "en": "when we communicate with you here on the site"
+      },
+      "profileInstructionsLine2":{
+        "da": "når du deler dine lister",
+        "en": "when you share your lists"
+      },
+      "profileInstructionsLine3":{
+        "da": "når du kommeterer på andres lister",
+        "en": "when you comment on other lists"
+      },
+      "profileInstructionsLine4":{
+        "da": "give dig mere personaliseret indhold",
+        "en": "give you more personalized content"
       },
       "deleteProfileModalTitle": {
         "da": "Er du sikker på at du vil slette din profil?",
@@ -332,6 +392,10 @@
         "da": "Dit brugernavn skal være minimum 4 karakterer langt",
         "en": "Your username, should contain at least 4 characters"
       },
+      "validationUsernameLengthShort":{
+        "da": "Min. 4 tegn",
+        "en": "Min. 4 characters"
+      },
       "validationAcceptAge": {
         "da": "Du skal være over 13 år for at oprette en profil",
         "en": "You have to be over 13 years old to create a profile"
@@ -344,8 +408,20 @@
         "da": "Det er ikke muligt at gemme profilen",
         "en": "It`s not possible to save the profile"
       },
+      "usernameTitle":{
+        "da": "Brugernavn",
+        "en": "Username"
+      },
+      "saveProfilePictureError": {
+        "da": " er ikke et gyldigt billede. Upload en gyldig png eller jpg.",
+        "en": " is not a permissible type. Upload a .png or .jpg"
+      },
+      "saveProfileGeneralPictureError": {
+        "da": " kan ikke uploades. Der er sket en fejl.",
+        "en": " can't be uploaded. Internal server error."
+      },
       "placeholderUsername": {
-        "da": "Vælg brugernavn",
+        "da": "Skriv brugernavn",
         "en": "Select username"
       },
       "ageCheckboxText": {
@@ -359,7 +435,20 @@
       "termsCheckboxLink": {
         "da": "reglerne for anvendelse af Læsekompasset",
         "en": "Læsekompassets terms of use"
+      },
+      "acceptAndSubmit":{
+        "da": "Accepter regler og vilkår",
+        "en": "Accept rules and conditions"
+      },
+      "profilePictureTooLarge":{
+        "da": " er for stor. Billedet må maks fylde 10mb",
+        "en": " is too large. Max 10mb"
+      },
+      "saveProfileToast":{
+        "da": "Din profil er opdateret",
+        "en": "Your profile has been updated"
       }
+
     },
     "shortlist": {
       "buttonLabel": {
@@ -367,8 +456,8 @@
         "en": "Bookmark"
       },
       "title": {
-        "da": "Huskeliste",
-        "en": "Shortlist"
+        "da": "Din huskeliste",
+        "en": "Your Shortlist"
       },
       "titleWithBooks": {
         "da": "Huskeliste (%s)",
@@ -387,7 +476,7 @@
         "en": "To shortlist"
       },
       "shortlistOrder": {
-        "da": "Bestil hele listen",
+        "da": "Lån alle bøger",
         "en": "Order the entire list"
       },
       "shortlistClear": {
@@ -859,6 +948,10 @@
       "remindsOf": {
         "da": "Minder om %s",
         "en": "Reminds of %s"
+      },
+      "noHits": {
+        "da": "Der er endnu ikke nok data til at vise bøger der minder om",
+        "en": "There are not enough data to show books, that reminds about"
       }
     },
     "tabs": {
