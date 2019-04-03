@@ -116,14 +116,16 @@ class App extends Component {
         <ToastContainer
           position="top-right"
           autoClose={5000}
-          hideProgressBar
+          hideProgressBar={false}
           newestOnTop
           closeOnClick
           rtl={false}
-          pauseOnVisibilityChange
+          pauseOnVisibilityChange={false}
           draggable
-          pauseOnHover
+          pauseOnHover={false}
+          delay={5000}
         />
+
         <FeedbackButton />
         <Footer />
       </div>
