@@ -373,288 +373,292 @@ exports[`renders without crashing 1`] = `
     />
   </div>
   <div
-    className="frontpage"
+    id="scrollableArea"
   >
-    <Hero />
-    <react-visibility-sensor
-      offset={
-        Object {
-          "bottom": -1000,
-          "top": -1000,
+    <div
+      className="frontpage"
+    >
+      <Hero />
+      <react-visibility-sensor
+        offset={
+          Object {
+            "bottom": -1000,
+            "top": -1000,
+          }
         }
-      }
-      onChange={[Function]}
-      partialVisibility={true}
-    />
-    <div>
-      <TagsBelt
-        child={false}
-        id="Krøllede fortællinger"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[{\\"id\\":2683,\\"weight\\":10},{\\"id\\":5614,\\"weight\\":10},5624,5652,5717]"
-        name="Krøllede fortællinger"
-        onFrontPage={true}
-        subtext="Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt."
-        tags={
-          Array [
-            Object {
-              "id": 2683,
-              "weight": 10,
-            },
-            Object {
-              "id": 5614,
-              "weight": 10,
-            },
-            5624,
-            5652,
-            5717,
-          ]
-        }
-        type="belt"
+        onChange={[Function]}
+        partialVisibility={true}
       />
-      <TagsBelt
-        child={false}
-        id="Mennesket og Naturen"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[{\\"id\\":5329,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":10},5731,5280,5277,2183,2278]"
-        name="Mennesket og Naturen"
-        onFrontPage={true}
-        subtext="Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen."
-        tags={
-          Array [
-            Object {
-              "id": 5329,
-              "weight": 10,
-            },
-            Object {
-              "id": 3510,
-              "weight": 10,
-            },
-            5731,
-            5280,
-            5277,
-            2183,
-            2278,
-          ]
-        }
-        type="belt"
-      />
-      <TagsBelt
-        child={false}
-        id="Familiens skyggesider"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[{\\"id\\":1672,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":10},5699,5721,5696,5680,{\\"id\\":5691,\\"weight\\":10}]"
-        name="Familiens skyggesider"
-        onFrontPage={true}
-        subtext="Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge."
-        tags={
-          Array [
-            Object {
-              "id": 1672,
-              "weight": 10,
-            },
-            Object {
-              "id": 5731,
-              "weight": 10,
-            },
-            5699,
-            5721,
-            5696,
-            5680,
-            Object {
-              "id": 5691,
-              "weight": 10,
-            },
-          ]
-        }
-        type="belt"
-      />
-      <TagsBelt
-        child={false}
-        id="Tankevækkende Sci-fi"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[{\\"id\\":4995,\\"weight\\":10},4927,5714,5713]"
-        name="Tankevækkende fremtidsvisioner"
-        onFrontPage={true}
-        subtext="Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores."
-        tags={
-          Array [
-            Object {
-              "id": 4995,
-              "weight": 10,
-            },
-            4927,
-            5714,
-            5713,
-          ]
-        }
-        type="belt"
-      />
+      <div>
+        <TagsBelt
+          child={false}
+          id="Krøllede fortællinger"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[{\\"id\\":2683,\\"weight\\":10},{\\"id\\":5614,\\"weight\\":10},5624,5652,5717]"
+          name="Krøllede fortællinger"
+          onFrontPage={true}
+          subtext="Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt."
+          tags={
+            Array [
+              Object {
+                "id": 2683,
+                "weight": 10,
+              },
+              Object {
+                "id": 5614,
+                "weight": 10,
+              },
+              5624,
+              5652,
+              5717,
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Mennesket og Naturen"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[{\\"id\\":5329,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":10},5731,5280,5277,2183,2278]"
+          name="Mennesket og Naturen"
+          onFrontPage={true}
+          subtext="Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen."
+          tags={
+            Array [
+              Object {
+                "id": 5329,
+                "weight": 10,
+              },
+              Object {
+                "id": 3510,
+                "weight": 10,
+              },
+              5731,
+              5280,
+              5277,
+              2183,
+              2278,
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Familiens skyggesider"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[{\\"id\\":1672,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":10},5699,5721,5696,5680,{\\"id\\":5691,\\"weight\\":10}]"
+          name="Familiens skyggesider"
+          onFrontPage={true}
+          subtext="Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge."
+          tags={
+            Array [
+              Object {
+                "id": 1672,
+                "weight": 10,
+              },
+              Object {
+                "id": 5731,
+                "weight": 10,
+              },
+              5699,
+              5721,
+              5696,
+              5680,
+              Object {
+                "id": 5691,
+                "weight": 10,
+              },
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Tankevækkende Sci-fi"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[{\\"id\\":4995,\\"weight\\":10},4927,5714,5713]"
+          name="Tankevækkende fremtidsvisioner"
+          onFrontPage={true}
+          subtext="Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores."
+          tags={
+            Array [
+              Object {
+                "id": 4995,
+                "weight": 10,
+              },
+              4927,
+              5714,
+              5713,
+            ]
+          }
+          type="belt"
+        />
+      </div>
+      <SpotsContainer />
+      <div>
+        <TagsBelt
+          child={false}
+          id="Sofahygge"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[{\\"id\\":5637,\\"weight\\":10},5654,5636,5731,{\\"id\\":5611,\\"weight\\":10}]"
+          name="Sofahygge"
+          onFrontPage={true}
+          subtext="Hent teen, tænd stearinlyset og så op med fødderne og på med plaiden."
+          tags={
+            Array [
+              Object {
+                "id": 5637,
+                "weight": 10,
+              },
+              5654,
+              5636,
+              5731,
+              Object {
+                "id": 5611,
+                "weight": 10,
+              },
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Tolkienesque"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[{\\"id\\":6131,\\"weight\\":10},5726,5730,5704,5705,{\\"id\\":5707,\\"weight\\":10},5708]"
+          name="Tolkienesque"
+          onFrontPage={true}
+          subtext="De store eventyr og udfordringer venter i en anden verden, hvor magiske kræfter og overnaturlige væsner prøver hinanden af."
+          tags={
+            Array [
+              Object {
+                "id": 6131,
+                "weight": 10,
+              },
+              5726,
+              5730,
+              5704,
+              5705,
+              Object {
+                "id": 5707,
+                "weight": 10,
+              },
+              5708,
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Det var en mørk og stormfuld nat"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[4044,{\\"id\\":4895,\\"weight\\":10},5149,5680,{\\"id\\":5700,\\"weight\\":10},5670,5676]"
+          name="Det var en mørk og stormfuld nat"
+          onFrontPage={true}
+          subtext="Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt."
+          tags={
+            Array [
+              4044,
+              Object {
+                "id": 4895,
+                "weight": 10,
+              },
+              5149,
+              5680,
+              Object {
+                "id": 5700,
+                "weight": 10,
+              },
+              5670,
+              5676,
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Hvad sker der bag hækken?"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[2683,{\\"id\\":4907,\\"weight\\":10},{\\"id\\":5368,\\"weight\\":10},5731,5670,5676,5691]"
+          name="Hvad sker der bag hækken?"
+          onFrontPage={true}
+          subtext="Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger."
+          tags={
+            Array [
+              2683,
+              Object {
+                "id": 4907,
+                "weight": 10,
+              },
+              Object {
+                "id": 5368,
+                "weight": 10,
+              },
+              5731,
+              5670,
+              5676,
+              5691,
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Historiske romaner"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[{\\"id\\":4901,\\"weight\\":10},5660,5658,189]"
+          name="Historiske romaner"
+          onFrontPage={true}
+          subtext="Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær."
+          tags={
+            Array [
+              Object {
+                "id": 4901,
+                "weight": 10,
+              },
+              5660,
+              5658,
+              189,
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Vemodige nordmænd"
+          isLoading={false}
+          links={Array []}
+          mount="frontpage[{\\"id\\":4466,\\"weight\\":10},5731,3510,5626,5683,5630]"
+          name="Vemodige nordmænd"
+          onFrontPage={true}
+          subtext="Når du har lyst til at tænke over livet - også det svære og sårbare."
+          tags={
+            Array [
+              Object {
+                "id": 4466,
+                "weight": 10,
+              },
+              5731,
+              3510,
+              5626,
+              5683,
+              5630,
+            ]
+          }
+          type="belt"
+        />
+      </div>
+      <RecentListsBelt />
     </div>
-    <SpotsContainer />
-    <div>
-      <TagsBelt
-        child={false}
-        id="Sofahygge"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[{\\"id\\":5637,\\"weight\\":10},5654,5636,5731,{\\"id\\":5611,\\"weight\\":10}]"
-        name="Sofahygge"
-        onFrontPage={true}
-        subtext="Hent teen, tænd stearinlyset og så op med fødderne og på med plaiden."
-        tags={
-          Array [
-            Object {
-              "id": 5637,
-              "weight": 10,
-            },
-            5654,
-            5636,
-            5731,
-            Object {
-              "id": 5611,
-              "weight": 10,
-            },
-          ]
-        }
-        type="belt"
-      />
-      <TagsBelt
-        child={false}
-        id="Tolkienesque"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[{\\"id\\":6131,\\"weight\\":10},5726,5730,5704,5705,{\\"id\\":5707,\\"weight\\":10},5708]"
-        name="Tolkienesque"
-        onFrontPage={true}
-        subtext="De store eventyr og udfordringer venter i en anden verden, hvor magiske kræfter og overnaturlige væsner prøver hinanden af."
-        tags={
-          Array [
-            Object {
-              "id": 6131,
-              "weight": 10,
-            },
-            5726,
-            5730,
-            5704,
-            5705,
-            Object {
-              "id": 5707,
-              "weight": 10,
-            },
-            5708,
-          ]
-        }
-        type="belt"
-      />
-      <TagsBelt
-        child={false}
-        id="Det var en mørk og stormfuld nat"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[4044,{\\"id\\":4895,\\"weight\\":10},5149,5680,{\\"id\\":5700,\\"weight\\":10},5670,5676]"
-        name="Det var en mørk og stormfuld nat"
-        onFrontPage={true}
-        subtext="Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt."
-        tags={
-          Array [
-            4044,
-            Object {
-              "id": 4895,
-              "weight": 10,
-            },
-            5149,
-            5680,
-            Object {
-              "id": 5700,
-              "weight": 10,
-            },
-            5670,
-            5676,
-          ]
-        }
-        type="belt"
-      />
-      <TagsBelt
-        child={false}
-        id="Hvad sker der bag hækken?"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[2683,{\\"id\\":4907,\\"weight\\":10},{\\"id\\":5368,\\"weight\\":10},5731,5670,5676,5691]"
-        name="Hvad sker der bag hækken?"
-        onFrontPage={true}
-        subtext="Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger."
-        tags={
-          Array [
-            2683,
-            Object {
-              "id": 4907,
-              "weight": 10,
-            },
-            Object {
-              "id": 5368,
-              "weight": 10,
-            },
-            5731,
-            5670,
-            5676,
-            5691,
-          ]
-        }
-        type="belt"
-      />
-      <TagsBelt
-        child={false}
-        id="Historiske romaner"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[{\\"id\\":4901,\\"weight\\":10},5660,5658,189]"
-        name="Historiske romaner"
-        onFrontPage={true}
-        subtext="Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær."
-        tags={
-          Array [
-            Object {
-              "id": 4901,
-              "weight": 10,
-            },
-            5660,
-            5658,
-            189,
-          ]
-        }
-        type="belt"
-      />
-      <TagsBelt
-        child={false}
-        id="Vemodige nordmænd"
-        isLoading={false}
-        links={Array []}
-        mount="frontpage[{\\"id\\":4466,\\"weight\\":10},5731,3510,5626,5683,5630]"
-        name="Vemodige nordmænd"
-        onFrontPage={true}
-        subtext="Når du har lyst til at tænke over livet - også det svære og sårbare."
-        tags={
-          Array [
-            Object {
-              "id": 4466,
-              "weight": 10,
-            },
-            5731,
-            3510,
-            5626,
-            5683,
-            5630,
-          ]
-        }
-        type="belt"
-      />
-    </div>
-    <RecentListsBelt />
   </div>
   <span />
   <div
