@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {ResumeReview} from '../ResumeReview.component';
 
-jest.mock('../../general/Link.component', () => 'Link');
+jest.mock('../../../general/Link.component', () => 'Link');
 
 const sampleReviews = [
   {

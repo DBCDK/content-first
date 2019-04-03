@@ -170,7 +170,8 @@ export const fetchReviews = (pids, store) => {
             'creatorOth',
             'isPartOf',
             'date',
-            'fullTextReviews'
+            'fullTextReviews',
+            'abstract'
           ],
           access_token: await fetchAnonymousToken()
         });

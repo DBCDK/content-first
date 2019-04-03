@@ -103,32 +103,23 @@
   padding: 0 0 0 3rem;
 }
 
-.WorkPage__reviews .WorkPage__review {
+.review_list__review {
   display: flex;
+  justify-content: space-between;
   text-decoration: none;
   color: var(--petroleum);
 }
 
-.WorkPage__review:hover .WorkPage__review__details {
+.WorkPage__review:hover .review_list__review__details {
   color: var(--dark-cyan);
 }
 
-.WorkPage__reviews .WorkPage__review i {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  font-size: 1.6rem;
-  text-align: center;
-  display: inline-block;
-  border-radius: 50%;
-  background-color: var(--porcelain);
-}
 
-.WorkPage__reviews .WorkPage__review .WorkPage__review__details {
+.WorkPage__reviews .review_list__review .review_list__review__details {
   display: inline-block;
 }
 
-.WorkPage__reviews .WorkPage__review .WorkPage__review__details h5 {
+.WorkPage__reviews .review_list__review .review_list__review__details h5 {
   margin-top: 0.2rem;
 }
 
@@ -139,16 +130,16 @@
 
 /* Skeleton */
 
-.WorkPage__reviews .WorkPage__review .Skeleton__user__wrap,
-.WorkPage__reviews .WorkPage__review .Skeleton__text {
+.WorkPage__reviews .review_list__review .Skeleton__user__wrap,
+.WorkPage__reviews .review_list__review .Skeleton__text {
   display: inline-block;
 }
 
-.WorkPage__reviews .WorkPage__review .Skeleton__text {
+.WorkPage__reviews .review_list__review .Skeleton__text {
   width: calc(50%);
 }
 
-.WorkPage__reviews .WorkPage__review .Skeleton__user__wrap span.Skeleton__user {
+.WorkPage__reviews .review_list__review .Skeleton__user__wrap span.Skeleton__user {
   width: 40px;
   height: 40px;
 }

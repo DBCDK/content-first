@@ -281,6 +281,14 @@
       "tagsCollapsibleHide": {
         "da": "Se færre tags",
         "en": "Less tags"
+      },
+      "showMoreReviews": {
+        "da": "Vis flere anmedelser",
+        "en": "Show more reviews"
+      },
+      "readReview": {
+        "da": "Læs anmedelsen",
+        "en": "Read review"
       }
     },
     "profile": {

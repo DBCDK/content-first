@@ -6,6 +6,11 @@
 
 /* work */
 
+.workPreview__work .paper_reviews_hide_overflow{
+  max-height: 300px;
+
+}
+
 .WorkPreview__container .workPreview__work {
   display: flex;
   padding: 0 3rem 0 0;

@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import FullTextReview from '../FullTextReview.component';
 
-jest.mock('../../general/Link.component', () => 'Link');
+jest.mock('../../../general/Link.component', () => 'Link');
 
 const sampleReviews = [
   {

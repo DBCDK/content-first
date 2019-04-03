@@ -1,11 +1,11 @@
 import React from 'react';
-import {timestampToShortDate} from '../../utils/dateTimeFormat';
+import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
-import Title from '../base/Title';
-import Text from '../base/Text';
-import {OPEN_MODAL} from '../../redux/modal.reducer';
+import Title from '../../base/Title';
+import Text from '../../base/Text';
+import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {connect} from 'react-redux';
-import Link from '../general/Link.component';
+import Link from '../../general/Link.component';
 import TruncateMarkup from 'react-truncate-markup';
 
 /**
@@ -31,7 +31,7 @@ export class ResumeReview extends React.Component {
         ? review.review.Vurdering
         : review.review[reviewKeys[0]]; // If Vurdering is not present, take the first review paragraph
     return (
-      <div className="Review__container mr-4 mb-5">
+      <div className="Review__container mr-4 mb-3">
         <div className="Review__block--top">
           <Title Tag="h6" type="title6" className="Review__block--title mb0">
             Bibliotekernes vurdering
