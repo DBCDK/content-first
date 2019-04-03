@@ -94,7 +94,11 @@ class Footer extends React.Component {
               <Text type="body" className="mt-3 pr-md-3 pr-lg-3">
                 <T component="footer" name="customerServiceText" />
                 <br />
-                <a href="https://kundeservice.dbc.dk" target="_blank">
+                <a
+                  href="https://kundeservice.dbc.dk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <T component="footer" name="customerServiceLinkText" />
                 </a>
               </Text>
