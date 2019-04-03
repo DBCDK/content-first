@@ -54,6 +54,7 @@ class ProfileImage extends React.Component {
                   className="d-none"
                   src={'/v1/image/' + user.image + '/' + size + '/' + size}
                   onLoad={() => this.imageIsLoaded()}
+                  alt=""
                 />
               </SkeletonUser>
             ) : (

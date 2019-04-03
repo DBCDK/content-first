@@ -339,6 +339,7 @@ export class TopBar extends React.Component {
         <Link href="/" className={`Topbar__logo ${hideOnIE11}`}>
           <div className="d-block d-sm-none d-inline-flex">
             <object
+              aria-label=""
               type="image/svg+xml"
               data="/img/general/dibliofigur.svg"
               style={{
@@ -366,6 +367,7 @@ export class TopBar extends React.Component {
           <div className="d-none d-sm-block">
             <div className="d-inline-flex">
               <object
+                aria-label=""
                 type="image/svg+xml"
                 data="/img/general/dibliofigur.svg"
                 style={{

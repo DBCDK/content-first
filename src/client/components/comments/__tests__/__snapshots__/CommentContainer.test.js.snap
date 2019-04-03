@@ -41,6 +41,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
               className="Skeleton__user "
             >
               <img
+                alt=""
                 className="d-none"
                 onLoad={[Function]}
                 src="/v1/image/image_id/40/40"
@@ -129,6 +130,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
               className="Skeleton__user "
             >
               <img
+                alt=""
                 className="d-none"
                 onLoad={[Function]}
                 src="/v1/image/image_id/40/40"
@@ -338,6 +340,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
                       className="Skeleton__user "
                     >
                       <img
+                        alt=""
                         className="d-none"
                         onLoad={[Function]}
                         src="/v1/image/image_id/40/40"
@@ -593,6 +596,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
               className="Skeleton__user "
             >
               <img
+                alt=""
                 className="d-none"
                 onLoad={[Function]}
                 src="/v1/image/image_id/40/40"
@@ -775,6 +779,7 @@ exports[`CommentContainer Component renders error 1`] = `
                       className="Skeleton__user "
                     >
                       <img
+                        alt=""
                         className="d-none"
                         onLoad={[Function]}
                         src="/v1/image/image_id/40/40"
@@ -1024,6 +1029,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
                       className="Skeleton__user "
                     >
                       <img
+                        alt=""
                         className="d-none"
                         onLoad={[Function]}
                         src="/v1/image/image_id/40/40"
@@ -1289,6 +1295,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
                       className="Skeleton__user "
                     >
                       <img
+                        alt=""
                         className="d-none"
                         onLoad={[Function]}
                         src="/v1/image/image_id/40/40"
@@ -1567,6 +1574,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
                       className="Skeleton__user "
                     >
                       <img
+                        alt=""
                         className="d-none"
                         onLoad={[Function]}
                         src="/v1/image/image_id/40/40"

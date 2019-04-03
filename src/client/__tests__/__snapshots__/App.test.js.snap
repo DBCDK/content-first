@@ -258,6 +258,7 @@ exports[`renders without crashing 1`] = `
           className="d-block d-sm-none d-inline-flex"
         >
           <object
+            aria-label=""
             data="/img/general/dibliofigur.svg"
             style={
               Object {
@@ -294,6 +295,7 @@ exports[`renders without crashing 1`] = `
             className="d-inline-flex"
           >
             <object
+              aria-label=""
               data="/img/general/dibliofigur.svg"
               style={
                 Object {

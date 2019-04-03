@@ -54,6 +54,7 @@ exports[`Image Upload render function Add image 1`] = `
                           src="/img/general/user-placeholder-thumbnail.svg"
                         >
                           <img
+                            alt=""
                             className="image-upload-image"
                             onMouseOut={[Function]}
                             onMouseOver={[Function]}
@@ -240,6 +241,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               >
                 <label>
                   <img
+                    alt=""
                     className="image-upload-image"
                     onMouseOut={[Function]}
                     onMouseOver={[Function]}
