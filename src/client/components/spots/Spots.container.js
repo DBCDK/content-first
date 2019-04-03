@@ -5,10 +5,6 @@ import SpotItem from './SpotItem.component';
 import './Spots.css';
 
 export class SpotsBelt extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="spots-container mb-0 mb-md-5 mt-5">

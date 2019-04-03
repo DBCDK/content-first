@@ -2,10 +2,6 @@ import React from 'react';
 import T from '../base/T';
 
 export class ProfileInput extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const handleChange = e => {
       this.props.onInputChange(e.target.value);
