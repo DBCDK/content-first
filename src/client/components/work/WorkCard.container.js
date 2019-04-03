@@ -12,10 +12,7 @@ import './WorkCard.css';
 
 export const SkeletonWorkCard = props => {
   return (
-    <div
-      ref={props.cardRef || null}
-      className={'WorkCard' + ' ' + props.className}
-    >
+    <div ref={props.cardRef || null} className={'WorkCard ' + props.className}>
       <BookCover book={{book: {}}} />
       <div
         className="skelet-taxonomy-description d-xs-none d-sm-block"

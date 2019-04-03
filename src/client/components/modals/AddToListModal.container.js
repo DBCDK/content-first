@@ -137,7 +137,7 @@ export class AddToListModal extends React.Component {
                 return (
                   <div key={l._id}>
                     <input
-                      id={'radio' + '-' + l.title + '-' + i}
+                      id={'radio-' + l.title + '-' + i}
                       ref={
                         this.state.latestUsedId === l._id &&
                         !this.state.listName
@@ -154,7 +154,7 @@ export class AddToListModal extends React.Component {
                         this.setState({list: l, latestUsedId: l._id})
                       }
                     />
-                    <label htmlFor={'radio' + '-' + l.title + '-' + i}>
+                    <label htmlFor={'radio-' + l.title + '-' + i}>
                       {l.title}
                     </label>
                   </div>
@@ -167,7 +167,7 @@ export class AddToListModal extends React.Component {
                 return (
                   <div key={l._id}>
                     <input
-                      id={'radio' + '-' + l.title + '-' + i}
+                      id={'radio-' + l.title + '-' + i}
                       ref={
                         this.state.latestUsedId === l._id &&
                         !this.state.listName
@@ -185,7 +185,7 @@ export class AddToListModal extends React.Component {
                       }
                     />
                     <label
-                      htmlFor={'radio' + '-' + l.title + '-' + i}
+                      htmlFor={'radio-' + l.title + '-' + i}
                       data-cy={'add-to-list-modal-system-lists'}
                     >
                       {l.title}
