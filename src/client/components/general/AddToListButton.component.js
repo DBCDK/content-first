@@ -179,6 +179,7 @@ export class AddToListButton extends React.Component {
                 </li>
               );
             }
+            return null;
           })}
 
           {this.props.customLists.length > 0 && (

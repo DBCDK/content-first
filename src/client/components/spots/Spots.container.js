@@ -22,6 +22,7 @@ export class SpotsBelt extends React.Component {
               />
             );
           }
+          return null;
         })}
       </div>
     );

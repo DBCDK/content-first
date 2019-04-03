@@ -186,6 +186,7 @@ class WorkPage extends React.Component {
                             </Link>
                           );
                         }
+                        return null;
                       })}
                     {!work.collectionHasLoaded && (
                       <React.Fragment>
@@ -384,6 +385,7 @@ class WorkPage extends React.Component {
                           </Text>
                         );
                       }
+                      return null;
                     })}
                   {!work.collectionHasLoaded && (
                     <React.Fragment>

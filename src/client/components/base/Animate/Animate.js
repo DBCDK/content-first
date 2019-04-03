@@ -17,6 +17,7 @@ export class Animate extends React.Component {
       if (!obj.animated) {
         return <Animation animation={obj} />;
       }
+      return null;
     });
   }
 }
