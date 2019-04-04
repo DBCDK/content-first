@@ -32,7 +32,12 @@ export class BookmarkButton extends React.PureComponent {
           this.props.className
         }
         style={this.props.style}
-        onClick={() => this.props.toggle(this.props.origin, this.props.work)}
+        onClick={e => {
+          // Prevent opening workpreview on bookmark click
+          e.preventDefault();
+          e.stopPropagation();
+          this.props.toggle(this.props.origin, this.props.work);
+        }}
         type="tertiary"
         size="medium"
         dataCy={this.props.dataCy}

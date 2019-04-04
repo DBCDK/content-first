@@ -16,10 +16,6 @@
   padding-right: 3rem;
 }
 
-.WorkPage__work .WorkPage__image .BookmarkButtonCircle {
-  display: none;
-}
-
 .WorkPage__work .WorkPage__image img {
   width: auto;
   height: 100%;
@@ -114,7 +110,6 @@
   color: var(--dark-cyan);
 }
 
-
 .WorkPage__reviews .review_list__review .review_list__review__details {
   display: inline-block;
 }
@@ -139,7 +134,10 @@
   width: calc(50%);
 }
 
-.WorkPage__reviews .review_list__review .Skeleton__user__wrap span.Skeleton__user {
+.WorkPage__reviews
+  .review_list__review
+  .Skeleton__user__wrap
+  span.Skeleton__user {
   width: 40px;
   height: 40px;
 }
