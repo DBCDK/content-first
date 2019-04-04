@@ -4,9 +4,10 @@ import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import ArrowBack from '../svg/ArrowBack.svg';
 import T from '../base/T/';
-import {isMobile} from 'react-device-detect';
 
 export function LoginModal({context, closeModal, login}) {
+  const isMobile = window.innerWidth < 768;
+
   function renderHeder() {
     if (isMobile) {
       return (
