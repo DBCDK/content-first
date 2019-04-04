@@ -12,7 +12,8 @@ const Link = ({
   params = {},
   dataCy,
   meta,
-  disable = false
+  disable = false,
+  style = {}
 }) =>
   disable ? (
     <React.Fragment>{children}</React.Fragment>
@@ -20,6 +21,7 @@ const Link = ({
     <a
       className={className}
       href={href}
+      style={style}
       onClick={e => {
         if (type !== HISTORY_NEW_TAB) {
           e.preventDefault();

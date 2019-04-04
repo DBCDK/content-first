@@ -33,6 +33,7 @@ class App extends Component {
     super(props);
     this.state = {didShowCookieModal: false};
   }
+
   componentWillMount() {
     this.props.userDetailsRequest();
   }
@@ -97,7 +98,7 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <div className={'App'}>
         {topbar ? (
           <div>
             <TopBar dispatch={this.props.dispatch} user={this.props.user} />
@@ -106,9 +107,7 @@ class App extends Component {
         ) : (
           ''
         )}
-
-        {currentPage}
-
+        <div id="scrollableArea">{currentPage}</div>
         <Modal />
         <CookieWarning />
         <Animate />
@@ -116,14 +115,16 @@ class App extends Component {
         <ToastContainer
           position="top-right"
           autoClose={5000}
-          hideProgressBar
+          hideProgressBar={false}
           newestOnTop
           closeOnClick
           rtl={false}
-          pauseOnVisibilityChange
+          pauseOnVisibilityChange={false}
           draggable
-          pauseOnHover
+          pauseOnHover={false}
+          delay={5000}
         />
+
         <FeedbackButton />
         <Footer />
       </div>

@@ -10,11 +10,15 @@ const getQueryStringParams = query => {
         .reduce((params, param) => {
           let [key, value] = param.split('=');
 
+          /* Decode Url before detecting values, removes the bug where comma seperated values,
+            is shown as %2C*/
+          value = decodeURIComponent(value);
+
           /* Check if value is a range - if true convert to array */
           if (value.includes(',')) {
             value = value.split(',');
           } else {
-            value = decodeURIComponent(value.replace(/\+/g, ' '));
+            value = value.replace(/\+/g, ' ');
           }
 
           if (!params[key]) {

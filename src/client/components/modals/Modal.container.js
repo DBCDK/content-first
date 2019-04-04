@@ -14,18 +14,35 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 
 class Modal extends React.Component {
-  static anyOpen(modalState) {
-    const modals = Object.keys(modalState);
-    for (let i = 0; i < modals.length; i++) {
-      const modal = modals[i];
-      if (modalState[modal].open) {
-        return true;
+  render() {
+    const anyOpen = ms => {
+      const modals = Object.keys(ms);
+      for (let i = 0; i < modals.length; i++) {
+        const modal = modals[i];
+        if (ms[modal].open) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    let rootView = document.getElementById('root');
+    let scrollArea = document.getElementById('scrollableArea');
+    //
+    if (scrollArea && rootView) {
+      if (anyOpen(this.props.modalState)) {
+        let orig = scrollArea.getBoundingClientRect();
+        rootView.style.height = '100vh';
+        scrollArea.style.marginTop = orig.top - 80 + 'px';
+      } else {
+        rootView.style.height = 'auto';
+        let fixedScrollPos =
+          Math.abs(scrollArea.getBoundingClientRect().top) + 80;
+        scrollArea.style.marginTop = 0;
+        window.scrollTo(0, fixedScrollPos);
       }
     }
-    return false;
-  }
 
-  render() {
     let modal = null;
     if (this.props.modalState.addToList.open) {
       const {context} = this.props.modalState.addToList;
@@ -98,6 +115,7 @@ class Modal extends React.Component {
         <ShowReviewModal context={this.props.modalState.showReview.context} />
       );
     }
+
     return (
       <ReactCSSTransitionGroup
         transitionName="modal"

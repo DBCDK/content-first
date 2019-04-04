@@ -3,7 +3,6 @@
   justify-content: center;
   background-color: var(--lys-graa);
   margin-top: 50px;
-  z-index: 2;
 }
 
 .Footer__outer-container--flexbox.Footer__sticky {
@@ -12,6 +11,7 @@
   bottom: 0;
   left: 0;
   margin-top: 0px;
+  z-index: 9;
 }
 
 .Footer__container--elements {
