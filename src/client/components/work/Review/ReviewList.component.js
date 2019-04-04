@@ -80,7 +80,7 @@ class ReviewList extends React.Component {
         >
           <div className="row">
             <div className="col-md-12">
-              <Title Tag="h5" type="title5" className="mt3 mb2">
+              <Title Tag="h5" type="title5" className="mb-2">
                 <T component="work" name={'reviewsTitle'} />
               </Title>
             </div>
