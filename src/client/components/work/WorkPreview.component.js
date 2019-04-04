@@ -54,9 +54,34 @@ class WorkPreview extends React.Component {
               <Link href={'/værk/' + book.pid}>
                 <BookCover
                   book={book}
-                  styles={{background: 'transparent'}}
+                  styles={{
+                    background: 'transparent',
+                    height: '100%',
+                    width: 'auto',
+                    display: 'inline',
+                    textAlign: 'center'
+                  }}
                   dataCy={dataCy}
-                />
+                >
+                  <BookmarkButton
+                    className="icon-large"
+                    origin={T({
+                      component: 'work',
+                      name: 'bookmarkButtonOrigin'
+                    })}
+                    work={work}
+                    rid={this.props.rid}
+                    layout="teardrop"
+                    style={{
+                      position: 'absolute',
+                      right: 0,
+                      top: 0,
+                      width: '40px',
+                      height: '40px'
+                    }}
+                    dataCy="bookmarkBtn"
+                  />
+                </BookCover>
               </Link>
             </div>
             <div className="workPreview__info col-8">
@@ -182,32 +207,20 @@ class WorkPreview extends React.Component {
                   </React.Fragment>
                 )}
               </div>
-              <div className="row">
+              <div className="row mt-3">
                 <div className="col-12">
-                  <BookmarkButton
-                    className="mr1 mt1"
-                    origin={T({
-                      component: 'work',
-                      name: 'bookmarkButtonOrigin'
-                    })}
-                    work={work}
-                  />
-                  <AddToListButton className="mr1 mt1" work={work} />
+                  <AddToListButton work={work} />
                 </div>
               </div>
-              <div className="row">
-                <div className="col-12 pt2">
-                  <div className="position-relative d-inline">
-                    <RemindsOf
-                      onClick={() => this.props.openSimilarBelt(work)}
+              <div className="row mt-2">
+                <div className="col-12">
+                  <RemindsOf onClick={() => this.props.openSimilarBelt(work)} />
+                  {this.props.hasChildBelt && (
+                    <Icon
+                      name="expand_more"
+                      className="workPreview__arrow md-large"
                     />
-                    {this.props.hasChildBelt && (
-                      <Icon
-                        name="expand_more"
-                        className="workPreview__arrow md-large"
-                      />
-                    )}
-                  </div>
+                  )}
                 </div>
               </div>
             </div>

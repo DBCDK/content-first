@@ -79,22 +79,26 @@ class WorkPage extends React.Component {
             <div className="row mt-0 mt-sm-5">
               <div className="col-12 col-xl-8 WorkPage__work">
                 <div className="WorkPage__image">
-                  <BookCover book={book} enableLightbox />
-                  <BookmarkButton
-                    className="d-inline-block d-sm-none mr1"
-                    origin={T({
-                      component: 'work',
-                      name: 'bookmarkButtonOrigin'
-                    })}
-                    work={work}
-                    layout="circle"
-                    style={{
-                      position: 'absolute',
-                      top: '1rem',
-                      right: 0,
-                      borderRadius: '50%'
-                    }}
-                  />
+                  <BookCover book={book} enableLightbox>
+                    <BookmarkButton
+                      className="icon-large"
+                      origin={T({
+                        component: 'work',
+                        name: 'bookmarkButtonOrigin'
+                      })}
+                      work={work}
+                      rid={this.props.rid}
+                      layout="teardrop"
+                      style={{
+                        position: 'absolute',
+                        right: 0,
+                        top: 0,
+                        width: '40px',
+                        height: '40px'
+                      }}
+                      dataCy="bookmarkBtn"
+                    />
+                  </BookCover>
                 </div>
                 <div className="WorkPage__info">
                   <Share
@@ -222,21 +226,13 @@ class WorkPage extends React.Component {
                       </React.Fragment>
                     )}
                   </div>
-                  <div className="row">
-                    <div className="col-12 mt1">
-                      <BookmarkButton
-                        className="mr1"
-                        origin={T({
-                          component: 'work',
-                          name: 'bookmarkButtonOrigin'
-                        })}
-                        work={work}
-                      />
-                      <AddToListButton className="mr1 pt1" work={work} />
+                  <div className="row mt-3">
+                    <div className="col-12">
+                      <AddToListButton work={work} />
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col-12 pt2">
+                  <div className="row mt-2">
+                    <div className="col-12">
                       <RemindsOf
                         onClick={() => {
                           const pos = this.booksBeltPosition

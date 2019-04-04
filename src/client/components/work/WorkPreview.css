@@ -6,9 +6,8 @@
 
 /* work */
 
-.workPreview__work .paper_reviews_hide_overflow{
+.workPreview__work .paper_reviews_hide_overflow {
   max-height: 300px;
-
 }
 
 .WorkPreview__container .workPreview__work {
@@ -20,16 +19,16 @@
 .workPreview__work .workPreview__image {
   max-height: 300px;
   padding-right: 3rem;
+  text-align: center;
 }
 
 .workPreview__work .workPreview__image div {
-  display: block !important;
+  display: block;
 }
 
 .workPreview__work .workPreview__image img {
   width: 100%;
   height: auto;
-  display: block !important;
 }
 
 .workPreview__work .workPreview__info {
