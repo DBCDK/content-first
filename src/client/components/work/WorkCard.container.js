@@ -136,7 +136,7 @@ class WorkCard extends React.Component {
                       this.props.rid
                     );
                   }}
-                  dataCy="WC-more-like-this"
+                  data-cy="WC-more-like-this"
                 />
               )}
               <Paragraph className="mt-2">
