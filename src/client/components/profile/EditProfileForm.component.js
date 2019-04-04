@@ -91,7 +91,7 @@ export default class EditProfileForm extends React.Component {
         </div>
 
         <div className="profile__edit-link">
-          <a href="/om">Se regler og vilkår for Min næste bog</a>
+          <a href="/om">Se regler og vilkår for Læsekompasset</a>
         </div>
 
         <div className="profile__edit-link">
