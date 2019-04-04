@@ -78,16 +78,15 @@
 }
 
 .profile__edit-image-upload .profile-picture .image-upload .image-upload-loader {
-    width: 90px;
-    height: 90px;
+    width: 88px;
+    height: 88px;
     margin-right: 0;
+    background-color: var(--petroleum);
 }
 
 .profile__edit-image-upload .profile-picture .image-upload .image-upload-loader .image-upload-image {
     width: 90px;
     height: 90px;
-    border-radius: 50%;
-    cursor: pointer;
 }
 
 .profile__edit-top-position .profile__edit-textfield-zone {

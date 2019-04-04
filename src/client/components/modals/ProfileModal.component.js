@@ -123,7 +123,6 @@ export class ProfileModal extends React.Component {
                     <div className="d-flex">
                       <ProfileUploadImage
                         error={this.props.imageError}
-                        style={{borderRadius: '50%'}}
                         loading={this.props.imageIsLoading}
                         personalImage={
                           this.props.profileImageId
@@ -142,10 +141,10 @@ export class ProfileModal extends React.Component {
                         }
                         onFile={this.props.addImage}
                         thumbnailImage={
-                          '/img/general/user-placeholder-thumbnail.png'
+                          '/img/general/user-placeholder-thumbnail.svg'
                         }
                         thumbnailImageHover={
-                          '/img/general/user-placeholder-thumbnail-hover.png'
+                          '/img/general/user-placeholder-thumbnail-hover.svg'
                         }
                       />
 

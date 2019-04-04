@@ -1,5 +1,4 @@
 
-
 .profile__modal-container {
     position: fixed;
     top: 0;
@@ -32,17 +31,13 @@
     z-index: 99999;
 }
 
-.profile__spinner {
-    background-color: var(--petroleum);
-    size: 46px;
-}
-
 /*ACCEPT*/
+
 .profile__accept-window {
     font: var(--primary-font);
     color: var(--petroleum);
     padding-top: 40px;
-    padding-bottom: 34px,
+    padding-bottom: 34px;
 }
 
 .profile__accept-margins {
@@ -83,12 +78,26 @@
     width: 265px;
     margin-right: 8px;
 }
-
+.image-upload-loader, .image-upload-image{
+    border-radius: 50%;
+    cursor: pointer;
+}
+.profile__accept-nameAndImg .image-upload-loader {
+    margin-top: 17px;
+    width:44px;
+    height:44px;
+    background-color: var(--petroleum);
+}
 
 .profile__accept-nameAndImg .image-upload-image {
-    margin-top: 17px;
-    width:45px;
-    height:45px;
+    width:46px;
+    height:46px;
+}
+
+.profile__accept-nameAndImg .profile__spinner {
+    background-color: var(--petroleum);
+    size: 45px;
+    border-radius: 50%;
 }
 .profile__accept-inputNameTitle {
     font-size: 14px;
@@ -100,6 +109,7 @@
     width: 200px;
     height: 24px;
     margin-left: 7px;
+    margin-top: -28px;
     font-size: 10px;
     font-weight: 400;
     color: var(--silver-chalice);
