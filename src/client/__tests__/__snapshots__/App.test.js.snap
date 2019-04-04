@@ -12,11 +12,11 @@ exports[`renders without crashing 1`] = `
       <nav
         className="col-12 col-m-8 Topbar__navigation"
       >
-        <div
-          className="Topbar__special widthCalc"
+        <a
+          href="/"
         >
-          <a
-            href="/"
+          <div
+            className="Topbar__special widthCalc"
           >
             <img
               alt=""
@@ -28,8 +28,8 @@ exports[`renders without crashing 1`] = `
               }
               type="image/svg+xml"
             />
-          </a>
-        </div>
+          </div>
+        </a>
         <span
           className="Topbar__navigation__btn widthCalc d-none d-md-flex"
         >
@@ -79,7 +79,7 @@ exports[`renders without crashing 1`] = `
                       onFocus={[Function]}
                       onKeyDown={[Function]}
                       onKeyPress={[Function]}
-                      placeholder="Søg på titel, forfatter, stemning..."
+                      placeholder="Søg på stemning, sted eller stil…"
                       type="text"
                       value=""
                     />

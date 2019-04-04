@@ -262,17 +262,16 @@ export class TopBar extends React.Component {
         className={`Topbar row ${!searchExpanded ? 'searchBar-closed' : ''}`}
       >
         <nav className="col-12 col-m-8 Topbar__navigation">
-          <div className="Topbar__special widthCalc">
-            <a href="/">
+          <a href="/">
+            <div className="Topbar__special widthCalc">
               <img
                 type="image/svg+xml"
                 alt=""
                 src="/img/general/dibliofigur.svg"
                 style={{height: '28px'}}
               />
-            </a>
-          </div>
-
+            </div>
+          </a>
           <span className="Topbar__navigation__btn widthCalc d-none d-md-flex">
             <Icon name="search" onClick={() => this.toggleSearchBar('open')} />
             <span className="relative--container">
