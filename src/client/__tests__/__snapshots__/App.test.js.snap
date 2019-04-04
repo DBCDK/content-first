@@ -115,6 +115,7 @@ exports[`renders without crashing 1`] = `
           data-cy=""
           href="/find"
           onClick={[Function]}
+          style={Object {}}
           target="_self"
         >
           <i
@@ -129,6 +130,7 @@ exports[`renders without crashing 1`] = `
           data-cy=""
           href="/huskeliste"
           onClick={[Function]}
+          style={Object {}}
           target="_self"
         >
           <i
@@ -182,6 +184,7 @@ exports[`renders without crashing 1`] = `
             data-cy=""
             href="/huskeliste"
             onClick={[Function]}
+            style={Object {}}
             target="_self"
           >
             <p
@@ -237,6 +240,7 @@ exports[`renders without crashing 1`] = `
           data-cy="topbar-login-btn"
           href="/v1/auth/login"
           onClick={[Function]}
+          style={Object {}}
           target="_self"
         >
           <span>
@@ -252,6 +256,7 @@ exports[`renders without crashing 1`] = `
         data-cy=""
         href="/"
         onClick={[Function]}
+        style={Object {}}
         target="_self"
       >
         <div
@@ -350,6 +355,7 @@ exports[`renders without crashing 1`] = `
             data-cy=""
             href="/profile/opret"
             onClick={[Function]}
+            style={Object {}}
             target="_self"
           >
             <span>

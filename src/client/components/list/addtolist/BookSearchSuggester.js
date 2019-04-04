@@ -122,7 +122,10 @@ class BookSearchSuggester extends React.Component {
     // Finally, render it!
     return (
       <div
-        className={'d-flex position-relative suggestion-list ' + className}
+        className={
+          'd-flex position-relative booksearch-suggester suggestion-list ' +
+          className
+        }
         style={style}
       >
         <Icon name="search" className="align-self-center pl-2 pr-2" />
