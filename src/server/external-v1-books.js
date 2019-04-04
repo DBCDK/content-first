@@ -29,6 +29,35 @@ const fetchToken = async () => {
   return anonymous_token;
 };
 
+const getWork = (
+  pid,
+  dcTitle,
+  creator,
+  abstract,
+  extent,
+  dcLanguage,
+  date,
+  subjectDBCS,
+  coverUrlFull
+) => ({
+  book: {
+    pid,
+    title: (dcTitle && dcTitle[0]) || '',
+    creator: (creator && creator[0]) || '',
+    description: (abstract && abstract[0]) || '',
+    pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
+    language: (dcLanguage && dcLanguage[0]) || '',
+    first_edition_year: (date && date[0]) || '',
+    taxonomy_description_subjects:
+      subjectsToTaxonomyDescription(subjectDBCS) || '',
+    tags:
+      (subjectDBCS &&
+        subjectDBCS.map(title => fromTitle(title)).filter(t => t)) ||
+      [],
+    coverUrl: (coverUrlFull && coverUrlFull[0]) || null
+  }
+});
+
 /**
  * Will fetch a work from openplatform
  * The taxonomy_description from local db is included as well
@@ -66,24 +95,17 @@ const fetchWork = async pid => {
   })).body.data[0];
 
   /* map result */
-  work = {
-    book: {
-      pid,
-      title: (dcTitle && dcTitle[0]) || '',
-      creator: (creator && creator[0]) || '',
-      description: (abstract && abstract[0]) || '',
-      pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
-      language: (dcLanguage && dcLanguage[0]) || '',
-      first_edition_year: (date && date[0]) || '',
-      taxonomy_description_subjects:
-        subjectsToTaxonomyDescription(subjectDBCS) || '',
-      tags:
-        (subjectDBCS &&
-          subjectDBCS.map(title => fromTitle(title)).filter(t => t)) ||
-        [],
-      coverUrl: (coverUrlFull && coverUrlFull[0]) || null
-    }
-  };
+  work = getWork(
+    pid,
+    dcTitle,
+    creator,
+    abstract,
+    extent,
+    dcLanguage,
+    date,
+    subjectDBCS,
+    coverUrlFull
+  );
 
   /* include taxonomy_description */
   const workWithTaxonomyDescription = await knex(bookTable)
