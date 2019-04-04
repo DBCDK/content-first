@@ -272,9 +272,8 @@ class WorkPage extends React.Component {
                   >
                     {tags.map(group => {
                       return (
-                        <React.Fragment>
+                        <React.Fragment key={group.title}>
                           <Text
-                            key={group.title}
                             type="body"
                             className="WorkPage__tagHeading mb0 mt0"
                           >
@@ -379,7 +378,7 @@ class WorkPage extends React.Component {
                     collection.map(col => {
                       if (col.count === 1) {
                         return (
-                          <Text type="micro" className="mr1">
+                          <Text type="micro" className="mr1" key={col.url}>
                             <Icon name={col.icon} className="md-xsmall" />
                             {' ' + col.type}
                           </Text>
