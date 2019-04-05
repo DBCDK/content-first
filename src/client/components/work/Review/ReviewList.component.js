@@ -93,9 +93,19 @@ class ReviewList extends React.Component {
               }
             >
               {this.props.reviews.map(rev => {
-                const date =
-                  rev.creator.split(',')[1] &&
-                  timestampToShortDate(rev.creator.split(',')[1]);
+                let date =
+                  (rev.creator.split(',')[1] && rev.creator.split(',')[1]) ||
+                  null;
+                date = date
+                  ? timestampToShortDate(
+                      new Date(
+                        date.split('-')[0],
+                        parseInt(date.split('-')[1], 10) - 1,
+                        date.split('-')[2]
+                      )
+                    )
+                  : null;
+
                 return (
                   <div className="review_list__review mr-4 mb-3">
                     <span className="review_list__review__details ">
