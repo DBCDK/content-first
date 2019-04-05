@@ -119,12 +119,13 @@ export const createGetRecommendedPids = () => {
         prevRecommendations = recommendationsCopy;
         return recommendationsCopy;
       },
-      (state, {excluded}) => excluded
+      (state, {excluded}) => excluded,
+      (state, {limit}) => limit
     ],
-    (recommendations, excluded) => {
+    (recommendations, excluded, limit = 20) => {
       return {
         ...recommendations,
-        pids: difference(recommendations.pids, excluded).slice(0, 20)
+        pids: difference(recommendations.pids, excluded).slice(0, limit)
       };
     }
   );
