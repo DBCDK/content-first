@@ -59,7 +59,8 @@ const withTagsToPids = WrappedComponent => {
       });
       let {pids, rid} = getRecommendedPids(state, {
         tags: plainSelectedTagIds,
-        excluded: ownProps.excluded
+        excluded: ownProps.excluded,
+        limit: ownProps.limit
       });
       return {
         plainSelectedTagIds,
@@ -69,13 +70,13 @@ const withTagsToPids = WrappedComponent => {
     };
   };
 
-  const mapDispatchToProps = dispatch => ({
+  const mapDispatchToProps = (dispatch, ownProps) => ({
     fetchRecommendations: tags =>
       dispatch({
         type: TAGS_RECOMMEND_REQUEST,
         fetchWorks: false,
         tags: tags,
-        max: 50
+        max: Math.max(50, (ownProps.limit || 0) * 2)
       })
   });
   return connect(
