@@ -327,12 +327,12 @@ exports[`renders without crashing 1`] = `
                   <div
                     className="d-none d-sm-inline logo-beta-text Text__small"
                   >
-                    <p
+                    <span
                       className="d-inline logo-beta-link mb0 Text Text__small Text__small--decoration-underline"
                       onClick={[Function]}
                     >
                       Læs mere
-                    </p>
+                    </span>
                   </div>
                 </div>
               </div>
