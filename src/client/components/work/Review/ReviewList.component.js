@@ -6,13 +6,13 @@ import Title from '../../base/Title';
 import Text from '../../base/Text';
 import T from '../../base/T';
 import SkeletonText from '../../base/Skeleton/Text';
-import SkeletonUser from '../../base/Skeleton/User';
 import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
 
 /**
  * This class displays a list of reviews
- */
+ **/
+
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
@@ -151,30 +151,27 @@ class ReviewList extends React.Component {
           )}
           {!work.reviewsHasLoaded && (
             <React.Fragment>
-              <a className="workPreview__review mb1">
-                <SkeletonUser pulse={true} className="mr1" />
+              <div className="workPreview__review mb-3">
                 <SkeletonText
-                  lines={2}
+                  lines={3}
                   color="#e9eaeb"
                   className="Skeleton__Pulse"
                 />
-              </a>
-              <a className="workPreview__review mb1">
-                <SkeletonUser pulse={true} className="mr1" />
+              </div>
+              <div className="workPreview__review mb-3">
                 <SkeletonText
-                  lines={2}
+                  lines={3}
                   color="#e9eaeb"
                   className="Skeleton__Pulse"
                 />
-              </a>
-              <a className="workPreview__review">
-                <SkeletonUser pulse={true} className="mr1" />
+              </div>
+              <div className="workPreview__review mb-3">
                 <SkeletonText
-                  lines={2}
+                  lines={3}
                   color="#e9eaeb"
                   className="Skeleton__Pulse"
                 />
-              </a>
+              </div>
             </React.Fragment>
           )}
 

@@ -24,6 +24,7 @@ import ReviewList from './Review/ReviewList.component';
 /**
  * WorkPage
  */
+
 class WorkPage extends React.Component {
   constructor(props) {
     super(props);

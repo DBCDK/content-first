@@ -1,13 +1,18 @@
-.info-callToAction {
+.info-callToAction-wrap {
   width: 85%;
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translate(-50%, 0);
+  z-index: 99;
 }
 
 .info-callToAction i {
   color: white;
+}
+
+.info-callToAction {
+  cursor: pointer;
 }
 
 @media (max-height: 600px) and (orientation: landscape) {
@@ -17,7 +22,7 @@
 }
 
 @media (max-width: 767px) {
-  .info-callToAction {
+  .info-callToAction-wrap {
     bottom: 0px;
   }
 
