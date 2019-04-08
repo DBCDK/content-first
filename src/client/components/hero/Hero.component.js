@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
 
+import Explorer from './explorer/explorer.component.js';
+
 /* templates */
 import SearchbarTemplate from './templates/Searchbar.template.js';
 import InfoTemplate from './templates/Info.template.js';
@@ -29,6 +31,29 @@ const params = {
 };
 
 export class Hero extends React.Component {
+  constructor() {
+    super();
+    this.state = {container: null, windowWidth: null};
+  }
+
+  componentDidMount(props) {
+    window.addEventListener('resize', this.handleResize);
+    if (this.container && this.container !== this.state.container) {
+      this.setState({container: this.container});
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    const windowWidth = window.innerWidth;
+    if (this.state.windowWidth !== windowWidth) {
+      this.setState({windowWidth});
+    }
+  };
+
   template(hero, idx) {
     switch (hero.template) {
       case 'searchbar': {
@@ -59,7 +84,10 @@ export class Hero extends React.Component {
     const {heroes, heroesIsLoading} = this.props;
 
     return (
-      <div className="Hero mb-5">
+      <div
+        className="Hero position-relative mb-5"
+        ref={e => (this.container = e)}
+      >
         <Swiper {...params}>
           {!heroesIsLoading &&
             heroes.map((hero, idx) => {
@@ -69,6 +97,11 @@ export class Hero extends React.Component {
               return null;
             })}
         </Swiper>
+        <Explorer
+          scrollDistanceOnClick={
+            (this.state.container && this.state.container.clientHeight) || 0
+          }
+        />
       </div>
     );
   }

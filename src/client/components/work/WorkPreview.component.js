@@ -56,9 +56,6 @@ class WorkPreview extends React.Component {
                   book={book}
                   styles={{
                     background: 'transparent',
-                    height: '100%',
-                    width: 'auto',
-                    display: 'inline',
                     textAlign: 'center'
                   }}
                   dataCy={dataCy}

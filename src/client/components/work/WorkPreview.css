@@ -18,17 +18,13 @@
 
 .workPreview__work .workPreview__image {
   max-height: 300px;
-  padding-right: 3rem;
+  margin-right: 3rem;
   text-align: center;
 }
 
-.workPreview__work .workPreview__image div {
-  display: block;
-}
-
 .workPreview__work .workPreview__image img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
 }
 
 .workPreview__work .workPreview__info {
@@ -123,10 +119,6 @@
   display: inline-block;
 }
 
-.workPreview__reviews .workPreview__review .Skeleton__text {
-  width: calc(50%);
-}
-
 .workPreview__reviews
   .workPreview__review
   .Skeleton__user__wrap
@@ -146,6 +138,14 @@
     border-right: none;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .workPreview__work .workPreview__image img {
+    width: 100%;
+    height: auto;
+  }
+}
+
 .work-preview-book-creator {
   color: var(--petroleum) !important;
 }

@@ -12,7 +12,8 @@ import './Review.css';
 
 /**
  * This class displays a list of reviews
- */
+ **/
+
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
@@ -141,30 +142,27 @@ class ReviewList extends React.Component {
           )}
           {!work.reviewsHasLoaded && (
             <React.Fragment>
-              <a className="workPreview__review mb1">
-                <SkeletonUser pulse={true} className="mr1" />
+              <div className="workPreview__review mb-3">
                 <SkeletonText
-                  lines={2}
+                  lines={3}
                   color="#e9eaeb"
                   className="Skeleton__Pulse"
                 />
-              </a>
-              <a className="workPreview__review mb1">
-                <SkeletonUser pulse={true} className="mr1" />
+              </div>
+              <div className="workPreview__review mb-3">
                 <SkeletonText
-                  lines={2}
+                  lines={3}
                   color="#e9eaeb"
                   className="Skeleton__Pulse"
                 />
-              </a>
-              <a className="workPreview__review">
-                <SkeletonUser pulse={true} className="mr1" />
+              </div>
+              <div className="workPreview__review mb-3">
                 <SkeletonText
-                  lines={2}
+                  lines={3}
                   color="#e9eaeb"
                   className="Skeleton__Pulse"
                 />
-              </a>
+              </div>
             </React.Fragment>
           )}
 
