@@ -15,7 +15,12 @@ export class Animate extends React.Component {
 
     return aAnimations.map(obj => {
       if (!obj.animated) {
-        return <Animation animation={obj} />;
+        return (
+          <Animation
+            key={obj.component.map(o => o.key).join('-')}
+            animation={obj}
+          />
+        );
       }
       return null;
     });
