@@ -36,7 +36,7 @@ export class Hero extends React.Component {
     this.state = {container: null, windowWidth: null};
   }
 
-  componentDidMount(props) {
+  componentDidMount() {
     window.addEventListener('resize', this.handleResize);
     if (this.container && this.container !== this.state.container) {
       this.setState({container: this.container});

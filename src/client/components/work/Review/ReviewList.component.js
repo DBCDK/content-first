@@ -6,7 +6,6 @@ import Title from '../../base/Title';
 import Text from '../../base/Text';
 import T from '../../base/T';
 import SkeletonText from '../../base/Skeleton/Text';
-import SkeletonUser from '../../base/Skeleton/User';
 import {timestampToShortDate} from '../../../utils/dateTimeFormat';
 import './Review.css';
 
