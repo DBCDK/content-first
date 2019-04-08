@@ -21,7 +21,9 @@ export class Animation extends React.Component {
     setTimeout(() => {
       this.props.animation.onEnd();
       this.props.stopAnimation(this.props.animation.name);
-      this.setState({init: false});
+      if (this._isMounted) {
+        this.setState({init: false});
+      }
     }, timer);
   }
 
