@@ -97,7 +97,7 @@ class ReviewList extends React.Component {
                   rev.creator.split(',')[1] &&
                   timestampToShortDate(rev.creator.split(',')[1]);
                 return (
-                  <div className="review_list__review mr-4 mb-3">
+                  <div key={rev.url} className="review_list__review mr-4 mb-3">
                     <span className="review_list__review__details ">
                       <Text
                         type="body"
@@ -120,7 +120,7 @@ class ReviewList extends React.Component {
                         </a>
                         <a target="_blank" href={rev.url}>
                           <i
-                            class="material-icons"
+                            className="material-icons"
                             style={{fontSize: '1.2rem', textDecoration: 'none'}}
                           >
                             launch
