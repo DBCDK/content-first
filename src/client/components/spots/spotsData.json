@@ -10,13 +10,16 @@
   },
   {
     "type": "wide",
-    "title": "HVAD LÆSER CECILIE FRØKJÆR?",
-    "highlight": "CECILIE FRØKJÆR",
-    "image": "/img/spots/bryce-barker-73651-unsplash_cropped.jpg",
-    "tags": [5638, 5632, 5642],
+    "filter": {
+      "color": "#00414b",
+      "opacity": "0.4"
+    },
+    "title": "BØGER OM SAMFUNDSTILSTANDEN",
+    "highlight": "SAMFUNDSTILSTANDEN",
+    "image": "/img/spots/paul-bence-1451782-unsplash.jpg",
     "listLink": {
-      "url": "/lister/d5205150-a5ec-11e8-bc7e-f12e3c5c9eaa",
-      "title": "Se Cecilies bogliste"
+      "url": "/find?tags=2683,4926,4925,4924",
+      "title": "Se bøger med samfundsperspektiv"
     },
     "show": true
   },
