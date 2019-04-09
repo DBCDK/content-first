@@ -91,7 +91,7 @@ export class PaperReview extends React.Component {
                   : null
               }
             >
-              Læs anmedelsen
+              Læs anmeldelsen
               <span>
                 Dit biblliotek har ikke adgang til artiklen i Infomedia
               </span>

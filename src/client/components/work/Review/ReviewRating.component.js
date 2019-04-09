@@ -27,7 +27,11 @@ class ReviewRating extends React.Component {
         </i>
       );
     }
-    return <div className="d-flex">{ratingShapes}</div>;
+    return (
+      <div className="d-flex" style={{alignSelf: 'center'}}>
+        {ratingShapes}
+      </div>
+    );
   }
 }
 

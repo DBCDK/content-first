@@ -107,7 +107,7 @@ class ReviewList extends React.Component {
                   : null;
 
                 return (
-                  <div className="review_list__review mb-3">
+                  <div className="review_list__review mb-3 mr-4">
                     <span className="review_list__review__details ">
                       <Text
                         type="body"
@@ -119,7 +119,10 @@ class ReviewList extends React.Component {
                           : rev.creator}
                       </Text>
 
-                      <Text className="d-flex">
+                      <Text
+                        type="body"
+                        className="d-flex Review__block--lector mb-1"
+                      >
                         <a
                           type="small"
                           onClick={() => {}}
@@ -127,14 +130,6 @@ class ReviewList extends React.Component {
                           href={rev.url}
                         >
                           <T component="work" name={'readReview'} />
-                        </a>
-                        <a target="_blank" href={rev.url}>
-                          <i
-                            className="material-icons"
-                            style={{fontSize: '1.2rem', textDecoration: 'none'}}
-                          >
-                            launch
-                          </i>
                         </a>
                       </Text>
                     </span>
