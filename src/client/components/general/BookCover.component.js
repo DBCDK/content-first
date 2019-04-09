@@ -66,7 +66,7 @@ class BookCover extends React.Component {
           ...styles
         }}
         alt={title}
-        className={`d-inline-flex align-items-start align-items-md-end book-cover position-relative ${className}`}
+        className={`align-items-start align-items-md-end book-cover position-relative ${className}`}
       >
         {enableLightbox && (
           <Lightbox

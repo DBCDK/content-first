@@ -107,7 +107,7 @@ class ReviewList extends React.Component {
                   : null;
 
                 return (
-                  <div className="review_list__review mr-4 mb-3">
+                  <div className="review_list__review mb-3">
                     <span className="review_list__review__details ">
                       <Text
                         type="body"
@@ -130,7 +130,7 @@ class ReviewList extends React.Component {
                         </a>
                         <a target="_blank" href={rev.url}>
                           <i
-                            class="material-icons"
+                            className="material-icons"
                             style={{fontSize: '1.2rem', textDecoration: 'none'}}
                           >
                             launch

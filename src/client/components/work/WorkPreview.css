@@ -17,14 +17,14 @@
 }
 
 .workPreview__work .workPreview__image {
-  max-height: 300px;
+  max-width: 250px;
   margin-right: 3rem;
   text-align: center;
 }
 
 .workPreview__work .workPreview__image img {
-  width: auto;
-  height: 100%;
+  width: 100% !important;
+  height: auto !important;
 }
 
 .workPreview__work .workPreview__info {
@@ -114,17 +114,8 @@
   color: transparent !important;
 }
 
-.workPreview__reviews .workPreview__review .Skeleton__user__wrap,
 .workPreview__reviews .workPreview__review .Skeleton__text {
   display: inline-block;
-}
-
-.workPreview__reviews
-  .workPreview__review
-  .Skeleton__user__wrap
-  span.Skeleton__user {
-  width: 40px;
-  height: 40px;
 }
 
 /* Media Q */

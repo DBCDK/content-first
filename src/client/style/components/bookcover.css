@@ -8,7 +8,7 @@
   height: 100%;
 }
 .book-cover img {
-  max-height: 100% !important;
   object-fit: contain;
   width: 100%;
+  height: auto;
 }
