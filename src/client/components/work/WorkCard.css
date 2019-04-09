@@ -20,6 +20,11 @@
   object-fit: contain;
 }
 
+.WorkCard .book-cover img {
+  width: auto;
+  height: 100%;
+}
+
 .WorkCard .book-cover p:first-child {
   padding-top: 50px;
 }
