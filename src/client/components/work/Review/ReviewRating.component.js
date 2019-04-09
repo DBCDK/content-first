@@ -22,7 +22,7 @@ class ReviewRating extends React.Component {
             : ' grey'
       };
       ratingShapes.push(
-        <i class="material-icons" style={elmStyle}>
+        <i key={i} className="material-icons" style={elmStyle}>
           {rating > i ? filledShape : emptyShape}
         </i>
       );
