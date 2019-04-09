@@ -9,6 +9,7 @@ const ToastMessage = ({
   type = 'success',
   lines = [],
   className,
+  closeToast, // eslint-disable-line no-unused-vars
   ...props
 }) => {
   return (
