@@ -36,13 +36,14 @@ class ReviewList extends React.Component {
 
   renderReviewList() {
     const reviews = this.props.lectorReviews;
-
-    return (
-      reviews &&
+    let paperReviews = [];
+    let libraryReview = [];
+    const litteratursidenReview = this.renderLitteratursidenReview();
+    if (reviews) {
       reviews.map((reviewList, outerKey) => {
         if (typeof reviewList.fullTextReviews !== 'undefined') {
           return reviewList.fullTextReviews.map((review, innerKey) => {
-            return (
+            libraryReview.push(
               <ResumeReview
                 review={review}
                 book={this.props.book}
@@ -52,9 +53,51 @@ class ReviewList extends React.Component {
           });
         }
         const hasRating = reviewList.abstract; // show only reviews with rating
-        return hasRating && <PaperReview review={reviewList} key={outerKey} />;
-      })
-    );
+        paperReviews.push(
+          hasRating && <PaperReview review={reviewList} key={outerKey} />
+        );
+      });
+    }
+    return [...libraryReview, litteratursidenReview, ...paperReviews];
+  }
+
+  renderLitteratursidenReview() {
+    return this.props.reviews.map(rev => {
+      let date =
+        (rev.creator.split(',')[1] && rev.creator.split(',')[1]) || null;
+      date = date
+        ? timestampToShortDate(
+            new Date(
+              date.split('-')[0],
+              parseInt(date.split('-')[1], 10) - 1,
+              date.split('-')[2]
+            )
+          )
+        : null;
+
+      return (
+        <div className="review_list__review mb-3 mr-4">
+          <span className="review_list__review__details ">
+            <Text type="body" variant="weight-semibold" className="mb0">
+              {rev.creator.includes('Litteratursiden')
+                ? 'Litteratursiden'
+                : rev.creator}
+            </Text>
+
+            <Text type="body" className="d-flex Review__block--lector mb-1">
+              <a type="small" onClick={() => {}} target="_blank" href={rev.url}>
+                <T component="work" name={'readReview'} />
+              </a>
+            </Text>
+          </span>
+          {date && (
+            <Text type="small" className="due-txt mb0">
+              {date}
+            </Text>
+          )}
+        </div>
+      );
+    });
   }
   render() {
     const work = this.props.work;
@@ -92,55 +135,6 @@ class ReviewList extends React.Component {
                 (this.refs = {...this.refs, reviewsContainer})
               }
             >
-              {this.props.reviews.map(rev => {
-                let date =
-                  (rev.creator.split(',')[1] && rev.creator.split(',')[1]) ||
-                  null;
-                date = date
-                  ? timestampToShortDate(
-                      new Date(
-                        date.split('-')[0],
-                        parseInt(date.split('-')[1], 10) - 1,
-                        date.split('-')[2]
-                      )
-                    )
-                  : null;
-
-                return (
-                  <div className="review_list__review mb-3 mr-4">
-                    <span className="review_list__review__details ">
-                      <Text
-                        type="body"
-                        variant="weight-semibold"
-                        className="mb0"
-                      >
-                        {rev.creator.includes('Litteratursiden')
-                          ? 'Litteratursiden'
-                          : rev.creator}
-                      </Text>
-
-                      <Text
-                        type="body"
-                        className="d-flex Review__block--lector mb-1"
-                      >
-                        <a
-                          type="small"
-                          onClick={() => {}}
-                          target="_blank"
-                          href={rev.url}
-                        >
-                          <T component="work" name={'readReview'} />
-                        </a>
-                      </Text>
-                    </span>
-                    {date && (
-                      <Text type="small" className="due-txt mb0">
-                        {date}
-                      </Text>
-                    )}
-                  </div>
-                );
-              })}
               {reviewList}
             </div>
           )}
