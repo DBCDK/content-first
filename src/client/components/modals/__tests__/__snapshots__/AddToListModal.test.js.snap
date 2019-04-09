@@ -194,7 +194,7 @@ exports[`AddToListModal multiple works as input 1`] = `
           target="_blank"
         >
           <button
-            className="mr-0 false
+            className="mr-0
                 btn Button Button__medium Button__quaternary "
             data-cy="modal-done-btn"
             disabled={false}
@@ -443,7 +443,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
           target="_blank"
         >
           <button
-            className="mr-0 false
+            className="mr-0
                 btn Button Button__medium Button__quaternary "
             data-cy="modal-done-btn"
             disabled={false}
@@ -678,7 +678,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
           target="_blank"
         >
           <button
-            className="mr-0 false
+            className="mr-0
                 btn Button Button__medium Button__quaternary "
             data-cy="modal-done-btn"
             disabled={false}
