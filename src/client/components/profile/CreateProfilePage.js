@@ -13,10 +13,11 @@ import {
   SAVE_USER_PROFILE,
   DELETE_USER_PROFILE
 } from '../../redux/user.reducer';
+import ReactDOM from 'react-dom';
 
 export class CreateProfilePage extends React.Component {
-  activateSaveButton = () => {
-    this.setState({enableButton: true});
+  activateSaveButton = bool => {
+    this.setState({enableButton: bool});
   };
 
   constructor(props) {
@@ -26,7 +27,22 @@ export class CreateProfilePage extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    window.location.reload();
+  }
+
   render() {
+    let baseImage;
+    if (!this.props.profileImageId && !this.props.tempImageId) {
+      baseImage = '/img/general/user-placeholder-thumbnail.svg';
+    }
+    if (this.props.profileImageId) {
+      baseImage = '/v1/image/' + this.props.profileImageId + '/150/150';
+    }
+    if (this.props.tempImageId) {
+      baseImage = '/v1/image/' + this.props.tempImageId + '/150/150';
+    }
+
     const showImageSection = () => {
       return (
         <div className="profile__edit-image-zone">
@@ -34,25 +50,14 @@ export class CreateProfilePage extends React.Component {
             <ProfileUploadImage
               error={this.props.imageError}
               loading={this.props.imageIsLoading}
-              personalImage={
-                this.props.profileImageId
-                  ? `/v1/image/${this.props.profileImageId}/150/150`
-                  : null
-              }
-              tempPersonalImage={
-                this.props.tempImageId
-                  ? `/v1/image/${this.props.tempImageId}/150/150`
-                  : null
-              }
               onFile={this.props.addImage}
-              thumbnailImage={'/img/general/user-placeholder-thumbnail.svg'}
+              baseImage={baseImage}
               thumbnailImageHover={
                 '/img/general/user-placeholder-thumbnail-hover.svg'
               }
               activateSaveButton={this.activateSaveButton}
             />
           </div>
-          <div className="profile__edit-image-text">Vælg billede</div>
         </div>
       );
     };
@@ -62,8 +67,7 @@ export class CreateProfilePage extends React.Component {
           <EditProfileForm
             name={this.props.name}
             agencyName={this.props.agencyName}
-            updateImageId={this.props.addImage}
-            imageId={this.props.profileImageId}
+            imageId={this.props.tempImageId}
             confirmDelete={() => this.props.confirmDeleteModal()}
             updateProfile={this.props.saveUser}
             isSaving={this.props.isSaving}
@@ -81,7 +85,7 @@ export class CreateProfilePage extends React.Component {
     }
 
     return (
-      <div className="container">
+      <div className="profile__edit-content">
         <div className="profile__edit-titlezone">
           <h1 className="profile__edit-title">{this.props.title}</h1>
         </div>
@@ -101,12 +105,14 @@ export const mapStateToProps = state => ({
   isLoading: state.userReducer.isLoading,
   isSaving: state.userReducer.isSaving,
   isDeleting: state.userReducer.isDeleting,
-  profileImageId: state.userReducer.tempImageId || state.userReducer.image,
+  profileImageId: state.userReducer.image,
+  tempImageId: state.userReducer.tempImageId,
   imageIsLoading: state.userReducer.profileImageIsLoading,
   error: state.userReducer.saveUserError,
   imageError: state.userReducer.imageError,
   agencyName: state.userReducer.agencyName
 });
+
 export const mapDispatchToProps = dispatch => {
   const closeModal = (type, modal) => dispatch({type, modal});
   const deleteUser = type => dispatch({type});
@@ -122,7 +128,9 @@ export const mapDispatchToProps = dispatch => {
   };
 
   return {
-    addImage: image => dispatch({type: ADD_PROFILE_IMAGE, image}),
+    addImage: image => {
+      dispatch({type: ADD_PROFILE_IMAGE, image});
+    },
     saveUser: user => {
       dispatch(
         {

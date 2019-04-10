@@ -353,12 +353,12 @@
         "en": "Enter your personal information"
       },
       "changeProfilePicture": {
-        "da": "Skift profilbillede",
-        "en": "Change profile picture"
+        "da": "Vælg billede",
+        "en": "Select picture"
       },
       "uploadProfilePicture": {
-        "da": "Upload profilbillede",
-        "en": "Upload profile picture"
+        "da": "Vælg billede",
+        "en": "Select picture"
       },
       "profilePictureTooLarge": {
         "da": " er for stor. Billedet må maks fylde 10mb",
@@ -443,14 +443,6 @@
       "acceptAndSubmit": {
         "da": "Accepter regler og vilkår",
         "en": "Accept rules and conditions"
-      },
-      "profilePictureTooLarge": {
-        "da": " er for stor. Billedet må maks fylde 10mb",
-        "en": " is too large. Max 10mb"
-      },
-      "saveProfileToast": {
-        "da": "Din profil er opdateret",
-        "en": "Your profile has been updated"
       }
     },
     "shortlist": {

@@ -5,7 +5,7 @@ exports[`Image Upload render function Add image 1`] = `
   addImage={[Function]}
 >
   <div
-    className="container"
+    className="profile__edit-content"
   >
     <div
       className="profile__edit-titlezone"
@@ -28,10 +28,8 @@ exports[`Image Upload render function Add image 1`] = `
           >
             <ProfileUploadImage
               activateSaveButton={[Function]}
+              baseImage="/img/general/user-placeholder-thumbnail.svg"
               onFile={[Function]}
-              personalImage={null}
-              tempPersonalImage={null}
-              thumbnailImage="/img/general/user-placeholder-thumbnail.svg"
               thumbnailImageHover="/img/general/user-placeholder-thumbnail-hover.svg"
             >
               <div
@@ -67,16 +65,19 @@ exports[`Image Upload render function Add image 1`] = `
                           onChange={[Function]}
                           type="file"
                         />
+                        <div
+                          className="profile-image-text"
+                        >
+                          <T
+                            component="profile"
+                            name="uploadProfilePicture"
+                          >
+                            Vælg billede
+                          </T>
+                        </div>
                       </label>
                     </UploadButton>
                   </div>
-                  <div
-                    style={
-                      Object {
-                        "clear": "both",
-                      }
-                    }
-                  />
                   <div
                     className="profile__image-errors"
                   >
@@ -86,11 +87,6 @@ exports[`Image Upload render function Add image 1`] = `
               </div>
             </ProfileUploadImage>
           </div>
-          <div
-            className="profile__edit-image-text"
-          >
-            Vælg billede
-          </div>
         </div>
         <div
           className="profile__edit-textfield-zone"
@@ -99,15 +95,9 @@ exports[`Image Upload render function Add image 1`] = `
             activateSaveButton={[Function]}
             confirmDelete={[Function]}
             enableButton={true}
-            updateImageId={[Function]}
           >
             <form
               onSubmit={[Function]}
-              style={
-                Object {
-                  "maxWidth": "400px",
-                }
-              }
             >
               <div
                 className="input-group mb2   has-feedback"
@@ -162,7 +152,7 @@ exports[`Image Upload render function Add image 1`] = `
                 <a
                   href="/om"
                 >
-                  Se regler og vilkår for Min næste bog
+                  Se regler og vilkår for Læsekompasset
                 </a>
               </div>
               <div
@@ -214,7 +204,7 @@ exports[`Image Upload render function Add image 1`] = `
 
 exports[`Image Upload render function renders an image upload form 1`] = `
 <div
-  className="container"
+  className="profile__edit-content"
 >
   <div
     className="profile__edit-titlezone"
@@ -259,25 +249,18 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                     onChange={[Function]}
                     type="file"
                   />
+                  <div
+                    className="profile-image-text"
+                  >
+                    Vælg billede
+                  </div>
                 </label>
               </div>
-              <div
-                style={
-                  Object {
-                    "clear": "both",
-                  }
-                }
-              />
               <div
                 className="profile__image-errors"
               />
             </div>
           </div>
-        </div>
-        <div
-          className="profile__edit-image-text"
-        >
-          Vælg billede
         </div>
       </div>
       <div
@@ -285,11 +268,6 @@ exports[`Image Upload render function renders an image upload form 1`] = `
       >
         <form
           onSubmit={[Function]}
-          style={
-            Object {
-              "maxWidth": "400px",
-            }
-          }
         >
           <div
             className="input-group mb2   has-feedback"
@@ -339,7 +317,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
             <a
               href="/om"
             >
-              Se regler og vilkår for Min næste bog
+              Se regler og vilkår for Læsekompasset
             </a>
           </div>
           <div
