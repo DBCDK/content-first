@@ -18,6 +18,7 @@ export default class EditProfileForm extends React.Component {
       name: this.state.name,
       image: this.props.imageId
     });
+    this.props.activateSaveButton(false);
   };
 
   constructor(props) {
@@ -43,7 +44,7 @@ export default class EditProfileForm extends React.Component {
     const agencyName = this.props.agencyName ? this.props.agencyName : '';
 
     return (
-      <form style={{maxWidth: '400px'}} onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}>
         <div
           className={`input-group mb2 ${(name.length > 3 && 'valid-feedback') ||
             ((name.length === 0 && ' ') || 'invalid-feedback')} has-feedback`}
@@ -63,7 +64,7 @@ export default class EditProfileForm extends React.Component {
                 })}
                 value={name}
                 onChange={e => {
-                  this.props.activateSaveButton();
+                  this.props.activateSaveButton(true);
                   this.setState({[e.target.name]: e.target.value});
                 }}
                 data-cy="user-form-name"

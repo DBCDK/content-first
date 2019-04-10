@@ -33,6 +33,10 @@
 
 /*ACCEPT*/
 
+.profile__accept-nameAndImg .profile-image-text{
+    display:none;
+}
+
 .profile__accept-window {
     font: var(--primary-font);
     color: var(--petroleum);
@@ -83,7 +87,7 @@
     cursor: pointer;
 }
 .profile__accept-nameAndImg .image-upload-loader {
-    margin-top: 17px;
+    margin-top: 16px;
     width:44px;
     height:44px;
     background-color: var(--petroleum);
@@ -154,14 +158,17 @@
     margin: 5px 0;
 }
 
-.profile__image-errors {
-    width: 200px;
+.profile__image-errors{
     color: red;
     font-size: 10px;
     font-weight: 400;
+}
+
+.profile__accept-nameAndImg .profile__image-errors {
+    width: 200px;
     margin-left: 60px;
-    margin-top: 20px;
-    height: 40px;
+    margin-top: 0;
+    height:40px;
 }
 
 .profile__accept-userBox {
@@ -371,7 +378,7 @@
     text-decoration: none !important;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 650px) {
 
     .profile__modal-container {
         padding-top: 0px;
