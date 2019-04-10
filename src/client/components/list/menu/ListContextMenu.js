@@ -90,7 +90,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
               modal: 'confirm'
             })
           );
-          dispatch({type: HISTORY_REPLACE, path: '/profile'});
+          dispatch({type: HISTORY_REPLACE, path: '/'});
         },
         onCancel: () => {
           dispatch({
