@@ -1,15 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Divider.css';
 
-const Divider = props => {
-  var newProps = {
-    ...props,
-    className:
-      typeof props.className === 'undefined'
-        ? 'Divider'
-        : 'Divider ' + props.className
-  };
-  return <div {...newProps} />;
+const Divider = ({
+  type = 'horizontal',
+  variant = 'thick',
+  className = '',
+  ...props
+}) => {
+  return (
+    <div
+      className={`${className} Divider Divider__${type} Divider__${type}--${variant}`}
+      {...props}
+    />
+  );
+};
+
+Divider.propTypes = {
+  type: PropTypes.oneOf(['horizontal', 'vertical']),
+  variant: PropTypes.oneOf(['thin', 'thick'])
 };
 
 export default Divider;

@@ -141,9 +141,10 @@ exports[`CommentContainer Delete button 1`] = `
               className="profile-card d-flex flex-column "
             >
               <span
-                className="profile-image text-center small round"
+                className="profile-image text-center small round align-self-center"
                 style={
                   Object {
+                    "flexShrink": 0,
                     "height": "40px",
                     "lineHeight": "74px",
                     "marginRight": "15px",
@@ -368,9 +369,10 @@ exports[`CommentContainer Edit button 1`] = `
               className="profile-card d-flex flex-column "
             >
               <span
-                className="profile-image text-center small round"
+                className="profile-image text-center small round align-self-center"
                 style={
                   Object {
+                    "flexShrink": 0,
                     "height": "40px",
                     "lineHeight": "74px",
                     "marginRight": "15px",
@@ -615,9 +617,10 @@ exports[`CommentContainer Edit button 2`] = `
                 className="profile-card d-flex flex-column "
               >
                 <span
-                  className="profile-image text-center small round"
+                  className="profile-image text-center small round align-self-center"
                   style={
                     Object {
+                      "flexShrink": 0,
                       "height": "40px",
                       "lineHeight": "74px",
                       "marginRight": "15px",
@@ -729,9 +732,10 @@ exports[`CommentContainer Render comment 1`] = `
           className="profile-card d-flex flex-column "
         >
           <span
-            className="profile-image text-center small round"
+            className="profile-image text-center small round align-self-center"
             style={
               Object {
+                "flexShrink": 0,
                 "height": "40px",
                 "lineHeight": "74px",
                 "marginRight": "15px",
@@ -867,9 +871,10 @@ exports[`CommentContainer Render edit form 1`] = `
           className="profile-card d-flex flex-column "
         >
           <span
-            className="profile-image text-center small round"
+            className="profile-image text-center small round align-self-center"
             style={
               Object {
+                "flexShrink": 0,
                 "height": "40px",
                 "lineHeight": "74px",
                 "marginRight": "15px",
@@ -1019,9 +1024,10 @@ exports[`CommentContainer Render save form 1`] = `
           className="profile-card d-flex flex-column "
         >
           <span
-            className="profile-image text-center small round"
+            className="profile-image text-center small round align-self-center"
             style={
               Object {
+                "flexShrink": 0,
                 "height": "40px",
                 "lineHeight": "74px",
                 "marginRight": "15px",
@@ -1221,9 +1227,10 @@ exports[`CommentContainer Save button 1`] = `
               className="profile-card d-flex flex-column "
             >
               <span
-                className="profile-image text-center small round"
+                className="profile-image text-center small round align-self-center"
                 style={
                   Object {
+                    "flexShrink": 0,
                     "height": "40px",
                     "lineHeight": "74px",
                     "marginRight": "15px",
