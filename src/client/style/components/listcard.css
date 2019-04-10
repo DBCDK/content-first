@@ -52,9 +52,6 @@
 .list-card-coverTemplate .list-card-brick-lg {
   width: 90%;
 }
-/* .list-card-coverTemplate .list-card-brick:nth-child(2) {
-  align-self: flex-end;
-} */
 .list-card-summary {
   height: 75px;
 }
