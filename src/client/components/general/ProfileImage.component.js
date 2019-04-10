@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '../base/Icon';
 import SkeletonUser from '../base/Skeleton/User';
 import Text from '../base/Text';
+import TruncateMarkup from 'react-truncate-markup';
 
 /*
 
@@ -39,11 +40,12 @@ class ProfileImage extends React.Component {
         } ${className}`}
       >
         <span
-          className="profile-image text-center small round"
+          className="profile-image text-center small round align-self-center"
           style={{
             width: size + 'px',
             height: size + 'px',
             lineHeight: user && user.image ? 'inherit' : size * 1.85 + 'px',
+            flexShrink: 0,
             ...style
           }}
         >
@@ -79,13 +81,13 @@ class ProfileImage extends React.Component {
           )}
         </span>
         {user && !namePosition === false ? (
-          <Text
-            type="large"
-            className="ml-3 align-self-center"
-            data-cy="user-form-name"
-          >
-            {user.name}
-          </Text>
+          <TruncateMarkup lines={2}>
+            <span className="align-self-center ml-2">
+              <Text type="large" data-cy="user-form-name">
+                {user.name}
+              </Text>
+            </span>
+          </TruncateMarkup>
         ) : (
           ''
         )}
