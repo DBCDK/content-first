@@ -2,7 +2,6 @@
     text-align: left;
     margin-top: 0px;
     margin-bottom: 25rem;
-
     padding-bottom: 25rem;
     transition: margin 500ms ease-in-out;
 }
@@ -22,7 +21,6 @@
     background: var(--petroleum);
     height: 160px;
     width: calc(100% + 130px)/2;
-
 }
 
 .profile__edit-title {
@@ -49,13 +47,11 @@
     margin-left: 10px;
     margin-right: 15px;
     height:150px;
-
 }
 
 .profile__edit-image-upload .image-upload-loader label {
     height: 130px;
     cursor: pointer !important;
-
 }
 
 .spinner-container{
@@ -167,7 +163,6 @@
 
 .profile__edit-link a {
     color: var(--petroleum);
-
 }
 
 .profile__edit-bottom-position {
@@ -192,7 +187,6 @@
     font-weight: 600;
     text-transform: uppercase;
     color:(var --petroleum);
-
 }
 
 .profile__edit-savebtn {
@@ -253,7 +247,6 @@
         margin-left: calc((100% - 105px) / 2);
         margin-right: calc((100% - 105px) / 2);
         display: inline-block;
-
     }
 
     .profile__edit-image-upload {
@@ -278,7 +271,6 @@
         font-size: 14px;
         font-weight: 400;
         text-align: center;
-
     }
 
     /*FORM*/
@@ -293,7 +285,6 @@
         width: 100% !important;
         text-align: center;
         padding-right: 32px;
-
     }
 
     .profile__edit-inputNameTitle {
@@ -326,7 +317,6 @@
 
     .profile__edit-libraryinfo .profile__edit-libraryname {
         width: 100%;
-
     }
 
     .profile__edit-link {
@@ -334,7 +324,6 @@
     }
 
     .profile__edit-bottom-position {
-
         position: relative;
         width: 100%;
         min-width: 0;

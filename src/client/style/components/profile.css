@@ -432,13 +432,10 @@
     .profile__accept-userBox {
         height: 110px;
         margin-left: 5px;
-
-
     }
 
     .profile__accept-userBox .input-group .profile__mobileinputfield {
         width: 235px !important;
-
     }
 
     .profile__name-info {
@@ -517,5 +514,4 @@
     .profile__line {
         width: 330px !important;
     }
-
 }
