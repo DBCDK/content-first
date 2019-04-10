@@ -95,11 +95,9 @@ export class ProfileModal extends React.Component {
       return '';
     };
     let baseImage;
-
     if (!this.props.profileImageId && !this.props.tempImageId) {
       baseImage = '/img/general/user-placeholder-thumbnail.svg';
     }
-
     if (this.props.profileImageId) {
       baseImage = '/v1/image/' + this.props.profileImageId + '/150/150';
     }
