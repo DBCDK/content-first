@@ -11,7 +11,6 @@ export class SpotItem extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {}
   getStyle() {
     let style = '';
     if (this.props.spotData.image) {
@@ -44,12 +43,22 @@ export class SpotItem extends React.Component {
     }
     return;
   }
+
+  renderFilter(spot) {
+    const filter = spot.filter;
+    return filter
+      ? {backgroundColor: filter.color, opacity: filter.opacity}
+      : {display: 'none'};
+  }
+
   render() {
     const tags = this.getTags(this.props.spotData.tags);
+    const filterStyles = this.renderFilter(this.props.spotData);
+
     return (
       <div
         className={
-          'spot-item-' +
+          'position-relative spot-item-' +
           (this.props.spotData.type === 'wide'
             ? 'wide-container '
             : 'small-container ') +
@@ -61,16 +70,18 @@ export class SpotItem extends React.Component {
         <div className="spot-item-content">
           {this.props.spotData.title && this.renderTitle(this.props.spotData)}
           {!this.props.spotData.image && <div className="spot-item-circle" />}
-          <div className="tags">
-            {tags &&
-              tags.map(tag => {
-                return (
-                  <Link key={tag.id} href="/find" params={{tags: tag.id}}>
-                    <span>{tag.title}</span>
-                  </Link>
-                );
-              })}
-          </div>
+          {this.props.spotData.tags && (
+            <div className="tags">
+              {tags &&
+                tags.map(tag => {
+                  return (
+                    <Link key={tag.id} href="/find" params={{tags: tag.id}}>
+                      <span>{tag.title}</span>
+                    </Link>
+                  );
+                })}
+            </div>
+          )}
           <Link
             href={this.props.spotData.listLink.url}
             className={
@@ -82,6 +93,7 @@ export class SpotItem extends React.Component {
             {this.props.spotData.listLink.title}
           </Link>
         </div>
+        <div className="spot-item-filter" style={filterStyles} />
       </div>
     );
   }

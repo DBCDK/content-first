@@ -1,5 +1,6 @@
 .spots-container {
   display: flex;
+  position: relative;
   justify-content: space-evenly;
   margin: 20px 0;
 }
@@ -38,6 +39,7 @@
 .ml-0 {
   margin-left: 0px !important;
 }
+
 .spot-item-content .tags span {
   background-color: white;
   color: var(--petroleum);
@@ -72,6 +74,8 @@
   flex-direction: column;
   justify-content: center;
   padding-right: 20px;
+  position: relative;
+  z-index: 1;
 }
 .image-spot .spot-item-content {
   margin-top: -20px;
@@ -106,6 +110,16 @@
   border-radius: 100%;
   background-image: none;
 }
+
+.spot-item-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+
 @media only screen and (max-width: 800px) {
   .spots-container {
     display: flex;
