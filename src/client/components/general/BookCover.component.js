@@ -9,10 +9,12 @@ const generateSvg = (backgroundColor, title, creator) => {
     title.length > 20
       ? 'lengthAdjust="spacingAndGlyphs" textLength="180px" '
       : '';
+
   const adjustCreatorlength =
     creator.length > 20
       ? 'lengthAdjust="spacingAndGlyphs" textLength="180px" '
       : '';
+
   return `<svg
   width="100%"
   height="100%"
@@ -38,63 +40,37 @@ class BookCover extends React.Component {
   }
 
   render() {
-    const hasNoCover = this.props.coverUrl === null;
-    const clickableStyle = this.props.enableLightbox ? {cursor: 'pointer'} : {};
-    if (!this.props.coverUrl) {
-      const coverSvg =
-        'data:image/svg+xml,' +
-        encodeURIComponent(
-          generateSvg(
-            this.props.title && hasNoCover
-              ? toColor(this.props.title)
-              : 'transparent',
-            this.props.title && hasNoCover ? this.props.title : '',
-            this.props.title && hasNoCover ? this.props.creator : ''
-          )
-        );
-      return (
-        <React.Fragment>
-          <img
-            style={{...this.props.style, ...clickableStyle}}
-            src={coverSvg}
-            alt={this.props.title || ''}
-            className={'book-cover ' + this.props.className || ''}
-            onClick={() =>
-              this.setState({lightboxIsOpen: this.props.enableLightbox})
-            }
-          />
-          {this.props.enableLightbox && (
-            <Lightbox
-              images={[{src: coverSvg, caption: this.props.title}]}
-              isOpen={this.state.lightboxIsOpen}
-              onClose={() => {
-                this.setState({lightboxIsOpen: false});
-              }}
-              backdropClosesModal={true}
-              showImageCount={false}
-            />
-          )}
-        </React.Fragment>
+    const {
+      title = '',
+      creator = '',
+      coverUrl,
+      enableLightbox,
+      className = '',
+      imageClassName = '',
+      onLoad,
+      dataCy = '',
+      styles,
+      children
+    } = this.props;
+
+    const clickableStyle = enableLightbox ? {cursor: 'pointer'} : {};
+    const coverSvg =
+      'data:image/svg+xml,' +
+      encodeURIComponent(
+        generateSvg(title ? toColor(title) : 'transparent', title, creator)
       );
-    }
+
     return (
       <div
         style={{
-          ...this.props.style,
-          display: 'inline-block',
-          textAlign: 'center',
-          verticalAlign: 'middle',
-          ...this.props.styles
+          ...styles
         }}
-        alt={this.props.title || ''}
-        className={
-          'd-inline-flex align-items-end book-cover ' + this.props.className ||
-          ''
-        }
+        alt={title}
+        className={`align-items-start align-items-md-end book-cover position-relative ${className}`}
       >
-        {this.props.enableLightbox && (
+        {enableLightbox && (
           <Lightbox
-            images={[{src: this.props.coverUrl, caption: this.props.title}]}
+            images={[{src: coverUrl || coverSvg, caption: title}]}
             isOpen={this.state.lightboxIsOpen}
             onClose={() => {
               this.setState({lightboxIsOpen: false});
@@ -104,16 +80,17 @@ class BookCover extends React.Component {
           />
         )}
         <img
-          style={{...this.props.style, ...clickableStyle}}
-          alt={this.props.title || ''}
-          src={this.props.coverUrl}
-          onLoad={this.props.onLoad}
-          className={this.props.imageClassName || ''}
-          data-cy={this.props.dataCy || ''}
+          style={{...styles, ...clickableStyle}}
+          alt={title}
+          src={coverUrl || coverSvg}
+          onLoad={onLoad}
+          className={imageClassName || ''}
+          data-cy={dataCy}
           onClick={() => {
-            this.setState({lightboxIsOpen: this.props.enableLightbox});
+            this.setState({lightboxIsOpen: enableLightbox});
           }}
         />
+        {children}
       </div>
     );
   }

@@ -1,10 +1,13 @@
-@media (max-width: 575.98px) {
+.workPreview__review .Skeleton__text {
+  max-width: 350px;
+}
 
+@media (max-width: 575.98px) {
   .show-review--modal .content {
-    margin: 0!important;
+    margin: 0 !important;
   }
   .Review__container {
-    margin-right: 0!important;
+    margin-right: 0 !important;
   }
 }
 
@@ -16,7 +19,7 @@
 
 .Review__container a {
   cursor: pointer;
-  text-decoration: underline!important;
+  text-decoration: underline !important;
 }
 
 .show-review--modal {
@@ -25,7 +28,7 @@
 }
 
 .show-review--modal .bottom {
-  margin-bottom: 0!important;
+  margin-bottom: 0 !important;
 }
 
 .show-review--modal .content {
@@ -47,7 +50,6 @@
   text-align: right;
 }
 
-.WorkPreview__container .Review__block--title,
 .WorkPreview__container .Review__block--lector,
 .WorkPreview__container .Review__block--paragraph,
 .WorkPreview__container .Review__block--link {
@@ -67,7 +69,6 @@ a.tooltips span {
   padding: 10px;
   border-radius: 6px;
   box-shadow: -1px 1px 8px 0 rgba(0, 0, 0, 0.19);
-
 }
 a:hover.tooltips span {
   visibility: visible;
@@ -76,7 +77,7 @@ a:hover.tooltips span {
   margin-left: -76px;
   z-index: 3;
 }
-.show-more-reviews{
+.show-more-reviews {
   width: 100%;
   height: 100px;
   position: absolute;
@@ -88,7 +89,7 @@ a:hover.tooltips span {
   bottom: 0;
   left: 0;
 }
-.show-more-reviews i{
+.show-more-reviews i {
   position: absolute;
   bottom: 21px;
 }
@@ -97,14 +98,14 @@ a:hover.tooltips span {
   flex-direction: column-reverse;
   justify-content: baseline;
   align-items: center;
-  align-content: center;}
+  align-content: center;
+}
 
-.paper_reviews_hide_overflow{
+.paper_reviews_hide_overflow {
   overflow: visible;
 }
-.paper_reviews_show{
+.paper_reviews_show {
   height: fit-content;
 
   overflow: hidden;
 }
-

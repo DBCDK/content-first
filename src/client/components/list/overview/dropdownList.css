@@ -145,7 +145,7 @@
   padding-right: 15px;
 }
 .top-bar-upper-toolbar {
-  marginBottom: -0.7em;
+  marginbottom: -0.7em;
   padding-right: 15px;
 }
 .top-bar-upper-toolbar + .Divider {
@@ -160,7 +160,7 @@
   margin-top: 1em;
 }
 .Toolbar.mobile-styling div:first-child button:first-child {
-  margin-left: 0!important;
+  margin-left: 0 !important;
 }
 
 .top-bar-dropdown-list-page {
@@ -186,7 +186,7 @@
   cursor: pointer;
 }
 .top-bar-dropdown-list-page .book-cover {
-  height: 60px;
+  width: 70px;
   float: left;
 }
 .top-bar-dropdown-list-page .title {
@@ -288,7 +288,7 @@
 
 @media (max-width: 575px) {
   .desktop-styling {
-    display: none!important;
+    display: none !important;
   }
   .top-bar-upper-toolbar,
   .short-list-item {
@@ -298,8 +298,8 @@
     right: 0;
   }
   .bottom-toolbar {
-    margin-top: 1em!important;
-    padding-right: 0!important;
+    margin-top: 1em !important;
+    padding-right: 0 !important;
   }
   .bottom-toolbar .Toolbar__right {
     flex-direction: column-reverse;

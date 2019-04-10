@@ -1,3 +1,4 @@
+
 .profile__modal-container {
     position: fixed;
     top: 0;
@@ -30,17 +31,13 @@
     z-index: 99999;
 }
 
-.profile__spinner {
-    background-color: var(--petroleum);
-    size: 46px;
-}
-
 /*ACCEPT*/
+
 .profile__accept-window {
     font: var(--primary-font);
     color: var(--petroleum);
     padding-top: 40px;
-    padding-bottom: 34px,
+    padding-bottom: 34px;
 }
 
 .profile__accept-margins {
@@ -81,11 +78,27 @@
     width: 265px;
     margin-right: 8px;
 }
-
+.image-upload-loader, .image-upload-image{
+    border-radius: 50%;
+    cursor: pointer;
+}
 .profile__accept-nameAndImg .image-upload-loader {
-    margin-top: 20px;
+    margin-top: 17px;
+    width:44px;
+    height:44px;
+    background-color: var(--petroleum);
 }
 
+.profile__accept-nameAndImg .image-upload-image {
+    width:46px;
+    height:46px;
+}
+
+.profile__accept-nameAndImg .profile__spinner {
+    background-color: var(--petroleum);
+    size: 45px;
+    border-radius: 50%;
+}
 .profile__accept-inputNameTitle {
     font-size: 14px;
     font-weight: 400;
@@ -103,7 +116,7 @@
 }
 
 .profile__name-info-disabled {
-    display: none
+    display: none;
 }
 
 .profile__accept-boxTriangle {
@@ -152,7 +165,7 @@
 }
 
 .profile__accept-userBox {
-    margin-left: -212px;
+    margin-left: -207px;
 }
 
 .profile__accept-userBox .input-group .profile__mobileinputfield {
@@ -359,6 +372,7 @@
 }
 
 @media only screen and (max-width: 700px) {
+
     .profile__modal-container {
         padding-top: 0px;
         -webkit-animation-name: slideup; /* Safari 4.0 - 8.0 */
@@ -369,6 +383,8 @@
     }
 
     .profile__modal-window {
+        padding-left: calc((100% - 300px) / 2);
+        padding-right: calc((100% - 300px) / 2);
         padding-top: 0 !important;
         margin-top: 0 !important;
         width: 100%;
@@ -376,8 +392,6 @@
     }
 
     .profile__accept-window {
-        margin-left: calc((100% - 300px) / 2);
-        margin-right: calc((100% - 300px) / 2);
         padding-top: 10px !important;
     }
 
@@ -410,7 +424,7 @@
 
     .profile__accept-userBox {
         height: 110px;
-        margin-left: 8px;
+        margin-left: 5px;
 
 
     }

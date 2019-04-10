@@ -1,8 +1,6 @@
 import React from 'react';
 import {Parallax, Background} from 'react-parallax';
 
-import Explorer from '../explorer/explorer.component.js';
-
 import '../Hero.css';
 import './Info.css';
 
@@ -19,7 +17,6 @@ export class Hero extends React.Component {
           />
         </Background>
         <div className="box">{hero.btnText}</div>
-        <Explorer />
       </Parallax>
     );
   }

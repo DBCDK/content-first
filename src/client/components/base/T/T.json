@@ -287,7 +287,7 @@
         "en": "Show more reviews"
       },
       "readReview": {
-        "da": "Læs anmedelsen",
+        "da": "Læs anmeldelsen",
         "en": "Read review"
       }
     },
@@ -308,7 +308,7 @@
         "da": "Gem Profil",
         "en": "Save profile"
       },
-      "saveProfileToast":{
+      "saveProfileToast": {
         "da": "Din profil er opdateret",
         "en": "Your profile has been updated"
       },
@@ -360,23 +360,23 @@
         "da": " er for stor. Billedet må maks fylde 10mb",
         "en": " is too large. Pictures must be max 10mb"
       },
-      "profileInstructionsTitle":{
+      "profileInstructionsTitle": {
         "da": "Hvad skal vi bruge det til?",
         "en": "What will we use it for?"
       },
-      "profileInstructionsLine1":{
+      "profileInstructionsLine1": {
         "da": "når vi taler til dig her på siden",
         "en": "when we communicate with you here on the site"
       },
-      "profileInstructionsLine2":{
+      "profileInstructionsLine2": {
         "da": "når du deler dine lister",
         "en": "when you share your lists"
       },
-      "profileInstructionsLine3":{
+      "profileInstructionsLine3": {
         "da": "når du kommeterer på andres lister",
         "en": "when you comment on other lists"
       },
-      "profileInstructionsLine4":{
+      "profileInstructionsLine4": {
         "da": "give dig mere personaliseret indhold",
         "en": "give you more personalized content"
       },
@@ -392,7 +392,7 @@
         "da": "Dit brugernavn skal være minimum 4 karakterer langt",
         "en": "Your username, should contain at least 4 characters"
       },
-      "validationUsernameLengthShort":{
+      "validationUsernameLengthShort": {
         "da": "Min. 4 tegn",
         "en": "Min. 4 characters"
       },
@@ -408,7 +408,7 @@
         "da": "Det er ikke muligt at gemme profilen",
         "en": "It`s not possible to save the profile"
       },
-      "usernameTitle":{
+      "usernameTitle": {
         "da": "Brugernavn",
         "en": "Username"
       },
@@ -436,19 +436,18 @@
         "da": "reglerne for anvendelse af Læsekompasset",
         "en": "Læsekompassets terms of use"
       },
-      "acceptAndSubmit":{
+      "acceptAndSubmit": {
         "da": "Accepter regler og vilkår",
         "en": "Accept rules and conditions"
       },
-      "profilePictureTooLarge":{
+      "profilePictureTooLarge": {
         "da": " er for stor. Billedet må maks fylde 10mb",
         "en": " is too large. Max 10mb"
       },
-      "saveProfileToast":{
+      "saveProfileToast": {
         "da": "Din profil er opdateret",
         "en": "Your profile has been updated"
       }
-
     },
     "shortlist": {
       "buttonLabel": {
@@ -714,6 +713,14 @@
       "bookshelf": {
         "da": "Bogreol",
         "en": "Bookshelf"
+      },
+      "newListCreatedToast": {
+        "da": "%s blev oprettet",
+        "en": "%s was created"
+      },
+      "watchNewListAction": {
+        "da": "Gå til listen",
+        "en": "To list"
       }
     },
     "filter": {
@@ -770,8 +777,8 @@
         "en": "previous"
       },
       "suggesterPlaceholder": {
-        "da": "Søg på titel, forfatter, stemning...",
-        "en": "Search by title, author, mood..."
+        "da": "Søg på stemning, sted eller stil…",
+        "en": "Search by mood, place, or style…"
       }
     },
     "post": {

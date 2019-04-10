@@ -1,6 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {toast} from 'react-toastify';
+import ToastMessage from '../ToastMessage';
 import T from '../T';
+import Link from '../../general/Link.component';
 
 import {
   addList,
@@ -13,6 +16,22 @@ import {
 import {saveList} from '../../../utils/requestLists';
 
 const getListById = getListByIdSelector();
+
+const createdToast = list => {
+  toast(
+    <ToastMessage
+      type="success"
+      icon="check_circle"
+      lines={[
+        <T component="list" name="newListCreatedToast" vars={[list.title]} />,
+        <Link key="href" href={`/lister/${list._id}`}>
+          <T component="list" name="watchNewListAction" />
+        </Link>
+      ]}
+    />,
+    {pauseOnHover: true}
+  );
+};
 
 export const withListCreator = WrappedComponent => {
   const Wrapper = class extends React.Component {
@@ -108,11 +127,20 @@ export const withList = WrappedComponent => {
     };
   };
 
-  const mapDispatchToProps = (dispatch, ownProps) => ({
-    storeList: list => dispatch(storeList(list._id)),
-    updateListData: data => dispatch(updateList({_id: ownProps.id, ...data})),
-    deleteList: () => dispatch(removeList(ownProps.id))
-  });
+  const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      storeList: list => {
+        dispatch(storeList(list._id));
+
+        // show created list toast, if just created (not on edit list)
+        if (ownProps.justCreated) {
+          createdToast(list);
+        }
+      },
+      updateListData: data => dispatch(updateList({_id: ownProps.id, ...data})),
+      deleteList: () => dispatch(removeList(ownProps.id))
+    };
+  };
 
   return connect(
     mapStateToProps,

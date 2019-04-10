@@ -2,6 +2,11 @@
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
 }
 
+.suggestion-row img {
+  min-width: 25px;
+  max-width: 25px;
+}
+
 .suggestion-list {
   position: relative;
   margin-bottom: 2rem;
@@ -12,6 +17,10 @@
 .suggestion-list input {
   border-radius: 0;
   height: 40px;
+}
+
+.suggestion-list.booksearch-suggester #react-autowhatever-1 {
+  z-index: 10;
 }
 
 .suggestion-list__search {

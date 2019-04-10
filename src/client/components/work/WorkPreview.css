@@ -6,9 +6,8 @@
 
 /* work */
 
-.workPreview__work .paper_reviews_hide_overflow{
+.workPreview__work .paper_reviews_hide_overflow {
   max-height: 300px;
-
 }
 
 .WorkPreview__container .workPreview__work {
@@ -18,18 +17,14 @@
 }
 
 .workPreview__work .workPreview__image {
-  max-height: 300px;
-  padding-right: 3rem;
-}
-
-.workPreview__work .workPreview__image div {
-  display: block !important;
+  max-width: 250px;
+  margin-right: 3rem;
+  text-align: center;
 }
 
 .workPreview__work .workPreview__image img {
-  width: 100%;
-  height: auto;
-  display: block !important;
+  width: 100% !important;
+  height: auto !important;
 }
 
 .workPreview__work .workPreview__info {
@@ -119,21 +114,8 @@
   color: transparent !important;
 }
 
-.workPreview__reviews .workPreview__review .Skeleton__user__wrap,
 .workPreview__reviews .workPreview__review .Skeleton__text {
   display: inline-block;
-}
-
-.workPreview__reviews .workPreview__review .Skeleton__text {
-  width: calc(50%);
-}
-
-.workPreview__reviews
-  .workPreview__review
-  .Skeleton__user__wrap
-  span.Skeleton__user {
-  width: 40px;
-  height: 40px;
 }
 
 /* Media Q */
@@ -147,6 +129,14 @@
     border-right: none;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .workPreview__work .workPreview__image img {
+    width: 100%;
+    height: auto;
+  }
+}
+
 .work-preview-book-creator {
   color: var(--petroleum) !important;
 }

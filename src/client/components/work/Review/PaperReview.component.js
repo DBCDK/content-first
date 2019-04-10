@@ -15,13 +15,23 @@ export class PaperReview extends React.Component {
       return '';
     }
     const review = this.props.review;
+
     const creator = review.creatorOth && review.creatorOth[0];
-    const date =
+    let date =
       (review.isPartOf &&
         review.isPartOf[0].split(',')[1] &&
-        timestampToShortDate(review.isPartOf[0].split(',')[1])) ||
+        review.isPartOf[0].split(',')[1]) ||
       null;
-
+    date = date
+      ? timestampToShortDate(
+          new Date(
+            date.split('-')[0],
+            parseInt(date.split('-')[1], 10) - 1,
+            date.split('-')[2]
+          )
+        )
+      : null;
+    date = date.split(' ')[1] !== 'undefined' ? date : review.date;
     const source =
       review.isPartOf &&
       review.isPartOf[0].split(',')[0] &&
@@ -81,7 +91,7 @@ export class PaperReview extends React.Component {
                   : null
               }
             >
-              Læs anmedelsen
+              Læs anmeldelsen
               <span>
                 Dit biblliotek har ikke adgang til artiklen i Infomedia
               </span>

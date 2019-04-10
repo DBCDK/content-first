@@ -122,6 +122,7 @@ class Results extends React.Component {
             </div>
 
             <TagsMultiRowContainer
+              limit={100}
               tags={tags.map(tag => tag.id)}
               origin={T({
                 component: 'filter',

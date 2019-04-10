@@ -406,7 +406,11 @@ export class ListModal extends React.Component {
 
     return (
       <Modal
-        header={T({component: 'list', name: 'createNew'})}
+        header={
+          justCreated
+            ? T({component: 'list', name: 'createNew'})
+            : T({component: 'list', name: 'editList'})
+        }
         className="listModal"
         onClose={() => close()}
         onDone={() => {

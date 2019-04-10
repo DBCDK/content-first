@@ -75,25 +75,26 @@ class WorkCard extends React.Component {
         className={`WorkCard ${highlight} ${this.props.className}`}
         data-cy={'workcard'}
       >
-        <BookmarkButton
-          className="icon-large"
-          origin={this.props.origin}
-          work={this.props.work}
-          rid={this.props.rid}
-          layout="teardrop"
-          style={{
-            position: 'absolute',
-            right: 0,
-            top: 0,
-            width: '40px',
-            height: '40px'
-          }}
-          dataCy="bookmarkBtn"
-        />
         <div style={{height: '100%'}} onClick={this.onWorkClick}>
           <BookCover
             book={this.props.skeleton ? {book: {}} : this.props.work.book}
-          />
+          >
+            <BookmarkButton
+              className="icon-large"
+              origin={this.props.origin}
+              work={this.props.work}
+              rid={this.props.rid}
+              layout="teardrop"
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                width: '40px',
+                height: '40px'
+              }}
+              dataCy="bookmarkBtn"
+            />
+          </BookCover>
 
           <Paragraph className="mt-2 d-xs-none d-sm-block">
             {<TaxDescription text={tax_description} />}
