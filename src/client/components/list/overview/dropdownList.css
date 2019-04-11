@@ -74,7 +74,7 @@
   padding: 2px;
 }
 .top-bar-dropdown-list-element--cover-image img {
-  width: 40px;
+  max-width: 40px;
 }
 .top-bar-dropdown-list-element--text {
   display: inline-block;
@@ -144,8 +144,12 @@
 .short-list-item {
   padding-right: 15px;
 }
+
+.short-list-item .book-cover {
+  max-width: 70px;
+}
+
 .top-bar-upper-toolbar {
-  marginbottom: -0.7em;
   padding-right: 15px;
 }
 .top-bar-upper-toolbar + .Divider {

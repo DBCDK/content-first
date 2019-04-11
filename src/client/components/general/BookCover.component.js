@@ -63,10 +63,11 @@ class BookCover extends React.Component {
     return (
       <div
         style={{
-          ...styles
+          ...styles,
+          width: '100%'
         }}
         alt={title}
-        className={`align-items-start align-items-md-end book-cover position-relative ${className}`}
+        className={`d-flex align-items-start book-cover text-center position-relative ${className}`}
       >
         {enableLightbox && (
           <Lightbox
@@ -80,7 +81,11 @@ class BookCover extends React.Component {
           />
         )}
         <img
-          style={{...styles, ...clickableStyle}}
+          style={{
+            ...styles,
+            ...clickableStyle,
+            width: '100%'
+          }}
           alt={title}
           src={coverUrl || coverSvg}
           onLoad={onLoad}
