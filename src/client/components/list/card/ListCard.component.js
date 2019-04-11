@@ -8,6 +8,7 @@ import Text from '../../base/Text';
 import Icon from '../../base/Icon';
 import SkeletonText from '../../base/Skeleton/Text';
 import SkeletonUser from '../../base/Skeleton/User';
+import Divider from '../../base/Divider';
 import {createGetUserSelector} from '../../../redux/users';
 
 import {FETCH_COMMENTS} from '../../../redux/comment.reducer';
@@ -46,6 +47,16 @@ class ListCard extends React.Component {
   }
 
   renderBookCover(id, img) {
+    const POSITIONS = [
+      'align-self-start',
+      'align-self-center',
+      'align-self-end'
+    ];
+    const SIZES = [
+      'list-card-brick-sm',
+      'list-card-brick-md',
+      'list-card-brick-lg'
+    ];
     return img ? (
       <img alt="" src={'v1/image/' + img + '/250/200'} />
     ) : (
@@ -53,9 +64,24 @@ class ListCard extends React.Component {
         className="list-card-coverTemplate"
         style={{background: toColor(id), height: '100%'}}
       >
-        <div className="list-card-brick" />
-        <div className="list-card-brick" />
-        <div className="list-card-brick" />
+        <div
+          className={`list-card-brick ${toColor(
+            id + 'size-0',
+            SIZES
+          )} ${toColor(id + 'pos-0', POSITIONS)}`}
+        />
+        <div
+          className={`list-card-brick ${toColor(
+            id + 'size-1',
+            SIZES
+          )} ${toColor(id + 'pos-1', POSITIONS)}`}
+        />
+        <div
+          className={`list-card-brick ${toColor(
+            id + 'size-2',
+            SIZES
+          )} ${toColor(id + 'pos-2', POSITIONS)}`}
+        />
       </div>
     );
   }
@@ -80,36 +106,52 @@ class ListCard extends React.Component {
     }
 
     return (
-      <div className={'list-card mr1 ml1 ' + className} style={style}>
+      <div className={'list-card mr-4 ' + className} style={style}>
         <Link href={`/lister/${list._id}`}>
           <div className="list-card-wrap">
             <div className="list-card-cover">
               {this.renderBookCover(list._id, list.image)}
             </div>
-            <div className="list-card-summary mt1">
-              <TruncateMarkup lines={3}>
-                <span>
-                  <Text className="list-card-about mt0 mb0" type="large">
-                    {list.title}
-                  </Text>
-                  <Text className="list-card-about mt0 mb0" type="body">
-                    {list.description}
-                  </Text>
-                </span>
-              </TruncateMarkup>
-            </div>
-            <div className="list-card-bottom">
-              <ProfileImage
-                key={'profile-img-' + list._id}
-                user={this.props.profile}
-                namePosition={'right'}
-                type="list"
-              />
-              <div className="list-card-interactions">
-                <span className="list-card-interaction">
-                  <Icon className="md-small" name="chat_bubble_outline" /> (
-                  {commentCount})
-                </span>
+            <div className="p-3">
+              <div className="list-card-summary">
+                <TruncateMarkup lines={3}>
+                  <span>
+                    <Text className="list-card-about mb-1" type="large">
+                      {list.title}
+                    </Text>
+                    <Text className="list-card-about" type="body">
+                      {list.description}
+                    </Text>
+                  </span>
+                </TruncateMarkup>
+              </div>
+              <Divider variant="thin" />
+              <div className="list-card-bottom">
+                <ProfileImage
+                  key={'profile-img-' + list._id}
+                  user={this.props.profile}
+                  namePosition={'right'}
+                  type="list"
+                />
+
+                <div className="d-flex align-self-center">
+                  <Divider
+                    type="vertical"
+                    variant="thick"
+                    className="align-self-center mx-2"
+                    style={{height: 30}}
+                  />
+                  <div className="list-card-interactions align-self-center">
+                    <Icon
+                      className="md-small"
+                      name="chat_bubble_outline"
+                      style={{paddingTop: 3}}
+                    />
+                    <Text className="ml-2" type="body">
+                      <strong>{commentCount}</strong>
+                    </Text>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

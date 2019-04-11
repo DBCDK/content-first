@@ -21,37 +21,39 @@
   display: inline-block;
   width: 100%;
   height: 100%;
-  padding: 15px;
 }
 
 .list-card-cover {
-  height: 175px;
-  margin: 0 2px;
+  height: 160px;
 }
 .list-card-cover img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .list-card-coverTemplate {
-  padding: 30px 45px 30px 45px;
+  padding: 30px 55px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 .list-card-coverTemplate .list-card-brick {
   background-color: #fff;
-  width: 80%;
   height: 25px;
   border-radius: 5px;
-  align-self: flex-start;
 }
-.list-card-coverTemplate .list-card-brick:nth-child(2) {
-  align-self: flex-end;
+.list-card-coverTemplate .list-card-brick-sm {
+  width: 68%;
+}
+.list-card-coverTemplate .list-card-brick-md {
+  width: 78%;
+}
+.list-card-coverTemplate .list-card-brick-lg {
+  width: 90%;
 }
 .list-card-summary {
   height: 75px;
-  border-bottom: 1px solid var(--pistache);
 }
 .list-card-title,
 .list-card-about strong {
@@ -73,7 +75,6 @@ a.list-card-nohover {
   font-size: 0.8rem;
   display: flex;
   justify-content: space-between;
-  padding: 15px 0 0 0;
 }
 .list-card-bottom p {
   font-size: 12px !important;
@@ -89,12 +90,7 @@ a.list-card-nohover {
 
 .list-card-bottom .list-card-interactions {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.list-card-bottom .list-card-interactions .list-card-interaction {
-  padding: 5px 0 0 0;
+  flex-direction: row;
 }
 
 .list-card-bottom .list-card-interactions .list-card-interaction i {

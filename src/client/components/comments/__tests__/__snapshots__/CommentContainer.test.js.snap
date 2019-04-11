@@ -23,9 +23,10 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
         className="profile-card d-flex flex-column "
       >
         <span
-          className="profile-image text-center small round"
+          className="profile-image text-center small round align-self-center"
           style={
             Object {
+              "flexShrink": 0,
               "height": "40px",
               "lineHeight": "inherit",
               "marginRight": "15px",
@@ -111,9 +112,10 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         className="profile-card d-flex flex-column "
       >
         <span
-          className="profile-image text-center small round"
+          className="profile-image text-center small round align-self-center"
           style={
             Object {
+              "flexShrink": 0,
               "height": "40px",
               "lineHeight": "inherit",
               "marginRight": "15px",
@@ -318,9 +320,10 @@ exports[`CommentContainer Component renders all comments 1`] = `
               className="profile-card d-flex flex-column "
             >
               <span
-                className="profile-image text-center small round"
+                className="profile-image text-center small round align-self-center"
                 style={
                   Object {
+                    "flexShrink": 0,
                     "height": "40px",
                     "lineHeight": "inherit",
                     "marginRight": "15px",
@@ -575,9 +578,10 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
         className="profile-card d-flex flex-column "
       >
         <span
-          className="profile-image text-center small round"
+          className="profile-image text-center small round align-self-center"
           style={
             Object {
+              "flexShrink": 0,
               "height": "40px",
               "lineHeight": "inherit",
               "marginRight": "15px",
@@ -755,9 +759,10 @@ exports[`CommentContainer Component renders error 1`] = `
               className="profile-card d-flex flex-column "
             >
               <span
-                className="profile-image text-center small round"
+                className="profile-image text-center small round align-self-center"
                 style={
                   Object {
+                    "flexShrink": 0,
                     "height": "40px",
                     "lineHeight": "inherit",
                     "marginRight": "15px",
@@ -1004,9 +1009,10 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
               className="profile-card d-flex flex-column "
             >
               <span
-                className="profile-image text-center small round"
+                className="profile-image text-center small round align-self-center"
                 style={
                   Object {
+                    "flexShrink": 0,
                     "height": "40px",
                     "lineHeight": "inherit",
                     "marginRight": "15px",
@@ -1269,9 +1275,10 @@ exports[`CommentContainer Toggle all comments 1`] = `
               className="profile-card d-flex flex-column "
             >
               <span
-                className="profile-image text-center small round"
+                className="profile-image text-center small round align-self-center"
                 style={
                   Object {
+                    "flexShrink": 0,
                     "height": "40px",
                     "lineHeight": "inherit",
                     "marginRight": "15px",
@@ -1547,9 +1554,10 @@ exports[`CommentContainer Toggle all comments 2`] = `
               className="profile-card d-flex flex-column "
             >
               <span
-                className="profile-image text-center small round"
+                className="profile-image text-center small round align-self-center"
                 style={
                   Object {
+                    "flexShrink": 0,
                     "height": "40px",
                     "lineHeight": "inherit",
                     "marginRight": "15px",

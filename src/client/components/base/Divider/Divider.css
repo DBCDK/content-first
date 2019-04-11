@@ -1,5 +1,20 @@
-.Divider {
+.Divider__horizontal {
   width: 100%;
+}
+.Divider__vertical {
+  height: 100%
+}
+.Divider__horizontal--thick {
   border-bottom: solid 2px var(--petroleum);
   margin: 14px 0 20px 0;
+}
+.Divider__horizontal--thin {
+  border-bottom: solid 1px var(--pistache);
+  margin: 10px 0 10px 0;
+}
+.Divider__vertical--thick {
+  border-left: solid 2px var(--alto);
+}
+.Divider__vertical--thin {
+  border-left: solid 1px var(--alto);
 }
