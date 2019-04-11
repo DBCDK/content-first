@@ -12,8 +12,9 @@
 }
 
 .WorkPage__work .WorkPage__image {
-  min-width: 350px;
   max-width: 350px;
+  width: 35%;
+  flex-shrink: 0;
   padding-right: 3rem;
 }
 
@@ -166,7 +167,6 @@
   }
 
   .WorkPage__work .WorkPage__image {
-    min-width: 30%;
     max-width: 250px;
   }
 
@@ -180,7 +180,6 @@
 @media only screen and (max-width: 825px) {
   /* work */
   .WorkPage__work .WorkPage__image {
-    min-width: 35%;
     max-width: 250px;
   }
   .WorkPage__work .WorkPage__info {
@@ -210,7 +209,7 @@
   }
 
   .WorkPage__work .WorkPage__image {
-    min-width: 100%;
+    width: 100%;
   }
 
   .WorkPage__work .WorkPage__image .book-cover {
