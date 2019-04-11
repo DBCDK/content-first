@@ -155,6 +155,8 @@ export function OrderModal(props) {
               borderRadius: 20,
               fontSize: 20
             }}
+            role="img"
+            aria-label=""
           >
             ❌
           </span>

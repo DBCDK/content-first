@@ -107,7 +107,7 @@ class SearchBar extends React.Component {
     }
   };
   onFiltersMouseWheelScrool = e => {
-    e.preventDefault();
+    // e.preventDefault();  suppress run-time warning - see https://dbcjira.atlassian.net/browse/CF-1160
     let scrollSpeed = 40;
     /* eslint-disable no-unused-expressions */
     e.deltaY > 0

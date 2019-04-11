@@ -10,11 +10,14 @@ const Text = ({
   ...props
 }) => {
   const modifier = variant ? `Text__${type}--${variant}` : '';
-
+  const Tag =
+    className.split(' ').filter(s => s === 'd-inline').length > 0
+      ? 'span'
+      : 'p';
   return (
-    <p className={`${className} Text Text__${type} ${modifier}`} {...props}>
+    <Tag className={`${className} Text Text__${type} ${modifier}`} {...props}>
       {children}
-    </p>
+    </Tag>
   );
 };
 

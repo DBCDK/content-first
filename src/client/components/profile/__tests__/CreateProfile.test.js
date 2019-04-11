@@ -7,7 +7,9 @@ import {CreateProfilePage} from '../CreateProfilePage';
 const image =
   'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 jest.mock('../../general/Spinner.component', () => 'spinner');
-jest.mock('../../general/Link.component', () => 'Link');
+jest.mock('../../general/Link.component', () =>
+  jest.fn(props => <mocked-link {...props}>{props.children}</mocked-link>)
+);
 jest.mock('../../general/Logout.component', () => 'logout');
 
 describe('Image Upload', () => {

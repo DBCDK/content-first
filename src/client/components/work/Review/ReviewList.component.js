@@ -135,6 +135,50 @@ class ReviewList extends React.Component {
                 (this.refs = {...this.refs, reviewsContainer})
               }
             >
+              {this.props.reviews.map(rev => {
+                const date =
+                  rev.creator.split(',')[1] &&
+                  timestampToShortDate(rev.creator.split(',')[1]);
+                return (
+                  <div key={rev.url} className="review_list__review mr-4 mb-3">
+                    <span className="review_list__review__details ">
+                      <Text
+                        type="body"
+                        variant="weight-semibold"
+                        className="mb0"
+                      >
+                        {rev.creator.includes('Litteratursiden')
+                          ? 'Litteratursiden'
+                          : rev.creator}
+                      </Text>
+
+                      <Text className="d-flex">
+                        <a
+                          type="small"
+                          onClick={() => {}}
+                          target="_blank"
+                          href={rev.url}
+                        >
+                          <T component="work" name={'readReview'} />
+                        </a>
+                        <a target="_blank" href={rev.url}>
+                          <i
+                            className="material-icons"
+                            style={{fontSize: '1.2rem', textDecoration: 'none'}}
+                          >
+                            launch
+                          </i>
+                        </a>
+                      </Text>
+                    </span>
+                    {date && (
+                      <Text type="small" className="due-txt mb0">
+                        {date}
+                      </Text>
+                    )}
+                  </div>
+                );
+              })}
               {reviewList}
             </div>
           )}

@@ -33,6 +33,7 @@ export default class HoverImage extends React.Component {
         src={this.state.src}
         onMouseOver={this.mouseEnter}
         onMouseOut={this.mouseLeave}
+        alt=""
       />
     );
   }

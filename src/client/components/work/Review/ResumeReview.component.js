@@ -49,7 +49,7 @@ export class ResumeReview extends React.Component {
         <Text type="body" className="Review__block--paragraph mb0">
           <em>
             <TruncateMarkup lines={3} ellipsis="...">
-              <div>{reviewParagraph}</div>
+              <span>{reviewParagraph}</span>
             </TruncateMarkup>
           </em>
         </Text>

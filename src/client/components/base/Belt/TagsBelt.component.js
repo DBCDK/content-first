@@ -132,10 +132,7 @@ export class TagsBelt extends React.Component {
                 />
               </div>
 
-              <div
-                div
-                className="d-flex w-100 w-sm-auto flex-row-reverse flex-sm-row mb-4 mt-3"
-              >
+              <div className="d-flex w-100 w-sm-auto flex-row-reverse flex-sm-row mb-4 mt-3">
                 <Button
                   type="quaternary"
                   size="medium"

@@ -14,7 +14,11 @@ export const ListInfo = ({list, isListOwner, profile}) => {
     <div className="lys-graa position-relative">
       {list.image && (
         <div>
-          <img className="w-100" src={`/v1/image/${list.image}/719/400`} />
+          <img
+            className="w-100"
+            src={`/v1/image/${list.image}/719/400`}
+            alt=""
+          />
         </div>
       )}
 

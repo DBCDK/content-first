@@ -140,11 +140,11 @@ async function enrichList({list}) {
 
 export const loadList = async (id, store) => {
   if (!id) {
-    throw 'no id given';
+    throw Error('no id given');
   }
   const list = (await request.get(`/v1/object/${id}`)).body.data;
   if (!list) {
-    throw 'list is undefined';
+    throw Error('list is undefined');
   }
   await enrichList({list, store});
   return list;

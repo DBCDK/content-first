@@ -54,6 +54,7 @@ exports[`Image Upload render function Add image 1`] = `
                           src="/img/general/user-placeholder-thumbnail.svg"
                         >
                           <img
+                            alt=""
                             className="image-upload-image"
                             onMouseOut={[Function]}
                             onMouseOver={[Function]}
@@ -167,17 +168,22 @@ exports[`Image Upload render function Add image 1`] = `
               <div
                 className="profile__edit-link"
               >
-                <Link
+                <mockConstructor
                   href="#!"
                   onClick={[Function]}
                 >
-                  <T
-                    component="profile"
-                    name="deleteProfile"
+                  <mocked-link
+                    href="#!"
+                    onClick={[Function]}
                   >
-                    Slet profil
-                  </T>
-                </Link>
+                    <T
+                      component="profile"
+                      name="deleteProfile"
+                    >
+                      Slet profil
+                    </T>
+                  </mocked-link>
+                </mockConstructor>
               </div>
               <div
                 className="profile__edit-bottom-position"
@@ -240,6 +246,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
               >
                 <label>
                   <img
+                    alt=""
                     className="image-upload-image"
                     onMouseOut={[Function]}
                     onMouseOver={[Function]}
@@ -338,12 +345,12 @@ exports[`Image Upload render function renders an image upload form 1`] = `
           <div
             className="profile__edit-link"
           >
-            <Link
+            <mocked-link
               href="#!"
               onClick={[Function]}
             >
               Slet profil
-            </Link>
+            </mocked-link>
           </div>
           <div
             className="profile__edit-bottom-position"

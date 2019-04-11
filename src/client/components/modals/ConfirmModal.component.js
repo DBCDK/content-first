@@ -1,5 +1,4 @@
 import React from 'react';
-import Paragraph from '../base/Paragraph';
 import Modal from './Modal.component';
 export default class ConfirmModal extends React.Component {
   render() {
@@ -14,7 +13,7 @@ export default class ConfirmModal extends React.Component {
         cancelText="Fortryd"
         url={this.props.context.url}
       >
-        <Paragraph>{this.props.context.reason}</Paragraph>
+        {this.props.context.reason}
       </Modal>
     );
   }

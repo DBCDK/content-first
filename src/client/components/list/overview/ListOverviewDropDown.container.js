@@ -120,9 +120,6 @@ const UserListsContent = props => {
   );
 };
 class ListOverviewDropDown extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   loadLists = () => {
     if (!this.fetched) {
       this.props.loadLists();
