@@ -165,7 +165,7 @@ class WorkPage extends React.Component {
                         book={book}
                         size="medium"
                         type="quaternary"
-                        icon="book"
+                        icon="chrome_reader_mode"
                         label={T({component: 'general', name: 'book'})}
                         className="mr1 mt1"
                       />
@@ -232,7 +232,7 @@ class WorkPage extends React.Component {
                       <AddToListButton work={work} />
                     </div>
                   </div>
-                  <div className="row mt-2">
+                  <div className="row mt-3">
                     <div className="col-12">
                       <RemindsOf
                         onClick={() => {

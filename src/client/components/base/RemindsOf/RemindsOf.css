@@ -26,6 +26,8 @@
 /* "Reminds of" button */
 
 .RemindsOf {
+  width: 143px;
+  height: 33px;
   display: inline-flex;
   align-items: center;
   background-color: var(--due);

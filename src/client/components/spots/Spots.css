@@ -95,6 +95,7 @@
 .spot-item-link-image-background:hover,
 .spot-item-link-color-background:hover {
   text-decoration: none;
+  color: var(--petroleum);
 }
 .spot-item-link-color-background {
   color: var(--petroleum);

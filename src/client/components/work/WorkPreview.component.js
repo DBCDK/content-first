@@ -142,7 +142,7 @@ class WorkPreview extends React.Component {
                     size="medium"
                     type="quaternary"
                     label={T({component: 'general', name: 'book'})}
-                    icon="local_library"
+                    icon="chrome_reader_mode"
                     className="mr1 mt1"
                   />
                 )}
@@ -209,7 +209,7 @@ class WorkPreview extends React.Component {
                   <AddToListButton work={work} />
                 </div>
               </div>
-              <div className="row mt-2">
+              <div className="row mt-3">
                 <div className="col-12">
                   <RemindsOf onClick={() => this.props.openSimilarBelt(work)} />
                   {this.props.hasChildBelt && (

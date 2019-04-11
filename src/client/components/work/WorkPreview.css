@@ -22,11 +22,6 @@
   text-align: center;
 }
 
-.workPreview__work .workPreview__image img {
-  width: 100% !important;
-  height: auto !important;
-}
-
 .workPreview__work .workPreview__info {
   position: relative;
   width: 100%;
@@ -53,12 +48,18 @@
   text-decoration: none;
 }
 
+.workPreview__work .workPreview__info .workPreview__media button {
+  height: 33px;
+}
+
 .workPreview__work .workPreview__info .workPreview__media button i {
+  font-size: 19px;
+  font-weight: normal;
   margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 .workPreview__work .workPreview__info .workPreview__media button,
-.workPreview__work .workPreview__info .workPreview__media button i,
 .workPreview__work .workPreview__info .workPreview__media a,
 .workPreview__work .workPreview__info .workPreview__media a i {
   font-size: 1rem;

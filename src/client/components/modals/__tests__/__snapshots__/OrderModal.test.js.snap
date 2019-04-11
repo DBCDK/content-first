@@ -54,8 +54,8 @@ exports[`OrderModal render function renders initial request 1`] = `
               style={
                 Object {
                   "float": "left",
-                  "height": 60,
                   "marginRight": 10,
+                  "width": 40,
                 }
               }
             >
@@ -136,8 +136,8 @@ exports[`OrderModal render function renders initial request 1`] = `
               style={
                 Object {
                   "float": "left",
-                  "height": 60,
                   "marginRight": 10,
+                  "width": 40,
                 }
               }
             >
@@ -218,8 +218,8 @@ exports[`OrderModal render function renders initial request 1`] = `
               style={
                 Object {
                   "float": "left",
-                  "height": 60,
                   "marginRight": 10,
+                  "width": 40,
                 }
               }
             >
