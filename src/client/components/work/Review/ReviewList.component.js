@@ -42,7 +42,7 @@ class ReviewList extends React.Component {
     if (reviews) {
       reviews.map((reviewList, outerKey) => {
         if (typeof reviewList.fullTextReviews !== 'undefined') {
-          return reviewList.fullTextReviews.map((review, innerKey) => {
+          reviewList.fullTextReviews.map((review, innerKey) => {
             libraryReview.push(
               <ResumeReview
                 review={review}
@@ -50,19 +50,21 @@ class ReviewList extends React.Component {
                 key={outerKey + '-' + innerKey}
               />
             );
+            return null;
           });
         }
         const hasRating = reviewList.abstract; // show only reviews with rating
         paperReviews.push(
           hasRating && <PaperReview review={reviewList} key={outerKey} />
         );
+        return null;
       });
     }
     return [...libraryReview, litteratursidenReview, ...paperReviews];
   }
 
   renderLitteratursidenReview() {
-    return this.props.reviews.map(rev => {
+    return this.props.reviews.map((rev, key) => {
       let date =
         (rev.creator.split(',')[1] && rev.creator.split(',')[1]) || null;
       date = date
@@ -76,7 +78,7 @@ class ReviewList extends React.Component {
         : null;
 
       return (
-        <div className="review_list__review mb-3 mr-4">
+        <div className="review_list__review mb-3 mr-4" key={key}>
           <span className="review_list__review__details ">
             <Text type="body" variant="weight-semibold" className="mb0">
               {rev.creator.includes('Litteratursiden')
