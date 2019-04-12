@@ -42,7 +42,7 @@ class ReviewList extends React.Component {
     if (reviews) {
       reviews.map((reviewList, outerKey) => {
         if (typeof reviewList.fullTextReviews !== 'undefined') {
-          return reviewList.fullTextReviews.map((review, innerKey) => {
+          reviewList.fullTextReviews.map((review, innerKey) => {
             libraryReview.push(
               <ResumeReview
                 review={review}
@@ -50,19 +50,21 @@ class ReviewList extends React.Component {
                 key={outerKey + '-' + innerKey}
               />
             );
+            return null;
           });
         }
         const hasRating = reviewList.abstract; // show only reviews with rating
         paperReviews.push(
           hasRating && <PaperReview review={reviewList} key={outerKey} />
         );
+        return null;
       });
     }
     return [...libraryReview, litteratursidenReview, ...paperReviews];
   }
 
   renderLitteratursidenReview() {
-    return this.props.reviews.map(rev => {
+    return this.props.reviews.map((rev, key) => {
       let date =
         (rev.creator.split(',')[1] && rev.creator.split(',')[1]) || null;
       date = date
@@ -76,7 +78,7 @@ class ReviewList extends React.Component {
         : null;
 
       return (
-        <div className="review_list__review mb-3 mr-4">
+        <div className="review_list__review mb-3 mr-4" key={key}>
           <span className="review_list__review__details ">
             <Text type="body" variant="weight-semibold" className="mb0">
               {rev.creator.includes('Litteratursiden')
@@ -135,50 +137,6 @@ class ReviewList extends React.Component {
                 (this.refs = {...this.refs, reviewsContainer})
               }
             >
-              {this.props.reviews.map(rev => {
-                const date =
-                  rev.creator.split(',')[1] &&
-                  timestampToShortDate(rev.creator.split(',')[1]);
-                return (
-                  <div key={rev.url} className="review_list__review mr-4 mb-3">
-                    <span className="review_list__review__details ">
-                      <Text
-                        type="body"
-                        variant="weight-semibold"
-                        className="mb0"
-                      >
-                        {rev.creator.includes('Litteratursiden')
-                          ? 'Litteratursiden'
-                          : rev.creator}
-                      </Text>
-
-                      <Text className="d-flex">
-                        <a
-                          type="small"
-                          onClick={() => {}}
-                          target="_blank"
-                          href={rev.url}
-                        >
-                          <T component="work" name={'readReview'} />
-                        </a>
-                        <a target="_blank" href={rev.url}>
-                          <i
-                            className="material-icons"
-                            style={{fontSize: '1.2rem', textDecoration: 'none'}}
-                          >
-                            launch
-                          </i>
-                        </a>
-                      </Text>
-                    </span>
-                    {date && (
-                      <Text type="small" className="due-txt mb0">
-                        {date}
-                      </Text>
-                    )}
-                  </div>
-                );
-              })}
               {reviewList}
             </div>
           )}
