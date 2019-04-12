@@ -129,6 +129,10 @@
       "addedThe": {
         "da": "Tilføjet d.",
         "en": "Added the"
+      },
+      "lists": {
+        "da": "Lister",
+        "en": "Lists"
       }
     },
     "login": {

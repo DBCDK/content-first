@@ -2,28 +2,31 @@
   display: inline-block;
 }
 
+.AddToListButton__Container.show .AddToListButton {
+  color: var(--petroleum) !important;
+}
+
 .AddToListButton {
-  min-width: 150px;
+  width: 170px;
   text-transform: uppercase;
-  text-align: left;
   outline: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.AddToListButton:hover {
+  background-color: var(--grey-nurse) !important;
+  color: var(--petroleum) !important;
 }
 
 .AddToListButton__Container.show .AddToListButton {
-  background-color: var(--french-pass) !important;
+  background-color: var(--grey-nurse) !important;
 }
 
 .AddToListButton__Container .AddToListButton.AddToListButton__Active {
-  background-color: var(--due);
-}
-
-.AddToListButton i,
-.AddToListButton span {
-  vertical-align: middle;
-}
-
-.AddToListButton i {
-  float: right;
+  background-color: var(--de-york);
+  color: white;
 }
 
 .AddToListButton span {
@@ -37,6 +40,8 @@
   min-width: 225px;
   max-width: 250px;
   border: 1px solid var(--porcelain);
+  padding: 0;
+  margin: 0.5rem 0 0.5rem 0;
 }
 
 .AddToListButton__Dropdown li {
@@ -45,44 +50,38 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-bottom: 1px solid var(--grey-nurse);
 }
+
 .AddToListButton__Dropdown li:hover {
-  background-color: var(--french-pass);
+  background-color: var(--sea-mist);
 }
 .AddToListButton__Dropdown li:active {
-  background-color: var(--due);
+  background-color: var(--pistache);
 }
-.AddToListButton__Dropdown .dropdown-divider {
-  padding: 0;
-  margin: 0;
-  border-top: 1px solid var(--sea-mist);
+
+li.AddToListButton__CUSTOM_LIST.last,
+li.AddToListButton__SYSTEM_LIST.last {
+  border-bottom: 2px solid var(--pistache);
 }
 .AddToListButton__Dropdown li span {
   vertical-align: middle;
 }
 .AddToListButton__Dropdown li i {
-  vertical-align: middle;
-  float: right;
-  margin-right: 0.5rem;
-}
-
-.AddToListButton__Dropdown li .AddToListButton__Radio {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
   margin: 0 1rem 0 1rem;
+  vertical-align: middle;
 }
 
-.AddToListButton__Dropdown li .AddToListButton__New {
-  color: var(--kobber);
-  font-weight: 600;
-  float: right;
-  margin-right: 1rem;
+.AddToListButton__Dropdown li i.material-icons-lens {
+  color: transparent;
+  background-color: transparent;
+  border: 1px solid var(--pistache);
+  border-radius: 50%;
 }
 
-.AddToListButton__Radio.Radio__Active {
-  background-color: var(--pistache);
+.AddToListButton__Dropdown li i.material-icons-add {
+  font-size: 1.5rem;
+  margin: 0 0.9rem 0 0.9rem;
 }
 
 .AddToListButton__Mobile__Back,
@@ -121,10 +120,8 @@
     overflow-y: auto;
   }
 
-  /* removes "tilføj til liste" & "opret ny liste"*/
-  .AddToListButton__Dropdown__ShowLists li:last-child,
-  .AddToListButton__Dropdown__ShowLists li:nth-last-child(2) {
-    display: none;
+  li.AddToListButton__SYSTEM_LIST.last {
+    border-bottom: none;
   }
 
   .AddToListButton__Dropdown__ShowLists li {
@@ -133,15 +130,12 @@
     border-right: 1px solid var(--sea-mist);
     border-bottom: 1px solid var(--grey-nurse);
   }
-  .AddToListButton__Dropdown__ShowLists .dropdown-divider {
-    display: none;
-  }
-  .AddToListButton__Dropdown__ShowLists li:nth-last-child(6) {
+  .AddToListButton__Dropdown__ShowLists li:nth-last-child(3) {
     border-bottom: 1px solid var(--sea-mist);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
-  .AddToListButton__Dropdown__ShowLists li:nth-child(3) {
+  .AddToListButton__Dropdown__ShowLists li:nth-child(4) {
     border-top: 1px solid var(--sea-mist);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -168,33 +162,11 @@
 
   .AddToListButton__Mobile__Input {
     padding: 0 !important;
-    border: none;
-  }
-
-  .AddToListButton__Mobile__Input input {
-    display: block;
-    width: 100%;
-    height: 44px;
-    padding-left: 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid var(--sea-mist);
-    border-radius: 4px;
-    outline: none;
-  }
-
-  .AddToListButton__Mobile__Input input:focus {
-    outline: 1px solid var(--petroleum);
-    border: 1px solid var(--petroleum);
+    text-align: center;
   }
 
   .AddToListButton__Mobile__Input button {
-    float: right;
-    font-size: 1rem;
-    text-transform: uppercase;
-  }
-
-  .AddToListButton__Mobile__Input input:focus ~ button {
-    background-color: var(--pistache);
+    height: 39px;
   }
 
   .AddToListButton__Mobile__Heading {

@@ -11,6 +11,7 @@ import {
   storeList,
   removeList,
   getListByIdSelector,
+  toggleElementInList,
   CUSTOM_LIST
 } from '../../../redux/list.reducer';
 import {saveList} from '../../../utils/requestLists';
@@ -131,11 +132,16 @@ export const withList = WrappedComponent => {
     return {
       storeList: list => {
         dispatch(storeList(list._id));
-
         // show created list toast, if just created (not on edit list)
         if (ownProps.justCreated) {
           createdToast(list);
         }
+      },
+      toggleWorkInList: async (work, list) => {
+        // Toggle work in list
+        await dispatch(toggleElementInList(work, list._id));
+        // Store changes
+        dispatch(storeList(list._id));
       },
       updateListData: data => dispatch(updateList({_id: ownProps.id, ...data})),
       deleteList: () => dispatch(removeList(ownProps.id))
