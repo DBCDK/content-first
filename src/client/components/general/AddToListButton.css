@@ -75,7 +75,6 @@ li.AddToListButton__SYSTEM_LIST.last {
 .AddToListButton__Dropdown li i.material-icons-lens {
   color: transparent;
   background-color: transparent;
-  border: 1px solid var(--pistache);
   border-radius: 50%;
 }
 
@@ -88,6 +87,11 @@ li.AddToListButton__SYSTEM_LIST.last {
 .AddToListButton__Mobile__Heading,
 .AddToListButton__Mobile__Input {
   display: none;
+}
+
+.AddToListButton__Dropdown__ShowLists li:nth-last-child(2) {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 @media only screen and (max-width: 575px) {
@@ -124,17 +128,23 @@ li.AddToListButton__SYSTEM_LIST.last {
     border-bottom: none;
   }
 
+  .AddToListButton__Dropdown li i.material-icons-lens {
+    border: 1px solid var(--pistache);
+  }
+
   .AddToListButton__Dropdown__ShowLists li {
     margin: 0 1.3rem 0 1.3rem;
     border-left: 1px solid var(--sea-mist);
     border-right: 1px solid var(--sea-mist);
     border-bottom: 1px solid var(--grey-nurse);
   }
+
   .AddToListButton__Dropdown__ShowLists li:nth-last-child(3) {
     border-bottom: 1px solid var(--sea-mist);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
+
   .AddToListButton__Dropdown__ShowLists li:nth-child(4) {
     border-top: 1px solid var(--sea-mist);
     border-top-left-radius: 4px;
