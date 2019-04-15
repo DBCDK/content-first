@@ -339,3 +339,49 @@ div.belt-subtext {
 .curser-move {
   cursor: move;
 }
+.increase-touch-area-large,
+.increase-touch-area-small,
+.increase-touch-area-xsmall,
+.rc-slider-handle{
+
+  position: relative;
+}
+.increase-touch-area-large::before{
+  content:""; 
+  width:100%;
+  height:100%;
+  position:absolute;
+  padding:20px;
+  top: -7px;
+  left: -7px;
+}
+.increase-touch-area-small::before{
+  content:""; 
+  width:100%;
+  height:100%;
+  position:absolute;
+  padding:16px;
+  top: -6px;
+  left: -6px;
+}
+.increase-touch-area-xsmall::before{
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 14px;
+  top: -6px;
+  left: 5px;
+}
+
+.rc-slider-handle::before{
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 16px;
+  top: -11px;
+  left: -14px;
+}
+
+

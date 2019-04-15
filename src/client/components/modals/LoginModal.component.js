@@ -4,12 +4,13 @@ import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import ArrowBack from '../svg/ArrowBack.svg';
 import T from '../base/T/';
+import {isMobile} from 'react-device-detect';
 
 export function LoginModal({context, closeModal, login}) {
-  const isMobile = window.innerWidth < 768;
+  const isSmallScreen = window.innerWidth < 768;
 
   function renderHeder() {
-    if (isMobile) {
+    if (isSmallScreen) {
       return (
         <div className="login-modal-small-screen-header" onClick={closeModal}>
           <img src={ArrowBack} alt="luk" onClick={closeModal} />
@@ -22,7 +23,10 @@ export function LoginModal({context, closeModal, login}) {
     return (
       <i
         onClick={closeModal}
-        className="material-icons modal-window--close-btn"
+        className={
+          'material-icons modal-window--close-btn' +
+          (isMobile ? ' increase-touch-area-large' : '')
+        }
       >
         clear
       </i>

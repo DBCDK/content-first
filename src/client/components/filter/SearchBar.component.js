@@ -5,6 +5,7 @@ import Button from '../base/Button';
 import withTagsFromUrl from '../base/AdressBar/withTagsFromUrl.hoc';
 import withWork from '../base/Work/withWork.hoc';
 import './SearchBar.css';
+import {isMobile} from 'react-device-detect';
 
 const SelectedWork = withWork(({selected, work, onRemove}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
@@ -20,7 +21,7 @@ const SelectedTag = ({selected, onRemove}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
     <span>{selected.title}</span>
     <Icon
-      className="md-small"
+      className={'md-small' + (isMobile ? ' increase-touch-area-xsmall' : '')}
       name="close"
       onClick={() => onRemove(selected.match)}
     />
