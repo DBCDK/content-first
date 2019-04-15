@@ -106,7 +106,6 @@ class MultiRowContainer extends React.Component {
               rid={this.props.rid}
               pids={pidList}
               cardRef={workCard => (this.refs = {...this.refs, workCard})}
-              isVisible={this.props.isVisible}
             />
           ))}
         </div>
