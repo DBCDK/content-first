@@ -737,7 +737,9 @@ exports[`renders without crashing 1`] = `
         >
           chat_bubble_outline
         </i>
-        <span />
+        <span
+          className="feedback-text"
+        />
       </span>
       
     </button>

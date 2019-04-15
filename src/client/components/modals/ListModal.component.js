@@ -196,13 +196,7 @@ class PageAdvanced extends React.Component {
   }
 
   render() {
-    const {
-      list,
-      justCreated,
-      className = null,
-      handleImage,
-      updateListData
-    } = this.props;
+    const {list, className = null, handleImage, updateListData} = this.props;
     const {wrap} = this.state;
 
     return (
@@ -220,10 +214,10 @@ class PageAdvanced extends React.Component {
             list.list.map(work => {
               return (
                 <Pulse
-                  noAnimation={justCreated}
+                  noAnimation={false}
                   dragContainer={'parent'}
                   position={this.calcPosition(work)}
-                  draggable={!justCreated}
+                  draggable={true}
                   label={work.book.title}
                   key={'pulse-' + work.pid}
                   color={list.dotColor || false}
