@@ -21,7 +21,7 @@
         display: none;
     }
 
-    .Button__feedback span:after {
+    .Button__feedback span.feedback-text:after {
         display: inline-flex;
         font-size: 0.8rem;
         content: 'FEEDBACK';
