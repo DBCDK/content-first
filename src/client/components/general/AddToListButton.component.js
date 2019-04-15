@@ -16,9 +16,6 @@ import {
 
 import './AddToListButton.css';
 
-// Number of customLists to show
-const customLimit = 3;
-
 export class AddToListButton extends React.Component {
   // Check if a work exist in a list
   pidInList(pid, list) {
@@ -69,30 +66,34 @@ export class AddToListButton extends React.Component {
     return systemTitle.slice(0, -2) || customTitle.slice(0, -2) || defaultTitle;
   }
 
-  createDropdownElement(list) {
+  createDropdownElement(list, limit = 99) {
     const work = this.props.work;
     const book = work.book;
 
     return list.map((l, i) => {
-      let status = this.pidInList(book.pid, l.list);
+      if (i < limit) {
+        let status = this.pidInList(book.pid, l.list);
 
-      const ToastMessageLabel = (
-        <T
-          component="list"
-          name={status ? 'toastRemovedFrom' : 'toastAddedTo'}
-        />
-      );
+        const ToastMessageLabel = (
+          <T
+            component="list"
+            name={status ? 'toastRemovedFrom' : 'toastAddedTo'}
+          />
+        );
 
-      if (i < customLimit) {
+        // Add the "last-class" if the element is last of a kind (Used for custom borders)
         const classLast =
-          i + 1 === customLimit || i + 1 === list.length ? 'last' : '';
+          i + 1 === limit || i + 1 === list.length ? 'last' : '';
 
         return (
           <li
             className={`AddToListButton__${l.type} ${classLast}`}
             key={l.title}
             onClick={() => {
-              isMobileOnly && this.forceOpen();
+              if (isMobileOnly) {
+                // Dont auto-close dropdown on mobile devices - multiselection is allowed
+                this.forceOpen();
+              }
               this.props.toggleWorkInList(work, l);
               toast(
                 <ToastMessage
@@ -124,9 +125,6 @@ export class AddToListButton extends React.Component {
       openModal
     } = this.props;
 
-    console.log('customList', this.props.customLists);
-
-    const book = work.book;
     const defaultTitle = T({component: 'list', name: 'addToList'});
     const buttonTitle = this.constructTitle(defaultTitle);
 
@@ -199,7 +197,7 @@ export class AddToListButton extends React.Component {
             <T component="general" name="lists" />
           </li>
 
-          {this.createDropdownElement(customLists)}
+          {this.createDropdownElement(customLists, 3)}
           {this.createDropdownElement(systemLists)}
 
           <li

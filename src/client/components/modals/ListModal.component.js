@@ -44,8 +44,6 @@ class PageInfo extends React.Component {
   }
 
   render() {
-    console.log('this.props', this.props);
-
     const {list, handleImage, className = null, updateListData} = this.props;
 
     return (
@@ -198,13 +196,7 @@ class PageAdvanced extends React.Component {
   }
 
   render() {
-    const {
-      list,
-      justCreated,
-      className = null,
-      handleImage,
-      updateListData
-    } = this.props;
+    const {list, className = null, handleImage, updateListData} = this.props;
     const {wrap} = this.state;
 
     return (

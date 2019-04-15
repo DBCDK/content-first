@@ -55,7 +55,7 @@ export const withListCreator = WrappedComponent => {
       }
     }
 
-    createList = async openplatformId => {
+    createList = async () => {
       const list = await saveList(
         {
           type: CUSTOM_LIST,
