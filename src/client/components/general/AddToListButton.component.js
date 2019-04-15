@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {toast} from 'react-toastify';
+import {isMobileOnly} from 'react-device-detect';
 import Icon from '../base/Icon';
 import ToastMessage from '../base/ToastMessage';
 import Button from '../base/Button';
@@ -86,14 +87,12 @@ export class AddToListButton extends React.Component {
         const classLast =
           i + 1 === customLimit || i + 1 === list.length ? 'last' : '';
 
-        console.log('classLast: ', classLast);
-
         return (
           <li
             className={`AddToListButton__${l.type} ${classLast}`}
             key={l.title}
             onClick={() => {
-              this.forceOpen();
+              isMobileOnly && this.forceOpen();
               this.props.toggleWorkInList(work, l);
               toast(
                 <ToastMessage
@@ -124,6 +123,8 @@ export class AddToListButton extends React.Component {
       systemLists = [],
       openModal
     } = this.props;
+
+    console.log('customList', this.props.customLists);
 
     const book = work.book;
     const defaultTitle = T({component: 'list', name: 'addToList'});
@@ -188,7 +189,7 @@ export class AddToListButton extends React.Component {
               type="quaternary"
               className=""
               iconLeft={'add'}
-              onClick={() => openModal('list')}
+              onClick={() => openModal('list', {works: [work]})}
             >
               <T component="list" name="createNew" />
             </Button>
@@ -203,23 +204,20 @@ export class AddToListButton extends React.Component {
 
           <li
             className="d-none d-sm-flex align-items-center"
-            onClick={() => openModal('list')}
+            onClick={() => openModal('list', {works: [work]})}
           >
-            <Icon name="add" className="" />
+            <Icon name="add" />
             <span>
               <T component="list" name="createNew" />
             </span>
           </li>
 
-          <li
-            className="mt-4 AddToListButton__Mobile__Input d-flex justify-content-end d-sm-none align-items-center"
-            onClick={() => openModal('list')}
-          >
+          <li className="mt-4 AddToListButton__Mobile__Input d-flex justify-content-end d-sm-none align-items-center">
             <Button
               size="medium"
               type="quaternary"
               className="porcelain"
-              onClick={() => openModal('list')}
+              onClick={() => this.forceClose()}
             >
               <T component="general" name="save" />
             </Button>

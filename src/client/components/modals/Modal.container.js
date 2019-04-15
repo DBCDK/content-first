@@ -103,6 +103,11 @@ class Modal extends React.Component {
       );
     }
     if (this.props.modalState.list.open) {
+      console.log(
+        'this.props.modalState.list.context',
+        this.props.modalState.list.context
+      );
+
       modal = (
         <ListModal
           close={this.props.close('list')}

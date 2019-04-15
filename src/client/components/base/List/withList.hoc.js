@@ -43,14 +43,14 @@ export const withListCreator = WrappedComponent => {
 
     componentDidMount() {
       if (!this.props.id && this.props.openplatformId) {
-        this.createList(this.props.openplatformId);
+        this.createList();
       }
     }
 
     componentDidUpdate(prevProps) {
       if (!this.props.id) {
         if (prevProps.openplatformId !== this.props.openplatformId) {
-          this.createList(this.props.openplatformId);
+          this.createList();
         }
       }
     }
@@ -62,9 +62,11 @@ export const withListCreator = WrappedComponent => {
           public: false,
           title: T({component: 'list', name: 'noTitleValue'}),
           description: '',
-          dotColor: 'petroleum'
+          dotColor: 'petroleum',
+          // "Pre-add" works to the created list
+          list: this.props.works || null
         },
-        openplatformId
+        this.props.openplatformId
       );
 
       this.setState({id: list._id});
@@ -88,11 +90,13 @@ export const withListCreator = WrappedComponent => {
     };
   };
 
-  const mapDispatchToProps = dispatch => ({
-    createList: async list => {
-      await dispatch(addList(list));
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    return {
+      createList: async list => {
+        await dispatch(addList(list));
+      }
+    };
+  };
 
   return connect(
     mapStateToProps,
