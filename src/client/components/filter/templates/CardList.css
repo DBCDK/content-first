@@ -29,23 +29,12 @@
   color: var(--due);
 }
 
-.FilterCard__list .FilterCard__listItem.listItem-inactive {
-  color: var(--petroleum);
-}
-
 /* if card is expanded */
 
 .FilterCard__container.FilterCard-expanded
   .FilterCard__list
   .FilterCard__listItem {
   display: list-item;
-}
-
-.FilterCard__container.FilterCard-expanded
-  .FilterCard__list
-  .FilterCard__listItem:hover {
-  color: var(--due);
-  cursor: pointer;
 }
 
 .FilterCard__container.FilterCard-expanded
