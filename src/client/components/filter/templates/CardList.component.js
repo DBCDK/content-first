@@ -1,4 +1,5 @@
 import React from 'react';
+import {isMobile} from 'react-device-detect';
 import Heading from '../../base/Heading';
 import withTagsFromUrl from '../../base/AdressBar/withTagsFromUrl.hoc';
 
@@ -8,11 +9,13 @@ const ListItem = withTagsFromUrl(
   ({filter, isSelected, toggleSelected, enabled = true}) => {
     const selected = isSelected(filter.id);
     const tagState = selected ? 'listItem-active' : 'listItem-inactive';
+    const isTouch = isMobile ? 'isTouch' : '';
+
     return (
       <li
         type="term"
         size="small"
-        className={'FilterCard__listItem ' + tagState}
+        className={`FilterCard__listItem ${tagState} ${isTouch}`}
         data-cy={filter.title.toLowerCase() || ''}
         onClick={() => {
           if (enabled) {

@@ -44,6 +44,11 @@
   cursor: pointer;
 }
 
+/* Prevent sticky hover on touch devices */
+.FilterCard__container.FilterCard-expanded .listItem-inactive.isTouch {
+  color: var(--petroleum) !important;
+}
+
 @media only screen and (max-width: 600px) {
   .FilterCard__listItem-more {
     display: none;
