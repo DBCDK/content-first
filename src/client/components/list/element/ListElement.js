@@ -227,17 +227,26 @@ export class ListElement extends React.Component {
             className="d-flex flex-column pl-4 position-relative"
           >
             <div className=" h-100">
-              <Title
-                Tag="h3"
-                type="title5"
-                className="m-0"
-                data-cy="list-element-work-title"
+              <Link href={'/værk/' + book.pid}>
+                <Title
+                  Tag="h3"
+                  type="title5"
+                  className="m-0"
+                  data-cy="list-element-work-title"
+                >
+                  {book.title}
+                </Title>
+              </Link>
+
+              <Link
+                href={'/find?tags=' + encodeURI(book.creator)}
+                className="book-creator-name "
               >
-                {book.title}
-              </Title>
-              <Text type="body" className="mt-1 mb-3">
-                {book.creator}
-              </Text>
+                <Text type="body" className="mt-1 mb-3">
+                  {book.creator}
+                </Text>
+              </Link>
+
               <div className="position-relative">
                 {showContextMenu && (
                   <ElementContextMenu
