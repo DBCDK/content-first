@@ -8,7 +8,7 @@
 
 .FilterCard__range .rc-slider-handle {
   border: 2px solid var(--korn);
-  background-color: var(--porcelain);
+  background-color: var(--korn);
 }
 
 .FilterCard__range .FilterCard__rangeItems span {
@@ -34,21 +34,6 @@
   .FilterCard__rangeItems
   .FilterCard__rangeItem::first-letter {
   text-transform: uppercase;
-}
-
-/* if card is inActive */
-
-.FilterCard__range.FilterCard__rangeItem-inActive .rc-slider-track {
-  background-color: var(--porcelain);
-}
-
-.FilterCard__range.FilterCard__rangeItem-inActive .rc-slider-handle {
-  border: 1px solid var(--alto);
-  background-color: var(--porcelain);
-}
-
-.FilterCard__range.FilterCard__rangeItem-inActive .FilterCard__rangeItems {
-  color: var(--alto) !important;
 }
 
 /* if card values is equal */
