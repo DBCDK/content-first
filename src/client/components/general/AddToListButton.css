@@ -15,6 +15,7 @@
 
 .AddToListButton__Container .AddToListButton.AddToListButton__Active {
   background-color: var(--due);
+  color: white;
 }
 
 .AddToListButton i,
