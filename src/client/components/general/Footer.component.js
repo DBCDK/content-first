@@ -70,7 +70,11 @@ class Footer extends React.Component {
         <div className={`Footer__outer-container--flexbox ${isStickyClass}`}>
           <div className="Footer__container--elements p-3 pt-5 pb-md-5">
             <div className="Footer__logo--element mb-1">
-              <img src={LaesekompasLogo} className="Footer__logo--image" />
+              <img
+                src={LaesekompasLogo}
+                className="Footer__logo--image"
+                alt=""
+              />
             </div>
             <div className="Footer__element--block">
               <Text type="body" className="mt-3 pr-md-3 pr-lg-3">
@@ -90,7 +94,11 @@ class Footer extends React.Component {
               <Text type="body" className="mt-3 pr-md-3 pr-lg-3">
                 <T component="footer" name="customerServiceText" />
                 <br />
-                <a href="https://kundeservice.dbc.dk" target="_blank">
+                <a
+                  href="https://kundeservice.dbc.dk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <T component="footer" name="customerServiceLinkText" />
                 </a>
               </Text>

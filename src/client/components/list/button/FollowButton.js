@@ -25,12 +25,12 @@ export const FollowButton = ({
   return (
     <Button
       className={className}
-      style={style}
       disabled={disabled}
       type="link2"
       style={{
         color: isFollowing ? 'var(--de-york)' : 'var(--petroleum)',
-        textDecoration: 'none'
+        textDecoration: 'none',
+        ...style
       }}
       onClick={() => {
         if (!isLoggedIn) {

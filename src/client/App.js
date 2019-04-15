@@ -157,6 +157,12 @@ export const mapDispatchToProps = dispatch => ({
             type: 'CLOSE_MODAL',
             modal: 'confirm'
           });
+        },
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
         }
       }
     });

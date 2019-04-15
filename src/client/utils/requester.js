@@ -110,6 +110,7 @@ export const fetchBooksRefs = async (pids = []) => {
           }
         };
       }
+      return null;
     });
   });
 };

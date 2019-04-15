@@ -209,11 +209,11 @@ exports[`CommentContainer Delete button 1`] = `
                 className="d-inline"
                 type="large"
               >
-                <p
+                <span
                   className="d-inline Text Text__large "
                 >
                   Benny Cosmos
-                </p>
+                </span>
               </Text>
               <div
                 className="d-inline ml-2"
@@ -437,11 +437,11 @@ exports[`CommentContainer Edit button 1`] = `
                 className="d-inline"
                 type="large"
               >
-                <p
+                <span
                   className="d-inline Text Text__large "
                 >
                   Benny Cosmos
-                </p>
+                </span>
               </Text>
               <div
                 className="d-inline ml-2"
@@ -775,11 +775,11 @@ exports[`CommentContainer Render comment 1`] = `
           <div
             className="comment-nameComment-wrap"
           >
-            <p
+            <span
               className="d-inline Text Text__large "
             >
               Benny Cosmos
-            </p>
+            </span>
             <div
               className="d-inline ml-2"
             >
@@ -914,11 +914,11 @@ exports[`CommentContainer Render edit form 1`] = `
           <div
             className="comment-nameComment-wrap"
           >
-            <p
+            <span
               className="d-inline Text Text__large "
             >
               Benny Cosmos
-            </p>
+            </span>
             <div
               className="d-inline ml-2"
             >
@@ -1067,11 +1067,11 @@ exports[`CommentContainer Render save form 1`] = `
           <div
             className="comment-nameComment-wrap"
           >
-            <p
+            <span
               className="d-inline Text Text__large "
             >
               Benny Cosmos
-            </p>
+            </span>
             <div
               className="d-inline ml-2"
             >
@@ -1295,11 +1295,11 @@ exports[`CommentContainer Save button 1`] = `
                 className="d-inline"
                 type="large"
               >
-                <p
+                <span
                   className="d-inline Text Text__large "
                 >
                   Benny Cosmos
-                </p>
+                </span>
               </Text>
               <div
                 className="d-inline ml-2"

@@ -236,6 +236,7 @@ export const REMOVE_CHILD_BELT = 'REMOVE_CHILD_BELT';
 export const BELT_SCROLL = 'BELT_SCROLL';
 export const REORGANIZE_FILTERPAGE_BELTS = 'REORGANIZE_FILTERPAGE_BELTS';
 
+/* eslint-disable complexity */
 const beltsReducer = (state = defaultState, action) => {
   switch (action.type) {
     case BELTS_LOAD_REQUEST: {

@@ -6,6 +6,7 @@ import T from '../base/T';
 import CardList from './templates/CardList.component.js';
 import CardRange from './templates/CardRange.component.js';
 import withTagsFromUrl from '../base/AdressBar/withTagsFromUrl.hoc';
+import {isMobile} from 'react-device-detect';
 
 import './FilterCards.css';
 
@@ -71,7 +72,13 @@ class FilterCard extends React.Component {
             className="FilterCard__cover"
             style={{backgroundImage: `url(${filter.image})`}}
           >
-            <Icon name="close" className="FilterCard__close" />
+            <Icon
+              name="close"
+              className={
+                'FilterCard__close' +
+                (isMobile ? ' increase-touch-area-small' : '')
+              }
+            />
           </div>
           <div
             className="FilterCard__content"

@@ -12,6 +12,7 @@ const Pin = ({
   onClick,
   isLoggedIn,
   requireLogin,
+  notLoggedIncontext, // eslint-disable-line no-unused-vars
   ...props
 }) => {
   const status = active ? 'active' : 'default';

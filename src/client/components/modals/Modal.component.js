@@ -3,6 +3,7 @@ import Button from '../base/Button';
 import Text from '../base/Text';
 import Title from '../base/Title';
 import Icon from '../base/Icon';
+import {isMobile} from 'react-device-detect';
 
 import './Modal.css';
 
@@ -23,7 +24,10 @@ export default class Modal extends React.Component {
           <div className="top d-flex flex-row justify-content-start justify-content-sm-end">
             <Icon
               name="clear"
-              className="m-3 d-none d-sm-inline-block"
+              className={
+                'm-3 d-none d-sm-inline-block ' +
+                (isMobile ? ' increase-touch-area-large' : '')
+              }
               onClick={this.props.onClose}
               style={{cursor: 'pointer'}}
             />
@@ -71,9 +75,9 @@ export default class Modal extends React.Component {
                     <Button
                       disabled={onError}
                       size="medium"
-                      className={'mr-0 ' + (doneDisabled && 'disabled')}
+                      className={'mr-0' + (doneDisabled ? ' disabled' : '')}
                       type="quaternary"
-                      onClick={doneDisabled || this.props.onDone}
+                      onClick={doneDisabled ? () => {} : this.props.onDone}
                       dataCy="modal-done-btn"
                     >
                       {doneText}

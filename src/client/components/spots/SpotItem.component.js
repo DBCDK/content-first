@@ -8,9 +8,7 @@ import {getLeavesMap} from '../../utils/taxonomy';
 const leavesMap = getLeavesMap();
 
 export class SpotItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  componentDidMount() {}
   getStyle() {
     let style = '';
     if (this.props.spotData.image) {

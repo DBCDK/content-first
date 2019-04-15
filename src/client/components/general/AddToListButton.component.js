@@ -180,7 +180,6 @@ export class AddToListButton extends React.Component {
             <Icon name="chevron_left" className="md-medium ml-0" />
             <T component="general" name="back" />
           </li>
-
           <li className="AddToListButton__Mobile__Input mt-4">
             <Button
               size="medium"

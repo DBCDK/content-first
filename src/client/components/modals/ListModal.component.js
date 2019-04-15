@@ -252,6 +252,7 @@ class PageAdvanced extends React.Component {
               src={`/v1/image/${list.image}/719/400`}
               width="100%"
               height="auto"
+              alt="Upload Bookcase"
             />
           )}
         </div>

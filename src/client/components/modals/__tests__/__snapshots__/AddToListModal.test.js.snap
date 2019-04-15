@@ -15,7 +15,7 @@ exports[`AddToListModal multiple works as input 1`] = `
       className="top d-flex flex-row justify-content-start justify-content-sm-end"
     >
       <i
-        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block "
+        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block  "
         onClick={[Function]}
         style={
           Object {
@@ -194,7 +194,7 @@ exports[`AddToListModal multiple works as input 1`] = `
           target="_blank"
         >
           <button
-            className="mr-0 false
+            className="mr-0
                 btn Button Button__medium Button__quaternary "
             data-cy="modal-done-btn"
             disabled={false}
@@ -228,7 +228,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
       className="top d-flex flex-row justify-content-start justify-content-sm-end"
     >
       <i
-        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block "
+        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block  "
         onClick={[Function]}
         style={
           Object {
@@ -443,7 +443,7 @@ exports[`AddToListModal newly added list is selected 1`] = `
           target="_blank"
         >
           <button
-            className="mr-0 false
+            className="mr-0
                 btn Button Button__medium Button__quaternary "
             data-cy="modal-done-btn"
             disabled={false}
@@ -477,7 +477,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
       className="top d-flex flex-row justify-content-start justify-content-sm-end"
     >
       <i
-        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block "
+        className="material-icons material-icons-clear m-3 d-none d-sm-inline-block  "
         onClick={[Function]}
         style={
           Object {
@@ -678,7 +678,7 @@ exports[`AddToListModal renders lists from store, first is selected 1`] = `
           target="_blank"
         >
           <button
-            className="mr-0 false
+            className="mr-0
                 btn Button Button__medium Button__quaternary "
             data-cy="modal-done-btn"
             disabled={false}

@@ -44,8 +44,8 @@ class FilterCardList extends React.Component {
                 if (isSelected(aF.id)) {
                   ignore.push(aF.id);
                   return (
-                    <React.Fragment>
-                      <ListItem key={aF.id} filter={aF} enabled={false} />
+                    <React.Fragment key={'notExp-' + aF.id}>
+                      <ListItem filter={aF} enabled={false} />
                       {!expanded && <span>{', '}</span>}
                     </React.Fragment>
                   );
@@ -56,8 +56,8 @@ class FilterCardList extends React.Component {
             if (isSelected(f.id)) {
               ignore.push(f.id);
               return (
-                <React.Fragment>
-                  <ListItem key={f.id} filter={f} enabled={false} />
+                <React.Fragment key={'notExpSel-' + f.id}>
+                  <ListItem filter={f} enabled={false} />
                   {!expanded && <span>{', '}</span>}
                 </React.Fragment>
               );
@@ -83,8 +83,8 @@ class FilterCardList extends React.Component {
                 {f.map(aF => {
                   if (!ignore.includes(aF.id)) {
                     return (
-                      <React.Fragment key={aF.id}>
-                        <ListItem key={aF.id} filter={aF} />
+                      <React.Fragment key={'exp-' + aF.id}>
+                        <ListItem filter={aF} />
                         {!expanded && <span>{', '}</span>}
                       </React.Fragment>
                     );
@@ -96,8 +96,8 @@ class FilterCardList extends React.Component {
           }
           if (!ignore.includes(f.id)) {
             return (
-              <React.Fragment key={f.id}>
-                <ListItem key={f.id} filter={f} />
+              <React.Fragment key={'inc' + f.id}>
+                <ListItem filter={f} />
                 {!expanded && <span>{', '}</span>}
               </React.Fragment>
             );

@@ -55,6 +55,7 @@ export class ProfileModal extends React.Component {
                 href="https://www.bibliotek.dk"
                 target="_blank"
                 className="profile__ageLimit-link"
+                rel="noopener noreferrer"
               >
                 {' '}
                 bibliotek.dk.
@@ -67,6 +68,7 @@ export class ProfileModal extends React.Component {
                 href="https://kundeservice.dbc.dk/"
                 target="_blank"
                 className="profile__ageLimit-link"
+                rel="noopener noreferrer"
               >
                 {' '}
                 DBCs kundeservice.{' '}
