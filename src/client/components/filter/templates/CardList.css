@@ -29,6 +29,10 @@
   color: var(--due);
 }
 
+.FilterCard__list .FilterCard__listItem.listItem-inactive {
+  color: var(--petroleum);
+}
+
 /* if card is expanded */
 
 .FilterCard__container.FilterCard-expanded
@@ -64,5 +68,9 @@
     ul.FilterCard__list {
     height: auto;
     overflow: visible;
+  }
+
+  .FilterCard__list .FilterCard__listItem.listItem-inactive {
+    color: var(--petroleum) !important;
   }
 }
