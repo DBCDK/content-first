@@ -11,6 +11,7 @@ import {
   storeList,
   removeList,
   getListByIdSelector,
+  toggleElementInList,
   CUSTOM_LIST
 } from '../../../redux/list.reducer';
 import {saveList} from '../../../utils/requestLists';
@@ -42,28 +43,30 @@ export const withListCreator = WrappedComponent => {
 
     componentDidMount() {
       if (!this.props.id && this.props.openplatformId) {
-        this.createList(this.props.openplatformId);
+        this.createList();
       }
     }
 
     componentDidUpdate(prevProps) {
       if (!this.props.id) {
         if (prevProps.openplatformId !== this.props.openplatformId) {
-          this.createList(this.props.openplatformId);
+          this.createList();
         }
       }
     }
 
-    createList = async openplatformId => {
+    createList = async () => {
       const list = await saveList(
         {
           type: CUSTOM_LIST,
           public: false,
           title: T({component: 'list', name: 'noTitleValue'}),
           description: '',
-          dotColor: 'petroleum'
+          dotColor: 'petroleum',
+          // "Pre-add" works to the created list
+          list: this.props.works || null
         },
-        openplatformId
+        this.props.openplatformId
       );
 
       this.setState({id: list._id});
@@ -87,11 +90,13 @@ export const withListCreator = WrappedComponent => {
     };
   };
 
-  const mapDispatchToProps = dispatch => ({
-    createList: async list => {
-      await dispatch(addList(list));
-    }
-  });
+  const mapDispatchToProps = dispatch => {
+    return {
+      createList: async list => {
+        await dispatch(addList(list));
+      }
+    };
+  };
 
   return connect(
     mapStateToProps,
@@ -131,11 +136,16 @@ export const withList = WrappedComponent => {
     return {
       storeList: list => {
         dispatch(storeList(list._id));
-
         // show created list toast, if just created (not on edit list)
         if (ownProps.justCreated) {
           createdToast(list);
         }
+      },
+      toggleWorkInList: async (work, list) => {
+        // Toggle work in list
+        await dispatch(toggleElementInList(work, list._id));
+        // Store changes
+        dispatch(storeList(list._id));
       },
       updateListData: data => dispatch(updateList({_id: ownProps.id, ...data})),
       deleteList: () => dispatch(removeList(ownProps.id))
