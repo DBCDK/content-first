@@ -3,6 +3,7 @@ import Button from '../base/Button';
 import Text from '../base/Text';
 import Title from '../base/Title';
 import Icon from '../base/Icon';
+import {isMobile} from 'react-device-detect';
 
 import './Modal.css';
 
@@ -23,7 +24,10 @@ export default class Modal extends React.Component {
           <div className="top d-flex flex-row justify-content-start justify-content-sm-end">
             <Icon
               name="clear"
-              className="m-3 d-none d-sm-inline-block"
+              className={
+                'm-3 d-none d-sm-inline-block ' +
+                (isMobile ? ' increase-touch-area-large' : '')
+              }
               onClick={this.props.onClose}
               style={{cursor: 'pointer'}}
             />
