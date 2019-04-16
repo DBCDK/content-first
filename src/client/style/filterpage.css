@@ -155,4 +155,7 @@
   .filter-page-resultCount {
     padding-top: 1rem;
   }
+  .filter-page-results {
+    min-height: calc(100vh - 350px);
+  }
 }
