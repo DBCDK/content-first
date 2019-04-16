@@ -120,7 +120,7 @@ export class ShortListItem extends React.Component {
             <T component="work" name="loanTitle" />
           </Text>
           <Toolbar className="mobile-styling">
-            <div align="left">
+            <div align="left" className="d-flex">
               {orderBookButton}
               {orderElectronicBookButtons}
             </div>

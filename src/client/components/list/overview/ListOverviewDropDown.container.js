@@ -50,13 +50,36 @@ const ListElement = props => {
   };
   const isOwner = props.list && props.list._owner === props.userID;
   return (
-    <div className="top-bar-dropdown-list-element">
+    //
+    <div
+      className={`top-bar-dropdown-list-element${
+        props.modalView ? '--modal' : ''
+      }`}
+    >
       <div className="top-bar-dropdown-list-element--cover-image">
-        <Link href={url}>{renderListsCover(props.list)}</Link>
+        <Link
+          onClick={() => {
+            if (props.closeModal) {
+              props.closeModal();
+            }
+          }}
+          href={url}
+        >
+          {renderListsCover(props.list)}
+        </Link>
       </div>
       <div className="top-bar-dropdown-list-element--text">
         <div className="top-bar-dropdown-list-element--header">
-          <Link href={url}>{props.list.title}</Link>
+          <Link
+            onClick={() => {
+              if (props.closeModal) {
+                props.closeModal();
+              }
+            }}
+            href={url}
+          >
+            {props.list.title}
+          </Link>
         </div>
         <div className="top-bar-dropdown-list-element--taxonomy-description">
           {props.list.description}
@@ -76,23 +99,32 @@ const ListElement = props => {
 const UserListsContent = props => {
   return (
     <div
-      className={`top-bar-dropdown-list--content text-left${
-        props.expanded ? '' : ' slide-out'
-      }`}
+      className={
+        (props.modalView
+          ? 'user-lists-modal-content '
+          : 'top-bar-dropdown-list--content ') +
+        ` text-left${!props.modalView && !props.expanded ? ' slide-out' : ' '}`
+      }
     >
-      <i
-        onClick={props.onClose}
-        className="material-icons top-bar-dropdown-list--close-btn"
-      >
-        clear
-      </i>
-      <Text
-        type="body"
-        variant="color-fersken--weight-semibold--transform-uppercase"
-        className="tc"
-      >
-        <T component="list" name="listButton" />
-      </Text>
+      {!props.modalView && (
+        <React.Fragment>
+          <i
+            onClick={props.onClose}
+            className="material-icons top-bar-dropdown-list--close-btn"
+          >
+            clear
+          </i>
+          <Text
+            type="body"
+            variant="color-fersken--weight-semibold--transform-uppercase"
+            className="tc"
+            style={{marginBottom: '10px'}}
+          >
+            <T component="list" name="listButton" />
+          </Text>
+        </React.Fragment>
+      )}
+
       {props.children &&
         props.children.length > 0 && (
           <div className="top-bar-dropdown-list--elements">
@@ -105,7 +137,12 @@ const UserListsContent = props => {
             </ReactCSSTransitionGroup>
           </div>
         )}
-      <div className="top-bar-dropdown-list--footer">
+      <div
+        className={
+          'top-bar-dropdown-list--footer' +
+          (props.modalView ? ' user-lists-modal--footer' : ' ')
+        }
+      >
         <div onClick={() => props.onCreateNewList()}>
           <Button
             size="medium"
@@ -139,6 +176,8 @@ class ListOverviewDropDown extends React.Component {
         profiles={this.props.profiles}
         userID={this.props.userID ? this.props.userID : ''}
         index={index}
+        modalView={this.props.modalView}
+        closeModal={this.props.closeModal}
       />
     ));
   };
@@ -148,21 +187,28 @@ class ListOverviewDropDown extends React.Component {
       ownedSystemLists,
       ownedCustomLists,
       followedLists,
-      expanded
+      expanded,
+      modalView
     } = this.props;
     return (
       <React.Fragment>
-        <div
-          className={this.props.className + ' top-bar-dropdown-list'}
-          onClick={() => {
-            this.props.onListsIconClick(expanded, this.props.shortListExpanded);
-          }}
-          data-cy={this.props.dataCy}
-        >
-          {this.props.children}
-        </div>
+        {!modalView && (
+          <div
+            className={this.props.className + ' top-bar-dropdown-list'}
+            onClick={() => {
+              this.props.onListsIconClick(
+                expanded,
+                this.props.shortListExpanded
+              );
+            }}
+            data-cy={this.props.dataCy}
+          >
+            {this.props.children}
+          </div>
+        )}
         <UserListsContent
           expanded={expanded}
+          modalView={modalView}
           onClose={() => this.props.onUserListsClose()}
           onEditLists={() => this.props.onEditLists()}
           onCreateNewList={() => this.props.onCreateNewList()}

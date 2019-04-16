@@ -25,10 +25,24 @@ let searchPage = false;
 class TopBarDropdown extends React.Component {
   render() {
     const state = this.props.active ? '' : 'Topbar__dropdown__hidden';
+    const isSmallScreen = window.innerWidth < 768;
 
     return (
       <ul className={'Topbar__dropdown abort-closeDopdown ' + state}>
         <div className="Topbar__dropdown__caret" />
+
+        {isSmallScreen && (
+          <li
+            onClick={() => {
+              this.props.listsModal();
+              this.props.onClick();
+            }}
+          >
+            <span>
+              <T component="list" name="myLists" />
+            </span>
+          </li>
+        )}
         <li>
           <Link href="/profile/opret" onClick={this.props.onClick}>
             <span>
@@ -36,6 +50,7 @@ class TopBarDropdown extends React.Component {
             </span>
           </Link>
         </li>
+
         <li className="divider" />
         <li
           onClick={() => {
@@ -418,6 +433,7 @@ export class TopBar extends React.Component {
           logout={this.props.logout}
           active={this.state.dropdownActive}
           onClick={() => this.setState({dropdownActive: false})}
+          listsModal={this.props.listsModal}
         />
       </header>
     );
@@ -465,6 +481,54 @@ export const mapDispatchToProps = dispatch => ({
             <Text type="body">
               <T component="topbar" name="betaModalBody3" />
             </Text>
+          </React.Fragment>
+        ),
+        confirmText: <T component="general" name="close" />,
+        hideCancel: true,
+        hideConfirm: true,
+        onConfirm: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        },
+        onCancel: () => {
+          dispatch({
+            type: 'CLOSE_MODAL',
+            modal: 'confirm'
+          });
+        }
+      }
+    });
+  },
+  listsModal: () => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'confirm',
+      context: {
+        title: <T component="list" name="myLists" />,
+
+        reason: (
+          <React.Fragment>
+            <ListOverviewDropDown
+              className={
+                'Topbar__navigation__btn d-none d-sm-flex widthCalc d-block' // +
+                //    (expanded ? 'Topbar__dropdown_expanded' : '')
+              }
+              dataCy="topbar-lists"
+              modalView={true}
+              closeModal={() => {
+                dispatch({
+                  type: 'CLOSE_MODAL',
+                  modal: 'confirm'
+                });
+              }}
+            >
+              <Icon name="list" />
+              <span>
+                <T component="list" name="listButton" />
+              </span>
+            </ListOverviewDropDown>
           </React.Fragment>
         ),
         confirmText: <T component="general" name="close" />,

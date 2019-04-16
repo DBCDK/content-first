@@ -24,9 +24,11 @@ exports[`LoginModal renders function 1`] = `
     <div
       className="modal-window--content"
     >
-      <h3>
+      <h1
+        className=" Title Title__title4 Title__title4--transform-uppercase--weight-bold"
+      >
         abc
-      </h3>
+      </h1>
       <p>
         def
       </p>

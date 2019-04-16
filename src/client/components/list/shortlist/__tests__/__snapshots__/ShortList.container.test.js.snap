@@ -593,6 +593,7 @@ exports[`ShortList.container Add all to list 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -1076,6 +1077,7 @@ exports[`ShortList.container Add all to list 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -1559,6 +1561,7 @@ exports[`ShortList.container Add all to list 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -2361,6 +2364,7 @@ exports[`ShortList.container Add to list - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -2844,6 +2848,7 @@ exports[`ShortList.container Add to list - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -3327,6 +3332,7 @@ exports[`ShortList.container Add to list - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -4129,6 +4135,7 @@ exports[`ShortList.container Add to list - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -4612,6 +4619,7 @@ exports[`ShortList.container Add to list - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -5095,6 +5103,7 @@ exports[`ShortList.container Add to list - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -5897,6 +5906,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -6380,6 +6390,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -6863,6 +6874,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -7665,6 +7677,7 @@ exports[`ShortList.container Order all books 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -8148,6 +8161,7 @@ exports[`ShortList.container Order all books 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -8631,6 +8645,7 @@ exports[`ShortList.container Order all books 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -9432,6 +9447,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -9915,6 +9931,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -10398,6 +10415,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -11199,6 +11217,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -11682,6 +11701,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -12165,6 +12185,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -12966,6 +12987,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -13449,6 +13471,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -13932,6 +13955,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -14733,6 +14757,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -15216,6 +15241,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -15699,6 +15725,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -16500,6 +16527,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -16983,6 +17011,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -17466,6 +17495,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -18267,6 +18297,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -18750,6 +18781,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -19233,6 +19265,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -20035,6 +20068,7 @@ exports[`ShortList.container Remove element 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -20518,6 +20552,7 @@ exports[`ShortList.container Remove element 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -21001,6 +21036,7 @@ exports[`ShortList.container Remove element 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -21802,6 +21838,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -22285,6 +22322,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor
@@ -22768,6 +22806,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                 className="Toolbar__left"
                               >
                                 <div
+                                  className="d-flex"
                                   key="0"
                                 >
                                   <mockConstructor

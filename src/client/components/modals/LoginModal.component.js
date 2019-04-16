@@ -5,6 +5,7 @@ import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import ArrowBack from '../svg/ArrowBack.svg';
 import T from '../base/T/';
 import {isMobile} from 'react-device-detect';
+import Title from '../base/Title';
 
 export function LoginModal({context, closeModal, login}) {
   const isSmallScreen = window.innerWidth < 768;
@@ -39,7 +40,9 @@ export function LoginModal({context, closeModal, login}) {
       <div className={`modal-window text-left modal-narrow login-modal`}>
         <div className="modal-window--header text-center">{renderHeder()}</div>
         <div className="modal-window--content">
-          <h3>{context.title || context}</h3>
+          <Title type="title4" variant="transform-uppercase--weight-bold">
+            {context.title || context}
+          </Title>
           <p>
             {context.reason || (
               <T component="login" name="modalNoContextReason" />
