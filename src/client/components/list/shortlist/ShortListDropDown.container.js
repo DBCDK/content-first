@@ -73,6 +73,7 @@ const ShortListContent = props => {
           type="body"
           variant="color-fersken--weight-semibold--transform-uppercase"
           className="tc"
+          style={{marginBottom: '10px'}}
         >
           <T
             component="shortlist"

@@ -498,6 +498,11 @@
         "da": "Lister",
         "en": "Lists"
       },
+      "myLists": {
+        "da": "Mine lister",
+        "en": "My lists"
+      },
+      
       "addToList": {
         "da": "Tilføj til liste",
         "en": "Add to list"

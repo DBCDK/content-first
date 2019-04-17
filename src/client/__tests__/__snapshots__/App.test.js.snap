@@ -189,6 +189,11 @@ exports[`renders without crashing 1`] = `
           >
             <p
               className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+              style={
+                Object {
+                  "marginBottom": "10px",
+                }
+              }
             >
               Huskeliste (0)
             </p>

@@ -43,9 +43,11 @@ export default class Modal extends React.Component {
           </div>
 
           <div className="content">
-            <Title type="title4" variant="transform-uppercase--weight-bold">
-              {this.props.header}
-            </Title>
+            {this.props.header && (
+              <Title type="title4" variant="transform-uppercase--weight-bold">
+                {this.props.header}
+              </Title>
+            )}
             {this.props.children}
             {!hideCancel &&
               !hideConfirm && <div className="modal-seperator mt-5 mb-4" />}
