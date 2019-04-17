@@ -112,6 +112,7 @@ export class AddToListButton extends React.Component {
           </li>
         );
       }
+      return false;
     });
   }
 
@@ -180,6 +181,7 @@ export class AddToListButton extends React.Component {
             <Icon name="chevron_left" className="md-medium ml-0" />
             <T component="general" name="back" />
           </li>
+
           <li className="AddToListButton__Mobile__Input mt-4">
             <Button
               size="medium"
@@ -196,11 +198,13 @@ export class AddToListButton extends React.Component {
             <T component="general" name="lists" />
           </li>
 
-          {this.createDropdownElement(customLists, 3)}
-          {this.createDropdownElement(systemLists)}
+          <div className="AddToListButton__Lists">
+            {this.createDropdownElement(systemLists, systemLists.length)}
+            {this.createDropdownElement(customLists, customLists.length)}
+          </div>
 
           <li
-            className="d-none d-sm-flex align-items-center"
+            className="border-top d-none d-sm-flex align-items-center"
             onClick={() => openModal('list', {works: [work]})}
           >
             <Icon name="add" />
@@ -216,7 +220,7 @@ export class AddToListButton extends React.Component {
               className="porcelain"
               onClick={() => this.forceClose()}
             >
-              <T component="general" name="save" />
+              <T component="general" name="close" />
             </Button>
           </li>
         </ul>
