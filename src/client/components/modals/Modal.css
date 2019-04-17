@@ -49,7 +49,6 @@
 
 /*ReorderListModal styles*/
 .order-list-element {
-  display: flex;
   align-items: center;
   padding: 12px 18px;
   background-color: #fff;
@@ -71,12 +70,24 @@
 }
 
 .reorder-list-element-container {
-  padding: 0 14px;
+  padding: 0;
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 337px;
   background-color: var(--pistache);
 }
+
+.order-list-element .book-cover img {
+  height: 100% !important;
+  width: auto !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .order-list-element .w-75 {
+    width: 100% !important;
+  }
+}
+
 @media only screen and (min-height: 800px) {
   .reorder-list-element-container {
     max-height: 500px;

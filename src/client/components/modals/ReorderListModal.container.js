@@ -20,13 +20,12 @@ const getListById = getListByIdSelector();
 
 const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
   <li
-    className={'order-list-element row ' + className}
+    className={'order-list-element d-flex align-items-middle' + className}
     data-cy="reorder-list-element"
   >
-    <div className="col-1">
-      <i className="material-icons drag-indicator">drag_indicator</i>
-    </div>
-    <div className="col-10 col-md-9">
+    <i className="material-icons drag-indicator">drag_indicator</i>
+
+    <div className="ml-2 w-75">
       <span style={{height: 32, float: 'left', marginRight: 10}}>
         <BookCover book={book} style={{width: 'unset'}} />
       </span>
@@ -38,7 +37,7 @@ const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
       </div>
     </div>
 
-    <div className="d-none col-md-2 d-md-flex p-0 justify-content-between">
+    <div className="d-none d-md-flex p-0 justify-content-between ml-auto">
       <i
         onClick={moveUp}
         className="material-icons curser-pointer"
