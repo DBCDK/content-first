@@ -63,8 +63,7 @@ class BookCover extends React.Component {
     return (
       <div
         style={{
-          ...styles,
-          width: '100%'
+          ...styles
         }}
         alt={title}
         className={`d-flex align-items-start book-cover text-center position-relative ${className}`}
