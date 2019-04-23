@@ -26,7 +26,7 @@ const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
     <i className="material-icons drag-indicator">drag_indicator</i>
 
     <div className="ml-2 w-75">
-      <span style={{height: 32, float: 'left', marginRight: 10}}>
+      <span style={{height: 32, float: 'left', marginRight: 10, marginTop: 3}}>
         <BookCover book={book} style={{width: 'unset'}} />
       </span>
       <div className="order-list-element-text">
