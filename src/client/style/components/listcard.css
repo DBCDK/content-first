@@ -72,6 +72,7 @@ a.list-card-nohover {
 }
 
 .list-card-bottom {
+  height: 38px;
   font-size: 0.8rem;
   display: flex;
   justify-content: space-between;
@@ -111,7 +112,7 @@ a.list-card-nohover {
 }
 
 .ListCard__skeleton .ListCard__skeleton__cover {
-  height: 175px;
+  height: 160px;
   background-color: var(--porcelain);
   margin-bottom: 15px;
 }
