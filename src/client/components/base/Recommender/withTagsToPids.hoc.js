@@ -60,7 +60,8 @@ const withTagsToPids = WrappedComponent => {
       let {pids, rid} = getRecommendedPids(state, {
         tags: plainSelectedTagIds,
         excluded: ownProps.excluded,
-        limit: ownProps.limit
+        limit: ownProps.limit,
+        threshold: ownProps.thresHold
       });
       return {
         plainSelectedTagIds,
