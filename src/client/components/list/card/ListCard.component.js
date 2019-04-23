@@ -93,20 +93,22 @@ class ListCard extends React.Component {
     // if no elements detected, show skeleton cards
     if (skeleton) {
       return (
-        <div className={'ListCard__skeleton pt1 mr1 ml1 ' + className}>
+        <div className={'ListCard__skeleton p-0 mr-4 ' + className}>
           <div className="ListCard__skeleton__cover" />
-          <SkeletonText lines={3} color="#e9eaeb" />
-          <SkeletonUser
-            name={true}
-            pulse={false}
-            styles={{marginTop: '20px'}}
-          />
+          <div className="p-3">
+            <SkeletonText lines={3} color="#e9eaeb" />
+            <SkeletonUser
+              name={true}
+              pulse={false}
+              styles={{marginTop: '20px'}}
+            />
+          </div>
         </div>
       );
     }
 
     return (
-      <div className={'list-card mr-4 ' + className} style={style}>
+      <div className={'list-card mr-4 align-top ' + className} style={style}>
         <Link href={`/lister/${list._id}`}>
           <div className="list-card-wrap">
             <div className="list-card-cover">
