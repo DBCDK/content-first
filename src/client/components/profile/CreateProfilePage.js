@@ -7,6 +7,8 @@ import EditProfileForm from '../profile/EditProfileForm.component';
 import {toast} from 'react-toastify';
 import ToastMessage from '../base/ToastMessage';
 
+import './CreateProfilePage.css';
+
 import {
   ADD_PROFILE_IMAGE,
   SAVE_USER_PROFILE,

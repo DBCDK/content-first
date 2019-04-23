@@ -1,5 +1,5 @@
 import React from 'react';
-import withIsVisible from '../scroll/withIsVisible.hoc';
+import withIsVisible from '../Scroll/withIsVisible.hoc';
 import withChildBelt from './withChildBelt.hoc';
 import withInteractionsToPids from '../Recommender/withInteractionsToPids.hoc';
 import WorkSlider from './WorkSlider.component';

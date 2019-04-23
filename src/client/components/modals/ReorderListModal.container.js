@@ -1,21 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Modal from './Modal.component';
-import Text from '../base/Text';
-import BookCover from '../general/BookCover.component';
-import {CLOSE_MODAL} from '../../redux/modal.reducer';
-import './Modal.css';
 import {isMobile} from 'react-device-detect';
-import {
-  updateList,
-  storeList,
-  getListByIdSelector
-} from '../../redux/list.reducer';
 import {
   SortableContainer,
   SortableElement,
   arrayMove
 } from 'react-sortable-hoc';
+
+import Modal from './Modal/Modal.component';
+import Text from '../base/Text';
+import BookCover from '../general/BookCover/BookCover.component';
+
+import {
+  updateList,
+  storeList,
+  getListByIdSelector
+} from '../../redux/list.reducer';
+import {CLOSE_MODAL} from '../../redux/modal.reducer';
+
 const getListById = getListByIdSelector();
 
 const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (

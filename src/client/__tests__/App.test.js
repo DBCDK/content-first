@@ -17,8 +17,7 @@ jest.mock(
 );
 jest.mock('../components/spots/Spots.container.js', () => 'SpotsContainer');
 jest.mock('../components/hero/Hero.component.js', () => 'Hero');
-jest.mock('../components/hero/Spot.component.js', () => 'Spot');
-jest.mock('../components/general/Footer.component.js', () => 'Footer');
+jest.mock('../components/general/Footer/Footer.component.js', () => 'Footer');
 
 it('renders without crashing', () => {
   window.$ = () => ({tooltip: () => {}}); // mock jquery tooltip

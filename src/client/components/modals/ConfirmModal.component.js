@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from './Modal.component';
+import Modal from './Modal/Modal.component';
 export default class ConfirmModal extends React.Component {
   render() {
     return (

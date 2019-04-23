@@ -10,18 +10,15 @@ import Modal from './components/modals/Modal.container';
 import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage.container';
 import WorkPage from './components/work/WorkPage.container';
-import TastePage from './components/profile/TastePage.container';
 import CreateProfilePage from './components/profile/CreateProfilePage';
 import TopBar from './components/top/TopBar.component';
 import {ON_USER_DETAILS_REQUEST} from './redux/user.reducer';
 import ListPage from './components/list/ListPage';
-import ListCreator from './components/list/ListCreatePage';
-import Lists from './components/list/overview/Lists.container';
 import ShortList from './components/list/shortlist/ShortList.container';
 import Spinner from './components/general/Spinner.component';
 import Styleguide from './components/Styleguide/Styleguide.component';
-import FeedbackButton from './components/general/FeedbackButton.component';
-import Footer from './components/general/Footer.component';
+import FeedbackButton from './components/general/FeedbackButton/FeedbackButton.component';
+import Footer from './components/general/Footer/Footer.component';
 import Article from './components/article/Article.component';
 import T from './components/base/T';
 import Animate from './components/base/Animate';
@@ -68,20 +65,10 @@ class App extends Component {
             editMode={true}
           />
         );
-      } else if (pathSplit[2] === 'smag') {
-        currentPage = <TastePage />;
       }
     } else if (pathSplit[1] === 'lister') {
       if (pathSplit[2]) {
-        if (pathSplit[2] === 'opret') {
-          currentPage = <ListCreator />;
-        } else if (pathSplit[3] === 'rediger') {
-          currentPage = <ListCreator id={pathSplit[2]} />;
-        } else {
-          currentPage = <ListPage id={pathSplit[2]} />;
-        }
-      } else {
-        currentPage = <Lists />;
+        currentPage = <ListPage id={pathSplit[2]} />;
       }
     } else if (pathSplit[1] === 'huskeliste') {
       currentPage = <ShortList />;

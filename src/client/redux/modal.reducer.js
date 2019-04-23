@@ -1,9 +1,4 @@
 const defaultState = {
-  addToList: {
-    open: false,
-    context: null,
-    callback: null
-  },
   order: {
     open: false,
     context: null,

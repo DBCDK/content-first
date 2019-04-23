@@ -8,8 +8,8 @@ import {
 import renderer from 'react-test-renderer';
 
 jest.mock('../../general/Spinner.component', () => 'Spinner');
-jest.mock('../Modal.component', () => 'Modal');
-jest.mock('../../general/BookCover.component', () => 'BookCover');
+jest.mock('../Modal/Modal.component', () => 'Modal');
+jest.mock('../../general/BookCover/BookCover.component', () => 'BookCover');
 
 const sampleBooks = [
   {pid: 'pid1', title: 'title1', creator: 'creator1'},

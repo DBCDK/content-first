@@ -1,5 +1,5 @@
 import React from 'react';
-import BookCover from '../../general/BookCover.component';
+import BookCover from '../../general/BookCover/BookCover.component';
 import Link from '../../general/Link.component';
 import T from '../../base/T';
 

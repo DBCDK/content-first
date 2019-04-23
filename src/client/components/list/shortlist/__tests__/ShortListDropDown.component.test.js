@@ -8,7 +8,7 @@ import {
   SHORTLIST_LOAD_RESPONSE
 } from '../../../../redux/shortlist.reducer';
 
-jest.mock('../../../general/BookCover.component', () => 'BookCover');
+jest.mock('../../../general/BookCover/BookCover.component', () => 'BookCover');
 
 const createTestElement = id => {
   return {
@@ -20,6 +20,7 @@ const createTestElement = id => {
     origin: 'Minder om noget' + id
   };
 };
+
 const addElement = (store, id) => {
   const {book, origin} = createTestElement(id);
   store.dispatch({type: ON_SHORTLIST_TOGGLE_ELEMENT, element: {book}, origin});

@@ -28,32 +28,17 @@
 @import './utils/emoji.css';
 
 /* Import component classes */
-@import './components/profileCard.css';
-@import './components/profileTooltip.css';
-@import './components/profileTopbar.css';
-@import './components/progress.css';
-@import './components/profilePage.css';
-@import './components/profileCreateTaste.css';
-@import './components/listCreate.css';
 @import './components/listDrag.css';
 @import './components/listSuggest.css';
-@import './components/checkmarkButton.css';
 @import './components/topbar.css';
 @import './components/modal.css';
-@import './components/checkmarkmenu.css';
-@import './components/addtolistmodal.css';
-@import './components/workitemsmall.css';
 @import './components/simplelist.css';
-@import './components/linebehindtext.css';
 @import './components/bookcover.css';
 @import './components/listcard.css';
-@import './components/bookcase.css';
-@import './components/pulse.css';
 @import './components/carousel.css';
 @import './components/imageUpload.css';
 @import './components/profile.css';
 @import './components/comment.css';
-@import './components/circletemplate.css';
 @import './components/bookcaseTemplate.css';
 @import './components/follow.css';
 @import './components/concisework.css';
@@ -342,30 +327,29 @@ div.belt-subtext {
 .increase-touch-area-large,
 .increase-touch-area-small,
 .increase-touch-area-xsmall,
-.rc-slider-handle{
-
+.rc-slider-handle {
   position: relative;
 }
-.increase-touch-area-large::before{
-  content:""; 
-  width:100%;
-  height:100%;
-  position:absolute;
-  padding:20px;
+.increase-touch-area-large::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 20px;
   top: -7px;
   left: -7px;
 }
-.increase-touch-area-small::before{
-  content:""; 
-  width:100%;
-  height:100%;
-  position:absolute;
-  padding:16px;
+.increase-touch-area-small::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 16px;
   top: -6px;
   left: -6px;
 }
-.increase-touch-area-xsmall::before{
-  content: "";
+.increase-touch-area-xsmall::before {
+  content: '';
   width: 100%;
   height: 100%;
   position: absolute;
@@ -374,8 +358,8 @@ div.belt-subtext {
   left: 5px;
 }
 
-.rc-slider-handle::before{
-  content: "";
+.rc-slider-handle::before {
+  content: '';
   width: 100%;
   height: 100%;
   position: absolute;
@@ -383,5 +367,3 @@ div.belt-subtext {
   top: -11px;
   left: -14px;
 }
-
-

@@ -8,7 +8,7 @@ import {
 } from '../../../redux/shortlist.reducer';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {ORDER} from '../../../redux/order.reducer';
-import BookCover from '../../general/BookCover.component';
+import BookCover from '../../general/BookCover/BookCover.component';
 import OrderButton from '../../order/OrderButton.component';
 import Link from '../../general/Link.component';
 import Toolbar from '../../base/Toolbar';
@@ -20,6 +20,7 @@ import Button from '../../base/Button';
 import Banner from '../../base/Banner';
 import {filterCollection} from '../../work/workFunctions';
 import withWork from '../../base/Work/withWork.hoc';
+import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 
 export class ShortListItem extends React.Component {
   constructor(props) {
@@ -38,17 +39,7 @@ export class ShortListItem extends React.Component {
 
     // get collections including ereolen
     const collection = filterCollection(this.props.work);
-    const addToListButton = (
-      <Button
-        align="left"
-        size="medium"
-        type="tertiary"
-        className="mr-2 text-uppercase"
-        onClick={this.props.onAddToList}
-      >
-        <T component="list" name="addToList" />
-      </Button>
-    );
+    const addToListButton = <AddToListButton work={work} align="left" />;
     const orderBookButton = (
       <OrderButton
         book={work.book}

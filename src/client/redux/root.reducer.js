@@ -4,7 +4,6 @@ import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
 import userReducer from './user.reducer';
 import {usersReducer} from './users';
-import tasteReducer from './taste.reducer';
 import listReducer from './list.reducer';
 import followReducer from './follow.reducer';
 import shortListReducer from './shortlist.reducer';
@@ -39,7 +38,6 @@ const combined = combineReducers({
   searchReducer,
   orderReducer,
   comments: commentReducer,
-  tasteReducer,
   booksReducer,
   recommendReducer,
   replay: replayReducer,

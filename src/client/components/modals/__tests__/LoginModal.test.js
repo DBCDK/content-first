@@ -3,7 +3,7 @@ import React from 'react';
 import {LoginModal} from '../LoginModal.component';
 import renderer from 'react-test-renderer';
 
-jest.mock('../Modal.component', () => 'Modal');
+jest.mock('../Modal/Modal.component', () => 'Modal');
 
 describe('LoginModal', () => {
   it('renders function', () => {

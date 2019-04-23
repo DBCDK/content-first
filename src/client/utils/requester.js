@@ -7,9 +7,7 @@ import {
   ON_LOGOUT_RESPONSE,
   ON_USER_DETAILS_ERROR
 } from '../redux/user.reducer';
-import {TASTE_RECOMMENDATIONS_RESPONSE} from '../redux/taste.reducer';
 import {getLeavesMap} from './taxonomy';
-import requestProfileRecommendations from './requestProfileRecommendations';
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
 import {OPEN_MODAL} from '../redux/modal.reducer';
@@ -251,17 +249,6 @@ export const fetchCollection = (pids, store) => {
   ).then(result => {
     return result;
   });
-};
-
-/**
- * fetchProfileRecommendations
- * @param profileState
- * @param dispatch
- */
-export const fetchProfileRecommendations = (profileState, dispatch) => {
-  requestProfileRecommendations().then(recommendations =>
-    dispatch({type: TASTE_RECOMMENDATIONS_RESPONSE, recommendations})
-  );
 };
 
 /**

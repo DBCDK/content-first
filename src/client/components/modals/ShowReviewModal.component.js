@@ -1,6 +1,6 @@
 import React from 'react';
 import FullTextReview from '../work/Review/FullTextReview.component';
-import Modal from './Modal.component';
+import Modal from './Modal/Modal.component';
 
 /**
  * This class shows a review in a Modal box

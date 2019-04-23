@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Modal from './Modal.component';
+import Modal from './Modal/Modal.component';
 import Text from '../base/Text';
 import Button from '../base/Button';
 import Icon from '../base/Icon';

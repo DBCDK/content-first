@@ -2,6 +2,8 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import Text from '../base/Text';
 
+import './pulse.css';
+
 export default class Pulse extends React.Component {
   randomDelay(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min) + '00';

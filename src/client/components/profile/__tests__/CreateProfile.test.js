@@ -10,7 +10,6 @@ jest.mock('../../general/Spinner.component', () => 'spinner');
 jest.mock('../../general/Link.component', () =>
   jest.fn(props => <mocked-link {...props}>{props.children}</mocked-link>)
 );
-jest.mock('../../general/Logout.component', () => 'logout');
 
 describe('Image Upload', () => {
   describe('render function', () => {

@@ -10,7 +10,7 @@ import {
 import {ON_USERLISTS_COLLAPSE} from '../../../redux/list.reducer';
 import {HISTORY_PUSH} from '../../../redux/middleware';
 import {ORDER} from '../../../redux/order.reducer';
-import BookCover from '../../general/BookCover.component';
+import BookCover from '../../general/BookCover/BookCover.component';
 import Button from '../../base/Button/Button';
 import Text from '../../base/Text';
 import T from '../../base/T';
