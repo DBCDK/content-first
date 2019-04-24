@@ -312,6 +312,10 @@
         "da": "Gem Profil",
         "en": "Save profile"
       },
+      "saveProfileChanges":{
+        "da": "Gem Ændringer",
+        "en": "Save Changes"
+      },
       "saveProfileToast": {
         "da": "Din profil er opdateret",
         "en": "Your profile has been updated"
@@ -407,6 +411,11 @@
       "validationAcceptTerms": {
         "da": "For at oprette en profil, skal du acceptere reglerne for anvendelse af Læsekompasset.",
         "en": "You have to accept our terms"
+      },
+
+      "seeRulesLink":{
+        "da": "Se regler og vilkår for Læsekompasset",
+        "en": "See the rules and conditions for using Læsekompasset"
       },
       "saveProfileError": {
         "da": "Det er ikke muligt at gemme profilen",

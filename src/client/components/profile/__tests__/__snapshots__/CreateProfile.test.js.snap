@@ -152,28 +152,29 @@ exports[`Image Upload render function Add image 1`] = `
                 <a
                   href="/om"
                 >
-                  Se regler og vilkår for Læsekompasset
+                   
+                  <T
+                    component="profile"
+                    name="seeRulesLink"
+                  >
+                    Se regler og vilkår for Læsekompasset
+                  </T>
                 </a>
               </div>
               <div
                 className="profile__edit-link"
               >
-                <mockConstructor
+                <a
                   href="#!"
                   onClick={[Function]}
                 >
-                  <mocked-link
-                    href="#!"
-                    onClick={[Function]}
+                  <T
+                    component="profile"
+                    name="deleteProfile"
                   >
-                    <T
-                      component="profile"
-                      name="deleteProfile"
-                    >
-                      Slet profil
-                    </T>
-                  </mocked-link>
-                </mockConstructor>
+                    Slet profil
+                  </T>
+                </a>
               </div>
               <div
                 className="profile__edit-bottom-position"
@@ -188,7 +189,12 @@ exports[`Image Upload render function Add image 1`] = `
                       data-cy="user-form-submit"
                       disabled={false}
                     >
-                      Gem Ændringer
+                      <T
+                        component="profile"
+                        name="saveProfileChanges"
+                      >
+                        Gem Ændringer
+                      </T>
                     </button>
                   </div>
                 </div>
@@ -317,18 +323,19 @@ exports[`Image Upload render function renders an image upload form 1`] = `
             <a
               href="/om"
             >
+               
               Se regler og vilkår for Læsekompasset
             </a>
           </div>
           <div
             className="profile__edit-link"
           >
-            <mocked-link
+            <a
               href="#!"
               onClick={[Function]}
             >
               Slet profil
-            </mocked-link>
+            </a>
           </div>
           <div
             className="profile__edit-bottom-position"
