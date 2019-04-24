@@ -7,7 +7,7 @@ import {
 } from '../OrderModal.container';
 import renderer from 'react-test-renderer';
 
-jest.mock('../../general/Spinner.component', () => 'Spinner');
+jest.mock('../../general/Spinner/Spinner.component', () => 'Spinner');
 jest.mock('../Modal/Modal.component', () => 'Modal');
 jest.mock('../../general/BookCover/BookCover.component', () => 'BookCover');
 

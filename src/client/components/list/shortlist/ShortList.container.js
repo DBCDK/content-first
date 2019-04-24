@@ -39,7 +39,6 @@ export class ShortListItem extends React.Component {
 
     // get collections including ereolen
     const collection = filterCollection(this.props.work);
-    const addToListButton = <AddToListButton work={work} align="left" />;
     const orderBookButton = (
       <OrderButton
         book={work.book}
@@ -96,14 +95,16 @@ export class ShortListItem extends React.Component {
               {origin}
             </Text>
             <Toolbar className="desktop-styling">
-              {addToListButton}
+              <AddToListButton work={work} align="left" />
               <Text align="right" type="body">
                 <T component="work" name="loanTitle" />
               </Text>
               {orderBookButton}
               {orderElectronicBookButtons}
             </Toolbar>
-            <div className="mobile-styling">{addToListButton}</div>
+            <div className="mobile-styling">
+              <AddToListButton work={work} align="left" />
+            </div>
           </div>
         </div>
         <div className="mobile-styling">

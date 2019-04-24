@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Spinner from '../general/Spinner.component';
+import Spinner from '../general/Spinner/Spinner.component';
 import Modal from './Modal/Modal.component';
 import BookCover from '../general/BookCover/BookCover.component';
 import T from '../base/T';

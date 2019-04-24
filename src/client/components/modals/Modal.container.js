@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import OrderModal from './OrderModal.container';
 import LoginModal from './LoginModal.component';
-import ProfileModal from './ProfileModal.component';
+import ProfileModal from './ProfileModal/ProfileModal.component';
 import ConfirmModal from './ConfirmModal.component';
 import ListSettingsModal from './ListSettingsModal.container';
 import ReorderListModal from './ReorderListModal.container';

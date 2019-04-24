@@ -9,6 +9,8 @@ import Icon from '../../base/Icon';
 
 import {BOOKS_REQUEST} from '../../../redux/books.reducer';
 
+import './BookSearchSuggester.css';
+
 const addEmphasisToString = (string, pattern) => {
   const index = string.toLowerCase().indexOf(pattern.toLowerCase());
   if (index >= 0) {

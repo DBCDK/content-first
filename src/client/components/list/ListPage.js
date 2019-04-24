@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Spinner from '../general/Spinner.component';
+import Spinner from '../general/Spinner/Spinner.component';
 import Title from '../base/Title';
 import T from '../base/T';
 import SimpleList from './templates/simple/SimpleList';

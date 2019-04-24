@@ -21,7 +21,6 @@ require('jest-localstorage-mock');
   );
 });
 jest.mock('react-textarea-autosize', () => 'textarea');
-jest.mock('react-slick', () => 'react-slick');
 jest.mock('react-truncate-markup', () => 'react-truncate-markup');
 jest.mock('react-visibility-sensor', () => 'react-visibility-sensor');
 

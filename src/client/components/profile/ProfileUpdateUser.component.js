@@ -1,5 +1,5 @@
 import React from 'react';
-import Spinner from '../general/Spinner.component';
+import Spinner from '../general/Spinner/Spinner.component';
 import T from '../base/T';
 
 export default class ProfileUpdateUser extends React.Component {

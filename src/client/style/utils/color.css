@@ -1,0 +1,79 @@
+/* Background og text color utils */
+
+.french-pass {
+  background: var(--french-pass) !important;
+}
+.french-pass-txt {
+  color: var(--french-pass) !important;
+}
+
+.korn {
+  background-color: var(--korn) !important;
+  background: var(--korn) !important;
+}
+.korn-txt {
+  color: var(--korn) !important;
+}
+
+.kobber {
+  background-color: var(--kobber) !important;
+}
+.kobber-txt {
+  color: var(--kobber) !important;
+}
+
+.fersken {
+  background-color: var(--fersken) !important;
+}
+.fersken-txt {
+  color: var(--fersken) !important;
+}
+
+.lys-graa {
+  background-color: var(--lys-graa) !important;
+}
+.lys-graa-txt {
+  color: var(--lys-graa) !important;
+}
+
+.porcelain {
+  background-color: var(--porcelain) !important;
+}
+.porcelain-txt {
+  color: var(--porcelain) !important;
+}
+
+.pistache {
+  background-color: var(--pistache) !important;
+}
+.pistache-txt {
+  color: var(--pistache) !important;
+}
+
+.due {
+  background-color: var(--due) !important;
+}
+.due-txt {
+  color: var(--due) !important;
+}
+
+.de-york {
+  background-color: var(--de-york) !important;
+}
+.de-york-txt {
+  color: var(--de-york) !important;
+}
+
+.petroleum {
+  background-color: var(--petroleum) !important;
+}
+.petroleum-txt {
+  color: var(--petroleum) !important;
+}
+
+.white {
+  background-color: #ffffff !important;
+}
+.white-txt {
+  color: #ffffff !important;
+}

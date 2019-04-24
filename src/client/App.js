@@ -2,28 +2,28 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './style/App.css';
-import './style/index.css';
-import './style/work.css';
-import './style/filterpage.css';
+
 import Modal from './components/modals/Modal.container';
 import FrontPage from './components/frontpage/FrontPage.container';
-import FilterPage from './components/filter/FilterPage.container';
-import WorkPage from './components/work/WorkPage.container';
-import CreateProfilePage from './components/profile/CreateProfilePage';
+import FilterPage from './components/filter/FilterPage/FilterPage.container';
+import WorkPage from './components/work/WorkPage/WorkPage.container';
+import EditProfilePage from './components/profile/EditProfilePage';
 import TopBar from './components/top/TopBar.component';
 import {ON_USER_DETAILS_REQUEST} from './redux/user.reducer';
 import ListPage from './components/list/ListPage';
 import ShortList from './components/list/shortlist/ShortList.container';
-import Spinner from './components/general/Spinner.component';
+import Spinner from './components/general/Spinner/Spinner.component';
 import Styleguide from './components/Styleguide/Styleguide.component';
 import FeedbackButton from './components/general/FeedbackButton/FeedbackButton.component';
 import Footer from './components/general/Footer/Footer.component';
 import Article from './components/article/Article.component';
-import T from './components/base/T';
 import Animate from './components/base/Animate';
-import {OPEN_MODAL} from './redux/modal.reducer';
 import CookieWarning from './components/general/CookieWarning/CookieWarning';
+
+import {OPEN_MODAL} from './redux/modal.reducer';
+
+import './style/App.css';
+import './style/index.css';
 
 class App extends Component {
   constructor(props) {
@@ -50,21 +50,9 @@ class App extends Component {
       currentPage = <FrontPage />;
     } else if (pathSplit[1] === 'værk') {
       currentPage = <WorkPage pid={pathSplit[2]} />;
-    } else if (pathSplit[1] === 'profile') {
-      if (pathSplit[2] === 'opret') {
-        topbar = true;
-        currentPage = (
-          <CreateProfilePage
-            title={T({component: 'profile', name: 'createProfile'})}
-          />
-        );
-      } else if (pathSplit[2] === 'rediger') {
-        currentPage = (
-          <CreateProfilePage
-            title={T({component: 'profile', name: 'editProfile'})}
-            editMode={true}
-          />
-        );
+    } else if (pathSplit[1] === 'profil') {
+      if (pathSplit[2] === 'rediger') {
+        currentPage = <EditProfilePage />;
       }
     } else if (pathSplit[1] === 'lister') {
       if (pathSplit[2]) {
