@@ -5,9 +5,6 @@ import {uniq, difference, isEqual} from 'lodash';
 import {filtersMapAll} from './filter.reducer';
 import {BOOKS_REQUEST} from './books.reducer';
 
-// Hit Threshold
-const hitThreshold = 0.3;
-
 const librarianRecommendsMap = librarianRecommends.reduce((map, pid) => {
   map[pid] = true;
   return map;
@@ -17,10 +14,6 @@ const defaultState = {
   recommendations: {},
   workRecommendations: {}
 };
-let hitMap = [];
-let totalTagsCount = 0;
-const hitCountThreshold = value =>
-  hitMap[value] / totalTagsCount >= hitThreshold;
 
 export const TAGS_RECOMMEND_REQUEST = 'TAGS_RECOMMEND_REQUEST';
 export const TAGS_RECOMMEND_RESPONSE = 'TAGS_RECOMMEND_RESPONSE';
@@ -132,9 +125,7 @@ export const createGetRecommendedPids = () => {
     (recommendations, excluded, limit = 20) => {
       return {
         ...recommendations,
-        pids: difference(recommendations.pids, excluded)
-          .filter(hitCountThreshold)
-          .slice(0, limit)
+        pids: difference(recommendations.pids, excluded).slice(0, limit)
       };
     }
   );
@@ -238,6 +229,7 @@ const fetchRecommendations = async action => {
   const recommender = action.tags ? 'recompasTags' : 'recompasWork';
   const query = {recommender};
   let customTagsSelected = true;
+  let totalTagsCount = 0;
 
   if (action.tags) {
     const {tags = [], creators = [], max = 50} = action;
@@ -277,10 +269,6 @@ const fetchRecommendations = async action => {
   const recompassResponse = (await request.get('/v1/recompass').query(query))
     .body;
 
-  hitMap = [];
-  recompassResponse.response.forEach(entry => {
-    hitMap[entry.pid] = entry.value;
-  });
   if (action.tags) {
     let pids = recompassResponse.response
       .filter(entry => {
@@ -290,6 +278,7 @@ const fetchRecommendations = async action => {
         }
         return true;
       })
+      .filter(entry => entry.value * entry.value >= totalTagsCount)
       .map(entry => entry.pid);
 
     if (action.tags.includes(-2)) {
