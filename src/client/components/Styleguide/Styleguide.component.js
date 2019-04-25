@@ -122,10 +122,10 @@ export default () => (
       </div>
       <div className="col-8 tl mt2">
         <div className="mt1 d-inline-block">
-          <ContextMenu title="Redigér liste" className="">
-            <ContextMenuAction title="Redigér tekst og billede" icon="edit" />
+          <ContextMenu title="Rediger liste" className="">
+            <ContextMenuAction title="Rediger tekst og billede" icon="edit" />
             <ContextMenuAction title="Skift rækkefølge" icon="swap_vert" />
-            <ContextMenuAction title="Redigér indstillinger" icon="settings" />
+            <ContextMenuAction title="Rediger indstillinger" icon="settings" />
           </ContextMenu>
         </div>
       </div>
