@@ -27,7 +27,7 @@
         "en": "Save"
       },
       "edit": {
-        "da": "Redigér",
+        "da": "Rediger",
         "en": "Edit"
       },
       "bestil": {
@@ -59,7 +59,7 @@
         "en": "New"
       },
       "cancelEdit": {
-        "da": "Fortryd redigéring",
+        "da": "Fortryd redigering",
         "en": "Cancel edit"
       },
       "image": {
@@ -83,7 +83,7 @@
         "en": "Save changes"
       },
       "editMultiple": {
-        "da": "Redigér tekst og billede",
+        "da": "Rediger tekst og billede",
         "en": "Edit text and image"
       },
       "reorder": {
@@ -91,7 +91,7 @@
         "en": "Reorder"
       },
       "editSettings": {
-        "da": "Redigér indstillinger",
+        "da": "Rediger indstillinger",
         "en": "Settings"
       },
       "addABook": {
@@ -305,7 +305,7 @@
         "en": "Create profile"
       },
       "editProfile": {
-        "da": "Redigér profil",
+        "da": "Rediger profil",
         "en": "Edit profile"
       },
       "saveProfile": {
@@ -524,15 +524,15 @@
         "en": "Add all to a list"
       },
       "editLists": {
-        "da": "Redigér lister",
+        "da": "Rediger lister",
         "en": "Edit lists"
       },
       "editList": {
-        "da": "Redigér liste",
+        "da": "Rediger liste",
         "en": "Edit list"
       },
       "editListInfo": {
-        "da": "Redigér listeoplysninger",
+        "da": "Rediger listeoplysninger",
         "en": "Edit list informations"
       },
       "saveList": {
@@ -712,7 +712,7 @@
         "en": "Activate bookshelf"
       },
       "commentListLabel": {
-        "da": "Kommentér listen",
+        "da": "Kommenter listen",
         "en": "Comment list"
       },
       "list": {
@@ -792,11 +792,11 @@
     },
     "post": {
       "editPost": {
-        "da": "Redigér indlæg",
+        "da": "Rediger indlæg",
         "en": "Edit post"
       },
       "editDescription": {
-        "da": "Redigér beskrivelse",
+        "da": "Rediger beskrivelse",
         "en": "Edit description"
       },
       "deleteBook": {
@@ -808,7 +808,7 @@
         "en": "Delete post"
       },
       "editComment": {
-        "da": "Redigér kommentar",
+        "da": "Rediger kommentar",
         "en": "Edit comment"
       },
       "deleteComment": {
@@ -836,7 +836,7 @@
         "en": "You have to be signed in to write a comment."
       },
       "comment": {
-        "da": "Kommentér",
+        "da": "Kommenter",
         "en": "Comment"
       },
       "showMoreComments": {
