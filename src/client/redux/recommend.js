@@ -229,8 +229,7 @@ const fetchRecommendations = async action => {
   const recommender = action.tags ? 'recompasTags' : 'recompasWork';
   const query = {recommender};
   let customTagsSelected = true;
-  let totalTagsCount = 0;
-
+  let thresholdLevel = 0;
   if (action.tags) {
     const {tags = [], creators = [], max = 50} = action;
 
@@ -253,7 +252,7 @@ const fetchRecommendations = async action => {
       }
       return {...tMap, [t]: 1};
     }, {});
-    totalTagsCount = Object.keys(tagsMap).length;
+    thresholdLevel = Math.floor(Math.sqrt(Object.keys(tagsMap).length));
     query.tags = tagsMap;
     query.maxresults = max;
     query.creators = creators;
@@ -278,7 +277,7 @@ const fetchRecommendations = async action => {
         }
         return true;
       })
-      .filter(entry => entry.value * entry.value >= totalTagsCount)
+      .filter(entry => entry.value >= thresholdLevel)
       .map(entry => entry.pid);
 
     if (action.tags.includes(-2)) {
