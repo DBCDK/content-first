@@ -53,7 +53,7 @@ exports[`CommentContainer Delete button 1`] = `
           <Component
             icon="edit"
             onClick={[Function]}
-            title="Redigér kommentar"
+            title="Rediger kommentar"
           >
             <div
               className="dropdown-item"
@@ -74,7 +74,7 @@ exports[`CommentContainer Delete button 1`] = `
               <span
                 className="align-middle"
               >
-                Redigér kommentar
+                Rediger kommentar
               </span>
             </div>
           </Component>
@@ -281,7 +281,7 @@ exports[`CommentContainer Edit button 1`] = `
           <Component
             icon="edit"
             onClick={[Function]}
-            title="Redigér kommentar"
+            title="Rediger kommentar"
           >
             <div
               className="dropdown-item"
@@ -302,7 +302,7 @@ exports[`CommentContainer Edit button 1`] = `
               <span
                 className="align-middle"
               >
-                Redigér kommentar
+                Rediger kommentar
               </span>
             </div>
           </Component>
@@ -509,7 +509,7 @@ exports[`CommentContainer Edit button 2`] = `
           <Component
             icon="edit"
             onClick={[Function]}
-            title="Redigér kommentar"
+            title="Rediger kommentar"
           >
             <div
               className="dropdown-item"
@@ -530,7 +530,7 @@ exports[`CommentContainer Edit button 2`] = `
               <span
                 className="align-middle"
               >
-                Redigér kommentar
+                Rediger kommentar
               </span>
             </div>
           </Component>
@@ -832,7 +832,7 @@ exports[`CommentContainer Render edit form 1`] = `
         <span
           className="align-middle"
         >
-          Redigér kommentar
+          Rediger kommentar
         </span>
       </div>
       <div
@@ -985,7 +985,7 @@ exports[`CommentContainer Render save form 1`] = `
         <span
           className="align-middle"
         >
-          Redigér kommentar
+          Rediger kommentar
         </span>
       </div>
       <div
@@ -1139,7 +1139,7 @@ exports[`CommentContainer Save button 1`] = `
           <Component
             icon="edit"
             onClick={[Function]}
-            title="Redigér kommentar"
+            title="Rediger kommentar"
           >
             <div
               className="dropdown-item"
@@ -1160,7 +1160,7 @@ exports[`CommentContainer Save button 1`] = `
               <span
                 className="align-middle"
               >
-                Redigér kommentar
+                Rediger kommentar
               </span>
             </div>
           </Component>
