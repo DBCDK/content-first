@@ -162,7 +162,7 @@ exports[`Image Upload render function Add image 1`] = `
                 <a
                   href="/om"
                 >
-                  Se regler og vilkår for Min næste bog
+                  Se regler og vilkår for Læsekompasset
                 </a>
               </div>
               <div
@@ -339,7 +339,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
             <a
               href="/om"
             >
-              Se regler og vilkår for Min næste bog
+              Se regler og vilkår for Læsekompasset
             </a>
           </div>
           <div
