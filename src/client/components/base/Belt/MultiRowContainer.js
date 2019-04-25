@@ -2,37 +2,41 @@ import React from 'react';
 import {get, debounce} from 'lodash';
 import WorkCard from '../../work/WorkCard.container';
 import withChildBelt from './withChildBelt.hoc';
+import withIsVisible from '../scroll/withIsVisible.hoc';
 
-const Row = withChildBelt(
-  ({
-    pids,
-    cardRef,
-    openSimilarBelt,
-    openWorkPreview,
-    selected,
-    rid,
-    origin
-  }) => (
-    <div
-      className="d-flex justify-content-around justify-content-md-between px-0 px-sm-3 px-lg-5 pt-5 "
-      ref={container => (this.refs = {...this.refs, container})}
-    >
-      {pids.map((pid, idx) => (
-        <WorkCard
-          cardRef={cardRef}
-          className={'mb-3 mb-sm-0 ' + (pid ? '' : 'invisible')}
-          enableHover={true}
-          highlight={pid === selected}
-          isVisible={true}
-          pid={pid}
-          rid={rid}
-          key={pid + idx}
-          origin={origin || ''}
-          onMoreLikeThisClick={openSimilarBelt}
-          onWorkClick={openWorkPreview}
-        />
-      ))}
-    </div>
+const Row = withIsVisible(
+  withChildBelt(
+    ({
+      pids,
+      cardRef,
+      openSimilarBelt,
+      openWorkPreview,
+      selected,
+      rid,
+      origin,
+      isVisible
+    }) => (
+      <div
+        className="d-flex justify-content-around justify-content-md-between px-0 px-sm-3 px-lg-5 pt-5 "
+        ref={container => (this.refs = {...this.refs, container})}
+      >
+        {pids.map((pid, idx) => (
+          <WorkCard
+            cardRef={cardRef}
+            className={'mb-3 mb-sm-0 ' + (pid ? '' : 'invisible')}
+            enableHover={true}
+            highlight={pid === selected}
+            isVisible={isVisible}
+            pid={pid}
+            rid={rid}
+            key={pid + idx}
+            origin={origin || ''}
+            onMoreLikeThisClick={openSimilarBelt}
+            onWorkClick={openWorkPreview}
+          />
+        ))}
+      </div>
+    )
   )
 );
 
