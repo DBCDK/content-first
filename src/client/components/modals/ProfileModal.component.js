@@ -137,11 +137,6 @@ export class ProfileModal extends React.Component {
                         error={this.props.imageError}
                         loading={this.props.imageIsLoading}
                         baseImage={baseImage}
-                        buttonText={
-                          this.props.profileImageId
-                            ? 'Skift profilbillede'
-                            : 'Upload profilbillede'
-                        }
                         onFile={this.props.addImage}
                         thumbnailImage={
                           '/img/general/user-placeholder-thumbnail.svg'
