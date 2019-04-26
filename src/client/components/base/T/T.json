@@ -308,10 +308,6 @@
         "da": "Gem Profil",
         "en": "Save profile"
       },
-      "saveProfileToast": {
-        "da": "Din profil er opdateret",
-        "en": "Your profile has been updated"
-      },
       "deleteProfile": {
         "da": "Slet profil",
         "en": "Delete profile"
@@ -355,10 +351,6 @@
       "uploadProfilePicture": {
         "da": "Upload profilbillede",
         "en": "Upload profile picture"
-      },
-      "profilePictureTooLarge": {
-        "da": " er for stor. Billedet må maks fylde 10mb",
-        "en": " is too large. Pictures must be max 10mb"
       },
       "profileInstructionsTitle": {
         "da": "Hvad skal vi bruge det til?",
@@ -442,7 +434,7 @@
       },
       "profilePictureTooLarge": {
         "da": " er for stor. Billedet må maks fylde 10mb",
-        "en": " is too large. Max 10mb"
+        "en": " is too large. Pictures must be max 10mb"
       },
       "saveProfileToast": {
         "da": "Din profil er opdateret",
