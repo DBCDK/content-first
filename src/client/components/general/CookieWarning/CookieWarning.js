@@ -70,7 +70,7 @@ class CookieWarning extends React.Component {
                 size="medium"
                 onClick={this.onClose.bind(this)}
               >
-                ACCEPTÉR COOKIES
+                ACCEPTER COOKIES
               </Button>
             </div>
           </div>
