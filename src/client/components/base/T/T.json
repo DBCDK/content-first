@@ -34,14 +34,6 @@
         "da": "Bestil",
         "en": "Order"
       },
-      "book": {
-        "da": "bog",
-        "en": "book"
-      },
-      "books": {
-        "da": "bøger",
-        "en": "books"
-      },
       "all": {
         "da": "Alle",
         "en": "All"
@@ -99,8 +91,12 @@
         "en": "Add a book"
       },
       "book": {
-        "da": "Bog",
-        "en": "Book"
+        "da": "bog",
+        "en": "book"
+      },
+      "books": {
+        "da": "bøger",
+        "en": "books"
       },
       "ebook": {
         "da": "Ebog",
