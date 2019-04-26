@@ -5,11 +5,16 @@ import {ShortList} from '../ShortList.container';
 // Mock window.open
 global.open = jest.fn();
 
+// Mock AddToList
+jest.mock(
+  '../../../general/AddToListButton/AddToListButton.component',
+  () => 'addtolistbutton'
+);
+
 // Mock Link
 jest.mock('../../../general/Link.component', () =>
   jest.fn(props => <mocked-link>{props.children}</mocked-link>)
 );
-
 const Link = require('../../../general/Link.component');
 
 // Mock OrderButton
@@ -182,54 +187,6 @@ describe('ShortList.container', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  test('Add to list - desktop version', () => {
-    jest.clearAllMocks();
-    const testElements = createTestElements(3);
-    const mockAddToList = jest.fn();
-    const tree = mount(
-      <ShortList
-        shortListState={{elements: testElements}}
-        orderList={testElements}
-        addToList={mockAddToList}
-      />
-    );
-    tree
-      .find(
-        '.top-bar-dropdown-shortlist-item-page .Toolbar.desktop-styling .Toolbar__left .Button'
-      )
-      .first()
-      .simulate('click');
-    expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
-    expect(mockAddToList).toHaveBeenCalledTimes(1);
-    var argument = mockAddToList.mock.calls[0][0]; // First argument in first call
-    expect(argument[0].book.pid).toBe('pid - 0');
-    expect(tree).toMatchSnapshot();
-  });
-
-  test('Add to list - mobile version', () => {
-    jest.clearAllMocks();
-    const testElements = createTestElements(3);
-    const mockAddToList = jest.fn();
-    const tree = mount(
-      <ShortList
-        shortListState={{elements: testElements}}
-        orderList={testElements}
-        addToList={mockAddToList}
-      />
-    );
-    tree
-      .find('.top-bar-dropdown-shortlist-item-page div.mobile-styling .Button')
-      .first()
-      .simulate('click');
-    expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
-    expect(mockAddToList).toHaveBeenCalledTimes(1);
-    var argument = mockAddToList.mock.calls[0][0]; // First argument in first call
-    expect(argument[0].book.pid).toBe('pid - 0');
-    expect(tree).toMatchSnapshot();
-  });
-
   test('Order book - desktop version', () => {
     jest.clearAllMocks();
     const testElements = createTestElements(3);
@@ -360,31 +317,6 @@ describe('ShortList.container', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  test('Add all to list', () => {
-    jest.clearAllMocks();
-    const mockAddToList = jest.fn();
-    const testElements = createTestElements(3);
-    const tree = mount(
-      <ShortList
-        shortListState={{elements: testElements}}
-        orderList={testElements}
-        addToList={mockAddToList}
-      />
-    );
-    tree
-      .find(
-        'div.top-bar-dropdown-list-page div.Toolbar.bottom-toolbar div.Toolbar__right button'
-      )
-      .at(0)
-      .simulate('click');
-    expect(Link).toHaveBeenCalledTimes(3);
-    expect(OrderButton).toHaveBeenCalledTimes(6);
-    expect(mockAddToList).toHaveBeenCalledTimes(1);
-    var argument = mockAddToList.mock.calls[0][0]; // First argument in first call
-    expect(argument[0].book.pid).toBe('pid - 0');
-    expect(tree).toMatchSnapshot();
-  });
-
   test('Order all books', () => {
     jest.clearAllMocks();
     const mockOrderAll = jest.fn();
@@ -400,7 +332,7 @@ describe('ShortList.container', () => {
       .find(
         'div.top-bar-dropdown-list-page div.Toolbar.bottom-toolbar div.Toolbar__right button'
       )
-      .at(1)
+      .at(0)
       .simulate('click');
     expect(Link).toHaveBeenCalledTimes(3);
     expect(OrderButton).toHaveBeenCalledTimes(6);

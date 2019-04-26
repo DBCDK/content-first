@@ -6,7 +6,6 @@ import {
   SHORTLIST_UPDATE_ORIGIN,
   SHORTLIST_CLEAR
 } from '../../../redux/shortlist.reducer';
-import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {ORDER} from '../../../redux/order.reducer';
 import BookCover from '../../general/BookCover/BookCover.component';
 import OrderButton from '../../order/OrderButton.component';
@@ -174,20 +173,6 @@ export class ShortList extends React.Component {
                         onOriginUpdate={origin => {
                           this.props.originUpdate(origin, e.book.pid);
                         }}
-                        onAddToList={() => {
-                          this.props.addToList(
-                            [
-                              {
-                                book: e.book,
-                                description: e.origin || (
-                                  <T component="shortlist" name="origin" />
-                                )
-                              }
-                            ],
-                            this.props.isLoggedIn,
-                            () => this.props.remove(e.book.pid)
-                          );
-                        }}
                       />
                       <Divider />
                     </div>
@@ -202,22 +187,6 @@ export class ShortList extends React.Component {
             )}
             {elements.length > 0 && (
               <Toolbar className="bottom-toolbar mt-5 mb-5">
-                <Button
-                  align="right"
-                  iconLeft="list"
-                  size="large"
-                  type="tertiary"
-                  className="text-uppercase"
-                  onClick={() =>
-                    this.props.addToList(
-                      elements,
-                      this.props.isLoggedIn,
-                      this.props.clearList
-                    )
-                  }
-                >
-                  <T component="list" name="addAllToList" />
-                </Button>
                 <Button
                   align="right"
                   iconLeft="chrome_reader_mode"
@@ -270,18 +239,6 @@ export const mapDispatchToProps = dispatch => ({
       type: SHORTLIST_UPDATE_ORIGIN,
       pid,
       origin
-    }),
-  addToList: (works, isLoggedIn, callback = null) =>
-    dispatch({
-      type: OPEN_MODAL,
-      modal: isLoggedIn ? 'addToList' : 'login',
-      context: isLoggedIn
-        ? works
-        : {
-            title: 'Tilføj til liste',
-            reason: 'Du skal logge ind for at flytte bøger til en liste.'
-          },
-      callback
     }),
   clearList: () =>
     dispatch({
