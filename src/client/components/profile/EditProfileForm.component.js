@@ -1,7 +1,6 @@
 import React from 'react';
 import Spinner from '../general/Spinner.component';
 import T from '../base/T';
-import Link from '../general/Link.component';
 
 export default class EditProfileForm extends React.Component {
   onSubmit = e => {
@@ -18,6 +17,7 @@ export default class EditProfileForm extends React.Component {
       name: this.state.name,
       image: this.props.imageId
     });
+    this.props.activateSaveButton(false);
   };
 
   constructor(props) {
@@ -43,7 +43,7 @@ export default class EditProfileForm extends React.Component {
     const agencyName = this.props.agencyName ? this.props.agencyName : '';
 
     return (
-      <form style={{maxWidth: '400px'}} onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}>
         <div
           className={`input-group mb2 ${(name.length > 3 && 'valid-feedback') ||
             ((name.length === 0 && ' ') || 'invalid-feedback')} has-feedback`}
@@ -63,7 +63,7 @@ export default class EditProfileForm extends React.Component {
                 })}
                 value={name}
                 onChange={e => {
-                  this.props.activateSaveButton();
+                  this.props.activateSaveButton(true);
                   this.setState({[e.target.name]: e.target.value});
                 }}
                 data-cy="user-form-name"
@@ -91,13 +91,16 @@ export default class EditProfileForm extends React.Component {
         </div>
 
         <div className="profile__edit-link">
-          <a href="/om">Se regler og vilkår for Min næste bog</a>
+          <a href="/om">
+            {' '}
+            <T component="profile" name="seeRulesLink" />
+          </a>
         </div>
 
         <div className="profile__edit-link">
-          <Link href="#!" onClick={this.props.confirmDelete}>
+          <a href="#!" onClick={this.props.confirmDelete}>
             <T component="profile" name="deleteProfile" />
-          </Link>
+          </a>
         </div>
 
         <div className="profile__edit-bottom-position">
@@ -107,7 +110,7 @@ export default class EditProfileForm extends React.Component {
                 disabled={!this.props.enableButton}
                 data-cy="user-form-submit"
               >
-                Gem Ændringer
+                <T component="profile" name="saveProfileChanges" />
                 {this.props.isSaving && (
                   <Spinner
                     size={12}

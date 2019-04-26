@@ -21,6 +21,9 @@ const UploadButton = ({
         name={fieldName}
         onChange={readFiles}
       />
+      <div className="profile-image-text">
+        <T component="profile" name="uploadProfilePicture" />
+      </div>
     </label>
   );
 };
@@ -59,7 +62,7 @@ export default class ProfileUploadImage extends React.Component {
     const {files} = e.target;
     if (files && files[0]) {
       if (this.props.activateSaveButton) {
-        this.props.activateSaveButton();
+        this.props.activateSaveButton(true);
       }
       this.setState({imageName: files[0].name});
       this.props.onFile(files[0]);
@@ -69,58 +72,11 @@ export default class ProfileUploadImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageName: null,
-      basePictureDefault: false,
-      tempPictureLoaded: false,
-      savedPictureLoaded: true
+      imageName: null
     };
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.loading !== this.props.loading) {
-      this.setState({
-        basePictureDefault:
-          !this.props.tempPersonalImage && !this.props.personalImage
-            ? true
-            : false,
-        tempPictureLoaded:
-          this.props.tempPersonalImage && this.props.personalImage
-            ? true
-            : false,
-        savedPictureLoaded:
-          !this.props.tempPersonalImage && this.props.personalImage
-            ? true
-            : false
-      });
-    }
-  }
-
-  componentDidMount() {
-    this.setState({
-      basePictureDefault:
-        !this.props.tempPersonalImage && !this.props.personalImage
-          ? true
-          : false,
-      tempPictureLoaded:
-        this.props.tempPersonalImage && this.props.personalImage ? true : false,
-      savedPictureLoaded:
-        !this.props.tempPersonalImage && this.props.personalImage ? true : false
-    });
-  }
-
   render() {
-    let baseImage;
-
-    if (this.state.savedPictureLoaded) {
-      baseImage = this.props.personalImage;
-    }
-    if (this.state.tempPictureLoaded) {
-      baseImage = this.props.tempPersonalImage;
-    }
-    if (this.state.basePictureDefault) {
-      baseImage = this.props.thumbnailImage;
-    }
-
     return (
       <div className="profile-picture">
         <div className="image-upload">
@@ -131,12 +87,11 @@ export default class ProfileUploadImage extends React.Component {
               <UploadButton
                 fieldName={this.props.fieldName}
                 readFiles={this.readFiles}
-                baseImage={baseImage}
+                baseImage={this.props.baseImage}
                 thumbnailImageHover={this.props.thumbnailImageHover}
               />
             )}
           </div>
-          <div style={{clear: 'both'}} />
           <div className="profile__image-errors">
             <Error error={this.props.error} name={this.state.imageName} />
           </div>

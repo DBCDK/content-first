@@ -96,6 +96,16 @@ export class ProfileModal extends React.Component {
       }
       return '';
     };
+    let baseImage;
+    if (!this.props.profileImageId && !this.props.tempImageId) {
+      baseImage = '/img/general/user-placeholder-thumbnail.svg';
+    }
+    if (this.props.profileImageId) {
+      baseImage = '/v1/image/' + this.props.profileImageId + '/150/150';
+    }
+    if (this.props.tempImageId) {
+      baseImage = '/v1/image/' + this.props.tempImageId + '/150/150';
+    }
     return (
       <div className={'profile__modal-window'} data-cy="user-form-over13">
         <div className="profile__accept-window">
@@ -126,21 +136,7 @@ export class ProfileModal extends React.Component {
                       <ProfileUploadImage
                         error={this.props.imageError}
                         loading={this.props.imageIsLoading}
-                        personalImage={
-                          this.props.profileImageId
-                            ? `/v1/image/${this.props.profileImageId}/150/150`
-                            : null
-                        }
-                        tempPersonalImage={
-                          this.props.tempImageId
-                            ? `/v1/image/${this.props.tempImageId}/150/150`
-                            : null
-                        }
-                        buttonText={
-                          this.props.profileImageId
-                            ? 'Skift profilbillede'
-                            : 'Upload profilbillede'
-                        }
+                        baseImage={baseImage}
                         onFile={this.props.addImage}
                         thumbnailImage={
                           '/img/general/user-placeholder-thumbnail.svg'
