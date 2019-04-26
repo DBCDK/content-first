@@ -451,6 +451,14 @@
       "saveProfileToast": {
         "da": "Din profil er opdateret",
         "en": "Your profile has been updated"
+      },
+      "termsAndConditions": {
+        "da": "Se regler og vilkår for Læsekompasset",
+        "en": "See the terms and conditions for Læsekompasset"
+      },
+      "saveChanges": {
+        "da": "Gem ændringer",
+        "en": "Save changes"
       }
     },
     "shortlist": {

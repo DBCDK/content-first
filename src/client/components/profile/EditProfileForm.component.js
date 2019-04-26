@@ -1,7 +1,8 @@
 import React from 'react';
-import Spinner from '../general/Spinner.component';
 import T from '../base/T';
 import Link from '../general/Link.component';
+import Button from '../base/Button/Button';
+import Toolbar from '../base/Toolbar/Toolbar';
 
 export default class EditProfileForm extends React.Component {
   onSubmit = e => {
@@ -49,7 +50,9 @@ export default class EditProfileForm extends React.Component {
             ((name.length === 0 && ' ') || 'invalid-feedback')} has-feedback`}
         >
           <div className="profile__edit-username-zone">
-            <div className="profile__edit-inputNameTitle">Brugernavn</div>
+            <div className="profile__edit-inputNameTitle">
+              <T component="profile" name="usernameTitle" />
+            </div>
             <div className="profile__edit-textfield">
               <input
                 className={`profile__mobileinputfield ${(name.length > 3 &&
@@ -91,7 +94,9 @@ export default class EditProfileForm extends React.Component {
         </div>
 
         <div className="profile__edit-link">
-          <a href="/om">Se regler og vilkår for Læsekompasset</a>
+          <a href="/om">
+            <T component="profile" name="termsAndConditions" />
+          </a>
         </div>
 
         <div className="profile__edit-link">
@@ -101,23 +106,26 @@ export default class EditProfileForm extends React.Component {
         </div>
 
         <div className="profile__edit-bottom-position">
-          <div className="profile__edit-bottom-elements">
-            <div className="btn profile__edit-savebtn">
-              <button
-                disabled={!this.props.enableButton}
-                data-cy="user-form-submit"
-              >
-                Gem Ændringer
-                {this.props.isSaving && (
-                  <Spinner
-                    size={12}
-                    color="white"
-                    style={{marginLeft: '10px'}}
-                  />
-                )}
-              </button>
-            </div>
-          </div>
+          <Toolbar>
+            <Button
+              align="right"
+              type="quaternary"
+              size="medium"
+              style={{backgroundColor: 'var(--porcelain)'}}
+              onClick={() => (window.location.href = '/')}
+            >
+              <T component="general" name="cancel" />
+            </Button>
+            <Button
+              align="right"
+              type="quaternary"
+              size="medium"
+              disabled={!this.props.enableButton}
+              data-cy="user-form-submit"
+            >
+              <T component="profile" name="saveChanges" />
+            </Button>
+          </Toolbar>
         </div>
       </form>
     );
