@@ -308,6 +308,14 @@
         "da": "Gem Profil",
         "en": "Save profile"
       },
+      "saveProfileChanges":{
+        "da": "Gem Ændringer",
+        "en": "Save Changes"
+      },
+      "saveProfileToast": {
+        "da": "Din profil er opdateret",
+        "en": "Your profile has been updated"
+      },
       "deleteProfile": {
         "da": "Slet profil",
         "en": "Delete profile"
@@ -435,10 +443,6 @@
       "profilePictureTooLarge": {
         "da": " er for stor. Billedet må maks fylde 10mb",
         "en": " is too large. Pictures must be max 10mb"
-      },
-      "saveProfileToast": {
-        "da": "Din profil er opdateret",
-        "en": "Your profile has been updated"
       }
     },
     "shortlist": {
