@@ -230,6 +230,7 @@ class WorkPreview extends React.Component {
             maxHeight={400}
             work={work}
             className="col-md-0 col-lg-5 workPreview__reviews pb-1 "
+            showMoreColor="var(--lys-graa)"
           />
         </div>
       </React.Fragment>

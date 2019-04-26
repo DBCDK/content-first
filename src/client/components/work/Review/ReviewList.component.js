@@ -174,6 +174,11 @@ class ReviewList extends React.Component {
                   collapsed: !this.state.collapsed
                 })
               }
+              style={{
+                background: `linear-gradient(to bottom, transparent,${
+                  this.props.showMoreColor
+                } )`
+              }}
             >
               <div>
                 <Icon
