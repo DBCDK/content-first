@@ -80,42 +80,58 @@ export default () => (
         <div>
           <Button type="primary">Primary button</Button>
           &nbsp;&nbsp;
-          <Button type="primary" disabled>Primary button</Button>
+          <Button type="primary" disabled>
+            Primary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="secondary">Secondary button</Button>
           &nbsp;&nbsp;
-          <Button type="secondary" disabled>Secondary button</Button>
+          <Button type="secondary" disabled>
+            Secondary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="tertiary">Tertiary button</Button>
           &nbsp;&nbsp;
-          <Button type="tertiary" disabled>Tertiary button</Button>
+          <Button type="tertiary" disabled>
+            Tertiary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="quaternary">Quaternary button</Button>
           &nbsp;&nbsp;
-          <Button type="quaternary" disabled>Quaternary button</Button>
+          <Button type="quaternary" disabled>
+            Quaternary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="quinary">Quinary button</Button>
           &nbsp;&nbsp;
-          <Button type="quinary" disabled>Quinary button</Button>
+          <Button type="quinary" disabled>
+            Quinary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="term">Term button</Button>
           &nbsp;&nbsp;
-          <Button type="term" disabled>Term button</Button>
+          <Button type="term" disabled>
+            Term button
+          </Button>
         </div>
         <div className="mt1">
           <Button size="medium">Medium button</Button>
           &nbsp;&nbsp;
-          <Button size="medium" disabled>Medium button</Button>
+          <Button size="medium" disabled>
+            Medium button
+          </Button>
         </div>
         <div className="mt1">
           <Button size="small">Small button</Button>
           &nbsp;&nbsp;
-          <Button size="small" disabled>Small button</Button>
+          <Button size="small" disabled>
+            Small button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="primary" iconLeft="headset">
