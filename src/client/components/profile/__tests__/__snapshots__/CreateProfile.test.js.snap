@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Image Upload render function Add image 1`] = `
-<CreateProfilePage
+<EditProfilePage
   addImage={[Function]}
 >
   <div
@@ -12,7 +12,14 @@ exports[`Image Upload render function Add image 1`] = `
     >
       <h1
         className="profile__edit-title"
-      />
+      >
+        <T
+          component="profile"
+          name="editProfile"
+        >
+          Redigér profil
+        </T>
+      </h1>
     </div>
     <div
       className="profile__edit-page-position"
@@ -262,7 +269,7 @@ exports[`Image Upload render function Add image 1`] = `
       </div>
     </div>
   </div>
-</CreateProfilePage>
+</EditProfilePage>
 `;
 
 exports[`Image Upload render function renders an image upload form 1`] = `
@@ -274,7 +281,9 @@ exports[`Image Upload render function renders an image upload form 1`] = `
   >
     <h1
       className="profile__edit-title"
-    />
+    >
+      Redigér profil
+    </h1>
   </div>
   <div
     className="profile__edit-page-position"

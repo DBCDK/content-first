@@ -8,7 +8,6 @@ import {
   fetchBooksTags,
   fetchReviews,
   fetchCollection,
-  fetchSearchResults,
   saveShortList,
   loadShortList,
   addImage,
@@ -44,7 +43,6 @@ import {
   ADD_LIST_IMAGE_ERROR,
   ADD_ELEMENT_TO_LIST
 } from './list.reducer';
-import {SEARCH_QUERY} from './search.reducer';
 import {saveList, loadList, loadLists} from '../utils/requestLists';
 
 const getListById = getListByIdSelector();
@@ -369,16 +367,6 @@ export const listMiddleware = store => next => async action => {
           store.dispatch({type: ADD_LIST_IMAGE_ERROR, error, _id: action._id});
         }
       })();
-    default:
-      return next(action);
-  }
-};
-
-export const searchMiddleware = store => next => action => {
-  switch (action.type) {
-    case SEARCH_QUERY:
-      fetchSearchResults({query: action.query, dispatch: store.dispatch});
-      return next(action);
     default:
       return next(action);
   }

@@ -8,7 +8,6 @@ import listReducer from './list.reducer';
 import followReducer from './follow.reducer';
 import shortListReducer from './shortlist.reducer';
 import modalReducer from './modal.reducer';
-import searchReducer from './search.reducer';
 import orderReducer from './order.reducer';
 import commentReducer from './comment.reducer';
 import booksReducer from './books.reducer';
@@ -35,7 +34,6 @@ const combined = combineReducers({
   routerReducer,
   shortListReducer,
   modalReducer,
-  searchReducer,
   orderReducer,
   comments: commentReducer,
   booksReducer,

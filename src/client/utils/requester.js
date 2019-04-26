@@ -1,7 +1,6 @@
 import openplatform from 'openplatform';
 import request from 'superagent';
 import {BOOKS_RESPONSE} from '../redux/books.reducer';
-import {SEARCH_RESULTS} from '../redux/search.reducer';
 import {
   ON_USER_DETAILS_RESPONSE,
   ON_LOGOUT_RESPONSE,
@@ -475,57 +474,6 @@ export const loadShortList = async ({isLoggedIn, store}) => {
     return {localStorageElements, databaseElements: []};
   }
 };
-
-/**
- * formatQuery
- * @param query
- * @returns {*}
- */
-function formatQuery(query) {
-  query = query
-    // Remove parenthesis and everything between from query string + leading/ending spaces
-    .replace(/\(.*\)/g, '')
-    // Handle dot's - the rule is to remove the dot if followed by whitespace
-    .replace(/\.\s/g, ' ')
-    // One specific case: 'Digte 1909-62' must be 'Digte 1909' !!!
-    .replace(/-[0-9]+/g, '')
-    // Replace special characters with a space
-    .replace(/[']/g, ' ')
-    // remove special characters
-    .replace(/[&,!#°?-]/g, '')
-    // Replace all multiple whitespace characters with a single space
-    .replace(/\s+/g, ' ')
-    // Trim leading and trailing whitespace
-    .trim();
-
-  // Replace spaces with ampersand character
-  query = query.split(' ').join('&');
-
-  return query;
-}
-
-/**
- * fetchSearchResults
- * @param query
- * @param dispatch
- * @returns {Promise<void>}
- */
-export async function fetchSearchResults({query, dispatch}) {
-  query = formatQuery(query);
-
-  try {
-    const result = await request.get(
-      '/v1/search?q=' + encodeURIComponent(query)
-    );
-    dispatch({
-      type: SEARCH_RESULTS,
-      query,
-      results: JSON.parse(result.text).data
-    });
-  } catch (e) {
-    dispatch({type: SEARCH_RESULTS, query, results: null});
-  }
-}
 
 let accessToken;
 let accessTokenRequest = null;

@@ -63,7 +63,13 @@ class App extends Component {
     } else if (pathSplit[1] === 'find') {
       currentPage = <FilterPage />;
     } else if (pathSplit[1] === 'replay') {
-      currentPage = <Spinner size="50px" style={{marginTop: 100}} />;
+      currentPage = (
+        <Spinner
+          className="d-block mx-auto"
+          style={{marginTop: 200}}
+          size="50px"
+        />
+      );
     } else if (pathSplit[1] === 'styleguide') {
       currentPage = <Styleguide />;
     }

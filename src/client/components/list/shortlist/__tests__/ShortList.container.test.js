@@ -9,6 +9,7 @@ global.open = jest.fn();
 jest.mock('../../../general/Link.component', () =>
   jest.fn(props => <mocked-link>{props.children}</mocked-link>)
 );
+
 const Link = require('../../../general/Link.component');
 
 // Mock OrderButton
