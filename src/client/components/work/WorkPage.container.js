@@ -334,7 +334,6 @@ class WorkPage extends React.Component {
                 maxHeight={500}
                 work={work}
                 className="col-12 col-xl-4 WorkPage__reviews mt-xl-0 mb-xl-0 pt-4"
-                showMoreColor="white"
               />
             </div>
           </div>
