@@ -297,12 +297,12 @@
         "en": "My profile"
       },
       "createProfile": {
-        "da": "Opret profil",
-        "en": "Create profile"
+        "da": "Min profil",
+        "en": "My profile"
       },
       "editProfile": {
-        "da": "Redigér profil",
-        "en": "Edit profile"
+        "da": "Min profil",
+        "en": "My profile"
       },
       "saveProfile": {
         "da": "Gem Profil",
@@ -353,12 +353,12 @@
         "en": "Enter your personal information"
       },
       "changeProfilePicture": {
-        "da": "Skift profilbillede",
-        "en": "Change profile picture"
+        "da": "Vælg billede",
+        "en": "Select picture"
       },
       "uploadProfilePicture": {
-        "da": "Upload profilbillede",
-        "en": "Upload profile picture"
+        "da": "Vælg billede",
+        "en": "Select picture"
       },
       "profileInstructionsTitle": {
         "da": "Hvad skal vi bruge det til?",
@@ -403,6 +403,11 @@
       "validationAcceptTerms": {
         "da": "For at oprette en profil, skal du acceptere reglerne for anvendelse af Læsekompasset.",
         "en": "You have to accept our terms"
+      },
+
+      "seeRulesLink":{
+        "da": "Se regler og vilkår for Læsekompasset",
+        "en": "See the rules and conditions for using Læsekompasset"
       },
       "saveProfileError": {
         "da": "Det er ikke muligt at gemme profilen",
