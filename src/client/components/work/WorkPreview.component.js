@@ -212,12 +212,6 @@ class WorkPreview extends React.Component {
               <div className="row mt-3">
                 <div className="col-12">
                   <RemindsOf onClick={() => this.props.openSimilarBelt(work)} />
-                  {this.props.hasChildBelt && (
-                    <Icon
-                      name="expand_more"
-                      className="workPreview__arrow md-large"
-                    />
-                  )}
                 </div>
               </div>
             </div>
@@ -233,6 +227,15 @@ class WorkPreview extends React.Component {
             showMoreColor="var(--lys-graa)"
           />
         </div>
+        {this.props.hasChildBelt && (
+          <div className="workPreview__arrow">
+            <Icon
+              name="expand_more"
+              className=" md-large"
+              onClick={() => this.props.openSimilarBelt(work)}
+            />
+          </div>
+        )}
       </React.Fragment>
     );
   }
