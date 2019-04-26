@@ -48,7 +48,7 @@ jest.mock(
         book: {
           collection: {
             data: [
-              {type: 'Bog' + props.pid},
+              {type: 'bog' + props.pid},
               {
                 identifierURI: 'https://identifier/uri/' + props.pid,
                 type: 'type' + props.pid
