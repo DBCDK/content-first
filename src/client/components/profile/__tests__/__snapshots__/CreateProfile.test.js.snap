@@ -108,7 +108,12 @@ exports[`Image Upload render function Add image 1`] = `
                   <div
                     className="profile__edit-inputNameTitle"
                   >
-                    Brugernavn
+                    <T
+                      component="profile"
+                      name="usernameTitle"
+                    >
+                      Brugernavn
+                    </T>
                   </div>
                   <div
                     className="profile__edit-textfield"
@@ -152,10 +157,9 @@ exports[`Image Upload render function Add image 1`] = `
                 <a
                   href="/om"
                 >
-                   
                   <T
                     component="profile"
-                    name="seeRulesLink"
+                    name="termsAndConditions"
                   >
                     Se regler og vilkår for Læsekompasset
                   </T>
@@ -179,25 +183,78 @@ exports[`Image Upload render function Add image 1`] = `
               <div
                 className="profile__edit-bottom-position"
               >
-                <div
-                  className="profile__edit-bottom-elements"
-                >
+                <Toolbar>
                   <div
-                    className="btn profile__edit-savebtn"
+                    className="Toolbar "
                   >
-                    <button
-                      data-cy="user-form-submit"
-                      disabled={false}
+                    <div
+                      className="Toolbar__left"
+                    />
+                    <div
+                      className="Toolbar__center"
+                    />
+                    <div
+                      className="Toolbar__right"
                     >
-                      <T
-                        component="profile"
-                        name="saveProfileChanges"
+                      <Button
+                        key="0"
+                        onClick={[Function]}
+                        size="medium"
+                        style={
+                          Object {
+                            "backgroundColor": "var(--porcelain)",
+                          }
+                        }
+                        type="quaternary"
                       >
-                        Gem Ændringer
-                      </T>
-                    </button>
+                        <button
+                          className="
+                              btn Button Button__medium Button__quaternary "
+                          data-cy=""
+                          disabled={false}
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "backgroundColor": "var(--porcelain)",
+                            }
+                          }
+                        >
+                          <span>
+                            <T
+                              component="general"
+                              name="cancel"
+                            >
+                              Fortryd
+                            </T>
+                          </span>
+                        </button>
+                      </Button>
+                      <Button
+                        data-cy="user-form-submit"
+                        disabled={false}
+                        key="1"
+                        size="medium"
+                        type="quaternary"
+                      >
+                        <button
+                          className="
+                              btn Button Button__medium Button__quaternary "
+                          data-cy=""
+                          disabled={false}
+                        >
+                          <span>
+                            <T
+                              component="profile"
+                              name="saveChanges"
+                            >
+                              Gem ændringer
+                            </T>
+                          </span>
+                        </button>
+                      </Button>
+                    </div>
                   </div>
-                </div>
+                </Toolbar>
               </div>
             </form>
           </EditProfileForm>
@@ -323,7 +380,6 @@ exports[`Image Upload render function renders an image upload form 1`] = `
             <a
               href="/om"
             >
-               
               Se regler og vilkår for Læsekompasset
             </a>
           </div>
@@ -341,16 +397,46 @@ exports[`Image Upload render function renders an image upload form 1`] = `
             className="profile__edit-bottom-position"
           >
             <div
-              className="profile__edit-bottom-elements"
+              className="Toolbar "
             >
               <div
-                className="btn profile__edit-savebtn"
+                className="Toolbar__left"
+              />
+              <div
+                className="Toolbar__center"
+              />
+              <div
+                className="Toolbar__right"
               >
                 <button
-                  data-cy="user-form-submit"
+                  className="
+                      btn Button Button__medium Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "var(--porcelain)",
+                    }
+                  }
+                >
+                  
+                  <span>
+                    Fortryd
+                  </span>
+                  
+                </button>
+                <button
+                  className="
+                      btn Button Button__medium Button__quaternary "
+                  data-cy=""
                   disabled={true}
                 >
-                  Gem Ændringer
+                  
+                  <span>
+                    Gem ændringer
+                  </span>
+                  
                 </button>
               </div>
             </div>

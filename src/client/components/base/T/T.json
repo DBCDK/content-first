@@ -27,7 +27,7 @@
         "en": "Save"
       },
       "edit": {
-        "da": "Redigér",
+        "da": "Rediger",
         "en": "Edit"
       },
       "bestil": {
@@ -59,7 +59,7 @@
         "en": "New"
       },
       "cancelEdit": {
-        "da": "Fortryd redigéring",
+        "da": "Fortryd redigering",
         "en": "Cancel edit"
       },
       "image": {
@@ -83,7 +83,7 @@
         "en": "Save changes"
       },
       "editMultiple": {
-        "da": "Redigér tekst og billede",
+        "da": "Rediger tekst og billede",
         "en": "Edit text and image"
       },
       "reorder": {
@@ -91,7 +91,7 @@
         "en": "Reorder"
       },
       "editSettings": {
-        "da": "Redigér indstillinger",
+        "da": "Rediger indstillinger",
         "en": "Settings"
       },
       "addABook": {
@@ -305,8 +305,8 @@
         "en": "My profile"
       },
       "editProfile": {
-        "da": "Min profil",
-        "en": "My profile"
+        "da": "Rediger profil",
+        "en": "Edit profile"
       },
       "saveProfile": {
         "da": "Gem Profil",
@@ -452,6 +452,22 @@
       "acceptAndSubmit": {
         "da": "Accepter regler og vilkår",
         "en": "Accept rules and conditions"
+      },
+      "profilePictureTooLarge": {
+        "da": " er for stor. Billedet må maks fylde 10mb",
+        "en": " is too large. Max 10mb"
+      },
+      "saveProfileToast": {
+        "da": "Din profil er opdateret",
+        "en": "Your profile has been updated"
+      },
+      "termsAndConditions": {
+        "da": "Se regler og vilkår for Læsekompasset",
+        "en": "See the terms and conditions for Læsekompasset"
+      },
+      "saveChanges": {
+        "da": "Gem ændringer",
+        "en": "Save changes"
       }
     },
     "shortlist": {
@@ -525,15 +541,15 @@
         "en": "Add all to a list"
       },
       "editLists": {
-        "da": "Redigér lister",
+        "da": "Rediger lister",
         "en": "Edit lists"
       },
       "editList": {
-        "da": "Redigér liste",
+        "da": "Rediger liste",
         "en": "Edit list"
       },
       "editListInfo": {
-        "da": "Redigér listeoplysninger",
+        "da": "Rediger listeoplysninger",
         "en": "Edit list informations"
       },
       "saveList": {
@@ -713,7 +729,7 @@
         "en": "Activate bookshelf"
       },
       "commentListLabel": {
-        "da": "Kommentér listen",
+        "da": "Kommenter listen",
         "en": "Comment list"
       },
       "list": {
@@ -793,11 +809,11 @@
     },
     "post": {
       "editPost": {
-        "da": "Redigér indlæg",
+        "da": "Rediger indlæg",
         "en": "Edit post"
       },
       "editDescription": {
-        "da": "Redigér beskrivelse",
+        "da": "Rediger beskrivelse",
         "en": "Edit description"
       },
       "deleteBook": {
@@ -809,7 +825,7 @@
         "en": "Delete post"
       },
       "editComment": {
-        "da": "Redigér kommentar",
+        "da": "Rediger kommentar",
         "en": "Edit comment"
       },
       "deleteComment": {
@@ -837,7 +853,7 @@
         "en": "You have to be signed in to write a comment."
       },
       "comment": {
-        "da": "Kommentér",
+        "da": "Kommenter",
         "en": "Comment"
       },
       "showMoreComments": {

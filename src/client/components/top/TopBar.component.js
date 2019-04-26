@@ -44,7 +44,7 @@ class TopBarDropdown extends React.Component {
           </li>
         )}
         <li>
-          <Link href="/profile/opret" onClick={this.props.onClick}>
+          <Link href="/profile/rediger" onClick={this.props.onClick}>
             <span>
               <T component="profile" name="profilePage" />
             </span>

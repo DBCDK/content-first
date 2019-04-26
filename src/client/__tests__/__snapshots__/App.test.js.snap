@@ -360,7 +360,7 @@ exports[`renders without crashing 1`] = `
           <a
             className="list-card-nohover"
             data-cy=""
-            href="/profile/opret"
+            href="/profile/rediger"
             onClick={[Function]}
             style={Object {}}
             target="_self"
@@ -714,7 +714,7 @@ exports[`renders without crashing 1`] = `
         >
           
           <span>
-            ACCEPTÉR COOKIES
+            ACCEPTER COOKIES
           </span>
           
         </button>

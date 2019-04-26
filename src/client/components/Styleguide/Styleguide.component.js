@@ -79,27 +79,59 @@ export default () => (
       <div className="col-8 tl mt2">
         <div>
           <Button type="primary">Primary button</Button>
+          &nbsp;&nbsp;
+          <Button type="primary" disabled>
+            Primary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="secondary">Secondary button</Button>
+          &nbsp;&nbsp;
+          <Button type="secondary" disabled>
+            Secondary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="tertiary">Tertiary button</Button>
+          &nbsp;&nbsp;
+          <Button type="tertiary" disabled>
+            Tertiary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="quaternary">Quaternary button</Button>
+          &nbsp;&nbsp;
+          <Button type="quaternary" disabled>
+            Quaternary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="quinary">Quinary button</Button>
+          &nbsp;&nbsp;
+          <Button type="quinary" disabled>
+            Quinary button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="term">Term button</Button>
+          &nbsp;&nbsp;
+          <Button type="term" disabled>
+            Term button
+          </Button>
         </div>
         <div className="mt1">
           <Button size="medium">Medium button</Button>
+          &nbsp;&nbsp;
+          <Button size="medium" disabled>
+            Medium button
+          </Button>
         </div>
         <div className="mt1">
           <Button size="small">Small button</Button>
+          &nbsp;&nbsp;
+          <Button size="small" disabled>
+            Small button
+          </Button>
         </div>
         <div className="mt1">
           <Button type="primary" iconLeft="headset">
@@ -122,10 +154,10 @@ export default () => (
       </div>
       <div className="col-8 tl mt2">
         <div className="mt1 d-inline-block">
-          <ContextMenu title="Redigér liste" className="">
-            <ContextMenuAction title="Redigér tekst og billede" icon="edit" />
+          <ContextMenu title="Rediger liste" className="">
+            <ContextMenuAction title="Rediger tekst og billede" icon="edit" />
             <ContextMenuAction title="Skift rækkefølge" icon="swap_vert" />
-            <ContextMenuAction title="Redigér indstillinger" icon="settings" />
+            <ContextMenuAction title="Rediger indstillinger" icon="settings" />
           </ContextMenu>
         </div>
       </div>
