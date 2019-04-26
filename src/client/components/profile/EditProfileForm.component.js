@@ -1,6 +1,5 @@
 import React from 'react';
 import T from '../base/T';
-import Link from '../general/Link.component';
 import Button from '../base/Button/Button';
 import Toolbar from '../base/Toolbar/Toolbar';
 
@@ -100,9 +99,9 @@ export default class EditProfileForm extends React.Component {
         </div>
 
         <div className="profile__edit-link">
-          <Link href="#!" onClick={this.props.confirmDelete}>
+          <a href="#!" onClick={this.props.confirmDelete}>
             <T component="profile" name="deleteProfile" />
-          </Link>
+          </a>
         </div>
 
         <div className="profile__edit-bottom-position">
