@@ -10,6 +10,10 @@ To run the system locally:
     $ docker-compose up -d  // Start local PostgreSQL database & community service.
     $ npm start             // Run both backend and frontend services in parallel.
 
+TO fetch and inject data from the metakompas:
+
+    $ npm run fetch-inject-metakompas  // 
+
 If you want to manually start up a PostgreSQL server, it needs to run on port 5432 and have a database called `contentfirst` owned by `contentfirst`; see the following section about environments.
 
 To run fast tests on local machine:
