@@ -70,9 +70,11 @@
   z-index: 99999;
 }
 .modal-window--close-btn {
-  position: absolute;
-  top: 10px;
+  position: relative;
+  width: 100%;
+  text-align: right;
   right: 15px;
+  top: 12px;
   cursor: pointer;
   color: var(--petroleum);
 }
