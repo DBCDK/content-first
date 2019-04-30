@@ -479,6 +479,7 @@ export const createGetLists = () => {
                 ? 'Her kan du se listen over de bøger, som du har markeret som "Har læst". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.'
                 : 'Her kan du se listen over de bøger, som du har markeret som "Vil læse". Du kan tilføje flere bøger til listen nederst på denne side. Du kan redigere og fjerne bøger, men ikke slette selve listen.';
             /* eslint-enable */
+            delete l.image;
           }
 
           // ensure uniqueness of elements
