@@ -65,19 +65,10 @@ class BookSearchSuggester extends React.Component {
   async onSuggestionsFetchRequested({value}) {
     value = value.toLowerCase();
     this.currentRequest = value;
-    const results = JSON.parse(
-      (await request.get(
-        '/v1/suggester?rows=20&query=' +
-          encodeURIComponent(
-            value
-              .trim()
-              .split(/\s+/g)
-              .join(' & ') + ':*'
-          )
-      )).text
-    );
-
-    const books = results
+    // Suggester request
+    const response = await request.get('/v1/suggester').query({query: value});
+    // Handle suggester result
+    const books = response.body
       .filter(s => s.type === 'TITLE')
       .map(s => {
         return {
