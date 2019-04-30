@@ -19,7 +19,7 @@ import Button from '../../base/Button/Button';
 import Text from '../../base/Text';
 import T from '../../base/T/';
 import Link from '../../general/Link.component';
-import Spinner from '../../general/Spinner.component';
+import Spinner from '../../general/Spinner/Spinner.component';
 
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 

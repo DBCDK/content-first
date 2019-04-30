@@ -4,12 +4,10 @@ import filterReducer from './filter.reducer';
 import routerReducer from './router.reducer';
 import userReducer from './user.reducer';
 import {usersReducer} from './users';
-import tasteReducer from './taste.reducer';
 import listReducer from './list.reducer';
 import followReducer from './follow.reducer';
 import shortListReducer from './shortlist.reducer';
 import modalReducer from './modal.reducer';
-import searchReducer from './search.reducer';
 import orderReducer from './order.reducer';
 import commentReducer from './comment.reducer';
 import booksReducer from './books.reducer';
@@ -36,10 +34,8 @@ const combined = combineReducers({
   routerReducer,
   shortListReducer,
   modalReducer,
-  searchReducer,
   orderReducer,
   comments: commentReducer,
-  tasteReducer,
   booksReducer,
   recommendReducer,
   replay: replayReducer,

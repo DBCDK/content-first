@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ListItem from '../ListItem.component';
 
-jest.mock('../../../general/BookCover.component', () => 'BookCover');
+jest.mock('../../../general/BookCover/BookCover.component', () => 'BookCover');
 jest.mock('../../../general/Link.component', () => 'Link');
 
 describe('ListItem', () => {

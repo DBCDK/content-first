@@ -6,7 +6,7 @@ import {mount} from 'enzyme';
 import ImageUpload from '../ImageUpload.component';
 const image =
   'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-jest.mock('../../general/Spinner.component', () => 'Spinner');
+jest.mock('../../general/Spinner/Spinner.component', () => 'Spinner');
 
 describe('Image Upload', () => {
   describe('render function', () => {

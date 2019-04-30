@@ -6,9 +6,8 @@ import {
   SHORTLIST_UPDATE_ORIGIN,
   SHORTLIST_CLEAR
 } from '../../../redux/shortlist.reducer';
-import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {ORDER} from '../../../redux/order.reducer';
-import BookCover from '../../general/BookCover.component';
+import BookCover from '../../general/BookCover/BookCover.component';
 import OrderButton from '../../order/OrderButton.component';
 import Link from '../../general/Link.component';
 import Toolbar from '../../base/Toolbar';
@@ -20,6 +19,7 @@ import Button from '../../base/Button';
 import Banner from '../../base/Banner';
 import {filterCollection} from '../../work/workFunctions';
 import withWork from '../../base/Work/withWork.hoc';
+import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 
 export class ShortListItem extends React.Component {
   constructor(props) {
@@ -38,17 +38,6 @@ export class ShortListItem extends React.Component {
 
     // get collections including ereolen
     const collection = filterCollection(this.props.work);
-    const addToListButton = (
-      <Button
-        align="left"
-        size="medium"
-        type="tertiary"
-        className="mr-2 text-uppercase"
-        onClick={this.props.onAddToList}
-      >
-        <T component="list" name="addToList" />
-      </Button>
-    );
     const orderBookButton = (
       <OrderButton
         book={work.book}
@@ -105,14 +94,16 @@ export class ShortListItem extends React.Component {
               {origin}
             </Text>
             <Toolbar className="desktop-styling">
-              {addToListButton}
+              <AddToListButton work={work} align="left" />
               <Text align="right" type="body">
                 <T component="work" name="loanTitle" />
               </Text>
               {orderBookButton}
               {orderElectronicBookButtons}
             </Toolbar>
-            <div className="mobile-styling">{addToListButton}</div>
+            <div className="mobile-styling">
+              <AddToListButton work={work} align="left" />
+            </div>
           </div>
         </div>
         <div className="mobile-styling">
@@ -182,20 +173,6 @@ export class ShortList extends React.Component {
                         onOriginUpdate={origin => {
                           this.props.originUpdate(origin, e.book.pid);
                         }}
-                        onAddToList={() => {
-                          this.props.addToList(
-                            [
-                              {
-                                book: e.book,
-                                description: e.origin || (
-                                  <T component="shortlist" name="origin" />
-                                )
-                              }
-                            ],
-                            this.props.isLoggedIn,
-                            () => this.props.remove(e.book.pid)
-                          );
-                        }}
                       />
                       <Divider />
                     </div>
@@ -210,22 +187,6 @@ export class ShortList extends React.Component {
             )}
             {elements.length > 0 && (
               <Toolbar className="bottom-toolbar mt-5 mb-5">
-                <Button
-                  align="right"
-                  iconLeft="list"
-                  size="large"
-                  type="tertiary"
-                  className="text-uppercase"
-                  onClick={() =>
-                    this.props.addToList(
-                      elements,
-                      this.props.isLoggedIn,
-                      this.props.clearList
-                    )
-                  }
-                >
-                  <T component="list" name="addAllToList" />
-                </Button>
                 <Button
                   align="right"
                   iconLeft="chrome_reader_mode"
@@ -278,18 +239,6 @@ export const mapDispatchToProps = dispatch => ({
       type: SHORTLIST_UPDATE_ORIGIN,
       pid,
       origin
-    }),
-  addToList: (works, isLoggedIn, callback = null) =>
-    dispatch({
-      type: OPEN_MODAL,
-      modal: isLoggedIn ? 'addToList' : 'login',
-      context: isLoggedIn
-        ? works
-        : {
-            title: 'Tilføj til liste',
-            reason: 'Du skal logge ind for at flytte bøger til en liste.'
-          },
-      callback
     }),
   clearList: () =>
     dispatch({

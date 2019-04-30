@@ -21,7 +21,6 @@ require('jest-localstorage-mock');
   );
 });
 jest.mock('react-textarea-autosize', () => 'textarea');
-jest.mock('react-slick', () => 'react-slick');
 jest.mock('react-truncate-markup', () => 'react-truncate-markup');
 jest.mock('react-visibility-sensor', () => 'react-visibility-sensor');
 
@@ -36,7 +35,10 @@ jest.mock(
   }
 );
 
-jest.mock('./client/components/general/BookCover.component', () => 'bookcover');
+jest.mock(
+  './client/components/general/BookCover/BookCover.component',
+  () => 'bookcover'
+);
 jest.mock('tween', () => 'tween', {
   virtual: true
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import './WorkSlider.component.css';
 import {get, debounce} from 'lodash';
-import WorkCard from '../../work/WorkCard.container';
+import WorkCard from '../../work/WorkCard/WorkCard.container';
 import Slider from './Slider.component';
 import Title from '../../base/Title';
 import T from '../T';

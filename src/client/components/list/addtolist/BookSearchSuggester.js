@@ -2,12 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import request from 'superagent';
 import Autosuggest from 'react-autosuggest';
-import BookCover from '../../general/BookCover.component';
+import BookCover from '../../general/BookCover/BookCover.component';
 import Text from '../../base/Text';
 import T from '../../base/T';
 import Icon from '../../base/Icon';
 
 import {BOOKS_REQUEST} from '../../../redux/books.reducer';
+
+import './BookSearchSuggester.css';
 
 const addEmphasisToString = (string, pattern) => {
   const index = string.toLowerCase().indexOf(pattern.toLowerCase());

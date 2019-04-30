@@ -3,14 +3,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {mount} from 'enzyme';
 
-import {CreateProfilePage} from '../CreateProfilePage';
+import {CreateProfilePage} from '../EditProfilePage';
 const image =
   'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-jest.mock('../../general/Spinner.component', () => 'spinner');
+jest.mock('../../general/Spinner/Spinner.component', () => 'spinner');
 jest.mock('../../general/Link.component', () =>
   jest.fn(props => <mocked-link {...props}>{props.children}</mocked-link>)
 );
-jest.mock('../../general/Logout.component', () => 'logout');
 
 describe('Image Upload', () => {
   describe('render function', () => {

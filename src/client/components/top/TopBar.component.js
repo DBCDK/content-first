@@ -7,7 +7,7 @@ import ShortListDropDown from '../list/shortlist/ShortListDropDown.container';
 import ListOverviewDropDown from '../list/overview/ListOverviewDropDown.container';
 import ProfileImage from '../general/ProfileImage.component';
 import Icon from '../base/Icon';
-import SearchBar from '../filter/SearchBar.component';
+import SearchBar from '../filter/SearchBar/SearchBar.component';
 import {HISTORY_PUSH, HISTORY_REPLACE} from '../../redux/middleware';
 import {HISTORY_PUSH_FORCE_REFRESH} from '../../redux/middleware';
 import {ON_LOGOUT_REQUEST} from '../../redux/user.reducer';
@@ -44,7 +44,7 @@ class TopBarDropdown extends React.Component {
           </li>
         )}
         <li>
-          <Link href="/profile/rediger" onClick={this.props.onClick}>
+          <Link href="/profil/rediger" onClick={this.props.onClick}>
             <span>
               <T component="profile" name="profilePage" />
             </span>

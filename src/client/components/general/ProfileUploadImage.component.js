@@ -1,5 +1,5 @@
 import React from 'react';
-import Spinner from './Spinner.component';
+import Spinner from './Spinner/Spinner.component';
 import HoverImage from './HoverImage.component';
 import T from '../base/T';
 

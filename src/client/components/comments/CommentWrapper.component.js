@@ -7,7 +7,7 @@ import {
   FETCH_COMMENTS
 } from '../../redux/comment.reducer';
 
-import Spinner from '../general/Spinner.component';
+import Spinner from '../general/Spinner/Spinner.component';
 import {timestampToLongDate} from '../../utils/dateTimeFormat';
 import ProfileImage from '../general/ProfileImage.component';
 import CommentInput from './CommentInput.component';

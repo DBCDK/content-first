@@ -51,7 +51,8 @@ const withChildBelt = WrappedComponent => {
       } else {
         const mount = this.props.mount + work.book.pid;
         this.props.scrollToComponent(mount);
-        const WorkPreview = require('../../work/WorkPreview.component').default;
+        const WorkPreview = require('../../work/WorkPreview/WorkPreview.component')
+          .default;
         this.props.updateMount({
           type: 'PREVIEW',
           beltName,

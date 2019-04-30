@@ -360,7 +360,7 @@ exports[`renders without crashing 1`] = `
           <a
             className="list-card-nohover"
             data-cy=""
-            href="/profile/rediger"
+            href="/profil/rediger"
             onClick={[Function]}
             style={Object {}}
             target="_self"

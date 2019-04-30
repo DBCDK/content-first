@@ -8,7 +8,7 @@ const LOCAL_STORAGE_REPLAY_VERSION = 1;
 
 const REPLAY_PATH = '/replay';
 
-const IGNORED_PATHS = {'/replay': true, '/profile/opret': true};
+const IGNORED_PATHS = {'/replay': true, '/profil/opret': true};
 
 // Put actions here, which should be listened for
 // and put in replay queue

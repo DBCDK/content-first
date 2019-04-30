@@ -12,10 +12,10 @@ import Title from '../../base/Title';
 import Text from '../../base/Text';
 import T from '../../base/T';
 import {timestampToLongDate} from '../../../utils/dateTimeFormat';
-import BookCover from '../../general/BookCover.component';
+import BookCover from '../../general/BookCover/BookCover.component';
 import textParser from '../../../utils/textParser';
 import Link from '../../general/Link.component';
-import BookmarkButton from '../../general/BookmarkButton';
+import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import TaxDescription from '../../work/TaxDescription.component.js';
 import CommentInput from '../../comments/CommentInput.component';
 

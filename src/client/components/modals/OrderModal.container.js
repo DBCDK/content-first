@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Spinner from '../general/Spinner.component';
-import Modal from './Modal.component';
-import BookCover from '../general/BookCover.component';
+import Spinner from '../general/Spinner/Spinner.component';
+import Modal from './Modal/Modal.component';
+import BookCover from '../general/BookCover/BookCover.component';
 import T from '../base/T';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 import {

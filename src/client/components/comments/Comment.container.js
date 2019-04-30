@@ -11,6 +11,8 @@ import CommentInput from './CommentInput.component';
 import Text from '../base/Text';
 import T from '../base/T';
 
+import './Comment.css';
+
 export class CommentContainer extends React.Component {
   constructor(props) {
     super(props);

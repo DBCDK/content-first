@@ -15,6 +15,8 @@ import {FETCH_COMMENTS} from '../../../redux/comment.reducer';
 import {LIST_LOAD_REQUEST} from '../../../redux/list.reducer';
 import {createCountComments} from '../../../redux/selectors';
 
+import './ListCard.css';
+
 class ListCard extends React.Component {
   isSkeleton = props => {
     return props.skeleton || !props.list;
