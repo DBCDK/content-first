@@ -66,13 +66,17 @@
   color: var(--petroleum);
 }
 
-.WorkPreview__container .workPreview__arrow {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  bottom: -80px;
+.workPreview__arrow {
+  position: relative;
 }
-
+ .workPreview__arrow i {
+  position: absolute;	  position: absolute;
+  left: 50%;	
+  transform: translate(-50%);	  transform: translate(-50%);
+  bottom: -90px;	  left: 152px;
+  top: -30px;
+  cursor: pointer;
+}	
 /* reviews */
 
 .WorkPreview__container .workPreview__reviews {
