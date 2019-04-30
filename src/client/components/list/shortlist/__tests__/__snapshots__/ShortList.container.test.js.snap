@@ -1790,10 +1790,69 @@ exports[`ShortList.container Clearing list 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"
@@ -3618,10 +3677,69 @@ exports[`ShortList.container Order all books 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"
@@ -5445,10 +5563,69 @@ exports[`ShortList.container Order book - desktop version 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"
@@ -7272,10 +7449,69 @@ exports[`ShortList.container Order book - mobile version 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"
@@ -9099,10 +9335,69 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"
@@ -10926,10 +11221,69 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"
@@ -12753,10 +13107,69 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"
@@ -14580,10 +14993,69 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"
@@ -16408,10 +16880,69 @@ exports[`ShortList.container Remove element 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"
@@ -18235,10 +18766,69 @@ exports[`ShortList.container Short list contains elements 1`] = `
           <div
             className="Toolbar__right"
           >
+            <addtolistbutton
+              elements={
+                Array [
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/0",
+                      "creator": "creator - 0",
+                      "description": "some description - 0",
+                      "first_edition_year": "first edition year - 0",
+                      "language": "language - 0",
+                      "pages": "pages - 0",
+                      "pid": "pid - 0",
+                      "taxonomy_description": "taxonomy description - 0",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 0",
+                      "title": "some title - 0",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 0",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/1",
+                      "creator": "creator - 1",
+                      "description": "some description - 1",
+                      "first_edition_year": "first edition year - 1",
+                      "language": "language - 1",
+                      "pages": "pages - 1",
+                      "pid": "pid - 1",
+                      "taxonomy_description": "taxonomy description - 1",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 1",
+                      "title": "some title - 1",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 1",
+                  },
+                  Object {
+                    "book": Object {
+                      "coverUrl": "https://some/cover/url/2",
+                      "creator": "creator - 2",
+                      "description": "some description - 2",
+                      "first_edition_year": "first edition year - 2",
+                      "language": "language - 2",
+                      "pages": "pages - 2",
+                      "pid": "pid - 2",
+                      "taxonomy_description": "taxonomy description - 2",
+                      "taxonomy_description_subjects": "taxonomy description subjects - 2",
+                      "title": "some title - 2",
+                    },
+                    "detailsHasLoaded": true,
+                    "detailsIsLoading": false,
+                    "origin": "origin - 2",
+                  },
+                ]
+              }
+              key="0"
+              multiple={true}
+            />
             <Button
               className="btn ml-4"
               iconLeft="chrome_reader_mode"
-              key="0"
+              key="1"
               onClick={[Function]}
               size="large"
               type="quaternary"

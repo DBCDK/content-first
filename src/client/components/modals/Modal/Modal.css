@@ -65,8 +65,11 @@
     padding: 1rem;
     max-height: 100%;
   }
+  .modal-container{
+    padding-top: 0 !important;
+  }
 }
-@media (max-height: 700px) {
+@media (max-height: 812px) {
   .modal-window {
     position: absolute;
     width: 100% !important;
