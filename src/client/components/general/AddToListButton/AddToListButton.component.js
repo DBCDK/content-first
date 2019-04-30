@@ -69,6 +69,8 @@ export class AddToListButton extends React.Component {
   createDropdownElement(list, limit = 99) {
     const work = this.props.work;
     const book = work.book;
+    const multiple = this.props.multiple;
+    console.log('multiple', multiple);
 
     return list.map((l, i) => {
       if (i < limit) {
@@ -106,7 +108,9 @@ export class AddToListButton extends React.Component {
           >
             <Icon
               name="lens"
-              className={`md-xsmall ${status ? 'pistache pistache-txt' : ''}`}
+              className={`md-xsmall ${
+                status && !multiple ? 'pistache pistache-txt' : ''
+              }`}
             />
             <span>{l.title}</span>
           </li>
@@ -123,43 +127,56 @@ export class AddToListButton extends React.Component {
       className = '',
       customLists = [],
       systemLists = [],
-      openModal
+      openModal,
+      multiple
     } = this.props;
 
-    const defaultTitle = T({component: 'list', name: 'addToList'});
-    const buttonTitle = this.constructTitle(defaultTitle);
+    const defaultTitle = multiple
+      ? T({component: 'list', name: 'addAllToList'})
+      : T({component: 'list', name: 'addToList'});
+    const buttonTitle = multiple
+      ? defaultTitle
+      : this.constructTitle(defaultTitle);
 
     const buttonActive =
       defaultTitle !== buttonTitle ? 'AddToListButton__Active' : '';
 
     if (!isLoggedIn) {
       return (
-        <Button
-          className={`AddToListButton ${className}`}
-          type="quinary"
-          size="medium"
-          iconRight="more_vert"
-          onClick={() => {
-            openModal('login', {
-              title: <T component="login" name="modalTitle" />,
-              reason: <T component="login" name="modalDescription" />
-            });
-          }}
-        >
-          {defaultTitle}
-        </Button>
+        <div className={multiple ? 'multiple-works-button-container ' : ''}>
+          <Button
+            className={
+              `AddToListButton ${className}` +
+              (multiple ? ' multiple-works-to-list-button ' : '')
+            }
+            type="quinary"
+            size="medium"
+            iconRight="more_vert"
+            onClick={() => {
+              openModal('login', {
+                title: <T component="login" name="modalTitle" />,
+                reason: <T component="login" name="modalDescription" />
+              });
+            }}
+          >
+            {defaultTitle}
+          </Button>
+        </div>
       );
     }
 
     return (
       <div
         ref={e => (this.listContainer = e)}
-        className={`AddToListButton__Container dropdown ${className}`}
+        className={
+          `AddToListButton__Container dropdown ${className}` +
+          (multiple ? ' multiple-works-button-container ' : '')
+        }
       >
         <Button
           className={`AddToListButton ${buttonActive}`}
-          type="quinary"
-          size="medium"
+          type={multiple ? 'tertiary' : 'quinary'}
+          size={multiple ? 'large' : 'medium'}
           id="addtolist"
           data-toggle="dropdown"
           aria-haspopup="true"

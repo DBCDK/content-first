@@ -187,6 +187,25 @@ export class ShortList extends React.Component {
             )}
             {elements.length > 0 && (
               <Toolbar className="bottom-toolbar mt-5 mb-5">
+                <AddToListButton work={elements[0]} align="right" multiple />
+                {false && (
+                  <Button
+                    align="right"
+                    iconLeft="list"
+                    size="large"
+                    type="tertiary"
+                    className="text-uppercase"
+                    onClick={() =>
+                      this.props.addToList(
+                        elements,
+                        this.props.isLoggedIn,
+                        this.props.clearList
+                      )
+                    }
+                  >
+                    <T component="list" name="addAllToList" />
+                  </Button>
+                )}
                 <Button
                   align="right"
                   iconLeft="chrome_reader_mode"

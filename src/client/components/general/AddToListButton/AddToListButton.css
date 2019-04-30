@@ -14,7 +14,9 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.multiple-works-button-container .AddToListButton{
+  width: fit-content;
+}
 .AddToListButton:hover {
   background-color: var(--grey-nurse) !important;
   color: var(--petroleum) !important;
