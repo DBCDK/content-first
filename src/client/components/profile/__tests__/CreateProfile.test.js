@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {mount} from 'enzyme';
 
-import {EditProfilePage} from '../EditProfilePage';
+import {CreateProfilePage} from '../EditProfilePage';
 const image =
   'data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 jest.mock('../../general/Spinner/Spinner.component', () => 'spinner');
@@ -14,12 +14,12 @@ jest.mock('../../general/Link.component', () =>
 describe('Image Upload', () => {
   describe('render function', () => {
     it('renders an image upload form', () => {
-      const tree = renderer.create(<EditProfilePage />).toJSON();
+      const tree = renderer.create(<CreateProfilePage />).toJSON();
       expect(tree).toMatchSnapshot();
     });
     it('Add image', done => {
       const onFile = jest.fn();
-      const tree = mount(<EditProfilePage addImage={onFile} />);
+      const tree = mount(<CreateProfilePage addImage={onFile} />);
       tree
         .find('input')
         .first()
