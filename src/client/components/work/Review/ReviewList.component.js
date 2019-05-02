@@ -175,9 +175,9 @@ class ReviewList extends React.Component {
                 })
               }
               style={{
-                background: `linear-gradient(to bottom, transparent,${
+                background: `linear-gradient(to bottom, transparent, ${
                   this.props.showMoreColor
-                } )`
+                } 60% )`
               }}
             >
               <div>
