@@ -27,10 +27,6 @@ export class CreateProfilePage extends React.Component {
     };
   }
 
-  componentWillUnmount() {
-    window.location.reload();
-  }
-
   render() {
     let baseImage;
     if (!this.props.profileImageId && !this.props.tempImageId) {

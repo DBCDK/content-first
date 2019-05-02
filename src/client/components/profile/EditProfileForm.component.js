@@ -112,7 +112,11 @@ export default class EditProfileForm extends React.Component {
               type="quaternary"
               size="medium"
               style={{backgroundColor: 'var(--porcelain)'}}
-              onClick={() => (window.location.href = '/')}
+              onClick={e => {
+                e.preventDefault();
+                // TODO undo changes to redux state in order to avoid page refresh
+                window.location.href = '/';
+              }}
             >
               <T component="general" name="cancel" />
             </Button>
