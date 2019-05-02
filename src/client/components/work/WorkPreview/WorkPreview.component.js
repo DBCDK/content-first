@@ -2,6 +2,7 @@ import React from 'react';
 import BookCover from '../../general/BookCover/BookCover.component';
 import TaxDescription from '../TaxDescription.component';
 import Heading from '../../base/Heading';
+import Text from '../../base/Text';
 import Button from '../../base/Button';
 import Paragraph from '../../base/Paragraph';
 import Icon from '../../base/Icon';
@@ -13,11 +14,17 @@ import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 import OrderButton from '../../order/OrderButton.component';
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';
-import {filterCollection, filterReviews} from '../workFunctions';
+import {
+  collectionHasValidContent,
+  filterCollection,
+  filterReviews
+} from '../workFunctions';
 import withScrollToComponent from '../../base/Scroll/withScrollToComponent.hoc';
 import withWork from '../../base/Work/withWork.hoc';
 import ReviewList from '../Review/ReviewList.component';
 import withChildBelt from '../../base/Belt/withChildBelt.hoc';
+
+import {getYear} from '../../../utils/dateTimeFormat';
 
 import './WorkPreview.css';
 
@@ -37,6 +44,9 @@ class WorkPreview extends React.Component {
     const collection = filterCollection(work);
     // get reviews from litteratursiden
     const reviews = filterReviews(work);
+    // check work collection availabillity
+    const hasValidCollection = collectionHasValidContent(work);
+
     const lectorReviews =
       work.reviewsHasLoaded &&
       work.book.reviews.data &&
@@ -136,17 +146,33 @@ class WorkPreview extends React.Component {
                 </div>
               </div>
               <div className="workPreview__media">
-                {work.collectionHasLoaded && (
-                  <OrderButton
-                    book={book}
-                    size="medium"
-                    type="quaternary"
-                    label={T({component: 'general', name: 'book'})}
-                    icon="chrome_reader_mode"
-                    className="mr1 mt1"
-                  />
-                )}
                 {work.collectionHasLoaded &&
+                  !hasValidCollection && (
+                    <Text type="body" className="mr1">
+                      <T
+                        component="work"
+                        name={
+                          book.first_edition_year &&
+                          getYear() === Number(book.first_edition_year)
+                            ? 'noValidCollectionYet'
+                            : 'noValidCollection'
+                        }
+                      />
+                    </Text>
+                  )}
+                {work.collectionHasLoaded &&
+                  hasValidCollection && (
+                    <OrderButton
+                      book={book}
+                      size="medium"
+                      type="quaternary"
+                      label={T({component: 'general', name: 'book'})}
+                      icon="chrome_reader_mode"
+                      className="mr1 mt1"
+                    />
+                  )}
+                {work.collectionHasLoaded &&
+                  hasValidCollection &&
                   collection.map(col => {
                     if (col.count === 1) {
                       return (

@@ -10,8 +10,14 @@ export function collectionHasValidContent(work) {
 
 export function collectionContainsBook(work) {
   const book = work.book;
+  if (!book.collection) {
+    return false;
+  }
+
   // Type could be "Bog" and "Bog (bind x)" but NOT "Ebog"
-  return book.collection.data.filter(col => col.type[0].includes('Bog')).length;
+  return book.collection.data.filter(
+    col => col.type && col.type[0].includes('Bog')
+  ).length;
 }
 
 export function filterCollection(work) {

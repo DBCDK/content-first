@@ -55,6 +55,8 @@ class WorkPage extends React.Component {
     }
   }
 
+  /* eslint-disable complexity */
+
   render() {
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
@@ -62,8 +64,6 @@ class WorkPage extends React.Component {
     if (!book) {
       return null;
     }
-
-    console.log('work', work);
 
     // get collections including ereolen
     const collection = filterCollection(work);
@@ -73,9 +73,6 @@ class WorkPage extends React.Component {
     const tags = sortTags(work);
     // check work collection availabillity
     const hasValidCollection = collectionHasValidContent(work);
-
-    console.log('hasValidCollection', hasValidCollection);
-
     // tags collapsable variables
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
@@ -386,7 +383,7 @@ class WorkPage extends React.Component {
                   <T component="work" name="language" /> {book.language}
                 </Text>
                 <Text type="micro">
-                  <T component="work" name="released" />{' '}
+                  <T component="work" name="released" />
                   {book.first_edition_year}
                 </Text>
               </div>
@@ -473,6 +470,7 @@ class WorkPage extends React.Component {
       </div>
     );
   }
+  /* eslint-enable complexity */
 }
 
 export default withWork(WorkPage, {

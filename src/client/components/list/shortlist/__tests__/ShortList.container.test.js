@@ -30,6 +30,7 @@ const OrderButton = require('../../../order/OrderButton.component');
 
 // Mock filterCollection
 import * as workFunctions from '../../../work/workFunctions';
+
 workFunctions.filterCollection = jest.fn(() => [
   {
     count: 1,
@@ -44,6 +45,8 @@ workFunctions.filterCollection = jest.fn(() => [
     url: 'https://this/url/lydbog'
   }
 ]);
+
+workFunctions.collectionHasValidContent = jest.fn(() => true);
 
 // Mock withWork
 jest.mock(
