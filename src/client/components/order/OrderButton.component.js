@@ -3,7 +3,11 @@ import {connect} from 'react-redux';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
 import T from '../base/T';
+import Spinner from '../general/Spinner/Spinner.component';
+import {collectionContainsBook} from '../work/workFunctions';
 import {ORDER} from '../../redux/order.reducer.js';
+
+import './orderButton.css';
 
 export function OrderButton(props) {
   const [buttonClass, buttonLabel] = {
@@ -14,28 +18,25 @@ export function OrderButton(props) {
         {props.children || props.label}
       </React.Fragment>
     ],
-    ordered: ['btn-success', <T component="order" name="orderDone" />],
+    ordered: ['success', <T component="order" name="orderDone" />],
     ordering: [
-      'btn-info',
+      'progress',
       <span>
-        <span
-          className="spinner"
-          style={{
-            display: 'inline-block',
-            width: 12,
-            height: 12,
-            marginRight: 5
-          }}
-        />
+        <Spinner className="mr-1" size={14} color={'var(--petroleum)'} />
         <T component="order" name="orderInProgress" />
       </span>
     ],
-    error: ['btn-danger', <T component="order" name="orderError" />]
+    error: ['error', <T component="order" name="orderError" />]
   }[props.orderState];
+
+  // If physical book does NOT exist in the work collection
+  if (!collectionContainsBook(props)) {
+    return null;
+  }
 
   return (
     <Button
-      className={`${buttonClass} ${props.className}`}
+      className={`orderButton ${buttonClass} ${props.className}`}
       type={props.type}
       size={props.size}
       iconLeft={props.iconLeft}

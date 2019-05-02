@@ -289,6 +289,14 @@
       "readReview": {
         "da": "Læs anmeldelsen",
         "en": "Read review"
+      },
+      "noValidCollection": {
+        "da": "Bogen kan desværre ikke lånes på biblioteket",
+        "en": "Unfortunately, the book cannot be borrowed from the library"
+      },
+      "noValidCollectionYet": {
+        "da": "Bogen kan desværre ikke lånes på biblioteket endnu",
+        "en": "Unfortunately, the book cannot be borrowed at the library yet"
       }
     },
     "profile": {
@@ -308,7 +316,7 @@
         "da": "Gem Profil",
         "en": "Save profile"
       },
-      "saveProfileChanges":{
+      "saveProfileChanges": {
         "da": "Gem Ændringer",
         "en": "Save Changes"
       },
@@ -405,7 +413,7 @@
         "en": "You have to accept our terms"
       },
 
-      "seeRulesLink":{
+      "seeRulesLink": {
         "da": "Se regler og vilkår for Læsekompasset",
         "en": "See the rules and conditions for using Læsekompasset"
       },

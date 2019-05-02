@@ -1,0 +1,10 @@
+.orderButton.progress {
+}
+
+.orderButton.success {
+  background-color: var(--pistache) !important;
+}
+
+.orderButton.error {
+  background-color: var(--fersken) !important;
+}
