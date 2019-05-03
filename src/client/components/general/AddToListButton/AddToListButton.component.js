@@ -8,27 +8,14 @@ import Button from '../../base/Button';
 import T from '../../base/T/';
 import {withList} from '../../base/List/withList.hoc';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
-import {addElementToList} from '../../../redux/list.reducer';
-
 import {
   CUSTOM_LIST,
   SYSTEM_LIST,
   createGetLists
 } from '../../../redux/list.reducer';
-
 import './AddToListButton.css';
 
 export class AddToListButton extends React.Component {
-  addElementsToList(list, works) {
-    const listId = list._id;
-    works.forEach(work =>
-      this.props.addElementToList(
-        {book: work.book, description: work.origin || '...'},
-        listId
-      )
-    );
-    this.props.storeList(list);
-  }
   // Check if a work exist in a list
   pidInList(pid, list) {
     let status = false;
@@ -117,7 +104,7 @@ export class AddToListButton extends React.Component {
                 this.forceOpen();
               }
               if (this.props.multiple) {
-                this.addElementsToList(l, elements);
+                this.props.addElementsToList(l, elements);
               } else {
                 this.props.toggleWorkInList(work, l);
               }
@@ -304,8 +291,7 @@ export const mapDispatchToProps = dispatch => ({
       modal: modal,
       context
     });
-  },
-  addElementToList: (book, listId) => dispatch(addElementToList(book, listId))
+  }
 });
 
 export default connect(

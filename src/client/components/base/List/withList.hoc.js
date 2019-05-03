@@ -12,7 +12,8 @@ import {
   removeList,
   getListByIdSelector,
   toggleElementInList,
-  CUSTOM_LIST
+  CUSTOM_LIST,
+  addElementToList
 } from '../../../redux/list.reducer';
 import {saveList} from '../../../utils/requestLists';
 
@@ -116,9 +117,25 @@ export const withList = WrappedComponent => {
       this.stored = true;
       this.props.storeList(list);
     };
+    addElementsToList = (list, works) => {
+      const listId = list._id;
+      works.forEach(work =>
+        this.props.addElementToList(
+          {book: work.book, description: work.origin || '...'},
+          listId
+        )
+      );
+      this.props.storeList(list);
+    };
 
     render() {
-      return <WrappedComponent {...this.props} storeList={this.storeList} />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          storeList={this.storeList}
+          addElementsToList={this.addElementsToList}
+        />
+      );
     }
   };
 
@@ -148,7 +165,9 @@ export const withList = WrappedComponent => {
         dispatch(storeList(list._id));
       },
       updateListData: data => dispatch(updateList({_id: ownProps.id, ...data})),
-      deleteList: () => dispatch(removeList(ownProps.id))
+      deleteList: () => dispatch(removeList(ownProps.id)),
+      addElementToList: (book, listId) =>
+        dispatch(addElementToList(book, listId))
     };
   };
 
