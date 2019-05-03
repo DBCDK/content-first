@@ -144,6 +144,10 @@
   .order-list-element .w-75 {
     width: 100% !important;
   }
+  .modal-container,
+  .modal-backdrop {
+    padding-top: 0px !important;
+  }
 }
 
 .drag-indicator {
@@ -187,12 +191,6 @@
   right: 0;
   padding-top: 100px;
   z-index: 99998;
-}
-@media only screen and (max-width: 767px) {
-  .modal-container,
-  .modal-backdrop {
-    padding-top: 0px !important;
-  }
 }
 .login-modal {
   min-height: 500px;
