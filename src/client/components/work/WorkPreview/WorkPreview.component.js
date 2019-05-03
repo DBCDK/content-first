@@ -228,12 +228,15 @@ class WorkPreview extends React.Component {
           />
         </div>
         {this.props.hasChildBelt && (
-          <div className="workPreview__arrow">
-            <Icon
-              name="expand_more"
-              className=" md-large"
-              onClick={() => this.props.openSimilarBelt(work)}
-            />
+          <div className="col-12 col-xl-7 workPreview__arrow-container">
+            <div className="workPreview__arrow workPreview__image col-4">
+              <Icon
+                name="expand_more"
+                className=" md-large"
+                onClick={() => this.props.openSimilarBelt(work)}
+              />
+            </div>
+            <div className=" col-md-0 col-lg-5 workPreview__reviews pb-1 " />
           </div>
         )}
       </React.Fragment>
