@@ -72,7 +72,11 @@ router
         const user = {
           openplatformId: req.params.id,
           openplatformToken: req.params.id,
-          expires: Math.ceil((Date.now() + ms_OneMonth) / 1000)
+          expires: Math.ceil((Date.now() + ms_OneMonth) / 1000),
+          special: {
+            over13: true,
+            name: req.params.id
+          }
         };
         return res
           .status(303)

@@ -112,6 +112,7 @@ export default class EditProfileForm extends React.Component {
               type="quaternary"
               size="medium"
               style={{backgroundColor: 'var(--porcelain)'}}
+              data-cy="user-form-cancel"
               onClick={e => {
                 e.preventDefault();
                 // TODO undo changes to redux state in order to avoid page refresh

@@ -14,6 +14,7 @@ const Button = ({
   className,
   disabled = false,
   dataCy,
+  'data-cy': dataCyHyphen,
   href,
   onClick,
   ...props
@@ -46,7 +47,7 @@ const Button = ({
       btn Button Button__${size} Button__${type} ${modifier}`}
       {...props}
       disabled={disabled}
-      data-cy={dataCy || ''}
+      data-cy={dataCy || dataCyHyphen || ''}
       {...onClickValue}
     >
       {iconLeftSnippet}
