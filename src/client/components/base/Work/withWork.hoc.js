@@ -52,7 +52,7 @@ const withWork = (
      * @returns {bool} Newly release value (true/false)
      */
     newRelease = () => {
-      if (!get(this.props.work.book, 'first_edition_year')) {
+      if (!get(this.props, 'work.book.first_edition_year')) {
         return false;
       }
 
