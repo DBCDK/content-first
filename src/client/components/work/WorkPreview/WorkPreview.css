@@ -65,16 +65,26 @@
   font-size: 1rem;
   color: var(--petroleum);
 }
+.workPreview__arrow-container{
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin: -2rem -15px auto -15px;
+
+}
+
+
 
 .workPreview__arrow {
-  position: relative;
+  text-align: center;
+  width: 250px;
+  padding: 0px 15px;
+  margin-right: 3rem;
+  
 }
+
  .workPreview__arrow i {
-  position: absolute;	  position: absolute;
-  left: 50%;	
-  transform: translate(-50%);	  transform: translate(-50%);
-  bottom: -90px;	  left: 152px;
-  top: -30px;
+
+
   cursor: pointer;
 }	
 /* reviews */
@@ -136,7 +146,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .workPreview__work .workPreview__image img {
+  .workPreview__work .workPreview__image img,.workPreview__arrow {
     width: 100%;
     height: auto;
   }
