@@ -29,23 +29,6 @@ jest.mock('../../../order/OrderButton.component', () => {
 
 const OrderButton = require('../../../order/OrderButton.component');
 
-// const filterCollection = jest.fn(() => [
-//   {
-//     count: 1,
-//     icon: 'alternate_email',
-//     type: 'Ebog',
-//     url: 'https://this/url/ebog'
-//   },
-//   {
-//     count: 1,
-//     icon: 'headset',
-//     type: 'Lydbog',
-//     url: 'https://this/url/lydbog'
-//   }
-// ]);
-//
-// const collectionHasValidContent = jest.fn(() => true);
-
 // Mock withWork
 jest.mock(
   '../../../base/Work/withWork.hoc',
