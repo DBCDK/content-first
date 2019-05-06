@@ -21,7 +21,7 @@ describe('Filter page test', function() {
   });
 
   it('Should test "Tempo" filter', function() {
-    cy.visit('http://localhost:3000/find?tag=5633,5633');
+    cy.visit('http://localhost:3000/find?tags=5633,5633');
 
     cy.get('[data-cy=workcard]')
       .first()
@@ -148,8 +148,9 @@ describe('Filter page test', function() {
 
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=handlingens-tid]').click();
-    cy.get('[data-cy=oldtiden]').click();
+    cy.get('[data-cy="den 2. verdenskrig"]').click();
     cy.get('[data-cy=filterDimmer]').click();
+
     cy.get('[data-cy=workcard]')
       .first()
       .click();
@@ -160,7 +161,10 @@ describe('Filter page test', function() {
       .first()
       .click();
 
-    cy.get('[data-cy=tag-oldtiden]').should('have.text', 'oldtiden');
+    cy.get('[data-cy="tag-den 2. verdenskrig"]').should(
+      'have.text',
+      'den 2. verdenskrig'
+    );
   });
 
   it('Should give suggestions on author search', function() {
@@ -179,7 +183,10 @@ describe('Filter page test', function() {
       .first()
       .get('u')
       .should('have.text', authorName);
-    cy.wait(500);
+
+    cy.get('[data-cy=search-bar-input]')
+      .first()
+      .type('{enter}');
 
     cy.get('[data-cy=workcard]')
       .its('length')
@@ -187,18 +194,16 @@ describe('Filter page test', function() {
   });
 
   it('Shows "More like this"-belt', function() {
-    cy.visit('/');
-
-    cy.get('[data-cy=topbar-search-btn]').click();
+    cy.visit('/find?tags=5634');
 
     cy.get('[data-cy=WC-more-like-this]')
       .first()
       .click();
 
-    cy.get('[data-cy=filterpage-book-belt]').within(el => {
+    cy.get('[data-cy=similarBelt]').within(el => {
       cy.get('[data-cy=workcard]')
         .its('length')
-        .should('be.gte', 3);
+        .should('be.gte', 0);
     });
   });
 
