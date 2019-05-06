@@ -18,7 +18,6 @@ import Link from '../../general/Link.component';
 import scroll from '../../../utils/scroll';
 import withWork from '../../base/Work/withWork.hoc';
 import ReviewList from '../Review/ReviewList.component';
-import {filterCollection, filterReviews, sortTags} from '../workFunctions';
 
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';
 
@@ -48,6 +47,8 @@ class WorkPage extends React.Component {
     }
   }
 
+  /* eslint-disable complexity */
+
   render() {
     const work = get(this.props, 'work');
     const book = get(this.props, 'work.book');
@@ -57,12 +58,11 @@ class WorkPage extends React.Component {
     }
 
     // get collections including ereolen
-    const collection = filterCollection(work);
+    const collection = this.props.filterCollection(work);
     // get reviews from litteratursiden
-    const reviews = filterReviews(work);
+    const reviews = this.props.filterReviews(work);
     // sort tags by group
-    const tags = sortTags(work);
-
+    const tags = this.props.sortTags(work);
     // tags collapsable variables
     const tagsDomNode = document.getElementById('collapsable-tags');
     const height = tagsDomNode ? tagsDomNode.scrollHeight : 0;
@@ -163,17 +163,32 @@ class WorkPage extends React.Component {
                   </div>
 
                   <div className="WorkPage__media">
-                    {work.collectionHasLoaded && (
-                      <OrderButton
-                        book={book}
-                        size="medium"
-                        type="quaternary"
-                        icon="chrome_reader_mode"
-                        label={T({component: 'general', name: 'book'})}
-                        className="mr1 mt1"
-                      />
-                    )}
                     {work.collectionHasLoaded &&
+                      !this.props.hasValidCollection() && (
+                        <Text type="body" className="mr1">
+                          <T
+                            component="work"
+                            name={
+                              this.props.newRelease()
+                                ? 'noValidCollectionYet'
+                                : 'noValidCollection'
+                            }
+                          />
+                        </Text>
+                      )}
+                    {work.collectionHasLoaded &&
+                      this.props.hasValidCollection() && (
+                        <OrderButton
+                          pid={book.pid}
+                          size="medium"
+                          type="quaternary"
+                          icon="chrome_reader_mode"
+                          label={T({component: 'general', name: 'book'})}
+                          className="mr1 mt1"
+                        />
+                      )}
+                    {work.collectionHasLoaded &&
+                      this.props.hasValidCollection() &&
                       collection.map(col => {
                         if (col.count === 1) {
                           return (
@@ -357,7 +372,7 @@ class WorkPage extends React.Component {
                   <T component="work" name="language" /> {book.language}
                 </Text>
                 <Text type="micro">
-                  <T component="work" name="released" />{' '}
+                  <T component="work" name="released" />
                   {book.first_edition_year}
                 </Text>
               </div>
@@ -368,13 +383,28 @@ class WorkPage extends React.Component {
                   <T component="work" name="formatTitle" />
                 </Text>
                 <div className="row col-12">
-                  {work.collectionHasLoaded && (
-                    <Text type="micro" className="mr1">
-                      <Icon name={'book'} className="md-xsmall" />{' '}
-                      <T component="general" name="book" />
-                    </Text>
-                  )}
                   {work.collectionHasLoaded &&
+                    !this.props.hasValidCollection() && (
+                      <Text type="micro" className="mr1">
+                        <T
+                          component="work"
+                          name={
+                            this.props.newRelease()
+                              ? 'noValidCollectionYet'
+                              : 'noValidCollection'
+                          }
+                        />
+                      </Text>
+                    )}
+                  {work.collectionHasLoaded &&
+                    this.props.hasValidCollection() && (
+                      <Text type="micro" className="mr1">
+                        <Icon name={'book'} className="md-xsmall" />
+                        <T component="general" name="book" />
+                      </Text>
+                    )}
+                  {work.collectionHasLoaded &&
+                    this.props.hasValidCollection() &&
                     collection.map(col => {
                       if (col.count === 1) {
                         return (
@@ -428,6 +458,7 @@ class WorkPage extends React.Component {
       </div>
     );
   }
+  /* eslint-enable complexity */
 }
 
 export default withWork(WorkPage, {

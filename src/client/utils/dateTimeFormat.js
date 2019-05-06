@@ -115,3 +115,13 @@ export function timestampToShortDate(timestamp) {
 
   return date + '. ' + month + ' ' + year;
 }
+
+/**
+ *
+ * @param timestamp
+ * @returns {number}
+ */
+export function getYear(timestamp = Date.now()) {
+  const d = new Date(Number(timestamp));
+  return d.getFullYear();
+}

@@ -17,7 +17,6 @@ import T from '../../base/T';
 import Divider from '../../base/Divider';
 import Button from '../../base/Button';
 import Banner from '../../base/Banner';
-import {filterCollection} from '../../work/workFunctions';
 import withWork from '../../base/Work/withWork.hoc';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 
@@ -30,17 +29,27 @@ export class ShortListItem extends React.Component {
   }
 
   render() {
-    const {work, pid, origin, className} = this.props;
+    const {
+      work,
+      pid,
+      origin,
+      className,
+      hasValidCollection,
+      filterCollection,
+      newRelease
+    } = this.props;
     if (!work) {
       return null;
     }
+
     const url = `/værk/${pid}`;
 
     // get collections including ereolen
-    const collection = filterCollection(this.props.work);
-    const orderBookButton = (
+    const collection = filterCollection();
+
+    const orderBookButton = hasValidCollection() && (
       <OrderButton
-        book={work.book}
+        pid={pid}
         align="right"
         size="medium"
         type="quaternary"
@@ -50,8 +59,9 @@ export class ShortListItem extends React.Component {
         <T component="general" name="book" />
       </OrderButton>
     );
+
     const orderElectronicBookButtons =
-      work.collectionHasLoaded &&
+      hasValidCollection() &&
       collection.filter(col => col.count === 1).map(col => {
         return (
           <Button
@@ -101,6 +111,23 @@ export class ShortListItem extends React.Component {
               {orderBookButton}
               {orderElectronicBookButtons}
             </Toolbar>
+            {work.collectionHasLoaded &&
+              !hasValidCollection() && (
+                <Text
+                  type="body"
+                  className="mt-2 d-none d-sm-block"
+                  align="right"
+                >
+                  <T
+                    component="work"
+                    name={
+                      newRelease()
+                        ? 'noValidCollectionYet'
+                        : 'noValidCollection'
+                    }
+                  />
+                </Text>
+              )}
             <div className="mobile-styling">
               <AddToListButton work={work} align="left" />
             </div>
@@ -110,6 +137,17 @@ export class ShortListItem extends React.Component {
           <Text align="left" type="body">
             <T component="work" name="loanTitle" />
           </Text>
+          {work.collectionHasLoaded &&
+            !hasValidCollection() && (
+              <Text type="body">
+                <T
+                  component="work"
+                  name={
+                    newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
+                  }
+                />
+              </Text>
+            )}
           <Toolbar className="mobile-styling">
             <div align="left" className="d-flex">
               {orderBookButton}

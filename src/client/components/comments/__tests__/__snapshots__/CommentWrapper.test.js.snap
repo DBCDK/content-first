@@ -943,6 +943,8 @@ exports[`CommentContainer Render save form 1`] = `
       className="spinner "
       style={
         Object {
+          "borderBottomColor": "transparent",
+          "borderColor": "var(--deYork)",
           "borderTopColor": null,
           "display": "inline-block",
           "height": "30px",

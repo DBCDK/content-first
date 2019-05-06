@@ -26,24 +26,8 @@ jest.mock('../../../order/OrderButton.component', () => {
     </mocked-order-button>
   ));
 });
-const OrderButton = require('../../../order/OrderButton.component');
 
-// Mock filterCollection
-import * as workFunctions from '../../../work/workFunctions';
-workFunctions.filterCollection = jest.fn(() => [
-  {
-    count: 1,
-    icon: 'alternate_email',
-    type: 'Ebog',
-    url: 'https://this/url/ebog'
-  },
-  {
-    count: 1,
-    icon: 'headset',
-    type: 'Lydbog',
-    url: 'https://this/url/lydbog'
-  }
-]);
+const OrderButton = require('../../../order/OrderButton.component');
 
 // Mock withWork
 jest.mock(
@@ -84,6 +68,21 @@ jest.mock(
         reviewsHasLoaded: true,
         reviewsIsLoading: false
       }}
+      filterCollection={jest.fn(() => [
+        {
+          count: 1,
+          icon: 'alternate_email',
+          type: 'Ebog',
+          url: 'https://this/url/ebog'
+        },
+        {
+          count: 1,
+          icon: 'headset',
+          type: 'Lydbog',
+          url: 'https://this/url/lydbog'
+        }
+      ])}
+      hasValidCollection={jest.fn(() => true)}
       {...props}
     />
   )

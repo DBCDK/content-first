@@ -1,5 +1,26 @@
 import T from '../base/T';
 
+export function collectionHasValidContent(work) {
+  if (!work.collectionHasLoaded) {
+    return false;
+  }
+  // Check for any valid collection in work
+  return !!(collectionContainsBook(work) || !!filterCollection(work).length);
+}
+
+export function collectionContainsBook(work) {
+  if (!work.book.collection) {
+    return false;
+  }
+
+  // Type could be "Bog" and "Bog (bind x)" but NOT "Ebog"
+  const res = work.book.collection.data.filter(
+    col => col.type && col.type[0].includes('Bog')
+  ).length;
+
+  return res;
+}
+
 export function filterCollection(work) {
   if (work.collectionHasLoaded) {
     if (work.book.collection.data.length > 0) {
