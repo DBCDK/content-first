@@ -57,7 +57,14 @@ const withChildBelt = WrappedComponent => {
           type: 'PREVIEW',
           beltName,
           parent: work.book.pid,
-          child: <WorkPreview mount={mount} key={mount} pid={work.book.pid} />,
+          child: (
+            <WorkPreview
+              mount={mount}
+              key={mount}
+              pid={work.book.pid}
+              dataCy="workpreviewCard"
+            />
+          ),
           rid
         });
       }
