@@ -17,14 +17,8 @@ import T from '../../base/T';
 import Divider from '../../base/Divider';
 import Button from '../../base/Button';
 import Banner from '../../base/Banner';
-import {
-  collectionHasValidContent,
-  filterCollection
-} from '../../work/workFunctions';
 import withWork from '../../base/Work/withWork.hoc';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
-
-import {getYear} from '../../../utils/dateTimeFormat';
 
 export class ShortListItem extends React.Component {
   constructor(props) {
@@ -35,24 +29,27 @@ export class ShortListItem extends React.Component {
   }
 
   render() {
-    const {work, pid, origin, className} = this.props;
+    const {
+      work,
+      pid,
+      origin,
+      className,
+      hasValidCollection,
+      filterCollection,
+      newRelease
+    } = this.props;
     if (!work) {
       return null;
     }
 
-    const book = work.book;
-
     const url = `/værk/${pid}`;
 
     // get collections including ereolen
-    const collection = filterCollection(this.props.work);
+    const collection = filterCollection();
 
-    // check work collection availabillity
-    const hasValidCollection = collectionHasValidContent(work);
-
-    const orderBookButton = hasValidCollection && (
+    const orderBookButton = hasValidCollection() && (
       <OrderButton
-        book={work.book}
+        pid={pid}
         align="right"
         size="medium"
         type="quaternary"
@@ -64,7 +61,7 @@ export class ShortListItem extends React.Component {
     );
 
     const orderElectronicBookButtons =
-      hasValidCollection &&
+      hasValidCollection() &&
       collection.filter(col => col.count === 1).map(col => {
         return (
           <Button
@@ -115,7 +112,7 @@ export class ShortListItem extends React.Component {
               {orderElectronicBookButtons}
             </Toolbar>
             {work.collectionHasLoaded &&
-              !hasValidCollection && (
+              !hasValidCollection() && (
                 <Text
                   type="body"
                   className="mt-2 d-none d-sm-block"
@@ -124,8 +121,7 @@ export class ShortListItem extends React.Component {
                   <T
                     component="work"
                     name={
-                      book.first_edition_year &&
-                      getYear() === Number(book.first_edition_year)
+                      newRelease()
                         ? 'noValidCollectionYet'
                         : 'noValidCollection'
                     }
@@ -142,15 +138,12 @@ export class ShortListItem extends React.Component {
             <T component="work" name="loanTitle" />
           </Text>
           {work.collectionHasLoaded &&
-            !hasValidCollection && (
+            !hasValidCollection() && (
               <Text type="body">
                 <T
                   component="work"
                   name={
-                    book.first_edition_year &&
-                    getYear() === Number(book.first_edition_year)
-                      ? 'noValidCollectionYet'
-                      : 'noValidCollection'
+                    newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
                   }
                 />
               </Text>

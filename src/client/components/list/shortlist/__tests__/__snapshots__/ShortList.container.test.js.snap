@@ -251,6 +251,8 @@ exports[`ShortList.container Clearing list 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -450,36 +452,10 @@ exports[`ShortList.container Clearing list 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -627,35 +603,9 @@ exports[`ShortList.container Clearing list 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -764,6 +714,8 @@ exports[`ShortList.container Clearing list 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -963,36 +915,10 @@ exports[`ShortList.container Clearing list 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -1140,35 +1066,9 @@ exports[`ShortList.container Clearing list 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -1277,6 +1177,8 @@ exports[`ShortList.container Clearing list 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -1476,36 +1378,10 @@ exports[`ShortList.container Clearing list 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -1653,35 +1529,9 @@ exports[`ShortList.container Clearing list 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -2079,6 +1929,8 @@ exports[`ShortList.container Order all books 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -2278,36 +2130,10 @@ exports[`ShortList.container Order all books 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -2455,35 +2281,9 @@ exports[`ShortList.container Order all books 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -2592,6 +2392,8 @@ exports[`ShortList.container Order all books 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -2791,36 +2593,10 @@ exports[`ShortList.container Order all books 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -2968,35 +2744,9 @@ exports[`ShortList.container Order all books 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -3105,6 +2855,8 @@ exports[`ShortList.container Order all books 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -3304,36 +3056,10 @@ exports[`ShortList.container Order all books 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -3481,35 +3207,9 @@ exports[`ShortList.container Order all books 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -3906,6 +3606,8 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -4105,36 +3807,10 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -4282,35 +3958,9 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -4419,6 +4069,8 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -4618,36 +4270,10 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -4795,35 +4421,9 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -4932,6 +4532,8 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -5131,36 +4733,10 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -5308,35 +4884,9 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -5733,6 +5283,8 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -5932,36 +5484,10 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -6109,35 +5635,9 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -6246,6 +5746,8 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -6445,36 +5947,10 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -6622,35 +6098,9 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -6759,6 +6209,8 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -6958,36 +6410,10 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -7135,35 +6561,9 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -7560,6 +6960,8 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -7759,36 +7161,10 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -7936,35 +7312,9 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -8073,6 +7423,8 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -8272,36 +7624,10 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -8449,35 +7775,9 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -8586,6 +7886,8 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -8785,36 +8087,10 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -8962,35 +8238,9 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -9387,6 +8637,8 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -9586,36 +8838,10 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -9763,35 +8989,9 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -9900,6 +9100,8 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -10099,36 +9301,10 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -10276,35 +9452,9 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -10413,6 +9563,8 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -10612,36 +9764,10 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -10789,35 +9915,9 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -11214,6 +10314,8 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -11413,36 +10515,10 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -11590,35 +10666,9 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -11727,6 +10777,8 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -11926,36 +10978,10 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -12103,35 +11129,9 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -12240,6 +11240,8 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -12439,36 +11441,10 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -12616,35 +11592,9 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -13041,6 +11991,8 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -13240,36 +12192,10 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -13417,35 +12343,9 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -13554,6 +12454,8 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -13753,36 +12655,10 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -13930,35 +12806,9 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -14067,6 +12917,8 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -14266,36 +13118,10 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -14443,35 +13269,9 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -14869,6 +13669,8 @@ exports[`ShortList.container Remove element 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -15068,36 +13870,10 @@ exports[`ShortList.container Remove element 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -15245,35 +14021,9 @@ exports[`ShortList.container Remove element 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -15382,6 +14132,8 @@ exports[`ShortList.container Remove element 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -15581,36 +14333,10 @@ exports[`ShortList.container Remove element 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -15758,35 +14484,9 @@ exports[`ShortList.container Remove element 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -15895,6 +14595,8 @@ exports[`ShortList.container Remove element 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -16094,36 +14796,10 @@ exports[`ShortList.container Remove element 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -16271,35 +14947,9 @@ exports[`ShortList.container Remove element 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -16696,6 +15346,8 @@ exports[`ShortList.container Short list contains elements 1`] = `
                     pid="pid - 0"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 0"
@@ -16895,36 +15547,10 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -17072,35 +15698,9 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 0",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 0",
-                                              "type": "typepid - 0",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 0",
-                                        "creator": "creatorpid - 0",
-                                        "description": "descriptionpid - 0",
-                                        "first_edition_year": "first edition yearpid - 0",
-                                        "language": "languagepid - 0",
-                                        "pages": "pages - pid - 0",
-                                        "pid": "pid - 0",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 0",
-                                        "title": "title - pid - 0",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 0"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -17209,6 +15809,8 @@ exports[`ShortList.container Short list contains elements 1`] = `
                     pid="pid - 1"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 1"
@@ -17408,36 +16010,10 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -17585,35 +16161,9 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 1",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 1",
-                                              "type": "typepid - 1",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 1",
-                                        "creator": "creatorpid - 1",
-                                        "description": "descriptionpid - 1",
-                                        "first_edition_year": "first edition yearpid - 1",
-                                        "language": "languagepid - 1",
-                                        "pages": "pages - pid - 1",
-                                        "pid": "pid - 1",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 1",
-                                        "title": "title - pid - 1",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 1"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -17722,6 +16272,8 @@ exports[`ShortList.container Short list contains elements 1`] = `
                     pid="pid - 2"
                   >
                     <ShortListItem
+                      filterCollection={[Function]}
+                      hasValidCollection={[Function]}
                       onOriginUpdate={[Function]}
                       onRemove={[Function]}
                       origin="origin - 2"
@@ -17921,36 +16473,10 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     </p>
                                   </Text>
                                   <mockConstructor
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
                                     key="1"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >
@@ -18098,35 +16624,9 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                 >
                                   <mockConstructor
                                     align="right"
-                                    book={
-                                      Object {
-                                        "collection": Object {
-                                          "data": Array [
-                                            Object {
-                                              "type": "bogpid - 2",
-                                            },
-                                            Object {
-                                              "identifierURI": "https://identifier/uri/pid - 2",
-                                              "type": "typepid - 2",
-                                            },
-                                          ],
-                                          "isLoading": false,
-                                        },
-                                        "coverUrl": "https://cover/url/pid - 2",
-                                        "creator": "creatorpid - 2",
-                                        "description": "descriptionpid - 2",
-                                        "first_edition_year": "first edition yearpid - 2",
-                                        "language": "languagepid - 2",
-                                        "pages": "pages - pid - 2",
-                                        "pid": "pid - 2",
-                                        "reviews": Array [],
-                                        "tags": Array [],
-                                        "taxonomy_description_subjects": "taxonomy description subjects - pid - 2",
-                                        "title": "title - pid - 2",
-                                      }
-                                    }
                                     className="ml-2"
                                     iconLeft="chrome_reader_mode"
+                                    pid="pid - 2"
                                     size="medium"
                                     type="quaternary"
                                   >

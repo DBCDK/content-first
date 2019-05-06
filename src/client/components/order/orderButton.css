@@ -1,4 +1,7 @@
 .orderButton.progress {
+  display: flex;
+  height: auto;
+  align-items: center;
 }
 
 .orderButton.success {

@@ -9,15 +9,16 @@ export function collectionHasValidContent(work) {
 }
 
 export function collectionContainsBook(work) {
-  const book = work.book;
-  if (!book.collection) {
+  if (!work.book.collection) {
     return false;
   }
 
   // Type could be "Bog" and "Bog (bind x)" but NOT "Ebog"
-  return book.collection.data.filter(
+  const res = work.book.collection.data.filter(
     col => col.type && col.type[0].includes('Bog')
   ).length;
+
+  return res;
 }
 
 export function filterCollection(work) {

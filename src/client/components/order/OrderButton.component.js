@@ -1,42 +1,65 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import Button from '../base/Button';
 import Icon from '../base/Icon';
 import T from '../base/T';
 import Spinner from '../general/Spinner/Spinner.component';
-import {collectionContainsBook} from '../work/workFunctions';
-import {ORDER} from '../../redux/order.reducer.js';
+import withWork from '../base/Work/withWork.hoc';
 
 import './orderButton.css';
 
 export function OrderButton(props) {
-  const [buttonClass, buttonLabel] = {
-    'not ordered': [
-      '',
-      <React.Fragment>
-        <Icon name={props.icon} />
-        {props.children || props.label}
-      </React.Fragment>
-    ],
-    ordered: ['success', <T component="order" name="orderDone" />],
-    ordering: [
-      'progress',
-      <span>
-        <Spinner className="mr-1" size={14} color={'var(--petroleum)'} />
-        <T component="order" name="orderInProgress" />
-      </span>
-    ],
-    error: ['error', <T component="order" name="orderError" />]
-  }[props.orderState];
+  // OrderButton default state:
+
+  const orderState = (state => {
+    switch (state) {
+      // Ordered button state
+      case 'ordered':
+        return {
+          class: 'success',
+          label: <T component="order" name="orderDone" />
+        };
+
+      // Order in progres
+      case 'ordering':
+        return {
+          class: 'progress',
+          label: (
+            <React.Fragment>
+              <Spinner className="mr-1" size={14} color={'var(--petroleum)'} />
+              <T component="order" name="orderInProgress" />
+            </React.Fragment>
+          )
+        };
+
+      // Error while ordering
+      case 'error':
+        return {
+          class: 'progress',
+          label: <T component="order" name="orderError" />
+        };
+
+      // default order state
+      default:
+        return {
+          class: '',
+          label: (
+            <React.Fragment>
+              <Icon name={props.icon} />
+              {props.children || props.label}
+            </React.Fragment>
+          )
+        };
+    }
+  })(props.orderState);
 
   // If physical book does NOT exist in the work collection
-  if (!collectionContainsBook(props)) {
+  if (!props.collectionContainsBook()) {
     return null;
   }
 
   return (
     <Button
-      className={`orderButton ${buttonClass} ${props.className}`}
+      className={`orderButton ${orderState.class} ${props.className}`}
       type={props.type}
       size={props.size}
       iconLeft={props.iconLeft}
@@ -44,26 +67,11 @@ export function OrderButton(props) {
       onClick={props.order}
       dataCy="order-btn"
     >
-      {buttonLabel}
+      {orderState.label}
     </Button>
   );
 }
 
-export const mapStateToProps = (state, ownProps) => ({
-  className: ownProps.className || '',
-  style: ownProps.style,
-  orderState:
-    (state.orderReducer.orders[ownProps.book.pid] &&
-      state.orderReducer.orders[ownProps.book.pid].orderState) ||
-    'not ordered'
+export default withWork(OrderButton, {
+  includeCollection: true
 });
-
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  order: () => {
-    dispatch({type: ORDER, book: ownProps.book});
-  }
-});
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(OrderButton);

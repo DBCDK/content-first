@@ -14,17 +14,10 @@ import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 import OrderButton from '../../order/OrderButton.component';
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';
-import {
-  collectionHasValidContent,
-  filterCollection,
-  filterReviews
-} from '../workFunctions';
 import withScrollToComponent from '../../base/Scroll/withScrollToComponent.hoc';
 import withWork from '../../base/Work/withWork.hoc';
 import ReviewList from '../Review/ReviewList.component';
 import withChildBelt from '../../base/Belt/withChildBelt.hoc';
-
-import {getYear} from '../../../utils/dateTimeFormat';
 
 import './WorkPreview.css';
 
@@ -34,7 +27,15 @@ import './WorkPreview.css';
 
 class WorkPreview extends React.Component {
   render() {
-    const {work, dataCy} = this.props;
+    const {
+      work,
+      dataCy,
+      newRelease,
+      hasValidCollection,
+      filterCollection,
+      filterReviews
+    } = this.props;
+
     const {book} = work;
     const tax_description =
       this.props.work.book.taxonomy_description ||
@@ -44,8 +45,6 @@ class WorkPreview extends React.Component {
     const collection = filterCollection(work);
     // get reviews from litteratursiden
     const reviews = filterReviews(work);
-    // check work collection availabillity
-    const hasValidCollection = collectionHasValidContent(work);
 
     const lectorReviews =
       work.reviewsHasLoaded &&
@@ -147,13 +146,12 @@ class WorkPreview extends React.Component {
               </div>
               <div className="workPreview__media">
                 {work.collectionHasLoaded &&
-                  !hasValidCollection && (
+                  !hasValidCollection() && (
                     <Text type="body" className="mr1">
                       <T
                         component="work"
                         name={
-                          book.first_edition_year &&
-                          getYear() === Number(book.first_edition_year)
+                          newRelease()
                             ? 'noValidCollectionYet'
                             : 'noValidCollection'
                         }
@@ -161,9 +159,9 @@ class WorkPreview extends React.Component {
                     </Text>
                   )}
                 {work.collectionHasLoaded &&
-                  hasValidCollection && (
+                  hasValidCollection() && (
                     <OrderButton
-                      book={book}
+                      pid={book.pid}
                       size="medium"
                       type="quaternary"
                       label={T({component: 'general', name: 'book'})}
@@ -172,7 +170,7 @@ class WorkPreview extends React.Component {
                     />
                   )}
                 {work.collectionHasLoaded &&
-                  hasValidCollection &&
+                  hasValidCollection() &&
                   collection.map(col => {
                     if (col.count === 1) {
                       return (
