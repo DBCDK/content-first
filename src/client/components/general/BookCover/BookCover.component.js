@@ -13,12 +13,12 @@ const generateSvg = (backgroundColor, title, creator) => {
   const titleLines = splitLine(title, 18, 6);
   const tspanTitle =
     '<tspan x="50%">' +
-    titleLines.join('</tspan><tspan x="50%" dy="1em">') +
+    titleLines.join('</tspan><tspan x="50%" dy="1.1em">') +
     '</tspan>';
   const creatorLines = splitLine(creator, 18, 2);
   const tspanCreator =
     '<tspan x="50%">' +
-    creatorLines.join('</tspan><tspan x="50%" dy="1em">') +
+    creatorLines.join('</tspan><tspan x="50%" dy="1.1em">') +
     '</tspan>';
   const creatorPos = 6 + titleLines.length;
 
@@ -34,7 +34,7 @@ const generateSvg = (backgroundColor, title, creator) => {
   <text x="50%" y="5em" fill="white" font-family="Verdana" font-weight="bold" font="bold 30px" class="title" alignment-baseline="middle" text-anchor="middle">
     ${tspanTitle}
   </text>
-  <text x="50%" y="${creatorPos}em" fill="white" font-family="Verdana" class="creator" alignment-baseline="middle" text-anchor="middle">
+  <text x="50%" y="${creatorPos}.4em" fill="white" font-family="Verdana" class="creator" alignment-baseline="middle" text-anchor="middle">
     ${tspanCreator}
   </text>
   </svg>`;
