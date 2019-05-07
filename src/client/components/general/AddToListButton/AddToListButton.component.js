@@ -45,6 +45,7 @@ export class AddToListButton extends React.Component {
     // Default titles
     let systemTitle = '';
     let customTitle = '';
+    let lintError = 0;
 
     // Construct title based on which lists the work is presented on.
     if (this.props.isLoggedIn) {
