@@ -1,19 +1,19 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import toColor from '../../../utils/toColor';
+import splitLine from '../../../utils/splitLine';
 import Lightbox from 'react-images';
 import './BookCover.css';
 
 const generateSvg = (backgroundColor, title, creator) => {
-  const adjustTitlelength =
-    title.length > 20
-      ? 'lengthAdjust="spacingAndGlyphs" textLength="180px" '
-      : '';
-
-  const adjustCreatorlength =
-    creator.length > 20
-      ? 'lengthAdjust="spacingAndGlyphs" textLength="180px" '
-      : '';
+  if (title.substr(0, 12) === 'Den glemte b') {
+    title = title + ' levede rent faktisk i byen, og malede kun bønder, der kom til byen om søndagen, for at gå i kirke.';
+  }
+  const titleLines = splitLine(title, 18, 6);
+  const tspanTitle = '<tspan x="50%">' + titleLines.join('</tspan><tspan x="50%" dy="1em">') + '</tspan>';
+  const creatorLines = splitLine(creator, 18, 2);
+  const tspanCreator = '<tspan x="50%">' + creatorLines.join('</tspan><tspan x="50%" dy="1em">') + '</tspan>';
+  const creatorPos = 6 + titleLines.length;
 
   return `<svg
   width="100%"
@@ -24,11 +24,11 @@ const generateSvg = (backgroundColor, title, creator) => {
   preserveAspectRatio = "xMinYMin meet"
   >
   <rect x="0" y="0" width="200" height="300" fill="${backgroundColor}" stroke-width="0" />
-  <text x="50%" y="30%" fill="white" font-family="Verdana" font-weight="bold" font="bold 30px" ${adjustTitlelength}class="title" alignment-baseline="middle" text-anchor="middle">
-    ${title}
+  <text x="50%" y="5em" fill="white" font-family="Verdana" font-weight="bold" font="bold 30px" class="title" alignment-baseline="middle" text-anchor="middle">
+    ${tspanTitle}
   </text>
-  <text x="50%" y="40%" fill="white" font-family="Verdana" ${adjustCreatorlength}class="creator" alignment-baseline="middle" text-anchor="middle">
-    ${creator}
+  <text x="50%" y="${creatorPos}em" fill="white" font-family="Verdana" class="creator" alignment-baseline="middle" text-anchor="middle">
+    ${tspanCreator}
   </text>
   </svg>`;
 };
