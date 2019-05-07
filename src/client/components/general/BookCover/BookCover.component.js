@@ -7,7 +7,8 @@ import './BookCover.css';
 
 const generateSvg = (backgroundColor, title, creator) => {
   if (title.substr(0, 12) === 'Den glemte b') {
-    title += ' levede rent faktisk i byen, og malede kun bønder, der kom til byen om søndagen, for at gå i kirke.';
+    title +=
+      ' levede rent faktisk i byen, og malede kun bønder, der kom til byen om søndagen, for at gå i kirke.';
   }
   const titleLines = splitLine(title, 18, 6);
   const tspanTitle =

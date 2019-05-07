@@ -14,13 +14,12 @@ export default function splitLine(line, maxLineLength, maxLines = 6) {
   for (let i = 0; i < words.length; i++) {
     if (w.length + words[i].length < maxLineLength) {
       w = (w + ' ' + words[i]).trim();
-    }
-    else { /* eslint-disable no-lonely-if */
+    } else {
+      /* eslint-disable no-lonely-if */
       if (w.length >= minLineLength) {
         lines.push(w + ' ');
         w = words[i];
-      }
-      else {
+      } else {
         w = (w + ' ' + words[i]).trim();
         while (w.length > maxLineLength) {
           w = breakLine(w, maxLineLength, lines);
