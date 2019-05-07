@@ -35,7 +35,7 @@ function expectError_UnknownLoginToken(uri) {
       expect(error.meta).to.have.property('resource');
       expect(error.meta.resource).to.equal(uri);
     });
-    expect(response.status).to.equal(403);
+    expect(response.status).to.equal(200);
   };
 }
 
