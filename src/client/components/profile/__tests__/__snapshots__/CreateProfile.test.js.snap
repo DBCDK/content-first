@@ -204,6 +204,7 @@ exports[`Image Upload render function Add image 1`] = `
                       className="Toolbar__right"
                     >
                       <Button
+                        data-cy="user-form-cancel"
                         key="0"
                         onClick={[Function]}
                         size="medium"
@@ -217,7 +218,7 @@ exports[`Image Upload render function Add image 1`] = `
                         <button
                           className="
                               btn Button Button__medium Button__quaternary "
-                          data-cy=""
+                          data-cy="user-form-cancel"
                           disabled={false}
                           onClick={[Function]}
                           style={
@@ -246,7 +247,7 @@ exports[`Image Upload render function Add image 1`] = `
                         <button
                           className="
                               btn Button Button__medium Button__quaternary "
-                          data-cy=""
+                          data-cy="user-form-submit"
                           disabled={false}
                         >
                           <span>
@@ -420,7 +421,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 <button
                   className="
                       btn Button Button__medium Button__quaternary "
-                  data-cy=""
+                  data-cy="user-form-cancel"
                   disabled={false}
                   onClick={[Function]}
                   style={
@@ -438,7 +439,7 @@ exports[`Image Upload render function renders an image upload form 1`] = `
                 <button
                   className="
                       btn Button Button__medium Button__quaternary "
-                  data-cy=""
+                  data-cy="user-form-submit"
                   disabled={true}
                 >
                   

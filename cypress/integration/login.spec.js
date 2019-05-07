@@ -18,18 +18,30 @@ describe('Login test', function() {
     cy.get('[data-cy=user-form-under13]');
   });
 
-  it('Can create a new profile', function() {
+  it('Can edit a profile', function() {
     const userName = 'testUser' + Math.floor(Math.random() * 1000);
-
-    cy.login(userName);
-    cy.visit('/profile/opret');
-    cy.get('[data-cy=user-form-name]').type(userName);
-    cy.get('[data-cy=user-form-acceptedAge]').click();
-    cy.get('[data-cy=user-form-acceptedTerms]').click();
+    const userNameEdited = userName + 'edited';
+    cy.createUser(userName, '1');
+    cy.visit('/profil/rediger');
+    cy.get('[data-cy=user-form-name]')
+      .clear()
+      .type(userNameEdited);
     cy.get('[data-cy=user-form-submit]').click();
-    cy.visit('/profile');
+    cy.visit('/profil/rediger');
+    cy.get('[data-cy=user-form-name]').should('have.value', userNameEdited);
+  });
 
-    cy.get('[data-cy=user-form-name]').should('have.text', userName);
+  it('Can undo edit of profile', function() {
+    const userName = 'testUser' + Math.floor(Math.random() * 1000);
+    const userNameEdited = userName + 'edited';
+    cy.createUser(userName, '1');
+    cy.visit('/profil/rediger');
+    cy.get('[data-cy=user-form-name]')
+      .clear()
+      .type(userNameEdited);
+    cy.get('[data-cy=user-form-cancel]').click();
+    cy.visit('/profil/rediger');
+    cy.get('[data-cy=user-form-name]').should('have.value', userName);
   });
 
   it('Can login through Adgangsplatformen', function() {
