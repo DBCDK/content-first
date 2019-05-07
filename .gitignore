@@ -18,3 +18,4 @@ content-first.iml
 dump.rdb
 cypress/screenshots
 cypress/videos
+report.xml
