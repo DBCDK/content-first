@@ -40,8 +40,7 @@ jest.mock(
             data: [
               {type: 'bog' + props.pid},
               {
-                identifierURI:
-                  'https://identifier/unittest-error/uri/' + props.pid,
+                identifierURI: 'https://identifier/uri/' + props.pid,
                 type: 'type' + props.pid
               }
             ],
