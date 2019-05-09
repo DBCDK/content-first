@@ -206,7 +206,7 @@ function removingLoginToken(token) {
 function requireLoggedIn(req, res, next) {
   if (!_.get(req, 'user.openplatformId')) {
     throw {
-      status: 403,
+      status: 200,
       title: 'user not logged in',
       detail: `User not logged in or session expired`,
       meta: {resource: req && req.baseUrl}

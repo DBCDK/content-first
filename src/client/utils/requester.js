@@ -257,10 +257,10 @@ export const fetchCollection = (pids, store) => {
  */
 export const fetchUser = (dispatch, cb) => {
   request.get('/v1/user').end(function(error, res) {
-    if (error) {
+    if (error || res.body.errors) {
       dispatch({type: ON_USER_DETAILS_ERROR});
     } else {
-      const user = JSON.parse(res.text).data;
+      const user = res.body.data;
       dispatch({type: ON_USER_DETAILS_RESPONSE, user});
       if (!user.acceptedTerms) {
         dispatch({
