@@ -1,8 +1,8 @@
 import React from 'react';
 import {get, debounce} from 'lodash';
 import WorkCard from '../../work/WorkCard/WorkCard.container';
-import withChildBelt from './withChildBelt.hoc';
-import withIsVisible from '../Scroll/withIsVisible.hoc';
+import {withChildBelt} from '../../hoc/Belt';
+import {withIsVisible} from '../../hoc/Scroll';
 
 const Row = withIsVisible(
   withChildBelt(

@@ -1,4 +1,4 @@
-import {tagsFromURL, addTag, removeTag} from '../withTagsFromUrl.hoc';
+import {tagsFromURL, addTag, removeTag} from '../';
 const filtercards = {
   Tempo: {
     title: 'Tempo',

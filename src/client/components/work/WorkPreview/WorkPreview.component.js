@@ -14,10 +14,10 @@ import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 import OrderButton from '../../order/OrderButton.component';
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';
-import withScrollToComponent from '../../base/Scroll/withScrollToComponent.hoc';
-import withWork from '../../base/Work/withWork.hoc';
+import {withScrollToComponent} from '../../hoc/Scroll';
+import {withWork} from '../../hoc/Work';
 import ReviewList from '../Review/ReviewList.component';
-import withChildBelt from '../../base/Belt/withChildBelt.hoc';
+import {withChildBelt} from '../../hoc/Belt';
 
 import './WorkPreview.css';
 

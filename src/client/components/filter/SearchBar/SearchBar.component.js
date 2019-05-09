@@ -4,8 +4,8 @@ import {isMobile} from 'react-device-detect';
 import TagsSuggester from './TagsSuggester.component';
 import Icon from '../../base/Icon';
 import Button from '../../base/Button';
-import withTagsFromUrl from '../../base/AdressBar/withTagsFromUrl.hoc';
-import withWork from '../../base/Work/withWork.hoc';
+import {withTagsFromUrl} from '../../hoc/AdressBar';
+import {withWork} from '../../hoc/Work';
 
 import './SearchBar.css';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {isMobile} from 'react-device-detect';
 import Heading from '../../../base/Heading';
-import withTagsFromUrl from '../../../base/AdressBar/withTagsFromUrl.hoc';
+import {withTagsFromUrl} from '../../../hoc/AdressBar';
 
 import './CardList.css';
 

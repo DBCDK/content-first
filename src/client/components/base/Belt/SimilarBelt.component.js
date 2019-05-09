@@ -1,12 +1,11 @@
 import React from 'react';
 import {get} from 'lodash';
-import withIsVisible from '../Scroll/withIsVisible.hoc';
-import withChildBelt from './withChildBelt.hoc';
-import withPidsToPids from '../Recommender/withPidsToPids.hoc';
-import withWork from '../Work/withWork.hoc';
+import {withIsVisible, withScrollToComponent} from '../../hoc/Scroll';
+import {withChildBelt} from '../../hoc/Belt';
+import {withPidsToPids} from '../../hoc/Recommender';
+import withWork from '../../hoc/Work/withWork.hoc';
 import WorkSlider from './WorkSlider.component';
 import Title from '../Title';
-import withScrollToComponent from '../Scroll/withScrollToComponent.hoc';
 
 import './similarBelt.css';
 
