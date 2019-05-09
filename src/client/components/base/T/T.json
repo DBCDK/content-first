@@ -393,7 +393,7 @@
         "en": "Are you sure you want to delete your profile?"
       },
       "deleteProfileModalDescription": {
-        "da": "Du er ved at slette din profil og alt data som er tilknyttet den, Er du sikker på at du vil fortsætte?.",
+        "da": "Du er ved at slette din profil og alt data som er tilknyttet den. Er du sikker på at du vil fortsætte?",
         "en": "You are about to delete your profile, all data will be deleted, are you sure you want to proceed? "
       },
       "validationUsernameLength": {
