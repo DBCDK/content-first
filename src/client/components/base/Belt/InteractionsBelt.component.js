@@ -3,6 +3,7 @@ import {withChildBelt} from '../../hoc/Belt';
 import {withInteractionsToPids} from '../../hoc/Recommender';
 import WorkSlider from './WorkSlider.component';
 import Title from '../Title';
+//
 import {withUser} from '../../hoc/User';
 
 export class InteractionsBelt extends React.Component {
