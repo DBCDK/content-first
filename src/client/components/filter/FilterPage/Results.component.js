@@ -125,7 +125,7 @@ class Results extends React.Component {
             <TagsMultiRowContainer
               limit={200}
               tags={tags.map(tag => tag.id)}
-							origin={{type:"searchTags", tags:tags.map(t => t.id)}}
+              origin={{type: 'searchTags', tags: tags.map(t => t.id)}}
             />
           </div>
         )}

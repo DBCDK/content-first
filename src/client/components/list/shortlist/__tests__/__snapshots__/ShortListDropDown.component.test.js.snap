@@ -109,7 +109,9 @@ Array [
                     <div
                         className="top-bar-dropdown-list-element--origin"
                     >
-                        Minder om noget1
+                        <div>
+                            Minder om noget1
+                        </div>
                     </div>
                 </div>
                 <i
@@ -178,7 +180,9 @@ Array [
                     <div
                         className="top-bar-dropdown-list-element--origin"
                     >
-                        Minder om noget2
+                        <div>
+                            Minder om noget2
+                        </div>
                     </div>
                 </div>
                 <i
@@ -339,7 +343,9 @@ Array [
                     <div
                         className="top-bar-dropdown-list-element--origin"
                     >
-                        Minder om noget4
+                        <div>
+                            Minder om noget4
+                        </div>
                     </div>
                 </div>
                 <i
@@ -408,7 +414,9 @@ Array [
                     <div
                         className="top-bar-dropdown-list-element--origin"
                     >
-                        Minder om noget3
+                        <div>
+                            Minder om noget3
+                        </div>
                     </div>
                 </div>
                 <i
@@ -477,7 +485,9 @@ Array [
                     <div
                         className="top-bar-dropdown-list-element--origin"
                     >
-                        Minder om noget2
+                        <div>
+                            Minder om noget2
+                        </div>
                     </div>
                 </div>
                 <i
@@ -546,7 +556,9 @@ Array [
                     <div
                         className="top-bar-dropdown-list-element--origin"
                     >
-                        Minder om noget1
+                        <div>
+                            Minder om noget1
+                        </div>
                     </div>
                 </div>
                 <i
@@ -707,7 +719,9 @@ Array [
                     <div
                         className="top-bar-dropdown-list-element--origin"
                     >
-                        Minder om noget1
+                        <div>
+                            Minder om noget1
+                        </div>
                     </div>
                 </div>
                 <i

@@ -16,7 +16,7 @@ import Text from '../../base/Text';
 import T from '../../base/T';
 import Link from '../../general/Link.component';
 import '../overview/dropdownList.css';
-import Origin from '../../base/Origin'
+import Origin from '../../base/Origin';
 
 const ShortListElement = props => {
   const url = `/værk/${props.element.book.pid}`;
