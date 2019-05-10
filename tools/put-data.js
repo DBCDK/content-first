@@ -60,18 +60,34 @@ Solve this by deploying metakompas, content-first or maybe both.. :)
 
   console.log('Uploaded books'); // eslint-disable-line
 
-  const uniqueTags = uniqBy(tags, 'pid');
-  uniqueTags.forEach(t => {
-    t.selected.push({id: '-1', score: 1}); // Hack - all tags need -1, for filtering reasons
-    if (librarianRecommends.includes(t.pid)) {
-      t.selected.push({id: '-2', score: 1});
+  // there may be multiple records of the same pid - in that case
+  // we take the union of tags.
+  const uniqueTags = {};
+  tags.forEach(t => {
+    if (!uniqueTags[t.pid]) {
+      // First time we see this pid - insert it
+      t.selected.push({id: '-1', score: 1}); // Hack - all tags need -1, for filtering reasons
+      if (librarianRecommends.includes(t.pid)) {
+        t.selected.push({id: '-2', score: 1});
+      }
+      uniqueTags[t.pid] = {...t};
+    } else {
+      // We've seen this pid before - merge tags
+      uniqueTags[t.pid].selected = [
+        ...uniqueTags[t.pid].selected,
+        ...t.selected
+      ];
     }
-    t.selected = uniqBy(t.selected, 'id');
+
+    // make sure we have no duplicate tags for this pid
+    uniqueTags[t.pid].selected = uniqBy(uniqueTags[t.pid].selected, 'id');
   });
   await request
     .put(`${HOST}/v1/tags`)
     .set('Content-Type', 'application/json')
-    .send(uniqueTags);
+    .send(Object.values(uniqueTags));
+
+  console.log('Uploaded tags'); // eslint-disable-line
 }
 
 doWork()
