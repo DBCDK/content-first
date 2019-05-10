@@ -21,6 +21,10 @@ RUN npm run build && \
     cp -R tools prod_build/tools && \
     cp -R package.json prod_build/package.json
 
+# Run unit and lint test
+RUN npm run lint:checkstyle && \
+  npm run test
+
 #
 # ---- Release ----
 FROM $NODE_BASEIMAGE AS release
