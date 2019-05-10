@@ -125,14 +125,7 @@ class Results extends React.Component {
             <TagsMultiRowContainer
               limit={200}
               tags={tags.map(tag => tag.id)}
-              origin={T({
-                component: 'filter',
-                name:
-                  this.props.tags.length > 0
-                    ? 'filterOrigin'
-                    : 'filterOriginNoTags',
-                vars: [tags.map(t => t.title).join(', ')]
-              })}
+							origin={{type:"searchTags", tags:tags.map(t => t.id)}}
             />
           </div>
         )}
