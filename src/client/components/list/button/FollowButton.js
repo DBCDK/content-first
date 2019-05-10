@@ -2,10 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getListByIdSelector, CUSTOM_LIST} from '../../../redux/list.reducer';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
-import {FOLLOW, UNFOLLOW} from '../../../redux/follow.reducer';
 import Button from '../../base/Button';
 import Icon from '../../base/Icon';
 import T from '../../base/T';
+
+import {withFollow} from '../../hoc/Follow';
+
 const getListById = getListByIdSelector();
 
 export const FollowButton = ({
@@ -57,23 +59,10 @@ const mapStateToProps = (state, ownProps) => {
   const list = getListById(state, {_id: ownProps._id});
   return {
     allowFollow: list.type === CUSTOM_LIST,
-    isFollowing: state.followReducer[ownProps._id],
     isLoggedIn: state.userReducer.isLoggedIn
   };
 };
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  follow: () =>
-    dispatch({
-      type: FOLLOW,
-      id: ownProps._id,
-      cat: 'list'
-    }),
-  unFollow: () => {
-    dispatch({
-      type: UNFOLLOW,
-      id: ownProps._id
-    });
-  },
+export const mapDispatchToProps = dispatch => ({
   requireLogin: () => {
     dispatch({
       type: OPEN_MODAL,
@@ -88,4 +77,4 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FollowButton);
+)(withFollow(FollowButton));
