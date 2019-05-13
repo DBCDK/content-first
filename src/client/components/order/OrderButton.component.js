@@ -3,7 +3,7 @@ import Button from '../base/Button';
 import Icon from '../base/Icon';
 import T from '../base/T';
 import Spinner from '../general/Spinner/Spinner.component';
-import withWork from '../base/Work/withWork.hoc';
+import {withWork} from '../hoc/Work';
 
 import './orderButton.css';
 

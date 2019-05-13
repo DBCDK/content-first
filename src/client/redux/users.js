@@ -1,12 +1,11 @@
 /* eslint no-undefined:0 */
-import Immutable from 'immutable';
 import request from 'superagent';
 import {createSelector} from 'reselect';
 
-const defaultState = Immutable.fromJS({});
-
 export const REQUEST_USER = 'REQUEST_USER';
 export const RECEIVE_USER = 'RECEIVE_USER';
+
+const defaultState = {};
 
 //
 // Reducer
@@ -14,12 +13,19 @@ export const RECEIVE_USER = 'RECEIVE_USER';
 export function usersReducer(state = defaultState, action) {
   switch (action.type) {
     case REQUEST_USER:
-      return state.get(action.id, false)
-        ? state
-        : state.setIn([action.id, 'loading'], true);
+      // If user doesnt exist in state
+      if (!state[action.id]) {
+        return Object.assign({}, state, {
+          [action.id]: {loading: true}
+        });
+      }
+      // If user exist in state
+      return Object.assign({}, state);
 
     case RECEIVE_USER:
-      return state.set(action.id, Immutable.fromJS(action.user));
+      return Object.assign({}, state, {
+        [action.id]: {...action.user}
+      });
 
     default:
       return state;
@@ -32,7 +38,7 @@ export function usersReducer(state = defaultState, action) {
 export const usersMiddleware = store => next => action => {
   switch (action.type) {
     case REQUEST_USER:
-      if (!store.getState().users.get(action.id, false)) {
+      if (!store.getState().users[action.id]) {
         (async () => {
           try {
             const response = await request.get(
@@ -69,9 +75,9 @@ export const usersMiddleware = store => next => action => {
 // -------------SELECTORS-----------------
 export const createGetUserSelector = () =>
   createSelector([state => state.users, (state, {id}) => id], (users, id) => {
-    const user = users.get(id);
+    const user = users[id];
     if (user) {
-      return user.toJS();
+      return user;
     }
     return null;
   });
@@ -80,6 +86,6 @@ export const createGetUsersSelector = () =>
   createSelector(
     state => state.users,
     users => {
-      return users.toJS();
+      return users;
     }
   );

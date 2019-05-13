@@ -4,7 +4,7 @@ import {isEqual} from 'lodash';
 
 import Heading from '../../../base/Heading';
 import Icon from '../../../base/Icon';
-import withTagsFromUrl from '../../../base/AdressBar/withTagsFromUrl.hoc';
+import {withTagsFromUrl} from '../../../hoc/AdressBar';
 import {filtersMapAll} from '../../../../redux/filter.reducer';
 
 import 'rc-slider/assets/index.css';

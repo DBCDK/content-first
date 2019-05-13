@@ -1,10 +1,10 @@
 import React from 'react';
-import withIsVisible from '../Scroll/withIsVisible.hoc';
-import withChildBelt from './withChildBelt.hoc';
-import withInteractionsToPids from '../Recommender/withInteractionsToPids.hoc';
+import {withIsVisible} from '../../hoc/Scroll';
+import {withChildBelt} from '../../hoc/Belt';
+import {withInteractionsToPids} from '../../hoc/Recommender';
 import WorkSlider from './WorkSlider.component';
 import Title from '../Title';
-import withUser from '../User/withUser.hoc';
+import {withUser} from '../../hoc/User';
 
 export class InteractionsBelt extends React.Component {
   render() {

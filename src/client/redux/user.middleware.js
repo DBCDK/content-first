@@ -25,7 +25,6 @@ import {
 import {RECEIVE_USER} from './users';
 import {SHORTLIST_LOAD_REQUEST} from './shortlist.reducer';
 import {OWNED_LISTS_REQUEST} from './list.reducer';
-import {FOLLOW_LOAD_REQUEST} from './follow.reducer';
 import {BELTS_LOAD_REQUEST} from './belts.reducer';
 import openplatform from 'openplatform';
 import {HISTORY_PUSH_FORCE_REFRESH} from './router.reducer';
@@ -48,7 +47,6 @@ export const userMiddleware = store => next => action => {
         // TODO do we really need to fetch all at page load
         store.dispatch({type: SHORTLIST_LOAD_REQUEST});
         store.dispatch({type: OWNED_LISTS_REQUEST});
-        store.dispatch({type: FOLLOW_LOAD_REQUEST});
         store.dispatch({type: FETCH_INTERACTIONS});
         store.dispatch({type: BELTS_LOAD_REQUEST});
       });

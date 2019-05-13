@@ -1,5 +1,3 @@
-import Immutable from 'immutable';
-
 import commentReducer, {
   FETCH_COMMENTS,
   FETCH_COMMENTS_SUCCESS,
@@ -68,9 +66,9 @@ describe('commentReducer', () => {
             }
           }
         },
-        users: Immutable.fromJS({
+        users: {
           owner_1: {name: 'name owner 1'}
-        })
+        }
       };
       expect(getCommentsForId(state, {id: 'unknow_id'})).toMatchSnapshot();
       expect(

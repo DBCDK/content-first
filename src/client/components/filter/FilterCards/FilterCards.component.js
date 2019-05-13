@@ -5,7 +5,7 @@ import {isMobile} from 'react-device-detect';
 import Heading from '../../base/Heading';
 import Icon from '../../base/Icon';
 import T from '../../base/T';
-import withTagsFromUrl from '../../base/AdressBar/withTagsFromUrl.hoc';
+import {withTagsFromUrl} from '../../hoc/AdressBar';
 
 import CardList from './templates/CardList.component.js';
 import CardRange from './templates/CardRange.component.js';

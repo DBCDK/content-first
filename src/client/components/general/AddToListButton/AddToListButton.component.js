@@ -6,7 +6,7 @@ import Icon from '../../base/Icon';
 import ToastMessage from '../../base/ToastMessage';
 import Button from '../../base/Button';
 import T from '../../base/T/';
-import {withList} from '../../base/List/withList.hoc';
+import {withList} from '../../hoc/List/';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import {
   CUSTOM_LIST,

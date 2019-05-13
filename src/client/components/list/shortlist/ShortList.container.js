@@ -17,7 +17,7 @@ import T from '../../base/T';
 import Divider from '../../base/Divider';
 import Button from '../../base/Button';
 import Banner from '../../base/Banner';
-import withWork from '../../base/Work/withWork.hoc';
+import {withWork} from '../../hoc/Work';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
 
 export class ShortListItem extends React.Component {

@@ -171,7 +171,7 @@ export default commentReducer;
 export const addUserProfilesToComments = (users, comments) => {
   return comments.map(comment => ({
     ...comment,
-    user: users.has(comment._owner) ? users.get(comment._owner).toJS() : {}
+    user: users[comment._owner] ? users[comment._owner] : {}
   }));
 };
 

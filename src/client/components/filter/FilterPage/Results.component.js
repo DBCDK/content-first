@@ -5,11 +5,11 @@ import Link from '../../general/Link.component';
 import T from '../../base/T';
 import Title from '../../base/Title';
 import Pin from '../../base/Pin';
-import withTagsFromUrl from '../../base/AdressBar/withTagsFromUrl.hoc';
-import withTagsToPids from '../../base/Recommender/withTagsToPids.hoc';
+import {withTagsFromUrl} from '../../hoc/AdressBar';
+import {withTagsToPids} from '../../hoc/Recommender';
 import CreatorBelt from '../../base/Belt/CreatorBelt.component';
 import MultiRowContainer from '../../base/Belt/MultiRowContainer';
-import withStoreBelt from '../../base/Belt/withStoreBelt.hoc';
+import {withStoreBelt} from '../../hoc/Belt';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 

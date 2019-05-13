@@ -4,31 +4,33 @@ import {
   usersReducer,
   usersMiddleware
 } from '../users';
-import Immutable from 'immutable';
 
 const request = require('superagent');
 
 describe('users', () => {
   describe('reducer', () => {
     it('REQUEST_USER action sets loading', () => {
-      expect(
-        usersReducer(new Immutable.Map(), {type: REQUEST_USER, id: 'userId'})
-      ).toEqual(Immutable.fromJS({userId: {loading: true}}));
+      expect(usersReducer({}, {type: REQUEST_USER, id: 'userId'})).toEqual({
+        userId: {loading: true}
+      });
     });
     it('REQUEST_USER action does nothing if already loading/loaded', () => {
-      const state = Immutable.fromJS({userId: true});
+      const state = {userId: true};
       expect(usersReducer(state, {type: REQUEST_USER, id: 'userId'})).toEqual(
         state
       );
     });
     it('RECEIVE_USER sets user', () => {
       expect(
-        usersReducer(Immutable.fromJS({userId: {loading: true}}), {
-          type: RECEIVE_USER,
-          id: 'userId',
-          user: {some: 'user'}
-        })
-      ).toEqual(Immutable.fromJS({userId: {some: 'user'}}));
+        usersReducer(
+          {userId: {loading: true}},
+          {
+            type: RECEIVE_USER,
+            id: 'userId',
+            user: {some: 'user'}
+          }
+        )
+      ).toEqual({userId: {some: 'user'}});
     });
   });
   describe('middleware', () => {
@@ -44,23 +46,28 @@ describe('users', () => {
       const promise = new Promise(resolve => {
         dispatched = resolve;
       });
+
       const storeMock = {
-        getState: () => ({users: Immutable.fromJS({})}),
+        getState: () => ({users: {}}),
         dispatch: action => {
           expect(action).toEqual({
-            id: 'user/id',
+            id: 'userId',
             type: RECEIVE_USER,
             user: 'some user object'
           });
           dispatched();
         }
       };
+
       request.get = async function requestMock(url) {
-        expect(url).toEqual('/v1/user/user%2Fid');
+        expect(url).toEqual('/v1/user/userId');
         return {body: {data: 'some user object'}};
       };
 
-      usersMiddleware(storeMock)(() => {})({type: REQUEST_USER, id: 'user/id'});
+      usersMiddleware(storeMock)(() => {})({
+        type: REQUEST_USER,
+        id: 'userId'
+      });
 
       await promise;
     });

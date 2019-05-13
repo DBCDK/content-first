@@ -30,63 +30,60 @@ jest.mock('../../../order/OrderButton.component', () => {
 const OrderButton = require('../../../order/OrderButton.component');
 
 // Mock withWork
-jest.mock(
-  '../../../base/Work/withWork.hoc',
-  () => WrappedComponent => props => (
-    <WrappedComponent
-      work={{
-        book: {
-          collection: {
-            data: [
-              {type: 'bog' + props.pid},
-              {
-                identifierURI: 'https://identifier/uri/' + props.pid,
-                type: 'type' + props.pid
-              }
-            ],
-            isLoading: false
-          },
-          coverUrl: 'https://cover/url/' + props.pid,
-          creator: 'creator' + props.pid,
-          description: 'description' + props.pid,
-          first_edition_year: 'first edition year' + props.pid,
-          language: 'language' + props.pid,
-          pages: 'pages - ' + props.pid,
-          pid: props.pid,
-          reviews: [],
-          tags: [],
-          taxonomy_description_subjects:
-            'taxonomy description subjects - ' + props.pid,
-          title: 'title - ' + props.pid
+jest.mock('../../../hoc/Work/withWork.hoc', () => WrappedComponent => props => (
+  <WrappedComponent
+    work={{
+      book: {
+        collection: {
+          data: [
+            {type: 'bog' + props.pid},
+            {
+              identifierURI: 'https://identifier/uri/' + props.pid,
+              type: 'type' + props.pid
+            }
+          ],
+          isLoading: false
         },
-        collectionHasLoaded: true,
-        collectionIsLoading: false,
-        detailsHasLoaded: true,
-        detailsIsLoading: false,
-        refsHasLoaded: true,
-        refsIsLoading: false,
-        reviewsHasLoaded: true,
-        reviewsIsLoading: false
-      }}
-      filterCollection={jest.fn(() => [
-        {
-          count: 1,
-          icon: 'alternate_email',
-          type: 'Ebog',
-          url: 'https://this/url/ebog'
-        },
-        {
-          count: 1,
-          icon: 'headset',
-          type: 'Lydbog',
-          url: 'https://this/url/lydbog'
-        }
-      ])}
-      hasValidCollection={jest.fn(() => true)}
-      {...props}
-    />
-  )
-);
+        coverUrl: 'https://cover/url/' + props.pid,
+        creator: 'creator' + props.pid,
+        description: 'description' + props.pid,
+        first_edition_year: 'first edition year' + props.pid,
+        language: 'language' + props.pid,
+        pages: 'pages - ' + props.pid,
+        pid: props.pid,
+        reviews: [],
+        tags: [],
+        taxonomy_description_subjects:
+          'taxonomy description subjects - ' + props.pid,
+        title: 'title - ' + props.pid
+      },
+      collectionHasLoaded: true,
+      collectionIsLoading: false,
+      detailsHasLoaded: true,
+      detailsIsLoading: false,
+      refsHasLoaded: true,
+      refsIsLoading: false,
+      reviewsHasLoaded: true,
+      reviewsIsLoading: false
+    }}
+    filterCollection={jest.fn(() => [
+      {
+        count: 1,
+        icon: 'alternate_email',
+        type: 'Ebog',
+        url: 'https://this/url/ebog'
+      },
+      {
+        count: 1,
+        icon: 'headset',
+        type: 'Lydbog',
+        url: 'https://this/url/lydbog'
+      }
+    ])}
+    hasValidCollection={jest.fn(() => true)}
+    {...props}
+  />
+));
 
 const createBook = id => {
   return {

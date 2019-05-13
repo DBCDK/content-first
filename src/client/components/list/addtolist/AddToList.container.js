@@ -108,7 +108,7 @@ export class AddToList extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     openplatformId: state.userReducer.openplatformId,
-    profile: state.users.toJS()[state.userReducer.openplatformId],
+    profile: state.users[state.userReducer.openplatformId],
     allowAdd:
       ownProps.list.open ||
       ownProps.list.owner === state.userReducer.openplatformId,

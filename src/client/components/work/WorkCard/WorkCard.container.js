@@ -5,7 +5,7 @@ import TaxDescription from '../TaxDescription.component';
 import Paragraph from '../../base/Paragraph';
 import Heading from '../../base/Heading';
 import Icon from '../../base/Icon';
-import withWork from '../../base/Work/withWork.hoc';
+import {withWork} from '../../hoc/Work';
 import RemindsOf from '../../base/RemindsOf';
 
 import './WorkCard.css';

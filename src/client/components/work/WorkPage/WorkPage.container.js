@@ -16,7 +16,7 @@ import BookCover from '../../general/BookCover/BookCover.component';
 import OrderButton from '../../order/OrderButton.component';
 import Link from '../../general/Link.component';
 import scroll from '../../../utils/scroll';
-import withWork from '../../base/Work/withWork.hoc';
+import {withWork} from '../../hoc/Work';
 import ReviewList from '../Review/ReviewList.component';
 
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';

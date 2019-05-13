@@ -12,7 +12,7 @@ import Radio from '../../base/Radio';
 import Checkbox from '../../base/Checkbox';
 import Switch from '../../base/Switch';
 import Tabs from '../../base/Tabs';
-import {withList, withListCreator} from '../../base/List/withList.hoc';
+import {withList, withListCreator} from '../../hoc/List/withList.hoc';
 
 import {
   percentageObjToPixel,

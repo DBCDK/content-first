@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {toast} from 'react-toastify';
-import ToastMessage from '../ToastMessage';
-import T from '../T';
+import ToastMessage from '../../base/ToastMessage';
+import T from '../../base/T';
 import Link from '../../general/Link.component';
 
 import {

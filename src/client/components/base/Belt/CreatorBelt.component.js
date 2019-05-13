@@ -1,10 +1,9 @@
 import React from 'react';
-import withIsVisible from '../Scroll/withIsVisible.hoc';
-import withChildBelt from './withChildBelt.hoc';
-import withQueryToPids from '../Recommender/withQueryToPids.hoc';
+import {withIsVisible, withScrollToComponent} from '../../hoc/Scroll';
+import {withChildBelt} from '../../hoc/Belt';
+import {withQueryToPids} from '../../hoc/Recommender';
 import WorkSlider from './WorkSlider.component';
 import Title from '../Title';
-import withScrollToComponent from '../Scroll/withScrollToComponent.hoc';
 
 export class CreatorBelt extends React.Component {
   render() {

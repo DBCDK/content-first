@@ -23,7 +23,8 @@ const withChildBelt = WrappedComponent => {
       } else {
         const mount = this.props.mount + work.book.pid;
         this.props.scrollToComponent(mount);
-        const SimilarBelt = require('./SimilarBelt.component').default;
+        const SimilarBelt = require('../../base/Belt/SimilarBelt.component')
+          .default;
         this.props.updateMount({
           type: 'SIMILAR',
           beltName,
