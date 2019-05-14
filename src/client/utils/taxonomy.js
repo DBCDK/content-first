@@ -33,7 +33,9 @@ const getLeavesMap = (t = taxonomy) => {
 const getFromTitleMap = (t = taxonomy) => {
   const res = {};
   getLeaves(t).forEach(leaf => {
-    res[leaf.title.toLowerCase()] = leaf;
+    if (!leaf.parents.includes('Hovedperson(er)')) {
+      res[leaf.title.toLowerCase()] = leaf;
+    }
   });
   return res;
 };

@@ -65,6 +65,14 @@ Array [
     "score": 0,
     "title": "leaf7",
   },
+  Object {
+    "id": 8,
+    "parents": Array [
+      "Hovedperson(er)",
+    ],
+    "score": 0,
+    "title": "leaf8",
+  },
 ]
 `;
 
@@ -124,6 +132,82 @@ Object {
     "title": "leaf6",
   },
   "7": Object {
+    "id": 7,
+    "parents": Array [
+      "c",
+      "cc",
+      "ccc",
+    ],
+    "score": 0,
+    "title": "leaf7",
+  },
+  "8": Object {
+    "id": 8,
+    "parents": Array [
+      "Hovedperson(er)",
+    ],
+    "score": 0,
+    "title": "leaf8",
+  },
+}
+`;
+
+exports[`getLeaves Get leaves the title map 1`] = `
+Object {
+  "leaf1": Object {
+    "id": 1,
+    "parents": Array [
+      "a",
+      "aa",
+    ],
+    "score": 0,
+    "title": "leaf1",
+  },
+  "leaf2": Object {
+    "id": 2,
+    "parents": Array [
+      "a",
+      "aa",
+    ],
+    "score": 0,
+    "title": "leaf2",
+  },
+  "leaf3": Object {
+    "id": 3,
+    "parents": Array [
+      "a",
+      "aa",
+    ],
+    "score": 0,
+    "title": "leaf3",
+  },
+  "leaf4": Object {
+    "id": 4,
+    "parents": Array [
+      "b",
+    ],
+    "score": 0,
+    "title": "leaf4",
+  },
+  "leaf5": Object {
+    "id": 5,
+    "parents": Array [
+      "b",
+    ],
+    "score": 0,
+    "title": "leaf5",
+  },
+  "leaf6": Object {
+    "id": 6,
+    "parents": Array [
+      "c",
+      "cc",
+      "ccc",
+    ],
+    "score": 0,
+    "title": "leaf6",
+  },
+  "leaf7": Object {
     "id": 7,
     "parents": Array [
       "c",
