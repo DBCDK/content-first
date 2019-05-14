@@ -27,6 +27,8 @@ import './dropdownList.css';
 import toReadListIcon from '../../images/toReadListIcon.png';
 import readListIcon from '../../images/readListIcon.png';
 
+import {withFollows} from '../../hoc/Follow';
+
 const ListElement = props => {
   const url = `/lister/${props.list._id}`;
   const renderListsCover = list => {
@@ -242,8 +244,7 @@ const mapStateToProps = state => {
     profiles: usersSelector(state),
     shortListExpanded: state.shortListReducer.expanded,
     userID: state.userReducer.openplatformId,
-    followReducer: state.followReducer,
-    followedLists: getFollowedLists(state),
+    // followedLists: getFollowedLists(state),
     ownedSystemLists: systemListsSelector(state, {
       _owner: state.userReducer.openplatformId,
       type: SYSTEM_LIST
@@ -279,4 +280,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListOverviewDropDown);
+)(withFollows(ListOverviewDropDown));

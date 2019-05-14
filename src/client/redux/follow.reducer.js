@@ -1,19 +1,31 @@
 const defaultState = {};
 
-export const FOLLOW_LOAD_REQUEST = 'FOLLOW_LOAD_REQUEST';
-export const FOLLOW_LOAD_RESPONSE = 'FOLLOW_LOAD_RESPONSE';
 export const FOLLOW = 'FOLLOW';
 export const UNFOLLOW = 'UNFOLLOW';
+export const FOLLOW_LOAD_REQUEST = 'FOLLOW_LOAD_REQUEST';
+export const FOLLOW_LOAD_RESPONSE = 'FOLLOW_LOAD_RESPONSE';
+export const FOLLOW_ERROR = 'FOLLOW_ERROR';
 
 const followReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case FOLLOW_LOAD_REQUEST: {
+      return Object.assign({}, state, {loaded: false, loading: true});
+    }
+
     case FOLLOW_LOAD_RESPONSE: {
       let obj = {};
       action.data.forEach(el => {
         obj[el.id] = el;
       });
+      return Object.assign({}, state, {...obj, loaded: true, loading: false});
+    }
 
-      return Object.assign({}, state, obj);
+    case FOLLOW_ERROR: {
+      return Object.assign({}, state, {
+        error: action.error,
+        loaded: false,
+        loading: false
+      });
     }
 
     case FOLLOW: {
@@ -33,10 +45,8 @@ const followReducer = (state = defaultState, action) => {
       if (!action.id) {
         throw new Error("'id' is missing from action");
       }
-
       let obj = state;
       delete obj[action.id];
-
       return Object.assign({}, state, obj);
     }
     default:
