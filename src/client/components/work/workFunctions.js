@@ -15,7 +15,9 @@ export function collectionContainsBook(work) {
 
   // Type could be "Bog" and "Bog (bind x)" but NOT "Ebog"
   const res = work.book.collection.data.filter(
-    col => col.type && col.type[0].includes('Bog')
+    col =>
+      (col.type && col.type[0].includes('Bog')) ||
+      (col.type && col.type[0].includes('Tegneserie'))
   ).length;
 
   return res;
