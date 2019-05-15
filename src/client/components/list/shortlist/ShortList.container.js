@@ -19,6 +19,7 @@ import Button from '../../base/Button';
 import Banner from '../../base/Banner';
 import {withWork} from '../../hoc/Work';
 import AddToListButton from '../../general/AddToListButton/AddToListButton.component';
+import Origin from '../../base/Origin';
 
 export class ShortListItem extends React.Component {
   constructor(props) {
@@ -100,9 +101,9 @@ export class ShortListItem extends React.Component {
             <Text type="body" className="mb-1">
               {work.book.creator}
             </Text>
-            <Text type="body" className="mb-1">
-              {origin}
-            </Text>
+            <div type="body" className="mb-1">
+              <Origin componentData={origin} />
+            </div>
             <Toolbar className="desktop-styling">
               <AddToListButton work={work} align="left" />
               <Text align="right" type="body">

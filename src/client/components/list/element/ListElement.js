@@ -215,7 +215,10 @@ export class ListElement extends React.Component {
               />
             </Link>
             <BookmarkButton
-              origin={`Fra ${list.title}`}
+              origin={{
+                type: 'personalList',
+                listLink: [this.props.element._key, list.title]
+              }}
               work={element}
               layout="circle"
               style={{position: 'absolute', right: -8, top: -8}}

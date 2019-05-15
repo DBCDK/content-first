@@ -16,6 +16,7 @@ import Text from '../../base/Text';
 import T from '../../base/T';
 import Link from '../../general/Link.component';
 import '../overview/dropdownList.css';
+import Origin from '../../base/Origin';
 
 const ShortListElement = props => {
   const url = `/værk/${props.element.book.pid}`;
@@ -41,7 +42,7 @@ const ShortListElement = props => {
           {props.element.book.taxonomy_description}
         </div>
         <div className="top-bar-dropdown-list-element--origin">
-          {props.element.origin}
+          <Origin componentData={props.element.origin} />
         </div>
       </div>
       {
