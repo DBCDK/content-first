@@ -29,138 +29,136 @@ export class ShortListItem extends React.Component {
     };
   }
 
-	render() {
-		const {
-			work,
-			pid,
-			origin,
-			className,
-			hasValidCollection,
-			filterCollection,
-			newRelease
-		} = this.props;
-		if (!work) {
-			return null;
-		}
+  render() {
+    const {
+      work,
+      pid,
+      origin,
+      className,
+      hasValidCollection,
+      filterCollection,
+      newRelease
+    } = this.props;
+    if (!work) {
+      return null;
+    }
 
-		const url = `/værk/${pid}`;
+    const url = `/værk/${pid}`;
 
-		// get collections including ereolen
-		const collection = filterCollection();
+    // get collections including ereolen
+    const collection = filterCollection();
 
-		const orderBookButton = hasValidCollection() && (
-			<OrderButton
-				pid={pid}
-				align="right"
-				size="medium"
-				type="quaternary"
-				className="ml-2"
-				iconLeft="chrome_reader_mode"
-			>
-				<T component="general" name="book" />
-			</OrderButton>
-		);
+    const orderBookButton = hasValidCollection() && (
+      <OrderButton
+        pid={pid}
+        align="right"
+        size="medium"
+        type="quaternary"
+        className="ml-2"
+        iconLeft="chrome_reader_mode"
+      >
+        <T component="general" name="book" />
+      </OrderButton>
+    );
 
-		const orderElectronicBookButtons =
-			hasValidCollection() &&
-			collection.filter(col => col.count === 1).map(col => {
-				return (
-					<Button
-						align="right"
-						size="medium"
-						type="quaternary"
-						iconLeft={col.icon}
-						className="ml-2"
-						key={col.url}
-						href={col.url}
-					>
-						{col.type}
-					</Button>
-				);
-			});
+    const orderElectronicBookButtons =
+      hasValidCollection() &&
+      collection.filter(col => col.count === 1).map(col => {
+        return (
+          <Button
+            align="right"
+            size="medium"
+            type="quaternary"
+            iconLeft={col.icon}
+            className="ml-2"
+            key={col.url}
+            href={col.url}
+          >
+            {col.type}
+          </Button>
+        );
+      });
 
-		return (
-			<div>
-				<div className={`short-list-item d-flex flex-row ${className}`}>
-					<i
-						className="material-icons remove-btn"
-						onClick={this.props.onRemove}
-					>
-						clear
-					</i>
-					<Link href={url}>
-						<BookCover
-							book={work.book}
-							style={{height: 'unset', width: '70px'}}
-						/>
-					</Link>
-					<div className="top-bar-dropdown-shortlist-item-page">
-						<Title Tag="h1" type="title5" className="mr-4">
-							{work.book.title}
-						</Title>
-						<Text type="body" className="mb-1">
-							{work.book.creator}
-						</Text>
-						<div type="body" className="mb-1">
-							<Origin
-								componentData={origin}
-							/>
-						</div>
-						<Toolbar className="desktop-styling">
-							<AddToListButton work={work} align="left" />
-							<Text align="right" type="body">
-								<T component="work" name="loanTitle" />
-							</Text>
-							{orderBookButton}
-							{orderElectronicBookButtons}
-						</Toolbar>
-						{work.collectionHasLoaded &&
-						!hasValidCollection() && (
-							<Text
-								type="body"
-								className="mt-2 d-none d-sm-block"
-								align="right"
-							>
-								<T
-									component="work"
-									name={
-										newRelease()
-											? 'noValidCollectionYet'
-											: 'noValidCollection'
-									}
-								/>
-							</Text>
-						)}
-						<div className="mobile-styling">
-							<AddToListButton work={work} align="left" />
-						</div>
-					</div>
-				</div>
-				<div className="mobile-styling">
-					<Text align="left" type="body">
-						<T component="work" name="loanTitle" />
-					</Text>
-					{work.collectionHasLoaded &&
-					!hasValidCollection() && (
-						<Text type="body">
-							<T
-								component="work"
-								name={
-									newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
-								}
-							/>
-						</Text>
-					)}
-					<Toolbar className="mobile-styling">
-						<div align="left" className="d-flex">
-							{orderBookButton}
-							{orderElectronicBookButtons}
-						</div>
-					</Toolbar>
-				</div>
-			</div>
-		);
-	}
+    return (
+      <div>
+        <div className={`short-list-item d-flex flex-row ${className}`}>
+          <i
+            className="material-icons remove-btn"
+            onClick={this.props.onRemove}
+          >
+            clear
+          </i>
+          <Link href={url}>
+            <BookCover
+              book={work.book}
+              style={{height: 'unset', width: '70px'}}
+            />
+          </Link>
+          <div className="top-bar-dropdown-shortlist-item-page">
+            <Title Tag="h1" type="title5" className="mr-4">
+              {work.book.title}
+            </Title>
+            <Text type="body" className="mb-1">
+              {work.book.creator}
+            </Text>
+            <div type="body" className="mb-1">
+              <Origin componentData={origin} />
+            </div>
+            <Toolbar className="desktop-styling">
+              <AddToListButton work={work} align="left" />
+              <Text align="right" type="body">
+                <T component="work" name="loanTitle" />
+              </Text>
+              {orderBookButton}
+              {orderElectronicBookButtons}
+            </Toolbar>
+            {work.collectionHasLoaded &&
+              !hasValidCollection() && (
+                <Text
+                  type="body"
+                  className="mt-2 d-none d-sm-block"
+                  align="right"
+                >
+                  <T
+                    component="work"
+                    name={
+                      newRelease()
+                        ? 'noValidCollectionYet'
+                        : 'noValidCollection'
+                    }
+                  />
+                </Text>
+              )}
+            <div className="mobile-styling">
+              <AddToListButton work={work} align="left" />
+            </div>
+          </div>
+        </div>
+        <div className="mobile-styling">
+          <Text align="left" type="body">
+            <T component="work" name="loanTitle" />
+          </Text>
+          {work.collectionHasLoaded &&
+            !hasValidCollection() && (
+              <Text type="body">
+                <T
+                  component="work"
+                  name={
+                    newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
+                  }
+                />
+              </Text>
+            )}
+          <Toolbar className="mobile-styling">
+            <div align="left" className="d-flex">
+              {orderBookButton}
+              {orderElectronicBookButtons}
+            </div>
+          </Toolbar>
+        </div>
+      </div>
+    );
+  }
 }
 
 const ShortListItemWithWork = withWork(ShortListItem, {
@@ -307,6 +305,6 @@ export const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(ShortList);

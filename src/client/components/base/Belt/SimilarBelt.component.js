@@ -18,8 +18,7 @@ const Slider = withWork(({work, ...props}) => (
     pids={props.recommendations}
     onMoreLikeThisClick={props.openSimilarBelt}
     onWorkClick={props.openWorkPreview}
-		origin={{type: 'minderOm', minderLink: [props.pid, work.book.title] }}
-
+    origin={{type: 'minderOm', minderLink: [props.pid, work.book.title]}}
   />
 ));
 const WorksTitle = ({pids, className}) => (

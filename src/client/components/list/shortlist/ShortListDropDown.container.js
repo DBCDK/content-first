@@ -41,11 +41,9 @@ const ShortListElement = props => {
         <div className="top-bar-dropdown-list-element--taxonomy-description">
           {props.element.book.taxonomy_description}
         </div>
-				<div className="top-bar-dropdown-list-element--origin">
-					<Origin
-						componentData={props.element.origin}
-					/>
-				</div>
+        <div className="top-bar-dropdown-list-element--origin">
+          <Origin componentData={props.element.origin} />
+        </div>
       </div>
       {
         <i onClick={props.onClose} className="material-icons remove-btn">
