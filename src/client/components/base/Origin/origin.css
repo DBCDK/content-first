@@ -1,10 +1,4 @@
-.origin_link {
-    text-decoration: none !important;
-    color:black !important;
+
+a.origin_link{
+    text-decoration:none !important;
 }
-
-.origin_link :hover {
-    text-decoration: underline !important;
-
-}
-

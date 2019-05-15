@@ -72,18 +72,6 @@ export class TagsBelt extends React.Component {
         return get(tag, 'id');
       })
     };
-    /* const origin = T({
-			 component: 'filter',
-			 name: tags.length > 0 ? 'filterOrigin' : 'filterOriginNoTags',
-			 vars: [
-				 tags
-					 .map(t => {
-						 const tag = filtersMapAll[t.id ? t.id : t];
-						 return get(tag, 'title');
-					 })
-					 .join(', ')
-			 ]
-		 });*/
 
     return (
       <div
