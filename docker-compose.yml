@@ -8,6 +8,28 @@ services:
       - "${DB_PORT:-5432}:5432"
     environment:
       POSTGRES_MULTIPLE_DATABASES: contentfirst
+  web:
+    image: docker-ux.dbc.dk/content-first:latest
+    env_file: ./docker/env.docker
+    depends_on:
+      - database
+    ports:
+      - "3000:3000"
+  e2e:
+    image: docker.dbc.dk/cypress:latest
+    volumes:
+      - './e2e:/app/e2e'
+    depends_on:
+      - web
+    # note: inside e2e container, the network allows accessing
+    # "web" host under name "web"
+    # so "curl http://web" would return whatever the webserver
+    # in the "web" container is cooking
+    # see https://docs.docker.com/compose/networking/
+    environment:
+      - CYPRESS_baseUrl=http://web:3001
+    command: npm run cy
+
 networks:
   default:
     ipam:
