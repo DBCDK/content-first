@@ -121,6 +121,31 @@ async function put(object, user) {
 }
 
 async function find(query, user = {}) {
+  let access_token = user.openplatformToken || (await fetchToken());
+  const requestObject = {access_token, find: {_type: typeId}};
+  if (typeof query.type !== 'undefined') {
+    requestObject.find.cf_type = query.type;
+  }
+  if (typeof query.owner !== 'undefined') {
+    requestObject.find._owner = query.owner;
+  }
+
+  try {
+    const ids = (await request.post(serviceProviderUrl).send(requestObject))
+      .body.data;
+
+    const objects = (await Promise.all(
+      ids.map(_id =>
+        request.post(serviceProviderUrl).send({access_token, get: {_id}})
+      )
+    )).map(res =>
+      _.omit(fromStorageObject(res.body.data), ['_version', '_client'])
+    );
+    return {data: objects};
+  } catch (e) {
+    return parseException(e);
+  }
+
   query = Object.assign(
     {
       limit: 20,
@@ -192,33 +217,6 @@ async function del(id, user) {
   } catch (e) {
     return parseException(e);
   }
-  // const data = (await request.post(serviceProviderUrl).send(requestObject)).body
-  //   .data;
-  // const result = await get(id, user);
-
-  // if (result.errors) {
-  //   return {
-  //     data: {error: 'not found'},
-  //     errors: [{status: 404, message: 'not found'}]
-  //   };
-  // }
-
-  // const {
-  //   data: {_owner}
-  // } = result;
-  // if (_owner !== user.openplatformId) {
-  //   return {
-  //     data: {error: 'forbidden'},
-  //     errors: [{status: 403, message: 'forbidden'}]
-  //   };
-  // }
-  // await knex(objectTable)
-  //   .where('id', id)
-  //   .del();
-
-  // return {
-  //   data: {ok: true}
-  // };
 }
 function parseException(e) {
   if (e.status === 404) {

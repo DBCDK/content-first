@@ -70,6 +70,7 @@ describe.only('Endpoint /v1/object', () => {
         permissions: {read: 'if object.public'},
         indexes: [
           {value: '_id', keys: ['cf_key']},
+          {value: '_id', keys: ['cf_type']},
           {value: '_id', keys: ['_owner'], private: true},
           {value: '_id', keys: ['_owner', 'cf_key'], private: true}
         ]
@@ -138,43 +139,43 @@ describe.only('Endpoint /v1/object', () => {
         });
       });
     });
-    // describe('GET /v1/object/find', () => {
-    //   it('find objects all public objects of given type', async () => {
-    //     const result = (await webapp
-    //       .get(`/v1/object/find?type=test`)
-    //       .set('cookie', cookie2)).body;
-    //     expect(result.errors).to.be.an('undefined');
-    //     expect(result.data.length).to.equal(4);
-    //   });
-    //   it('find objects all own objects of given type', async () => {
-    //     const result = (await webapp
-    //       .get(`/v1/object/find?type=test&owner=${id2}`)
-    //       .set('cookie', cookie2)).body;
-    //     expect(result.errors).to.be.an('undefined');
-    //     expect(result.data.length).to.equal(2);
-    //   });
-    //   it('find all public objects of given type+user+key', async () => {
-    //     const result = (await webapp
-    //       .get(`/v1/object/find?type=test&owner=${id2}&key=hi`)
-    //       .set('cookie', cookie1)).body;
-    //     expect(result.errors).to.be.an('undefined');
-    //     expect(result.data.length).to.equal(1);
-    //   });
-    //   it('find objects all public objects of given type+key', async () => {
-    //     const result = (await webapp
-    //       .get(`/v1/object/find?type=test&key=hi`)
-    //       .set('cookie', cookie2)).body;
-    //     expect(result.errors).to.be.an('undefined');
-    //     expect(result.data.length).to.equal(3);
-    //   });
-    //   it('find no objects', async () => {
-    //     const result = (await webapp
-    //       .get(`/v1/object/find?type=test&key=nonexistant`)
-    //       .set('cookie', cookie2)).body;
-    //     expect(result.errors).to.be.an('undefined');
-    //     expect(result.data.length).to.equal(0);
-    //   });
-    // });
+    describe('GET /v1/object/find', () => {
+      it.only('find objects all public objects of given type', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(4);
+      });
+      //   it('find objects all own objects of given type', async () => {
+      //     const result = (await webapp
+      //       .get(`/v1/object/find?type=test&owner=${id2}`)
+      //       .set('cookie', cookie2)).body;
+      //     expect(result.errors).to.be.an('undefined');
+      //     expect(result.data.length).to.equal(2);
+      //   });
+      //   it('find all public objects of given type+user+key', async () => {
+      //     const result = (await webapp
+      //       .get(`/v1/object/find?type=test&owner=${id2}&key=hi`)
+      //       .set('cookie', cookie1)).body;
+      //     expect(result.errors).to.be.an('undefined');
+      //     expect(result.data.length).to.equal(1);
+      //   });
+      //   it('find objects all public objects of given type+key', async () => {
+      //     const result = (await webapp
+      //       .get(`/v1/object/find?type=test&key=hi`)
+      //       .set('cookie', cookie2)).body;
+      //     expect(result.errors).to.be.an('undefined');
+      //     expect(result.data.length).to.equal(3);
+      //   });
+      //   it('find no objects', async () => {
+      //     const result = (await webapp
+      //       .get(`/v1/object/find?type=test&key=nonexistant`)
+      //       .set('cookie', cookie2)).body;
+      //     expect(result.errors).to.be.an('undefined');
+      //     expect(result.data.length).to.equal(0);
+      //   });
+    });
     describe('DELETE /v1/object/:pid', () => {
       it('successful deletes', async () => {
         const id = objectResults[1]._id;
