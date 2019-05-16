@@ -10,8 +10,8 @@ import {
   fetchCollection,
   saveShortList,
   loadShortList,
-  addImage,
-  deleteObject
+  addImage
+  // deleteObject
 } from '../utils/requester';
 import {ON_LOGOUT_RESPONSE} from './user.reducer';
 import {
@@ -28,8 +28,8 @@ import {REQUEST_USER} from './users';
 import {
   ADD_LIST,
   REMOVE_LIST,
-  REMOVE_LIST_SUCCESS,
-  REMOVE_LIST_ERROR,
+  // REMOVE_LIST_SUCCESS,
+  // REMOVE_LIST_ERROR,
   STORE_LIST,
   LIST_LOAD_RESPONSE,
   LIST_LOAD_REQUEST,
@@ -37,15 +37,15 @@ import {
   OWNED_LISTS_REQUEST,
   OWNED_LISTS_RESPONSE,
   LIST_TOGGLE_ELEMENT,
-  getListByIdSelector,
+  // getListByIdSelector,
   ADD_LIST_IMAGE,
   ADD_LIST_IMAGE_SUCCESS,
   ADD_LIST_IMAGE_ERROR,
   ADD_ELEMENT_TO_LIST
 } from './list.reducer';
-import {saveList, loadList, loadLists} from '../utils/requestLists';
+import {loadList, loadLists} from '../utils/requestLists';
 
-const getListById = getListByIdSelector();
+// const getListById = getListByIdSelector();
 
 export const HISTORY_PUSH = 'HISTORY_PUSH';
 export const HISTORY_PUSH_FORCE_REFRESH = 'HISTORY_PUSH_FORCE_REFRESH';
@@ -230,51 +230,51 @@ export const shortListMiddleware = store => next => async action => {
 export const listMiddleware = store => next => async action => {
   switch (action.type) {
     case STORE_LIST: {
-      const {openplatformId} = store.getState().userReducer;
-      const list = getListById(store.getState(), {_id: action._id});
-      if (!list) {
-        throw new Error(`list with _id ${action._id} not found`);
-      }
-      if (store.getState().userReducer.isLoggedIn) {
-        const updatedList = await saveList(list, openplatformId);
-        store.dispatch({
-          type: ADD_LIST,
-          _id: updatedList._id,
-          list: updatedList
-        });
-      }
-      return next(action);
-    }
-    case ADD_LIST: {
-      if (!action.list._id) {
-        const {openplatformId} = store.getState().userReducer;
-        action.list = await saveList(action.list, openplatformId);
-        if (action.afterSave) {
-          action.afterSave(action.list);
-        }
-      }
-      // if (!action.list.owner) {
-      //   action.list.owner = store.getState().userReducer.openplatformId;
+      // const {openplatformId} = store.getState().userReducer;
+      // const list = getListById(store.getState(), {_id: action._id});
+      // if (!list) {
+      //   throw new Error(`list with _id ${action._id} not found`);
+      // }
+      // if (store.getState().userReducer.isLoggedIn) {
+      //   const updatedList = await saveList(list, openplatformId);
+      //   store.dispatch({
+      //     type: ADD_LIST,
+      //     list: updatedList
+      //   });
       // }
       return next(action);
     }
-    case REMOVE_LIST: {
-      const _id = action._id;
-
-      (async () => {
-        try {
-          await deleteObject({_id});
-          store.dispatch({type: REMOVE_LIST_SUCCESS, _id});
-        } catch (error) {
-          store.dispatch({type: REMOVE_LIST_ERROR, error, _id});
-        }
-      })();
+    case ADD_LIST: {
+      // if (!action.list._id) {
+      //   const {openplatformId} = store.getState().userReducer;
+      //   action.list = await saveList(action.list, openplatformId);
+      //   if (action.afterSave) {
+      //     action.afterSave(action.list);
+      //   }
+      // }
+      // // if (!action.list.owner) {
+      // //   action.list.owner = store.getState().userReducer.openplatformId;
+      // // }
       return next(action);
     }
+    case REMOVE_LIST: {
+      // const _id = action._id;
+      //
+      // (async () => {
+      //   try {
+      //     await deleteObject({_id});
+      //     store.dispatch({type: REMOVE_LIST_SUCCESS, _id});
+      //   } catch (error) {
+      //     store.dispatch({type: REMOVE_LIST_ERROR, error, _id});
+      //   }
+      // })();
+      return next(action);
+    }
+
     case LIST_TOGGLE_ELEMENT:
     case ADD_ELEMENT_TO_LIST: {
-      const {openplatformId} = store.getState().userReducer;
-      action.element._owner = openplatformId;
+      // const {openplatformId} = store.getState().userReducer;
+      // action.element._owner = openplatformId;
       return next(action);
     }
     case LIST_LOAD_REQUEST: {

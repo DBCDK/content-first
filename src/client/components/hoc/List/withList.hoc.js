@@ -6,16 +6,20 @@ import T from '../../base/T';
 import Link from '../../general/Link.component';
 
 import {
-  addList,
-  updateList,
-  storeList,
-  removeList,
+  ADD_LIST,
+  UPDATE_LIST_DATA,
+  STORE_LIST,
+  REMOVE_LIST,
+  REMOVE_LIST_SUCCESS,
+  REMOVE_LIST_ERROR,
   getListByIdSelector,
-  toggleElementInList,
+  LIST_TOGGLE_ELEMENT,
   CUSTOM_LIST,
-  addElementToList
+  ADD_ELEMENT_TO_LIST
 } from '../../../redux/list.reducer';
-import {saveList} from '../../../utils/requestLists';
+
+import {deleteObject} from '../../../utils/requester';
+import {saveList, loadList, loadLists} from '../../../utils/requestLists';
 
 const getListById = getListByIdSelector();
 
@@ -34,6 +38,12 @@ const createdToast = list => {
     {pauseOnHover: true}
   );
 };
+
+/**
+ *
+ * withListCreator
+ *
+ **/
 
 export const withListCreator = WrappedComponent => {
   const Wrapper = class extends React.Component {
@@ -56,22 +66,35 @@ export const withListCreator = WrappedComponent => {
       }
     }
 
+    /**
+     * CreateList
+     **/
     createList = async () => {
-      const list = await saveList(
-        {
-          type: CUSTOM_LIST,
-          public: false,
-          title: T({component: 'list', name: 'noTitleValue'}),
-          description: '',
-          dotColor: 'petroleum',
-          // "Pre-add" works to the created list
-          list: this.props.works || null
-        },
-        this.props.openplatformId
-      );
+      const {openplatformId, works, onCreateList} = this.props;
 
-      this.setState({id: list._id});
-      this.props.createList(list);
+      try {
+        const list = await saveList(
+          {
+            type: CUSTOM_LIST,
+            public: false,
+            title: T({component: 'list', name: 'noTitleValue'}),
+            description: '',
+            dotColor: 'petroleum',
+            // "Pre-add" works to the created list
+            list: works || [],
+            _created: Date.now()
+          },
+          openplatformId
+        );
+
+        this.setState({id: list._id});
+        // saveList(list, openplatformId);
+        onCreateList(list);
+      } catch (e) {
+        // ignored for now
+        // ....
+        return;
+      }
     };
 
     render() {
@@ -93,8 +116,8 @@ export const withListCreator = WrappedComponent => {
 
   const mapDispatchToProps = dispatch => {
     return {
-      createList: async list => {
-        await dispatch(addList(list));
+      onCreateList: async list => {
+        await dispatch({type: ADD_LIST, list});
       }
     };
   };
@@ -105,27 +128,150 @@ export const withListCreator = WrappedComponent => {
   )(Wrapper);
 };
 
+/**
+ *
+ * WithListHoc
+ *
+ **/
+
 export const withList = WrappedComponent => {
   const Wrapper = class extends React.Component {
+    componentDidMount() {
+      this.loadList();
+    }
+
     componentWillUnmount() {
       if (this.props.justCreated && !this.stored) {
         this.props.deleteList();
       }
     }
 
-    storeList = list => {
-      this.stored = true;
-      this.props.storeList(list);
+    /**
+     * LoadList
+     **/
+    loadList = async () => {
+      const {id, listLoaded, onLoadList} = this.props;
+
+      if (!listLoaded) {
+        try {
+          await loadList(id);
+          onLoadList();
+        } catch (e) {}
+      }
     };
-    addElementsToList = (list, works) => {
-      const listId = list._id;
+
+    /**
+     * StoreList
+     **/
+    storeList = async list => {
+      // Props
+      const {openplatformId, onStoreList} = this.props;
+      try {
+        await saveList(list, openplatformId);
+        // Flag stored - prevent auto-deleting list on componentWillUnmount()
+        this.stored = true;
+        // Dispatch reducer action
+        onStoreList(list);
+      } catch (e) {
+        // ignored for now
+        // ....
+        return;
+      }
+    };
+
+    /**
+     * DeleteList
+     **/
+    deleteList = async () => {
+      // Props
+      const {
+        list,
+        onDeleteList,
+        onDeleteListSuccess,
+        onDeleteListError
+      } = this.props;
+
+      // Dispatch reducer action
+      onDeleteList();
+
+      try {
+        await deleteObject({_id: list._id});
+        // Dispatch reducer action
+        onDeleteListSuccess();
+      } catch (e) {
+        // Dispatch reducer action
+        onDeleteListError();
+        return;
+      }
+    };
+
+    /**
+     * Add multiple elements to list
+     **/
+    addElementsToList = works => {
+      // Props
+      const {list, addElementToList} = this.props;
       works.forEach(work =>
-        this.props.addElementToList(
+        addElementToList(
           {book: work.book, description: work.origin || '...'},
-          listId
+          list._id
         )
       );
-      this.props.storeList(list);
+    };
+
+    /**
+     * Add single element to list
+     **/
+    addElementToList = async work => {
+      // Props
+      const {list, onAddElementToList} = this.props;
+
+      try {
+        // Dispatch reducer action
+        onAddElementToList(work);
+        // Save List
+        this.storeList(list);
+      } catch (e) {
+        // ignored for now
+        // ....
+        return;
+      }
+    };
+
+    /**
+     * Toggle element in list
+     **/
+    toggleWorkInList = work => {
+      // Props
+      const {list, onToggleWorkInList} = this.props;
+
+      try {
+        // Dispatch reducer action
+        onToggleWorkInList(work);
+        // Save List
+        this.storeList(list);
+      } catch (e) {
+        // ignored for now
+        // ....
+        return;
+      }
+    };
+
+    /**
+     * Updata List data
+     **/
+    updateListData = data => {
+      // Props
+      const {list, onUpdateListData} = this.props;
+
+      try {
+        const newData = {_id: list._id, ...data};
+        onUpdateListData(newData);
+      } catch (e) {
+        // ignored for now
+        // ....
+        return;
+      }
     };
 
     render() {
@@ -133,7 +279,11 @@ export const withList = WrappedComponent => {
         <WrappedComponent
           {...this.props}
           storeList={this.storeList}
+          deleteList={this.deleteList}
           addElementsToList={this.addElementsToList}
+          addElementToList={this.addElementToList}
+          toggleWorkInList={this.toggleWorkInList}
+          updateListData={this.updateListData}
         />
       );
     }
@@ -144,30 +294,41 @@ export const withList = WrappedComponent => {
 
     return {
       list,
+      listLoaded: !!state.listReducer.lists[ownProps.id],
       isListOwner:
-        (list && state.userReducer.openplatformId === list._owner) || null
+        (list && state.userReducer.openplatformId === list._owner) || null,
+      openplatformId: state.userReducer.openplatformId,
+      isLoggedIn: state.userReducer.isLoggedIn
     };
   };
 
   const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-      storeList: list => {
-        dispatch(storeList(list._id));
+      onLoadList: () => {},
+      // Save list handle
+      onStoreList: list => {
+        dispatch({type: STORE_LIST, _id: list._id});
         // show created list toast, if just created (not on edit list)
         if (ownProps.justCreated) {
           createdToast(list);
         }
       },
-      toggleWorkInList: async (work, list) => {
-        // Toggle work in list
-        await dispatch(toggleElementInList(work, list._id));
-        // Store changes
-        dispatch(storeList(list._id));
-      },
-      updateListData: data => dispatch(updateList({_id: ownProps.id, ...data})),
-      deleteList: () => dispatch(removeList(ownProps.id)),
-      addElementToList: (book, listId) =>
-        dispatch(addElementToList(book, listId))
+      // Delete list handle
+      onDeleteList: () => dispatch({type: REMOVE_LIST, _id: ownProps.id}),
+      onDeleteListSuccess: () =>
+        dispatch({type: REMOVE_LIST_SUCCESS, _id: ownProps.id}),
+      onDeleteListError: () =>
+        dispatch({type: REMOVE_LIST_ERROR, _id: ownProps.id}),
+      // Work in list handle
+      onToggleWorkInList: work =>
+        dispatch({
+          type: LIST_TOGGLE_ELEMENT,
+          element: work,
+          _id: ownProps.id
+        }),
+      onUpdateListData: data => dispatch({type: UPDATE_LIST_DATA, data}),
+      onAddElementToList: work =>
+        dispatch({type: ADD_ELEMENT_TO_LIST, element: work, _id: ownProps.id})
     };
   };
 

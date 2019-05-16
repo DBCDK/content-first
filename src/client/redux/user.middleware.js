@@ -46,7 +46,7 @@ export const userMiddleware = store => next => action => {
       fetchUser(store.dispatch, () => {
         // TODO do we really need to fetch all at page load
         store.dispatch({type: SHORTLIST_LOAD_REQUEST});
-        store.dispatch({type: OWNED_LISTS_REQUEST});
+        // store.dispatch({type: OWNED_LISTS_REQUEST});
         store.dispatch({type: FETCH_INTERACTIONS});
         store.dispatch({type: BELTS_LOAD_REQUEST});
       });

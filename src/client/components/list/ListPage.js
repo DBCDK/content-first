@@ -8,15 +8,17 @@ import BookcaseList from './templates/bookcase/BookcaseList';
 import {getListByIdSelector} from '../../redux/list.reducer';
 import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
 
+import {withList} from '../hoc/List';
+
 const getListById = getListByIdSelector();
 
 export class ListPage extends React.Component {
   componentDidMount() {
-    this.props.loadList(this.props.id);
+    // this.props.loadList(this.props.id);
   }
   componentDidUpdate(prevProps) {
     if (prevProps.id !== this.props.id) {
-      this.props.loadList(this.props.id);
+      // this.props.loadList(this.props.id);
     }
   }
 
@@ -66,9 +68,7 @@ export class ListPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    list: getListById(state, {_id: ownProps.id})
-  };
+  return {};
 };
 
 export const mapDispatchToProps = dispatch => ({
@@ -78,4 +78,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListPage);
+)(withList(ListPage));

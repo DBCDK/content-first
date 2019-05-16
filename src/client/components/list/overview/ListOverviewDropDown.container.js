@@ -12,7 +12,6 @@ import {
 import {createGetUsersSelector} from '../../../redux/users';
 import {ON_SHORTLIST_COLLAPSE} from '../../../redux/shortlist.reducer';
 import {HISTORY_PUSH} from '../../../redux/middleware';
-import {createGetFollowedLists} from '../../../redux/selectors';
 import {createGetLists} from '../../../redux/list.reducer';
 import toColor from '../../../utils/toColor';
 import Button from '../../base/Button/Button';
@@ -236,7 +235,6 @@ class ListOverviewDropDown extends React.Component {
 const customListSelector = createGetLists();
 const systemListsSelector = createGetLists();
 const usersSelector = createGetUsersSelector();
-const getFollowedLists = createGetFollowedLists();
 
 const mapStateToProps = state => {
   return {
@@ -244,7 +242,6 @@ const mapStateToProps = state => {
     profiles: usersSelector(state),
     shortListExpanded: state.shortListReducer.expanded,
     userID: state.userReducer.openplatformId,
-    // followedLists: getFollowedLists(state),
     ownedSystemLists: systemListsSelector(state, {
       _owner: state.userReducer.openplatformId,
       type: SYSTEM_LIST

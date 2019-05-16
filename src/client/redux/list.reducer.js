@@ -57,19 +57,27 @@ const listReducer = (state = defaultState, action) => {
       const {_id} = action;
       const old = state.lists[_id] || {};
       return Object.assign({}, state, {
-        lists: {...state.lists, [_id]: {...old, isLoading: true, _id}}
+        lists: {
+          ...state.lists,
+          [_id]: {...old, isLoading: true, isLoaded: false, _id}
+        }
       });
     }
     case ADD_LIST: {
       const {list} = action;
+
+      console.log('ADD_LIST???', list._id);
+
       if (!list._id) {
-        throw new Error('Cant add list when list.data._id is not set');
+        throw new Error('Cant add list when list._id is not set');
       }
       return Object.assign({}, state, {
         lists: {...state.lists, [list._id]: list}
       });
     }
     case REMOVE_LIST: {
+      console.log('REMOVE_LIST', action);
+
       if (!action._id) {
         throw new Error("'id' is missing from action");
       }
@@ -254,9 +262,13 @@ const listReducer = (state = defaultState, action) => {
       if (!action.data) {
         throw new Error("'data' is missing from action");
       }
+
+      console.log('UPDATE_LIST_DATA action', action);
+
       if (!state.lists[action.data._id]) {
         throw new Error(`Could not find list with _id ${action.data._id}`);
       }
+
       const list = {...state.lists[action.data._id], ...action.data};
       return Object.assign({}, state, {
         lists: {...state.lists, [action.data._id]: list}
@@ -280,6 +292,7 @@ const listReducer = (state = defaultState, action) => {
       }
 
       list.isLoading = false;
+      list.isLoaded = true;
 
       return Object.assign({}, state, {
         lists: {...state.lists, [action.list._id]: list}
@@ -340,6 +353,7 @@ const listReducer = (state = defaultState, action) => {
         lists: {...state.lists, [action._id]: list}
       });
     }
+
     case STORE_LIST: {
       const list = {
         ...state.lists[action._id],
@@ -351,6 +365,7 @@ const listReducer = (state = defaultState, action) => {
         latestUsedId: action._id
       });
     }
+
     case ON_USERLISTS_EXPAND:
       return Object.assign({}, state, {expanded: true});
     case ON_USERLISTS_COLLAPSE:
@@ -362,21 +377,18 @@ const listReducer = (state = defaultState, action) => {
 };
 
 // ACTION CREATORS
-export const addList = (
-  {
-    _type = 'list',
-    type = CUSTOM_LIST,
-    title = '',
-    description = '',
-    isNew,
-    dotColor = 'petroleum',
-    list = [],
-    _id = null,
-    _owner = null,
-    _created = Date.now()
-  },
-  afterSave
-) => {
+export const addList = ({
+  _type = 'list',
+  type = CUSTOM_LIST,
+  title = '',
+  description = '',
+  isNew,
+  dotColor = 'petroleum',
+  list = [],
+  _id = null,
+  _owner = null,
+  _created = Date.now()
+}) => {
   return {
     type: ADD_LIST,
     list: {
@@ -390,8 +402,7 @@ export const addList = (
       _owner,
       _created,
       _type
-    },
-    afterSave
+    }
   };
 };
 export const updateList = data => {
