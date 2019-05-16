@@ -31,7 +31,7 @@ export function filterCollection(work) {
         if (col.identifierURI && col.identifierURI[0].includes('ereolen.dk')) {
           return col;
         }
-        return null;
+        return false;
       });
       // if collection contains references
       if (collection.length > 0) {
@@ -58,7 +58,7 @@ export function filterCollection(work) {
               count: count2
             };
           }
-          return null;
+          return false;
         });
       }
       return collection;
@@ -78,7 +78,7 @@ export function filterReviews(work) {
         ) {
           return rev;
         }
-        return null;
+        return false;
       });
       // if reviews contains references
       if (reviews.length > 0) {
