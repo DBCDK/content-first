@@ -14,6 +14,19 @@ const {promisify} = require('util');
 const fs = require('fs');
 const readFileAsync = promisify(fs.readFile);
 const resolve = require('resolve');
+const config = require('server/config');
+const superagent = require('superagent');
+
+if (!config.test.user1.username || !config.test.user2.username) {
+  throw new Error('Missing test users to run acceptance tests');
+}
+const fetchAuthenticatedToken = async (username, password) => {
+  return (await superagent
+    .post(config.auth.url + '/oauth/token')
+    .auth(config.auth.id, config.auth.secret)
+    .send(`grant_type=password&username=${username}&password=${password}`)).body
+    .access_token;
+};
 
 exports.seed = async knex => {
   {
@@ -73,21 +86,30 @@ exports.seed = async knex => {
       cookie: 'valid-login-token-for-user-seeded-on-test-start',
       community_profile_id: 123456,
       openplatform_id: '123openplatformId456',
-      openplatform_token: '123openplatformToken456',
+      openplatform_token: await fetchAuthenticatedToken(
+        config.test.user1.username,
+        config.test.user1.pincode
+      ),
       expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
     },
     {
       cookie: 'valid-login-token-for-user2-seeded-on-test-start',
       community_profile_id: 234566,
       openplatform_id: '123openplatformId2',
-      openplatform_token: '123openplatformToken2',
+      openplatform_token: await fetchAuthenticatedToken(
+        config.test.user2.username,
+        config.test.user2.pincode
+      ),
       expires_epoch_s: Math.ceil(Date.now() / 1000) + 10000
     },
     {
       cookie: 'expired-login-token',
       community_profile_id: 123456,
       openplatform_id: '123openplatformId456',
-      openplatform_token: '123openplatformToken456',
+      openplatform_token: await fetchAuthenticatedToken(
+        config.test.user2.username,
+        config.test.user2.pincode
+      ),
       expires_epoch_s: Math.ceil(new Date(2009, 1, 25).getTime() / 1000)
     }
   ]);

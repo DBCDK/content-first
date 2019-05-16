@@ -89,3 +89,16 @@ exports.server = {
   hostname: 'laesekompas.dk',
   dmzHost: process.env.DMZ_HOST || 'https://laesekompas.dk'
 };
+
+exports.test = {
+  user1: {
+    username: process.env.TEST_USER_NAME_1,
+    pincode: process.env.TEST_USER_PINCODE_1,
+    uniqueId: process.env.TEST_USER_UNIQUE_ID_1
+  },
+  user2: {
+    username: process.env.TEST_USER_NAME_2,
+    pincode: process.env.TEST_USER_PINCODE_2,
+    uniqueId: process.env.TEST_USER_UNIQUE_ID_2
+  }
+};
