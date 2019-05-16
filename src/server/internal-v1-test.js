@@ -182,4 +182,14 @@ async function createUser(req, doCreateUser) {
   return loginToken;
 }
 
+/**
+ * @param {String} id id of service-provider storage type
+ */
+router.route('/setStorageTypeId/:id').get(
+  asyncMiddleware(async (req, res) => {
+    objectStore.setTypeId(req.params.id);
+    res.status(200).send('OK');
+  })
+);
+
 module.exports = router;
