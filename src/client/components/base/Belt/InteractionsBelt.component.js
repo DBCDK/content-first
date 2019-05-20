@@ -1,5 +1,4 @@
 import React from 'react';
-import {withIsVisible} from '../../hoc/Scroll';
 import {withChildBelt} from '../../hoc/Belt';
 import {withInteractionsToPids} from '../../hoc/Recommender';
 import WorkSlider from './WorkSlider.component';
@@ -10,9 +9,10 @@ export class InteractionsBelt extends React.Component {
   render() {
     const {user} = this.props;
     const {name, isLoggedIn} = user;
-    if (!isLoggedIn) {
+    if (!isLoggedIn || this.props.recommendations.length === 0) {
       return null;
     }
+
     return (
       <div className={this.props.className} style={this.props.style}>
         <Title
@@ -37,5 +37,5 @@ export class InteractionsBelt extends React.Component {
   }
 }
 export default withChildBelt(
-  withUser(withIsVisible(withInteractionsToPids(InteractionsBelt)))
+  withUser(withInteractionsToPids(InteractionsBelt))
 );
