@@ -187,7 +187,10 @@ async function createUser(req, doCreateUser) {
  */
 router.route('/setStorageTypeId/:id').get(
   asyncMiddleware(async (req, res) => {
-    objectStore.setTypeId(req.params.id);
+    await objectStore.setupObjectStore({
+      typeId: req.params.id,
+      url: config.storage.url
+    });
     res.status(200).send('OK');
   })
 );

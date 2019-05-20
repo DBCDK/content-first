@@ -1,16 +1,13 @@
 'use strict';
-
+const logger = require('server/logger');
 const assert = require('assert');
 const _ = require('lodash');
 const config = require('server/config');
-const knex = require('knex')(config.db);
-const constants = require('server/constants')();
-const objectTable = constants.objects.table;
-const uuidGenerator = require('uuid');
 const request = require('superagent');
 
-const serviceProviderUrl = 'http://localhost:8080/v3/storage'; // TODO use from config
-let typeId; // TODO should be set in config
+let storageUrl;
+let typeId;
+let validated = false;
 
 // TODO should be located elsewhere
 const fetchToken = async () => {
@@ -20,9 +17,40 @@ const fetchToken = async () => {
     .send('grant_type=password&username=@&password=@')).body.access_token;
 };
 
-function setTypeId(id) {
-  // console.log('setting type id', id);
-  typeId = id;
+function setupObjectStore(storageOptions) {
+  if (!storageOptions.typeId) {
+    throw new Error('storageOptions.typeId is not valid');
+  }
+  if (!storageOptions.url) {
+    throw new Error('storageOptions.url is not valid');
+  }
+  storageUrl = storageOptions.url;
+  typeId = storageOptions.typeId;
+  validated = false;
+}
+
+async function validateObjectStore() {
+  if (validated) {
+    return;
+  }
+  if (!storageUrl || !typeId) {
+    throw new Error('Object store has not been setup');
+  }
+  try {
+    const access_token = await fetchToken();
+    const data = (await request
+      .post(storageUrl)
+      .send({access_token, get: {_id: typeId}})).body.data;
+    logger.log.info('Object storage validated', {
+      typeId,
+      data
+    });
+    validated = true;
+  } catch (e) {
+    throw new Error(
+      `Object storage validation failed, typeId=${typeId}, storageUrl=${storageUrl}`
+    );
+  }
 }
 
 async function getUser(req) {
@@ -35,33 +63,6 @@ async function getUser(req) {
   }
   // return undefined as user, if not logged in.
   return;
-}
-
-const rowToObject = o => ({
-  ...o.data,
-  _id: o.id,
-  _rev: o.rev,
-  _owner: o.owner,
-  _type: o.type,
-  _key: o.key,
-  _public: o.public,
-  _created: o.created,
-  _modified: o.modified
-});
-
-async function get(id, user = {}) {
-  let access_token = user.openplatformToken || (await fetchToken());
-  const requestObject = {access_token, get: {_id: id}};
-
-  try {
-    const data = (await request.post(serviceProviderUrl).send(requestObject))
-      .body.data;
-    const o = fromStorageObject(data);
-
-    return {data: _.omit(o, ['_version', '_client'])};
-  } catch (e) {
-    return parseException(e);
-  }
 }
 
 const toStorageObject = object => {
@@ -102,18 +103,32 @@ const fromStorageObject = storageObject => {
   return copy;
 };
 
+async function get(id, user = {}) {
+  await validateObjectStore();
+  let access_token = user.openplatformToken || (await fetchToken());
+  const requestObject = {access_token, get: {_id: id}};
+
+  try {
+    const data = (await request.post(storageUrl).send(requestObject)).body.data;
+    const o = fromStorageObject(data);
+
+    return {data: _.omit(o, ['_version', '_client'])};
+  } catch (e) {
+    return parseException(e);
+  }
+}
+
 async function put(object, user) {
   assert(user);
-  assert(user.openplatformId);
   assert(user.openplatformToken);
+  await validateObjectStore();
 
   const requestObject = {
     access_token: user.openplatformToken,
     put: toStorageObject(object)
   };
   try {
-    const data = (await request.post(serviceProviderUrl).send(requestObject))
-      .body.data;
+    const data = (await request.post(storageUrl).send(requestObject)).body.data;
     return {data: {_id: data._id, _rev: data._version}};
   } catch (e) {
     return parseException(e);
@@ -121,6 +136,7 @@ async function put(object, user) {
 }
 
 async function find(query, user = {}) {
+  await validateObjectStore();
   let access_token = user.openplatformToken || (await fetchToken());
   const requestObject = {access_token, find: {_type: typeId}};
   if (typeof query.type !== 'undefined') {
@@ -129,15 +145,15 @@ async function find(query, user = {}) {
   if (typeof query.owner !== 'undefined') {
     requestObject.find._owner = query.owner;
   }
+  if (typeof query.key !== 'undefined') {
+    requestObject.find.cf_key = query.key;
+  }
 
   try {
-    const ids = (await request.post(serviceProviderUrl).send(requestObject))
-      .body.data;
+    const ids = (await request.post(storageUrl).send(requestObject)).body.data;
 
     const objects = (await Promise.all(
-      ids.map(_id =>
-        request.post(serviceProviderUrl).send({access_token, get: {_id}})
-      )
+      ids.map(_id => request.post(storageUrl).send({access_token, get: {_id}}))
     )).map(res =>
       _.omit(fromStorageObject(res.body.data), ['_version', '_client'])
     );
@@ -145,64 +161,12 @@ async function find(query, user = {}) {
   } catch (e) {
     return parseException(e);
   }
-
-  query = Object.assign(
-    {
-      limit: 20,
-      offset: 0
-    },
-    query
-  );
-
-  if (!query.type) {
-    throw new Error('Query Error');
-  }
-  let knexQuery = knex(objectTable);
-
-  if (typeof query.type !== 'undefined') {
-    knexQuery = knexQuery.where('type', query.type);
-  }
-  if (typeof query.key !== 'undefined') {
-    knexQuery = knexQuery.where('key', query.key);
-  }
-  if (typeof query.owner !== 'undefined') {
-    knexQuery = knexQuery.where('owner', query.owner);
-  }
-  if (!query.owner || query.owner !== user.openplatformId) {
-    knexQuery = knexQuery.where('public', true);
-  }
-
-  let result = await knexQuery
-    .orderBy('type')
-    .orderBy('key')
-    .orderBy('modified', 'desc')
-    .limit(query.limit)
-    .offset(query.offset)
-    .select();
-  result = result.map(rowToObject);
-
-  return {data: result};
-}
-
-async function updateOwner(oldOwner, newOwner) {
-  if (!oldOwner) {
-    throw new Error('oldOwner missing');
-  }
-  if (!newOwner) {
-    throw new Error('newOwner missing');
-  }
-
-  const res = await knex(objectTable)
-    .update('owner', newOwner)
-    .where('owner', oldOwner);
-
-  return res;
 }
 
 async function del(id, user) {
   assert(user);
-  assert(user.openplatformId);
   assert(user.openplatformToken);
+  await validateObjectStore();
 
   const requestObject = {
     access_token: user.openplatformToken,
@@ -210,7 +174,7 @@ async function del(id, user) {
   };
 
   try {
-    await request.post(serviceProviderUrl).send(requestObject);
+    await request.post(storageUrl).send(requestObject);
     return {
       data: {ok: true}
     };
@@ -249,6 +213,5 @@ module.exports = {
   put,
   find,
   del,
-  updateOwner,
-  setTypeId
+  setupObjectStore
 };

@@ -2,9 +2,12 @@
 
 const express = require('express');
 const router = express.Router({mergeParams: true});
+const config = require('server/config');
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const objectStore = require('./objectStore');
-const {getUser} = objectStore;
+const {getUser, setupObjectStore} = objectStore;
+
+setupObjectStore(config.storage);
 
 function send(res, data) {
   return res.status(data.errors ? data.errors[0].status : 200).json(data);

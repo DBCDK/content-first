@@ -17,9 +17,9 @@ const fetchAuthenticatedToken = async (username, password) => {
     .access_token;
 };
 
-const serviceProviderUrl = 'http://localhost:8080/v3/storage';
+const storageUrl = config.storage.url;
 
-describe.only('Endpoint /v1/object', () => {
+describe('Endpoint /v1/object', () => {
   const webapp = request(mock.external);
   const webappInternal = request(mock.internal);
   let cookie1, cookie2, objects;
@@ -38,7 +38,6 @@ describe.only('Endpoint /v1/object', () => {
       config.test.user1.username,
       config.test.user1.pincode
     );
-    await superagent.get(serviceProviderUrl + '/').send;
 
     cookie1 = mock.createLoginCookie(
       'valid-login-token-for-user-seeded-on-test-start'
@@ -59,8 +58,7 @@ describe.only('Endpoint /v1/object', () => {
 
   beforeEach(async () => {
     await mock.resetting();
-
-    const data = (await superagent.post(serviceProviderUrl).send({
+    const data = (await superagent.post(storageUrl).send({
       access_token: admin_access_token,
       put: {
         _type: 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102',
@@ -71,8 +69,11 @@ describe.only('Endpoint /v1/object', () => {
         indexes: [
           {value: '_id', keys: ['cf_key']},
           {value: '_id', keys: ['cf_type']},
+          {value: '_id', keys: ['cf_key', 'cf_type']},
           {value: '_id', keys: ['_owner'], private: true},
-          {value: '_id', keys: ['_owner', 'cf_key'], private: true}
+          {value: '_id', keys: ['_owner', 'cf_type'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_key'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key']}
         ]
       }
     })).body.data;
@@ -93,7 +94,7 @@ describe.only('Endpoint /v1/object', () => {
 
   afterEach(async () => {
     // delete content-first type from storage, which cleans up everything
-    await superagent.post(serviceProviderUrl).send({
+    await superagent.post(storageUrl).send({
       access_token: admin_access_token,
       delete: {_id: cfType}
     });
@@ -140,41 +141,41 @@ describe.only('Endpoint /v1/object', () => {
       });
     });
     describe('GET /v1/object/find', () => {
-      it.only('find objects all public objects of given type', async () => {
+      it('find objects all public objects of given type', async () => {
         const result = (await webapp
           .get(`/v1/object/find?type=test`)
           .set('cookie', cookie2)).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(4);
       });
-      //   it('find objects all own objects of given type', async () => {
-      //     const result = (await webapp
-      //       .get(`/v1/object/find?type=test&owner=${id2}`)
-      //       .set('cookie', cookie2)).body;
-      //     expect(result.errors).to.be.an('undefined');
-      //     expect(result.data.length).to.equal(2);
-      //   });
-      //   it('find all public objects of given type+user+key', async () => {
-      //     const result = (await webapp
-      //       .get(`/v1/object/find?type=test&owner=${id2}&key=hi`)
-      //       .set('cookie', cookie1)).body;
-      //     expect(result.errors).to.be.an('undefined');
-      //     expect(result.data.length).to.equal(1);
-      //   });
-      //   it('find objects all public objects of given type+key', async () => {
-      //     const result = (await webapp
-      //       .get(`/v1/object/find?type=test&key=hi`)
-      //       .set('cookie', cookie2)).body;
-      //     expect(result.errors).to.be.an('undefined');
-      //     expect(result.data.length).to.equal(3);
-      //   });
-      //   it('find no objects', async () => {
-      //     const result = (await webapp
-      //       .get(`/v1/object/find?type=test&key=nonexistant`)
-      //       .set('cookie', cookie2)).body;
-      //     expect(result.errors).to.be.an('undefined');
-      //     expect(result.data.length).to.equal(0);
-      //   });
+      it('find objects all own objects of given type', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&owner=${id2}`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(2);
+      });
+      it('find all public objects of given type+user+key', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&owner=${id2}&key=hi`)
+          .set('cookie', cookie1)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(1);
+      });
+      it('find objects all public objects of given type+key', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&key=hi`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(3);
+      });
+      it('find no objects', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&key=nonexistant`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(0);
+      });
     });
     describe('DELETE /v1/object/:pid', () => {
       it('successful deletes', async () => {
