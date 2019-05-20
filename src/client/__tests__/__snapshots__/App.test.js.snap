@@ -393,16 +393,6 @@ exports[`renders without crashing 1`] = `
       className="frontpage"
     >
       <Hero />
-      <react-visibility-sensor
-        offset={
-          Object {
-            "bottom": -1000,
-            "top": -1000,
-          }
-        }
-        onChange={[Function]}
-        partialVisibility={true}
-      />
       <div>
         <TagsBelt
           child={false}

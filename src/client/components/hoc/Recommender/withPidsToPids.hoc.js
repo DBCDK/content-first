@@ -36,7 +36,10 @@ const withPidsToPids = WrappedComponent => {
       this.fetch();
     }
     fetch() {
-      if (this.props.isVisible && this.fetched !== this.props.likes) {
+      if (
+        (this.props.isVisible || typeof this.props.isVisible === 'undefined') &&
+        this.fetched !== this.props.likes
+      ) {
         this.fetched = this.props.likes;
         this.props.fetchRecommendations(this.props.likes);
       }
