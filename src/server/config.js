@@ -90,6 +90,11 @@ exports.server = {
   dmzHost: process.env.DMZ_HOST || 'https://laesekompas.dk'
 };
 
+exports.storage = {
+  typeId: process.env.STORAGE_TYPE_ID,
+  url: process.env.STORAGE_URL
+};
+
 exports.test = {
   user1: {
     username: process.env.TEST_USER_NAME_1,
