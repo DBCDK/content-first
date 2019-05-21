@@ -138,12 +138,17 @@ async function put(object, user) {
 async function find(query, user = {}) {
   await validateObjectStore();
   let access_token = user.openplatformToken || (await fetchToken());
+  const uniqueId = user.openplatformId || '';
   const requestObject = {access_token, find: {_type: typeId}};
   if (typeof query.type !== 'undefined') {
     requestObject.find.cf_type = query.type;
   }
   if (typeof query.owner !== 'undefined') {
     requestObject.find._owner = query.owner;
+    if (uniqueId !== query.owner) {
+      // this is not the owner, look for public objects
+      requestObject.find.public = true;
+    }
   }
   if (typeof query.key !== 'undefined') {
     requestObject.find.cf_key = query.key;
