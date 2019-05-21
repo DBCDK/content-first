@@ -306,14 +306,13 @@ export class ListElement extends React.Component {
         </div>
 
         <div>
-          {list.social &&
-            showComments && (
-              <Comments
-                className="listElement-comments pt-4"
-                id={element._id}
-                disabled={this.state.editing}
-              />
-            )}
+          {list.social && showComments && (
+            <Comments
+              className="listElement-comments pt-4"
+              id={element._id}
+              disabled={this.state.editing}
+            />
+          )}
           {children}
         </div>
 

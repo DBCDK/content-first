@@ -63,21 +63,23 @@ export class ShortListItem extends React.Component {
 
     const orderElectronicBookButtons =
       hasValidCollection() &&
-      collection.filter(col => col.count === 1).map(col => {
-        return (
-          <Button
-            align="right"
-            size="medium"
-            type="quaternary"
-            iconLeft={col.icon}
-            className="ml-2"
-            key={col.url}
-            href={col.url}
-          >
-            {col.type}
-          </Button>
-        );
-      });
+      collection
+        .filter(col => col.count === 1)
+        .map(col => {
+          return (
+            <Button
+              align="right"
+              size="medium"
+              type="quaternary"
+              iconLeft={col.icon}
+              className="ml-2"
+              key={col.url}
+              href={col.url}
+            >
+              {col.type}
+            </Button>
+          );
+        });
 
     return (
       <div>
@@ -112,23 +114,20 @@ export class ShortListItem extends React.Component {
               {orderBookButton}
               {orderElectronicBookButtons}
             </Toolbar>
-            {work.collectionHasLoaded &&
-              !hasValidCollection() && (
-                <Text
-                  type="body"
-                  className="mt-2 d-none d-sm-block"
-                  align="right"
-                >
-                  <T
-                    component="work"
-                    name={
-                      newRelease()
-                        ? 'noValidCollectionYet'
-                        : 'noValidCollection'
-                    }
-                  />
-                </Text>
-              )}
+            {work.collectionHasLoaded && !hasValidCollection() && (
+              <Text
+                type="body"
+                className="mt-2 d-none d-sm-block"
+                align="right"
+              >
+                <T
+                  component="work"
+                  name={
+                    newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
+                  }
+                />
+              </Text>
+            )}
             <div className="mobile-styling">
               <AddToListButton work={work} align="left" />
             </div>
@@ -138,17 +137,16 @@ export class ShortListItem extends React.Component {
           <Text align="left" type="body">
             <T component="work" name="loanTitle" />
           </Text>
-          {work.collectionHasLoaded &&
-            !hasValidCollection() && (
-              <Text type="body">
-                <T
-                  component="work"
-                  name={
-                    newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
-                  }
-                />
-              </Text>
-            )}
+          {work.collectionHasLoaded && !hasValidCollection() && (
+            <Text type="body">
+              <T
+                component="work"
+                name={
+                  newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
+                }
+              />
+            </Text>
+          )}
           <Toolbar className="mobile-styling">
             <div align="left" className="d-flex">
               {orderBookButton}

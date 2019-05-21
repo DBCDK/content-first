@@ -14,7 +14,7 @@ export const saveList = async (list, loggedInUserId) => {
   list = Object.assign({}, list);
   list._type = 'list';
   list.list = list.list || [];
-  list._public = list.public;
+
   list._id = list._id || list.id;
 
   if (!list._id) {
@@ -103,7 +103,7 @@ async function enrichList({list}) {
 
   // Fetch all list entries
   let elements;
-  if (list.open) {
+  if (list._public) {
     elements = (await request.get(
       `/v1/object/find?type=list-entry&key=${list._id}&limit=100000`
     )).body.data;
@@ -113,6 +113,10 @@ async function enrichList({list}) {
         list._id
       }&owner=${encodeURIComponent(list._owner)}&limit=100000`
     )).body.data;
+  }
+
+  if (!list.open) {
+    elements = elements.filter(e => e._owner === list._owner);
   }
 
   const entryMap = elements.reduce((map, element) => {

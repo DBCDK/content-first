@@ -85,7 +85,7 @@ exports.seed = async knex => {
     {
       cookie: 'valid-login-token-for-user-seeded-on-test-start',
       community_profile_id: 123456,
-      openplatform_id: '123openplatformId456',
+      openplatform_id: config.test.user1.uniqueId,
       openplatform_token: await fetchAuthenticatedToken(
         config.test.user1.username,
         config.test.user1.pincode
@@ -95,7 +95,7 @@ exports.seed = async knex => {
     {
       cookie: 'valid-login-token-for-user2-seeded-on-test-start',
       community_profile_id: 234566,
-      openplatform_id: '123openplatformId2',
+      openplatform_id: config.test.user2.uniqueId,
       openplatform_token: await fetchAuthenticatedToken(
         config.test.user2.username,
         config.test.user2.pincode
