@@ -40,8 +40,10 @@ const fetchAuthenticatedToken = async (username, password) => {
           {value: '_id', keys: ['cf_key', 'cf_type']},
           {value: '_id', keys: ['_owner'], private: true},
           {value: '_id', keys: ['_owner', 'cf_type'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_type', 'public']},
           {value: '_id', keys: ['_owner', 'cf_key'], private: true},
-          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key']}
+          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key', 'public']}
         ]
       }
     })).body.data;

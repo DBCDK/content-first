@@ -72,8 +72,10 @@ describe('Endpoint /v1/object', () => {
           {value: '_id', keys: ['cf_key', 'cf_type']},
           {value: '_id', keys: ['_owner'], private: true},
           {value: '_id', keys: ['_owner', 'cf_type'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_type', 'public']},
           {value: '_id', keys: ['_owner', 'cf_key'], private: true},
-          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key']}
+          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key', 'public']}
         ]
       }
     })).body.data;
@@ -117,6 +119,8 @@ describe('Endpoint /v1/object', () => {
           _type: 'test'
         });
         expect(result.errors).to.be.an('undefined');
+        expect(result.data._created).to.be.an('number');
+        expect(result.data._modified).to.be.an('number');
       });
       it('fails with 404 when it does not exist', async () => {
         const result = await webapp
@@ -161,6 +165,13 @@ describe('Endpoint /v1/object', () => {
           .set('cookie', cookie1)).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(1);
+      });
+      it('find objects all public objects of given type+owner', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&owner=${id1}`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(3);
       });
       it('find objects all public objects of given type+key', async () => {
         const result = (await webapp
