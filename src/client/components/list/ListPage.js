@@ -1,27 +1,13 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import Spinner from '../general/Spinner/Spinner.component';
 import Title from '../base/Title';
 import T from '../base/T';
 import SimpleList from './templates/simple/SimpleList';
 import BookcaseList from './templates/bookcase/BookcaseList';
-import {getListByIdSelector} from '../../redux/list.reducer';
-import {LIST_LOAD_REQUEST} from '../../redux/list.reducer';
 
 import {withList} from '../hoc/List';
 
-const getListById = getListByIdSelector();
-
 export class ListPage extends React.Component {
-  componentDidMount() {
-    // this.props.loadList(this.props.id);
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.id !== this.props.id) {
-      // this.props.loadList(this.props.id);
-    }
-  }
-
   // eslint-disable-next-line no-unused-vars
   getTemplate(list) {
     const template = list.template;
@@ -67,15 +53,4 @@ export class ListPage extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {};
-};
-
-export const mapDispatchToProps = dispatch => ({
-  loadList: _id => dispatch({type: LIST_LOAD_REQUEST, _id})
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withList(ListPage));
+export default withList(ListPage);

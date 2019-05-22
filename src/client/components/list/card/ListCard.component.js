@@ -12,8 +12,9 @@ import Divider from '../../base/Divider';
 import {createGetUserSelector} from '../../../redux/users';
 
 import {FETCH_COMMENTS} from '../../../redux/comment.reducer';
-import {LIST_LOAD_REQUEST} from '../../../redux/list.reducer';
 import {createCountComments} from '../../../redux/selectors';
+
+import {withList, withLists} from '../../hoc/List';
 
 import './ListCard.css';
 
@@ -28,10 +29,6 @@ class ListCard extends React.Component {
     this.fetch();
   }
   fetch() {
-    if (this.fetched !== this.props._id && !this.props.skeleton) {
-      this.props.loadList();
-      this.fetched = this.props._id;
-    }
     if (
       this.props.list &&
       this.props._id &&
@@ -175,19 +172,18 @@ const makeMapStateToProps = () => {
     const ids = [list._id, ...list.list.map(e => e._id)];
     const isLoading = !list || list.isLoading;
     return {
-      list,
       commentCount: countComments(state, {ids}),
       profile: !isLoading ? getUser(state, {id: list._owner}) : null,
       isLoading
     };
   };
 };
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadList: () => dispatch({type: LIST_LOAD_REQUEST, _id: ownProps._id}),
+
+export const mapDispatchToProps = dispatch => ({
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
 export default connect(
   makeMapStateToProps,
   mapDispatchToProps
-)(ListCard);
+)(withLists(withList(ListCard)));

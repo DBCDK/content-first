@@ -3,16 +3,13 @@ import {connect} from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {
   ON_USERLISTS_COLLAPSE,
-  ON_USERLISTS_EXPAND,
-  OWNED_LISTS_REQUEST,
-  SYSTEM_LIST,
-  CUSTOM_LIST
+  ON_USERLISTS_EXPAND
 } from '../../../redux/list.reducer';
 
 import {createGetUsersSelector} from '../../../redux/users';
+import {createGetLists} from '../../../redux/list.reducer';
 import {ON_SHORTLIST_COLLAPSE} from '../../../redux/shortlist.reducer';
 import {HISTORY_PUSH} from '../../../redux/middleware';
-import {createGetLists} from '../../../redux/list.reducer';
 import toColor from '../../../utils/toColor';
 import Button from '../../base/Button/Button';
 import Text from '../../base/Text';
@@ -26,10 +23,16 @@ import './dropdownList.css';
 import toReadListIcon from '../../images/toReadListIcon.png';
 import readListIcon from '../../images/readListIcon.png';
 
+import {withLists, withList} from '../../hoc/List';
 import {withFollows} from '../../hoc/Follow';
 
 const ListElement = props => {
+  if (!props.list) {
+    return null;
+  }
+
   const url = `/lister/${props.list._id}`;
+
   const renderListsCover = list => {
     return list.type === 'SYSTEM_LIST' ? (
       <img
@@ -49,9 +52,8 @@ const ListElement = props => {
       </div>
     );
   };
-  const isOwner = props.list && props.list._owner === props.userID;
+
   return (
-    //
     <div
       className={`top-bar-dropdown-list-element${
         props.modalView ? '--modal' : ''
@@ -86,7 +88,7 @@ const ListElement = props => {
           {props.list.description}
         </div>
         <div className="top-bar-dropdown-list-element--origin">
-          {props.profiles[props.list._owner] && !isOwner
+          {props.profiles[props.list._owner] && !props.isListOwner
             ? T({component: 'general', name: 'by'}) +
               ' ' +
               props.profiles[props.list._owner].name
@@ -96,6 +98,8 @@ const ListElement = props => {
     </div>
   );
 };
+
+const ListElementWithList = withList(ListElement);
 
 const UserListsContent = props => {
   return (
@@ -158,24 +162,12 @@ const UserListsContent = props => {
   );
 };
 class ListOverviewDropDown extends React.Component {
-  loadLists = () => {
-    if (!this.fetched) {
-      this.props.loadLists();
-      this.fetched = true;
-    }
-  };
-  componentDidUpdate() {
-    if (this.props.expanded) {
-      this.loadLists();
-    }
-  }
   renderLists = lists => {
     return lists.map((list, index) => (
-      <ListElement
+      <ListElementWithList
+        id={list.id || list._id}
         key={list._id}
-        list={list}
         profiles={this.props.profiles}
-        userID={this.props.userID ? this.props.userID : ''}
         index={index}
         modalView={this.props.modalView}
         closeModal={this.props.closeModal}
@@ -185,12 +177,13 @@ class ListOverviewDropDown extends React.Component {
   render() {
     const {
       hasFetched,
-      ownedSystemLists,
-      ownedCustomLists,
+      systemLists,
+      customLists,
       followedLists,
       expanded,
       modalView
     } = this.props;
+
     return (
       <React.Fragment>
         {!modalView && (
@@ -221,8 +214,8 @@ class ListOverviewDropDown extends React.Component {
           )}
           {hasFetched && (
             <React.Fragment>
-              {ownedSystemLists && this.renderLists(ownedSystemLists)}
-              {ownedCustomLists && this.renderLists(ownedCustomLists)}
+              {systemLists && this.renderLists(systemLists)}
+              {customLists && this.renderLists(customLists)}
               {followedLists && this.renderLists(followedLists)}
             </React.Fragment>
           )}
@@ -232,29 +225,29 @@ class ListOverviewDropDown extends React.Component {
   }
 }
 
-const customListSelector = createGetLists();
-const systemListsSelector = createGetLists();
 const usersSelector = createGetUsersSelector();
+const listsSelector = createGetLists();
 
 const mapStateToProps = state => {
+  const openplatformId = state.userReducer.openplatformId;
+
   return {
     expanded: state.listReducer.expanded,
     profiles: usersSelector(state),
     shortListExpanded: state.shortListReducer.expanded,
-    userID: state.userReducer.openplatformId,
-    ownedSystemLists: systemListsSelector(state, {
-      _owner: state.userReducer.openplatformId,
-      type: SYSTEM_LIST
+    openplatformId: openplatformId,
+    customLists: listsSelector(state, {
+      _owner: openplatformId,
+      type: 'CUSTOM_LIST'
     }),
-    ownedCustomLists: customListSelector(state, {
-      _owner: state.userReducer.openplatformId,
-      type: CUSTOM_LIST
+    systemLists: listsSelector(state, {
+      _owner: openplatformId,
+      type: 'SYSTEM_LIST'
     }),
     hasFetched: state.listReducer.hasFetchedOwned
   };
 };
 export const mapDispatchToProps = dispatch => ({
-  loadLists: () => dispatch({type: OWNED_LISTS_REQUEST}),
   onEditLists: () => {
     dispatch({type: HISTORY_PUSH, path: '/profile'});
     dispatch({type: ON_USERLISTS_COLLAPSE});
@@ -277,4 +270,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withFollows(ListOverviewDropDown));
+)(withLists(withFollows(ListOverviewDropDown)));

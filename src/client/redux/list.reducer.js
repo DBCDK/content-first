@@ -65,9 +65,6 @@ const listReducer = (state = defaultState, action) => {
     }
     case ADD_LIST: {
       const {list} = action;
-
-      console.log('ADD_LIST???', list._id);
-
       if (!list._id) {
         throw new Error('Cant add list when list._id is not set');
       }
@@ -76,8 +73,6 @@ const listReducer = (state = defaultState, action) => {
       });
     }
     case REMOVE_LIST: {
-      console.log('REMOVE_LIST', action);
-
       if (!action._id) {
         throw new Error("'id' is missing from action");
       }
@@ -262,9 +257,6 @@ const listReducer = (state = defaultState, action) => {
       if (!action.data) {
         throw new Error("'data' is missing from action");
       }
-
-      console.log('UPDATE_LIST_DATA action', action);
-
       if (!state.lists[action.data._id]) {
         throw new Error(`Could not find list with _id ${action.data._id}`);
       }

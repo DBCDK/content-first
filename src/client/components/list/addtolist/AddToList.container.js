@@ -25,7 +25,6 @@ export class AddToList extends React.Component {
     if (list.list.filter(item => item.book.pid === book.book.pid).length > 0) {
       this.setState({exists: true, selected: book});
     } else {
-      console.log('BOok _> ', book);
       addElement(book, list);
       this.setState({exists: false});
       if (onAdd) {
@@ -46,6 +45,7 @@ export class AddToList extends React.Component {
     if (!allowAdd || !list) {
       return null;
     }
+
     return (
       <div
         className={'addbook position-relative ' + className || ''}

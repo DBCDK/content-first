@@ -57,13 +57,8 @@ class WorkPage extends React.Component {
       return null;
     }
 
-    console.log('work', work);
-
     // get collections including ereolen
     const collection = this.props.filterCollection(work);
-
-    console.log('colloection', collection);
-
     // get reviews from litteratursiden
     const reviews = this.props.filterReviews(work);
     // sort tags by group
@@ -195,7 +190,6 @@ class WorkPage extends React.Component {
                     {work.collectionHasLoaded &&
                       this.props.hasValidCollection() &&
                       collection.map(col => {
-                        console.log('col', col);
                         if (col.count === 1) {
                           return (
                             <Link

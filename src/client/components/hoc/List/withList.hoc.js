@@ -6,7 +6,7 @@ import T from '../../base/T';
 import Link from '../../general/Link.component';
 
 import {
-  ADD_LIST,
+  LIST_LOAD_REQUEST,
   UPDATE_LIST_DATA,
   STORE_LIST,
   REMOVE_LIST,
@@ -14,12 +14,11 @@ import {
   REMOVE_LIST_ERROR,
   getListByIdSelector,
   LIST_TOGGLE_ELEMENT,
-  CUSTOM_LIST,
   ADD_ELEMENT_TO_LIST
 } from '../../../redux/list.reducer';
 
 import {deleteObject} from '../../../utils/requester';
-import {saveList, loadList, loadLists} from '../../../utils/requestLists';
+import {saveList, loadList} from '../../../utils/requestLists';
 
 const getListById = getListByIdSelector();
 
@@ -37,95 +36,6 @@ const createdToast = list => {
     />,
     {pauseOnHover: true}
   );
-};
-
-/**
- *
- * withListCreator
- *
- **/
-
-export const withListCreator = WrappedComponent => {
-  const Wrapper = class extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {id: null, owner: null};
-    }
-
-    componentDidMount() {
-      if (!this.props.id && this.props.openplatformId) {
-        this.createList();
-      }
-    }
-
-    componentDidUpdate(prevProps) {
-      if (!this.props.id) {
-        if (prevProps.openplatformId !== this.props.openplatformId) {
-          this.createList();
-        }
-      }
-    }
-
-    /**
-     * CreateList
-     **/
-    createList = async () => {
-      const {openplatformId, works, onCreateList} = this.props;
-
-      try {
-        const list = await saveList(
-          {
-            type: CUSTOM_LIST,
-            public: false,
-            title: T({component: 'list', name: 'noTitleValue'}),
-            description: '',
-            dotColor: 'petroleum',
-            // "Pre-add" works to the created list
-            list: works || [],
-            _created: Date.now()
-          },
-          openplatformId
-        );
-
-        this.setState({id: list._id});
-        // saveList(list, openplatformId);
-        onCreateList(list);
-      } catch (e) {
-        // ignored for now
-        // ....
-        return;
-      }
-    };
-
-    render() {
-      return (
-        <WrappedComponent
-          {...this.props}
-          id={this.props.id ? this.props.id : this.state.id}
-          justCreated={!!this.state.id}
-        />
-      );
-    }
-  };
-
-  const mapStateToProps = state => {
-    return {
-      openplatformId: state.userReducer.openplatformId
-    };
-  };
-
-  const mapDispatchToProps = dispatch => {
-    return {
-      onCreateList: async list => {
-        await dispatch({type: ADD_LIST, list});
-      }
-    };
-  };
-
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Wrapper);
 };
 
 /**
@@ -156,7 +66,11 @@ export const withList = WrappedComponent => {
         try {
           await loadList(id);
           onLoadList();
-        } catch (e) {}
+        } catch (e) {
+          // ignored for now
+          // ....
+          return;
+        }
       }
     };
 
@@ -290,21 +204,26 @@ export const withList = WrappedComponent => {
   };
 
   const mapStateToProps = (state, ownProps) => {
-    const list = getListById(state, {_id: ownProps.id || ownProps._id});
+    const _id = ownProps.id || ownProps._id;
+    const openplatformId = state.userReducer.openplatformId;
+    const list = getListById(state, {_id});
 
     return {
       list,
-      listLoaded: !!state.listReducer.lists[ownProps.id],
-      isListOwner:
-        (list && state.userReducer.openplatformId === list._owner) || null,
-      openplatformId: state.userReducer.openplatformId,
-      isLoggedIn: state.userReducer.isLoggedIn
+      isLoading: list && list.isLoading,
+      listLoaded: !!state.listReducer.lists[_id],
+      isListOwner: list ? openplatformId === list._owner : null,
+      openplatformId
     };
   };
 
   const mapDispatchToProps = (dispatch, ownProps) => {
+    const _id = ownProps.id || ownProps._id;
+
     return {
-      onLoadList: () => {},
+      onLoadList: () => {
+        dispatch({type: LIST_LOAD_REQUEST, _id});
+      },
       // Save list handle
       onStoreList: list => {
         dispatch({type: STORE_LIST, _id: list._id});
@@ -314,21 +233,19 @@ export const withList = WrappedComponent => {
         }
       },
       // Delete list handle
-      onDeleteList: () => dispatch({type: REMOVE_LIST, _id: ownProps.id}),
-      onDeleteListSuccess: () =>
-        dispatch({type: REMOVE_LIST_SUCCESS, _id: ownProps.id}),
-      onDeleteListError: () =>
-        dispatch({type: REMOVE_LIST_ERROR, _id: ownProps.id}),
+      onDeleteList: () => dispatch({type: REMOVE_LIST, _id}),
+      onDeleteListSuccess: () => dispatch({type: REMOVE_LIST_SUCCESS, _id}),
+      onDeleteListError: () => dispatch({type: REMOVE_LIST_ERROR, _id}),
       // Work in list handle
       onToggleWorkInList: work =>
         dispatch({
           type: LIST_TOGGLE_ELEMENT,
           element: work,
-          _id: ownProps.id
+          _id
         }),
       onUpdateListData: data => dispatch({type: UPDATE_LIST_DATA, data}),
       onAddElementToList: work =>
-        dispatch({type: ADD_ELEMENT_TO_LIST, element: work, _id: ownProps.id})
+        dispatch({type: ADD_ELEMENT_TO_LIST, element: work, _id})
     };
   };
 

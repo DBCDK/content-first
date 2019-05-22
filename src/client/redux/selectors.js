@@ -44,6 +44,7 @@ export const createGetFollowedLists = () =>
         .filter(list => list && !list.error && list._type)
         // only show lists owned by others
         .filter(list => list._owner !== openplatformId);
+
       return result;
     }
   );
