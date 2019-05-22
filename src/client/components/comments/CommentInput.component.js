@@ -69,6 +69,7 @@ export default class CommentInput extends React.Component {
                 position: 'absolute',
                 width: '235px',
                 height: '40px',
+                cursor: 'text',
                 backgroundColor: 'transparent'
               }}
               onClick={() => {

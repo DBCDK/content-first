@@ -62,6 +62,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
           style={
             Object {
               "backgroundColor": "transparent",
+              "cursor": "text",
               "height": "40px",
               "position": "absolute",
               "width": "235px",
@@ -163,6 +164,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
           style={
             Object {
               "backgroundColor": "transparent",
+              "cursor": "text",
               "height": "40px",
               "position": "absolute",
               "width": "235px",
@@ -386,6 +388,7 @@ exports[`CommentContainer Component renders all comments 1`] = `
               style={
                 Object {
                   "backgroundColor": "transparent",
+                  "cursor": "text",
                   "height": "40px",
                   "position": "absolute",
                   "width": "235px",
@@ -653,6 +656,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
           style={
             Object {
               "backgroundColor": "transparent",
+              "cursor": "text",
               "height": "40px",
               "position": "absolute",
               "width": "235px",
@@ -849,6 +853,7 @@ exports[`CommentContainer Component renders error 1`] = `
               style={
                 Object {
                   "backgroundColor": "transparent",
+                  "cursor": "text",
                   "height": "40px",
                   "position": "absolute",
                   "width": "235px",
@@ -1111,6 +1116,7 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
               style={
                 Object {
                   "backgroundColor": "transparent",
+                  "cursor": "text",
                   "height": "40px",
                   "position": "absolute",
                   "width": "235px",
@@ -1389,6 +1395,7 @@ exports[`CommentContainer Toggle all comments 1`] = `
               style={
                 Object {
                   "backgroundColor": "transparent",
+                  "cursor": "text",
                   "height": "40px",
                   "position": "absolute",
                   "width": "235px",
@@ -1680,6 +1687,7 @@ exports[`CommentContainer Toggle all comments 2`] = `
               style={
                 Object {
                   "backgroundColor": "transparent",
+                  "cursor": "text",
                   "height": "40px",
                   "position": "absolute",
                   "width": "235px",
