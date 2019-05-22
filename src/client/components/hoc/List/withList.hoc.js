@@ -52,7 +52,7 @@ export const withList = WrappedComponent => {
 
     componentWillUnmount() {
       if (this.props.justCreated && !this.stored) {
-        this.props.deleteList();
+        this.deleteList();
       }
     }
 
@@ -124,9 +124,9 @@ export const withList = WrappedComponent => {
      **/
     addElementsToList = works => {
       // Props
-      const {list, addElementToList} = this.props;
+      const {list} = this.props;
       works.forEach(work =>
-        addElementToList(
+        this.addElementToList(
           {book: work.book, description: work.origin || '...'},
           list._id
         )

@@ -3,29 +3,27 @@ import {connect} from 'react-redux';
 
 import T from '../../base/T';
 
+import {withList} from '../../hoc/List';
+
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
 import ContextMenu, {ContextMenuAction} from '../../base/ContextMenu';
-import {
-  removeList,
-  getListByIdSelector,
-  CUSTOM_LIST
-} from '../../../redux/list.reducer';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
-const getListById = getListByIdSelector();
 
 const ListContextMenu = ({
+  list,
   editListInfo,
   reorderList,
-  isOwner,
-  isCustomList,
+  isListOwner,
+  isCustomList = list.type === 'CUSTOM_LIST',
   title,
   confirmDelete,
   className,
   style
 }) => {
-  if (!isOwner || !isCustomList) {
+  if (!isListOwner || !isCustomList) {
     return null;
   }
+
   return (
     <ContextMenu
       title={title}
@@ -52,57 +50,51 @@ const ListContextMenu = ({
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const list = getListById(state, {_id: ownProps._id});
+const mapStateToProps = () => ({});
+export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    isOwner: ownProps._id && list._owner === state.userReducer.openplatformId,
-    isCustomList: list.type === CUSTOM_LIST
-  };
-};
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  editListInfo: () => {
-    dispatch({
-      type: OPEN_MODAL,
-      modal: 'list',
-      context: {id: ownProps._id}
-    });
-  },
-  reorderList: () => {
-    dispatch({
-      type: OPEN_MODAL,
-      modal: 'reorderList',
-      context: {_id: ownProps._id}
-    });
-  },
-  confirmDelete: () => {
-    dispatch({
-      type: 'OPEN_MODAL',
-      modal: 'confirm',
-      context: {
-        title: <T component="list" name="deleteListModalTitle" />,
-        reason: <T component="list" name="deleteListModalTitle" />,
-        confirmText: <T component="list" name="deleteList" />,
-        onConfirm: () => {
-          dispatch(
-            removeList(ownProps._id),
+    editListInfo: () => {
+      dispatch({
+        type: OPEN_MODAL,
+        modal: 'list',
+        context: {id: ownProps._id}
+      });
+    },
+    reorderList: () => {
+      dispatch({
+        type: OPEN_MODAL,
+        modal: 'reorderList',
+        context: {_id: ownProps._id}
+      });
+    },
+    confirmDelete: () => {
+      dispatch({
+        type: 'OPEN_MODAL',
+        modal: 'confirm',
+        context: {
+          title: <T component="list" name="deleteListModalTitle" />,
+          reason: <T component="list" name="deleteListModalTitle" />,
+          confirmText: <T component="list" name="deleteList" />,
+          onConfirm: () => {
+            ownProps.deleteList();
             dispatch({
               type: 'CLOSE_MODAL',
               modal: 'confirm'
-            })
-          );
-          dispatch({type: HISTORY_REPLACE, path: '/'});
-        },
-        onCancel: () => {
-          dispatch({
-            type: 'CLOSE_MODAL',
-            modal: 'confirm'
-          });
+            });
+            dispatch({type: HISTORY_REPLACE, path: '/'});
+          },
+          onCancel: () => {
+            dispatch({
+              type: 'CLOSE_MODAL',
+              modal: 'confirm'
+            });
+          }
         }
-      }
-    });
-  }
-});
+      });
+    }
+  };
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListContextMenu);
+)(withList(ListContextMenu));
