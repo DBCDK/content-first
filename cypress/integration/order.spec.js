@@ -1,5 +1,6 @@
 describe('Order ', function() {
   beforeEach(function() {
+    cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
     cy.createUser();

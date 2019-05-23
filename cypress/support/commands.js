@@ -78,3 +78,11 @@ Cypress.Commands.add('addElementsToShortlist', count => {
     });
   });
 });
+
+/**
+ * Initializes object storage
+ */
+Cypress.Commands.add('initStorage', userName => {
+  cy.request('http://localhost:3002/v1/test/wipeStorage');
+  cy.request('http://localhost:3002/v1/test/initStorage');
+});

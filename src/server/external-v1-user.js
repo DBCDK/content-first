@@ -25,7 +25,6 @@ router
     requireLoggedIn,
     asyncMiddleware(async (req, res, next) => {
       const location = req.baseUrl;
-
       try {
         const userData = await getUserData(req.user.openplatformId, req.user);
 
