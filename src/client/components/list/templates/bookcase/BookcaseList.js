@@ -162,6 +162,7 @@ export class BookcaseList extends React.Component {
               info={this.getListInfoPositions()}
               infoRef={info => (this.refs = {...this.refs, info})}
               forceUpdate={() => this.forceUpdate()}
+              commentsListRef={this.refs.commentsList}
             />
             <div className="position-relative mt-4 mt-md-5">
               {list.list.map(element => {
@@ -193,7 +194,12 @@ export class BookcaseList extends React.Component {
             )}
 
             {list.social && (
-              <div className="p-3 p-md-0">
+              <div
+                className="p-3 p-md-0"
+                ref={commentsList => {
+                  this.refs = {...this.refs, commentsList};
+                }}
+              >
                 {(list.open || isListOwner) && (
                   <div className="list-divider petroleum mt-4 mb-4" />
                 )}

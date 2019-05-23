@@ -91,6 +91,7 @@ export class SimpleList extends React.Component {
               onAddBook={this.onAddBook}
               onEdit={this.onEdit}
               titleMissing={this.state.titleMissing}
+              commentsListRef={this.refs.commentsList}
             />
             <div className="position-relative mt-4 mt-md-5">
               {list.list.map(element => {
@@ -131,7 +132,12 @@ export class SimpleList extends React.Component {
             )}
 
             {list.social && (
-              <div className="p-3 p-md-0">
+              <div
+                className="p-3 p-md-0"
+                ref={commentsList => {
+                  this.refs = {...this.refs, commentsList};
+                }}
+              >
                 {(list.open || isListOwner) && (
                   <div className="list-divider petroleum mt-4 mb-4" />
                 )}

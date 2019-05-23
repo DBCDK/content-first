@@ -9,7 +9,7 @@ import Share from '../../../base/Share';
 import Text from '../../../base/Text';
 import FollowButton from '../../button/FollowButton';
 
-export const ListInfo = ({list, isListOwner, profile}) => {
+export const ListInfo = ({list, isListOwner, profile, commentsListRef}) => {
   return (
     <div className="lys-graa position-relative">
       {list.image && (
@@ -51,7 +51,12 @@ export const ListInfo = ({list, isListOwner, profile}) => {
               ) : (
                 <div />
               )}
-              {list.social && <CommentCounter id={list._id} />}
+              {list.social && (
+                <CommentCounter
+                  id={list._id}
+                  commentsListRef={commentsListRef}
+                />
+              )}
             </div>
           </React.Fragment>
         )}
