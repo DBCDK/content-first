@@ -84,6 +84,7 @@ router
     asyncMiddleware(async (req, res, next) => {
       const openplatformId = req.params.id;
       const location = `/v1/user/${encodeURIComponent(openplatformId)}`;
+
       try {
         const userData = await getUserData(openplatformId, req.user);
 

@@ -9,13 +9,15 @@ let storageUrl;
 let typeId;
 let validated = false;
 
-// TODO should be located elsewhere
-const fetchToken = async () => {
-  return (await request
-    .post(config.auth.url + '/oauth/token')
-    .auth(config.auth.id, config.auth.secret)
-    .send('grant_type=password&username=@&password=@')).body.access_token;
-};
+const fetchAnonymousToken =
+  config.server.environment === 'ci'
+    ? () => 'anon_token'
+    : async () => {
+        return (await request
+          .post(config.auth.url + '/oauth/token')
+          .auth(config.auth.id, config.auth.secret)
+          .send('grant_type=password&username=@&password=@')).body.access_token;
+      };
 
 function setupObjectStore(storageOptions) {
   if (!storageOptions.typeId) {
@@ -37,7 +39,7 @@ async function validateObjectStore() {
     throw new Error('Object store has not been setup');
   }
   try {
-    const access_token = await fetchToken();
+    const access_token = await fetchAnonymousToken();
     const data = (await request
       .post(storageUrl)
       .send({access_token, get: {_id: typeId}})).body.data;
@@ -105,7 +107,7 @@ const fromStorageObject = storageObject => {
 
 async function get(id, user = {}) {
   await validateObjectStore();
-  let access_token = user.openplatformToken || (await fetchToken());
+  let access_token = user.openplatformToken || (await fetchAnonymousToken());
   const requestObject = {access_token, get: {_id: id}};
 
   try {
@@ -137,7 +139,7 @@ async function put(object, user) {
 
 async function find(query, user = {}) {
   await validateObjectStore();
-  let access_token = user.openplatformToken || (await fetchToken());
+  let access_token = user.openplatformToken || (await fetchAnonymousToken());
   const uniqueId = user.openplatformId || '';
   const requestObject = {access_token, find: {_type: typeId}};
   if (typeof query.type !== 'undefined') {

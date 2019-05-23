@@ -10,6 +10,7 @@ const constants = require('server/constants')();
 const cookieTable = constants.cookies.table;
 const uuidv4 = require('uuid/v4');
 const objectStore = require('server/objectStore');
+const request = require('superagent');
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 
 router
@@ -191,6 +192,74 @@ router.route('/setStorageTypeId/:id').get(
       typeId: req.params.id,
       url: config.storage.url
     });
+    res.status(200).send('OK');
+  })
+);
+
+let typeId;
+const admin = {
+  id: 'test_admin_id',
+  token: 'test_admin_token'
+};
+const user1 = {
+  id: '123openplatformId456',
+  token: '123openplatformToken456'
+};
+const user2 = {
+  id: '123openplatformId2',
+  token: '123openplatformToken2'
+};
+
+router.route('/initStorage').get(
+  asyncMiddleware(async (req, res) => {
+    await request
+      .put(`http://localhost:3333/configuration?token=${admin.token}`)
+      .send({storage: {user: admin.id}});
+    await request
+      .put(`http://localhost:3333/configuration?token=anon_token`)
+      .send({storage: null, user: {uniqueId: null}});
+    await request
+      .put(`http://localhost:3333/configuration?token=${user1.token}`)
+      .send({user: {uniqueId: user1.id}, storage: null});
+    await request
+      .put(`http://localhost:3333/configuration?token=${user2.token}`)
+      .send({user: {uniqueId: user2.id}, storage: null});
+
+    typeId = (await request.post(config.storage.url).send({
+      access_token: admin.token,
+      put: {
+        _type: 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102',
+        name: 'content-first-objects',
+        description: 'Type used during integration test',
+        type: 'json',
+        permissions: {read: 'if object.public'},
+        indexes: [
+          {value: '_id', keys: ['cf_key']},
+          {value: '_id', keys: ['cf_type']},
+          {value: '_id', keys: ['cf_key', 'cf_type']},
+          {value: '_id', keys: ['_owner'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_type'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_type', 'public']},
+          {value: '_id', keys: ['_owner', 'cf_key'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key'], private: true},
+          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key', 'public']}
+        ]
+      }
+    })).body.data._id;
+    await objectStore.setupObjectStore({
+      typeId,
+      url: config.storage.url
+    });
+    res.status(200).send(typeId);
+  })
+);
+router.route('/wipeStorage').get(
+  asyncMiddleware(async (req, res) => {
+    await superagent.post(storageUrl).send({
+      access_token: admin.token,
+      delete: {_id: typeId}
+    });
+
     res.status(200).send('OK');
   })
 );
