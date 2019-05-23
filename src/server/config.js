@@ -84,6 +84,7 @@ exports.searcher = {
 };
 
 exports.server = {
+  isProduction: common.environment === 'production',
   environment: common.environment,
   logServiceErrors: parseInt(process.env.LOG_SERVICE_ERRORS || 1, 10),
   port: tcp.normalizePort(process.env.PORT) || 3001,

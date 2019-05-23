@@ -9,18 +9,17 @@ let storageUrl;
 let typeId;
 let validated = false;
 
-const fetchAnonymousToken =
-  config.server.environment === 'ci'
-    ? () => 'anon_token'
-    : async () => {
-        return (await request
-          .post(config.auth.url + '/oauth/token')
-          .auth(config.auth.id, config.auth.secret)
-          .send('grant_type=password&username=@&password=@')).body.access_token;
-      };
+const fetchAnonymousToken = !config.server.isProduction
+  ? () => 'anon_token'
+  : async () => {
+      return (await request
+        .post(config.auth.url + '/oauth/token')
+        .auth(config.auth.id, config.auth.secret)
+        .send('grant_type=password&username=@&password=@')).body.access_token;
+    };
 
 function setupObjectStore(storageOptions) {
-  if (!storageOptions.typeId) {
+  if (config.server.isProduction && !storageOptions.typeId) {
     throw new Error('storageOptions.typeId is not valid');
   }
   if (!storageOptions.url) {
