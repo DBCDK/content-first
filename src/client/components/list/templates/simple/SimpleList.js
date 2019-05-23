@@ -10,7 +10,6 @@ import Comments from '../../../comments/Comment.container';
 import AddToList from '../../addtolist/AddToList.container';
 import ListElement from '../../element/ListElement';
 import ListInfo from './ListInfo';
-import StickyConfirmPanel from '../../button/StickyConfirmPanel';
 import ListContextMenu from '../../menu/ListContextMenu';
 
 import {timestampToLongDate} from '../../../../utils/dateTimeFormat';
@@ -40,7 +39,7 @@ export class SimpleList extends React.Component {
   };
 
   render() {
-    const {_id, list, isListOwner} = this.props;
+    const {_id, list, deleteList, isListOwner} = this.props;
     const {added} = this.state;
     return (
       <React.Fragment>
@@ -66,6 +65,7 @@ export class SimpleList extends React.Component {
               </Text>
             </div>
             <ListContextMenu
+              deleteList={deleteList}
               className="mt-3"
               _id={list._id}
               style={{position: 'absolute', right: 0, top: 0, color: 'white'}}
@@ -76,11 +76,6 @@ export class SimpleList extends React.Component {
             {` ${timestampToLongDate(list._created)}`}
           </Text>
         </Banner>
-
-        <StickyConfirmPanel
-          _id={_id}
-          onTitleMissing={bool => this.setState({titleMissing: bool})}
-        />
 
         <div className="d-flex justify-content-center mt-0">
           <div

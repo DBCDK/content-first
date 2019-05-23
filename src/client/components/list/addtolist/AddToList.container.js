@@ -45,6 +45,7 @@ export class AddToList extends React.Component {
     if (!allowAdd || !list) {
       return null;
     }
+
     return (
       <div
         className={'addbook position-relative ' + className || ''}

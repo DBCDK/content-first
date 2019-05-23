@@ -6,7 +6,7 @@ const Radio = ({
   value = '',
   group,
   onChange,
-  checked,
+  checked = false,
   children
 }) => {
   return (

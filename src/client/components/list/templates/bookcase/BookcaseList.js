@@ -107,7 +107,7 @@ export class BookcaseList extends React.Component {
   };
 
   render() {
-    const {_id, list, isListOwner} = this.props;
+    const {_id, list, deleteList, isListOwner} = this.props;
     const {added} = this.state;
     return (
       <React.Fragment>
@@ -133,6 +133,7 @@ export class BookcaseList extends React.Component {
               </Text>
             </div>
             <ListContextMenu
+              deleteList={deleteList}
               className="mt-3"
               _id={list._id}
               style={{position: 'absolute', right: 0, top: 0, color: 'white'}}

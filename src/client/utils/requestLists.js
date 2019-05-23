@@ -138,7 +138,7 @@ async function enrichList({list}) {
   });
 }
 
-export const loadList = async (id, store) => {
+export const loadList = async id => {
   if (!id) {
     throw Error('no id given');
   }
@@ -146,12 +146,12 @@ export const loadList = async (id, store) => {
   if (!list) {
     throw Error('list is undefined');
   }
-  await enrichList({list, store});
+  await enrichList({list});
   return list;
 };
 
 // done
-export const loadLists = async ({openplatformId, store}) => {
+export const loadLists = async ({openplatformId}) => {
   if (!openplatformId) {
     return [];
   }
@@ -163,7 +163,7 @@ export const loadLists = async ({openplatformId, store}) => {
 
   let result = [];
   for (const list of lists) {
-    await enrichList({list, store});
+    await enrichList({list});
     result.push(list);
   }
 

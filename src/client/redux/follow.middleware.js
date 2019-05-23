@@ -32,7 +32,7 @@ export const followMiddleware = store => next => async action => {
     }
 
     case FOLLOW_LOAD_REQUEST: {
-      const openplatformId = store.getState().userReducer.openplatformId;
+      const openplatformId = store.getState();
       return (async () => {
         next(action);
         const follows = (await fetchObjects(null, 'follows', openplatformId))

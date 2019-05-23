@@ -29,6 +29,7 @@ export default class CommentInput extends React.Component {
       submitIcon = 'send',
       editIcon = 'check',
       hideProfile,
+      user,
       editing
     } = this.props;
 
@@ -40,18 +41,14 @@ export default class CommentInput extends React.Component {
         }}
       >
         {!hideProfile && (
-          <ProfileImage
-            user={this.props.user}
-            style={{marginRight: '15px'}}
-            size="40"
-          />
+          <ProfileImage user={user} style={{marginRight: '15px'}} size="40" />
         )}
         <div
           className={`d-flex flex-wrap align-items-center w-100 ${
             this.props.error ? 'has-error' : ''
           }`}
           onFocus={() => {
-            if (!this.props.user.openplatformId) {
+            if (!user.openplatformId) {
               if (this.props.requireLogin) {
                 this.props.requireLogin();
               }
