@@ -7,7 +7,9 @@ const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const objectStore = require('./objectStore');
 const {getUser, setupObjectStore} = objectStore;
 
-setupObjectStore(config.storage);
+(async () => {
+  await setupObjectStore(config.storage);
+})();
 
 function send(res, data) {
   return res.status(data.errors ? data.errors[0].status : 200).json(data);

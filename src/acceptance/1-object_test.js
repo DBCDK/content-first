@@ -7,38 +7,24 @@ const request = require('supertest');
 const _ = require('lodash');
 const superagent = require('superagent');
 const config = require('server/config');
-
-// TODO should be located elsewhere
-const fetchAuthenticatedToken = async (username, password) => {
-  return (await superagent
-    .post(config.auth.url + '/oauth/token')
-    .auth(config.auth.id, config.auth.secret)
-    .send(`grant_type=password&username=${username}&password=${password}`)).body
-    .access_token;
-};
-
 const storageUrl = config.storage.url;
 
 describe('Endpoint /v1/object', () => {
   const webapp = request(mock.external);
-  const webappInternal = request(mock.internal);
+  const internalApp = request(mock.internal);
   let cookie1, cookie2, objects;
-  const id1 = config.test.user1.uniqueId;
-  const id2 = config.test.user2.uniqueId;
+  const user1 = {
+    id: '123openplatformId456',
+    token: '123openplatformToken456'
+  };
+  const user2 = {
+    id: '123openplatformId2',
+    token: '123openplatformToken2'
+  };
   // _ids of test objects in database
   let objectResults;
 
-  // Special content-first type
-  let cfType;
-
-  let admin_access_token;
-
   before(async () => {
-    admin_access_token = await fetchAuthenticatedToken(
-      config.test.user1.username,
-      config.test.user1.pincode
-    );
-
     cookie1 = mock.createLoginCookie(
       'valid-login-token-for-user-seeded-on-test-start'
     );
@@ -58,30 +44,7 @@ describe('Endpoint /v1/object', () => {
 
   beforeEach(async () => {
     await mock.resetting();
-    const data = (await superagent.post(storageUrl).send({
-      access_token: admin_access_token,
-      put: {
-        _type: 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102',
-        name: 'content-first-objects',
-        description: 'Type used during integration test',
-        type: 'json',
-        permissions: {read: 'if object.public'},
-        indexes: [
-          {value: '_id', keys: ['cf_key']},
-          {value: '_id', keys: ['cf_type']},
-          {value: '_id', keys: ['cf_key', 'cf_type']},
-          {value: '_id', keys: ['_owner'], private: true},
-          {value: '_id', keys: ['_owner', 'cf_type'], private: true},
-          {value: '_id', keys: ['_owner', 'cf_type', 'public']},
-          {value: '_id', keys: ['_owner', 'cf_key'], private: true},
-          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key'], private: true},
-          {value: '_id', keys: ['_owner', 'cf_type', 'cf_key', 'public']}
-        ]
-      }
-    })).body.data;
-    cfType = data._id;
-    await webappInternal.get(`/v1/test/setStorageTypeId/${cfType}`);
-
+    await internalApp.get('/v1/test/initStorage');
     objectResults = [];
     for (const [cookie, obj] of objects) {
       objectResults.push({
@@ -95,11 +58,7 @@ describe('Endpoint /v1/object', () => {
   });
 
   afterEach(async () => {
-    // delete content-first type from storage, which cleans up everything
-    await superagent.post(storageUrl).send({
-      access_token: admin_access_token,
-      delete: {_id: cfType}
-    });
+    await internalApp.get('/v1/test/wipeStorage');
   });
 
   describe('Public endpoint', () => {
@@ -114,7 +73,7 @@ describe('Endpoint /v1/object', () => {
           text: 'object0',
           _id: id,
           _key: '',
-          _owner: id1,
+          _owner: user1.id,
           _public: false,
           _type: 'test'
         });
@@ -154,21 +113,21 @@ describe('Endpoint /v1/object', () => {
       });
       it('find objects all own objects of given type', async () => {
         const result = (await webapp
-          .get(`/v1/object/find?type=test&owner=${id2}`)
+          .get(`/v1/object/find?type=test&owner=${user2.id}`)
           .set('cookie', cookie2)).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(2);
       });
       it('find all public objects of given type+user+key', async () => {
         const result = (await webapp
-          .get(`/v1/object/find?type=test&owner=${id2}&key=hi`)
+          .get(`/v1/object/find?type=test&owner=${user2.id}&key=hi`)
           .set('cookie', cookie1)).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(1);
       });
       it('find objects all public objects of given type+owner', async () => {
         const result = (await webapp
-          .get(`/v1/object/find?type=test&owner=${id1}`)
+          .get(`/v1/object/find?type=test&owner=${user1.id}`)
           .set('cookie', cookie2)).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(3);
@@ -180,6 +139,13 @@ describe('Endpoint /v1/object', () => {
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(3);
       });
+      // it('find objects with limit', async () => {
+      //   const result = (await webapp
+      //     .get(`/v1/object/find?type=test&key=hi&limit=1`)
+      //     .set('cookie', cookie2)).body;
+      //   expect(result.errors).to.be.an('undefined');
+      //   expect(result.data.length).to.equal(1);
+      // });
       it('find no objects', async () => {
         const result = (await webapp
           .get(`/v1/object/find?type=test&key=nonexistant`)
@@ -275,7 +241,7 @@ describe('Endpoint /v1/object', () => {
           hi: 'world',
           _id: id,
           _key: '123',
-          _owner: id1,
+          _owner: user1.id,
           _public: true,
           _type: 'test'
         });
