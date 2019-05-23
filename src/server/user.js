@@ -14,6 +14,7 @@ const _ = require('lodash');
 const objectStore = require('server/objectStore');
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const uuidv4 = require('uuid/v4');
+const request = require('superagent');
 
 module.exports = {
   putUserData,
@@ -21,7 +22,7 @@ module.exports = {
   getUser: objectStore.getUser,
   removingLoginToken,
   deleteUser,
-  createCookie,
+  createCookie: config.server.isProduction ? createCookie : createCookieDev,
   fetchCookie,
   requireLoggedIn
 };
@@ -37,6 +38,18 @@ async function userExists(openplatformToken, id) {
       {openplatformToken}
     )).data.length !== 0
   );
+}
+
+/*
+ * This intercepts createCookie calls when not in production
+ * in order to support using minismaug with real user logins
+ * It creates a token->configuration mapping in minismaug
+ */
+async function createCookieDev(legacyId, uniqueId, openplatformToken, user) {
+  await request
+    .put(`http://localhost:3333/configuration?token=${openplatformToken}`)
+    .send({user: {uniqueId}, storage: null});
+  return await createCookie(legacyId, uniqueId, openplatformToken, user);
 }
 
 async function createCookie(legacyId, uniqueId, openplatformToken, user) {
