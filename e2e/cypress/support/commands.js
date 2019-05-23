@@ -96,3 +96,11 @@ Cypress.Commands.add('visitWithOpenPlatformMocks', (url, mocks) => {
     }
   });
 });
+
+/**
+ * Initializes object storage
+ */
+Cypress.Commands.add('initStorage', userName => {
+  cy.request('/v1/test/wipeStorage');
+  cy.request('/v1/test/initStorage');
+});

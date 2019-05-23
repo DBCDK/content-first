@@ -157,6 +157,9 @@ async function createUser(req, doCreateUser) {
     expires_epoch_s: Math.ceil((Date.now() + ms_OneMonth) / 1000)
   });
   req.cookies['login-token'] = loginToken;
+  await request
+    .put(`http://localhost:3333/configuration?token=${id}`)
+    .send({user: {uniqueId: id}, storage: null});
   if (
     (await objectStore.find({
       type: 'USER_PROFILE',
@@ -176,25 +179,12 @@ async function createUser(req, doCreateUser) {
         acceptedAge: doCreateUser ? true : false,
         acceptedTerms: doCreateUser ? true : false
       },
-      {openplatformId: id}
+      {openplatformId: id, openplatformToken: id}
     );
   }
 
   return loginToken;
 }
-
-/**
- * @param {String} id id of service-provider storage type
- */
-router.route('/setStorageTypeId/:id').get(
-  asyncMiddleware(async (req, res) => {
-    await objectStore.setupObjectStore({
-      typeId: req.params.id,
-      url: config.storage.url
-    });
-    res.status(200).send('OK');
-  })
-);
 
 let typeId;
 const admin = {
@@ -255,10 +245,16 @@ router.route('/initStorage').get(
 );
 router.route('/wipeStorage').get(
   asyncMiddleware(async (req, res) => {
-    await superagent.post(storageUrl).send({
-      access_token: admin.token,
-      delete: {_id: typeId}
-    });
+    try {
+      if (typeId) {
+        await superagent.post(storageUrl).send({
+          access_token: admin.token,
+          delete: {_id: typeId}
+        });
+      }
+    } catch (e) {
+      //swallow
+    }
 
     res.status(200).send('OK');
   })
