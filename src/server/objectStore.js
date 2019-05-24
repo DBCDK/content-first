@@ -146,10 +146,6 @@ async function find(query, user = {}) {
   }
   if (typeof query.owner !== 'undefined') {
     requestObject.find._owner = query.owner;
-    if (uniqueId !== query.owner) {
-      // this is not the owner, look for public objects
-      requestObject.find.public = true;
-    }
   }
   if (typeof query.key !== 'undefined') {
     requestObject.find.cf_key = query.key;
