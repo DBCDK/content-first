@@ -252,7 +252,7 @@ router.route('/wipeStorage').get(
   asyncMiddleware(async (req, res) => {
     try {
       if (typeId) {
-        await superagent.post(storageUrl).send({
+        await request.post(config.storage.url).send({
           access_token: admin.token,
           delete: {_id: typeId}
         });

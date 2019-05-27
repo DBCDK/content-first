@@ -164,6 +164,35 @@ async function find(query, user = {}) {
   }
 }
 
+/*
+ * Delete all content-first objects belonging to a user
+ * This is not optimized for speed
+ */
+async function deleteUser({openplatformToken, openplatformId}) {
+  try {
+    // all object ids owned by user
+    const ids = (await request.post(storageUrl).send({
+      access_token: openplatformToken,
+      find: {_type: '*', _owner: openplatformId}
+    })).body.data;
+
+    // Delete only those that are content-first objects
+    for (let i = 0; i < ids.length; i++) {
+      const data = (await request
+        .post(storageUrl)
+        .send({access_token: openplatformToken, get: {_id: ids[i]}})).body.data;
+      if (data._type === typeId) {
+        await request.post(storageUrl).send({
+          access_token: openplatformToken,
+          delete: {_id: data._id}
+        });
+      }
+    }
+  } catch (e) {
+    return parseException(e);
+  }
+}
+
 async function del(id, user) {
   assert(user);
   assert(user.openplatformToken);
@@ -214,5 +243,6 @@ module.exports = {
   put,
   find,
   del,
+  deleteUser,
   setupObjectStore
 };
