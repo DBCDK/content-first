@@ -19,7 +19,7 @@
     "chai": "^4.0.2",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^2.13.1",
-    "cypress": "^3.1.1",
+    "cypress": "^3.3.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.0",
@@ -96,6 +96,9 @@
     "xml2js": "^0.4.19"
   },
   "proxy": {
+    "/v1/test": {
+      "target": "http://localhost:3002/"
+    },
     "/v1": {
       "target": "http://localhost:3001/"
     }

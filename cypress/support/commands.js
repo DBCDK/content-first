@@ -45,13 +45,13 @@ Cypress.Commands.add('clearClientStorage', () => {
  */
 Cypress.Commands.add('createUser', userName => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
-  cy.visit('http://localhost:3002/v1/test/create/' + userName);
+  cy.visit('http://localhost:3000/v1/test/create/' + userName);
 });
 /**
  * logs in without creating a user
  */
 Cypress.Commands.add('login', userName => {
-  cy.request('http://localhost:3002/v1/test/login/' + userName);
+  cy.visit('http://localhost:3000/v1/test/login/' + userName);
 });
 
 Cypress.Commands.add('cprlogin', (userName, overBool) => {

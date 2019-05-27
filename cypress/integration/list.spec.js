@@ -1,9 +1,9 @@
-describe('List test', function() {
+describe.only('List test', function() {
   beforeEach(function() {
     cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
-    cy.createUser();
+    cy.createUser('listowner');
     cy.wait(1000);
   });
 
@@ -14,86 +14,157 @@ describe('List test', function() {
     cy.get('[data-cy=topbar-lists]').click();
     cy.get('[data-cy=lists-dropdown-new-list]').click();
 
-    cy.get('[data-cy=listinfo-title-input]').type(listName);
-    cy.get('[data-cy=listinfo-description-input]').type(listDescription);
-    cy.get('[data-cy=stickyPanel-submit]').click();
+    cy.get('[data-cy=listinfo-title-input]')
+      .clear()
+      .type(listName);
+    cy.get('[data-cy=listinfo-description-input]')
+      .clear()
+      .type(listDescription);
+    cy.get('[data-cy=modal-done-btn]').click();
 
-    cy.get('[data-cy=listinfo-title]').should('have.text', listName);
-    cy.get('[data-cy=listinfo-description]').should(
-      'have.text',
-      listDescription
-    );
+    cy.get('[data-cy=watch-new-list-link]').click();
+    cy.reload();
+
+    cy.get('[data-cy=banner-title]').contains(listName);
+    cy.get('[data-cy=listinfo-description]').contains(listDescription);
+  });
+
+  it('Can be viewed only by owner when it is private', function() {
+    cy.request('POST', 'http://localhost:3000/v1/object', {
+      type: 'CUSTOM_LIST',
+      title: 'Privat liste',
+      description: 'masser af de gode',
+      list: [],
+      _type: 'list',
+      _public: false
+    }).then(response => {
+      const id = response.body.data._id;
+      cy.visit(`/lister/${id}`);
+      cy.get('[data-cy=banner-title]').contains('Privat liste');
+      cy.get('[data-cy=context-menu-list]').should('exist');
+      cy.createUser('otheruser');
+      cy.get('[data-cy=list-fetch-error]').contains('Listen kunne ikke hentes');
+    });
+  });
+
+  it('Can be viewed by others when it is public', function() {
+    cy.request('POST', 'http://localhost:3000/v1/object', {
+      type: 'CUSTOM_LIST',
+      title: 'Offentlig liste',
+      description: 'masser af de gode',
+      list: [],
+      _type: 'list',
+      _public: true
+    }).then(response => {
+      const id = response.body.data._id;
+      cy.visit(`/lister/${id}`);
+      cy.get('[data-cy=context-menu-list]').should('exist');
+      cy.get('[data-cy=banner-title]').contains('Offentlig liste');
+      cy.get('[data-cy=listview-add-element-input]').should('exist');
+
+      cy.createUser('otheruser');
+      cy.get('[data-cy=banner-title]').contains('Offentlig liste');
+      cy.get('[data-cy=context-menu-list]').should('not.exist');
+      cy.get('[data-cy=listview-add-element-input]').should('not.exist');
+    });
+  });
+
+  it('Can add element to open list, when not owner', function() {
+    cy.request('POST', 'http://localhost:3000/v1/object', {
+      type: 'CUSTOM_LIST',
+      title: 'Offentlig liste',
+      description: 'masser af de gode',
+      list: [],
+      open: true,
+      _type: 'list',
+      _public: true
+    }).then(response => {
+      const id = response.body.data._id;
+      cy.visit(`/lister/${id}`);
+      cy.createUser('otheruser');
+      cy.get('[data-cy=listview-add-element-input]').type('a');
+      cy.get('.suggestion-row')
+        .first()
+        .click();
+      cy.get('[data-cy=element-context-menu]').click();
+      cy.get('[data-cy=context-action-remove-element]').should('exist');
+      cy.get('[data-cy=context-action-edit-element]').should('exist');
+
+      cy.login('listowner');
+      cy.get('[data-cy=list-element]');
+      cy.get('[data-cy=element-context-menu]').click();
+      cy.get('[data-cy=context-action-remove-element]').should('exist');
+      cy.get('[data-cy=context-action-edit-element]').should('not.exist');
+    });
   });
 
   it('Can move elements from shortlist to an other list', function() {
-    cy.scrollTo(0, 700);
-
+    cy.visit('/huskeliste');
     cy.addElementsToShortlist(3);
-    cy.get('[data-cy=topbar-lists]').click(); //TODO: remove and fix issue with system list not appearing in modal
-    cy.get('[data-cy=topbar-lists]').click(); //TODO: remove and fix issue with system list not appearing in modal
-    cy.get('[data-cy=topbar-shortlist]').click();
-    cy.get('[data-cy=shortlist-dropdown-visit-shortlist]').click();
-    cy.get('[data-cy=listpage-add-elemts-to-list]').click();
-    cy.get('[data-cy=add-to-list-modal-system-lists')
+    cy.get('[data-cy=add-all-to-list]').click();
+    cy.get('[data-cy=add-all-to-list] [data-cy=add-to-list-button]')
       .first()
       .click();
-    cy.get('[data-cy=modal-done-btn').click();
-
     cy.contains('3 bøger tilføjet til listen');
   });
 
   it('Can change element order in a list', function() {
-    const listName = 'new list' + Math.floor(Math.random() * 1000);
-    const listDescription = 'List description';
     const firstElement = 'Krig og fred';
     const secondElement = 'Idioten';
     const thirdElement = 'En vild fårejagt';
 
-    cy.get('[data-cy=topbar-lists]').click();
-    cy.get('[data-cy=lists-dropdown-new-list]').click();
-    cy.get('[data-cy=listinfo-title-input]').type(listName);
-    cy.get('[data-cy=listinfo-description-input]').type(listDescription);
-    cy.get('[data-cy=stickyPanel-submit]').click();
+    cy.request('POST', 'http://localhost:3000/v1/object', {
+      type: 'CUSTOM_LIST',
+      title: 'Privat liste',
+      description: 'masser af de gode',
+      list: [],
+      _type: 'list',
+      _public: false
+    }).then(response => {
+      const id = response.body.data._id;
+      cy.visit(`/lister/${id}`);
 
-    //add elements
-    cy.get('[data-cy=listview-add-element-input]')
-      .clear()
-      .type(firstElement);
-    cy.get('[data-cy=listview-add-element-input]').type('{enter}');
+      //add elements
+      cy.get('[data-cy=listview-add-element-input]')
+        .clear()
+        .type(firstElement);
+      cy.get('[data-cy=listview-add-element-input]').type('{enter}');
 
-    cy.get('[data-cy=listview-add-element-input]')
-      .clear()
-      .type(secondElement);
-    cy.get('[data-cy=listview-add-element-input]').type('{enter}');
+      cy.get('[data-cy=listview-add-element-input]')
+        .clear()
+        .type(secondElement);
+      cy.get('[data-cy=listview-add-element-input]').type('{enter}');
 
-    cy.get('[data-cy=listview-add-element-input]')
-      .clear()
-      .type(thirdElement);
-    cy.get('[data-cy=listview-add-element-input]').type('{enter}');
+      cy.get('[data-cy=listview-add-element-input]')
+        .clear()
+        .type(thirdElement);
+      cy.get('[data-cy=listview-add-element-input]').type('{enter}');
 
-    //Change elements order
-    cy.get('[data-cy=context-menu-list]')
-      .first()
-      .click()
-      .within(el => {
-        cy.get('[data-cy=context-menu-action]')
-          .eq(1)
-          .click();
-      });
-    cy.get('[data-cy=reorder-list-element]')
-      .eq(1)
-      .within(el => {
-        cy.get('[data-cy=order-list-element-moveup]').click();
-      });
+      //Change elements order
+      cy.get('[data-cy=context-menu-list]')
+        .first()
+        .click()
+        .within(el => {
+          cy.get('[data-cy=context-menu-action]')
+            .eq(1)
+            .click();
+        });
+      cy.get('[data-cy=reorder-list-element]')
+        .eq(1)
+        .within(el => {
+          cy.get('[data-cy=order-list-element-moveup]').click();
+        });
 
-    cy.get('[data-cy= modal-done-btn').click();
+      cy.get('[data-cy= modal-done-btn').click();
+      cy.reload();
 
-    //assert change
-    cy.get('[data-cy=list-element-work-title]')
-      .first()
-      .invoke('text')
-      .then(sortedListFirstElement => {
-        expect(secondElement).to.eq(sortedListFirstElement);
-      });
+      //assert change
+      cy.get('[data-cy=list-element-work-title]')
+        .first()
+        .invoke('text')
+        .then(sortedListFirstElement => {
+          expect(secondElement).to.eq(sortedListFirstElement);
+        });
+    });
   });
 });
