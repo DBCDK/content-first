@@ -204,7 +204,6 @@ describe('User data', () => {
       expect(userData.status).to.equal(200);
     });
     it('should delete user', async () => {
-      // TODO fix when storage supports it
       const result = await webapp
         .delete(existingUserUri)
         .set(

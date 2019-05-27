@@ -112,7 +112,7 @@ router
           detail: 'Not allowed to try to delete that user'
         });
       }
-      await deleteUser(openplatformId);
+      await deleteUser(user);
       res.status(200).json({
         data: {success: true},
         links: {self: location}

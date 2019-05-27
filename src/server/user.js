@@ -108,15 +108,13 @@ async function fetchCookie(cookie) {
   };
 }
 
-async function deleteUser(openplatformId) {
-  await knex(constants.objects.table)
-    .where('owner', openplatformId)
-    .del();
+async function deleteUser(user) {
+  await objectStore.deleteUser(user);
   await knex(constants.cookies.table)
-    .where('openplatform_id', openplatformId)
+    .where('openplatform_id', user.openplatformId)
     .del();
   await knex(constants.covers.table)
-    .where('owner', openplatformId)
+    .where('owner', user.openplatformId)
     .del();
 }
 
