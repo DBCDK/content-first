@@ -195,8 +195,8 @@ export class AddToListButton extends React.Component {
               `AddToListButton ${className}` +
               (multiple ? ' multiple-works-to-list-button ' : '')
             }
-            type="quinary"
-            size="medium"
+            type={multiple ? 'tertiary' : 'quinary'}
+            size={multiple ? 'large' : 'medium'}
             iconRight="more_vert"
             onClick={() => {
               openModal('login', {
@@ -210,7 +210,6 @@ export class AddToListButton extends React.Component {
         </div>
       );
     }
-
     return (
       <div
         ref={e => (this.listContainer = e)}

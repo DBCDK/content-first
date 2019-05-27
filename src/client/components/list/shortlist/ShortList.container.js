@@ -226,7 +226,11 @@ export class ShortList extends React.Component {
             )}
             {elements.length > 0 && (
               <Toolbar className="bottom-toolbar mt-5 mb-5">
-                <AddToListButton elements={elements} align="right" multiple />
+                <AddToListButton
+                  elements={elements}
+                  align="right"
+                  multiple={true}
+                />
                 {false && (
                   <Button
                     align="right"
