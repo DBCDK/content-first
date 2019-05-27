@@ -9,7 +9,7 @@ const superagent = require('superagent');
 const config = require('server/config');
 const storageUrl = config.storage.url;
 
-describe.only('Endpoint /v1/object', () => {
+describe('Endpoint /v1/object', () => {
   const webapp = request(mock.external);
   const internalApp = request(mock.internal);
   let cookie1, cookie2, objects;

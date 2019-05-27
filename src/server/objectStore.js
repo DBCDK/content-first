@@ -139,7 +139,6 @@ async function put(object, user) {
 async function find(query, user = {}) {
   await validateObjectStore();
   let access_token = user.openplatformToken || (await fetchAnonymousToken());
-  const uniqueId = user.openplatformId || '';
   const requestObject = {access_token, find: {_type: typeId}};
   if (typeof query.type !== 'undefined') {
     requestObject.find.cf_type = query.type;
