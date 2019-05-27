@@ -60,6 +60,22 @@ export default class CommentInput extends React.Component {
             this.setState({focus: false});
           }}
         >
+          {!this.props.user.openplatformId && (
+            <div
+              style={{
+                position: 'absolute',
+                width: '235px',
+                height: '40px',
+                cursor: 'text',
+                backgroundColor: 'transparent'
+              }}
+              onClick={() => {
+                if (this.props.requireLogin) {
+                  this.props.requireLogin();
+                }
+              }}
+            />
+          )}
           <div
             className="d-flex w-100"
             style={{
