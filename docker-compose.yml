@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_MULTIPLE_DATABASES: contentfirst
   web:
-    image: docker-ux.dbc.dk/content-first:latest
+    image: '${IMAGE:-docker-ux.dbc.dk/content-first:latest}'
     env_file: ./docker/env.docker
     depends_on:
       - database
@@ -27,7 +27,7 @@ services:
     # in the "web" container is cooking
     # see https://docs.docker.com/compose/networking/
     environment:
-      - CYPRESS_baseUrl=http://web:3001
+      - CYPRESS_baseUrl=http://web:3000
     command: npm run cy
 
 networks:
