@@ -30,7 +30,7 @@ async function getCollectionPids(pid) {
     access_token,
     fields: ['collectionDetails']
   }))[0].collectionDetails
-    .filter(o => o.workType[0] === 'book')
+    .filter(o => o.type[0] === 'Bog')
     .map(o => o.pid[0]);
 }
 
