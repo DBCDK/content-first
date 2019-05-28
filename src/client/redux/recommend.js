@@ -22,13 +22,12 @@ export const WORK_RECOMMEND_REQUEST = 'WORK_RECOMMEND_REQUEST';
 export const WORK_RECOMMEND_RESPONSE = 'WORK_RECOMMEND_RESPONSE';
 
 const key = argList => {
-  let res = '';
   if (argList) {
     const argListCopy = [...argList];
-    argListCopy.sort();
-    res += argListCopy.join('-');
+    argListCopy.sort((a, b) => (b.id || b) - (a.id || a));
+    return JSON.stringify(argListCopy);
   }
-  return res;
+  return '';
 };
 
 const recommendReducer = (state = defaultState, action) => {
