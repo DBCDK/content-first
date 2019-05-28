@@ -1,18 +1,9 @@
-.react-parallax-content {
-  height: 100%;
-}
-
 .Hero {
-  height: calc(100vh - 150px - 80px);
+  height: 60vh;
 }
 
 .Hero .swiper-container {
   padding-top: 0;
-}
-
-.Hero .swiper-container,
-.Hero .swiper-wrapper {
-  height: 100%;
 }
 
 .Hero .swiper-container-horizontal > .swiper-pagination-bullets {
@@ -68,9 +59,12 @@
 }
 
 .Hero .hero-bg-image {
-  background-position: center center;
-  background-size: cover;
-  height: 100vh;
+  height: calc(100% + 120px);
+  width: 100%;
+}
+
+.react-parallax {
+  height: 60vh;
 }
 
 .react-parallax-background-children {
@@ -78,10 +72,15 @@
   height: 100%;
 }
 
+.react-parallax-background {
+  height: 100%;
+}
+
 .react-parallax-content {
   position: relative;
   z-index: 2;
   padding-top: 15vh;
+  height: 100%;
 }
 
 .hero-filter {
@@ -130,14 +129,8 @@
 }
 
 @media (max-width: 767px) {
-  .Hero {
-    height: calc(100vh - 80px);
-  }
   .Hero .searchbar-link {
     padding-left: 8vw;
-  }
-  .Hero .hero-bg-image {
-    height: calc(100vh + 80px);
   }
 
   .Hero .swiper-container-horizontal > .swiper-pagination-bullets {
@@ -145,11 +138,28 @@
   }
 }
 
+@media (max-width: 767px) and (orientation: landscape) {
+  .Hero {
+    height: calc(100vh - 80px);
+  }
+
+  .react-parallax {
+    height: calc(100vh - 55px);
+  }
+
+  .react-parallax-content {
+    position: relative;
+    z-index: 2;
+    height: 80%;
+  }
+}
+
 @media (max-width: 575px) {
   .Hero {
-    height: calc(100vh - 60px);
+    height: calc(60vh - 55px);
   }
   .react-parallax-content {
+    height: 100%;
     padding-top: 10vh;
   }
 }

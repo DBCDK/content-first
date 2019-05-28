@@ -14,6 +14,23 @@ import './Searchbar.css';
 
 const leavesMap = getLeavesMap();
 
+/**
+* Settings Example:
+*
+      {
+        title: 'Hvordan er din næste bog?',
+        text: '',
+        img: 'img/hero/fantastisk-mystisk-dyster.jpg',
+        tags: [5726, 5708, 5680],
+        color: 'white',
+        btnColor: 'korn',
+        btnText: 'vis bøger',
+        btnTextColor: 'petroleum',
+        template: 'searchbar',
+        disabled: false
+      }
+*/
+
 export class SearchbarTemplate extends React.Component {
   inRange(tag) {
     const aCards = Object.values(this.props.aCards);
@@ -124,7 +141,7 @@ export class SearchbarTemplate extends React.Component {
     return (
       <Parallax
         strength={250}
-        className={className}
+        className={`SearchBar ${className}`}
         renderLayer={() => (
           <div
             className={`swiper-slide hero-filter ${

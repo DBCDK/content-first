@@ -1,0 +1,96 @@
+.InteractionSlide .box-wrap {
+  background-blend-mode: multiply;
+  background-position: center center !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.InteractionSlide .box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  top: 45%;
+  transform: translate(0, -50%);
+}
+
+.InteractionSlide .box.box-left {
+  left: 15%;
+}
+.InteractionSlide .box.box-right {
+  right: 15%;
+}
+
+.InteractionSlide .box-wrap.flipX {
+  transform: scaleX(-1);
+}
+
+.InteractionSlide .box-wrap.flipY {
+  transform: scaleX(1);
+}
+
+.InteractionSlide .box .Button__term,
+.InteractionSlide .box .Button__primary {
+  height: 60px;
+}
+
+.InteractionSlide .box .Button__term:hover {
+  background-color: var(--concrete);
+}
+
+.InteractionSlide .box .Button__primary {
+  font-size: 14px;
+}
+
+@media (max-width: 767px) {
+  .InteractionSlide .box {
+    top: 50%;
+    transform: translate(0, -50%);
+    font-size: 4vw;
+  }
+
+  .InteractionSlide .box.box-left {
+    left: 5%;
+  }
+  .InteractionSlide .box.box-right {
+    right: 5%;
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .InteractionSlide .box {
+    top: 60%;
+  }
+
+  .InteractionSlide .box.box-left {
+    left: 10%;
+  }
+  .InteractionSlide .box.box-right {
+    right: 10%;
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape), (max-width: 575px) {
+  .InteractionSlide .box .Button__term,
+  .InteractionSlide .box .Button__primary {
+    height: 40px;
+  }
+
+  .InteractionSlide .box .Button__term {
+    font-size: 18px;
+  }
+
+  .InteractionSlide .box .Button__primary {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 575px) {
+  .InteractionSlide .box-wrap.flipX {
+    transform: scaleX(1) !important;
+  }
+  .InteractionSlide .box.box-left,
+  .InteractionSlide .box.box-right {
+    left: 5%;
+  }
+}

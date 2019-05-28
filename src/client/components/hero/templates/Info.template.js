@@ -1,22 +1,60 @@
 import React from 'react';
 import {Parallax, Background} from 'react-parallax';
 
+import Explorer from '../explorer/explorer.component.js';
+
 import '../Hero.css';
 import './Info.css';
 
+/**
+* Settings Example:
+*
+    {
+      img: 'img/hero/launch.jpg',
+      btnColor: 'pistache',
+      btnText: 'Find en bog, der er lige dig',
+      btnTextColor: 'petroleum',
+      template: 'info',
+      disabled: false
+    }
+*/
+
 export class Hero extends React.Component {
   render() {
-    const {hero, className} = this.props;
+    const {hero, state, className} = this.props;
+
+    // Horizontal flip
+    const flip = hero.img.flip === 'x' ? 'flipX' : 'flipY';
+
+    // Image source
+    const orientation =
+      window.innerHeight > window.innerWidth ? 'portrait' : 'landscape';
 
     return (
-      <Parallax className={className} strength={250}>
+      <Parallax className={`Info ${className}`} strength={250}>
         <Background>
           <div
-            className={`hero-bg-image box-wrap pistache`}
-            style={{backgroundImage: `url(${hero.img})`}}
+            className={`hero-bg-image box-wrap ${flip}`}
+            style={{
+              backgroundImage: `url(${hero.img[orientation]})`,
+              backgroundColor: hero.img.blend || 'transparent'
+            }}
           />
         </Background>
-        <div className="box">{hero.btnText}</div>
+        <div
+          className="box"
+          style={{
+            backgroundColor: `var(--${hero.btnColor})`,
+            color: `var(--${hero.btnTextColor})`
+          }}
+        >
+          {hero.btnText}
+        </div>
+        <Explorer
+          scrollDistanceOnClick={
+            (state.container && state.container.clientHeight) || 0
+          }
+        />
       </Parallax>
     );
   }
