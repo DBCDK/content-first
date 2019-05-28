@@ -15,7 +15,6 @@ const params = {
   slidesPerView: 1,
   noSwiping: !isMobile,
   speed: 1000,
-  loop: false,
   autoplay: {
     delay: 10000,
     disableOnInteraction: false
