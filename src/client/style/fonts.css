@@ -1,3 +1,7 @@
+/* Remote font imports */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,900|Material+Icons');
+
+/* local font imports */
 @font-face {
   font-family: 'Montserrat-black';
   src: url('fonts/montserrat-black-webfont.woff2') format('woff2'),
