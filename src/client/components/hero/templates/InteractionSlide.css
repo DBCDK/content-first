@@ -35,11 +35,7 @@
 }
 
 .InteractionSlide .box .Button__term:hover {
-  background-color: var(--concrete);
-}
-
-.InteractionSlide .box .Button__primary {
-  font-size: 14px;
+  background-color: var(--alto);
 }
 
 @media (max-width: 767px) {

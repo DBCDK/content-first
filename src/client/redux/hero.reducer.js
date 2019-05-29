@@ -17,12 +17,12 @@ const defaultState = {
     },
     {
       img: {
-        landscape: 'img/hero/Læsekompas_Images_16x9_022.jpg',
-        portrait: 'img/hero/Læsekompas_Images_1500x1500_022.jpg',
-        blend: '#74a9ff',
+        landscape: 'img/hero/Læsekompas_Images_16x9_024.jpg',
+        portrait: 'img/hero/Læsekompas_Images_1500x1500_024.jpg',
+        blend: '#f37362',
         flip: 'x'
       },
-      tags: [5642, 5660, 5731],
+      tags: [5647, 5654, 5674],
       btnColor: 'korn',
       btnText: 'Vis bøger',
       btnTextColor: 'petroleum',
@@ -32,12 +32,12 @@ const defaultState = {
     },
     {
       img: {
-        landscape: 'img/hero/Læsekompas_Images_16x9_024.jpg',
-        portrait: 'img/hero/Læsekompas_Images_1500x1500_024.jpg',
-        blend: '#f37362',
+        landscape: 'img/hero/Læsekompas_Images_16x9_022.jpg',
+        portrait: 'img/hero/Læsekompas_Images_1500x1500_022.jpg',
+        blend: '#74a9ff',
         flip: false
       },
-      tags: [5647, 5654, 5674],
+      tags: [5642, 5660, 5731],
       btnColor: 'korn',
       btnText: 'Vis bøger',
       btnTextColor: 'petroleum',

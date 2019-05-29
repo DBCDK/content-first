@@ -1,6 +1,8 @@
 import React from 'react';
 import {Parallax, Background} from 'react-parallax';
 
+import scroll from '../../../utils/scroll';
+
 import Explorer from '../explorer/explorer.component.js';
 
 import '../Hero.css';
@@ -46,6 +48,11 @@ export class Hero extends React.Component {
           style={{
             backgroundColor: `var(--${hero.btnColor})`,
             color: `var(--${hero.btnTextColor})`
+          }}
+          onClick={() => {
+            if (state.container.clientHeight) {
+              scroll(state.container.clientHeight || 0);
+            }
           }}
         >
           {hero.btnText}
