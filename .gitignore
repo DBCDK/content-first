@@ -19,3 +19,4 @@ dump.rdb
 cypress/screenshots
 cypress/videos
 report.xml
+storage_type_id.env
