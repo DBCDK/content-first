@@ -4,19 +4,17 @@ const assert = require('assert');
 const _ = require('lodash');
 const config = require('server/config');
 const request = require('superagent');
+const smaug = require('./smaug');
 
 let storageUrl;
 let typeId;
 let validated = false;
 
 const fetchAnonymousToken = !config.server.isProduction
-  ? () => 'anon_token'
-  : async () => {
-      return (await request
-        .post(config.auth.url + '/oauth/token')
-        .auth(config.auth.id, config.auth.secret)
-        .send('grant_type=password&username=@&password=@')).body.access_token;
-    };
+  ? () => ({
+      access_token: 'anon_token'
+    })
+  : smaug.fetchAnonymousToken;
 
 function setupObjectStore(storageOptions) {
   if (config.server.isProduction && !storageOptions.typeId) {
@@ -38,7 +36,7 @@ async function validateObjectStore() {
     throw new Error('Object store has not been setup');
   }
   try {
-    const access_token = await fetchAnonymousToken();
+    const access_token = (await fetchAnonymousToken()).access_token;
     const data = (await request
       .post(storageUrl)
       .send({access_token, get: {_id: typeId}})).body.data;
@@ -106,7 +104,8 @@ const fromStorageObject = storageObject => {
 
 async function get(id, user = {}) {
   await validateObjectStore();
-  let access_token = user.openplatformToken || (await fetchAnonymousToken());
+  let access_token =
+    user.openplatformToken || (await fetchAnonymousToken()).access_token;
   const requestObject = {access_token, get: {_id: id}};
 
   try {
@@ -138,7 +137,8 @@ async function put(object, user) {
 
 async function find(query, user = {}) {
   await validateObjectStore();
-  let access_token = user.openplatformToken || (await fetchAnonymousToken());
+  let access_token =
+    user.openplatformToken || (await fetchAnonymousToken()).access_token;
   const requestObject = {access_token, find: {_type: typeId}};
   if (typeof query.type !== 'undefined') {
     requestObject.find.cf_type = query.type;
