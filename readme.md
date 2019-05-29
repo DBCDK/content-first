@@ -4,6 +4,17 @@ The system currently runs on [`content-first.demo.dbc.dk`](http://content-first.
 
 For development of the system, see [`src`](src/readme.md).
 
+## Development
+
+    $ . /nvm.sh
+    $ nvm install
+    $ npm install
+    $ cp env/integration.env current.env
+    $ docker-compose -f docker-compose-dev.yml up
+    $ npm run start
+    $ npm run fetch-inject-metakompas (cf must be started)
+    $ npm run init-storage (cf must be started)
+
 ## Deployment
 
 The service's test database requires at least PostgreSQL 9.6, but the schemas only require support for JSONB.
@@ -64,6 +75,8 @@ The backend service controlled by environment variables. Most scripts assume tha
 | MATOMO_SITE_ID                |                       | The Matomo siteId                                                        |
 | MATOMO_DATA_SITE_ID           |                       | The Matomo siteId for data events                                        |
 | MATOMO_AID                    |                       | The Application ID connecting events to specific application instance    |
+| STORAGE_URL                   |                       | URL to the openplatform storage endpoint                                 |
+| STORAGE_TYPE_ID               |                       | The ID of the content-first type which must exist in the storage service | 
 
 ## Endpoints
 
