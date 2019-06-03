@@ -58,6 +58,7 @@ export class SimilarBelt extends React.Component {
     return (
       <div
         ref={beltRef}
+        data-cy="similarBelt"
         className={`similarBelt position-relative ${className} ${isChildBeltClass} ${bgColor}`}
         style={{
           ...style

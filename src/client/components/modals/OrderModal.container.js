@@ -133,11 +133,11 @@ export function OrderModal(props) {
     reviewingOrder
   } = orderInfo(props);
 
-  const bookOrBooks = T({
-    component: 'general',
-    name: props.orders.length === 1 ? 'book' : 'books'
-  });
-
+  const bookOrBooks = count =>
+    T({
+      component: 'general',
+      name: count === 1 ? 'book' : 'books'
+    });
   if (!reviewingOrder && !ordering) {
     doneText = 'OK';
     onDone = props.onClose;
@@ -190,8 +190,8 @@ export function OrderModal(props) {
               component="order"
               name="booksOrdered"
               vars={[
-                orderSuccess > 1 ? T({component: 'general', name: 'all'}) : '',
-                bookOrBooks
+                orderSuccess > 1 ? orderSuccess : '1',
+                bookOrBooks(orderSuccess)
               ]}
             />
           </div>
@@ -219,7 +219,7 @@ export function OrderModal(props) {
             <T
               component="order"
               name="modalTextCount"
-              vars={[props.orders.length, bookOrBooks]}
+              vars={[props.orders.length, bookOrBooks(props.orders.length)]}
             />
           </strong>
           {props.orders.length >= 10 && (
