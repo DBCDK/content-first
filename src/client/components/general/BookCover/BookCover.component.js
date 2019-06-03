@@ -86,7 +86,9 @@ class BookCover extends React.Component {
           style={{
             ...styles,
             ...clickableStyle,
-            width: '100%'
+            width: '100%',
+            maxHeight: '100%',
+            height: 'auto'
           }}
           alt={title}
           src={coverUrl || coverSvg}
