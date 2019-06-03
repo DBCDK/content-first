@@ -50,7 +50,7 @@ exports[`CommentContainer Delete button 1`] = `
         <div
           className="dropdown-menu dropdown-menu-right"
         >
-          <Component
+          <ContextMenuAction
             icon="edit"
             onClick={[Function]}
             title="Rediger kommentar"
@@ -77,8 +77,8 @@ exports[`CommentContainer Delete button 1`] = `
                 Rediger kommentar
               </span>
             </div>
-          </Component>
-          <Component
+          </ContextMenuAction>
+          <ContextMenuAction
             icon="delete"
             onClick={[Function]}
             title="Slet kommentar"
@@ -105,7 +105,7 @@ exports[`CommentContainer Delete button 1`] = `
                 Slet kommentar
               </span>
             </div>
-          </Component>
+          </ContextMenuAction>
         </div>
       </div>
     </Component>
@@ -278,7 +278,7 @@ exports[`CommentContainer Edit button 1`] = `
         <div
           className="dropdown-menu dropdown-menu-right"
         >
-          <Component
+          <ContextMenuAction
             icon="edit"
             onClick={[Function]}
             title="Rediger kommentar"
@@ -305,8 +305,8 @@ exports[`CommentContainer Edit button 1`] = `
                 Rediger kommentar
               </span>
             </div>
-          </Component>
-          <Component
+          </ContextMenuAction>
+          <ContextMenuAction
             icon="delete"
             onClick={[Function]}
             title="Slet kommentar"
@@ -333,7 +333,7 @@ exports[`CommentContainer Edit button 1`] = `
                 Slet kommentar
               </span>
             </div>
-          </Component>
+          </ContextMenuAction>
         </div>
       </div>
     </Component>
@@ -506,7 +506,7 @@ exports[`CommentContainer Edit button 2`] = `
         <div
           className="dropdown-menu dropdown-menu-right"
         >
-          <Component
+          <ContextMenuAction
             icon="edit"
             onClick={[Function]}
             title="Rediger kommentar"
@@ -533,8 +533,8 @@ exports[`CommentContainer Edit button 2`] = `
                 Rediger kommentar
               </span>
             </div>
-          </Component>
-          <Component
+          </ContextMenuAction>
+          <ContextMenuAction
             icon="delete"
             onClick={[Function]}
             title="Slet kommentar"
@@ -561,7 +561,7 @@ exports[`CommentContainer Edit button 2`] = `
                 Slet kommentar
               </span>
             </div>
-          </Component>
+          </ContextMenuAction>
         </div>
       </div>
     </Component>
@@ -1137,7 +1137,7 @@ exports[`CommentContainer Save button 1`] = `
         <div
           className="dropdown-menu dropdown-menu-right"
         >
-          <Component
+          <ContextMenuAction
             icon="edit"
             onClick={[Function]}
             title="Rediger kommentar"
@@ -1164,8 +1164,8 @@ exports[`CommentContainer Save button 1`] = `
                 Rediger kommentar
               </span>
             </div>
-          </Component>
-          <Component
+          </ContextMenuAction>
+          <ContextMenuAction
             icon="delete"
             onClick={[Function]}
             title="Slet kommentar"
@@ -1192,7 +1192,7 @@ exports[`CommentContainer Save button 1`] = `
                 Slet kommentar
               </span>
             </div>
-          </Component>
+          </ContextMenuAction>
         </div>
       </div>
     </Component>
