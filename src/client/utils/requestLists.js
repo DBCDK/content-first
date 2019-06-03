@@ -18,8 +18,11 @@ export const saveList = async (list, loggedInUserId) => {
   list._id = list._id || list.id;
 
   if (!list._id) {
-    Object.assign(list, (await request.post('/v1/object').send({})).body.data);
-    list._owner = loggedInUserId;
+    Object.assign(
+      list,
+      (await request.post('/v1/object').send(list)).body.data
+    );
+    Object.assign(list, await loadList(list._id));
   }
 
   // update all elements owned by logged in user
@@ -143,6 +146,7 @@ export const loadList = async id => {
     throw Error('no id given');
   }
   const list = (await request.get(`/v1/object/${id}`)).body.data;
+
   if (!list) {
     throw Error('list is undefined');
   }
@@ -169,7 +173,7 @@ export const loadLists = async ({openplatformId}) => {
 
   // Create system lists if they do not exist
   if (!containsList(SYSTEM_LIST, 'Har læst', result)) {
-    const list = await saveList({
+    let list = await saveList({
       type: SYSTEM_LIST,
       title: 'Har læst',
       description: 'En liste over læste bøger',
@@ -178,7 +182,7 @@ export const loadLists = async ({openplatformId}) => {
     result.push(list);
   }
   if (!containsList(SYSTEM_LIST, 'Vil læse', result)) {
-    const list = await saveList({
+    let list = await saveList({
       type: SYSTEM_LIST,
       title: 'Vil læse',
       description: 'En liste over bøger jeg gerne vil læse',
