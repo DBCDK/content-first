@@ -1,6 +1,7 @@
 version: "3"
 services:
   database:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: postgres:9.6
     volumes:
       - ./tools/postgres-initdb.d:/docker-entrypoint-initdb.d
@@ -9,6 +10,7 @@ services:
     environment:
       POSTGRES_MULTIPLE_DATABASES: contentfirst
   web:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: '${IMAGE:-docker-ux.dbc.dk/content-first:latest}'
     env_file: ./docker/env.docker
     depends_on:
@@ -16,6 +18,7 @@ services:
     ports:
       - "3000:3000"
   e2e:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: docker.dbc.dk/cypress:latest
     volumes:
       - './e2e:/app/e2e'
