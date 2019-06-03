@@ -123,6 +123,7 @@ exports[`ShortList.container Clearing list 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -140,11 +141,13 @@ exports[`ShortList.container Clearing list 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -1641,6 +1644,7 @@ exports[`ShortList.container Clearing list 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -1860,6 +1864,7 @@ exports[`ShortList.container Order all books 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -1877,11 +1882,13 @@ exports[`ShortList.container Order all books 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -3378,6 +3385,7 @@ exports[`ShortList.container Order all books 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -3596,6 +3604,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -3613,11 +3622,13 @@ exports[`ShortList.container Order book - desktop version 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -5114,6 +5125,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -5332,6 +5344,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -5349,11 +5362,13 @@ exports[`ShortList.container Order book - mobile version 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -6850,6 +6865,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -7068,6 +7084,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -7085,11 +7102,13 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -8586,6 +8605,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -8804,6 +8824,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -8821,11 +8842,13 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -10322,6 +10345,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -10540,6 +10564,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -10557,11 +10582,13 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -12058,6 +12085,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -12276,6 +12304,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -12293,11 +12322,13 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -13794,6 +13825,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -14013,6 +14045,7 @@ exports[`ShortList.container Remove element 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -14030,11 +14063,13 @@ exports[`ShortList.container Remove element 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -15531,6 +15566,7 @@ exports[`ShortList.container Remove element 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -15749,6 +15785,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -15766,11 +15803,13 @@ exports[`ShortList.container Short list contains elements 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
@@ -17267,6 +17306,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
             className="Toolbar__right"
           >
             <addtolistbutton
+              data-cy="add-all-to-list"
               elements={
                 Array [
                   Object {
@@ -17378,6 +17418,7 @@ exports[`ShortList.container Short list is empty 1`] = `
   >
     <div
       className="Banner__wrap"
+      data-cy="banner-title"
       style={
         Object {
           "backgroundColor": "#81c793",
@@ -17395,11 +17436,13 @@ exports[`ShortList.container Short list is empty 1`] = `
         >
           <Title
             className="align-self-center"
+            data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
               className="align-self-center Title Title__title3 Title__title3--color-white"
+              data-cy="banner-title"
             >
               Din huskeliste
             </h1>
