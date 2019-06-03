@@ -515,3 +515,11 @@
         width: 330px !important;
     }
 }
+
+@media only screen and (max-width: 576px) {
+    .profile__modal-window {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        z-index: 100;
+    }
+}
