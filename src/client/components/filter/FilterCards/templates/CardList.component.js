@@ -6,7 +6,7 @@ import {withTagsFromUrl} from '../../../hoc/AdressBar';
 import './CardList.css';
 
 const ListItem = withTagsFromUrl(
-  ({filter, isSelected, toggleSelected, enabled = true}) => {
+  ({filter, isSelected, toggleSelected, enabled}) => {
     const selected = isSelected(filter.id);
     const tagState = selected ? 'listItem-active' : 'listItem-inactive';
     const isTouch = isMobile ? 'isTouch' : '';
@@ -47,9 +47,9 @@ class FilterCardList extends React.Component {
                 if (isSelected(aF.id)) {
                   ignore.push(aF.id);
                   return (
-                    <React.Fragment key={'notExp-' + aF.id}>
+                    <React.Fragment key={'notExpArr-' + aF.id}>
                       <ListItem filter={aF} enabled={false} />
-                      {!expanded && <span>{', '}</span>}
+                      <span>{', '}</span>
                     </React.Fragment>
                   );
                 }
@@ -59,9 +59,9 @@ class FilterCardList extends React.Component {
             if (isSelected(f.id)) {
               ignore.push(f.id);
               return (
-                <React.Fragment key={'notExpSel-' + f.id}>
+                <React.Fragment key={'notExp-' + f.id}>
                   <ListItem filter={f} enabled={false} />
-                  {!expanded && <span>{', '}</span>}
+                  <span>{', '}</span>
                 </React.Fragment>
               );
             }
@@ -87,7 +87,7 @@ class FilterCardList extends React.Component {
                   if (!ignore.includes(aF.id)) {
                     return (
                       <React.Fragment key={'exp-' + aF.id}>
-                        <ListItem filter={aF} />
+                        <ListItem filter={aF} enabled={expanded} />
                         {!expanded && <span>{', '}</span>}
                       </React.Fragment>
                     );
@@ -100,7 +100,7 @@ class FilterCardList extends React.Component {
           if (!ignore.includes(f.id)) {
             return (
               <React.Fragment key={'inc' + f.id}>
-                <ListItem filter={f} />
+                <ListItem filter={f} enabled={expanded} />
                 {!expanded && <span>{', '}</span>}
               </React.Fragment>
             );
