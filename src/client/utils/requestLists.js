@@ -18,8 +18,11 @@ export const saveList = async (list, loggedInUserId) => {
   list._id = list._id || list.id;
 
   if (!list._id) {
-    Object.assign(list, (await request.post('/v1/object').send({})).body.data);
-    list._owner = loggedInUserId;
+    Object.assign(
+      list,
+      (await request.post('/v1/object').send(list)).body.data
+    );
+    Object.assign(list, await loadList(list._id));
   }
 
   // update all elements owned by logged in user
@@ -143,6 +146,7 @@ export const loadList = async id => {
     throw Error('no id given');
   }
   const list = (await request.get(`/v1/object/${id}`)).body.data;
+
   if (!list) {
     throw Error('list is undefined');
   }
@@ -175,7 +179,6 @@ export const loadLists = async ({openplatformId}) => {
       description: 'En liste over læste bøger',
       list: []
     });
-    list = await loadList(list._id); // enrich list with _owner, timestamps etc.
     result.push(list);
   }
   if (!containsList(SYSTEM_LIST, 'Vil læse', result)) {
@@ -185,7 +188,6 @@ export const loadLists = async ({openplatformId}) => {
       description: 'En liste over bøger jeg gerne vil læse',
       list: []
     });
-    list = await loadList(list._id); // enrich list with _owner, timestamps etc.
     result.push(list);
   }
 
