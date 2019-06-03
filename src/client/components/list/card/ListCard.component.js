@@ -165,7 +165,7 @@ const makeMapStateToProps = () => {
   const getUser = createGetUserSelector();
   const countComments = createCountComments();
   return (state, ownProps) => {
-    const list = state.listReducer.lists[ownProps._id]; // selector not used, since the book expanded list is not needed
+    const list = ownProps.list;
     if (!list || !list.list) {
       return {};
     }
@@ -183,7 +183,11 @@ export const mapDispatchToProps = dispatch => ({
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
-export default connect(
-  makeMapStateToProps,
-  mapDispatchToProps
-)(withLists(withList(ListCard)));
+export default withLists(
+  withList(
+    connect(
+      makeMapStateToProps,
+      mapDispatchToProps
+    )(ListCard)
+  )
+);
