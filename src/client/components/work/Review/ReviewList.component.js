@@ -78,7 +78,7 @@ class ReviewList extends React.Component {
         : null;
 
       return (
-        <div className="review_list__review mb-3 mr-4" key={key}>
+        <div className="review_list__review mb-3 mr-md-4" key={key}>
           <span className="review_list__review__details ">
             <Text type="body" variant="weight-semibold" className="mb0">
               {rev.creator.includes('Litteratursiden')
