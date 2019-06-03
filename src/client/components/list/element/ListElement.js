@@ -55,6 +55,7 @@ const ElementContextMenu = ({
     <ContextMenu
       className="mr-0 mt-2 position-absolute"
       style={{right: 0, bottom: 0}}
+      data-cy="element-context-menu"
     >
       {isElementOwner && (
         <ContextMenuAction
@@ -64,6 +65,7 @@ const ElementContextMenu = ({
           })}
           icon="edit"
           onClick={onEdit}
+          data-cy="context-action-edit-element"
         />
       )}
       {(isElementOwner || isListOwner) && (
@@ -74,6 +76,7 @@ const ElementContextMenu = ({
           })}
           icon="delete"
           onClick={onDelete}
+          data-cy="context-action-remove-element"
         />
       )}
     </ContextMenu>
@@ -218,6 +221,7 @@ export class ListElement extends React.Component {
       <div
         ref={elementRef}
         className="listElement p-3 p-md-0 position-relative"
+        data-cy="list-element"
       >
         <div className={'d-flex flex-row'}>
           <div className="position-relative">
@@ -306,13 +310,14 @@ export class ListElement extends React.Component {
         </div>
 
         <div>
-          {list.social && showComments && (
-            <Comments
-              className="listElement-comments pt-4"
-              id={element._id}
-              disabled={this.state.editing}
-            />
-          )}
+          {list.social &&
+            showComments && (
+              <Comments
+                className="listElement-comments pt-4"
+                id={element._id}
+                disabled={this.state.editing}
+              />
+            )}
           {children}
         </div>
 

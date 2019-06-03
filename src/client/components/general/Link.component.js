@@ -13,7 +13,8 @@ const Link = ({
   dataCy,
   meta,
   disable = false,
-  style = {}
+  style = {},
+  ...props
 }) =>
   disable ? (
     <React.Fragment>{children}</React.Fragment>
@@ -33,7 +34,7 @@ const Link = ({
         dispatch({type: type, path: href, params, meta});
       }}
       target={type === HISTORY_NEW_TAB ? '_blank' : '_self'}
-      data-cy={dataCy || ''}
+      data-cy={props['data-cy'] || dataCy || ''}
     >
       {children}
     </a>

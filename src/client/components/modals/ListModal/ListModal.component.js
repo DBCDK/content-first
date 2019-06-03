@@ -71,9 +71,9 @@ class PageInfo extends React.Component {
         <div>
           <Radio
             group="privacy"
-            checked={!list.public}
+            checked={!list._public}
             onChange={() =>
-              updateListData({public: false, open: false, social: false})
+              updateListData({_public: false, open: false, social: false})
             }
           >
             <Text type="body">
@@ -85,8 +85,9 @@ class PageInfo extends React.Component {
         <div>
           <Radio
             group="privacy"
-            checked={list.public}
-            onChange={() => updateListData({public: true})}
+            checked={list._public}
+            onChange={() => updateListData({_public: true})}
+            data-cy="public-radio-btn"
           >
             <Text type="body">{T({component: 'general', name: 'public'})}</Text>
           </Radio>
@@ -94,7 +95,7 @@ class PageInfo extends React.Component {
 
         <div
           className={`listModal-permissions pl-4 ${
-            list.public ? 'permissions-visible' : ''
+            list._public ? 'permissions-visible' : ''
           }`}
         >
           <div>
@@ -145,6 +146,7 @@ class PageInfo extends React.Component {
                 name: 'placeholderDescription'
               })}
               onChange={e => updateListData({description: e.target.value})}
+              data-cy="listinfo-description-input"
             >
               <T component={'general'} name={'description'} />
             </Textarea>

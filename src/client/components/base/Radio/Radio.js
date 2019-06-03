@@ -7,10 +7,11 @@ const Radio = ({
   group,
   onChange,
   checked = false,
-  children
+  children,
+  ...props
 }) => {
   return (
-    <label className={`Radio__wrap`}>
+    <label className={`Radio__wrap`} data-cy={props['data-cy']}>
       {children}
       <input
         className={`Radio ${className}`}

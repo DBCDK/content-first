@@ -14,6 +14,7 @@ export const saveList = async (list, loggedInUserId) => {
   list = Object.assign({}, list);
   list._type = 'list';
   list.list = list.list || [];
+  list._public = list._public || false;
 
   list._id = list._id || list.id;
 
