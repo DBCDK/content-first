@@ -36,7 +36,9 @@ export const ListInfo = ({list, isListOwner, profile, commentsListRef}) => {
 
         {list.description.length > 0 ? (
           <div className="list-pr pt-3 pb-4">
-            <Text type="body">{list.description}</Text>
+            <Text type="body" data-cy="listinfo-description">
+              {list.description}
+            </Text>
           </div>
         ) : (
           <div className="pb-4" />

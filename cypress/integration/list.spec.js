@@ -1,4 +1,4 @@
-describe.only('List test', function() {
+describe('List test', function() {
   beforeEach(function() {
     cy.initStorage();
     cy.clearClientStorage();
@@ -43,7 +43,7 @@ describe.only('List test', function() {
       cy.get('[data-cy=banner-title]').contains('Privat liste');
       cy.get('[data-cy=context-menu-list]').should('exist');
       cy.createUser('otheruser');
-      cy.get('[data-cy=list-fetch-error]').contains('Listen kunne ikke hentes');
+      cy.get('[data-cy=list-error]').contains('Listen kunne ikke hentes');
     });
   });
 
@@ -96,6 +96,20 @@ describe.only('List test', function() {
       cy.get('[data-cy=context-action-remove-element]').should('exist');
       cy.get('[data-cy=context-action-edit-element]').should('not.exist');
     });
+  });
+
+  it('Can add with addToListButton to public list', function() {
+    cy.visit(`/værk/870970-basis:25775481`);
+    cy.get('[data-cy=add-to-list-btn]').click();
+    cy.get('[data-cy=add-to-new-list]').click();
+    cy.get('[data-cy=public-radio-btn]').click();
+    cy.get('[data-cy=modal-done-btn]').click();
+    cy.get('[data-cy=watch-new-list-link]').click();
+    cy.reload();
+    cy.get('.list-container')
+      .find('.listElement')
+      .its('length')
+      .should('eq', 1);
   });
 
   it('Can move elements from shortlist to an other list', function() {

@@ -11,7 +11,8 @@ const Textarea = ({
   children,
   className,
   wrapClassName,
-  wrapStyles = {}
+  wrapStyles = {},
+  ...props
 }) => {
   return (
     <div className={`Textarea__wrap ${wrapClassName}`} style={wrapStyles}>
@@ -24,6 +25,7 @@ const Textarea = ({
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
+        data-cy={props['data-cy'] || ''}
       />
     </div>
   );

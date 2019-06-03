@@ -79,7 +79,7 @@ export class ReorderListModal extends React.Component {
     super(props);
     this.state = {
       template: props.list.template || 'list',
-      public: props.list.public || false,
+      public: props.list._public || false,
       social: props.list.social || false,
       open: props.list.open || false,
       updatedList: props.list.list || [],

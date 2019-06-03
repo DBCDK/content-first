@@ -2,11 +2,16 @@ import React from 'react';
 import Icon from '../Icon';
 import './ContextMenu.css';
 
-export const ContextMenuAction = ({title, icon, onClick = () => {}}) => (
+export const ContextMenuAction = ({
+  title,
+  icon,
+  onClick = () => {},
+  ...props
+}) => (
   <div
     className="dropdown-item"
     onClick={onClick}
-    data-cy="context-menu-action"
+    data-cy={props['data-cy'] || 'context-menu-action'}
   >
     <Icon name={icon} className="align-middle mr-2" />
     <span className="align-middle">{title}</span>
@@ -26,12 +31,12 @@ export const ContextMenuUploadAction = ({title, onClick = () => {}}) => (
     </label>
   </div>
 );
-export default ({title = '', className, children, style, dataCy}) => {
+export default ({title = '', className, children, style, dataCy, ...props}) => {
   return (
     <div
       className={'ContextMenu dropdown ' + className || ''}
       style={style}
-      data-cy={dataCy}
+      data-cy={dataCy || props['data-cy']}
     >
       <div className="dropdown-toggle" data-toggle="dropdown">
         <Icon name="more_vert" className="align-middle" />

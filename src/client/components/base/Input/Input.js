@@ -8,7 +8,8 @@ const Input = ({
   placeholder,
   onChange,
   children,
-  className
+  className,
+  ...props
 }) => {
   return (
     <div className="Input__wrap">
@@ -20,6 +21,7 @@ const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        data-cy={props['data-cy'] || ''}
       />
     </div>
   );
