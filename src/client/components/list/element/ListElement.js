@@ -124,7 +124,9 @@ const Description = ({
         <span
           dangerouslySetInnerHTML={{
             __html: textParser(
-              element.description || element.book.description || ''
+              typeof element.description === 'string'
+                ? element.description
+                : element.book.description || ''
             )
           }}
         />
