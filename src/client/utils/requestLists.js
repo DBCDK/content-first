@@ -179,7 +179,6 @@ export const loadLists = async ({openplatformId}) => {
       description: 'En liste over læste bøger',
       list: []
     });
-    list = await loadList(list._id); // enrich list with _owner, timestamps etc.
     result.push(list);
   }
   if (!containsList(SYSTEM_LIST, 'Vil læse', result)) {
@@ -189,7 +188,6 @@ export const loadLists = async ({openplatformId}) => {
       description: 'En liste over bøger jeg gerne vil læse',
       list: []
     });
-    list = await loadList(list._id); // enrich list with _owner, timestamps etc.
     result.push(list);
   }
 
