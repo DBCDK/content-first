@@ -20,9 +20,9 @@ export const saveList = async (list, loggedInUserId) => {
   if (!list._id) {
     Object.assign(
       list,
-      (await request.post('/v1/object').send(list)).body.data
+      (await request.post('/v1/object').send({_type: list._type})).body.data
     );
-    Object.assign(list, await loadList(list._id));
+    list = Object.assign(await loadList(list._id), list);
   }
 
   // update all elements owned by logged in user
