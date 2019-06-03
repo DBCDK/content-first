@@ -169,21 +169,23 @@ export const loadLists = async ({openplatformId}) => {
 
   // Create system lists if they do not exist
   if (!containsList(SYSTEM_LIST, 'Har læst', result)) {
-    const list = await saveList({
+    let list = await saveList({
       type: SYSTEM_LIST,
       title: 'Har læst',
       description: 'En liste over læste bøger',
       list: []
     });
+    list = await loadList(list._id); // enrich list with _owner, timestamps etc.
     result.push(list);
   }
   if (!containsList(SYSTEM_LIST, 'Vil læse', result)) {
-    const list = await saveList({
+    let list = await saveList({
       type: SYSTEM_LIST,
       title: 'Vil læse',
       description: 'En liste over bøger jeg gerne vil læse',
       list: []
     });
+    list = await loadList(list._id); // enrich list with _owner, timestamps etc.
     result.push(list);
   }
 

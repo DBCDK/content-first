@@ -13,6 +13,9 @@ export const withLists = WrappedComponent => {
     componentDidMount() {
       this.loadLists();
     }
+    componentDidUpdate() {
+      this.loadLists();
+    }
 
     /**
      * LoadLists
@@ -22,10 +25,16 @@ export const withLists = WrappedComponent => {
         onLoadListsRequest,
         onLoadListsResponse,
         listLoadResponse,
-        openplatformId
+        openplatformId,
+        isFetching,
+        hasFetched
       } = this.props;
 
       try {
+        // make sure we only load lists once,
+        if (isFetching || hasFetched || !openplatformId) {
+          return;
+        }
         onLoadListsRequest();
         const lists = await loadLists({openplatformId});
 
@@ -51,7 +60,9 @@ export const withLists = WrappedComponent => {
   const mapStateToProps = state => {
     return {
       lists: state.listReducer.lists || [],
-      openplatformId: state.userReducer.openplatformId
+      openplatformId: state.userReducer.openplatformId,
+      isFetching: state.listReducer.isFetchingOwned,
+      hasFetched: state.listReducer.hasFetchedOwned
     };
   };
 
