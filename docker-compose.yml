@@ -15,8 +15,7 @@ services:
     env_file: ./docker/env.docker
     depends_on:
       - database
-    ports:
-      - "3000:3000"
+    command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; node src/server/main.js'
   e2e:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: docker.dbc.dk/cypress:latest
@@ -24,11 +23,6 @@ services:
       - './e2e:/app/e2e'
     depends_on:
       - web
-    # note: inside e2e container, the network allows accessing
-    # "web" host under name "web"
-    # so "curl http://web" would return whatever the webserver
-    # in the "web" container is cooking
-    # see https://docs.docker.com/compose/networking/
     environment:
       - CYPRESS_baseUrl=http://web:3000
     command: npm run cy
