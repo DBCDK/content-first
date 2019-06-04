@@ -77,15 +77,14 @@ class WorkPreview extends React.Component {
                     })}
                     work={work}
                     rid={this.props.rid}
-                    layout="teardrop"
+                    layout="circle"
                     style={{
                       position: 'absolute',
                       right: 0,
-                      top: 0,
-                      width: '40px',
-                      height: '40px'
+                      top: 0
                     }}
                     dataCy="bookmarkBtn"
+                    size="large"
                   />
                 </BookCover>
               </Link>

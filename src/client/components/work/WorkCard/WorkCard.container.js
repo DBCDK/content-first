@@ -84,7 +84,7 @@ class WorkCard extends React.Component {
               origin={this.props.origin}
               work={this.props.work}
               rid={this.props.rid}
-              layout="teardrop"
+              layout="circle"
               style={{
                 position: 'absolute',
                 right: 0,
@@ -93,6 +93,7 @@ class WorkCard extends React.Component {
                 height: '40px'
               }}
               dataCy="bookmarkBtn"
+              size="default"
             />
           </BookCover>
 
