@@ -228,10 +228,10 @@ export const withList = WrappedComponent => {
       onLoadList: () => {
         dispatch({type: LIST_LOAD_REQUEST, _id});
       },
-      onLoadListError: (_id, e) =>
+      onLoadListError: (id, e) =>
         dispatch({
           type: LIST_LOAD_RESPONSE,
-          list: {_id, error: e}
+          list: {_id: id, error: e}
         }),
 
       // Save list handle

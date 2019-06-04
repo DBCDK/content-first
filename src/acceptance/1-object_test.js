@@ -5,11 +5,8 @@ const mock = require('fixtures/mock-server');
 const {expect} = require('chai');
 const request = require('supertest');
 const _ = require('lodash');
-const superagent = require('superagent');
-const config = require('server/config');
-const storageUrl = config.storage.url;
 
-describe('Endpoint /v1/object', () => {
+describe.only('Endpoint /v1/object', () => {
   const webapp = request(mock.external);
   const internalApp = request(mock.internal);
   let cookie1, cookie2, objects;
@@ -139,13 +136,20 @@ describe('Endpoint /v1/object', () => {
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(3);
       });
-      // it('find objects with limit', async () => {
-      //   const result = (await webapp
-      //     .get(`/v1/object/find?type=test&key=hi&limit=1`)
-      //     .set('cookie', cookie2)).body;
-      //   expect(result.errors).to.be.an('undefined');
-      //   expect(result.data.length).to.equal(1);
-      // });
+      it('find public objects with limit', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&key=hi&limit=1`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(1);
+      });
+      it('find private objects with limit', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&key=hi&owner=${user1.id}&limit=1`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(1);
+      });
       it('find no objects', async () => {
         const result = (await webapp
           .get(`/v1/object/find?type=test&key=nonexistant`)

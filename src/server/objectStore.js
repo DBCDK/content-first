@@ -140,21 +140,63 @@ async function find(query, user = {}) {
   let access_token =
     user.openplatformToken || (await fetchAnonymousToken()).access_token;
   const requestObject = {access_token, find: {_type: typeId}};
+  if (typeof query.owner !== 'undefined') {
+    requestObject.find._owner = query.owner;
+  } else {
+    return scan(query, user);
+  }
   if (typeof query.type !== 'undefined') {
     requestObject.find.cf_type = query.type;
   }
-  if (typeof query.owner !== 'undefined') {
-    requestObject.find._owner = query.owner;
-  }
+
   if (typeof query.key !== 'undefined') {
     requestObject.find.cf_key = query.key;
   }
 
   try {
-    const ids = (await request.post(storageUrl).send(requestObject)).body.data;
+    const ids = (await request
+      .post(storageUrl)
+      .send(requestObject)).body.data.slice(0, query.limit || 20);
 
     const objects = (await Promise.all(
       ids.map(_id => request.post(storageUrl).send({access_token, get: {_id}}))
+    )).map(res =>
+      _.omit(fromStorageObject(res.body.data), ['_version', '_client'])
+    );
+    return {data: objects};
+  } catch (e) {
+    return parseException(e);
+  }
+}
+
+async function scan(query, user = {}) {
+  await validateObjectStore();
+  let access_token =
+    user.openplatformToken || (await fetchAnonymousToken()).access_token;
+  const requestObject = {
+    access_token,
+    scan: {
+      _type: typeId,
+      index: ['cf_type', 'cf_key', 'cf_created'],
+      startsWith: [],
+      limit: query.limit || 20,
+      reverse: true
+    }
+  };
+
+  if (typeof query.type !== 'undefined') {
+    requestObject.scan.startsWith.push(query.type);
+  }
+  if (typeof query.key !== 'undefined') {
+    requestObject.scan.startsWith.push(query.key);
+  }
+  try {
+    const ids = (await request.post(storageUrl).send(requestObject)).body.data;
+
+    const objects = (await Promise.all(
+      ids.map(entry =>
+        request.post(storageUrl).send({access_token, get: {_id: entry.val}})
+      )
     )).map(res =>
       _.omit(fromStorageObject(res.body.data), ['_version', '_client'])
     );

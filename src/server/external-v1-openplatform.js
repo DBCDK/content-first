@@ -1,8 +1,6 @@
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const config = require('server/config');
 const express = require('express');
 const logger = require('server/logger');
-const request = require('superagent');
 const router = express.Router({mergeParams: true});
 const {fetchAnonymousToken} = require('./smaug');
 

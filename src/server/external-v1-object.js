@@ -22,7 +22,7 @@ async function putObject(req, res) {
   if (req.params.id) {
     object._id = req.params.id;
   }
-  if (req.method == 'POST') {
+  if (req.method === 'POST') {
     object._created = Math.round(Date.now() / 1000);
     object._modified = object._created;
   } else {
