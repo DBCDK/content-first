@@ -228,9 +228,7 @@ router.route('/initStorage').get(
         type: 'json',
         permissions: {read: 'if object.public'},
         indexes: [
-          {value: '_id', keys: ['cf_key']},
-          {value: '_id', keys: ['cf_type']},
-          {value: '_id', keys: ['cf_key', 'cf_type']},
+          {value: '_id', keys: ['cf_type', 'cf_key', 'cf_created']}, // used for scanning
           {value: '_id', keys: ['_owner'], private: true},
           {value: '_id', keys: ['_owner', 'cf_type'], private: true},
           {value: '_id', keys: ['_owner', 'cf_type']},
@@ -258,7 +256,7 @@ router.route('/wipeStorage').get(
         });
       }
     } catch (e) {
-      //swallow
+      // swallow
     }
 
     res.status(200).send('OK');
