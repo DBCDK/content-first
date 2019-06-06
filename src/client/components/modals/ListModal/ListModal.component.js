@@ -214,11 +214,11 @@ class PageAdvanced extends React.Component {
             list.list.map(work => {
               return (
                 <Pulse
+                  pid={work.pid}
                   noAnimation={false}
                   dragContainer={'parent'}
                   position={this.calcPosition(work)}
                   draggable={true}
-                  label={work.book.title}
                   key={'pulse-' + work.pid}
                   color={list.dotColor || false}
                   onStop={(e, ui) => this.onPulseDragStop(e, ui, work)}

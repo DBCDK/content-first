@@ -506,10 +506,9 @@ export const getListByIdSelector = () =>
     [
       (state, {_id}) => {
         return state.listReducer.lists[_id];
-      },
-      state => state.booksReducer
+      }
     ],
-    (list, booksState) => {
+    list => {
       if (!list) {
         return;
       }
@@ -517,14 +516,6 @@ export const getListByIdSelector = () =>
       list = {...list};
 
       if (list && list.list) {
-        list.list = list.list
-          .filter(el => {
-            return booksState.books[el.pid] && booksState.books[el.pid].book;
-          })
-          .map(el => {
-            return {...el, book: booksState.books[el.pid].book};
-          });
-
         // ensure uniqueness of elements
         // duplicates may exist, due to a previous bug #548
         list.list = uniqBy(list.list, 'pid');
