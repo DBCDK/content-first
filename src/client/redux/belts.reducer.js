@@ -1,5 +1,21 @@
 const defaultState = {
   belts: {
+    'Jeg elsker dig': {
+      key: 'Jeg elsker dig',
+      name: 'Jeg elsker dig',
+      subtext:
+        'Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?',
+      tags: [
+        {id: 5660, weight: 10},
+        {id: 189, weight: 10},
+        {id: 5637, weight: 1},
+        {id: 3431, weight: 10}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
     'Mennesket og Naturen': {
       key: 'Mennesket og Naturen',
       name: 'Mennesket og Naturen',
