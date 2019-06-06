@@ -17,7 +17,7 @@ export class Pulse extends React.Component {
     let label = this.props.work.book.title || false;
 
     if (label && label.length > 15) {
-      label = this.props.label.substring(0, 15) + '...';
+      label = label.substring(0, 15) + '...';
     }
 
     const activeClass = this.props.active ? 'pulse-active' : '';
