@@ -4,11 +4,7 @@ import {shallow} from 'enzyme';
 
 const createTestElement = id => {
   return {
-    book: {
-      pid: 'pid' + id,
-      title: 'some title ' + id,
-      creator: 'some creator' + id
-    },
+    pid: 'pid' + id,
     links: {
       cover: '/cover' + id
     },

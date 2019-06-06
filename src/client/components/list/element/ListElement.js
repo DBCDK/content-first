@@ -84,8 +84,9 @@ const Description = ({
   showDescription,
   editing = false,
   owner,
-  element,
+  description,
   originalDescription,
+  bookDescription,
   onSubmit,
   onCancel,
   onChange
@@ -100,7 +101,7 @@ const Description = ({
       hideProfile={true}
       autoFocus={true}
       user={owner}
-      value={element.description}
+      value={description}
       cancelText={
         originalDescription ? (
           <T component="general" name="cancel" />
@@ -125,9 +126,9 @@ const Description = ({
         <span
           dangerouslySetInnerHTML={{
             __html: textParser(
-              typeof element.description === 'string'
-                ? element.description
-                : element.book.description || ''
+              typeof description === 'string' && description !== ''
+                ? description
+                : bookDescription
             )
           }}
         />
@@ -199,8 +200,13 @@ export class ListElement extends React.Component {
       <Description
         editing={editing}
         owner={owner}
-        element={work}
+        description={
+          typeof element.description === 'string'
+            ? element.description
+            : book.description
+        }
         originalDescription={originalDescription}
+        bookDescription={book.description || ''}
         showDescription={showDescription}
         onSubmit={this.submit}
         onCancel={this.cancel}

@@ -160,7 +160,7 @@ const listReducer = (state = defaultState, action) => {
         throw new Error("'element' is missing from action");
       }
       const changeMap = Object.assign({}, state.changeMap, {
-        [action.element.book.pid]: {}
+        [action.element.pid]: {}
       });
       const list = {
         ...state.lists[action._id]
@@ -170,7 +170,7 @@ const listReducer = (state = defaultState, action) => {
       list.pending = list.pending || [];
       list.pending = [...list.pending, action.element];
       list.list = list.list.filter(
-        element => element.pid !== action.element.book.pid
+        element => element.pid !== action.element.pid
       );
       return Object.assign({}, state, {
         lists: {...state.lists, [action._id]: list},

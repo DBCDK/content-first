@@ -101,7 +101,6 @@ export default class CommentInput extends React.Component {
               className="comment-submit-icon align-self-end"
               name={editing ? editIcon : submitIcon}
               onClick={this.onSubmit}
-              disabled={this.props.disabled || !this.props.value}
             />
           </div>
           {this.props.error &&

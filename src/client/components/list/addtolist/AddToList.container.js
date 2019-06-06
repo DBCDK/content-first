@@ -22,7 +22,7 @@ export class AddToList extends React.Component {
     if (!isLoggedIn) {
       return requireLogin();
     }
-    if (list.list.filter(item => item.book.pid === book.book.pid).length > 0) {
+    if (list.list.filter(item => item.pid === book.pid).length > 0) {
       this.setState({exists: true, selected: book});
     } else {
       addElement(book, list);
