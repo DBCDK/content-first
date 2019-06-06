@@ -506,10 +506,9 @@ export const getListByIdSelector = () =>
     [
       (state, {_id}) => {
         return state.listReducer.lists[_id];
-      },
-      state => state.booksReducer
+      }
     ],
-    (list, booksState) => {
+    list => {
       if (!list) {
         return;
       }
