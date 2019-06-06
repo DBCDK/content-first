@@ -31,11 +31,11 @@ class ListCard extends React.Component {
   fetch() {
     if (
       this.props.list &&
-      this.props._id &&
+      this.props.list._id &&
       !this.props.list.isLoading &&
       !this.commentsFetched
     ) {
-      this.props.fetchComments(this.props._id);
+      this.props.fetchComments(this.props.list._id);
       if (this.props.list.list) {
         this.props.list.list.forEach(el => {
           this.props.fetchComments(el._id);
