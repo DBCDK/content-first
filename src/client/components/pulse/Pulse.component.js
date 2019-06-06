@@ -5,7 +5,7 @@ import {withWork} from '../hoc/Work';
 
 import './pulse.css';
 
-class Pulse extends React.Component {
+export class Pulse extends React.Component {
   randomDelay(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min) + '00';
   }
