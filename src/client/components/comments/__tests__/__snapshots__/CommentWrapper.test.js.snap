@@ -687,7 +687,6 @@ exports[`CommentContainer Edit button 2`] = `
                 />
                 <Icon
                   className="comment-submit-icon align-self-end"
-                  disabled={false}
                   id="comment-submit"
                   name="check"
                   onClick={[Function]}

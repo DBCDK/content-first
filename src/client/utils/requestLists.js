@@ -32,20 +32,19 @@ export const saveList = async (list, loggedInUserId) => {
       if (o._owner && loggedInUserId !== o._owner) {
         return o;
       }
-      const {book} = o;
+
       try {
         const saved = Object.assign({}, o, {
           _type: 'list-entry',
-          book: null,
-          pid: book.pid,
+          pid: o.pid,
           _key: list._id,
           _rev: null,
           _public: list._public
         });
+
         return Object.assign(
           saved,
-          (await request.post('/v1/object').send(saved)).body.data,
-          {book}
+          (await request.post('/v1/object').send(saved)).body.data
         );
       } catch (e) {
         // possibly permission denied if not owner of list element
