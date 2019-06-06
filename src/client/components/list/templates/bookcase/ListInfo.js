@@ -51,8 +51,8 @@ export const ListInfo = ({
                 <Pulse
                   dragContainer={'parent'}
                   position={percentageObjToPixel(info, work.position)}
-                  label={work.book.title}
                   key={'pulse-' + work.pid}
+                  pid={work.pid}
                   color={list.dotColor || false}
                   onClick={() => pulseClick(work.pid)}
                 />

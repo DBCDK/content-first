@@ -171,6 +171,7 @@ export class BookcaseList extends React.Component {
                     elementRef={eRef => {
                       this.refs[element.pid] = eRef;
                     }}
+                    pid={element.pid}
                     key={element.pid}
                     element={element}
                     list={list}

@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
 import {withList} from '../../../hoc/List';
 import T from '../../../base/T';
@@ -98,6 +97,7 @@ export class SimpleList extends React.Component {
                 return (
                   <ListElement
                     key={element.pid}
+                    pid={element.pid}
                     element={element}
                     list={list}
                     editing={added === element.pid ? true : false}
@@ -158,7 +158,4 @@ export class SimpleList extends React.Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {};
-};
-export default connect(mapStateToProps)(withList(SimpleList));
+export default withList(SimpleList);
