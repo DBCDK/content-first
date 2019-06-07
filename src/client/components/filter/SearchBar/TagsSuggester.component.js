@@ -23,8 +23,6 @@ const getTypeData = suggestion => {
 };
 
 const addEmphasisToString = (string, pattern) => {
-
-
   const index = string.toLowerCase().indexOf(pattern.toLowerCase());
 
   if (index >= 0) {
@@ -40,8 +38,6 @@ const addEmphasisToString = (string, pattern) => {
     );
   }
   return string;
-
-
 };
 
 const renderSuggestion = (suggestion, suggestionString) => {
@@ -157,7 +153,6 @@ class TagsSuggester extends React.Component {
     };
 
     const removeAllChars = (s, stringToFind, stringToReplace) => {
-
       let temp = s;
       let index = temp.indexOf(stringToFind);
 
@@ -168,41 +163,38 @@ class TagsSuggester extends React.Component {
       return temp;
     };
 
-
     const combineMultiples = (item, index, arr) => {
       let retObj = {};
 
-      let matchArr = arr.filter((i, pos) => {
+      let matchArr = arr.filter((i) => {
+        let match1 = removeAllChars(i.matchedTerm, ' ', '').toLowerCase();
+        let match2 = removeAllChars(item.matchedTerm, ' ', '').toLowerCase();
+        match1 = removeAllChars(match1, '"', '');
+        match2 = removeAllChars(match2, '"', '');
 
-          let match1 = removeAllChars(i.matchedTerm, ' ', '').toLowerCase();
-          let match2 = removeAllChars(item.matchedTerm, ' ', '').toLowerCase();
-          match1 = removeAllChars(match1, '"', '')
-          match2 = removeAllChars(match2, '"', '')
-
-          if (match1 === match2) {
-            if (i.type === item.type && i.type === "TITLE") {
-              return i;
-            }
+        if (match1 === match2) {
+          if (i.type === item.type && i.type === 'TITLE') {
+            return i;
           }
         }
-      );
+      });
 
       if (matchArr.length > 1) {
         retObj = {
           matchedTerm: matchArr[0].matchedTerm,
           type: matchArr[0].type,
-          pid: matchArr[0].matchedTerm+";"+ matchArr[0].pid,
+          pid: matchArr[0].matchedTerm + ';' + matchArr[0].pid,
           title: matchArr[0].title
         };
 
         for (let i = 1; i < matchArr.length; i++) {
-          retObj.pid += ";" + matchArr[i].pid;
+          retObj.pid += ';' + matchArr[i].pid;
         }
 
-        let pidArr = retObj.pid.split(';')
+        let pidArr = retObj.pid.split(';');
         suggestionsCombined = arr;
-        suggestionsCombined = suggestionsCombined.filter(function (item) {
-          return !pidArr.includes(item.pid);
+        suggestionsCombined = suggestionsCombined.filter(function(el) {
+          return !pidArr.includes(el.pid);
         });
         suggestionsCombined.push(retObj);
       }
@@ -212,10 +204,9 @@ class TagsSuggester extends React.Component {
         let y = b.matchedTerm.toLowerCase();
         return x < y ? -1 : x > y ? 1 : 0;
       });
-
     };
     let suggestionsCombined = [];
-    this.state.suggestions.forEach(combineMultiples)
+    this.state.suggestions.forEach(combineMultiples);
 
     return (
       <React.Fragment>

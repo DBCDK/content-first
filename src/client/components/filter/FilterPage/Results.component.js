@@ -11,8 +11,6 @@ import CreatorBelt from '../../base/Belt/CreatorBelt.component';
 import MultiRowContainer from '../../base/Belt/MultiRowContainer';
 import {withStoreBelt} from '../../hoc/Belt';
 
-const _ = require('lodash');
-
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
 
 const StoreBeltPin = withStoreBelt(
@@ -32,36 +30,36 @@ const StoreBeltPin = withStoreBelt(
           isStored
             ? removeBelt
             : () => {
-              storeBelt({
-                name: tags
-                  .slice(0, 3)
-                  .map(t => t.title)
-                  .join(', '),
-                subtext: '',
-                tags: tags.map(t => t.id),
-                onFrontPage: true
-              });
-              toast(
-                <ToastMessage
-                  type="success"
-                  icon="check_circle"
-                  lines={[
-                    <T
-                      key="label"
-                      component="filter"
-                      name="pinnedToFrontpageToast"
-                    />,
-                    <Link
-                      key="href"
-                      href={`/#temp_${tags.map(t => t.id).join('')}`}
-                    >
-                      <T component="filter" name="watchToastAction" />
-                    </Link>
-                  ]}
-                />,
-                {pauseOnHover: true}
-              );
-            }
+                storeBelt({
+                  name: tags
+                    .slice(0, 3)
+                    .map(t => t.title)
+                    .join(', '),
+                  subtext: '',
+                  tags: tags.map(t => t.id),
+                  onFrontPage: true
+                });
+                toast(
+                  <ToastMessage
+                    type="success"
+                    icon="check_circle"
+                    lines={[
+                      <T
+                        key="label"
+                        component="filter"
+                        name="pinnedToFrontpageToast"
+                      />,
+                      <Link
+                        key="href"
+                        href={`/#temp_${tags.map(t => t.id).join('')}`}
+                      >
+                        <T component="filter" name="watchToastAction" />
+                      </Link>
+                    ]}
+                  />,
+                  {pauseOnHover: true}
+                );
+              }
         }
       />
     );
@@ -70,22 +68,20 @@ const StoreBeltPin = withStoreBelt(
 
 class Results extends React.Component {
   render() {
-
     const singlePid = this.props.tags
       .filter(t => t.type === 'TITLE')
       .map(p => p.pid);
 
+    let multiPids = [];
+    this.props.tags.filter(t => t.type === 'TITLES').map(p =>
+      p.pid.split(';').forEach((q, i) => {
+        if (i !== 0) {
+          multiPids.push(q);
+        }
+      })
+    );
 
-    let multiPids = []
-    this.props.tags.filter(t => t.type === 'TITLES')
-      .map(p => p.pid.split(';')
-        .forEach((q, i) => {
-          if (i !== 0) {
-            multiPids.push(q)
-          }
-        }));
-
-    let allPids = [...singlePid, ...multiPids]
+    let allPids = [...singlePid, ...multiPids];
 
     const tags = this.props.tags.reduce((arr, tag) => {
       if (tag.type === 'TAG') {
@@ -99,7 +95,6 @@ class Results extends React.Component {
     const creators = this.props.tags
       .filter(t => t.type === 'QUERY')
       .map(q => q.query);
-
 
     return (
       <div className="filter-page-results pt-5">
