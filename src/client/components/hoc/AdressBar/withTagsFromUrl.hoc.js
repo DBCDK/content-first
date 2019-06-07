@@ -49,6 +49,7 @@ import {getFullRange} from '../../../utils/taxonomy';
  */
 const withTagsFromUrl = WrappedComponent => {
   const Wrapped = class extends React.Component {
+
     toggleSelected = tag => {
       if (this.isSelected(tag)) {
         this.removeTag(tag);
@@ -71,7 +72,9 @@ const withTagsFromUrl = WrappedComponent => {
     isSelected = tag => {
       return !!this.props.tagsMap[tag];
     };
+
     render() {
+
       return (
         <WrappedComponent
           {...this.props}
@@ -125,9 +128,11 @@ const tagsFromUrlSelector = createSelector(
   (tags, filterCards) => {
     const expandedTags = tagsFromURL(tags && tags[0], filterCards);
     const tagsMap = {};
+
     expandedTags.forEach(expanded => {
       tagsMap[expanded.match] = expanded;
     });
+
     return {tags: expandedTags, tagsMap};
   }
 );
@@ -143,7 +148,12 @@ export const tagsFromURL = (urlTags, filterCards) => {
     .map(tag => {
       const decoded = decodeURIComponent(tag);
       if (isPid(decoded)) {
-        return {type: 'TITLE', pid: decoded, match: decoded};
+        if (decoded.length > 25) {
+          return {type: 'TITLES', pid: decoded, match: decoded};
+        } else {
+          return {type: 'TITLE', pid: decoded, match: decoded};
+        }
+
       } else if (isTagRange(decoded)) {
         let [left, right] = decoded.split(':');
         left = filtersMapAll[parseInt(left, 10)];

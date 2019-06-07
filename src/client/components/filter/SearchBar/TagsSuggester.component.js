@@ -23,7 +23,10 @@ const getTypeData = suggestion => {
 };
 
 const addEmphasisToString = (string, pattern) => {
+
+
   const index = string.toLowerCase().indexOf(pattern.toLowerCase());
+
   if (index >= 0) {
     const start = index > 0 ? string.slice(0, index) : '';
     const end = string.slice(index + pattern.length);
@@ -37,12 +40,13 @@ const addEmphasisToString = (string, pattern) => {
     );
   }
   return string;
+
+
 };
 
 const renderSuggestion = (suggestion, suggestionString) => {
   const text = suggestion.text ? suggestion.text : suggestion.matchedTerm;
   const {icon, category} = getTypeData(suggestion);
-
   return (
     <div className="suggestion-title" data-cy="suggestion-element">
       {addEmphasisToString(text, suggestionString)}
@@ -53,52 +57,6 @@ const renderSuggestion = (suggestion, suggestionString) => {
 };
 
 class TagsSuggester extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      suggestions: [],
-      inputVisibel: false
-    };
-  }
-  componentDidMount() {
-    window.addEventListener('scroll', this.hideKeyboardOnScroll.bind(this));
-  }
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.hideKeyboardOnScroll);
-  }
-
-  hideKeyboardOnScroll() {
-    const prevScrollPosiion = this.prevScrollPosiion || 0;
-    const difference = window.pageYOffset - prevScrollPosiion;
-    if (
-      this.sarchBar &&
-      this.sarchBar.input &&
-      (difference > 1 || difference < -1)
-    ) {
-      this.sarchBar.input.blur();
-      this.prevScrollPosiion = window.pageYOffset;
-    }
-  }
-  handleKeyPress(e) {
-    if (e.key === 'Enter' && this.sarchBar && this.sarchBar.input) {
-      this.sarchBar.input.blur();
-    }
-  }
-
-  getClientSideSuggestions({value}) {
-    const filters = this.props.filters;
-    return filters.Længde.filter(l =>
-      l.title.toLowerCase().includes(value)
-    ).map(l => {
-      return {
-        id: l.id,
-        type: 'TAG',
-        matchedTerm: l.title,
-        parents: ['', 'Længde']
-      };
-    });
-  }
-
   fetchSuggestions = async ({value}) => {
     const response = await request.get('/v1/suggester').query({query: value});
     const clientSuggestions = this.getClientSideSuggestions({value});
@@ -118,15 +76,62 @@ class TagsSuggester extends React.Component {
 
     this.setState({suggestions});
   };
-
   onSuggestionsClearRequested = () => {
     this.setState({suggestions: []});
     this.props.onChange({target: {value: ''}});
   };
-
   toggleInputvisibility = status => {
     this.setState({inputVisibel: status});
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      suggestions: [],
+      inputVisibel: false
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.hideKeyboardOnScroll.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.hideKeyboardOnScroll);
+  }
+
+  hideKeyboardOnScroll() {
+    const prevScrollPosiion = this.prevScrollPosiion || 0;
+    const difference = window.pageYOffset - prevScrollPosiion;
+    if (
+      this.sarchBar &&
+      this.sarchBar.input &&
+      (difference > 1 || difference < -1)
+    ) {
+      this.sarchBar.input.blur();
+      this.prevScrollPosiion = window.pageYOffset;
+    }
+  }
+
+  handleKeyPress(e) {
+    if (e.key === 'Enter' && this.sarchBar && this.sarchBar.input) {
+      this.sarchBar.input.blur();
+    }
+  }
+
+  getClientSideSuggestions({value}) {
+    const filters = this.props.filters;
+    return filters.Længde.filter(l =>
+      l.title.toLowerCase().includes(value)
+    ).map(l => {
+      return {
+        id: l.id,
+        type: 'TAG',
+        matchedTerm: l.title,
+        parents: ['', 'Længde']
+      };
+    });
+  }
 
   render() {
     const tagsInField = this.props.tags.length > 0;
@@ -150,6 +155,67 @@ class TagsSuggester extends React.Component {
       'data-cy': 'search-bar-input',
       onKeyPress: this.handleKeyPress.bind(this)
     };
+
+    const removeAllChars = (s, stringToFind, stringToReplace) => {
+
+      let temp = s;
+      let index = temp.indexOf(stringToFind);
+
+      while (index !== -1) {
+        temp = temp.replace(stringToFind, stringToReplace);
+        index = temp.indexOf(stringToFind);
+      }
+      return temp;
+    };
+
+
+    const combineMultiples = (item, index, arr) => {
+      let retObj = {};
+
+      let matchArr = arr.filter((i, pos) => {
+
+          let match1 = removeAllChars(i.matchedTerm, ' ', '').toLowerCase();
+          let match2 = removeAllChars(item.matchedTerm, ' ', '').toLowerCase();
+          match1 = removeAllChars(match1, '"', '')
+          match2 = removeAllChars(match2, '"', '')
+
+          if (match1 === match2) {
+            if (i.type === item.type && i.type === "TITLE") {
+              return i;
+            }
+          }
+        }
+      );
+
+      if (matchArr.length > 1) {
+        retObj = {
+          matchedTerm: matchArr[0].matchedTerm,
+          type: matchArr[0].type,
+          pid: matchArr[0].matchedTerm+";"+ matchArr[0].pid,
+          title: matchArr[0].title
+        };
+
+        for (let i = 1; i < matchArr.length; i++) {
+          retObj.pid += ";" + matchArr[i].pid;
+        }
+
+        let pidArr = retObj.pid.split(';')
+        suggestionsCombined = arr;
+        suggestionsCombined = suggestionsCombined.filter(function (item) {
+          return !pidArr.includes(item.pid);
+        });
+        suggestionsCombined.push(retObj);
+      }
+
+      suggestionsCombined.sort((a, b) => {
+        let x = a.matchedTerm.toLowerCase();
+        let y = b.matchedTerm.toLowerCase();
+        return x < y ? -1 : x > y ? 1 : 0;
+      });
+
+    };
+    let suggestionsCombined = [];
+    this.state.suggestions.forEach(combineMultiples)
 
     return (
       <React.Fragment>
@@ -182,7 +248,7 @@ class TagsSuggester extends React.Component {
           onClick={() => this.toggleInputvisibility(true)}
         >
           <Autosuggest
-            suggestions={this.state.suggestions}
+            suggestions={suggestionsCombined}
             onSuggestionsFetchRequested={this.fetchSuggestions}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={suggestion => suggestion}
