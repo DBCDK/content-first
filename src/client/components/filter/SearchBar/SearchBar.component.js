@@ -10,25 +10,29 @@ import {withWork} from '../../hoc/Work';
 import './SearchBar.css';
 
 const SelectedWork = withWork(({selected, work, onRemove}) => {
-  return (<Button Tag="div" size="medium" type="term" className={`selected-filter`}>
-    <span>{work && work.book.title}</span>
-    <Icon
-      className="md-small"
-      name="close"
-      onClick={() => onRemove(selected.match)}
-    />
-  </Button>)
+  return (
+    <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+      <span>{work && work.book.title}</span>
+      <Icon
+        className="md-small"
+        name="close"
+        onClick={() => onRemove(selected.match)}
+      />
+    </Button>
+  );
 });
 const SelectedTitles = ({selected, onRemove}) => {
-  let comboTitle=selected.pid.split(";").shift()
-  return (<Button Tag="div" size="medium" type="term" className={`selected-filter`}>
-    <span>{comboTitle}</span>
-    <Icon
-      className="md-small"
-      name="close"
-      onClick={() => onRemove(selected.match)}
-    />
-  </Button>)
+  let comboTitle = selected.pid.split(';').shift();
+  return (
+    <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+      <span>{comboTitle}</span>
+      <Icon
+        className="md-small"
+        name="close"
+        onClick={() => onRemove(selected.match)}
+      />
+    </Button>
+  );
 };
 const SelectedTag = ({selected, onRemove}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
@@ -87,7 +91,6 @@ class SearchBar extends React.Component {
           />
         );
       case 'TITLE':
-
         return (
           <SelectedWork
             key={selected.match}
@@ -97,7 +100,6 @@ class SearchBar extends React.Component {
           />
         );
       case 'TITLES':
-
         return (
           <SelectedTitles
             key={selected.match}
@@ -155,7 +157,6 @@ class SearchBar extends React.Component {
   }
 
   render() {
-
     return (
       <React.Fragment>
         <div
