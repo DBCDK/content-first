@@ -36,7 +36,10 @@ export const saveList = async (list, loggedInUserId) => {
       try {
         const saved = Object.assign({}, o, {
           _type: 'list-entry',
-          pid: o.pid,
+          // Exclude books in storage
+          book: null,
+          // include pid for work fetch
+          pid: o.pid || o.book.pid,
           _key: list._id,
           _rev: null,
           _public: list._public
