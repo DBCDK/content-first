@@ -86,7 +86,7 @@ export default class RecentListsBelt extends React.Component {
               {listIds.map((_id, i) => {
                 const isSkeletonCard = i > startIndex - 1 && !didSwipe;
                 return (
-                  <ListCard key={_id} skeleton={isSkeletonCard} _id={_id} />
+                  <ListCard key={_id} skeleton={isSkeletonCard} id={_id} />
                 );
               })}
             </Slider>

@@ -25,7 +25,8 @@ export const ListInfo = ({
   info,
   expandClick,
   pulseClick,
-  forceUpdate
+  forceUpdate,
+  commentsListRef
 }) => {
   const height = info.height;
   const width = info.width;
@@ -50,8 +51,8 @@ export const ListInfo = ({
                 <Pulse
                   dragContainer={'parent'}
                   position={percentageObjToPixel(info, work.position)}
-                  label={work.book.title}
                   key={'pulse-' + work.pid}
+                  pid={work.pid}
                   color={list.dotColor || false}
                   onClick={() => pulseClick(work.pid)}
                 />
@@ -122,7 +123,12 @@ export const ListInfo = ({
               ) : (
                 <div />
               )}
-              {list.social && <CommentCounter id={list._id} />}
+              {list.social && (
+                <CommentCounter
+                  id={list._id}
+                  commentsListRef={commentsListRef}
+                />
+              )}
             </div>
           </React.Fragment>
         )}

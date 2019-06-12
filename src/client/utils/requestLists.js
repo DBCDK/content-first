@@ -18,8 +18,11 @@ export const saveList = async (list, loggedInUserId) => {
   list._id = list._id || list.id;
 
   if (!list._id) {
-    Object.assign(list, (await request.post('/v1/object').send({})).body.data);
-    list._owner = loggedInUserId;
+    Object.assign(
+      list,
+      (await request.post('/v1/object').send({_type: list._type})).body.data
+    );
+    list = Object.assign(await loadList(list._id), list);
   }
 
   // update all elements owned by logged in user
@@ -29,20 +32,22 @@ export const saveList = async (list, loggedInUserId) => {
       if (o._owner && loggedInUserId !== o._owner) {
         return o;
       }
-      const {book} = o;
+
       try {
         const saved = Object.assign({}, o, {
           _type: 'list-entry',
+          // Exclude books in storage
           book: null,
-          pid: book.pid,
+          // include pid for work fetch
+          pid: o.pid || o.book.pid,
           _key: list._id,
           _rev: null,
           _public: list._public
         });
+
         return Object.assign(
           saved,
-          (await request.post('/v1/object').send(saved)).body.data,
-          {book}
+          (await request.post('/v1/object').send(saved)).body.data
         );
       } catch (e) {
         // possibly permission denied if not owner of list element
@@ -138,20 +143,21 @@ async function enrichList({list}) {
   });
 }
 
-export const loadList = async (id, store) => {
+export const loadList = async id => {
   if (!id) {
     throw Error('no id given');
   }
   const list = (await request.get(`/v1/object/${id}`)).body.data;
+
   if (!list) {
     throw Error('list is undefined');
   }
-  await enrichList({list, store});
+  await enrichList({list});
   return list;
 };
 
 // done
-export const loadLists = async ({openplatformId, store}) => {
+export const loadLists = async ({openplatformId}) => {
   if (!openplatformId) {
     return [];
   }
@@ -163,13 +169,13 @@ export const loadLists = async ({openplatformId, store}) => {
 
   let result = [];
   for (const list of lists) {
-    await enrichList({list, store});
+    await enrichList({list});
     result.push(list);
   }
 
   // Create system lists if they do not exist
   if (!containsList(SYSTEM_LIST, 'Har læst', result)) {
-    const list = await saveList({
+    let list = await saveList({
       type: SYSTEM_LIST,
       title: 'Har læst',
       description: 'En liste over læste bøger',
@@ -178,7 +184,7 @@ export const loadLists = async ({openplatformId, store}) => {
     result.push(list);
   }
   if (!containsList(SYSTEM_LIST, 'Vil læse', result)) {
-    const list = await saveList({
+    let list = await saveList({
       type: SYSTEM_LIST,
       title: 'Vil læse',
       description: 'En liste over bøger jeg gerne vil læse',

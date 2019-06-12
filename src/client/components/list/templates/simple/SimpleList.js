@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
 import {withList} from '../../../hoc/List';
 import T from '../../../base/T';
@@ -10,7 +9,6 @@ import Comments from '../../../comments/Comment.container';
 import AddToList from '../../addtolist/AddToList.container';
 import ListElement from '../../element/ListElement';
 import ListInfo from './ListInfo';
-import StickyConfirmPanel from '../../button/StickyConfirmPanel';
 import ListContextMenu from '../../menu/ListContextMenu';
 
 import {timestampToLongDate} from '../../../../utils/dateTimeFormat';
@@ -40,7 +38,7 @@ export class SimpleList extends React.Component {
   };
 
   render() {
-    const {_id, list, isListOwner} = this.props;
+    const {_id, list, deleteList, isListOwner} = this.props;
     const {added} = this.state;
     return (
       <React.Fragment>
@@ -66,6 +64,7 @@ export class SimpleList extends React.Component {
               </Text>
             </div>
             <ListContextMenu
+              deleteList={deleteList}
               className="mt-3"
               _id={list._id}
               style={{position: 'absolute', right: 0, top: 0, color: 'white'}}
@@ -76,11 +75,6 @@ export class SimpleList extends React.Component {
             {` ${timestampToLongDate(list._created)}`}
           </Text>
         </Banner>
-
-        <StickyConfirmPanel
-          _id={_id}
-          onTitleMissing={bool => this.setState({titleMissing: bool})}
-        />
 
         <div className="d-flex justify-content-center mt-0">
           <div
@@ -96,12 +90,14 @@ export class SimpleList extends React.Component {
               onAddBook={this.onAddBook}
               onEdit={this.onEdit}
               titleMissing={this.state.titleMissing}
+              commentsListRef={this.refs.commentsList}
             />
             <div className="position-relative mt-4 mt-md-5">
               {list.list.map(element => {
                 return (
                   <ListElement
                     key={element.pid}
+                    pid={element.pid}
                     element={element}
                     list={list}
                     editing={added === element.pid ? true : false}
@@ -136,7 +132,12 @@ export class SimpleList extends React.Component {
             )}
 
             {list.social && (
-              <div className="p-3 p-md-0">
+              <div
+                className="p-3 p-md-0"
+                ref={commentsList => {
+                  this.refs = {...this.refs, commentsList};
+                }}
+              >
                 {(list.open || isListOwner) && (
                   <div className="list-divider petroleum mt-4 mb-4" />
                 )}
@@ -157,7 +158,4 @@ export class SimpleList extends React.Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {};
-};
-export default connect(mapStateToProps)(withList(SimpleList));
+export default withList(SimpleList);

@@ -412,7 +412,6 @@
         "da": "For at oprette en profil, skal du acceptere reglerne for anvendelse af Læsekompasset.",
         "en": "You have to accept our terms"
       },
-
       "seeRulesLink": {
         "da": "Se regler og vilkår for Læsekompasset",
         "en": "See the rules and conditions for using Læsekompasset"
@@ -502,6 +501,18 @@
       "shortlistClear": {
         "da": "Ryd listen",
         "en": "Clear list"
+      },
+      "minderOmLink": {
+        "da": "Minder om ",
+        "en": "Similar to "
+      },
+      "fromListLink": {
+        "da": "Fra listen ",
+        "en": "From the list "
+      },
+      "originLink": {
+        "da": "Fundet via denne søgning",
+        "en": "Found via this search"
       }
     },
     "bookcase": {
@@ -519,7 +530,6 @@
         "da": "Mine lister",
         "en": "My lists"
       },
-
       "addToList": {
         "da": "Tilføj til liste",
         "en": "Add to list"
@@ -787,13 +797,14 @@
         "en": "Take a look"
       },
       "filterOrigin": {
-        "da": "Fra din søgning på %s",
-        "en": "From your search on %s"
+        "da": "Fundet via %s",
+        "en": "Found via %s"
       },
       "filterOriginNoTags": {
         "da": "Fra søgesiden",
         "en": "From searchpage"
       },
+
       "forward": {
         "da": "flere",
         "en": "more"

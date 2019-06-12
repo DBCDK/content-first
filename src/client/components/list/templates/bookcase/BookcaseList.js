@@ -107,7 +107,7 @@ export class BookcaseList extends React.Component {
   };
 
   render() {
-    const {_id, list, isListOwner} = this.props;
+    const {_id, list, deleteList, isListOwner} = this.props;
     const {added} = this.state;
     return (
       <React.Fragment>
@@ -133,6 +133,7 @@ export class BookcaseList extends React.Component {
               </Text>
             </div>
             <ListContextMenu
+              deleteList={deleteList}
               className="mt-3"
               _id={list._id}
               style={{position: 'absolute', right: 0, top: 0, color: 'white'}}
@@ -161,6 +162,7 @@ export class BookcaseList extends React.Component {
               info={this.getListInfoPositions()}
               infoRef={info => (this.refs = {...this.refs, info})}
               forceUpdate={() => this.forceUpdate()}
+              commentsListRef={this.refs.commentsList}
             />
             <div className="position-relative mt-4 mt-md-5">
               {list.list.map(element => {
@@ -169,6 +171,7 @@ export class BookcaseList extends React.Component {
                     elementRef={eRef => {
                       this.refs[element.pid] = eRef;
                     }}
+                    pid={element.pid}
                     key={element.pid}
                     element={element}
                     list={list}
@@ -192,7 +195,12 @@ export class BookcaseList extends React.Component {
             )}
 
             {list.social && (
-              <div className="p-3 p-md-0">
+              <div
+                className="p-3 p-md-0"
+                ref={commentsList => {
+                  this.refs = {...this.refs, commentsList};
+                }}
+              >
                 {(list.open || isListOwner) && (
                   <div className="list-divider petroleum mt-4 mb-4" />
                 )}

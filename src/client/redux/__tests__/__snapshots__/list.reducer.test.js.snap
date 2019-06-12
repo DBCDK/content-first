@@ -218,6 +218,17 @@ Array [
     "isNew": undefined,
     "list": Array [
       Object {
+        "_id": "123",
+        "book": Object {
+          "pid": "pid1",
+        },
+        "pid": "pid1",
+        "position": Object {
+          "x": 0,
+          "y": 0,
+        },
+      },
+      Object {
         "_id": "456",
         "book": Object {
           "pid": "pid2",

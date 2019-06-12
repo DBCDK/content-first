@@ -18,6 +18,7 @@ import Link from '../../general/Link.component';
 import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import TaxDescription from '../../work/TaxDescription.component.js';
 import CommentInput from '../../comments/CommentInput.component';
+import withWork from '../../hoc/Work/withWork.hoc';
 
 // User
 const UserInfo = ({showUserInfo, owner, time}) => {
@@ -83,8 +84,9 @@ const Description = ({
   showDescription,
   editing = false,
   owner,
-  element,
+  description,
   originalDescription,
+  bookDescription,
   onSubmit,
   onCancel,
   onChange
@@ -99,7 +101,7 @@ const Description = ({
       hideProfile={true}
       autoFocus={true}
       user={owner}
-      value={element.description}
+      value={description}
       cancelText={
         originalDescription ? (
           <T component="general" name="cancel" />
@@ -124,7 +126,9 @@ const Description = ({
         <span
           dangerouslySetInnerHTML={{
             __html: textParser(
-              element.description || element.book.description || ''
+              typeof description === 'string' && description !== ''
+                ? description
+                : bookDescription
             )
           }}
         />
@@ -182,17 +186,27 @@ export class ListElement extends React.Component {
       children,
       elementRef = null,
       showTaxDescription = true,
-      showDescription = true
+      showDescription = true,
+      work
     } = this.props;
     const {editing, originalDescription} = this.state;
-    const book = element.book;
+
+    if (!work || !work.book) {
+      return null;
+    }
+    const book = work.book;
 
     const description = (
       <Description
         editing={editing}
         owner={owner}
-        element={element}
+        description={
+          typeof element.description === 'string'
+            ? element.description
+            : book.description
+        }
         originalDescription={originalDescription}
+        bookDescription={book.description || ''}
         showDescription={showDescription}
         onSubmit={this.submit}
         onCancel={this.cancel}
@@ -215,8 +229,11 @@ export class ListElement extends React.Component {
               />
             </Link>
             <BookmarkButton
-              origin={`Fra ${list.title}`}
-              work={element}
+              origin={{
+                type: 'personalList',
+                listLink: [this.props.element._key, list.title]
+              }}
+              work={work}
               layout="circle"
               style={{position: 'absolute', right: -8, top: -8}}
             />
@@ -325,7 +342,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     }),
   submit: ownProps.submit || (() => dispatch(storeList(ownProps.list._id)))
 });
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ListElement);
+export default withWork(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ListElement)
+);

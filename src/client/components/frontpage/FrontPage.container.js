@@ -53,9 +53,9 @@ class FrontPage extends React.Component {
           mount={'frontpage-interactions-belt'}
           key={'frontpage-interactions-belt'}
         />
-        {this.renderBelts(aBeltsMap.slice(0, 7))}
+        {this.renderBelts(aBeltsMap.slice(0, 2))}
         <SpotsContainer />
-        {this.renderBelts(aBeltsMap.slice(7, aBeltsMap.length))}
+        {this.renderBelts(aBeltsMap.slice(2, aBeltsMap.length))}
         <RecentListsBelt />
       </div>
     );

@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 // import {mount} from 'enzyme';
 
-import Pulse from '../Pulse.component';
+import {Pulse} from '../Pulse.component';
 
 const pid = '870970-basis:52038014';
 const position = {x: 26, y: 46};
@@ -18,6 +18,7 @@ describe('Pulse', () => {
           }}
           delay={2}
           position={position}
+          work={{book: {title: 'test'}}}
         />
       )
       .toJSON();

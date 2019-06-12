@@ -3,11 +3,10 @@ import {connect} from 'react-redux';
 import Swiper from 'react-id-swiper';
 import {isMobile} from 'react-device-detect';
 
-import Explorer from './explorer/explorer.component.js';
-
 /* templates */
 import SearchbarTemplate from './templates/Searchbar.template.js';
 import InfoTemplate from './templates/Info.template.js';
+import InteractionSlide from './templates/InteractionSlide.template.js';
 
 import './Hero.css';
 
@@ -16,7 +15,6 @@ const params = {
   slidesPerView: 1,
   noSwiping: !isMobile,
   speed: 1000,
-  loop: true,
   autoplay: {
     delay: 10000,
     disableOnInteraction: false
@@ -56,7 +54,7 @@ export class Hero extends React.Component {
 
   template(hero, idx) {
     switch (hero.template) {
-      case 'searchbar': {
+      case 'Searchbar': {
         return (
           <SearchbarTemplate
             className="swiper-slide"
@@ -65,12 +63,23 @@ export class Hero extends React.Component {
           />
         );
       }
-      case 'info': {
+      case 'Info': {
         return (
           <InfoTemplate
             className="swiper-slide"
             key={`${hero.title}-${idx}`}
             hero={hero}
+            state={this.state}
+          />
+        );
+      }
+      case 'InteractionSlide': {
+        return (
+          <InteractionSlide
+            className="swiper-slide"
+            key={`${hero.title}-${idx}`}
+            hero={hero}
+            state={this.state}
           />
         );
       }
@@ -97,11 +106,6 @@ export class Hero extends React.Component {
               return null;
             })}
         </Swiper>
-        <Explorer
-          scrollDistanceOnClick={
-            (this.state.container && this.state.container.clientHeight) || 0
-          }
-        />
       </div>
     );
   }

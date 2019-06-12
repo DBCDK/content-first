@@ -57,13 +57,16 @@ const listReducer = (state = defaultState, action) => {
       const {_id} = action;
       const old = state.lists[_id] || {};
       return Object.assign({}, state, {
-        lists: {...state.lists, [_id]: {...old, isLoading: true, _id}}
+        lists: {
+          ...state.lists,
+          [_id]: {...old, isLoading: true, isLoaded: false, _id}
+        }
       });
     }
     case ADD_LIST: {
       const {list} = action;
       if (!list._id) {
-        throw new Error('Cant add list when list.data._id is not set');
+        throw new Error('Cant add list when list._id is not set');
       }
       return Object.assign({}, state, {
         lists: {...state.lists, [list._id]: list}
@@ -157,7 +160,7 @@ const listReducer = (state = defaultState, action) => {
         throw new Error("'element' is missing from action");
       }
       const changeMap = Object.assign({}, state.changeMap, {
-        [action.element.book.pid]: {}
+        [action.element.pid]: {}
       });
       const list = {
         ...state.lists[action._id]
@@ -167,7 +170,7 @@ const listReducer = (state = defaultState, action) => {
       list.pending = list.pending || [];
       list.pending = [...list.pending, action.element];
       list.list = list.list.filter(
-        element => element.pid !== action.element.book.pid
+        element => element.pid !== action.element.pid
       );
       return Object.assign({}, state, {
         lists: {...state.lists, [action._id]: list},
@@ -257,6 +260,7 @@ const listReducer = (state = defaultState, action) => {
       if (!state.lists[action.data._id]) {
         throw new Error(`Could not find list with _id ${action.data._id}`);
       }
+
       const list = {...state.lists[action.data._id], ...action.data};
       return Object.assign({}, state, {
         lists: {...state.lists, [action.data._id]: list}
@@ -280,6 +284,7 @@ const listReducer = (state = defaultState, action) => {
       }
 
       list.isLoading = false;
+      list.isLoaded = true;
 
       return Object.assign({}, state, {
         lists: {...state.lists, [action.list._id]: list}
@@ -340,6 +345,7 @@ const listReducer = (state = defaultState, action) => {
         lists: {...state.lists, [action._id]: list}
       });
     }
+
     case STORE_LIST: {
       const list = {
         ...state.lists[action._id],
@@ -351,6 +357,7 @@ const listReducer = (state = defaultState, action) => {
         latestUsedId: action._id
       });
     }
+
     case ON_USERLISTS_EXPAND:
       return Object.assign({}, state, {expanded: true});
     case ON_USERLISTS_COLLAPSE:
@@ -362,21 +369,18 @@ const listReducer = (state = defaultState, action) => {
 };
 
 // ACTION CREATORS
-export const addList = (
-  {
-    _type = 'list',
-    type = CUSTOM_LIST,
-    title = '',
-    description = '',
-    isNew,
-    dotColor = 'petroleum',
-    list = [],
-    _id = null,
-    _owner = null,
-    _created = Date.now()
-  },
-  afterSave
-) => {
+export const addList = ({
+  _type = 'list',
+  type = CUSTOM_LIST,
+  title = '',
+  description = '',
+  isNew,
+  dotColor = 'petroleum',
+  list = [],
+  _id = null,
+  _owner = null,
+  _created = Date.now()
+}) => {
   return {
     type: ADD_LIST,
     list: {
@@ -390,8 +394,7 @@ export const addList = (
       _owner,
       _created,
       _type
-    },
-    afterSave
+    }
   };
 };
 export const updateList = data => {
@@ -503,10 +506,9 @@ export const getListByIdSelector = () =>
     [
       (state, {_id}) => {
         return state.listReducer.lists[_id];
-      },
-      state => state.booksReducer
+      }
     ],
-    (list, booksState) => {
+    list => {
       if (!list) {
         return;
       }
@@ -514,14 +516,6 @@ export const getListByIdSelector = () =>
       list = {...list};
 
       if (list && list.list) {
-        list.list = list.list
-          .filter(el => {
-            return booksState.books[el.pid] && booksState.books[el.pid].book;
-          })
-          .map(el => {
-            return {...el, book: booksState.books[el.pid].book};
-          });
-
         // ensure uniqueness of elements
         // duplicates may exist, due to a previous bug #548
         list.list = uniqBy(list.list, 'pid');

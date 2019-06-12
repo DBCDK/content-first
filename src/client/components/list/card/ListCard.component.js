@@ -12,8 +12,9 @@ import Divider from '../../base/Divider';
 import {createGetUserSelector} from '../../../redux/users';
 
 import {FETCH_COMMENTS} from '../../../redux/comment.reducer';
-import {LIST_LOAD_REQUEST} from '../../../redux/list.reducer';
 import {createCountComments} from '../../../redux/selectors';
+
+import {withList, withLists} from '../../hoc/List';
 
 import './ListCard.css';
 
@@ -28,17 +29,13 @@ class ListCard extends React.Component {
     this.fetch();
   }
   fetch() {
-    if (this.fetched !== this.props._id && !this.props.skeleton) {
-      this.props.loadList();
-      this.fetched = this.props._id;
-    }
     if (
       this.props.list &&
-      this.props._id &&
+      this.props.list._id &&
       !this.props.list.isLoading &&
       !this.commentsFetched
     ) {
-      this.props.fetchComments(this.props._id);
+      this.props.fetchComments(this.props.list._id);
       if (this.props.list.list) {
         this.props.list.list.forEach(el => {
           this.props.fetchComments(el._id);
@@ -168,26 +165,29 @@ const makeMapStateToProps = () => {
   const getUser = createGetUserSelector();
   const countComments = createCountComments();
   return (state, ownProps) => {
-    const list = state.listReducer.lists[ownProps._id]; // selector not used, since the book expanded list is not needed
+    const list = ownProps.list;
     if (!list || !list.list) {
       return {};
     }
     const ids = [list._id, ...list.list.map(e => e._id)];
     const isLoading = !list || list.isLoading;
     return {
-      list,
       commentCount: countComments(state, {ids}),
       profile: !isLoading ? getUser(state, {id: list._owner}) : null,
       isLoading
     };
   };
 };
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  loadList: () => dispatch({type: LIST_LOAD_REQUEST, _id: ownProps._id}),
+
+export const mapDispatchToProps = dispatch => ({
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
-export default connect(
-  makeMapStateToProps,
-  mapDispatchToProps
-)(ListCard);
+export default withLists(
+  withList(
+    connect(
+      makeMapStateToProps,
+      mapDispatchToProps
+    )(ListCard)
+  )
+);

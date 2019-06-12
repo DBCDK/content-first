@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import scrollToComponent from 'react-scroll-to-component';
 
 import Text from '../base/Text';
 import T from '../base/T';
@@ -25,7 +26,13 @@ export class CommentCounter extends React.Component {
       <Text
         type="small"
         variant="weight-semibold"
-        style={{lineHeight: '1.5rem'}}
+        style={{lineHeight: '1.5rem', cursor: 'pointer'}}
+        onClick={() => {
+          scrollToComponent(this.props.commentsListRef, {
+            offset: 100,
+            duration: 700
+          });
+        }}
       >
         <T
           component="post"

@@ -61,6 +61,7 @@ export class CommentWrapper extends React.Component {
       error,
       _created = Date.now() / 1000
     } = this.props.comment;
+
     return (
       <div key={_id} className="comment-wrapper">
         {saving ? (

@@ -22,7 +22,7 @@ export class AddToList extends React.Component {
     if (!isLoggedIn) {
       return requireLogin();
     }
-    if (list.list.filter(item => item.book.pid === book.book.pid).length > 0) {
+    if (list.list.filter(item => item.pid === book.pid).length > 0) {
       this.setState({exists: true, selected: book});
     } else {
       addElement(book, list);
@@ -45,6 +45,7 @@ export class AddToList extends React.Component {
     if (!allowAdd || !list) {
       return null;
     }
+
     return (
       <div
         className={'addbook position-relative ' + className || ''}
@@ -111,7 +112,7 @@ const mapStateToProps = (state, ownProps) => {
     profile: state.users[state.userReducer.openplatformId],
     allowAdd:
       ownProps.list.open ||
-      ownProps.list.owner === state.userReducer.openplatformId,
+      ownProps.list._owner === state.userReducer.openplatformId,
     isLoggedIn: state.userReducer.isLoggedIn
   };
 };

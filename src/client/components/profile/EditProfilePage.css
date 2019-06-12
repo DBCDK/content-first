@@ -1,8 +1,9 @@
 .profile__edit-content {
     text-align: left;
     margin-top: 0px;
-    margin-bottom: 25rem;
-    padding-bottom: 25rem;
+   /* margin-bottom: 25rem;
+    padding-bottom: 25rem;*/
+    padding-bottom: 20px;
     transition: margin 500ms ease-in-out;
 }
 
@@ -183,11 +184,13 @@
 }
 
 @media only screen and (max-width: 650px) {
-
+    .profile__edit-content{
+    padding-bottom: 3rem;
+    }
+    
     .profile__edit-page-position {
         margin: 0;
         width: 100%;
-        height: 650px;
     }
 
     .profile__edit-titlezone {

@@ -58,6 +58,18 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
         onFocus={[Function]}
       >
         <div
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "cursor": "text",
+              "height": "40px",
+              "position": "absolute",
+              "width": "235px",
+            }
+          }
+        />
+        <div
           className="d-flex w-100"
           style={
             Object {
@@ -76,7 +88,7 @@ exports[`CommentContainer Component fetches comments on mount 1`] = `
             value=""
           />
           <i
-            className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+            className="material-icons material-icons-send comment-submit-icon align-self-end "
             id="comment-submit"
             onClick={[Function]}
           >
@@ -148,6 +160,18 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
         onFocus={[Function]}
       >
         <div
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "cursor": "text",
+              "height": "40px",
+              "position": "absolute",
+              "width": "235px",
+            }
+          }
+        />
+        <div
           className="d-flex w-100"
           style={
             Object {
@@ -166,7 +190,7 @@ exports[`CommentContainer Component renders a list of comments 1`] = `
             value=""
           />
           <i
-            className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+            className="material-icons material-icons-send comment-submit-icon align-self-end "
             id="comment-submit"
             onClick={[Function]}
           >
@@ -360,6 +384,18 @@ exports[`CommentContainer Component renders all comments 1`] = `
             onFocus={[Function]}
           >
             <div
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "cursor": "text",
+                  "height": "40px",
+                  "position": "absolute",
+                  "width": "235px",
+                }
+              }
+            />
+            <div
               className="d-flex w-100"
               style={
                 Object {
@@ -377,13 +413,12 @@ exports[`CommentContainer Component renders all comments 1`] = `
               />
               <Icon
                 className="comment-submit-icon align-self-end"
-                disabled={true}
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
               >
                 <i
-                  className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+                  className="material-icons material-icons-send comment-submit-icon align-self-end "
                   id="comment-submit"
                   onClick={[Function]}
                 >
@@ -616,6 +651,18 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
         onFocus={[Function]}
       >
         <div
+          onClick={[Function]}
+          style={
+            Object {
+              "backgroundColor": "transparent",
+              "cursor": "text",
+              "height": "40px",
+              "position": "absolute",
+              "width": "235px",
+            }
+          }
+        />
+        <div
           className="d-flex w-100"
           style={
             Object {
@@ -634,7 +681,7 @@ exports[`CommentContainer Component renders comment with links and emojis 1`] = 
             value=""
           />
           <i
-            className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+            className="material-icons material-icons-send comment-submit-icon align-self-end "
             id="comment-submit"
             onClick={[Function]}
           >
@@ -801,6 +848,18 @@ exports[`CommentContainer Component renders error 1`] = `
             onFocus={[Function]}
           >
             <div
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "cursor": "text",
+                  "height": "40px",
+                  "position": "absolute",
+                  "width": "235px",
+                }
+              }
+            />
+            <div
               className="d-flex w-100"
               style={
                 Object {
@@ -818,7 +877,6 @@ exports[`CommentContainer Component renders error 1`] = `
               />
               <Icon
                 className="comment-submit-icon align-self-end"
-                disabled={false}
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
@@ -1052,6 +1110,18 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
             onFocus={[Function]}
           >
             <div
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "cursor": "text",
+                  "height": "40px",
+                  "position": "absolute",
+                  "width": "235px",
+                }
+              }
+            />
+            <div
               className="d-flex w-100"
               style={
                 Object {
@@ -1069,13 +1139,12 @@ exports[`CommentContainer Component renders saving overlay 1`] = `
               />
               <Icon
                 className="comment-submit-icon align-self-end"
-                disabled={true}
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
               >
                 <i
-                  className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+                  className="material-icons material-icons-send comment-submit-icon align-self-end "
                   id="comment-submit"
                   onClick={[Function]}
                 >
@@ -1319,6 +1388,18 @@ exports[`CommentContainer Toggle all comments 1`] = `
             onFocus={[Function]}
           >
             <div
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "cursor": "text",
+                  "height": "40px",
+                  "position": "absolute",
+                  "width": "235px",
+                }
+              }
+            />
+            <div
               className="d-flex w-100"
               style={
                 Object {
@@ -1336,13 +1417,12 @@ exports[`CommentContainer Toggle all comments 1`] = `
               />
               <Icon
                 className="comment-submit-icon align-self-end"
-                disabled={true}
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
               >
                 <i
-                  className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+                  className="material-icons material-icons-send comment-submit-icon align-self-end "
                   id="comment-submit"
                   onClick={[Function]}
                 >
@@ -1599,6 +1679,18 @@ exports[`CommentContainer Toggle all comments 2`] = `
             onFocus={[Function]}
           >
             <div
+              onClick={[Function]}
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "cursor": "text",
+                  "height": "40px",
+                  "position": "absolute",
+                  "width": "235px",
+                }
+              }
+            />
+            <div
               className="d-flex w-100"
               style={
                 Object {
@@ -1616,13 +1708,12 @@ exports[`CommentContainer Toggle all comments 2`] = `
               />
               <Icon
                 className="comment-submit-icon align-self-end"
-                disabled={true}
                 id="comment-submit"
                 name="send"
                 onClick={[Function]}
               >
                 <i
-                  className="material-icons material-icons-send comment-submit-icon align-self-end md-disabled"
+                  className="material-icons material-icons-send comment-submit-icon align-self-end "
                   id="comment-submit"
                   onClick={[Function]}
                 >

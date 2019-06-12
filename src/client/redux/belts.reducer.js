@@ -1,43 +1,18 @@
 const defaultState = {
   belts: {
-    'En god bog': {
-      key: 'En god bog',
-      name: 'En god bog',
+    'Jeg elsker dig': {
+      key: 'Jeg elsker dig',
+      name: 'Jeg elsker dig',
+      subtext:
+        'Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?',
+      tags: [
+        {id: 5660, weight: 10},
+        {id: 189, weight: 10},
+        {id: 5637, weight: 1},
+        {id: 3431, weight: 10}
+      ],
+      onFrontPage: true,
       isLoading: false,
-      onFrontPage: false,
-      works: [],
-      tags: [100001, 100003, {id: 5672, weight: 10}, 100005],
-      type: 'belt',
-      child: false
-    },
-    'En spændende bog': {
-      key: 'En spændende bog',
-      name: 'En spændende bog',
-      isLoading: false,
-      onFrontPage: false,
-      links: [],
-      tags: [5676, 5632],
-      type: 'belt',
-      child: false
-    },
-    'En anderledes bog': {
-      key: 'En anderledes bog',
-      name: 'En anderledes bog',
-      isLoading: false,
-      onFrontPage: false,
-      links: [],
-      tags: [5702],
-      type: 'belt',
-      child: false
-    },
-    'Passer med min smag': {
-      key: 'Passer med min smag',
-      name: 'Passer med min smag',
-      isLoading: false,
-      onFrontPage: false,
-      links: [],
-      works: [],
-      tags: [],
       type: 'belt',
       child: false
     },
@@ -46,18 +21,17 @@ const defaultState = {
       name: 'Mennesket og Naturen',
       subtext:
         'Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen.',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
       tags: [
         {id: 5329, weight: 10},
         {id: 3510, weight: 10},
-        5731,
-        5280,
-        5277,
-        2183,
-        2278
+        {id: 5731, weight: 1},
+        {id: 5280, weight: 1},
+        {id: 5277, weight: 1},
+        {id: 2183, weight: 1},
+        {id: 2278, weight: 1}
       ],
+      onFrontPage: true,
+      isLoading: false,
       type: 'belt',
       child: false
     },
@@ -66,18 +40,17 @@ const defaultState = {
       name: 'Familiens skyggesider',
       subtext:
         'Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge.',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
       tags: [
         {id: 1672, weight: 10},
         {id: 5731, weight: 10},
-        5699,
-        5721,
-        5696,
-        5680,
+        {id: 5699, weight: 1},
+        {id: 5721, weight: 1},
+        {id: 5696, weight: 1},
+        {id: 5680, weight: 1},
         {id: 5691, weight: 10}
       ],
+      onFrontPage: true,
+      isLoading: false,
       type: 'belt',
       child: false
     },
@@ -86,10 +59,14 @@ const defaultState = {
       name: 'Tankevækkende fremtidsvisioner',
       subtext:
         'Udforskning af filosofiske spørgsmål og anledning til refleksion gennem andre universer - også dem der ligner vores.',
-      isLoading: false,
+      tags: [
+        {id: 4995, weight: 10},
+        {id: 4927, weight: 1},
+        {id: 5714, weight: 1},
+        {id: 5713, weight: 1}
+      ],
       onFrontPage: true,
-      links: [],
-      tags: [{id: 4995, weight: 10}, 4927, 5714, 5713],
+      isLoading: false,
       type: 'belt',
       child: false
     },
@@ -98,18 +75,15 @@ const defaultState = {
       name: 'Krøllede fortællinger',
       subtext:
         'Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt.',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
       tags: [
         {id: 2683, weight: 10},
         {id: 5614, weight: 10},
-        5624,
-        // 5653, uncomment when a work is mapped to this tag
-        5652,
-        // 5711, uncomment when a work is mapped to this tag
-        5717
+        {id: 5624, weight: 1},
+        {id: 5652, weight: 1},
+        {id: 5717, weight: 1}
       ],
+      onFrontPage: true,
+      isLoading: false,
       type: 'belt',
       child: false
     },
@@ -118,10 +92,15 @@ const defaultState = {
       name: 'Sofahygge',
       subtext:
         'Hent teen, tænd stearinlyset og så op med fødderne og på med plaiden.',
-      isLoading: false,
+      tags: [
+        {id: 5637, weight: 10},
+        {id: 5654, weight: 1},
+        {id: 5636, weight: 1},
+        {id: 5731, weight: 1},
+        {id: 5611, weight: 10}
+      ],
       onFrontPage: true,
-      links: [],
-      tags: [{id: 5637, weight: 10}, 5654, 5636, 5731, {id: 5611, weight: 10}],
+      isLoading: false,
       type: 'belt',
       child: false
     },
@@ -130,18 +109,17 @@ const defaultState = {
       name: 'Tolkienesque',
       subtext:
         'De store eventyr og udfordringer venter i en anden verden, hvor magiske kræfter og overnaturlige væsner prøver hinanden af.',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
       tags: [
         {id: 6131, weight: 10},
-        5726,
-        5730,
-        5704,
-        5705,
+        {id: 5726, weight: 1},
+        {id: 5730, weight: 1},
+        {id: 5704, weight: 1},
+        {id: 5705, weight: 1},
         {id: 5707, weight: 10},
-        5708
+        {id: 5708, weight: 1}
       ],
+      onFrontPage: true,
+      isLoading: false,
       type: 'belt',
       child: false
     },
@@ -150,18 +128,17 @@ const defaultState = {
       name: 'Det var en mørk og stormfuld nat',
       subtext:
         'Det er koldt, det stormer, hemmelighederne hober sig op, og du har svært ved at adskille virkelighed og mareridt.',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
       tags: [
-        4044,
+        {id: 4044, weight: 1},
         {id: 4895, weight: 10},
-        5149,
-        5680,
+        {id: 5149, weight: 1},
+        {id: 5680, weight: 1},
         {id: 5700, weight: 10},
-        5670,
-        5676
+        {id: 5670, weight: 1},
+        {id: 5676, weight: 1}
       ],
+      onFrontPage: true,
+      isLoading: false,
       type: 'belt',
       child: false
     },
@@ -170,18 +147,17 @@ const defaultState = {
       name: 'Hvad sker der bag hækken?',
       subtext:
         'Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.',
-      isLoading: false,
-      onFrontPage: true,
-      links: [],
       tags: [
-        2683,
+        {id: 2683, weight: 1},
         {id: 4907, weight: 10},
         {id: 5368, weight: 10},
-        5731,
-        5670,
-        5676,
-        5691
+        {id: 5731, weight: 1},
+        {id: 5670, weight: 1},
+        {id: 5676, weight: 1},
+        {id: 5691, weight: 1}
       ],
+      onFrontPage: true,
+      isLoading: false,
       type: 'belt',
       child: false
     },
@@ -190,10 +166,14 @@ const defaultState = {
       name: 'Historiske romaner',
       subtext:
         'Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.',
-      isLoading: false,
+      tags: [
+        {id: 4901, weight: 10},
+        {id: 5660, weight: 1},
+        {id: 5658, weight: 1},
+        {id: 189, weight: 1}
+      ],
       onFrontPage: true,
-      links: [],
-      tags: [{id: 4901, weight: 10}, 5660, 5658, 189],
+      isLoading: false,
       type: 'belt',
       child: false
     },
@@ -202,10 +182,16 @@ const defaultState = {
       name: 'Vemodige nordmænd',
       subtext:
         'Når du har lyst til at tænke over livet - også det svære og sårbare.',
-      isLoading: false,
+      tags: [
+        {id: 4466, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 3510, weight: 1},
+        {id: 5626, weight: 1},
+        {id: 5683, weight: 1},
+        {id: 5630, weight: 1}
+      ],
       onFrontPage: true,
-      links: [],
-      tags: [{id: 4466, weight: 10}, 5731, 3510, 5626, 5683, 5630],
+      isLoading: false,
       type: 'belt',
       child: false
     }

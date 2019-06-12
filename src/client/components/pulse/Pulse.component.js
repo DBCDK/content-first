@@ -1,19 +1,23 @@
 import React from 'react';
 import Draggable from 'react-draggable';
 import Text from '../base/Text';
+import {withWork} from '../hoc/Work';
 
 import './pulse.css';
 
-export default class Pulse extends React.Component {
+export class Pulse extends React.Component {
   randomDelay(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min) + '00';
   }
 
   render() {
-    let label = this.props.label || false;
+    if (!this.props.work || !this.props.work.book) {
+      return null;
+    }
+    let label = this.props.work.book.title || false;
 
     if (label && label.length > 15) {
-      label = this.props.label.substring(0, 15) + '...';
+      label = label.substring(0, 15) + '...';
     }
 
     const activeClass = this.props.active ? 'pulse-active' : '';
@@ -55,3 +59,5 @@ export default class Pulse extends React.Component {
     );
   }
 }
+
+export default withWork(Pulse);

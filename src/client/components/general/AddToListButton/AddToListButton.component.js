@@ -15,6 +15,60 @@ import {
 } from '../../../redux/list.reducer';
 import './AddToListButton.css';
 
+const MenuEntry = withList(
+  ({
+    list,
+    addElementsToList,
+    toggleWorkInList,
+    work,
+    status,
+    elements,
+    ToastMessageLabel,
+    classLast,
+    forceOpen,
+    multiple
+  }) => {
+    return (
+      <li
+        className={
+          `AddToListButton__${list.type} ${classLast}` +
+          (multiple ? ' pl-3' : '')
+        }
+        onClick={() => {
+          if (isMobileOnly) {
+            // Dont auto-close dropdown on mobile devices - multiselection is allowed
+            forceOpen();
+          }
+          if (multiple) {
+            addElementsToList(elements);
+          } else {
+            toggleWorkInList(work);
+          }
+          toast(
+            <ToastMessage
+              type="success"
+              icon="check_circle"
+              lines={[ToastMessageLabel, !multiple && list.title]}
+            />
+          );
+        }}
+      >
+        {!multiple && (
+          <Icon
+            name="lens"
+            className={
+              `md-xsmall ${
+                status && !multiple ? 'pistache pistache-txt' : ''
+              }` + (multiple ? ' m-0' : '')
+            }
+          />
+        )}
+        <span>{list.title}</span>
+      </li>
+    );
+  }
+);
+
 export class AddToListButton extends React.Component {
   // Check if a work exist in a list
   pidInList(pid, list) {
@@ -28,14 +82,14 @@ export class AddToListButton extends React.Component {
   }
 
   // Force dropdown to show
-  forceOpen() {
+  forceOpen = () => {
     this.dropdown.classList.add('show');
-  }
+  };
 
   // Force dropdown to close
-  forceClose() {
+  forceClose = () => {
     this.dropdown.classList.remove('show');
-  }
+  };
 
   // Title for addToList button
   constructTitle(defaultTitle) {
@@ -70,6 +124,7 @@ export class AddToListButton extends React.Component {
     const work = this.props.work || elements[0];
     const book = work.book;
     const multiple = this.props.multiple;
+
     return list.map((l, i) => {
       if (i < limit) {
         let status = this.pidInList(book.pid, l.list);
@@ -92,43 +147,17 @@ export class AddToListButton extends React.Component {
           i + 1 === limit || i + 1 === list.length ? 'last' : '';
 
         return (
-          <li
-            className={
-              `AddToListButton__${l.type} ${classLast}` +
-              (multiple ? ' pl-3' : '')
-            }
+          <MenuEntry
+            id={l._id}
             key={l._id}
-            onClick={() => {
-              if (isMobileOnly) {
-                // Dont auto-close dropdown on mobile devices - multiselection is allowed
-                this.forceOpen();
-              }
-              if (this.props.multiple) {
-                this.props.addElementsToList(l, elements);
-              } else {
-                this.props.toggleWorkInList(work, l);
-              }
-              toast(
-                <ToastMessage
-                  type="success"
-                  icon="check_circle"
-                  lines={[ToastMessageLabel, !multiple && l.title]}
-                />
-              );
-            }}
-          >
-            {!multiple && (
-              <Icon
-                name="lens"
-                className={
-                  `md-xsmall ${
-                    status && !multiple ? 'pistache pistache-txt' : ''
-                  }` + (multiple ? ' m-0' : '')
-                }
-              />
-            )}
-            <span>{l.title}</span>
-          </li>
+            status={status}
+            elements={elements}
+            work={work}
+            multiple={multiple}
+            ToastMessageLabel={ToastMessageLabel}
+            forceOpen={this.forceOpen}
+            classLast={classLast}
+          />
         );
       }
       return false;
@@ -166,8 +195,8 @@ export class AddToListButton extends React.Component {
               `AddToListButton ${className}` +
               (multiple ? ' multiple-works-to-list-button ' : '')
             }
-            type="quinary"
-            size="medium"
+            type={multiple ? 'tertiary' : 'quinary'}
+            size={multiple ? 'large' : 'medium'}
             iconRight="more_vert"
             onClick={() => {
               openModal('login', {
@@ -181,7 +210,6 @@ export class AddToListButton extends React.Component {
         </div>
       );
     }
-
     return (
       <div
         ref={e => (this.listContainer = e)}
@@ -210,7 +238,7 @@ export class AddToListButton extends React.Component {
         >
           <li
             className="AddToListButton__Mobile__Back"
-            onClick={() => this.forceClose()}
+            onClick={this.forceClose}
           >
             <Icon name="chevron_left" className="md-medium ml-0" />
             <T component="general" name="back" />
@@ -254,7 +282,7 @@ export class AddToListButton extends React.Component {
               size="medium"
               type="quaternary"
               className="porcelain"
-              onClick={() => this.forceClose()}
+              onClick={this.forceClose}
             >
               <T component="general" name="close" />
             </Button>
@@ -297,4 +325,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withList(AddToListButton));
+)(AddToListButton);

@@ -56,6 +56,7 @@ export class TagsBelt extends React.Component {
     super();
     this.state = {editing: false, name: '', subtext: ''};
   }
+
   render() {
     const isOwner =
       this.props._owner &&
@@ -64,18 +65,13 @@ export class TagsBelt extends React.Component {
     const editing = this.state.editing;
     const titleMissing = this.state.name.trim().length === 0;
     const titleMissingClass = titleMissing ? 'value-missing' : '';
-    const origin = T({
-      component: 'filter',
-      name: tags.length > 0 ? 'filterOrigin' : 'filterOriginNoTags',
-      vars: [
-        tags
-          .map(t => {
-            const tag = filtersMapAll[t.id ? t.id : t];
-            return get(tag, 'title');
-          })
-          .join(', ')
-      ]
-    });
+    const origin = {
+      type: 'searchTags',
+      tags: tags.map(t => {
+        const tag = filtersMapAll[t.id ? t.id : t];
+        return get(tag, 'id');
+      })
+    };
 
     return (
       <div
@@ -260,6 +256,7 @@ export class TagsBelt extends React.Component {
     );
   }
 }
+
 export default withUser(
   withStoreBelt(
     withChildBelt(

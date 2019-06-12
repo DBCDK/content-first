@@ -33,37 +33,25 @@ exports[`AddToList render when allowAdd is true 1`] = `
           "description": "some description",
           "list": Array [
             Object {
-              "book": Object {
-                "creator": "some creator1",
-                "pid": "pid1",
-                "title": "some title 1",
-              },
               "description": "some description1",
               "links": Object {
                 "cover": "/cover1",
               },
+              "pid": "pid1",
             },
             Object {
-              "book": Object {
-                "creator": "some creator2",
-                "pid": "pid2",
-                "title": "some title 2",
-              },
               "description": "some description2",
               "links": Object {
                 "cover": "/cover2",
               },
+              "pid": "pid2",
             },
             Object {
-              "book": Object {
-                "creator": "some creator3",
-                "pid": "pid3",
-                "title": "some title 3",
-              },
               "description": "some description3",
               "links": Object {
                 "cover": "/cover3",
               },
+              "pid": "pid3",
             },
           ],
           "title": "some list",
@@ -104,37 +92,25 @@ exports[`AddToList show add and cancel buttons when selected book is not in list
           "description": "some description",
           "list": Array [
             Object {
-              "book": Object {
-                "creator": "some creator1",
-                "pid": "pid1",
-                "title": "some title 1",
-              },
               "description": "some description1",
               "links": Object {
                 "cover": "/cover1",
               },
+              "pid": "pid1",
             },
             Object {
-              "book": Object {
-                "creator": "some creator2",
-                "pid": "pid2",
-                "title": "some title 2",
-              },
               "description": "some description2",
               "links": Object {
                 "cover": "/cover2",
               },
+              "pid": "pid2",
             },
             Object {
-              "book": Object {
-                "creator": "some creator3",
-                "pid": "pid3",
-                "title": "some title 3",
-              },
               "description": "some description3",
               "links": Object {
                 "cover": "/cover3",
               },
+              "pid": "pid3",
             },
           ],
           "title": "some list",
@@ -175,37 +151,25 @@ exports[`AddToList show error msg when selected books is already in list 1`] = `
           "description": "some description",
           "list": Array [
             Object {
-              "book": Object {
-                "creator": "some creator1",
-                "pid": "pid1",
-                "title": "some title 1",
-              },
               "description": "some description1",
               "links": Object {
                 "cover": "/cover1",
               },
+              "pid": "pid1",
             },
             Object {
-              "book": Object {
-                "creator": "some creator2",
-                "pid": "pid2",
-                "title": "some title 2",
-              },
               "description": "some description2",
               "links": Object {
                 "cover": "/cover2",
               },
+              "pid": "pid2",
             },
             Object {
-              "book": Object {
-                "creator": "some creator3",
-                "pid": "pid3",
-                "title": "some title 3",
-              },
               "description": "some description3",
               "links": Object {
                 "cover": "/cover3",
               },
+              "pid": "pid3",
             },
           ],
           "title": "some list",

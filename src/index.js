@@ -13,7 +13,7 @@ import {
   listMiddleware,
   logMiddleware
 } from './client/redux/middleware';
-import {followMiddleware} from './client/redux/follow.middleware';
+// import {followMiddleware} from './client/redux/follow.middleware';
 import {userMiddleware} from './client/redux/user.middleware';
 import {usersMiddleware} from './client/redux/users';
 import {orderMiddleware} from './client/redux/order.middleware';
@@ -35,7 +35,7 @@ const store = createStore([
   requestMiddleware,
   shortListMiddleware,
   listMiddleware,
-  followMiddleware,
+  // followMiddleware,
   logMiddleware,
   orderMiddleware,
   recommendMiddleware,

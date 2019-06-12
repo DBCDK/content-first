@@ -3,59 +3,61 @@
 const defaultState = {
   heroes: [
     {
-      img: 'img/hero/launch.jpg',
-      btnColor: 'pistache',
+      img: {
+        landscape: 'img/hero/Læsekompas_Images_16x9_023.jpg',
+        portrait: 'img/hero/Læsekompas_Images_1500x1500_023.jpg',
+        blend: '#b17642',
+        flip: false
+      },
+      btnColor: 'korn',
       btnText: 'Find en bog, der er lige dig',
       btnTextColor: 'petroleum',
-      template: 'info',
+      template: 'Info',
       disabled: false
     },
     {
-      title: 'Hvordan er din næste bog?',
-      text: '',
-      img: 'img/hero/fantastisk-mystisk-dyster.jpg',
-      tags: [5726, 5708, 5680],
-      color: 'white',
-      btnColor: 'korn',
-      btnText: 'vis bøger',
-      btnTextColor: 'petroleum',
-      template: 'searchbar',
-      disabled: false
-    },
-    {
-      title: 'Hvordan er din næste bog?',
-      text: '',
-      img: 'img/hero/humoristisk-charmerende-overraskende.jpg',
+      img: {
+        landscape: 'img/hero/Læsekompas_Images_16x9_024.jpg',
+        portrait: 'img/hero/Læsekompas_Images_1500x1500_024.jpg',
+        blend: '#f37362',
+        flip: 'x'
+      },
       tags: [5647, 5654, 5674],
-      color: 'white',
-      btnColor: 'due',
-      btnText: 'vis bøger',
-      btnTextColor: 'white',
-      template: 'searchbar',
-      disabled: false
-    },
-    {
-      title: 'Hvordan er din næste bog?',
-      text: '',
-      img: 'img/hero/uhyggelig-surrealistisk-barsk.jpg',
-      tags: [5700, 5732, 5681],
-      color: 'white',
-      btnColor: 'mine-shaft',
-      btnText: 'vis bøger',
-      btnTextColor: 'white',
-      template: 'searchbar',
-      disabled: false
-    },
-    {
-      title: 'Hvordan er din næste bog?',
-      text: '',
-      img: 'img/hero/varm-romantisk-realistisk.jpg',
-      tags: [5642, 5660, 5731],
-      color: 'white',
-      btnColor: 'fersken',
-      btnText: 'vis bøger',
+      btnColor: 'korn',
+      btnText: 'Vis bøger',
       btnTextColor: 'petroleum',
-      template: 'searchbar',
+      position: 'right',
+      template: 'InteractionSlide',
+      disabled: false
+    },
+    {
+      img: {
+        landscape: 'img/hero/Læsekompas_Images_16x9_022.jpg',
+        portrait: 'img/hero/Læsekompas_Images_1500x1500_022.jpg',
+        blend: '#74a9ff',
+        flip: false
+      },
+      tags: [5642, 5660, 5731],
+      btnColor: 'korn',
+      btnText: 'Vis bøger',
+      btnTextColor: 'petroleum',
+      position: 'left',
+      template: 'InteractionSlide',
+      disabled: false
+    },
+    {
+      img: {
+        landscape: 'img/hero/Læsekompas_Images_16x9_02.jpg',
+        portrait: 'img/hero/Læsekompas_Images_1500x1500_02.jpg',
+        blend: '#a8c7b0',
+        flip: false
+      },
+      tags: [5726, 5708, 5680],
+      btnColor: 'korn',
+      btnText: 'Vis bøger',
+      btnTextColor: 'petroleum',
+      position: 'left',
+      template: 'InteractionSlide',
       disabled: false
     }
   ],
