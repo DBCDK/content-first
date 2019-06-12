@@ -139,57 +139,29 @@ async function find(query, user = {}) {
   await validateObjectStore();
   let access_token =
     user.openplatformToken || (await fetchAnonymousToken()).access_token;
-  const requestObject = {access_token, find: {_type: typeId}};
-  if (typeof query.owner !== 'undefined') {
-    requestObject.find._owner = query.owner;
-  } else {
-    return scan(query, user);
-  }
-  if (typeof query.type !== 'undefined') {
-    requestObject.find.cf_type = query.type;
-  }
-
-  if (typeof query.key !== 'undefined') {
-    requestObject.find.cf_key = query.key;
-  }
-
-  try {
-    const ids = (await request
-      .post(storageUrl)
-      .send(requestObject)).body.data.slice(0, query.limit || 20);
-
-    const objects = (await Promise.all(
-      ids.map(_id => request.post(storageUrl).send({access_token, get: {_id}}))
-    )).map(res =>
-      _.omit(fromStorageObject(res.body.data), ['_version', '_client'])
-    );
-    return {data: objects};
-  } catch (e) {
-    return parseException(e);
-  }
-}
-
-async function scan(query, user = {}) {
-  await validateObjectStore();
-  let access_token =
-    user.openplatformToken || (await fetchAnonymousToken()).access_token;
   const requestObject = {
     access_token,
     scan: {
       _type: typeId,
-      index: ['cf_type', 'cf_key', 'cf_created'],
+      index: [],
       startsWith: [],
       limit: query.limit || 20,
       reverse: true
     }
   };
-
+  if (typeof query.owner !== 'undefined') {
+    requestObject.scan.index.push('_owner');
+    requestObject.scan.startsWith.push(query.owner);
+  }
   if (typeof query.type !== 'undefined') {
+    requestObject.scan.index.push('cf_type');
     requestObject.scan.startsWith.push(query.type);
   }
   if (typeof query.key !== 'undefined') {
+    requestObject.scan.index.push('cf_key');
     requestObject.scan.startsWith.push(query.key);
   }
+  requestObject.scan.index.push('cf_created');
   try {
     const ids = (await request.post(storageUrl).send(requestObject)).body.data;
 
