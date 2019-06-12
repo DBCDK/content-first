@@ -39,8 +39,7 @@
     "react-textarea-autosize": "^5.2.1",
     "resolve": "^1.4.0",
     "sinon": "^4.1.3",
-    "supertest": "^3.0.0",
-    "targz": "^1.0.1"
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "autolinker": "^1.6.2",
@@ -93,7 +92,8 @@
     "superagent": "^3.8.1",
     "twemoji": "^2.5.1",
     "uuid": "^3.1.0",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.19",
+    "targz": "^1.0.1"
   },
   "proxy": {
     "/v1": {
@@ -101,13 +101,14 @@
     }
   },
   "scripts": {
-    "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js src/*/*/*/*/*/*.js ./cypress/*/*.js",
+    "prettier": "prettier --no-bracket-spacing --single-quote --write src/*.js src/*/*.js src/*/*/*.js src/*/*/*/*.js src/*/*/*/*/*.js src/*/*/*/*/*/*.js e2e/cypress/*/*.js",
     "build": "react-scripts build",
     "coverage": ". ./current.env && nyc --reporter=lcov _mocha --exit -- src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js src/acceptance/*_test.js",
     "db-migrate": ". ./current.env && knex --knexfile src/server/knexfile.js --cwd . migrate:latest",
     "fetch-metakompas": ". ./current.env && ./tools/fetch-data.js ",
     "inject-metakompas": ". ./current.env && ./tools/put-data.js",
     "fetch-inject-metakompas": "npm run fetch-metakompas && npm run inject-metakompas",
+    "dbase": "docker-compose -f docker-compose-cypress.yml run --service-ports database",
     "lint-js": "eslint src",
     "lint:checkstyle": "eslint src -o report.xml -f checkstyle",
     "postinstall": "./tools/setup-node-env.sh",
@@ -122,8 +123,8 @@
     "test-no-db": ". ./current.env && mocha --exit src/acceptance/*_no-db.js",
     "test-no-elvis": "run-s test-no-db test-acceptance test-frontend",
     "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js",
-    "cy:run": "cypress run --browser chrome",
-    "cy:open": "cypress open",
+    "cy:run": "cypress run --project ./e2e",
+    "cy:open": "npx cypress@latest open --project ./e2e",
     "version": "auto-changelog --package --commit-limit 0 && git add CHANGELOG.md"
   },
   "jest": {

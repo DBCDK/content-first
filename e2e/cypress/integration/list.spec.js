@@ -1,4 +1,4 @@
-describe('List test', function() {
+describe.skip('List test', function() {
   beforeEach(function() {
     cy.clearClientStorage();
     cy.clearCookies();

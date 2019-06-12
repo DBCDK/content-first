@@ -4,6 +4,8 @@
 
 'use strict';
 
+const config = require('server/config');
+
 const express = require('express');
 const router = express.Router();
 
@@ -28,5 +30,8 @@ router.use('/stats', require('server/external-v1-stats'));
 router.use('/auth', require('server/external-v1-auth').router);
 router.use('/suggester', require('server/external-v1-suggester'));
 router.use('/searcher', require('server/external-v1-searcher'));
+if (config.server.environment !== 'production') {
+  router.use('/test', require('server/internal-v1-test'));
+}
 
 module.exports = router;

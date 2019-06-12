@@ -73,7 +73,7 @@ class WorkCard extends React.Component {
       <div
         ref={this.props.cardRef || null}
         className={`WorkCard ${highlight} ${this.props.className}`}
-        data-cy={'workcard'}
+        data-cy={this.props['data-cy'] || 'workcard'}
       >
         <div style={{height: '100%'}} onClick={this.onWorkClick}>
           <BookCover

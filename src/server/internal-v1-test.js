@@ -22,7 +22,7 @@ router
       return res
         .status(303)
         .clearCookie('test-user-data')
-        .location('http://localhost:3000')
+        .location('/')
         .send();
     })
   );
@@ -44,7 +44,7 @@ router
         req.user = user;
         return res
           .status(303)
-          .location('http://localhost:3000/replay')
+          .location('/replay')
           .cookie('login-token', loginToken, {
             httpOnly: true
           })
@@ -80,7 +80,7 @@ router
         };
         return res
           .status(303)
-          .location('http://localhost:3000/replay')
+          .location('/replay')
           .cookie('login-token', loginToken, {
             httpOnly: true
           })
@@ -124,7 +124,7 @@ router.route('/cprlogin/:id/:over13').get(
       req.user = user;
       return res
         .status(303)
-        .location('http://localhost:3000/replay')
+        .location('/replay')
         .cookie('login-token', loginToken, {
           httpOnly: true
         })

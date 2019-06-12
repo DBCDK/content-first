@@ -50,7 +50,10 @@ const indexHtmlWithConfig = isProduction
           matomo: config.matomo
         })};</script></head>`
       )
-  : '';
+  : fs.readFileSync(
+      path.resolve(__dirname, '..', '..', 'build', 'index.html'),
+      'utf8'
+    );
 
 // Serve indexHtmlWithConfig on the root path.
 // Needs to be done before setting up static files

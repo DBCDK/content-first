@@ -21,9 +21,12 @@
 // Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
 //
 //
-// -- This is will overwrite an existing command --
+// -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+/**
+ * Dispatches an action
+ */
 Cypress.Commands.add('dispatch', action => {
   cy.window()
     .its('__store__')
@@ -31,6 +34,7 @@ Cypress.Commands.add('dispatch', action => {
       store.dispatch(action);
     });
 });
+
 /**
  * Clears session- and localestorage
  */
@@ -40,29 +44,32 @@ Cypress.Commands.add('clearClientStorage', () => {
   });
   cy.clearLocalStorage();
 });
+
 /**
- * creates a new user and logs in
+ * Creates a new user and logs in
  */
 Cypress.Commands.add('createUser', userName => {
   if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
-  cy.visit('http://localhost:3002/v1/test/create/' + userName);
+  cy.visit('/v1/test/create/' + userName);
 });
+
 /**
- * logs in without creating a user
+ * Logs in without creating a user
  */
 Cypress.Commands.add('login', userName => {
-  cy.request('http://localhost:3002/v1/test/login/' + userName);
-});
-
-Cypress.Commands.add('cprlogin', (userName, overBool) => {
-  if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
-  cy.visit(
-    'http://localhost:3002/v1/test/cprlogin/' + userName + '/' + overBool
-  );
+  cy.request('/v1/test/login/' + userName);
 });
 
 /**
- *Adds 'count' elements to the shortlist
+ * Logs in with a CPR number
+ */
+Cypress.Commands.add('cprlogin', (userName, overBool) => {
+  if (!userName) userName = 'user' + Math.floor(Math.random() * 1000);
+  cy.visit('/v1/test/cprlogin/' + userName + '/' + overBool);
+});
+
+/**
+ * Adds 'count' elements to the shortlist
  */
 Cypress.Commands.add('addElementsToShortlist', count => {
   cy.fixture('works').then(elements => {
@@ -76,5 +83,16 @@ Cypress.Commands.add('addElementsToShortlist', count => {
         origin: 'Fra "Familiens skyggesider"'
       });
     });
+  });
+});
+
+/**
+ * Visits an url with added openplatform mocks
+ */
+Cypress.Commands.add('visitWithOpenPlatformMocks', (url, mocks) => {
+  cy.visit(url, {
+    onBeforeLoad: window => {
+      window.__stubbed_openplatform__ = mocks;
+    }
   });
 });

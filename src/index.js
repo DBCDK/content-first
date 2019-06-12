@@ -24,6 +24,7 @@ import {interactionMiddleware} from './client/redux/interaction.middleware';
 import {beltsMiddleware} from './client/redux/belts.middleware';
 import {statsMiddleware} from './client/redux/stats.middleware';
 import {matomoMiddleware} from './client/redux/matomo.middleware';
+import openplatform from 'openplatform';
 
 // for window.scroll() back compatibility
 smoothscroll.polyfill();
@@ -52,3 +53,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 // registerServiceWorker();
+
+// Overwrite specific openplatform methods, to make stubbing possible for testing purposes
+if (window.Cypress && window.__stubbed_openplatform__) {
+  Object.assign(openplatform, window.__stubbed_openplatform__);
+}

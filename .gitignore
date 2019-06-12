@@ -16,6 +16,6 @@ versions
 content-first.iml
 .DS_Store
 dump.rdb
-cypress/screenshots
-cypress/videos
 report.xml
+e2e/cypress/screenshots
+e2e/cypress/videos
