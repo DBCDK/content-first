@@ -15,10 +15,10 @@ branches:
     - stable
 before_install:
   - docker-compose --version
-  - docker-compose -f docker-compose-cypress pull
+  - docker-compose -f docker-compose-cypress.yml pull
   - cp env/travis.env current.env
   - . ./current.env
-  - docker-compose -f docker-compose-cypress up -d
+  - docker-compose -f docker-compose-cypress.yml up -d
 script:
   - npm run db-migrate --silent
   - npm run test-full --silent
