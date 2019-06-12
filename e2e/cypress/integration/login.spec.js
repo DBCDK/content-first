@@ -45,7 +45,7 @@ describe('Login test', function() {
   });
 
   it('Can login through Adgangsplatformen', function() {
-    cy.visit('http://localhost:3001/v1/auth/login');
+    cy.visit('/v1/auth/login');
 
     cy.get('[data-cy=libraryname-input]:visible').type('Ishø');
     cy.get('[data-cy=dropdown-container]').within($dropdown => {

@@ -5,8 +5,6 @@ services:
     image: postgres:9.6
     volumes:
       - ./tools/postgres-initdb.d:/docker-entrypoint-initdb.d
-    ports:
-      - "${DB_PORT:-5432}:5432"
     environment:
       POSTGRES_MULTIPLE_DATABASES: contentfirst
   web:
@@ -16,16 +14,25 @@ services:
     depends_on:
       - database
     command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; node src/server/main.js'
+  injectmeta:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
+    image: '${IMAGE:-docker-ux.dbc.dk/content-first:latest}'
+    env_file: ./docker/env.docker
+    environment:
+      - HOST=http://web
+    depends_on:
+      - web
+    command: bash -c 'touch current.env; npm run fetch-inject-metakompas'
   e2e:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: docker.dbc.dk/cypress:latest
     volumes:
       - './e2e:/app/e2e'
     depends_on:
-      - web
+      - injectmeta
     environment:
       - CYPRESS_baseUrl=http://web:3000
-    command: npm run cy
+    command: bash -c 'sleep 30; npm run cy'
 
 networks:
   default:
