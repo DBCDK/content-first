@@ -9,7 +9,7 @@ class Searcher {
   }
 
   getName() {
-    return 'suggester';
+    return 'searcher';
   }
 
   clear() {
@@ -48,8 +48,8 @@ class Searcher {
   }
   async testingConnection() {
     try {
-      await this.getSearchResult({query: 'test'});
-      return true;
+      const result = await request.get(this.config.searcher.status);
+      return result.body.ok;
     } catch (e) {
       this.ok = false;
       this.currentError = e.message;
