@@ -6,12 +6,12 @@ import Lightbox from 'react-images';
 import './BookCover.css';
 
 const generateSvg = (backgroundColor, title, creator) => {
-  const titleLines = splitLine(title, 18, 6);
+  const titleLines = splitLine(title, 18, 6).map(encodeEntities);
   const tspanTitle =
     '<tspan x="50%">' +
     titleLines.join('</tspan><tspan x="50%" dy="1.1em">') +
     '</tspan>';
-  const creatorLines = splitLine(creator, 18, 2);
+  const creatorLines = splitLine(creator, 18, 2).map(encodeEntities);
   const tspanCreator =
     '<tspan x="50%">' +
     creatorLines.join('</tspan><tspan x="50%" dy="1.1em">') +
@@ -34,6 +34,12 @@ const generateSvg = (backgroundColor, title, creator) => {
     ${tspanCreator}
   </text>
   </svg>`;
+};
+
+const encodeEntities = line => {
+  return line.replace(/[\u00A0-\u9999<>&]/gim, function(i) {
+    return '&#' + i.charCodeAt(0) + ';';
+  });
 };
 
 class BookCover extends React.Component {
