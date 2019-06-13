@@ -31,8 +31,8 @@ pipeline {
                 script {
                     ansiColor("xterm") {
                         sh "echo Integrating..."
-//                        sh "docker-compose build"
-//                        sh "IMAGE=${imageName} TAG=${imageLabel} docker-compose run e2e"
+                        sh "docker-compose -f docker-compose-cypress.yml build"
+                        sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml run --rm e2e"
                     }
                 }
             }

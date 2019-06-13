@@ -1,6 +1,7 @@
 version: "3"
 services:
   database:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: postgres:9.6
     volumes:
       - ./tools/postgres-initdb.d:/docker-entrypoint-initdb.d
@@ -8,6 +9,7 @@ services:
       - "${DB_PORT:-5432}:5432"
     environment:
       POSTGRES_MULTIPLE_DATABASES: contentfirst
+
 networks:
   default:
     ipam:

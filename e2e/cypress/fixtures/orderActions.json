@@ -1,5 +1,5 @@
 {
-    "picupBranches": {
+    "pickupBranches": {
         "type": "PICKUP_BRANCHES",
         "branches": [
             {
