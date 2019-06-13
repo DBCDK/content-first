@@ -48,8 +48,8 @@ class Suggester {
   }
   async testingConnection() {
     try {
-      await this.getSuggestions({query: 'test'});
-      return true;
+      const result = await request.get(this.config.suggester.status);
+      return result.body.ok;
     } catch (e) {
       this.ok = false;
       this.currentError = e.message;
