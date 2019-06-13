@@ -1,6 +1,7 @@
 {
     "baseUrl": "http://localhost:3000",
     "chromeWebSecurity": false,
-    "defaultCommandTimeout":6000
-      
+    "defaultCommandTimeout":10000,
+    "execTimeout":8000
+
 }
