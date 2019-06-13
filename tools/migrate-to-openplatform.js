@@ -11,20 +11,23 @@ var source = require('knex')({
 var target = require('knex')({
   client: 'pg',
   connection: {
-    host: '',
-    user: '',
+    host: 'localhost',
+    user: 'postgres',
     password: '',
-    database: ''
+    database: 'storage'
   },
   pool: {min: 0, max: 1}
 });
 
-const cfType = 'efc41ccc-705d-49ab-83d0-434a58a995f5';
+let cfType;
 const client = 'XclientIdX';
+const ADMIN_TOKEN = 'test_admin_token';
+const STORAGE_URL = 'http://localhost:8080/v3/storage';
+
 const cfTypeObj = {
   _type: 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102',
   name: 'content-first-objects',
-  description: 'Type used during integration test',
+  description: 'Content First object type',
   type: 'json',
   permissions: {read: 'if object.public'},
   indexes: [
@@ -89,6 +92,13 @@ const storageRowToIndex = (indexNum, keys, row) => {
 };
 
 (async () => {
+  const request = require('superagent');
+  cfType = (await request.post(STORAGE_URL).send({
+    access_token: ADMIN_TOKEN,
+    put: cfTypeObj
+  })).body.data._id;
+  console.log('created cf type: ', cfType);
+
   const sourceRes = await source.select('*').from('objects');
   console.log('fetched objects', sourceRes.length);
   const convertedRows = sourceRes.map(row => rowToStorageRow(row));
@@ -103,6 +113,9 @@ const storageRowToIndex = (indexNum, keys, row) => {
         .insert(storageRowToIndex(j, index.keys, convertedRows[i]))
         .into('idIndex');
     }
+    if (i % 100 === 0) {
+      console.log('indexed', i);
+    }
   }
   console.log('done indexing');
 
@@ -113,6 +126,9 @@ const storageRowToIndex = (indexNum, keys, row) => {
       'utf-8'
     );
     await target.insert(convertedRows[i]).into('docs');
+    if (i % 100 === 0) {
+      console.log('stored', i);
+    }
   }
   console.log('done storing objects');
 })();

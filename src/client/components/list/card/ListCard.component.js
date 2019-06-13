@@ -35,12 +35,15 @@ class ListCard extends React.Component {
       !this.props.list.isLoading &&
       !this.commentsFetched
     ) {
-      this.props.fetchComments(this.props.list._id);
-      if (this.props.list.list) {
-        this.props.list.list.forEach(el => {
-          this.props.fetchComments(el._id);
-        });
-      }
+      // temporarily disable fetching of comments until a
+      // more performant solution is created
+
+      // this.props.fetchComments(this.props.list._id);
+      // if (this.props.list.list) {
+      //   this.props.list.list.forEach(el => {
+      //     this.props.fetchComments(el._id);
+      //   });
+      // }
       this.commentsFetched = true;
     }
   }

@@ -90,7 +90,7 @@ export const saveList = async (list, loggedInUserId) => {
   return list;
 };
 
-export const fetchRecent = async (limit = 20) => {
+export const fetchRecent = async (limit = 10) => {
   const response = await request.get(
     `/v1/object/find?type=list&limit=${limit}`
   );
