@@ -16,6 +16,7 @@ const authenticator = require('server/authenticator');
 const login = require('server/login');
 const {recompasTags, recompasWork} = require('server/recompas');
 const suggester = require('server/suggester');
+const searcher = require('server/searcher');
 const matomo = require('server/matomo');
 const generatingServiceStatus = require('__/services/service-status');
 const isProduction = config.server.environment === 'production';
@@ -128,7 +129,8 @@ external.get('/howru', async (req, res) => {
     login,
     recompasTags,
     recompasWork,
-    suggester
+    suggester,
+    searcher
   ];
   const status = await generatingServiceStatus(services);
   Object.assign(status, {

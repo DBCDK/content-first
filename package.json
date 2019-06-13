@@ -19,7 +19,6 @@
     "chai": "^4.0.2",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^2.13.1",
-    "cypress": "^3.1.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.0",
@@ -123,7 +122,7 @@
     "test-no-db": ". ./current.env && mocha --exit src/acceptance/*_no-db.js",
     "test-no-elvis": "run-s test-no-db test-acceptance test-frontend",
     "test-units": "mocha --exit src/server/*_test.js src/lib/*_test.js src/lib/services/*/*_test.js",
-    "cy:run": "cypress run --project ./e2e",
+    "cy:run": "npx cypress run --project ./e2e",
     "cy:open": "npx cypress@latest open --project ./e2e",
     "version": "auto-changelog --package --commit-limit 0 && git add CHANGELOG.md"
   },

@@ -61,6 +61,7 @@ export class CommentWrapper extends React.Component {
       error,
       _created = Date.now() / 1000
     } = this.props.comment;
+    const isSmallScreen = window.innerWidth < 768;
 
     return (
       <div key={_id} className="comment-wrapper">
@@ -72,25 +73,26 @@ export class CommentWrapper extends React.Component {
           ''
         )}
         {this.props.user &&
-        this.props.user.openplatformId === user.openplatformId ? (
-          <ContextMenu className="comment-wrapper-context-menu">
-            <ContextMenuAction
-              title={T({component: 'post', name: 'editComment'})}
-              icon="edit"
-              onClick={() => {
-                this.toggleEdit(!this.state.editing);
-                this.updateComments();
-              }}
-            />
-            <ContextMenuAction
-              title={T({component: 'post', name: 'deleteComment'})}
-              icon="delete"
-              onClick={() => {
-                this.props.deleteComment(this.props.comment);
-              }}
-            />
-          </ContextMenu>
-        ) : null}
+          this.props.user.openplatformId === user.openplatformId &&
+          (!isSmallScreen || !this.state.editing) && (
+            <ContextMenu className="comment-wrapper-context-menu">
+              <ContextMenuAction
+                title={T({component: 'post', name: 'editComment'})} //
+                icon="edit"
+                onClick={() => {
+                  this.toggleEdit(!this.state.editing);
+                  this.updateComments();
+                }}
+              />
+              <ContextMenuAction
+                title={T({component: 'post', name: 'deleteComment'})}
+                icon="delete"
+                onClick={() => {
+                  this.props.deleteComment(this.props.comment);
+                }}
+              />
+            </ContextMenu>
+          )}
         <div className="d-flex align-items-center mb-3 w-100">
           <div style={{flexGrow: 1}}>
             {this.state.editing ? (

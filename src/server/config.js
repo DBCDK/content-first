@@ -74,11 +74,13 @@ exports.matomo = {
 };
 
 exports.suggester = {
-  url: process.env.SUGGESTER_URL
+  url: process.env.SUGGESTER_URL + '/api/suggest',
+  status: process.env.SUGGESTER_URL + '/api/status'
 };
 
 exports.searcher = {
-  url: process.env.SEARCH_URL
+  url: process.env.SUGGESTER_URL + '/api/search',
+  status: process.env.SUGGESTER_URL + '/api/status'
 };
 
 exports.server = {

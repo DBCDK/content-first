@@ -2,8 +2,16 @@
   z-index: 9;
 }
 
-.BookmarkButtonCircle.icon-large i {
-  font-size: 1.5rem;
+.BookmarkButton:active {
+  background: var(--french-pass);
+}
+
+.BookmarkButtonCircle.BookmarkButton-size-default.icon-large i {
+  font-size: 1.6rem;
+}
+
+.BookmarkButtonCircle.BookmarkButton-size-large.icon-large i {
+  font-size: 2rem;
 }
 
 .BookmarkButtonCircle {
@@ -32,11 +40,39 @@
 
 .BookmarkButtonCircle.marked,
 .BookmarkButton.marked {
-  background: var(--korn);
+  background: var(--due);
+  color: #fff;
 }
 @media (hover: none) {
   .BookmarkButton:focus {
-    outline: 0;
+    outline: 0 !important;
     box-shadow: none !important;
   }
+}
+
+.BookmarkButton-size-default{
+  margin-top: 3px;
+  margin-right: 3px;
+  width: 40px;
+  height: 40px;
+}
+
+.BookmarkButton-size-large{
+  width: 50px;
+  height: 50px;
+  margin-right: -8px;
+  margin-top: -8px;
+}
+
+
+@media only screen and (max-width: 576px) {
+  .BookmarkButton-size-default{
+    width: 30px;
+    height: 30px;
+  }
+  .BookmarkButtonCircle.BookmarkButton-size-default.icon-large i {
+    font-size: 1.3rem !important;
+  }
+  
+
 }

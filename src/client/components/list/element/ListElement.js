@@ -229,13 +229,15 @@ export class ListElement extends React.Component {
               />
             </Link>
             <BookmarkButton
+              className="icon-large"
               origin={{
                 type: 'personalList',
                 listLink: [this.props.element._key, list.title]
               }}
               work={work}
               layout="circle"
-              style={{position: 'absolute', right: -8, top: -8}}
+              style={{position: 'absolute', right: -10, top: -10}}
+              size="default"
             />
           </div>
 

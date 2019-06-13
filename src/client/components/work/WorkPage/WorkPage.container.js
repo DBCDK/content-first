@@ -92,15 +92,14 @@ class WorkPage extends React.Component {
                       })}
                       work={work}
                       rid={this.props.rid}
-                      layout="teardrop"
+                      layout="circle"
                       style={{
                         position: 'absolute',
                         right: 0,
-                        top: 0,
-                        width: '40px',
-                        height: '40px'
+                        top: 0
                       }}
                       dataCy="bookmarkBtn"
+                      size="large"
                     />
                   </BookCover>
                 </div>
@@ -375,70 +374,6 @@ class WorkPage extends React.Component {
                   <T component="work" name="released" />
                   {book.first_edition_year}
                 </Text>
-              </div>
-            </div>
-            <div className="col-12">
-              <div className="WorkPage__formats mt1">
-                <Text type="body" variant="weight-semibold" className="mt1">
-                  <T component="work" name="formatTitle" />
-                </Text>
-                <div className="row col-12">
-                  {work.collectionHasLoaded &&
-                    !this.props.hasValidCollection() && (
-                      <Text type="micro" className="mr1">
-                        <T
-                          component="work"
-                          name={
-                            this.props.newRelease()
-                              ? 'noValidCollectionYet'
-                              : 'noValidCollection'
-                          }
-                        />
-                      </Text>
-                    )}
-                  {work.collectionHasLoaded &&
-                    this.props.hasValidCollection() && (
-                      <Text type="micro" className="mr1">
-                        <Icon name={'book'} className="md-xsmall" />
-                        <T component="general" name="book" />
-                      </Text>
-                    )}
-                  {work.collectionHasLoaded &&
-                    this.props.hasValidCollection() &&
-                    collection.map(col => {
-                      if (col.count === 1) {
-                        return (
-                          <Text type="micro" className="mr1" key={col.url}>
-                            <Icon name={col.icon} className="md-xsmall" />
-                            {' ' + col.type}
-                          </Text>
-                        );
-                      }
-                      return null;
-                    })}
-                  {!work.collectionHasLoaded && (
-                    <React.Fragment>
-                      <Text
-                        type="micro"
-                        className="WorkPage__formats__skeleton Skeleton__Pulse mr1"
-                      >
-                        <Icon name={'book'} /> Bog
-                      </Text>
-                      <Text
-                        type="micro"
-                        className="WorkPage__formats__skeleton Skeleton__Pulse mr1"
-                      >
-                        <Icon name={'alternate_email'} /> EBog
-                      </Text>
-                      <Text
-                        type="micro"
-                        className="WorkPage__formats__skeleton Skeleton__Pulse mr1"
-                      >
-                        <Icon name={'voicemail'} /> Lydbog
-                      </Text>
-                    </React.Fragment>
-                  )}
-                </div>
               </div>
             </div>
           </div>

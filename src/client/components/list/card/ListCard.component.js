@@ -1,20 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TruncateMarkup from 'react-truncate-markup';
-import ProfileImage from '../../general/ProfileImage.component';
+// import ProfileImage from '../../general/ProfileImage.component';
 import Link from '../../general/Link.component';
 import toColor from '../../../utils/toColor';
 import Text from '../../base/Text';
-import Icon from '../../base/Icon';
+// import Icon from '../../base/Icon';
 import SkeletonText from '../../base/Skeleton/Text';
 import SkeletonUser from '../../base/Skeleton/User';
-import Divider from '../../base/Divider';
+// import Divider from '../../base/Divider';
 import {createGetUserSelector} from '../../../redux/users';
 
 import {FETCH_COMMENTS} from '../../../redux/comment.reducer';
 import {createCountComments} from '../../../redux/selectors';
 
-import {withList, withLists} from '../../hoc/List';
+// import {withList, withLists} from '../../hoc/List';
 
 import './ListCard.css';
 
@@ -35,12 +35,12 @@ class ListCard extends React.Component {
       !this.props.list.isLoading &&
       !this.commentsFetched
     ) {
-      this.props.fetchComments(this.props.list._id);
-      if (this.props.list.list) {
-        this.props.list.list.forEach(el => {
-          this.props.fetchComments(el._id);
-        });
-      }
+      // this.props.fetchComments(this.props.list._id);
+      // if (this.props.list.list) {
+      //   this.props.list.list.forEach(el => {
+      //     this.props.fetchComments(el._id);
+      //   });
+      // }
       this.commentsFetched = true;
     }
   }
@@ -86,7 +86,7 @@ class ListCard extends React.Component {
   }
 
   render() {
-    const {list, style, className = '', commentCount} = this.props;
+    const {list, style, className = ''} = this.props;
     const skeleton = this.props.skeleton || !list || list.isLoading;
 
     // if no elements detected, show skeleton cards
@@ -126,9 +126,9 @@ class ListCard extends React.Component {
                   </span>
                 </TruncateMarkup>
               </div>
-              <Divider variant="thin" />
+              {/* <Divider variant="thin" /> */}
               <div className="list-card-bottom">
-                <ProfileImage
+                {/* <ProfileImage
                   key={'profile-img-' + list._id}
                   user={this.props.profile}
                   namePosition={'right'}
@@ -152,7 +152,7 @@ class ListCard extends React.Component {
                       <strong>{commentCount}</strong>
                     </Text>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -183,11 +183,7 @@ export const mapDispatchToProps = dispatch => ({
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
-export default withLists(
-  withList(
-    connect(
-      makeMapStateToProps,
-      mapDispatchToProps
-    )(ListCard)
-  )
-);
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps
+)(ListCard);
