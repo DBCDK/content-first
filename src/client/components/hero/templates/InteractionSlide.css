@@ -39,9 +39,6 @@
 }
 
 @media (max-width: 767px) {
-  .InteractionSlide .box {
-    font-size: 4vw;
-  }
 
   .InteractionSlide .box.box-left {
     left: 5%;
