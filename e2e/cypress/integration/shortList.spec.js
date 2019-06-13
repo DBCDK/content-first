@@ -19,10 +19,11 @@ describe('Test shortlist', function() {
       .then(workTitle => {
         cy.get('[data-cy=topbar-shortlist]').click();
 
-        cy.get('[data-cy=shortlist-element-title]').should(
-          'have.text',
-          workTitle
-        );
+        cy.get('[data-cy=shortlist-element-title]')
+          .invoke('text')
+          .then(title => {
+            expect(workTitle).to.contain(title.replace('...', ''));
+          });
       });
   });
 });
