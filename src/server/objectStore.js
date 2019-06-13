@@ -157,7 +157,7 @@ async function find(query, user = {}) {
     requestObject.scan.index.push('cf_type');
     requestObject.scan.startsWith.push(query.type);
   }
-  if (typeof query.key !== 'undefined') {
+  if (query.key) {
     requestObject.scan.index.push('cf_key');
     requestObject.scan.startsWith.push(query.key);
   }
