@@ -4,6 +4,7 @@ import {ON_SHORTLIST_TOGGLE_ELEMENT} from '../../../redux/shortlist.reducer';
 import Icon from '../../base/Icon';
 import Button from '../../base/Button';
 import T from '../../base/T';
+import PropTypes from 'prop-types';
 
 import './BookmarkButton.css';
 
@@ -16,6 +17,7 @@ export class BookmarkButton extends React.PureComponent {
     }, {});
     const marked = remembered[this.props.work.book.pid];
     let layout = this.props.layout;
+    const size = this.props.size || 'default';
     if (layout === 'teardrop') {
       layout = 'BookmarkButtonCircle BookmarkButtonTeardrop';
     } else if (layout === 'circle') {
@@ -28,6 +30,7 @@ export class BookmarkButton extends React.PureComponent {
           'BookmarkButton ' +
           layout +
           (marked ? ' marked' : '') +
+          (' BookmarkButton-size-' + size) +
           ' ' +
           this.props.className
         }
@@ -38,9 +41,10 @@ export class BookmarkButton extends React.PureComponent {
           e.stopPropagation();
           this.props.toggle(this.props.origin, this.props.work);
         }}
-        type="tertiary"
+        type="quinary"
         size="medium"
         dataCy={this.props.dataCy}
+        onTouchStart={() => {}}
       >
         <Icon name="bookmark_border" />
         {!layout ? (
@@ -54,6 +58,9 @@ export class BookmarkButton extends React.PureComponent {
     );
   }
 }
+BookmarkButton.propTypes = {
+  size: PropTypes.oneOf(['default', 'large'])
+};
 
 const mapStateToProps = state => {
   return {
