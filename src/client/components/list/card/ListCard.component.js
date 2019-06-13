@@ -35,12 +35,12 @@ class ListCard extends React.Component {
       !this.props.list.isLoading &&
       !this.commentsFetched
     ) {
-      this.props.fetchComments(this.props.list._id);
-      if (this.props.list.list) {
-        this.props.list.list.forEach(el => {
-          this.props.fetchComments(el._id);
-        });
-      }
+      // this.props.fetchComments(this.props.list._id);
+      // if (this.props.list.list) {
+      //   this.props.list.list.forEach(el => {
+      //     this.props.fetchComments(el._id);
+      //   });
+      // }
       this.commentsFetched = true;
     }
   }
@@ -126,9 +126,9 @@ class ListCard extends React.Component {
                   </span>
                 </TruncateMarkup>
               </div>
-              <Divider variant="thin" />
+              {/* <Divider variant="thin" /> */}
               <div className="list-card-bottom">
-                <ProfileImage
+                {/* <ProfileImage
                   key={'profile-img-' + list._id}
                   user={this.props.profile}
                   namePosition={'right'}
@@ -152,7 +152,7 @@ class ListCard extends React.Component {
                       <strong>{commentCount}</strong>
                     </Text>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -183,11 +183,7 @@ export const mapDispatchToProps = dispatch => ({
   fetchComments: id => dispatch({type: FETCH_COMMENTS, id})
 });
 
-export default withLists(
-  withList(
-    connect(
-      makeMapStateToProps,
-      mapDispatchToProps
-    )(ListCard)
-  )
-);
+export default connect(
+  makeMapStateToProps,
+  mapDispatchToProps
+)(ListCard);
