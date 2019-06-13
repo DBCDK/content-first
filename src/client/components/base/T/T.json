@@ -643,8 +643,8 @@
         "en": "Title or author"
       },
       "recentListsTitle": {
-        "da": "<strong>Nyeste</strong> lister",
-        "en": "<strong>Recent</strong> lists"
+        "da": "<strong>Nyeste</strong> brugerlister",
+        "en": "<strong>Recent</strong> user lists"
       },
       "deleteListModalTitle": {
         "da": "Skal denne liste slettes?",

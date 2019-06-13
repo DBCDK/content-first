@@ -89,11 +89,11 @@ export const saveList = async (list, loggedInUserId) => {
   return list;
 };
 
-export const fetchRecent = async (limit = 20) => {
+export const fetchRecent = async (limit = 50) => {
   const response = await request.get(
     `/v1/object/find?type=list&limit=${limit}`
   );
-  return response.body.data.map(list => list._id);
+  return response.body.data;
 };
 
 async function enrichList({list}) {

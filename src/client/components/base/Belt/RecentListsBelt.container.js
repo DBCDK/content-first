@@ -5,7 +5,7 @@ import Title from '../Title';
 import T from '../T';
 import Slider from './Slider.component';
 import {fetchRecent} from '../../../utils/requestLists';
-import {difference} from 'lodash';
+// import {difference} from 'lodash';
 
 const skeletonCards = [];
 for (let i = 0; i < 20; i++) {
@@ -17,7 +17,7 @@ for (let i = 0; i < 20; i++) {
 export default class RecentListsBelt extends React.Component {
   constructor() {
     super();
-    this.state = {didSwipe: false, visible: false, fetched: false, listIds: []};
+    this.state = {didSwipe: false, visible: false, fetched: false, lists: []};
   }
   componentDidMount() {
     this.fetch();
@@ -31,7 +31,7 @@ export default class RecentListsBelt extends React.Component {
       nextState.didSwipe !== this.state.didSwipe ||
       nextProps.profiles !== this.props.profiles ||
       nextState.visible !== this.state.visible ||
-      nextState.listIds !== this.state.listIds
+      nextState.lists !== this.state.lists
     );
   }
   onVisibilityChange = visible => {
@@ -42,23 +42,24 @@ export default class RecentListsBelt extends React.Component {
 
   fetch = async () => {
     if (this.state.visible && !this.state.fetched) {
-      const listIds = await fetchRecent();
+      let lists = await fetchRecent();
 
       // Temporary solution for hiding specific lists
       // For instance some "book cases"
-      const filtered = difference(listIds, [
-        'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018',
-        'd5205150-a5ec-11e8-bc7e-f12e3c5c9eaa'
-      ]);
+      lists = lists.filter(
+        list =>
+          list._id !== 'a2d7b450-c7ba-11e8-a4c7-c500cfdf0018' &&
+          list._id !== 'd5205150-a5ec-11e8-bc7e-f12e3c5c9eaa'
+      );
 
-      this.setState({fetched: true, listIds: filtered});
+      this.setState({fetched: true, lists});
     }
   };
 
   render() {
     const startIndex = 8;
-    const {listIds, didSwipe} = this.state;
-    const isSkeletonBelt = listIds.length === 0;
+    const {lists, didSwipe} = this.state;
+    const isSkeletonBelt = lists.length === 0;
     return (
       <VisibilitySensor
         onChange={this.onVisibilityChange}
@@ -83,10 +84,15 @@ export default class RecentListsBelt extends React.Component {
                 }
               }}
             >
-              {listIds.map((_id, i) => {
+              {lists.map((list, i) => {
                 const isSkeletonCard = i > startIndex - 1 && !didSwipe;
                 return (
-                  <ListCard key={_id} skeleton={isSkeletonCard} id={_id} />
+                  <ListCard
+                    key={list._id}
+                    skeleton={isSkeletonCard}
+                    id={list._id}
+                    list={list}
+                  />
                 );
               })}
             </Slider>
