@@ -39,7 +39,7 @@ describe('Admin API', () => {
           .get('/status')
           .reply(200, constants.healthyResponse);
         nock(config.suggester.url)
-          .get('/?query=test')
+          .get('/api/status')
           .reply(200, constants.healthyResponse);
         // Act.
         return (
