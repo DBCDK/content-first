@@ -1,20 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TruncateMarkup from 'react-truncate-markup';
-import ProfileImage from '../../general/ProfileImage.component';
+// import ProfileImage from '../../general/ProfileImage.component';
 import Link from '../../general/Link.component';
 import toColor from '../../../utils/toColor';
 import Text from '../../base/Text';
-import Icon from '../../base/Icon';
+// import Icon from '../../base/Icon';
 import SkeletonText from '../../base/Skeleton/Text';
 import SkeletonUser from '../../base/Skeleton/User';
-import Divider from '../../base/Divider';
+// import Divider from '../../base/Divider';
 import {createGetUserSelector} from '../../../redux/users';
 
 import {FETCH_COMMENTS} from '../../../redux/comment.reducer';
 import {createCountComments} from '../../../redux/selectors';
 
-import {withList, withLists} from '../../hoc/List';
+// import {withList, withLists} from '../../hoc/List';
 
 import './ListCard.css';
 
@@ -86,7 +86,7 @@ class ListCard extends React.Component {
   }
 
   render() {
-    const {list, style, className = '', commentCount} = this.props;
+    const {list, style, className = ''} = this.props;
     const skeleton = this.props.skeleton || !list || list.isLoading;
 
     // if no elements detected, show skeleton cards

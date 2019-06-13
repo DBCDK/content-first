@@ -5,7 +5,7 @@ import Title from '../Title';
 import T from '../T';
 import Slider from './Slider.component';
 import {fetchRecent} from '../../../utils/requestLists';
-import {difference} from 'lodash';
+// import {difference} from 'lodash';
 
 const skeletonCards = [];
 for (let i = 0; i < 20; i++) {
