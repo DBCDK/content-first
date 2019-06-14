@@ -80,7 +80,7 @@ pipeline {
     }
     post {
         always {
-            sh "docker-compose down -v"
+            sh "docker-compose -f docker-compose-cypress.yml down -v"
         }
         failure {
             script {
