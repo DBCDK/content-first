@@ -79,9 +79,9 @@ pipeline {
 		}
     }
     post {
-//        always {
-//            sh "docker-compose down -v"
-//        }
+        always {
+            sh "docker-compose down -v"
+        }
         failure {
             script {
                 if ("${env.BRANCH_NAME}" == 'master') {
