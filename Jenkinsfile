@@ -12,7 +12,7 @@ pipeline {
     environment {
         GITLAB_ID = "207"
         DOCKER_TAG = "${imageLabel}"
-        IMAGE = "${imageName}:${imageLabel}"
+        IMAGE = "${imageName}${env.BRANCH_NAME != 'master' ? "-${env.BRANCH_NAME.toLowerCase()}" : ''}:${imageLabel}"
         GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
     }
     stages {
@@ -21,8 +21,8 @@ pipeline {
             steps { script {
                 // Work around bug https://issues.jenkins-ci.org/browse/JENKINS-44609 , https://issues.jenkins-ci.org/browse/JENKINS-44789
                 sh "cd src/data; curl -O $taxonomyUrl; tar -xf json-files.tar.gz"
-                sh "docker build -t $imageName:${imageLabel} --pull --no-cache ."
-                app = docker.image("$imageName:${imageLabel}")
+                sh "docker build -t ${IMAGE} --pull --no-cache ."
+                app = docker.image("${IMAGE}")
             } }
         }
 
@@ -79,9 +79,13 @@ pipeline {
 		}
     }
     post {
-//        always {
-//            sh "docker-compose down -v"
-//        }
+        always {
+               sh """
+                    echo Clean up
+                    docker-compose -f docker-compose-cypress.yml down -v
+                    docker rmi $IMAGE
+                """
+        }
         failure {
             script {
                 if ("${env.BRANCH_NAME}" == 'master') {
