@@ -30,7 +30,7 @@ describe('List test', function() {
   });
 
   it('Can be viewed only by owner when it is private', function() {
-    cy.request('POST', 'http://localhost:3000/v1/object', {
+    cy.request('POST', '/v1/object', {
       type: 'CUSTOM_LIST',
       title: 'Privat liste',
       description: 'masser af de gode',
@@ -48,7 +48,7 @@ describe('List test', function() {
   });
 
   it('Can be viewed by others when it is public', function() {
-    cy.request('POST', 'http://localhost:3000/v1/object', {
+    cy.request('POST', '/v1/object', {
       type: 'CUSTOM_LIST',
       title: 'Offentlig liste',
       description: 'masser af de gode',
@@ -70,7 +70,7 @@ describe('List test', function() {
   });
 
   it('Can add element to open list, when not owner', function() {
-    cy.request('POST', 'http://localhost:3000/v1/object', {
+    cy.request('POST', '/v1/object', {
       type: 'CUSTOM_LIST',
       title: 'Offentlig liste',
       description: 'masser af de gode',
@@ -127,7 +127,7 @@ describe('List test', function() {
     const secondElement = 'Idioten';
     const thirdElement = 'En vild fårejagt';
 
-    cy.request('POST', 'http://localhost:3000/v1/object', {
+    cy.request('POST', '/v1/object', {
       type: 'CUSTOM_LIST',
       title: 'Privat liste',
       description: 'masser af de gode',

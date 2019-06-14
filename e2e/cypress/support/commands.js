@@ -57,7 +57,7 @@ Cypress.Commands.add('createUser', userName => {
  * Logs in without creating a user
  */
 Cypress.Commands.add('login', userName => {
-  cy.request('/v1/test/login/' + userName);
+  cy.visit('/v1/test/login/' + userName);
 });
 
 /**

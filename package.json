@@ -96,9 +96,6 @@
     "targz": "^1.0.1"
   },
   "proxy": {
-    "/v1/test": {
-      "target": "http://localhost:3002/"
-    },
     "/v1": {
       "target": "http://localhost:3001/"
     }

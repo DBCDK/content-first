@@ -99,6 +99,9 @@ exports.storage = {
 };
 
 exports.test = {
+  minismaug: {
+    host: process.env.MINISMAUG_HOST || 'localhost'
+  },
   user1: {
     username: process.env.TEST_USER_NAME_1,
     pincode: process.env.TEST_USER_PINCODE_1,

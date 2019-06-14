@@ -6,13 +6,29 @@ services:
     volumes:
       - ./tools/postgres-initdb.d:/docker-entrypoint-initdb.d
     environment:
-      POSTGRES_MULTIPLE_DATABASES: contentfirst
+      POSTGRES_MULTIPLE_DATABASES: contentfirst, storage
+  minismaug:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
+    image: docker-ux.dbc.dk/serviceprovider:latest
+    entrypoint:
+      - npm
+      - run
+      - start:minismaug
+  storage:
+    ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
+    image: docker-ux.dbc.dk/serviceprovider:latest
+    env_file: ./docker/serviceprovider.docker
+    depends_on:
+      - database
+      - minismaug
+    command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; node src/main.js'
   web:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)
     image: '${IMAGE:-docker-ux.dbc.dk/content-first:latest}'
     env_file: ./docker/env.docker
     depends_on:
       - database
+      - storage
     command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; node src/server/main.js'
   injectmeta:
     ipc: host ## Prevent Docker Crash in Cypress (https://github.com/cypress-io/cypress/issues/350)

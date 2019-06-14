@@ -6,7 +6,7 @@ const {expect} = require('chai');
 const request = require('supertest');
 const _ = require('lodash');
 
-describe.only('Endpoint /v1/object', () => {
+describe('Endpoint /v1/object', () => {
   const webapp = request(mock.external);
   const internalApp = request(mock.internal);
   let cookie1, cookie2, objects;
