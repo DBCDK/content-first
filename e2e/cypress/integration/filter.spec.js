@@ -7,7 +7,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=mystisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -21,7 +21,7 @@ describe('Filter page test', function() {
   it('Should test "Tempo" filter', function() {
     cy.visit('/find?tags=5633,5634');
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -41,7 +41,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=kort]').click();
     cy.get('[data-cy=filterDimmer]').click();
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -59,7 +59,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=realistisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -78,7 +78,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=jeg-fortæller]').click();
     cy.get('[data-cy=filterDimmer]').click();
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -97,7 +97,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=slang]').click();
     cy.get('[data-cy=filterDimmer]').click();
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -116,7 +116,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=bevidsthedsstrøm]').click();
     cy.get('[data-cy=filterDimmer]').click();
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -138,7 +138,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy="den 2. verdenskrig"]').click();
     cy.get('[data-cy=filterDimmer]').click();
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
