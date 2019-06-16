@@ -125,6 +125,7 @@ describe('List test', function() {
   it('Can move elements from shortlist to an other list', function() {
     cy.visit('/huskeliste');
     cy.addElementsToShortlist(3);
+    cy.contains('Tilføj alle'); // try to fix flaky test
     cy.get('[data-cy=add-all-to-list]').click();
     cy.get('[data-cy=add-all-to-list] [data-cy=add-to-list-button]')
       .first()
@@ -183,6 +184,7 @@ describe('List test', function() {
       cy.reload();
 
       //assert change
+      cy.get('[data-cy=list-element-work-title]').should('have.length', 3);
       cy.get('[data-cy=list-element-work-title]')
         .first()
         .invoke('text')
