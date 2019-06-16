@@ -80,7 +80,7 @@ const ListElement = props => {
               }
             }}
             href={url}
-            data-cy="list-link"
+            data-cy={`list-link-${props.list.title}`}
           >
             {props.list.title}
           </Link>

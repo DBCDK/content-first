@@ -53,9 +53,8 @@ export const withListCreator = WrappedComponent => {
           },
           openplatformId
         );
-
-        this.setState({id: list._id});
         onCreateList(list);
+        this.setState({id: list._id});
       } catch (e) {
         // ignored for now
         // ....

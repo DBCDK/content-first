@@ -349,7 +349,9 @@ export const fetchObjects = (key, type, owner, limit = 100) => {
       .query({key, type, owner, limit})
       .end((error, res) => {
         if (error) {
-          reject(res.body && res.body.errors ? res.body.errors[0] : error);
+          reject(
+            res && res.body && res.body.errors ? res.body.errors[0] : error
+          );
         } else {
           resolve(res.body);
         }

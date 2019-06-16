@@ -9,9 +9,14 @@ describe('List test', function() {
 
   const gotoListByName = listName => {
     cy.get('[data-cy=topbar-lists]').click();
-    cy.get('[data-cy=list-link]')
-      .contains(listName)
-      .click();
+    cy.get(`[data-cy="list-link-${listName}"]`).click({force: true});
+    cy.get('[data-cy=topbar-lists]').click();
+  };
+
+  const waitForListsLoaded = listName => {
+    cy.get('[data-cy=topbar-lists]').click();
+    cy.contains('Har læst');
+    cy.get('[data-cy=topbar-lists]').click();
   };
 
   it('Can create a new list', function() {
@@ -78,6 +83,8 @@ describe('List test', function() {
   });
 
   it('Can add element to open list, when not owner', function() {
+    waitForListsLoaded();
+    cy.wait(1000);
     cy.request('POST', '/v1/object', {
       type: 'CUSTOM_LIST',
       title: 'Offentlig liste',
@@ -90,6 +97,7 @@ describe('List test', function() {
       const id = response.body.data._id;
       cy.visit(`/lister/${id}`);
       cy.createUser('otheruser');
+      waitForListsLoaded();
       cy.get('[data-cy=listview-add-element-input]').type('a');
       cy.get('.suggestion-row')
         .first()
@@ -99,6 +107,7 @@ describe('List test', function() {
       cy.get('[data-cy=context-action-edit-element]').should('exist');
 
       cy.login('listowner');
+      waitForListsLoaded();
       cy.get('[data-cy=list-element]');
       cy.get('[data-cy=element-context-menu]').click();
       cy.get('[data-cy=context-action-remove-element]').should('exist');
@@ -108,6 +117,8 @@ describe('List test', function() {
 
   it('Can add with addToListButton to public list', function() {
     cy.visit(`/værk/870970-basis:25775481`);
+    // waitForListsLoaded();
+    // cy.wait(1000);
     cy.get('[data-cy=add-to-list-btn]').click();
     cy.get('[data-cy=add-to-new-list]').click();
     cy.get('[data-cy=public-radio-btn]').click();
@@ -124,8 +135,8 @@ describe('List test', function() {
 
   it('Can move elements from shortlist to an other list', function() {
     cy.visit('/huskeliste');
+    waitForListsLoaded();
     cy.addElementsToShortlist(3);
-    cy.contains('Tilføj alle'); // try to fix flaky test
     cy.get('[data-cy=add-all-to-list]').click();
     cy.get('[data-cy=add-all-to-list] [data-cy=add-to-list-button]')
       .first()
@@ -148,6 +159,7 @@ describe('List test', function() {
     }).then(response => {
       const id = response.body.data._id;
       cy.visit(`/lister/${id}`);
+      waitForListsLoaded();
 
       //add elements
       cy.get('[data-cy=listview-add-element-input]')
@@ -184,7 +196,7 @@ describe('List test', function() {
       cy.reload();
 
       //assert change
-      cy.get('[data-cy=list-element-work-title]').should('have.length', 3);
+      cy.get('[data-cy=list-element-work-title]').contains(secondElement);
       cy.get('[data-cy=list-element-work-title]')
         .first()
         .invoke('text')
