@@ -118,7 +118,9 @@ const createTestElements = count => {
 describe('ShortList.container', () => {
   test('Short list is empty', () => {
     jest.clearAllMocks();
-    const tree = mount(<ShortList shortListState={{elements: []}} />);
+    const tree = mount(
+      <ShortList shortListState={{elements: [], hasLoaded: true}} />
+    );
     expect(tree).toMatchSnapshot();
     expect(Link).toHaveBeenCalledTimes(0);
     expect(OrderButton).toHaveBeenCalledTimes(0);
@@ -129,7 +131,7 @@ describe('ShortList.container', () => {
     const testElements = createTestElements(3);
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
       />
     );
@@ -144,7 +146,7 @@ describe('ShortList.container', () => {
     const mockClearList = jest.fn();
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
         clearList={mockClearList}
       />
@@ -167,7 +169,7 @@ describe('ShortList.container', () => {
     const mockRemove = jest.fn();
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
         remove={mockRemove}
       />
@@ -188,7 +190,7 @@ describe('ShortList.container', () => {
     const testElements = createTestElements(3);
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
       />
     );
@@ -209,7 +211,7 @@ describe('ShortList.container', () => {
     const testElements = createTestElements(3);
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
       />
     );
@@ -230,7 +232,7 @@ describe('ShortList.container', () => {
     const testElements = createTestElements(3);
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
       />
     );
@@ -252,7 +254,7 @@ describe('ShortList.container', () => {
     const testElements = createTestElements(3);
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
       />
     );
@@ -274,7 +276,7 @@ describe('ShortList.container', () => {
     const testElements = createTestElements(3);
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
       />
     );
@@ -296,7 +298,7 @@ describe('ShortList.container', () => {
     const testElements = createTestElements(3);
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
       />
     );
@@ -319,7 +321,7 @@ describe('ShortList.container', () => {
     const testElements = createTestElements(3);
     const tree = mount(
       <ShortList
-        shortListState={{elements: testElements}}
+        shortListState={{elements: testElements, hasLoaded: true}}
         orderList={testElements}
         orderAll={mockOrderAll}
       />

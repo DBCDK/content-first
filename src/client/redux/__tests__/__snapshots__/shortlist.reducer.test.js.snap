@@ -15,6 +15,7 @@ Object {
     },
   ],
   "expanded": false,
+  "hasLoaded": true,
   "isLoading": false,
   "pendingMerge": Object {
     "databaseElements": Array [
@@ -67,6 +68,7 @@ Object {
     },
   ],
   "expanded": false,
+  "hasLoaded": true,
   "isLoading": false,
   "pendingMerge": null,
 }

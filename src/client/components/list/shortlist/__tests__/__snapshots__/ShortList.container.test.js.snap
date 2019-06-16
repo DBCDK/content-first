@@ -113,6 +113,7 @@ exports[`ShortList.container Clearing list 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -1854,6 +1855,7 @@ exports[`ShortList.container Order all books 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -3594,6 +3596,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -5334,6 +5337,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -7074,6 +7078,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -8814,6 +8819,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -10554,6 +10560,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -12294,6 +12301,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -14035,6 +14043,7 @@ exports[`ShortList.container Remove element 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -15775,6 +15784,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
           "origin": "origin - 2",
         },
       ],
+      "hasLoaded": true,
     }
   }
 >
@@ -17408,6 +17418,7 @@ exports[`ShortList.container Short list is empty 1`] = `
   shortListState={
     Object {
       "elements": Array [],
+      "hasLoaded": true,
     }
   }
 >
