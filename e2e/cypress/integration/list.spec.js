@@ -4,8 +4,15 @@ describe('List test', function() {
     cy.clearClientStorage();
     cy.clearCookies();
     cy.createUser('listowner');
-    cy.wait(1000);
+    // cy.wait(1000);
   });
+
+  const gotoListByName = listName => {
+    cy.get('[data-cy=topbar-lists]').click();
+    cy.get('[data-cy=list-link]')
+      .contains(listName)
+      .click();
+  };
 
   it('Can create a new list', function() {
     const listName = 'New list';
@@ -22,7 +29,8 @@ describe('List test', function() {
       .type(listDescription);
     cy.get('[data-cy=modal-done-btn]').click();
 
-    cy.get('[data-cy=watch-new-list-link]').click();
+    gotoListByName(listName);
+
     cy.reload();
 
     cy.get('[data-cy=banner-title]').contains(listName);
@@ -104,7 +112,9 @@ describe('List test', function() {
     cy.get('[data-cy=add-to-new-list]').click();
     cy.get('[data-cy=public-radio-btn]').click();
     cy.get('[data-cy=modal-done-btn]').click();
-    cy.get('[data-cy=watch-new-list-link]').click();
+
+    gotoListByName('Ny liste');
+
     cy.reload();
     cy.get('.list-container')
       .find('.listElement')

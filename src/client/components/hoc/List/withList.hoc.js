@@ -193,6 +193,9 @@ export const withList = WrappedComponent => {
     };
 
     render() {
+      if (!this.props.list) {
+        return null;
+      }
       return (
         <WrappedComponent
           {...this.props}
