@@ -193,6 +193,7 @@ describe('List test', function() {
         });
 
       cy.get('[data-cy= modal-done-btn').click();
+      cy.wait(1000); // hmm
       cy.reload();
 
       //assert change
