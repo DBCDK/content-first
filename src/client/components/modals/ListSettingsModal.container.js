@@ -55,7 +55,7 @@ export class ListSettingsModal extends React.Component {
 
     this.state = {
       template: props.list.template || 'list',
-      public: props.list.public || false,
+      public: props.list._public || false,
       social: props.list.social || false,
       open: props.list.open || false
     };
@@ -71,7 +71,7 @@ export class ListSettingsModal extends React.Component {
           updateListData({
             _id: list._id,
             template: this.state.template,
-            public: this.state.public,
+            _public: this.state.public,
             social: this.state.social,
             open: this.state.open
           });

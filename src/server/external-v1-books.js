@@ -16,18 +16,7 @@ const {
   subjectsToTaxonomyDescription,
   fromTitle
 } = require('../client/utils/taxonomy');
-
-const fetchToken = async () => {
-  let anonymous_token = cache.get('anonymous_token');
-  if (!anonymous_token) {
-    anonymous_token = (await request
-      .post(config.auth.url + '/oauth/token')
-      .auth(config.auth.id, config.auth.secret)
-      .send('grant_type=password&username=@&password=@')).body.access_token;
-    cache.set('anonymous_token', anonymous_token);
-  }
-  return anonymous_token;
-};
+const {fetchAnonymousToken} = require('./smaug');
 
 const getWork = (
   pid,
@@ -91,7 +80,7 @@ const fetchWork = async pid => {
       'subjectDBCS',
       'coverUrlFull'
     ],
-    access_token: await fetchToken()
+    access_token: (await fetchAnonymousToken()).access_token
   })).body.data[0];
 
   /* map result */

@@ -123,12 +123,12 @@ export class BookcaseList extends React.Component {
             <div className="d-flex ml-4">
               <Icon
                 className="align-middle md-xsmall text-white"
-                name={list.public ? 'visibility' : 'visibility_off'}
+                name={list._public ? 'visibility' : 'visibility_off'}
               />
               <Text className="ml-2" type="small" variant="color-white">
                 <T
                   component="general"
-                  name={list.public ? 'public' : 'private'}
+                  name={list._public ? 'public' : 'private'}
                 />
               </Text>
             </div>

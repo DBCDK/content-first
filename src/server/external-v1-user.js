@@ -25,7 +25,6 @@ router
     requireLoggedIn,
     asyncMiddleware(async (req, res, next) => {
       const location = req.baseUrl;
-
       try {
         const userData = await getUserData(req.user.openplatformId, req.user);
 
@@ -84,6 +83,7 @@ router
     asyncMiddleware(async (req, res, next) => {
       const openplatformId = req.params.id;
       const location = `/v1/user/${encodeURIComponent(openplatformId)}`;
+
       try {
         const userData = await getUserData(openplatformId, req.user);
 
@@ -112,7 +112,7 @@ router
           detail: 'Not allowed to try to delete that user'
         });
       }
-      await deleteUser(openplatformId);
+      await deleteUser(user);
       res.status(200).json({
         data: {success: true},
         links: {self: location}

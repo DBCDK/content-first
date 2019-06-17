@@ -23,6 +23,7 @@ export class ListPage extends React.Component {
   }
   render() {
     const {list} = this.props;
+
     if (!list || list.isLoading) {
       // TODO make a skeleton view of list
       return (
@@ -34,7 +35,12 @@ export class ListPage extends React.Component {
 
     if (list.error) {
       return (
-        <Title Tag="h1" type="title3" className="text-center mt-5">
+        <Title
+          Tag="h1"
+          type="title3"
+          className="text-center mt-5"
+          data-cy="list-error"
+        >
           <T component="list" name="fetchListError" />
         </Title>
       );

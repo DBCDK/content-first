@@ -34,6 +34,7 @@ const MenuEntry = withList(
           `AddToListButton__${list.type} ${classLast}` +
           (multiple ? ' pl-3' : '')
         }
+        data-cy="add-to-list-button"
         onClick={() => {
           if (isMobileOnly) {
             // Dont auto-close dropdown on mobile devices - multiselection is allowed
@@ -217,6 +218,7 @@ export class AddToListButton extends React.Component {
           `AddToListButton__Container dropdown ${className}` +
           (multiple ? ' multiple-works-button-container ' : '')
         }
+        data-cy={this.props['data-cy'] || 'add-to-list-btn'}
       >
         <Button
           className={`AddToListButton ${buttonActive}`}
@@ -270,6 +272,7 @@ export class AddToListButton extends React.Component {
             onClick={() => {
               openModal('list', {works: newListFromElements});
             }}
+            data-cy="add-to-new-list"
           >
             <Icon name="add" />
             <span>

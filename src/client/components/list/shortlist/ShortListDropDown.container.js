@@ -128,6 +128,7 @@ const ShortListContent = props => {
 class ShortListDropdown extends React.Component {
   render() {
     const {expanded, elements = []} = this.props.shortListState;
+
     return (
       <React.Fragment>
         <div

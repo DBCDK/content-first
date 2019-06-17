@@ -8,32 +8,40 @@ const _ = require('lodash');
 
 describe('Endpoint /v1/object', () => {
   const webapp = request(mock.external);
-  const cookie1 = mock.createLoginCookie(
-    'valid-login-token-for-user-seeded-on-test-start'
-  );
-  const cookie2 = mock.createLoginCookie(
-    'valid-login-token-for-user2-seeded-on-test-start'
-  );
-  const id1 = '123openplatformId456';
-  const id2 = '123openplatformId2';
-
-  // test objects
-  const objects = [
-    [cookie1, {_type: 'test', text: 'object0', _public: false}],
-    [cookie1, {_type: 'test', _key: 'hi', _public: true}],
-    [cookie1, {_type: 'test', _key: 'ho', some: 'property', _public: true}],
-    [cookie2, {_type: 'test', _key: 'hi', _public: true, other: 'property'}],
-    [cookie2, {_type: 'test', _key: 'hi', Im: 'private'}],
-    [cookie1, {_type: 'test', _key: 'hi', _public: true}],
-    [cookie1, {_type: 'test'}]
-  ];
+  const internalApp = request(mock.internal);
+  let cookie1, cookie2, objects;
+  const user1 = {
+    id: '123openplatformId456',
+    token: '123openplatformToken456'
+  };
+  const user2 = {
+    id: '123openplatformId2',
+    token: '123openplatformToken2'
+  };
   // _ids of test objects in database
   let objectResults;
 
+  before(async () => {
+    cookie1 = mock.createLoginCookie(
+      'valid-login-token-for-user-seeded-on-test-start'
+    );
+    cookie2 = mock.createLoginCookie(
+      'valid-login-token-for-user2-seeded-on-test-start'
+    );
+    objects = [
+      [cookie1, {_type: 'test', text: 'object0', _public: false}],
+      [cookie1, {_type: 'test', _key: 'hi', _public: true}],
+      [cookie1, {_type: 'test', _key: 'ho', some: 'property', _public: true}],
+      [cookie2, {_type: 'test', _key: 'hi', _public: true, other: 'property'}],
+      [cookie2, {_type: 'test', _key: 'hi', Im: 'private'}],
+      [cookie1, {_type: 'test', _key: 'hi', _public: true}],
+      [cookie1, {_type: 'test'}]
+    ];
+  });
+
   beforeEach(async () => {
     await mock.resetting();
-
-    // add test objects sequentially, as we otherwise may run out of postgres connections
+    await internalApp.get('/v1/test/initStorage');
     objectResults = [];
     for (const [cookie, obj] of objects) {
       objectResults.push({
@@ -45,12 +53,11 @@ describe('Endpoint /v1/object', () => {
       });
     }
   });
+
   afterEach(async () => {
-    // delete test objects from database
-    for (const {cookie, _id} of objectResults) {
-      await webapp.del('/v1/object/' + _id).set('cookie', cookie);
-    }
+    await internalApp.get('/v1/test/wipeStorage');
   });
+
   describe('Public endpoint', () => {
     describe('GET /v1/object/:pid', () => {
       it('should retrieve object', async () => {
@@ -63,11 +70,13 @@ describe('Endpoint /v1/object', () => {
           text: 'object0',
           _id: id,
           _key: '',
-          _owner: id1,
+          _owner: user1.id,
           _public: false,
           _type: 'test'
         });
         expect(result.errors).to.be.an('undefined');
+        expect(result.data._created).to.be.an('number');
+        expect(result.data._modified).to.be.an('number');
       });
       it('fails with 404 when it does not exist', async () => {
         const result = await webapp
@@ -101,17 +110,24 @@ describe('Endpoint /v1/object', () => {
       });
       it('find objects all own objects of given type', async () => {
         const result = (await webapp
-          .get(`/v1/object/find?type=test&owner=${id2}`)
+          .get(`/v1/object/find?type=test&owner=${user2.id}`)
           .set('cookie', cookie2)).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(2);
       });
       it('find all public objects of given type+user+key', async () => {
         const result = (await webapp
-          .get(`/v1/object/find?type=test&owner=${id2}&key=hi`)
+          .get(`/v1/object/find?type=test&owner=${user2.id}&key=hi`)
           .set('cookie', cookie1)).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(1);
+      });
+      it('find objects all public objects of given type+owner', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&owner=${user1.id}`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(3);
       });
       it('find objects all public objects of given type+key', async () => {
         const result = (await webapp
@@ -119,6 +135,20 @@ describe('Endpoint /v1/object', () => {
           .set('cookie', cookie2)).body;
         expect(result.errors).to.be.an('undefined');
         expect(result.data.length).to.equal(3);
+      });
+      it('find public objects with limit', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&key=hi&limit=1`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(1);
+      });
+      it('find private objects with limit', async () => {
+        const result = (await webapp
+          .get(`/v1/object/find?type=test&key=hi&owner=${user1.id}&limit=1`)
+          .set('cookie', cookie2)).body;
+        expect(result.errors).to.be.an('undefined');
+        expect(result.data.length).to.equal(1);
       });
       it('find no objects', async () => {
         const result = (await webapp
@@ -215,7 +245,7 @@ describe('Endpoint /v1/object', () => {
           hi: 'world',
           _id: id,
           _key: '123',
-          _owner: id1,
+          _owner: user1.id,
           _public: true,
           _type: 'test'
         });

@@ -57,7 +57,7 @@ Cypress.Commands.add('createUser', userName => {
  * Logs in without creating a user
  */
 Cypress.Commands.add('login', userName => {
-  cy.request('/v1/test/login/' + userName);
+  cy.visit('/v1/test/login/' + userName);
 });
 
 /**
@@ -95,4 +95,12 @@ Cypress.Commands.add('visitWithOpenPlatformMocks', (url, mocks) => {
       window.__stubbed_openplatform__ = mocks;
     }
   });
+});
+
+/**
+ * Initializes object storage
+ */
+Cypress.Commands.add('initStorage', userName => {
+  cy.request('/v1/test/wipeStorage');
+  cy.request('/v1/test/initStorage');
 });

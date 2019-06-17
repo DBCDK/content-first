@@ -27,7 +27,7 @@ import {withLists, withList} from '../../hoc/List';
 import {withFollows} from '../../hoc/Follow';
 
 const ListElement = props => {
-  if (!props.list) {
+  if (!props.list || !props.list._id) {
     return null;
   }
 
@@ -80,6 +80,7 @@ const ListElement = props => {
               }
             }}
             href={url}
+            data-cy={`list-link-${props.list.title}`}
           >
             {props.list.title}
           </Link>

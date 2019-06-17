@@ -12,12 +12,34 @@ const {
 describe('Shortlist', () => {
   const location = '/v1/shortlist';
   const webapp = request(mock.external);
+  const internalApp = request(mock.internal);
 
   beforeEach(async () => {
     await mock.resetting();
+    await internalApp.get('/v1/test/initStorage');
+    await webapp
+      .post('/v1/object')
+      .set(
+        'cookie',
+        mock.createLoginCookie(
+          'valid-login-token-for-user-seeded-on-test-start'
+        )
+      )
+      .send({
+        _type: 'USER_PROFILE',
+        name: 'Test Name',
+        image: 'b667c0cd-94ef-4732-b740-43cf8340511a',
+        shortlist: [
+          {pid: '870970-basis:52041082', origin: 'Fra "En god bog"'},
+          {pid: '870970-basis:26296218', origin: 'Fra "En god bog"'},
+          {pid: '870970-basis:52817757', origin: 'Fra "En god bog"'}
+        ],
+        _public: true
+      });
   });
 
-  afterEach(function() {
+  afterEach(async () => {
+    await internalApp.get('/v1/test/wipeStorage');
     /*
     if (this.currentTest.state !== 'passed') {
       mock.dumpLogs();

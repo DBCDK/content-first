@@ -5,11 +5,27 @@ services:
     image: postgres:9.6
     volumes:
       - ./tools/postgres-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      POSTGRES_MULTIPLE_DATABASES: contentfirst,storage
     ports:
       - "${DB_PORT:-5432}:5432"
-    environment:
-      POSTGRES_MULTIPLE_DATABASES: contentfirst
-
+  storage:
+    image: docker-ux.dbc.dk/serviceprovider:latest
+    env_file: ./docker/serviceprovider.docker
+    depends_on:
+      - database
+      - minismaug
+    command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; node src/main.js'
+    ports:
+      - "8080:8080"
+  minismaug:
+    image: docker-ux.dbc.dk/serviceprovider:latest
+    ports:
+      - "3333:3333"
+    entrypoint:
+      - npm
+      - run
+      - start:minismaug
 networks:
   default:
     ipam:

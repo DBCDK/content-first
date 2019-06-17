@@ -1,9 +1,8 @@
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
-const config = require('server/config');
 const express = require('express');
 const logger = require('server/logger');
-const request = require('superagent');
 const router = express.Router({mergeParams: true});
+const {fetchAnonymousToken} = require('./smaug');
 
 router
   .route('/anonymous_token')
@@ -13,11 +12,8 @@ router
   .get(
     asyncMiddleware(async (req, res) => {
       try {
-        const result = await request
-          .post(config.auth.url + '/oauth/token')
-          .auth(config.auth.id, config.auth.secret)
-          .send('grant_type=password&username=@&password=@');
-        res.status(200).json(result.body);
+        const result = await fetchAnonymousToken();
+        res.status(200).json(result);
       } catch (e) {
         logger.log.error({
           source: 'external-v1-openplatform',

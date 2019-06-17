@@ -1,12 +1,56 @@
 'use strict';
-
+const logger = require('server/logger');
 const assert = require('assert');
 const _ = require('lodash');
 const config = require('server/config');
-const knex = require('knex')(config.db);
-const constants = require('server/constants')();
-const objectTable = constants.objects.table;
-const uuidGenerator = require('uuid');
+const request = require('superagent');
+const smaug = require('./smaug');
+
+let storageUrl;
+let typeId;
+let validated = false;
+
+const fetchAnonymousToken = !config.server.isProduction
+  ? () => ({
+      access_token: 'anon_token'
+    })
+  : smaug.fetchAnonymousToken;
+
+function setupObjectStore(storageOptions) {
+  if (config.server.isProduction && !storageOptions.typeId) {
+    throw new Error('storageOptions.typeId is not valid');
+  }
+  if (!storageOptions.url) {
+    throw new Error('storageOptions.url is not valid');
+  }
+  storageUrl = storageOptions.url;
+  typeId = storageOptions.typeId;
+  validated = false;
+}
+
+async function validateObjectStore() {
+  if (validated) {
+    return;
+  }
+  if (!storageUrl || !typeId) {
+    throw new Error('Object store has not been setup');
+  }
+  try {
+    const access_token = (await fetchAnonymousToken()).access_token;
+    const data = (await request
+      .post(storageUrl)
+      .send({access_token, get: {_id: typeId}})).body.data;
+    logger.log.info('Object storage validated', {
+      typeId,
+      data
+    });
+    validated = true;
+  } catch (e) {
+    throw new Error(
+      `Object storage validation failed, typeId=${typeId}, storageUrl=${storageUrl}`
+    );
+  }
+}
 
 async function getUser(req) {
   if (req.isAuthenticated()) {
@@ -20,193 +64,199 @@ async function getUser(req) {
   return;
 }
 
-const rowToObject = o => ({
-  ...o.data,
-  _id: o.id,
-  _rev: o.rev,
-  _owner: o.owner,
-  _type: o.type,
-  _key: o.key,
-  _public: o.public,
-  _created: o.created,
-  _modified: o.modified
-});
+const toStorageObject = object => {
+  const copy = {};
 
-async function writeObject(o) {
-  await knex(objectTable).insert({
-    id: o._id,
-    rev: o._rev,
-    owner: o._owner,
-    type: o._type || '',
-    key: o._key || '',
-    public: !!o._public,
-    created: o._created,
-    modified: o._modified,
-    data: _.omitBy(o, (v, k) => k.startsWith('_'))
+  Object.entries(object).forEach(([key, value]) => {
+    if (key === '_rev') {
+      copy._version = value;
+    } else if (key === '_public') {
+      copy.public = value;
+    } else if (key.startsWith('_') && key !== '_id') {
+      copy[`cf${key}`] = value;
+    } else {
+      copy[key] = value;
+    }
   });
-}
+  copy.cf_key = copy.cf_key || '';
+  copy._type = typeId; // the special content-first object type
+  return copy;
+};
+const fromStorageObject = storageObject => {
+  const copy = {};
+
+  Object.entries(storageObject).forEach(([key, value]) => {
+    if (key === '_type') {
+      return;
+    }
+    if (key === 'public') {
+      copy._public = value;
+    } else if (key === '_version') {
+      copy._rev = value;
+    } else if (key.startsWith('cf_')) {
+      copy[key.substr(2)] = value;
+    } else {
+      copy[key] = value;
+    }
+  });
+  return copy;
+};
 
 async function get(id, user = {}) {
-  const results = await knex(objectTable)
-    .where('id', id)
-    .select();
-  if (results.length > 0) {
-    const object = rowToObject(results[0]);
-    if (!object._public && object._owner !== user.openplatformId) {
-      return {
-        data: {error: 'forbidden'},
-        errors: [{status: 403, message: 'forbidden'}]
-      };
-    }
-    return {data: object};
-  }
+  await validateObjectStore();
+  let access_token =
+    user.openplatformToken || (await fetchAnonymousToken()).access_token;
+  const requestObject = {access_token, get: {_id: id}};
 
-  return {
-    data: {error: 'not found'},
-    errors: [{status: 404, message: 'not found'}]
-  };
+  try {
+    const data = (await request.post(storageUrl).send(requestObject)).body.data;
+    const o = fromStorageObject(data);
+
+    return {data: _.omit(o, ['_version', '_client'])};
+  } catch (e) {
+    return parseException(e);
+  }
 }
 
 async function put(object, user) {
   assert(user);
-  assert(user.openplatformId);
+  assert(user.openplatformToken);
+  await validateObjectStore();
 
-  const revision =
-    Date.now() +
-    '-' +
-    Math.random()
-      .toString(36)
-      .slice(2);
-  const epoch = (Date.now() / 1000) | 0;
-
-  if (object._id) {
-    const prev = await get(object._id, user);
-    if (prev.errors) {
-      return prev;
-    }
-    const prevObj = prev.data;
-    if (prevObj._owner !== user.openplatformId) {
-      return {
-        data: {error: 'forbidden'},
-        errors: [{status: 403, message: 'forbidden'}]
-      };
-    }
-
-    let updateQuery = knex(objectTable).where('id', object._id);
-    if (object._rev) {
-      updateQuery = updateQuery.where('rev', object._rev);
-    }
-    const result = await updateQuery
-      .update({
-        rev: revision,
-        type: object._type || '',
-        key: object._key || '',
-        public: !!object._public,
-        modified: epoch,
-        data: _.omitBy(object, (v, k) => k.startsWith('_'))
-      })
-      .returning(['id', 'rev']);
-    if (result.length === 0) {
-      return {
-        data: {error: 'conflict'},
-        errors: [{status: 409, message: 'conflict'}]
-      };
-    }
-    return {data: {_id: result[0].id, _rev: result[0].rev}};
-  }
-
-  object = {
-    ...object,
-    _id: uuidGenerator.v1(),
-    _rev: revision,
-    _owner: user.openplatformId,
-    _created: epoch,
-    _modified: epoch
+  const requestObject = {
+    access_token: user.openplatformToken,
+    put: toStorageObject(object)
   };
-  await writeObject(object);
-  return {data: {_id: object._id, _rev: object._rev}};
+  try {
+    const data = (await request.post(storageUrl).send(requestObject)).body.data;
+    return {data: {_id: data._id, _rev: data._version}};
+  } catch (e) {
+    return parseException(e);
+  }
 }
 
 async function find(query, user = {}) {
-  query = Object.assign(
-    {
-      limit: 20,
-      offset: 0
-    },
-    query
-  );
-
-  if (!query.type) {
-    throw new Error('Query Error');
-  }
-  let knexQuery = knex(objectTable);
-
-  if (typeof query.type !== 'undefined') {
-    knexQuery = knexQuery.where('type', query.type);
-  }
-  if (typeof query.key !== 'undefined') {
-    knexQuery = knexQuery.where('key', query.key);
-  }
+  await validateObjectStore();
+  let access_token =
+    user.openplatformToken || (await fetchAnonymousToken()).access_token;
+  const requestObject = {
+    access_token,
+    scan: {
+      _type: typeId,
+      index: [],
+      startsWith: [],
+      limit: query.limit || 20,
+      reverse: true
+    }
+  };
   if (typeof query.owner !== 'undefined') {
-    knexQuery = knexQuery.where('owner', query.owner);
+    requestObject.scan.index.push('_owner');
+    requestObject.scan.startsWith.push(query.owner);
   }
-  if (!query.owner || query.owner !== user.openplatformId) {
-    knexQuery = knexQuery.where('public', true);
+  if (typeof query.type !== 'undefined') {
+    requestObject.scan.index.push('cf_type');
+    requestObject.scan.startsWith.push(query.type);
   }
+  if (query.key) {
+    requestObject.scan.index.push('cf_key');
+    requestObject.scan.startsWith.push(query.key);
+  }
+  requestObject.scan.index.push('cf_created');
+  try {
+    const ids = (await request.post(storageUrl).send(requestObject)).body.data;
 
-  let result = await knexQuery
-    .orderBy('type')
-    .orderBy('key')
-    .orderBy('modified', 'desc')
-    .limit(query.limit)
-    .offset(query.offset)
-    .select();
-  result = result.map(rowToObject);
-
-  return {data: result};
+    const objects = (await Promise.all(
+      ids.map(entry =>
+        request.post(storageUrl).send({access_token, get: {_id: entry.val}})
+      )
+    )).map(res =>
+      _.omit(fromStorageObject(res.body.data), ['_version', '_client'])
+    );
+    return {data: objects};
+  } catch (e) {
+    return parseException(e);
+  }
 }
 
-async function updateOwner(oldOwner, newOwner) {
-  if (!oldOwner) {
-    throw new Error('oldOwner missing');
-  }
-  if (!newOwner) {
-    throw new Error('newOwner missing');
-  }
+/*
+ * Delete all content-first objects belonging to a user
+ * This is not optimized for speed
+ */
+async function deleteUser({openplatformToken, openplatformId}) {
+  try {
+    // all object ids owned by user
+    const ids = (await request.post(storageUrl).send({
+      access_token: openplatformToken,
+      find: {_type: '*', _owner: openplatformId}
+    })).body.data;
 
-  const res = await knex(objectTable)
-    .update('owner', newOwner)
-    .where('owner', oldOwner);
-
-  return res;
+    // Delete only those that are content-first objects
+    for (let i = 0; i < ids.length; i++) {
+      const data = (await request
+        .post(storageUrl)
+        .send({access_token: openplatformToken, get: {_id: ids[i]}})).body.data;
+      if (data._type === typeId) {
+        await request.post(storageUrl).send({
+          access_token: openplatformToken,
+          delete: {_id: data._id}
+        });
+      }
+    }
+  } catch (e) {
+    return parseException(e);
+  }
 }
 
 async function del(id, user) {
-  const result = await get(id, user);
+  assert(user);
+  assert(user.openplatformToken);
+  await validateObjectStore();
 
-  if (result.errors) {
+  const requestObject = {
+    access_token: user.openplatformToken,
+    delete: {_id: id}
+  };
+
+  try {
+    await request.post(storageUrl).send(requestObject);
+    return {
+      data: {ok: true}
+    };
+  } catch (e) {
+    return parseException(e);
+  }
+}
+function parseException(e) {
+  if (e.status === 404) {
     return {
       data: {error: 'not found'},
       errors: [{status: 404, message: 'not found'}]
     };
   }
-
-  const {
-    data: {_owner}
-  } = result;
-  if (_owner !== user.openplatformId) {
+  if (e.status === 403) {
     return {
       data: {error: 'forbidden'},
       errors: [{status: 403, message: 'forbidden'}]
     };
   }
-  await knex(objectTable)
-    .where('id', id)
-    .del();
-
+  if (e.status === 409) {
+    return {
+      data: {error: 'conflict'},
+      errors: [{status: 409, message: 'conflict'}]
+    };
+  }
   return {
-    data: {ok: true}
+    data: {error: 'internal server error'},
+    errors: [{status: 500, message: 'internal server error'}]
   };
 }
 
-module.exports = {getUser, get, put, find, del, updateOwner};
+module.exports = {
+  getUser,
+  get,
+  put,
+  find,
+  del,
+  deleteUser,
+  setupObjectStore
+};

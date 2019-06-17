@@ -19,7 +19,7 @@ const suggester = require('server/suggester');
 const searcher = require('server/searcher');
 const matomo = require('server/matomo');
 const generatingServiceStatus = require('__/services/service-status');
-const isProduction = config.server.environment === 'production';
+const isProduction = config.server.isProduction;
 
 // Public web server.
 const express = require('express');

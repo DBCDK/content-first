@@ -2,9 +2,14 @@
 
 const express = require('express');
 const router = express.Router({mergeParams: true});
+const config = require('server/config');
 const asyncMiddleware = require('__/async-express').asyncMiddleware;
 const objectStore = require('./objectStore');
-const {getUser} = objectStore;
+const {getUser, setupObjectStore} = objectStore;
+
+(async () => {
+  await setupObjectStore(config.storage);
+})();
 
 function send(res, data) {
   return res.status(data.errors ? data.errors[0].status : 200).json(data);
@@ -17,6 +22,13 @@ async function putObject(req, res) {
   if (req.params.id) {
     object._id = req.params.id;
   }
+  if (req.method === 'POST') {
+    object._created = Math.round(Date.now() / 1000);
+    object._modified = object._created;
+  } else {
+    object._modified = Math.round(Date.now() / 1000);
+  }
+
   const user = await getUser(req);
   if (user) {
     send(res, await objectStore.put(object, user));

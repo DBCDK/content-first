@@ -114,11 +114,11 @@ export const ListInfo = ({
           <div className="pb-4" />
         )}
 
-        {list.public && (
+        {list._public && (
           <React.Fragment>
             <div className="list-divider m-0" />
             <div className="list-interactions d-flex flex-row-reverse justify-content-between">
-              {list.public ? (
+              {list._public ? (
                 <FollowButton disabled={isListOwner} _id={list._id} />
               ) : (
                 <div />
@@ -159,7 +159,7 @@ export const mapDispatchToProps = dispatch => ({
           dispatch(
             updateList({
               _id,
-              public: true
+              _public: true
             }),
             dispatch({
               type: 'CLOSE_MODAL',
