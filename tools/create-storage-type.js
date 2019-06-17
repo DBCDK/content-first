@@ -11,7 +11,7 @@ if (!config.storage.url) {
 (async () => {
   console.log('Creating storage data type for content first objects');
   try {
-    const typeId = (await request('http://localhost:3002/v1/test/initStorage'))
+    const typeId = (await request('http://localhost:3000/v1/test/initStorage'))
       .text;
     fs.writeFileSync(
       STORAGE_ENV_FILEPATH,

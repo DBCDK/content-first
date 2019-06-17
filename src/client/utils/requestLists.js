@@ -21,7 +21,7 @@ export const saveList = async (list, loggedInUserId) => {
   if (!list._id) {
     Object.assign(
       list,
-      (await request.post('/v1/object').send({_type: list._type})).body.data
+      (await request.post('/v1/object').send(list)).body.data
     );
     list = Object.assign(await loadList(list._id), list);
   }
