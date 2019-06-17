@@ -19,7 +19,7 @@ describe('Filter page test', function() {
   });
 
   it('Should test "Tempo" filter', function() {
-    cy.visit('/find?tags=5633,5633');
+    cy.visit('/find?tags=5633,5634');
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
     cy.get('[data-cy=workpreviewCard]')
