@@ -26,31 +26,24 @@ const SortableItemWithWork = withWork(
   )
 );
 
-const SortableItem = withWork(
-  SortableElement(({work, moveUp, moveDown, className}) => {
-    if (!work) {
-      return null;
-    }
-    return (
-      <li
-        className={'order-list-element d-flex align-items-middle' + className}
-        data-cy="reorder-list-element"
-      >
-        <i className="material-icons drag-indicator">drag_indicator</i>
+const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
+  <li
+    className={'order-list-element d-flex align-items-middle' + className}
+    data-cy="reorder-list-element"
+  >
+    <i className="material-icons drag-indicator">drag_indicator</i>
 
-        <div className="ml-2 w-75">
-          <span
-            style={{height: 32, float: 'left', marginRight: 10, marginTop: 3}}
-          >
-            <BookCover book={work.book} style={{width: 'unset'}} />
-          </span>
-          <div className="order-list-element-text">
-            <Text type="large" data-cy="reorder-list-element-title">
-              {work.book.title}
-            </Text>
-            <Text type="body">{work.book.creator}</Text>
-          </div>
-        </div>
+    <div className="ml-2 w-75">
+      <span style={{height: 32, float: 'left', marginRight: 10, marginTop: 3}}>
+        <BookCover book={book} style={{width: 'unset'}} />
+      </span>
+      <div className="order-list-element-text">
+        <Text type="large" data-cy="reorder-list-element-title">
+          {book.title}
+        </Text>
+        <Text type="body">{book.creator}</Text>
+      </div>
+    </div>
 
     <div className="d-none d-md-flex p-0 justify-content-between ml-auto">
       <i
