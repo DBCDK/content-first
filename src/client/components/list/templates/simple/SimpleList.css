@@ -1,5 +1,5 @@
 .fixed-width-col-md {
-  width: 100%;
+  width: 100% !important;
 }
 
 @media (min-width: 768px) {
@@ -7,7 +7,7 @@
     padding: 0 0.5rem 0 57px !important;
   }
   .fixed-width-col-md {
-    width: 780px;
+    width: 780px !important;
   }
 }
 
