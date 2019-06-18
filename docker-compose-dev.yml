@@ -10,7 +10,7 @@ services:
     ports:
       - "${DB_PORT:-5432}:5432"
   storage:
-    image: docker-ux.dbc.dk/serviceprovider:latest
+    image: docker-ux.dbc.dk/serviceprovider:3
     env_file: ./docker/serviceprovider.docker
     depends_on:
       - database
@@ -19,7 +19,7 @@ services:
     ports:
       - "8080:8080"
   minismaug:
-    image: docker-ux.dbc.dk/serviceprovider:latest
+    image: docker-ux.dbc.dk/serviceprovider:3
     ports:
       - "3333:3333"
     entrypoint:
