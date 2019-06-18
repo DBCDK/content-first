@@ -15,6 +15,8 @@ describe('Filter page test', function() {
       .first()
       .click();
 
+    cy.wait(1000);
+
     cy.get('[data-cy=tag-mystisk]').should('have.text', 'mystisk');
   });
 
@@ -29,6 +31,8 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy=tag-hæsblæsende]').should('have.text', 'hæsblæsende');
   });
@@ -67,6 +71,8 @@ describe('Filter page test', function() {
       .first()
       .click();
 
+    cy.wait(1000);
+
     cy.get('[data-cy=tag-realistisk]').should('have.text', 'realistisk');
   });
 
@@ -85,6 +91,8 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy=tag-jeg-fortæller]').should('have.text', 'jeg-fortæller');
   });
@@ -105,6 +113,8 @@ describe('Filter page test', function() {
       .first()
       .click();
 
+    cy.wait(1000);
+
     cy.get('[data-cy=tag-slang]').should('have.text', 'slang');
   });
 
@@ -123,6 +133,8 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy=tag-bevidsthedsstrøm]').should(
       'have.text',
@@ -145,6 +157,8 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy="tag-den 2. verdenskrig"]').should(
       'have.text',
