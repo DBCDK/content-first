@@ -22,3 +22,7 @@
 .belt textarea.value-missing::placeholder {
   color: var(--fersken);
 }
+
+.belt .scrollable-tags {
+  width: 100vw;
+}
