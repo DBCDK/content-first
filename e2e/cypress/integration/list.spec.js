@@ -107,8 +107,6 @@ describe('List test', function() {
       cy.get('[data-cy=follow-btn]').contains('Følger liste');
       cy.reload();
       cy.get('[data-cy=follow-btn]').contains('Følger liste');
-
-
     });
   });
 
