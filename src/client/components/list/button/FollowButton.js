@@ -43,6 +43,7 @@ export const FollowButton = ({
         }
         return follow();
       }}
+      data-cy="follow-btn"
     >
       <span className="align-middle">
         <Icon name="playlist_add" className="mr-1 align-middle" />

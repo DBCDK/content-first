@@ -206,4 +206,36 @@ describe('List test', function() {
         });
     });
   });
+
+  it('Will not show followed list, when list is gone', function() {
+    waitForListsLoaded();
+    const list = {
+      type: 'CUSTOM_LIST',
+      title: 'Offentlig liste',
+      description: 'masser af de gode',
+      list: [],
+      open: true,
+      _type: 'list',
+      _public: true
+    };
+    cy.wait(1000);
+    cy.request('POST', '/v1/object', list).then(response => {
+      const id = response.body.data._id;
+      cy.visit(`/lister/${id}`);
+      cy.createUser('otheruser');
+      waitForListsLoaded();
+      cy.get('[data-cy=follow-btn]').click();
+      cy.login('listowner');
+      cy.request('POST', '/v1/object', {...list, _id: id, _public: false}).then(
+        response => {
+          cy.login('otheruser');
+          cy.get('[data-cy=topbar-lists]').click();
+          cy.contains('Har læst');
+          cy.get('.top-bar-dropdown-list-element')
+            .its('length')
+            .should('eq', 2);
+        }
+      );
+    });
+  });
 });

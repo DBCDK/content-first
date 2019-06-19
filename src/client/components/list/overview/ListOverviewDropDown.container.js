@@ -27,7 +27,7 @@ import {withLists, withList} from '../../hoc/List';
 import {withFollows} from '../../hoc/Follow';
 
 const ListElement = props => {
-  if (!props.list || !props.list._id) {
+  if (!props.list || !props.list._id || props.list.error) {
     return null;
   }
 
@@ -184,7 +184,6 @@ class ListOverviewDropDown extends React.Component {
       expanded,
       modalView
     } = this.props;
-
     return (
       <React.Fragment>
         {!modalView && (
