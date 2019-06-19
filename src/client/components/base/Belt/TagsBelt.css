@@ -23,14 +23,22 @@
   color: var(--fersken);
 }
 
-.belt .scrollable-tags {
-  width: 100vw;
+@media only screen and (min-width: 480px) {
+  .belt .scrollable-tags {
+    margin-left: 0.5rem;
+  }
 }
 
-.belt .scrollable-tags > a.list-card-nohover:first-child {
-  margin-left: 0.5rem;
-}
+@media only screen and (max-width: 479px) {
+  .belt .scrollable-tags {
+    width: 100vw;
+  }
 
-.belt .scrollable-tags > a.list-card-nohover:last-child {
-  margin-right: 0.5rem;
+  .belt .scrollable-tags > a.list-card-nohover:first-child {
+    margin-left: 0.5rem;
+  }
+
+  .belt .scrollable-tags > a.list-card-nohover:last-child {
+    margin-right: 0.5rem;
+  }
 }
