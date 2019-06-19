@@ -19,14 +19,16 @@ async function getObject(req, res) {
 }
 async function putObject(req, res) {
   const object = req.body;
-  if (req.params.id) {
-    object._id = req.params.id;
-  }
-  if (req.method === 'POST') {
+
+  if (!object._id) {
     object._created = Math.round(Date.now() / 1000);
     object._modified = object._created;
   } else {
     object._modified = Math.round(Date.now() / 1000);
+  }
+
+  if (req.params.id) {
+    object._id = req.params.id;
   }
 
   const user = await getUser(req);
