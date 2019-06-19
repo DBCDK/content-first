@@ -32,7 +32,11 @@ async function putObject(req, res) {
     object._modified = Math.round(Date.now() / 1000);
 
     // Just in case the client has set it to a 13 digit epoch
-    object._created = trimEpoch(object._created);
+    if (!object._created) {
+      object._created = Math.round(Date.now() / 1000);
+    } else {
+      object._created = trimEpoch(object._created);
+    }
   }
 
   if (req.params.id) {
