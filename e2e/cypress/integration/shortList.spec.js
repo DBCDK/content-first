@@ -8,7 +8,6 @@ describe('Test shortlist', function() {
 
   it('Add element to shortlist', function() {
     cy.visit('/');
-    cy.scrollTo(0, 400);
     cy.get('[data-cy=workcard]')
       .first()
       .within(() => {
