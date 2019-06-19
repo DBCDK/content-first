@@ -13,6 +13,7 @@ pipeline {
         GITLAB_ID = "207"
         DOCKER_TAG = "${imageLabel}"
         IMAGE = "${imageName}${env.BRANCH_NAME != 'master' ? "-${env.BRANCH_NAME.toLowerCase()}" : ''}:${imageLabel}"
+        DOCKER_COMPOSE_NAME = "compose-${IMAGE}"
         GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
     }
     stages {
@@ -31,8 +32,8 @@ pipeline {
                 script {
                     ansiColor("xterm") {
                         sh "echo Integrating..."
-                        sh "docker-compose -f docker-compose-cypress.yml build"
-                        sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml run --rm e2e"
+                        sh "docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} build"
+                        sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} run --rm e2e"
                     }
                 }
             }
@@ -82,7 +83,7 @@ pipeline {
         always {
                sh """
                     echo Clean up
-                    docker-compose -f docker-compose-cypress.yml down -v
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} down -v
                     docker rmi $IMAGE
                 """
         }
