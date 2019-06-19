@@ -94,7 +94,7 @@ export class TagsBelt extends React.Component {
                   value={this.state.name}
                 />
 
-                <div className="scrollable-tags d-sm-inline h-scroll-xs h-scroll-sm-none align-self-center ml-2 ml-sm-0">
+                <div className="scrollable-tags d-sm-inline h-scroll-xs h-scroll-sm-none align-self-center ml-sm-0">
                   {tags.map((t, idx) => {
                     const tag = filtersMapAll[t.id ? t.id : t];
                     const isLast = idx === tags.length - 1;
@@ -189,7 +189,7 @@ export class TagsBelt extends React.Component {
                       onClick={this.props.removeBelt}
                     />
                   )}
-                  <div className="scrollable-tags d-sm-inline h-scroll-xs h-scroll-sm-none align-self-center ml-2 ml-sm-0">
+                  <div className="scrollable-tags d-sm-inline h-scroll-xs h-scroll-sm-none align-self-center ml-sm-0">
                     {tags.map((t, idx) => {
                       const tag = filtersMapAll[t.id ? t.id : t];
                       const isLast = idx === tags.length - 1;

@@ -26,3 +26,11 @@
 .belt .scrollable-tags {
   width: 100vw;
 }
+
+.belt .scrollable-tags > a.list-card-nohover:first-child {
+  margin-left: 0.5rem;
+}
+
+.belt .scrollable-tags > a.list-card-nohover:last-child {
+  margin-right: 0.5rem;
+}
