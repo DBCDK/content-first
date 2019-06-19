@@ -6,9 +6,14 @@ const {expect} = require('chai');
 const request = require('supertest');
 const _ = require('lodash');
 
-describe('Endpoint /v1/object', () => {
+const sleep = ms => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(), ms);
+  });
+};
+
+describe.only('Endpoint /v1/object', () => {
   const webapp = request(mock.external);
-  const internalApp = request(mock.internal);
   let cookie1, cookie2, objects;
   const user1 = {
     id: '123openplatformId456',
@@ -41,7 +46,7 @@ describe('Endpoint /v1/object', () => {
 
   beforeEach(async () => {
     await mock.resetting();
-    await internalApp.get('/v1/test/initStorage');
+    await webapp.get('/v1/test/initStorage');
     objectResults = [];
     for (const [cookie, obj] of objects) {
       objectResults.push({
@@ -55,7 +60,7 @@ describe('Endpoint /v1/object', () => {
   });
 
   afterEach(async () => {
-    await internalApp.get('/v1/test/wipeStorage');
+    await webapp.get('/v1/test/wipeStorage');
   });
 
   describe('Public endpoint', () => {
@@ -212,6 +217,7 @@ describe('Endpoint /v1/object', () => {
         let obj = (await webapp.get(`/v1/object/${id}`).set('cookie', cookie1))
           .body.data;
         obj.changed = true;
+        await sleep(2000);
 
         const result = await webapp
           .post('/v1/object')
@@ -226,6 +232,8 @@ describe('Endpoint /v1/object', () => {
           .set('cookie', cookie1)).body.data;
         expect(newObj.changed).to.equal(true);
         expect(newObj._rev).to.equal(result.body.data._rev);
+        expect(newObj._modified).to.be.above(newObj._created);
+        expect(newObj._created).to.equal(obj._created);
       });
     });
     describe('PUT /v1/object/:pid', () => {

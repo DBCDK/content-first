@@ -379,7 +379,7 @@ export const addList = ({
   list = [],
   _id = null,
   _owner = null,
-  _created = Date.now()
+  _created = Math.round(Date.now() / 1000)
 }) => {
   return {
     type: ADD_LIST,

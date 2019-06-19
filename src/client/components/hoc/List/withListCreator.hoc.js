@@ -49,7 +49,7 @@ export const withListCreator = WrappedComponent => {
             dotColor: 'petroleum',
             // "Pre-add" works to the created list
             list: works || [],
-            _created: Date.now()
+            _created: Math.round(Date.now() / 1000)
           },
           openplatformId
         );
