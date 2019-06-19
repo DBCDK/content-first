@@ -27,7 +27,7 @@ import {withLists, withList} from '../../hoc/List';
 import {withFollows} from '../../hoc/Follow';
 
 const ListElement = props => {
-  if (!props.list || !props.list._id || props.list.error) {
+  if (!props.list || !props.list._id || props.list.error || !props.list._type) {
     return null;
   }
 
