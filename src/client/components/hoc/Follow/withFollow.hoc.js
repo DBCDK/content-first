@@ -53,15 +53,14 @@ const withFollow = WrappedComponent => {
      **/
     follow = async () => {
       try {
-        await addObject({
+        const resp = await addObject({
           id: this.props._id,
           _type: 'follows',
           cat: 'list',
           _created: Math.round(new Date().getTime() / 1000)
         });
-
         // Dispatch reducer FOLLOW action
-        this.props.onFollow();
+        this.props.onFollow(resp.data._id);
       } catch (e) {
         // ignored for now
         // ....
@@ -112,11 +111,12 @@ const withFollow = WrappedComponent => {
         type: FOLLOW_LOAD_RESPONSE,
         data
       }),
-    onFollow: () =>
+    onFollow: _id =>
       dispatch({
         type: FOLLOW,
         id: ownProps._id,
-        cat: 'list'
+        cat: 'list',
+        _id
       }),
     onUnfollow: () =>
       dispatch({
