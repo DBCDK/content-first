@@ -82,7 +82,7 @@ describe('List test', function() {
     });
   });
 
-  it.only('Can follow and unfollow public lists', function() {
+  it('Can follow and unfollow public lists', function() {
     cy.request('POST', '/v1/object', {
       type: 'CUSTOM_LIST',
       title: 'Offentlig liste',
