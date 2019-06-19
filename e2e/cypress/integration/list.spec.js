@@ -94,12 +94,21 @@ describe('List test', function() {
       const id = response.body.data._id;
       cy.visit(`/lister/${id}`);
       cy.createUser('otheruser');
+      cy.get('[data-cy=follow-btn]').contains('Følg liste');
       cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følger liste');
       cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følg liste');
       cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følger liste');
       cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følg liste');
       cy.get('[data-cy=follow-btn]').click();
-      cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følger liste');
+      cy.reload();
+      cy.get('[data-cy=follow-btn]').contains('Følger liste');
+
+
     });
   });
 
