@@ -1,4 +1,4 @@
-describe.skip('Filter page test', function() {  // Temporary fix - to be fixed asap. See FilterCards.css#66
+describe('Filter page test', function() {
   it('Should test "Stemning" filter', function() {
     cy.visit('/');
 
@@ -6,6 +6,7 @@ describe.skip('Filter page test', function() {  // Temporary fix - to be fixed a
     cy.get('[data-cy=stemning]').click();
     cy.get('[data-cy=mystisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
@@ -44,6 +45,7 @@ describe.skip('Filter page test', function() {  // Temporary fix - to be fixed a
     cy.get('[data-cy=længde]').click();
     cy.get('[data-cy=kort]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
@@ -62,6 +64,7 @@ describe.skip('Filter page test', function() {  // Temporary fix - to be fixed a
     cy.get('[data-cy=univers]').click();
     cy.get('[data-cy=realistisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
@@ -83,6 +86,7 @@ describe.skip('Filter page test', function() {  // Temporary fix - to be fixed a
     cy.get('[data-cy=fortællerstemme]').click();
     cy.get('[data-cy=jeg-fortæller]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
@@ -104,6 +108,7 @@ describe.skip('Filter page test', function() {  // Temporary fix - to be fixed a
     cy.get('[data-cy=sprog]').click();
     cy.get('[data-cy=slang]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
@@ -125,6 +130,7 @@ describe.skip('Filter page test', function() {  // Temporary fix - to be fixed a
     cy.get('[data-cy=skrivestil]').click();
     cy.get('[data-cy=bevidsthedsstrøm]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
@@ -149,6 +155,7 @@ describe.skip('Filter page test', function() {  // Temporary fix - to be fixed a
     cy.get('[data-cy=handlingens-tid]').click();
     cy.get('[data-cy="den 2. verdenskrig"]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
     cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
