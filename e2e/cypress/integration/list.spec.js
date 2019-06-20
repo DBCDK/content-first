@@ -82,6 +82,34 @@ describe('List test', function() {
     });
   });
 
+  it('Can follow and unfollow public lists', function() {
+    cy.request('POST', '/v1/object', {
+      type: 'CUSTOM_LIST',
+      title: 'Offentlig liste',
+      description: 'masser af de gode',
+      list: [],
+      _type: 'list',
+      _public: true
+    }).then(response => {
+      const id = response.body.data._id;
+      cy.visit(`/lister/${id}`);
+      cy.createUser('otheruser');
+      cy.get('[data-cy=follow-btn]').contains('Følg liste');
+      cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følger liste');
+      cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følg liste');
+      cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følger liste');
+      cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følg liste');
+      cy.get('[data-cy=follow-btn]').click();
+      cy.get('[data-cy=follow-btn]').contains('Følger liste');
+      cy.reload();
+      cy.get('[data-cy=follow-btn]').contains('Følger liste');
+    });
+  });
+
   it('Can add element to open list, when not owner', function() {
     waitForListsLoaded();
     cy.wait(1000);
