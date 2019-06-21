@@ -12,6 +12,7 @@ Array [
     "isNew": undefined,
     "list": Array [
       Object {
+        "_created": 1234,
         "book": Object {
           "pid": "pid1",
         },
@@ -40,6 +41,7 @@ Array [
     "isNew": undefined,
     "list": Array [
       Object {
+        "_created": 1234,
         "book": Object {
           "pid": "pid1",
         },
@@ -51,6 +53,7 @@ Array [
         },
       },
       Object {
+        "_created": 1234,
         "_id": 2,
         "book": Object {
           "pid": "pid2",
@@ -169,6 +172,7 @@ Array [
     "isNew": undefined,
     "list": Array [
       Object {
+        "_created": 1234,
         "_id": 1,
         "book": Object {
           "pid": "pid1",
@@ -186,6 +190,7 @@ Array [
         },
       },
       Object {
+        "_created": 1234,
         "_id": 2,
         "book": Object {
           "pid": "pid2",
@@ -218,6 +223,7 @@ Array [
     "isNew": undefined,
     "list": Array [
       Object {
+        "_created": 1234,
         "_id": "123",
         "book": Object {
           "pid": "pid1",
@@ -229,6 +235,7 @@ Array [
         },
       },
       Object {
+        "_created": 1234,
         "_id": "456",
         "book": Object {
           "pid": "pid2",

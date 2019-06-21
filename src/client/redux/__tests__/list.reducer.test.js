@@ -205,7 +205,10 @@ describe('listReducer', () => {
     );
     listState = listReducer(
       listState,
-      addElementToList({book: {pid: 'pid1'}, position: {x: 0, y: 0}}, 'list2')
+      addElementToList(
+        {book: {pid: 'pid1'}, position: {x: 0, y: 0}, _created: 1234},
+        'list2'
+      )
     );
 
     const state = {listReducer: listState, booksReducer: booksState};
@@ -227,7 +230,8 @@ describe('listReducer', () => {
         {
           book: {pid: 'pid1'},
           position: {x: 0, y: 0},
-          description: 'some-description-1'
+          description: 'some-description-1',
+          _created: 1234
         },
         'some-id-1'
       )
@@ -235,21 +239,21 @@ describe('listReducer', () => {
     listState = listReducer(
       listState,
       addElementToList(
-        {book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        {book: {pid: 'pid1'}, position: {x: 0, y: 0}, _created: 1234},
         'some-id-1'
       )
     );
     listState = listReducer(
       listState,
       addElementToList(
-        {_id: 2, book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        {_id: 2, book: {pid: 'pid2'}, position: {x: 0, y: 0}, _created: 1234},
         'some-id-1'
       )
     );
     listState = listReducer(
       listState,
       addElementToList(
-        {_id: 2, book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        {_id: 2, book: {pid: 'pid2'}, position: {x: 0, y: 0}, _created: 1234},
         'some-id-1'
       )
     );
@@ -269,14 +273,24 @@ describe('listReducer', () => {
     listState = listReducer(
       listState,
       addElementToList(
-        {_id: '123', book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        {
+          _id: '123',
+          book: {pid: 'pid1'},
+          position: {x: 0, y: 0},
+          _created: 1234
+        },
         'some-id-1'
       )
     );
     listState = listReducer(
       listState,
       addElementToList(
-        {_id: '456', book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        {
+          _id: '456',
+          book: {pid: 'pid2'},
+          position: {x: 0, y: 0},
+          _created: 1234
+        },
         'some-id-1'
       )
     );
@@ -328,21 +342,21 @@ describe('listReducer', () => {
     listState = listReducer(
       listState,
       addElementToList(
-        {_id: 1, book: {pid: 'pid1'}, position: {x: 0, y: 0}},
+        {_id: 1, book: {pid: 'pid1'}, position: {x: 0, y: 0}, _created: 1234},
         'some-id-1'
       )
     );
     listState = listReducer(
       listState,
       addElementToList(
-        {_id: 2, book: {pid: 'pid2'}, position: {x: 0, y: 0}},
+        {_id: 2, book: {pid: 'pid2'}, position: {x: 0, y: 0}, _created: 1234},
         'some-id-1'
       )
     );
     listState = listReducer(
       listState,
       addElementToList(
-        {_id: 3, book: {pid: 'pid3'}, position: {x: 0, y: 0}},
+        {_id: 3, book: {pid: 'pid3'}, position: {x: 0, y: 0}, _created: 1234},
         'some-id-1'
       )
     );
