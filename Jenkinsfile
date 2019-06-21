@@ -16,6 +16,10 @@ pipeline {
         DOCKER_COMPOSE_NAME = "compose-${IMAGE}"
         GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
     }
+    options {
+        // Limit concurrent builds to one pr. branch.
+        disableConcurrentBuilds()
+    }
     stages {
 
         stage('Build image') {
