@@ -1,7 +1,6 @@
 describe('Filter page test', function() {
   it('Should test "Stemning" filter', function() {
     cy.visit('/');
-
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=stemning]').click();
     cy.get('[data-cy=mystisk]').click();
