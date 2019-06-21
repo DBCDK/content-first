@@ -15,7 +15,7 @@ if (env.NODE_ENV === 'development') {
     return (config[key] = env[k]);
   });
 } else {
-  config = get(window, 'CONFIG');
+  config = get(window, 'CONFIG') || {};
 }
 
 export default config;
