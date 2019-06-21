@@ -430,29 +430,41 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Jeg elsker dig"
+          id="De hoppede ud ad bogen"
           isLoading={false}
-          mount="frontpage[{\\"id\\":5660,\\"weight\\":10},{\\"id\\":189,\\"weight\\":10},{\\"id\\":5637,\\"weight\\":1},{\\"id\\":3431,\\"weight\\":10}]"
-          name="Jeg elsker dig"
+          mount="frontpage[{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5735,\\"weight\\":1},{\\"id\\":3510,\\"weight\\":10},{\\"id\\":5624,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":10},{\\"id\\":5717,\\"weight\\":10},{\\"id\\":5722,\\"weight\\":1}]"
+          name="De hoppede ud ad bogen"
           onFrontPage={true}
-          subtext="Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?"
+          subtext="Karakterer du ikke lige glemmer."
           tags={
             Array [
               Object {
-                "id": 5660,
-                "weight": 10,
-              },
-              Object {
-                "id": 189,
-                "weight": 10,
-              },
-              Object {
-                "id": 5637,
+                "id": 5731,
                 "weight": 1,
               },
               Object {
-                "id": 3431,
+                "id": 5735,
+                "weight": 1,
+              },
+              Object {
+                "id": 3510,
                 "weight": 10,
+              },
+              Object {
+                "id": 5624,
+                "weight": 1,
+              },
+              Object {
+                "id": 5721,
+                "weight": 10,
+              },
+              Object {
+                "id": 5717,
+                "weight": 10,
+              },
+              Object {
+                "id": 5722,
+                "weight": 1,
               },
             ]
           }
@@ -461,6 +473,48 @@ exports[`renders without crashing 1`] = `
       </div>
       <SpotsContainer />
       <div>
+        <TagsBelt
+          child={false}
+          id="Mennesket og Naturen"
+          isLoading={false}
+          mount="frontpage[{\\"id\\":5329,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5280,\\"weight\\":1},{\\"id\\":5277,\\"weight\\":1},{\\"id\\":2183,\\"weight\\":1},{\\"id\\":2278,\\"weight\\":1}]"
+          name="Mennesket og Naturen"
+          onFrontPage={true}
+          subtext="Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen."
+          tags={
+            Array [
+              Object {
+                "id": 5329,
+                "weight": 10,
+              },
+              Object {
+                "id": 3510,
+                "weight": 10,
+              },
+              Object {
+                "id": 5731,
+                "weight": 1,
+              },
+              Object {
+                "id": 5280,
+                "weight": 1,
+              },
+              Object {
+                "id": 5277,
+                "weight": 1,
+              },
+              Object {
+                "id": 2183,
+                "weight": 1,
+              },
+              Object {
+                "id": 2278,
+                "weight": 1,
+              },
+            ]
+          }
+          type="belt"
+        />
         <TagsBelt
           child={false}
           id="Familiens skyggesider"
@@ -569,41 +623,29 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Mennesket og Naturen"
+          id="Jeg elsker dig"
           isLoading={false}
-          mount="frontpage[{\\"id\\":5329,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5280,\\"weight\\":1},{\\"id\\":5277,\\"weight\\":1},{\\"id\\":2183,\\"weight\\":1},{\\"id\\":2278,\\"weight\\":1}]"
-          name="Mennesket og Naturen"
+          mount="frontpage[{\\"id\\":5660,\\"weight\\":10},{\\"id\\":189,\\"weight\\":10},{\\"id\\":5637,\\"weight\\":1},{\\"id\\":3431,\\"weight\\":10}]"
+          name="Jeg elsker dig"
           onFrontPage={true}
-          subtext="Menneskers identitet bliver sat i spil, når de forlader hverdagen og møder naturen."
+          subtext="Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?"
           tags={
             Array [
               Object {
-                "id": 5329,
+                "id": 5660,
                 "weight": 10,
               },
               Object {
-                "id": 3510,
+                "id": 189,
                 "weight": 10,
               },
               Object {
-                "id": 5731,
+                "id": 5637,
                 "weight": 1,
               },
               Object {
-                "id": 5280,
-                "weight": 1,
-              },
-              Object {
-                "id": 5277,
-                "weight": 1,
-              },
-              Object {
-                "id": 2183,
-                "weight": 1,
-              },
-              Object {
-                "id": 2278,
-                "weight": 1,
+                "id": 3431,
+                "weight": 10,
               },
             ]
           }

@@ -1,5 +1,23 @@
 const defaultState = {
   belts: {
+    'De hoppede ud ad bogen': {
+      key: 'De hoppede ud ad bogen',
+      name: 'De hoppede ud ad bogen',
+      subtext: 'Karakterer du ikke lige glemmer.',
+      tags: [
+        {id: 5731, weight: 1},
+        {id: 5735, weight: 1},
+        {id: 3510, weight: 10},
+        {id: 5624, weight: 1},
+        {id: 5721, weight: 10},
+        {id: 5717, weight: 10},
+        {id: 5722, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
     'Jeg elsker dig': {
       key: 'Jeg elsker dig',
       name: 'Jeg elsker dig',
