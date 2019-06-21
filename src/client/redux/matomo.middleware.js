@@ -12,8 +12,6 @@ import {HISTORY_NEW_TAB} from './middleware';
 import {ORDER} from './order.reducer';
 import {ON_USER_DETAILS_RESPONSE, ON_USER_DETAILS_ERROR} from './user.reducer';
 
-import {HISTORY_PUSH_FORCE_REFRESH} from './middleware';
-
 export const matomoMiddleware = store => next => action => {
   switch (action.type) {
     case UPDATE_MOUNT: {

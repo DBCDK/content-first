@@ -1,10 +1,10 @@
 import {debounce} from 'lodash';
 import config from './utils/config.js';
 
-const server = config.MATOMO_URL;
-const siteId = config.MATOMO_SITE_ID;
-const dataSiteId = config.MATOMO_DATA_SITE_ID;
-const aid = config.MATOMO_AID;
+const server = config && config.MATOMO_URL;
+const siteId = config && config.MATOMO_SITE_ID;
+const dataSiteId = config && config.MATOMO_DATA_SITE_ID;
+const aid = config && config.MATOMO_AID;
 
 let matomoEnabled = false;
 let currentUrl;
