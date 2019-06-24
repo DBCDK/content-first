@@ -101,6 +101,7 @@ export class SimpleList extends React.Component {
                     element={element}
                     list={list}
                     editing={added === element.pid ? true : false}
+                    showUserInfo={list._owner !== element._owner}
                   />
                 );
               })}

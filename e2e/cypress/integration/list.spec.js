@@ -133,10 +133,11 @@ describe('List test', function() {
       cy.get('[data-cy=element-context-menu]').click();
       cy.get('[data-cy=context-action-remove-element]').should('exist');
       cy.get('[data-cy=context-action-edit-element]').should('exist');
-
+      cy.get('[data-cy=list-element]').contains('otheruser');
       cy.login('listowner');
       waitForListsLoaded();
       cy.get('[data-cy=list-element]');
+      cy.get('[data-cy=list-element]').contains('otheruser');
       cy.get('[data-cy=element-context-menu]').click();
       cy.get('[data-cy=context-action-remove-element]').should('exist');
       cy.get('[data-cy=context-action-edit-element]').should('not.exist');

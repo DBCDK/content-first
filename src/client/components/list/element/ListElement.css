@@ -1,0 +1,8 @@
+.element-context-menu {
+  align-self: flex-start
+}
+@media (min-width: 768px) { 
+  .element-context-menu {
+    align-self: center
+  }
+}
