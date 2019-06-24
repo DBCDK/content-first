@@ -19,6 +19,7 @@ import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import TaxDescription from '../../work/TaxDescription.component.js';
 import CommentInput from '../../comments/CommentInput.component';
 import withWork from '../../hoc/Work/withWork.hoc';
+import './ListElement.css';
 
 // User
 const UserInfo = ({owner, time}) => {
@@ -50,8 +51,7 @@ const ElementContextMenu = ({
   }
   return (
     <ContextMenu
-      className="mr-0 mt-2 position-absolute"
-      style={{right: 0, bottom: 0}}
+      className="element-context-menu mr-0 mt-0"
       data-cy="element-context-menu"
     >
       {isElementOwner && (
@@ -267,14 +267,6 @@ export class ListElement extends React.Component {
               </Link>
 
               <div className="position-relative">
-                {showContextMenu && (
-                  <ElementContextMenu
-                    onDelete={this.deleteElement}
-                    onEdit={this.edit}
-                    isElementOwner={isElementOwner}
-                    isListOwner={isListOwner}
-                  />
-                )}
                 {showTaxDescription && (
                   <Text className="pr-4" type="body" variant="weight-semibold">
                     <TaxDescription text={book.taxonomy_description} />
@@ -287,6 +279,14 @@ export class ListElement extends React.Component {
               <div className="list-divider content-divider d-none d-sm-block" />
             )}
           </div>
+          {showContextMenu && (
+            <ElementContextMenu
+              onDelete={this.deleteElement}
+              onEdit={this.edit}
+              isElementOwner={isElementOwner}
+              isListOwner={isListOwner}
+            />
+          )}
         </div>
         <div className="d-block d-sm-none">{description}</div>
         <div className="listElement-userInfo" style={{top: '0', right: '0'}}>
