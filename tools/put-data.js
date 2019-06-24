@@ -21,6 +21,12 @@ const waitForReady = async () => {
       await new Promise(resolve => {
         setTimeout(() => resolve(), 500);
       });
+      const dbStatus = e.response.body.services.filter(
+        s => s.service === 'database'
+      )[0];
+      if (dbStatus.ok) {
+        ready = true;
+      }
       console.log('waiting for ' + HOWRU);
     }
   }
