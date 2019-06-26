@@ -10,7 +10,11 @@ import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST} from './list.reducer';
 import {ORDER_SUCCESS} from './order.reducer';
 import {HISTORY_NEW_TAB} from './middleware';
 import {ORDER} from './order.reducer';
-import {ON_USER_DETAILS_RESPONSE, ON_USER_DETAILS_ERROR} from './user.reducer';
+import {
+  ON_USER_DETAILS_RESPONSE,
+  ON_USER_DETAILS_ERROR,
+  SAVE_USER_PROFILE_SUCCESS
+} from './user.reducer';
 
 export const matomoMiddleware = store => next => action => {
   switch (action.type) {
@@ -156,6 +160,13 @@ export const matomoMiddleware = store => next => action => {
         setItem('didSetUserAuthenticated', false, 1);
       }
       setUserStatus(false);
+      return next(action);
+    }
+
+    case SAVE_USER_PROFILE_SUCCESS: {
+      if (action.user.acceptedTerms) {
+        trackEvent('user', 'createUserProfile', action.user.openplatformId);
+      }
       return next(action);
     }
 
