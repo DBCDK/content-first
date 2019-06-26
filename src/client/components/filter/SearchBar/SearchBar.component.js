@@ -1,24 +1,36 @@
 import React from 'react';
 import {isMobile} from 'react-device-detect';
-
 import TagsSuggester from './TagsSuggester.component';
 import Icon from '../../base/Icon';
 import Button from '../../base/Button';
 import {withTagsFromUrl} from '../../hoc/AdressBar';
 import {withWork} from '../../hoc/Work';
-
 import './SearchBar.css';
-
-const SelectedWork = withWork(({selected, work, onRemove}) => (
-  <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
-    <span>{work && work.book.title}</span>
-    <Icon
-      className="md-small"
-      name="close"
-      onClick={() => onRemove(selected.match)}
-    />
-  </Button>
-));
+const SelectedWork = withWork(({selected, work, onRemove}) => {
+  return (
+    <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+      <span>{work && work.book.title}</span>
+      <Icon
+        className="md-small"
+        name="close"
+        onClick={() => onRemove(selected.match)}
+      />
+    </Button>
+  );
+});
+const SelectedTitles = ({selected, onRemove}) => {
+  let comboTitle = selected.pid.split(';').shift();
+  return (
+    <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
+      <span>{comboTitle}</span>
+      <Icon
+        className="md-small"
+        name="close"
+        onClick={() => onRemove(selected.match)}
+      />
+    </Button>
+  );
+};
 const SelectedTag = ({selected, onRemove}) => (
   <Button Tag="div" size="medium" type="term" className={`selected-filter`}>
     <span>{selected.title}</span>
@@ -55,7 +67,6 @@ const SelectedQuery = ({selected, onRemove}) => (
     />
   </Button>
 );
-
 class SearchBar extends React.Component {
   renderSelected = selected => {
     switch (selected.type) {
@@ -80,6 +91,15 @@ class SearchBar extends React.Component {
           <SelectedWork
             key={selected.match}
             pid={selected.pid}
+            selected={selected}
+            onRemove={this.props.removeTag}
+          />
+        );
+      case 'TITLES':
+        return (
+          <SelectedTitles
+            key={selected.match}
+            pids={selected.pids}
             selected={selected}
             onRemove={this.props.removeTag}
           />
@@ -110,7 +130,7 @@ class SearchBar extends React.Component {
     }
   };
   onFiltersMouseWheelScrool = e => {
-    // e.preventDefault();  suppress run-time warning - see https://dbcjira.atlassian.net/browse/CF-1160
+    // e.preventDefault(); suppress run-time warning - see https://dbcjira.atlassian.net/browse/CF-1160
     let scrollSpeed = 40;
     /* eslint-disable no-unused-expressions */
     e.deltaY > 0
@@ -118,20 +138,16 @@ class SearchBar extends React.Component {
       : (this.filtersRef.scrollLeft -= scrollSpeed);
     /* eslint-enable no-unused-expressions */
   };
-
   constructor() {
     super();
     this.state = {query: '', expanded: false};
   }
-
   componentDidMount() {
     this.initFilterPosition();
   }
-
   toggleFilter(filterId) {
     this.props.toggleFilter(filterId);
   }
-
   render() {
     return (
       <React.Fragment>
@@ -177,5 +193,4 @@ class SearchBar extends React.Component {
     );
   }
 }
-
 export default withTagsFromUrl(SearchBar);

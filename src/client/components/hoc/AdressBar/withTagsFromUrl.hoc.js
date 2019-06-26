@@ -5,7 +5,6 @@ import {isEqual} from 'lodash';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
 import {getFullRange} from '../../../utils/taxonomy';
-
 /**
  * A HOC that enhance the wrapped component with a list of tags (pids, creators, tags)
  * based on the 'tags' query paramter from the browser address bar.
@@ -23,26 +22,26 @@ import {getFullRange} from '../../../utils/taxonomy';
  * When the address bar contains: '?tags=Rowan%20Williams,870970-basis:27073298,1234'
  * It will generate the following 'tags' prop:
  * [
- *   {
- *    "type": "QUERY",
- *     "query": "Rowan Williams"
- *   },
- *   {
- *     "type": "TITLE",
- *     "pid": "870970-basis:27073298"
- *   },
- *   {
- *     "type": "TAG",
- *     "id": 1234,
- *     "title": "gættelege",
- *   }
+ * {
+ * "type": "QUERY",
+ * "query": "Rowan Williams"
+ * },
+ * {
+ * "type": "TITLE",
+ * "pid": "870970-basis:27073298"
+ * },
+ * {
+ * "type": "TAG",
+ * "id": 1234,
+ * "title": "gættelege",
+ * }
  * ]
  * Furthermore it generates a 'tagsMap' prop, which may be used for fast lookups.
  * {
- *  "Rowan Williams": {
- *    "type": "QUERY",
- *     "query": "Rowan Williams"
- *   }
+ * "Rowan Williams": {
+ * "type": "QUERY",
+ * "query": "Rowan Williams"
+ * }
  * }
  *
  *
@@ -71,6 +70,17 @@ const withTagsFromUrl = WrappedComponent => {
     isSelected = tag => {
       return !!this.props.tagsMap[tag];
     };
+    getMultiPids = () => {
+      let multiPids = [];
+      this.props.tags.filter(t => t.type === 'TITLES').map(p =>
+        p.pid.split(';').forEach((q, i) => {
+          if (i !== 0) {
+            multiPids.push(q);
+          }
+        })
+      );
+      return multiPids;
+    };
     render() {
       return (
         <WrappedComponent
@@ -79,11 +89,11 @@ const withTagsFromUrl = WrappedComponent => {
           isSelected={this.isSelected}
           removeTag={this.removeTag}
           addTag={this.addTag}
+          getMultiPids={this.getMultiPids}
         />
       );
     }
   };
-
   const mapStateToProps = state => {
     const {tags, tagsMap} = tagsFromUrlSelector(state);
     return {
@@ -117,9 +127,7 @@ const withTagsFromUrl = WrappedComponent => {
     mapDispatchToProps
   )(Wrapped);
 };
-
 export default withTagsFromUrl;
-
 const tagsFromUrlSelector = createSelector(
   [state => state.routerReducer.params.tags, state => state.filtercardReducer],
   (tags, filterCards) => {
@@ -131,7 +139,6 @@ const tagsFromUrlSelector = createSelector(
     return {tags: expandedTags, tagsMap};
   }
 );
-
 export const tagsFromURL = (urlTags, filterCards) => {
   if (!urlTags) {
     return [];
@@ -143,6 +150,9 @@ export const tagsFromURL = (urlTags, filterCards) => {
     .map(tag => {
       const decoded = decodeURIComponent(tag);
       if (isPid(decoded)) {
+        if (decoded.length > 25) {
+          return {type: 'TITLES', pid: decoded, match: decoded};
+        }
         return {type: 'TITLE', pid: decoded, match: decoded};
       } else if (isTagRange(decoded)) {
         let [left, right] = decoded.split(':');
@@ -174,7 +184,6 @@ export const tagsFromURL = (urlTags, filterCards) => {
     })
     .filter(t => t);
 };
-
 export const removeTag = (expandedTags, tag) => {
   return expandedTags.filter(t => !isEqual(t.match, tag)).map(t => t.match);
 };
@@ -217,7 +226,6 @@ export const addTag = (expandedTags, filterCards, tag) => {
   }
   return [...expandedTags.map(t => t.match), tag];
 };
-
 const isPid = id => {
   return /.+-.+:.+/.test(id);
 };
