@@ -430,10 +430,10 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="De hoppede ud ad bogen"
+          id="De hoppede ud af bogen"
           isLoading={false}
           mount="frontpage[{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5735,\\"weight\\":1},{\\"id\\":3510,\\"weight\\":10},{\\"id\\":5624,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":10},{\\"id\\":5717,\\"weight\\":10},{\\"id\\":5722,\\"weight\\":1}]"
-          name="De hoppede ud ad bogen"
+          name="De hoppede ud af bogen"
           onFrontPage={true}
           subtext="Karakterer du ikke lige glemmer."
           tags={
