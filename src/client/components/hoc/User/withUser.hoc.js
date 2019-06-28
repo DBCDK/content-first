@@ -1,18 +1,43 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {REQUEST_USER, RECEIVE_USER} from '../../../redux/users';
 
 const withUser = WrappedComponent => {
   const Wrapper = class extends React.Component {
+    componentDidMount() {
+      this.doFetch();
+    }
+    componentDidUpdate() {
+      this.doFetch();
+    }
+    doFetch() {
+      if (this.props.id && !this.props.user && this.fetched !== this.props.id) {
+        this.props.fetch();
+        this.fetched = this.props.id;
+      }
+    }
     render() {
       return <WrappedComponent {...this.props} />;
     }
   };
 
-  const mapStateToProps = state => ({
-    user: state.userReducer
+  const mapStateToProps = (state, ownProps) => ({
+    user: ownProps.id ? state.users[ownProps.id] : state.userReducer
   });
+  const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+      fetch: () =>
+        dispatch({
+          type: REQUEST_USER,
+          id: ownProps.id
+        })
+    };
+  };
 
-  return connect(mapStateToProps)(Wrapper);
+  return connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Wrapper);
 };
 
 export default withUser;
