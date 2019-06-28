@@ -22,7 +22,7 @@ const withUser = WrappedComponent => {
   };
 
   const mapStateToProps = (state, ownProps) => ({
-    user: ownProps.id ? state.users[ownProps.id] : state.userReducer
+    user: state.users[ownProps.id]
   });
   const mapDispatchToProps = (dispatch, ownProps) => {
     return {
