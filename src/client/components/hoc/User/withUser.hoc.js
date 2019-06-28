@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {REQUEST_USER, RECEIVE_USER} from '../../../redux/users';
+import {REQUEST_USER} from '../../../redux/users';
 
 const withUser = WrappedComponent => {
   const Wrapper = class extends React.Component {
