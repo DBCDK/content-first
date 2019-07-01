@@ -396,58 +396,20 @@ exports[`renders without crashing 1`] = `
       <div>
         <TagsBelt
           child={false}
-          id="Sofahygge"
+          id="Krøllede fortællinger"
           isLoading={false}
-          mount="frontpage[{\\"id\\":5637,\\"weight\\":10},{\\"id\\":5654,\\"weight\\":1},{\\"id\\":5636,\\"weight\\":1},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5611,\\"weight\\":10}]"
-          name="Sofahygge"
+          mount="frontpage[{\\"id\\":2683,\\"weight\\":10},{\\"id\\":5614,\\"weight\\":10},{\\"id\\":5624,\\"weight\\":1},{\\"id\\":5652,\\"weight\\":1},{\\"id\\":5717,\\"weight\\":1}]"
+          name="Krøllede fortællinger"
           onFrontPage={true}
-          subtext="Hent teen, tænd stearinlyset og så op med fødderne og på med plaiden."
+          subtext="Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt."
           tags={
             Array [
               Object {
-                "id": 5637,
+                "id": 2683,
                 "weight": 10,
               },
               Object {
-                "id": 5654,
-                "weight": 1,
-              },
-              Object {
-                "id": 5636,
-                "weight": 1,
-              },
-              Object {
-                "id": 5731,
-                "weight": 1,
-              },
-              Object {
-                "id": 5611,
-                "weight": 10,
-              },
-            ]
-          }
-          type="belt"
-        />
-        <TagsBelt
-          child={false}
-          id="De hoppede ud af bogen"
-          isLoading={false}
-          mount="frontpage[{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5735,\\"weight\\":1},{\\"id\\":3510,\\"weight\\":10},{\\"id\\":5624,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":10},{\\"id\\":5717,\\"weight\\":10},{\\"id\\":5722,\\"weight\\":1}]"
-          name="De hoppede ud af bogen"
-          onFrontPage={true}
-          subtext="Karakterer du ikke lige glemmer."
-          tags={
-            Array [
-              Object {
-                "id": 5731,
-                "weight": 1,
-              },
-              Object {
-                "id": 5735,
-                "weight": 1,
-              },
-              Object {
-                "id": 3510,
+                "id": 5614,
                 "weight": 10,
               },
               Object {
@@ -455,15 +417,49 @@ exports[`renders without crashing 1`] = `
                 "weight": 1,
               },
               Object {
-                "id": 5721,
-                "weight": 10,
+                "id": 5652,
+                "weight": 1,
               },
               Object {
                 "id": 5717,
+                "weight": 1,
+              },
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
+          id="Vemodige nordmænd"
+          isLoading={false}
+          mount="frontpage[{\\"id\\":4466,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5626,\\"weight\\":1},{\\"id\\":5683,\\"weight\\":1},{\\"id\\":5630,\\"weight\\":1}]"
+          name="Vemodige nordmænd"
+          onFrontPage={true}
+          subtext="Når du har lyst til at tænke over livet - også det svære og sårbare."
+          tags={
+            Array [
+              Object {
+                "id": 4466,
                 "weight": 10,
               },
               Object {
-                "id": 5722,
+                "id": 5731,
+                "weight": 1,
+              },
+              Object {
+                "id": 3510,
+                "weight": 1,
+              },
+              Object {
+                "id": 5626,
+                "weight": 1,
+              },
+              Object {
+                "id": 5683,
+                "weight": 1,
+              },
+              Object {
+                "id": 5630,
                 "weight": 1,
               },
             ]
@@ -473,6 +469,36 @@ exports[`renders without crashing 1`] = `
       </div>
       <SpotsContainer />
       <div>
+        <TagsBelt
+          child={false}
+          id="Jeg elsker dig"
+          isLoading={false}
+          mount="frontpage[{\\"id\\":5660,\\"weight\\":10},{\\"id\\":189,\\"weight\\":10},{\\"id\\":5637,\\"weight\\":1},{\\"id\\":3431,\\"weight\\":10}]"
+          name="Jeg elsker dig"
+          onFrontPage={true}
+          subtext="Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?"
+          tags={
+            Array [
+              Object {
+                "id": 5660,
+                "weight": 10,
+              },
+              Object {
+                "id": 189,
+                "weight": 10,
+              },
+              Object {
+                "id": 5637,
+                "weight": 1,
+              },
+              Object {
+                "id": 3431,
+                "weight": 10,
+              },
+            ]
+          }
+          type="belt"
+        />
         <TagsBelt
           child={false}
           id="Mennesket og Naturen"
@@ -589,20 +615,24 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Krøllede fortællinger"
+          id="De hoppede ud af bogen"
           isLoading={false}
-          mount="frontpage[{\\"id\\":2683,\\"weight\\":10},{\\"id\\":5614,\\"weight\\":10},{\\"id\\":5624,\\"weight\\":1},{\\"id\\":5652,\\"weight\\":1},{\\"id\\":5717,\\"weight\\":1}]"
-          name="Krøllede fortællinger"
+          mount="frontpage[{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5735,\\"weight\\":1},{\\"id\\":3510,\\"weight\\":10},{\\"id\\":5624,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":10},{\\"id\\":5717,\\"weight\\":10},{\\"id\\":5722,\\"weight\\":1}]"
+          name="De hoppede ud af bogen"
           onFrontPage={true}
-          subtext="Skarpsindige betragtninger og satiriske vrid på samfundsordnen. Historier der ikke altid lander blidt."
+          subtext="Karakterer du ikke lige glemmer."
           tags={
             Array [
               Object {
-                "id": 2683,
-                "weight": 10,
+                "id": 5731,
+                "weight": 1,
               },
               Object {
-                "id": 5614,
+                "id": 5735,
+                "weight": 1,
+              },
+              Object {
+                "id": 3510,
                 "weight": 10,
               },
               Object {
@@ -610,11 +640,15 @@ exports[`renders without crashing 1`] = `
                 "weight": 1,
               },
               Object {
-                "id": 5652,
-                "weight": 1,
+                "id": 5721,
+                "weight": 10,
               },
               Object {
                 "id": 5717,
+                "weight": 10,
+              },
+              Object {
+                "id": 5722,
                 "weight": 1,
               },
             ]
@@ -623,28 +657,32 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Jeg elsker dig"
+          id="Sofahygge"
           isLoading={false}
-          mount="frontpage[{\\"id\\":5660,\\"weight\\":10},{\\"id\\":189,\\"weight\\":10},{\\"id\\":5637,\\"weight\\":1},{\\"id\\":3431,\\"weight\\":10}]"
-          name="Jeg elsker dig"
+          mount="frontpage[{\\"id\\":5637,\\"weight\\":10},{\\"id\\":5654,\\"weight\\":1},{\\"id\\":5636,\\"weight\\":1},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5611,\\"weight\\":10}]"
+          name="Sofahygge"
           onFrontPage={true}
-          subtext="Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?"
+          subtext="Hent teen, tænd stearinlyset og så op med fødderne og på med plaiden."
           tags={
             Array [
               Object {
-                "id": 5660,
-                "weight": 10,
-              },
-              Object {
-                "id": 189,
-                "weight": 10,
-              },
-              Object {
                 "id": 5637,
+                "weight": 10,
+              },
+              Object {
+                "id": 5654,
                 "weight": 1,
               },
               Object {
-                "id": 3431,
+                "id": 5636,
+                "weight": 1,
+              },
+              Object {
+                "id": 5731,
+                "weight": 1,
+              },
+              Object {
+                "id": 5611,
                 "weight": 10,
               },
             ]
@@ -801,44 +839,6 @@ exports[`renders without crashing 1`] = `
               },
               Object {
                 "id": 189,
-                "weight": 1,
-              },
-            ]
-          }
-          type="belt"
-        />
-        <TagsBelt
-          child={false}
-          id="Vemodige nordmænd"
-          isLoading={false}
-          mount="frontpage[{\\"id\\":4466,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5626,\\"weight\\":1},{\\"id\\":5683,\\"weight\\":1},{\\"id\\":5630,\\"weight\\":1}]"
-          name="Vemodige nordmænd"
-          onFrontPage={true}
-          subtext="Når du har lyst til at tænke over livet - også det svære og sårbare."
-          tags={
-            Array [
-              Object {
-                "id": 4466,
-                "weight": 10,
-              },
-              Object {
-                "id": 5731,
-                "weight": 1,
-              },
-              Object {
-                "id": 3510,
-                "weight": 1,
-              },
-              Object {
-                "id": 5626,
-                "weight": 1,
-              },
-              Object {
-                "id": 5683,
-                "weight": 1,
-              },
-              Object {
-                "id": 5630,
                 "weight": 1,
               },
             ]
