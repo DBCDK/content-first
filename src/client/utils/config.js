@@ -16,6 +16,12 @@ if (env.NODE_ENV === 'development') {
   });
 } else {
   config = get(window, 'CONFIG') || {};
+
+  // quick fix
+  config.MATOMO_URL = get(config, 'matomo.url');
+  config.MATOMO_SITE_ID = get(config, 'matomo.siteId');
+  config.MATOMO_DATA_SITE_ID = get(config, 'matomo.dataSiteId');
+  config.MATOMO_AID = get(config, 'matomo.aid');
 }
 
 export default config;
