@@ -86,7 +86,6 @@ class WorkPage extends React.Component {
             name="description"
             content={book.description || tax_description}
           />
-          <link rel="canonical" href="http://mysite.com/example" />
         </Helmet>
 
         <div className="WorkPage__container">
