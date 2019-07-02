@@ -1,5 +1,6 @@
 import React from 'react';
 import {get} from 'lodash';
+import {Helmet} from 'react-helmet';
 
 import TaxDescription from '../TaxDescription.component';
 import Title from '../../base/Title';
@@ -78,6 +79,16 @@ class WorkPage extends React.Component {
 
     return (
       <div>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>{book.title + ' af ' + book.creator}</title>
+          <meta
+            name="description"
+            content={book.description || tax_description}
+          />
+          <link rel="canonical" href="http://mysite.com/example" />
+        </Helmet>
+
         <div className="WorkPage__container">
           <div className="container">
             <div className="row mt-0 mt-sm-5">
