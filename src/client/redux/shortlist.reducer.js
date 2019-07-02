@@ -16,6 +16,7 @@ const defaultState = {
   expanded: false,
   elements: [],
   isLoading: false,
+  hasLoaded: false,
   pendingMerge: null
 };
 
@@ -30,7 +31,11 @@ const shortListReducer = (state = defaultState, action) => {
         pendingMerge: null
       });
     case SHORTLIST_LOAD_REQUEST:
-      return Object.assign({}, state, {elements: [], isLoading: true});
+      return Object.assign({}, state, {
+        elements: [],
+        isLoading: true,
+        hasLoaded: false
+      });
     case SHORTLIST_LOAD_RESPONSE: {
       const elements = action.databaseElements || action.localStorageElements;
       let pendingMerge = null;
@@ -55,6 +60,7 @@ const shortListReducer = (state = defaultState, action) => {
       return Object.assign({}, state, {
         elements,
         isLoading: false,
+        hasLoaded: true,
         pendingMerge
       });
     }

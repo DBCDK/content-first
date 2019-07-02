@@ -1,9 +1,11 @@
-import {debounce, get} from 'lodash';
+import {debounce} from 'lodash';
+import config from './utils/config.js';
 
-const server = get(window, 'CONFIG.matomo.url');
-const siteId = get(window, 'CONFIG.matomo.siteId');
-const dataSiteId = get(window, 'CONFIG.matomo.dataSiteId');
-const aid = get(window, 'CONFIG.matomo.aid');
+const server = config.MATOMO_URL;
+const siteId = config.MATOMO_SITE_ID;
+const dataSiteId = config.MATOMO_DATA_SITE_ID;
+const aid = config.MATOMO_AID;
+
 let matomoEnabled = false;
 let currentUrl;
 let dataTracker;
@@ -12,6 +14,7 @@ let dataEventQueue = [];
 /*
  * Initializes Matomo
  */
+
 export const initialize = history => {
   if (server && siteId && typeof window !== 'undefined') {
     /* eslint-disable-next-line no-console */
@@ -40,6 +43,18 @@ export const initialize = history => {
 
     observeDom();
     connectHistory(history);
+  }
+};
+
+export const setUserStatus = authenticated => {
+  if (matomoEnabled) {
+    window._paq.push([
+      'setCustomVariable',
+      1,
+      'userStatus',
+      authenticated ? 'AUTHENTICATED' : 'ANONYMOUS',
+      'visit'
+    ]);
   }
 };
 

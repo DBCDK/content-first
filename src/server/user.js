@@ -14,6 +14,7 @@ const _ = require('lodash');
 const objectStore = require('server/objectStore');
 const ms_OneMonth = 30 * 24 * 60 * 60 * 1000;
 const uuidv4 = require('uuid/v4');
+const request = require('superagent');
 
 module.exports = {
   putUserData,
@@ -21,19 +22,34 @@ module.exports = {
   getUser: objectStore.getUser,
   removingLoginToken,
   deleteUser,
-  createCookie,
+  createCookie: config.server.isProduction ? createCookie : createCookieDev,
   fetchCookie,
   requireLoggedIn
 };
 
-async function userExists(id) {
+async function userExists(openplatformToken, id) {
   return (
-    (await objectStore.find({
-      type: 'USER_PROFILE',
-      owner: id,
-      limit: 1
-    })).data.length !== 0
+    (await objectStore.find(
+      {
+        type: 'USER_PROFILE',
+        owner: id,
+        limit: 1
+      },
+      {openplatformToken}
+    )).data.length !== 0
   );
+}
+
+/*
+ * This intercepts createCookie calls when not in production
+ * in order to support using minismaug with real user logins
+ * It creates a token->configuration mapping in minismaug
+ */
+async function createCookieDev(legacyId, uniqueId, openplatformToken, user) {
+  await request
+    .put(`http://localhost:3333/configuration?token=${openplatformToken}`)
+    .send({user: {uniqueId}, storage: null});
+  return await createCookie(legacyId, uniqueId, openplatformToken, user);
 }
 
 async function createCookie(legacyId, uniqueId, openplatformToken, user) {
@@ -49,20 +65,7 @@ async function createCookie(legacyId, uniqueId, openplatformToken, user) {
     user: user
   });
 
-  if (await userExists(legacyId)) {
-    logger.log.info({
-      description: 'Migrating user data',
-      legacyId,
-      uniqueId
-    });
-    const rowsUpdated = await objectStore.updateOwner(legacyId, uniqueId);
-    logger.log.info({
-      description: 'Migrating user data completed',
-      legacyId,
-      uniqueId,
-      rowsUpdated
-    });
-  } else if (!(await userExists(uniqueId))) {
+  if (!(await userExists(openplatformToken, uniqueId))) {
     logger.log.info(`Creating user with uniqueId=${uniqueId}`);
     await putUserData(
       {
@@ -74,7 +77,7 @@ async function createCookie(legacyId, uniqueId, openplatformToken, user) {
         lists: [],
         over13: user.over13
       },
-      {openplatformId: uniqueId}
+      {openplatformId: uniqueId, openplatformToken}
     );
   }
   return cookie;
@@ -105,15 +108,13 @@ async function fetchCookie(cookie) {
   };
 }
 
-async function deleteUser(openplatformId) {
-  await knex(constants.objects.table)
-    .where('owner', openplatformId)
-    .del();
+async function deleteUser(user) {
+  await objectStore.deleteUser(user);
   await knex(constants.cookies.table)
-    .where('openplatform_id', openplatformId)
+    .where('openplatform_id', user.openplatformId)
     .del();
   await knex(constants.covers.table)
-    .where('owner', openplatformId)
+    .where('owner', user.openplatformId)
     .del();
 }
 
@@ -132,7 +133,7 @@ async function getUserData(openplatformId, loggedInuser) {
     throwUnlessOpenplatformId({openplatformId});
 
     let userData = (await objectStore.find(
-      {type: 'USER_PROFILE', owner: openplatformId},
+      {type: 'USER_PROFILE', owner: openplatformId, public: true},
       loggedInuser
     )).data[0];
     let shortlist = (await objectStore.find(

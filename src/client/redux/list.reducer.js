@@ -124,6 +124,9 @@ const listReducer = (state = defaultState, action) => {
       }
 
       action.element.pid = action.element.book.pid;
+      if (!action.element._created) {
+        action.element._created = Math.round(new Date().getTime() / 1000);
+      }
 
       const changeMap = Object.assign({}, state.changeMap, {
         [action.element.book.pid]: {}
@@ -379,7 +382,7 @@ export const addList = ({
   list = [],
   _id = null,
   _owner = null,
-  _created = Date.now()
+  _created = Math.round(Date.now() / 1000)
 }) => {
   return {
     type: ADD_LIST,

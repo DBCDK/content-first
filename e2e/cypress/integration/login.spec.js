@@ -1,5 +1,6 @@
 describe('Login test', function() {
   beforeEach(function() {
+    cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
   });
@@ -27,6 +28,7 @@ describe('Login test', function() {
       .clear()
       .type(userNameEdited);
     cy.get('[data-cy=user-form-submit]').click();
+    cy.wait(1000);
     cy.visit('/profil/rediger');
     cy.get('[data-cy=user-form-name]').should('have.value', userNameEdited);
   });

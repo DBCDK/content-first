@@ -84,10 +84,32 @@ exports.searcher = {
 };
 
 exports.server = {
+  isProduction: common.environment === 'production',
   environment: common.environment,
   logServiceErrors: parseInt(process.env.LOG_SERVICE_ERRORS || 1, 10),
   port: tcp.normalizePort(process.env.PORT) || 3001,
   internalPort: tcp.normalizePort(process.env.INTERNAL_PORT) || 3002,
   hostname: 'laesekompas.dk',
   dmzHost: process.env.DMZ_HOST || 'https://laesekompas.dk'
+};
+
+exports.storage = {
+  typeId: process.env.STORAGE_TYPE_ID,
+  url: process.env.STORAGE_URL
+};
+
+exports.test = {
+  minismaug: {
+    host: process.env.MINISMAUG_HOST || 'localhost'
+  },
+  user1: {
+    username: process.env.TEST_USER_NAME_1,
+    pincode: process.env.TEST_USER_PINCODE_1,
+    uniqueId: process.env.TEST_USER_UNIQUE_ID_1
+  },
+  user2: {
+    username: process.env.TEST_USER_NAME_2,
+    pincode: process.env.TEST_USER_PINCODE_2,
+    uniqueId: process.env.TEST_USER_UNIQUE_ID_2
+  }
 };

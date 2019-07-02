@@ -2,7 +2,7 @@
 'use strict';
 const crypto = require('crypto');
 const request = require('superagent');
-const {uniqBy} = require('lodash');
+const {uniqBy, get} = require('lodash');
 
 const INTERNAL_PORT = process.env.INTERNAL_PORT || 3002;
 const PORT = process.env.PORT || 3001;
@@ -18,10 +18,21 @@ const waitForReady = async () => {
       ready = true;
       taxonomySHA256 = response.body.taxonomySHA256;
     } catch (e) {
-      await new Promise(resolve => {
-        setTimeout(() => resolve(), 500);
-      });
-      console.log('waiting for ' + HOWRU);
+      let dbStatus;
+      if (e.response && e.response.body && e.response.body.services) {
+        dbStatus = e.response.body.services.filter(
+          s => s.service === 'database'
+        )[0].ok;
+      }
+      if (dbStatus) {
+        ready = true;
+        taxonomySHA256 = e.response.body.taxonomySHA256;
+      } else {
+        await new Promise(resolve => {
+          setTimeout(() => resolve(), 500);
+        });
+        console.log('waiting for ' + HOWRU);
+      }
     }
   }
   return taxonomySHA256;

@@ -1,5 +1,6 @@
 /* eslint-disable complexity */
-import {trackEvent, trackDataEvent} from '../matomo';
+import {trackEvent, trackDataEvent, setUserStatus} from '../matomo';
+import {setItem, getItem} from '../utils/localstorage';
 import {get} from 'lodash';
 import {UPDATE_MOUNT} from './mounts.reducer';
 import {ON_LOCATION_CHANGE} from './router.reducer';
@@ -8,6 +9,8 @@ import {ON_SHORTLIST_TOGGLE_ELEMENT} from './shortlist.reducer';
 import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST} from './list.reducer';
 import {ORDER_SUCCESS} from './order.reducer';
 import {HISTORY_NEW_TAB} from './middleware';
+import {ORDER} from './order.reducer';
+import {ON_USER_DETAILS_RESPONSE, ON_USER_DETAILS_ERROR} from './user.reducer';
 
 export const matomoMiddleware = store => next => action => {
   switch (action.type) {
@@ -124,6 +127,35 @@ export const matomoMiddleware = store => next => action => {
         pid,
         rid
       });
+      return next(action);
+    }
+
+    case ORDER: {
+      const book = action.book;
+      const category = `orderModal:${book.pid}`;
+      const a = 'orderModalOpen';
+      const name = `pid:${book.pid}`;
+      trackEvent(category, a, name);
+      return next(action);
+    }
+
+    case ON_USER_DETAILS_RESPONSE: {
+      if (!getItem('didSetUserAuthenticated', 1, false)) {
+        trackEvent('user', 'setUserStatus', 'AUTHENTICATED');
+        setItem('didSetUserAuthenticated', true, 1);
+        setItem('didSetUserAnonymous', false, 1);
+      }
+      setUserStatus(true);
+      return next(action);
+    }
+
+    case ON_USER_DETAILS_ERROR: {
+      if (!getItem('didSetUserAnonymous', 1, false)) {
+        trackEvent('user', 'setUserStatus', 'ANONYMOUS');
+        setItem('didSetUserAnonymous', true, 1);
+        setItem('didSetUserAuthenticated', false, 1);
+      }
+      setUserStatus(false);
       return next(action);
     }
 

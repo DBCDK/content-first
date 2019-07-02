@@ -1,5 +1,41 @@
 const defaultState = {
   belts: {
+    'Vemodige nordmænd': {
+      key: 'Vemodige nordmænd',
+      name: 'Vemodige nordmænd',
+      subtext:
+        'Når du har lyst til at tænke over livet - også det svære og sårbare.',
+      tags: [
+        {id: 4466, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 3510, weight: 1},
+        {id: 5626, weight: 1},
+        {id: 5683, weight: 1},
+        {id: 5630, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
+    'De hoppede ud ad bogen': {
+      key: 'De hoppede ud af bogen',
+      name: 'De hoppede ud af bogen',
+      subtext: 'Karakterer du ikke lige glemmer.',
+      tags: [
+        {id: 5731, weight: 1},
+        {id: 5735, weight: 1},
+        {id: 3510, weight: 10},
+        {id: 5624, weight: 1},
+        {id: 5721, weight: 10},
+        {id: 5717, weight: 10},
+        {id: 5722, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
     'Jeg elsker dig': {
       key: 'Jeg elsker dig',
       name: 'Jeg elsker dig',
@@ -171,24 +207,6 @@ const defaultState = {
         {id: 5660, weight: 1},
         {id: 5658, weight: 1},
         {id: 189, weight: 1}
-      ],
-      onFrontPage: true,
-      isLoading: false,
-      type: 'belt',
-      child: false
-    },
-    'Vemodige nordmænd': {
-      key: 'Vemodige nordmænd',
-      name: 'Vemodige nordmænd',
-      subtext:
-        'Når du har lyst til at tænke over livet - også det svære og sårbare.',
-      tags: [
-        {id: 4466, weight: 10},
-        {id: 5731, weight: 1},
-        {id: 3510, weight: 1},
-        {id: 5626, weight: 1},
-        {id: 5683, weight: 1},
-        {id: 5630, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,

@@ -9,16 +9,22 @@ import {
 
 import Modal from './Modal/Modal.component';
 import Text from '../base/Text';
+import {withList} from '../hoc/List';
+import withWork from '../hoc/Work/withWork.hoc';
 import BookCover from '../general/BookCover/BookCover.component';
-
-import {
-  updateList,
-  storeList,
-  getListByIdSelector
-} from '../../redux/list.reducer';
 import {CLOSE_MODAL} from '../../redux/modal.reducer';
 
-const getListById = getListByIdSelector();
+const SortableItemWithWork = withWork(
+  ({work, index, moveUp, moveDown, className}) => (
+    <SortableItem
+      className={className}
+      index={index}
+      book={work.book}
+      moveUp={moveUp}
+      moveDown={moveDown}
+    />
+  )
+);
 
 const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
   <li
@@ -53,36 +59,35 @@ const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
     </div>
   </li>
 ));
+
 const SortableList = SortableContainer(
-  ({items, moveUp, moveDown, movedElementIndex}) => {
-    return (
-      <ul className="reorder-list-element-container mt-4">
-        {items.map((value, index) => (
-          <SortableItem
-            className={index === movedElementIndex ? 'highlight-element' : ' '}
-            pressThreshold={5}
-            key={`item-${index}`}
-            index={index}
-            book={value.book}
-            style={{zIndex: 100}}
-            moveUp={() => moveUp(index)}
-            moveDown={() => moveDown(index)}
-          />
-        ))}
-      </ul>
-    );
-  }
+  ({items, moveUp, moveDown, movedElementIndex}) => (
+    <ul className="reorder-list-element-container mt-4">
+      {items.map((value, index) => (
+        <SortableItemWithWork
+          key={`item-${index}`}
+          pid={value.pid}
+          className={index === movedElementIndex ? 'highlight-element' : ' '}
+          pressThreshold={5}
+          index={index}
+          style={{zIndex: 100}}
+          moveUp={() => moveUp(index)}
+          moveDown={() => moveDown(index)}
+        />
+      ))}
+    </ul>
+  )
 );
 
 export class ReorderListModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      template: props.list.template || 'list',
-      public: props.list.public || false,
-      social: props.list.social || false,
-      open: props.list.open || false,
-      updatedList: props.list.list || [],
+      template: (props.list && props.list.template) || 'list',
+      public: (props.list && props.list.public) || false,
+      social: (props.list && props.list.social) || false,
+      open: (props.list && props.list.open) || false,
+      updatedList: (props.list && props.list.list) || [],
       movedElementIndex: null
     };
   }
@@ -113,8 +118,9 @@ export class ReorderListModal extends React.Component {
   };
 
   render() {
-    const {list, updateListData, close, submit} = this.props;
+    const {list, updateListData, close, storeList} = this.props;
     const sortableProps = isMobile ? {pressDelay: 150} : {distance: 3};
+
     return (
       <Modal
         header="REDIGER RÆKKEFØLGE"
@@ -124,7 +130,7 @@ export class ReorderListModal extends React.Component {
             _id: list._id,
             list: this.state.updatedList
           });
-          submit(list);
+          storeList(list);
           close();
         }}
         doneText="Gem ændringer"
@@ -145,15 +151,13 @@ export class ReorderListModal extends React.Component {
   }
 }
 const mapStateToProps = (state, ownProps) => ({
-  list: getListById(state, {_id: ownProps.context._id})
+  _id: ownProps.context._id
 });
 const mapDispatchToProps = dispatch => ({
-  submit: list => dispatch(storeList(list._id)),
-  updateListData: data => dispatch(updateList(data)),
   close: () => dispatch({type: CLOSE_MODAL, modal: 'reorderList'})
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ReorderListModal);
+)(withList(ReorderListModal));

@@ -43,19 +43,18 @@ export const withListCreator = WrappedComponent => {
         const list = await saveList(
           {
             type: CUSTOM_LIST,
-            public: false,
+            _public: false,
             title: T({component: 'list', name: 'noTitleValue'}),
             description: '',
             dotColor: 'petroleum',
             // "Pre-add" works to the created list
             list: works || [],
-            _created: Date.now()
+            _created: Math.round(Date.now() / 1000)
           },
           openplatformId
         );
-
-        this.setState({id: list._id});
         onCreateList(list);
+        this.setState({id: list._id});
       } catch (e) {
         // ignored for now
         // ....

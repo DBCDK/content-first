@@ -1,5 +1,6 @@
 describe('Test shortlist', function() {
   beforeEach(function() {
+    cy.initStorage();
     cy.clearClientStorage();
     cy.clearCookies();
     cy.wait(1000);
@@ -7,7 +8,6 @@ describe('Test shortlist', function() {
 
   it('Add element to shortlist', function() {
     cy.visit('/');
-    cy.scrollTo(0, 400);
     cy.get('[data-cy=workcard]')
       .first()
       .within(() => {

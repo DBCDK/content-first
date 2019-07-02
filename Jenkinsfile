@@ -12,8 +12,13 @@ pipeline {
     environment {
         GITLAB_ID = "207"
         DOCKER_TAG = "${imageLabel}"
-        IMAGE = "${imageName}:${imageLabel}"
+        IMAGE = "${imageName}${env.BRANCH_NAME != 'master' ? "-${env.BRANCH_NAME.toLowerCase()}" : ''}:${imageLabel}"
+        DOCKER_COMPOSE_NAME = "compose-${IMAGE}"
         GITLAB_PRIVATE_TOKEN = credentials("metascrum-gitlab-api-token")
+    }
+    options {
+        // Limit concurrent builds to one pr. branch.
+        disableConcurrentBuilds()
     }
     stages {
 
@@ -21,8 +26,8 @@ pipeline {
             steps { script {
                 // Work around bug https://issues.jenkins-ci.org/browse/JENKINS-44609 , https://issues.jenkins-ci.org/browse/JENKINS-44789
                 sh "cd src/data; curl -O $taxonomyUrl; tar -xf json-files.tar.gz"
-                sh "docker build -t $imageName:${imageLabel} --pull --no-cache ."
-                app = docker.image("$imageName:${imageLabel}")
+                sh "docker build -t ${IMAGE} --pull --no-cache ."
+                app = docker.image("${IMAGE}")
             } }
         }
 
@@ -31,8 +36,8 @@ pipeline {
                 script {
                     ansiColor("xterm") {
                         sh "echo Integrating..."
-                        sh "docker-compose -f docker-compose-cypress.yml build"
-                        sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml run --rm e2e"
+                        sh "docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} build"
+                        sh "IMAGE=${IMAGE} docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} run --rm e2e"
                     }
                 }
             }
@@ -79,9 +84,13 @@ pipeline {
 		}
     }
     post {
-//        always {
-//            sh "docker-compose down -v"
-//        }
+        always {
+               sh """
+                    echo Clean up
+                    docker-compose -f docker-compose-cypress.yml -p ${DOCKER_COMPOSE_NAME} down -v
+                    docker rmi $IMAGE
+                """
+        }
         failure {
             script {
                 if ("${env.BRANCH_NAME}" == 'master') {

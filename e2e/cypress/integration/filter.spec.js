@@ -1,27 +1,29 @@
 describe('Filter page test', function() {
   it('Should test "Stemning" filter', function() {
     cy.visit('/');
-
     cy.get('[data-cy=topbar-search-btn]').click();
     cy.get('[data-cy=stemning]').click();
     cy.get('[data-cy=mystisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy=tag-mystisk]').should('have.text', 'mystisk');
   });
 
   it('Should test "Tempo" filter', function() {
-    cy.visit('/find?tags=5633,5633');
+    cy.visit('/find?tags=5633,5634');
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -29,6 +31,8 @@ describe('Filter page test', function() {
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy=tag-hæsblæsende]').should('have.text', 'hæsblæsende');
   });
@@ -40,8 +44,9 @@ describe('Filter page test', function() {
     cy.get('[data-cy=længde]').click();
     cy.get('[data-cy=kort]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -58,14 +63,17 @@ describe('Filter page test', function() {
     cy.get('[data-cy=univers]').click();
     cy.get('[data-cy=realistisk]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy=tag-realistisk]').should('have.text', 'realistisk');
   });
@@ -77,14 +85,17 @@ describe('Filter page test', function() {
     cy.get('[data-cy=fortællerstemme]').click();
     cy.get('[data-cy=jeg-fortæller]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy=tag-jeg-fortæller]').should('have.text', 'jeg-fortæller');
   });
@@ -96,14 +107,17 @@ describe('Filter page test', function() {
     cy.get('[data-cy=sprog]').click();
     cy.get('[data-cy=slang]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy=tag-slang]').should('have.text', 'slang');
   });
@@ -115,14 +129,17 @@ describe('Filter page test', function() {
     cy.get('[data-cy=skrivestil]').click();
     cy.get('[data-cy=bevidsthedsstrøm]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy=tag-bevidsthedsstrøm]').should(
       'have.text',
@@ -137,14 +154,17 @@ describe('Filter page test', function() {
     cy.get('[data-cy=handlingens-tid]').click();
     cy.get('[data-cy="den 2. verdenskrig"]').click();
     cy.get('[data-cy=filterDimmer]').click();
+    cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click();
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
     cy.get('[data-cy=tags-collaps-toggle]')
       .first()
       .click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy="tag-den 2. verdenskrig"]').should(
       'have.text',

@@ -54,18 +54,18 @@ export class SimpleList extends React.Component {
             <div className="d-flex ml-4">
               <Icon
                 className="align-middle md-xsmall text-white"
-                name={list.public ? 'visibility' : 'visibility_off'}
+                name={list._public ? 'visibility' : 'visibility_off'}
               />
               <Text className="ml-2" type="small" variant="color-white">
                 <T
                   component="general"
-                  name={list.public ? 'public' : 'private'}
+                  name={list._public ? 'public' : 'private'}
                 />
               </Text>
             </div>
             <ListContextMenu
               deleteList={deleteList}
-              className="mt-3"
+              className="mt-3 mr-2 mr-md-0"
               _id={list._id}
               style={{position: 'absolute', right: 0, top: 0, color: 'white'}}
             />
@@ -101,6 +101,7 @@ export class SimpleList extends React.Component {
                     element={element}
                     list={list}
                     editing={added === element.pid ? true : false}
+                    showUserInfo={list._owner !== element._owner}
                   />
                 );
               })}

@@ -7,6 +7,7 @@ import Link from '../../general/Link.component';
 
 import {
   LIST_LOAD_REQUEST,
+  LIST_LOAD_RESPONSE,
   UPDATE_LIST_DATA,
   STORE_LIST,
   REMOVE_LIST,
@@ -29,7 +30,11 @@ const createdToast = list => {
       icon="check_circle"
       lines={[
         <T component="list" name="newListCreatedToast" vars={[list.title]} />,
-        <Link key="href" href={`/lister/${list._id}`}>
+        <Link
+          key="href"
+          href={`/lister/${list._id}`}
+          data-cy="watch-new-list-link"
+        >
           <T component="list" name="watchNewListAction" />
         </Link>
       ]}
@@ -60,16 +65,15 @@ export const withList = WrappedComponent => {
      * LoadList
      **/
     loadList = async () => {
-      const {id, listLoaded, onLoadList} = this.props;
+      const {id, listLoaded, onLoadList, onLoadListError} = this.props;
 
-      if (!listLoaded) {
+      if (!listLoaded && id) {
         try {
           await loadList(id);
+          // TODO onLoadList should not be handled by middleware
           onLoadList();
         } catch (e) {
-          // ignored for now
-          // ....
-          return;
+          onLoadListError(id, e);
         }
       }
     };
@@ -189,6 +193,9 @@ export const withList = WrappedComponent => {
     };
 
     render() {
+      if (!this.props.list) {
+        return null;
+      }
       return (
         <WrappedComponent
           {...this.props}
@@ -224,6 +231,12 @@ export const withList = WrappedComponent => {
       onLoadList: () => {
         dispatch({type: LIST_LOAD_REQUEST, _id});
       },
+      onLoadListError: (id, e) =>
+        dispatch({
+          type: LIST_LOAD_RESPONSE,
+          list: {_id: id, error: e}
+        }),
+
       // Save list handle
       onStoreList: list => {
         dispatch({type: STORE_LIST, _id: list._id});

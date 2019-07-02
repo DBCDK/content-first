@@ -169,7 +169,10 @@ const ShortListItemWithWork = withWork(ShortListItem, {
 
 export class ShortList extends React.Component {
   render() {
-    const {elements} = this.props.shortListState;
+    const {elements, hasLoaded} = this.props.shortListState;
+    if (!hasLoaded) {
+      return null;
+    }
     return (
       <React.Fragment>
         <Banner
@@ -230,6 +233,7 @@ export class ShortList extends React.Component {
                   elements={elements}
                   align="right"
                   multiple={true}
+                  data-cy="add-all-to-list"
                 />
                 {false && (
                   <Button
