@@ -33,8 +33,11 @@ export const matomoMiddleware = store => next => action => {
       const tagClick = get(action, 'data.tagClick');
       if (type === 'PREVIEW') {
         const category = `preview:${pid}`;
-        const a = 'beltExpandWork';
         const name = `pid:${pid}`;
+        const a =
+          action.mount === 'frontpage-interactions-belt'
+            ? 'personalRecommendations'
+            : 'beltExpandWork';
         trackEvent(category, a, name);
         trackDataEvent('preview', {
           pid,
