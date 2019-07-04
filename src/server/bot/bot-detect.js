@@ -40,7 +40,7 @@ const expressBot = (options = {}) => {
   const additionalBots = [...defaultAdditionalBots, ...opts.additionalBots];
 
   let bots = BOTS;
-  if (0 < additionalBots.length) {
+  if (additionalBots.length > 0) {
     bots = Array.prototype.concat(bots, additionalBots);
   }
 
