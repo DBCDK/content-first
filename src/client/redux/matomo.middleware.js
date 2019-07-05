@@ -31,20 +31,27 @@ export const matomoMiddleware = store => next => action => {
       const scrollPos = get(action, 'data.scrollPos');
       const titleClick = get(action, 'data.titleClick');
       const tagClick = get(action, 'data.tagClick');
+      const beltName = get(action, 'data.beltName', 'unknownBeltName');
+
       if (type === 'PREVIEW') {
-        const category = `preview:${pid}`;
-        const name = `pid:${pid}`;
-        const a =
-          action.mount === 'frontpage-interactions-belt'
+        const category =
+          'belt:' +
+          (action.mount === 'frontpage-interactions-belt'
             ? 'personalRecommendations'
-            : 'beltExpandWork';
+            : beltName);
+        const a = 'beltExpandWork';
+        const name = `pid:${pid}`;
         trackEvent(category, a, name);
         trackDataEvent('preview', {
           pid,
           rid: rid
         });
       } else if (type === 'SIMILAR') {
-        const category = `belt:${parentBeltName}`;
+        const category =
+          'belt:' +
+          (action.mount === 'frontpage-interactions-belt'
+            ? 'personalRecommendations'
+            : beltName);
         const a = 'beltMoreLikeThis';
         const name = `pid:${pid}`;
         trackEvent(category, a, name);
