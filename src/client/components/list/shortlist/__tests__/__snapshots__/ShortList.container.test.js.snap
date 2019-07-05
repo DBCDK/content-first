@@ -183,8 +183,38 @@ exports[`ShortList.container Clearing list 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -1925,8 +1955,38 @@ exports[`ShortList.container Order all books 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -3666,8 +3726,38 @@ exports[`ShortList.container Order book - desktop version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -5407,8 +5497,38 @@ exports[`ShortList.container Order book - mobile version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -7148,8 +7268,38 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -8889,8 +9039,38 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -10630,8 +10810,38 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -12371,8 +12581,38 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -14113,8 +14353,38 @@ exports[`ShortList.container Remove element 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -15854,8 +16124,38 @@ exports[`ShortList.container Short list contains elements 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -17488,8 +17788,38 @@ exports[`ShortList.container Short list is empty 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"

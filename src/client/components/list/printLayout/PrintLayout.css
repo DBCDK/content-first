@@ -1,21 +1,13 @@
 
     /** Setting margins */       
-    @page { 
-        
-          margin: 0cm; 
-         /* size: auto*/
-         margin: 0cm;
-
-         margin-bottom: 2cm;
-
-    }
-
-    
-    /* The first page of a print can be manipulated as well */
     
     @page :first {
-        margin: 0cm; 
-        margin-bottom: 2cm;
+    }
+    @page { 
+        margin-top: 1.5cm;
+        margin-bottom: 1.5cm;
+        margin-left: 0cm;
+        margin-right: 0cm;
 
     }
 
@@ -38,19 +30,37 @@
         width: auto;
         min-height: auto;
         box-shadow: none;
-        padding: 30px 40px;
-        width: 100vw !important;
+        padding: 0px 40px;
+
 
     }
 
     html {
         font-size: 16pt !important;
       }
-      body{margin:100px 0;}
 
+      _::-webkit-full-page-media, _:future, :root .safari_only, html {
+        font-size: 14pt !important;
 
+    
+    }
+    .print-layout-logo{
+        margin-top: -30px;
+    }
 }
 
+
+
+@-moz-document url-prefix() {
+    @media print{    
+        html {
+            font-size: 13pt !important;
+          }
+
+    
+    }
+    
+}
 
 .print-element-container{
     border-top: 1px solid var(--petroleum);
@@ -61,7 +71,6 @@
 
 }
 .print-element-book-info{
-
     padding-left: 25px
 }
 .printelement-bookcover-container img{
@@ -69,9 +78,10 @@
 }
 .print-layout-logo{
     display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-    margin-bottom: 40px;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    margin-top: 20px;
 }
 .print-layout-logo img{
     width: 200px

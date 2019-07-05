@@ -192,8 +192,6 @@ export class ShortList extends React.Component {
                   iconLeft="print"
                   className="bg-white pr-0"
                   href="print/huskeliste"
-                  key={0}
-
                 >
                   <T component="list" name="printList" />
                 </Button>
@@ -204,7 +202,6 @@ export class ShortList extends React.Component {
                   iconLeft="delete"
                   className="bg-white pr-0"
                   onClick={() => this.props.clearList()}
-                  key={1}
                 >
                   <T component="shortlist" name="shortlistClear" />
                 </Button>

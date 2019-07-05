@@ -12,10 +12,16 @@ import './PrintLayout.css';
 class PrintLayout extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {list: null};
+    this.state = {
+      list: this.props.list,
+      title: this.props.title,
+      description: this.props.description
+    };
   }
   componentDidMount = async () => {
-    this.getList();
+    if (!this.state.list || (this.state.list && this.state.list.length === 0)) {
+      this.getList();
+    }
   };
   componentDidUpdate = async () => {
     if (this.state.list && this.state.list.length === 0) {
@@ -84,7 +90,10 @@ class PrintLayout extends React.PureComponent {
   }
 }
 PrintLayout.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  list: PropTypes.array
 };
 const mapStateToProps = state => {
   return {
