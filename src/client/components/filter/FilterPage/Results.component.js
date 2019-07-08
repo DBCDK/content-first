@@ -12,7 +12,6 @@ import MultiRowContainer from '../../base/Belt/MultiRowContainer';
 import {withStoreBelt} from '../../hoc/Belt';
 
 const TagsMultiRowContainer = withTagsToPids(MultiRowContainer);
-
 const StoreBeltPin = withStoreBelt(
   ({isStored, tags, storeBelt, removeBelt}) => {
     return (
@@ -68,9 +67,12 @@ const StoreBeltPin = withStoreBelt(
 
 class Results extends React.Component {
   render() {
-    const pids = this.props.tags
+    const singlePid = this.props.tags
       .filter(t => t.type === 'TITLE')
       .map(p => p.pid);
+    const multiPids = this.props.getMultiPids();
+
+    let allPids = [...singlePid, ...multiPids];
     const tags = this.props.tags.reduce((arr, tag) => {
       if (tag.type === 'TAG') {
         return [...arr, tag];
@@ -79,24 +81,20 @@ class Results extends React.Component {
       }
       return arr;
     }, []);
-
     const creators = this.props.tags
       .filter(t => t.type === 'QUERY')
       .map(q => q.query);
-
     return (
       <div className="filter-page-results pt-5">
-        {pids.length > 0 && (
+        {allPids.length > 0 && (
           <div>
-            <MultiRowContainer recommendations={pids} origin="Fra søgning" />
+            <MultiRowContainer recommendations={allPids} origin="Fra søgning" />
           </div>
         )}
-
         {creators.map(creator => {
           const mount = 'filterpage' + creator;
           return <CreatorBelt key={mount} mount={mount} query={creator} />;
         })}
-
         {tags.length > 0 && (
           <div>
             <div className="d-flex flex-row justify-content-between px-2 px-sm-3 px-lg-5 pt-5">
@@ -121,7 +119,6 @@ class Results extends React.Component {
                 tags={tags}
               />
             </div>
-
             <TagsMultiRowContainer
               limit={200}
               tags={tags.map(tag => tag.id)}
@@ -133,4 +130,5 @@ class Results extends React.Component {
     );
   }
 }
+
 export default withTagsFromUrl(Results);
