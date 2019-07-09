@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
+import Header from '../base/Header';
 import Hero from '../hero/Hero.component';
 import RecentListsBelt from '../base/Belt/RecentListsBelt.container';
 import InteractionsBelt from '../base/Belt/InteractionsBelt.component';
@@ -48,6 +49,20 @@ class FrontPage extends React.Component {
     aBeltsMap.sort((a, b) => (b._created || 0) - (a._created || 0));
     return (
       <div className="frontpage">
+        <Header
+          og={{
+            'og:title': 'Læsekompas',
+            'og:description':
+              'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
+            'og:url': `https://laesekompas.dk/`,
+            'og:type': 'website',
+            image: {
+              'og:image': 'http://laesekompas.dk/img/open-graph/hero-01.jpg',
+              'og:image:width': '1200',
+              'og:image:height': '675'
+            }
+          }}
+        />
         <Hero />
         <InteractionsBelt
           mount={'frontpage-interactions-belt'}

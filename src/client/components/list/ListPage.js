@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../base/Header';
 import Spinner from '../general/Spinner/Spinner.component';
 import Title from '../base/Title';
 import T from '../base/T';
@@ -6,6 +7,12 @@ import SimpleList from './templates/simple/SimpleList';
 import BookcaseList from './templates/bookcase/BookcaseList';
 
 import {withList} from '../hoc/List';
+import {withWork} from '../hoc/Work';
+
+// const TitleWithWork = withWork(work => {
+//   console.log('work');
+//   return work && work.book.title;
+// });
 
 export class ListPage extends React.Component {
   // eslint-disable-next-line no-unused-vars
@@ -21,6 +28,15 @@ export class ListPage extends React.Component {
         return SimpleList;
     }
   }
+
+  // buildTitleDescription(books) {
+  //   books.forEach((b, i) => {
+  //     if (i <= 2) {
+  //       <TitleWithWork pid={b.pid} />;
+  //     }
+  //   });
+  // }
+
   render() {
     const {list} = this.props;
 
@@ -55,7 +71,34 @@ export class ListPage extends React.Component {
 
     const Template = this.getTemplate(list);
 
-    return <Template _id={list._id} />;
+    return (
+      <React.Fragment>
+        <Header
+          key="list-header"
+          title={list.title || 'Læsekompas'}
+          description={
+            list.description && list.description !== ''
+              ? list.description
+              : null
+          }
+          canonical={'/lister'}
+          og={{
+            'og:title': list.title,
+            'og:description':
+              list.description && list.description !== ''
+                ? list.description
+                : null,
+            'og:url': `https://laesekompas.dk/list/${list.id}`,
+            image: {
+              'og:image': `/v1/image/${list.image}/1200/600`,
+              'og:image:width': '1200',
+              'og:image:height': '600'
+            }
+          }}
+        />
+        <Template _id={list._id} />
+      </React.Fragment>
+    );
   }
 }
 

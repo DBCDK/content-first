@@ -249,7 +249,7 @@ export class ListElement extends React.Component {
             <div className=" h-100">
               <Link href={'/værk/' + book.pid}>
                 <Title
-                  Tag="h3"
+                  Tag="h2"
                   type="title5"
                   className="m-0"
                   data-cy="list-element-work-title"

@@ -26,6 +26,7 @@ const getWork = (
   extent,
   dcLanguage,
   date,
+  identifierISBN,
   subjectDBCS,
   coverUrlFull
 ) => ({
@@ -34,6 +35,7 @@ const getWork = (
     title: (dcTitle && dcTitle[0]) || '',
     creator: (creator && creator[0]) || '',
     description: (abstract && abstract[0]) || '',
+    identifierISBN: identifierISBN || '',
     pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
     language: (dcLanguage && dcLanguage[0]) || '',
     first_edition_year: (date && date[0]) || '',
@@ -66,6 +68,7 @@ const fetchWork = async pid => {
     extent,
     dcLanguage,
     date,
+    identifierISBN,
     subjectDBCS,
     coverUrlFull
   } = (await request.post(config.login.openplatformUrl + '/work').send({
@@ -77,6 +80,7 @@ const fetchWork = async pid => {
       'extent',
       'dcLanguage',
       'date',
+      'identifierISBN',
       'subjectDBCS',
       'coverUrlFull'
     ],
@@ -92,6 +96,7 @@ const fetchWork = async pid => {
     extent,
     dcLanguage,
     date,
+    identifierISBN,
     subjectDBCS,
     coverUrlFull
   );
