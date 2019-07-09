@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../base/Header';
+import Head from '../../base/Head';
 import FilterCards from '../FilterCards/FilterCards.component';
 import SearchBar from '../SearchBar/SearchBar.component';
 import Results from './Results.component';
@@ -10,7 +10,7 @@ class FilterPage extends React.Component {
   render() {
     return (
       <div className="filter-page">
-        <Header
+        <Head
           title={`Find din næste bog`}
           canonical={'/find'}
           og={{

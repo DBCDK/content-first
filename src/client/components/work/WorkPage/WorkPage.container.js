@@ -1,6 +1,6 @@
 import React from 'react';
 import {get} from 'lodash';
-import Header from '../../base/Header';
+import Head from '../../base/Head';
 import TaxDescription from '../TaxDescription.component';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
@@ -81,7 +81,7 @@ class WorkPage extends React.Component {
 
     return (
       <div>
-        <Header
+        <Head
           title={
             book.title && book.creator
               ? `${book.title} af ${book.creator}`

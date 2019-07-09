@@ -300,7 +300,7 @@ exports[`ShortList.container Clearing list 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -426,7 +426,7 @@ exports[`ShortList.container Clearing list 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -890,7 +890,7 @@ exports[`ShortList.container Clearing list 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -1016,7 +1016,7 @@ exports[`ShortList.container Clearing list 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -1480,7 +1480,7 @@ exports[`ShortList.container Clearing list 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -1606,7 +1606,7 @@ exports[`ShortList.container Clearing list 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -2423,7 +2423,7 @@ exports[`ShortList.container Order all books 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -2549,7 +2549,7 @@ exports[`ShortList.container Order all books 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -3013,7 +3013,7 @@ exports[`ShortList.container Order all books 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -3139,7 +3139,7 @@ exports[`ShortList.container Order all books 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -3603,7 +3603,7 @@ exports[`ShortList.container Order all books 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -3729,7 +3729,7 @@ exports[`ShortList.container Order all books 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -4545,7 +4545,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -4671,7 +4671,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -5135,7 +5135,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -5261,7 +5261,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -5725,7 +5725,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -5851,7 +5851,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -6667,7 +6667,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -6793,7 +6793,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -7257,7 +7257,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -7383,7 +7383,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -7847,7 +7847,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -7973,7 +7973,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -8789,7 +8789,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -8915,7 +8915,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -9379,7 +9379,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -9505,7 +9505,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -9969,7 +9969,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -10095,7 +10095,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -10911,7 +10911,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -11037,7 +11037,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -11501,7 +11501,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -11627,7 +11627,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -12091,7 +12091,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -12217,7 +12217,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -13033,7 +13033,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -13159,7 +13159,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -13623,7 +13623,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -13749,7 +13749,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -14213,7 +14213,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -14339,7 +14339,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -15155,7 +15155,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -15281,7 +15281,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -15745,7 +15745,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -15871,7 +15871,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -16335,7 +16335,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -16461,7 +16461,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -17278,7 +17278,7 @@ exports[`ShortList.container Remove element 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -17404,7 +17404,7 @@ exports[`ShortList.container Remove element 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -17868,7 +17868,7 @@ exports[`ShortList.container Remove element 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -17994,7 +17994,7 @@ exports[`ShortList.container Remove element 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -18458,7 +18458,7 @@ exports[`ShortList.container Remove element 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -18584,7 +18584,7 @@ exports[`ShortList.container Remove element 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -19400,7 +19400,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -19526,7 +19526,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -19990,7 +19990,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -20116,7 +20116,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >
@@ -20580,7 +20580,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                       }
                     >
                       <div>
-                        <Header
+                        <Head
                           canonical="/huskeliste"
                           title="Huskeliste"
                         >
@@ -20706,7 +20706,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                               />
                             </SideEffect(NullComponent)>
                           </HelmetWrapper>
-                        </Header>
+                        </Head>
                         <div
                           className="short-list-item d-flex flex-row undefined"
                         >

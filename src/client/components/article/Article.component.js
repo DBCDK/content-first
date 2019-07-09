@@ -2,7 +2,7 @@ import React from 'react';
 import {get} from 'lodash';
 import ReactMarkdown from 'react-markdown';
 import {connect} from 'react-redux';
-import Header from '../base/Header';
+import Head from '../base/Head';
 import Banner from '../base/Banner';
 import Title from '../base/Title';
 import Text from '../base/Text';
@@ -29,7 +29,6 @@ export class Article extends React.Component {
   fetchArticle() {
     const path = this.props.path;
     let article = this.props.articles[path];
-
     if (!article) {
       article = this.props.articles['/404'];
     }
@@ -41,7 +40,7 @@ export class Article extends React.Component {
     const article = this.fetchArticle();
     return (
       <div>
-        <Header
+        <Head
           title={article.meta.title}
           canonical={article.meta.canonical}
           noIndex={article.meta.noIndex}

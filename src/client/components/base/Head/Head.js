@@ -15,7 +15,7 @@ function buildOGMeta(obj) {
 
   Example template
 
-  <Header
+  <Head
     title={`...`}
     description={'...'}
     canonical={'/subpage'}
@@ -41,7 +41,7 @@ function buildOGMeta(obj) {
 
 */
 
-const Header = ({
+const Head = ({
   title = 'Læsekompas',
   canonical = '',
   description = 'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
@@ -74,4 +74,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default Head;

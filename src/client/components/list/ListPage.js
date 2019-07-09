@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../base/Header';
+import Head from '../base/Head';
 import Spinner from '../general/Spinner/Spinner.component';
 import Title from '../base/Title';
 import T from '../base/T';
@@ -59,7 +59,7 @@ export class ListPage extends React.Component {
 
     return (
       <React.Fragment>
-        <Header
+        <Head
           key="list-header"
           title={list.title || 'Læsekompas'}
           description={
