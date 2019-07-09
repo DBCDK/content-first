@@ -7,12 +7,6 @@ import SimpleList from './templates/simple/SimpleList';
 import BookcaseList from './templates/bookcase/BookcaseList';
 
 import {withList} from '../hoc/List';
-import {withWork} from '../hoc/Work';
-
-// const TitleWithWork = withWork(work => {
-//   console.log('work');
-//   return work && work.book.title;
-// });
 
 export class ListPage extends React.Component {
   // eslint-disable-next-line no-unused-vars
@@ -28,14 +22,6 @@ export class ListPage extends React.Component {
         return SimpleList;
     }
   }
-
-  // buildTitleDescription(books) {
-  //   books.forEach((b, i) => {
-  //     if (i <= 2) {
-  //       <TitleWithWork pid={b.pid} />;
-  //     }
-  //   });
-  // }
 
   render() {
     const {list} = this.props;

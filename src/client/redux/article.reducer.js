@@ -15,12 +15,7 @@ const defaultState = {
           title: 'Om lasekompas.dk',
           description: 'Hvad er laesekompas.dk?',
           url: 'https://laesekompas.dk/om',
-          type: 'website',
-          image: {
-            url: 'http://laesekompas.dk/img/open-graph/hero-01.jpg',
-            width: '1200',
-            height: '675'
-          }
+          type: 'website'
         }
       },
       src: About

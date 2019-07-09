@@ -76,8 +76,6 @@ class WorkPage extends React.Component {
         ? work.book.reviews.data
         : false;
 
-    console.log(book);
-
     const isbn =
       book.identifierISBN || (book.identifierISBN && book.identifierISBN[0]);
 

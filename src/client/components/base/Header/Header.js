@@ -19,6 +19,7 @@ function buildOGMeta(obj) {
     title={`...`}
     description={'...'}
     canonical={'/subpage'}
+    robots = 'all',
     og={{
       'og:title': `...`,
       'og:description': '...',
@@ -45,7 +46,20 @@ const Header = ({
   canonical = '',
   description = 'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
   robots = 'all',
-  og = null
+  og = {
+    'og:title': 'Læsekompas',
+    'og:description':
+      'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
+    'og:url': `https://laesekompas.dk/`,
+    'og:site_name': 'Læsekompas',
+    'og:type': 'website',
+    image: {
+      'og:image': 'http://laesekompas.dk/img/open-graph/hero-01.jpg',
+      'og:image:width': '1200',
+      'og:image:height': '675'
+    },
+    book: {}
+  }
 }) => {
   return (
     <Helmet>

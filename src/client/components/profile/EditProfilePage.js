@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Header from '../base/Header';
 import T from '../base/T';
 import Spinner from '../general/Spinner/Spinner.component';
 import ProfileUploadImage from '../general/ProfileUploadImage.component';
@@ -82,6 +83,11 @@ export class CreateProfilePage extends React.Component {
 
     return (
       <div className="profile__edit-content">
+        <Header
+          title={'Min profil'}
+          canonical="/profil/rediger"
+          robots="noindex"
+        />
         <div className="profile__edit-titlezone">
           <h1 className="profile__edit-title">
             <T component="profile" name="editProfile" />

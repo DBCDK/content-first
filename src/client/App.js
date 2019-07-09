@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Header from './components/base/Header';
 import Modal from './components/modals/Modal.container';
 import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage/FilterPage.container';
@@ -80,6 +81,7 @@ class App extends Component {
 
     return (
       <div className={'App'}>
+        <Header />
         {topbar ? (
           <div>
             <TopBar dispatch={this.props.dispatch} user={this.props.user} />
