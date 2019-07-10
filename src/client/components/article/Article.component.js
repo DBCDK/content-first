@@ -45,8 +45,6 @@ export class Article extends React.Component {
           canonical={article.meta.canonical}
           noIndex={article.meta.noIndex}
           og={{
-            'og:title': get(article, 'meta.og.title'),
-            'og:description': get(article, 'meta.og.description'),
             'og:url': get(article, 'meta.og.url'),
             'og:type': get(article, 'meta.og.type'),
             image: {

@@ -67,14 +67,9 @@ export class ListPage extends React.Component {
               ? list.description
               : null
           }
-          canonical={'/lister'}
+          canonical={`/lister/${list._id}`}
           og={{
-            'og:title': list.title,
-            'og:description':
-              list.description && list.description !== ''
-                ? list.description
-                : null,
-            'og:url': `https://laesekompas.dk/list/${list.id}`,
+            'og:url': `https://laesekompas.dk/lister/${list._id}`,
             image: {
               'og:image': `/v1/image/${list.image}/1200/600`,
               'og:image:width': '1200',

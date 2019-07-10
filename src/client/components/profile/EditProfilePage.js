@@ -83,11 +83,7 @@ export class CreateProfilePage extends React.Component {
 
     return (
       <div className="profile__edit-content">
-        <Head
-          title={'Min profil'}
-          canonical="/profil/rediger"
-          robots="noindex"
-        />
+        <Head title="Min profil" canonical="/profil/rediger" robots="noindex" />
         <div className="profile__edit-titlezone">
           <h1 className="profile__edit-title">
             <T component="profile" name="editProfile" />

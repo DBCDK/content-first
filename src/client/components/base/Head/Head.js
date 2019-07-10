@@ -16,14 +16,12 @@ function buildOGMeta(obj) {
   Example template
 
   <Head
-    title={`...`}
-    description={'...'}
-    canonical={'/subpage'}
+    title='...'
+    description='...'
+    canonical='/subpage'
     robots = 'all',
     og={{
-      'og:title': `...`,
-      'og:description': '...',
-      'og:url': `https://laesekompas.dk/værk/...`,
+      'og:url': 'https://laesekompas.dk/værk/...',
       'og:type': 'book',
       image: {
         'og:image': '...',
@@ -47,9 +45,6 @@ const Head = ({
   description = 'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
   robots = 'all',
   og = {
-    'og:title': 'Læsekompas',
-    'og:description':
-      'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
     'og:url': `https://laesekompas.dk/`,
     'og:site_name': 'Læsekompas',
     'og:type': 'website',
@@ -67,6 +62,8 @@ const Head = ({
       <link rel="canonical" href={`https://laesekompas.dk${canonical}`} />
       <meta name="robots" content={robots} />
       <meta name="description" content={description} />
+      <meta name="og:title" content={title} />
+      <meta name="og:description" content={description} />
       {(og && buildOGMeta(og)) || null}
       {(og && og.image && buildOGMeta(og.image)) || null}
       {(og && og.book && buildOGMeta(og.book)) || null}

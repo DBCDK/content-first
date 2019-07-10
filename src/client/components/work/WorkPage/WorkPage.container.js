@@ -88,10 +88,8 @@ class WorkPage extends React.Component {
               : 'Læsekompas'
           }
           description={book.description || tax_description}
-          canonical={'/værk'}
+          canonical={`/værk/${book.pid}`}
           og={{
-            'og:title': `${book.title} af ${book.creator}`,
-            'og:description': book.description || tax_description,
             'og:url': `https://laesekompas.dk/værk/${book.pid}`,
             'og:type': 'book',
             image: {

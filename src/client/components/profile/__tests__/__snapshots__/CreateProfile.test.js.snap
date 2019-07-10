@@ -38,12 +38,12 @@ exports[`Image Upload render function Add image 1`] = `
                 "name": "description",
               },
               Object {
-                "content": "Læsekompas",
-                "property": "og:title",
+                "content": "Min profil",
+                "name": "og:title",
               },
               Object {
                 "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                "property": "og:description",
+                "name": "og:description",
               },
               Object {
                 "content": "https://laesekompas.dk/",
@@ -96,12 +96,12 @@ exports[`Image Upload render function Add image 1`] = `
                   "name": "description",
                 },
                 Object {
-                  "content": "Læsekompas",
-                  "property": "og:title",
+                  "content": "Min profil",
+                  "name": "og:title",
                 },
                 Object {
                   "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                  "property": "og:description",
+                  "name": "og:description",
                 },
                 Object {
                   "content": "https://laesekompas.dk/",

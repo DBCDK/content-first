@@ -82,7 +82,7 @@ export class ShortListItem extends React.Component {
 
     return (
       <div>
-        <Head title={`Huskeliste`} canonical={'/huskeliste'} />
+        <Head title="Huskeliste" canonical="/huskeliste" />
         <div className={`short-list-item d-flex flex-row ${className}`}>
           <i
             className="material-icons remove-btn"

@@ -330,12 +330,12 @@ exports[`ShortList.container Clearing list 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -388,12 +388,12 @@ exports[`ShortList.container Clearing list 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -920,12 +920,12 @@ exports[`ShortList.container Clearing list 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -978,12 +978,12 @@ exports[`ShortList.container Clearing list 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -1510,12 +1510,12 @@ exports[`ShortList.container Clearing list 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -1568,12 +1568,12 @@ exports[`ShortList.container Clearing list 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -2453,12 +2453,12 @@ exports[`ShortList.container Order all books 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -2511,12 +2511,12 @@ exports[`ShortList.container Order all books 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -3043,12 +3043,12 @@ exports[`ShortList.container Order all books 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -3101,12 +3101,12 @@ exports[`ShortList.container Order all books 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -3633,12 +3633,12 @@ exports[`ShortList.container Order all books 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -3691,12 +3691,12 @@ exports[`ShortList.container Order all books 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -4575,12 +4575,12 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -4633,12 +4633,12 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -5165,12 +5165,12 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -5223,12 +5223,12 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -5755,12 +5755,12 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -5813,12 +5813,12 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -6697,12 +6697,12 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -6755,12 +6755,12 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -7287,12 +7287,12 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -7345,12 +7345,12 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -7877,12 +7877,12 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -7935,12 +7935,12 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -8819,12 +8819,12 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -8877,12 +8877,12 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -9409,12 +9409,12 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -9467,12 +9467,12 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -9999,12 +9999,12 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -10057,12 +10057,12 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -10941,12 +10941,12 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -10999,12 +10999,12 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -11531,12 +11531,12 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -11589,12 +11589,12 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -12121,12 +12121,12 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -12179,12 +12179,12 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -13063,12 +13063,12 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -13121,12 +13121,12 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -13653,12 +13653,12 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -13711,12 +13711,12 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -14243,12 +14243,12 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -14301,12 +14301,12 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -15185,12 +15185,12 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -15243,12 +15243,12 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -15775,12 +15775,12 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -15833,12 +15833,12 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -16365,12 +16365,12 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -16423,12 +16423,12 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -17308,12 +17308,12 @@ exports[`ShortList.container Remove element 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -17366,12 +17366,12 @@ exports[`ShortList.container Remove element 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -17898,12 +17898,12 @@ exports[`ShortList.container Remove element 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -17956,12 +17956,12 @@ exports[`ShortList.container Remove element 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -18488,12 +18488,12 @@ exports[`ShortList.container Remove element 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -18546,12 +18546,12 @@ exports[`ShortList.container Remove element 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -19430,12 +19430,12 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -19488,12 +19488,12 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -20020,12 +20020,12 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -20078,12 +20078,12 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
@@ -20610,12 +20610,12 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     "name": "description",
                                   },
                                   Object {
-                                    "content": "Læsekompas",
-                                    "property": "og:title",
+                                    "content": "Huskeliste",
+                                    "name": "og:title",
                                   },
                                   Object {
                                     "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                    "property": "og:description",
+                                    "name": "og:description",
                                   },
                                   Object {
                                     "content": "https://laesekompas.dk/",
@@ -20668,12 +20668,12 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       "name": "description",
                                     },
                                     Object {
-                                      "content": "Læsekompas",
-                                      "property": "og:title",
+                                      "content": "Huskeliste",
+                                      "name": "og:title",
                                     },
                                     Object {
                                       "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
-                                      "property": "og:description",
+                                      "name": "og:description",
                                     },
                                     Object {
                                       "content": "https://laesekompas.dk/",
