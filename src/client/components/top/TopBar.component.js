@@ -50,6 +50,13 @@ class TopBarDropdown extends React.Component {
             </span>
           </Link>
         </li>
+        <li>
+          <Link href="/redaktionen" onClick={this.props.onClick}>
+            <span>
+              <T component="profile" name="editorialStaff" />
+            </span>
+          </Link>
+        </li>
 
         <li className="divider" />
         <li
