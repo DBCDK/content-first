@@ -11,11 +11,10 @@ class FilterPage extends React.Component {
     return (
       <div className="filter-page">
         <Head
-          title={'Find din næste bog'}
-          canonical={'/find'}
+          title="Find din næste bog"
+          description="Find den helt rigtige bog ved at søge på læseoplevelser som stemning, tempo, skrivestil, sprog."
+          canonical="/find"
           og={{
-            'og:title': 'Find din næste bog',
-            'og:description': 'Find inspiration til din næste bog',
             'og:url': 'https://laesekompas.dk/find',
             'og:type': 'book'
           }}

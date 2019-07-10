@@ -10,6 +10,10 @@ const defaultState = {
       title: 'Om Læsekompasset',
       meta: {
         title: 'Om',
+        /* eslint-disable max-len */
+        description:
+          'Læsekompasset er bibliotekernes online inspirationsværktøj til dig. Brug det til at finde ny læsning ud fra den læseoplevelse du er i humør til og lån bøgerne på biblioteket.',
+        /* eslint-ensable max-len */
         canonical: '/om',
         og: {
           title: 'Om lasekompas.dk',

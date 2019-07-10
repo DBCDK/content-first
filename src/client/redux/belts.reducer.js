@@ -1,5 +1,22 @@
 const defaultState = {
   belts: {
+    'Billeder fra provinsen': {
+      key: 'Billeder fra provinsen',
+      name: 'Billeder fra provinsen',
+      subtext: 'Mød det usædvanlige og det almindelige Danmark.',
+      tags: [
+        {id: 5465, weight: 10},
+        {id: 3998, weight: 10},
+        {id: 5371, weight: 10},
+        {id: 1672, weight: 1},
+        {id: 5721, weight: 1},
+        {id: 5178, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
     'Vemodige nordmænd': {
       key: 'Vemodige nordmænd',
       name: 'Vemodige nordmænd',
@@ -18,7 +35,7 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    'De hoppede ud ad bogen': {
+    'De hoppede ud af bogen': {
       key: 'De hoppede ud af bogen',
       name: 'De hoppede ud af bogen',
       subtext: 'Karakterer du ikke lige glemmer.',
