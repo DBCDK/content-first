@@ -66,13 +66,17 @@ class TagsSuggester extends React.Component {
         }
       };
     });
-
     this.props.updateBooks(books);
     this.setState({suggestions: this.getCombinedSuggestions(suggestions)});
   };
 
   getCombinedSuggestions = suggs => {
-    const titles = suggs.filter(s => s.type === 'TITLE');
+    const titles = suggs
+      .map((s, num) => {
+        s.order = num;
+        return s;
+      })
+      .filter(s => s.type === 'TITLE');
     const grouped = _.groupBy(titles, 'title');
     const groupedArr = Object.values(grouped)
       .filter(s => s.length > 1)
@@ -90,7 +94,7 @@ class TagsSuggester extends React.Component {
     const remainingSuggestions = Object.values(_.groupBy(suggs, 'title'))
       .filter(s => s.length === 1)
       .map(e => e[0]);
-    return _.sortBy([...groupedArr, ...remainingSuggestions], ['title']);
+    return _.sortBy([...groupedArr, ...remainingSuggestions], ['order']);
   };
 
   onSuggestionsClearRequested = () => {
