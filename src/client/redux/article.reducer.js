@@ -8,11 +8,26 @@ const defaultState = {
       id: 1,
       name: 'om',
       title: 'Om Læsekompasset',
+      meta: {
+        title: 'Om',
+        canonical: '/om',
+        og: {
+          title: 'Om lasekompas.dk',
+          description: 'Hvad er laesekompas.dk?',
+          url: 'https://laesekompas.dk/om',
+          type: 'website'
+        }
+      },
       src: About
     },
     '/404': {
       id: 2,
       name: '404',
+      meta: {
+        title: '404 - Siden blev ikke fundet',
+        canonical: '/404',
+        robots: 'noindex'
+      },
       src: NotFound
     }
   },

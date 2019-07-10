@@ -7,6 +7,134 @@ exports[`Image Upload render function Add image 1`] = `
   <div
     className="profile__edit-content"
   >
+    <Head
+      canonical="/profil/rediger"
+      robots="noindex"
+      title="Min profil"
+    >
+      <HelmetWrapper
+        defer={true}
+        encodeSpecialCharacters={true}
+      >
+        <SideEffect(NullComponent)
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/profil/rediger",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "noindex",
+                "name": "robots",
+              },
+              Object {
+                "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
+                "name": "description",
+              },
+              Object {
+                "content": "Min profil",
+                "name": "og:title",
+              },
+              Object {
+                "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/",
+                "property": "og:url",
+              },
+              Object {
+                "content": "Læsekompas",
+                "property": "og:site_name",
+              },
+              Object {
+                "content": "website",
+                "property": "og:type",
+              },
+              Object {
+                "content": "http://laesekompas.dk/img/open-graph/hero-01.jpg",
+                "property": "og:image",
+              },
+              Object {
+                "content": "1200",
+                "property": "og:image:width",
+              },
+              Object {
+                "content": "675",
+                "property": "og:image:height",
+              },
+            ]
+          }
+          title="Min profil | Læsekompas"
+          titleAttributes={Object {}}
+        >
+          <NullComponent
+            defer={true}
+            encodeSpecialCharacters={true}
+            link={
+              Array [
+                Object {
+                  "href": "https://laesekompas.dk/profil/rediger",
+                  "rel": "canonical",
+                },
+              ]
+            }
+            meta={
+              Array [
+                Object {
+                  "content": "noindex",
+                  "name": "robots",
+                },
+                Object {
+                  "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
+                  "name": "description",
+                },
+                Object {
+                  "content": "Min profil",
+                  "name": "og:title",
+                },
+                Object {
+                  "content": "På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.",
+                  "name": "og:description",
+                },
+                Object {
+                  "content": "https://laesekompas.dk/",
+                  "property": "og:url",
+                },
+                Object {
+                  "content": "Læsekompas",
+                  "property": "og:site_name",
+                },
+                Object {
+                  "content": "website",
+                  "property": "og:type",
+                },
+                Object {
+                  "content": "http://laesekompas.dk/img/open-graph/hero-01.jpg",
+                  "property": "og:image",
+                },
+                Object {
+                  "content": "1200",
+                  "property": "og:image:width",
+                },
+                Object {
+                  "content": "675",
+                  "property": "og:image:height",
+                },
+              ]
+            }
+            title="Min profil | Læsekompas"
+            titleAttributes={Object {}}
+          />
+        </SideEffect(NullComponent)>
+      </HelmetWrapper>
+    </Head>
     <div
       className="profile__edit-titlezone"
     >

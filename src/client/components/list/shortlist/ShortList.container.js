@@ -10,6 +10,7 @@ import {ORDER} from '../../../redux/order.reducer';
 import BookCover from '../../general/BookCover/BookCover.component';
 import OrderButton from '../../order/OrderButton.component';
 import Link from '../../general/Link.component';
+import Head from '../../base/Head';
 import Toolbar from '../../base/Toolbar';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
@@ -81,6 +82,7 @@ export class ShortListItem extends React.Component {
 
     return (
       <div>
+        <Head title="Huskeliste" canonical="/huskeliste" />
         <div className={`short-list-item d-flex flex-row ${className}`}>
           <i
             className="material-icons remove-btn"
