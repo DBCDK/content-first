@@ -71,7 +71,9 @@ export class ListPage extends React.Component {
           og={{
             'og:url': `https://laesekompas.dk/lister/${list._id}`,
             image: {
-              'og:image': `/v1/image/${list.image}/1200/600`,
+              'og:image': `https://laesekompas.dk/v1/image/${
+                list.image
+              }/1200/600`,
               'og:image:width': '1200',
               'og:image:height': '600'
             }

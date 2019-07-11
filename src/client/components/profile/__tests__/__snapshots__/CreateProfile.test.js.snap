@@ -46,19 +46,15 @@ exports[`Image Upload render function Add image 1`] = `
                 "name": "og:description",
               },
               Object {
-                "content": "https://laesekompas.dk/",
+                "content": "https://laesekompas.dk",
                 "property": "og:url",
-              },
-              Object {
-                "content": "Læsekompas",
-                "property": "og:site_name",
               },
               Object {
                 "content": "website",
                 "property": "og:type",
               },
               Object {
-                "content": "http://laesekompas.dk/img/open-graph/hero-01.jpg",
+                "content": "https://laesekompas.dk/img/open-graph/hero-01.jpg",
                 "property": "og:image",
               },
               Object {
@@ -104,19 +100,15 @@ exports[`Image Upload render function Add image 1`] = `
                   "name": "og:description",
                 },
                 Object {
-                  "content": "https://laesekompas.dk/",
+                  "content": "https://laesekompas.dk",
                   "property": "og:url",
-                },
-                Object {
-                  "content": "Læsekompas",
-                  "property": "og:site_name",
                 },
                 Object {
                   "content": "website",
                   "property": "og:type",
                 },
                 Object {
-                  "content": "http://laesekompas.dk/img/open-graph/hero-01.jpg",
+                  "content": "https://laesekompas.dk/img/open-graph/hero-01.jpg",
                   "property": "og:image",
                 },
                 Object {

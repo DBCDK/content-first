@@ -42,6 +42,7 @@ export class Article extends React.Component {
       <div>
         <Head
           title={article.meta.title}
+          description={article.meta.description}
           canonical={article.meta.canonical}
           noIndex={article.meta.noIndex}
           og={{
