@@ -45,11 +45,10 @@ const Head = ({
   description = 'På Læsekompasset kan du gå på opdagelse i skønlitteraturen, få personlige anbefalinger og dele dine oplevelser med andre.',
   robots = 'all',
   og = {
-    'og:url': `https://laesekompas.dk/`,
-    'og:site_name': 'Læsekompas',
+    'og:url': 'https://laesekompas.dk',
     'og:type': 'website',
     image: {
-      'og:image': 'http://laesekompas.dk/img/open-graph/hero-01.jpg',
+      'og:image': 'https://laesekompas.dk/img/open-graph/hero-01.jpg',
       'og:image:width': '1200',
       'og:image:height': '675'
     },

@@ -16,8 +16,6 @@ const defaultState = {
         /* eslint-ensable max-len */
         canonical: '/om',
         og: {
-          title: 'Om lasekompas.dk',
-          description: 'Hvad er laesekompas.dk?',
           url: 'https://laesekompas.dk/om',
           type: 'website'
         }

@@ -82,11 +82,6 @@ export class ShortListItem extends React.Component {
 
     return (
       <div>
-        <Head
-          title="Huskeliste"
-          description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
-          canonical="/huskeliste"
-        />
         <div className={`short-list-item d-flex flex-row ${className}`}>
           <i
             className="material-icons remove-btn"
@@ -181,6 +176,15 @@ export class ShortList extends React.Component {
     }
     return (
       <React.Fragment>
+        <Head
+          title="Huskeliste"
+          description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+          canonical="/huskeliste"
+          og={{
+            'og:url': 'https://laesekompas.dk/huskeliste'
+          }}
+        />
+
         <Banner
           color="#81c793"
           className="fixed-width-col-md position-relative text-uppercase"
