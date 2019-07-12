@@ -25,7 +25,7 @@ class PrintLayout extends React.PureComponent {
   };
   componentDidUpdate = async () => {
     if (this.state.list && this.state.list.length === 0) {
-      await this.getList();
+      this.getList();
     }
   };
 
@@ -58,7 +58,6 @@ class PrintLayout extends React.PureComponent {
 
   render() {
     let list = this.state.list;
-
     if (!list) {
       return (
         <div className="d-flex justify-content-center">

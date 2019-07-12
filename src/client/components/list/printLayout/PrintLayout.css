@@ -1,80 +1,23 @@
-
-    /** Setting margins */       
-    
-    @page :first {
-    }
-    @page { 
-        margin-top: 1.5cm;
-        margin-bottom: 1.5cm;
-        margin-left: 0cm;
-        margin-right: 0cm;
-
-    }
-
-
-    .print-layout-container{
-        margin-left: 50px;
-        width: 210mm;
-        min-height: 297mm;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        margin: auto;
-        padding: 30px 40px;
-
-
-
-    }
-
-    @media print{
-    .print-layout-container{
-        margin-left: 0px;
-        width: auto;
-        min-height: auto;
-        box-shadow: none;
-        padding: 0px 40px;
-
-
-    }
-
-    html {
-        font-size: 16pt !important;
-      }
-
-      _::-webkit-full-page-media, _:future, :root .safari_only, html {
-        font-size: 14pt !important;
-
-    
-    }
-    .print-layout-logo{
-        margin-top: -30px;
-    }
-}
-
-
-
-@-moz-document url-prefix() {
-    @media print{    
-        html {
-            font-size: 13pt !important;
-          }
-
-    
-    }
-    
-}
-
 .print-element-container{
-    border-top: 1px solid var(--petroleum);
+    border-bottom: 1px solid var(--petroleum);
     display:flex;
     flex-direction: row;
     padding: 32px 0px;
     page-break-inside: avoid;
-
+}
+.print-layout-container{
+    width: 210mm;
+    min-height: 297mm;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    padding: 30px 40px;
 }
 .print-element-book-info{
-    padding-left: 25px
+    padding-left: 25px;
 }
 .printelement-bookcover-container img{
     width: 150px !important;
+    border: 1px solid var(--porcelain);
 }
 .print-layout-logo{
     display: flex;
@@ -85,4 +28,37 @@
 }
 .print-layout-logo img{
     width: 200px
+}
+.print-layout-container-listinfo{
+    border-bottom: 1px solid var(--petroleum);
+}
+    /** Setting margins */       
+    @media print{
+    .print-layout-container{
+        width: 100%;
+        min-height: auto;
+        box-shadow: none;
+        padding: 0px 60px;
+    }
+
+    html {
+        font-size: 16pt !important;
+      }
+
+      _::-webkit-full-page-media, _:future, :root .safari_only, html {
+        font-size: 14pt !important;
+
+    }
+    .print-layout-logo{
+        margin-top: 0px;
+        margin-bottom: 100px !important;
+    }
+}
+
+@-moz-document url-prefix() {
+    @media print{    
+        html {
+            font-size: 13pt !important;
+          }
+    }
 }
