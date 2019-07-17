@@ -1,6 +1,6 @@
 describe('Search test', function() {
   it('Shows one suggestion when search word matches several titles', function() {
-    const searchWord = 'Amerika';
+    const searchWord = 'Min kam';
     cy.visit('/');
     cy.get('[data-cy=topbar-search-btn]').click();
 
