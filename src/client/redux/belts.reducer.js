@@ -1,5 +1,19 @@
 const defaultState = {
   belts: {
+    'Livskloge bøger': {
+      key: 'Livskloge bøger',
+      name: 'Livskloge bøger',
+      subtext: 'Få et frisk perspektiv på tilværelsen gennem livskloge øjne. ',
+      tags: [
+        {id: 5465, weight: 10},
+        {id: 3510, weight: 1},
+        {id: 5721, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
     'Billeder fra provinsen': {
       key: 'Billeder fra provinsen',
       name: 'Billeder fra provinsen',
