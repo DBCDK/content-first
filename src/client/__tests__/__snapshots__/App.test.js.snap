@@ -426,12 +426,12 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Billeder fra provinsen"
+          id="Livskloge bøger"
           isLoading={false}
-          mount="frontpage[{\\"id\\":5465,\\"weight\\":10},{\\"id\\":3998,\\"weight\\":10},{\\"id\\":5371,\\"weight\\":10},{\\"id\\":1672,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1},{\\"id\\":5178,\\"weight\\":1}]"
-          name="Billeder fra provinsen"
+          mount="frontpage[{\\"id\\":5465,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1}]"
+          name="Livskloge bøger"
           onFrontPage={true}
-          subtext="Mød det usædvanlige og det almindelige Danmark."
+          subtext="Få et frisk perspektiv på tilværelsen gennem livskloge øjne. "
           tags={
             Array [
               Object {
@@ -439,23 +439,11 @@ exports[`renders without crashing 1`] = `
                 "weight": 10,
               },
               Object {
-                "id": 3998,
-                "weight": 10,
-              },
-              Object {
-                "id": 5371,
-                "weight": 10,
-              },
-              Object {
-                "id": 1672,
+                "id": 3510,
                 "weight": 1,
               },
               Object {
                 "id": 5721,
-                "weight": 1,
-              },
-              Object {
-                "id": 5178,
                 "weight": 1,
               },
             ]
@@ -465,6 +453,44 @@ exports[`renders without crashing 1`] = `
       </div>
       <SpotsContainer />
       <div>
+        <TagsBelt
+          child={false}
+          id="Vemodige nordmænd"
+          isLoading={false}
+          mount="frontpage[{\\"id\\":4466,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5626,\\"weight\\":1},{\\"id\\":5683,\\"weight\\":1},{\\"id\\":5630,\\"weight\\":1}]"
+          name="Vemodige nordmænd"
+          onFrontPage={true}
+          subtext="Når du har lyst til at tænke over livet - også det svære og sårbare."
+          tags={
+            Array [
+              Object {
+                "id": 4466,
+                "weight": 10,
+              },
+              Object {
+                "id": 5731,
+                "weight": 1,
+              },
+              Object {
+                "id": 3510,
+                "weight": 1,
+              },
+              Object {
+                "id": 5626,
+                "weight": 1,
+              },
+              Object {
+                "id": 5683,
+                "weight": 1,
+              },
+              Object {
+                "id": 5630,
+                "weight": 1,
+              },
+            ]
+          }
+          type="belt"
+        />
         <TagsBelt
           child={false}
           id="De hoppede ud af bogen"
@@ -623,36 +649,36 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Vemodige nordmænd"
+          id="Billeder fra provinsen"
           isLoading={false}
-          mount="frontpage[{\\"id\\":4466,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5626,\\"weight\\":1},{\\"id\\":5683,\\"weight\\":1},{\\"id\\":5630,\\"weight\\":1}]"
-          name="Vemodige nordmænd"
+          mount="frontpage[{\\"id\\":5465,\\"weight\\":10},{\\"id\\":3998,\\"weight\\":10},{\\"id\\":5371,\\"weight\\":10},{\\"id\\":1672,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1},{\\"id\\":5178,\\"weight\\":1}]"
+          name="Billeder fra provinsen"
           onFrontPage={true}
-          subtext="Når du har lyst til at tænke over livet - også det svære og sårbare."
+          subtext="Mød det usædvanlige og det almindelige Danmark."
           tags={
             Array [
               Object {
-                "id": 4466,
+                "id": 5465,
                 "weight": 10,
               },
               Object {
-                "id": 5731,
+                "id": 3998,
+                "weight": 10,
+              },
+              Object {
+                "id": 5371,
+                "weight": 10,
+              },
+              Object {
+                "id": 1672,
                 "weight": 1,
               },
               Object {
-                "id": 3510,
+                "id": 5721,
                 "weight": 1,
               },
               Object {
-                "id": 5626,
-                "weight": 1,
-              },
-              Object {
-                "id": 5683,
-                "weight": 1,
-              },
-              Object {
-                "id": 5630,
+                "id": 5178,
                 "weight": 1,
               },
             ]

@@ -51,7 +51,7 @@ const data = {
     type: 'book',
     image: {
       url:
-        'https://moreinfo.addi.dk/2.11/more_info_get.php?lokalid=25775481&attachment_type=forside_stor&bibliotek=870970&source_id=150020&key=64651c7f3ce64980334c',
+        'https://moreinfo.addi.dk/2.11/more_info_get.php?lokalid=25775481&attachment_type=forside_stor&bibliotek=870970&source_id=150020',
       width: '300',
       height: '600'
     }
@@ -183,11 +183,9 @@ describe('Head test', function() {
         'content',
         value.type
       );
-      cy.get('meta[property="og:image"]').should(
-        'have.attr',
-        'content',
-        value.image.url
-      );
+      cy.get('meta[property="og:image"]')
+        .should('have.attr', 'content')
+        .and('contain', value.image.url);
       cy.get('meta[property="og:image:width"]').should(
         'have.attr',
         'content',
