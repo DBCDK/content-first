@@ -69,7 +69,7 @@ const ShortListContent = props => {
       >
         clear
       </i>
-      <Link href="/huskeliste">
+      <Link href="/huskeliste" disable={emptyList}>
         <Text
           type="body"
           variant="color-fersken--weight-semibold--transform-uppercase"
@@ -109,6 +109,7 @@ const ShortListContent = props => {
             size="medium"
             type="tertiary"
             dataCy="shortlist-dropdown-visit-shortlist"
+            disabled={emptyList}
           >
             <T component="shortlist" name="shortlistGo" />
           </Button>
@@ -116,7 +117,7 @@ const ShortListContent = props => {
         <div
           onClick={() => props.elements.length > 0 && props - props.orderAll()}
         >
-          <Button size="medium" type="tertiary">
+          <Button size="medium" type="tertiary" disabled={emptyList}>
             <T component="shortlist" name="shortlistOrder" />
           </Button>
         </div>

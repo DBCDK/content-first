@@ -783,25 +783,16 @@ Array [
     >
         clear
     </i>
-    <a
-        className="list-card-nohover"
-        data-cy=""
-        href="/huskeliste"
-        onClick={[Function]}
-        style={Object {}}
-        target="_self"
+    <p
+        className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
+        style={
+            Object {
+                "marginBottom": "10px",
+              }
+        }
     >
-        <p
-            className="tc Text Text__body Text__body--color-fersken--weight-semibold--transform-uppercase"
-            style={
-                Object {
-                    "marginBottom": "10px",
-                  }
-            }
-        >
-            Huskeliste (0)
-        </p>
-    </a>
+        Huskeliste (0)
+    </p>
     <div
         className="top-bar-dropdown-list--empty-text text-center "
     >
@@ -817,7 +808,7 @@ Array [
                 className="
                   btn Button Button__medium Button__tertiary "
                 data-cy="shortlist-dropdown-visit-shortlist"
-                disabled={false}
+                disabled={true}
             >
                 
                 <span>
@@ -833,7 +824,7 @@ Array [
                 className="
                   btn Button Button__medium Button__tertiary "
                 data-cy=""
-                disabled={false}
+                disabled={true}
             >
                 
                 <span>
