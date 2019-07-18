@@ -1,64 +1,74 @@
-.print-element-container{
+.print-element-container {
     border-bottom: 1px solid var(--petroleum);
-    display:flex;
+    display: flex;
     flex-direction: row;
     padding: 32px 0px;
     page-break-inside: avoid;
 }
-.print-layout-container{
+
+.print-layout-container {
     width: 210mm;
     min-height: 297mm;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     margin: auto;
     padding: 30px 40px;
 }
-.print-element-book-info{
+
+.print-element-book-info {
     padding-left: 25px;
 }
-.printelement-bookcover-container img{
+
+.printelement-bookcover-container img {
     width: 150px !important;
     border: 1px solid var(--porcelain);
 }
-.print-layout-logo{
+
+.print-layout-logo {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     margin-bottom: 50px;
     margin-top: 20px;
 }
-.print-layout-logo img{
+
+.print-layout-logo img {
     width: 200px
 }
-.print-layout-container-listinfo{
+
+.print-layout-container-listinfo {
     border-bottom: 1px solid var(--petroleum);
 }
-    /** Setting margins */       
-    @media print{
-    .print-layout-container{
-        width: 100%;
+
+@media print {
+    .print-layout-container {
+        width: 80%;
         min-height: auto;
         box-shadow: none;
-        padding: 0px 60px;
+        padding: 0px 0px;
+        padding-right: 5px;
+        margin: auto;
     }
-
     html {
         font-size: 16pt !important;
-      }
-
-      _::-webkit-full-page-media, _:future, :root .safari_only, html {
-        font-size: 14pt !important;
-
     }
-    .print-layout-logo{
+    _::-webkit-full-page-media, _:future, :root .safari_only, html {
+        font-size: 14pt !important;
+    }
+    .print-layout-logo {
         margin-top: 0px;
         margin-bottom: 100px !important;
     }
 }
 
+@page {
+    margin-left: 0cm;
+    margin-right: 0cm;
+}
+
 @-moz-document url-prefix() {
-    @media print{    
+    @media print {
         html {
             font-size: 13pt !important;
-          }
+        }
     }
 }

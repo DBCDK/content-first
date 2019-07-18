@@ -1,3 +1,5 @@
+/** Provide with an array of pid's. E.g. list=['pid1','pid2']
+ or an list id/'huskeliste' in the id prop. E.g. id='huskeliste' or id='65f4a372-bbd1-4c37-b806-5716bfbd9cf1' */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {loadList} from '../../../utils/requestLists';
