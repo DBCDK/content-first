@@ -10,6 +10,7 @@ import {ORDER} from '../../../redux/order.reducer';
 import BookCover from '../../general/BookCover/BookCover.component';
 import OrderButton from '../../order/OrderButton.component';
 import Link from '../../general/Link.component';
+import Head from '../../base/Head';
 import Toolbar from '../../base/Toolbar';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
@@ -63,21 +64,23 @@ export class ShortListItem extends React.Component {
 
     const orderElectronicBookButtons =
       hasValidCollection() &&
-      collection.filter(col => col.count === 1).map(col => {
-        return (
-          <Button
-            align="right"
-            size="medium"
-            type="quaternary"
-            iconLeft={col.icon}
-            className="ml-2"
-            key={col.url}
-            href={col.url}
-          >
-            {col.type}
-          </Button>
-        );
-      });
+      collection
+        .filter(col => col.count === 1)
+        .map(col => {
+          return (
+            <Button
+              align="right"
+              size="medium"
+              type="quaternary"
+              iconLeft={col.icon}
+              className="ml-2"
+              key={col.url}
+              href={col.url}
+            >
+              {col.type}
+            </Button>
+          );
+        });
 
     return (
       <div>
@@ -112,23 +115,20 @@ export class ShortListItem extends React.Component {
               {orderBookButton}
               {orderElectronicBookButtons}
             </Toolbar>
-            {work.collectionHasLoaded &&
-              !hasValidCollection() && (
-                <Text
-                  type="body"
-                  className="mt-2 d-none d-sm-block"
-                  align="right"
-                >
-                  <T
-                    component="work"
-                    name={
-                      newRelease()
-                        ? 'noValidCollectionYet'
-                        : 'noValidCollection'
-                    }
-                  />
-                </Text>
-              )}
+            {work.collectionHasLoaded && !hasValidCollection() && (
+              <Text
+                type="body"
+                className="mt-2 d-none d-sm-block"
+                align="right"
+              >
+                <T
+                  component="work"
+                  name={
+                    newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
+                  }
+                />
+              </Text>
+            )}
             <div className="mobile-styling">
               <AddToListButton work={work} align="left" />
             </div>
@@ -138,17 +138,16 @@ export class ShortListItem extends React.Component {
           <Text align="left" type="body">
             <T component="work" name="loanTitle" />
           </Text>
-          {work.collectionHasLoaded &&
-            !hasValidCollection() && (
-              <Text type="body">
-                <T
-                  component="work"
-                  name={
-                    newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
-                  }
-                />
-              </Text>
-            )}
+          {work.collectionHasLoaded && !hasValidCollection() && (
+            <Text type="body">
+              <T
+                component="work"
+                name={
+                  newRelease() ? 'noValidCollectionYet' : 'noValidCollection'
+                }
+              />
+            </Text>
+          )}
           <Toolbar className="mobile-styling">
             <div align="left" className="d-flex">
               {orderBookButton}
@@ -175,6 +174,15 @@ export class ShortList extends React.Component {
     }
     return (
       <React.Fragment>
+        <Head
+          title="Huskeliste"
+          description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+          canonical="/huskeliste"
+          og={{
+            'og:url': 'https://laesekompas.dk/huskeliste'
+          }}
+        />
+
         <Banner
           color="#81c793"
           className="fixed-width-col-md position-relative text-uppercase"

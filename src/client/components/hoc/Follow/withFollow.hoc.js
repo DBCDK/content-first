@@ -55,6 +55,7 @@ const withFollow = WrappedComponent => {
       try {
         const resp = await addObject({
           id: this.props._id,
+          _key: this.props._id,
           _type: 'follows',
           cat: 'list',
           _created: Math.round(new Date().getTime() / 1000)

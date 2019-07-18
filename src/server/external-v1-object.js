@@ -59,7 +59,11 @@ async function findObject(req, res) {
 async function deleteObject(req, res) {
   send(res, await objectStore.del(req.params.id, await getUser(req)));
 }
+async function aggregation(req, res) {
+  send(res, await objectStore.aggregation(req.query, await getUser(req)));
+}
 
+router.route('/aggregation').get(asyncMiddleware(aggregation));
 router.route('/find').get(asyncMiddleware(findObject));
 router.route('/:id').get(asyncMiddleware(getObject));
 router.route('/:id').put(asyncMiddleware(putObject));

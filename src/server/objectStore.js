@@ -226,6 +226,134 @@ async function del(id, user) {
     return parseException(e);
   }
 }
+
+async function aggregation({type, sort = 'num_items', pid}) {
+  await validateObjectStore();
+
+  const SORT_OPTIONS = {
+    num_items: 'num_items',
+    num_follows: 'num_follows',
+    num_comments: 'num_comments',
+    created: '_created',
+    modified: '_modified'
+  };
+
+  if (!type) {
+    return {
+      data: [],
+      errors: [{status: 400, message: "Missing query param: 'type'"}]
+    };
+  }
+
+  if (type !== 'list') {
+    return {
+      data: [],
+      errors: [
+        {status: 400, message: "Unsupported type. Supported types: 'list'"}
+      ]
+    };
+  }
+  if (!SORT_OPTIONS[sort]) {
+    return {
+      data: [],
+      errors: [
+        {
+          status: 400,
+          message: `Unsupported sort. Supported sort: ${Object.keys(
+            SORT_OPTIONS
+          ).join(', ')}`
+        }
+      ]
+    };
+  }
+  if (pid) {
+    return [
+      {
+        _type: 'list',
+        _id: 'list-3',
+        _public: true,
+        title: 'liste3',
+        description: "Indeholder alle pid'er",
+        image: null,
+        owner: {
+          _id: 'owner-2',
+          name: 'owner2',
+          image: null
+        },
+        _created: 3000,
+        _modified: 4000,
+        num_follows: 400,
+        num_items: 50,
+        num_comments: 2
+      }
+    ];
+  }
+
+  // mocked data for now
+  const MOCKED = [
+    {
+      _type: 'list',
+      _id: 'list-1',
+      _public: true,
+      title: 'liste1',
+      description: 'beskrivelse1',
+      image: null,
+      owner: {
+        _id: 'owner-1',
+        name: 'owner1',
+        image: null
+      },
+      _created: 1000,
+      _modified: 2000,
+      num_follows: 10,
+      num_items: 12,
+      num_comments: 143
+    },
+    {
+      _type: 'list',
+      _id: 'list-2',
+      _public: true,
+      title: 'liste2',
+      description: 'beskrivelse2',
+      image: null,
+      owner: {
+        _id: 'owner-1',
+        name: 'owner1',
+        image: null
+      },
+      _created: 2000,
+      _modified: 3000,
+      num_follows: 4,
+      num_items: 5,
+      num_comments: 7
+    },
+    {
+      _type: 'list',
+      _id: 'list-3',
+      _public: true,
+      title: 'liste3',
+      description: "Indeholder alle pid'er",
+      image: null,
+      owner: {
+        _id: 'owner-2',
+        name: 'owner2',
+        image: null
+      },
+      _created: 3000,
+      _modified: 4000,
+      num_follows: 400,
+      num_items: 50,
+      num_comments: 2
+    }
+  ];
+
+  const data = _.orderBy(MOCKED, SORT_OPTIONS[sort], 'desc');
+
+  return {
+    data
+  };
+}
+
 function parseException(e) {
   if (e.status === 404) {
     return {
@@ -252,6 +380,7 @@ function parseException(e) {
 }
 
 module.exports = {
+  aggregation,
   getUser,
   get,
   put,

@@ -69,7 +69,7 @@ const ShortListContent = props => {
       >
         clear
       </i>
-      <Link href="/huskeliste">
+      <Link href="/huskeliste" disable={emptyList}>
         <Text
           type="body"
           variant="color-fersken--weight-semibold--transform-uppercase"
@@ -91,24 +91,24 @@ const ShortListContent = props => {
       >
         {emptyList && <T component="shortlist" name="emptyList" />}
       </div>
-      {props.children &&
-        props.children.length > 0 && (
-          <div className="top-bar-dropdown-list--elements">
-            <ReactCSSTransitionGroup
-              transitionName="shortlist"
-              transitionEnterTimeout={200}
-              transitionLeaveTimeout={200}
-            >
-              {props.children}
-            </ReactCSSTransitionGroup>
-          </div>
-        )}
+      {props.children && props.children.length > 0 && (
+        <div className="top-bar-dropdown-list--elements">
+          <ReactCSSTransitionGroup
+            transitionName="shortlist"
+            transitionEnterTimeout={200}
+            transitionLeaveTimeout={200}
+          >
+            {props.children}
+          </ReactCSSTransitionGroup>
+        </div>
+      )}
       <div className="top-bar-dropdown-list--footer">
         <div onClick={props.onViewShortList}>
           <Button
             size="medium"
             type="tertiary"
             dataCy="shortlist-dropdown-visit-shortlist"
+            disabled={emptyList}
           >
             <T component="shortlist" name="shortlistGo" />
           </Button>
@@ -116,7 +116,7 @@ const ShortListContent = props => {
         <div
           onClick={() => props.elements.length > 0 && props - props.orderAll()}
         >
-          <Button size="medium" type="tertiary">
+          <Button size="medium" type="tertiary" disabled={emptyList}>
             <T component="shortlist" name="shortlistOrder" />
           </Button>
         </div>

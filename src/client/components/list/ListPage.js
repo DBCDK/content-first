@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from '../base/Head';
 import Spinner from '../general/Spinner/Spinner.component';
 import Title from '../base/Title';
 import T from '../base/T';
@@ -21,6 +22,7 @@ export class ListPage extends React.Component {
         return SimpleList;
     }
   }
+
   render() {
     const {list} = this.props;
 
@@ -55,7 +57,29 @@ export class ListPage extends React.Component {
 
     const Template = this.getTemplate(list);
 
-    return <Template _id={list._id} />;
+    return (
+      <React.Fragment>
+        <Head
+          key="list-header"
+          title={list.title || 'Læsekompas'}
+          description={
+            list.description && list.description !== ''
+              ? list.description
+              : null
+          }
+          canonical={`/lister/${list._id}`}
+          og={{
+            'og:url': `https://laesekompas.dk/lister/${list._id}`,
+            image: {
+              'og:image': `https://laesekompas.dk/v1/image/${list.image}/1200/600`,
+              'og:image:width': '1200',
+              'og:image:height': '600'
+            }
+          }}
+        />
+        <Template _id={list._id} />
+      </React.Fragment>
+    );
   }
 }
 

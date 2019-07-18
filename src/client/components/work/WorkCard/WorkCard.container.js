@@ -2,8 +2,8 @@ import React from 'react';
 import BookCover from '../../general/BookCover/BookCover.component';
 import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import TaxDescription from '../TaxDescription.component';
-import Paragraph from '../../base/Paragraph';
-import Heading from '../../base/Heading';
+import Text from '../../base/Text';
+import Title from '../../base/Title';
 import Icon from '../../base/Icon';
 import {withWork} from '../../hoc/Work';
 import RemindsOf from '../../base/RemindsOf';
@@ -97,9 +97,9 @@ class WorkCard extends React.Component {
             />
           </BookCover>
 
-          <Paragraph className="mt-2 d-xs-none d-sm-block">
+          <Text className="mt-2 d-xs-none d-sm-block">
             {<TaxDescription text={tax_description} />}
-          </Paragraph>
+          </Text>
 
           {this.props.enableHover && (
             <div
@@ -114,17 +114,22 @@ class WorkCard extends React.Component {
               }}
               onClick={this.onWorkClick}
             >
-              <Heading
-                Tag="h3"
-                type="title"
-                style={{marginBottom: 4}}
+              <Title
+                className="m-0"
+                Tag="h1"
+                type="title6"
                 data-cy={'workcard-title'}
               >
                 {this.props.work.book.title}
-              </Heading>
-              <Heading Tag="h3" type="subtitle" className="mt0">
+              </Title>
+              <Title
+                Tag="h2"
+                type="title6"
+                variant="weight-normal"
+                className="mb-1"
+              >
                 {this.props.work.book.creator}
-              </Heading>
+              </Title>
               {hideMoreLikeThis ? (
                 <hr className="w-100" />
               ) : (
@@ -141,11 +146,11 @@ class WorkCard extends React.Component {
                   data-cy="WC-more-like-this"
                 />
               )}
-              <Paragraph className="mt-2">
+              <Text className="mt-2">
                 {<TaxDescription text={tax_description} />}
-              </Paragraph>
+              </Text>
               <div className="expand-more-wrapper text-center">
-                <Icon name="expand_more" className="md-large" />
+                <Icon name="&#xe5cf;" className="md-large" />
               </div>
             </div>
           )}

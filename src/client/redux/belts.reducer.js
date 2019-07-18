@@ -1,8 +1,57 @@
 const defaultState = {
   belts: {
-    'De hoppede ud ad bogen': {
-      key: 'De hoppede ud ad bogen',
-      name: 'De hoppede ud ad bogen',
+    'Livskloge bøger': {
+      key: 'Livskloge bøger',
+      name: 'Livskloge bøger',
+      subtext: 'Få et frisk perspektiv på tilværelsen gennem livskloge øjne. ',
+      tags: [
+        {id: 5465, weight: 10},
+        {id: 3510, weight: 1},
+        {id: 5721, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
+    'Billeder fra provinsen': {
+      key: 'Billeder fra provinsen',
+      name: 'Billeder fra provinsen',
+      subtext: 'Mød det usædvanlige og det almindelige Danmark.',
+      tags: [
+        {id: 5465, weight: 10},
+        {id: 3998, weight: 10},
+        {id: 5371, weight: 10},
+        {id: 1672, weight: 1},
+        {id: 5721, weight: 1},
+        {id: 5178, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
+    'Vemodige nordmænd': {
+      key: 'Vemodige nordmænd',
+      name: 'Vemodige nordmænd',
+      subtext:
+        'Når du har lyst til at tænke over livet - også det svære og sårbare.',
+      tags: [
+        {id: 4466, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 3510, weight: 1},
+        {id: 5626, weight: 1},
+        {id: 5683, weight: 1},
+        {id: 5630, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
+    'De hoppede ud af bogen': {
+      key: 'De hoppede ud af bogen',
+      name: 'De hoppede ud af bogen',
       subtext: 'Karakterer du ikke lige glemmer.',
       tags: [
         {id: 5731, weight: 1},
@@ -189,24 +238,6 @@ const defaultState = {
         {id: 5660, weight: 1},
         {id: 5658, weight: 1},
         {id: 189, weight: 1}
-      ],
-      onFrontPage: true,
-      isLoading: false,
-      type: 'belt',
-      child: false
-    },
-    'Vemodige nordmænd': {
-      key: 'Vemodige nordmænd',
-      name: 'Vemodige nordmænd',
-      subtext:
-        'Når du har lyst til at tænke over livet - også det svære og sårbare.',
-      tags: [
-        {id: 4466, weight: 10},
-        {id: 5731, weight: 1},
-        {id: 3510, weight: 1},
-        {id: 5626, weight: 1},
-        {id: 5683, weight: 1},
-        {id: 5630, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,

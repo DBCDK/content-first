@@ -117,6 +117,99 @@ exports[`ShortList.container Clearing list 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -1889,6 +1982,99 @@ exports[`ShortList.container Order all books 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -3660,6 +3846,99 @@ exports[`ShortList.container Order book - desktop version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -5431,6 +5710,99 @@ exports[`ShortList.container Order book - mobile version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -7202,6 +7574,99 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -8973,6 +9438,99 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -10744,6 +11302,99 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -12515,6 +13166,99 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -14287,6 +15031,99 @@ exports[`ShortList.container Remove element 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -16058,6 +16895,99 @@ exports[`ShortList.container Short list contains elements 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -17722,6 +18652,99 @@ exports[`ShortList.container Short list is empty 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"

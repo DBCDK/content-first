@@ -34,7 +34,7 @@ router
         bookCover,
         hostUrl + req.originalUrl,
         {width: 300, height: 600},
-        'Book'
+        'book'
       );
 
       // Return Page

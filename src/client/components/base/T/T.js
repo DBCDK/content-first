@@ -51,10 +51,10 @@ const T = ({component, name, vars, renderAsHtml = false}) => {
   let result = text;
 
   /*
-  * If requested text contains variables (%s)
-  * %s will be replaced by variables from the
-  * vars array
-  */
+   * If requested text contains variables (%s)
+   * %s will be replaced by variables from the
+   * vars array
+   */
 
   if (text.includes('%s')) {
     const aText = text.split('%s');

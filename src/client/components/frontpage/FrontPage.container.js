@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
+import Head from '../base/Head';
 import Hero from '../hero/Hero.component';
 import RecentListsBelt from '../base/Belt/RecentListsBelt.container';
 import InteractionsBelt from '../base/Belt/InteractionsBelt.component';
@@ -29,13 +30,15 @@ class FrontPage extends React.Component {
     return (
       <div>
         {/* <div className="belts col-12"> */}
-        {belts.filter(belt => belt.onFrontPage).map(belt => (
-          <TagsBelt
-            mount={'frontpage' + JSON.stringify(belt.tags)}
-            id={belt.key}
-            {...belt}
-          />
-        ))}
+        {belts
+          .filter(belt => belt.onFrontPage)
+          .map(belt => (
+            <TagsBelt
+              mount={'frontpage' + JSON.stringify(belt.tags)}
+              id={belt.key}
+              {...belt}
+            />
+          ))}
         {/* </div> */}
       </div>
     );
@@ -48,6 +51,7 @@ class FrontPage extends React.Component {
     aBeltsMap.sort((a, b) => (b._created || 0) - (a._created || 0));
     return (
       <div className="frontpage">
+        <Head />
         <Hero />
         <InteractionsBelt
           mount={'frontpage-interactions-belt'}

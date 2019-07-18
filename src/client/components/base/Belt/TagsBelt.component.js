@@ -6,7 +6,7 @@ import Pin from '../Pin';
 import {withIsVisible, withScrollToComponent} from '../../hoc/Scroll';
 import {withChildBelt, withStoreBelt} from '../../hoc/Belt';
 import {withTagsToPids} from '../../hoc/Recommender';
-import {withUser} from '../../hoc/User';
+import {withLoggedInUser} from '../../hoc/User';
 import WorkSlider from './WorkSlider.component';
 import Title from '../Title';
 import Link from '../../general/Link.component';
@@ -229,18 +229,17 @@ export class TagsBelt extends React.Component {
                   </Title>
                 </div>
               </div>
-              {isOwner &&
-                !editing && (
-                  <EditBelt
-                    onClick={() =>
-                      this.setState({
-                        editing: true,
-                        name: this.props.name,
-                        subtext: this.props.subtext
-                      })
-                    }
-                  />
-                )}
+              {isOwner && !editing && (
+                <EditBelt
+                  onClick={() =>
+                    this.setState({
+                      editing: true,
+                      name: this.props.name,
+                      subtext: this.props.subtext
+                    })
+                  }
+                />
+              )}
             </React.Fragment>
           )}
         </div>
@@ -257,7 +256,7 @@ export class TagsBelt extends React.Component {
   }
 }
 
-export default withUser(
+export default withLoggedInUser(
   withStoreBelt(
     withChildBelt(
       withScrollToComponent(withIsVisible(withTagsToPids(TagsBelt)))

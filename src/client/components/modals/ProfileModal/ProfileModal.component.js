@@ -48,9 +48,9 @@ export class ProfileModal extends React.Component {
 
             <div className="profile__ageLimit-content">
               Vi har fået information om, at du er under 13 år, og derfor ikke
-              har tilladelse til at oprette en profil. Du kan stadig bruge Min
-              næste bog, til at finde skønlitteratur, men det er desværre ikke
-              muligt at låne en bog og laver lister. Hvis du gerne vil låne
+              har tilladelse til at oprette en profil. Du kan stadig bruge
+              Læsekompasset, til at finde skønlitteratur, men det er desværre
+              ikke muligt at låne en bog og laver lister. Hvis du gerne vil låne
               bøger kan du stadig gøre det gennem
               <a
                 href="https://www.bibliotek.dk"

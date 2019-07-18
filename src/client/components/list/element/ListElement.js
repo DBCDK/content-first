@@ -19,11 +19,12 @@ import BookmarkButton from '../../general/BookmarkButton/BookmarkButton';
 import TaxDescription from '../../work/TaxDescription.component.js';
 import CommentInput from '../../comments/CommentInput.component';
 import withWork from '../../hoc/Work/withWork.hoc';
+import {withUser} from '../../hoc/User';
 import './ListElement.css';
 
 // User
-const UserInfo = ({owner, time}) => {
-  if (!owner) {
+const UserInfo = withUser(({user, time}) => {
+  if (!user) {
     return null;
   }
   return (
@@ -33,11 +34,11 @@ const UserInfo = ({owner, time}) => {
         {` ${timestampToLongDate(time)}`}
       </Text>
       <Text type="body" variant="weight-semibold">
-        {owner.name}
+        {user.name}
       </Text>
     </div>
   );
-};
+});
 
 // Element menu
 const ElementContextMenu = ({
@@ -248,7 +249,7 @@ export class ListElement extends React.Component {
             <div className=" h-100">
               <Link href={'/værk/' + book.pid}>
                 <Title
-                  Tag="h3"
+                  Tag="h2"
                   type="title5"
                   className="m-0"
                   data-cy="list-element-work-title"
@@ -290,21 +291,22 @@ export class ListElement extends React.Component {
         </div>
         <div className="d-block d-sm-none">{description}</div>
         <div className="listElement-userInfo" style={{top: '0', right: '0'}}>
-          {showUserInfo && <UserInfo owner={owner} time={element._created} />}
+          {showUserInfo && (
+            <UserInfo id={element._owner} time={element._created} />
+          )}
 
           {list.social && (
             <div className="list-divider content-divider d-block d-sm-none mt-2" />
           )}
         </div>
         <div>
-          {list.social &&
-            showComments && (
-              <Comments
-                className="listElement-comments pt-4"
-                id={element._id}
-                disabled={this.state.editing}
-              />
-            )}
+          {list.social && showComments && (
+            <Comments
+              className="listElement-comments pt-4"
+              id={element._id}
+              disabled={this.state.editing}
+            />
+          )}
           {children}
         </div>
         <div className="list-divider petroleum" />

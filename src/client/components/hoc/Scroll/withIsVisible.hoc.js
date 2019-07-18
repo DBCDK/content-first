@@ -1,14 +1,16 @@
 import React from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 
+import isBot from '../../../utils/isBot';
+
 const withIsVisible = WrappedComponent => {
   return class extends React.Component {
     constructor() {
       super();
-      this.state = {isVisible: false};
+      this.state = {isVisible: isBot()};
     }
     onChange = isVisible => {
-      if (!this.state.isVisible && isVisible) {
+      if (!this.state.isVisible && !isBot() && isVisible) {
         this.setState({isVisible: true});
       }
     };
