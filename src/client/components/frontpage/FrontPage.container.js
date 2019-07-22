@@ -3,7 +3,13 @@ import {connect} from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
 import Head from '../base/Head';
 import Hero from '../hero/Hero.component';
+
+// no aggregation
 import RecentListsBelt from '../base/Belt/RecentListsBelt.container';
+
+// with aggregation
+// import ListsBelt from '../base/Belt/ListsBelt.container';
+
 import InteractionsBelt from '../base/Belt/InteractionsBelt.component';
 import TagsBelt from '../base/Belt/TagsBelt.component';
 import SpotsContainer from '../spots/Spots.container';
@@ -29,17 +35,13 @@ class FrontPage extends React.Component {
   renderBelts(belts) {
     return (
       <div>
-        {/* <div className="belts col-12"> */}
-        {belts
-          .filter(belt => belt.onFrontPage)
-          .map(belt => (
-            <TagsBelt
-              mount={'frontpage' + JSON.stringify(belt.tags)}
-              id={belt.key}
-              {...belt}
-            />
-          ))}
-        {/* </div> */}
+        {belts.filter(belt => belt.onFrontPage).map(belt => (
+          <TagsBelt
+            mount={'frontpage' + JSON.stringify(belt.tags)}
+            id={belt.key}
+            {...belt}
+          />
+        ))}
       </div>
     );
   }
