@@ -499,3 +499,14 @@ export const fetchAnonymousToken = async () => {
   accessTokenRequest = null;
   return accessToken;
 };
+
+/**
+ * ListAggregation
+ */
+
+export const loadListAggragation = async (type, sort, pid) => {
+  const lists = (await request
+    .get(`/v1/object/aggregation`)
+    .query({type: 'list', sort, pid})).body.data;
+  return lists;
+};
