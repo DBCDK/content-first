@@ -8,6 +8,7 @@ function buildOGMeta(obj) {
         <meta key={`${k}-meta-${i}`} property={k} content={obj[k] || null} />
       );
     }
+    return false;
   });
 }
 
