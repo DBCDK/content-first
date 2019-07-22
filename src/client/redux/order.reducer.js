@@ -73,11 +73,10 @@ const orderReducer = (state = defaultState, action) => {
 
     case ORDER_DONE: {
       let orders = state.orders;
-      Object.values(orders).map(
-        book =>
-          book.orderState === 'error'
-            ? delete book.orderState && delete book.ordering
-            : delete book.ordering
+      Object.values(orders).map(book =>
+        book.orderState === 'error'
+          ? delete book.orderState && delete book.ordering
+          : delete book.ordering
       );
       return {
         ...state,

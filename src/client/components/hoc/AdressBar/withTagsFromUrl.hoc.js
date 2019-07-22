@@ -72,13 +72,15 @@ const withTagsFromUrl = WrappedComponent => {
     };
     getMultiPids = () => {
       let multiPids = [];
-      this.props.tags.filter(t => t.type === 'TITLES').map(p =>
-        p.pid.split(';').forEach((q, i) => {
-          if (i !== 0) {
-            multiPids.push(q);
-          }
-        })
-      );
+      this.props.tags
+        .filter(t => t.type === 'TITLES')
+        .map(p =>
+          p.pid.split(';').forEach((q, i) => {
+            if (i !== 0) {
+              multiPids.push(q);
+            }
+          })
+        );
       return multiPids;
     };
     render() {
@@ -112,9 +114,8 @@ const withTagsFromUrl = WrappedComponent => {
           tags.length > 0
             ? {
                 tags: tags
-                  .map(
-                    t =>
-                      Array.isArray(t) ? t.join(':') : encodeURIComponent(t)
+                  .map(t =>
+                    Array.isArray(t) ? t.join(':') : encodeURIComponent(t)
                   )
                   .join(',')
               }

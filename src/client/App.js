@@ -20,7 +20,7 @@ import Footer from './components/general/Footer/Footer.component';
 import Article from './components/article/Article.component';
 import Animate from './components/base/Animate';
 import CookieWarning from './components/general/CookieWarning/CookieWarning';
-
+import PrintLayout from './components/list/printLayout/PrintLayout';
 import {OPEN_MODAL} from './redux/modal.reducer';
 
 import './style/App.css';
@@ -47,6 +47,8 @@ class App extends Component {
 
     let currentPage = null;
     let topbar = true;
+    let footer = true;
+    let feedBack = true;
     if (pathSplit[1] === '') {
       currentPage = <FrontPage />;
     } else if (pathSplit[1] === 'værk') {
@@ -73,6 +75,11 @@ class App extends Component {
       );
     } else if (pathSplit[1] === 'styleguide') {
       currentPage = <Styleguide />;
+    } else if (pathSplit[1] === 'print' && pathSplit[2]) {
+      currentPage = <PrintLayout id={pathSplit[2]} />;
+      topbar = false;
+      footer = false;
+      feedBack = false;
     }
 
     if (!currentPage) {
@@ -82,13 +89,11 @@ class App extends Component {
     return (
       <div className={'App'}>
         <Head />
-        {topbar ? (
+        {topbar && (
           <div>
             <TopBar dispatch={this.props.dispatch} user={this.props.user} />
             <div className="App__TopbarPlaceholder" />
           </div>
-        ) : (
-          ''
         )}
         <div id="scrollableArea">{currentPage}</div>
         <Modal />
@@ -108,8 +113,8 @@ class App extends Component {
           delay={5000}
         />
 
-        <FeedbackButton />
-        <Footer />
+        {feedBack && <FeedbackButton />}
+        {footer && <Footer />}
       </div>
     );
   }

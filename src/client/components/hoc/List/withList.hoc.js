@@ -193,6 +193,10 @@ export const withList = WrappedComponent => {
     };
 
     render() {
+      // if child component dosen't provide an id, the hoc will not block for rendering
+      if (!this.props.id) {
+        return <WrappedComponent {...this.props} />;
+      }
       if (!this.props.list) {
         return null;
       }

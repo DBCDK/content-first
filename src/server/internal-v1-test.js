@@ -208,30 +208,22 @@ router.route('/initStorage').get(
   asyncMiddleware(async (req, res) => {
     await request
       .put(
-        `http://${config.test.minismaug.host}:3333/configuration?token=${
-          admin.token
-        }`
+        `http://${config.test.minismaug.host}:3333/configuration?token=${admin.token}`
       )
       .send({storage: {user: admin.id}});
     await request
       .put(
-        `http://${
-          config.test.minismaug.host
-        }:3333/configuration?token=anon_token`
+        `http://${config.test.minismaug.host}:3333/configuration?token=anon_token`
       )
       .send({storage: null, user: {uniqueId: null}});
     await request
       .put(
-        `http://${config.test.minismaug.host}:3333/configuration?token=${
-          user1.token
-        }`
+        `http://${config.test.minismaug.host}:3333/configuration?token=${user1.token}`
       )
       .send({user: {uniqueId: user1.id}, storage: null});
     await request
       .put(
-        `http://${config.test.minismaug.host}:3333/configuration?token=${
-          user2.token
-        }`
+        `http://${config.test.minismaug.host}:3333/configuration?token=${user2.token}`
       )
       .send({user: {uniqueId: user2.id}, storage: null});
 

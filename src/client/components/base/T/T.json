@@ -574,6 +574,10 @@
         "da": "Fortryd oprettelse af liste",
         "en": "Cancel list editing"
       },
+      "printList":{
+        "da": "Print listen",
+        "en": "Print list"
+      },
       "createNew": {
         "da": "Opret ny liste",
         "en": "Create new list"

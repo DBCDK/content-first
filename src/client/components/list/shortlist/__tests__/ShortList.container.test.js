@@ -155,7 +155,7 @@ describe('ShortList.container', () => {
       .find(
         '.top-bar-dropdown-list-page .top-bar-upper-toolbar .Toolbar__right .Button'
       )
-      .first()
+      .at(1)
       .simulate('click');
     expect(Link).toHaveBeenCalledTimes(3);
     expect(OrderButton).toHaveBeenCalledTimes(6);

@@ -41,6 +41,12 @@ const ListContextMenu = ({
         icon="swap_vert"
         onClick={reorderList}
       />
+      <a href={'/print/' + list._id} target="_blank">
+        <ContextMenuAction
+          title={T({component: 'list', name: 'printList'})}
+          icon="print"
+        />
+      </a>
       <ContextMenuAction
         title={T({component: 'list', name: 'deleteList'})}
         icon="delete"
