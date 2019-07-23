@@ -1,5 +1,21 @@
 const defaultState = {
   belts: {
+    'Historiske romaner': {
+      key: 'Historiske romaner',
+      name: 'Historiske romaner',
+      subtext:
+        'Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.',
+      tags: [
+        {id: 4901, weight: 10},
+        {id: 5660, weight: 1},
+        {id: 5658, weight: 1},
+        {id: 189, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
     'Livskloge bøger': {
       key: 'Livskloge bøger',
       name: 'Livskloge bøger',
@@ -222,22 +238,6 @@ const defaultState = {
         {id: 5670, weight: 1},
         {id: 5676, weight: 1},
         {id: 5691, weight: 1}
-      ],
-      onFrontPage: true,
-      isLoading: false,
-      type: 'belt',
-      child: false
-    },
-    'Historiske romaner': {
-      key: 'Historiske romaner',
-      name: 'Historiske romaner',
-      subtext:
-        'Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.',
-      tags: [
-        {id: 4901, weight: 10},
-        {id: 5660, weight: 1},
-        {id: 5658, weight: 1},
-        {id: 189, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
