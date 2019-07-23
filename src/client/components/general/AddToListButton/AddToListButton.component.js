@@ -320,7 +320,8 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: OPEN_MODAL,
       modal: modal,
-      context
+      context,
+      createListAttempt: modal === 'list'
     });
   }
 });

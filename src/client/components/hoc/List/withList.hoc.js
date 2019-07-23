@@ -242,7 +242,11 @@ export const withList = WrappedComponent => {
 
       // Save list handle
       onStoreList: list => {
-        dispatch({type: STORE_LIST, _id: list._id});
+        dispatch({
+          type: STORE_LIST,
+          _id: list._id,
+          createList: ownProps.justCreated
+        });
         // show created list toast, if just created (not on edit list)
         if (ownProps.justCreated) {
           createdToast(list);

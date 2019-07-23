@@ -247,8 +247,20 @@ export class TagsBelt extends React.Component {
         <WorkSlider
           {...this.props}
           pids={this.props.recommendations}
-          onMoreLikeThisClick={this.props.openSimilarBelt}
-          onWorkClick={this.props.openWorkPreview}
+          onMoreLikeThisClick={(wrk, bName, rid) =>
+            this.props.openSimilarBelt(
+              wrk,
+              get(this, 'props.belt.name', 'unknownBeltName'),
+              rid
+            )
+          }
+          onWorkClick={(wrk, bName, rid) =>
+            this.props.openWorkPreview(
+              wrk,
+              get(this, 'props.belt.name', 'unknownBeltName'),
+              rid
+            )
+          }
           origin={origin}
         />
       </div>

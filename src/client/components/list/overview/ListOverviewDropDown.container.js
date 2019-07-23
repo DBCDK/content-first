@@ -252,7 +252,11 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({type: ON_USERLISTS_COLLAPSE});
   },
   onCreateNewList: () => {
-    dispatch({type: OPEN_MODAL, modal: 'list'});
+    dispatch({
+      type: OPEN_MODAL,
+      modal: 'list',
+      createListAttempt: true
+    });
     dispatch({type: ON_USERLISTS_COLLAPSE});
   },
   onListsIconClick: (userListsexpanded, shortListExpanded) => {

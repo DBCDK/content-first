@@ -22,6 +22,7 @@ import ReviewList from '../Review/ReviewList.component';
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';
 
 import './WorkPage.css';
+import {trackEvent} from '../../../matomo';
 
 /**
  * WorkPage
@@ -351,6 +352,7 @@ class WorkPage extends React.Component {
                         className="underline"
                         dataCy="tags-collaps-toggle"
                         onClick={() => {
+                          trackEvent('tags', 'seeAllTags', book.title);
                           this.setState({
                             tagsCollapsed: !this.state.tagsCollapsed,
                             transition: true

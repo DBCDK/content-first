@@ -6,11 +6,20 @@ import {UPDATE_MOUNT} from './mounts.reducer';
 import {ON_LOCATION_CHANGE} from './router.reducer';
 import {MATOMO_RID} from './matomo.reducer';
 import {ON_SHORTLIST_TOGGLE_ELEMENT} from './shortlist.reducer';
-import {LIST_TOGGLE_ELEMENT, ADD_ELEMENT_TO_LIST} from './list.reducer';
+import {
+  LIST_TOGGLE_ELEMENT,
+  ADD_ELEMENT_TO_LIST,
+  STORE_LIST
+} from './list.reducer';
 import {ORDER_SUCCESS} from './order.reducer';
 import {HISTORY_NEW_TAB} from './middleware';
 import {ORDER} from './order.reducer';
-import {ON_USER_DETAILS_RESPONSE, ON_USER_DETAILS_ERROR} from './user.reducer';
+import {
+  ON_USER_DETAILS_RESPONSE,
+  ON_USER_DETAILS_ERROR,
+  SAVE_USER_PROFILE_SUCCESS
+} from './user.reducer';
+import {OPEN_MODAL} from './modal.reducer';
 
 export const matomoMiddleware = store => next => action => {
   switch (action.type) {
@@ -22,8 +31,14 @@ export const matomoMiddleware = store => next => action => {
       const scrollPos = get(action, 'data.scrollPos');
       const titleClick = get(action, 'data.titleClick');
       const tagClick = get(action, 'data.tagClick');
+      const beltName = get(action, 'data.beltName', 'unknownBeltName');
+
       if (type === 'PREVIEW') {
-        const category = `preview:${pid}`;
+        const category =
+          'belt:' +
+          (action.mount === 'frontpage-interactions-belt'
+            ? 'personalRecommendations'
+            : beltName);
         const a = 'beltExpandWork';
         const name = `pid:${pid}`;
         trackEvent(category, a, name);
@@ -32,7 +47,11 @@ export const matomoMiddleware = store => next => action => {
           rid: rid
         });
       } else if (type === 'SIMILAR') {
-        const category = `belt:${parentBeltName}`;
+        const category =
+          'belt:' +
+          (action.mount === 'frontpage-interactions-belt'
+            ? 'personalRecommendations'
+            : beltName);
         const a = 'beltMoreLikeThis';
         const name = `pid:${pid}`;
         trackEvent(category, a, name);
@@ -156,6 +175,31 @@ export const matomoMiddleware = store => next => action => {
         setItem('didSetUserAuthenticated', false, 1);
       }
       setUserStatus(false);
+      return next(action);
+    }
+
+    case SAVE_USER_PROFILE_SUCCESS: {
+      if (action.user.acceptedTerms) {
+        trackEvent('user', 'createUserProfile', action.user.openplatformId);
+      }
+      return next(action);
+    }
+
+    case STORE_LIST: {
+      if (action.createList) {
+        trackEvent(
+          'list',
+          'createList',
+          store.getState().listReducer.lists[action._id].title
+        );
+      }
+      return next(action);
+    }
+
+    case OPEN_MODAL: {
+      if (action.modal === 'list' && action.createListAttempt) {
+        trackEvent('list', 'createListAttempt', 0);
+      }
       return next(action);
     }
 
