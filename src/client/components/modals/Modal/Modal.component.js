@@ -43,16 +43,15 @@ export default class Modal extends React.Component {
             </Button>
           </div>
 
-          <div className="content">
+          <div data-cy="modal-content" className="content">
             {this.props.header && (
               <Title type="title4" variant="transform-uppercase--weight-bold">
                 {this.props.header}
               </Title>
             )}
             {this.props.children}
-            {!hideCancel && !hideConfirm && (
-              <div className="modal-seperator mt-5 mb-4" />
-            )}
+            {!hideCancel &&
+              !hideConfirm && <div className="modal-seperator mt-5 mb-4" />}
             {
               <div className="bottom d-flex flex-row justify-content-end align-items-center pt-1">
                 {onError && (
@@ -62,26 +61,30 @@ export default class Modal extends React.Component {
                     </Text>
                   </div>
                 )}
-                {!hideCancel && cancelText && (
-                  <Button
-                    size="medium"
-                    className="mr-1"
-                    type="quaternary"
-                    variant="bgcolor-porcelain--color-petroleum"
-                    onClick={this.props.onClose}
-                  >
-                    {cancelText}
-                  </Button>
-                )}
+                {!hideCancel &&
+                  cancelText && (
+                    <Button
+                      size="medium"
+                      className="mr-1"
+                      type="quaternary"
+                      variant="bgcolor-porcelain--color-petroleum"
+                      onClick={this.props.onClose}
+                    >
+                      {cancelText}
+                    </Button>
+                  )}
                 {!hideConfirm && (
-                  <a href={this.props.url || null} target="_blank">
+                  <a
+                    data-cy="modal-done-btn"
+                    href={this.props.url || null}
+                    target="_blank"
+                  >
                     <Button
                       disabled={onError}
                       size="medium"
                       className={'mr-0' + (doneDisabled ? ' disabled' : '')}
                       type="quaternary"
                       onClick={doneDisabled ? () => {} : this.props.onDone}
-                      dataCy="modal-done-btn"
                     >
                       {doneText}
                     </Button>
