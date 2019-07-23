@@ -4,7 +4,7 @@ describe('List test', function() {
     cy.clearClientStorage();
     cy.clearCookies();
     cy.createUser('listowner');
-    // cy.wait(1000);
+    cy.wait(1000);
   });
 
   const gotoListByName = listName => {
@@ -20,15 +20,14 @@ describe('List test', function() {
   };
 
   it('Can create a new list', function() {
-    const listName = 'New list';
+    const listName = 'New Awesome List';
     const listDescription = 'List description';
-
+    cy.wait(1000);
     cy.get('[data-cy=topbar-lists]').click();
     cy.get('[data-cy=lists-dropdown-new-list]').click();
-
-    cy.get('[data-cy=listinfo-title-input]')
-      .clear()
-      .type(listName);
+    cy.wait(1000);
+    cy.get('[data-cy=listinfo-title-input]').clear();
+    cy.get('[data-cy=listinfo-title-input]').type(listName);
     cy.get('[data-cy=listinfo-description-input]')
       .clear()
       .type(listDescription);
@@ -146,16 +145,17 @@ describe('List test', function() {
 
   it('Can add with addToListButton to public list', function() {
     cy.visit(`/værk/870970-basis:25775481`);
-    // waitForListsLoaded();
-    // cy.wait(1000);
+    waitForListsLoaded();
+    cy.wait(1000);
     cy.get('[data-cy=add-to-list-btn]').click();
     cy.get('[data-cy=add-to-new-list]').click();
     cy.get('[data-cy=public-radio-btn]').click();
+    cy.wait(1000);
     cy.get('[data-cy=modal-done-btn]').click();
 
     gotoListByName('Ny liste');
+    cy.wait(1000);
 
-    cy.reload();
     cy.get('.list-container')
       .find('.listElement')
       .its('length')
@@ -221,8 +221,8 @@ describe('List test', function() {
           cy.get('[data-cy=order-list-element-moveup]').click();
         });
 
-      cy.get('[data-cy= modal-done-btn').click();
-      cy.wait(1000); // hmm
+      cy.get('[data-cy=modal-done-btn').click();
+      cy.wait(1000);
       cy.reload();
 
       //assert change

@@ -181,7 +181,6 @@ export const withList = WrappedComponent => {
     updateListData = data => {
       // Props
       const {list, onUpdateListData} = this.props;
-
       try {
         const newData = {_id: list._id, ...data};
         onUpdateListData(newData);
@@ -193,8 +192,8 @@ export const withList = WrappedComponent => {
     };
 
     render() {
-      // if child component dosen't provide an id, the hoc will not block for rendering
-      if (!this.props.id) {
+      // if child component dosen't provide an id/_id, the hoc will not block for rendering
+      if (!this.props.id && !this.props._id) {
         return <WrappedComponent {...this.props} />;
       }
       if (!this.props.list) {

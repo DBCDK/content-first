@@ -120,7 +120,6 @@ export class ReorderListModal extends React.Component {
   render() {
     const {list, updateListData, close, storeList} = this.props;
     const sortableProps = isMobile ? {pressDelay: 150} : {distance: 3};
-
     return (
       <Modal
         header="REDIGER RÆKKEFØLGE"
