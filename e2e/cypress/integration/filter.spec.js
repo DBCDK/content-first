@@ -156,7 +156,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=filterDimmer]').click();
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-0]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
