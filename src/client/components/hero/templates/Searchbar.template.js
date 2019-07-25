@@ -6,11 +6,14 @@ import Icon from '../../base/Icon';
 import Title from '../../base/Title';
 import Button from '../../base/Button';
 
-import {getLeavesMap, tagsToUrlParams} from '../../../utils/taxonomy';
 import {startAnimate} from '../../../redux/animate.reducer';
 
 import '../Hero.css';
 import './Searchbar.css';
+const {
+  getLeavesMap,
+  tagsToUrlParams
+} = require('../../../utils/taxonomy');
 
 const leavesMap = getLeavesMap();
 

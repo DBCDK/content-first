@@ -6,10 +6,11 @@ import {
   ON_LOGOUT_RESPONSE,
   ON_USER_DETAILS_ERROR
 } from '../redux/user.reducer';
-import {getLeavesMap} from './taxonomy';
+
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
 import {OPEN_MODAL} from '../redux/modal.reducer';
+const {getLeavesMap} = require('./taxonomy');
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';

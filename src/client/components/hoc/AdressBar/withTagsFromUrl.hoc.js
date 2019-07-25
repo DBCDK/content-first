@@ -4,7 +4,9 @@ import {createSelector} from 'reselect';
 import {isEqual} from 'lodash';
 import {filtersMapAll} from '../../../redux/filter.reducer';
 import {HISTORY_REPLACE} from '../../../redux/middleware';
-import {getFullRange} from '../../../utils/taxonomy';
+const {
+  getFullRange
+} = require('../../../utils/taxonomy');
 /**
  * A HOC that enhance the wrapped component with a list of tags (pids, creators, tags)
  * based on the 'tags' query paramter from the browser address bar.

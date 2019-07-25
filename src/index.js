@@ -1,4 +1,7 @@
-import 'babel-polyfill';
+import 'core-js'
+import 'regenerator-runtime/runtime';
+import 'react-app-polyfill/ie9';
+
 import smoothscroll from 'smoothscroll-polyfill';
 import './prototypes';
 

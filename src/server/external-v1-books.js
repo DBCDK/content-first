@@ -15,7 +15,7 @@ const cache = new NodeCache({stdTTL: 60 * 60 * 4}); // Time to live is 4 hours
 const {
   subjectsToTaxonomyDescription,
   fromTitle
-} = require('../client/utils/taxonomy');
+} = require('../client/utils/booksTaxonomy');
 const {fetchAnonymousToken} = require('./smaug');
 
 /* eslint-disable complexity */

@@ -1,4 +1,7 @@
-import {getLeaves, getLeavesMap, getFromTitleMap} from '../taxonomy';
+//import {getLeaves, getLeavesMap, getFromTitleMap} from '../taxonomy';
+const {getLeaves, getLeavesMap, getFromTitleMap} = await import(
+  '../taxonomy'
+).then(m => m.default);
 
 const taxonomy = {
   a: {
