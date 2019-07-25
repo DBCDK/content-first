@@ -1,8 +1,4 @@
-const {
-  taxonomy,
-  getLeaves,
-  getLeavesMap
-} = require('../utils/taxonomy');
+const {taxonomy, getLeaves, getLeavesMap} = require('../utils/taxonomy');
 
 const leavesMap = getLeavesMap();
 
