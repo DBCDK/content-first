@@ -1,13 +1,20 @@
-i {
-  /* must be 0px to prevent material icon names to show up on loading*/
-  font-size: 0px;
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(MaterialIcons-Regular.woff2) format('woff2'),
+       url(MaterialIcons-Regular.woff) format('woff'),
+       url(MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px; /* Preferred icon size */
+  font-size: 24px;  /* Preferred icon size */
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -26,29 +33,4 @@ i {
 
   /* Support for IE. */
   font-feature-settings: 'liga';
-}
-
-.material-icons.md-xsmall {
-  font-size: 1rem;
-}
-.material-icons.md-small {
-  font-size: 18px;
-}
-.material-icons.md-medium {
-  font-size: 24px;
-}
-.material-icons.md-large {
-  font-size: 28px;
-}
-.material-icons.md-xlarge {
-  font-size: 34px;
-}
-.material-icons.md-xxlarge {
-  font-size: 54px;
-}
-
-/* disbaled icon */
-.material-icons.md-disabled {
-  cursor: default;
-  opacity: 0.5;
 }
