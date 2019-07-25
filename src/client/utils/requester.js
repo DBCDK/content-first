@@ -10,7 +10,7 @@ import {
 import {setItem, getItem} from '../utils/localstorage';
 import unique from './unique';
 import {OPEN_MODAL} from '../redux/modal.reducer';
-const {getLeavesMap} = require('./taxonomy');
+import {getLeavesMap} from './taxonomy';
 
 const taxonomyMap = getLeavesMap();
 const SHORT_LIST_KEY = 'contentFirstShortList';

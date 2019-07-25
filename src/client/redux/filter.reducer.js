@@ -1,4 +1,4 @@
-const {taxonomy, getLeaves, getLeavesMap} = require('../utils/taxonomy');
+import {taxonomy, getLeaves, getLeavesMap} from '../utils/taxonomy';
 
 const leavesMap = getLeavesMap();
 

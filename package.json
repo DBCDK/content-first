@@ -15,7 +15,6 @@
   ],
   "devDependencies": {
     "auto-changelog": "^1.10.2",
-    "babel-plugin-add-module-exports": "^1.0.2",
     "chai": "^4.0.2",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^2.13.1",

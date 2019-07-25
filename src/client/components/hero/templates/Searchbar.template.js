@@ -10,7 +10,7 @@ import {startAnimate} from '../../../redux/animate.reducer';
 
 import '../Hero.css';
 import './Searchbar.css';
-const {getLeavesMap, tagsToUrlParams} = require('../../../utils/taxonomy');
+import {getLeavesMap, tagsToUrlParams} from '../../../utils/taxonomy';
 
 const leavesMap = getLeavesMap();
 

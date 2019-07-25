@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Spots.css';
 import toColor from '../../utils/toColor';
 import Link from '../general/Link.component';
-const {getLeavesMap} = require('../../utils/taxonomy');
+import {getLeavesMap} from '../../utils/taxonomy';
 
 const leavesMap = getLeavesMap();
 

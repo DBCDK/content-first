@@ -6,7 +6,7 @@ import Link from '../../general/Link.component';
 
 import '../Hero.css';
 import './InteractionSlide.css';
-const {getLeavesMap, tagsToUrlParams} = require('../../../utils/taxonomy');
+import {getLeavesMap, tagsToUrlParams} from '../../../utils/taxonomy';
 
 const leavesMap = getLeavesMap();
 

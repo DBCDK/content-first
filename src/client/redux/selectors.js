@@ -5,7 +5,7 @@ import {createSelector} from 'reselect';
 import {getBooks} from './books.reducer';
 import {getRecommendedPids, applyClientSideFilters} from './recommend';
 import {filtersMapAll} from './filter.reducer';
-const {getFullRange} = require('../utils/taxonomy');
+import {getFullRange} from '../utils/taxonomy';
 
 export const getRecommendedBooks = (state, tags, max = 100) => {
   const {recommendReducer, booksReducer} = state;

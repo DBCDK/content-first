@@ -1,5 +1,3 @@
-const {difference} = require('lodash');
-
 const taxonomyJson =
   process.env.NODE_ENV === 'ci'
     ? require('../../data/examples/exportTaxonomy.json')
