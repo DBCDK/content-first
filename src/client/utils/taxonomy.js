@@ -97,10 +97,6 @@ const getSelectedRange = (tagId, selectedRange, fullRange) => {
 const tagsToUrlParams = tags =>
   tags.map(id => (isRange(id) ? id.join(':') : id)).join(',');
 
-const upperCaseFirst = str => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
 export {
   taxonomy,
   getLeaves,

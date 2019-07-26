@@ -13,7 +13,7 @@ exports[`CommentContainer Delete button 1`] = `
       },
     }
   }
-  deleteComment={[Function]}
+  deleteComment={[MockFunction]}
   user={
     Object {
       "name": "Benny Cosmos",
@@ -25,15 +25,15 @@ exports[`CommentContainer Delete button 1`] = `
     className="comment-wrapper"
     key="test"
   >
-    <ContextMenu
+    <_default
       className="comment-wrapper-context-menu"
     >
       <div
-        className="ContextMenu comment-wrapper-context-menu"
+        className="ContextMenu dropdown comment-wrapper-context-menu"
       >
         <div
           className="dropdown-toggle"
-          onClick={[Function]}
+          data-toggle="dropdown"
         >
           <Icon
             className="align-middle"
@@ -48,7 +48,7 @@ exports[`CommentContainer Delete button 1`] = `
           </Icon>
         </div>
         <div
-          className="dropdown dropdown-right"
+          className="dropdown-menu dropdown-menu-right"
         >
           <ContextMenuAction
             icon="edit"
@@ -108,7 +108,7 @@ exports[`CommentContainer Delete button 1`] = `
           </ContextMenuAction>
         </div>
       </div>
-    </ContextMenu>
+    </_default>
     <div
       className="d-flex align-items-center mb-3 w-100"
     >
@@ -253,15 +253,15 @@ exports[`CommentContainer Edit button 1`] = `
     className="comment-wrapper"
     key="test"
   >
-    <ContextMenu
+    <_default
       className="comment-wrapper-context-menu"
     >
       <div
-        className="ContextMenu comment-wrapper-context-menu"
+        className="ContextMenu dropdown comment-wrapper-context-menu"
       >
         <div
           className="dropdown-toggle"
-          onClick={[Function]}
+          data-toggle="dropdown"
         >
           <Icon
             className="align-middle"
@@ -276,7 +276,7 @@ exports[`CommentContainer Edit button 1`] = `
           </Icon>
         </div>
         <div
-          className="dropdown dropdown-right"
+          className="dropdown-menu dropdown-menu-right"
         >
           <ContextMenuAction
             icon="edit"
@@ -336,7 +336,7 @@ exports[`CommentContainer Edit button 1`] = `
           </ContextMenuAction>
         </div>
       </div>
-    </ContextMenu>
+    </_default>
     <div
       className="d-flex align-items-center mb-3 w-100"
     >
@@ -481,15 +481,15 @@ exports[`CommentContainer Edit button 2`] = `
     className="comment-wrapper"
     key="test"
   >
-    <ContextMenu
+    <_default
       className="comment-wrapper-context-menu"
     >
       <div
-        className="ContextMenu comment-wrapper-context-menu"
+        className="ContextMenu dropdown comment-wrapper-context-menu"
       >
         <div
           className="dropdown-toggle"
-          onClick={[Function]}
+          data-toggle="dropdown"
         >
           <Icon
             className="align-middle"
@@ -504,7 +504,7 @@ exports[`CommentContainer Edit button 2`] = `
           </Icon>
         </div>
         <div
-          className="dropdown dropdown-right"
+          className="dropdown-menu dropdown-menu-right"
         >
           <ContextMenuAction
             icon="edit"
@@ -564,7 +564,7 @@ exports[`CommentContainer Edit button 2`] = `
           </ContextMenuAction>
         </div>
       </div>
-    </ContextMenu>
+    </_default>
     <div
       className="d-flex align-items-center mb-3 w-100"
     >
@@ -798,13 +798,11 @@ exports[`CommentContainer Render edit form 1`] = `
 >
   
   <div
-    className="ContextMenu comment-wrapper-context-menu"
-    data-cy={undefined}
-    style={undefined}
+    className="ContextMenu dropdown comment-wrapper-context-menu"
   >
     <div
       className="dropdown-toggle"
-      onClick={[Function]}
+      data-toggle="dropdown"
     >
       <i
         className="material-icons material-icons-more_vert align-middle "
@@ -815,7 +813,7 @@ exports[`CommentContainer Render edit form 1`] = `
       
     </div>
     <div
-      className="dropdown dropdown-right"
+      className="dropdown-menu dropdown-menu-right"
     >
       <div
         className="dropdown-item"
@@ -953,13 +951,11 @@ exports[`CommentContainer Render save form 1`] = `
     />
   </div>
   <div
-    className="ContextMenu comment-wrapper-context-menu"
-    data-cy={undefined}
-    style={undefined}
+    className="ContextMenu dropdown comment-wrapper-context-menu"
   >
     <div
       className="dropdown-toggle"
-      onClick={[Function]}
+      data-toggle="dropdown"
     >
       <i
         className="material-icons material-icons-more_vert align-middle "
@@ -970,7 +966,7 @@ exports[`CommentContainer Render save form 1`] = `
       
     </div>
     <div
-      className="dropdown dropdown-right"
+      className="dropdown-menu dropdown-menu-right"
     >
       <div
         className="dropdown-item"
@@ -1099,8 +1095,8 @@ exports[`CommentContainer Save button 1`] = `
       },
     }
   }
-  editComment={[Function]}
-  toggleEdit={[Function]}
+  editComment={[MockFunction]}
+  toggleEdit={[MockFunction]}
   user={
     Object {
       "name": "Benny Cosmos",
@@ -1112,15 +1108,15 @@ exports[`CommentContainer Save button 1`] = `
     className="comment-wrapper"
     key="test"
   >
-    <ContextMenu
+    <_default
       className="comment-wrapper-context-menu"
     >
       <div
-        className="ContextMenu comment-wrapper-context-menu"
+        className="ContextMenu dropdown comment-wrapper-context-menu"
       >
         <div
           className="dropdown-toggle"
-          onClick={[Function]}
+          data-toggle="dropdown"
         >
           <Icon
             className="align-middle"
@@ -1135,7 +1131,7 @@ exports[`CommentContainer Save button 1`] = `
           </Icon>
         </div>
         <div
-          className="dropdown dropdown-right"
+          className="dropdown-menu dropdown-menu-right"
         >
           <ContextMenuAction
             icon="edit"
@@ -1195,7 +1191,7 @@ exports[`CommentContainer Save button 1`] = `
           </ContextMenuAction>
         </div>
       </div>
-    </ContextMenu>
+    </_default>
     <div
       className="d-flex align-items-center mb-3 w-100"
     >

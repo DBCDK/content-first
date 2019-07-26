@@ -175,8 +175,8 @@ exports[`renders without crashing 1`] = `
         </div>
         <div
           className="top-bar-dropdown-list--content text-left
-                 slide-out
-                 empty-list"
+         slide-out
+         empty-list"
         >
           <i
             className="material-icons top-bar-dropdown-list--close-btn"
@@ -207,7 +207,7 @@ exports[`renders without crashing 1`] = `
             >
               <button
                 className="
-                    btn Button Button__medium Button__tertiary "
+      btn Button Button__medium Button__tertiary "
                 data-cy="shortlist-dropdown-visit-shortlist"
                 disabled={true}
               >
@@ -223,7 +223,7 @@ exports[`renders without crashing 1`] = `
             >
               <button
                 className="
-                    btn Button Button__medium Button__tertiary "
+      btn Button Button__medium Button__tertiary "
                 data-cy=""
                 disabled={true}
               >
@@ -997,7 +997,7 @@ exports[`renders without crashing 1`] = `
       >
         <button
           className="
-              btn Button Button__medium Button__primary Button__primary--bgcolor-petroleum--color-white"
+      btn Button Button__medium Button__primary Button__primary--bgcolor-petroleum--color-white"
           data-cy=""
           disabled={false}
           onClick={[Function]}
@@ -1019,7 +1019,7 @@ exports[`renders without crashing 1`] = `
   >
     <button
       className="Button__feedback
-          btn Button Button__medium Button__secondary "
+      btn Button Button__medium Button__secondary "
       data-cy=""
       disabled={false}
       onClick={[Function]}

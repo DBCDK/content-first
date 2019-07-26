@@ -113,7 +113,7 @@
     "start-frontend": ". ./current.env && react-scripts start",
     "test": "run-s test-frontend test-units lint-js",
     "test-acceptance": ". ./env/integration.env && mocha --exit src/acceptance/*_test.js --timeout 5000",
-    "test-frontend": "CI=true react-scripts test ",
+    "test-frontend": "CI=true  react-scripts test --colors ",
     "test-frontend:watch": "react-scripts test ",
     "test-full": "run-s test test-no-elvis",
     "test-no-db": ". ./current.env && mocha --exit src/acceptance/*_no-db.js",
@@ -127,6 +127,7 @@
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
+    
   },
   "eslintConfig": {
     "extends": "react-app"

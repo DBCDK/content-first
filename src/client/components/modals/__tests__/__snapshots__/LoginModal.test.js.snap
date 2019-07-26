@@ -6,7 +6,6 @@ exports[`LoginModal renders function 1`] = `
 >
   <div
     className="modal-backdrop"
-    onClick={undefined}
   />
   <div
     className="modal-window text-left modal-narrow login-modal"
@@ -16,7 +15,6 @@ exports[`LoginModal renders function 1`] = `
     >
       <i
         className="material-icons modal-window--close-btn"
-        onClick={undefined}
       >
         clear
       </i>
@@ -37,7 +35,6 @@ exports[`LoginModal renders function 1`] = `
       >
         <span
           className="btn  modal-window-login-btn"
-          onClick={undefined}
         >
           Log ind
         </span>
