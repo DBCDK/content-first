@@ -600,7 +600,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -615,7 +615,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -751,7 +751,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -767,7 +767,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -1063,7 +1063,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -1078,7 +1078,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -1214,7 +1214,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -1230,7 +1230,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -1526,7 +1526,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -1541,7 +1541,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -1677,7 +1677,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -1693,7 +1693,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -2465,7 +2465,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -2480,7 +2480,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -2616,7 +2616,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -2632,7 +2632,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -2928,7 +2928,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -2943,7 +2943,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -3079,7 +3079,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -3095,7 +3095,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -3391,7 +3391,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -3406,7 +3406,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -3542,7 +3542,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -3558,7 +3558,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -4329,7 +4329,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -4344,7 +4344,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -4480,7 +4480,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -4496,7 +4496,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -4792,7 +4792,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -4807,7 +4807,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -4943,7 +4943,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -4959,7 +4959,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -5255,7 +5255,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -5270,7 +5270,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -5406,7 +5406,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -5422,7 +5422,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -6193,7 +6193,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -6208,7 +6208,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -6344,7 +6344,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -6360,7 +6360,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -6656,7 +6656,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -6671,7 +6671,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -6807,7 +6807,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -6823,7 +6823,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -7119,7 +7119,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -7134,7 +7134,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -7270,7 +7270,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -7286,7 +7286,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -8057,7 +8057,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -8072,7 +8072,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -8208,7 +8208,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -8224,7 +8224,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -8520,7 +8520,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -8535,7 +8535,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -8671,7 +8671,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -8687,7 +8687,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -8983,7 +8983,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -8998,7 +8998,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -9134,7 +9134,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -9150,7 +9150,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -9921,7 +9921,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -9936,7 +9936,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -10072,7 +10072,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -10088,7 +10088,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -10384,7 +10384,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -10399,7 +10399,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -10535,7 +10535,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -10551,7 +10551,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -10847,7 +10847,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -10862,7 +10862,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -10998,7 +10998,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -11014,7 +11014,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -11785,7 +11785,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -11800,7 +11800,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -11936,7 +11936,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -11952,7 +11952,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -12248,7 +12248,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -12263,7 +12263,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -12399,7 +12399,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -12415,7 +12415,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -12711,7 +12711,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -12726,7 +12726,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -12862,7 +12862,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -12878,7 +12878,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -13649,7 +13649,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -13664,7 +13664,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -13800,7 +13800,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -13816,7 +13816,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -14112,7 +14112,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -14127,7 +14127,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -14263,7 +14263,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -14279,7 +14279,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -14575,7 +14575,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -14590,7 +14590,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -14726,7 +14726,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -14742,7 +14742,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -15514,7 +15514,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -15529,7 +15529,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -15665,7 +15665,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -15681,7 +15681,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -15977,7 +15977,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -15992,7 +15992,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -16128,7 +16128,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -16144,7 +16144,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -16440,7 +16440,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -16455,7 +16455,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -16591,7 +16591,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -16607,7 +16607,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -17378,7 +17378,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -17393,7 +17393,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -17529,7 +17529,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -17545,7 +17545,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -17841,7 +17841,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -17856,7 +17856,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -17992,7 +17992,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -18008,7 +18008,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -18304,7 +18304,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -18319,7 +18319,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -18455,7 +18455,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -18471,7 +18471,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog

@@ -1,6 +1,7 @@
 .ContextMenu {
   font-size: 14px;
   font-weight: 600;
+  position: relative;
 }
 .ContextMenu label {
   cursor: pointer;
@@ -11,12 +12,40 @@
 .ContextMenu .dropdown-toggle::after {
   display: none;
 }
-.ContextMenu .dropdown-menu {
+.ContextMenu .dropdown {
+  position: absolute;
+  left: 0;
+  right: auto;
   background: #f8f8f8;
   border: 1px solid #c9ddcf;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   padding: 0;
+  z-index: 1000;
+
+  opacity: 0;
+  pointer-events: none;
 }
+
+.ContextMenu .dropdown.dropdown-right {
+  right: 0 !important;
+  left: auto !important;
+}
+
+.ContextMenu .dropdown.drop-up {
+  bottom: 100%;
+  top: auto;
+}
+
+.ContextMenu .dropdown.drop-down {
+  top: 100%;
+  bottom: auto;
+}
+
+.ContextMenu .dropdown.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .ContextMenu .dropdown-item {
   cursor: pointer;
   font-weight: 600;

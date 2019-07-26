@@ -8,8 +8,7 @@ import Button from '../../base/Button';
 import T from '../../base/T/';
 import {withList} from '../../hoc/List/';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
-import isInViewport from '../../../utils/isInViewport';
-import scrollDirection from '../../../utils/scrollDirection';
+
 import {
   CUSTOM_LIST,
   SYSTEM_LIST,
@@ -109,27 +108,16 @@ export class AddToListButton extends React.Component {
   };
 
   dropdownDirection = () => {
-    if (this.dropdown) {
-      console.log('isInViewport', isInViewport(this.dropdown));
-
+    if (this.dropdown && this.listContainer) {
       const btn = this.listContainer.getBoundingClientRect();
       const menu = this.dropdown.getBoundingClientRect();
+      const bottomSpace = window.innerHeight - btn.bottom;
       const offset = 50;
 
-      console.log('el', btn);
-
-      const topSpace = btn.top;
-      const bottomSpace = window.innerHeight - btn.bottom;
-      menu.height;
-
-      console.log('top: ', topSpace, 'bottom', bottomSpace);
-
       if (menu.height + offset < bottomSpace) {
-        console.log('should drop-down');
         this.dropdown.classList.add('drop-down');
         this.dropdown.classList.remove('drop-up');
       } else {
-        console.log('should drop-up');
         this.dropdown.classList.add('drop-up');
         this.dropdown.classList.remove('drop-down');
       }
@@ -282,7 +270,7 @@ export class AddToListButton extends React.Component {
 
         <ul
           ref={e => (this.dropdown = e)}
-          className="AddToListButton__Dropdown drop-bottom AddToListButton__Dropdown__ShowLists dropdown-menu"
+          className="AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists"
         >
           <li
             className="AddToListButton__Mobile__Back"
