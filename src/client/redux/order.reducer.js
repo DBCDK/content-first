@@ -85,7 +85,7 @@ const orderReducer = (state = defaultState, action) => {
     }
 
     case PICKUP_BRANCHES:
-      return {...state, pickupBranches: action.branches};
+      return {...state, pickupBranches: action.branches.filter(branch => branch.pickupAllowed !== '0')};
 
     default:
       return state;
