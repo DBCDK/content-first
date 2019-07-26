@@ -256,7 +256,7 @@ class WorkPage extends React.Component {
                             size="medium"
                             className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                           >
-                            <Icon name={'alternate_email'} />
+                            <Icon name={'language'} />
                             <T component="general" name="ebook" />
                           </Button>
                         </a>
@@ -407,16 +407,17 @@ class WorkPage extends React.Component {
             </div>
           </div>
 
-          {work.detailsHasLoaded && work.tagsHasLoaded && (
-            <SimilarBelt
-              beltRef={e => (this.booksBeltPosition = e)}
-              key={'workpage' + book.pid}
-              mount={'workpage' + book.pid}
-              likes={[book.pid]}
-              style={{background: 'white'}}
-              className="mt-xl-5"
-            />
-          )}
+          {work.detailsHasLoaded &&
+            work.tagsHasLoaded && (
+              <SimilarBelt
+                beltRef={e => (this.booksBeltPosition = e)}
+                key={'workpage' + book.pid}
+                mount={'workpage' + book.pid}
+                likes={[book.pid]}
+                style={{background: 'white'}}
+                className="mt-xl-5"
+              />
+            )}
         </div>
       </div>
     );

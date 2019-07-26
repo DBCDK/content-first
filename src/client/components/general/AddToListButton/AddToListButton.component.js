@@ -8,6 +8,8 @@ import Button from '../../base/Button';
 import T from '../../base/T/';
 import {withList} from '../../hoc/List/';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
+import isInViewport from '../../../utils/isInViewport';
+import scrollDirection from '../../../utils/scrollDirection';
 import {
   CUSTOM_LIST,
   SYSTEM_LIST,
@@ -71,6 +73,16 @@ const MenuEntry = withList(
 );
 
 export class AddToListButton extends React.Component {
+  componentDidMount() {
+    document.addEventListener('mouseup', this.forceClose);
+    document.addEventListener('scroll', this.dropdownDirection);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mouseup', this.forceClose);
+    window.removeEventListener('scroll', this.dropdownDirection);
+  }
+
   // Check if a work exist in a list
   pidInList(pid, list) {
     let status = false;
@@ -84,12 +96,44 @@ export class AddToListButton extends React.Component {
 
   // Force dropdown to show
   forceOpen = () => {
-    this.dropdown.classList.add('show');
+    if (this.dropdown) {
+      this.dropdown.classList.add('show');
+    }
   };
 
   // Force dropdown to close
   forceClose = () => {
-    this.dropdown.classList.remove('show');
+    if (this.dropdown) {
+      this.dropdown.classList.remove('show');
+    }
+  };
+
+  dropdownDirection = () => {
+    if (this.dropdown) {
+      console.log('isInViewport', isInViewport(this.dropdown));
+
+      const btn = this.listContainer.getBoundingClientRect();
+      const menu = this.dropdown.getBoundingClientRect();
+      const offset = 50;
+
+      console.log('el', btn);
+
+      const topSpace = btn.top;
+      const bottomSpace = window.innerHeight - btn.bottom;
+      menu.height;
+
+      console.log('top: ', topSpace, 'bottom', bottomSpace);
+
+      if (menu.height + offset < bottomSpace) {
+        console.log('should drop-down');
+        this.dropdown.classList.add('drop-down');
+        this.dropdown.classList.remove('drop-up');
+      } else {
+        console.log('should drop-up');
+        this.dropdown.classList.add('drop-up');
+        this.dropdown.classList.remove('drop-down');
+      }
+    }
   };
 
   // Title for addToList button
@@ -136,8 +180,8 @@ export class AddToListButton extends React.Component {
               multiple
                 ? 'booksAddedToList'
                 : status
-                ? 'toastRemovedFrom'
-                : 'toastAddedTo'
+                  ? 'toastRemovedFrom'
+                  : 'toastAddedTo'
             }
             vars={[elements.length, l.title]}
           />
@@ -225,18 +269,20 @@ export class AddToListButton extends React.Component {
           type={multiple ? 'tertiary' : 'quinary'}
           size={multiple ? 'large' : 'medium'}
           id="addtolist"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="true"
           iconRight="more_vert"
+          onClick={() => {
+            if (this.dropdown && !this.dropdown.classList.contains('show')) {
+              this.dropdownDirection();
+              this.forceOpen();
+            }
+          }}
         >
           {buttonTitle}
         </Button>
 
         <ul
           ref={e => (this.dropdown = e)}
-          className="AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists dropdown-menu"
-          aria-labelledby="addtolist"
+          className="AddToListButton__Dropdown drop-bottom AddToListButton__Dropdown__ShowLists dropdown-menu"
         >
           <li
             className="AddToListButton__Mobile__Back"
@@ -264,8 +310,16 @@ export class AddToListButton extends React.Component {
 
           <div className="AddToListButton__Lists">
             {this.createDropdownElement(systemLists, systemLists.length)}
+            <li>test</li>
+            <li>test</li>
+            <li>test</li>
+            <li>test</li>
+            <li>test</li>
+            <li>test</li>
             {this.createDropdownElement(customLists, customLists.length)}
           </div>
+
+          <li className="AddToListButton__Mobile__Heading">{'test'}</li>
 
           <li
             className="border-top d-none d-sm-flex align-items-center"
