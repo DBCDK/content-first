@@ -298,16 +298,8 @@ export class AddToListButton extends React.Component {
 
           <div className="AddToListButton__Lists">
             {this.createDropdownElement(systemLists, systemLists.length)}
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
             {this.createDropdownElement(customLists, customLists.length)}
           </div>
-
-          <li className="AddToListButton__Mobile__Heading">{'test'}</li>
 
           <li
             className="border-top d-none d-sm-flex align-items-center"

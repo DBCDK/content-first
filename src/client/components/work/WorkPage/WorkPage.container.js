@@ -58,6 +58,8 @@ class WorkPage extends React.Component {
       return null;
     }
 
+    console.log('work', work);
+
     // get collections including ereolen
     const collection = this.props.filterCollection(work);
     // get reviews from litteratursiden
