@@ -69,7 +69,7 @@ jest.mock('../../../hoc/Work/withWork.hoc', () => WrappedComponent => props => (
     filterCollection={jest.fn(() => [
       {
         count: 1,
-        icon: 'alternate_email',
+        icon: 'language',
         type: 'Ebog',
         url: 'https://this/url/ebog'
       },

@@ -28,26 +28,40 @@ const getWork = (
   date,
   identifierISBN,
   subjectDBCS,
+  subjectDBCF,
+  spatialDBCF,
+  temporalDBCP,
   coverUrlFull
-) => ({
-  book: {
-    pid,
-    title: (dcTitle && dcTitle[0]) || '',
-    creator: (creator && creator[0]) || '',
-    description: (abstract && abstract[0]) || '',
-    identifierISBN: identifierISBN || '',
-    pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
-    language: (dcLanguage && dcLanguage[0]) || '',
-    first_edition_year: (date && date[0]) || '',
-    taxonomy_description_subjects:
-      subjectsToTaxonomyDescription(subjectDBCS) || '',
-    tags:
-      (subjectDBCS &&
-        subjectDBCS.map(title => fromTitle(title)).filter(t => t)) ||
-      [],
-    coverUrl: (coverUrlFull && coverUrlFull[0]) || null
-  }
-});
+) => {
+  // Tags merged and mapped with categories (parents/subjects)
+  const tags =
+    [
+      ...(subjectDBCS || []),
+      ...(subjectDBCF || []),
+      ...(spatialDBCF || []),
+      ...(temporalDBCP || [])
+    ]
+      .filter((v, i, a) => a.indexOf(v) === i)
+      .map(title => fromTitle(title))
+      .filter(t => t) || [];
+
+  return {
+    book: {
+      pid,
+      title: (dcTitle && dcTitle[0]) || '',
+      creator: (creator && creator[0]) || '',
+      description: (abstract && abstract[0]) || '',
+      identifierISBN: identifierISBN || '',
+      pages: (extent && extent[0] && parseInt(extent[0], 10)) || '',
+      language: (dcLanguage && dcLanguage[0]) || '',
+      first_edition_year: (date && date[0]) || '',
+      taxonomy_description_subjects:
+        subjectsToTaxonomyDescription(subjectDBCS) || '',
+      tags,
+      coverUrl: (coverUrlFull && coverUrlFull[0]) || null
+    }
+  };
+};
 
 /**
  * Will fetch a work from openplatform
@@ -70,6 +84,9 @@ const fetchWork = async pid => {
     date,
     identifierISBN,
     subjectDBCS,
+    subjectDBCF,
+    spatialDBCF,
+    temporalDBCP,
     coverUrlFull
   } = (await request.post(config.login.openplatformUrl + '/work').send({
     pids: [pid],
@@ -82,6 +99,9 @@ const fetchWork = async pid => {
       'date',
       'identifierISBN',
       'subjectDBCS',
+      'subjectDBCF',
+      'spatialDBCF',
+      'temporalDBCP',
       'coverUrlFull'
     ],
     access_token: (await fetchAnonymousToken()).access_token
@@ -98,6 +118,9 @@ const fetchWork = async pid => {
     date,
     identifierISBN,
     subjectDBCS,
+    subjectDBCF,
+    spatialDBCF,
+    temporalDBCP,
     coverUrlFull
   );
 
