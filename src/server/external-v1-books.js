@@ -18,6 +18,8 @@ const {
 } = require('../client/utils/taxonomy');
 const {fetchAnonymousToken} = require('./smaug');
 
+/* eslint-disable complexity */
+
 const getWork = (
   pid,
   dcTitle,
@@ -62,6 +64,8 @@ const getWork = (
     }
   };
 };
+
+/* eslint-enable complexity */
 
 /**
  * Will fetch a work from openplatform
