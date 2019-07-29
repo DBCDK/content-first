@@ -9,22 +9,12 @@ const defaultState = {
 
 const interactionReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case INTERACTION: {
+    case FETCH_INTERACTIONS: {
       return {
         ...state,
-        interactions: [
-          ...state.interactions,
-          {
-            type: 'INTERACTION',
-            interaction: action.interaction,
-            pid: action.pid
-          }
-        ]
+        interactions: [...state.interactions],
+        isLoading: true
       };
-    }
-
-    case FETCH_INTERACTIONS: {
-      return {...state, interactions: [...state.interactions], isLoading: true};
     }
 
     case FETCH_INTERACTIONS_SUCCESS: {
