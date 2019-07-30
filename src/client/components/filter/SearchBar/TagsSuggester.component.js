@@ -82,10 +82,9 @@ class TagsSuggester extends React.Component {
         if (s.type === 'TITLE') {
           if (seen[s.title]) {
             return false;
-          } else {
-            seen[s.title] = true;
-            return true;
           }
+          seen[s.title] = true;
+          return true;
         }
         return true;
       })
