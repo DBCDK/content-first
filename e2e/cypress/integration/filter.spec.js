@@ -200,10 +200,11 @@ describe('Filter page test', function() {
 
   it('Shows "More like this"-belt', function() {
     cy.visit('/find?tags=5634');
+    cy.wait(1000);
 
     cy.get('[data-cy=WC-more-like-this]')
       .first()
-      .click('top');
+      .click();
 
     cy.get('[data-cy=similarBelt]').within(el => {
       cy.get('[data-cy=workcard]')
