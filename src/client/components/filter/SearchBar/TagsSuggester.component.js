@@ -57,46 +57,56 @@ class TagsSuggester extends React.Component {
     const clientSuggestions = this.getClientSideSuggestions({value});
     let suggestions = [...clientSuggestions, ...response.body];
     /* performance optimization, updating the redux books state */
-    const books = suggestions
-      .filter(s => s.type === 'TITLE')
-      .map(s => {
-        return {
-          book: {
-            title: s.title,
-            creator: s.authorName,
-            pid: s.pid
-          }
-        };
-      });
+    const books = suggestions.filter(s => s.type === 'TITLE').map(s => {
+      return {
+        book: {
+          title: s.title,
+          creator: s.authorName,
+          pid: s.pid
+        }
+      };
+    });
     this.props.updateBooks(books);
     this.setState({suggestions: this.getCombinedSuggestions(suggestions)});
   };
 
   getCombinedSuggestions = suggs => {
-    const titles = suggs
-      .map((s, num) => {
-        s.order = num;
-        return s;
-      })
-      .filter(s => s.type === 'TITLE');
-    const grouped = _.groupBy(titles, 'title');
-    const groupedArr = Object.values(grouped)
-      .filter(s => s.length > 1)
-      .map(e => {
-        let retObj = e[0];
-        e.map((p, num) => {
-          if (num === 0) {
-            retObj.pid = p.title + ';' + p.pid;
+    const groupedTitles = _.groupBy(
+      suggs.filter(s => s.type === 'TITLE'),
+      'title'
+    );
+
+    const seen = {};
+    const uniqueSuggestions = suggs
+      .filter(s => {
+        if (s.type === 'TITLE') {
+          if (seen[s.title]) {
+            return false;
           } else {
-            retObj.pid += ';' + p.pid;
+            seen[s.title] = true;
+            return true;
           }
-        });
-        return retObj;
+        }
+        return true;
+      })
+      .map(s => {
+        if (s.type === 'TITLE') {
+          const retObj = groupedTitles[s.title][0];
+          if (groupedTitles[s.title].length > 1) {
+            groupedTitles[s.title].forEach((p, num) => {
+              if (num === 0) {
+                retObj.pid = p.title + ';' + p.pid;
+              } else {
+                retObj.pid += ';' + p.pid;
+              }
+            });
+          }
+          return retObj;
+        }
+        return s;
       });
-    const remainingSuggestions = Object.values(_.groupBy(suggs, 'title'))
-      .filter(s => s.length === 1)
-      .map(e => e[0]);
-    return _.sortBy([...groupedArr, ...remainingSuggestions], ['order']);
+
+    return uniqueSuggestions;
   };
 
   onSuggestionsClearRequested = () => {
