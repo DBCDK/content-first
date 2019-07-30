@@ -203,7 +203,7 @@ describe('Filter page test', function() {
 
     cy.get('[data-cy=WC-more-like-this]')
       .first()
-      .click();
+      .click('top');
 
     cy.get('[data-cy=similarBelt]').within(el => {
       cy.get('[data-cy=workcard]')
