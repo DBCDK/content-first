@@ -1,0 +1,27 @@
+.Color__wrap {
+  width: 20%;
+  display: inline-flex;
+  align-items: center;
+  margin: 1rem;
+}
+
+.Color {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.Color__details {
+  margin-left: 1rem;
+}
+
+.Color__title {
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.Color__hex {
+  font-size: 12px;
+  margin-top: -3px;
+}

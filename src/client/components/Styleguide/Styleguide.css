@@ -1,0 +1,33 @@
+#scrollableArea {
+  background-color: var(--lys-graa);
+}
+
+.Styleguide {
+  width: 65%;
+  margin: auto;
+}
+
+.Styleguide section {
+  padding: 100px 0 0 0;
+}
+
+.Styleguide section .wrap {
+  padding: 1rem;
+  background-color: white;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+.Styleguide .section-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.Styleguide .section-1 .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.Styleguide .section-3 p {
+  margin-top: 1rem;
+}
