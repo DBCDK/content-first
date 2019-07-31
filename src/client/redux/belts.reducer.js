@@ -1,15 +1,17 @@
 const defaultState = {
   belts: {
-    'Historiske romaner': {
-      key: 'Historiske romaner',
-      name: 'Historiske romaner',
+    'Fart over feltet': {
+      key: 'Fart over feltet',
+      name: 'Fart over feltet',
       subtext:
-        'Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.',
+        'Læser du for at lade dig rive med, er bøgerne her gode forslag til dig. ',
       tags: [
-        {id: 4901, weight: 10},
-        {id: 5660, weight: 1},
-        {id: 5658, weight: 1},
-        {id: 189, weight: 1}
+        {id: 5633, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 5676, weight: 1},
+        {id: 5672, weight: 1},
+        {id: 5670, weight: 1},
+        {id: 5674, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
@@ -21,7 +23,7 @@ const defaultState = {
       name: 'Livskloge bøger',
       subtext: 'Få et frisk perspektiv på tilværelsen gennem livskloge øjne. ',
       tags: [
-        {id: 5465, weight: 10},
+        {id: 3279, weight: 10},
         {id: 3510, weight: 1},
         {id: 5721, weight: 1}
       ],
@@ -238,6 +240,22 @@ const defaultState = {
         {id: 5670, weight: 1},
         {id: 5676, weight: 1},
         {id: 5691, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
+    'Historiske romaner': {
+      key: 'Historiske romaner',
+      name: 'Historiske romaner',
+      subtext:
+        'Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær.',
+      tags: [
+        {id: 4901, weight: 10},
+        {id: 5660, weight: 1},
+        {id: 5658, weight: 1},
+        {id: 189, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
