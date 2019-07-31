@@ -45,6 +45,11 @@ class App extends Component {
     const path = this.props.routerState.path;
     const pathSplit = path.split('/');
 
+    const backgroundColor =
+      pathSplit && pathSplit[1] === 'styleguide'
+        ? 'var(--lys-graa)'
+        : 'var(--white)';
+
     let currentPage = null;
     let topbar = true;
     let footer = true;
@@ -75,6 +80,7 @@ class App extends Component {
       );
     } else if (pathSplit[1] === 'styleguide') {
       currentPage = <Styleguide />;
+      footer = false;
     } else if (pathSplit[1] === 'print' && pathSplit[2]) {
       currentPage = <PrintLayout id={pathSplit[2]} />;
       topbar = false;
@@ -87,7 +93,7 @@ class App extends Component {
     }
 
     return (
-      <div className={'App'}>
+      <div className={'App'} style={{backgroundColor}}>
         <Head />
         {topbar && (
           <div>

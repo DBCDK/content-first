@@ -1,27 +1,25 @@
 import React from 'react';
-import _ from 'lodash';
 
 import './Panel.css';
 
 let sections = [];
 let links = [];
 
-let lastId;
-let cur = [];
-
 export default class Panel extends React.Component {
   componentDidMount() {
     sections = Array.from(document.querySelectorAll('section[id]'));
     links = Array.from(document.querySelectorAll('.Panel_anchor'));
 
-    window.addEventListener('scroll', event => {
+    window.addEventListener('scroll', () => {
       let fromTop = window.scrollY + 100;
 
       links.forEach(link => {
         let section = document.querySelector(link.hash);
 
         if (
+          section &&
           section.offsetTop <= fromTop &&
+          section &&
           section.offsetTop + section.offsetHeight > fromTop
         ) {
           link.classList.add('current');

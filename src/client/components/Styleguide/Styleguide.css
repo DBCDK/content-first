@@ -1,10 +1,7 @@
-#scrollableArea {
-  background-color: var(--lys-graa);
-}
-
 .Styleguide {
   width: 65%;
   margin: auto;
+  padding: 0 0 75vh 0;
 }
 
 .Styleguide section {
@@ -12,7 +9,7 @@
 }
 
 .Styleguide section .wrap {
-  padding: 1rem;
+  padding: 2rem;
   background-color: white;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
 }
@@ -28,6 +25,72 @@
   justify-content: space-between;
 }
 
+.Styleguide .section-1 .wrap .Color__wrap {
+  margin: 1rem 0 1rem 0;
+}
+
 .Styleguide .section-3 p {
   margin-top: 1rem;
+}
+
+.Styleguide .section-4 button {
+  margin: 0.5rem;
+}
+
+.Styleguide .section-6 textarea {
+  height: 100px;
+  resize: none;
+}
+/* Styleguide util */
+
+.Styleguide section .wrap .flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Styleguide .section-8 .tabs {
+  height: 200px;
+  padding: 1rem;
+}
+
+.Styleguide .section-8 .tabs p {
+  color: white;
+}
+
+.Styleguide .section-8 .tabs-page-1 {
+  background-color: var(--elm);
+}
+
+.Styleguide .section-8 .tabs-page-2 {
+  background-color: var(--korn);
+}
+
+.Styleguide .section-8 .tabs-page-3 {
+  background-color: var(--de-york);
+}
+
+.Styleguide .section-9 .Divider__vertical {
+  height: 50px;
+  margin: 1rem;
+}
+
+.Styleguide .section-10 .bring-me-a-toast {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-around;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.Styleguide .section-10 .bring-me-a-toast:hover {
+  box-shadow: none;
+  transform: translate(1px, 1px);
+}
+
+.Styleguide .section-10 .bring-me-a-toast:focus {
+  outline: none;
 }
