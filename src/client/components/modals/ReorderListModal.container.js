@@ -9,6 +9,7 @@ import {
 
 import Modal from './Modal/Modal.component';
 import Text from '../base/Text';
+import Icon from '../base/Icon';
 import {withList} from '../hoc/List';
 import withWork from '../hoc/Work/withWork.hoc';
 import BookCover from '../general/BookCover/BookCover.component';
@@ -31,7 +32,7 @@ const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
     className={'order-list-element d-flex align-items-middle' + className}
     data-cy="reorder-list-element"
   >
-    <i className="material-icons drag-indicator">drag_indicator</i>
+    <Icon name="drag_handle" className="drag-indicator" />
 
     <div className="ml-2 w-75">
       <span style={{height: 32, float: 'left', marginRight: 10, marginTop: 3}}>
@@ -46,16 +47,13 @@ const SortableItem = SortableElement(({book, moveUp, moveDown, className}) => (
     </div>
 
     <div className="d-none d-md-flex p-0 justify-content-between ml-auto">
-      <i
+      <Icon
+        name="expand_less"
         onClick={moveUp}
-        className="material-icons curser-pointer"
         data-cy="order-list-element-moveup"
-      >
-        expand_less
-      </i>
-      <i className="material-icons curser-pointer" onClick={moveDown}>
-        expand_more
-      </i>
+        className="curser-pointer"
+      />
+      <Icon name="expand_more" onClick={moveDown} className="curser-pointer" />
     </div>
   </li>
 ));
