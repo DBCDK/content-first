@@ -29,6 +29,27 @@ import Color from './Components/Color/Color.component';
 import Font from './Components/Font/Font.component';
 import './Styleguide.css';
 
+/**
+    Create a new section by copy the codeblock and paste it to the bottom of the <main>
+    Remember to give your section an id (SECTION_NUMBER)
+
+    The section should automaticaly be added to the Panel menu
+
+    Code block:
+
+    <section id="section-SECTION_NUMBER">
+      <h1 className="section-title">
+        Title ...
+      </h1>
+      <p>
+        Description ...
+      </p>
+      <div className="wrap">
+        content in a white card ...
+      </div>
+    </section>
+*/
+
 export default class Styleguide extends React.Component {
   constructor() {
     super();
@@ -38,9 +59,8 @@ export default class Styleguide extends React.Component {
     const {input, checkbox, radio} = this.state;
 
     return (
-      <div className="container">
+      <div className="Styleguide-container container">
         <Panel />
-
         <main className="Styleguide">
           <section id="section-0">
             <h1 className="section-title">About</h1>
