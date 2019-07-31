@@ -93,13 +93,14 @@ export default () => (
         </div>
       </section>
       <section id="section-4">
-        <h1 className="section-title">Section 4</h1>
-        <p>
-          Aliquid aliquam magnam ducimus similique obcaecati, unde
-          exercitationem laborum incidunt, quas in ipsum inventore nostrum?
-          Blanditiis optio cumque earum iste odio! Alias sint accusamus
-          repudiandae.
-        </p>
+        <h1 className="section-title">Buttons</h1>
+        <p>Buttons in normal and deactive state</p>
+        <div className="wrap">
+          <Button type="primary">primary </Button>
+          <Button type="secondary">secondary</Button>
+
+          <Button type="tertiary">tertiary </Button>
+        </div>
       </section>
       <section id="section-5">
         <h1 className="section-title">Section 5</h1>

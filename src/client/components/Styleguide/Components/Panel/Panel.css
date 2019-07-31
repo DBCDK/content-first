@@ -1,6 +1,7 @@
 .Panel {
+  width: 250px;
   position: fixed;
-  right: 100px;
+  right: 0;
   top: 100px;
 }
 
