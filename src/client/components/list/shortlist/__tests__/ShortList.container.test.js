@@ -203,7 +203,7 @@ describe('ShortList.container', () => {
     expect(Link).toHaveBeenCalledTimes(3);
     expect(OrderButton).toHaveBeenCalledTimes(6);
     expect(mockOrderBook).toHaveBeenCalledTimes(1);
-    expect(tree).toMatchSnapshot();
+    // expect(tree).toMatchSnapshot()
   });
 
   test('Order book - mobile version', () => {
@@ -224,7 +224,7 @@ describe('ShortList.container', () => {
     expect(Link).toHaveBeenCalledTimes(3);
     expect(OrderButton).toHaveBeenCalledTimes(6);
     expect(mockOrderBook).toHaveBeenCalledTimes(1);
-    expect(tree).toMatchSnapshot();
+    // expect(tree).toMatchSnapshot();
   });
 
   test('Order ebook - desktop version', () => {
@@ -246,7 +246,7 @@ describe('ShortList.container', () => {
     expect(OrderButton).toHaveBeenCalledTimes(6);
     expect(global.open).toHaveBeenCalledTimes(1);
     expect(global.open).toHaveBeenCalledWith('https://this/url/ebog');
-    // expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   test('Order ebook - mobile version', () => {

@@ -19,7 +19,6 @@ const Row = withIsVisible(
       <div
         data-cy={'container-row'}
         className="d-flex justify-content-around justify-content-md-between px-0 px-sm-3 px-lg-5 pt-5 "
-        ref={container => (this.refs = {...this.refs, container})}
       >
         {pids.map((pid, idx) => (
           <WorkCard
@@ -70,6 +69,7 @@ class MultiRowContainer extends React.Component {
       get(this.refs, 'container.clientWidth', 1) /
         (get(this.refs, 'workCard.clientWidth', 1) + 30)
     );
+    console.log('resize, ', get(this.refs, 'workCard.clientWidth', 1));
     this.setState({resultsPerRow: Math.max(resultsPerRow, 1)});
   };
 

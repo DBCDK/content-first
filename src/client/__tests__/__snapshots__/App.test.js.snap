@@ -3,11 +3,6 @@
 exports[`renders without crashing 1`] = `
 <div
   className="App"
-  style={
-    Object {
-      "backgroundColor": "var(--white)",
-    }
-  }
 >
   <div>
     <header
@@ -366,20 +361,6 @@ exports[`renders without crashing 1`] = `
             </span>
           </a>
         </li>
-        <li>
-          <a
-            className="list-card-nohover"
-            data-cy="edit-start-page"
-            href="/redaktionen"
-            onClick={[Function]}
-            style={Object {}}
-            target="_self"
-          >
-            <span>
-              Redaktionen
-            </span>
-          </a>
-        </li>
         <li
           className="divider"
         />
@@ -404,36 +385,6 @@ exports[`renders without crashing 1`] = `
     >
       <Hero />
       <div>
-        <TagsBelt
-          child={false}
-          id="Jeg elsker dig"
-          isLoading={false}
-          mount="frontpage[{\\"id\\":5660,\\"weight\\":10},{\\"id\\":189,\\"weight\\":10},{\\"id\\":5637,\\"weight\\":1},{\\"id\\":3431,\\"weight\\":10}]"
-          name="Jeg elsker dig"
-          onFrontPage={true}
-          subtext="Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?"
-          tags={
-            Array [
-              Object {
-                "id": 5660,
-                "weight": 10,
-              },
-              Object {
-                "id": 189,
-                "weight": 10,
-              },
-              Object {
-                "id": 5637,
-                "weight": 1,
-              },
-              Object {
-                "id": 3431,
-                "weight": 10,
-              },
-            ]
-          }
-          type="belt"
-        />
         <TagsBelt
           child={false}
           id="Historiske romaner"
@@ -464,59 +415,18 @@ exports[`renders without crashing 1`] = `
           }
           type="belt"
         />
-      </div>
-      <SpotsContainer />
-      <div>
-        <TagsBelt
-          child={false}
-          id="Fart over feltet"
-          isLoading={false}
-          mount="frontpage[{\\"id\\":5633,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5672,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5674,\\"weight\\":1}]"
-          name="Fart over feltet"
-          onFrontPage={true}
-          subtext="Læser du for at lade dig rive med, er bøgerne her gode forslag til dig. "
-          tags={
-            Array [
-              Object {
-                "id": 5633,
-                "weight": 10,
-              },
-              Object {
-                "id": 5731,
-                "weight": 1,
-              },
-              Object {
-                "id": 5676,
-                "weight": 1,
-              },
-              Object {
-                "id": 5672,
-                "weight": 1,
-              },
-              Object {
-                "id": 5670,
-                "weight": 1,
-              },
-              Object {
-                "id": 5674,
-                "weight": 1,
-              },
-            ]
-          }
-          type="belt"
-        />
         <TagsBelt
           child={false}
           id="Livskloge bøger"
           isLoading={false}
-          mount="frontpage[{\\"id\\":3279,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1}]"
+          mount="frontpage[{\\"id\\":5465,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1}]"
           name="Livskloge bøger"
           onFrontPage={true}
           subtext="Få et frisk perspektiv på tilværelsen gennem livskloge øjne. "
           tags={
             Array [
               Object {
-                "id": 3279,
+                "id": 5465,
                 "weight": 10,
               },
               Object {
@@ -531,6 +441,9 @@ exports[`renders without crashing 1`] = `
           }
           type="belt"
         />
+      </div>
+      <SpotsContainer />
+      <div>
         <TagsBelt
           child={false}
           id="Billeder fra provinsen"
@@ -651,41 +564,29 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Hvad sker der bag hækken?"
+          id="Jeg elsker dig"
           isLoading={false}
-          mount="frontpage[{\\"id\\":2683,\\"weight\\":1},{\\"id\\":4907,\\"weight\\":10},{\\"id\\":5368,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5691,\\"weight\\":1}]"
-          name="Hvad sker der bag hækken?"
+          mount="frontpage[{\\"id\\":5660,\\"weight\\":10},{\\"id\\":189,\\"weight\\":10},{\\"id\\":5637,\\"weight\\":1},{\\"id\\":3431,\\"weight\\":10}]"
+          name="Jeg elsker dig"
           onFrontPage={true}
-          subtext="Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger."
+          subtext="Er der noget bedre end at læse en bog fuld af kærlighed i sommervarmen?"
           tags={
             Array [
               Object {
-                "id": 2683,
-                "weight": 1,
-              },
-              Object {
-                "id": 4907,
+                "id": 5660,
                 "weight": 10,
               },
               Object {
-                "id": 5368,
+                "id": 189,
                 "weight": 10,
               },
               Object {
-                "id": 5731,
+                "id": 5637,
                 "weight": 1,
               },
               Object {
-                "id": 5670,
-                "weight": 1,
-              },
-              Object {
-                "id": 5676,
-                "weight": 1,
-              },
-              Object {
-                "id": 5691,
-                "weight": 1,
+                "id": 3431,
+                "weight": 10,
               },
             ]
           }
@@ -957,11 +858,50 @@ exports[`renders without crashing 1`] = `
           }
           type="belt"
         />
+        <TagsBelt
+          child={false}
+          id="Hvad sker der bag hækken?"
+          isLoading={false}
+          mount="frontpage[{\\"id\\":2683,\\"weight\\":1},{\\"id\\":4907,\\"weight\\":10},{\\"id\\":5368,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5691,\\"weight\\":1}]"
+          name="Hvad sker der bag hækken?"
+          onFrontPage={true}
+          subtext="Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger."
+          tags={
+            Array [
+              Object {
+                "id": 2683,
+                "weight": 1,
+              },
+              Object {
+                "id": 4907,
+                "weight": 10,
+              },
+              Object {
+                "id": 5368,
+                "weight": 10,
+              },
+              Object {
+                "id": 5731,
+                "weight": 1,
+              },
+              Object {
+                "id": 5670,
+                "weight": 1,
+              },
+              Object {
+                "id": 5676,
+                "weight": 1,
+              },
+              Object {
+                "id": 5691,
+                "weight": 1,
+              },
+            ]
+          }
+          type="belt"
+        />
       </div>
-      <ListsBelt
-        limit={50}
-        sort="created"
-      />
+      <RecentListsBelt />
     </div>
   </div>
   <span />
