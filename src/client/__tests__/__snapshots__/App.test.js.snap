@@ -387,6 +387,48 @@ exports[`renders without crashing 1`] = `
       <div>
         <TagsBelt
           child={false}
+          id="Familiens skyggesider"
+          isLoading={false}
+          mount="frontpage[{\\"id\\":1672,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":10},{\\"id\\":5699,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1},{\\"id\\":5696,\\"weight\\":1},{\\"id\\":5680,\\"weight\\":1},{\\"id\\":5691,\\"weight\\":10}]"
+          name="Familiens skyggesider"
+          onFrontPage={true}
+          subtext="Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge."
+          tags={
+            Array [
+              Object {
+                "id": 1672,
+                "weight": 10,
+              },
+              Object {
+                "id": 5731,
+                "weight": 10,
+              },
+              Object {
+                "id": 5699,
+                "weight": 1,
+              },
+              Object {
+                "id": 5721,
+                "weight": 1,
+              },
+              Object {
+                "id": 5696,
+                "weight": 1,
+              },
+              Object {
+                "id": 5680,
+                "weight": 1,
+              },
+              Object {
+                "id": 5691,
+                "weight": 10,
+              },
+            ]
+          }
+          type="belt"
+        />
+        <TagsBelt
+          child={false}
           id="Fart over feltet"
           isLoading={false}
           mount="frontpage[{\\"id\\":5633,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5672,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5674,\\"weight\\":1}]"
@@ -417,32 +459,6 @@ exports[`renders without crashing 1`] = `
               },
               Object {
                 "id": 5674,
-                "weight": 1,
-              },
-            ]
-          }
-          type="belt"
-        />
-        <TagsBelt
-          child={false}
-          id="Livskloge bøger"
-          isLoading={false}
-          mount="frontpage[{\\"id\\":3279,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1}]"
-          name="Livskloge bøger"
-          onFrontPage={true}
-          subtext="Få et frisk perspektiv på tilværelsen gennem livskloge øjne. "
-          tags={
-            Array [
-              Object {
-                "id": 3279,
-                "weight": 10,
-              },
-              Object {
-                "id": 3510,
-                "weight": 1,
-              },
-              Object {
-                "id": 5721,
                 "weight": 1,
               },
             ]
@@ -644,41 +660,25 @@ exports[`renders without crashing 1`] = `
         />
         <TagsBelt
           child={false}
-          id="Familiens skyggesider"
+          id="Livskloge bøger"
           isLoading={false}
-          mount="frontpage[{\\"id\\":1672,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":10},{\\"id\\":5699,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1},{\\"id\\":5696,\\"weight\\":1},{\\"id\\":5680,\\"weight\\":1},{\\"id\\":5691,\\"weight\\":10}]"
-          name="Familiens skyggesider"
+          mount="frontpage[{\\"id\\":3279,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1}]"
+          name="Livskloge bøger"
           onFrontPage={true}
-          subtext="Hjemme er ikke altid bedst. Når det ubehagelige og utænkelige folder sig ud inden for hjemmets 4 vægge."
+          subtext="Få et frisk perspektiv på tilværelsen gennem livskloge øjne. "
           tags={
             Array [
               Object {
-                "id": 1672,
+                "id": 3279,
                 "weight": 10,
               },
               Object {
-                "id": 5731,
-                "weight": 10,
-              },
-              Object {
-                "id": 5699,
+                "id": 3510,
                 "weight": 1,
               },
               Object {
                 "id": 5721,
                 "weight": 1,
-              },
-              Object {
-                "id": 5696,
-                "weight": 1,
-              },
-              Object {
-                "id": 5680,
-                "weight": 1,
-              },
-              Object {
-                "id": 5691,
-                "weight": 10,
               },
             ]
           }
