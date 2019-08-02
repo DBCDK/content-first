@@ -1,0 +1,78 @@
+.Editor .Banner__wrap {
+  background-color: var(--kobber) !important;
+}
+
+.Editor .Banner__title h1 {
+  text-transform: uppercase;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-container .material-icons {
+  color: var(--petroleum);
+  font-size: 16px;
+  width: 25px;
+  text-align: center;
+}
+
+.flex-container .material-icons.enabled,
+.flex-container .material-icons.disabled {
+  text-shadow: -1px 0 1px white, 0 1px 1px white, 1px 0 1px white, 0 -1px 1px white, 0px 0px 4px #777777;
+}
+
+.flex-container .material-icons.enabled {
+  color: #81c793;
+}
+
+.flex-container .material-icons.disabled {
+  color: #f37362;
+}
+
+.flex-container .material-icons.up-down {
+  width: 18px;
+}
+
+.flex-container .material-icons.remove {
+  margin-left: 14px;
+}
+
+.flex-container .Text {
+  flex-grow: 1;
+  flex-basis: 1px;
+  padding: 6px;
+}
+
+.list-title-row {
+  border-width: 2px;
+}
+
+.list-title-row .material-icons {
+  color: var(--silver-chalice);
+}
+
+.list-title-row .Text {
+  text-transform: uppercase;
+  color: var(--silver-chalice);
+  font-weight: 600;
+  padding: 6px;
+}
+
+.order-list-element {
+  padding: 0;
+}
+
+.top-bar-dropdown-list-page .Title {
+  margin-top: 2.6em;
+}
+
+.top-bar-dropdown-list-page .Title + .Text {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+

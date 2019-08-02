@@ -19,6 +19,7 @@ import Footer from './components/general/Footer/Footer.component';
 import Article from './components/article/Article.component';
 import Animate from './components/base/Animate';
 import CookieWarning from './components/general/CookieWarning/CookieWarning';
+import Editor from './components/editor/Editor.component';
 
 import {OPEN_MODAL} from './redux/modal.reducer';
 
@@ -70,6 +71,8 @@ class App extends Component {
           size="50px"
         />
       );
+    } else if (pathSplit[1] === 'redaktionen') {
+      currentPage = <Editor />;
     } else if (pathSplit[1] === 'styleguide') {
       currentPage = <Styleguide />;
     }
