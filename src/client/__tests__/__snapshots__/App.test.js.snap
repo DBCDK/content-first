@@ -387,28 +387,36 @@ exports[`renders without crashing 1`] = `
       <div>
         <TagsBelt
           child={false}
-          id="Historiske romaner"
+          id="Fart over feltet"
           isLoading={false}
-          mount="frontpage[{\\"id\\":4901,\\"weight\\":10},{\\"id\\":5660,\\"weight\\":1},{\\"id\\":5658,\\"weight\\":1},{\\"id\\":189,\\"weight\\":1}]"
-          name="Historiske romaner"
+          mount="frontpage[{\\"id\\":5633,\\"weight\\":10},{\\"id\\":5731,\\"weight\\":1},{\\"id\\":5676,\\"weight\\":1},{\\"id\\":5672,\\"weight\\":1},{\\"id\\":5670,\\"weight\\":1},{\\"id\\":5674,\\"weight\\":1}]"
+          name="Fart over feltet"
           onFrontPage={true}
-          subtext="Hensat til en anden tid får de store følelser lov at folde sig ud. Er man uheldig sætter de sociale spilleregler grænser for hjertets begær."
+          subtext="Læser du for at lade dig rive med, er bøgerne her gode forslag til dig. "
           tags={
             Array [
               Object {
-                "id": 4901,
+                "id": 5633,
                 "weight": 10,
               },
               Object {
-                "id": 5660,
+                "id": 5731,
                 "weight": 1,
               },
               Object {
-                "id": 5658,
+                "id": 5676,
                 "weight": 1,
               },
               Object {
-                "id": 189,
+                "id": 5672,
+                "weight": 1,
+              },
+              Object {
+                "id": 5670,
+                "weight": 1,
+              },
+              Object {
+                "id": 5674,
                 "weight": 1,
               },
             ]
@@ -419,14 +427,14 @@ exports[`renders without crashing 1`] = `
           child={false}
           id="Livskloge bøger"
           isLoading={false}
-          mount="frontpage[{\\"id\\":5465,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1}]"
+          mount="frontpage[{\\"id\\":3279,\\"weight\\":10},{\\"id\\":3510,\\"weight\\":1},{\\"id\\":5721,\\"weight\\":1}]"
           name="Livskloge bøger"
           onFrontPage={true}
           subtext="Få et frisk perspektiv på tilværelsen gennem livskloge øjne. "
           tags={
             Array [
               Object {
-                "id": 5465,
+                "id": 3279,
                 "weight": 10,
               },
               Object {

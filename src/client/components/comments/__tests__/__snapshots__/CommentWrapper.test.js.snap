@@ -25,7 +25,7 @@ exports[`CommentContainer Delete button 1`] = `
     className="comment-wrapper"
     key="test"
   >
-    <_default
+    <ContextMenu
       className="comment-wrapper-context-menu"
     >
       <div
@@ -108,7 +108,7 @@ exports[`CommentContainer Delete button 1`] = `
           </ContextMenuAction>
         </div>
       </div>
-    </_default>
+    </ContextMenu>
     <div
       className="d-flex align-items-center mb-3 w-100"
     >
@@ -253,7 +253,7 @@ exports[`CommentContainer Edit button 1`] = `
     className="comment-wrapper"
     key="test"
   >
-    <_default
+    <ContextMenu
       className="comment-wrapper-context-menu"
     >
       <div
@@ -336,7 +336,7 @@ exports[`CommentContainer Edit button 1`] = `
           </ContextMenuAction>
         </div>
       </div>
-    </_default>
+    </ContextMenu>
     <div
       className="d-flex align-items-center mb-3 w-100"
     >
@@ -481,7 +481,7 @@ exports[`CommentContainer Edit button 2`] = `
     className="comment-wrapper"
     key="test"
   >
-    <_default
+    <ContextMenu
       className="comment-wrapper-context-menu"
     >
       <div
@@ -564,7 +564,7 @@ exports[`CommentContainer Edit button 2`] = `
           </ContextMenuAction>
         </div>
       </div>
-    </_default>
+    </ContextMenu>
     <div
       className="d-flex align-items-center mb-3 w-100"
     >
@@ -798,7 +798,7 @@ exports[`CommentContainer Render edit form 1`] = `
 >
   
   <div
-    className="ContextMenu dropdown comment-wrapper-context-menu"
+    className="ContextMenu comment-wrapper-context-menu"
   >
     <div
       className="dropdown-toggle"
@@ -951,7 +951,7 @@ exports[`CommentContainer Render save form 1`] = `
     />
   </div>
   <div
-    className="ContextMenu dropdown comment-wrapper-context-menu"
+    className="ContextMenu comment-wrapper-context-menu"
   >
     <div
       className="dropdown-toggle"
@@ -1108,7 +1108,7 @@ exports[`CommentContainer Save button 1`] = `
     className="comment-wrapper"
     key="test"
   >
-    <_default
+    <ContextMenu
       className="comment-wrapper-context-menu"
     >
       <div
@@ -1191,7 +1191,7 @@ exports[`CommentContainer Save button 1`] = `
           </ContextMenuAction>
         </div>
       </div>
-    </_default>
+    </ContextMenu>
     <div
       className="d-flex align-items-center mb-3 w-100"
     >
