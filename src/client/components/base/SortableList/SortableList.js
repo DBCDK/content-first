@@ -79,7 +79,7 @@ export class SortableList extends React.Component {
     const {items} = this.state;
     const SortableItem = SortableElement(this.listComponent);
     return (
-      <SortableBlock onSortEnd={this.onSortEnd} lockAxis="y" distance={3}>
+      <SortableBlock onSortEnd={this.onSortEnd} lockAxis="y" pressDelay={200}>
         {items.map((value, index) => {
           value.index = index;
           return (

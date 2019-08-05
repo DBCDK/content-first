@@ -91,39 +91,41 @@ export class Editor extends React.Component {
         <Text type="small" variant="weight-semibold">
           {title}
         </Text>
-        <Text type="small">{createdBy}</Text>
+        <Text type="small" className="desktop-only-column">
+          {createdBy}
+        </Text>
         {up !== '' ? (
           <i
-            className="material-icons drag-indicator up-down"
+            className="material-icons drag-indicator up-down desktop-only-column"
             index={index}
             onClick={this.moveUp}
           >
             {up}
           </i>
         ) : (
-          <div className="material-icons up-down" />
+          <div className="material-icons up-down desktop-only-column" />
         )}
         {down !== '' ? (
           <i
-            className="material-icons drag-indicator up-down"
+            className="material-icons drag-indicator up-down desktop-only-column"
             index={index}
             onClick={this.moveDown}
           >
             {down}
           </i>
         ) : (
-          <div className="material-icons up-down" />
+          <div className="material-icons up-down desktop-only-column" />
         )}
         {remove !== '' ? (
           <i
-            className="material-icons drag-indicator remove"
+            className="material-icons drag-indicator remove desktop-only-column"
             index={index}
             onClick={this.remove}
           >
             {remove}
           </i>
         ) : (
-          <div className="material-icons remove" />
+          <div className="material-icons remove desktop-only-column" />
         )}
       </div>
     </div>
@@ -151,7 +153,8 @@ export class Editor extends React.Component {
       createdBy,
       'keyboard_arrow_up',
       'keyboard_arrow_down',
-      'delete'
+      'delete',
+      'list-content-row'
     );
 
   listComponent = value =>
