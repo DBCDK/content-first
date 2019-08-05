@@ -7,6 +7,7 @@ import Banner from '../base/Banner';
 import Text from '../base/Text';
 import Title from '../base/Title';
 import T from '../base/T';
+import Button from '../base/Button';
 
 const defaultItems = [
   {
@@ -26,11 +27,16 @@ const defaultItems = [
   }
 ];
 
+const newItem = {
+  enabled: false,
+  title: 'Ny titel',
+  createdBy: 'Ny forfatter'
+};
+
 export class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {items: defaultItems};
-    this.onSortEndHandler = props.onSortEnd;
   }
 
   onSortEnd = items => {
@@ -156,6 +162,14 @@ export class Editor extends React.Component {
       value.children.createdBy
     );
 
+  createNewBelt = () => {
+    this.setState(state => {
+      const items = state.items.concat(Object.assign({}, newItem));
+      this.refs.sortableList.update(items);
+      return {items};
+    });
+  };
+
   render() {
     return (
       <div className="Editor">
@@ -163,7 +177,7 @@ export class Editor extends React.Component {
           title={T({component: 'editStartPage', name: 'editStartPage'})}
           className="fixed-width-col-md position-relative"
         />
-        <div className="top-bar-dropdown-list-page col-centered">
+        <div className="Editor__container col-centered">
           <Title type="title5">
             <T component="editStartPage" name="belt" />
           </Title>
@@ -180,6 +194,9 @@ export class Editor extends React.Component {
             onSortEnd={this.onSortEnd}
             ref="sortableList"
           />
+          <Button type="quaternary" size="medium" onClick={this.createNewBelt}>
+            <T component="editStartPage" name="createNewBelt" />
+          </Button>
         </div>
       </div>
     );

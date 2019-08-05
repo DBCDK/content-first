@@ -66,13 +66,23 @@
   padding: 0;
 }
 
-.top-bar-dropdown-list-page .Title {
+.Editor__container {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 672px;
+}
+
+.Editor__container .Title {
   margin-top: 2.6em;
 }
 
-.top-bar-dropdown-list-page .Title + .Text {
+.Editor__container .Title + .Text {
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
 
+.Editor__container .Button {
+  margin-top: 2.4em;
+  padding: 1em 1.6em;
+}
 

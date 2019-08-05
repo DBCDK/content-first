@@ -1037,6 +1037,10 @@
       "createdBy": {
         "da": "Oprettet af",
         "en": "Created by"
+      },
+      "createNewBelt": {
+        "da": "Opret nyt bånd",
+        "en": "Create new belt"
       }
     }
   },
