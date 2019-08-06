@@ -68,13 +68,14 @@ export const ListInfo = ({
             />
           )}
 
-          {sticky && !expanded && (
-            <div className="list-cover-text pt-md-4 pl-md-4 pr-md-4 pt-2 pl-3 pr-2">
-              <Text type="large" className="mb0">
-                <span>{list.title}</span>
-              </Text>
-            </div>
-          )}
+          {sticky &&
+            !expanded && (
+              <div className="list-cover-text pt-md-4 pl-md-4 pr-md-4 pt-2 pl-3 pr-2">
+                <Text type="large" className="mb0">
+                  <span>{list.title}</span>
+                </Text>
+              </div>
+            )}
         </div>
       </div>
 

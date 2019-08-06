@@ -36,16 +36,17 @@ export default class WorkSlider extends React.Component {
         className={this.props.className + ' position-relative'}
         ref={container => (this.refs = {...this.refs, container})}
       >
-        {this.props.recommendationsLoaded && pids.length === 0 && (
-          <Title
-            tag="h1"
-            type="title4"
-            variant="transform-uppercase--weight-bold"
-            className="WorkSlider__no-hits-container position-relative"
-          >
-            <T component="belts" name="noHits" renderAsHtml={true} />
-          </Title>
-        )}
+        {this.props.recommendationsLoaded &&
+          pids.length === 0 && (
+            <Title
+              tag="h1"
+              type="title4"
+              variant="transform-uppercase--weight-bold"
+              className="WorkSlider__no-hits-container position-relative"
+            >
+              <T component="belts" name="noHits" renderAsHtml={true} />
+            </Title>
+          )}
         <Slider
           initialScrollPos={scrollPos}
           onSwipe={index => {

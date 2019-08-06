@@ -144,28 +144,30 @@ class WorkPreview extends React.Component {
                 </div>
               </div>
               <div className="workPreview__media">
-                {work.collectionHasLoaded && !hasValidCollection() && (
-                  <Text type="body" className="mr1">
-                    <T
-                      component="work"
-                      name={
-                        newRelease()
-                          ? 'noValidCollectionYet'
-                          : 'noValidCollection'
-                      }
+                {work.collectionHasLoaded &&
+                  !hasValidCollection() && (
+                    <Text type="body" className="mr1">
+                      <T
+                        component="work"
+                        name={
+                          newRelease()
+                            ? 'noValidCollectionYet'
+                            : 'noValidCollection'
+                        }
+                      />
+                    </Text>
+                  )}
+                {work.collectionHasLoaded &&
+                  hasValidCollection() && (
+                    <OrderButton
+                      pid={book.pid}
+                      size="medium"
+                      type="quaternary"
+                      label={T({component: 'general', name: 'book'})}
+                      icon="chrome_reader_mode"
+                      className="mr1 mt1"
                     />
-                  </Text>
-                )}
-                {work.collectionHasLoaded && hasValidCollection() && (
-                  <OrderButton
-                    pid={book.pid}
-                    size="medium"
-                    type="quaternary"
-                    label={T({component: 'general', name: 'book'})}
-                    icon="chrome_reader_mode"
-                    className="mr1 mt1"
-                  />
-                )}
+                  )}
                 {work.collectionHasLoaded &&
                   hasValidCollection() &&
                   collection.map(col => {

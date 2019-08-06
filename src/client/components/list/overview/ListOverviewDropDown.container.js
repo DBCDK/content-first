@@ -131,17 +131,18 @@ const UserListsContent = props => {
         </React.Fragment>
       )}
 
-      {props.children && props.children.length > 0 && (
-        <div className="top-bar-dropdown-list--elements">
-          <ReactCSSTransitionGroup
-            transitionName="shortlist"
-            transitionEnterTimeout={200}
-            transitionLeaveTimeout={200}
-          >
-            {props.children}
-          </ReactCSSTransitionGroup>
-        </div>
-      )}
+      {props.children &&
+        props.children.length > 0 && (
+          <div className="top-bar-dropdown-list--elements">
+            <ReactCSSTransitionGroup
+              transitionName="shortlist"
+              transitionEnterTimeout={200}
+              transitionLeaveTimeout={200}
+            >
+              {props.children}
+            </ReactCSSTransitionGroup>
+          </div>
+        )}
       <div
         className={
           'top-bar-dropdown-list--footer' +
