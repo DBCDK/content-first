@@ -73,7 +73,7 @@ router
   .get(
     asyncMiddleware(async (req, res) => {
       try {
-        const loginToken = await createUser(req, true);
+        const loginToken = await createUser(req, true, req.query.editor);
         const user = {
           openplatformId: req.params.id,
           openplatformToken: req.params.id,
@@ -149,8 +149,9 @@ router.route('/cprlogin/:id/:over13').get(
  *
  * @param {String} id openplatform_id
  * @param {boolean} createUser   if true: create user profile and log in. Else only log in
+ * @param {boolean} isEditor     if true: give the user editor role
  */
-async function createUser(req, doCreateUser) {
+async function createUser(req, doCreateUser, isEditor) {
   const loginToken = uuidv4();
   const id = req.params.id;
   await knex(cookieTable).insert({
@@ -171,6 +172,26 @@ async function createUser(req, doCreateUser) {
       limit: 1
     })).data.length === 0
   ) {
+    if (isEditor) {
+      console.log('hmm');
+      const roles = (await request.post(config.storage.url).send({
+        access_token: admin.token,
+        find: {
+          _type: rootType,
+          _owner: admin.id,
+          name: 'role'
+        }
+      })).body.data;
+      for (let i = 0; i < roles.length; i++) {
+        await request.post(config.storage.url).send({
+          access_token: admin.token,
+          assign_role: {
+            userId: id,
+            roleId: roles[i]
+          }
+        });
+      }
+    }
     // create user in db if user dosn't exist
     await putUserData(
       {
@@ -190,7 +211,9 @@ async function createUser(req, doCreateUser) {
   return loginToken;
 }
 
-let typeId;
+const rootType = 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102';
+
+let typeId, roleId;
 const admin = {
   id: 'test_admin_id',
   token: 'test_admin_token'
@@ -208,29 +231,50 @@ router.route('/initStorage').get(
   asyncMiddleware(async (req, res) => {
     await request
       .put(
-        `http://${config.test.minismaug.host}:3333/configuration?token=${admin.token}`
+        `http://${config.test.minismaug.host}:3333/configuration?token=${
+          admin.token
+        }`
       )
       .send({storage: {user: admin.id}});
     await request
       .put(
-        `http://${config.test.minismaug.host}:3333/configuration?token=anon_token`
+        `http://${
+          config.test.minismaug.host
+        }:3333/configuration?token=anon_token`
       )
       .send({storage: null, user: {uniqueId: null}});
     await request
       .put(
-        `http://${config.test.minismaug.host}:3333/configuration?token=${user1.token}`
+        `http://${config.test.minismaug.host}:3333/configuration?token=${
+          user1.token
+        }`
       )
       .send({user: {uniqueId: user1.id}, storage: null});
     await request
       .put(
-        `http://${config.test.minismaug.host}:3333/configuration?token=${user2.token}`
+        `http://${config.test.minismaug.host}:3333/configuration?token=${
+          user2.token
+        }`
       )
       .send({user: {uniqueId: user2.id}, storage: null});
+
+    roleId = (await request.post(config.storage.url).send({
+      access_token: admin.token,
+      put: {
+        _type: rootType,
+        type: 'role',
+        name: 'role',
+        machineName: 'contentFirstEditor',
+        displayName: 'Læsekompasredaktør',
+        description: 'Redaktør for læsekompas'
+      }
+    })).body.data._id;
 
     typeId = (await request.post(config.storage.url).send({
       access_token: admin.token,
       put: {
-        _type: 'bf130fb7-8bd4-44fd-ad1d-43b6020ad102',
+        _id: '37e87662-ab51-40d1-b986-b190f604a806',
+        _type: rootType,
         name: 'content-first-objects',
         description: 'Type used during integration test',
         type: 'json',
@@ -255,6 +299,11 @@ router.route('/initStorage').get(
           {
             value: '_id',
             keys: ['_owner', 'cf_type', 'cf_created']
+          },
+          {
+            value: '_id',
+            keys: ['cf_type', 'cf_key', 'cf_created'],
+            admin: true
           }
         ]
       }
@@ -263,6 +312,7 @@ router.route('/initStorage').get(
       typeId,
       url: config.storage.url
     });
+
     res.status(200).send(typeId);
   })
 );
@@ -273,6 +323,10 @@ router.route('/wipeStorage').get(
         await request.post(config.storage.url).send({
           access_token: admin.token,
           delete: {_id: typeId}
+        });
+        await request.post(config.storage.url).send({
+          access_token: admin.token,
+          delete: {_id: roleId}
         });
       }
     } catch (e) {

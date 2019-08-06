@@ -7,6 +7,7 @@ const request = require('superagent');
 const smaug = require('./smaug');
 
 let storageUrl;
+let aggregationUrl;
 let typeId;
 let validated = false;
 
@@ -24,6 +25,7 @@ function setupObjectStore(storageOptions) {
     throw new Error('storageOptions.url is not valid');
   }
   storageUrl = storageOptions.url;
+  aggregationUrl = storageOptions.url.replace('storage', 'aggregation');
   typeId = storageOptions.typeId;
   validated = false;
 }
@@ -102,11 +104,11 @@ const fromStorageObject = storageObject => {
   return copy;
 };
 
-async function get(id, user = {}) {
+async function get({id}, user = {}, role) {
   await validateObjectStore();
   let access_token =
     user.openplatformToken || (await fetchAnonymousToken()).access_token;
-  const requestObject = {access_token, get: {_id: id}};
+  const requestObject = {access_token, get: {_id: id}, role};
 
   try {
     const data = (await request.post(storageUrl).send(requestObject)).body.data;
@@ -118,14 +120,15 @@ async function get(id, user = {}) {
   }
 }
 
-async function put(object, user) {
+async function put(object, user, role) {
   assert(user);
   assert(user.openplatformToken);
   await validateObjectStore();
 
   const requestObject = {
     access_token: user.openplatformToken,
-    put: toStorageObject(object)
+    put: toStorageObject(object),
+    role
   };
   try {
     const data = (await request.post(storageUrl).send(requestObject)).body.data;
@@ -135,7 +138,7 @@ async function put(object, user) {
   }
 }
 
-async function find(query, user = {}) {
+async function find(query, user = {}, role) {
   await validateObjectStore();
   let access_token =
     user.openplatformToken || (await fetchAnonymousToken()).access_token;
@@ -146,8 +149,10 @@ async function find(query, user = {}) {
       index: [],
       startsWith: [],
       limit: query.limit || 20,
-      reverse: true
-    }
+      reverse: true,
+      expand: true
+    },
+    role
   };
   if (typeof query.owner !== 'undefined') {
     requestObject.scan.index.push('_owner');
@@ -163,17 +168,14 @@ async function find(query, user = {}) {
   }
   requestObject.scan.index.push('cf_created');
   try {
-    const ids = (await request.post(storageUrl).send(requestObject)).body.data;
-
-    const objects = (await Promise.all(
-      ids.map(entry =>
-        request.post(storageUrl).send({access_token, get: {_id: entry.val}})
-      )
-    )).map(res =>
-      _.omit(fromStorageObject(res.body.data), ['_version', '_client'])
+    const objects = (await request
+      .post(storageUrl)
+      .send(requestObject)).body.data.map(res =>
+      _.omit(fromStorageObject(res), ['_version', '_client'])
     );
     return {data: objects};
   } catch (e) {
+    console.log(e);
     return parseException(e);
   }
 }
@@ -182,7 +184,7 @@ async function find(query, user = {}) {
  * Delete all content-first objects belonging to a user
  * This is not optimized for speed
  */
-async function deleteUser({openplatformToken, openplatformId}) {
+async function deleteUser({openplatformToken, openplatformId, role}) {
   try {
     // all object ids owned by user
     const ids = (await request.post(storageUrl).send({
@@ -194,7 +196,8 @@ async function deleteUser({openplatformToken, openplatformId}) {
     for (let i = 0; i < ids.length; i++) {
       const data = (await request
         .post(storageUrl)
-        .send({access_token: openplatformToken, get: {_id: ids[i]}})).body.data;
+        .send({access_token: openplatformToken, get: {_id: ids[i]}, role})).body
+        .data;
       if (data._type === typeId) {
         await request.post(storageUrl).send({
           access_token: openplatformToken,
@@ -207,14 +210,15 @@ async function deleteUser({openplatformToken, openplatformId}) {
   }
 }
 
-async function del(id, user) {
+async function del({id}, user, role) {
   assert(user);
   assert(user.openplatformToken);
   await validateObjectStore();
 
   const requestObject = {
     access_token: user.openplatformToken,
-    delete: {_id: id}
+    delete: {_id: id},
+    role
   };
 
   try {
@@ -227,131 +231,76 @@ async function del(id, user) {
   }
 }
 
-async function aggregation({type, sort = 'num_items', pid}) {
+async function aggregation({
+  type,
+  sort = 'num_items',
+  pid,
+  limit = 20,
+  offset = 0
+}) {
   await validateObjectStore();
 
-  const SORT_OPTIONS = {
-    num_items: 'num_items',
-    num_follows: 'num_follows',
-    num_comments: 'num_comments',
-    created: '_created',
-    modified: '_modified'
+  let access_token = (await fetchAnonymousToken()).access_token;
+  const requestObject = {
+    access_token,
+    aggregationType: type,
+    type: typeId,
+    limit,
+    offset,
+    sort,
+    pid
   };
 
-  if (!type) {
-    return {
-      data: [],
-      errors: [{status: 400, message: "Missing query param: 'type'"}]
-    };
-  }
-
-  if (type !== 'list') {
-    return {
-      data: [],
-      errors: [
-        {status: 400, message: "Unsupported type. Supported types: 'list'"}
-      ]
-    };
-  }
-  if (!SORT_OPTIONS[sort]) {
-    return {
-      data: [],
-      errors: [
-        {
-          status: 400,
-          message: `Unsupported sort. Supported sort: ${Object.keys(
-            SORT_OPTIONS
-          ).join(', ')}`
-        }
-      ]
-    };
-  }
-  if (pid) {
-    return [
-      {
-        _type: 'list',
-        _id: 'list-3',
-        _public: true,
-        title: 'liste3',
-        description: "Indeholder alle pid'er",
-        image: null,
-        owner: {
-          _id: 'owner-2',
-          name: 'owner2',
-          image: null
-        },
-        _created: 3000,
-        _modified: 4000,
-        num_follows: 400,
-        num_items: 50,
-        num_comments: 2
-      }
-    ];
-  }
-
-  // mocked data for now
-  const MOCKED = [
-    {
-      _type: 'list',
-      _id: 'list-1',
+  const res = (await request.post(aggregationUrl).send(requestObject)).body.data
+    .map(o => fromStorageObject(o))
+    .map(o => ({
+      _type: o._type,
+      _id: o._id,
       _public: true,
-      title: 'liste1',
-      description: 'beskrivelse1',
-      image: null,
+      title: o.list_title,
+      description: o.list_description,
+      image: o.list_image,
       owner: {
-        _id: 'owner-1',
-        name: 'owner1',
-        image: null
+        _id: o._owner,
+        name: o.owner_name,
+        image: o.owner_image
       },
-      _created: 1000,
-      _modified: 2000,
-      num_follows: 10,
-      num_items: 12,
-      num_comments: 143
-    },
-    {
-      _type: 'list',
-      _id: 'list-2',
-      _public: true,
-      title: 'liste2',
-      description: 'beskrivelse2',
-      image: null,
-      owner: {
-        _id: 'owner-1',
-        name: 'owner1',
-        image: null
-      },
-      _created: 2000,
-      _modified: 3000,
-      num_follows: 4,
-      num_items: 5,
-      num_comments: 7
-    },
-    {
-      _type: 'list',
-      _id: 'list-3',
-      _public: true,
-      title: 'liste3',
-      description: "Indeholder alle pid'er",
-      image: null,
-      owner: {
-        _id: 'owner-2',
-        name: 'owner2',
-        image: null
-      },
-      _created: 3000,
-      _modified: 4000,
-      num_follows: 400,
-      num_items: 50,
-      num_comments: 2
-    }
-  ];
-
-  const data = _.orderBy(MOCKED, SORT_OPTIONS[sort], 'desc');
-
+      _created: o._created,
+      _modified: o._modified,
+      num_follows: o.num_follows,
+      num_items: o.num_items,
+      num_comments: o.num_comments,
+      items: o.pids
+    }));
   return {
-    data
+    data: res
   };
+}
+
+async function getRoles(user) {
+  await validateObjectStore();
+
+  if (!user) {
+    return {
+      data: []
+    };
+  }
+
+  const requestObject = {
+    access_token: user.openplatformToken,
+    get_roles: {}
+  };
+
+  try {
+    const res = (await request
+      .post(storageUrl)
+      .send(requestObject)).body.data.map(role => fromStorageObject(role));
+    return {
+      data: res
+    };
+  } catch (e) {
+    return parseException(e);
+  }
 }
 
 function parseException(e) {
@@ -380,6 +329,7 @@ function parseException(e) {
 }
 
 module.exports = {
+  getRoles,
   aggregation,
   getUser,
   get,

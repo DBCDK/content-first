@@ -19,7 +19,10 @@ function send(res, data) {
   return res.status(data.errors ? data.errors[0].status : 200).json(data);
 }
 async function getObject(req, res) {
-  send(res, await objectStore.get(req.params.id, await getUser(req)));
+  send(
+    res,
+    await objectStore.get(req.params, await getUser(req), req.query.role)
+  );
 }
 async function putObject(req, res) {
   const object = req.body;
@@ -45,7 +48,7 @@ async function putObject(req, res) {
 
   const user = await getUser(req);
   if (user) {
-    send(res, await objectStore.put(object, user));
+    send(res, await objectStore.put(object, user, req.query.role));
   } else {
     send(res, {
       data: {error: 'forbidden'},
@@ -54,15 +57,25 @@ async function putObject(req, res) {
   }
 }
 async function findObject(req, res) {
-  send(res, await objectStore.find(req.query, await getUser(req)));
+  send(
+    res,
+    await objectStore.find(req.query, await getUser(req), req.query.role)
+  );
 }
 async function deleteObject(req, res) {
-  send(res, await objectStore.del(req.params.id, await getUser(req)));
+  send(
+    res,
+    await objectStore.del(req.params, await getUser(req), req.query.role)
+  );
 }
 async function aggregation(req, res) {
   send(res, await objectStore.aggregation(req.query, await getUser(req)));
 }
+async function roles(req, res) {
+  send(res, await objectStore.getRoles(await getUser(req)));
+}
 
+router.route('/roles').get(asyncMiddleware(roles));
 router.route('/aggregation').get(asyncMiddleware(aggregation));
 router.route('/find').get(asyncMiddleware(findObject));
 router.route('/:id').get(asyncMiddleware(getObject));
