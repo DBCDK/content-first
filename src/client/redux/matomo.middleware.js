@@ -26,7 +26,13 @@ export const matomoMiddleware = store => next => action => {
     case UPDATE_MOUNT: {
       const type = get(action, 'data.type');
       const pid = get(action, 'data.parent', 'unknown');
-      const parentBeltName = get(action, 'data.beltName', 'unknown');
+      let parentBeltName = get(action, 'data.beltName', 'unknown');
+      if (
+        typeof parentBeltName === 'string' &&
+        parentBeltName.startsWith('Fra bedste forslag til')
+      ) {
+        parentBeltName = 'personalRecommendations';
+      }
       const rid = get(action, 'data.rid');
       const scrollPos = get(action, 'data.scrollPos');
       const titleClick = get(action, 'data.titleClick');
