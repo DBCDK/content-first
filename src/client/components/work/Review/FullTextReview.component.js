@@ -59,11 +59,12 @@ export default class FullTextReview extends React.Component {
         <Text type="body" className="mb0">
           Lektørudtalelse
         </Text>
-        {name !== false && name.trim() !== '' && (
-          <Text type="body" className="mb0">
-            {name}
-          </Text>
-        )}
+        {name !== false &&
+          name.trim() !== '' && (
+            <Text type="body" className="mb0">
+              {name}
+            </Text>
+          )}
       </div>
     );
   }

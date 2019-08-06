@@ -71,11 +71,12 @@ export class PaperReview extends React.Component {
             </Text>
           )}
         </div>
-        {creator && creator.trim() !== '' && (
-          <Text type="body" className="Review__block--lector mb-1">
-            Af {creator}
-          </Text>
-        )}
+        {creator &&
+          creator.trim() !== '' && (
+            <Text type="body" className="Review__block--lector mb-1">
+              Af {creator}
+            </Text>
+          )}
 
         {false && (
           <Text>

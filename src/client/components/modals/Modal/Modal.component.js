@@ -50,9 +50,8 @@ export default class Modal extends React.Component {
               </Title>
             )}
             {this.props.children}
-            {!hideCancel && !hideConfirm && (
-              <div className="modal-seperator mt-5 mb-4" />
-            )}
+            {!hideCancel &&
+              !hideConfirm && <div className="modal-seperator mt-5 mb-4" />}
             {
               <div className="bottom d-flex flex-row justify-content-end align-items-center pt-1">
                 {onError && (
@@ -62,17 +61,18 @@ export default class Modal extends React.Component {
                     </Text>
                   </div>
                 )}
-                {!hideCancel && cancelText && (
-                  <Button
-                    size="medium"
-                    className="mr-1"
-                    type="quaternary"
-                    variant="bgcolor-porcelain--color-petroleum"
-                    onClick={this.props.onClose}
-                  >
-                    {cancelText}
-                  </Button>
-                )}
+                {!hideCancel &&
+                  cancelText && (
+                    <Button
+                      size="medium"
+                      className="mr-1"
+                      type="quaternary"
+                      variant="bgcolor-porcelain--color-petroleum"
+                      onClick={this.props.onClose}
+                    >
+                      {cancelText}
+                    </Button>
+                  )}
                 {!hideConfirm && (
                   <a
                     data-cy="modal-done-btn"

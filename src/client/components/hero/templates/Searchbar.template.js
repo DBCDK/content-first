@@ -216,7 +216,9 @@ export class SearchbarTemplate extends React.Component {
                   type="primary"
                   size="large"
                   className="searchbar-button mt-4 mt-lg-0 align-self-start"
-                  variant={`bgcolor-${hero.btnColor}--color-${hero.btnTextColor}`}
+                  variant={`bgcolor-${hero.btnColor}--color-${
+                    hero.btnTextColor
+                  }`}
                 >
                   {hero.btnText}
                 </Button>

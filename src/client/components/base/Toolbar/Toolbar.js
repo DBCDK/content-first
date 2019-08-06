@@ -18,10 +18,11 @@ const constructElement = (item, index) => {
 const constructElements = (elements, position) => {
   return elements
     .filter(item => item && item.props && item.props.align === position)
-    .map((item, index) =>
-      Array.isArray(item)
-        ? constructElements(item, position)
-        : constructElement(item, index)
+    .map(
+      (item, index) =>
+        Array.isArray(item)
+          ? constructElements(item, position)
+          : constructElement(item, index)
     );
 };
 

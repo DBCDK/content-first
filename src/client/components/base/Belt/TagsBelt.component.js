@@ -229,17 +229,18 @@ export class TagsBelt extends React.Component {
                   </Title>
                 </div>
               </div>
-              {isOwner && !editing && (
-                <EditBelt
-                  onClick={() =>
-                    this.setState({
-                      editing: true,
-                      name: this.props.name,
-                      subtext: this.props.subtext
-                    })
-                  }
-                />
-              )}
+              {isOwner &&
+                !editing && (
+                  <EditBelt
+                    onClick={() =>
+                      this.setState({
+                        editing: true,
+                        name: this.props.name,
+                        subtext: this.props.subtext
+                      })
+                    }
+                  />
+                )}
             </React.Fragment>
           )}
         </div>
