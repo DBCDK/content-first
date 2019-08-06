@@ -273,7 +273,6 @@ router.route('/initStorage').get(
     typeId = (await request.post(config.storage.url).send({
       access_token: admin.token,
       put: {
-        _id: '37e87662-ab51-40d1-b986-b190f604a806',
         _type: rootType,
         name: 'content-first-objects',
         description: 'Type used during integration test',
