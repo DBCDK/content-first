@@ -4,11 +4,8 @@ import scrollToComponent from 'react-scroll-to-component';
 import Head from '../base/Head';
 import Hero from '../hero/Hero.component';
 
-// no aggregation
-import RecentListsBelt from '../base/Belt/RecentListsBelt.container';
-
 // with aggregation
-// import ListsBelt from '../base/Belt/ListsBelt.container';
+import ListsBelt from '../base/Belt/ListsBelt.container';
 
 import InteractionsBelt from '../base/Belt/InteractionsBelt.component';
 import TagsBelt from '../base/Belt/TagsBelt.component';
@@ -35,15 +32,13 @@ class FrontPage extends React.Component {
   renderBelts(belts) {
     return (
       <div>
-        {belts
-          .filter(belt => belt.onFrontPage)
-          .map(belt => (
-            <TagsBelt
-              mount={'frontpage' + JSON.stringify(belt.tags)}
-              id={belt.key}
-              {...belt}
-            />
-          ))}
+        {belts.filter(belt => belt.onFrontPage).map(belt => (
+          <TagsBelt
+            mount={'frontpage' + JSON.stringify(belt.tags)}
+            id={belt.key}
+            {...belt}
+          />
+        ))}
       </div>
     );
   }
@@ -64,7 +59,7 @@ class FrontPage extends React.Component {
         {this.renderBelts(aBeltsMap.slice(0, 2))}
         <SpotsContainer />
         {this.renderBelts(aBeltsMap.slice(2, aBeltsMap.length))}
-        <RecentListsBelt />
+        <ListsBelt sort="created" limit={50} />
       </div>
     );
   }

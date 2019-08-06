@@ -504,9 +504,9 @@ export const fetchAnonymousToken = async () => {
  * ListAggregation
  */
 
-export const loadListAggragation = async (type, sort, pid) => {
+export const loadListAggragation = async (type, sort, limit, pid) => {
   const lists = (await request
     .get(`/v1/object/aggregation`)
-    .query({type: 'list', sort, pid})).body.data;
+    .query({type: 'list', sort, pid, limit})).body.data;
   return lists;
 };

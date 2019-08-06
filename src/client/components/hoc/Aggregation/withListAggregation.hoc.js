@@ -28,10 +28,10 @@ export const withListAggregation = WrappedComponent => {
      **/
 
     loadLists = async () => {
-      const {type, sort, pid} = this.props;
+      const {type, sort, limit, pid} = this.props;
 
       try {
-        const lists = await loadListAggragation(type, sort, pid);
+        const lists = await loadListAggragation(type, sort, limit, pid);
         this.setState({lists});
       } catch (e) {
         // error handle
