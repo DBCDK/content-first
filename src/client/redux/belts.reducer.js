@@ -1,5 +1,24 @@
 const defaultState = {
   belts: {
+    'Hvad sker der bag hækken?': {
+      key: 'Hvad sker der bag hækken?',
+      name: 'Hvad sker der bag hækken?',
+      subtext:
+        'Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.',
+      tags: [
+        {id: 2683, weight: 1},
+        {id: 4907, weight: 10},
+        {id: 5368, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 5670, weight: 1},
+        {id: 5676, weight: 1},
+        {id: 5691, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
     'Fart over feltet': {
       key: 'Fart over feltet',
       name: 'Fart over feltet',
@@ -67,9 +86,9 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    'De hoppede ud af bogen': {
-      key: 'De hoppede ud af bogen',
-      name: 'De hoppede ud af bogen',
+    'De hoppede ud ad bogen': {
+      key: 'De hoppede ud ad bogen',
+      name: 'De hoppede ud ad bogen',
       subtext: 'Karakterer du ikke lige glemmer.',
       tags: [
         {id: 5731, weight: 1},
@@ -221,25 +240,6 @@ const defaultState = {
         {id: 5700, weight: 10},
         {id: 5670, weight: 1},
         {id: 5676, weight: 1}
-      ],
-      onFrontPage: true,
-      isLoading: false,
-      type: 'belt',
-      child: false
-    },
-    'Hvad sker der bag hækken?': {
-      key: 'Hvad sker der bag hækken?',
-      name: 'Hvad sker der bag hækken?',
-      subtext:
-        'Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.',
-      tags: [
-        {id: 2683, weight: 1},
-        {id: 4907, weight: 10},
-        {id: 5368, weight: 10},
-        {id: 5731, weight: 1},
-        {id: 5670, weight: 1},
-        {id: 5676, weight: 1},
-        {id: 5691, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,
