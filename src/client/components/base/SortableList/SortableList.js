@@ -7,7 +7,9 @@ import {
 
 import './SortableList.css';
 
-const SortableBlock = SortableContainer(({children}) => <div>{children}</div>);
+const SortableBlock = SortableContainer(({children}) => (
+  <div data-cy="sortable-list-container">{children}</div>
+));
 
 const arrayRemove = (items, index) =>
   index >= items.length ? items : (items.splice(index, 1), items);

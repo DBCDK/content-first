@@ -197,7 +197,12 @@ export class Editor extends React.Component {
             onSortEnd={this.onSortEnd}
             ref="sortableList"
           />
-          <Button type="quaternary" size="medium" onClick={this.createNewBelt}>
+          <Button
+            type="quaternary"
+            size="medium"
+            onClick={this.createNewBelt}
+            dataCy="create-new-row-button"
+          >
             <T component="editStartPage" name="createNewBelt" />
           </Button>
         </div>
