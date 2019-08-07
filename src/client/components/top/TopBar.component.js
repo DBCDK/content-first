@@ -474,11 +474,15 @@ export const mapDispatchToProps = dispatch => ({
         title: <T component="topbar" name="betaModalTitle" />,
         reason: (
           <React.Fragment>
-            <Text type="body" variant="weight-semibold" className="mb-3">
-              <T component="topbar" name="betaModalDescription" />
+            <Text type="body" variant="weight-semibold" className="mb-0">
+              <T
+                component="topbar"
+                name="betaModalDescription"
+                renderAsHtml={true}
+              />
             </Text>
             <Text type="body">
-              <T component="topbar" name="betaModalBody1" />
+              <T component="topbar" name="betaModalBody1" renderAsHtml={true} />
               <Text
                 className="d-inline"
                 type="body"
@@ -486,12 +490,7 @@ export const mapDispatchToProps = dispatch => ({
               >
                 <T component="topbar" name="sneakPeek" />
               </Text>
-            </Text>
-            <Text type="body" className="mb-3">
               <T component="topbar" name="betaModalBody2" />
-            </Text>
-            <Text type="body">
-              <T component="topbar" name="betaModalBody3" />
             </Text>
           </React.Fragment>
         ),

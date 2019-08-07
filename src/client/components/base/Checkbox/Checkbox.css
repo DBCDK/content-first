@@ -3,7 +3,6 @@
   position: relative;
   padding-left: 20px;
   cursor: pointer;
-  font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -22,7 +21,7 @@
 /* Create a custom Checkbox button */
 .Checkbox__button {
   position: absolute;
-  top: 0;
+  top: 2px;
   left: 0;
   height: 16px;
   width: 16px;

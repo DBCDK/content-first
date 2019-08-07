@@ -62,31 +62,25 @@
 .workPreview__work .workPreview__info .workPreview__media button,
 .workPreview__work .workPreview__info .workPreview__media a,
 .workPreview__work .workPreview__info .workPreview__media a i {
-  font-size: 1rem;
   color: var(--petroleum);
 }
-.workPreview__arrow-container{
+
+.workPreview__arrow-container {
   padding-left: 3rem;
   padding-right: 3rem;
   margin: -2rem -15px auto -15px;
-
 }
-
-
 
 .workPreview__arrow {
   text-align: center;
   width: 250px;
   padding: 0px 15px;
   margin-right: 3rem;
-  
 }
 
- .workPreview__arrow i {
-
-
+.workPreview__arrow i {
   cursor: pointer;
-}	
+}
 /* reviews */
 
 .WorkPreview__container .workPreview__reviews {
@@ -146,7 +140,8 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .workPreview__work .workPreview__image img,.workPreview__arrow {
+  .workPreview__work .workPreview__image img,
+  .workPreview__arrow {
     width: 100%;
     height: auto;
   }

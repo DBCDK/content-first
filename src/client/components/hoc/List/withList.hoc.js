@@ -181,7 +181,6 @@ export const withList = WrappedComponent => {
     updateListData = data => {
       // Props
       const {list, onUpdateListData} = this.props;
-
       try {
         const newData = {_id: list._id, ...data};
         onUpdateListData(newData);
@@ -193,6 +192,10 @@ export const withList = WrappedComponent => {
     };
 
     render() {
+      // if child component dosen't provide an id/_id, the hoc will not block for rendering
+      if (!this.props.id && !this.props._id) {
+        return <WrappedComponent {...this.props} />;
+      }
       if (!this.props.list) {
         return null;
       }
@@ -239,7 +242,11 @@ export const withList = WrappedComponent => {
 
       // Save list handle
       onStoreList: list => {
-        dispatch({type: STORE_LIST, _id: list._id});
+        dispatch({
+          type: STORE_LIST,
+          _id: list._id,
+          createList: ownProps.justCreated
+        });
         // show created list toast, if just created (not on edit list)
         if (ownProps.justCreated) {
           createdToast(list);

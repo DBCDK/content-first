@@ -1,6 +1,8 @@
 import React from 'react';
+import {get} from 'lodash';
 import ReactMarkdown from 'react-markdown';
 import {connect} from 'react-redux';
+import Head from '../base/Head';
 import Banner from '../base/Banner';
 import Title from '../base/Title';
 import Text from '../base/Text';
@@ -27,7 +29,6 @@ export class Article extends React.Component {
   fetchArticle() {
     const path = this.props.path;
     let article = this.props.articles[path];
-
     if (!article) {
       article = this.props.articles['/404'];
     }
@@ -38,7 +39,22 @@ export class Article extends React.Component {
   render() {
     const article = this.fetchArticle();
     return (
-      <div className="">
+      <div>
+        <Head
+          title={article.meta.title}
+          description={article.meta.description}
+          canonical={article.meta.canonical}
+          noIndex={article.meta.noIndex}
+          og={{
+            'og:url': get(article, 'meta.og.url'),
+            'og:type': get(article, 'meta.og.type'),
+            image: {
+              'og:image': get(article, 'meta.og.image.url'),
+              'og:image:width': get(article, 'meta.og.image.width'),
+              'og:image:height': get(article, 'meta.og.image.height')
+            }
+          }}
+        />
         {article.title && (
           <Banner className="Article__banner" title={article.title} />
         )}

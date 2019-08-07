@@ -106,7 +106,9 @@ const shortListReducer = (state = defaultState, action) => {
         elements: state.elements.filter(e => e.book.pid !== action.pid)
       });
     case SHORTLIST_CLEAR:
-      return defaultState;
+      return Object.assign({}, state, {
+        elements: []
+      });
     case ON_LOGOUT_RESPONSE:
       return defaultState;
     default:

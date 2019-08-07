@@ -13,7 +13,7 @@
 
 .Title__title1 {
   font-size: 4.5vw;
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1.3em;
   color: white;
 }
@@ -83,6 +83,10 @@
 
 .Title__title5--color-white {
   color: white;
+}
+
+.Title__title6--weight-normal {
+  font-weight: 400;
 }
 
 /*

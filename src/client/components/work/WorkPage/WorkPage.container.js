@@ -1,7 +1,6 @@
 import React from 'react';
 import {get} from 'lodash';
-import {Helmet} from 'react-helmet';
-
+import Head from '../../base/Head';
 import TaxDescription from '../TaxDescription.component';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
@@ -23,6 +22,7 @@ import ReviewList from '../Review/ReviewList.component';
 import {HISTORY_NEW_TAB} from '../../../redux/middleware';
 
 import './WorkPage.css';
+import {trackEvent} from '../../../matomo';
 
 /**
  * WorkPage
@@ -77,17 +77,35 @@ class WorkPage extends React.Component {
         ? work.book.reviews.data
         : false;
 
+    const isbn =
+      book.identifierISBN || (book.identifierISBN && book.identifierISBN[0]);
+
     return (
       <div>
-        <Helmet>
-          <meta charSet="utf-8" />
-          <title>{book.title + ' af ' + book.creator}</title>
-          <meta
-            name="description"
-            content={book.description || tax_description}
-          />
-        </Helmet>
-
+        <Head
+          title={
+            book.title && book.creator
+              ? `${book.title} af ${book.creator}`
+              : 'Læsekompas'
+          }
+          description={book.description || tax_description}
+          canonical={`/værk/${book.pid}`}
+          og={{
+            'og:url': `https://laesekompas.dk/værk/${book.pid}`,
+            'og:type': 'book',
+            image: {
+              'og:image': book.coverUrl,
+              'og:image:width': '300',
+              'og:image:height': '600'
+            },
+            book: {
+              'book:author': book.creator,
+              'book:isbn': isbn || null,
+              'book:release_date': book.first_edition_year || null,
+              'book:tag:': book.taxonomy_description_subjects
+            }
+          }}
+        />
         <div className="WorkPage__container">
           <div className="container">
             <div className="row mt-0 mt-sm-5">
@@ -238,7 +256,7 @@ class WorkPage extends React.Component {
                             size="medium"
                             className="WorkPage__media__skeleton Skeleton__Pulse mr1 mt1"
                           >
-                            <Icon name={'alternate_email'} />
+                            <Icon name={'language'} />
                             <T component="general" name="ebook" />
                           </Button>
                         </a>
@@ -334,6 +352,7 @@ class WorkPage extends React.Component {
                         className="underline"
                         dataCy="tags-collaps-toggle"
                         onClick={() => {
+                          trackEvent('tags', 'seeAllTags', book.title);
                           this.setState({
                             tagsCollapsed: !this.state.tagsCollapsed,
                             transition: true
@@ -388,17 +407,16 @@ class WorkPage extends React.Component {
             </div>
           </div>
 
-          {work.detailsHasLoaded &&
-            work.tagsHasLoaded && (
-              <SimilarBelt
-                beltRef={e => (this.booksBeltPosition = e)}
-                key={'workpage' + book.pid}
-                mount={'workpage' + book.pid}
-                likes={[book.pid]}
-                style={{background: 'white'}}
-                className="mt-xl-5"
-              />
-            )}
+          {work.detailsHasLoaded && work.tagsHasLoaded && (
+            <SimilarBelt
+              beltRef={e => (this.booksBeltPosition = e)}
+              key={'workpage' + book.pid}
+              mount={'workpage' + book.pid}
+              likes={[book.pid]}
+              style={{background: 'white'}}
+              className="mt-xl-5"
+            />
+          )}
         </div>
       </div>
     );
