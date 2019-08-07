@@ -86,9 +86,9 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    'De hoppede ud ad bogen': {
-      key: 'De hoppede ud ad bogen',
-      name: 'De hoppede ud ad bogen',
+    'De hoppede ud af bogen': {
+      key: 'De hoppede ud af bogen',
+      name: 'De hoppede ud af bogen',
       subtext: 'Karakterer du ikke lige glemmer.',
       tags: [
         {id: 5731, weight: 1},
