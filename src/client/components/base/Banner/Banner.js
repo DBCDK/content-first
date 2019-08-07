@@ -18,10 +18,10 @@ const Banner = ({
   return (
     <div className="Banner__wrap" style={bannerStyles} data-cy="banner-title">
       <div className={`Banner ${className}`}>
-        <div className="align-self-start">{children}</div>
+        <div className="align-self-start w-100">{children}</div>
         <div className="Banner__title align-self-stretch d-flex">
           <Title
-            className="align-self-center"
+            className="align-self-center "
             type="title3"
             variant={`color-${textColor}`}
             data-cy="banner-title"
