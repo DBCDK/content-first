@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Head from './components/base/Head';
 import Modal from './components/modals/Modal.container';
 import FrontPage from './components/frontpage/FrontPage.container';
 import FilterPage from './components/filter/FilterPage/FilterPage.container';
@@ -20,7 +21,7 @@ import Article from './components/article/Article.component';
 import Animate from './components/base/Animate';
 import CookieWarning from './components/general/CookieWarning/CookieWarning';
 import Editor from './components/editor/Editor.component';
-
+import PrintLayout from './components/list/printLayout/PrintLayout';
 import {OPEN_MODAL} from './redux/modal.reducer';
 
 import './style/App.css';
@@ -45,8 +46,15 @@ class App extends Component {
     const path = this.props.routerState.path;
     const pathSplit = path.split('/');
 
+    const backgroundColor =
+      pathSplit && pathSplit[1] === 'styleguide'
+        ? 'var(--lys-graa)'
+        : 'var(--white)';
+
     let currentPage = null;
     let topbar = true;
+    let footer = true;
+    let feedBack = true;
     if (pathSplit[1] === '') {
       currentPage = <FrontPage />;
     } else if (pathSplit[1] === 'værk') {
@@ -75,6 +83,12 @@ class App extends Component {
       currentPage = <Editor />;
     } else if (pathSplit[1] === 'styleguide') {
       currentPage = <Styleguide />;
+      footer = false;
+    } else if (pathSplit[1] === 'print' && pathSplit[2]) {
+      currentPage = <PrintLayout id={pathSplit[2]} />;
+      topbar = false;
+      footer = false;
+      feedBack = false;
     }
 
     if (!currentPage) {
@@ -82,14 +96,13 @@ class App extends Component {
     }
 
     return (
-      <div className={'App'}>
-        {topbar ? (
+      <div className={'App'} style={{backgroundColor}}>
+        <Head />
+        {topbar && (
           <div>
             <TopBar dispatch={this.props.dispatch} user={this.props.user} />
             <div className="App__TopbarPlaceholder" />
           </div>
-        ) : (
-          ''
         )}
         <div id="scrollableArea">{currentPage}</div>
         <Modal />
@@ -109,8 +122,8 @@ class App extends Component {
           delay={5000}
         />
 
-        <FeedbackButton />
-        <Footer />
+        {feedBack && <FeedbackButton />}
+        {footer && <Footer />}
       </div>
     );
   }

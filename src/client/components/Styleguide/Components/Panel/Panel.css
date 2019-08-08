@@ -1,0 +1,26 @@
+.Panel {
+  width: 250px;
+  position: fixed;
+  right: 0;
+  top: 100px;
+}
+
+.Panel ul {
+  list-style: none;
+}
+
+.Panel li {
+  display: block;
+}
+
+.Panel li a {
+  text-decoration: none;
+  color: var(--petroleum);
+  padding-left: 1rem;
+  border-left: 2px solid transparent;
+}
+
+.Panel li a.current {
+  font-weight: 600;
+  border-left: 2px solid var(--due);
+}

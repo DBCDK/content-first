@@ -10,6 +10,7 @@ import {ORDER} from '../../../redux/order.reducer';
 import BookCover from '../../general/BookCover/BookCover.component';
 import OrderButton from '../../order/OrderButton.component';
 import Link from '../../general/Link.component';
+import Head from '../../base/Head';
 import Toolbar from '../../base/Toolbar';
 import Title from '../../base/Title';
 import Text from '../../base/Text';
@@ -175,6 +176,15 @@ export class ShortList extends React.Component {
     }
     return (
       <React.Fragment>
+        <Head
+          title="Huskeliste"
+          description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+          canonical="/huskeliste"
+          og={{
+            'og:url': 'https://laesekompas.dk/huskeliste'
+          }}
+        />
+
         <Banner
           color="#81c793"
           className="fixed-width-col-md position-relative text-uppercase"
@@ -185,6 +195,16 @@ export class ShortList extends React.Component {
           <div className="top-bar-dropdown-list-page col-11 col-centered">
             <div className="items mb-2">
               <Toolbar className="top-bar-upper-toolbar">
+                <Button
+                  align="right"
+                  size="large"
+                  type="quaternary"
+                  iconLeft="print"
+                  className="bg-white pr-0"
+                  href="print/huskeliste"
+                >
+                  <T component="list" name="printList" />
+                </Button>
                 <Button
                   align="right"
                   size="large"

@@ -1,5 +1,73 @@
 const defaultState = {
   belts: {
+    'Hvad sker der bag hækken?': {
+      key: 'Hvad sker der bag hækken?',
+      name: 'Hvad sker der bag hækken?',
+      subtext:
+        'Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.',
+      tags: [
+        {id: 2683, weight: 1},
+        {id: 4907, weight: 10},
+        {id: 5368, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 5670, weight: 1},
+        {id: 5676, weight: 1},
+        {id: 5691, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
+    'Fart over feltet': {
+      key: 'Fart over feltet',
+      name: 'Fart over feltet',
+      subtext:
+        'Læser du for at lade dig rive med, er bøgerne her gode forslag til dig. ',
+      tags: [
+        {id: 5633, weight: 10},
+        {id: 5731, weight: 1},
+        {id: 5676, weight: 1},
+        {id: 5672, weight: 1},
+        {id: 5670, weight: 1},
+        {id: 5674, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
+    'Livskloge bøger': {
+      key: 'Livskloge bøger',
+      name: 'Livskloge bøger',
+      subtext: 'Få et frisk perspektiv på tilværelsen gennem livskloge øjne. ',
+      tags: [
+        {id: 3279, weight: 10},
+        {id: 3510, weight: 1},
+        {id: 5721, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
+    'Billeder fra provinsen': {
+      key: 'Billeder fra provinsen',
+      name: 'Billeder fra provinsen',
+      subtext: 'Mød det usædvanlige og det almindelige Danmark.',
+      tags: [
+        {id: 5465, weight: 10},
+        {id: 3998, weight: 10},
+        {id: 5371, weight: 10},
+        {id: 1672, weight: 1},
+        {id: 5721, weight: 1},
+        {id: 5178, weight: 1}
+      ],
+      onFrontPage: true,
+      isLoading: false,
+      type: 'belt',
+      child: false
+    },
     'Vemodige nordmænd': {
       key: 'Vemodige nordmænd',
       name: 'Vemodige nordmænd',
@@ -18,7 +86,7 @@ const defaultState = {
       type: 'belt',
       child: false
     },
-    'De hoppede ud ad bogen': {
+    'De hoppede ud af bogen': {
       key: 'De hoppede ud af bogen',
       name: 'De hoppede ud af bogen',
       subtext: 'Karakterer du ikke lige glemmer.',
@@ -172,25 +240,6 @@ const defaultState = {
         {id: 5700, weight: 10},
         {id: 5670, weight: 1},
         {id: 5676, weight: 1}
-      ],
-      onFrontPage: true,
-      isLoading: false,
-      type: 'belt',
-      child: false
-    },
-    'Hvad sker der bag hækken?': {
-      key: 'Hvad sker der bag hækken?',
-      name: 'Hvad sker der bag hækken?',
-      subtext:
-        'Lokalsamfundets furer og revner. Det starter der, hvor tingene begynder at gå skævt og får fatale følger.',
-      tags: [
-        {id: 2683, weight: 1},
-        {id: 4907, weight: 10},
-        {id: 5368, weight: 10},
-        {id: 5731, weight: 1},
-        {id: 5670, weight: 1},
-        {id: 5676, weight: 1},
-        {id: 5691, weight: 1}
       ],
       onFrontPage: true,
       isLoading: false,

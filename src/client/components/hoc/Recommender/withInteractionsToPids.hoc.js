@@ -36,9 +36,12 @@ const withInteractionsToPids = WrappedComponent => {
     }
   };
 
-  const mapStateToProps = state => ({
-    interactions: state.interactionReducer.interactions
-  });
+  const mapStateToProps = state => {
+    return {
+      interactions: state.interactionReducer.interactions,
+      isLoading: state.interactionReducer.isLoading
+    };
+  };
 
   return connect(mapStateToProps)(Wrapper);
 };

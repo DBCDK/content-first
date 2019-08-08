@@ -184,7 +184,7 @@ class WorkPreview extends React.Component {
                             size="medium"
                             className="mr1 mt1"
                           >
-                            <Icon name={col.icon} />
+                            <Icon name={col.icon} className="md-small" />
                             {col.type}
                           </Button>
                         </Link>
@@ -210,7 +210,7 @@ class WorkPreview extends React.Component {
                         size="medium"
                         className="workPreview__media__skeleton Skeleton__Pulse mr1 mt1"
                       >
-                        <Icon name={'alternate_email'} />
+                        <Icon name={'language'} />
                         <T component="general" name="ebook" />
                       </Button>
                     </a>

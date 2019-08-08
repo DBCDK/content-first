@@ -20,7 +20,7 @@ const over13 = cpr => {
 
   let age = now.diff(bdMoment, 'years');
 
-  return age > 13 ? true : false;
+  return age >= 13 ? true : false;
 };
 
 module.exports = over13;

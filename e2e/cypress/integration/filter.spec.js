@@ -156,7 +156,7 @@ describe('Filter page test', function() {
     cy.get('[data-cy=filterDimmer]').click();
     cy.reload(); // Because VisibilitySensor does not detect changes under Cypress
 
-    cy.get('[data-cy=container-row]:first > [data-cy=workcard-1]').click('top');
+    cy.get('[data-cy=container-row]:first > [data-cy=workcard-0]').click('top');
     cy.get('[data-cy=workpreviewCard]')
       .first()
       .click();
@@ -200,6 +200,7 @@ describe('Filter page test', function() {
 
   it('Shows "More like this"-belt', function() {
     cy.visit('/find?tags=5634');
+    cy.wait(1000);
 
     cy.get('[data-cy=WC-more-like-this]')
       .first()

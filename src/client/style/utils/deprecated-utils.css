@@ -198,7 +198,7 @@
 .h-scroll-xs::-webkit-scrollbar {
   display: none;
 }
-@media only screen and (min-width: 480px) {
+@media only screen and (min-width: 768px) {
   .h-scroll-sm-none {
     overflow-x: unset;
     overflow-y: unset;

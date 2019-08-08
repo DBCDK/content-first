@@ -48,7 +48,7 @@ function fetchPickupBranches({store}) {
           type: PICKUP_BRANCHES,
           branches: await openplatform.libraries({
             agencyIds: [user.agency],
-            fields: ['branchId', 'branchName']
+            fields: ['branchId', 'branchName', 'pickupAllowed']
           })
         });
       }

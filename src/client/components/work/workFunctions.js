@@ -53,7 +53,7 @@ export function filterCollection(work) {
             count2++;
             return {
               type: T({component: 'general', name: 'ebook'}),
-              icon: 'alternate_email',
+              icon: 'language',
               url: col.identifierURI[0],
               count: count2
             };

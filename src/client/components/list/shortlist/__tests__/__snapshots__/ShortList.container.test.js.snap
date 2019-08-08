@@ -117,6 +117,99 @@ exports[`ShortList.container Clearing list 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -135,19 +228,19 @@ exports[`ShortList.container Clearing list 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -183,8 +276,38 @@ exports[`ShortList.container Clearing list 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -477,7 +600,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -492,7 +615,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -628,7 +751,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -644,7 +767,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -940,7 +1063,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -955,7 +1078,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -1091,7 +1214,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -1107,7 +1230,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -1403,7 +1526,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -1418,7 +1541,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -1554,7 +1677,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -1570,7 +1693,7 @@ exports[`ShortList.container Clearing list 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -1859,6 +1982,99 @@ exports[`ShortList.container Order all books 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -1877,19 +2093,19 @@ exports[`ShortList.container Order all books 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -1925,8 +2141,38 @@ exports[`ShortList.container Order all books 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -2219,7 +2465,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -2234,7 +2480,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -2370,7 +2616,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -2386,7 +2632,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -2682,7 +2928,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -2697,7 +2943,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -2833,7 +3079,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -2849,7 +3095,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -3145,7 +3391,7 @@ exports[`ShortList.container Order all books 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -3160,7 +3406,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -3296,7 +3542,7 @@ exports[`ShortList.container Order all books 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -3312,7 +3558,7 @@ exports[`ShortList.container Order all books 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -3600,6 +3846,99 @@ exports[`ShortList.container Order book - desktop version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -3618,19 +3957,19 @@ exports[`ShortList.container Order book - desktop version 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -3666,8 +4005,38 @@ exports[`ShortList.container Order book - desktop version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -3960,7 +4329,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -3975,7 +4344,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -4111,7 +4480,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -4127,7 +4496,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -4423,7 +4792,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -4438,7 +4807,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -4574,7 +4943,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -4590,7 +4959,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -4886,7 +5255,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -4901,7 +5270,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -5037,7 +5406,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -5053,7 +5422,7 @@ exports[`ShortList.container Order book - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -5341,6 +5710,99 @@ exports[`ShortList.container Order book - mobile version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -5359,19 +5821,19 @@ exports[`ShortList.container Order book - mobile version 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -5407,8 +5869,38 @@ exports[`ShortList.container Order book - mobile version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -5701,7 +6193,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -5716,7 +6208,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -5852,7 +6344,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -5868,7 +6360,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -6164,7 +6656,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -6179,7 +6671,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -6315,7 +6807,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -6331,7 +6823,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -6627,7 +7119,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -6642,7 +7134,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -6778,7 +7270,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -6794,7 +7286,7 @@ exports[`ShortList.container Order book - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -7082,6 +7574,99 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -7100,19 +7685,19 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -7148,8 +7733,38 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -7442,7 +8057,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -7457,7 +8072,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -7593,7 +8208,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -7609,7 +8224,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -7905,7 +8520,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -7920,7 +8535,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -8056,7 +8671,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -8072,7 +8687,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -8368,7 +8983,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -8383,7 +8998,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -8519,7 +9134,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -8535,7 +9150,7 @@ exports[`ShortList.container Order ebook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -8823,6 +9438,99 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -8841,19 +9549,19 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -8889,8 +9597,38 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -9183,7 +9921,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -9198,7 +9936,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -9334,7 +10072,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -9350,7 +10088,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -9646,7 +10384,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -9661,7 +10399,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -9797,7 +10535,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -9813,7 +10551,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -10109,7 +10847,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -10124,7 +10862,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -10260,7 +10998,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -10276,7 +11014,7 @@ exports[`ShortList.container Order ebook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -10564,6 +11302,99 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -10582,19 +11413,19 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -10630,8 +11461,38 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -10924,7 +11785,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -10939,7 +11800,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -11075,7 +11936,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -11091,7 +11952,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -11387,7 +12248,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -11402,7 +12263,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -11538,7 +12399,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -11554,7 +12415,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -11850,7 +12711,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -11865,7 +12726,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -12001,7 +12862,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -12017,7 +12878,7 @@ exports[`ShortList.container Order lydbook - desktop version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -12305,6 +13166,99 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -12323,19 +13277,19 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -12371,8 +13325,38 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -12665,7 +13649,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -12680,7 +13664,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -12816,7 +13800,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -12832,7 +13816,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -13128,7 +14112,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -13143,7 +14127,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -13279,7 +14263,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -13295,7 +14279,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -13591,7 +14575,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -13606,7 +14590,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -13742,7 +14726,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -13758,7 +14742,7 @@ exports[`ShortList.container Order lydbook - mobile version 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -14047,6 +15031,99 @@ exports[`ShortList.container Remove element 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -14065,19 +15142,19 @@ exports[`ShortList.container Remove element 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -14113,8 +15190,38 @@ exports[`ShortList.container Remove element 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -14407,7 +15514,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -14422,7 +15529,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -14558,7 +15665,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -14574,7 +15681,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -14870,7 +15977,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -14885,7 +15992,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -15021,7 +16128,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -15037,7 +16144,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -15333,7 +16440,7 @@ exports[`ShortList.container Remove element 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -15348,7 +16455,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -15484,7 +16591,7 @@ exports[`ShortList.container Remove element 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -15500,7 +16607,7 @@ exports[`ShortList.container Remove element 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -15788,6 +16895,99 @@ exports[`ShortList.container Short list contains elements 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -15806,19 +17006,19 @@ exports[`ShortList.container Short list contains elements 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -15854,8 +17054,38 @@ exports[`ShortList.container Short list contains elements 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"
@@ -16148,7 +17378,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -16163,7 +17393,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -16299,7 +17529,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -16315,7 +17545,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -16611,7 +17841,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -16626,7 +17856,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -16762,7 +17992,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -16778,7 +18008,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -17074,7 +18304,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                   <Button
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="2"
                                     size="medium"
                                     type="quaternary"
@@ -17089,7 +18319,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -17225,7 +18455,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                     align="right"
                                     className="ml-2"
                                     href="https://this/url/ebog"
-                                    iconLeft="alternate_email"
+                                    iconLeft="language"
                                     key="https://this/url/ebog"
                                     size="medium"
                                     type="quaternary"
@@ -17241,7 +18471,7 @@ exports[`ShortList.container Short list contains elements 1`] = `
                                       <i
                                         className="material-icons Button__icon--left"
                                       >
-                                        alternate_email
+                                        language
                                       </i>
                                       <span>
                                         Ebog
@@ -17422,6 +18652,99 @@ exports[`ShortList.container Short list is empty 1`] = `
     }
   }
 >
+  <Head
+    canonical="/huskeliste"
+    description="Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse."
+    og={
+      Object {
+        "og:url": "https://laesekompas.dk/huskeliste",
+      }
+    }
+    title="Huskeliste"
+  >
+    <HelmetWrapper
+      defer={true}
+      encodeSpecialCharacters={true}
+    >
+      <SideEffect(NullComponent)
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "https://laesekompas.dk/huskeliste",
+              "rel": "canonical",
+            },
+          ]
+        }
+        meta={
+          Array [
+            Object {
+              "content": "all",
+              "name": "robots",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "description",
+            },
+            Object {
+              "content": "Huskeliste",
+              "name": "og:title",
+            },
+            Object {
+              "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+              "name": "og:description",
+            },
+            Object {
+              "content": "https://laesekompas.dk/huskeliste",
+              "property": "og:url",
+            },
+          ]
+        }
+        title="Huskeliste | Læsekompas"
+        titleAttributes={Object {}}
+      >
+        <NullComponent
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://laesekompas.dk/huskeliste",
+                "rel": "canonical",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "content": "all",
+                "name": "robots",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "description",
+              },
+              Object {
+                "content": "Huskeliste",
+                "name": "og:title",
+              },
+              Object {
+                "content": "Gem bøger på din huskeliste mens du går på opdagelse. Så kan du nemmere vælge en bog, der giver dig den helt rigtige læseoplevelse.",
+                "name": "og:description",
+              },
+              Object {
+                "content": "https://laesekompas.dk/huskeliste",
+                "property": "og:url",
+              },
+            ]
+          }
+          title="Huskeliste | Læsekompas"
+          titleAttributes={Object {}}
+        />
+      </SideEffect(NullComponent)>
+    </HelmetWrapper>
+  </Head>
   <Banner
     className="fixed-width-col-md position-relative text-uppercase"
     color="#81c793"
@@ -17440,19 +18763,19 @@ exports[`ShortList.container Short list is empty 1`] = `
         className="Banner fixed-width-col-md position-relative text-uppercase"
       >
         <div
-          className="align-self-start"
+          className="align-self-start w-100"
         />
         <div
           className="Banner__title align-self-stretch d-flex"
         >
           <Title
-            className="align-self-center"
+            className="align-self-center "
             data-cy="banner-title"
             type="title3"
             variant="color-white"
           >
             <h1
-              className="align-self-center Title Title__title3 Title__title3--color-white"
+              className="align-self-center  Title Title__title3 Title__title3--color-white"
               data-cy="banner-title"
             >
               Din huskeliste
@@ -17488,8 +18811,38 @@ exports[`ShortList.container Short list is empty 1`] = `
             >
               <Button
                 className="bg-white pr-0"
-                iconLeft="delete"
+                href="print/huskeliste"
+                iconLeft="print"
                 key="0"
+                size="large"
+                type="quaternary"
+              >
+                <button
+                  className="bg-white pr-0
+                      btn Button Button__large Button__quaternary "
+                  data-cy=""
+                  disabled={false}
+                  onClick={[Function]}
+                >
+                  <i
+                    className="material-icons Button__icon--left"
+                  >
+                    print
+                  </i>
+                  <span>
+                    <T
+                      component="list"
+                      name="printList"
+                    >
+                      Print listen
+                    </T>
+                  </span>
+                </button>
+              </Button>
+              <Button
+                className="bg-white pr-0"
+                iconLeft="delete"
+                key="1"
                 onClick={[Function]}
                 size="large"
                 type="quaternary"

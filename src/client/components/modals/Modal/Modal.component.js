@@ -43,7 +43,7 @@ export default class Modal extends React.Component {
             </Button>
           </div>
 
-          <div className="content">
+          <div data-cy="modal-content" className="content">
             {this.props.header && (
               <Title type="title4" variant="transform-uppercase--weight-bold">
                 {this.props.header}
@@ -74,14 +74,17 @@ export default class Modal extends React.Component {
                     </Button>
                   )}
                 {!hideConfirm && (
-                  <a href={this.props.url || null} target="_blank">
+                  <a
+                    data-cy="modal-done-btn"
+                    href={this.props.url || null}
+                    target="_blank"
+                  >
                     <Button
                       disabled={onError}
                       size="medium"
                       className={'mr-0' + (doneDisabled ? ' disabled' : '')}
                       type="quaternary"
                       onClick={doneDisabled ? () => {} : this.props.onDone}
-                      dataCy="modal-done-btn"
                     >
                       {doneText}
                     </Button>

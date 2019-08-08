@@ -1,4 +1,7 @@
 /* Background og text color utils */
+.elm {
+  background-color: var(--elm);
+}
 
 .french-pass {
   background: var(--french-pass) !important;

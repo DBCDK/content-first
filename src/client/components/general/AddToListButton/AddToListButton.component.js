@@ -8,6 +8,7 @@ import Button from '../../base/Button';
 import T from '../../base/T/';
 import {withList} from '../../hoc/List/';
 import {OPEN_MODAL} from '../../../redux/modal.reducer';
+
 import {
   CUSTOM_LIST,
   SYSTEM_LIST,
@@ -71,6 +72,16 @@ const MenuEntry = withList(
 );
 
 export class AddToListButton extends React.Component {
+  componentDidMount() {
+    document.addEventListener('mouseup', this.forceClose);
+    document.addEventListener('scroll', this.dropdownDirection);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('mouseup', this.forceClose);
+    window.removeEventListener('scroll', this.dropdownDirection);
+  }
+
   // Check if a work exist in a list
   pidInList(pid, list) {
     let status = false;
@@ -84,12 +95,33 @@ export class AddToListButton extends React.Component {
 
   // Force dropdown to show
   forceOpen = () => {
-    this.dropdown.classList.add('show');
+    if (this.dropdown) {
+      this.dropdown.classList.add('show');
+    }
   };
 
   // Force dropdown to close
   forceClose = () => {
-    this.dropdown.classList.remove('show');
+    if (this.dropdown) {
+      this.dropdown.classList.remove('show');
+    }
+  };
+
+  dropdownDirection = () => {
+    if (this.dropdown && this.listContainer) {
+      const btn = this.listContainer.getBoundingClientRect();
+      const menu = this.dropdown.getBoundingClientRect();
+      const bottomSpace = window.innerHeight - btn.bottom;
+      const offset = 50;
+
+      if (menu.height + offset < bottomSpace) {
+        this.dropdown.classList.add('drop-down');
+        this.dropdown.classList.remove('drop-up');
+      } else {
+        this.dropdown.classList.add('drop-up');
+        this.dropdown.classList.remove('drop-down');
+      }
+    }
   };
 
   // Title for addToList button
@@ -136,8 +168,8 @@ export class AddToListButton extends React.Component {
               multiple
                 ? 'booksAddedToList'
                 : status
-                  ? 'toastRemovedFrom'
-                  : 'toastAddedTo'
+                ? 'toastRemovedFrom'
+                : 'toastAddedTo'
             }
             vars={[elements.length, l.title]}
           />
@@ -225,18 +257,20 @@ export class AddToListButton extends React.Component {
           type={multiple ? 'tertiary' : 'quinary'}
           size={multiple ? 'large' : 'medium'}
           id="addtolist"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="true"
           iconRight="more_vert"
+          onClick={() => {
+            if (this.dropdown && !this.dropdown.classList.contains('show')) {
+              this.dropdownDirection();
+              this.forceOpen();
+            }
+          }}
         >
           {buttonTitle}
         </Button>
 
         <ul
           ref={e => (this.dropdown = e)}
-          className="AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists dropdown-menu"
-          aria-labelledby="addtolist"
+          className="AddToListButton__Dropdown AddToListButton__Dropdown__ShowLists"
         >
           <li
             className="AddToListButton__Mobile__Back"
@@ -320,7 +354,8 @@ export const mapDispatchToProps = dispatch => ({
     dispatch({
       type: OPEN_MODAL,
       modal: modal,
-      context
+      context,
+      createListAttempt: modal === 'list'
     });
   }
 });
