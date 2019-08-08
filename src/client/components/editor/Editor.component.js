@@ -50,8 +50,9 @@ export class Editor extends React.Component {
   enableDisable = event => {
     let index = parseInt(event.target.getAttribute('index'), 10);
     if (index < this.state.items.length) {
-      this.state.items[index].enabled = !this.state.items[index].enabled;
-      this.setState({items: this.state.items});
+      let newItems = this.state.items;
+      newItems[index].enabled = !newItems[index].enabled;
+      this.setState({items: newItems});
     }
   };
 
