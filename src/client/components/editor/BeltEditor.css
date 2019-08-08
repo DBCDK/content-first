@@ -1,8 +1,8 @@
-.Editor .Banner__wrap {
+.BeltEditor .Banner__wrap {
   background-color: var(--kobber) !important;
 }
 
-.Editor .Banner__title h1 {
+.BeltEditor .Banner__title h1 {
   text-transform: uppercase;
 }
 
@@ -77,28 +77,28 @@
   padding: 0;
 }
 
-.Editor__container {
+.BeltEditor__container {
   padding-left: 0;
   padding-right: 0;
   max-width: 672px;
 }
 
-.Editor__container .Title {
+.BeltEditor__container .Title {
   margin-top: 2.6em;
 }
 
-.Editor__container .Title + .Text {
+.BeltEditor__container .Title + .Text {
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
 
-.Editor__container .Button {
+.BeltEditor__container .Button {
   margin-top: 2.4em;
   padding: 1em 1.6em;
 }
 
 @media (max-width: 768px) {
-  .Editor__container {
+  .BeltEditor__container {
     padding: 0 1rem;
   }
 

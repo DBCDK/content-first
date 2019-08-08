@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import SortableList from '../base/SortableList/SortableList';
 
-import './Editor.css';
+import './BeltEditor.css';
 import Banner from '../base/Banner';
 import Text from '../base/Text';
 import Title from '../base/Title';
@@ -33,7 +33,7 @@ const newItem = {
   createdBy: 'Ny forfatter'
 };
 
-export class Editor extends React.Component {
+export class BeltEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {items: defaultItems};
@@ -176,12 +176,12 @@ export class Editor extends React.Component {
 
   render() {
     return (
-      <div className="Editor">
+      <div className="BeltEditor">
         <Banner
           title={T({component: 'editStartPage', name: 'editStartPage'})}
           className="fixed-width-col-md position-relative"
         />
-        <div className="Editor__container col-centered">
+        <div className="BeltEditor__container col-centered">
           <Title type="title5">
             <T component="editStartPage" name="belt" />
           </Title>
@@ -223,4 +223,4 @@ const mapDispatchToProps = () => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Editor);
+)(BeltEditor);

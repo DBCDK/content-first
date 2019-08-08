@@ -1,4 +1,4 @@
-describe('Start page editor test', function() {
+describe('Start Belt Editor test', function() {
   beforeEach(function() {
     cy.initStorage();
     cy.clearClientStorage();
@@ -7,7 +7,7 @@ describe('Start page editor test', function() {
   });
 
   const nthContentRow = n =>
-    '.Editor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]:nth-child(' +
+    '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]:nth-child(' +
     n +
     ')';
 
@@ -52,7 +52,7 @@ describe('Start page editor test', function() {
 
   // ======================================================================================
 
-  it('Test Top Bar menu -> Not logged in -> Do not enter "Start Page Editor" page', function() {
+  it('Test Top Bar menu -> Not logged in -> Do not enter "Start Belt Editor" page', function() {
     // First log out (Overrule beforeEach method)
     cy.initStorage();
     cy.clearClientStorage();
@@ -66,7 +66,7 @@ describe('Start page editor test', function() {
 
   // ======================================================================================
 
-  it('Test Top Bar menu -> Logged in -> Do enter "Start Page Editor" page', function() {
+  it('Test Top Bar menu -> Logged in -> Do enter "Start Belt Editor" page', function() {
     cy.visit('/');
     cy.get('[data-cy=topbar-logged-in-btn]').click();
     cy.get('[data-cy=edit-start-page] span').click();
@@ -78,7 +78,7 @@ describe('Start page editor test', function() {
   it('Test Table contains three elements', function() {
     cy.visit('/redaktionen');
     cy.get(
-      '.Editor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
+      '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
     ).should('have.length', 3);
 
     verifyTitleRow('Titel', 'Oprettet af');
@@ -217,7 +217,7 @@ describe('Start page editor test', function() {
     clickDeleteButton(2);
 
     cy.get(
-      '.Editor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
+      '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
     ).should('have.length', 2);
     verifyTitleRow('Titel', 'Oprettet af');
     verifyContentRow(1, true, 'Norske superromaner', 'Bibliotekar Sarah');
@@ -237,7 +237,7 @@ describe('Start page editor test', function() {
     clickCreateButton();
 
     cy.get(
-      '.Editor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
+      '.BeltEditor__container [data-cy=sortable-list-container] > [data-cy=reorder-list-element]'
     ).should('have.length', 4);
     verifyTitleRow('Titel', 'Oprettet af');
     verifyContentRow(1, false, 'Ny titel', 'Ny forfatter');
