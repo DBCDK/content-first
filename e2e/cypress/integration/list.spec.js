@@ -18,7 +18,7 @@ describe('List test', function() {
     cy.contains('Har læst');
     cy.get('[data-cy=topbar-lists]').click();
   };
-/*
+
   it('Can create a new list', function() {
     const listName = 'New Awesome List';
     const listDescription = 'List description';
@@ -142,7 +142,7 @@ describe('List test', function() {
       cy.get('[data-cy=context-action-edit-element]').should('not.exist');
     });
   });
-*/
+
   it('Can add with addToListButton to public list', function() {
     cy.visit(`/værk/870970-basis:25775481`);
     waitForListsLoaded();
@@ -235,7 +235,7 @@ describe('List test', function() {
         });
     });
   });
-/*
+
   it('Will not show followed list, when list is gone', function() {
     waitForListsLoaded();
     const list = {
@@ -266,5 +266,5 @@ describe('List test', function() {
         }
       );
     });
-  });*/
+  });
 });
